@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+/* Base tweaks for a low-literacy, low-end-device audience:
+   larger default tap targets, comfortable line-height, no tiny text. */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-stone-50 text-stone-900 antialiased;
+    font-family: system-ui, 'Segoe UI', Roboto, 'Noto Sans Devanagari', sans-serif;
+  }
+  /* Every interactive control gets a comfortable minimum height. */
+  button,
+  a,
+  select,
+  input,
+  textarea {
+    min-height: 44px;
+  }
+}

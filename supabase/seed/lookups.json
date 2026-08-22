@@ -1,0 +1,23 @@
+{
+  "_comment": "Starter lists for the Sagar, MP pilot — confirm/expand with founder before wider regional launch. crops carry region='sagar_mp' for future multi-region expansion.",
+  "crops": [
+    { "name_hi": "गेहूं", "name_en": "Wheat", "region": "sagar_mp" },
+    { "name_hi": "सोयाबीन", "name_en": "Soybean", "region": "sagar_mp" },
+    { "name_hi": "चना", "name_en": "Gram", "region": "sagar_mp" },
+    { "name_hi": "उड़द", "name_en": "Urad", "region": "sagar_mp" },
+    { "name_hi": "मूंग", "name_en": "Moong", "region": "sagar_mp" },
+    { "name_hi": "धान", "name_en": "Paddy", "region": "sagar_mp" },
+    { "name_hi": "अरहर (तूअर)", "name_en": "Arhar (Tur)", "region": "sagar_mp" },
+    { "name_hi": "मक्का", "name_en": "Maize", "region": "sagar_mp" },
+    { "name_hi": "सरसों", "name_en": "Mustard", "region": "sagar_mp" },
+    { "name_hi": "लहसुन", "name_en": "Garlic", "region": "sagar_mp" }
+  ],
+  "equipment_types": [
+    { "name_hi": "ट्रैक्टर", "name_en": "Tractor" },
+    { "name_hi": "ट्रॉली", "name_en": "Trolley" },
+    { "name_hi": "थ्रेशर", "name_en": "Thresher" },
+    { "name_hi": "हार्वेस्टर", "name_en": "Harvester" },
+    { "name_hi": "रोटावेटर", "name_en": "Rotavator" },
+    { "name_hi": "अन्य", "name_en": "Other" }
+  ]
+}

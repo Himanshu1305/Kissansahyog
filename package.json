@@ -1,0 +1,43 @@
+{
+  "name": "kisan-sahyog",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "db": "node --env-file=.env scripts/db.mjs",
+    "seed": "node --env-file=.env scripts/seed.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Himanshu1305/Kissansahyog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Himanshu1305/Kissansahyog/issues"
+  },
+  "homepage": "https://github.com/Himanshu1305/Kissansahyog#readme",
+  "private": "true",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.2"
+  }
+}
