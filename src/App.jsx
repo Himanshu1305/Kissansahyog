@@ -1,14 +1,58 @@
-// Phase 1 scaffold placeholder. Real routing/screens land in Phase 2+.
-// Kept intentionally minimal so the scaffold builds and runs with no console errors.
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { LanguageProvider } from './lib/i18n/LanguageProvider'
+import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
+import { Spinner } from './components/ui'
+
+// Route-level code splitting (perf budget: keep the initial bundle small).
+const Welcome = lazy(() => import('./screens/Welcome'))
+const Signup = lazy(() => import('./screens/Signup'))
+const Login = lazy(() => import('./screens/Login'))
+const Home = lazy(() => import('./screens/Home'))
+const Placeholder = lazy(() => import('./screens/Placeholder'))
+
+// Gate for logged-in-only routes.
+function Protected({ children }) {
+  const { isLoggedIn } = useAuth()
+  const location = useLocation()
+  if (!isLoggedIn) return <Navigate to="/" replace state={{ from: location }} />
+  return children
+}
+
+// Send already-logged-in users away from the public entry screens.
+function PublicOnly({ children }) {
+  const { isLoggedIn } = useAuth()
+  if (isLoggedIn) return <Navigate to="/home" replace />
+  return children
+}
+
+function AppRoutes() {
+  return (
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route path="/" element={<PublicOnly><Welcome /></PublicOnly>} />
+        <Route path="/signup" element={<PublicOnly><Signup /></PublicOnly>} />
+        <Route path="/login" element={<PublicOnly><Login /></PublicOnly>} />
+
+        <Route path="/home" element={<Protected><Home /></Protected>} />
+        <Route path="/browse" element={<Protected><Placeholder title="खोजें · Browse" /></Protected>} />
+        <Route path="/post" element={<Protected><Placeholder title="नई लिस्टिंग · Post" /></Protected>} />
+        <Route path="/my" element={<Protected><Placeholder title="मेरी लिस्टिंग · My Listings" /></Protected>} />
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
+  )
+}
+
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
-      <div className="text-5xl mb-4" aria-hidden="true">🌾</div>
-      <h1 className="text-3xl font-bold text-green-700">किसान सहयोग</h1>
-      <p className="mt-1 text-lg text-stone-600">Kisan Sahyog</p>
-      <p className="mt-6 max-w-sm text-stone-500">
-        जानकारी साझा करने वाला मंच · An information-sharing platform
-      </p>
-    </div>
+    <LanguageProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AuthProvider>
+    </LanguageProvider>
   )
 }
