@@ -3,13 +3,16 @@
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { Field, Select, TextInput } from '../ui'
 
-// Stable id from a label so <label for> associates the control (a11y + tests).
+// Stable control id. Prefer an explicit, language-independent `name` (e.g.
+// "crop_id"); fall back to a slug of the label. Deriving ids from a LOCALIZED
+// label would make them change when the UI language switches — always pass name.
 const slug = (s) => 'f_' + String(s).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')
+const fieldId = (name, label) => (name ? `f_${name}` : slug(label))
 
 // Labelled single-select dropdown backed by a catalog option list.
-export function OptionSelect({ label, list, value, onChange, required, error, hint, includeEmpty = true, emptyLabel }) {
+export function OptionSelect({ name, label, list, value, onChange, required, error, hint, includeEmpty = true, emptyLabel }) {
   const { t, lang } = useLang()
-  const id = slug(label)
+  const id = fieldId(name, label)
   return (
     <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
       <Select id={id} value={value ?? ''} onChange={(e) => onChange(e.target.value || null)}>
@@ -83,8 +86,8 @@ export function SegmentedChoice({ label, options, value, onChange, required }) {
 }
 
 // Labelled number input (integer, with a minimum).
-export function NumberField({ label, value, onChange, required, error, hint, min = 1, placeholder }) {
-  const id = slug(label)
+export function NumberField({ name, label, value, onChange, required, error, hint, min = 1, placeholder }) {
+  const id = fieldId(name, label)
   return (
     <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
       <TextInput
@@ -101,8 +104,8 @@ export function NumberField({ label, value, onChange, required, error, hint, min
 }
 
 // Labelled free-text input.
-export function TextField({ label, value, onChange, required, error, hint, placeholder }) {
-  const id = slug(label)
+export function TextField({ name, label, value, onChange, required, error, hint, placeholder }) {
+  const id = fieldId(name, label)
   return (
     <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
       <TextInput id={id} value={value ?? ''} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
@@ -111,8 +114,8 @@ export function TextField({ label, value, onChange, required, error, hint, place
 }
 
 // Native date input, labelled.
-export function DateField({ label, value, onChange, required, error, min, max }) {
-  const id = slug(label)
+export function DateField({ name, label, value, onChange, required, error, min, max }) {
+  const id = fieldId(name, label)
   return (
     <Field label={label} htmlFor={id} required={required} error={error}>
       <TextInput
@@ -128,9 +131,9 @@ export function DateField({ label, value, onChange, required, error, min, max })
 }
 
 // Select backed by DB lookup rows ({id, name_hi, name_en}); respects language.
-export function LookupSelect({ label, rows, value, onChange, required, error, emptyLabel }) {
+export function LookupSelect({ name, label, rows, value, onChange, required, error, emptyLabel }) {
   const { t, lang } = useLang()
-  const id = slug(label)
+  const id = fieldId(name, label)
   return (
     <Field label={label} htmlFor={id} required={required} error={error}>
       <Select id={id} value={value ?? ''} onChange={(e) => onChange(e.target.value ? Number(e.target.value) : null)}>

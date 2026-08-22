@@ -6,7 +6,7 @@ import { supabase } from '../lib/supabaseClient'
 // when a user is logged in, also to their profile (best-effort) so language
 // survives a logout/login cycle.
 export default function LanguageToggle({ className = '' }) {
-  const { lang, setLang } = useLang()
+  const { lang, setLang, t } = useLang()
   const { user, patchUser } = useAuth()
 
   async function choose(next) {
@@ -29,7 +29,7 @@ export default function LanguageToggle({ className = '' }) {
     }`
 
   return (
-    <div className={`flex items-center gap-1 ${className}`} role="group" aria-label="Language">
+    <div className={`flex items-center gap-1 ${className}`} role="group" aria-label={t('language')}>
       <button type="button" className={btn('hi')} onClick={() => choose('hi')}>
         हिं
       </button>

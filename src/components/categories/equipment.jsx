@@ -33,6 +33,7 @@ export function Fields({ details, setDetails, extras }) {
   return (
     <>
       <LookupSelect
+        name="equipment_type_id"
         label={t('field_equipment_type')}
         rows={extras.equipmentTypes || []}
         value={details.equipment_type_id}
@@ -40,6 +41,7 @@ export function Fields({ details, setDetails, extras }) {
         required
       />
       <OptionSelect
+        name="rental_basis"
         label={t('field_rental_basis')}
         list={RENTAL_BASIS}
         value={details.rental_basis}
@@ -56,8 +58,8 @@ export function Fields({ details, setDetails, extras }) {
       />
       {!details.available_now && (
         <>
-          <DateField label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} />
-          <DateField label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
+          <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} />
+          <DateField name="available_to" label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
         </>
       )}
     </>

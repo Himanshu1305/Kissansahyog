@@ -46,6 +46,7 @@ export function Fields({ details, setDetails, extras }) {
   return (
     <>
       <OptionSelect
+        name="size_range"
         label={t('field_size')}
         list={SIZE_RANGE}
         value={details.size_range}
@@ -59,12 +60,14 @@ export function Fields({ details, setDetails, extras }) {
         onChange={set('arrangement')}
       />
       <OptionSelect
+        name="water_source"
         label={t('field_water')}
         list={WATER_SOURCE}
         value={details.water_source}
         onChange={set('water_source')}
       />
       <LookupSelect
+        name="crop_id"
         label={t('field_crop')}
         rows={extras.crops || []}
         value={details.crop_id}
@@ -72,6 +75,7 @@ export function Fields({ details, setDetails, extras }) {
         emptyLabel={t('crop_any')}
       />
       <OptionSelect
+        name="season"
         label={t('field_season')}
         list={SEASON}
         value={details.season}

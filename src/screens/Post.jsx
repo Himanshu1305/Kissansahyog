@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { Screen, BigButton } from '../components/ui'
+import LanguageToggle from '../components/LanguageToggle'
 import { CATEGORIES, CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { isEnabled } from '../lib/listings/registry'
 import ListingForm from '../components/ListingForm'
@@ -31,7 +32,7 @@ export default function Post() {
       : `${t('post_listing')}${listingType ? ' · ' + LISTING_TYPE_META[listingType][lang] : ''}`
 
   return (
-    <Screen title={title} onBack={step === 'done' ? undefined : back}>
+    <Screen title={title} onBack={step === 'done' ? undefined : back} right={<LanguageToggle />}>
       {step === 'type' && (
         <div>
           <h2 className="mb-4 text-xl font-bold text-stone-800">{t('post_q_type')}</h2>

@@ -34,6 +34,7 @@ export function Fields({ details, setDetails }) {
   return (
     <>
       <NumberField
+        name="worker_count"
         label={t('field_worker_count')}
         value={details.worker_count}
         onChange={set('worker_count')}
@@ -41,20 +42,23 @@ export function Fields({ details, setDetails }) {
         required
       />
       <OptionSelect
+        name="work_type"
         label={t('field_work_type')}
         list={WORK_TYPE}
         value={details.work_type}
         onChange={set('work_type')}
       />
-      <DateField label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} />
-      <DateField label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
+      <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} />
+      <DateField name="available_to" label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
       <OptionSelect
+        name="rate_basis"
         label={t('field_rate_basis')}
         list={RATE_BASIS}
         value={details.rate_basis}
         onChange={set('rate_basis')}
       />
       <TextField
+        name="rate_amount"
         label={t('field_rate_amount')}
         value={details.rate_amount}
         onChange={set('rate_amount')}

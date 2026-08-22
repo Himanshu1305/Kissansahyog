@@ -5,6 +5,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 
 // Page shell with an optional sticky header (title + optional back button).
 export function Screen({ title, onBack, right, children, contentClassName = '' }) {
+  const { t } = useLang()
   return (
     <div className="min-h-screen flex flex-col bg-stone-50">
       {(title || onBack || right) && (
@@ -14,7 +15,7 @@ export function Screen({ title, onBack, right, children, contentClassName = '' }
               <button
                 type="button"
                 onClick={onBack}
-                aria-label="Back"
+                aria-label={t('back')}
                 className="grid h-11 w-11 place-items-center rounded-lg text-2xl hover:bg-green-600 active:bg-green-800"
               >
                 ‹
