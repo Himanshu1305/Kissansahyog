@@ -9,6 +9,9 @@ const Welcome = lazy(() => import('./screens/Welcome'))
 const Signup = lazy(() => import('./screens/Signup'))
 const Login = lazy(() => import('./screens/Login'))
 const Home = lazy(() => import('./screens/Home'))
+const Browse = lazy(() => import('./screens/Browse'))
+const Post = lazy(() => import('./screens/Post'))
+const ListingDetail = lazy(() => import('./screens/ListingDetail'))
 const Placeholder = lazy(() => import('./screens/Placeholder'))
 
 // Gate for logged-in-only routes.
@@ -35,8 +38,9 @@ function AppRoutes() {
         <Route path="/login" element={<PublicOnly><Login /></PublicOnly>} />
 
         <Route path="/home" element={<Protected><Home /></Protected>} />
-        <Route path="/browse" element={<Protected><Placeholder title="खोजें · Browse" /></Protected>} />
-        <Route path="/post" element={<Protected><Placeholder title="नई लिस्टिंग · Post" /></Protected>} />
+        <Route path="/browse" element={<Protected><Browse /></Protected>} />
+        <Route path="/post" element={<Protected><Post /></Protected>} />
+        <Route path="/listing/:id" element={<Protected><ListingDetail /></Protected>} />
         <Route path="/my" element={<Protected><Placeholder title="मेरी लिस्टिंग · My Listings" /></Protected>} />
 
         <Route path="*" element={<Navigate to="/" replace />} />

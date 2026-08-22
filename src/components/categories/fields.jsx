@@ -1,0 +1,75 @@
+// Reusable, low-literacy-friendly form controls shared by every category's
+// field set. Single-choice = big dropdown; multi-choice = large tappable chips.
+import { useLang } from '../../lib/i18n/LanguageProvider'
+import { Field, Select } from '../ui'
+
+// Stable id from a label so <label for> associates the control (a11y + tests).
+const slug = (s) => 'f_' + String(s).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')
+
+// Labelled single-select dropdown backed by a catalog option list.
+export function OptionSelect({ label, list, value, onChange, required, error, hint, includeEmpty = true, emptyLabel }) {
+  const { t, lang } = useLang()
+  const id = slug(label)
+  return (
+    <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
+      <Select id={id} value={value ?? ''} onChange={(e) => onChange(e.target.value || null)}>
+        {includeEmpty && <option value="">{emptyLabel ?? t('select_placeholder')}</option>}
+        {list.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o[lang]}
+          </option>
+        ))}
+      </Select>
+    </Field>
+  )
+}
+
+// Multi-select as a row of toggleable chips (used for land `arrangement`).
+export function MultiChips({ label, list, values, onChange, required, error }) {
+  const { lang } = useLang()
+  const selected = Array.isArray(values) ? values : []
+  const toggle = (v) =>
+    onChange(selected.includes(v) ? selected.filter((x) => x !== v) : [...selected, v])
+  return (
+    <Field label={label} required={required} error={error}>
+      <div className="flex flex-wrap gap-2">
+        {list.map((o) => {
+          const on = selected.includes(o.value)
+          return (
+            <button
+              key={o.value}
+              type="button"
+              onClick={() => toggle(o.value)}
+              aria-pressed={on}
+              className={`rounded-full border-2 px-4 py-2 text-base font-semibold ${
+                on
+                  ? 'border-green-700 bg-green-700 text-white'
+                  : 'border-stone-300 bg-white text-stone-700'
+              }`}
+            >
+              {o[lang]}
+            </button>
+          )
+        })}
+      </div>
+    </Field>
+  )
+}
+
+// Select backed by DB lookup rows ({id, name_hi, name_en}); respects language.
+export function LookupSelect({ label, rows, value, onChange, required, error, emptyLabel }) {
+  const { t, lang } = useLang()
+  const id = slug(label)
+  return (
+    <Field label={label} htmlFor={id} required={required} error={error}>
+      <Select id={id} value={value ?? ''} onChange={(e) => onChange(e.target.value ? Number(e.target.value) : null)}>
+        <option value="">{emptyLabel ?? t('select_placeholder')}</option>
+        {rows.map((r) => (
+          <option key={r.id} value={r.id}>
+            {lang === 'hi' ? r.name_hi : r.name_en}
+          </option>
+        ))}
+      </Select>
+    </Field>
+  )
+}

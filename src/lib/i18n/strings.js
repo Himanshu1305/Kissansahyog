@@ -73,6 +73,46 @@ export const strings = {
   post_listing: { hi: 'नई लिस्टिंग डालें', en: 'Post a listing' },
   my_listings: { hi: 'मेरी लिस्टिंग', en: 'My listings' },
 
+  // --- post flow ---
+  post_q_type: { hi: 'आप क्या करना चाहते हैं?', en: 'What do you want to do?' },
+  post_q_category: { hi: 'किस चीज़ के बारे में?', en: 'About what?' },
+  posting: { hi: 'लिस्टिंग जोड़ी जा रही है…', en: 'Posting your listing…' },
+  post_success: { hi: 'आपकी लिस्टिंग जुड़ गई!', en: 'Your listing has been posted!' },
+  view_listing: { hi: 'लिस्टिंग देखें', en: 'View listing' },
+  post_another: { hi: 'एक और डालें', en: 'Post another' },
+  coming_soon: { hi: 'जल्द आ रहा है', en: 'Coming soon' },
+  select_placeholder: { hi: 'चुनें…', en: 'Select…' },
+
+  // --- land fields ---
+  field_size: { hi: 'ज़मीन का आकार', en: 'Land size' },
+  field_arrangement: { hi: 'व्यवस्था', en: 'Arrangement' },
+  field_water: { hi: 'पानी का स्रोत', en: 'Water source' },
+  field_crop: { hi: 'फसल', en: 'Crop' },
+  crop_any: { hi: 'कोई भी / तय नहीं', en: 'Any / not specified' },
+  field_season: { hi: 'मौसम', en: 'Season' },
+  field_photos: { hi: 'फोटो', en: 'Photos' },
+  photos_help: { hi: 'ज़्यादा से ज़्यादा 3 फोटो (वैकल्पिक)', en: 'Up to 3 photos (optional)' },
+  self_declaration_land: {
+    hi: 'मैं पुष्टि करता/करती हूं कि यह ज़मीन मेरी है या मुझे इसे लिस्ट करने का अधिकार है।',
+    en: 'I confirm this land belongs to me or I am authorized to list it.',
+  },
+
+  // --- browse ---
+  browse_title: { hi: 'आस-पास खोजें', en: 'Browse nearby' },
+  within_30km: { hi: 'आपके 30 किमी के भीतर', en: 'Within 30 km of you' },
+  filter_all: { hi: 'सभी', en: 'All' },
+  sort_nearest: { hi: 'नज़दीकी पहले', en: 'Nearest first' },
+  sort_newest: { hi: 'नई पहले', en: 'Newest first' },
+  no_listings: { hi: 'आस-पास कोई लिस्टिंग नहीं मिली।', en: 'No listings found nearby.' },
+  km_away: { hi: 'किमी दूर', en: 'km away' },
+  posted_label: { hi: 'डाली गई', en: 'Posted' },
+
+  // --- detail ---
+  detail_title: { hi: 'लिस्टिंग', en: 'Listing' },
+  call_now: { hi: 'फ़ोन करें', en: 'Call now' },
+  show_number: { hi: 'नंबर देखें', en: 'Show number' },
+  listing_not_found: { hi: 'यह लिस्टिंग नहीं मिली।', en: 'This listing was not found.' },
+
   // --- errors (mirrors src/lib/errors.js codes) ---
   err_name_required: { hi: 'कृपया अपना पूरा नाम भरें।', en: 'Please enter your full name.' },
   err_invalid_phone: {
