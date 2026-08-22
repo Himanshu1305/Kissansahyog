@@ -3,11 +3,12 @@
 // importing it here, and listing it in ENABLED_CATEGORIES; the browse / post /
 // detail screens stay category-agnostic.
 import * as land from '../../components/categories/land.jsx'
+import * as equipment from '../../components/categories/equipment.jsx'
 
-const REGISTRY = { land }
+const REGISTRY = { land, equipment }
 
 // Categories wired end-to-end and shown in the UI. Grows per phase.
-export const ENABLED_CATEGORIES = ['land']
+export const ENABLED_CATEGORIES = ['land', 'equipment']
 
 export function getCategory(category) {
   const mod = REGISTRY[category]

@@ -1,7 +1,7 @@
 // Reusable, low-literacy-friendly form controls shared by every category's
 // field set. Single-choice = big dropdown; multi-choice = large tappable chips.
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { Field, Select } from '../ui'
+import { Field, Select, TextInput } from '../ui'
 
 // Stable id from a label so <label for> associates the control (a11y + tests).
 const slug = (s) => 'f_' + String(s).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')
@@ -52,6 +52,49 @@ export function MultiChips({ label, list, values, onChange, required, error }) {
           )
         })}
       </div>
+    </Field>
+  )
+}
+
+// Single-choice segmented chips (e.g. "Available now" vs "Specific dates").
+export function SegmentedChoice({ label, options, value, onChange, required }) {
+  return (
+    <Field label={label} required={required}>
+      <div className="flex flex-wrap gap-2">
+        {options.map((o) => {
+          const on = value === o.value
+          return (
+            <button
+              key={o.value}
+              type="button"
+              onClick={() => onChange(o.value)}
+              aria-pressed={on}
+              className={`rounded-full border-2 px-4 py-2 text-base font-semibold ${
+                on ? 'border-green-700 bg-green-700 text-white' : 'border-stone-300 bg-white text-stone-700'
+              }`}
+            >
+              {o.label}
+            </button>
+          )
+        })}
+      </div>
+    </Field>
+  )
+}
+
+// Native date input, labelled.
+export function DateField({ label, value, onChange, required, error, min, max }) {
+  const id = slug(label)
+  return (
+    <Field label={label} htmlFor={id} required={required} error={error}>
+      <TextInput
+        id={id}
+        type="date"
+        value={value || ''}
+        min={min}
+        max={max}
+        onChange={(e) => onChange(e.target.value || null)}
+      />
     </Field>
   )
 }

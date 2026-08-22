@@ -97,6 +97,15 @@ export const strings = {
     en: 'I confirm this land belongs to me or I am authorized to list it.',
   },
 
+  // --- equipment fields ---
+  field_equipment_type: { hi: 'मशीन का प्रकार', en: 'Equipment type' },
+  field_rental_basis: { hi: 'किराया किस आधार पर', en: 'Rental basis' },
+  field_availability: { hi: 'उपलब्धता', en: 'Availability' },
+  avail_now: { hi: 'अभी उपलब्ध', en: 'Available now' },
+  avail_dates: { hi: 'तय तारीख़ों में', en: 'Specific dates' },
+  field_from_date: { hi: 'तारीख़ से', en: 'From date' },
+  field_to_date: { hi: 'तारीख़ तक', en: 'To date' },
+
   // --- browse ---
   browse_title: { hi: 'आस-पास खोजें', en: 'Browse nearby' },
   within_30km: { hi: 'आपके 30 किमी के भीतर', en: 'Within 30 km of you' },
