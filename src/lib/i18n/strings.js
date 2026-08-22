@@ -124,6 +124,15 @@ export const strings = {
   km_away: { hi: 'किमी दूर', en: 'km away' },
   posted_label: { hi: 'डाली गई', en: 'Posted' },
 
+  // --- my listings ---
+  my_listings_title: { hi: 'मेरी लिस्टिंग', en: 'My Listings' },
+  no_my_listings: { hi: 'आपने अभी तक कोई लिस्टिंग नहीं डाली।', en: 'You have not posted any listings yet.' },
+  mark_found: { hi: 'मिल गया', en: 'Found' },
+  badge_found: { hi: 'मिल गया', en: 'Found' },
+  badge_expired: { hi: 'समय समाप्त', en: 'Expired' },
+  badge_active: { hi: 'चालू', en: 'Active' },
+  found_confirm: { hi: 'क्या यह लिस्टिंग बंद करनी है? यह अब खोज में नहीं दिखेगी।', en: 'Close this listing? It will no longer appear in search.' },
+
   // --- detail ---
   detail_title: { hi: 'लिस्टिंग', en: 'Listing' },
   call_now: { hi: 'फ़ोन करें', en: 'Call now' },
