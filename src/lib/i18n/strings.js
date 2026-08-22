@@ -106,6 +106,14 @@ export const strings = {
   field_from_date: { hi: 'तारीख़ से', en: 'From date' },
   field_to_date: { hi: 'तारीख़ तक', en: 'To date' },
 
+  // --- labor fields ---
+  field_worker_count: { hi: 'कितने मज़दूर', en: 'Number of workers' },
+  field_work_type: { hi: 'काम का प्रकार', en: 'Type of work' },
+  field_rate_basis: { hi: 'दर किस आधार पर', en: 'Rate basis' },
+  field_rate_amount: { hi: 'दर / मज़दूरी', en: 'Rate / wage' },
+  rate_amount_ph: { hi: 'जैसे: ₹400 या बातचीत से', en: 'e.g. ₹400 or negotiable' },
+  workers_unit: { hi: 'मज़दूर', en: 'workers' },
+
   // --- browse ---
   browse_title: { hi: 'आस-पास खोजें', en: 'Browse nearby' },
   within_30km: { hi: 'आपके 30 किमी के भीतर', en: 'Within 30 km of you' },

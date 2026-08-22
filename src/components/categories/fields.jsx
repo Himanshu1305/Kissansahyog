@@ -82,6 +82,34 @@ export function SegmentedChoice({ label, options, value, onChange, required }) {
   )
 }
 
+// Labelled number input (integer, with a minimum).
+export function NumberField({ label, value, onChange, required, error, hint, min = 1, placeholder }) {
+  const id = slug(label)
+  return (
+    <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
+      <TextInput
+        id={id}
+        type="number"
+        inputMode="numeric"
+        min={min}
+        value={value ?? ''}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value === '' ? null : Number(e.target.value))}
+      />
+    </Field>
+  )
+}
+
+// Labelled free-text input.
+export function TextField({ label, value, onChange, required, error, hint, placeholder }) {
+  const id = slug(label)
+  return (
+    <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
+      <TextInput id={id} value={value ?? ''} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
+    </Field>
+  )
+}
+
 // Native date input, labelled.
 export function DateField({ label, value, onChange, required, error, min, max }) {
   const id = slug(label)
