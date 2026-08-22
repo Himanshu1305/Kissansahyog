@@ -75,6 +75,6 @@ test('equipment appears in its own browse tab', async ({ page }) => {
   })
   await loginAs(page, user)
   await page.goto('/browse')
-  await page.getByRole('button', { name: /Equipment/ }).click()
+  await page.getByTestId('tab-equipment').click()
   await expect(page.getByTestId('listing-card').first()).toBeVisible()
 })

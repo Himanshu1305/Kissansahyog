@@ -71,6 +71,6 @@ test('expired listing shows Expired in My Listings and is absent from browse', a
   await expect(page.getByTestId('mark-found')).toHaveCount(0)
 
   await page.goto('/browse')
-  await page.getByRole('button', { name: /Labor/ }).click()
+  await page.getByTestId('tab-labor').click()
   await expect(page.getByTestId('listing-card')).toHaveCount(0)
 })

@@ -65,7 +65,7 @@ export default function Browse() {
       {/* Category tabs */}
       <div className="mb-3 flex gap-2">
         {ENABLED_CATEGORIES.map((c) => (
-          <button key={c} className={tabClass(c)} onClick={() => setCategory(c)}>
+          <button key={c} data-testid={`tab-${c}`} className={tabClass(c)} onClick={() => setCategory(c)}>
             {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}
           </button>
         ))}

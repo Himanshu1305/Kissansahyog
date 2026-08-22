@@ -83,7 +83,7 @@ export default function MyListings() {
                   {closingId === l.id ? (
                     <Spinner />
                   ) : (
-                    <BigButton variant="secondary" data-testid="mark-found" onClick={() => markFound(l.id)}>
+                    <BigButton variant="secondary" data-testid="mark-found" data-category={l.category} onClick={() => markFound(l.id)}>
                       ✅ {t('mark_found')}
                     </BigButton>
                   )}
