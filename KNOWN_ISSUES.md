@@ -10,6 +10,27 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 
 ---
 
+## Resolved in Phase 3
+
+- **Homepage nav home button — FIXED.** The NavBar logo now links to `/` (public homepage)
+  for all users, `/` is viewable while logged in, and the authenticated dashboard renders the
+  global NavBar — so logged-in users can always get back to the homepage (Phase 1).
+
+## New in Phase 3 (intentional / flagged)
+
+- **Email verification is NOT enabled.** Email-registered users are trusted on signup without
+  confirming their address (`mailer_autoconfirm` on) — acceptable for the MVP, flagged for a
+  future phase (add confirmation emails before wider launch). Phone auth still lacks real OTP.
+- **Deleting an account leaves the Supabase `auth.users` row.** `delete_account` removes the
+  profile (cascading listings) and signs the user out, but the underlying auth user is not
+  deleted from the client (that needs the service role). Harmless — login then finds no profile —
+  but worth a server-side cleanup later.
+- **Admin trust model.** Admin RPCs verify `is_admin` on the passed profile id (same trust model
+  as the rest of the RPC surface); becomes cryptographic when phone OTP / `auth.uid()` lands.
+- **v1 Playwright E2E specs** still need the new required listing fields (asset pincode, land
+  price type, equipment rate) filled before re-running — carried from v1.1. Phase 3 features are
+  covered by the `p3_phase*` backend suites + Playwright smoke checks.
+
 ## Resolved in v1.1
 
 - **Asset-location distance bug — FIXED.** Listings previously inherited the poster's *profile*

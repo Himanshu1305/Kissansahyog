@@ -71,14 +71,19 @@ e2e/                         Playwright E2E (phase{2..9}.spec.js) + support/tear
 
 All tables have **Row Level Security** enabled.
 
-**profiles** — application-level user (not Supabase Auth). `id` uuid pk,
-`full_name`, `phone` (unique), `village_town`, `pincode`, `latitude`, `longitude`
-(derived from `pincodes` at signup), `preferred_language` ('hi'|'en', default 'hi'),
-`disclaimer_accepted_at` (nullable; must be set to post), `created_at`.
+**profiles** — application-level user. `id` uuid pk, `full_name`, `phone` (unique,
+**nullable since Phase 3** — null for email users), `village_town`, `pincode`,
+`latitude`, `longitude` (derived from `pincodes`), `preferred_language`
+('hi'|'en', default 'hi'), `disclaimer_accepted_at` (nullable; must be set to post),
+`created_at`. **Phase 3 columns:** `email` (unique, nullable), `auth_uid` (unique,
+nullable — links an email user to `auth.users.id`), `auth_provider`
+('phone'|'email', default 'phone'), `is_admin` (bool, default false).
 
 **listings** — `id` uuid pk, `user_id` → profiles, `listing_type` ('offer'|'requirement'),
-`category` ('land'|'equipment'|'labor'|'bhusa'|'agri_inputs'), `status` ('active'|'closed',
-default active), `latitude`/`longitude` (**the ASSET's location**, derived server-side from
+`category` ('land'|'equipment'|'labor'|'bhusa'|'agri_inputs'), `status`
+('active'|'closed'|'removed', default active — **'removed' added in Phase 3** for admin
+moderation; removed/closed rows are excluded from public browse/homepage), `latitude`/`longitude`
+(**the ASSET's location**, derived server-side from
 the listing's own `pincode` — see §6), `pincode`, `details` jsonb (category-specific — see §3),
 `self_declared` bool, `created_at`, `expires_at` (default now()+30 days).
 CHECK `land_offer_requires_self_declared`: a land **offer** must have `self_declared = true`.
@@ -89,6 +94,12 @@ CHECK `listings_category_check`: category ∈ the 5 values above (widened per v1
 `organisation`, `is_active` bool (default true), `created_at`. **Admin-curated only** — anon
 may READ active rows; **no anon writes** (inserts via service role / migrations). No distance
 filtering (experts help everyone). See §11.
+
+**articles** (Phase 3) — blog/articles. `id` uuid pk, `slug` unique, `title_hi`,
+`title_en`, `summary_hi`, `summary_en`, `content_hi`, `content_en`, `author_name`
+(default 'Team Kisan Sahyog'), `cover_image_url`, `is_published` (bool), `published_at`,
+`created_at`. **RLS:** public read of `is_published = true`; writes only via admin RPCs.
+Two launch articles seeded (Parali burning; carbon credits).
 
 **crops** — `id` serial, `name_hi`, `name_en`, `region` (default 'sagar_mp'),
 unique (name_en, region). *(v1.1: 11 rows — added मसूर/Masoor.)*
@@ -164,6 +175,22 @@ self-declaration checkbox and "no police verification". This becomes cryptograph
 Phase 2 (real auth → `auth.uid()`). See §5 and KNOWN_ISSUES.md.
 
 ---
+
+## 5b. Dual auth — phone (trust) + email (Supabase Auth), Phase 3
+
+Email+password was added **alongside** the phone flow; both live in `authService.js`
+and both end with the same localStorage session (`ks_session_v1`) so every screen is
+auth-method-agnostic.
+- **Phone:** unchanged trust-based `app_signup`/`app_login` (still needs real OTP one day).
+- **Email:** a SECOND Supabase client `supabaseAuth` (in `supabaseClient.js`,
+  `persistSession:true`, distinct `storageKey`) does `signUp`/`signInWithPassword`.
+  Email confirmation is **disabled** (`mailer_autoconfirm` on) so signup yields an
+  immediate session. `app_signup_email`/`app_login_email` are SECURITY DEFINER RPCs that
+  identify the user via `auth.uid()` and link the profile by `auth_uid`.
+  **Why a second client:** the main `supabase` client stays anon-only (no JWT on data
+  requests), so requests never switch to the `authenticated` role and **existing anon RLS
+  is untouched**. `changePassword` re-verifies then `updateUser`; `logout` also
+  `supabaseAuth.signOut()`. Profile edit/delete via `update_profile`/`delete_account` RPCs.
 
 ## 5. MVP auth & the Phase-2 OTP swap (IMPORTANT)
 
@@ -308,3 +335,38 @@ Seven phases, each its own commit + push (`docs/V1_1_BUILD_PROMPT.md` is the spe
 Migrations `0006`–`0009` are additive and idempotent (`create or replace`, `add constraint if
 … `, `on conflict do nothing`). The category CHECK constraint is re-declared (named
 `listings_category_check`) each time a category is added.
+
+---
+
+## 13. Phase 3 — nav fix, dual auth, profile, admin, articles
+
+Migrations `0010`–`0013`. Public homepage `/` is no longer gated (logged-in users can view
+it; the NavBar logo links there for everyone). New screens/routes:
+- `/welcome` (moved), `/profile` (auth), `/admin` (auth + is_admin), `/articles`,
+  `/articles/:slug` (public). `/home` now renders the global NavBar.
+
+**Dual auth:** see §5b. New profiles columns + nullable phone (0010); `update_profile` /
+`delete_account` (0011).
+
+**Admin dashboard (0012):** gated by `is_admin`. All admin data flows through
+**is_admin-checked SECURITY DEFINER RPCs** — the anon key never returns bulk phones/emails:
+`get_admin_stats`, `get_admin_listings`, `get_admin_users` (search), `remove_listing`
+(→ status 'removed'), `admin_list_experts`, `admin_set_expert_active`, `admin_upsert_expert`,
+`get_admin_articles`, `admin_upsert_article`, `admin_delete_article`. Helper `require_admin(id)`
+raises `not_admin` for non-admins. Admin UI: stats bar, recent-listings + remove, expert CRUD,
+article CRUD, users list + search — all bilingual.
+
+**Becoming admin — the ONLY gate is the DB flag.** Run once in the Supabase SQL editor:
+```sql
+UPDATE profiles SET is_admin = true WHERE phone = 'YOUR_PHONE_NUMBER';
+-- or, for an email-registered founder:
+UPDATE profiles SET is_admin = true WHERE email = 'YOUR_EMAIL';
+```
+
+**Articles (0012 table, 0013 public-read + seed):** public read of published rows; admin CRUD
+via RPCs. `articlesApi.js` (`fetchPublishedArticles`, `fetchArticleBySlug`). Nav + footer link
+to `/articles`; the Bhusa/Parali browse tab cross-links the Parali article.
+
+**Tests:** `scripts/test/p3_phase2..4,7.mjs` (dual auth, profile, admin, integration).
+Note `phase3.mjs`'s browse assertion was made robust to real listings in the live DB
+(checks its own tagged rows, not an exact total).

@@ -103,11 +103,15 @@ async function main() {
     .map((r) => ({ tag: r.details.tag, d: haversineKm(SAGAR[0], SAGAR[1], r.latitude, r.longitude) }))
     .filter((r) => isWithinRadius(r.d))
     .sort((a, b) => a.d - b.d)
+  // Robust against a live DB that may hold real listings near Sagar: assert this
+  // test's OWN tagged rows are correctly included/excluded, not the total count.
   const tags = nearby.map((r) => r.tag)
-  check('browse returns only within-30km (Sagar+Surkhi), excludes Rehli+Bina',
-    tags.length === 2 && tags[0] === 'A_sagar_0km' && tags[1] === 'B_surkhi_25km',
+  const ai = tags.indexOf('A_sagar_0km'), bi = tags.indexOf('B_surkhi_25km')
+  check('browse includes within-30km (Sagar+Surkhi), excludes Rehli+Bina',
+    ai > -1 && bi > -1 && !tags.includes('C_rehli_39km') && !tags.includes('D_bina_66km'),
     `got [${tags.join(', ')}]`)
-  check('nearest-first sort correct', nearby[0].d < nearby[1].d, `${nearby.map((r) => r.d.toFixed(1)).join(', ')}`)
+  check('nearest-first sort correct (A_sagar before B_surkhi)', ai > -1 && bi > -1 && ai < bi,
+    `${nearby.map((r) => `${r.tag || '?'}:${r.d.toFixed(1)}`).join(', ')}`)
 
   await cleanupTestData()
   done()
