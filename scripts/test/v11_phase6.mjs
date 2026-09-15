@@ -57,6 +57,15 @@ const REQUIRED_KEYS = [
   'field_shop_address', 'field_contact_phone', 'agri_vendor_future_charges',
   'experts_nav', 'experts_title', 'experts_filter_label', 'experts_filter_ph',
   'experts_none', 'expert_not_found',
+  // Phase 3 (dual auth, profile, admin, articles):
+  'nav_login', 'nav_signup', 'my_profile', 'tab_phone', 'tab_email',
+  'email_label', 'password_label', 'err_invalid_email', 'err_password_short',
+  'err_email_exists', 'err_wrong_password',
+  'save_changes', 'change_password', 'delete_account', 'member_since',
+  'admin_title', 'access_denied', 'stat_users', 'admin_recent_listings',
+  'admin_experts', 'admin_articles', 'admin_users', 'err_not_admin',
+  'articles_nav', 'articles_title', 'read_more', 'share_article', 'copy_link',
+  'back_to_articles', 'article_not_found', 'related_bhusa_cta', 'read_about_this',
 ]
 const missing = REQUIRED_KEYS.filter((k) => !strings[k])
 check('all v1.1 string keys present', missing.length === 0, missing.join(', '))

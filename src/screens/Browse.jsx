@@ -95,6 +95,17 @@ export default function Browse() {
         </button>
       </div>
 
+      {/* Bhusa/Parali → link to the residue-burning article. */}
+      {category === 'bhusa' && (
+        <button
+          type="button"
+          onClick={() => navigate('/articles/parali-pollution-kisaan-ki-majboori')}
+          className="mb-3 block w-full rounded-xl border-2 border-amber-300 bg-amber-50 px-4 py-2 text-left text-sm font-semibold text-amber-900"
+        >
+          📖 {t('read_about_this')} →
+        </button>
+      )}
+
       {/* Sort */}
       <div className="mb-4 flex items-center justify-between">
         <p className="text-sm text-stone-500">📍 {t('within_30km')}</p>
