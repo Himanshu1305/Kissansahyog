@@ -97,7 +97,10 @@ export default function ListingForm({ listingType, category, onCreated }) {
     <div>
       {error && <Notice tone="error">{error}</Notice>}
 
-      <mod.Fields details={details} setDetails={setDetails} extras={extras} />
+      <mod.Fields details={details} setDetails={setDetails} extras={extras} listingType={listingType} />
+
+      {/* Category-specific advisory (e.g. Bhusa/Parali environmental note). */}
+      {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="my-4" />}
 
       {/* Asset location — prominent, required, and explicitly NOT the home pincode. */}
       <div className="my-5 rounded-2xl border-2 border-green-700 bg-green-50 p-4">

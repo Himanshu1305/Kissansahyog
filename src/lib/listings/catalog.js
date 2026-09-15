@@ -2,7 +2,7 @@
 // bilingual labels, so forms and detail views render the same labels and the
 // JSONB `details` shape can never drift between categories.
 
-export const CATEGORIES = ['land', 'equipment', 'labor']
+export const CATEGORIES = ['land', 'equipment', 'labor', 'bhusa']
 export const LISTING_TYPES = ['offer', 'requirement']
 
 // Category display metadata (icon + bilingual name).
@@ -10,6 +10,7 @@ export const CATEGORY_META = {
   land: { icon: '🌱', hi: 'ज़मीन', en: 'Land' },
   equipment: { icon: '🚜', hi: 'मशीन', en: 'Equipment' },
   labor: { icon: '👷', hi: 'कृषि सहयोगी', en: 'Labor' },
+  bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhusa/Parali' },
 }
 
 export const LISTING_TYPE_META = {
@@ -70,6 +71,25 @@ export const WORK_TYPE = [
 export const RATE_BASIS = [
   { value: 'per_day', hi: 'प्रति दिन', en: 'Per day' },
   { value: 'per_task', hi: 'प्रति काम', en: 'Per task' },
+]
+
+// --- Bhusa / Parali (agricultural residue) ---
+export const RESIDUE_TYPE = [
+  { value: 'bhusa', hi: 'भूसा (गेहूं)', en: 'Bhusa (Wheat Straw)' },
+  { value: 'parali', hi: 'पराली (धान)', en: 'Parali (Paddy Straw)' },
+  { value: 'sugarcane', hi: 'गन्ना वेस्ट', en: 'Sugarcane Waste' },
+  { value: 'cotton', hi: 'कपास वेस्ट', en: 'Cotton Waste' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const PICKUP_ARRANGEMENT = [
+  { value: 'buyer_collects', hi: 'खरीदार खेत से उठाएगा', en: 'Buyer collects from farm' },
+  { value: 'farmer_delivers', hi: 'किसान डिलीवर करेगा', en: 'Farmer will deliver' },
+  { value: 'either', hi: 'दोनों चलेगा', en: 'Either works' },
+]
+export const BUYER_TYPE_PREFERENCE = [
+  { value: 'individual', hi: 'व्यक्तिगत किसान / छोटा खरीदार', en: 'Individual farmer or small buyer' },
+  { value: 'commercial', hi: 'व्यावसायिक / उद्योग', en: 'Commercial or industrial buyer' },
+  { value: 'either', hi: 'दोनों', en: 'Either' },
 ]
 
 // Look up a bilingual label for an option value; falls back to the raw value.

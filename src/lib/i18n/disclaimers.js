@@ -18,4 +18,9 @@ export const disclaimers = {
     hi: 'गलत जानकारी देने पर आपकी लिस्टिंग हटाई जा सकती है।',
     en: 'Providing false information may result in your listing being removed.',
   },
+  // Bhusa/Parali form: encourage selling residue instead of burning it.
+  bhusa: {
+    hi: 'भूसा/पराली जलाने से पर्यावरण को नुकसान होता है। इसे बेचकर आप आय कमाएं और प्रदूषण भी कम करें।',
+    en: 'Burning crop residue harms the environment. By selling it, you earn income and reduce pollution.',
+  },
 }

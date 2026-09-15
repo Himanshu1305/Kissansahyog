@@ -88,6 +88,7 @@ export const strings = {
   field_land_pincode: { hi: 'ज़मीन का पिनकोड', en: "Land's pincode" },
   field_equipment_pincode: { hi: 'मशीन कहाँ है? पिनकोड', en: "Equipment's pincode" },
   field_labor_pincode: { hi: 'काम की जगह का पिनकोड', en: "Work location pincode" },
+  field_bhusa_pincode: { hi: 'भूसे/पराली का स्थान (पिनकोड)', en: 'Location of residue (pincode)' },
   asset_pincode_hint: {
     hi: 'यह उस जगह का पिनकोड है जहाँ यह उपलब्ध है — आपके घर का पिनकोड नहीं।',
     en: 'This is the pincode of where it is located — not your home pincode.',
@@ -131,6 +132,22 @@ export const strings = {
   field_rate_amount: { hi: 'दर / मज़दूरी', en: 'Rate / wage' },
   rate_amount_ph: { hi: 'जैसे: ₹400 या बातचीत से', en: 'e.g. ₹400 or negotiable' },
   workers_unit: { hi: 'कृषि सहयोगी', en: 'workers' },
+
+  // --- bhusa / parali (agricultural residue) ---
+  field_residue_type: { hi: 'अवशेष का प्रकार', en: 'Residue type' },
+  field_quantity: { hi: 'मात्रा', en: 'Quantity' },
+  quantity_ph: { hi: 'जैसे: 5 क्विंटल, 2 ट्रॉली', en: 'e.g. 5 quintal, 2 trolley loads' },
+  field_pickup: { hi: 'उठाव की व्यवस्था', en: 'Pickup arrangement' },
+  field_buyer_type: { hi: 'खरीदार किस प्रकार का हो', en: 'Preferred buyer type' },
+  field_buyer_type_self: { hi: 'आप किस प्रकार के खरीदार हैं', en: 'Your buyer type' },
+  field_asking_price: { hi: 'माँगा गया दाम', en: 'Asking price' },
+  asking_price_ph: { hi: 'जैसे: ₹200 प्रति क्विंटल या बातचीत से', en: 'e.g. ₹200 per quintal or Negotiable' },
+  field_available_from: { hi: 'कब से उपलब्ध', en: 'Available from' },
+  err_residue_type_required: { hi: 'कृपया अवशेष का प्रकार चुनें।', en: 'Please select the residue type.' },
+  err_quantity_required: { hi: 'कृपया मात्रा भरें।', en: 'Please enter the quantity.' },
+  err_pickup_required: { hi: 'कृपया उठाव की व्यवस्था चुनें।', en: 'Please select the pickup arrangement.' },
+  err_buyer_type_required: { hi: 'कृपया खरीदार का प्रकार चुनें।', en: 'Please select the buyer type.' },
+  err_asking_price_required: { hi: 'कृपया माँगा गया दाम भरें।', en: 'Please enter the asking price.' },
 
   // --- browse ---
   browse_title: { hi: 'आस-पास खोजें', en: 'Browse nearby' },
