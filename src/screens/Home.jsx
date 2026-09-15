@@ -23,6 +23,9 @@ export default function Home() {
         <BigButton variant="secondary" onClick={() => navigate('/my')}>
           📋 {t('my_listings')}
         </BigButton>
+        <BigButton variant="secondary" onClick={() => navigate('/experts')}>
+          👨‍🌾 {t('experts_nav')}
+        </BigButton>
       </div>
 
       <button

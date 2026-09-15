@@ -72,6 +72,14 @@ export const strings = {
   browse: { hi: 'खोजें', en: 'Browse' },
   post_listing: { hi: 'नई लिस्टिंग डालें', en: 'Post a listing' },
   my_listings: { hi: 'मेरी लिस्टिंग', en: 'My listings' },
+  experts_nav: { hi: 'विशेषज्ञ', en: 'Experts' },
+
+  // --- experts directory ---
+  experts_title: { hi: 'विशेषज्ञ / Experts', en: 'Experts' },
+  experts_filter_label: { hi: 'विशेषज्ञता से खोजें', en: 'Filter by specialisation' },
+  experts_filter_ph: { hi: 'जैसे: मिट्टी, कीट, बागवानी', en: 'e.g. soil, pest, horticulture' },
+  experts_none: { hi: 'कोई विशेषज्ञ नहीं मिला।', en: 'No experts found.' },
+  expert_not_found: { hi: 'यह विशेषज्ञ नहीं मिला।', en: 'This expert was not found.' },
 
   // --- post flow ---
   post_q_type: { hi: 'आप क्या करना चाहते हैं?', en: 'What do you want to do?' },
