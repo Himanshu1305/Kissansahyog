@@ -77,6 +77,10 @@ export function Select({ className = '', children, ...props }) {
   )
 }
 
+export function TextArea({ className = '', rows = 3, ...props }) {
+  return <textarea rows={rows} className={`${controlClass} ${className}`} {...props} />
+}
+
 // Inline error / info message block.
 export function Notice({ tone = 'error', children }) {
   if (!children) return null

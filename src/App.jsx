@@ -19,6 +19,7 @@ const MyListings = lazy(() => import('./screens/MyListings'))
 const Experts = lazy(() => import('./screens/Experts'))
 const ExpertDetail = lazy(() => import('./screens/ExpertDetail'))
 const Profile = lazy(() => import('./screens/Profile'))
+const Admin = lazy(() => import('./screens/Admin'))
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -32,6 +33,15 @@ function Protected({ children }) {
 function PublicOnly({ children }) {
   const { isLoggedIn } = useAuth()
   if (isLoggedIn) return <Navigate to="/home" replace />
+  return children
+}
+
+// Admin-only gate: unauthenticated → login; authenticated but not admin →
+// Access Denied is rendered by the Admin screen itself (so it's not a crash/404).
+function AdminOnly({ children }) {
+  const { isLoggedIn } = useAuth()
+  const location = useLocation()
+  if (!isLoggedIn) return <Navigate to="/login" replace state={{ from: location }} />
   return children
 }
 
@@ -58,6 +68,7 @@ function AppRoutes() {
         <Route path="/experts" element={<Protected><Experts /></Protected>} />
         <Route path="/experts/:id" element={<Protected><ExpertDetail /></Protected>} />
         <Route path="/profile" element={<Protected><Profile /></Protected>} />
+        <Route path="/admin" element={<AdminOnly><Admin /></AdminOnly>} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

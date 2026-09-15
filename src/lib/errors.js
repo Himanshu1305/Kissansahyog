@@ -35,6 +35,8 @@ const CODE_TO_KEY = {
   not_owner: 'err_not_owner',
   not_available: 'err_not_available',
   not_authorized: 'err_not_authorized',
+  not_admin: 'err_not_admin',
+  article_fields_required: 'err_article_fields',
 }
 
 export class AppError extends Error {
