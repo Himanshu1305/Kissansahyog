@@ -1,6 +1,7 @@
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { getCategory } from '../lib/listings/registry'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
+import { CatIcon } from './CatIcon'
 import { timeAgo } from '../lib/timeAgo'
 
 // Compact listing summary used in Browse (2-col grid) and My Listings. Shows the
@@ -22,7 +23,7 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
       className="flex h-full w-full flex-col rounded-xl border border-stone-200 bg-white p-3 text-left active:bg-stone-50"
     >
       <div className="mb-1 flex flex-wrap items-center gap-1">
-        <span className="text-lg leading-none" aria-hidden="true">{meta.icon}</span>
+        <CatIcon category={listing.category} className="text-lg leading-none" />
         <span className={`rounded-full px-1.5 py-0.5 text-[11px] font-bold ${isOffer ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
           {typeMeta[lang]}
         </span>

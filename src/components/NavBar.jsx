@@ -12,14 +12,16 @@ const BRAND_HI = strings.app_name.hi
 // Category items shown in the nav. For a logged-in user they route to the
 // authenticated browse tab (Experts to its own screen); for a visitor they point
 // at the public homepage's live-listings section, filtered via ?cat=.
+// Order: Equipment → Labor → Drone Didi → Bhoosa → Seeds → Warehouse → Experts →
+// Land, then secondary links (Articles, Resources). Land is LAST.
 const NAV_CATS = [
-  { key: 'land', labelKey: 'home_cat_land' },
   { key: 'equipment', labelKey: 'home_cat_equipment' },
   { key: 'labor', labelKey: 'home_cat_labor' },
   { key: 'drone_didi', labelKey: 'home_cat_drone_didi' },
   { key: 'bhusa', labelKey: 'home_cat_bhusa' },
   { key: 'agri_inputs', labelKey: 'home_cat_agri_inputs' },
   { key: 'experts', labelKey: 'home_cat_experts' },
+  { key: 'land', labelKey: 'home_cat_land' },
   { key: 'articles', labelKey: 'articles_nav' },
   { key: 'resources', labelKey: 'resources_nav' },
 ]

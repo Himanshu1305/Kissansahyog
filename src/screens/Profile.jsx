@@ -7,6 +7,7 @@ import LanguageToggle from '../components/LanguageToggle'
 import { changePassword } from '../lib/auth/authService'
 import { getMyListings } from '../lib/listings/listingsApi'
 import { CATEGORY_META, CATEGORIES } from '../lib/listings/catalog'
+import { CatIcon } from '../components/CatIcon'
 
 // Authenticated user profile: edit info, listings summary, account management.
 export default function Profile() {
@@ -144,7 +145,7 @@ export default function Profile() {
               <div className="mt-2 flex flex-wrap gap-2 text-sm">
                 {CATEGORIES.filter((c) => counts.byCat[c] > 0).map((c) => (
                   <span key={c} className="rounded-full bg-stone-100 px-3 py-1 text-stone-700">
-                    {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}: {counts.byCat[c]}
+                    <CatIcon category={c} /> {CATEGORY_META[c][lang]}: {counts.byCat[c]}
                   </span>
                 ))}
               </div>

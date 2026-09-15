@@ -5,6 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
 import LanguageToggle from '../components/LanguageToggle'
+import { CatIcon } from '../components/CatIcon'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { fetchListingById, getListingContact } from '../lib/listings/listingsApi'
@@ -77,9 +78,7 @@ export default function ListingDetail() {
   return (
     <Screen title={t('detail_title')} onBack={() => navigate(-1)} right={<LanguageToggle />}>
       <div className="mb-4 flex items-center gap-2">
-        <span className="text-4xl" aria-hidden="true">
-          {meta.icon}
-        </span>
+        <CatIcon category={listing.category} className="text-4xl" />
         <div>
           <h2 className="text-xl font-bold text-stone-900">{meta[lang]}</h2>
           <span

@@ -1,6 +1,6 @@
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { strings } from '../lib/i18n/strings'
-import { CATEGORY_META } from '../lib/listings/catalog'
+import { CatIcon } from './CatIcon'
 
 // A small circular '?' button that opens a category help modal. Pass the category
 // key ('land' | 'equipment' | ... | 'experts'); content comes from help_<key>.
@@ -25,8 +25,6 @@ export function HelpButton({ categoryKey, onOpen, className = '' }) {
 export default function HelpModal({ categoryKey, onClose }) {
   const { t } = useLang()
   if (!categoryKey) return null
-  const meta = CATEGORY_META[categoryKey]
-  const icon = meta?.icon || (categoryKey === 'experts' ? '👨‍🌾' : 'ℹ️')
   const label = t(categoryKey === 'experts' ? 'home_cat_experts' : `home_cat_${categoryKey}`)
   const help = strings[`help_${categoryKey}`] || { hi: '', en: '' }
 
@@ -42,7 +40,7 @@ export default function HelpModal({ categoryKey, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-3 flex items-center gap-2">
-          <span className="text-3xl" aria-hidden="true">{icon}</span>
+          <CatIcon category={categoryKey} className="text-3xl" />
           <h2 className="flex-1 text-lg font-bold text-stone-900">{label}</h2>
           <button
             type="button"

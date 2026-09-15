@@ -11,8 +11,9 @@ import * as drone_didi from '../../components/categories/drone_didi.jsx'
 
 const REGISTRY = { land, equipment, labor, drone_didi, bhusa, agri_inputs }
 
-// Categories wired end-to-end and shown in the UI. Order matters (nav/tabs).
-export const ENABLED_CATEGORIES = ['land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs']
+// Categories wired end-to-end and shown in the UI. Order matters (nav/tabs) —
+// Land is LAST.
+export const ENABLED_CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'land']
 
 export function getCategory(category) {
   const mod = REGISTRY[category]

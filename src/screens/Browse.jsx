@@ -6,6 +6,7 @@ import { Screen, Notice, Spinner } from '../components/ui'
 import LanguageToggle from '../components/LanguageToggle'
 import ListingCard from '../components/ListingCard'
 import CategoryStrip from '../components/CategoryStrip'
+import { CatIcon } from '../components/CatIcon'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
@@ -73,7 +74,7 @@ export default function Browse() {
       {/* Horizontal scrollable category strip (compact chips, one row). */}
       <div className="mb-2">
         <CategoryStrip
-          items={ENABLED_CATEGORIES.map((c) => ({ key: c, icon: CATEGORY_META[c].icon, label: CATEGORY_META[c][lang] }))}
+          items={ENABLED_CATEGORIES.map((c) => ({ key: c, icon: <CatIcon category={c} />, label: CATEGORY_META[c][lang] }))}
           active={category}
           onSelect={setCategory}
         />

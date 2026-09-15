@@ -2,7 +2,9 @@
 // bilingual labels, so forms and detail views render the same labels and the
 // JSONB `details` shape can never drift between categories.
 
-export const CATEGORIES = ['land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs']
+// Order matters (nav strip, browse tabs, post selector). Land is intentionally
+// LAST; Drone Didi sits after Labor.
+export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'land']
 export const LISTING_TYPES = ['offer', 'requirement']
 
 // Category display metadata (icon + bilingual name).
@@ -10,7 +12,9 @@ export const CATEGORY_META = {
   land: { icon: '🌱', hi: 'ज़मीन', en: 'Land' },
   equipment: { icon: '🚜', hi: 'मशीन', en: 'Equipment' },
   labor: { icon: '👷', hi: 'कृषि सहयोगी (Labor)', en: 'Labor' },
-  drone_didi: { icon: '🚁', hi: 'ड्रोन दीदी', en: 'Drone Didi' },
+  // icon is a fallback only — Drone Didi renders a quadcopter SVG via <CatIcon>
+  // (never a helicopter). Kept non-helicopter here for safety.
+  drone_didi: { icon: '🛰️', hi: 'ड्रोन दीदी', en: 'Drone Didi' },
   bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
 }

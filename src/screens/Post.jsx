@@ -4,6 +4,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { Screen, BigButton } from '../components/ui'
 import LanguageToggle from '../components/LanguageToggle'
 import { CATEGORIES, CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
+import { CatIcon } from '../components/CatIcon'
 import { isEnabled } from '../lib/listings/registry'
 import ListingForm from '../components/ListingForm'
 
@@ -60,7 +61,7 @@ export default function Post() {
                   disabled={!enabled}
                   onClick={() => enabled && setCategory(c)}
                 >
-                  {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}
+                  <CatIcon category={c} /> {CATEGORY_META[c][lang]}
                   {!enabled && <span className="ml-2 text-sm">({t('coming_soon')})</span>}
                 </BigButton>
               )

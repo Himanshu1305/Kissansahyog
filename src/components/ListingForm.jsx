@@ -8,6 +8,7 @@ import { isValidPincode } from '../lib/auth/authService'
 import { BigButton, Field, Notice, Spinner, TextInput } from './ui'
 import DisclaimerBanner from './DisclaimerBanner'
 import HelpModal, { HelpButton } from './HelpModal'
+import { CatIcon } from './CatIcon'
 import { CATEGORY_META } from '../lib/listings/catalog'
 
 // Category-agnostic listing form. Delegates the field set + validation +
@@ -101,8 +102,8 @@ export default function ListingForm({ listingType, category, onCreated }) {
     <div>
       {/* Category heading + help '?' (help moved here from the browse strip). */}
       <div className="mb-2 flex items-center gap-2">
-        <h2 className="text-lg font-bold text-stone-800">
-          {CATEGORY_META[category].icon} {CATEGORY_META[category][lang]}
+        <h2 className="flex items-center gap-1 text-lg font-bold text-stone-800">
+          <CatIcon category={category} /> {CATEGORY_META[category][lang]}
         </h2>
         <HelpButton categoryKey={category} onOpen={() => setHelpOpen(true)} />
       </div>

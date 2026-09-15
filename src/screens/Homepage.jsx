@@ -5,6 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
 import LanguageToggle from '../components/LanguageToggle'
 import CategoryStrip from '../components/CategoryStrip'
+import { CatIcon } from '../components/CatIcon'
 import { strings } from '../lib/i18n/strings'
 import { CATEGORY_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
@@ -15,8 +16,9 @@ import { fetchPublishedArticles, articleTitle } from '../lib/articles/articlesAp
 import { expertName, expertSpec } from './Experts'
 import { timeAgo } from '../lib/timeAgo'
 
-// Live-listings filter options (strip): All + listing categories + Experts.
-const FILTERS = ['all', ...ENABLED_CATEGORIES, 'experts']
+// Live-listings filter options (strip): All + listing categories + Experts, with
+// Land intentionally last (Experts sits before it, per the nav order).
+const FILTERS = ['all', ...ENABLED_CATEGORIES.filter((c) => c !== 'land'), 'experts', 'land']
 
 // Compact, information-dense public landing page.
 export default function Homepage() {
@@ -71,7 +73,7 @@ export default function Homepage() {
   const stripItems = FILTERS.map((f) => ({
     key: f,
     label: f === 'all' ? t('filter_all') : homeCat(f),
-    icon: f === 'all' ? '🔍' : f === 'experts' ? '👨‍🌾' : CATEGORY_META[f].icon,
+    icon: f === 'all' ? '🔍' : <CatIcon category={f} />,
   }))
 
   function selectFilter(key) {
@@ -222,7 +224,7 @@ function PublicListingCard({ listing, lang, t, extras, homeCat, navigate, isLogg
   return (
     <div className="flex flex-col rounded-xl border border-stone-200 bg-white p-3">
       <div className="mb-1 flex flex-wrap items-center gap-1">
-        <span className="text-lg leading-none" aria-hidden="true">{meta.icon}</span>
+        <CatIcon category={listing.category} className="text-lg leading-none" />
         <span className={`rounded-full px-1.5 py-0.5 text-[11px] font-bold ${isOffer ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>{isOffer ? t('home_offer') : t('home_requirement')}</span>
         {isVendor && <span className="rounded-full bg-amber-100 px-1.5 py-0.5 text-[11px] font-bold text-amber-800">🏪 {t('vendor_badge')}</span>}
         <span className="ml-auto text-[11px] text-stone-400">{timeAgo(listing.created_at, t)}</span>
