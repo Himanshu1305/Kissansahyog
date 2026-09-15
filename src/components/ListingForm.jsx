@@ -7,6 +7,8 @@ import { createListing, fetchPincode } from '../lib/listings/listingsApi'
 import { isValidPincode } from '../lib/auth/authService'
 import { BigButton, Field, Notice, Spinner, TextInput } from './ui'
 import DisclaimerBanner from './DisclaimerBanner'
+import HelpModal, { HelpButton } from './HelpModal'
+import { CATEGORY_META } from '../lib/listings/catalog'
 
 // Category-agnostic listing form. Delegates the field set + validation +
 // details finalization to the category module from the registry.
@@ -18,7 +20,7 @@ import DisclaimerBanner from './DisclaimerBanner'
 // found near Sagar, not near Hyderabad. The create_listing RPC re-derives the
 // coordinates from this pincode server-side (authoritative).
 export default function ListingForm({ listingType, category, onCreated }) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const { user } = useAuth()
   const mod = getCategory(category)
 
@@ -28,6 +30,7 @@ export default function ListingForm({ listingType, category, onCreated }) {
   const [selfDeclared, setSelfDeclared] = useState(false)
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
+  const [helpOpen, setHelpOpen] = useState(false)
 
   const needsSelfDecl = mod.needsSelfDeclaration(listingType)
   const locationLabelKey = mod.locationLabelKey || 'field_asset_pincode'
@@ -96,6 +99,15 @@ export default function ListingForm({ listingType, category, onCreated }) {
 
   return (
     <div>
+      {/* Category heading + help '?' (help moved here from the browse strip). */}
+      <div className="mb-2 flex items-center gap-2">
+        <h2 className="text-lg font-bold text-stone-800">
+          {CATEGORY_META[category].icon} {CATEGORY_META[category][lang]}
+        </h2>
+        <HelpButton categoryKey={category} onOpen={() => setHelpOpen(true)} />
+      </div>
+      {helpOpen && <HelpModal categoryKey={category} onClose={() => setHelpOpen(false)} />}
+
       {error && <Notice tone="error">{error}</Notice>}
 
       <mod.Fields details={details} setDetails={setDetails} extras={extras} listingType={listingType} user={user} />

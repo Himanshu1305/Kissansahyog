@@ -275,6 +275,7 @@ export const strings = {
   listings_section_title: { hi: 'हाल की लिस्टिंग', en: 'Recent listings' },
   home_offer: { hi: 'दे रहे हैं', en: 'Offer' },
   home_requirement: { hi: 'चाहिए', en: 'Requirement' },
+  vendor_badge: { hi: 'व्यापारी', en: 'Vendor' },
   signup_to_contact: { hi: 'संपर्क देखने के लिए जुड़ें', en: 'Sign up to see contact' },
   listings_empty: {
     hi: 'अभी Sagar में लिस्टिंग जुड़ रही हैं — पहले बनें!',
@@ -295,6 +296,9 @@ export const strings = {
     hi: 'किसान सहयोग एक जानकारी मंच है — हम किसी भी लेन-देन में शामिल नहीं हैं।',
     en: 'Kisan Sahyog is an information platform — we are not involved in any transaction.',
   },
+  // Two mission objectives (mission strip + about section).
+  mission_income: { hi: 'किसान की आय बढ़ाना', en: 'Increasing Farmer Income' },
+  mission_rojgar: { hi: 'रोज़गार के अवसर', en: 'Creating Employment' },
 
   // --- public homepage: footer ---
   footer_privacy: { hi: 'गोपनीयता नीति', en: 'Privacy Policy' },

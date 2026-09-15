@@ -26,7 +26,7 @@ export function Screen({ title, onBack, right, children, contentClassName = '' }
           </div>
         </header>
       )}
-      <main className={`mx-auto w-full max-w-xl flex-1 px-4 py-5 ${contentClassName}`}>{children}</main>
+      <main className={`mx-auto w-full max-w-xl flex-1 px-2 py-3 sm:px-4 sm:py-4 ${contentClassName}`}>{children}</main>
     </div>
   )
 }
@@ -34,7 +34,7 @@ export function Screen({ title, onBack, right, children, contentClassName = '' }
 // Large primary/secondary/danger button.
 export function BigButton({ variant = 'primary', className = '', disabled, children, ...props }) {
   const base =
-    'w-full rounded-xl px-5 py-4 text-lg font-bold transition select-none disabled:opacity-50 disabled:cursor-not-allowed'
+    'w-full rounded-xl px-5 py-3 text-lg font-bold transition select-none disabled:opacity-50 disabled:cursor-not-allowed'
   const variants = {
     primary: 'bg-green-700 text-white active:bg-green-800 hover:bg-green-600',
     secondary: 'bg-white text-green-800 border-2 border-green-700 active:bg-green-50',
@@ -51,13 +51,13 @@ export function BigButton({ variant = 'primary', className = '', disabled, child
 // Labelled field wrapper.
 export function Field({ label, htmlFor, required, hint, error, children }) {
   return (
-    <div className="mb-4">
-      <label htmlFor={htmlFor} className="mb-1 block text-base font-semibold text-stone-800">
+    <div className="mb-2">
+      <label htmlFor={htmlFor} className="mb-0.5 block text-base font-semibold text-stone-800">
         {label} {required && <span className="text-red-600">*</span>}
       </label>
       {children}
-      {hint && !error && <p className="mt-1 text-sm text-stone-500">{hint}</p>}
-      {error && <p className="mt-1 text-sm font-medium text-red-600">{error}</p>}
+      {hint && !error && <p className="mt-0.5 text-sm text-stone-500">{hint}</p>}
+      {error && <p className="mt-0.5 text-sm font-medium text-red-600">{error}</p>}
     </div>
   )
 }

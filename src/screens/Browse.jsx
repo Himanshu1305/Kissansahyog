@@ -5,7 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, Notice, Spinner } from '../components/ui'
 import LanguageToggle from '../components/LanguageToggle'
 import ListingCard from '../components/ListingCard'
-import HelpModal, { HelpButton } from '../components/HelpModal'
+import CategoryStrip from '../components/CategoryStrip'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
@@ -32,7 +32,6 @@ export default function Browse() {
   const [fallback, setFallback] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [helpKey, setHelpKey] = useState(null)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -61,46 +60,33 @@ export default function Browse() {
     load()
   }, [load])
 
-  const tabClass = (c) =>
-    `rounded-xl px-2 py-3 text-sm font-bold ${
-      category === c ? 'bg-green-700 text-white' : 'bg-white text-stone-700 border-2 border-stone-200'
-    }`
   const chip = (active) =>
-    `rounded-full px-4 py-2 text-sm font-semibold border-2 ${
+    `rounded-full px-3 py-1 text-sm font-semibold border ${
       active ? 'border-green-700 bg-green-700 text-white' : 'border-stone-300 bg-white text-stone-700'
     }`
+  // Land shows full-width single-column cards (more detail); the rest use a
+  // 2-column mobile grid so more results are visible at once.
+  const gridClass = category === 'land' ? 'grid grid-cols-1 gap-2' : 'grid grid-cols-2 gap-2 md:grid-cols-3'
 
   return (
     <Screen title={t('browse_title')} onBack={() => navigate('/home')} right={<LanguageToggle />}>
-      {/* Category tabs (grid wraps cleanly as categories grow past 3). Each tab
-          carries a '?' that opens a help modal explaining the category. */}
-      <div className="mb-3 grid grid-cols-3 gap-2">
-        {ENABLED_CATEGORIES.map((c) => (
-          <div key={c} className="relative">
-            <button data-testid={`tab-${c}`} className={`w-full ${tabClass(c)}`} onClick={() => setCategory(c)}>
-              {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}
-            </button>
-            <HelpButton categoryKey={c} onOpen={setHelpKey} className="absolute -right-1.5 -top-1.5 shadow" />
-          </div>
-        ))}
+      {/* Horizontal scrollable category strip (compact chips, one row). */}
+      <div className="mb-2">
+        <CategoryStrip
+          items={ENABLED_CATEGORIES.map((c) => ({ key: c, icon: CATEGORY_META[c].icon, label: CATEGORY_META[c][lang] }))}
+          active={category}
+          onSelect={setCategory}
+        />
       </div>
 
-      <HelpModal categoryKey={helpKey} onClose={() => setHelpKey(null)} />
-
-      {/* Offer / Requirement filter */}
-      <div className="mb-2 flex flex-wrap gap-2">
-        <button className={chip(typeFilter === null)} onClick={() => setTypeFilter(null)}>
-          {t('filter_all')}
-        </button>
-        <button className={chip(typeFilter === 'offer')} onClick={() => setTypeFilter('offer')}>
-          {LISTING_TYPE_META.offer[lang]}
-        </button>
-        <button
-          className={chip(typeFilter === 'requirement')}
-          onClick={() => setTypeFilter('requirement')}
-        >
-          {LISTING_TYPE_META.requirement[lang]}
-        </button>
+      {/* Offer / Requirement filter + sort — one compact row. */}
+      <div className="mb-2 flex flex-wrap items-center gap-1.5">
+        <button className={chip(typeFilter === null)} onClick={() => setTypeFilter(null)}>{t('filter_all')}</button>
+        <button className={chip(typeFilter === 'offer')} onClick={() => setTypeFilter('offer')}>{LISTING_TYPE_META.offer[lang]}</button>
+        <button className={chip(typeFilter === 'requirement')} onClick={() => setTypeFilter('requirement')}>{LISTING_TYPE_META.requirement[lang]}</button>
+        <span className="mx-1 h-4 w-px bg-stone-200" />
+        <button className={chip(sort === 'nearest')} onClick={() => setSort('nearest')}>{t('sort_nearest')}</button>
+        <button className={chip(sort === 'newest')} onClick={() => setSort('newest')}>{t('sort_newest')}</button>
       </div>
 
       {/* Bhusa/Parali → link to the residue-burning article. */}
@@ -108,24 +94,11 @@ export default function Browse() {
         <button
           type="button"
           onClick={() => navigate('/articles/parali-pollution-kisaan-ki-majboori')}
-          className="mb-3 block w-full rounded-xl border-2 border-amber-300 bg-amber-50 px-4 py-2 text-left text-sm font-semibold text-amber-900"
+          className="mb-2 block w-full rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-left text-sm font-semibold text-amber-900"
         >
           📖 {t('read_about_this')} →
         </button>
       )}
-
-      {/* Sort */}
-      <div className="mb-4 flex items-center justify-between">
-        <p className="text-sm text-stone-500">📍 {t('within_30km')}</p>
-        <div className="flex gap-2">
-          <button className={chip(sort === 'nearest')} onClick={() => setSort('nearest')}>
-            {t('sort_nearest')}
-          </button>
-          <button className={chip(sort === 'newest')} onClick={() => setSort('newest')}>
-            {t('sort_newest')}
-          </button>
-        </div>
-      </div>
 
       {error && <Notice tone="error">{error}</Notice>}
 
@@ -134,38 +107,29 @@ export default function Browse() {
       ) : listings.length === 0 && fallback.length === 0 ? (
         <p className="py-12 text-center text-stone-500">{t('no_listings')}</p>
       ) : (
-        <div className="space-y-3">
-          {listings.map((l) => (
-            <ListingCard
-              key={l.id}
-              listing={l}
-              extras={extras}
-              onClick={() => navigate(`/listing/${l.id}`)}
-            />
-          ))}
+        <>
+          <div className={gridClass}>
+            {listings.map((l) => (
+              <ListingCard key={l.id} listing={l} extras={extras} onClick={() => navigate(`/listing/${l.id}`)} />
+            ))}
+          </div>
 
-          {/* Soft radius fallback: only surfaced when primary (<=30km) results
-              are sparse, so a low-density pilot area isn't a blank screen. */}
+          {/* Soft radius fallback: a compact divider, then the 30–50 km ring. */}
           {listings.length < MIN_PRIMARY_RESULTS && fallback.length > 0 && (
-            <div className="pt-2" data-testid="fallback-section">
-              <div className="mb-2 mt-4 flex items-center gap-2">
+            <div data-testid="fallback-section">
+              <div className="my-2 flex items-center gap-2">
                 <span className="h-px flex-1 bg-stone-200" />
-                <span className="text-sm font-semibold text-stone-500">{t('radius_fallback')}</span>
+                <span className="text-xs font-semibold text-stone-500">{t('radius_fallback')}</span>
                 <span className="h-px flex-1 bg-stone-200" />
               </div>
-              <div className="space-y-3">
+              <div className={gridClass}>
                 {fallback.map((l) => (
-                  <ListingCard
-                    key={l.id}
-                    listing={l}
-                    extras={extras}
-                    onClick={() => navigate(`/listing/${l.id}`)}
-                  />
+                  <ListingCard key={l.id} listing={l} extras={extras} onClick={() => navigate(`/listing/${l.id}`)} />
                 ))}
               </div>
             </div>
           )}
-        </div>
+        </>
       )}
     </Screen>
   )
