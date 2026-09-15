@@ -48,9 +48,16 @@ export function AuthProvider({ children }) {
     return next
   }, [])
 
+  const updateProfile = useCallback(async (patch) => {
+    if (!user?.id) throw new Error('not logged in')
+    const next = await authService.updateProfile(user.id, patch)
+    setUser(next)
+    return next
+  }, [user])
+
   const value = useMemo(
-    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, logout, patchUser, deleteAccount }),
-    [user, signup, login, signupEmail, loginEmail, logout, patchUser, deleteAccount],
+    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, deleteAccount }),
+    [user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, deleteAccount],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

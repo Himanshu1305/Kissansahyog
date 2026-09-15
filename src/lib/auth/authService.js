@@ -100,6 +100,22 @@ export function updateStoredUser(patch) {
   return storeSession({ ...current, ...patch })
 }
 
+// Edit the acting profile (name/village/pincode→coords/language) via RPC and
+// refresh the cached session.
+export async function updateProfile(actorId, { full_name, village_town, pincode, language }) {
+  if (!full_name || !full_name.trim()) throw new AppError('name_required')
+  if (!isValidPincode(pincode)) throw new AppError('invalid_pincode')
+  const { data, error } = await supabase.rpc('update_profile', {
+    p_actor_id: actorId,
+    p_full_name: full_name.trim(),
+    p_village_town: village_town ?? null,
+    p_pincode: String(pincode).trim(),
+    p_language: language || null,
+  })
+  if (error) throw toAppError(error)
+  return storeSession(data)
+}
+
 // ---- EMAIL auth (Phase 3, via Supabase Auth on the supabaseAuth client) ----
 
 // Map a Supabase Auth error to one of our stable codes.

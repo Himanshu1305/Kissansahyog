@@ -30,6 +30,7 @@ export default function NavBar() {
   const location = useLocation()
   const [params] = useSearchParams()
   const [open, setOpen] = useState(false)
+  const [menu, setMenu] = useState(false) // user dropdown
 
   // Which category (if any) is currently active, for highlighting.
   const activeCat =
@@ -81,28 +82,36 @@ export default function NavBar() {
         <div className="ml-auto flex items-center gap-2 md:ml-0">
           <LanguageToggle className="rounded-lg bg-green-700 px-1" />
           {isLoggedIn ? (
-            <>
+            <div className="relative">
               <button
                 type="button"
-                onClick={() => navigate('/my')}
-                className="hidden rounded-lg border-2 border-green-700 px-3 py-1.5 text-sm font-bold text-green-800 sm:block"
+                aria-haspopup="menu"
+                aria-expanded={menu}
+                onClick={() => setMenu((v) => !v)}
+                className="flex items-center gap-2"
+                title={user?.full_name || user?.phone || user?.email}
               >
-                {t('my_listings')}
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-green-700 text-sm font-bold text-white">
+                  {(user?.full_name || user?.phone || user?.email || '?').trim().charAt(0).toUpperCase()}
+                </span>
+                <span className="hidden max-w-[8rem] truncate text-sm font-bold text-stone-700 sm:block">
+                  {user?.full_name}
+                </span>
               </button>
-              <span
-                className="grid h-9 w-9 place-items-center rounded-full bg-green-700 text-sm font-bold text-white"
-                title={user?.full_name || user?.phone}
-              >
-                {(user?.full_name || user?.phone || '?').trim().charAt(0).toUpperCase()}
-              </span>
-              <button
-                type="button"
-                onClick={() => { logout(); navigate('/', { replace: true }) }}
-                className="text-sm font-semibold text-stone-500 underline"
-              >
-                {t('logout')}
-              </button>
-            </>
+              {menu && (
+                <div role="menu" className="absolute right-0 mt-2 w-52 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+                  <button type="button" role="menuitem" className="block w-full px-4 py-3 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => { setMenu(false); navigate('/profile') }}>
+                    👤 {t('my_profile')}
+                  </button>
+                  <button type="button" role="menuitem" className="block w-full px-4 py-3 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => { setMenu(false); navigate('/my') }}>
+                    📋 {t('my_listings')}
+                  </button>
+                  <button type="button" role="menuitem" className="block w-full border-t border-stone-100 px-4 py-3 text-left text-sm font-semibold text-red-600 hover:bg-red-50" onClick={() => { setMenu(false); logout(); navigate('/', { replace: true }) }}>
+                    🚪 {t('logout')}
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <>
               <button
