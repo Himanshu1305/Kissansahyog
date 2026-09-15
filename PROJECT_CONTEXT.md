@@ -370,3 +370,28 @@ to `/articles`; the Bhusa/Parali browse tab cross-links the Parali article.
 **Tests:** `scripts/test/p3_phase2..4,7.mjs` (dual auth, profile, admin, integration).
 Note `phase3.mjs`'s browse assertion was made robust to real listings in the live DB
 (checks its own tagged rows, not an exact total).
+
+---
+
+## 14. Test Data (dummy seed)
+
+For demo/testing the DB is seeded with clearly-marked dummy data (migration `0014`
+adds `is_test_data boolean default false` to `profiles` and `listings`, plus a
+`seed_log` table; `scripts/seed_dummy.mjs` inserts the rows — idempotent, it clears
+prior `is_test_data = true` rows first).
+
+- **7 test users**, phones **9999000001–9999000007** (Khurai/Banda/Rehli/Deori/
+  Malthone/Bina/Rahatgarh — all real, pre-existing pincodes; no new pincodes were
+  needed, all 8 target areas already existed with real coordinates).
+- **38 listings** across all 5 categories (land 8, equipment 10, labor 7, bhusa 6,
+  agri-inputs 7), all `is_test_data = true`. They appear in the public homepage feed
+  and in Browse (distance-filtered — note Sagar district spans >30 km, so a given
+  pincode sees a nearby subset in the primary band and the rest in the 30–50 km
+  fallback). `seed_log` row: `dummy_data_khurai_v1`.
+- **Re-seed:** `node --env-file=.env scripts/seed_dummy.mjs`.
+- **Remove ALL test data before public launch** (real users are untouched):
+  ```sql
+  DELETE FROM listings WHERE is_test_data = true;
+  DELETE FROM profiles WHERE is_test_data = true;
+  ```
+  Do NOT delete it before the platform has enough real listings to look lived-in.
