@@ -21,6 +21,7 @@ const NAV_CATS = [
   { key: 'agri_inputs', labelKey: 'home_cat_agri_inputs' },
   { key: 'experts', labelKey: 'home_cat_experts' },
   { key: 'articles', labelKey: 'articles_nav' },
+  { key: 'resources', labelKey: 'resources_nav' },
 ]
 
 // Global, sticky navigation bar for the public-facing pages (homepage, privacy,
@@ -36,12 +37,14 @@ export default function NavBar() {
 
   // Which nav item (if any) is currently active, for highlighting.
   const activeCat =
-    location.pathname.startsWith('/articles') ? 'articles'
-      : location.pathname.startsWith('/experts') ? 'experts'
-        : params.get('cat') || null
+    location.pathname.startsWith('/resources') ? 'resources'
+      : location.pathname.startsWith('/articles') ? 'articles'
+        : location.pathname.startsWith('/experts') ? 'experts'
+          : params.get('cat') || null
 
   function goCategory(key) {
     setOpen(false)
+    if (key === 'resources') { navigate('/resources'); return } // public page for all
     if (key === 'articles') { navigate('/articles'); return } // public page for all
     if (isLoggedIn) {
       navigate(key === 'experts' ? '/experts' : `/browse?cat=${key}`)

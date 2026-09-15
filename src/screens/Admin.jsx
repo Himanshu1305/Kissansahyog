@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
-import { Field, TextInput, TextArea, Notice, Spinner, BigButton } from '../components/ui'
+import { Field, TextInput, TextArea, Select, Notice, Spinner, BigButton } from '../components/ui'
 import { CATEGORY_META } from '../lib/listings/catalog'
 import {
   getAdminStats, getAdminListings, getAdminUsers, removeListing,
   adminListExperts, adminSetExpertActive, adminUpsertExpert,
   getAdminArticles, adminUpsertArticle, adminDeleteArticle, slugify,
+  getAdminResources, adminSetResourceActive, adminUpsertResource,
 } from '../lib/admin/adminApi'
 
 // Admin dashboard. Route-gated to authenticated users; a non-admin sees Access
@@ -41,6 +42,7 @@ export default function Admin() {
         <ListingsPanel actorId={user.id} t={t} lang={lang} />
         <ExpertsPanel actorId={user.id} t={t} />
         <ArticlesPanel actorId={user.id} t={t} lang={lang} />
+        <ResourcesPanel actorId={user.id} t={t} lang={lang} />
         <UsersPanel actorId={user.id} t={t} />
       </main>
     </div>
@@ -287,6 +289,99 @@ function ArticleForm({ t, initial, onCancel, onSave }) {
       <label className="mt-3 flex items-center gap-2 font-semibold text-stone-800">
         <input type="checkbox" checked={!!f.is_published} onChange={(e) => setF((s) => ({ ...s, is_published: e.target.checked }))} className="h-5 w-5 accent-green-700" />
         {t('article_published_badge')}
+      </label>
+      <div className="mt-3 flex gap-2">
+        <button onClick={() => onSave(f)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('action_save')}</button>
+        <button onClick={onCancel} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('action_cancel')}</button>
+      </div>
+    </div>
+  )
+}
+
+const RES_TYPE_LABEL = { soil_lab: 'tab_soil', veterinary: 'tab_veterinary', govt_office: 'tab_offices' }
+const EMPTY_RESOURCE = {
+  resource_type: 'soil_lab', name_hi: '', name_en: '', description_hi: '', description_en: '',
+  address_hi: '', address_en: '', district: 'Sagar', area: '', phone_primary: '', phone_secondary: '',
+  phone_tollfree: '', email: '', website: '', timings_hi: '', timings_en: '', is_active: true, sort_order: 0,
+}
+
+function ResourcesPanel({ actorId, t, lang }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [editing, setEditing] = useState(null)
+  const load = useCallback(() => {
+    getAdminResources(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  async function toggle(r) {
+    try { await adminSetResourceActive(actorId, r.id, !r.is_active); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+  async function save(form) {
+    setErr(null)
+    try { await adminUpsertResource(actorId, form); setEditing(null); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+
+  return (
+    <Section
+      title={t('admin_resources')}
+      right={<button onClick={() => setEditing({ ...EMPTY_RESOURCE })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+ {t('resource_add')}</button>}
+    >
+      {err && <Notice tone="error">{err}</Notice>}
+      {editing && <ResourceForm t={t} initial={editing} onCancel={() => setEditing(null)} onSave={save} />}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="space-y-2">
+          {rows.map((r) => (
+            <div key={r.id} className="flex flex-wrap items-center gap-2 rounded-xl border border-stone-100 p-3">
+              <div className="flex-1">
+                <div className="font-bold text-stone-900">{lang === 'hi' ? r.name_hi : r.name_en} {r.is_active ? '' : `(${t('expert_inactive')})`}</div>
+                <div className="text-sm text-stone-500">{t(RES_TYPE_LABEL[r.resource_type])} · {r.area || '—'} · {r.phone_tollfree || r.phone_primary || '—'}</div>
+              </div>
+              <button onClick={() => toggle(r)} className="rounded-lg border-2 border-stone-300 px-3 py-1 text-sm font-bold text-stone-700">
+                {r.is_active ? t('expert_make_inactive') : t('expert_make_active')}
+              </button>
+              <button onClick={() => setEditing(r)} className="rounded-lg border-2 border-green-700 px-3 py-1 text-sm font-bold text-green-800">{t('action_edit')}</button>
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
+  )
+}
+
+function ResourceForm({ t, initial, onCancel, onSave }) {
+  const [f, setF] = useState(initial)
+  const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }))
+  return (
+    <div className="mb-4 rounded-xl border-2 border-green-200 bg-green-50 p-4">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label={t('f_resource_type')} htmlFor="rs_type">
+          <Select id="rs_type" value={f.resource_type} onChange={set('resource_type')}>
+            <option value="soil_lab">{t('tab_soil')}</option>
+            <option value="veterinary">{t('tab_veterinary')}</option>
+            <option value="govt_office">{t('tab_offices')}</option>
+          </Select>
+        </Field>
+        <Field label={t('f_area')} htmlFor="rs_area"><TextInput id="rs_area" value={f.area || ''} onChange={set('area')} /></Field>
+        <Field label={t('f_name_hi')} htmlFor="rs_nh"><TextInput id="rs_nh" value={f.name_hi} onChange={set('name_hi')} /></Field>
+        <Field label={t('f_name_en')} htmlFor="rs_ne"><TextInput id="rs_ne" value={f.name_en} onChange={set('name_en')} /></Field>
+        <Field label={t('f_desc_hi')} htmlFor="rs_dh"><TextArea id="rs_dh" value={f.description_hi || ''} onChange={set('description_hi')} /></Field>
+        <Field label={t('f_desc_en')} htmlFor="rs_de"><TextArea id="rs_de" value={f.description_en || ''} onChange={set('description_en')} /></Field>
+        <Field label={t('f_address_hi')} htmlFor="rs_ah"><TextInput id="rs_ah" value={f.address_hi || ''} onChange={set('address_hi')} /></Field>
+        <Field label={t('f_address_en')} htmlFor="rs_ae"><TextInput id="rs_ae" value={f.address_en || ''} onChange={set('address_en')} /></Field>
+        <Field label={t('f_phone_primary')} htmlFor="rs_pp"><TextInput id="rs_pp" value={f.phone_primary || ''} onChange={set('phone_primary')} /></Field>
+        <Field label={t('f_phone_secondary')} htmlFor="rs_ps"><TextInput id="rs_ps" value={f.phone_secondary || ''} onChange={set('phone_secondary')} /></Field>
+        <Field label={t('f_phone_tollfree')} htmlFor="rs_pt"><TextInput id="rs_pt" value={f.phone_tollfree || ''} onChange={set('phone_tollfree')} /></Field>
+        <Field label={t('f_email')} htmlFor="rs_em"><TextInput id="rs_em" value={f.email || ''} onChange={set('email')} /></Field>
+        <Field label={t('f_website')} htmlFor="rs_web"><TextInput id="rs_web" value={f.website || ''} onChange={set('website')} /></Field>
+        <Field label={t('f_district')} htmlFor="rs_dist"><TextInput id="rs_dist" value={f.district || ''} onChange={set('district')} /></Field>
+        <Field label={t('f_timings_hi')} htmlFor="rs_th"><TextInput id="rs_th" value={f.timings_hi || ''} onChange={set('timings_hi')} /></Field>
+        <Field label={t('f_timings_en')} htmlFor="rs_te"><TextInput id="rs_te" value={f.timings_en || ''} onChange={set('timings_en')} /></Field>
+        <Field label={t('f_sort_order')} htmlFor="rs_so"><TextInput id="rs_so" type="number" value={f.sort_order ?? 0} onChange={(e) => setF((s) => ({ ...s, sort_order: Number(e.target.value) }))} /></Field>
+      </div>
+      <label className="mt-3 flex items-center gap-2 font-semibold text-stone-800">
+        <input type="checkbox" checked={!!f.is_active} onChange={(e) => setF((s) => ({ ...s, is_active: e.target.checked }))} className="h-5 w-5 accent-green-700" />
+        {t('expert_active')}
       </label>
       <div className="mt-3 flex gap-2">
         <button onClick={() => onSave(f)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('action_save')}</button>

@@ -101,6 +101,14 @@ filtering (experts help everyone). See §11.
 `created_at`. **RLS:** public read of `is_published = true`; writes only via admin RPCs.
 Two launch articles seeded (Parali burning; carbon credits).
 
+**resources** — Useful Contacts directory (admin-managed reference data, NOT user
+listings). `id` uuid pk, `resource_type` ('soil_lab'|'veterinary'|'govt_office'),
+bilingual `name`/`description`/`address`/`timings`, `district`/`area`, `phone_primary`/
+`phone_secondary`/`phone_tollfree`, `email`, `website`, `is_active`, `sort_order`,
+`created_at`. **RLS:** public read of `is_active = true`; writes only via admin RPCs.
+These are public govt contacts, so phone/email are in the row (no RPC gate). Seeded with
+13 real Sagar/Khurai contacts (3 soil labs, 4 veterinary, 6 govt offices). See §15.
+
 **crops** — `id` serial, `name_hi`, `name_en`, `region` (default 'sagar_mp'),
 unique (name_en, region). *(v1.1: 11 rows — added मसूर/Masoor.)*
 **equipment_types** — `id` serial, `name_hi`, `name_en` unique. *(v1.1: 11 rows — added
@@ -410,3 +418,25 @@ prior `is_test_data = true` rows first).
   DELETE FROM profiles WHERE is_test_data = true;
   ```
   Do NOT delete it before the platform has enough real listings to look lived-in.
+
+---
+
+## 15. Useful Resources directory (Section 6.3)
+
+Static, admin-managed reference contacts for farmers — **not** a listing category.
+Migration `0016` creates the `resources` table (§2), public-read RLS, admin RPCs
+(`get_admin_resources`, `admin_set_resource_active`, `admin_upsert_resource` — all
+is_admin-checked), and seeds 13 verified Sagar/Khurai contacts.
+
+- **Public page `/resources`** (`src/screens/Resources.jsx`, `src/lib/resources/resourcesApi.js`):
+  three tabs — मृदा परीक्षण / पशु चिकित्सा / कृषि कार्यालय — synced to the URL hash
+  (`#soil` / `#veterinary` / `#offices`) so homepage cards deep-link. Each card shows
+  name (bilingual), description, area tag, `tel:` phone buttons (toll-free numbers get a
+  "निःशुल्क / Toll Free" badge), `mailto:` email, external website, timings, address.
+  A page disclaimer + a collapsible "how to collect a soil sample" 6-step guide (soil tab).
+- **Homepage highlight**: a distinct amber "ज़रूरी सरकारी संपर्क" section (between How-it-works
+  and category cards) with 3 cards linking to `/resources#…`.
+- **Nav/footer**: "उपयोगी संपर्क / Resources" added to the global nav and homepage footer.
+- **Admin**: a Resources management panel (list, toggle active, add/edit form) in `/admin`.
+- All strings bilingual via i18n; area tags map the stored English area value to a
+  bilingual label. Tests: `scripts/test/p3_resources.mjs`.

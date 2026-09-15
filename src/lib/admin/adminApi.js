@@ -41,6 +41,19 @@ export const adminUpsertArticle = (actorId, a) =>
   })
 export const adminDeleteArticle = (actorId, id) => rpc('admin_delete_article', { p_actor_id: actorId, p_id: id })
 
+export const getAdminResources = (actorId) => rpc('get_admin_resources', { p_actor_id: actorId })
+export const adminSetResourceActive = (actorId, id, active) =>
+  rpc('admin_set_resource_active', { p_actor_id: actorId, p_id: id, p_active: active })
+export const adminUpsertResource = (actorId, r) =>
+  rpc('admin_upsert_resource', {
+    p_actor_id: actorId, p_id: r.id ?? null, p_resource_type: r.resource_type,
+    p_name_hi: r.name_hi, p_name_en: r.name_en, p_description_hi: r.description_hi ?? null, p_description_en: r.description_en ?? null,
+    p_address_hi: r.address_hi ?? null, p_address_en: r.address_en ?? null, p_district: r.district ?? 'Sagar', p_area: r.area ?? null,
+    p_phone_primary: r.phone_primary ?? null, p_phone_secondary: r.phone_secondary ?? null, p_phone_tollfree: r.phone_tollfree ?? null,
+    p_email: r.email ?? null, p_website: r.website ?? null, p_timings_hi: r.timings_hi ?? null, p_timings_en: r.timings_en ?? null,
+    p_is_active: r.is_active ?? true, p_sort_order: r.sort_order ?? 0,
+  })
+
 // Slugify an English title for the article slug field.
 export const slugify = (s) =>
   String(s || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')

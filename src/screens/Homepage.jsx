@@ -142,6 +142,35 @@ export default function Homepage() {
         </div>
       </section>
 
+      {/* Section 2.5 — Useful Resources highlight (distinct from listing categories) */}
+      <section className="border-y border-amber-100 bg-amber-50/60 py-12">
+        <div className="mx-auto max-w-5xl px-5">
+          <h2 className="text-center text-2xl font-bold text-stone-800">{t('res_home_heading')}</h2>
+          <p className="mb-8 mt-1 text-center text-stone-600">{t('res_home_sub')}</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { icon: '🧪', titleKey: 'res_card_soil_title', infos: ['res_card_soil_1', 'res_card_soil_2'], hash: 'soil' },
+              { icon: '🐄', titleKey: 'res_card_vet_title', infos: ['res_card_vet_1'], hash: 'veterinary' },
+              { icon: '🏛️', titleKey: 'res_card_offices_title', infos: ['res_card_offices_1', 'res_card_offices_2'], hash: 'offices' },
+            ].map((c) => (
+              <button
+                key={c.hash}
+                type="button"
+                onClick={() => navigate(`/resources#${c.hash}`)}
+                className="flex flex-col rounded-2xl border-2 border-amber-200 bg-white p-5 text-left transition hover:border-amber-400"
+              >
+                <span className="text-3xl" aria-hidden="true">{c.icon}</span>
+                <span className="mt-2 font-bold text-stone-900">{t(c.titleKey)}</span>
+                <span className="mt-2 space-y-0.5 text-sm text-stone-600">
+                  {c.infos.map((k) => (<span key={k} className="block">{t(k)}</span>))}
+                </span>
+                <span className="mt-3 text-sm font-bold text-amber-700">{t('res_full_details')} →</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Section 3 — Category cards */}
       <section className="bg-white py-12">
         <div className="mx-auto max-w-5xl px-5">
@@ -246,6 +275,7 @@ export default function Homepage() {
             </div>
             <nav className="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-green-800">
               <button type="button" onClick={() => navigate('/articles')} className="underline">{t('articles_nav')}</button>
+              <button type="button" onClick={() => navigate('/resources')} className="underline">{t('resources_nav')}</button>
               <button type="button" onClick={() => navigate('/privacy')} className="underline">{t('footer_privacy')}</button>
               <button type="button" onClick={() => navigate('/terms')} className="underline">{t('footer_terms')}</button>
               <a href="mailto:usdvisionai@gmail.com" className="underline">{t('footer_contact')}</a>
