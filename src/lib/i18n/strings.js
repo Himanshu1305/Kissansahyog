@@ -86,6 +86,20 @@ export const strings = {
   post_listing: { hi: 'नई लिस्टिंग डालें', en: 'Post a listing' },
   my_listings: { hi: 'मेरी लिस्टिंग', en: 'My listings' },
   experts_nav: { hi: 'विशेषज्ञ', en: 'Experts' },
+  articles_nav: { hi: 'लेख', en: 'Articles' },
+
+  // --- articles / blog ---
+  articles_title: { hi: 'लेख', en: 'Articles' },
+  read_more: { hi: 'पढ़ें', en: 'Read' },
+  article_by: { hi: 'लेखक:', en: 'By' },
+  share_article: { hi: 'इस लेख को साझा करें', en: 'Share this article' },
+  copy_link: { hi: 'लिंक कॉपी करें', en: 'Copy link' },
+  link_copied: { hi: 'लिंक कॉपी हो गया!', en: 'Link copied!' },
+  back_to_articles: { hi: 'सभी लेख', en: 'Back to Articles' },
+  articles_empty: { hi: 'अभी कोई लेख प्रकाशित नहीं हुआ।', en: 'No articles published yet.' },
+  article_not_found: { hi: 'यह लेख नहीं मिला।', en: 'This article was not found.' },
+  related_bhusa_cta: { hi: 'भूसा-पराली मंच देखें', en: 'Visit the Bhusa-Parali marketplace' },
+  read_about_this: { hi: 'इस बारे में पढ़ें', en: 'Read about this' },
 
   // --- experts directory ---
   experts_title: { hi: 'विशेषज्ञ / Experts', en: 'Experts' },

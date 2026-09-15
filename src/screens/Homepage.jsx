@@ -244,6 +244,7 @@ export default function Homepage() {
               </div>
             </div>
             <nav className="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-green-800">
+              <button type="button" onClick={() => navigate('/articles')} className="underline">{t('articles_nav')}</button>
               <button type="button" onClick={() => navigate('/privacy')} className="underline">{t('footer_privacy')}</button>
               <button type="button" onClick={() => navigate('/terms')} className="underline">{t('footer_terms')}</button>
               <a href="mailto:usdvisionai@gmail.com" className="underline">{t('footer_contact')}</a>
