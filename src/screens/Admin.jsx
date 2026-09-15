@@ -10,7 +10,9 @@ import {
   adminListExperts, adminSetExpertActive, adminUpsertExpert,
   getAdminArticles, adminUpsertArticle, adminDeleteArticle, slugify,
   getAdminResources, adminSetResourceActive, adminUpsertResource,
+  getAdminSourceStats, getAdminVendorListings,
 } from '../lib/admin/adminApi'
+import { CATEGORIES } from '../lib/listings/catalog'
 
 // Admin dashboard. Route-gated to authenticated users; a non-admin sees Access
 // Denied here (not a 404/crash). All data comes from is_admin-checked RPCs.
@@ -39,6 +41,7 @@ export default function Admin() {
       <main className="mx-auto max-w-6xl px-4 py-6">
         <h1 className="mb-4 text-2xl font-bold text-stone-900">{t('admin_title')}</h1>
         <StatsBar actorId={user.id} t={t} />
+        <VendorReportPanel actorId={user.id} t={t} lang={lang} />
         <ListingsPanel actorId={user.id} t={t} lang={lang} />
         <ExpertsPanel actorId={user.id} t={t} />
         <ArticlesPanel actorId={user.id} t={t} lang={lang} />
@@ -86,6 +89,101 @@ function StatsBar({ actorId, t }) {
         </div>
       ))}
     </div>
+  )
+}
+
+// Best-effort short "key detail" for a vendor row from its details JSONB.
+function vendorKeyDetail(d = {}) {
+  return d.business_name || d.operator_name || d.item_name || d.warehouse_type || d.residue_type || d.crop_type || d.item_name || '—'
+}
+
+function VendorReportPanel({ actorId, t, lang }) {
+  const [stats, setStats] = useState(null)
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [cat, setCat] = useState('all')
+  const [from, setFrom] = useState('')
+  const [to, setTo] = useState('')
+
+  useEffect(() => {
+    getAdminSourceStats(actorId).then(setStats).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+    getAdminVendorListings(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+
+  const filtered = (rows || []).filter((r) => {
+    if (cat !== 'all' && r.category !== cat) return false
+    const d = r.created_at ? r.created_at.slice(0, 10) : ''
+    if (from && d < from) return false
+    if (to && d > to) return false
+    return true
+  })
+
+  function exportCsv() {
+    const head = ['Category', 'Type', 'Detail', 'Vendor', 'Phone', 'Email', 'Pincode', 'Village', 'Created', 'Status']
+    const esc = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`
+    const lines = [head.join(',')]
+    for (const r of filtered) {
+      lines.push([r.category, r.listing_type, vendorKeyDetail(r.details), r.poster_name, r.poster_phone, r.poster_email, r.pincode, r.village_town, r.created_at?.slice(0, 10), r.status].map(esc).join(','))
+    }
+    const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'vendor-listings.csv'
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  return (
+    <Section title={t('admin_vendor_report')}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {stats && (
+        <p className="mb-3 text-sm font-semibold text-stone-700">
+          {t('stat_farmer_listings')}: <span className="text-green-800">{stats.farmer_total}</span>
+          <span className="mx-2 text-stone-300">|</span>
+          {t('stat_vendor_listings')}: <span className="text-amber-700">{stats.vendor_total}</span>
+        </p>
+      )}
+      <div className="mb-3 flex flex-wrap items-end gap-2">
+        <Field label={t('col_category')} htmlFor="vr_cat">
+          <Select id="vr_cat" value={cat} onChange={(e) => setCat(e.target.value)}>
+            <option value="all">{t('vendor_filter_all_cat')}</option>
+            {CATEGORIES.map((c) => (<option key={c} value={c}>{CATEGORY_META[c][lang]}</option>))}
+          </Select>
+        </Field>
+        <Field label={t('vendor_from')} htmlFor="vr_from"><TextInput id="vr_from" type="date" value={from} onChange={(e) => setFrom(e.target.value)} /></Field>
+        <Field label={t('vendor_to')} htmlFor="vr_to"><TextInput id="vr_to" type="date" value={to} onChange={(e) => setTo(e.target.value)} /></Field>
+        <button onClick={exportCsv} className="mb-2 rounded-lg bg-green-700 px-4 py-2 text-sm font-bold text-white">⬇ {t('vendor_export_csv')}</button>
+      </div>
+      {!rows ? <Spinner /> : filtered.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead>
+              <tr className="border-b-2 border-stone-100 text-stone-500">
+                <th className="py-2 pr-3">{t('col_category')}</th>
+                <th className="py-2 pr-3">{t('col_detail')}</th>
+                <th className="py-2 pr-3">{t('col_vendor')}</th>
+                <th className="py-2 pr-3">{t('col_contact')}</th>
+                <th className="py-2 pr-3">{t('col_location')}</th>
+                <th className="py-2 pr-3">{t('col_status')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((r) => (
+                <tr key={r.id} className="border-b border-stone-100">
+                  <td className="py-2 pr-3">{CATEGORY_META[r.category]?.[lang] || r.category}</td>
+                  <td className="py-2 pr-3">{vendorKeyDetail(r.details)}</td>
+                  <td className="py-2 pr-3">{r.poster_name}</td>
+                  <td className="py-2 pr-3">{r.poster_phone || r.poster_email || '—'}</td>
+                  <td className="py-2 pr-3">{[r.village_town, r.pincode].filter(Boolean).join(' · ')}</td>
+                  <td className="py-2 pr-3">{r.status === 'removed' ? t('status_removed') : r.status === 'closed' ? t('badge_found') : t('badge_active')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </Section>
   )
 }
 

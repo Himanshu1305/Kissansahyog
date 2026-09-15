@@ -276,6 +276,11 @@ export const strings = {
   home_offer: { hi: 'दे रहे हैं', en: 'Offer' },
   home_requirement: { hi: 'चाहिए', en: 'Requirement' },
   vendor_badge: { hi: 'व्यापारी', en: 'Vendor' },
+  // --- who-are-you (listing_source) toggle ---
+  post_q_source: { hi: 'आप कौन हैं?', en: 'Who are you posting as?' },
+  source_farmer: { hi: 'किसान / Farmer', en: 'Farmer' },
+  source_vendor: { hi: 'व्यापारी / दुकानदार', en: 'Business or Shop' },
+  vendor_note: { hi: "आपकी लिस्टिंग पर 'व्यापारी' का बैज लगेगा।", en: "Your listing will show a 'Vendor' badge." },
   signup_to_contact: { hi: 'संपर्क देखने के लिए जुड़ें', en: 'Sign up to see contact' },
   listings_empty: {
     hi: 'अभी Sagar में लिस्टिंग जुड़ रही हैं — पहले बनें!',
@@ -377,6 +382,15 @@ export const strings = {
   user_search_ph: { hi: 'नाम / फ़ोन / ईमेल खोजें', en: 'Search name / phone / email' },
   admin_none: { hi: 'कुछ नहीं मिला।', en: 'Nothing here yet.' },
   err_not_admin: { hi: 'यह कार्य केवल एडमिन कर सकते हैं।', en: 'Only admins can perform this action.' },
+  admin_vendor_report: { hi: 'व्यापारी लिस्टिंग रिपोर्ट', en: 'Vendor Listings Report' },
+  stat_farmer_listings: { hi: 'किसान लिस्टिंग', en: 'Farmer listings' },
+  stat_vendor_listings: { hi: 'व्यापारी लिस्टिंग', en: 'Vendor listings' },
+  vendor_filter_all_cat: { hi: 'सभी श्रेणियाँ', en: 'All categories' },
+  vendor_from: { hi: 'से', en: 'From' },
+  vendor_to: { hi: 'तक', en: 'To' },
+  vendor_export_csv: { hi: 'CSV डाउनलोड करें', en: 'Export CSV' },
+  col_vendor: { hi: 'व्यापारी', en: 'Vendor' },
+  col_detail: { hi: 'विवरण', en: 'Detail' },
   err_article_fields: { hi: 'कृपया सभी ज़रूरी फ़ील्ड भरें।', en: 'Please fill in all required fields.' },
 
   // --- post flow ---

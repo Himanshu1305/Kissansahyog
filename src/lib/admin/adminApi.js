@@ -41,6 +41,9 @@ export const adminUpsertArticle = (actorId, a) =>
   })
 export const adminDeleteArticle = (actorId, id) => rpc('admin_delete_article', { p_actor_id: actorId, p_id: id })
 
+export const getAdminSourceStats = (actorId) => rpc('get_admin_source_stats', { p_actor_id: actorId })
+export const getAdminVendorListings = (actorId) => rpc('get_admin_vendor_listings', { p_actor_id: actorId })
+
 export const getAdminResources = (actorId) => rpc('get_admin_resources', { p_actor_id: actorId })
 export const adminSetResourceActive = (actorId, id, active) =>
   rpc('admin_set_resource_active', { p_actor_id: actorId, p_id: id, p_active: active })

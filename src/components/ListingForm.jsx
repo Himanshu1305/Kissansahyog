@@ -20,7 +20,7 @@ import { CATEGORY_META } from '../lib/listings/catalog'
 // uses these coordinates, so a landowner in Hyderabad listing land in Sagar is
 // found near Sagar, not near Hyderabad. The create_listing RPC re-derives the
 // coordinates from this pincode server-side (authoritative).
-export default function ListingForm({ listingType, category, onCreated }) {
+export default function ListingForm({ listingType, category, listingSource = 'farmer', onCreated }) {
   const { t, lang } = useLang()
   const { user } = useAuth()
   const mod = getCategory(category)
@@ -87,6 +87,7 @@ export default function ListingForm({ listingType, category, onCreated }) {
         longitude: pinRow.longitude,
         pincode: pin,
         selfDeclared: needsSelfDecl ? selfDeclared : false,
+        listingSource,
       })
       onCreated(listing)
     } catch (err) {

@@ -48,6 +48,7 @@ export async function createListing({
   longitude = null,
   pincode = null,
   selfDeclared = false,
+  listingSource = 'farmer',
 }) {
   const { data, error } = await supabase.rpc('create_listing', {
     p_actor_id: actorId,
@@ -58,6 +59,7 @@ export async function createListing({
     p_longitude: longitude,
     p_pincode: pincode,
     p_self_declared: selfDeclared,
+    p_listing_source: listingSource,
   })
   if (error) throw toAppError(error)
   return data
@@ -115,7 +117,7 @@ export async function fetchNearby({ category, listingType = null, center, sort =
 export async function fetchRecentListings(limit = 12) {
   const { data, error } = await supabase
     .from('listings')
-    .select('id,listing_type,category,pincode,details,created_at')
+    .select('id,listing_type,category,pincode,details,created_at,listing_source')
     .eq('status', 'active')
     .gt('expires_at', new Date().toISOString())
     .order('created_at', { ascending: false })

@@ -84,8 +84,8 @@ const LISTINGS = [
   { u: 'ramlal',  type: 'offer',       cat: 'agri_inputs', d: surplus({ input_type: 'seeds', item_name: 'HI-8498 गेहूं बीज', quantity: '5 क्विंटल', asking_price: '₹3,200 प्रति क्विंटल', material_address: 'Khurai mandi area', condition: 'original_packaging' }) },
   { u: 'gita',    type: 'offer',       cat: 'agri_inputs', d: surplus({ input_type: 'fertilizer', item_name: 'DAP', quantity: '10 बैग', asking_price: '₹1,350 प्रति बैग', material_address: 'Deori village', condition: 'good' }) },
   { u: 'shanti',  type: 'offer',       cat: 'agri_inputs', d: surplus({ input_type: 'pesticide', item_name: 'Chlorpyrifos 20% EC', quantity: '8 लीटर', asking_price: '₹420 प्रति लीटर', material_address: 'Rahatgarh', condition: 'original_packaging' }) },
-  { u: 'prakash', type: 'offer',       cat: 'agri_inputs', pin: '470117', d: vendor({ business_name: 'पटेल कृषि केंद्र, खुरई', input_types: ['seeds', 'fertilizer', 'pesticide'], items_description: 'सभी प्रकार के बीज, खाद और कीटनाशक उपलब्ध। उचित दाम, घर पहुंच सेवा।', shop_address: 'Near Bus Stand, Khurai', contact_phone: USERS.prakash.phone }) },
-  { u: 'suresh',  type: 'offer',       cat: 'agri_inputs', d: vendor({ business_name: 'लोधी एग्रो सेंटर, बांदा', input_types: ['fertilizer', 'seeds'], items_description: 'यूरिया, DAP, NPK सभी खाद उपलब्ध। बांदा और आसपास डिलीवरी।', shop_address: 'Main Road, Banda', contact_phone: USERS.suresh.phone }) },
+  { u: 'prakash', type: 'offer',       cat: 'agri_inputs', pin: '470117', source: 'vendor', d: vendor({ business_name: 'पटेल कृषि केंद्र, खुरई', input_types: ['seeds', 'fertilizer', 'pesticide'], items_description: 'सभी प्रकार के बीज, खाद और कीटनाशक उपलब्ध। उचित दाम, घर पहुंच सेवा।', shop_address: 'Near Bus Stand, Khurai', contact_phone: USERS.prakash.phone }) },
+  { u: 'suresh',  type: 'offer',       cat: 'agri_inputs', source: 'vendor', d: vendor({ business_name: 'लोधी एग्रो सेंटर, बांदा', input_types: ['fertilizer', 'seeds'], items_description: 'यूरिया, DAP, NPK सभी खाद उपलब्ध। बांदा और आसपास डिलीवरी।', shop_address: 'Main Road, Banda', contact_phone: USERS.suresh.phone }) },
   { u: 'mohan',   type: 'requirement', cat: 'agri_inputs', d: surplus({ input_type: 'seeds', item_name: 'Soybean seeds (JS-9560 variety)', quantity: '2 क्विंटल' }) },
   { u: 'rajesh',  type: 'requirement', cat: 'agri_inputs', d: surplus({ input_type: 'fertilizer', item_name: 'Urea fertilizer', quantity: '20 बैग' }) },
 
@@ -130,7 +130,7 @@ async function main() {
     return {
       user_id: userId(l.u), listing_type: l.type, category: l.cat,
       latitude: coord[pin].latitude, longitude: coord[pin].longitude, pincode: pin,
-      details: l.d, self_declared: !!l.sd, is_test_data: true,
+      details: l.d, self_declared: !!l.sd, is_test_data: true, listing_source: l.source || 'farmer',
     }
   })
   const { data: insertedListings, error: lErr } = await admin.from('listings').insert(listingRows).select('id,category')

@@ -90,6 +90,9 @@ export default function ListingDetail() {
           >
             {typeMeta[lang]}
           </span>
+          {listing.listing_source === 'vendor' && (
+            <span className="ml-1 inline-block rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-800">🏪 {t('vendor_badge')}</span>
+          )}
         </div>
         {distance != null && (
           <span className="ml-auto text-sm font-semibold text-stone-500">

@@ -15,15 +15,18 @@ export default function Post() {
   const { t, lang } = useLang()
   const navigate = useNavigate()
 
+  const [source, setSource] = useState('farmer') // 'farmer' | 'vendor' (farmer default)
+  const [sourceChosen, setSourceChosen] = useState(false)
   const [listingType, setListingType] = useState(null)
   const [category, setCategory] = useState(null)
   const [created, setCreated] = useState(null)
 
-  const step = created ? 'done' : !listingType ? 'type' : !category ? 'category' : 'form'
+  const step = created ? 'done' : !sourceChosen ? 'source' : !listingType ? 'type' : !category ? 'category' : 'form'
 
   function back() {
     if (step === 'form') setCategory(null)
     else if (step === 'category') setListingType(null)
+    else if (step === 'type') setSourceChosen(false)
     else navigate('/home')
   }
 
@@ -34,6 +37,27 @@ export default function Post() {
 
   return (
     <Screen title={title} onBack={step === 'done' ? undefined : back} right={<LanguageToggle />}>
+      {step === 'source' && (
+        <div>
+          <h2 className="mb-4 text-xl font-bold text-stone-800">{t('post_q_source')}</h2>
+          <div className="space-y-3">
+            <BigButton variant={source === 'farmer' ? 'primary' : 'secondary'} onClick={() => setSource('farmer')}>
+              👨‍🌾 {t('source_farmer')} {source === 'farmer' && '✓'}
+            </BigButton>
+            <BigButton variant={source === 'vendor' ? 'primary' : 'secondary'} onClick={() => setSource('vendor')}>
+              🏪 {t('source_vendor')} {source === 'vendor' && '✓'}
+            </BigButton>
+          </div>
+          {source === 'vendor' && (
+            <div className="mt-3 space-y-1 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">
+              <p>🏪 {t('vendor_note')}</p>
+              <p>{t('agri_vendor_future_charges')}</p>
+            </div>
+          )}
+          <BigButton className="mt-5" onClick={() => setSourceChosen(true)}>{t('continue')}</BigButton>
+        </div>
+      )}
+
       {step === 'type' && (
         <div>
           <h2 className="mb-4 text-xl font-bold text-stone-800">{t('post_q_type')}</h2>
@@ -71,7 +95,7 @@ export default function Post() {
       )}
 
       {step === 'form' && (
-        <ListingForm listingType={listingType} category={category} onCreated={setCreated} />
+        <ListingForm listingType={listingType} category={category} listingSource={source} onCreated={setCreated} />
       )}
 
       {step === 'done' && (
@@ -86,6 +110,8 @@ export default function Post() {
               variant="secondary"
               onClick={() => {
                 setCreated(null)
+                setSource('farmer')
+                setSourceChosen(false)
                 setListingType(null)
                 setCategory(null)
               }}
