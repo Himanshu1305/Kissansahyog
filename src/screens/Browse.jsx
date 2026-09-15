@@ -9,6 +9,7 @@ import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { fetchNearby } from '../lib/listings/listingsApi'
+import { MIN_PRIMARY_RESULTS } from '../lib/distance'
 
 // Browse nearby active listings. Category tabs · Offer/Requirement filter ·
 // nearest/newest sort · 30 km radius (computed in fetchNearby).
@@ -22,6 +23,7 @@ export default function Browse() {
   const [sort, setSort] = useState('nearest')
   const [extras, setExtras] = useState({})
   const [listings, setListings] = useState([])
+  const [fallback, setFallback] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -29,7 +31,7 @@ export default function Browse() {
     setLoading(true)
     setError(null)
     try {
-      const [ex, rows] = await Promise.all([
+      const [ex, res] = await Promise.all([
         loadExtras(category),
         fetchNearby({
           category,
@@ -39,7 +41,8 @@ export default function Browse() {
         }),
       ])
       setExtras(ex)
-      setListings(rows)
+      setListings(res.primary)
+      setFallback(res.fallback)
     } catch (err) {
       setError(t(err.i18nKey || 'err_unknown'))
     } finally {
@@ -104,7 +107,7 @@ export default function Browse() {
 
       {loading ? (
         <Spinner />
-      ) : listings.length === 0 ? (
+      ) : listings.length === 0 && fallback.length === 0 ? (
         <p className="py-12 text-center text-stone-500">{t('no_listings')}</p>
       ) : (
         <div className="space-y-3">
@@ -116,6 +119,28 @@ export default function Browse() {
               onClick={() => navigate(`/listing/${l.id}`)}
             />
           ))}
+
+          {/* Soft radius fallback: only surfaced when primary (<=30km) results
+              are sparse, so a low-density pilot area isn't a blank screen. */}
+          {listings.length < MIN_PRIMARY_RESULTS && fallback.length > 0 && (
+            <div className="pt-2" data-testid="fallback-section">
+              <div className="mb-2 mt-4 flex items-center gap-2">
+                <span className="h-px flex-1 bg-stone-200" />
+                <span className="text-sm font-semibold text-stone-500">{t('radius_fallback')}</span>
+                <span className="h-px flex-1 bg-stone-200" />
+              </div>
+              <div className="space-y-3">
+                {fallback.map((l) => (
+                  <ListingCard
+                    key={l.id}
+                    listing={l}
+                    extras={extras}
+                    onClick={() => navigate(`/listing/${l.id}`)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </Screen>

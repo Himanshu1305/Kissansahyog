@@ -3,7 +3,7 @@
 // directly, pre-filtered by a bounding box, then refined by exact Haversine.
 import { supabase } from '../supabaseClient'
 import { toAppError } from '../errors'
-import { boundingBox, haversineKm, isWithinRadius, RADIUS_KM } from '../distance'
+import { boundingBox, haversineKm, RADIUS_KM, FALLBACK_RADIUS_KM } from '../distance'
 
 // --- lookups (cached in-memory for the session) ---
 let cropsCache = null
@@ -22,6 +22,19 @@ export async function fetchEquipmentTypes() {
   const { data, error } = await supabase.from('equipment_types').select('*').order('id')
   if (error) throw toAppError(error)
   equipmentCache = data
+  return data
+}
+
+// Look up a single pincode row (anon-readable) to resolve the ASSET's location
+// coordinates at listing-creation time. Returns the row or null if unknown.
+// This is how a listing gets the location of the land/equipment/goods being
+// offered — never the poster's profile location. See create_listing RPC, which
+// re-derives coordinates from this same pincode server-side (authoritative).
+export async function fetchPincode(pincode) {
+  const pin = String(pincode || '').trim()
+  if (!/^[0-9]{6}$/.test(pin)) return null
+  const { data, error } = await supabase.from('pincodes').select('*').eq('pincode', pin).maybeSingle()
+  if (error) throw toAppError(error)
   return data
 }
 
@@ -50,10 +63,17 @@ export async function createListing({
   return data
 }
 
-// --- browse (30 km nearest-first / newest) ---
-// center: {latitude, longitude}. Returns rows decorated with distanceKm.
+// --- browse (30 km nearest-first / newest, with a 30–50 km soft fallback) ---
+// center: {latitude, longitude}. Distance is always measured from the viewer to
+// each LISTING's own coordinates (row.latitude/row.longitude) — never any
+// profiles row. Returns { primary, fallback }:
+//   primary  = listings within RADIUS_KM (<= 30 km)
+//   fallback = listings in the 30–50 km ring (only meaningful when primary is
+//              sparse; the Browse screen shows it when primary has < 5 results).
 export async function fetchNearby({ category, listingType = null, center, sort = 'nearest' }) {
-  const box = boundingBox(center.latitude, center.longitude, RADIUS_KM)
+  // Pre-filter with a bounding box sized to the wider fallback radius so the
+  // single query covers both bands; the exact Haversine pass splits them.
+  const box = boundingBox(center.latitude, center.longitude, FALLBACK_RADIUS_KM)
   let q = supabase
     .from('listings')
     .select('*')
@@ -68,19 +88,22 @@ export async function fetchNearby({ category, listingType = null, center, sort =
   const { data, error } = await q
   if (error) throw toAppError(error)
 
-  const withDistance = (data || [])
-    .map((row) => ({
-      ...row,
-      distanceKm: haversineKm(center.latitude, center.longitude, row.latitude, row.longitude),
-    }))
-    .filter((row) => isWithinRadius(row.distanceKm))
+  const withDistance = (data || []).map((row) => ({
+    ...row,
+    distanceKm: haversineKm(center.latitude, center.longitude, row.latitude, row.longitude),
+  }))
 
-  withDistance.sort((a, b) =>
+  const byDistanceOrNewest = (a, b) =>
     sort === 'newest'
       ? new Date(b.created_at) - new Date(a.created_at)
-      : a.distanceKm - b.distanceKm,
-  )
-  return withDistance
+      : a.distanceKm - b.distanceKm
+
+  const primary = withDistance.filter((r) => r.distanceKm <= RADIUS_KM).sort(byDistanceOrNewest)
+  const fallback = withDistance
+    .filter((r) => r.distanceKm > RADIUS_KM && r.distanceKm <= FALLBACK_RADIUS_KM)
+    .sort(byDistanceOrNewest)
+
+  return { primary, fallback }
 }
 
 // Single listing by id (active only, via RLS). Used by the detail screen.

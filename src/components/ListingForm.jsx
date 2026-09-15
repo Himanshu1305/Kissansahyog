@@ -3,12 +3,20 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { createListing } from '../lib/listings/listingsApi'
-import { BigButton, Notice, Spinner } from './ui'
+import { createListing, fetchPincode } from '../lib/listings/listingsApi'
+import { isValidPincode } from '../lib/auth/authService'
+import { BigButton, Field, Notice, Spinner, TextInput } from './ui'
 import DisclaimerBanner from './DisclaimerBanner'
 
 // Category-agnostic listing form. Delegates the field set + validation +
 // details finalization to the category module from the registry.
+//
+// ASSET LOCATION (v1.1): every listing must carry the pincode of the thing being
+// offered/sought — the LAND / EQUIPMENT / TEAM / GOODS location — which is asked
+// explicitly here and NOT defaulted from the poster's profile. Distance matching
+// uses these coordinates, so a landowner in Hyderabad listing land in Sagar is
+// found near Sagar, not near Hyderabad. The create_listing RPC re-derives the
+// coordinates from this pincode server-side (authoritative).
 export default function ListingForm({ listingType, category, onCreated }) {
   const { t } = useLang()
   const { user } = useAuth()
@@ -16,11 +24,13 @@ export default function ListingForm({ listingType, category, onCreated }) {
 
   const [extras, setExtras] = useState(null)
   const [details, setDetails] = useState(() => mod.initialDetails())
+  const [pincode, setPincode] = useState('') // asset location — intentionally blank
   const [selfDeclared, setSelfDeclared] = useState(false)
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
 
   const needsSelfDecl = mod.needsSelfDeclaration(listingType)
+  const locationLabelKey = mod.locationLabelKey || 'field_asset_pincode'
 
   useEffect(() => {
     let alive = true
@@ -37,12 +47,28 @@ export default function ListingForm({ listingType, category, onCreated }) {
       setError(vErr)
       return
     }
+    // Asset-location pincode: required, well-formed, and known to us.
+    const pin = String(pincode).trim()
+    if (!pin) {
+      setError(t('err_asset_pincode_required'))
+      return
+    }
+    if (!isValidPincode(pin)) {
+      setError(t('err_invalid_pincode'))
+      return
+    }
     if (needsSelfDecl && !selfDeclared) {
       setError(t('err_self_declaration_required'))
       return
     }
     setBusy(true)
     try {
+      const pinRow = await fetchPincode(pin)
+      if (!pinRow) {
+        setError(t('err_pincode_not_found'))
+        setBusy(false)
+        return
+      }
       const finalDetails = mod.finalizeDetails
         ? await mod.finalizeDetails(details, { actorId: user.id })
         : details
@@ -51,7 +77,10 @@ export default function ListingForm({ listingType, category, onCreated }) {
         listingType,
         category,
         details: finalDetails,
-        // location defaults to the poster's profile coords server-side
+        // Asset location — the listing's own coordinates, from its own pincode.
+        latitude: pinRow.latitude,
+        longitude: pinRow.longitude,
+        pincode: pin,
         selfDeclared: needsSelfDecl ? selfDeclared : false,
       })
       onCreated(listing)
@@ -69,6 +98,20 @@ export default function ListingForm({ listingType, category, onCreated }) {
       {error && <Notice tone="error">{error}</Notice>}
 
       <mod.Fields details={details} setDetails={setDetails} extras={extras} />
+
+      {/* Asset location — prominent, required, and explicitly NOT the home pincode. */}
+      <div className="my-5 rounded-2xl border-2 border-green-700 bg-green-50 p-4">
+        <Field label={t(locationLabelKey)} htmlFor="f_asset_pincode" required hint={t('asset_pincode_hint')}>
+          <TextInput
+            id="f_asset_pincode"
+            inputMode="numeric"
+            maxLength={6}
+            placeholder={t('pincode_ph')}
+            value={pincode}
+            onChange={(e) => setPincode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+          />
+        </Field>
+      </div>
 
       {needsSelfDecl && (
         <label className="my-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-stone-300 bg-white p-4">

@@ -20,6 +20,9 @@ export function needsSelfDeclaration() {
   return false
 }
 
+// Asset-location pincode: where the work/team is based, not the poster's home.
+export const locationLabelKey = 'field_labor_pincode'
+
 export function validate(details, listingType, t) {
   if (!details.worker_count || details.worker_count <= 0) return t('err_invalid_worker_count')
   if (details.available_from && details.available_to && details.available_from > details.available_to) {

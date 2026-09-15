@@ -5,6 +5,11 @@
 // for boundary tests (a point just inside and just outside 30 km).
 
 export const RADIUS_KM = 30
+// Soft fallback ring: when a search returns fewer than MIN_PRIMARY_RESULTS within
+// RADIUS_KM, results between RADIUS_KM and FALLBACK_RADIUS_KM are shown in a
+// clearly-labelled secondary section so low-density pilot areas aren't empty.
+export const FALLBACK_RADIUS_KM = 50
+export const MIN_PRIMARY_RESULTS = 5
 const EARTH_R_KM = 6371
 const KM_PER_DEG_LAT = 111.045
 

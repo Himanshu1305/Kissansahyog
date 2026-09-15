@@ -83,6 +83,20 @@ export const strings = {
   coming_soon: { hi: 'जल्द आ रहा है', en: 'Coming soon' },
   select_placeholder: { hi: 'चुनें…', en: 'Select…' },
 
+  // --- asset location (v1.1: the listing's OWN location, not the poster's home) ---
+  field_asset_pincode: { hi: 'स्थान का पिनकोड', en: 'Location pincode' },
+  field_land_pincode: { hi: 'ज़मीन का पिनकोड', en: "Land's pincode" },
+  field_equipment_pincode: { hi: 'मशीन कहाँ है? पिनकोड', en: "Equipment's pincode" },
+  field_labor_pincode: { hi: 'काम की जगह का पिनकोड', en: "Work location pincode" },
+  asset_pincode_hint: {
+    hi: 'यह उस जगह का पिनकोड है जहाँ यह उपलब्ध है — आपके घर का पिनकोड नहीं।',
+    en: 'This is the pincode of where it is located — not your home pincode.',
+  },
+  err_asset_pincode_required: {
+    hi: 'कृपया उस जगह का पिनकोड भरें जहाँ यह उपलब्ध है।',
+    en: 'Please enter the pincode of where this is located.',
+  },
+
   // --- land fields ---
   field_size: { hi: 'ज़मीन का आकार', en: 'Land size' },
   field_arrangement: { hi: 'व्यवस्था', en: 'Arrangement' },
@@ -121,6 +135,7 @@ export const strings = {
   sort_nearest: { hi: 'नज़दीकी पहले', en: 'Nearest first' },
   sort_newest: { hi: 'नई पहले', en: 'Newest first' },
   no_listings: { hi: 'आस-पास कोई लिस्टिंग नहीं मिली।', en: 'No listings found nearby.' },
+  radius_fallback: { hi: '30–50 किमी दूर', en: '30–50 km away' },
   km_away: { hi: 'किमी दूर', en: 'km away' },
   posted_label: { hi: 'डाली गई', en: 'Posted' },
 

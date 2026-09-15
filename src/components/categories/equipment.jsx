@@ -18,6 +18,9 @@ export function needsSelfDeclaration() {
   return false
 }
 
+// Asset-location pincode: where the equipment actually is, not the poster's home.
+export const locationLabelKey = 'field_equipment_pincode'
+
 export function validate(details, listingType, t) {
   if (!details.equipment_type_id) return t('err_equipment_type_required')
   if (!details.available_now && details.available_from && details.available_to) {
