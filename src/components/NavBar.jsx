@@ -20,6 +20,7 @@ const NAV_CATS = [
   { key: 'drone_didi', labelKey: 'home_cat_drone_didi' },
   { key: 'bhusa', labelKey: 'home_cat_bhusa' },
   { key: 'agri_inputs', labelKey: 'home_cat_agri_inputs' },
+  { key: 'warehouse', labelKey: 'home_cat_warehouse' },
   { key: 'experts', labelKey: 'home_cat_experts' },
   { key: 'land', labelKey: 'home_cat_land' },
   { key: 'articles', labelKey: 'articles_nav' },

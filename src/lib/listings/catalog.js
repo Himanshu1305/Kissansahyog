@@ -4,7 +4,7 @@
 
 // Order matters (nav strip, browse tabs, post selector). Land is intentionally
 // LAST; Drone Didi sits after Labor.
-export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'land']
+export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'land']
 export const LISTING_TYPES = ['offer', 'requirement']
 
 // Category display metadata (icon + bilingual name).
@@ -17,6 +17,7 @@ export const CATEGORY_META = {
   drone_didi: { icon: '🛰️', hi: 'ड्रोन दीदी', en: 'Drone Didi' },
   bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
+  warehouse: { icon: '🏬', hi: 'गोदाम / भंडारण', en: 'Warehouse & Storage' },
 }
 
 export const LISTING_TYPE_META = {
@@ -90,6 +91,21 @@ export const DRONE_SERVICE = [
   { value: 'fertilizer', hi: 'खाद छिड़काव', en: 'Fertilizer spraying' },
   { value: 'water', hi: 'पानी छिड़काव', en: 'Water spraying' },
   { value: 'seed_sowing', hi: 'बीज बुआई', en: 'Seed sowing' },
+]
+
+// --- Warehouse & Storage ---
+export const WAREHOUSE_TYPE = [
+  { value: 'general', hi: 'सामान्य गोदाम', en: 'General Storage' },
+  { value: 'cold', hi: 'शीत भंडार', en: 'Cold Storage' },
+  { value: 'silo', hi: 'अनाज भंडार', en: 'Grain Silo' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const WAREHOUSE_FACILITY = [
+  { value: 'electricity', hi: 'बिजली', en: 'Electricity' },
+  { value: 'water', hi: 'पानी', en: 'Water' },
+  { value: 'security', hi: 'सुरक्षा', en: 'Security Guard' },
+  { value: 'loading', hi: 'लोडिंग-अनलोडिंग', en: 'Loading-Unloading' },
+  { value: 'weighing', hi: 'वजन काँटा', en: 'Weighing Scale' },
 ]
 
 // --- Bhusa / Parali (agricultural residue) ---

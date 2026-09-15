@@ -184,6 +184,10 @@ export const strings = {
     hi: 'ड्रोन दीदी योजना के तहत महिला उद्यमी ड्रोन से आपके खेत में खाद, कीटनाशक या पानी का छिड़काव करती हैं। यह सेवा सस्ती, तेज़ और सटीक होती है। ड्रोन ऑपरेटर अपनी सेवा यहाँ लिस्ट कर सकती हैं, और किसान अपने खेत के लिए ड्रोन बुक कर सकते हैं।',
     en: 'Under the Drone Didi government scheme, women entrepreneurs use drones to spray fertilizer, pesticide, or water on your fields. The service is affordable, fast, and precise. Drone operators can list their service here, and farmers can find a drone operator near their farm.',
   },
+  help_warehouse: {
+    hi: 'फसल कटाई के बाद तुरंत बेचने की मजबूरी से बचें — गोदाम में सुरक्षित रखें और अच्छे दाम का इंतज़ार करें। गोदाम मालिक अपनी जगह और दाम यहाँ लिस्ट कर सकते हैं।',
+    en: 'Avoid the pressure to sell immediately after harvest — store safely and wait for better prices. Warehouse owners can list their space and rates here.',
+  },
 
   // --- articles / blog ---
   articles_title: { hi: 'लेख', en: 'Articles' },
@@ -237,6 +241,7 @@ export const strings = {
   home_cat_drone_didi: { hi: 'ड्रोन दीदी', en: 'Drone Didi' },
   home_cat_bhusa: { hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   home_cat_agri_inputs: { hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
+  home_cat_warehouse: { hi: 'गोदाम / भंडारण', en: 'Warehouse & Storage' },
   home_cat_experts: { hi: 'विशेषज्ञ', en: 'Experts' },
 
   // --- public homepage: hero ---
@@ -269,6 +274,10 @@ export const strings = {
   desc_drone_didi: {
     hi: 'ड्रोन से खाद और कीटनाशक छिड़काव — महिला उद्यमियों द्वारा संचालित',
     en: 'Drone spraying for fertilizer and pesticide — operated by women entrepreneurs',
+  },
+  desc_warehouse: {
+    hi: 'फसल सुरक्षित रखें — गोदाम किराए पर लें या दें',
+    en: 'Store your harvest safely — rent or offer warehouse space',
   },
 
   // --- public homepage: live listings ---
@@ -460,6 +469,31 @@ export const strings = {
   err_crop_type_required: { hi: 'कृपया फसल भरें।', en: 'Please enter the crop.' },
   err_acreage_required: { hi: 'कृपया कितने एकड़, यह भरें।', en: 'Please enter the acreage.' },
   err_service_needed_required: { hi: 'कृपया कौन सी सेवा चाहिए, यह चुनें।', en: 'Please select the service needed.' },
+
+  // --- warehouse & storage ---
+  field_warehouse_type: { hi: 'गोदाम का प्रकार', en: 'Warehouse type' },
+  field_capacity: { hi: 'क्षमता (क्विंटल)', en: 'Capacity (quintals)' },
+  field_rate: { hi: 'दर', en: 'Rate' },
+  field_facilities: { hi: 'सुविधाएं', en: 'Facilities' },
+  field_wh_address: { hi: 'गोदाम का पता', en: 'Warehouse address' },
+  field_contact_name: { hi: 'संपर्क व्यक्ति (वैकल्पिक)', en: 'Contact person (optional)' },
+  field_quantity_quintals: { hi: 'कितना रखना है (क्विंटल)', en: 'Quantity to store (quintals)' },
+  field_duration: { hi: 'कितने समय के लिए', en: 'For how long' },
+  field_preferred_type: { hi: 'पसंदीदा प्रकार', en: 'Preferred type' },
+  field_warehouse_pincode: { hi: 'गोदाम / खेत का पिनकोड', en: 'Warehouse / farm pincode' },
+  ph_wh_capacity: { hi: 'जैसे: 500', en: 'e.g. 500' },
+  ph_wh_rate: { hi: 'जैसे: ₹15 प्रति क्विंटल प्रति माह', en: 'e.g. ₹15 per quintal per month' },
+  ph_wh_address: { hi: 'गोदाम का पूरा पता', en: 'Full warehouse address' },
+  ph_wh_crop: { hi: 'जैसे: गेहूं', en: 'e.g. wheat' },
+  ph_wh_quantity: { hi: 'जैसे: 50', en: 'e.g. 50' },
+  ph_wh_duration: { hi: 'जैसे: 3 महीने', en: 'e.g. 3 months' },
+  ph_warehouse_pincode: { hi: 'गोदाम कहाँ है? पिनकोड डालें', en: 'Where is the warehouse? Enter pincode' },
+  err_warehouse_type_required: { hi: 'कृपया गोदाम का प्रकार चुनें।', en: 'Please select the warehouse type.' },
+  err_capacity_required: { hi: 'कृपया क्षमता (क्विंटल) भरें।', en: 'Please enter the capacity in quintals.' },
+  err_warehouse_rate_required: { hi: 'कृपया दर भरें।', en: 'Please enter the rate.' },
+  err_warehouse_address_required: { hi: 'कृपया गोदाम का पता भरें।', en: 'Please enter the warehouse address.' },
+  err_quantity_quintals_required: { hi: 'कृपया मात्रा (क्विंटल) भरें।', en: 'Please enter the quantity in quintals.' },
+  err_duration_required: { hi: 'कृपया अवधि भरें।', en: 'Please enter the duration.' },
 
   // --- asset location (v1.1: the listing's OWN location, not the poster's home) ---
   field_asset_pincode: { hi: 'स्थान का पिनकोड', en: 'Location pincode' },
