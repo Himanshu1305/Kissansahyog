@@ -86,6 +86,7 @@ export const strings = {
   nav_signup: { hi: 'जुड़ें', en: 'Sign Up' },
   nav_menu: { hi: 'मेन्यू', en: 'Menu' },
   nav_home: { hi: 'होम', en: 'Home' },
+  my_profile: { hi: 'मेरी प्रोफ़ाइल', en: 'My Profile' },
   home_cat_land: { hi: 'ज़मीन', en: 'Land' },
   home_cat_equipment: { hi: 'उपकरण', en: 'Equipment' },
   home_cat_labor: { hi: 'कृषि सहयोगी', en: 'Labor' },

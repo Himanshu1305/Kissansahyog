@@ -114,10 +114,10 @@ export default function Homepage() {
             </button>
             <button
               type="button"
-              onClick={() => navigate('/signup')}
+              onClick={() => navigate(isLoggedIn ? '/post' : '/signup')}
               className="rounded-xl bg-green-700 px-6 py-3 text-lg font-bold text-white active:bg-green-800"
             >
-              {t('cta_join')}
+              {isLoggedIn ? t('post_listing') : t('cta_join')}
             </button>
           </div>
         </div>
@@ -188,13 +188,13 @@ export default function Homepage() {
         {loading ? (
           <p className="py-10 text-center text-stone-500">{t('loading')}</p>
         ) : filter === 'experts' ? (
-          <ExpertGrid experts={experts} lang={lang} navigate={navigate} t={t} />
+          <ExpertGrid experts={experts} lang={lang} navigate={navigate} t={t} isLoggedIn={isLoggedIn} />
         ) : (
           <>
             {shownListings.length > 0 && (
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {shownListings.map((l) => (
-                  <PublicListingCard key={l.id} listing={l} lang={lang} t={t} extras={extras} homeCat={homeCat} navigate={navigate} />
+                  <PublicListingCard key={l.id} listing={l} lang={lang} t={t} extras={extras} homeCat={homeCat} navigate={navigate} isLoggedIn={isLoggedIn} />
                 ))}
               </div>
             )}
@@ -260,7 +260,7 @@ export default function Homepage() {
 // A single anonymised listing card — category, type, location, key details,
 // price (via the category summary), time posted, and a sign-up-to-contact chip.
 // Poster name/phone are never present in this data.
-function PublicListingCard({ listing, lang, t, extras, homeCat, navigate }) {
+function PublicListingCard({ listing, lang, t, extras, homeCat, navigate, isLoggedIn }) {
   const meta = CATEGORY_META[listing.category]
   const rows = getCategory(listing.category).summarize(listing, lang, extras).slice(0, 3)
   const place = [listing.village_town, listing.district].filter(Boolean).join(', ')
@@ -284,19 +284,29 @@ function PublicListingCard({ listing, lang, t, extras, homeCat, navigate }) {
         ))}
       </div>
       {place && <div className="mt-1 text-sm text-stone-500">📍 {place}</div>}
-      <button
-        type="button"
-        onClick={() => navigate('/signup')}
-        className="mt-3 rounded-lg border border-dashed border-green-400 bg-green-50 px-3 py-2 text-sm font-semibold text-green-800"
-      >
-        🔒 {t('signup_to_contact')}
-      </button>
+      {isLoggedIn ? (
+        <button
+          type="button"
+          onClick={() => navigate(`/listing/${listing.id}`)}
+          className="mt-3 rounded-lg bg-green-700 px-3 py-2 text-sm font-semibold text-white active:bg-green-800"
+        >
+          {t('view_listing')} →
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => navigate('/signup')}
+          className="mt-3 rounded-lg border border-dashed border-green-400 bg-green-50 px-3 py-2 text-sm font-semibold text-green-800"
+        >
+          🔒 {t('signup_to_contact')}
+        </button>
+      )}
     </div>
   )
 }
 
 // Experts filter view: curated experts are public data; contact still needs login.
-function ExpertGrid({ experts, lang, navigate, t }) {
+function ExpertGrid({ experts, lang, navigate, t, isLoggedIn }) {
   if (!experts.length) return <p className="py-10 text-center text-stone-500">{t('experts_none')}</p>
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -308,13 +318,23 @@ function ExpertGrid({ experts, lang, navigate, t }) {
           </div>
           {expertSpec(e, lang) && <div className="mt-1 text-sm font-semibold text-green-800">{expertSpec(e, lang)}</div>}
           {e.organisation && <div className="text-sm text-stone-500">{e.organisation}</div>}
-          <button
-            type="button"
-            onClick={() => navigate('/signup')}
-            className="mt-3 rounded-lg border border-dashed border-green-400 bg-green-50 px-3 py-2 text-sm font-semibold text-green-800"
-          >
-            🔒 {t('signup_to_contact')}
-          </button>
+          {isLoggedIn ? (
+            <button
+              type="button"
+              onClick={() => navigate(`/experts/${e.id}`)}
+              className="mt-3 rounded-lg bg-green-700 px-3 py-2 text-sm font-semibold text-white active:bg-green-800"
+            >
+              {t('view_listing')} →
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => navigate('/signup')}
+              className="mt-3 rounded-lg border border-dashed border-green-400 bg-green-50 px-3 py-2 text-sm font-semibold text-green-800"
+            >
+              🔒 {t('signup_to_contact')}
+            </button>
+          )}
         </div>
       ))}
     </div>

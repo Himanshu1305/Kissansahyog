@@ -44,9 +44,11 @@ export default function NavBar() {
     }
   }
 
+  // Logo always links to the public homepage, for authenticated and anonymous
+  // users alike (they can still reach the dashboard via the nav / My Listings).
   function goHome() {
     setOpen(false)
-    navigate(isLoggedIn ? '/home' : '/')
+    navigate('/')
   }
 
   const catBtn = (active) =>

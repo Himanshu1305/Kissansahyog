@@ -38,8 +38,9 @@ function AppRoutes() {
   return (
     <Suspense fallback={<Spinner />}>
       <Routes>
-        {/* Public landing page (visitors); logged-in users are sent to /home. */}
-        <Route path="/" element={<PublicOnly><Homepage /></PublicOnly>} />
+        {/* Public landing page — viewable by everyone, including logged-in users
+            (the logo links here; nav renders the logged-in state). */}
+        <Route path="/" element={<Homepage />} />
         <Route path="/welcome" element={<PublicOnly><Welcome /></PublicOnly>} />
         <Route path="/signup" element={<PublicOnly><Signup /></PublicOnly>} />
         <Route path="/login" element={<PublicOnly><Login /></PublicOnly>} />
