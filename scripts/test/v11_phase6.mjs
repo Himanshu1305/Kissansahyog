@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { strings } from '../../src/lib/i18n/strings.js'
 import { disclaimers } from '../../src/lib/i18n/disclaimers.js'
+import { privacyPolicy, termsOfUse } from '../../src/lib/i18n/legal.js'
 import * as catalog from '../../src/lib/listings/catalog.js'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -23,6 +24,10 @@ const badDisc = Object.entries(disclaimers).filter(([, v]) => !bi(v)).map(([k]) 
 check('every disclaimer has hi + en', badDisc.length === 0, badDisc.join(', '))
 check('Bhusa environmental disclaimer wired through i18n (not hardcoded)',
   bi(disclaimers.bhusa) && /पराली/.test(disclaimers.bhusa.hi) && /environment/i.test(disclaimers.bhusa.en))
+
+// 2b. Legal pages (Privacy/Terms) content is bilingual, Hindi first.
+check('privacy policy points all bilingual', privacyPolicy.length >= 3 && privacyPolicy.every(bi))
+check('terms of use points all bilingual', termsOfUse.length >= 4 && termsOfUse.every(bi))
 
 // 3. Catalog: category meta + every option list is bilingual.
 const badCat = Object.entries(catalog.CATEGORY_META).filter(([, v]) => !bi(v)).map(([k]) => k)
@@ -70,7 +75,8 @@ for (const f of ['land', 'equipment', 'labor', 'bhusa', 'agri_inputs']) {
 //    (bilingual LABELS), and the pre-existing language picker (endonyms).
 const dev = /[ऀ-ॿ]/
 const ALLOWED = new Set([
-  'src/lib/i18n/strings.js', 'src/lib/i18n/disclaimers.js', 'src/lib/listings/catalog.js',
+  'src/lib/i18n/strings.js', 'src/lib/i18n/disclaimers.js', 'src/lib/i18n/legal.js',
+  'src/lib/listings/catalog.js',
   'src/components/categories/land.jsx', 'src/components/categories/equipment.jsx',
   'src/components/categories/labor.jsx', 'src/components/categories/bhusa.jsx',
   'src/components/categories/agri_inputs.jsx',

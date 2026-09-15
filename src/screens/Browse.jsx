@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, Notice, Spinner } from '../components/ui'
@@ -18,7 +18,12 @@ export default function Browse() {
   const { user } = useAuth()
   const navigate = useNavigate()
 
-  const [category, setCategory] = useState(ENABLED_CATEGORIES[0])
+  const [searchParams] = useSearchParams()
+  // Deep-link support: /browse?cat=land selects that tab (from the global nav).
+  const initialCat = ENABLED_CATEGORIES.includes(searchParams.get('cat'))
+    ? searchParams.get('cat')
+    : ENABLED_CATEGORIES[0]
+  const [category, setCategory] = useState(initialCat)
   const [typeFilter, setTypeFilter] = useState(null) // null | 'offer' | 'requirement'
   const [sort, setSort] = useState('nearest')
   const [extras, setExtras] = useState({})

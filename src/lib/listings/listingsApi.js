@@ -106,6 +106,44 @@ export async function fetchNearby({ category, listingType = null, center, sort =
   return { primary, fallback }
 }
 
+// --- public homepage feed (anonymised, no auth required) ---
+// Recent active listings across ALL categories, newest first. The listings table
+// carries NO name/phone (those live in `profiles`, which anon cannot read, and are
+// revealed only via the get_listing_contact RPC), so this response is inherently
+// contact-free. We enrich each row with village/town + district (from the public
+// `pincodes` table) for a coarse, non-identifying location label.
+export async function fetchRecentListings(limit = 12) {
+  const { data, error } = await supabase
+    .from('listings')
+    .select('id,listing_type,category,pincode,details,created_at')
+    .eq('status', 'active')
+    .gt('expires_at', new Date().toISOString())
+    .order('created_at', { ascending: false })
+    .limit(limit)
+  if (error) throw toAppError(error)
+  const rows = data || []
+
+  const pins = [...new Set(rows.map((r) => r.pincode).filter(Boolean))]
+  let placeByPin = {}
+  if (pins.length) {
+    const { data: pinRows, error: pinErr } = await supabase
+      .from('pincodes')
+      .select('pincode,village_town,district')
+      .in('pincode', pins)
+    if (pinErr) throw toAppError(pinErr)
+    placeByPin = Object.fromEntries((pinRows || []).map((p) => [p.pincode, p]))
+  }
+
+  return rows.map((r) => {
+    const place = placeByPin[r.pincode]
+    return {
+      ...r,
+      village_town: place?.village_town || null,
+      district: place?.district || null,
+    }
+  })
+}
+
 // Single listing by id (active only, via RLS). Used by the detail screen.
 export async function fetchListingById(id) {
   const { data, error } = await supabase.from('listings').select('*').eq('id', id).maybeSingle()

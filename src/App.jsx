@@ -5,7 +5,10 @@ import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
 import { Spinner } from './components/ui'
 
 // Route-level code splitting (perf budget: keep the initial bundle small).
+const Homepage = lazy(() => import('./screens/Homepage'))
 const Welcome = lazy(() => import('./screens/Welcome'))
+const Privacy = lazy(() => import('./screens/Privacy'))
+const Terms = lazy(() => import('./screens/Terms'))
 const Signup = lazy(() => import('./screens/Signup'))
 const Login = lazy(() => import('./screens/Login'))
 const Home = lazy(() => import('./screens/Home'))
@@ -35,9 +38,15 @@ function AppRoutes() {
   return (
     <Suspense fallback={<Spinner />}>
       <Routes>
-        <Route path="/" element={<PublicOnly><Welcome /></PublicOnly>} />
+        {/* Public landing page (visitors); logged-in users are sent to /home. */}
+        <Route path="/" element={<PublicOnly><Homepage /></PublicOnly>} />
+        <Route path="/welcome" element={<PublicOnly><Welcome /></PublicOnly>} />
         <Route path="/signup" element={<PublicOnly><Signup /></PublicOnly>} />
         <Route path="/login" element={<PublicOnly><Login /></PublicOnly>} />
+
+        {/* Informational pages — reachable by everyone (no auth gate). */}
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
 
         <Route path="/home" element={<Protected><Home /></Protected>} />
         <Route path="/browse" element={<Protected><Browse /></Protected>} />

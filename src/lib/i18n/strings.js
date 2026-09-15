@@ -28,8 +28,8 @@ export const strings = {
 
   // --- welcome ---
   welcome_intro: {
-    hi: 'ज़मीन, मशीन और कृषि सहयोगियों की जानकारी अपने आस-पास खोजें।',
-    en: 'Find land, equipment, and labor near you.',
+    hi: 'ज़मीन, उपकरण, भूसा, सामग्री और विशेषज्ञ — सीधे आपसे जुड़ें',
+    en: 'Land, equipment, residue, inputs and experts — connect directly with you',
   },
   new_user: { hi: 'नया खाता बनाएं', en: 'Create new account' },
   returning_user: { hi: 'पहले से खाता है — लॉग इन करें', en: 'I already have an account — Log in' },
@@ -80,6 +80,86 @@ export const strings = {
   experts_filter_ph: { hi: 'जैसे: मिट्टी, कीट, बागवानी', en: 'e.g. soil, pest, horticulture' },
   experts_none: { hi: 'कोई विशेषज्ञ नहीं मिला।', en: 'No experts found.' },
   expert_not_found: { hi: 'यह विशेषज्ञ नहीं मिला।', en: 'This expert was not found.' },
+
+  // --- global nav (public + authenticated) ---
+  nav_login: { hi: 'लॉगिन', en: 'Login' },
+  nav_signup: { hi: 'जुड़ें', en: 'Sign Up' },
+  nav_menu: { hi: 'मेन्यू', en: 'Menu' },
+  nav_home: { hi: 'होम', en: 'Home' },
+  home_cat_land: { hi: 'ज़मीन', en: 'Land' },
+  home_cat_equipment: { hi: 'उपकरण', en: 'Equipment' },
+  home_cat_labor: { hi: 'कृषि सहयोगी', en: 'Labor' },
+  home_cat_bhusa: { hi: 'भूसा-पराली', en: 'Residue' },
+  home_cat_agri_inputs: { hi: 'कृषि सामग्री', en: 'Inputs' },
+  home_cat_experts: { hi: 'विशेषज्ञ', en: 'Experts' },
+
+  // --- public homepage: hero ---
+  hero_headline: { hi: 'किसान की आय बढ़ाना — हमारा लक्ष्य', en: 'Increasing farmer income — our mission' },
+  hero_sub: {
+    hi: 'ज़मीन, उपकरण, मज़दूर और अनाज के लिए सीधा संपर्क — अपने 30 किमी के दायरे में',
+    en: 'Direct connections for land, equipment, labor and produce — within 30km of you',
+  },
+  cta_browse: { hi: 'लिस्टिंग देखें', en: 'Browse Listings' },
+  cta_join: { hi: 'अभी जुड़ें', en: 'Join Now' },
+
+  // --- public homepage: how it works ---
+  how_title: { hi: 'यह कैसे काम करता है', en: 'How it works' },
+  how_1_title: { hi: 'लिस्ट करें', en: 'List it' },
+  how_1_body: { hi: 'अपनी ज़मीन, उपकरण या सेवा लिस्ट करें', en: 'List your land, equipment, or service' },
+  how_2_title: { hi: 'मिलाएं', en: 'Match' },
+  how_2_body: { hi: '30 किमी के दायरे में सही व्यक्ति खोजें', en: 'Find the right person within 30km' },
+  how_3_title: { hi: 'जुड़ें', en: 'Connect' },
+  how_3_body: { hi: 'सीधे फ़ोन पर बात करें — कोई बिचौलिया नहीं', en: 'Talk directly by phone — no middleman' },
+
+  // --- public homepage: category cards ---
+  categories_title: { hi: 'श्रेणियाँ', en: 'Categories' },
+  card_browse: { hi: 'देखें', en: 'Browse' },
+  desc_land: { hi: 'किराये/बटाई के लिए ज़मीन खोजें या दें', en: 'Find or offer land for lease/sharecropping' },
+  desc_equipment: { hi: 'ट्रैक्टर, ड्रोन और मशीनें किराये पर', en: 'Rent tractors, drones and machinery' },
+  desc_labor: { hi: 'कृषि कार्य के लिए कुशल टीम खोजें', en: 'Find skilled teams for farm work' },
+  desc_bhusa: { hi: 'भूसा/पराली बेचें या खरीदें', en: 'Buy or sell crop residue' },
+  desc_agri_inputs: { hi: 'बीज, खाद, कीटनाशक — किसान व दुकानें', en: 'Seeds, fertilizer, pesticides — farmers & shops' },
+  desc_experts: { hi: 'कृषि विशेषज्ञों से सलाह लें', en: 'Get advice from farming experts' },
+
+  // --- public homepage: live listings ---
+  listings_section_title: { hi: 'हाल की लिस्टिंग', en: 'Recent listings' },
+  home_offer: { hi: 'दे रहे हैं', en: 'Offer' },
+  home_requirement: { hi: 'चाहिए', en: 'Requirement' },
+  signup_to_contact: { hi: 'संपर्क देखने के लिए जुड़ें', en: 'Sign up to see contact' },
+  listings_empty: {
+    hi: 'अभी Sagar में लिस्टिंग जुड़ रही हैं — पहले बनें!',
+    en: 'Listings are being added in Sagar — be one of the first!',
+  },
+  add_listing_cta: { hi: 'लिस्टिंग जोड़ें', en: 'Add a listing' },
+  ago_just_now: { hi: 'अभी', en: 'Just now' },
+  ago_yesterday: { hi: 'कल', en: 'Yesterday' },
+  ago_days: { hi: 'दिन पहले', en: 'days ago' },
+
+  // --- public homepage: mission ---
+  mission_title: { hi: 'हम क्यों बने?', en: 'Why we exist' },
+  mission_body: {
+    hi: 'हमारा एक ही लक्ष्य है — किसान की आय बढ़ाना। किसान सहयोग किसानों को सीधे एक-दूसरे से जोड़ता है — कोई बिचौलिया नहीं, कोई कमीशन नहीं, और भुगतान हम नहीं संभालते। यह पायलट सागर, मध्य प्रदेश से शुरू हो रहा है।',
+    en: 'We exist for one reason — to increase farmer income. Kisan Sahyog connects farmers directly with each other — no middleman, no commission, and we handle no payments. This pilot is starting in Sagar, Madhya Pradesh.',
+  },
+  mission_disclaimer: {
+    hi: 'किसान सहयोग एक जानकारी मंच है — हम किसी भी लेन-देन में शामिल नहीं हैं।',
+    en: 'Kisan Sahyog is an information platform — we are not involved in any transaction.',
+  },
+
+  // --- public homepage: footer ---
+  footer_privacy: { hi: 'गोपनीयता नीति', en: 'Privacy Policy' },
+  footer_terms: { hi: 'उपयोग की शर्तें', en: 'Terms of Use' },
+  footer_contact: { hi: 'संपर्क', en: 'Contact' },
+  footer_copyright: { hi: 'किसान सहयोग © 2026 | USD Vision AI LLP', en: 'Kisan Sahyog © 2026 | USD Vision AI LLP' },
+
+  // --- legal pages ---
+  privacy_title: { hi: 'गोपनीयता नीति', en: 'Privacy Policy' },
+  terms_title: { hi: 'उपयोग की शर्तें', en: 'Terms of Use' },
+  legal_review_pending: {
+    hi: 'नोट: यह एक प्रारंभिक मसौदा है। सार्वजनिक लॉन्च से पहले कानूनी समीक्षा बाकी है।',
+    en: 'Note: this is an initial draft. Legal review is pending before public launch.',
+  },
+  back_to_home: { hi: 'वापस होमपेज', en: 'Back to Homepage' },
 
   // --- post flow ---
   post_q_type: { hi: 'आप क्या करना चाहते हैं?', en: 'What do you want to do?' },

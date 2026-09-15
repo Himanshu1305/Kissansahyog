@@ -18,12 +18,18 @@ export default function Welcome() {
   return (
     <div className="min-h-screen bg-stone-50">
       <div className="mx-auto flex min-h-screen max-w-xl flex-col px-6 py-10">
+        <button
+          type="button"
+          onClick={() => navigate('/')}
+          className="self-start text-sm font-semibold text-green-800 underline"
+        >
+          ‹ {t('back_to_home')}
+        </button>
         <div className="flex flex-1 flex-col items-center justify-center text-center">
           <div className="text-6xl" aria-hidden="true">
             🌾
           </div>
           <h1 className="mt-3 text-3xl font-extrabold text-green-800">{t('app_name')}</h1>
-          <p className="mt-1 text-lg text-stone-600">Kisan Sahyog</p>
           <p className="mt-6 max-w-sm text-stone-600">{t('welcome_intro')}</p>
         </div>
 
