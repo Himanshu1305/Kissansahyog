@@ -55,7 +55,7 @@ export default function Browse() {
   }, [load])
 
   const tabClass = (c) =>
-    `flex-1 rounded-xl px-2 py-3 text-base font-bold ${
+    `rounded-xl px-2 py-3 text-sm font-bold ${
       category === c ? 'bg-green-700 text-white' : 'bg-white text-stone-700 border-2 border-stone-200'
     }`
   const chip = (active) =>
@@ -65,8 +65,8 @@ export default function Browse() {
 
   return (
     <Screen title={t('browse_title')} onBack={() => navigate('/home')} right={<LanguageToggle />}>
-      {/* Category tabs */}
-      <div className="mb-3 flex gap-2">
+      {/* Category tabs (grid wraps cleanly as categories grow past 3). */}
+      <div className="mb-3 grid grid-cols-3 gap-2">
         {ENABLED_CATEGORIES.map((c) => (
           <button key={c} data-testid={`tab-${c}`} className={tabClass(c)} onClick={() => setCategory(c)}>
             {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}

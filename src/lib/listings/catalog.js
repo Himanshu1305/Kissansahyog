@@ -2,7 +2,7 @@
 // bilingual labels, so forms and detail views render the same labels and the
 // JSONB `details` shape can never drift between categories.
 
-export const CATEGORIES = ['land', 'equipment', 'labor', 'bhusa']
+export const CATEGORIES = ['land', 'equipment', 'labor', 'bhusa', 'agri_inputs']
 export const LISTING_TYPES = ['offer', 'requirement']
 
 // Category display metadata (icon + bilingual name).
@@ -11,6 +11,7 @@ export const CATEGORY_META = {
   equipment: { icon: '🚜', hi: 'मशीन', en: 'Equipment' },
   labor: { icon: '👷', hi: 'कृषि सहयोगी', en: 'Labor' },
   bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhusa/Parali' },
+  agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Agri-Inputs' },
 }
 
 export const LISTING_TYPE_META = {
@@ -90,6 +91,23 @@ export const BUYER_TYPE_PREFERENCE = [
   { value: 'individual', hi: 'व्यक्तिगत किसान / छोटा खरीदार', en: 'Individual farmer or small buyer' },
   { value: 'commercial', hi: 'व्यावसायिक / उद्योग', en: 'Commercial or industrial buyer' },
   { value: 'either', hi: 'दोनों', en: 'Either' },
+]
+
+// --- Agri-Inputs (seeds / fertilizer / pesticide) ---
+export const AGRI_SUBTYPE = [
+  { value: 'farmer_surplus', hi: 'किसान — अतिरिक्त सामग्री बेचना', en: 'Farmer selling surplus' },
+  { value: 'vendor', hi: 'दुकान / विक्रेता', en: 'Shop / Vendor' },
+]
+export const INPUT_TYPE = [
+  { value: 'seeds', hi: 'बीज', en: 'Seeds' },
+  { value: 'fertilizer', hi: 'खाद (यूरिया/DAP/अन्य)', en: 'Fertilizer' },
+  { value: 'pesticide', hi: 'कीटनाशक', en: 'Pesticide' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const INPUT_CONDITION = [
+  { value: 'good', hi: 'अच्छी स्थिति में', en: 'Good condition' },
+  { value: 'original_packaging', hi: 'मूल पैकेजिंग में', en: 'Original packaging' },
+  { value: 'opened', hi: 'खुली', en: 'Opened' },
 ]
 
 // Look up a bilingual label for an option value; falls back to the raw value.

@@ -113,6 +113,23 @@ export function TextField({ name, label, value, onChange, required, error, hint,
   )
 }
 
+// Labelled multi-line text input (e.g. a vendor's "what we sell" description).
+export function TextAreaField({ name, label, value, onChange, required, error, hint, placeholder, rows = 3 }) {
+  const id = fieldId(name, label)
+  return (
+    <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
+      <textarea
+        id={id}
+        rows={rows}
+        value={value ?? ''}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-xl border-2 border-stone-300 bg-white px-4 py-3 text-lg text-stone-900 outline-none focus:border-green-600"
+      />
+    </Field>
+  )
+}
+
 // Native date input, labelled.
 export function DateField({ name, label, value, onChange, required, error, min, max }) {
   const id = fieldId(name, label)

@@ -6,11 +6,12 @@ import * as land from '../../components/categories/land.jsx'
 import * as equipment from '../../components/categories/equipment.jsx'
 import * as labor from '../../components/categories/labor.jsx'
 import * as bhusa from '../../components/categories/bhusa.jsx'
+import * as agri_inputs from '../../components/categories/agri_inputs.jsx'
 
-const REGISTRY = { land, equipment, labor, bhusa }
+const REGISTRY = { land, equipment, labor, bhusa, agri_inputs }
 
 // Categories wired end-to-end and shown in the UI. Grows per phase.
-export const ENABLED_CATEGORIES = ['land', 'equipment', 'labor', 'bhusa']
+export const ENABLED_CATEGORIES = ['land', 'equipment', 'labor', 'bhusa', 'agri_inputs']
 
 export function getCategory(category) {
   const mod = REGISTRY[category]
@@ -28,4 +29,5 @@ export const EXTRAS_NEEDED = {
   equipment: ['equipmentTypes'],
   labor: [],
   bhusa: [],
+  agri_inputs: [],
 }

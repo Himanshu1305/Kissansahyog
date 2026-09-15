@@ -70,7 +70,7 @@ export default function ListingForm({ listingType, category, onCreated }) {
         return
       }
       const finalDetails = mod.finalizeDetails
-        ? await mod.finalizeDetails(details, { actorId: user.id })
+        ? await mod.finalizeDetails(details, { actorId: user.id, user })
         : details
       const listing = await createListing({
         actorId: user.id,
@@ -97,7 +97,7 @@ export default function ListingForm({ listingType, category, onCreated }) {
     <div>
       {error && <Notice tone="error">{error}</Notice>}
 
-      <mod.Fields details={details} setDetails={setDetails} extras={extras} listingType={listingType} />
+      <mod.Fields details={details} setDetails={setDetails} extras={extras} listingType={listingType} user={user} />
 
       {/* Category-specific advisory (e.g. Bhusa/Parali environmental note). */}
       {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="my-4" />}
