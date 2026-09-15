@@ -77,15 +77,23 @@ All tables have **Row Level Security** enabled.
 `disclaimer_accepted_at` (nullable; must be set to post), `created_at`.
 
 **listings** — `id` uuid pk, `user_id` → profiles, `listing_type` ('offer'|'requirement'),
-`category` ('land'|'equipment'|'labor'), `status` ('active'|'closed', default active),
-`latitude`/`longitude` (from poster's profile, overridable per-listing), `pincode`,
-`details` jsonb (category-specific — see §3), `self_declared` bool, `created_at`,
-`expires_at` (default now()+30 days).
+`category` ('land'|'equipment'|'labor'|'bhusa'|'agri_inputs'), `status` ('active'|'closed',
+default active), `latitude`/`longitude` (**the ASSET's location**, derived server-side from
+the listing's own `pincode` — see §6), `pincode`, `details` jsonb (category-specific — see §3),
+`self_declared` bool, `created_at`, `expires_at` (default now()+30 days).
 CHECK `land_offer_requires_self_declared`: a land **offer** must have `self_declared = true`.
+CHECK `listings_category_check`: category ∈ the 5 values above (widened per v1.1 migration).
+
+**experts** (v1.1) — curated consultation directory. `id` uuid pk, `name` not null,
+`name_hi`, `specialisation_en`, `specialisation_hi`, `bio_en`, `bio_hi`, `phone` not null,
+`organisation`, `is_active` bool (default true), `created_at`. **Admin-curated only** — anon
+may READ active rows; **no anon writes** (inserts via service role / migrations). No distance
+filtering (experts help everyone). See §11.
 
 **crops** — `id` serial, `name_hi`, `name_en`, `region` (default 'sagar_mp'),
-unique (name_en, region).
-**equipment_types** — `id` serial, `name_hi`, `name_en` unique.
+unique (name_en, region). *(v1.1: 11 rows — added मसूर/Masoor.)*
+**equipment_types** — `id` serial, `name_hi`, `name_en` unique. *(v1.1: 11 rows — added
+Drone, Seed Drill, Reaper, Blower, LCB.)*
 **pincodes** — `pincode` pk, `village_town`, `district`, `state`, `latitude`, `longitude`.
 **schema_migrations** — `version` pk (migration bookkeeping for scripts/db.mjs).
 
@@ -106,18 +114,32 @@ Written/validated by the category modules (`src/components/categories/*.jsx`) an
 `create_listing` RPC. **Keys are exact — no drift, no cross-category leakage**
 (enforced by `scripts/test/phase9.mjs`).
 
-- **land**: `{ size_range, arrangement[], water_source, crop_id|null, season, photo_urls[] }`
+- **land**: `{ size_range, arrangement[], water_source, crop_id|null, season, price_type, price_amount, photo_urls[] }`
   - size_range: `<1|1-2|2-5|5-10|10+`; arrangement (multi): `lease|sharecropping|contract_farming`;
     water_source: `borewell|canal|rainfed|none`; season: `kharif|rabi|zaid|year_round`;
+    **price_type (v1.1, required): `fixed|sharecropping|negotiable`**; price_amount: text, only when `fixed`;
     photo_urls: up to 3 Supabase Storage URLs.
-- **equipment**: `{ equipment_type_id, rental_basis, available_now, available_from|null, available_to|null }`
-  - rental_basis: `per_hour|per_acre|per_day`; availability = `available_now` toggle OR a date range.
+- **equipment**: `{ equipment_type_id, rental_basis, rate_amount, available_now, available_from|null, available_to|null }`
+  - rental_basis: `per_hour|per_acre|per_day` (**v1.1: required**); **rate_amount (v1.1: required text)**;
+    availability = `available_now` toggle OR a date range.
 - **labor**: `{ worker_count, work_type, available_from|null, available_to|null, rate_basis|null, rate_amount }`
-  - work_type: `sowing|harvesting|weeding|general|other`; rate_basis: `per_day|per_task`;
-    rate_amount: free-form optional text (e.g. "₹400" or "बातचीत से").
+  - work_type: `sowing|harvesting|weeding|drone_operator|general|other` (**v1.1: added drone_operator /
+    "Drone Didi"**); rate_basis: `per_day|per_task`; rate_amount: free-form optional text.
+- **bhusa** (v1.1): `{ residue_type, quantity, pickup_arrangement, buyer_type_preference, asking_price, available_from|null }`
+  - residue_type: `bhusa|parali|sugarcane|cotton|other`; pickup_arrangement:
+    `buyer_collects|farmer_delivers|either`; buyer_type_preference: `individual|commercial|either`;
+    quantity/asking_price: free text. No self-declaration.
+- **agri_inputs** (v1.1): two sub-types on one form, pruned to the chosen shape in `finalizeDetails`:
+  - farmer_surplus: `{ subtype:'farmer_surplus', input_type, item_name, quantity, asking_price, material_address, condition }`
+    — input_type: `seeds|fertilizer|pesticide|other`; condition: `good|original_packaging|opened` (required for seeds/fertilizer).
+  - vendor: `{ subtype:'vendor', business_name, input_types[], items_description, price_range, shop_address, contact_phone }`
+    — free to list (UI note "charges may apply later"; **no payment gate**).
 
-Adding a category = add a module (`initialDetails/Fields/validate/summarize/needsSelfDeclaration`),
-import it in `registry.jsx`, add to `ENABLED_CATEGORIES`. Browse/detail/post are category-agnostic.
+Adding a category = add a module (`initialDetails/Fields/validate/summarize/needsSelfDeclaration`,
+optional `finalizeDetails/locationLabelKey/extraDisclaimerKey`), import it in `registry.jsx`, add to
+`ENABLED_CATEGORIES`/`EXTRAS_NEEDED`, widen the `create_listing` category CHECK + validation, and
+widen the `listings_category_check` constraint. Browse/detail/post are category-agnostic. `Fields`
+receives `{ details, setDetails, extras, listingType, user }`.
 
 ---
 
@@ -164,12 +186,31 @@ Requires an SMS provider (Twilio/MSG91/etc.) — out of scope for MVP.
 
 ## 6. Location & 30 km search (`src/lib/distance.js`)
 
-Coordinates come **only** from the `pincodes` table (single source of truth): derived at
-signup, inherited by listings, overridable per-listing (`create_listing` p_latitude/p_longitude).
-Browse: a **bounding-box** pre-filter (server-side `gte/lte` on lat/long) then an **exact
-Haversine** pass; **inclusive of exactly 30.0 km** (`<= 30`). Sort nearest-first (default)
-or newest. Verified against real Sagar-district distances (Sagar→Bina ~66km, →Khurai ~46km,
-→Rehli ~40km) and boundary-tested at 30.0 km in `scripts/test/phase3.mjs`.
+**STANDING RULE (v1.1): distance matching always uses the LISTING's own location
+fields, never the poster's profile location.** A listing's coordinates are the location
+of the **asset** (the land / equipment / team / residue / goods) — a landowner in Hyderabad
+listing land in Sagar is matched near Sagar, not near Hyderabad.
+
+- The create form asks the **asset pincode explicitly** (required, prominently labelled, and
+  **never** pre-filled from the profile — `ListingForm.jsx` + each module's `locationLabelKey`).
+- `create_listing` **re-derives** lat/long from that pincode via the `pincodes` table
+  **server-side** (authoritative — a forged client lat/long is ignored). Only when no listing
+  pincode is supplied does it fall back to explicit coords, then the poster's home (legacy path).
+- Browse measures viewer → each **row's** coordinates (`fetchNearby` in `listingsApi.js`). It does
+  **not** join `profiles` for distance at any point.
+
+Coordinates still come **only** from the `pincodes` table (single source of truth). Browse:
+a **bounding-box** pre-filter (server-side `gte/lte` on lat/long) then an **exact Haversine**
+pass; **inclusive of exactly 30.0 km** (`<= 30`). Sort nearest-first (default) or newest.
+
+**Soft radius fallback (v1.1):** `fetchNearby` returns `{ primary, fallback }` — `primary` ≤ 30 km,
+`fallback` the 30–50 km ring (`FALLBACK_RADIUS_KM = 50`). Browse renders the fallback under a
+bilingual "30–50 किमी दूर / 30–50 km away" header **only when** `primary` has fewer than
+`MIN_PRIMARY_RESULTS` (5), so a low-density pilot area is never a blank screen.
+
+Verified against real Sagar-district distances (Sagar→Bina ~66km, →Khurai ~46km, →Rehli ~42km)
+and boundary-tested at 30.0 km in `scripts/test/phase3.mjs`; asset-location across all 5
+categories in `scripts/test/v11_phase1.mjs` and `v11_phase7.mjs`.
 
 ---
 
@@ -220,14 +261,50 @@ in `schema_migrations` and are idempotent to re-run.
 ## 10. Testing
 
 Two layers, both against the real Supabase project, both mandatory per phase:
-- **Backend/logic** (`scripts/test/phase{1..9}.mjs`): RLS enforcement, RPC contracts,
-  validation, DB constraints, Haversine/boundary, JSONB-shape consistency.
+- **Backend/logic** (`scripts/test/phase{1..9}.mjs` for v1; `scripts/test/v11_phase{1..7}.mjs`
+  for v1.1): RLS enforcement, RPC contracts, validation, DB constraints, Haversine/boundary,
+  asset-location derivation, JSONB-shape consistency, bilingual coverage.
 - **E2E** (`e2e/phase{2..9}.spec.js`, Playwright/chromium): real user journeys incl.
   disclaimer gating, language switching, offline shell, and the full cross-category
   Journey A/B. Test data uses the reserved phone prefix `90000…` and is auto-cleaned.
-Phase 9 was re-verified on a **clean clone** (fresh `.env`, re-run migrations/seeds):
-72 backend + 26 E2E, all green.
+Phase 9 (v1) was re-verified on a **clean clone**: 72 backend + 26 E2E, all green.
+**v1.1 backend suites** `v11_phase1..7` (82 checks) all green against the live project;
+the v1 backend suites still pass (count assertions updated for the new seed rows). The v1
+E2E specs predate the new required fields (asset pincode, land price type, equipment rate)
+and need those fields filled before re-running — see KNOWN_ISSUES.md.
 
 Out of scope for this MVP (do not implement without a scope change): Phone OTP, payments/
 escrow, in-app chat/contact forms, document/police verification, ratings, algorithmic
 matching, voice I/O, languages beyond Hindi/English, native app, automated deployment.
+
+---
+
+## 11. Expert Consultation Directory (v1.1)
+
+Curated, **admin-managed** directory (Model A — no booking, no payment). The `experts` table
+(§2) is **public-read for active rows only**; there are **no anon write policies**, so records
+are inserted by an admin via the **service role key** or a migration (v1.1 seeds 3 clearly-marked
+PLACEHOLDER experts in `0009_v11_experts.sql`). UI: an "Experts" action on Home →
+`/experts` (client-side specialisation filter) → `/experts/:id`. The phone is revealed behind
+the **same disclaimer + `tel:` pattern** as listings. **No distance filtering** — an expert's
+knowledge isn't geographically bound. Data access: `src/lib/experts/expertsApi.js`.
+
+---
+
+## 12. v1.1 build sequence (what changed from v1)
+
+Seven phases, each its own commit + push (`docs/V1_1_BUILD_PROMPT.md` is the spec):
+1. **Asset-location fix + soft fallback** — listings carry the asset's location (coords from the
+   listing's own pincode, server-side); Browse 30–50 km fallback. Migration `0006`.
+2. **Data/UI** — +5 equipment types, +Masoor crop (seed); land required price type; equipment
+   required rate; `मज़दूर → कृषि सहयोगी` (Krishi Sahyogi) terminology; Drone Didi work type.
+3. **Bhusa/Parali** residue category. Migration `0007` (widened category CHECK + validation).
+4. **Agri-Inputs** category (farmer-surplus + vendor sub-types). Migration `0008`.
+5. **Expert directory** (`experts` table + screens). Migration `0009`.
+6. **Bilingual audit** of every v1.1 string (`v11_phase6.mjs`).
+7. **Integration + docs** — cross-category asset-location + shape checks (`v11_phase7.mjs`),
+   this file, and KNOWN_ISSUES.md.
+
+Migrations `0006`–`0009` are additive and idempotent (`create or replace`, `add constraint if
+… `, `on conflict do nothing`). The category CHECK constraint is re-declared (named
+`listings_category_check`) each time a category is added.

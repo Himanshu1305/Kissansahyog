@@ -20,14 +20,15 @@ function check(name, ok, detail = '') {
 
 async function main() {
   // --- Positive: anon can read lookups ---
+  // Counts reflect the v1.1 seed set (v1 was 10 crops / 6 equipment types).
   const crops = await sb.from('crops').select('*')
-  check('anon reads crops', !crops.error && crops.data.length === 10, `${crops.data?.length} rows`)
+  check('anon reads crops', !crops.error && crops.data.length === 11, `${crops.data?.length} rows`)
 
   const pins = await sb.from('pincodes').select('*')
   check('anon reads pincodes', !pins.error && pins.data.length === 20, `${pins.data?.length} rows`)
 
   const eq = await sb.from('equipment_types').select('*')
-  check('anon reads equipment_types', !eq.error && eq.data.length === 6, `${eq.data?.length} rows`)
+  check('anon reads equipment_types', !eq.error && eq.data.length === 11, `${eq.data?.length} rows`)
 
   // --- Negative: anon CANNOT read profiles (locked, no policy) ---
   // First create a real profile via the service role so there is a row to (fail to) read.
@@ -117,7 +118,7 @@ async function main() {
     .from('crops')
     .upsert({ name_hi: 'गेहूं', name_en: 'Wheat', region: 'sagar_mp' }, { onConflict: 'name_en,region' })
   const cropCount = await admin.from('crops').select('*', { count: 'exact', head: true })
-  check('crops upsert is idempotent (no dup)', !dupCrop.error && cropCount.count === 10, `${cropCount.count} rows`)
+  check('crops upsert is idempotent (no dup)', !dupCrop.error && cropCount.count === 11, `${cropCount.count} rows`)
 
   // --- cleanup test rows ---
   await admin.from('listings').delete().eq('user_id', prof.id)

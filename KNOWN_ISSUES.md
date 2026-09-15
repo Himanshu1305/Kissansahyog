@@ -1,12 +1,37 @@
 # Known Issues
 
-**Test checklists:** No test-checklist item (Phases 1–9, positive/negative/edge) was
-ever deferred or skipped — every one passed before its phase was committed, and the full
-suite (72 backend + 26 E2E) passes on a clean clone. So there are **no open bugs** as of
-this build.
+**Test checklists:** No test-checklist item (v1 Phases 1–9, plus v1.1 Phases 1–7,
+positive/negative/edge) was ever deferred or skipped — every one passed before its phase was
+committed. v1.1 backend suites `v11_phase1..7` (82 checks) are green against the live project;
+the v1 backend suites still pass (seed-count assertions updated for the new lookup rows).
 
-What follows are **intentional MVP design limitations** and Phase-2 follow-ups —
-documented so they're picked up deliberately, not discovered by surprise.
+What follows are **resolved items**, **intentional MVP design limitations**, and Phase-2
+follow-ups — documented so they're picked up deliberately, not discovered by surprise.
+
+---
+
+## Resolved in v1.1
+
+- **Asset-location distance bug — FIXED.** Listings previously inherited the poster's *profile*
+  coordinates, so an asset located away from the poster's home matched in the wrong place. Now
+  the create form asks the asset's pincode explicitly (required, never defaulted from the
+  profile) and `create_listing` derives the coordinates from that pincode **server-side**.
+  Verified across all 5 categories (`v11_phase1.mjs`, `v11_phase7.mjs`). See PROJECT_CONTEXT §6.
+
+## New v1.1 limitations (intentional)
+
+- **Expert phone is readable in the directory row.** Unlike listing phones (RPC-gated), the
+  `experts` table exposes `phone` in the anon-readable active row; the UI still gates it behind
+  the disclaimer + "Show number" button. Acceptable because experts are a small curated set who
+  consent to being listed publicly. Revisit if the directory grows or abuse appears.
+- **Land `price_type` is client-validated only** (server stores it as-is), consistent with the
+  existing land `size_range` pattern; the bhusa/agri required fields *are* server-validated.
+- **Agri-Inputs vendor listings are free** with only a "charges may apply later" UI note — no
+  payment gate exists anywhere (never in this codebase).
+- **v1 E2E specs need updating before re-run.** `e2e/phase{2..9}.spec.js` fill the v1 create
+  forms, which now have new required fields (asset pincode, land price type, equipment rate).
+  Those specs must fill the new fields before the Playwright suite will pass again; v1.1 logic
+  is covered by the `v11_phase*` backend suites in the meantime.
 
 ---
 
