@@ -88,6 +88,34 @@ export const strings = {
   experts_nav: { hi: 'विशेषज्ञ', en: 'Experts' },
   articles_nav: { hi: 'लेख', en: 'Articles' },
 
+  // --- category help modals ('?' next to each category) ---
+  help_close: { hi: 'बंद करें', en: 'Close' },
+  help_aria: { hi: 'यह श्रेणी क्या है?', en: 'What is this category?' },
+  help_land: {
+    hi: 'यहाँ आप अपनी खाली ज़मीन किराए पर दे सकते हैं या किसी की ज़मीन पर खेती के लिए ले सकते हैं। ठेका, बटाई या कॉन्ट्रैक्ट फार्मिंग — जो भी आपको सही लगे।',
+    en: "Here you can offer your unused land for farming, or find land to farm on lease, sharecropping (batai), or contract. Enter details about the land's size, location, water source, and your preferred arrangement.",
+  },
+  help_equipment: {
+    hi: 'ट्रैक्टर, थ्रेशर, हार्वेस्टर, ड्रोन जैसे महंगे उपकरण किराए पर दें या लें। अपने उपकरण की दर (प्रति एकड़/प्रति घंटा/प्रति दिन) और उपलब्धता बताएं।',
+    en: 'Rent out or hire agricultural equipment like tractors, threshers, harvesters, drones, and more. Specify the rental rate (per acre/hour/day) and when the equipment is available.',
+  },
+  help_labor: {
+    hi: 'बुवाई, कटाई, निराई या अन्य कृषि कार्यों के लिए मज़दूर उपलब्ध कराएं या खोजें। ड्रोन दीदी योजना के तहत ड्रोन ऑपरेटर भी यहाँ लिस्ट कर सकते हैं।',
+    en: 'Offer or find farm workers for sowing, harvesting, weeding, or general labor. Drone Didi operators can also list here. Specify the number of workers, type of work, and daily rate.',
+  },
+  help_bhusa: {
+    hi: 'गेहूं का भूसा, धान की पराली, गन्ना वेस्ट जैसी फसल की बची हुई सामग्री बेचें या खरीदें। पराली जलाने की बजाय बेचें — आय भी बढ़ेगी, प्रदूषण भी कम होगा।',
+    en: 'Buy or sell crop residue like wheat straw (bhusa), paddy stubble (parali), sugarcane waste, and cotton waste. Instead of burning, sell your residue — earn income and reduce pollution.',
+  },
+  help_agri_inputs: {
+    hi: 'अगर आपके पास बचे हुए बीज, खाद (यूरिया, DAP) या कीटनाशक हैं तो यहाँ बेचें। दुकानदार भी अपनी दुकान की जानकारी यहाँ लिस्ट कर सकते हैं।',
+    en: 'Sell surplus seeds, fertilizers (Urea, DAP), or pesticides. Agricultural input shops and dealers can also list their products and location here for farmers to find them locally.',
+  },
+  help_experts: {
+    hi: 'कृषि वैज्ञानिक, सेवानिवृत्त कृषि अधिकारी और विशेषज्ञ जो किसानों को सलाह दे सकते हैं। सीधे फ़ोन पर संपर्क करें।',
+    en: 'Agricultural scientists, retired government agriculture officers, and domain experts who can advise farmers. Browse by specialisation and contact them directly by phone.',
+  },
+
   // --- articles / blog ---
   articles_title: { hi: 'लेख', en: 'Articles' },
   read_more: { hi: 'पढ़ें', en: 'Read' },
@@ -98,7 +126,7 @@ export const strings = {
   back_to_articles: { hi: 'सभी लेख', en: 'Back to Articles' },
   articles_empty: { hi: 'अभी कोई लेख प्रकाशित नहीं हुआ।', en: 'No articles published yet.' },
   article_not_found: { hi: 'यह लेख नहीं मिला।', en: 'This article was not found.' },
-  related_bhusa_cta: { hi: 'भूसा-पराली मंच देखें', en: 'Visit the Bhusa-Parali marketplace' },
+  related_bhusa_cta: { hi: 'भूसा / पराली मंच देखें', en: 'Visit the Bhoosa / Parali marketplace' },
   read_about_this: { hi: 'इस बारे में पढ़ें', en: 'Read about this' },
 
   // --- experts directory ---
@@ -136,9 +164,9 @@ export const strings = {
   delete_account_yes: { hi: 'हाँ, अकाउंट हटाएं', en: 'Yes, delete account' },
   home_cat_land: { hi: 'ज़मीन', en: 'Land' },
   home_cat_equipment: { hi: 'उपकरण', en: 'Equipment' },
-  home_cat_labor: { hi: 'कृषि सहयोगी', en: 'Labor' },
-  home_cat_bhusa: { hi: 'भूसा-पराली', en: 'Residue' },
-  home_cat_agri_inputs: { hi: 'कृषि सामग्री', en: 'Inputs' },
+  home_cat_labor: { hi: 'कृषि सहयोगी (Labor)', en: 'Labor' },
+  home_cat_bhusa: { hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
+  home_cat_agri_inputs: { hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
   home_cat_experts: { hi: 'विशेषज्ञ', en: 'Experts' },
 
   // --- public homepage: hero ---
@@ -282,6 +310,31 @@ export const strings = {
   post_another: { hi: 'एक और डालें', en: 'Post another' },
   coming_soon: { hi: 'जल्द आ रहा है', en: 'Coming soon' },
   select_placeholder: { hi: 'चुनें…', en: 'Select…' },
+
+  // --- form field placeholders (guidance inside inputs; switch with language) ---
+  ph_land_size: { hi: 'जैसे: 2 एकड़', en: 'e.g. 2 acres' },
+  ph_price_fixed: { hi: 'जैसे: ₹8,000 प्रति एकड़', en: 'e.g. ₹8,000 per acre' },
+  ph_price_sharecropping: { hi: 'जैसे: 50% बटाई', en: 'e.g. 50% crop share' },
+  ph_land_pincode: { hi: 'ज़मीन का पिनकोड डालें', en: "Enter land's pincode" },
+  ph_equipment_rate: { hi: 'जैसे: ₹800', en: 'e.g. ₹800' },
+  ph_equipment_available: { hi: 'कब से उपलब्ध है?', en: 'Available from when?' },
+  ph_equipment_pincode: { hi: 'उपकरण कहाँ है? पिनकोड डालें', en: 'Where is the equipment? Enter pincode' },
+  ph_worker_count: { hi: 'कितने मज़दूर उपलब्ध हैं?', en: 'How many workers available?' },
+  ph_labor_rate: { hi: 'जैसे: ₹400 प्रति दिन', en: 'e.g. ₹400 per day' },
+  ph_labor_pincode: { hi: 'मज़दूर कहाँ के हैं? पिनकोड डालें', en: 'Where are the workers based? Enter pincode' },
+  ph_labor_dates: { hi: 'जैसे: 1 अक्टूबर से 30 नवंबर', en: 'e.g. Oct 1 to Nov 30' },
+  ph_bhusa_quantity: { hi: 'जैसे: 50 क्विंटल या 3 ट्रॉली', en: 'e.g. 50 quintal or 3 trolley loads' },
+  ph_bhusa_price: { hi: 'जैसे: ₹150 प्रति क्विंटल या बातचीत से', en: 'e.g. ₹150 per quintal or negotiable' },
+  ph_bhusa_pincode: { hi: 'भूसा/पराली कहाँ उपलब्ध है? पिनकोड डालें', en: 'Where is the residue located? Enter pincode' },
+  ph_agri_item: { hi: 'जैसे: HI-8498 गेहूं बीज, DAP खाद', en: 'e.g. HI-8498 wheat seed, DAP fertilizer' },
+  ph_agri_quantity: { hi: 'जैसे: 5 क्विंटल, 10 बैग', en: 'e.g. 5 quintal, 10 bags' },
+  ph_agri_price: { hi: 'जैसे: ₹3,200 प्रति क्विंटल', en: 'e.g. ₹3,200 per quintal' },
+  ph_agri_material_address: { hi: 'दुकान/घर का पता जहाँ से सामग्री मिलेगी', en: 'Address where material can be collected' },
+  ph_agri_pincode: { hi: 'सामग्री का पिनकोड', en: 'Pincode where material is available' },
+  ph_agri_business: { hi: 'जैसे: पटेल कृषि केंद्र', en: 'e.g. Patel Krishi Kendra' },
+  ph_agri_items: { hi: 'आप क्या बेचते हैं? जैसे: गेहूं-सोयाबीन बीज, यूरिया, DAP, कीटनाशक', en: 'What do you sell? e.g. wheat-soybean seeds, Urea, DAP, pesticides' },
+  ph_agri_price_range: { hi: 'जैसे: बाज़ार भाव पर', en: 'e.g. at market rates' },
+  ph_agri_shop_address: { hi: 'दुकान का पूरा पता', en: 'Full shop address' },
 
   // --- asset location (v1.1: the listing's OWN location, not the poster's home) ---
   field_asset_pincode: { hi: 'स्थान का पिनकोड', en: 'Location pincode' },

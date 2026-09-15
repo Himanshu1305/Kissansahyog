@@ -130,11 +130,12 @@ export function TextAreaField({ name, label, value, onChange, required, error, h
   )
 }
 
-// Native date input, labelled.
-export function DateField({ name, label, value, onChange, required, error, min, max }) {
+// Native date input, labelled. (Date inputs can't show a text placeholder, so
+// guidance is passed via `hint`, rendered below the field.)
+export function DateField({ name, label, value, onChange, required, error, hint, min, max }) {
   const id = fieldId(name, label)
   return (
-    <Field label={label} htmlFor={id} required={required} error={error}>
+    <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
       <TextInput
         id={id}
         type="date"

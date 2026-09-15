@@ -27,6 +27,7 @@ export function needsSelfDeclaration() {
 }
 
 export const locationLabelKey = 'field_bhusa_pincode'
+export const locationPlaceholderKey = 'ph_bhusa_pincode'
 // Environmental disclaimer shown on the form (in addition to the standard one).
 export const extraDisclaimerKey = 'bhusa'
 
@@ -59,7 +60,7 @@ export function Fields({ details, setDetails, listingType }) {
         label={t('field_quantity')}
         value={details.quantity}
         onChange={set('quantity')}
-        placeholder={t('quantity_ph')}
+        placeholder={t('ph_bhusa_quantity')}
         required
       />
       <OptionSelect
@@ -83,7 +84,7 @@ export function Fields({ details, setDetails, listingType }) {
         label={t('field_asking_price')}
         value={details.asking_price}
         onChange={set('asking_price')}
-        placeholder={t('asking_price_ph')}
+        placeholder={t('ph_bhusa_price')}
         required
       />
       <DateField

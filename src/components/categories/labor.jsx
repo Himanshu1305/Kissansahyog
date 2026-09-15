@@ -22,6 +22,7 @@ export function needsSelfDeclaration() {
 
 // Asset-location pincode: where the work/team is based, not the poster's home.
 export const locationLabelKey = 'field_labor_pincode'
+export const locationPlaceholderKey = 'ph_labor_pincode'
 
 export function validate(details, listingType, t) {
   if (!details.worker_count || details.worker_count <= 0) return t('err_invalid_worker_count')
@@ -43,6 +44,7 @@ export function Fields({ details, setDetails }) {
         onChange={set('worker_count')}
         min={1}
         required
+        placeholder={t('ph_worker_count')}
       />
       <OptionSelect
         name="work_type"
@@ -51,7 +53,7 @@ export function Fields({ details, setDetails }) {
         value={details.work_type}
         onChange={set('work_type')}
       />
-      <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} />
+      <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} hint={t('ph_labor_dates')} />
       <DateField name="available_to" label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
       <OptionSelect
         name="rate_basis"
@@ -66,7 +68,7 @@ export function Fields({ details, setDetails }) {
         value={details.rate_amount}
         onChange={set('rate_amount')}
         hint={t('optional')}
-        placeholder={t('rate_amount_ph')}
+        placeholder={t('ph_labor_rate')}
       />
     </>
   )

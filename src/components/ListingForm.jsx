@@ -31,6 +31,7 @@ export default function ListingForm({ listingType, category, onCreated }) {
 
   const needsSelfDecl = mod.needsSelfDeclaration(listingType)
   const locationLabelKey = mod.locationLabelKey || 'field_asset_pincode'
+  const locationPlaceholderKey = mod.locationPlaceholderKey || 'pincode_ph'
 
   useEffect(() => {
     let alive = true
@@ -109,7 +110,7 @@ export default function ListingForm({ listingType, category, onCreated }) {
             id="f_asset_pincode"
             inputMode="numeric"
             maxLength={6}
-            placeholder={t('pincode_ph')}
+            placeholder={t(locationPlaceholderKey)}
             value={pincode}
             onChange={(e) => setPincode(e.target.value.replace(/\D/g, '').slice(0, 6))}
           />

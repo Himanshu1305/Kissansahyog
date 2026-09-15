@@ -21,6 +21,7 @@ export function needsSelfDeclaration() {
 
 // Asset-location pincode: where the equipment actually is, not the poster's home.
 export const locationLabelKey = 'field_equipment_pincode'
+export const locationPlaceholderKey = 'ph_equipment_pincode'
 
 export function validate(details, listingType, t) {
   if (!details.equipment_type_id) return t('err_equipment_type_required')
@@ -60,7 +61,7 @@ export function Fields({ details, setDetails, extras }) {
         label={t('field_equipment_rate')}
         value={details.rate_amount}
         onChange={set('rate_amount')}
-        placeholder={t('rate_amount_ph')}
+        placeholder={t('ph_equipment_rate')}
         required
       />
       <SegmentedChoice
@@ -74,7 +75,7 @@ export function Fields({ details, setDetails, extras }) {
       />
       {!details.available_now && (
         <>
-          <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} />
+          <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} hint={t('ph_equipment_available')} />
           <DateField name="available_to" label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
         </>
       )}

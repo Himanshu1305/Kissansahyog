@@ -31,6 +31,7 @@ export function needsSelfDeclaration(listingType) {
 // Label for the required asset-location pincode field (rendered by ListingForm).
 // Land is explicit and prominent: this is the LAND's pincode, not the poster's.
 export const locationLabelKey = 'field_land_pincode'
+export const locationPlaceholderKey = 'ph_land_pincode'
 
 // Returns a localized error string, or null.
 export function validate(details, listingType, t) {
@@ -59,6 +60,7 @@ export function Fields({ details, setDetails, extras }) {
         value={details.size_range}
         onChange={set('size_range')}
         required
+        hint={t('ph_land_size')}
       />
       <MultiChips
         label={t('field_arrangement')}
@@ -96,13 +98,13 @@ export function Fields({ details, setDetails, extras }) {
         onChange={set('price_type')}
         required
       />
-      {details.price_type === 'fixed' && (
+      {(details.price_type === 'fixed' || details.price_type === 'sharecropping') && (
         <TextField
           name="price_amount"
           label={t('field_price_amount')}
           value={details.price_amount}
           onChange={set('price_amount')}
-          placeholder={t('price_amount_ph')}
+          placeholder={details.price_type === 'sharecropping' ? t('ph_price_sharecropping') : t('ph_price_fixed')}
         />
       )}
 

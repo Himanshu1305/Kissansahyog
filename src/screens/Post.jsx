@@ -6,6 +6,7 @@ import LanguageToggle from '../components/LanguageToggle'
 import { CATEGORIES, CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { isEnabled } from '../lib/listings/registry'
 import ListingForm from '../components/ListingForm'
+import HelpModal, { HelpButton } from '../components/HelpModal'
 
 // Post flow: (1) Offering or Looking For? (2) which category? (3) the form,
 // (4) success. Kept as one screen with an in-screen back arrow (simplest for
@@ -17,6 +18,7 @@ export default function Post() {
   const [listingType, setListingType] = useState(null)
   const [category, setCategory] = useState(null)
   const [created, setCreated] = useState(null)
+  const [helpKey, setHelpKey] = useState(null)
 
   const step = created ? 'done' : !listingType ? 'type' : !category ? 'category' : 'form'
 
@@ -54,18 +56,22 @@ export default function Post() {
             {CATEGORIES.map((c) => {
               const enabled = isEnabled(c)
               return (
-                <BigButton
-                  key={c}
-                  variant={enabled ? 'primary' : 'plain'}
-                  disabled={!enabled}
-                  onClick={() => enabled && setCategory(c)}
-                >
-                  {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}
-                  {!enabled && <span className="ml-2 text-sm">({t('coming_soon')})</span>}
-                </BigButton>
+                <div key={c} className="flex items-center gap-2">
+                  <BigButton
+                    className="flex-1"
+                    variant={enabled ? 'primary' : 'plain'}
+                    disabled={!enabled}
+                    onClick={() => enabled && setCategory(c)}
+                  >
+                    {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}
+                    {!enabled && <span className="ml-2 text-sm">({t('coming_soon')})</span>}
+                  </BigButton>
+                  <HelpButton categoryKey={c} onOpen={setHelpKey} className="h-9 w-9 text-base" />
+                </div>
               )
             })}
           </div>
+          <HelpModal categoryKey={helpKey} onClose={() => setHelpKey(null)} />
         </div>
       )}
 

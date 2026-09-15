@@ -28,6 +28,7 @@ export function needsSelfDeclaration() {
 }
 
 export const locationLabelKey = 'field_agri_pincode'
+export const locationPlaceholderKey = 'ph_agri_pincode'
 
 const conditionRequired = (inputType) => inputType === 'seeds' || inputType === 'fertilizer'
 
@@ -71,21 +72,21 @@ export function Fields({ details, setDetails, listingType, user }) {
 
       {details.subtype === 'vendor' ? (
         <>
-          <TextField name="business_name" label={t('field_business_name')} value={details.business_name} onChange={set('business_name')} required />
+          <TextField name="business_name" label={t('field_business_name')} value={details.business_name} onChange={set('business_name')} placeholder={t('ph_agri_business')} required />
           <MultiChips label={t('field_input_types')} list={INPUT_TYPE} values={details.input_types} onChange={set('input_types')} required />
-          <TextAreaField name="items_description" label={t('field_items_description')} value={details.items_description} onChange={set('items_description')} placeholder={t('items_description_ph')} required />
-          <TextField name="price_range" label={t('field_price_range')} value={details.price_range} onChange={set('price_range')} hint={t('optional')} placeholder={t('price_range_ph')} />
-          <TextField name="shop_address" label={t('field_shop_address')} value={details.shop_address} onChange={set('shop_address')} required />
+          <TextAreaField name="items_description" label={t('field_items_description')} value={details.items_description} onChange={set('items_description')} placeholder={t('ph_agri_items')} required />
+          <TextField name="price_range" label={t('field_price_range')} value={details.price_range} onChange={set('price_range')} hint={t('optional')} placeholder={t('ph_agri_price_range')} />
+          <TextField name="shop_address" label={t('field_shop_address')} value={details.shop_address} onChange={set('shop_address')} placeholder={t('ph_agri_shop_address')} required />
           <TextField name="contact_phone" label={t('field_contact_phone')} value={details.contact_phone} onChange={set('contact_phone')} />
           <Notice tone="info">{t('agri_vendor_future_charges')}</Notice>
         </>
       ) : (
         <>
           <OptionSelect name="input_type" label={t('field_input_type')} list={INPUT_TYPE} value={details.input_type} onChange={set('input_type')} required />
-          <TextField name="item_name" label={t('field_item_name')} value={details.item_name} onChange={set('item_name')} placeholder={t('item_name_ph')} required />
-          <TextField name="quantity" label={t('field_quantity')} value={details.quantity} onChange={set('quantity')} placeholder={t('quantity_ph')} required />
-          <TextField name="asking_price" label={t('field_asking_price')} value={details.asking_price} onChange={set('asking_price')} placeholder={t('asking_price_ph')} required />
-          <TextField name="material_address" label={t('field_material_address')} value={details.material_address} onChange={set('material_address')} placeholder={t('material_address_ph')} required />
+          <TextField name="item_name" label={t('field_item_name')} value={details.item_name} onChange={set('item_name')} placeholder={t('ph_agri_item')} required />
+          <TextField name="quantity" label={t('field_quantity')} value={details.quantity} onChange={set('quantity')} placeholder={t('ph_agri_quantity')} required />
+          <TextField name="asking_price" label={t('field_asking_price')} value={details.asking_price} onChange={set('asking_price')} placeholder={t('ph_agri_price')} required />
+          <TextField name="material_address" label={t('field_material_address')} value={details.material_address} onChange={set('material_address')} placeholder={t('ph_agri_material_address')} required />
           {conditionRequired(details.input_type) && (
             <OptionSelect name="condition" label={t('field_condition')} list={INPUT_CONDITION} value={details.condition} onChange={set('condition')} required />
           )}

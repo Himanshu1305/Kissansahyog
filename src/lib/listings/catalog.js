@@ -9,9 +9,9 @@ export const LISTING_TYPES = ['offer', 'requirement']
 export const CATEGORY_META = {
   land: { icon: '🌱', hi: 'ज़मीन', en: 'Land' },
   equipment: { icon: '🚜', hi: 'मशीन', en: 'Equipment' },
-  labor: { icon: '👷', hi: 'कृषि सहयोगी', en: 'Labor' },
-  bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhusa/Parali' },
-  agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Agri-Inputs' },
+  labor: { icon: '👷', hi: 'कृषि सहयोगी (Labor)', en: 'Labor' },
+  bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
+  agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
 }
 
 export const LISTING_TYPE_META = {

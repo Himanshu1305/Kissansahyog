@@ -5,6 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, Notice, Spinner } from '../components/ui'
 import LanguageToggle from '../components/LanguageToggle'
 import ListingCard from '../components/ListingCard'
+import HelpModal, { HelpButton } from '../components/HelpModal'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
@@ -31,6 +32,7 @@ export default function Browse() {
   const [fallback, setFallback] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [helpKey, setHelpKey] = useState(null)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -70,14 +72,20 @@ export default function Browse() {
 
   return (
     <Screen title={t('browse_title')} onBack={() => navigate('/home')} right={<LanguageToggle />}>
-      {/* Category tabs (grid wraps cleanly as categories grow past 3). */}
+      {/* Category tabs (grid wraps cleanly as categories grow past 3). Each tab
+          carries a '?' that opens a help modal explaining the category. */}
       <div className="mb-3 grid grid-cols-3 gap-2">
         {ENABLED_CATEGORIES.map((c) => (
-          <button key={c} data-testid={`tab-${c}`} className={tabClass(c)} onClick={() => setCategory(c)}>
-            {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}
-          </button>
+          <div key={c} className="relative">
+            <button data-testid={`tab-${c}`} className={`w-full ${tabClass(c)}`} onClick={() => setCategory(c)}>
+              {CATEGORY_META[c].icon} {CATEGORY_META[c][lang]}
+            </button>
+            <HelpButton categoryKey={c} onOpen={setHelpKey} className="absolute -right-1.5 -top-1.5 shadow" />
+          </div>
         ))}
       </div>
+
+      <HelpModal categoryKey={helpKey} onClose={() => setHelpKey(null)} />
 
       {/* Offer / Requirement filter */}
       <div className="mb-2 flex flex-wrap gap-2">

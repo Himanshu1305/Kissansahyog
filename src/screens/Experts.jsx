@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { Screen, Field, Notice, Spinner, TextInput } from '../components/ui'
 import LanguageToggle from '../components/LanguageToggle'
+import HelpModal, { HelpButton } from '../components/HelpModal'
 import { fetchExperts } from '../lib/experts/expertsApi'
 
 // Expert helpers: pick the localized field, falling back to the other language.
@@ -21,6 +22,7 @@ export default function Experts() {
   const [query, setQuery] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [helpKey, setHelpKey] = useState(null)
 
   useEffect(() => {
     let alive = true
@@ -48,7 +50,8 @@ export default function Experts() {
   }, [experts, query])
 
   return (
-    <Screen title={t('experts_title')} onBack={() => navigate('/home')} right={<LanguageToggle />}>
+    <Screen title={t('experts_title')} onBack={() => navigate('/home')} right={<div className="flex items-center gap-2"><HelpButton categoryKey="experts" onOpen={setHelpKey} /><LanguageToggle /></div>}>
+      <HelpModal categoryKey={helpKey} onClose={() => setHelpKey(null)} />
       <Field label={t('experts_filter_label')} htmlFor="expert_filter">
         <TextInput
           id="expert_filter"
