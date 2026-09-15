@@ -17,11 +17,12 @@ const CARD_CATS = [
   { key: 'land', icon: CATEGORY_META.land.icon },
   { key: 'equipment', icon: CATEGORY_META.equipment.icon },
   { key: 'labor', icon: CATEGORY_META.labor.icon },
+  { key: 'drone_didi', icon: CATEGORY_META.drone_didi.icon },
   { key: 'bhusa', icon: CATEGORY_META.bhusa.icon },
   { key: 'agri_inputs', icon: CATEGORY_META.agri_inputs.icon },
   { key: 'experts', icon: '👨‍🌾' },
 ]
-const FILTERS = ['all', 'land', 'equipment', 'labor', 'bhusa', 'agri_inputs', 'experts']
+const FILTERS = ['all', 'land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'experts']
 
 // Public landing page shown at "/" to visitors with no session. Logged-in users
 // are redirected to /home (see App PublicOnly), so this is the unauthenticated

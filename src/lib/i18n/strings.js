@@ -115,6 +115,10 @@ export const strings = {
     hi: 'कृषि वैज्ञानिक, सेवानिवृत्त कृषि अधिकारी और विशेषज्ञ जो किसानों को सलाह दे सकते हैं। सीधे फ़ोन पर संपर्क करें।',
     en: 'Agricultural scientists, retired government agriculture officers, and domain experts who can advise farmers. Browse by specialisation and contact them directly by phone.',
   },
+  help_drone_didi: {
+    hi: 'ड्रोन दीदी योजना के तहत महिला उद्यमी ड्रोन से आपके खेत में खाद, कीटनाशक या पानी का छिड़काव करती हैं। यह सेवा सस्ती, तेज़ और सटीक होती है। ड्रोन ऑपरेटर अपनी सेवा यहाँ लिस्ट कर सकती हैं, और किसान अपने खेत के लिए ड्रोन बुक कर सकते हैं।',
+    en: 'Under the Drone Didi government scheme, women entrepreneurs use drones to spray fertilizer, pesticide, or water on your fields. The service is affordable, fast, and precise. Drone operators can list their service here, and farmers can find a drone operator near their farm.',
+  },
 
   // --- articles / blog ---
   articles_title: { hi: 'लेख', en: 'Articles' },
@@ -165,6 +169,7 @@ export const strings = {
   home_cat_land: { hi: 'ज़मीन', en: 'Land' },
   home_cat_equipment: { hi: 'उपकरण', en: 'Equipment' },
   home_cat_labor: { hi: 'कृषि सहयोगी (Labor)', en: 'Labor' },
+  home_cat_drone_didi: { hi: 'ड्रोन दीदी', en: 'Drone Didi' },
   home_cat_bhusa: { hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   home_cat_agri_inputs: { hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
   home_cat_experts: { hi: 'विशेषज्ञ', en: 'Experts' },
@@ -196,6 +201,10 @@ export const strings = {
   desc_bhusa: { hi: 'भूसा/पराली बेचें या खरीदें', en: 'Buy or sell crop residue' },
   desc_agri_inputs: { hi: 'बीज, खाद, कीटनाशक — किसान व दुकानें', en: 'Seeds, fertilizer, pesticides — farmers & shops' },
   desc_experts: { hi: 'कृषि विशेषज्ञों से सलाह लें', en: 'Get advice from farming experts' },
+  desc_drone_didi: {
+    hi: 'ड्रोन से खाद और कीटनाशक छिड़काव — महिला उद्यमियों द्वारा संचालित',
+    en: 'Drone spraying for fertilizer and pesticide — operated by women entrepreneurs',
+  },
 
   // --- public homepage: live listings ---
   listings_section_title: { hi: 'हाल की लिस्टिंग', en: 'Recent listings' },
@@ -335,6 +344,39 @@ export const strings = {
   ph_agri_items: { hi: 'आप क्या बेचते हैं? जैसे: गेहूं-सोयाबीन बीज, यूरिया, DAP, कीटनाशक', en: 'What do you sell? e.g. wheat-soybean seeds, Urea, DAP, pesticides' },
   ph_agri_price_range: { hi: 'जैसे: बाज़ार भाव पर', en: 'e.g. at market rates' },
   ph_agri_shop_address: { hi: 'दुकान का पूरा पता', en: 'Full shop address' },
+
+  // --- drone didi ---
+  field_operator_name: { hi: 'ऑपरेटर / समूह का नाम', en: 'Operator / group name' },
+  field_drone_type: { hi: 'ड्रोन का प्रकार', en: 'Drone type' },
+  field_service_type: { hi: 'सेवाएं (एक या अधिक)', en: 'Services (one or more)' },
+  field_rate_per_acre: { hi: 'दर प्रति एकड़', en: 'Rate per acre' },
+  field_min_acres: { hi: 'न्यूनतम एकड़ (एक बुकिंग)', en: 'Minimum acres per booking' },
+  field_coverage_area: { hi: 'सेवा क्षेत्र', en: 'Coverage area' },
+  field_crops_covered: { hi: 'किन फसलों का अनुभव', en: 'Crops covered' },
+  field_asset_village: { hi: 'गाँव / कस्बा', en: 'Village / town' },
+  field_crop_type: { hi: 'फसल', en: 'Crop' },
+  field_acreage: { hi: 'कितने एकड़', en: 'Acreage' },
+  field_service_needed: { hi: 'कौन सी सेवा चाहिए', en: 'Service needed' },
+  field_preferred_date: { hi: 'पसंदीदा तारीख़', en: 'Preferred date' },
+  field_drone_pincode: { hi: 'ऑपरेटर / खेत का पिनकोड', en: 'Operator / farm pincode' },
+  drone_govt_label: {
+    hi: 'सरकारी ड्रोन दीदी योजना के तहत',
+    en: 'Under the Government Drone Didi Scheme',
+  },
+  ph_operator_name: { hi: 'जैसे: राधा महिला स्वयं सहायता समूह', en: 'e.g. Radha Women SHG' },
+  ph_rate_per_acre: { hi: 'जैसे: ₹250 प्रति एकड़', en: 'e.g. ₹250 per acre' },
+  ph_coverage_area: { hi: 'जैसे: खुरई और 20 किमी आसपास', en: 'e.g. Khurai and 20km around' },
+  ph_drone_crop_type: { hi: 'जैसे: गेहूं, सोयाबीन', en: 'e.g. wheat, soybean' },
+  ph_drone_acreage: { hi: 'जैसे: 5 एकड़', en: 'e.g. 5 acres' },
+  ph_drone_pincode: { hi: 'ऑपरेटर कहाँ से हैं? पिनकोड डालें', en: 'Where is the operator based? Enter pincode' },
+  err_operator_name_required: { hi: 'कृपया ऑपरेटर / समूह का नाम भरें।', en: 'Please enter the operator / group name.' },
+  err_drone_type_required: { hi: 'कृपया ड्रोन का प्रकार चुनें।', en: 'Please select the drone type.' },
+  err_service_type_required: { hi: 'कृपया कम से कम एक सेवा चुनें।', en: 'Please select at least one service.' },
+  err_rate_per_acre_required: { hi: 'कृपया प्रति एकड़ दर भरें।', en: 'Please enter the rate per acre.' },
+  err_asset_village_required: { hi: 'कृपया गाँव / कस्बा भरें।', en: 'Please enter the village / town.' },
+  err_crop_type_required: { hi: 'कृपया फसल भरें।', en: 'Please enter the crop.' },
+  err_acreage_required: { hi: 'कृपया कितने एकड़, यह भरें।', en: 'Please enter the acreage.' },
+  err_service_needed_required: { hi: 'कृपया कौन सी सेवा चाहिए, यह चुनें।', en: 'Please select the service needed.' },
 
   // --- asset location (v1.1: the listing's OWN location, not the poster's home) ---
   field_asset_pincode: { hi: 'स्थान का पिनकोड', en: 'Location pincode' },

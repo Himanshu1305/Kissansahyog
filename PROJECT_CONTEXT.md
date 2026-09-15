@@ -80,7 +80,7 @@ nullable — links an email user to `auth.users.id`), `auth_provider`
 ('phone'|'email', default 'phone'), `is_admin` (bool, default false).
 
 **listings** — `id` uuid pk, `user_id` → profiles, `listing_type` ('offer'|'requirement'),
-`category` ('land'|'equipment'|'labor'|'bhusa'|'agri_inputs'), `status`
+`category` ('land'|'equipment'|'labor'|'drone_didi'|'bhusa'|'agri_inputs'), `status`
 ('active'|'closed'|'removed', default active — **'removed' added in Phase 3** for admin
 moderation; removed/closed rows are excluded from public browse/homepage), `latitude`/`longitude`
 (**the ASSET's location**, derived server-side from
@@ -136,6 +136,13 @@ Written/validated by the category modules (`src/components/categories/*.jsx`) an
 - **labor**: `{ worker_count, work_type, available_from|null, available_to|null, rate_basis|null, rate_amount }`
   - work_type: `sowing|harvesting|weeding|drone_operator|general|other` (**v1.1: added drone_operator /
     "Drone Didi"**); rate_basis: `per_day|per_task`; rate_amount: free-form optional text.
+- **drone_didi**: women-operated drone spraying (Govt scheme). Shape by listing_type, pruned in finalizeDetails:
+  - offer: `{ operator_name, drone_type, service_type[], rate_per_acre, min_acres, available_from|null, available_to|null, coverage_area, government_scheme, crops_covered, asset_village }`
+    — drone_type: `multi_rotor|fixed_wing|other`; service_type (multi): `pesticide|fertilizer|water|seed_sowing`;
+    `government_scheme` bool → shows a prominent "सरकारी ड्रोन दीदी योजना ✓" badge on the detail view (via the
+    module's `detailBadges` export, rendered generically by ListingDetail). asset_pincode is the listing's row
+    pincode (asset-location rule); asset_village is a details field.
+  - requirement: `{ crop_type, acreage, service_needed, preferred_date|null, asset_village }`
 - **bhusa** (v1.1): `{ residue_type, quantity, pickup_arrangement, buyer_type_preference, asking_price, available_from|null }`
   - residue_type: `bhusa|parali|sugarcane|cotton|other`; pickup_arrangement:
     `buyer_collects|farmer_delivers|either`; buyer_type_preference: `individual|commercial|either`;
@@ -147,10 +154,17 @@ Written/validated by the category modules (`src/components/categories/*.jsx`) an
     — free to list (UI note "charges may apply later"; **no payment gate**).
 
 Adding a category = add a module (`initialDetails/Fields/validate/summarize/needsSelfDeclaration`,
-optional `finalizeDetails/locationLabelKey/extraDisclaimerKey`), import it in `registry.jsx`, add to
-`ENABLED_CATEGORIES`/`EXTRAS_NEEDED`, widen the `create_listing` category CHECK + validation, and
-widen the `listings_category_check` constraint. Browse/detail/post are category-agnostic. `Fields`
-receives `{ details, setDetails, extras, listingType, user }`.
+optional `finalizeDetails/locationLabelKey/locationPlaceholderKey/extraDisclaimerKey/detailBadges`),
+import it in `registry.jsx`, add to `ENABLED_CATEGORIES`/`EXTRAS_NEEDED`, widen the `create_listing`
+category CHECK + validation, and widen the `listings_category_check` constraint. Browse/detail/post
+are category-agnostic. `Fields` receives `{ details, setDetails, extras, listingType, user }`;
+`finalizeDetails` receives `{ actorId, user, listingType }`. `detailBadges(listing, lang)` (optional)
+returns prominent pills for the detail view (e.g. Drone Didi's govt-scheme badge + service tags).
+
+**Nav / category order** (nav tabs, browse tabs, homepage cards, post selector):
+Land → Equipment → Labor → **Drone Didi** → Bhoosa/Parali → Seeds, Fertilizers & More → Experts.
+The homepage shows **7 category cards** (6 listing categories + Experts). Migration `0015` added
+`drone_didi` (category CHECK + create_listing validation).
 
 ---
 
@@ -380,11 +394,12 @@ adds `is_test_data boolean default false` to `profiles` and `listings`, plus a
 `seed_log` table; `scripts/seed_dummy.mjs` inserts the rows — idempotent, it clears
 prior `is_test_data = true` rows first).
 
-- **7 test users**, phones **9999000001–9999000007** (Khurai/Banda/Rehli/Deori/
-  Malthone/Bina/Rahatgarh — all real, pre-existing pincodes; no new pincodes were
-  needed, all 8 target areas already existed with real coordinates).
-- **38 listings** across all 5 categories (land 8, equipment 10, labor 7, bhusa 6,
-  agri-inputs 7), all `is_test_data = true`. They appear in the public homepage feed
+- **9 test users**, phones **9999000001–9999000009** (7 farmers + 2 Drone Didi
+  operators: राधा महिला SHG @ Khurai, गायत्री ड्रोन सेवाएं @ Rahatgarh — all real,
+  pre-existing pincodes; no new pincodes were needed).
+- **46 listings** across all 6 categories (land 8, equipment 10, labor 7, drone_didi 8
+  [5 offers + 3 requirements], bhusa 6, agri-inputs 7), all `is_test_data = true`.
+  `seed_log` rows: `dummy_data_khurai_v1` (38) + `dummy_data_drone_didi_v1` (8). They appear in the public homepage feed
   and in Browse (distance-filtered — note Sagar district spans >30 km, so a given
   pincode sees a nearby subset in the primary band and the rest in the 30–50 km
   fallback). `seed_log` row: `dummy_data_khurai_v1`.

@@ -25,6 +25,8 @@ const USERS = {
   rajesh:  { full_name: 'राजेश कुमार यादव',    phone: '9999000005', village_town: 'Malthone',  pincode: '470441' },
   prakash: { full_name: 'प्रकाश सिंह परिहार',  phone: '9999000006', village_town: 'Bina',      pincode: '470113' },
   shanti:  { full_name: 'शांतिबाई कुशवाह',     phone: '9999000007', village_town: 'Rahatgarh', pincode: '470119' },
+  radha:   { full_name: 'राधा महिला स्वयं सहायता समूह', phone: '9999000008', village_town: 'Khurai',    pincode: '470117' },
+  gayatri: { full_name: 'गायत्री ड्रोन सेवाएं', phone: '9999000009', village_town: 'Rahatgarh', pincode: '470119' },
 }
 
 // details builders per category (exact JSONB shapes — see PROJECT_CONTEXT §3).
@@ -34,6 +36,8 @@ const labor = (o) => ({ worker_count: null, work_type: '', available_from: null,
 const bhusa = (o) => ({ residue_type: '', quantity: '', pickup_arrangement: '', buyer_type_preference: '', asking_price: '', available_from: null, ...o })
 const surplus = (o) => ({ subtype: 'farmer_surplus', input_type: '', item_name: '', quantity: '', asking_price: '', material_address: '', condition: '', ...o })
 const vendor = (o) => ({ subtype: 'vendor', business_name: '', input_types: [], items_description: '', price_range: '', shop_address: '', contact_phone: '', ...o })
+const droneOffer = (o) => ({ operator_name: '', drone_type: 'multi_rotor', service_type: [], rate_per_acre: '', min_acres: '', available_from: null, available_to: null, coverage_area: '', government_scheme: true, crops_covered: '', asset_village: '', ...o })
+const droneReq = (o) => ({ crop_type: '', acreage: '', service_needed: '', preferred_date: null, asset_village: '', ...o })
 
 // Listing spec: { u, type, cat, details, sd?, pin? } (pin overrides the poster's home pincode).
 const LISTINGS = [
@@ -84,6 +88,16 @@ const LISTINGS = [
   { u: 'suresh',  type: 'offer',       cat: 'agri_inputs', d: vendor({ business_name: 'लोधी एग्रो सेंटर, बांदा', input_types: ['fertilizer', 'seeds'], items_description: 'यूरिया, DAP, NPK सभी खाद उपलब्ध। बांदा और आसपास डिलीवरी।', shop_address: 'Main Road, Banda', contact_phone: USERS.suresh.phone }) },
   { u: 'mohan',   type: 'requirement', cat: 'agri_inputs', d: surplus({ input_type: 'seeds', item_name: 'Soybean seeds (JS-9560 variety)', quantity: '2 क्विंटल' }) },
   { u: 'rajesh',  type: 'requirement', cat: 'agri_inputs', d: surplus({ input_type: 'fertilizer', item_name: 'Urea fertilizer', quantity: '20 बैग' }) },
+
+  // --- Drone Didi (8) — 5 offers, 3 requirements ---
+  { u: 'radha',   type: 'offer',       cat: 'drone_didi', d: droneOffer({ operator_name: 'राधा महिला स्वयं सहायता समूह, खुरई', service_type: ['pesticide', 'fertilizer'], rate_per_acre: '₹250 प्रति एकड़', min_acres: '2', available_from: '2026-10-01', available_to: '2027-03-31', coverage_area: 'खुरई और 25 किमी आसपास', government_scheme: true, crops_covered: 'गेहूं, सोयाबीन, चना', asset_village: 'खुरई' }) },
+  { u: 'gayatri', type: 'offer',       cat: 'drone_didi', d: droneOffer({ operator_name: 'गायत्री ड्रोन सेवाएं, राहतगढ़', service_type: ['pesticide', 'water'], rate_per_acre: '₹220 प्रति एकड़', min_acres: '3', coverage_area: 'राहतगढ़ और आसपास', government_scheme: true, crops_covered: 'धान, मक्का', asset_village: 'राहतगढ़' }) },
+  { u: 'gita',    type: 'offer',       cat: 'drone_didi', d: droneOffer({ operator_name: 'गीताबाई विश्वकर्मा, देवरी', service_type: ['pesticide'], rate_per_acre: '₹280 प्रति एकड़', coverage_area: 'देवरी और 15 किमी', government_scheme: false, crops_covered: 'सोयाबीन, उड़द', asset_village: 'देवरी' }) },
+  { u: 'shanti',  type: 'offer',       cat: 'drone_didi', d: droneOffer({ operator_name: 'शांतिबाई ड्रोन सेवा, राहतगढ़', service_type: ['fertilizer', 'seed_sowing'], rate_per_acre: '₹300 प्रति एकड़', available_from: '2026-11-01', available_to: '2027-02-28', coverage_area: 'राहतगढ़, बांदा और आसपास', government_scheme: true, crops_covered: 'गेहूं, सरसों', asset_village: 'राहतगढ़' }) },
+  { u: 'radha',   type: 'offer',       cat: 'drone_didi', d: droneOffer({ operator_name: 'राधा महिला स्वयं सहायता समूह', service_type: ['pesticide', 'fertilizer', 'water'], rate_per_acre: '₹240 प्रति एकड़ (10+ एकड़ पर छूट)', min_acres: '5', coverage_area: 'खुरई, बीना, मालथोन', government_scheme: true, crops_covered: 'सभी फसलें / All crops', asset_village: 'खुरई' }) },
+  { u: 'ramlal',  type: 'requirement', cat: 'drone_didi', d: droneReq({ crop_type: 'गेहूं', acreage: '8 एकड़', service_needed: 'pesticide', preferred_date: '2026-11-15', asset_village: 'खुरई' }) },
+  { u: 'mohan',   type: 'requirement', cat: 'drone_didi', d: droneReq({ crop_type: 'सोयाबीन', acreage: '5 एकड़', service_needed: 'fertilizer', preferred_date: null, asset_village: 'रेहली' }) },
+  { u: 'rajesh',  type: 'requirement', cat: 'drone_didi', d: droneReq({ crop_type: 'मक्का', acreage: '3 एकड़', service_needed: 'pesticide', preferred_date: '2026-10-20', asset_village: 'मालथोन' }) },
 ]
 
 async function main() {
@@ -125,19 +139,28 @@ async function main() {
   const byCat = insertedListings.reduce((a, r) => ((a[r.category] = (a[r.category] || 0) + 1), a), {})
   console.log('  by category:', JSON.stringify(byCat))
 
-  // seed_log.
-  await admin.from('seed_log').insert({
-    seed_name: 'dummy_data_khurai_v1', record_count: insertedListings.length,
-    notes: 'Test data for Khurai area. 7 fake users (9999000001-7), 38 listings across all 5 categories. Delete with: DELETE FROM listings WHERE is_test_data = true; DELETE FROM profiles WHERE is_test_data = true;',
-  })
+  // seed_log (idempotent: clear prior dummy_data_* rows, then re-log both seeds).
+  const droneCount = insertedListings.filter((r) => r.category === 'drone_didi').length
+  await admin.from('seed_log').delete().like('seed_name', 'dummy_data_%')
+  await admin.from('seed_log').insert([
+    {
+      seed_name: 'dummy_data_khurai_v1', record_count: insertedListings.length - droneCount,
+      notes: 'Test data for Khurai area. 7 fake users (9999000001-7), 38 listings across 5 categories. Delete with: DELETE FROM listings WHERE is_test_data = true; DELETE FROM profiles WHERE is_test_data = true;',
+    },
+    {
+      seed_name: 'dummy_data_drone_didi_v1', record_count: droneCount,
+      notes: "Drone Didi category test data. 2 new test users (9999000008-9), 8 listings (5 offers, 3 requirements). Remove with: DELETE FROM listings WHERE category = 'drone_didi' AND is_test_data = true;",
+    },
+  ])
 
   // Verify.
-  const [{ count: dummyUsers }, { count: dummyListings }] = await Promise.all([
+  const [{ count: dummyUsers }, { count: dummyListings }, { count: droneListings }] = await Promise.all([
     admin.from('profiles').select('*', { count: 'exact', head: true }).eq('is_test_data', true),
     admin.from('listings').select('*', { count: 'exact', head: true }).eq('is_test_data', true),
+    admin.from('listings').select('*', { count: 'exact', head: true }).eq('is_test_data', true).eq('category', 'drone_didi'),
   ])
-  console.log(`\nVERIFY → dummy_users=${dummyUsers} (expect 7), dummy_listings=${dummyListings} (expect 38)`)
-  if (dummyUsers !== 7 || dummyListings !== 38) { console.error('COUNT MISMATCH'); process.exit(1) }
+  console.log(`\nVERIFY → dummy_users=${dummyUsers} (expect 9), dummy_listings=${dummyListings} (expect 46), drone_didi=${droneListings} (expect 8)`)
+  if (dummyUsers !== 9 || dummyListings !== 46 || droneListings !== 8) { console.error('COUNT MISMATCH'); process.exit(1) }
   console.log('Seed complete.')
 }
 main().catch((e) => { console.error('SEED ERROR:', e.message); process.exit(1) })

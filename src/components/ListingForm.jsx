@@ -71,7 +71,7 @@ export default function ListingForm({ listingType, category, onCreated }) {
         return
       }
       const finalDetails = mod.finalizeDetails
-        ? await mod.finalizeDetails(details, { actorId: user.id, user })
+        ? await mod.finalizeDetails(details, { actorId: user.id, user, listingType })
         : details
       const listing = await createListing({
         actorId: user.id,

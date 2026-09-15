@@ -2,7 +2,7 @@
 // bilingual labels, so forms and detail views render the same labels and the
 // JSONB `details` shape can never drift between categories.
 
-export const CATEGORIES = ['land', 'equipment', 'labor', 'bhusa', 'agri_inputs']
+export const CATEGORIES = ['land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs']
 export const LISTING_TYPES = ['offer', 'requirement']
 
 // Category display metadata (icon + bilingual name).
@@ -10,6 +10,7 @@ export const CATEGORY_META = {
   land: { icon: '🌱', hi: 'ज़मीन', en: 'Land' },
   equipment: { icon: '🚜', hi: 'मशीन', en: 'Equipment' },
   labor: { icon: '👷', hi: 'कृषि सहयोगी (Labor)', en: 'Labor' },
+  drone_didi: { icon: '🚁', hi: 'ड्रोन दीदी', en: 'Drone Didi' },
   bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
 }
@@ -72,6 +73,19 @@ export const WORK_TYPE = [
 export const RATE_BASIS = [
   { value: 'per_day', hi: 'प्रति दिन', en: 'Per day' },
   { value: 'per_task', hi: 'प्रति काम', en: 'Per task' },
+]
+
+// --- Drone Didi (women-operated drone spraying service) ---
+export const DRONE_TYPE = [
+  { value: 'multi_rotor', hi: 'मल्टी-रोटर', en: 'Multi-rotor' },
+  { value: 'fixed_wing', hi: 'फिक्स्ड विंग', en: 'Fixed-wing' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const DRONE_SERVICE = [
+  { value: 'pesticide', hi: 'कीटनाशक छिड़काव', en: 'Pesticide spraying' },
+  { value: 'fertilizer', hi: 'खाद छिड़काव', en: 'Fertilizer spraying' },
+  { value: 'water', hi: 'पानी छिड़काव', en: 'Water spraying' },
+  { value: 'seed_sowing', hi: 'बीज बुआई', en: 'Seed sowing' },
 ]
 
 // --- Bhusa / Parali (agricultural residue) ---

@@ -65,7 +65,9 @@ export default function ListingDetail() {
 
   const meta = CATEGORY_META[listing.category]
   const typeMeta = LISTING_TYPE_META[listing.listing_type]
-  const rows = getCategory(listing.category).summarize(listing, lang, extras)
+  const mod = getCategory(listing.category)
+  const rows = mod.summarize(listing, lang, extras)
+  const badges = mod.detailBadges ? mod.detailBadges(listing, lang) : []
   const photos = listing.details?.photo_urls || []
   const distance =
     user?.latitude != null && listing.latitude != null
@@ -96,6 +98,22 @@ export default function ListingDetail() {
           </span>
         )}
       </div>
+
+      {/* Category-specific prominent badges (e.g. Drone Didi govt scheme + services). */}
+      {badges.length > 0 && (
+        <div className="mb-4 flex flex-wrap gap-2">
+          {badges.map((bdg, i) => (
+            <span
+              key={i}
+              className={`rounded-full px-3 py-1 text-sm font-bold ${
+                bdg.tone === 'gov' ? 'bg-green-700 text-white' : 'bg-blue-100 text-blue-800'
+              }`}
+            >
+              {bdg.text}
+            </span>
+          ))}
+        </div>
+      )}
 
       {photos.length > 0 && (
         <div className="mb-4 flex gap-2 overflow-x-auto">
