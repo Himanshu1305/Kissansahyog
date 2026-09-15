@@ -8,14 +8,17 @@
 //
 //   MVP (now):  signup()/login() call the app_signup / app_login RPCs and store
 //               the returned profile in localStorage. No verification.
-//   Phase 2:    replace signup()/login() with supabase.auth.signInWithOtp({phone})
-//               + verifyOtp(), map auth.uid() -> profiles row, and back RLS with
-//               auth.uid() instead of the actor-id RPC argument. getCurrentUser()
-//               becomes supabase.auth.getUser(). The public function signatures
-//               below should stay the same so no screens need to change.
+//   FUTURE:     PHONE auth still needs real OTP — replace signup()/login() with
+//               supabase.auth.signInWithOtp({phone}) + verifyOtp(). (Phase 3 added
+//               real EMAIL auth below via Supabase Auth; phone remains trust-based.)
+//
+// EMAIL auth (Phase 3): signupEmail()/loginEmail() use Supabase Auth on a
+// dedicated session-bearing client (supabaseAuth). The returned profile is stored
+// in the same localStorage session so getCurrentUser() and every screen keep
+// working unchanged. Both phone and email flows live in THIS module by design.
 // ============================================================================
 
-import { supabase } from '../supabaseClient'
+import { supabase, supabaseAuth } from '../supabaseClient'
 import { AppError, toAppError } from '../errors'
 
 const SESSION_KEY = 'ks_session_v1'
@@ -30,6 +33,10 @@ export function isValidPhone(phone) {
 export function isValidPincode(pincode) {
   return /^[0-9]{6}$/.test(String(pincode || '').trim())
 }
+export function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim())
+}
+export const MIN_PASSWORD = 8
 
 // ---- session persistence (localStorage; the "custom session" per MVP spec) ----
 export function getCurrentUser() {
@@ -54,6 +61,8 @@ export function logout() {
   } catch {
     /* ignore */
   }
+  // Also end any Supabase Auth session (email users); harmless for phone users.
+  supabaseAuth.auth.signOut().catch(() => {})
 }
 
 // ---- signup ----
@@ -89,4 +98,83 @@ export function updateStoredUser(patch) {
   const current = getCurrentUser()
   if (!current) return null
   return storeSession({ ...current, ...patch })
+}
+
+// ---- EMAIL auth (Phase 3, via Supabase Auth on the supabaseAuth client) ----
+
+// Map a Supabase Auth error to one of our stable codes.
+function mapAuthError(error) {
+  const m = String(error?.message || '').toLowerCase()
+  if (m.includes('already registered') || m.includes('already been registered')) return new AppError('email_exists')
+  if (m.includes('invalid login') || m.includes('invalid credentials')) return new AppError('wrong_password')
+  if (m.includes('password')) return new AppError('password_too_short')
+  if (m.includes('email')) return new AppError('invalid_email')
+  return new AppError('unknown')
+}
+
+export async function signupEmail({ full_name, email, password, village_town, pincode, language, disclaimer_accepted }) {
+  if (!full_name || !full_name.trim()) throw new AppError('name_required')
+  if (!isValidEmail(email)) throw new AppError('invalid_email')
+  if (!password || String(password).length < MIN_PASSWORD) throw new AppError('password_too_short')
+  if (!isValidPincode(pincode)) throw new AppError('invalid_pincode')
+  if (!disclaimer_accepted) throw new AppError('disclaimer_not_accepted')
+
+  const { data, error } = await supabaseAuth.auth.signUp({
+    email: String(email).trim(),
+    password: String(password),
+  })
+  if (error) throw mapAuthError(error)
+  // Email confirmation is disabled (autoconfirm) so a session should exist; if a
+  // provider returns none, establish one before the SECURITY DEFINER RPC call.
+  if (!data.session) {
+    const { error: signInErr } = await supabaseAuth.auth.signInWithPassword({
+      email: String(email).trim(),
+      password: String(password),
+    })
+    if (signInErr) throw mapAuthError(signInErr)
+  }
+
+  const { data: profile, error: rpcErr } = await supabaseAuth.rpc('app_signup_email', {
+    p_full_name: full_name.trim(),
+    p_village_town: village_town ?? null,
+    p_pincode: String(pincode).trim(),
+    p_language: language || 'hi',
+  })
+  if (rpcErr) throw toAppError(rpcErr)
+  return storeSession(profile)
+}
+
+export async function loginEmail(email, password) {
+  if (!isValidEmail(email)) throw new AppError('invalid_email')
+  if (!password) throw new AppError('wrong_password')
+  const { error } = await supabaseAuth.auth.signInWithPassword({
+    email: String(email).trim(),
+    password: String(password),
+  })
+  if (error) throw mapAuthError(error)
+  const { data: profile, error: rpcErr } = await supabaseAuth.rpc('app_login_email')
+  if (rpcErr) throw toAppError(rpcErr)
+  return storeSession(profile)
+}
+
+// Change password for an email-registered user: re-verify the current password,
+// then update. (Supabase updateUser does not itself check the current password.)
+export async function changePassword({ email, currentPassword, newPassword }) {
+  if (!newPassword || String(newPassword).length < MIN_PASSWORD) throw new AppError('password_too_short')
+  const { error: reauthErr } = await supabaseAuth.auth.signInWithPassword({
+    email: String(email).trim(),
+    password: String(currentPassword),
+  })
+  if (reauthErr) throw new AppError('wrong_password')
+  const { error } = await supabaseAuth.auth.updateUser({ password: String(newPassword) })
+  if (error) throw mapAuthError(error)
+  return true
+}
+
+// Delete the acting profile (cascades their listings) and end any auth session.
+export async function deleteAccount(actorId) {
+  const { error } = await supabase.rpc('delete_account', { p_actor_id: actorId })
+  if (error) throw toAppError(error)
+  logout()
+  return true
 }

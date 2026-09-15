@@ -21,3 +21,18 @@ export const supabase = createClient(url, anonKey, {
     detectSessionInUrl: false,
   },
 })
+
+// Phase 3: a SECOND client used ONLY for email+password auth (Supabase Auth).
+// It persists the user's session so email-auth RPCs (app_signup_email /
+// app_login_email) and password changes can identify the user via auth.uid().
+// Regular data reads/writes keep using the anon `supabase` client above, so no
+// request ever switches to the `authenticated` role and existing anon RLS is
+// untouched. A distinct storageKey avoids clashing with the anon client.
+export const supabaseAuth = createClient(url, anonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: false,
+    storageKey: 'ks_sb_auth',
+  },
+})

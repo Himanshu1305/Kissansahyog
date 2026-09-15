@@ -18,6 +18,24 @@ export function AuthProvider({ children }) {
     return profile
   }, [])
 
+  const signupEmail = useCallback(async (payload) => {
+    const profile = await authService.signupEmail(payload)
+    setUser(profile)
+    return profile
+  }, [])
+
+  const loginEmail = useCallback(async (email, password) => {
+    const profile = await authService.loginEmail(email, password)
+    setUser(profile)
+    return profile
+  }, [])
+
+  const deleteAccount = useCallback(async () => {
+    if (!user?.id) return
+    await authService.deleteAccount(user.id)
+    setUser(null)
+  }, [user])
+
   const logout = useCallback(() => {
     authService.logout()
     setUser(null)
@@ -31,8 +49,8 @@ export function AuthProvider({ children }) {
   }, [])
 
   const value = useMemo(
-    () => ({ user, isLoggedIn: !!user, signup, login, logout, patchUser }),
-    [user, signup, login, logout, patchUser],
+    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, logout, patchUser, deleteAccount }),
+    [user, signup, login, signupEmail, loginEmail, logout, patchUser, deleteAccount],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

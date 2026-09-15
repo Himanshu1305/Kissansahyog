@@ -66,6 +66,19 @@ export const strings = {
   login_button: { hi: 'लॉग इन करें', en: 'Log in' },
   no_account_yet: { hi: 'खाता नहीं है? नया बनाएं', en: "No account? Create one" },
 
+  // --- dual auth (phone | email) ---
+  tab_phone: { hi: '📱 फ़ोन से', en: '📱 By Phone' },
+  tab_email: { hi: '✉️ ईमेल से', en: '✉️ By Email' },
+  email_label: { hi: 'ईमेल', en: 'Email' },
+  email_ph: { hi: 'जैसे: naam@example.com', en: 'e.g. name@example.com' },
+  password_label: { hi: 'पासवर्ड', en: 'Password' },
+  password_ph: { hi: 'कम से कम 8 अक्षर', en: 'At least 8 characters' },
+  email_login_help: { hi: 'अपना ईमेल और पासवर्ड डालें।', en: 'Enter your email and password.' },
+  err_invalid_email: { hi: 'कृपया सही ईमेल पता भरें।', en: 'Please enter a valid email address.' },
+  err_password_short: { hi: 'पासवर्ड कम से कम 8 अक्षर का होना चाहिए।', en: 'Password must be at least 8 characters.' },
+  err_email_exists: { hi: 'इस ईमेल से पहले से खाता है। कृपया लॉग इन करें।', en: 'An account with this email already exists. Please log in.' },
+  err_wrong_password: { hi: 'गलत ईमेल या पासवर्ड।', en: 'Wrong email or password.' },
+
   // --- home / nav ---
   home_greeting: { hi: 'नमस्ते', en: 'Namaste' },
   logout: { hi: 'लॉग आउट', en: 'Log out' },
