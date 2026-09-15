@@ -80,14 +80,15 @@ nullable — links an email user to `auth.users.id`), `auth_provider`
 ('phone'|'email', default 'phone'), `is_admin` (bool, default false).
 
 **listings** — `id` uuid pk, `user_id` → profiles, `listing_type` ('offer'|'requirement'),
-`category` ('land'|'equipment'|'labor'|'drone_didi'|'bhusa'|'agri_inputs'), `status`
-('active'|'closed'|'removed', default active — **'removed' added in Phase 3** for admin
-moderation; removed/closed rows are excluded from public browse/homepage), `latitude`/`longitude`
-(**the ASSET's location**, derived server-side from
-the listing's own `pincode` — see §6), `pincode`, `details` jsonb (category-specific — see §3),
-`self_declared` bool, `created_at`, `expires_at` (default now()+30 days).
+`category` ('equipment'|'labor'|'drone_didi'|'bhusa'|'agri_inputs'|'warehouse'|'land' —
+7 categories, **Land last**), `status` ('active'|'closed'|'removed', default active —
+'removed' = admin moderation; removed/closed rows excluded from public browse/homepage),
+`latitude`/`longitude` (**the ASSET's location**, derived server-side from the listing's own
+`pincode` — see §6), `pincode`, `details` jsonb (category-specific — see §3), `self_declared` bool,
+`listing_source` ('farmer'|'vendor', default 'farmer' — **the vendor/business tag**, shows a
+🏪 badge on cards/detail and drives the admin vendor report), `created_at`, `expires_at`.
 CHECK `land_offer_requires_self_declared`: a land **offer** must have `self_declared = true`.
-CHECK `listings_category_check`: category ∈ the 5 values above (widened per v1.1 migration).
+CHECK `listings_category_check`: category ∈ the 7 values above (widened per migration as categories were added).
 
 **experts** (v1.1) — curated consultation directory. `id` uuid pk, `name` not null,
 `name_hi`, `specialisation_en`, `specialisation_hi`, `bio_en`, `bio_hi`, `phone` not null,
@@ -151,6 +152,10 @@ Written/validated by the category modules (`src/components/categories/*.jsx`) an
     module's `detailBadges` export, rendered generically by ListingDetail). asset_pincode is the listing's row
     pincode (asset-location rule); asset_village is a details field.
   - requirement: `{ crop_type, acreage, service_needed, preferred_date|null, asset_village }`
+- **warehouse**: storage listings. Shape by listing_type, pruned in finalizeDetails:
+  - offer: `{ warehouse_type, capacity_quintals, rate, available_from|null, facilities[], address, contact_name }`
+    — warehouse_type: `general|cold|silo|other`; facilities (multi): `electricity|water|security|loading|weighing`.
+  - requirement: `{ crop_type, quantity_quintals, duration, preferred_type }`
 - **bhusa** (v1.1): `{ residue_type, quantity, pickup_arrangement, buyer_type_preference, asking_price, available_from|null }`
   - residue_type: `bhusa|parali|sugarcane|cotton|other`; pickup_arrangement:
     `buyer_collects|farmer_delivers|either`; buyer_type_preference: `individual|commercial|either`;
@@ -405,9 +410,11 @@ prior `is_test_data = true` rows first).
 - **9 test users**, phones **9999000001–9999000009** (7 farmers + 2 Drone Didi
   operators: राधा महिला SHG @ Khurai, गायत्री ड्रोन सेवाएं @ Rahatgarh — all real,
   pre-existing pincodes; no new pincodes were needed).
-- **46 listings** across all 6 categories (land 8, equipment 10, labor 7, drone_didi 8
-  [5 offers + 3 requirements], bhusa 6, agri-inputs 7), all `is_test_data = true`.
-  `seed_log` rows: `dummy_data_khurai_v1` (38) + `dummy_data_drone_didi_v1` (8). They appear in the public homepage feed
+- **50 listings** across all 7 categories (equipment 10, labor 7, drone_didi 8, bhusa 6,
+  agri-inputs 7, warehouse 4 [3 offers incl 2 vendor, 1 requirement], land 8), all
+  `is_test_data = true`. Vendor-tagged (`listing_source='vendor'`): the 2 agri shops + 2
+  warehouse offers. `seed_log` rows: `dummy_data_khurai_v1` (38) + `dummy_data_drone_didi_v1`
+  (8) + `dummy_data_warehouse_v1` (4). They appear in the public homepage feed
   and in Browse (distance-filtered — note Sagar district spans >30 km, so a given
   pincode sees a nearby subset in the primary band and the rest in the 30–50 km
   fallback). `seed_log` row: `dummy_data_khurai_v1`.
@@ -440,3 +447,32 @@ is_admin-checked), and seeds 13 verified Sagar/Khurai contacts.
 - **Admin**: a Resources management panel (list, toggle active, add/edit form) in `/admin`.
 - All strings bilingual via i18n; area tags map the stored English area value to a
   bilingual label. Tests: `scripts/test/p3_resources.mjs`.
+
+---
+
+## 16. Density + Vendor + Warehouse + Rojgar build
+
+**Density (mobile-first):** tight global spacing (`Screen`/`Field`/`BigButton`), a single-row
+horizontal-scroll **`CategoryStrip`** (replaces the old tab grid) on Browse + homepage, **2-column**
+mobile listing cards (**1-column for Land**), a compact homepage (hero → strip → live listings →
+mission strip → govt-contacts row → articles row → about → slim footer). The help `?` moved from the
+category strip to the **listing form heading**.
+
+**Nav / category order (Land LAST):** Equipment → Labor → Drone Didi → Bhoosa/Parali → Seeds,
+Fertilizers & More → Warehouse → Experts → **Land**. Single source lists: `catalog.CATEGORIES`,
+`registry.ENABLED_CATEGORIES`, `NavBar.NAV_CATS`, homepage `FILTERS`.
+
+**Drone Didi icon:** rendered via `<CatIcon>` as a multi-rotor **quadcopter SVG** (never a
+helicopter); other categories render their emoji. Used at every icon site.
+
+**Vendor tagging (`listing_source`):** migration 0017 adds the column + threads it through
+`create_listing` (`p_listing_source`, default 'farmer'). Post flow starts with a "who are you?"
+(farmer default / vendor) step showing vendor + future-charges notes. Vendor listings show a 🏪 badge.
+Admin **Vendor Listings Report** (new RPCs `get_admin_source_stats`, `get_admin_vendor_listings`):
+farmer/vendor split, table, category + date filters, **client-side CSV export**. Existing RPCs
+untouched except the create_listing signature/warehouse CHECK.
+
+**Two mission objectives:** hero + mission strip + about section + `<title>`/meta all name **किसान की
+आय बढ़ाना (income)** and **रोज़गार के अवसर (employment)** in both languages.
+
+Migrations `0017` (listing_source) and `0018` (warehouse category CHECK + validation).

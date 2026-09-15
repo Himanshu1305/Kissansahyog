@@ -16,6 +16,15 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
   for all users, `/` is viewable while logged in, and the authenticated dashboard renders the
   global NavBar — so logged-in users can always get back to the homepage (Phase 1).
 
+## Density / Vendor / Warehouse / Rojgar build (flagged)
+
+- **Land category fencing should use the tehsil boundary** (tighter than the 30 km district
+  radius) — confirmed backlog, **not yet implemented**. Land still uses the standard 30 km +
+  30–50 km fallback like every other category.
+- **Drone Didi icon** replaced with a non-helicopter multi-rotor quadcopter SVG (`<CatIcon>`).
+  Verify on a real device that it reads clearly at small chip/card size; a real PIB/Govt Drone
+  Didi image could be swapped in later if desired.
+
 ## New in Phase 3 (intentional / flagged)
 
 - **Email verification is NOT enabled.** Email-registered users are trusted on signup without
