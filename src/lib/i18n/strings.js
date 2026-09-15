@@ -215,6 +215,7 @@ export const strings = {
   nav_menu: { hi: 'मेन्यू', en: 'Menu' },
   nav_home: { hi: 'होम', en: 'Home' },
   my_profile: { hi: 'मेरी प्रोफ़ाइल', en: 'My Profile' },
+  nav_admin: { hi: 'एडमिन', en: 'Admin' },
 
   // --- profile page ---
   profile_info_title: { hi: 'प्रोफ़ाइल जानकारी', en: 'Profile info' },

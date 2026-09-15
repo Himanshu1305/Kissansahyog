@@ -117,6 +117,12 @@ export default function NavBar() {
                   <button type="button" role="menuitem" className="block w-full px-4 py-3 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => { setMenu(false); navigate('/my') }}>
                     📋 {t('my_listings')}
                   </button>
+                  {/* Admin — only rendered for is_admin users (server still gates /admin). */}
+                  {user?.is_admin && (
+                    <button type="button" role="menuitem" data-testid="nav-admin" className="block w-full px-4 py-3 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => { setMenu(false); navigate('/admin') }}>
+                      ⚙️ {t('nav_admin')}
+                    </button>
+                  )}
                   <button type="button" role="menuitem" className="block w-full border-t border-stone-100 px-4 py-3 text-left text-sm font-semibold text-red-600 hover:bg-red-50" onClick={() => { setMenu(false); logout(); navigate('/', { replace: true }) }}>
                     🚪 {t('logout')}
                   </button>
