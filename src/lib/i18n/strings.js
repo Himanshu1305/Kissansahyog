@@ -245,10 +245,10 @@ export const strings = {
   home_cat_experts: { hi: 'विशेषज्ञ', en: 'Experts' },
 
   // --- public homepage: hero ---
-  hero_headline: { hi: 'किसान की आय बढ़ाना — हमारा लक्ष्य', en: 'Increasing farmer income — our mission' },
+  hero_headline: { hi: 'किसान की आय बढ़ाना — रोज़गार के अवसर बनाना', en: 'Increasing Farmer Income — Creating Employment Opportunities' },
   hero_sub: {
-    hi: 'ज़मीन, उपकरण, मज़दूर और अनाज के लिए सीधा संपर्क — अपने 30 किमी के दायरे में',
-    en: 'Direct connections for land, equipment, labor and produce — within 30km of you',
+    hi: 'ज़मीन, उपकरण, मज़दूर, ड्रोन दीदी, गोदाम और कृषि सामग्री — सीधा संपर्क, 30 किमी के दायरे में',
+    en: 'Land, equipment, labor, drone services, warehouse and farm supplies — direct connections within 30km',
   },
   cta_browse: { hi: 'लिस्टिंग देखें', en: 'Browse Listings' },
   cta_join: { hi: 'अभी जुड़ें', en: 'Join Now' },
@@ -303,8 +303,8 @@ export const strings = {
   // --- public homepage: mission ---
   mission_title: { hi: 'हम क्यों बने?', en: 'Why we exist' },
   mission_body: {
-    hi: 'हमारा एक ही लक्ष्य है — किसान की आय बढ़ाना। किसान सहयोग किसानों को सीधे एक-दूसरे से जोड़ता है — कोई बिचौलिया नहीं, कोई कमीशन नहीं, और भुगतान हम नहीं संभालते। यह पायलट सागर, मध्य प्रदेश से शुरू हो रहा है।',
-    en: 'We exist for one reason — to increase farmer income. Kisan Sahyog connects farmers directly with each other — no middleman, no commission, and we handle no payments. This pilot is starting in Sagar, Madhya Pradesh.',
+    hi: 'किसान सहयोग के दो मुख्य उद्देश्य हैं: पहला, किसान की आय बढ़ाना — ज़मीन, उपकरण और कृषि सामग्री तक आसान पहुँच के ज़रिए। दूसरा, रोज़गार के अवसर बनाना — कृषि सहयोगी, ड्रोन दीदी और व्यापारियों को एक मंच पर लाकर।',
+    en: 'Kisan Sahyog has two core objectives: first, increasing farmer income — through easier access to land, equipment, and farm supplies. Second, creating employment opportunities — by connecting farm workers, Drone Didi operators, and agricultural businesses on one platform.',
   },
   mission_disclaimer: {
     hi: 'किसान सहयोग एक जानकारी मंच है — हम किसी भी लेन-देन में शामिल नहीं हैं।',
