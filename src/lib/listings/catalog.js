@@ -9,7 +9,7 @@ export const LISTING_TYPES = ['offer', 'requirement']
 export const CATEGORY_META = {
   land: { icon: '🌱', hi: 'ज़मीन', en: 'Land' },
   equipment: { icon: '🚜', hi: 'मशीन', en: 'Equipment' },
-  labor: { icon: '👷', hi: 'मज़दूर', en: 'Labor' },
+  labor: { icon: '👷', hi: 'कृषि सहयोगी', en: 'Labor' },
 }
 
 export const LISTING_TYPE_META = {
@@ -18,6 +18,13 @@ export const LISTING_TYPE_META = {
 }
 
 // --- Land ---
+// Rate/price arrangement for a land listing (required at creation).
+// "fixed" reveals an amount field; the other two are self-describing.
+export const PRICE_TYPE = [
+  { value: 'fixed', hi: 'तय ठेका दर', en: 'Fixed rent amount' },
+  { value: 'sharecropping', hi: 'बटाई (% में)', en: 'Sharecropping (% split)' },
+  { value: 'negotiable', hi: 'बातचीत से', en: 'Open to negotiation' },
+]
 export const SIZE_RANGE = [
   { value: '<1', hi: '1 एकड़ से कम', en: 'Less than 1 acre' },
   { value: '1-2', hi: '1–2 एकड़', en: '1–2 acres' },
@@ -55,6 +62,8 @@ export const WORK_TYPE = [
   { value: 'sowing', hi: 'बुवाई', en: 'Sowing' },
   { value: 'harvesting', hi: 'कटाई', en: 'Harvesting' },
   { value: 'weeding', hi: 'निराई', en: 'Weeding' },
+  // Women drone operators for spraying under the govt "Drone Didi" scheme.
+  { value: 'drone_operator', hi: 'ड्रोन ऑपरेटर (ड्रोन दीदी)', en: 'Drone Operator (Drone Didi)' },
   { value: 'general', hi: 'सामान्य काम', en: 'General' },
   { value: 'other', hi: 'अन्य', en: 'Other' },
 ]

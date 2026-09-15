@@ -1,13 +1,14 @@
 // Equipment category module. details JSONB shape:
-//   { equipment_type_id, rental_basis, available_now, available_from|null, available_to|null }
+//   { equipment_type_id, rental_basis, rate_amount, available_now, available_from|null, available_to|null }
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { OptionSelect, LookupSelect, SegmentedChoice, DateField } from './fields'
+import { OptionSelect, LookupSelect, SegmentedChoice, DateField, TextField } from './fields'
 import { RENTAL_BASIS, optionLabel } from '../../lib/listings/catalog'
 
 export function initialDetails() {
   return {
     equipment_type_id: null,
     rental_basis: '',
+    rate_amount: '', // v1.1: required (was absent in v1)
     available_now: true,
     available_from: null,
     available_to: null,
@@ -23,6 +24,9 @@ export const locationLabelKey = 'field_equipment_pincode'
 
 export function validate(details, listingType, t) {
   if (!details.equipment_type_id) return t('err_equipment_type_required')
+  // v1.1: rental basis + rate amount are required together.
+  if (!details.rental_basis) return t('err_rental_basis_required')
+  if (!String(details.rate_amount || '').trim()) return t('err_equipment_rate_required')
   if (!details.available_now && details.available_from && details.available_to) {
     if (details.available_from > details.available_to) return t('err_invalid_date_range')
   }
@@ -49,6 +53,15 @@ export function Fields({ details, setDetails, extras }) {
         list={RENTAL_BASIS}
         value={details.rental_basis}
         onChange={set('rental_basis')}
+        required
+      />
+      <TextField
+        name="rate_amount"
+        label={t('field_equipment_rate')}
+        value={details.rate_amount}
+        onChange={set('rate_amount')}
+        placeholder={t('rate_amount_ph')}
+        required
       />
       <SegmentedChoice
         label={t('field_availability')}
@@ -74,7 +87,12 @@ export function summarize(listing, lang, extras) {
   const rows = []
   const type = (extras.equipmentTypes || []).find((e) => e.id === d.equipment_type_id)
   if (type) rows.push({ label: LABELS.type[lang], value: lang === 'hi' ? type.name_hi : type.name_en })
-  if (d.rental_basis) rows.push({ label: LABELS.rental[lang], value: optionLabel(RENTAL_BASIS, d.rental_basis, lang) })
+  if (d.rental_basis || (d.rate_amount && String(d.rate_amount).trim())) {
+    const parts = []
+    if (d.rental_basis) parts.push(optionLabel(RENTAL_BASIS, d.rental_basis, lang))
+    if (d.rate_amount && String(d.rate_amount).trim()) parts.push(String(d.rate_amount).trim())
+    rows.push({ label: LABELS.rate[lang], value: parts.join(' · ') })
+  }
   rows.push({
     label: LABELS.availability[lang],
     value: d.available_now
@@ -86,7 +104,7 @@ export function summarize(listing, lang, extras) {
 
 const LABELS = {
   type: { hi: 'मशीन का प्रकार', en: 'Equipment type' },
-  rental: { hi: 'किराया आधार', en: 'Rental basis' },
+  rate: { hi: 'किराया', en: 'Rental rate' },
   availability: { hi: 'उपलब्धता', en: 'Availability' },
 }
 const AVAIL_NOW = { hi: 'अभी उपलब्ध', en: 'Available now' }

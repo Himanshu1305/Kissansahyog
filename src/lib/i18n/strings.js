@@ -28,7 +28,7 @@ export const strings = {
 
   // --- welcome ---
   welcome_intro: {
-    hi: 'ज़मीन, मशीन और मज़दूरों की जानकारी अपने आस-पास खोजें।',
+    hi: 'ज़मीन, मशीन और कृषि सहयोगियों की जानकारी अपने आस-पास खोजें।',
     en: 'Find land, equipment, and labor near you.',
   },
   new_user: { hi: 'नया खाता बनाएं', en: 'Create new account' },
@@ -104,6 +104,9 @@ export const strings = {
   field_crop: { hi: 'फसल', en: 'Crop' },
   crop_any: { hi: 'कोई भी / तय नहीं', en: 'Any / not specified' },
   field_season: { hi: 'मौसम', en: 'Season' },
+  field_price_type: { hi: 'दर / कीमत', en: 'Rate / Price' },
+  field_price_amount: { hi: 'ठेका राशि', en: 'Rent amount' },
+  price_amount_ph: { hi: 'जैसे: ₹20,000 प्रति वर्ष', en: 'e.g. ₹20,000 per year' },
   field_photos: { hi: 'फोटो', en: 'Photos' },
   photos_help: { hi: 'ज़्यादा से ज़्यादा 3 फोटो (वैकल्पिक)', en: 'Up to 3 photos (optional)' },
   self_declaration_land: {
@@ -114,6 +117,7 @@ export const strings = {
   // --- equipment fields ---
   field_equipment_type: { hi: 'मशीन का प्रकार', en: 'Equipment type' },
   field_rental_basis: { hi: 'किराया किस आधार पर', en: 'Rental basis' },
+  field_equipment_rate: { hi: 'किराया राशि', en: 'Rental amount' },
   field_availability: { hi: 'उपलब्धता', en: 'Availability' },
   avail_now: { hi: 'अभी उपलब्ध', en: 'Available now' },
   avail_dates: { hi: 'तय तारीख़ों में', en: 'Specific dates' },
@@ -121,12 +125,12 @@ export const strings = {
   field_to_date: { hi: 'तारीख़ तक', en: 'To date' },
 
   // --- labor fields ---
-  field_worker_count: { hi: 'कितने मज़दूर', en: 'Number of workers' },
+  field_worker_count: { hi: 'कितने कृषि सहयोगी', en: 'Number of workers' },
   field_work_type: { hi: 'काम का प्रकार', en: 'Type of work' },
   field_rate_basis: { hi: 'दर किस आधार पर', en: 'Rate basis' },
   field_rate_amount: { hi: 'दर / मज़दूरी', en: 'Rate / wage' },
   rate_amount_ph: { hi: 'जैसे: ₹400 या बातचीत से', en: 'e.g. ₹400 or negotiable' },
-  workers_unit: { hi: 'मज़दूर', en: 'workers' },
+  workers_unit: { hi: 'कृषि सहयोगी', en: 'workers' },
 
   // --- browse ---
   browse_title: { hi: 'आस-पास खोजें', en: 'Browse nearby' },
@@ -188,8 +192,20 @@ export const strings = {
     hi: 'कृपया मशीन का प्रकार चुनें।',
     en: 'Please select the equipment type.',
   },
+  err_price_type_required: {
+    hi: 'कृपया दर / कीमत का प्रकार चुनें।',
+    en: 'Please select a rate / price option.',
+  },
+  err_rental_basis_required: {
+    hi: 'कृपया किराया किस आधार पर है, यह चुनें।',
+    en: 'Please select the rental basis.',
+  },
+  err_equipment_rate_required: {
+    hi: 'कृपया किराया राशि भरें।',
+    en: 'Please enter the rental amount.',
+  },
   err_invalid_worker_count: {
-    hi: 'मज़दूरों की संख्या 1 या उससे अधिक होनी चाहिए।',
+    hi: 'कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।',
     en: 'Number of workers must be 1 or more.',
   },
   err_invalid_date_range: {

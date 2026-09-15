@@ -89,9 +89,9 @@ export function summarize(listing, lang) {
 }
 
 const LABELS = {
-  workers: { hi: 'मज़दूर', en: 'Workers' },
+  workers: { hi: 'कृषि सहयोगी', en: 'Workers' },
   work: { hi: 'काम', en: 'Work' },
   dates: { hi: 'तारीख़ें', en: 'Dates' },
   rate: { hi: 'दर', en: 'Rate' },
 }
-const WORKERS_UNIT = { hi: 'मज़दूर', en: 'workers' }
+const WORKERS_UNIT = { hi: 'कृषि सहयोगी', en: 'workers' }

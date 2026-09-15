@@ -4,8 +4,8 @@
 import { useRef } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { Field } from '../ui'
-import { OptionSelect, MultiChips, LookupSelect } from './fields'
-import { SIZE_RANGE, ARRANGEMENT, WATER_SOURCE, SEASON, optionLabel, optionLabels } from '../../lib/listings/catalog'
+import { OptionSelect, MultiChips, LookupSelect, TextField } from './fields'
+import { SIZE_RANGE, ARRANGEMENT, WATER_SOURCE, SEASON, PRICE_TYPE, optionLabel, optionLabels } from '../../lib/listings/catalog'
 import { MAX_PHOTOS } from '../../lib/listings/photos'
 import { uploadPhotos } from '../../lib/listings/photos'
 
@@ -16,6 +16,8 @@ export function initialDetails() {
     water_source: '',
     crop_id: null,
     season: '',
+    price_type: '', // required: fixed | sharecropping | negotiable
+    price_amount: '', // only meaningful when price_type === 'fixed'
     photo_urls: [],
     __photoFiles: [], // transient: File[] pending upload, stripped before save
   }
@@ -33,6 +35,7 @@ export const locationLabelKey = 'field_land_pincode'
 // Returns a localized error string, or null.
 export function validate(details, listingType, t) {
   if (!details.size_range) return t('field_size') + ' — ' + t('required_field')
+  if (!details.price_type) return t('err_price_type_required')
   return null
 }
 
@@ -85,6 +88,23 @@ export function Fields({ details, setDetails, extras }) {
         value={details.season}
         onChange={set('season')}
       />
+      <OptionSelect
+        name="price_type"
+        label={t('field_price_type')}
+        list={PRICE_TYPE}
+        value={details.price_type}
+        onChange={set('price_type')}
+        required
+      />
+      {details.price_type === 'fixed' && (
+        <TextField
+          name="price_amount"
+          label={t('field_price_amount')}
+          value={details.price_amount}
+          onChange={set('price_amount')}
+          placeholder={t('price_amount_ph')}
+        />
+      )}
 
       <Field label={t('field_photos')} hint={t('photos_help')}>
         <input
@@ -136,6 +156,13 @@ export function summarize(listing, lang, extras) {
     if (crop) rows.push({ label: L('crop'), value: lang === 'hi' ? crop.name_hi : crop.name_en })
   }
   if (d.season) rows.push({ label: L('season'), value: optionLabel(SEASON, d.season, lang) })
+  if (d.price_type) {
+    const base = optionLabel(PRICE_TYPE, d.price_type, lang)
+    const amt = d.price_type === 'fixed' && String(d.price_amount || '').trim()
+      ? ` · ${String(d.price_amount).trim()}`
+      : ''
+    rows.push({ label: L('price'), value: base + amt })
+  }
   return rows
 }
 
@@ -145,4 +172,5 @@ const LABELS = {
   water: { hi: 'पानी का स्रोत', en: 'Water source' },
   crop: { hi: 'फसल', en: 'Crop' },
   season: { hi: 'मौसम', en: 'Season' },
+  price: { hi: 'दर / कीमत', en: 'Rate / Price' },
 }

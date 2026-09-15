@@ -10,7 +10,8 @@
     { "name_hi": "अरहर (तूअर)", "name_en": "Arhar (Tur)", "region": "sagar_mp" },
     { "name_hi": "मक्का", "name_en": "Maize", "region": "sagar_mp" },
     { "name_hi": "सरसों", "name_en": "Mustard", "region": "sagar_mp" },
-    { "name_hi": "लहसुन", "name_en": "Garlic", "region": "sagar_mp" }
+    { "name_hi": "लहसुन", "name_en": "Garlic", "region": "sagar_mp" },
+    { "name_hi": "मसूर", "name_en": "Masoor (Lentil)", "region": "sagar_mp" }
   ],
   "equipment_types": [
     { "name_hi": "ट्रैक्टर", "name_en": "Tractor" },
@@ -18,6 +19,11 @@
     { "name_hi": "थ्रेशर", "name_en": "Thresher" },
     { "name_hi": "हार्वेस्टर", "name_en": "Harvester" },
     { "name_hi": "रोटावेटर", "name_en": "Rotavator" },
+    { "name_hi": "ड्रोन", "name_en": "Drone" },
+    { "name_hi": "सीड ड्रिल", "name_en": "Seed Drill" },
+    { "name_hi": "रीपर", "name_en": "Reaper" },
+    { "name_hi": "ब्लोअर", "name_en": "Blower" },
+    { "name_hi": "एल.सी.बी. (भूसा मशीन)", "name_en": "LCB (Straw Machine)" },
     { "name_hi": "अन्य", "name_en": "Other" }
   ]
 }
