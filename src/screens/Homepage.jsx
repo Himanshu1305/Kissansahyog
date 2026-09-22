@@ -5,6 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
 import LanguageToggle from '../components/LanguageToggle'
 import CategoryStrip from '../components/CategoryStrip'
+import MandiTicker from '../components/MandiTicker'
 import { CatIcon } from '../components/CatIcon'
 import { strings } from '../lib/i18n/strings'
 import { CATEGORY_META } from '../lib/listings/catalog'
@@ -96,6 +97,9 @@ export default function Homepage() {
           </div>
         </div>
       </section>
+
+      {/* Live mandi price ticker (immediately below hero, above the strip). */}
+      <MandiTicker />
 
       {/* 2 — Category strip */}
       <div className="mx-auto max-w-5xl px-2 pt-2">

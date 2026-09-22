@@ -476,3 +476,40 @@ untouched except the create_listing signature/warehouse CHECK.
 आय बढ़ाना (income)** and **रोज़गार के अवसर (employment)** in both languages.
 
 Migrations `0017` (listing_source) and `0018` (warehouse category CHECK + validation).
+
+---
+
+## 17. Live Mandi Price Ticker
+
+A CSS-only horizontal-scrolling ticker on the homepage (immediately below the hero,
+above the category strip) showing today's wholesale prices for 10 key crops from
+Sagar-district mandis.
+
+- **Table `mandi_prices`** (migration `0019`): public read (RLS), writes only via the
+  service role. Unique on (commodity_en, market, price_date). Cached — the ticker works
+  even when the source API is down.
+- **Refresh** `scripts/refresh-mandi-prices.mjs` (`npm run refresh-prices`): dual-source —
+  Agmarknet wrapper `mandi-api.onrender.com` first, then official `data.gov.in` (public
+  demo key, no secret). Prefers Sagar district → Khurai market. Never wipes the DB on
+  failure; exits 0 so the cron never red-fails.
+- **Cron** `.github/workflows/refresh-mandi-prices.yml` — daily at 09:00 UTC (2:30 PM IST) +
+  manual `workflow_dispatch`.
+- **UI** `src/components/MandiTicker.jsx` + `src/lib/mandi/mandiApi.js`: 38px reserved height
+  (no layout shift), shimmer while loading, tries today → yesterday (amber "कल के /
+  Yesterday's" badge) → "coming soon". Fixed left label switches with language; commodity
+  and market names always Hindi. Scroll pauses on hover/tap; honours reduced-motion.
+
+> **MANUAL STEP REQUIRED (GitHub Actions secrets):** Add `VITE_SUPABASE_URL` and
+> `SUPABASE_SERVICE_ROLE_KEY` as GitHub Actions secrets at
+> https://github.com/Himanshu1305/Kissansahyog/settings/secrets/actions — this enables the
+> daily price-refresh cron. Without them the cron fails silently; the ticker still shows the
+> last cached prices (it won't break), but prices stop updating daily.
+
+> **BLOCKER — migration 0019 not yet applied to the live DB.** The Supabase Management API
+> personal access token (`SUPABASE_ACCESS_TOKEN` in `.env`) had **expired** (HTTP 401) when
+> this was built, so `npm run db migrate` could not create the table. To finish: EITHER
+> refresh that token (Supabase dashboard → Account → Access Tokens) then run `npm run db
+> migrate` + `npm run refresh-prices`; OR paste **`supabase/manual/mandi_setup.sql`** into the
+> Supabase dashboard SQL Editor (creates the table + RLS + a yesterday-dated fallback seed).
+> Until then the ticker shows the graceful "मंडी भाव जल्द उपलब्ध होंगे / Prices coming soon"
+> state — the app is not broken.

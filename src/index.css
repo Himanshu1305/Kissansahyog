@@ -20,3 +20,33 @@
     min-height: 44px;
   }
 }
+
+/* --- Mandi price ticker (CSS-only horizontal scroll) --- */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-content {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 80s linear infinite;
+}
+/* Pause on hover / tap-focus so a farmer can read a price. */
+.ticker-content:hover,
+.ticker-content:focus-within {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-content { animation: none; }
+}
+
+/* Shimmer placeholder while prices load (keeps the 38px height reserved). */
+@keyframes ticker-shimmer {
+  0%   { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+.ticker-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.14) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 400px 100%;
+  animation: ticker-shimmer 1.4s linear infinite;
+}
