@@ -1,5 +1,45 @@
 @import 'tailwindcss';
 
+/* ===== Kisan Sahyog design tokens — Saffron & Forest Green ===== */
+:root {
+  /* Primary — Forest Green (nature, growth) */
+  --ks-primary: #2d5a1b;
+  --ks-primary-dark: #1e3d12;
+  --ks-primary-light: #3d7a25;
+  --ks-primary-muted: #e8f5e0;
+
+  /* Accent — Saffron/Amber (warmth, harvest, Indian identity) */
+  --ks-accent: #f59e0b;
+  --ks-accent-dark: #d97706;
+  --ks-accent-light: #fbbf24;
+  --ks-accent-muted: #fef3c7;
+
+  /* Page background — warm cream (not clinical white) */
+  --ks-bg: #faf8f2;
+  --ks-bg-card: #ffffff;
+  --ks-bg-section: #f5f0e8;
+
+  /* Borders */
+  --ks-border: #e8e0d0;
+  --ks-border-light: #f0ece0;
+
+  /* Text */
+  --ks-text: #1a1a1a;
+  --ks-text-secondary: #555;
+  --ks-text-muted: #888;
+
+  /* Semantic */
+  --ks-offer: #e8f5e0;
+  --ks-offer-text: #1e3d12;
+  --ks-requirement: #fef3c7;
+  --ks-requirement-text: #92400e;
+  --ks-vendor: #fff7ed;
+  --ks-vendor-text: #7c2d12;
+
+  /* WhatsApp */
+  --ks-whatsapp: #25D366;
+}
+
 /* Base tweaks for a low-literacy, low-end-device audience:
    larger default tap targets, comfortable line-height, no tiny text. */
 @layer base {
@@ -8,7 +48,8 @@
     text-size-adjust: 100%;
   }
   body {
-    @apply bg-stone-50 text-stone-900 antialiased;
+    @apply text-stone-900 antialiased;
+    background-color: var(--ks-bg);
     font-family: system-ui, 'Segoe UI', Roboto, 'Noto Sans Devanagari', sans-serif;
   }
   /* Every interactive control gets a comfortable minimum height. */

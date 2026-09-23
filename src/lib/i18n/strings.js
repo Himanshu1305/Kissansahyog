@@ -995,11 +995,11 @@ export const strings = {
   rl_tomorrow: { hi: 'कल', en: 'Tomorrow' },
   rl_dayafter: { hi: 'परसों', en: 'Day after' },
   rl_third: { hi: 'नरसों', en: 'In 3 days' },
-  rain_adv_light: { hi: 'हल्की बारिश — सिंचाई की ज़रूरत नहीं, खेत के काम जारी रखें', en: 'Light rain — no irrigation needed, fieldwork can continue' },
-  rain_adv_moderate: { hi: '⚠️ सोयाबीन-उड़द की कटाई जल्द करें — छिड़काव कम से कम 48 घंटे टालें', en: '⚠️ Harvest soybean/urad soon — delay spraying by at least 48 hours' },
-  rain_adv_heavy: { hi: '⚠️ IMD पीली चेतावनी — कटाई रोकें, मज़दूर बुकिंग टालें, पशुओं को सुरक्षित स्थान पर रखें', en: '⚠️ IMD Yellow Alert — stop harvesting, delay labor, shelter animals' },
-  rain_adv_veryheavy: { hi: '🔴 IMD नारंगी चेतावनी — खेत में न जाएं, फसल को नुकसान संभव, निचले इलाकों में सतर्क रहें', en: '🔴 IMD Orange Alert — avoid fields, crop damage likely, stay alert in low-lying areas' },
-  rain_adv_extreme: { hi: '🚨 IMD लाल चेतावनी — घर में रहें, प्रशासन के निर्देशों का पालन करें', en: '🚨 IMD Red Alert — stay indoors, follow district administration orders' },
+  rain_adv_light: { hi: 'हल्की बारिश — सिंचाई की ज़रूरत नहीं, खेत का काम जारी रखें', en: 'Light rain — skip irrigation, fieldwork can continue' },
+  rain_adv_moderate: { hi: '⚠️ मध्यम बारिश — आज कटाई-छिड़काव बंद रखें, कल मौसम देखकर काम करें', en: '⚠️ Moderate rain — pause harvesting and spraying today' },
+  rain_adv_heavy: { hi: '⚠️ IMD पीली चेतावनी — भारी बारिश · कटाई बंद करें · मज़दूर बुकिंग टालें · पशुओं को सुरक्षित रखें', en: '⚠️ IMD Yellow Alert — Heavy rain · stop harvesting · delay labor · shelter animals' },
+  rain_adv_veryheavy: { hi: '🔴 IMD नारंगी चेतावनी — खेत में न जाएं · फसल को नुकसान संभव · निचले क्षेत्रों में सतर्क रहें', en: '🔴 IMD Orange Alert — avoid fields · crop damage likely · alert in low areas' },
+  rain_adv_extreme: { hi: '🚨 IMD लाल चेतावनी — घर में रहें · प्रशासन के निर्देशों का पालन करें', en: '🚨 IMD Red Alert — stay indoors · follow district administration orders' },
 
   // --- Weather + MSP info strip ---
   weather_near_you: { hi: 'आपके नज़दीक', en: 'Near you' },

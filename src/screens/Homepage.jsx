@@ -28,7 +28,7 @@ import { timeAgo } from '../lib/timeAgo'
 const FILTERS = ['all', ...ENABLED_CATEGORIES.filter((c) => c !== 'land'), 'experts', 'land']
 
 const HERO_IMG = 'https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=1200'
-const HERO_OVERLAY = 'linear-gradient(135deg, rgba(8,32,16,0.88) 0%, rgba(8,32,16,0.55) 100%)'
+const HERO_OVERLAY = 'linear-gradient(135deg, rgba(30,62,18,0.82) 0%, rgba(30,62,18,0.48) 100%)'
 // Static MSP fallback (2026-27) keyed by CACP crop_en so it matches MANDI_TO_MSP.
 const MSP_ROWS = [
   { crop_en: 'Wheat', hiKey: 'hl_crop_wheat', msp: 2585 },
@@ -114,50 +114,58 @@ export default function Homepage() {
   const locationLabel = user?.village_town || user?.pincode || t('weather_near_you')
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-[var(--ks-bg)]">
       <NavBar />
 
       {/* 1 — Live mandi ticker: the very first thing below the nav */}
       <MandiTicker />
 
       {/* 2 — Full-bleed hero */}
-      <section className="relative h-[240px] w-full overflow-hidden sm:h-[300px]">
-        <div className="absolute inset-0 bg-[#0f3d1f]" />
-        <img src={HERO_IMG} alt="" onError={(e) => { e.currentTarget.style.display = 'none' }} className="absolute inset-0 h-full w-full object-cover opacity-45" style={{ objectPosition: 'center' }} />
+      <section className="relative h-[260px] w-full overflow-hidden sm:h-[320px]">
+        <div className="absolute inset-0" style={{ background: 'var(--ks-primary)' }} />
+        <img
+          src={HERO_IMG}
+          alt=""
+          crossOrigin="anonymous"
+          loading="eager"
+          onError={(e) => { e.currentTarget.style.display = 'none' }}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: 'center', opacity: 0.55 }}
+        />
         <div className="absolute inset-0" style={{ background: HERO_OVERLAY }} />
-        <div className="relative z-10 mx-auto flex h-full max-w-4xl flex-col justify-center px-[14px] pb-12 sm:px-6">
-          <div className="inline-flex w-fit items-center gap-1 rounded-[20px] border px-[10px] py-[3px] text-[10px]" style={{ background: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.18)', color: '#b8dfc4' }}>
+        <div className="relative z-10 mx-auto flex h-full max-w-4xl flex-col justify-center px-[14px] pb-14 sm:px-6">
+          <div className="inline-flex w-fit items-center gap-1 rounded-[20px] px-3 py-1 text-[12px] font-extrabold" style={{ background: 'var(--ks-accent)', color: 'var(--ks-accent-dark)' }}>
             🌾 {t('hero_eyebrow')}
           </div>
-          <h1 className="mt-2 text-xl font-extrabold leading-tight text-white sm:text-3xl">
+          <h1 className="mt-2 mb-2 text-[28px] font-black leading-[1.2] text-white sm:text-[36px]">
             {t('hero_h1_l1')}<br />{t('hero_h1_l2')}
           </h1>
-          <p className="mt-2 text-[11px] leading-relaxed text-green-50/90 sm:text-sm">
-            {t('hero_subline1')}<br /><span className="font-semibold text-[#b8dfc4]">{t('hero_subline2')}</span>
+          <p className="text-[14px] leading-[1.6] text-[#c8e6b0]">
+            {t('hero_subline1')}<br /><span className="font-semibold">{t('hero_subline2')}</span>
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
-            <button type="button" onClick={() => selectFilter('all')} className="rounded-lg px-3 py-2 text-xs font-bold text-white sm:text-sm" style={{ background: '#3da85f' }}>
+            <button type="button" onClick={() => selectFilter('all')} className="rounded-[24px] px-5 py-2.5 text-[14px] font-extrabold" style={{ background: 'var(--ks-accent)', color: 'var(--ks-accent-dark)' }}>
               {t('hero_btn_browse')} →
             </button>
-            <button type="button" onClick={() => navigate(isLoggedIn ? '/post' : '/signup')} className="rounded-lg border border-white/40 bg-white/5 px-3 py-2 text-xs font-bold text-white sm:text-sm">
+            <button type="button" onClick={() => navigate(isLoggedIn ? '/post' : '/signup')} className="rounded-[24px] px-[18px] py-2.5 text-[14px] font-bold text-white" style={{ background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.35)' }}>
               + {t('hero_btn_new')}
             </button>
-            <a href={waHero} target="_blank" rel="noopener noreferrer" data-testid="hero-whatsapp" className="rounded-lg px-3 py-2 text-xs font-bold text-white sm:text-sm" style={{ background: '#25D366' }}>
+            <a href={waHero} target="_blank" rel="noopener noreferrer" data-testid="hero-whatsapp" className="rounded-[24px] px-4 py-2.5 text-[14px] font-bold text-white" style={{ background: 'var(--ks-whatsapp)' }}>
               📲 {t('hero_btn_whatsapp')}
             </a>
           </div>
         </div>
         {/* Stats bar pinned to the bottom of the hero */}
-        <div className="absolute inset-x-0 bottom-0 z-10 flex" style={{ background: 'rgba(8,32,16,0.75)' }}>
+        <div className="absolute inset-x-0 bottom-0 z-10 flex" style={{ background: 'rgba(20,40,12,0.80)' }}>
           {[
             { v: '50+', k: 'stat_listings_label' },
             { v: '9', k: 'stat_categories_label' },
             { v: t('stat_radius_value'), k: 'stat_radius_label' },
             { v: t('stat_free_value'), k: 'stat_free_label' },
-          ].map((s, i) => (
-            <div key={s.k} className={`flex-1 py-1.5 text-center ${i > 0 ? 'border-l' : ''}`} style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
-              <div className="text-sm font-extrabold" style={{ color: '#4caf70' }}>{s.v}</div>
-              <div className="text-[9px] font-semibold" style={{ color: '#90c8a0' }}>{t(s.k)}</div>
+          ].map((s, idx) => (
+            <div key={s.k} className="flex-1 p-2 text-center" style={{ borderRight: idx < 3 ? '1px solid rgba(255,255,255,0.12)' : 'none' }}>
+              <div className="text-[18px] font-extrabold" style={{ color: 'var(--ks-accent)' }}>{s.v}</div>
+              <div className="text-[11px] font-semibold" style={{ color: '#a0c890' }}>{t(s.k)}</div>
             </div>
           ))}
         </div>
@@ -173,15 +181,15 @@ export default function Homepage() {
       <WeatherMspStrip weather={weather} msp={msp} mandi={mandi} t={t} lang={lang} navigate={navigate} locationLabel={locationLabel} />
 
       {/* 6 — Category strip */}
-      <div className="w-full px-[14px] pt-2 sm:px-6">
+      <div className="w-full border-b border-[var(--ks-border)] bg-[var(--ks-bg-card)] px-[14px] py-1.5 sm:px-6">
         <CategoryStrip items={stripItems} active={filter} onSelect={selectFilter} />
       </div>
 
       {/* 7 — Live listings */}
       <section ref={listingsRef} className="mx-auto max-w-5xl scroll-mt-16 px-[14px] py-3 sm:px-6">
         <div className="mb-2 flex items-center justify-between">
-          <h2 className="text-base font-bold text-stone-800">{t('recent_listings_title')}</h2>
-          <button type="button" onClick={() => navigate(isLoggedIn ? '/browse' : '/signup')} className="text-xs font-bold text-green-700">{t('view_all')} →</button>
+          <h2 className="border-l-[3px] border-[var(--ks-accent)] pl-2.5 text-[16px] font-extrabold text-[var(--ks-text)]">{t('recent_listings_title')}</h2>
+          <button type="button" onClick={() => navigate(isLoggedIn ? '/browse' : '/signup')} className="text-[11px] font-bold text-[var(--ks-primary)]">{t('view_all')} →</button>
         </div>
         {loading ? (
           <p className="py-8 text-center text-stone-500">{t('loading')}</p>
@@ -209,43 +217,43 @@ export default function Homepage() {
         )}
       </section>
 
-      {/* 8 — Government contacts (amber horizontal scroll strip) */}
-      <section className="w-full border-y-2 px-[14px] py-3 sm:px-6" style={{ borderColor: '#e8a800', background: '#fffbf0' }}>
-        <h2 className="mb-2 text-base font-bold text-stone-800">{t('res_home_heading')}</h2>
+      {/* 8 — Government contacts (saffron-bordered horizontal scroll strip) */}
+      <section className="w-full px-[14px] py-3 sm:px-6" style={{ background: '#fffbf0', borderTop: '3px solid var(--ks-accent)', borderBottom: '3px solid var(--ks-accent)' }}>
+        <h2 className="mb-2 text-[13px] font-extrabold text-[var(--ks-accent-dark)]">{t('res_home_heading')}</h2>
         <div className="-mx-[14px] flex gap-2 overflow-x-auto px-[14px] sm:-mx-6 sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
             { icon: '🧪', titleKey: 'res_card_soil_title', info: 'res_card_soil_1', hash: 'soil' },
             { icon: '🐄', titleKey: 'res_card_vet_title', info: 'res_card_vet_1', hash: 'veterinary' },
             { icon: '🏛️', titleKey: 'res_card_offices_title', info: 'res_card_offices_1', hash: 'offices' },
           ].map((c) => (
-            <button key={c.hash} type="button" onClick={() => navigate(`/resources#${c.hash}`)} className="w-52 shrink-0 rounded-xl border border-amber-200 bg-white p-3 text-left active:bg-amber-50">
-              <div className="flex items-center gap-2"><span className="text-xl" aria-hidden="true">{c.icon}</span><span className="font-bold text-stone-900">{t(c.titleKey)}</span></div>
-              <div className="mt-1 text-xs text-stone-600">{t(c.info)}</div>
-              <div className="mt-1 text-xs font-bold text-amber-700">{t('res_full_details')} →</div>
+            <button key={c.hash} type="button" onClick={() => navigate(`/resources#${c.hash}`)} className="w-52 shrink-0 rounded-[10px] border p-3 text-left" style={{ background: 'var(--ks-bg-card)', borderColor: 'var(--ks-accent-muted)' }}>
+              <div className="flex items-center gap-2"><span className="text-xl" aria-hidden="true">{c.icon}</span><span className="text-[13px] font-bold text-[var(--ks-text)]">{t(c.titleKey)}</span></div>
+              <div className="mt-1 text-[11px] text-[var(--ks-text-secondary)]">{t(c.info)}</div>
+              <div className="mt-1 text-[11px] font-bold text-[var(--ks-accent-dark)]">{t('res_full_details')} →</div>
             </button>
           ))}
         </div>
       </section>
 
       {/* 9 — Government schemes (Sarkari Yojana) */}
-      <section className="mx-auto max-w-5xl px-[14px] py-3 sm:px-6">
+      <section className="w-full bg-[var(--ks-bg-card)] px-[14px] py-3 sm:px-6">
         <div className="mb-2 flex items-center justify-between">
-          <h2 className="text-base font-bold text-stone-800">{t('info_yojana_heading')}</h2>
-          <button type="button" onClick={() => navigate('/yojana')} className="text-xs font-bold text-green-700">{t('schemes_all_link')} →</button>
+          <h2 className="border-l-[3px] border-[var(--ks-accent)] pl-2.5 text-[16px] font-extrabold text-[var(--ks-text)]">{t('info_yojana_heading')}</h2>
+          <button type="button" onClick={() => navigate('/yojana')} className="text-[11px] font-bold text-[var(--ks-primary)]">{t('schemes_all_link')} →</button>
         </div>
         {schemes.length === 0 ? (
-          <button type="button" onClick={() => navigate('/yojana')} className="block w-full rounded-xl border border-dashed border-green-300 bg-green-50 p-3 text-left text-sm font-semibold text-green-900">
+          <button type="button" onClick={() => navigate('/yojana')} className="block w-full rounded-[10px] border border-dashed p-3 text-left text-[12px] font-semibold text-[var(--ks-primary)]" style={{ borderColor: 'var(--ks-primary-light)', background: 'var(--ks-primary-muted)' }}>
             {t('info_yojana_heading')} → {t('schemes_all_link')}
           </button>
         ) : (
           <div className="-mx-[14px] flex gap-2 overflow-x-auto px-[14px] sm:-mx-6 sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {schemes.map((s) => (
-              <button key={s.id} type="button" onClick={() => navigate('/yojana')} className="flex w-[148px] shrink-0 flex-col rounded-xl border border-green-200 bg-white p-2.5 text-left active:bg-green-50">
-                <span className="w-fit rounded-full bg-green-100 px-1.5 py-0.5 text-[8.5px] font-bold text-green-800">{t(`ycat_${s.category}`)}</span>
-                <span className="mt-1 text-[11px] font-bold leading-snug text-stone-900">{yojanaName(s, lang)}</span>
-                <span className="mt-0.5 text-[10px] font-bold text-green-700">{yojanaBenefit(s, lang)}</span>
-                <span className="mt-0.5 line-clamp-2 text-[9px] text-stone-500">{yojanaEligibility(s, lang)}</span>
-                <span className="mt-1 text-[9px] font-bold text-green-700">{t('yojana_howto_label')} →</span>
+              <button key={s.id} type="button" onClick={() => navigate('/yojana')} className="flex w-[148px] shrink-0 flex-col rounded-[10px] border p-2.5 text-left" style={{ background: 'var(--ks-bg-section)', borderColor: 'var(--ks-border)' }}>
+                <span className="w-fit rounded-full px-1.5 py-0.5 text-[10px] font-bold" style={{ background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' }}>{t(`ycat_${s.category}`)}</span>
+                <span className="mt-1 text-[13px] font-bold leading-snug text-[var(--ks-text)]">{yojanaName(s, lang)}</span>
+                <span className="mt-0.5 text-[12px] font-semibold text-[var(--ks-primary)]">{yojanaBenefit(s, lang)}</span>
+                <span className="mt-0.5 line-clamp-2 text-[11px] text-[var(--ks-text-secondary)]">{yojanaEligibility(s, lang)}</span>
+                <span className="mt-1 text-[11px] font-bold text-[var(--ks-primary)]">{t('yojana_howto_label')} →</span>
               </button>
             ))}
           </div>
@@ -257,19 +265,19 @@ export default function Homepage() {
 
       {/* 11 — Articles (2-card row) */}
       {articles.length > 0 && (
-        <section className="mx-auto max-w-5xl px-[14px] py-3 sm:px-6">
-          <h2 className="mb-2 text-base font-bold text-stone-800">{t('articles_title')}</h2>
+        <section className="w-full bg-[var(--ks-bg-card)] px-[14px] py-3 sm:px-6">
+          <h2 className="mb-2 border-l-[3px] border-[var(--ks-accent)] pl-2.5 text-[16px] font-extrabold text-[var(--ks-text)]">{t('articles_title')}</h2>
           <div className="grid grid-cols-2 gap-2">
             {articles.map((a) => (
-              <button key={a.id} type="button" onClick={() => navigate(`/articles/${a.slug}`)} className="overflow-hidden rounded-xl border border-stone-200 bg-white text-left active:bg-stone-50">
+              <button key={a.id} type="button" onClick={() => navigate(`/articles/${a.slug}`)} className="overflow-hidden rounded-xl border text-left" style={{ background: 'var(--ks-bg-card)', borderColor: 'var(--ks-border)' }}>
                 {a.cover_image_url ? (
-                  <img src={a.cover_image_url} alt="" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none' }} className="h-[68px] w-full bg-[#2d6a3f] object-cover" />
+                  <img src={a.cover_image_url} alt="" crossOrigin="anonymous" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none'; if (e.currentTarget.parentElement) e.currentTarget.parentElement.style.background = 'var(--ks-primary)' }} className="h-[72px] w-full object-cover" style={{ background: 'var(--ks-primary)' }} />
                 ) : (
-                  <div className="flex h-[68px] w-full items-center justify-center bg-[#2d6a3f] text-2xl">📰</div>
+                  <div className="flex h-[72px] w-full items-center justify-center text-2xl" style={{ background: 'var(--ks-primary)' }}>📰</div>
                 )}
                 <div className="p-2.5">
-                  <div className="text-[8.5px] font-bold uppercase tracking-wide text-green-700">{t('articles_nav')}</div>
-                  <div className="mt-0.5 line-clamp-2 text-[10.5px] font-bold text-stone-900">{articleTitle(a, lang)}</div>
+                  <div className="text-[10px] font-bold uppercase tracking-wide text-[var(--ks-primary)]">{t('articles_nav')}</div>
+                  <div className="mt-0.5 line-clamp-2 text-[13px] font-semibold leading-[1.35] text-[var(--ks-text)]">{articleTitle(a, lang)}</div>
                 </div>
               </button>
             ))}
@@ -278,10 +286,10 @@ export default function Homepage() {
       )}
 
       {/* 12 — Mission bar */}
-      <div className="flex w-full items-center justify-center gap-6 px-[14px] py-2.5 sm:px-6" style={{ background: '#0f3d1f' }}>
+      <div className="flex w-full items-center justify-center gap-6 px-4 py-3.5" style={{ background: 'var(--ks-primary-dark)' }}>
         {[t('mission_income'), t('mission_rojgar')].map((m, i) => (
-          <span key={i} className="flex items-center gap-1.5 text-[10.5px] font-semibold" style={{ color: '#90c8a0' }}>
-            <span className="inline-block h-[5px] w-[5px] rounded-full" style={{ background: '#4caf70' }} aria-hidden="true" />
+          <span key={i} className="flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: '#90c8a0' }}>
+            <span className="inline-block h-[6px] w-[6px] rounded-full" style={{ background: 'var(--ks-accent)' }} aria-hidden="true" />
             {i === 0 ? '🌾' : '💼'} {m}
           </span>
         ))}
@@ -299,26 +307,26 @@ export default function Homepage() {
       </section>
 
       {/* 13 — Footer */}
-      <footer className="border-t border-stone-100 bg-white py-4">
+      <footer className="py-5" style={{ background: '#111111' }}>
         <div className="mx-auto max-w-5xl px-[14px] sm:px-6">
           <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-between sm:text-left">
             <div className="flex items-center gap-2">
               <span className="text-xl" aria-hidden="true">🌾</span>
               <div>
-                <div className="font-extrabold text-green-800">{strings.app_name.hi}</div>
-                <div className="text-xs text-stone-500">{t('footer_company')}</div>
+                <div className="font-extrabold" style={{ color: 'var(--ks-accent)' }}>{strings.app_name.hi}</div>
+                <div className="text-xs" style={{ color: '#666' }}>{t('footer_company')}</div>
               </div>
             </div>
-            <nav className="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-green-800">
+            <nav className="flex flex-wrap items-center justify-center gap-3 text-[11px] font-semibold" style={{ color: '#888' }}>
               <button type="button" onClick={() => navigate('/privacy')} className="underline">{t('footer_privacy')}</button>
               <button type="button" onClick={() => navigate('/terms')} className="underline">{t('footer_terms')}</button>
               <button type="button" onClick={() => navigate('/resources')} className="underline">{t('resources_nav')}</button>
               <button type="button" onClick={() => navigate('/articles')} className="underline">{t('articles_nav')}</button>
               <a href="mailto:admin@kissansahyog.com" className="underline">{t('footer_contact')}</a>
             </nav>
-            <LanguageToggle className="rounded-lg bg-green-700 px-1" />
+            <LanguageToggle />
           </div>
-          <p className="mt-3 text-center text-xs text-stone-500">{t('footer_copyright')}</p>
+          <p className="mt-3 text-center text-xs" style={{ color: '#444' }}>{t('footer_copyright')}</p>
         </div>
       </footer>
     </div>
@@ -341,53 +349,56 @@ function WeatherMspStrip({ weather, msp, mandi, t, lang, navigate, locationLabel
   }
 
   return (
-    <div className="flex w-full border-b bg-white" style={{ borderColor: '#e8e8e4' }}>
+    <div className="flex w-full border-b" style={{ background: 'var(--ks-bg-card)', borderColor: 'var(--ks-border)' }}>
       {/* Left — Weather */}
-      <button type="button" onClick={() => navigate('/info#weather')} className="flex-1 border-r px-[14px] py-2 text-left" style={{ borderColor: '#e8e8e4' }}>
-        <div className="text-[9px] font-bold uppercase tracking-wide" style={{ color: '#888' }}>🌤️ {t('weather_title')}</div>
+      <button type="button" onClick={() => navigate('/info#weather')} className="flex-1 border-r px-[14px] py-2 text-left" style={{ borderColor: 'var(--ks-border)' }}>
+        <div className="text-[10px] font-bold uppercase tracking-wide" style={{ color: 'var(--ks-text-muted)' }}>🌤️ {t('weather_title')}</div>
         {weather === undefined ? (
           <div className="mt-1 h-4 w-20 animate-pulse rounded bg-stone-100" />
         ) : !weather ? (
-          <div className="mt-1 text-[10.5px] text-stone-500">{t('weather_unavailable')}</div>
+          <div className="mt-1 text-[12px]" style={{ color: 'var(--ks-text-secondary)' }}>{t('weather_unavailable')}</div>
         ) : (
           <>
             <div className="mt-0.5 flex items-baseline gap-1.5">
-              <span className="text-[22px] font-bold" style={{ color: '#1a5c2e' }}>{weather.current_temp != null ? `${Math.round(weather.current_temp)}°` : '—'}</span>
-              <span className="text-[10.5px]" style={{ color: '#444' }}>{cur.icon} {t(cur.key)}</span>
+              <span className="text-[28px] font-extrabold" style={{ color: 'var(--ks-primary)' }}>{weather.current_temp != null ? `${Math.round(weather.current_temp)}°` : '—'}</span>
+              <span className="text-[12px]" style={{ color: 'var(--ks-text-secondary)' }}>{cur.icon} {t(cur.key)}</span>
             </div>
-            <div className="text-[9px]" style={{ color: '#888' }}>📍 {locationLabel}</div>
+            <div className="text-[10px]" style={{ color: 'var(--ks-text-muted)' }}>📍 {locationLabel}</div>
             <div className="mt-1 flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {forecast.map((d, i) => {
                 const info = weatherInfo(d.weathercode)
                 const mm = Math.round(Number(d.precipitation_sum) || 0)
                 return (
                   <div key={i} className="shrink-0 text-center">
-                    <div className="text-[8.5px] font-bold text-stone-600">{t(wdayKey(d.date))}</div>
+                    <div className="text-[10px] font-bold" style={{ color: 'var(--ks-text-muted)' }}>{t(wdayKey(d.date))}</div>
                     <div className="text-sm" aria-hidden="true">{info.icon}</div>
-                    <div className={`text-[8.5px] font-semibold ${mm > 0 ? 'text-sky-600' : 'text-stone-400'}`}>{mm > 0 ? `${mm}${t('mm_unit')}` : '—'}</div>
+                    <div className="text-[10px] font-semibold" style={{ color: mm > 0 ? '#3b82f6' : 'var(--ks-text-muted)' }}>{mm > 0 ? `${mm}${t('mm_unit')}` : '—'}</div>
                   </div>
                 )
               })}
             </div>
           </>
         )}
-        <div className="mt-1 text-[9.5px] font-bold text-green-700">{t('weather_5day')} →</div>
+        <div className="mt-1 text-[10px] font-bold" style={{ color: 'var(--ks-primary)' }}>{t('weather_5day')} →</div>
       </button>
 
       {/* Right — MSP */}
       <button type="button" onClick={() => navigate('/info#msp')} className="flex-1 px-[14px] py-2 text-left">
-        <div className="text-[9px] font-bold uppercase tracking-wide" style={{ color: '#888' }}>📋 MSP 2026-27</div>
+        <div className="text-[10px] font-bold uppercase tracking-wide" style={{ color: 'var(--ks-text-muted)' }}>📋 MSP 2026-27</div>
         <div className="mt-0.5">
           {MSP_ROWS.map((r) => {
             const price = mspFor(r.crop_en, r.msp)
             const mp = mandiFor(r.crop_en)
             const above = mp != null && mp >= price
             return (
-              <div key={r.crop_en} className="flex items-center gap-1.5 text-[10.5px]">
-                <span className="w-12 shrink-0 text-stone-700">{t(r.hiKey)}</span>
-                <span className="font-bold text-stone-900">{fmtRs(price)}</span>
+              <div key={r.crop_en} className="flex items-center gap-1.5">
+                <span className="w-12 shrink-0 text-[12px]" style={{ color: 'var(--ks-text)' }}>{t(r.hiKey)}</span>
+                <span className="text-[13px] font-bold" style={{ color: 'var(--ks-primary)' }}>{fmtRs(price)}</span>
                 {mp != null && (
-                  <span className={`rounded px-1 py-0.5 text-[8.5px] font-bold ${above ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
+                  <span
+                    className="rounded px-1 py-0.5 text-[9px] font-bold"
+                    style={above ? { background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' } : { background: 'var(--ks-accent-muted)', color: 'var(--ks-accent-dark)' }}
+                  >
                     {above ? '↑' : '↓'} {t(above ? 'msp_above_chip' : 'msp_below_chip')}
                   </span>
                 )}
@@ -395,9 +406,9 @@ function WeatherMspStrip({ weather, msp, mandi, t, lang, navigate, locationLabel
             )
           })}
         </div>
-        {/* CRITICAL: caption BELOW the prices, small italic grey */}
-        <div data-testid="msp-caption" className="mt-[5px] text-[8.5px] italic" style={{ color: '#aaa' }}>{t('msp_caption')}</div>
-        <div className="mt-1 text-[9.5px] font-bold text-green-700">{t('msp_full_list')} →</div>
+        {/* CRITICAL: caption BELOW the prices, italic grey, margin-top 6px */}
+        <div data-testid="msp-caption" className="text-[10px] italic" style={{ color: 'var(--ks-text-muted)', marginTop: '6px' }}>{t('msp_caption')}</div>
+        <div className="mt-1 text-[10px] font-bold" style={{ color: 'var(--ks-primary)' }}>{t('msp_full_list')} →</div>
       </button>
     </div>
   )
@@ -407,31 +418,31 @@ function WeatherMspStrip({ weather, msp, mandi, t, lang, navigate, locationLabel
 function QAStrip({ sawaal, t, lang, navigate }) {
   const [open, setOpen] = useState(null)
   return (
-    <section className="mx-auto max-w-5xl px-[14px] py-3 sm:px-6">
+    <section className="w-full px-[14px] py-3 sm:px-6" style={{ background: 'var(--ks-primary-muted)', borderTop: '1px solid #c8e6b0' }}>
       <div className="mb-2 flex items-center justify-between">
-        <h2 className="text-base font-bold text-stone-800">❓ {t('qa_home_title')}</h2>
-        <button type="button" onClick={() => navigate('/sawaal')} className="text-xs font-bold text-green-700">{t('qa_all_link')} →</button>
+        <h2 className="border-l-[3px] border-[var(--ks-accent)] pl-2.5 text-[16px] font-extrabold text-[var(--ks-text)]">❓ {t('qa_home_title')}</h2>
+        <button type="button" onClick={() => navigate('/sawaal')} className="text-[11px] font-bold text-[var(--ks-primary)]">{t('qa_all_link')} →</button>
       </div>
       {sawaal.length === 0 ? (
-        <p className="mb-2 rounded-xl border border-dashed border-green-300 bg-green-50 p-3 text-center text-sm font-semibold text-green-900">{t('qa_empty_msg')}</p>
+        <p className="mb-2 rounded-[10px] border border-dashed p-3 text-center text-[13px] font-semibold text-[var(--ks-primary)]" style={{ borderColor: 'var(--ks-primary-light)', background: 'var(--ks-bg-card)' }}>{t('qa_empty_msg')}</p>
       ) : (
         <div className="space-y-2">
           {sawaal.map((q) => {
             const isOpen = open === q.id
             const ans = sawaalAnswer(q, lang).replace(/\*\*/g, '')
             return (
-              <div key={q.id} className="rounded-xl border border-stone-200 bg-white p-3">
+              <div key={q.id} className="rounded-[10px] border p-3" style={{ background: 'var(--ks-bg-card)', borderColor: '#c8e6b0' }}>
                 <button type="button" onClick={() => setOpen(isOpen ? null : q.id)} className="block w-full text-left">
-                  <div className="text-[11.5px] font-bold leading-snug text-stone-900">{sawaalQuestion(q, lang)}</div>
-                  <div className={`mt-1 text-[10.5px] leading-relaxed text-[#444] ${isOpen ? '' : 'line-clamp-2'}`}>{ans}</div>
+                  <div className="text-[14px] font-bold leading-snug" style={{ color: 'var(--ks-text)' }}>{sawaalQuestion(q, lang)}</div>
+                  <div className={`mt-1 text-[12px] leading-[1.55] ${isOpen ? '' : 'line-clamp-2'}`} style={{ color: 'var(--ks-text-secondary)' }}>{ans}</div>
                 </button>
-                <div className="mt-1 text-[8.5px] text-stone-500">{q.asked_by_village ? `📍 ${q.asked_by_village} · ` : ''}{q.answered_by || 'Team Kisan Sahyog'}</div>
+                <div className="mt-1 text-[10px]" style={{ color: 'var(--ks-text-muted)' }}>{q.asked_by_village ? `📍 ${q.asked_by_village} · ` : ''}<span className="font-bold" style={{ color: 'var(--ks-primary)' }}>{q.answered_by || 'Team Kisan Sahyog'}</span></div>
               </div>
             )
           })}
         </div>
       )}
-      <button type="button" onClick={() => navigate('/sawaal')} className="mt-2 block w-full rounded-lg bg-green-700 px-4 py-2 text-center text-sm font-bold text-white active:bg-green-800">
+      <button type="button" onClick={() => navigate('/sawaal')} className="mt-2 block w-full rounded-[24px] px-4 py-2.5 text-center text-[13px] font-bold text-white" style={{ background: 'var(--ks-primary)' }}>
         + {t('qa_ask_btn')}
       </button>
     </section>
@@ -446,8 +457,11 @@ function PublicListingCard({ listing, lang, t, extras, navigate, isLoggedIn }) {
   const isVendor = listing.listing_source === 'vendor'
   const shareUrl = `${window.location.origin}/listing/${listing.id}`
   const waHref = `https://wa.me/?text=${encodeURIComponent(generateListingMessage(listing, shareUrl, lang))}`
+  const badge = isOffer
+    ? { background: 'var(--ks-offer)', color: 'var(--ks-offer-text)' }
+    : { background: 'var(--ks-requirement)', color: 'var(--ks-requirement-text)' }
   return (
-    <div className="relative flex flex-col rounded-xl border border-stone-200 bg-white p-3">
+    <div className="relative flex flex-col rounded-xl border p-2.5" style={{ background: 'var(--ks-bg-card)', borderColor: 'var(--ks-border)' }}>
       {/* WhatsApp share — small circular button, top-right */}
       <a
         href={waHref}
@@ -457,24 +471,24 @@ function PublicListingCard({ listing, lang, t, extras, navigate, isLoggedIn }) {
         data-testid="card-whatsapp"
         aria-label="WhatsApp"
         className="absolute right-[7px] top-[7px] grid h-5 w-5 place-items-center rounded-full text-[10px] text-white"
-        style={{ background: '#25D366' }}
+        style={{ background: 'var(--ks-whatsapp)' }}
       >
         <span aria-hidden="true">📲</span>
       </a>
       <div className="mb-1 flex flex-wrap items-center gap-1 pr-6">
         <CatIcon category={listing.category} className="text-lg leading-none" />
-        <span className={`rounded-full px-1.5 py-0.5 text-[11px] font-bold ${isOffer ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>{isOffer ? t('home_offer') : t('home_requirement')}</span>
-        {isVendor && <span className="rounded-full bg-amber-100 px-1.5 py-0.5 text-[11px] font-bold text-amber-800">🏪 {t('vendor_badge')}</span>}
-        <span className="ml-auto text-[11px] text-stone-400">{timeAgo(listing.created_at, t)}</span>
+        <span className="rounded-full px-1.5 py-0.5 text-[10px] font-bold" style={badge}>{isOffer ? t('home_offer') : t('home_requirement')}</span>
+        {isVendor && <span className="rounded-full px-1.5 py-0.5 text-[10px] font-bold" style={{ background: 'var(--ks-vendor)', color: 'var(--ks-vendor-text)' }}>🏪 {t('vendor_badge')}</span>}
+        <span className="ml-auto text-[10px]" style={{ color: 'var(--ks-text-muted)' }}>{timeAgo(listing.created_at, t)}</span>
       </div>
-      <div className="text-sm font-medium leading-snug text-stone-800">
-        {rows.map((r, i) => (<span key={i}>{i > 0 && <span className="text-stone-300"> · </span>}{r.value}</span>))}
+      <div className="text-[13px] font-bold leading-snug" style={{ color: 'var(--ks-text)' }}>
+        {rows.map((r, i) => (<span key={i}>{i > 0 && <span style={{ color: 'var(--ks-border)' }}> · </span>}{r.value}</span>))}
       </div>
-      {place && <div className="mt-1 truncate text-xs text-stone-500">📍 {place}</div>}
+      {place && <div className="mt-1 truncate text-[11px]" style={{ color: 'var(--ks-text-muted)' }}>📍 {place}</div>}
       {isLoggedIn ? (
-        <button type="button" onClick={() => navigate(`/listing/${listing.id}`)} className="mt-2 rounded-lg bg-green-700 px-2 py-1.5 text-xs font-semibold text-white active:bg-green-800">{t('view_listing')} →</button>
+        <button type="button" onClick={() => navigate(`/listing/${listing.id}`)} className="mt-2 w-full rounded-lg px-2 py-1.5 text-[12px] font-semibold text-white" style={{ background: 'var(--ks-primary)' }}>{t('view_listing')} →</button>
       ) : (
-        <button type="button" onClick={() => navigate('/signup')} className="mt-2 rounded-lg border border-dashed border-green-400 bg-green-50 px-2 py-1.5 text-xs font-semibold text-green-800">🔒 {t('signup_to_contact')}</button>
+        <button type="button" onClick={() => navigate('/signup')} className="mt-2 w-full rounded-lg border border-dashed px-2 py-1.5 text-[12px] font-semibold" style={{ borderColor: 'var(--ks-primary-light)', background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' }}>🔒 {t('signup_to_contact')}</button>
       )}
     </div>
   )

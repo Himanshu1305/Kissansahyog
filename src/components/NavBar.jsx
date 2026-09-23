@@ -80,19 +80,19 @@ export default function NavBar() {
   }
 
   const catBtn = (active) =>
-    `whitespace-nowrap rounded-lg px-3 py-2 text-sm font-bold ${
-      active ? 'bg-green-700 text-white' : 'text-stone-700 hover:bg-green-50'
+    `whitespace-nowrap rounded-lg px-3 py-2 text-[12px] font-bold ${
+      active ? 'bg-[var(--ks-primary)] text-white' : 'text-[var(--ks-text-secondary)] hover:bg-[var(--ks-primary-muted)]'
     }`
 
   return (
-    <header className="sticky top-0 z-30 border-b-2 border-stone-100 bg-white shadow-sm">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2">
+    <header className="sticky top-0 z-30 border-b border-[var(--ks-border-light)] bg-white shadow-sm">
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-1.5">
         {/* Brand */}
         <button type="button" onClick={goHome} className="flex items-center gap-2 text-left">
-          <span className="text-2xl" aria-hidden="true">🌾</span>
+          <span className="text-[28px] leading-none" aria-hidden="true">🌾</span>
           <span className="leading-tight">
-            <span className="block text-base font-extrabold text-green-800">{BRAND_HI}</span>
-            <span className="block text-[11px] font-semibold text-stone-500">Kisan Sahyog</span>
+            <span className="block text-[15px] font-extrabold text-[var(--ks-primary)]">{BRAND_HI}</span>
+            <span className="block text-[10px] font-semibold text-[var(--ks-text-muted)]">Kisan Sahyog</span>
           </span>
         </button>
 
@@ -135,7 +135,7 @@ export default function NavBar() {
 
         {/* Right cluster */}
         <div className="ml-auto flex items-center gap-2 md:ml-0">
-          <LanguageToggle className="rounded-lg bg-green-700 px-1" />
+          <LanguageToggle />
           {/* Admin quick-link — visible directly in the nav for is_admin users only
               (server still gates /admin). Hidden entirely for everyone else. */}
           {isLoggedIn && user?.is_admin && (
@@ -143,8 +143,8 @@ export default function NavBar() {
               type="button"
               data-testid="nav-admin-link"
               onClick={() => navigate('/admin')}
-              className={`hidden items-center gap-1 rounded-lg border-2 px-3 py-1.5 text-sm font-bold sm:inline-flex ${
-                location.pathname.startsWith('/admin') ? 'border-green-700 bg-green-700 text-white' : 'border-green-700 text-green-800 hover:bg-green-50'
+              className={`hidden items-center gap-1 rounded-lg border-2 px-3 py-1.5 text-[12px] font-bold sm:inline-flex ${
+                location.pathname.startsWith('/admin') ? 'border-[var(--ks-primary)] bg-[var(--ks-primary)] text-white' : 'border-[var(--ks-primary)] text-[var(--ks-primary)] hover:bg-[var(--ks-primary-muted)]'
               }`}
             >
               ⚙️ {t('nav_admin')}
@@ -160,7 +160,7 @@ export default function NavBar() {
                 className="flex items-center gap-2"
                 title={user?.full_name || user?.phone || user?.email}
               >
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-green-700 text-sm font-bold text-white">
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-[var(--ks-primary)] text-sm font-bold text-white">
                   {(user?.full_name || user?.phone || user?.email || '?').trim().charAt(0).toUpperCase()}
                 </span>
                 <span className="hidden max-w-[8rem] truncate text-sm font-bold text-stone-700 sm:block">
@@ -192,14 +192,14 @@ export default function NavBar() {
               <button
                 type="button"
                 onClick={() => navigate('/login')}
-                className="rounded-lg border-2 border-green-700 px-3 py-1.5 text-sm font-bold text-green-800"
+                className="rounded-lg border-2 border-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-[var(--ks-primary)]"
               >
                 {t('nav_login')}
               </button>
               <button
                 type="button"
                 onClick={() => navigate('/signup')}
-                className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white active:bg-green-800"
+                className="rounded-lg bg-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-white"
               >
                 {t('nav_signup')}
               </button>

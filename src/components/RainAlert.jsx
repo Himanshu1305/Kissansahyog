@@ -21,22 +21,22 @@ export default function RainAlert({ alert, className = '' }) {
 
   return (
     <div className={`w-full bg-[#1c3a70] text-white ${className}`} role="status">
-      <div className="flex items-start gap-2 px-[14px] py-2">
+      <div className="flex items-start gap-2 px-[14px] py-2.5">
         <span className="mt-1.5 inline-block h-[7px] w-[7px] shrink-0 rounded-full bg-[#5b9bff]" aria-hidden="true" />
         <div className="min-w-0 flex-1">
-          <div className="text-sm font-bold leading-snug">
+          <div className="text-[13px] font-bold leading-snug">
             🌧️ {t('rl_next')} {alert.days} {daysWord} {t('rain_chance_word')}
           </div>
           {pills.length > 0 && (
-            <div className="mt-1 flex flex-wrap items-center gap-x-1 gap-y-1">
+            <div className="mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-1">
               {pills.map((p, i) => (
-                <span key={i} className="rounded-[5px] bg-white/10 px-[7px] py-0.5 text-[9.5px] font-semibold text-[#c8dcff]">
+                <span key={i} className="rounded-md bg-white/[0.12] px-2 py-[3px] text-[11px] font-semibold text-[#c8dcff]">
                   {p.label} ~{p.mm}{t('mm_unit')}
                 </span>
               ))}
             </div>
           )}
-          <div className="mt-1 text-xs font-medium leading-snug text-[#dbe6ff]">{t(ADVICE_KEY[level] || 'rain_adv_light')}</div>
+          <div className="mt-1 text-[12px] font-medium leading-snug text-[#dbe6ff]">{t(ADVICE_KEY[level] || 'rain_adv_light')}</div>
         </div>
       </div>
     </div>

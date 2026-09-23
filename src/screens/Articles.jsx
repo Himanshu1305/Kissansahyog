@@ -47,7 +47,7 @@ export default function Articles() {
                 className="flex flex-col overflow-hidden rounded-2xl border-2 border-stone-200 bg-white text-left shadow-sm active:bg-stone-50"
               >
                 {a.cover_image_url ? (
-                  <img src={a.cover_image_url} alt="" loading="lazy" className="h-36 w-full object-cover" />
+                  <img src={a.cover_image_url} alt="" crossOrigin="anonymous" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none' }} className="h-36 w-full bg-[var(--ks-primary)] object-cover" />
                 ) : (
                   <div className={`flex h-36 w-full items-center justify-center ${coverFor(a.slug)}`}>
                     <span className="text-5xl" aria-hidden="true">📰</span>

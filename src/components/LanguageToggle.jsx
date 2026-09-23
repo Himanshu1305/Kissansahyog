@@ -24,12 +24,12 @@ export default function LanguageToggle({ className = '' }) {
   }
 
   const btn = (code, label) =>
-    `px-3 py-2 text-sm font-bold rounded-lg min-h-0 ${
-      lang === code ? 'bg-white text-green-800' : 'bg-green-800/40 text-white'
+    `px-2.5 py-1.5 text-sm font-bold rounded-md min-h-0 ${
+      lang === code ? 'bg-[var(--ks-accent)] text-[var(--ks-accent-dark)]' : 'text-[var(--ks-accent-dark)]'
     }`
 
   return (
-    <div className={`flex items-center gap-1 ${className}`} role="group" aria-label={t('language')}>
+    <div className={`flex items-center gap-0.5 rounded-lg bg-[var(--ks-accent-muted)] p-0.5 ${className}`} role="group" aria-label={t('language')}>
       <button type="button" className={btn('hi')} onClick={() => choose('hi')}>
         हिं
       </button>

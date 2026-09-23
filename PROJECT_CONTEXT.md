@@ -669,3 +669,44 @@ footer.**
   "USD Vision AI LLP · मध्यप्रदेश, भारत" (not Sagar); copyright updated. Factual Sagar refs
   (mandi names, resource directory, listing districts) kept.
 - All new strings bilingual (audit 29/29); rain classifier 10/10.
+
+---
+
+## 22. Colour redesign — Saffron & Forest Green + CSP fix (`COLOUR_REDESIGN_PROMPT.md`)
+
+A palette + technical pass over the homepage and shared chrome.
+
+- **Design tokens** (`src/index.css` `:root`): `--ks-primary` `#2d5a1b` (+dark/light/muted),
+  `--ks-accent` `#f59e0b` saffron (+dark/light/muted), warm-cream page bg `--ks-bg` `#faf8f2`,
+  card/section bgs, borders, text, semantic (offer/requirement/vendor), `--ks-whatsapp`. `body`
+  background is now `var(--ks-bg)`. Components reference tokens via `var(--ks-*)` (Tailwind
+  arbitrary values / inline styles).
+- **CSP — `public/_headers`** (NEW, the critical fix): a `Content-Security-Policy` allowing
+  `img-src` from pexels/unsplash/wikimedia/pib/mpinfo/googleusercontent (+ supabase/open-meteo/
+  mandi/data.gov.in on `connect-src`). Vite copies `public/` → `dist/`, so Cloudflare Pages serves
+  it. Every external `<img>` (hero, all carousel slides, article covers on home + `/articles`) now
+  has `crossOrigin="anonymous"` + an `onError` fallback to a solid/gradient green (never a dark void).
+- **Nav:** white bar, saffron `हिं/EN` toggle pill (`LanguageToggle` restyled; callers no longer
+  pass `bg-green-700`), forest-green brand/avatar/active links.
+- **Ticker:** `--ks-primary-dark` bg, `--ks-primary` label with cream text, white commodities,
+  soft-green `#c8e6b0` prices, `--ks-primary-light` separators, 13px.
+- **Hero:** image opacity 0.55, `crossOrigin`, `loading=eager`, green fallback; overlay
+  `rgba(30,62,18,.82→.48)`; 260/320px; **saffron eyebrow** (accent bg, accent-dark text) and
+  **saffron primary CTA**; H1 28/36 weight-900; stats bar `rgba(20,40,12,.80)` with saffron numbers.
+- **Carousel:** 180/220px; slide-1 green gradient + saffron accent bar; image slides `crossOrigin`
+  + onError→green gradient; saffron dot indicator; 15/12/10px text.
+- **Rain alert:** stays blue `#1c3a70`, `10px 14px` padding, 11px pills; **advice strings rewritten**
+  (friendlier tone; moderate = "मध्यम बारिश — आज कटाई-छिड़काव बंद रखें…").
+- **Weather/MSP strip:** tokenised; 28px primary temp, location-aware, blue `#3b82f6` mm; MSP price
+  in primary, above/below chips in primary-muted/accent-muted, caption below prices (`margin-top:6px`).
+- **Category strip:** active chip forest-green + white + shadow; inactive card bg + border token; 12px.
+- **Listing cards:** cream page / white card / token border; offer/requirement/vendor badges via
+  semantic tokens; 13px title, primary price, primary "view" button; section heading gets a 3px
+  saffron left border. **Govt contacts:** 3px saffron top/bottom borders. **Schemes/Q&A/Articles:**
+  tokenised (Q&A on `--ks-primary-muted`; article covers 72px with green onError fallback).
+- **Mission bar** `--ks-primary-dark` + saffron dots (13px); **footer** `#111` with a saffron logo.
+- **Article cover images** set in the live DB via service role (parali → pexels 974314, carbon →
+  pexels 1482476).
+- **Edge-to-edge:** full-width strips span 100%; content sections `px-[14px] sm:px-6` (verified
+  cards ≤14px at 375px). Font sizes raised to the Fix-14 minimums.
+- Audit 29/29; rain 10/10; community 46/46. New tokens/strings verified; no hardcoded user copy added.

@@ -26,27 +26,27 @@ export default function MandiTicker() {
 
   const marketHi = (m) => (MARKET_KEY[m] ? t(MARKET_KEY[m]) : m)
   const item = (r, i) => (
-    <span key={`${r.commodity_en}-${r.market}-${i}`} className="whitespace-nowrap px-4">
-      <span className="font-bold">{r.commodity_hi}</span>{' '}
+    <span key={`${r.commodity_en}-${r.market}-${i}`} className="whitespace-nowrap px-4 text-[#c8e6b0]">
+      <span className="font-bold text-white">{r.commodity_hi}</span>{' '}
       <span>₹{fmt(r.modal_price)}/{t('mandi_qtl')}</span>
-      <span className="text-green-300"> · </span>
+      <span className="text-[var(--ks-primary-light)]"> · </span>
       <span>{marketHi(r.market)}</span>
-      <span className="px-2 text-green-500">|</span>
+      <span className="px-2 text-[var(--ks-primary-light)]">|</span>
     </span>
   )
 
   return (
     <div
-      className="flex h-[38px] items-stretch overflow-hidden bg-[#1a4731] text-white"
+      className="flex h-[38px] w-full items-stretch overflow-hidden bg-[var(--ks-primary-dark)] text-white"
       role="marquee"
       aria-label="Today's mandi prices"
       aria-live="off"
     >
       {/* Fixed, non-scrolling label */}
-      <div className="flex w-[140px] shrink-0 flex-col justify-center gap-0.5 border-r border-green-900/60 bg-[#143a28] px-2 text-xs font-bold leading-none">
+      <div className="flex w-[140px] shrink-0 flex-col justify-center gap-0.5 border-r border-black/20 bg-[var(--ks-primary)] px-2 text-[13px] font-bold leading-none text-[var(--ks-accent-muted)]">
         <span className="truncate">📊 {t('mandi_title')}</span>
         {state.day === 'yesterday' && (
-          <span className="w-fit rounded-full bg-amber-400 px-1.5 py-0.5 text-[10px] font-bold text-amber-950">{t('mandi_yesterday')}</span>
+          <span className="w-fit rounded-full bg-[var(--ks-accent)] px-1.5 py-0.5 text-[10px] font-bold text-[var(--ks-accent-dark)]">{t('mandi_yesterday')}</span>
         )}
       </div>
 
@@ -55,9 +55,9 @@ export default function MandiTicker() {
         {state.loading ? (
           <div className="ticker-shimmer h-full w-full" />
         ) : state.rows.length === 0 ? (
-          <div className="flex h-full items-center px-4 text-sm text-green-100">{t('mandi_soon')}</div>
+          <div className="flex h-full items-center px-4 text-[13px] text-[#c8e6b0]">{t('mandi_soon')}</div>
         ) : (
-          <div className="ticker-content h-full items-center text-sm">
+          <div className="ticker-content h-full items-center text-[13px]">
             {/* content duplicated once for a seamless -50% loop */}
             {state.rows.map(item)}
             {state.rows.map((r, i) => item(r, i + state.rows.length))}
