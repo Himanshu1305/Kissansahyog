@@ -23,6 +23,7 @@ const Admin = lazy(() => import('./screens/Admin'))
 const Articles = lazy(() => import('./screens/Articles'))
 const ArticleDetail = lazy(() => import('./screens/ArticleDetail'))
 const Resources = lazy(() => import('./screens/Resources'))
+const Info = lazy(() => import('./screens/Info'))
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -65,6 +66,7 @@ function AppRoutes() {
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:slug" element={<ArticleDetail />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/info" element={<Info />} />
 
         <Route path="/home" element={<Protected><Home /></Protected>} />
         <Route path="/browse" element={<Protected><Browse /></Protected>} />

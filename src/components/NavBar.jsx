@@ -24,6 +24,7 @@ const NAV_CATS = [
   { key: 'experts', labelKey: 'home_cat_experts' },
   { key: 'land', labelKey: 'home_cat_land' },
   { key: 'articles', labelKey: 'articles_nav' },
+  { key: 'info', labelKey: 'info_nav' },
   { key: 'resources', labelKey: 'resources_nav' },
 ]
 
@@ -40,13 +41,15 @@ export default function NavBar() {
 
   // Which nav item (if any) is currently active, for highlighting.
   const activeCat =
-    location.pathname.startsWith('/resources') ? 'resources'
+    location.pathname.startsWith('/info') ? 'info'
+      : location.pathname.startsWith('/resources') ? 'resources'
       : location.pathname.startsWith('/articles') ? 'articles'
         : location.pathname.startsWith('/experts') ? 'experts'
           : params.get('cat') || null
 
   function goCategory(key) {
     setOpen(false)
+    if (key === 'info') { navigate('/info'); return } // public page for all
     if (key === 'resources') { navigate('/resources'); return } // public page for all
     if (key === 'articles') { navigate('/articles'); return } // public page for all
     if (isLoggedIn) {

@@ -2,8 +2,8 @@ name: Refresh Mandi Prices
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # 2:30 PM IST = 09:00 UTC
-  workflow_dispatch:       # Allow manual trigger from GitHub Actions UI
+    - cron: '0 */3 * * *'   # Every 3 hours UTC (covers 2:30 PM IST and other key times); keeps weather current
+  workflow_dispatch:         # Keep manual trigger
 
 jobs:
   refresh:

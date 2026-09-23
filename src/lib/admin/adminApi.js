@@ -41,6 +41,17 @@ export const adminUpsertArticle = (actorId, a) =>
   })
 export const adminDeleteArticle = (actorId, id) => rpc('admin_delete_article', { p_actor_id: actorId, p_id: id })
 
+export const getAdminMsp = (actorId) => rpc('get_admin_msp', { p_actor_id: actorId })
+export const adminSetMspActive = (actorId, id, active) =>
+  rpc('admin_set_msp_active', { p_actor_id: actorId, p_id: id, p_active: active })
+export const adminUpsertMsp = (actorId, m) =>
+  rpc('admin_upsert_msp', {
+    p_actor_id: actorId, p_id: m.id ?? null, p_crop_en: m.crop_en, p_crop_hi: m.crop_hi,
+    p_variety: m.variety ?? null, p_season: m.season, p_marketing_year: m.marketing_year,
+    p_msp_per_quintal: Number(m.msp_per_quintal) || 0, p_increase_from_previous: m.increase_from_previous === '' || m.increase_from_previous == null ? null : Number(m.increase_from_previous),
+    p_is_active: m.is_active ?? true,
+  })
+
 export const getAdminSourceStats = (actorId) => rpc('get_admin_source_stats', { p_actor_id: actorId })
 export const getAdminVendorListings = (actorId) => rpc('get_admin_vendor_listings', { p_actor_id: actorId })
 

@@ -6,7 +6,9 @@ import NavBar from '../components/NavBar'
 import LanguageToggle from '../components/LanguageToggle'
 import CategoryStrip from '../components/CategoryStrip'
 import MandiTicker from '../components/MandiTicker'
+import WeatherWidget from '../components/WeatherWidget'
 import { CatIcon } from '../components/CatIcon'
+import { fetchWeather } from '../lib/weather/weatherApi'
 import { strings } from '../lib/i18n/strings'
 import { CATEGORY_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
@@ -34,6 +36,7 @@ export default function Homepage() {
   const [experts, setExperts] = useState([])
   const [articles, setArticles] = useState([])
   const [extras, setExtras] = useState({})
+  const [weather, setWeather] = useState(undefined) // undefined=loading, null=unavailable
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all')
 
@@ -57,6 +60,7 @@ export default function Homepage() {
         if (alive) setLoading(false)
       }
     })()
+    fetchWeather().then((w) => alive && setWeather(w)).catch(() => alive && setWeather(null))
     return () => { alive = false }
   }, [])
 
@@ -100,6 +104,29 @@ export default function Homepage() {
 
       {/* Live mandi price ticker (immediately below hero, above the strip). */}
       <MandiTicker />
+
+      {/* Weather + MSP highlight (2-col) */}
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-2 px-2 pt-2">
+        <WeatherWidget data={weather} loading={weather === undefined} compact onForecast={() => navigate('/info#weather')} />
+        <button type="button" onClick={() => navigate('/info#msp')} className="flex flex-col rounded-xl border border-green-200 bg-green-50 p-3 text-left active:bg-green-100">
+          <span className="text-sm font-bold text-green-900">{t('msp_home_title')}</span>
+          <div className="mt-1 grid grid-cols-2 gap-x-2 gap-y-0.5 text-xs text-stone-700">
+            <span>{t('hl_crop_wheat')} <b>₹2,585</b></span>
+            <span>{t('hl_crop_soybean')} <b>₹5,708</b></span>
+            <span>{t('hl_crop_gram')} <b>₹5,875</b></span>
+            <span>{t('hl_crop_lentil')} <b>₹7,000</b></span>
+          </div>
+          <span className="mt-2 text-xs font-bold text-green-700">{t('msp_full_list')} →</span>
+        </button>
+      </div>
+      <p className="mx-auto max-w-5xl px-3 pt-1 text-[11px] text-stone-500">{t('msp_home_note')}</p>
+
+      {/* Rainfall alert (only when rain is forecast in next 48h) */}
+      {weather?.rain_alert_48h && (
+        <div className="mt-2 bg-amber-400 px-3 py-1.5 text-center text-sm font-bold text-amber-950">
+          🌧️ {t('rain_alert')}
+        </div>
+      )}
 
       {/* 2 — Category strip */}
       <div className="mx-auto max-w-5xl px-2 pt-2">

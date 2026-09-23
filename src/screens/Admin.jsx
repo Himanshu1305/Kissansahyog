@@ -11,6 +11,7 @@ import {
   getAdminArticles, adminUpsertArticle, adminDeleteArticle, slugify,
   getAdminResources, adminSetResourceActive, adminUpsertResource,
   getAdminSourceStats, getAdminVendorListings,
+  getAdminMsp, adminSetMspActive, adminUpsertMsp,
 } from '../lib/admin/adminApi'
 import { CATEGORIES } from '../lib/listings/catalog'
 
@@ -46,6 +47,7 @@ export default function Admin() {
         <ExpertsPanel actorId={user.id} t={t} />
         <ArticlesPanel actorId={user.id} t={t} lang={lang} />
         <ResourcesPanel actorId={user.id} t={t} lang={lang} />
+        <MspPanel actorId={user.id} t={t} lang={lang} />
         <UsersPanel actorId={user.id} t={t} />
       </main>
     </div>
@@ -476,6 +478,100 @@ function ResourceForm({ t, initial, onCancel, onSave }) {
         <Field label={t('f_timings_hi')} htmlFor="rs_th"><TextInput id="rs_th" value={f.timings_hi || ''} onChange={set('timings_hi')} /></Field>
         <Field label={t('f_timings_en')} htmlFor="rs_te"><TextInput id="rs_te" value={f.timings_en || ''} onChange={set('timings_en')} /></Field>
         <Field label={t('f_sort_order')} htmlFor="rs_so"><TextInput id="rs_so" type="number" value={f.sort_order ?? 0} onChange={(e) => setF((s) => ({ ...s, sort_order: Number(e.target.value) }))} /></Field>
+      </div>
+      <label className="mt-3 flex items-center gap-2 font-semibold text-stone-800">
+        <input type="checkbox" checked={!!f.is_active} onChange={(e) => setF((s) => ({ ...s, is_active: e.target.checked }))} className="h-5 w-5 accent-green-700" />
+        {t('expert_active')}
+      </label>
+      <div className="mt-3 flex gap-2">
+        <button onClick={() => onSave(f)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('action_save')}</button>
+        <button onClick={onCancel} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('action_cancel')}</button>
+      </div>
+    </div>
+  )
+}
+
+const EMPTY_MSP = { crop_en: '', crop_hi: '', variety: '', season: 'rabi', marketing_year: '2026-27', msp_per_quintal: '', increase_from_previous: '', is_active: true }
+
+function MspPanel({ actorId, t, lang }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [editing, setEditing] = useState(null)
+  const load = useCallback(() => {
+    getAdminMsp(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  async function toggle(m) {
+    try { await adminSetMspActive(actorId, m.id, !m.is_active); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+  async function save(form) {
+    setErr(null)
+    try { await adminUpsertMsp(actorId, form); setEditing(null); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+  const seasonLabel = (s) => t(s === 'kharif' ? 'tab_kharif' : s === 'rabi' ? 'tab_rabi' : 'season_commercial')
+
+  return (
+    <Section
+      title={t('admin_msp')}
+      right={<button onClick={() => setEditing({ ...EMPTY_MSP })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+ {t('msp_add')}</button>}
+    >
+      {err && <Notice tone="error">{err}</Notice>}
+      {editing && <MspForm t={t} initial={editing} onCancel={() => setEditing(null)} onSave={save} seasonLabel={seasonLabel} />}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead>
+              <tr className="border-b-2 border-stone-100 text-stone-500">
+                <th className="py-2 pr-3">{t('msp_col_crop')}</th>
+                <th className="py-2 pr-3">{t('f_season')}</th>
+                <th className="py-2 pr-3">{t('f_marketing_year')}</th>
+                <th className="py-2 pr-3">{t('msp_col_price')}</th>
+                <th className="py-2 pr-3">{t('col_status')}</th>
+                <th className="py-2 pr-3">{t('col_action')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((m) => (
+                <tr key={m.id} className="border-b border-stone-100">
+                  <td className="py-2 pr-3">{(lang === 'hi' ? m.crop_hi : m.crop_en)}{m.variety ? ` (${m.variety})` : ''}</td>
+                  <td className="py-2 pr-3">{seasonLabel(m.season)}</td>
+                  <td className="py-2 pr-3">{m.marketing_year}</td>
+                  <td className="py-2 pr-3">₹{Number(m.msp_per_quintal).toLocaleString('en-IN')}</td>
+                  <td className="py-2 pr-3">{m.is_active ? t('expert_active') : t('expert_inactive')}</td>
+                  <td className="py-2 pr-3">
+                    <button onClick={() => toggle(m)} className="mr-1 rounded-lg border-2 border-stone-300 px-2 py-1 text-xs font-bold text-stone-700">{m.is_active ? t('expert_make_inactive') : t('expert_make_active')}</button>
+                    <button onClick={() => setEditing(m)} className="rounded-lg border-2 border-green-700 px-2 py-1 text-xs font-bold text-green-800">{t('action_edit')}</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </Section>
+  )
+}
+
+function MspForm({ t, initial, onCancel, onSave, seasonLabel }) {
+  const [f, setF] = useState(initial)
+  const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }))
+  return (
+    <div className="mb-4 rounded-xl border-2 border-green-200 bg-green-50 p-4">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label={t('f_crop_en')} htmlFor="msp_ce"><TextInput id="msp_ce" value={f.crop_en} onChange={set('crop_en')} /></Field>
+        <Field label={t('f_crop_hi')} htmlFor="msp_ch"><TextInput id="msp_ch" value={f.crop_hi} onChange={set('crop_hi')} /></Field>
+        <Field label={t('f_variety')} htmlFor="msp_v"><TextInput id="msp_v" value={f.variety || ''} onChange={set('variety')} /></Field>
+        <Field label={t('f_season')} htmlFor="msp_s">
+          <Select id="msp_s" value={f.season} onChange={set('season')}>
+            <option value="kharif">{seasonLabel('kharif')}</option>
+            <option value="rabi">{seasonLabel('rabi')}</option>
+            <option value="commercial">{seasonLabel('commercial')}</option>
+          </Select>
+        </Field>
+        <Field label={t('f_marketing_year')} htmlFor="msp_y"><TextInput id="msp_y" value={f.marketing_year} onChange={set('marketing_year')} /></Field>
+        <Field label={t('f_msp_price')} htmlFor="msp_p"><TextInput id="msp_p" type="number" value={f.msp_per_quintal} onChange={set('msp_per_quintal')} /></Field>
+        <Field label={t('f_increase')} htmlFor="msp_i"><TextInput id="msp_i" type="number" value={f.increase_from_previous ?? ''} onChange={set('increase_from_previous')} /></Field>
       </div>
       <label className="mt-3 flex items-center gap-2 font-semibold text-stone-800">
         <input type="checkbox" checked={!!f.is_active} onChange={(e) => setF((s) => ({ ...s, is_active: e.target.checked }))} className="h-5 w-5 accent-green-700" />

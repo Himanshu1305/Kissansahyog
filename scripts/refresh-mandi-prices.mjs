@@ -70,6 +70,53 @@ function normalizeRecord(raw) {
   };
 }
 
+async function refreshWeather() {
+  const url = 'https://api.open-meteo.com/v1/forecast' +
+    '?latitude=23.84&longitude=78.73' +
+    '&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode,precipitation_probability_max' +
+    '&current=temperature_2m,relative_humidity_2m,weathercode' +
+    '&timezone=Asia%2FKolkata&forecast_days=5';
+
+  const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
+  if (!res.ok) throw new Error(`Open-Meteo HTTP ${res.status}`);
+  const data = await res.json();
+
+  const DAYS_HI = ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'];
+  const forecast = data.daily.time.map((date, i) => ({
+    date,
+    day_hi: DAYS_HI[new Date(date).getDay()],
+    temp_max: data.daily.temperature_2m_max[i],
+    temp_min: data.daily.temperature_2m_min[i],
+    precipitation_sum: data.daily.precipitation_sum[i] || 0,
+    weathercode: data.daily.weathercode[i],
+    precipitation_probability_max: data.daily.precipitation_probability_max[i] || 0,
+  }));
+
+  const rainAlert48h = forecast.slice(0, 2).some(d => d.precipitation_sum > 3);
+
+  const row = {
+    location_name: 'Khurai/Sagar',
+    latitude: 23.84,
+    longitude: 78.73,
+    current_temp: data.current.temperature_2m,
+    current_humidity: data.current.relative_humidity_2m,
+    current_weathercode: data.current.weathercode,
+    forecast,
+    rain_alert_48h: rainAlert48h,
+    fetched_at: new Date().toISOString(),
+  };
+
+  const { error } = await supabase
+    .from('weather_cache')
+    .upsert(row, { onConflict: 'location_name' });
+
+  if (error) {
+    console.error('Weather cache update failed:', error.message);
+  } else {
+    console.log(`✓ Weather cached — ${data.current.temperature_2m}°C, rain alert: ${rainAlert48h}`);
+  }
+}
+
 async function main() {
   const today = new Date().toISOString().split('T')[0];
   let totalFetched = 0;
@@ -135,6 +182,10 @@ async function main() {
   }
 
   console.log(`\nDone: ${totalFetched} prices fetched, ${totalFailed} failed.`);
+
+  // Weather refresh runs regardless of mandi outcome (independent data source).
+  try { await refreshWeather(); } catch (e) { console.error('Weather refresh failed:', e.message); }
+
   if (totalFetched === 0 && totalFailed > 0) {
     console.log('All fetches failed — existing DB prices preserved.');
     process.exit(0); // Exit 0 so GitHub Actions does not fail the workflow

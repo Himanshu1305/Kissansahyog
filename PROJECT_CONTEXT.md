@@ -513,3 +513,37 @@ Sagar-district mandis.
 > Supabase dashboard SQL Editor (creates the table + RLS + a yesterday-dated fallback seed).
 > Until then the ticker shows the graceful "मंडी भाव जल्द उपलब्ध होंगे / Prices coming soon"
 > state — the app is not broken.
+
+---
+
+## 18. Weather widget + MSP table + /info page
+
+- **Tables (migration `0020`):** `msp_prices` (govt Minimum Support Prices, admin-managed,
+  RLS public-read of active rows; seeded with 21 verified 2026-27 CACP rows) and
+  `weather_cache` (5-day Khurai/Sagar Open-Meteo forecast, one row, RLS public-read).
+- **Weather refresh:** `refreshWeather()` appended to `scripts/refresh-mandi-prices.mjs`
+  (Open-Meteo, no key) — runs every cron pass, independent of the mandi result. The cron
+  (`.github/workflows/refresh-mandi-prices.yml`) now runs **every 3 hours** (was daily) so
+  weather stays current; mandi upserts are idempotent so 8×/day is fine.
+- **Homepage:** compact weather card + MSP highlight (2-col, below the mandi ticker) and a
+  conditional amber **rainfall alert** strip (only when a next-48h day has precip > 3mm),
+  above the category strip.
+- **`/info` page** (`src/screens/Info.jsx`, public): full 5-day weather, MSP with Kharif/Rabi
+  pill toggle, and the **MSP-vs-mandi comparison** (green "Above MSP ✓" / amber "Below MSP ⚠️"),
+  using `MANDI_TO_MSP` to normalise API commodity names → CACP crop names; a "—" is shown when
+  a crop has no MSP mapping or no mandi price. Contacts section links to /resources. Nav gains
+  "जानकारी / Info" between Articles and Resources.
+- **Admin:** MSP management panel (list, toggle active, add/edit) via new is_admin-checked RPCs
+  `get_admin_msp` / `admin_set_msp_active` / `admin_upsert_msp`.
+- **Data access:** `src/lib/weather/weatherApi.js` (+ WMO code→i18n map), `src/lib/msp/mspApi.js`.
+  Both degrade gracefully (weather → "temporarily unavailable"; MSP → empty/"—") if the tables
+  are missing — the app never crashes.
+
+> **BLOCKER (same as §17):** migrations `0019` (mandi) and `0020` (weather/MSP) are **NOT yet
+> applied to the live DB** — the Supabase Management API token (`SUPABASE_ACCESS_TOKEN`) is
+> expired (401). Until fixed, the ticker shows "coming soon", weather shows "temporarily
+> unavailable", and the /info MSP tables are empty (homepage MSP highlight still shows the
+> static 2026-27 values). **To finish:** refresh the token → `npm run db migrate` +
+> `npm run refresh-prices`; OR paste `supabase/manual/mandi_setup.sql` **and**
+> `supabase/migrations/0020_weather_msp.sql` (both idempotent) into the Supabase SQL Editor.
+> Then the GitHub Actions secrets (§17) keep weather + prices auto-refreshing every 3 hours.
