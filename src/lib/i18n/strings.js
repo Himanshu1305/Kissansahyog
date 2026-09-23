@@ -957,6 +957,17 @@ export const strings = {
   f_photo_url: { hi: 'फोटो URL', en: 'Photo URL' },
   story_add: { hi: 'नई कहानी', en: 'New story' },
 
+  // ===== Homepage v3 =====
+  stat_pilot_value: { hi: 'MP', en: 'MP' },
+  stat_pilot_label: { hi: 'पायलट क्षेत्र', en: 'Pilot area' },
+  rain_label: { hi: 'बारिश', en: 'Rain' },
+  weather_clear: { hi: 'साफ मौसम', en: 'Clear weather' },
+  rain_none_5day: { hi: 'अगले 5 दिन बारिश नहीं', en: 'No rain for 5 days' },
+  mandi_short: { hi: 'मंडी', en: 'Mandi' },
+  hero_listings_sub: { hi: '30 किमी दायरे में · मुफ़्त', en: 'Within 30 km · Free' },
+  articles_home_title: { hi: 'किसान लेख', en: 'Articles' },
+  articles_all_link: { hi: 'सभी लेख', en: 'All Articles' },
+
   // ===== Homepage v2 =====
   // --- Hero ---
   hero_eyebrow: { hi: 'किसानों का अपना डिजिटल मंच', en: "Farmers' Own Digital Platform" },

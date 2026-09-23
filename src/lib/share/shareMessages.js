@@ -49,6 +49,11 @@ export function generateArticleMessage(title, url, lang) {
   return `${title} — ${read}: ${url}`
 }
 
+// Direct wa.me URL for the hero "Share on WhatsApp" button (fixed platform message).
+export function whatsappPlatformUrl() {
+  return `https://wa.me/?text=${encodeURIComponent('किसान सहयोग — kissansahyog.com')}`
+}
+
 // Direct wa.me URL for a listing card's share button (simple fixed-format message).
 export function whatsappListingUrl(listing) {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://kissansahyog.com'

@@ -710,3 +710,38 @@ A palette + technical pass over the homepage and shared chrome.
 - **Edge-to-edge:** full-width strips span 100%; content sections `px-[14px] sm:px-6` (verified
   cards ≤14px at 375px). Font sizes raised to the Fix-14 minimums.
 - Audit 29/29; rain 10/10; community 46/46. New tokens/strings verified; no hardcoded user copy added.
+
+---
+
+## 23. Homepage V3 — full-bleed layout + 2-column hero (`HOMEPAGE_V3_PROMPT.md`)
+
+Full rewrite of `Homepage.jsx` to the approved V3 design.
+
+- **Full bleed everywhere:** no `max-w`/`mx-auto` on any section. Every section spans 100%;
+  content padding is `px-[14px] md:px-10` (14px mobile / 40px desktop) via the `PX` constant.
+- **Section order:** nav → ticker → **hero** → rain alert → category strip → **listings** →
+  weather/MSP → govt contacts → schemes → Q&A → articles → mission bar → footer. (The old
+  standalone About/disclaimer block was dropped — not part of the V3 section list.)
+- **Hero:** solid `var(--ks-primary)`, **2-column CSS grid on desktop** (`md:grid-cols-2`),
+  stacked on mobile. Left = eyebrow + 40/28px H1 + subline + 3 CTAs. Right (desktop only,
+  `hidden md:grid`) = a 2×2 grid of **live info cards** (`HeroCard`): weather temp, MSP-wheat vs
+  mandi, rain summary (days + per-day mm, or "साफ मौसम"), and listings count. Full-width **5-column
+  stats bar** below (adds "MP / पायलट क्षेत्र").
+- **Listings:** `grid-cols-2 md:grid-cols-3`, gap 12px. Card = body (badges/title/price/location/
+  time) + a footer (`border-top`) holding a full-width green "view" button **and a 34×34 inline-SVG
+  WhatsApp button** (`whatsappListingUrl`). Offer badge uses primary-muted, requirement uses
+  accent-muted, vendor `#fff7ed`.
+- **Weather/MSP:** two bordered cards side by side (`md:grid-cols-2`); 32px green temp, MSP rows with
+  per-row separators + vs-mandi chips, caption below.
+- **Govt contacts:** `md:grid-cols-3`, cards show icon + title + phone + link, saffron top/bottom borders.
+  **Schemes:** `grid-cols-2 md:grid-cols-4` with graceful empty state. **Q&A:** `md:grid-cols-2` featured
+  cards + full-width ask button, empty message when none. **Articles:** 2-col, 90px cover (crossOrigin +
+  onError → green + category emoji). **Footer:** full-bleed dark `#111`, flex row, saffron logo.
+- **WhatsApp — global rule:** every homepage WA button is an **inline `<svg>` `WaIcon`** (hero + cards) —
+  no `<img>`, no external/background-image. `WhatsAppShareButton` (listing/article detail) already used
+  inline SVG. New `whatsappPlatformUrl()` (hero) + reused `whatsappListingUrl()` (cards) live in
+  `shareMessages.js` so the Hindi share text stays out of `Homepage.jsx` (audit-safe).
+- New i18n keys (all bilingual): `stat_pilot_*`, `rain_label`, `weather_clear`, `rain_none_5day`,
+  `mandi_short`, `hero_listings_sub`, `articles_home_title`, `articles_all_link`. `TrustCarousel` stays
+  deleted. Audit 29/29. Verified at 1280px (hero 2-col, listings 3-col, 40px padding) and 375px (right
+  cards hidden, listings 2-col, 14px padding); WA buttons 34×34 inline SVG with correct wa.me URLs.
