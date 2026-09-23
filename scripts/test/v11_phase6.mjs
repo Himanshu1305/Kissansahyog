@@ -85,7 +85,7 @@ for (const f of ['land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inpu
 const dev = /[ऀ-ॿ]/
 const ALLOWED = new Set([
   'src/lib/i18n/strings.js', 'src/lib/i18n/disclaimers.js', 'src/lib/i18n/legal.js',
-  'src/lib/listings/catalog.js',
+  'src/lib/share/shareMessages.js', 'src/lib/listings/catalog.js',
   'src/components/categories/land.jsx', 'src/components/categories/equipment.jsx',
   'src/components/categories/labor.jsx', 'src/components/categories/bhusa.jsx',
   'src/components/categories/agri_inputs.jsx', 'src/components/categories/drone_didi.jsx',

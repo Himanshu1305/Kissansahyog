@@ -547,3 +547,26 @@ Sagar-district mandis.
 > `npm run refresh-prices`; OR paste `supabase/manual/mandi_setup.sql` **and**
 > `supabase/migrations/0020_weather_msp.sql` (both idempotent) into the Supabase SQL Editor.
 > Then the GitHub Actions secrets (§17) keep weather + prices auto-refreshing every 3 hours.
+
+---
+
+## 19. Polish: rich rain alert, WhatsApp share, trust carousel, Drone Didi banner
+
+- **Rich rain alert** (`src/lib/weather/rainAlert.js` + `RainAlert.jsx`): classifies the cached
+  forecast by IMD 24-h precipitation colour codes (light/moderate → blue strip; heavy → Yellow/
+  amber; very_heavy → Orange; extreme → Red), with duration (consecutive rainy days in the 48-h
+  window), total mm, and **actionable farmer advice** per level. Only heavy+ (≥64.5 mm) is called
+  an IMD "चेतावनी/alert"; light/moderate say "संभावना/expected". Replaces the old amber strip on
+  homepage + /info. Unit-tested in `scripts/test/p_rain_alert.mjs`.
+- **Edge-to-edge:** homepage/browse content uses `px-2` (≤8 px from the screen edge on mobile).
+- **MSP caption** moved below the MSP box as a small italic grey caption.
+- **WhatsApp share** (`WhatsAppShareButton.jsx` + `src/lib/share/shareMessages.js`, universal
+  `wa.me/?text=`): green button with per-category pre-filled bilingual messages on listing detail;
+  a platform message on the homepage hero; an article message on article detail.
+- **Trust carousel** (`TrustCarousel.jsx`): dependency-free auto-scroll (6 s), swipe, dots, desktop
+  arrows, pause on hover/touch, 200/280 px. Slide 1 typographic; slides 2–3 are captioned
+  **placeholders** for official PM/CM photos (marked `TODO` — add with permission); slides 4–6 use
+  gradient + caption (drop in PIB/Wikimedia/Unsplash images later). Sits below the hero, above the
+  ticker.
+- **Drone Didi banner** on the Browse drone_didi tab: drone SVG + scheme text + "सरकारी ड्रोन दीदी
+  योजना ✓" badge + a "और जानें / Learn more" link (never a helicopter — `<CatIcon>` quadcopter).

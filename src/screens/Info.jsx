@@ -3,8 +3,10 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import NavBar from '../components/NavBar'
 import WeatherWidget from '../components/WeatherWidget'
+import RainAlert from '../components/RainAlert'
 import { Spinner } from '../components/ui'
 import { fetchWeather } from '../lib/weather/weatherApi'
+import { getRainAlert } from '../lib/weather/rainAlert'
 import { fetchMsp, MANDI_TO_MSP, mspCropName } from '../lib/msp/mspApi'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 
@@ -65,9 +67,7 @@ export default function Info() {
           <section id="weather" className="scroll-mt-16 rounded-xl border border-stone-200 border-l-4 border-l-sky-400 bg-white p-3">
             <h2 className="mb-2 font-bold text-stone-800">🌤️ {t('weather_title')} — {t('weather_location')}</h2>
             <WeatherWidget data={weather} loading={weather === undefined} />
-            {weather?.rain_alert_48h && (
-              <div className="mt-2 rounded-lg bg-amber-100 px-3 py-1.5 text-sm font-bold text-amber-900">🌧️ {t('rain_alert')}</div>
-            )}
+            <RainAlert alert={getRainAlert(weather?.forecast)} className="mt-2 rounded-lg" />
           </section>
 
           {/* Section 2 — MSP */}

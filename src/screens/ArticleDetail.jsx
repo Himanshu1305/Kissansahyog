@@ -4,6 +4,8 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
 import { Notice, Spinner } from '../components/ui'
+import WhatsAppShareButton from '../components/WhatsAppShareButton'
+import { generateArticleMessage } from '../lib/share/shareMessages'
 import { fetchArticleBySlug, articleTitle, articleContent } from '../lib/articles/articlesApi'
 
 // Public article detail. Renders plain-text/markdown-ish content as paragraphs.
@@ -83,9 +85,15 @@ export default function ArticleDetail() {
 
             <div className="mt-8 border-t border-stone-200 pt-5">
               <p className="mb-2 text-sm font-semibold text-stone-600">{t('share_article')}</p>
-              <button type="button" onClick={copyLink} className="rounded-lg border-2 border-green-700 px-4 py-2 text-sm font-bold text-green-800">
-                🔗 {copied ? t('link_copied') : t('copy_link')}
-              </button>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <WhatsAppShareButton
+                  message={generateArticleMessage(articleTitle(article, lang), window.location.href, lang)}
+                  className="sm:w-auto sm:px-5"
+                />
+                <button type="button" onClick={copyLink} className="rounded-lg border-2 border-green-700 px-4 py-2 text-sm font-bold text-green-800">
+                  🔗 {copied ? t('link_copied') : t('copy_link')}
+                </button>
+              </div>
             </div>
           </article>
         )}

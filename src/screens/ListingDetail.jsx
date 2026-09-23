@@ -6,6 +6,8 @@ import { Screen, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
 import LanguageToggle from '../components/LanguageToggle'
 import { CatIcon } from '../components/CatIcon'
+import WhatsAppShareButton from '../components/WhatsAppShareButton'
+import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { fetchListingById, getListingContact } from '../lib/listings/listingsApi'
@@ -143,6 +145,12 @@ export default function ListingDetail() {
       </dl>
 
       {error && <Notice tone="error">{error}</Notice>}
+
+      {/* WhatsApp share — prominent, below the disclaimer, above the Call button. */}
+      <WhatsAppShareButton
+        message={generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)}
+        className="mb-3"
+      />
 
       {/* Phone reveal — short caution banner sits directly above the Call button. */}
       <DisclaimerBanner which="phoneReveal" className="mb-3" />

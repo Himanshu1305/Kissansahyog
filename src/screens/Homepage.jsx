@@ -7,8 +7,13 @@ import LanguageToggle from '../components/LanguageToggle'
 import CategoryStrip from '../components/CategoryStrip'
 import MandiTicker from '../components/MandiTicker'
 import WeatherWidget from '../components/WeatherWidget'
+import RainAlert from '../components/RainAlert'
+import WhatsAppShareButton from '../components/WhatsAppShareButton'
+import TrustCarousel from '../components/TrustCarousel'
+import { generatePlatformMessage } from '../lib/share/shareMessages'
 import { CatIcon } from '../components/CatIcon'
 import { fetchWeather } from '../lib/weather/weatherApi'
+import { getRainAlert } from '../lib/weather/rainAlert'
 import { strings } from '../lib/i18n/strings'
 import { CATEGORY_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
@@ -99,8 +104,14 @@ export default function Homepage() {
             <button type="button" onClick={() => selectFilter('all')} className="rounded-lg border-2 border-green-700 bg-white px-3 py-2 text-sm font-bold text-green-800 active:bg-green-50">{t('cta_browse')}</button>
             <button type="button" onClick={() => navigate(isLoggedIn ? '/post' : '/signup')} className="rounded-lg bg-green-700 px-3 py-2 text-sm font-bold text-white active:bg-green-800">{isLoggedIn ? t('post_listing') : t('cta_join')}</button>
           </div>
+          <div className="mx-auto mt-2 max-w-md">
+            <WhatsAppShareButton message={generatePlatformMessage(lang)} label={t('share_platform_label')} className="!py-1.5 text-sm" />
+          </div>
         </div>
       </section>
+
+      {/* Trust carousel — first thing after the hero, builds confidence. */}
+      <TrustCarousel />
 
       {/* Live mandi price ticker (immediately below hero, above the strip). */}
       <MandiTicker />
@@ -119,14 +130,10 @@ export default function Homepage() {
           <span className="mt-2 text-xs font-bold text-green-700">{t('msp_full_list')} →</span>
         </button>
       </div>
-      <p className="mx-auto max-w-5xl px-3 pt-1 text-[11px] text-stone-500">{t('msp_home_note')}</p>
+      <p className="mx-auto max-w-5xl px-3 pt-1 text-[11px] italic text-stone-500">{t('msp_home_note')}</p>
 
-      {/* Rainfall alert (only when rain is forecast in next 48h) */}
-      {weather?.rain_alert_48h && (
-        <div className="mt-2 bg-amber-400 px-3 py-1.5 text-center text-sm font-bold text-amber-950">
-          🌧️ {t('rain_alert')}
-        </div>
-      )}
+      {/* Rich rainfall alert (only when rain is forecast in next 48h) */}
+      <RainAlert alert={getRainAlert(weather?.forecast)} className="mt-2" />
 
       {/* 2 — Category strip */}
       <div className="mx-auto max-w-5xl px-2 pt-2">
