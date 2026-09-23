@@ -48,3 +48,11 @@ export function generateArticleMessage(title, url, lang) {
   const read = lang === 'hi' ? 'किसान सहयोग पर पढ़ें' : 'Read on Kisan Sahyog'
   return `${title} — ${read}: ${url}`
 }
+
+// Direct wa.me URL for a listing card's share button (simple fixed-format message).
+export function whatsappListingUrl(listing) {
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://kissansahyog.com'
+  const url = `${origin}/listing/${listing.id}`
+  const msg = `किसान सहयोग पर देखें — ${listing.title || listing.category}: ${url}`
+  return `https://wa.me/?text=${encodeURIComponent(msg)}`
+}

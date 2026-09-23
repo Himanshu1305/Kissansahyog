@@ -7,9 +7,8 @@ import LanguageToggle from '../components/LanguageToggle'
 import CategoryStrip from '../components/CategoryStrip'
 import MandiTicker from '../components/MandiTicker'
 import RainAlert from '../components/RainAlert'
-import TrustCarousel from '../components/TrustCarousel'
 import { CatIcon } from '../components/CatIcon'
-import { generateListingMessage, generatePlatformMessage } from '../lib/share/shareMessages'
+import { generatePlatformMessage, whatsappListingUrl } from '../lib/share/shareMessages'
 import { fetchWeather, weatherInfo, wdayKey } from '../lib/weather/weatherApi'
 import { getRainAlert } from '../lib/weather/rainAlert'
 import { fetchMsp, MANDI_TO_MSP } from '../lib/msp/mspApi'
@@ -27,8 +26,6 @@ import { timeAgo } from '../lib/timeAgo'
 // Live-listings filter (strip): All + listing categories + Experts, Land last.
 const FILTERS = ['all', ...ENABLED_CATEGORIES.filter((c) => c !== 'land'), 'experts', 'land']
 
-const HERO_IMG = 'https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=1200'
-const HERO_OVERLAY = 'linear-gradient(135deg, rgba(30,62,18,0.82) 0%, rgba(30,62,18,0.48) 100%)'
 // Static MSP fallback (2026-27) keyed by CACP crop_en so it matches MANDI_TO_MSP.
 const MSP_ROWS = [
   { crop_en: 'Wheat', hiKey: 'hl_crop_wheat', msp: 2585 },
@@ -120,19 +117,8 @@ export default function Homepage() {
       {/* 1 — Live mandi ticker: the very first thing below the nav */}
       <MandiTicker />
 
-      {/* 2 — Full-bleed hero */}
-      <section className="relative h-[260px] w-full overflow-hidden sm:h-[320px]">
-        <div className="absolute inset-0" style={{ background: 'var(--ks-primary)' }} />
-        <img
-          src={HERO_IMG}
-          alt=""
-          crossOrigin="anonymous"
-          loading="eager"
-          onError={(e) => { e.currentTarget.style.display = 'none' }}
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: 'center', opacity: 0.55 }}
-        />
-        <div className="absolute inset-0" style={{ background: HERO_OVERLAY }} />
+      {/* 2 — Hero (solid forest green, no image) */}
+      <section className="relative h-[260px] w-full overflow-hidden sm:h-[320px]" style={{ background: '#2d5a1b' }}>
         <div className="relative z-10 mx-auto flex h-full max-w-4xl flex-col justify-center px-[14px] pb-14 sm:px-6">
           <div className="inline-flex w-fit items-center gap-1 rounded-[20px] px-3 py-1 text-[12px] font-extrabold" style={{ background: 'var(--ks-accent)', color: 'var(--ks-accent-dark)' }}>
             🌾 {t('hero_eyebrow')}
@@ -171,10 +157,7 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* 3 — Trust carousel */}
-      <TrustCarousel />
-
-      {/* 4 — Rich rain alert (blue; only when rain forecast in next 48h) */}
+      {/* 3 — Rich rain alert (blue; only when rain forecast in next 48h) */}
       <RainAlert alert={getRainAlert(weather?.forecast)} />
 
       {/* 5 — Weather + MSP info strip */}
@@ -185,27 +168,29 @@ export default function Homepage() {
         <CategoryStrip items={stripItems} active={filter} onSelect={selectFilter} />
       </div>
 
-      {/* 7 — Live listings */}
-      <section ref={listingsRef} className="mx-auto max-w-5xl scroll-mt-16 px-[14px] py-3 sm:px-6">
-        <div className="mb-2 flex items-center justify-between">
+      {/* 7 — Live listings (cards truly edge-to-edge; heading padded) */}
+      <section ref={listingsRef} className="w-full scroll-mt-16 py-3">
+        <div className="mb-2 flex items-center justify-between px-[14px] sm:px-6">
           <h2 className="border-l-[3px] border-[var(--ks-accent)] pl-2.5 text-[16px] font-extrabold text-[var(--ks-text)]">{t('recent_listings_title')}</h2>
           <button type="button" onClick={() => navigate(isLoggedIn ? '/browse' : '/signup')} className="text-[11px] font-bold text-[var(--ks-primary)]">{t('view_all')} →</button>
         </div>
         {loading ? (
           <p className="py-8 text-center text-stone-500">{t('loading')}</p>
         ) : filter === 'experts' ? (
-          <ExpertGrid experts={experts} lang={lang} navigate={navigate} t={t} isLoggedIn={isLoggedIn} />
+          <div className="px-[14px] sm:px-6">
+            <ExpertGrid experts={experts} lang={lang} navigate={navigate} t={t} isLoggedIn={isLoggedIn} />
+          </div>
         ) : (
           <>
             {shownListings.length > 0 && (
-              <div className="grid grid-cols-2 gap-2 lg:grid-cols-3">
+              <div className="m-0 grid w-full grid-cols-2 gap-1.5 p-0">
                 {shownListings.map((l) => (
                   <PublicListingCard key={l.id} listing={l} lang={lang} t={t} extras={extras} navigate={navigate} isLoggedIn={isLoggedIn} />
                 ))}
               </div>
             )}
             {listings.length < 3 && (
-              <div className="mt-3 rounded-xl border border-dashed border-green-300 bg-green-50 p-4 text-center">
+              <div className="mx-[14px] mt-3 rounded-xl border border-dashed border-green-300 bg-green-50 p-4 text-center sm:mx-6">
                 <p className="font-semibold text-green-900">{t('listings_empty')}</p>
                 <button type="button" onClick={() => navigate(isLoggedIn ? '/post' : '/signup')} className="mt-3 rounded-lg bg-green-700 px-4 py-2 text-sm font-bold text-white active:bg-green-800">{t('add_listing_cta')}</button>
               </div>
@@ -455,27 +440,24 @@ function PublicListingCard({ listing, lang, t, extras, navigate, isLoggedIn }) {
   const place = [listing.village_town, listing.district].filter(Boolean).join(', ')
   const isOffer = listing.listing_type === 'offer'
   const isVendor = listing.listing_source === 'vendor'
-  const shareUrl = `${window.location.origin}/listing/${listing.id}`
-  const waHref = `https://wa.me/?text=${encodeURIComponent(generateListingMessage(listing, shareUrl, lang))}`
   const badge = isOffer
     ? { background: 'var(--ks-offer)', color: 'var(--ks-offer-text)' }
     : { background: 'var(--ks-requirement)', color: 'var(--ks-requirement-text)' }
   return (
     <div className="relative flex flex-col rounded-xl border p-2.5" style={{ background: 'var(--ks-bg-card)', borderColor: 'var(--ks-border)' }}>
-      {/* WhatsApp share — small circular button, top-right */}
+      {/* WhatsApp share — circular button, top-right */}
       <a
-        href={waHref}
+        href={whatsappListingUrl(listing)}
         target="_blank"
         rel="noopener noreferrer"
         onClick={(e) => e.stopPropagation()}
         data-testid="card-whatsapp"
-        aria-label="WhatsApp"
-        className="absolute right-[7px] top-[7px] grid h-5 w-5 place-items-center rounded-full text-[10px] text-white"
-        style={{ background: 'var(--ks-whatsapp)' }}
+        aria-label="Share on WhatsApp"
+        style={{ position: 'absolute', top: '8px', right: '8px', width: '28px', height: '28px', minHeight: '28px', borderRadius: '50%', background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '13px', textDecoration: 'none', zIndex: 10 }}
       >
-        <span aria-hidden="true">📲</span>
+        📲
       </a>
-      <div className="mb-1 flex flex-wrap items-center gap-1 pr-6">
+      <div className="mb-1 flex flex-wrap items-center gap-1 pr-8">
         <CatIcon category={listing.category} className="text-lg leading-none" />
         <span className="rounded-full px-1.5 py-0.5 text-[10px] font-bold" style={badge}>{isOffer ? t('home_offer') : t('home_requirement')}</span>
         {isVendor && <span className="rounded-full px-1.5 py-0.5 text-[10px] font-bold" style={{ background: 'var(--ks-vendor)', color: 'var(--ks-vendor-text)' }}>🏪 {t('vendor_badge')}</span>}
