@@ -13,7 +13,7 @@ export default function CategoryStrip({ items, active, onSelect }) {
               type="button"
               data-testid={`chip-${it.key}`}
               onClick={() => onSelect(it.key)}
-              className={`flex items-center gap-1 whitespace-nowrap rounded-full border px-3 py-1.5 text-[12px] ${
+              className={`flex items-center gap-1 whitespace-nowrap rounded-full border px-3.5 py-2.5 text-[13px] ${
                 on ? 'border-[var(--ks-primary)] bg-[var(--ks-primary)] font-bold text-white shadow-[0_2px_6px_rgba(45,90,27,0.25)]' : 'border-[var(--ks-border)] bg-[var(--ks-bg-card)] font-semibold text-[var(--ks-text-secondary)]'
               }`}
             >

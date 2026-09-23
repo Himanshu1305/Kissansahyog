@@ -55,9 +55,9 @@ export default function MandiTicker() {
         {state.loading ? (
           <div className="ticker-shimmer h-full w-full" />
         ) : state.rows.length === 0 ? (
-          <div className="flex h-full items-center px-4 text-[13px] text-[#c8e6b0]">{t('mandi_soon')}</div>
+          <div className="flex h-full items-center px-4 text-[14px] text-[#c8e6b0]">{t('mandi_soon')}</div>
         ) : (
-          <div className="ticker-content h-full items-center text-[13px]">
+          <div className="ticker-content h-full items-center text-[14px]">
             {/* content duplicated once for a seamless -50% loop */}
             {state.rows.map(item)}
             {state.rows.map((r, i) => item(r, i + state.rows.length))}

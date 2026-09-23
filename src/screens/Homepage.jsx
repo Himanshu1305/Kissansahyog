@@ -9,7 +9,7 @@ import MandiTicker from '../components/MandiTicker'
 import RainAlert from '../components/RainAlert'
 import { CatIcon } from '../components/CatIcon'
 import { whatsappPlatformUrl, whatsappListingUrl } from '../lib/share/shareMessages'
-import { fetchWeather, weatherInfo, wdayKey } from '../lib/weather/weatherApi'
+import { fetchWeather, weatherInfo } from '../lib/weather/weatherApi'
 import { getRainAlert } from '../lib/weather/rainAlert'
 import { fetchMsp, MANDI_TO_MSP } from '../lib/msp/mspApi'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
@@ -26,13 +26,6 @@ import { timeAgo } from '../lib/timeAgo'
 const FILTERS = ['all', ...ENABLED_CATEGORIES.filter((c) => c !== 'land'), 'experts', 'land']
 // Full-bleed content padding: 14px mobile, 40px desktop.
 const PX = 'px-[14px] md:px-10'
-// Static MSP fallback (2026-27) keyed by CACP crop_en so it matches MANDI_TO_MSP.
-const MSP_ROWS = [
-  { crop_en: 'Wheat', hiKey: 'hl_crop_wheat', msp: 2585 },
-  { crop_en: 'Soyabean', hiKey: 'hl_crop_soybean', msp: 5708 },
-  { crop_en: 'Gram', hiKey: 'hl_crop_gram', msp: 5875 },
-  { crop_en: 'Masur (Lentil)', hiKey: 'hl_crop_lentil', msp: 7000 },
-]
 const fmtRs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const mspPrice = (msp, cropEn, fallback) => {
   const row = (msp || []).find((m) => m.crop_en === cropEn)
@@ -112,7 +105,7 @@ export default function Homepage() {
   const shownListings = filter === 'all' || filter === 'experts' ? listings : listings.filter((l) => l.category === filter)
   const stripItems = FILTERS.map((f) => ({ key: f, label: f === 'all' ? t('filter_all') : homeCat(f), icon: f === 'all' ? '🔍' : <CatIcon category={f} /> }))
   const alert = getRainAlert(weather?.forecast)
-  const locationLabel = user?.village_town || user?.pincode || t('weather_near_you')
+  const locationLabel = user?.village_town || user?.district || t('weather_near_you')
 
   function selectFilter(key) {
     setFilter(key)
@@ -127,34 +120,34 @@ export default function Homepage() {
       <MandiTicker />
 
       {/* 3 — Hero (2-col desktop, stacked mobile) */}
-      <section className="w-full pt-6 md:pt-10" style={{ background: 'var(--ks-primary)' }}>
-        <div className={`grid gap-8 md:grid-cols-2 md:items-center md:gap-12 ${PX}`}>
+      <section className="flex min-h-[260px] w-full flex-col pt-8 md:min-h-[320px] md:pt-12" style={{ background: 'var(--ks-primary)' }}>
+        <div className={`grid flex-1 content-center gap-8 pb-6 md:grid-cols-2 md:items-center md:gap-12 ${PX}`}>
           {/* Left column */}
-          <div className="pb-6 md:pb-10">
-            <span className="mb-4 inline-block rounded-[20px] px-[14px] py-1 text-[12px] font-extrabold" style={{ background: 'var(--ks-accent)', color: 'var(--ks-accent-dark)' }}>
+          <div>
+            <span className="mb-4 inline-block rounded-[20px] px-[14px] py-1 text-[13px] font-extrabold" style={{ background: 'var(--ks-accent)', color: 'var(--ks-accent-dark)' }}>
               🌾 {t('hero_eyebrow')}
             </span>
-            <h1 className="mb-3 text-[28px] font-black leading-[1.15] text-white md:text-[40px]">
+            <h1 className="mb-3 text-[30px] font-black leading-[1.15] text-white md:text-[42px]">
               {t('hero_h1_l1')}<br />{t('hero_h1_l2')}
             </h1>
-            <p className="mb-7 text-[15px] leading-[1.65]" style={{ color: '#a8d4b8' }}>
+            <p className="mb-7 text-[14px] leading-[1.65] md:text-[16px]" style={{ color: '#a8d4b8' }}>
               {t('hero_subline1')}<br />{t('hero_subline2')}
             </p>
             <div className="flex flex-wrap gap-2.5">
-              <button type="button" onClick={() => selectFilter('all')} className="rounded-[24px] px-6 py-3 text-[15px] font-extrabold" style={{ background: 'var(--ks-accent)', color: 'var(--ks-accent-dark)' }}>
+              <button type="button" onClick={() => selectFilter('all')} className="rounded-[24px] px-6 py-[13px] text-[15px] font-extrabold" style={{ background: 'var(--ks-accent)', color: 'var(--ks-accent-dark)' }}>
                 {t('hero_btn_browse')} →
               </button>
-              <button type="button" onClick={() => navigate(isLoggedIn ? '/post' : '/signup')} className="rounded-[24px] px-[22px] py-3 text-[15px] font-bold text-white" style={{ background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.3)' }}>
+              <button type="button" onClick={() => navigate(isLoggedIn ? '/post' : '/signup')} className="rounded-[24px] px-[22px] py-[13px] text-[15px] font-bold text-white" style={{ background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.3)' }}>
                 + {t('hero_btn_new')}
               </button>
-              <a href={whatsappPlatformUrl()} target="_blank" rel="noopener noreferrer" data-testid="hero-whatsapp" className="inline-flex items-center rounded-[24px] px-5 py-3 text-[15px] font-bold text-white" style={{ background: 'var(--ks-whatsapp)' }}>
+              <a href={whatsappPlatformUrl()} target="_blank" rel="noopener noreferrer" data-testid="hero-whatsapp" className="inline-flex items-center rounded-[24px] px-5 py-[13px] text-[15px] font-bold text-white" style={{ background: 'var(--ks-whatsapp)' }}>
                 <WaIcon size={16} style={{ verticalAlign: '-2px', marginRight: '6px' }} />{t('hero_btn_whatsapp')}
               </a>
             </div>
           </div>
 
           {/* Right column — 2x2 live info cards (desktop only) */}
-          <div className="hidden grid-cols-2 gap-3 pb-10 md:grid">
+          <div className="hidden grid-cols-2 gap-3 md:grid">
             <HeroCard label={`🌤️ ${t('weather_title')}`} value={weather?.current_temp != null ? `${Math.round(weather.current_temp)}°` : '—'} sub={weather ? `${t(weatherInfo(weather.current_weathercode).key)} · ${locationLabel}` : t('weather_unavailable')} />
             <HeroCard label={`📋 MSP ${t('hl_crop_wheat')} 2026-27`} value={fmtRs(mspPrice(msp, 'Wheat', 2585))} sub={(() => { const mp = mandiPrice(mandi, 'Wheat'); if (mp == null) return '2026-27'; const above = mp >= mspPrice(msp, 'Wheat', 2585); return `${t('mandi_short')} ${fmtRs(mp)} · ${t(above ? 'msp_above_chip' : 'msp_below_chip')}` })()} />
             <HeroCard label={`🌧️ ${t('rain_label')}`} value={alert ? `${alert.days} ${t('rl_days')}` : t('weather_clear')} sub={alert ? `${t('rl_tomorrow')} ~${alert.perDay?.[0] ?? 0}${t('mm_unit')} · ${t('rl_dayafter')} ~${alert.perDay?.[1] ?? 0}${t('mm_unit')}` : t('rain_none_5day')} />
@@ -172,8 +165,8 @@ export default function Homepage() {
             { v: t('stat_pilot_value'), k: 'stat_pilot_label' },
           ].map((s, idx) => (
             <div key={s.k} className="flex-1 py-3 text-center" style={{ borderRight: idx < 4 ? '1px solid rgba(255,255,255,0.1)' : 'none' }}>
-              <div className="text-[18px] font-extrabold" style={{ color: 'var(--ks-accent)' }}>{s.v}</div>
-              <div className="text-[11px]" style={{ color: '#90c8a0' }}>{t(s.k)}</div>
+              <div className="text-[20px] font-extrabold" style={{ color: 'var(--ks-accent)' }}>{s.v}</div>
+              <div className="text-[12px]" style={{ color: '#90c8a0' }}>{t(s.k)}</div>
             </div>
           ))}
         </div>
@@ -219,68 +212,7 @@ export default function Homepage() {
         )}
       </section>
 
-      {/* 7 — Weather + MSP (2-col cards) */}
-      <section className={`w-full border-y border-[var(--ks-border)] bg-[var(--ks-bg-card)] py-4 md:py-6 ${PX}`}>
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* Weather */}
-          <button type="button" onClick={() => navigate('/info#weather')} className="rounded-xl border p-[18px] text-left" style={{ background: 'var(--ks-bg-card)', borderColor: 'var(--ks-border)' }}>
-            <div className="text-[10px] font-bold uppercase tracking-wide" style={{ color: 'var(--ks-text-muted)' }}>🌤️ {t('weather_title')}</div>
-            {weather === undefined ? (
-              <div className="mt-2 h-6 w-24 animate-pulse rounded bg-stone-100" />
-            ) : !weather ? (
-              <div className="mt-1 text-[13px]" style={{ color: 'var(--ks-text-secondary)' }}>{t('weather_unavailable')}</div>
-            ) : (
-              <>
-                <div className="mt-0.5 flex items-baseline gap-2">
-                  <span className="text-[32px] font-extrabold" style={{ color: 'var(--ks-primary)' }}>{weather.current_temp != null ? `${Math.round(weather.current_temp)}°` : '—'}</span>
-                  <span className="text-[13px]" style={{ color: 'var(--ks-text-secondary)' }}>{weatherInfo(weather.current_weathercode).icon} {t(weatherInfo(weather.current_weathercode).key)}</span>
-                </div>
-                <div className="text-[11px]" style={{ color: 'var(--ks-text-muted)' }}>📍 {locationLabel}</div>
-                <div className="mt-3 flex gap-3 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                  {(Array.isArray(weather.forecast) ? weather.forecast.slice(0, 5) : []).map((d, i) => {
-                    const mm = Math.round(Number(d.precipitation_sum) || 0)
-                    return (
-                      <div key={i} className="shrink-0 text-center">
-                        <div className="text-[10px] font-bold" style={{ color: 'var(--ks-text-muted)' }}>{t(wdayKey(d.date))}</div>
-                        <div className="text-base" aria-hidden="true">{weatherInfo(d.weathercode).icon}</div>
-                        <div className="text-[10px] font-semibold" style={{ color: mm > 0 ? '#3b82f6' : 'var(--ks-text-muted)' }}>{mm > 0 ? `${mm}${t('mm_unit')}` : '—'}</div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </>
-            )}
-            <div className="mt-2 text-[11px] font-bold" style={{ color: 'var(--ks-primary)' }}>{t('weather_5day')} →</div>
-          </button>
-
-          {/* MSP */}
-          <button type="button" onClick={() => navigate('/info#msp')} className="rounded-xl border p-[18px] text-left" style={{ background: 'var(--ks-bg-card)', borderColor: 'var(--ks-border)' }}>
-            <div className="text-[10px] font-bold uppercase tracking-wide" style={{ color: 'var(--ks-text-muted)' }}>📋 MSP 2026-27</div>
-            <div className="mt-1">
-              {MSP_ROWS.map((r) => {
-                const price = mspPrice(msp, r.crop_en, r.msp)
-                const mp = mandiPrice(mandi, r.crop_en)
-                const above = mp != null && mp >= price
-                return (
-                  <div key={r.crop_en} className="flex items-center gap-2 border-b py-1.5 last:border-b-0" style={{ borderColor: 'var(--ks-border-light)' }}>
-                    <span className="flex-1 text-[13px]" style={{ color: 'var(--ks-text)' }}>{t(r.hiKey)}</span>
-                    <span className="text-[13px] font-bold" style={{ color: 'var(--ks-primary)' }}>{fmtRs(price)}</span>
-                    {mp != null && (
-                      <span className="rounded px-1.5 py-0.5 text-[9px] font-bold" style={above ? { background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' } : { background: 'var(--ks-accent-muted)', color: 'var(--ks-accent-dark)' }}>
-                        {above ? '↑' : '↓'} {t(above ? 'msp_above_chip' : 'msp_below_chip')}
-                      </span>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-            <div data-testid="msp-caption" className="mt-1.5 text-[10px] italic" style={{ color: 'var(--ks-text-muted)' }}>{t('msp_caption')}</div>
-            <div className="mt-1 text-[11px] font-bold" style={{ color: 'var(--ks-primary)' }}>{t('msp_full_list')} →</div>
-          </button>
-        </div>
-      </section>
-
-      {/* 8 — Government contacts (amber strip, 3-col desktop) */}
+      {/* 7 — Government contacts (amber strip, 3-col desktop) */}
       <section className={`w-full py-5 ${PX}`} style={{ background: '#fffbf0', borderTop: '3px solid var(--ks-accent)', borderBottom: '3px solid var(--ks-accent)' }}>
         <h2 className="mb-3.5 text-[14px] font-extrabold" style={{ color: '#7c3800' }}>🏛️ {t('res_home_heading')}</h2>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -291,9 +223,9 @@ export default function Homepage() {
           ].map((c) => (
             <button key={c.hash} type="button" onClick={() => navigate(`/resources#${c.hash}`)} className="rounded-[10px] border p-3.5 text-left" style={{ background: '#fff', borderColor: '#fde68a' }}>
               <div className="text-[22px]" aria-hidden="true">{c.icon}</div>
-              <div className="mt-1.5 text-[13px] font-bold" style={{ color: 'var(--ks-text)' }}>{t(c.titleKey)}</div>
-              <div className="text-[14px] font-bold" style={{ color: 'var(--ks-primary)' }}>☎ {c.phone}</div>
-              <div className="mt-1.5 text-[11px]" style={{ color: 'var(--ks-accent-dark)' }}>{t('res_full_details')} →</div>
+              <div className="mt-1.5 text-[14px] font-bold" style={{ color: 'var(--ks-text)' }}>{t(c.titleKey)}</div>
+              <div className="text-[15px] font-bold" style={{ color: 'var(--ks-primary)' }}>☎ {c.phone}</div>
+              <div className="mt-1.5 text-[12px]" style={{ color: 'var(--ks-accent-dark)' }}>{t('res_full_details')} →</div>
             </button>
           ))}
         </div>
@@ -315,8 +247,8 @@ export default function Homepage() {
               <button key={s.id} type="button" onClick={() => navigate('/yojana')} className="flex flex-col rounded-[12px] border p-3.5 text-left" style={{ background: 'var(--ks-bg-card)', borderColor: 'var(--ks-border)' }}>
                 <span className="w-fit rounded-full px-1.5 py-0.5 text-[9px] font-bold" style={{ background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' }}>{t(`ycat_${s.category}`)}</span>
                 <span className="mt-1 text-[14px] font-bold leading-snug text-[var(--ks-text)]">{yojanaName(s, lang)}</span>
-                <span className="mt-0.5 text-[12px] font-semibold text-[var(--ks-primary)]">{yojanaBenefit(s, lang)}</span>
-                <span className="mt-0.5 line-clamp-2 text-[11px] leading-[1.4] text-[var(--ks-text-secondary)]">{yojanaEligibility(s, lang)}</span>
+                <span className="mt-0.5 text-[13px] font-semibold text-[var(--ks-primary)]">{yojanaBenefit(s, lang)}</span>
+                <span className="mt-0.5 line-clamp-2 text-[12px] leading-[1.4] text-[var(--ks-text-secondary)]">{yojanaEligibility(s, lang)}</span>
                 <span className="mt-2 text-[11px] font-bold text-[var(--ks-primary)]">{t('yojana_howto_label')} →</span>
               </button>
             ))}
@@ -359,7 +291,7 @@ export default function Homepage() {
                   <div className="flex h-[90px] w-full items-center justify-center text-2xl" style={{ background: 'var(--ks-primary)' }}>{a.slug?.includes('carbon') ? '🌿' : '🌾'}</div>
                 )}
                 <div className="p-3">
-                  <div className="text-[9px] font-bold uppercase tracking-[0.5px] text-[var(--ks-primary)]">{t('articles_nav')}</div>
+                  <div className="text-[11px] font-bold uppercase tracking-[0.5px] text-[var(--ks-primary)]">{t('articles_nav')}</div>
                   <div className="mt-1 line-clamp-2 text-[14px] font-semibold leading-[1.35] text-[var(--ks-text)]">{articleTitle(a, lang)}</div>
                 </div>
               </button>
@@ -371,7 +303,7 @@ export default function Homepage() {
       {/* 12 — Mission bar */}
       <div className="flex w-full items-center justify-center gap-6 px-4 py-3.5" style={{ background: 'var(--ks-primary-dark)' }}>
         {[t('mission_income'), t('mission_rojgar')].map((m, i) => (
-          <span key={i} className="flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: '#90c8a0' }}>
+          <span key={i} className="flex items-center gap-1.5 text-[14px] font-semibold" style={{ color: '#90c8a0' }}>
             <span className="inline-block h-[6px] w-[6px] rounded-full" style={{ background: 'var(--ks-accent)' }} aria-hidden="true" />
             {i === 0 ? '🌾' : '💼'} {m}
           </span>
@@ -381,12 +313,12 @@ export default function Homepage() {
       {/* 13 — Footer (full bleed) */}
       <footer className={`flex w-full flex-wrap items-center justify-between gap-4 py-6 ${PX}`} style={{ background: '#111111' }}>
         <div>
-          <div className="text-[15px] font-bold" style={{ color: 'var(--ks-accent)' }}>🌾 {strings.app_name.hi}</div>
+          <div className="text-[16px] font-bold" style={{ color: 'var(--ks-accent)' }}>🌾 {strings.app_name.hi}</div>
           <div className="text-[11px]" style={{ color: '#555' }}>{t('footer_company')}</div>
-          <div className="mt-1 text-[10px]" style={{ color: '#444' }}>{t('footer_copyright')}</div>
+          <div className="mt-1 text-[11px]" style={{ color: '#444' }}>{t('footer_copyright')}</div>
         </div>
         <div className="flex items-center gap-4">
-          <nav className="flex flex-wrap items-center gap-3 text-[11px]" style={{ color: '#666' }}>
+          <nav className="flex flex-wrap items-center gap-3 text-[12px]" style={{ color: '#666' }}>
             <button type="button" onClick={() => navigate('/privacy')}>{t('footer_privacy')}</button>
             <button type="button" onClick={() => navigate('/terms')}>{t('footer_terms')}</button>
             <button type="button" onClick={() => navigate('/resources')}>{t('resources_nav')}</button>
@@ -404,9 +336,9 @@ export default function Homepage() {
 function HeroCard({ label, value, sub }) {
   return (
     <div className="rounded-[12px] p-4" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
-      <div className="mb-1.5 text-[11px] uppercase tracking-[0.4px]" style={{ color: '#90c8a0' }}>{label}</div>
-      <div className="mb-[3px] text-[24px] font-extrabold text-white">{value}</div>
-      <div className="text-[12px]" style={{ color: '#a8d4b8' }}>{sub}</div>
+      <div className="mb-1.5 text-[12px] uppercase tracking-[0.4px]" style={{ color: '#90c8a0' }}>{label}</div>
+      <div className="mb-[3px] text-[26px] font-extrabold text-white">{value}</div>
+      <div className="text-[13px]" style={{ color: '#a8d4b8' }}>{sub}</div>
     </div>
   )
 }
@@ -418,12 +350,12 @@ function QACard({ q, t, lang }) {
   return (
     <div className="rounded-[12px] border p-3.5" style={{ background: 'var(--ks-bg-card)', borderColor: '#c8e6b0' }}>
       <button type="button" onClick={() => setOpen((v) => !v)} className="block w-full text-left">
-        <div className="mb-2 text-[14px] font-bold leading-[1.35]" style={{ color: 'var(--ks-text)' }}>{sawaalQuestion(q, lang)}</div>
-        <div className={`text-[12px] leading-[1.6] ${open ? '' : 'line-clamp-3'}`} style={{ color: 'var(--ks-text-secondary)' }}>{ans}</div>
+        <div className="mb-2 text-[15px] font-bold leading-[1.35]" style={{ color: 'var(--ks-text)' }}>{sawaalQuestion(q, lang)}</div>
+        <div className={`text-[13px] leading-[1.6] ${open ? '' : 'line-clamp-3'}`} style={{ color: 'var(--ks-text-secondary)' }}>{ans}</div>
       </button>
       <div className="mt-2 flex items-center justify-between">
-        <span className="text-[10px]" style={{ color: 'var(--ks-text-muted)' }}>{q.asked_by_village ? `📍 ${q.asked_by_village}` : ''}</span>
-        <span className="text-[10px] font-bold" style={{ color: 'var(--ks-primary)' }}>{q.answered_by || 'Team Kisan Sahyog'}</span>
+        <span className="text-[11px]" style={{ color: 'var(--ks-text-muted)' }}>{q.asked_by_village ? `📍 ${q.asked_by_village}` : ''}</span>
+        <span className="text-[11px] font-bold" style={{ color: 'var(--ks-primary)' }}>{q.answered_by || 'Team Kisan Sahyog'}</span>
       </div>
     </div>
   )
@@ -443,19 +375,19 @@ function PublicListingCard({ listing, lang, t, extras, navigate, isLoggedIn }) {
       <div className="flex-1 p-3">
         <div className="mb-1.5 flex flex-wrap items-center gap-1">
           <CatIcon category={listing.category} className="text-base leading-none" />
-          <span className="rounded-md px-[7px] py-0.5 text-[10px] font-bold" style={badge}>{isOffer ? t('home_offer') : t('home_requirement')}</span>
-          {isVendor && <span className="rounded-md px-[7px] py-0.5 text-[10px] font-bold" style={{ background: '#fff7ed', color: '#7c2d12' }}>🏪 {t('vendor_badge')}</span>}
+          <span className="rounded-md px-[7px] py-0.5 text-[11px] font-bold" style={badge}>{isOffer ? t('home_offer') : t('home_requirement')}</span>
+          {isVendor && <span className="rounded-md px-[7px] py-0.5 text-[11px] font-bold" style={{ background: '#fff7ed', color: '#7c2d12' }}>🏪 {t('vendor_badge')}</span>}
         </div>
-        <div className="mb-1 text-[14px] font-bold leading-[1.3]" style={{ color: 'var(--ks-text)' }}>{rows[0]?.value}</div>
-        {rows[1]?.value && <div className="mb-1 text-[13px] font-bold" style={{ color: 'var(--ks-primary)' }}>{rows[1].value}</div>}
-        {place && <div className="flex items-center gap-[3px] text-[11px]" style={{ color: 'var(--ks-text-muted)' }}>📍 {place}</div>}
-        <div className="mt-[3px] text-[10px]" style={{ color: '#bbb' }}>{timeAgo(listing.created_at, t)}</div>
+        <div className="mb-1 text-[15px] font-bold leading-[1.3]" style={{ color: 'var(--ks-text)' }}>{rows[0]?.value}</div>
+        {rows[1]?.value && <div className="mb-1 text-[14px] font-bold" style={{ color: 'var(--ks-primary)' }}>{rows[1].value}</div>}
+        {place && <div className="flex items-center gap-[3px] text-[12px]" style={{ color: 'var(--ks-text-muted)' }}>📍 {place}</div>}
+        <div className="mt-[3px] text-[11px]" style={{ color: '#bbb' }}>{timeAgo(listing.created_at, t)}</div>
       </div>
       <div className="flex items-center gap-1.5 border-t p-2" style={{ borderColor: 'var(--ks-border-light)' }}>
         {isLoggedIn ? (
-          <button type="button" onClick={() => navigate(`/listing/${listing.id}`)} className="flex-1 rounded-lg px-2 py-2 text-[12px] font-semibold text-white" style={{ background: 'var(--ks-primary)' }}>{t('view_listing')} →</button>
+          <button type="button" onClick={() => navigate(`/listing/${listing.id}`)} className="flex-1 rounded-lg px-2 py-2 text-[13px] font-semibold text-white" style={{ background: 'var(--ks-primary)' }}>{t('view_listing')} →</button>
         ) : (
-          <button type="button" onClick={() => navigate('/signup')} className="flex-1 rounded-lg px-2 py-2 text-[12px] font-semibold" style={{ background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' }}>🔒 {t('signup_to_contact')}</button>
+          <button type="button" onClick={() => navigate('/signup')} className="flex-1 rounded-lg px-2 py-2 text-[13px] font-semibold" style={{ background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' }}>🔒 {t('signup_to_contact')}</button>
         )}
         <a
           href={whatsappListingUrl(listing)}
