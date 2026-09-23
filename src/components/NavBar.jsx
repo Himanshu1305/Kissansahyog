@@ -136,6 +136,20 @@ export default function NavBar() {
         {/* Right cluster */}
         <div className="ml-auto flex items-center gap-2 md:ml-0">
           <LanguageToggle className="rounded-lg bg-green-700 px-1" />
+          {/* Admin quick-link — visible directly in the nav for is_admin users only
+              (server still gates /admin). Hidden entirely for everyone else. */}
+          {isLoggedIn && user?.is_admin && (
+            <button
+              type="button"
+              data-testid="nav-admin-link"
+              onClick={() => navigate('/admin')}
+              className={`hidden items-center gap-1 rounded-lg border-2 px-3 py-1.5 text-sm font-bold sm:inline-flex ${
+                location.pathname.startsWith('/admin') ? 'border-green-700 bg-green-700 text-white' : 'border-green-700 text-green-800 hover:bg-green-50'
+              }`}
+            >
+              ⚙️ {t('nav_admin')}
+            </button>
+          )}
           {isLoggedIn ? (
             <div className="relative">
               <button
@@ -216,6 +230,12 @@ export default function NavBar() {
             {isLoggedIn && (
               <button type="button" className={catBtn(false)} onClick={() => { setOpen(false); navigate('/my') }}>
                 {t('my_listings')}
+              </button>
+            )}
+            {/* Admin — mobile menu, is_admin users only */}
+            {isLoggedIn && user?.is_admin && (
+              <button type="button" data-testid="nav-admin-mobile" className={catBtn(activeCat === 'admin' || location.pathname.startsWith('/admin'))} onClick={() => { setOpen(false); navigate('/admin') }}>
+                ⚙️ {t('nav_admin')}
               </button>
             )}
           </div>
