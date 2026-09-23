@@ -1,33 +1,44 @@
 import { useLang } from '../lib/i18n/LanguageProvider'
-import { isImdAlert } from '../lib/weather/rainAlert'
+import { classifyDay } from '../lib/weather/rainAlert'
 
-// Per-level presentation (ascii only). Strip bg: blue for light/moderate, amber
-// for heavy (Yellow), orange for very_heavy, red for extreme.
-const META = {
-  light: { dot: '🟢', bg: 'bg-sky-100 text-sky-900' },
-  moderate: { dot: '🔵', bg: 'bg-blue-100 text-blue-900' },
-  heavy: { dot: '🟡', bg: 'bg-amber-300 text-amber-950', imd: 'imd_yellow' },
-  very_heavy: { dot: '🟠', bg: 'bg-orange-300 text-orange-950', imd: 'imd_orange' },
-  extreme: { dot: '🔴', bg: 'bg-red-400 text-red-950', imd: 'imd_red' },
+// Advice i18n key from the heaviest single-day precip in the next 48h (IMD bands).
+// Only heavy+ (>=64.5mm) uses "chetavni/alert" wording; below that is "sambhavna".
+const ADVICE_KEY = {
+  light: 'rain_adv_light', moderate: 'rain_adv_moderate', heavy: 'rain_adv_heavy',
+  very_heavy: 'rain_adv_veryheavy', extreme: 'rain_adv_extreme',
 }
+// Per-day pill labels (kal / parson / narson).
+const DAY_LABELS = ['rl_tomorrow', 'rl_dayafter', 'rl_third']
 
-// Rich, actionable rain alert. `alert` = getRainAlert(...) output or null.
+// Rich rain-alert strip (dark blue #1c3a70). `alert` = getRainAlert(...) or null.
+// Renders only when rain is forecast in the next 48h (alert is null otherwise).
 export default function RainAlert({ alert, className = '' }) {
   const { t } = useLang()
   if (!alert) return null
-  const m = META[alert.level] || META.light
-  const imd = isImdAlert(alert.level)
+  const level = (classifyDay(alert.max48) || { level: 'light' }).level
   const daysWord = alert.days === 1 ? t('rl_day1') : t('rl_days')
+  const pills = (alert.perDay || []).map((mm, i) => ({ label: t(DAY_LABELS[i] || 'rl_third'), mm })).filter((p) => p.mm > 0)
 
   return (
-    <div className={`px-3 py-1.5 text-sm font-semibold ${m.bg} ${className}`} role="status">
-      <div className="leading-snug">
-        <span aria-hidden="true">{m.dot} </span>
-        {imd && <span className="font-extrabold">{t(m.imd)} — </span>}
-        {t('rl_next')} {alert.days} {daysWord} {t(`rl_${alert.level}`)}{!imd && ` ${t('rl_expected')}`} — {t('weather_location')}
-        <span className="font-normal"> · ~{alert.total} {t('mm_unit')}</span>
+    <div className={`w-full bg-[#1c3a70] text-white ${className}`} role="status">
+      <div className="flex items-start gap-2 px-[14px] py-2">
+        <span className="mt-1.5 inline-block h-[7px] w-[7px] shrink-0 rounded-full bg-[#5b9bff]" aria-hidden="true" />
+        <div className="min-w-0 flex-1">
+          <div className="text-sm font-bold leading-snug">
+            🌧️ {t('rl_next')} {alert.days} {daysWord} {t('rain_chance_word')}
+          </div>
+          {pills.length > 0 && (
+            <div className="mt-1 flex flex-wrap items-center gap-x-1 gap-y-1">
+              {pills.map((p, i) => (
+                <span key={i} className="rounded-[5px] bg-white/10 px-[7px] py-0.5 text-[9.5px] font-semibold text-[#c8dcff]">
+                  {p.label} ~{p.mm}{t('mm_unit')}
+                </span>
+              ))}
+            </div>
+          )}
+          <div className="mt-1 text-xs font-medium leading-snug text-[#dbe6ff]">{t(ADVICE_KEY[level] || 'rain_adv_light')}</div>
+        </div>
       </div>
-      <div className="mt-0.5 text-xs font-medium leading-snug">{t(`advice_${alert.level}`)}</div>
     </div>
   )
 }

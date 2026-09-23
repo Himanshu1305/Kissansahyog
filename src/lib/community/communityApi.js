@@ -20,7 +20,7 @@ export async function fetchPublishedSawaal() {
 export async function fetchFeaturedSawaal(limit = 2) {
   const { data, error } = await supabase
     .from('kisan_sawaal')
-    .select('id,question_hi,question_en,category,asked_by_village,answered_by')
+    .select('id,question_hi,question_en,answer_hi,answer_en,category,asked_by_village,answered_by')
     .eq('is_published', true)
     .eq('is_featured', true)
     .order('answered_at', { ascending: false })

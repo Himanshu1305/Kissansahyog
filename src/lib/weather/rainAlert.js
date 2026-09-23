@@ -39,5 +39,10 @@ export function getRainAlert(forecast) {
     else break
   }
   const cls = classifyDay(maxDay) || { level: 'light', color: 'green' }
-  return { ...cls, days, total: Math.round(total), maxDay: Math.round(maxDay) }
+  // max48: heaviest single day within the next 48h (day 0/1) — drives the IMD
+  // advice wording. perDay: the next up-to-3 forecast days' totals (rounded), for
+  // the "kal / parson / narson" (tomorrow / day-after / +3) pills.
+  const max48 = Math.max(rain(forecast[0]), forecast.length > 1 ? rain(forecast[1]) : 0)
+  const perDay = forecast.slice(start, start + 3).map((d) => Math.round(rain(d)))
+  return { ...cls, days, total: Math.round(total), maxDay: Math.round(maxDay), max48: Math.round(max48), perDay }
 }

@@ -623,3 +623,49 @@ listing/marketplace logic.** Migration `0021_community_features.sql`.
 > `supabase/migrations/0021_community_features.sql` (fully idempotent) into the Supabase SQL
 > Editor. Admin management + public pages then light up immediately with the 8 seeded schemes,
 > 3 Q&As, and 2 placeholder stories.
+
+---
+
+## 21. Homepage redesign v2 (`HOMEPAGE_V2_PROMPT.md`)
+
+A faithful implementation of the approved design mock. Section order (top→bottom):
+**mandi ticker → full-bleed hero → trust carousel → rain alert → weather/MSP strip →
+category strip → listings → govt contacts → schemes → Q&A → articles → mission bar →
+footer.**
+
+- **Edge-to-edge:** full-width strips (ticker, hero, carousel, rain alert, weather/MSP,
+  mission bar) span 100% with no side margin; content sections use `px-[14px] sm:px-6`
+  (≤14 px from the screen edge on mobile). Verified at 375px.
+- **Ticker first:** `MandiTicker` now renders immediately below the nav, before the hero.
+- **Hero** (`Homepage.jsx`): full-bleed Pexels wheat photo (opacity 0.45 over `#0f3d1f`
+  fallback + a 135° dark overlay), 240/300 px. Eyebrow badge, two-line H1 (income +
+  employment), subline, **3 CTAs** (Browse `#3da85f`, New Listing outline, WhatsApp
+  `#25D366` → `wa.me`), and a translucent **4-stat bar** pinned to the bottom
+  (50+ listings · 9 categories · 30 km · Free).
+- **Trust carousel v2** (`TrustCarousel.jsx`): 165/200 px, **5 slides** (welcome +
+  PM/CM placeholders with TODOs + Drone Didi + vision), 8 s auto-scroll, swipe, arrows,
+  spec-styled dots (active `#4caf70` 14×5, inactive 5×5). Images `onError`-hide to the
+  `#0a2010` background. Source notes via i18n.
+- **Rain alert v2** (`RainAlert.jsx`): dark-blue `#1c3a70` strip (was amber), blue dot,
+  main line "🌧️ अगले X दिन बारिश की संभावना", per-day mm pills (कल/परसों/नरसों from
+  `getRainAlert().perDay`), and IMD-classified farmer advice from the heaviest single day
+  in the next 48h (`getRainAlert().max48`; only ≥64.5 mm is a "चेतावनी"). Hidden when no
+  rain forecast. Shared with /info.
+- **Weather/MSP strip** (`WeatherMspStrip` in Homepage): 2-column. Weather cell is
+  **location-aware** (user's `village_town`/`pincode`, else "आपके नज़दीक" — no hardcoded
+  city; `weather_near_you`), temp + condition + 5-day mini row (day abbrev + icon + mm).
+  MSP cell: 4 crops (wheat/soybean/gram/lentil) with live MSP when present (else static
+  2026-27 values) and green/amber **↑/↓ vs-mandi chips** via `MANDI_TO_MSP`. The MSP caption
+  ("MSP = न्यूनतम समर्थन मूल्य…") sits **below** the prices (italic grey `#aaa`), per the
+  explicit positioning requirement.
+- **Listings:** each `PublicListingCard` gains a small circular WhatsApp button
+  (`#25D366`, top-right 20×20) using `generateListingMessage`; vendor badge (`🏪 व्यापारी`)
+  retained with `pr-6` clearance so it's never clipped.
+- **Schemes strip** (Phase 10): featured `sarkari_yojana` cards (148 px) with graceful
+  empty state when 0021 isn't applied. **Q&A strip** (Phase 11): featured `kisan_sawaal`
+  (expand-on-tap answer) + full-width "अपना सवाल पूछें" button, graceful empty message.
+- **Articles** images `onError`-hide to a `#2d6a3f` background (no broken-image icon).
+- **Vision language:** weather location no longer hardcodes Khurai/Sagar; footer sub-line is
+  "USD Vision AI LLP · मध्यप्रदेश, भारत" (not Sagar); copyright updated. Factual Sagar refs
+  (mandi names, resource directory, listing districts) kept.
+- All new strings bilingual (audit 29/29); rain classifier 10/10.

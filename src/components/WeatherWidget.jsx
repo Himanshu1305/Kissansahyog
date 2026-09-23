@@ -6,8 +6,9 @@ const tempC = (t) => (t == null ? '—' : `${Math.round(Number(t))}°`)
 // Weather card. `data` = a weather_cache row (or null = unavailable, undefined =
 // loading). `compact` renders the small homepage card; otherwise the full 5-day
 // forecast (used on /info). Bilingual via t(); condition/day labels from i18n.
-export default function WeatherWidget({ data, loading = false, compact = false, onForecast }) {
+export default function WeatherWidget({ data, loading = false, compact = false, onForecast, location }) {
   const { t } = useLang()
+  const place = location || t('weather_near_you')
 
   if (loading) {
     return <div className="h-full min-h-[72px] animate-pulse rounded-xl border border-stone-200 bg-stone-100" />
@@ -31,7 +32,7 @@ export default function WeatherWidget({ data, loading = false, compact = false, 
           <span className="text-2xl font-extrabold text-stone-900">{tempC(data.current_temp)}</span>
           <span className="text-sm text-stone-600">{t(cur.key)}</span>
         </div>
-        <div className="mt-0.5 text-xs text-stone-500">📍 {t('weather_location')}</div>
+        <div className="mt-0.5 text-xs text-stone-500">📍 {place}</div>
         <span className="mt-auto pt-2 text-xs font-bold text-sky-700">{t('weather_5day')} →</span>
       </button>
     )
@@ -47,7 +48,7 @@ export default function WeatherWidget({ data, loading = false, compact = false, 
           <div>{t(cur.key)}</div>
           {data.current_humidity != null && <div>{t('weather_humidity')}: {Math.round(data.current_humidity)}%</div>}
         </div>
-        <span className="ml-auto text-xs text-stone-500">📍 {t('weather_location')}</span>
+        <span className="ml-auto text-xs text-stone-500">📍 {place}</span>
       </div>
       <div className="-mx-1 flex gap-2 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {forecast.map((d, i) => {

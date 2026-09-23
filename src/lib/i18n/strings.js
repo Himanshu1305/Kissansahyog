@@ -440,7 +440,8 @@ export const strings = {
   footer_privacy: { hi: 'गोपनीयता नीति', en: 'Privacy Policy' },
   footer_terms: { hi: 'उपयोग की शर्तें', en: 'Terms of Use' },
   footer_contact: { hi: 'संपर्क', en: 'Contact' },
-  footer_copyright: { hi: 'किसान सहयोग © 2026 | USD Vision AI LLP', en: 'Kisan Sahyog © 2026 | USD Vision AI LLP' },
+  footer_copyright: { hi: '© 2026 Kisan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित', en: '© 2026 Kisan Sahyog | kissansahyog.com | All rights reserved' },
+  footer_company: { hi: 'USD Vision AI LLP · मध्यप्रदेश, भारत', en: 'USD Vision AI LLP · Madhya Pradesh, India' },
 
   // --- legal pages ---
   privacy_title: { hi: 'गोपनीयता नीति', en: 'Privacy Policy' },
@@ -955,4 +956,67 @@ export const strings = {
   f_how_helped_en: { hi: 'कैसे मदद की (English)', en: 'How helped (English)' },
   f_photo_url: { hi: 'फोटो URL', en: 'Photo URL' },
   story_add: { hi: 'नई कहानी', en: 'New story' },
+
+  // ===== Homepage v2 =====
+  // --- Hero ---
+  hero_eyebrow: { hi: 'किसानों का अपना डिजिटल मंच', en: "Farmers' Own Digital Platform" },
+  hero_h1_l1: { hi: 'किसान की आय बढ़ाना', en: 'Increasing Farmer Income' },
+  hero_h1_l2: { hi: 'रोज़गार के अवसर बनाना', en: 'Creating Employment Opportunities' },
+  hero_subline1: { hi: 'ज़मीन · उपकरण · मज़दूर · ड्रोन दीदी · गोदाम · कृषि सामग्री', en: 'Land · Equipment · Labour · Drone Didi · Warehouse · Farm Supplies' },
+  hero_subline2: { hi: 'सीधा संपर्क · बिना बिचौलिए · बिल्कुल मुफ़्त', en: 'Direct contact · No middlemen · Completely free' },
+  hero_btn_browse: { hi: 'लिस्टिंग देखें', en: 'Browse Listings' },
+  hero_btn_new: { hi: 'नई लिस्टिंग', en: 'New Listing' },
+  hero_btn_whatsapp: { hi: 'WhatsApp पर शेयर करें', en: 'Share on WhatsApp' },
+
+  // --- Hero stats bar ---
+  stat_listings_label: { hi: 'लिस्टिंग', en: 'Listings' },
+  stat_categories_label: { hi: 'सेवाएं', en: 'Categories' },
+  stat_radius_label: { hi: 'दायरा', en: 'Radius' },
+  stat_free_label: { hi: 'बिल्कुल', en: 'Free' },
+  stat_radius_value: { hi: '30 किमी', en: '30 km' },
+  stat_free_value: { hi: 'मुफ़्त', en: 'Free' },
+
+  // --- Trust carousel v2 ---
+  car_welcome_sub: { hi: 'किसान की आय बढ़ाना और रोज़गार के अवसर बनाना — हमारे दो लक्ष्य', en: 'Increasing farmer income and creating employment — our two goals' },
+  car_pm_cap: { hi: 'माननीय प्रधानमंत्री श्री नरेंद्र मोदी जी का किसानों के प्रति समर्पण', en: "Hon'ble PM Shri Narendra Modi's dedication to farmers" },
+  car_pm_sub: { hi: 'PM Kisan · PMFBY · Drone Didi · PM KUSUM — किसानों के लिए', en: 'PM Kisan · PMFBY · Drone Didi · PM KUSUM — for farmers' },
+  car_pm_src: { hi: 'फोटो: PIB, भारत सरकार', en: 'Photo: PIB, Government of India' },
+  car_cm_cap: { hi: 'मध्यप्रदेश के मुख्यमंत्री श्री मोहन यादव जी — किसान कल्याण के प्रति प्रतिबद्ध', en: 'MP Chief Minister Shri Mohan Yadav — committed to farmer welfare' },
+  car_cm_sub: { hi: 'किसान सम्मान · फसल बीमा · सिंचाई · कृषि विकास', en: 'Farmer honour · Crop insurance · Irrigation · Agri development' },
+  car_cm_src: { hi: 'फोटो: MP सूचना विभाग', en: 'Photo: MP Information Department' },
+  car_drone_cap: { hi: 'ड्रोन दीदी — महिला उद्यमी, आधुनिक तकनीक', en: 'Drone Didi — women entrepreneurs, modern technology' },
+  car_drone_sub: { hi: '₹1,261 करोड़ की सरकारी योजना · 15,000 महिला SHG को ड्रोन', en: '₹1,261 crore government scheme · drones for 15,000 women SHGs' },
+  car_drone_src: { hi: 'योजना: कृषि मंत्रालय, भारत सरकार', en: 'Scheme: Ministry of Agriculture, Govt. of India' },
+  car_vision_cap: { hi: 'हर किसान के लिए · हर जगह', en: 'For every farmer · everywhere' },
+  car_vision_sub: { hi: 'मध्यप्रदेश से शुरुआत · पूरे देश का सपना', en: 'Starting in Madhya Pradesh · a dream for the whole nation' },
+
+  // --- Rain alert v2 ---
+  rain_chance_word: { hi: 'बारिश की संभावना', en: 'rain expected' },
+  rl_tomorrow: { hi: 'कल', en: 'Tomorrow' },
+  rl_dayafter: { hi: 'परसों', en: 'Day after' },
+  rl_third: { hi: 'नरसों', en: 'In 3 days' },
+  rain_adv_light: { hi: 'हल्की बारिश — सिंचाई की ज़रूरत नहीं, खेत के काम जारी रखें', en: 'Light rain — no irrigation needed, fieldwork can continue' },
+  rain_adv_moderate: { hi: '⚠️ सोयाबीन-उड़द की कटाई जल्द करें — छिड़काव कम से कम 48 घंटे टालें', en: '⚠️ Harvest soybean/urad soon — delay spraying by at least 48 hours' },
+  rain_adv_heavy: { hi: '⚠️ IMD पीली चेतावनी — कटाई रोकें, मज़दूर बुकिंग टालें, पशुओं को सुरक्षित स्थान पर रखें', en: '⚠️ IMD Yellow Alert — stop harvesting, delay labor, shelter animals' },
+  rain_adv_veryheavy: { hi: '🔴 IMD नारंगी चेतावनी — खेत में न जाएं, फसल को नुकसान संभव, निचले इलाकों में सतर्क रहें', en: '🔴 IMD Orange Alert — avoid fields, crop damage likely, stay alert in low-lying areas' },
+  rain_adv_extreme: { hi: '🚨 IMD लाल चेतावनी — घर में रहें, प्रशासन के निर्देशों का पालन करें', en: '🚨 IMD Red Alert — stay indoors, follow district administration orders' },
+
+  // --- Weather + MSP info strip ---
+  weather_near_you: { hi: 'आपके नज़दीक', en: 'Near you' },
+  msp_caption: { hi: 'MSP = न्यूनतम समर्थन मूल्य, सरकारी गारंटी', en: 'MSP = Minimum Support Price, govt. guarantee' },
+  msp_above_chip: { hi: 'MSP से ऊपर', en: 'Above MSP' },
+  msp_below_chip: { hi: 'MSP से नीचे', en: 'Below MSP' },
+
+  // --- Listings section ---
+  recent_listings_title: { hi: 'हाल की लिस्टिंग', en: 'Recent Listings' },
+  view_all: { hi: 'सभी देखें', en: 'View All' },
+
+  // --- Schemes strip ---
+  schemes_all_link: { hi: 'सभी 8', en: 'All 8' },
+
+  // --- Q&A strip ---
+  qa_home_title: { hi: 'किसान सवाल', en: 'Farmer Q&A' },
+  qa_all_link: { hi: 'सभी सवाल', en: 'All Questions' },
+  qa_ask_btn: { hi: 'अपना सवाल पूछें', en: 'Ask Your Question' },
+  qa_empty_msg: { hi: 'कोई सवाल पूछें — हम जवाब देंगे', en: "Ask a question — we'll answer" },
 }

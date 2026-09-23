@@ -1,21 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import { CatIcon } from './CatIcon'
 
-// Lightweight, dependency-free auto-scrolling trust carousel (6 slides). Slides 2
-// & 3 are placeholders for official photos (added later with permission); slides
-// 4-6 use gradients + captions as licensed imagery is sourced. Touch-swipe, dots,
-// desktop arrows, pause on hover/touch.
+// Compact trust carousel (5 slides, 165px mobile / 200px desktop, 8s auto-scroll).
+// Slide 1 is typographic; slides 2-5 are full-bleed images (opacity 0.5) under a
+// dark gradient. PM/CM images are placeholders pending official PIB/MP-govt photos
+// (see TODOs). Touch-swipe, arrows, dot indicators. All copy via i18n; source
+// notes are attribution text (also i18n so no Devanagari is hardcoded here).
 const SLIDES = [
-  { key: 'welcome', bg: 'from-green-800 to-green-600' },
-  // TODO: Replace placeholder with official photo after permission obtained
-  { key: 'pm', bg: 'from-green-700 to-emerald-600', placeholder: '[ PM Modi farmer photo — to be added with permission ]', captionKey: 'car_pm_caption' },
-  // TODO: Replace placeholder with official photo after permission obtained
-  { key: 'cm', bg: 'from-green-700 to-lime-600', placeholder: '[ MP CM farmer photo — to be added with permission ]', captionKey: 'car_cm_caption' },
-  { key: 'drone', bg: 'from-sky-700 to-indigo-600', icon: 'drone', captionKey: 'car_drone_caption', sourceKey: 'car_drone_source' },
-  { key: 'khurai', bg: 'from-amber-600 to-green-700', emoji: '🌾', captionKey: 'car_khurai_caption' },
-  { key: 'equip', bg: 'from-stone-700 to-green-700', emoji: '🚜', captionKey: 'car_equip_caption' },
+  { key: 'welcome' },
+  // TODO: Replace with official PIB photo once permission confirmed
+  { key: 'pm', img: 'https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=800', capKey: 'car_pm_cap', subKey: 'car_pm_sub', srcKey: 'car_pm_src' },
+  // TODO: Replace with official MP govt photo
+  { key: 'cm', img: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800', capKey: 'car_cm_cap', subKey: 'car_cm_sub', srcKey: 'car_cm_src' },
+  { key: 'drone', img: 'https://images.pexels.com/photos/3735747/pexels-photo-3735747.jpeg?auto=compress&cs=tinysrgb&w=800', capKey: 'car_drone_cap', subKey: 'car_drone_sub', srcKey: 'car_drone_src' },
+  { key: 'vision', img: 'https://images.pexels.com/photos/265216/pexels-photo-265216.jpeg?auto=compress&cs=tinysrgb&w=800', capKey: 'car_vision_cap', subKey: 'car_vision_sub' },
 ]
+const OVERLAY = 'linear-gradient(90deg, rgba(5,20,10,0.88) 0%, rgba(5,20,10,0.30) 100%)'
 
 export default function TrustCarousel() {
   const { t } = useLang()
@@ -26,7 +26,7 @@ export default function TrustCarousel() {
   const go = (idx) => setI((idx + n) % n)
 
   useEffect(() => {
-    const id = setInterval(() => { if (!paused.current) setI((p) => (p + 1) % n) }, 6000)
+    const id = setInterval(() => { if (!paused.current) setI((p) => (p + 1) % n) }, 8000)
     return () => clearInterval(id)
   }, [n])
 
@@ -36,12 +36,12 @@ export default function TrustCarousel() {
     const dx = e.changedTouches[0].clientX - touchX.current
     if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1))
     touchX.current = null
-    setTimeout(() => { paused.current = false }, 4000)
+    setTimeout(() => { paused.current = false }, 5000)
   }
 
   return (
     <div
-      className="relative h-[200px] w-full overflow-hidden sm:h-[280px]"
+      className="relative h-[165px] w-full overflow-hidden bg-[#0a2010] sm:h-[200px]"
       role="group"
       aria-roledescription="carousel"
       aria-label={t('car_aria')}
@@ -50,38 +50,51 @@ export default function TrustCarousel() {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <div className="flex h-full transition-transform duration-500" style={{ transform: `translateX(-${i * 100}%)` }}>
+      <div className="flex h-full transition-transform duration-[400ms] ease-out" style={{ transform: `translateX(-${i * 100}%)` }}>
         {SLIDES.map((s) => (
-          <div key={s.key} className={`relative flex h-full w-full shrink-0 flex-col items-center justify-center bg-gradient-to-br ${s.bg} px-6 text-center text-white`}>
-            {s.key === 'welcome' ? (
-              <>
-                <h2 className="text-2xl font-extrabold sm:text-3xl">{t('car_welcome_title')}</h2>
-                <p className="mt-2 max-w-md text-sm text-green-50 sm:text-base">{t('hero_headline')}</p>
-              </>
-            ) : (
-              <>
-                {s.placeholder && <div className="mb-2 rounded-lg bg-black/20 px-3 py-6 text-xs font-semibold text-white/90">{s.placeholder}</div>}
-                {s.icon === 'drone' && <CatIcon category="drone_didi" className="text-6xl" />}
-                {s.emoji && <span className="text-6xl" aria-hidden="true">{s.emoji}</span>}
-                {/* bottom gradient so caption stays readable over any future image */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-8">
-                  <p className="text-sm font-bold sm:text-base">{t(s.captionKey)}</p>
-                  {s.sourceKey && <p className="mt-0.5 text-[10px] text-white/70">{t(s.sourceKey)}</p>}
-                </div>
-              </>
+          <div key={s.key} className="relative h-full w-full shrink-0 overflow-hidden bg-[#0a2010]">
+            {s.img && (
+              <img
+                src={s.img}
+                alt=""
+                loading="lazy"
+                onError={(e) => { e.currentTarget.style.display = 'none' }}
+                className="absolute inset-0 h-full w-full object-cover opacity-50"
+              />
             )}
+            {s.img && <div className="absolute inset-0" style={{ background: OVERLAY }} />}
+            <div className={`relative z-[2] flex h-full flex-col justify-center px-4 ${s.key === 'welcome' ? 'items-center text-center' : ''}`}>
+              {s.key === 'welcome' ? (
+                <>
+                  <h3 className="text-[15px] font-extrabold leading-snug text-white sm:text-lg">{t('car_welcome_title')}</h3>
+                  <p className="mt-1 max-w-md text-[10.5px] leading-relaxed text-[#90c8a0] sm:text-xs">{t('car_welcome_sub')}</p>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-[13px] font-bold leading-snug text-white">{t(s.capKey)}</h3>
+                  <p className="mt-[3px] text-[10.5px] leading-[1.4] text-[#90c8a0]">{t(s.subKey)}</p>
+                  {s.srcKey && <small className="mt-[2px] block text-[8.5px] text-[#5a8a6a]">{t(s.srcKey)}</small>}
+                </>
+              )}
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Arrows (desktop) */}
-      <button type="button" aria-label={t('car_prev')} onClick={() => go(i - 1)} className="absolute left-1 top-1/2 hidden -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-black/30 text-xl text-white sm:grid">‹</button>
-      <button type="button" aria-label={t('car_next')} onClick={() => go(i + 1)} className="absolute right-1 top-1/2 hidden -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-black/30 text-xl text-white sm:grid">›</button>
+      {/* Arrows */}
+      <button type="button" aria-label={t('car_prev')} onClick={() => go(i - 1)} className="absolute left-1 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full bg-black/35 text-lg text-white">‹</button>
+      <button type="button" aria-label={t('car_next')} onClick={() => go(i + 1)} className="absolute right-1 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full bg-black/35 text-lg text-white">›</button>
 
-      {/* Dots */}
-      <div className="absolute inset-x-0 bottom-1 flex justify-center gap-1.5">
+      {/* Dot indicators */}
+      <div className="absolute inset-x-0 bottom-2 flex justify-center gap-1.5">
         {SLIDES.map((s, idx) => (
-          <button key={s.key} type="button" aria-label={`${idx + 1}`} onClick={() => go(idx)} className={`h-1.5 rounded-full transition-all ${idx === i ? 'w-4 bg-white' : 'w-1.5 bg-white/50'}`} />
+          <button
+            key={s.key}
+            type="button"
+            aria-label={`${idx + 1}`}
+            onClick={() => go(idx)}
+            className={idx === i ? 'h-[5px] w-[14px] rounded-[3px] bg-[#4caf70]' : 'h-[5px] w-[5px] rounded-full bg-white/30'}
+          />
         ))}
       </div>
     </div>

@@ -68,7 +68,7 @@ export default function Info() {
         <div className="flex flex-col gap-3">
           {/* Section 1 — Weather */}
           <section id="weather" className="scroll-mt-16 rounded-xl border border-stone-200 border-l-4 border-l-sky-400 bg-white p-3">
-            <h2 className="mb-2 font-bold text-stone-800">🌤️ {t('weather_title')} — {t('weather_location')}</h2>
+            <h2 className="mb-2 font-bold text-stone-800">🌤️ {t('weather_title')} — {t('weather_near_you')}</h2>
             <WeatherWidget data={weather} loading={weather === undefined} />
             <RainAlert alert={getRainAlert(weather?.forecast)} className="mt-2 rounded-lg" />
           </section>
