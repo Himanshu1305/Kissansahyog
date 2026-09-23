@@ -24,6 +24,9 @@ const Articles = lazy(() => import('./screens/Articles'))
 const ArticleDetail = lazy(() => import('./screens/ArticleDetail'))
 const Resources = lazy(() => import('./screens/Resources'))
 const Info = lazy(() => import('./screens/Info'))
+const Sawaal = lazy(() => import('./screens/Sawaal'))
+const Safalta = lazy(() => import('./screens/Safalta'))
+const Yojana = lazy(() => import('./screens/Yojana'))
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -67,6 +70,9 @@ function AppRoutes() {
         <Route path="/articles/:slug" element={<ArticleDetail />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/info" element={<Info />} />
+        <Route path="/sawaal" element={<Sawaal />} />
+        <Route path="/safalta" element={<Safalta />} />
+        <Route path="/yojana" element={<Yojana />} />
 
         <Route path="/home" element={<Protected><Home /></Protected>} />
         <Route path="/browse" element={<Protected><Browse /></Protected>} />

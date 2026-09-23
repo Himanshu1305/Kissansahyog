@@ -12,7 +12,11 @@ import {
   getAdminResources, adminSetResourceActive, adminUpsertResource,
   getAdminSourceStats, getAdminVendorListings,
   getAdminMsp, adminSetMspActive, adminUpsertMsp,
+  getAdminSawaal, adminAnswerSawaal, adminSetSawaalFeatured, adminSetSawaalPublished, adminDeleteSawaal,
+  getAdminSafalta, adminUpsertSafalta, adminSetSafaltaPublished, adminSetSafaltaFeatured, adminDeleteSafalta,
+  getAdminYojana, adminSetYojanaActive, adminSetYojanaFeatured, adminUpsertYojana,
 } from '../lib/admin/adminApi'
+import { sawaalQuestion } from '../lib/community/communityApi'
 import { CATEGORIES } from '../lib/listings/catalog'
 
 // Admin dashboard. Route-gated to authenticated users; a non-admin sees Access
@@ -48,6 +52,9 @@ export default function Admin() {
         <ArticlesPanel actorId={user.id} t={t} lang={lang} />
         <ResourcesPanel actorId={user.id} t={t} lang={lang} />
         <MspPanel actorId={user.id} t={t} lang={lang} />
+        <SawaalPanel actorId={user.id} t={t} lang={lang} />
+        <SafaltaPanel actorId={user.id} t={t} lang={lang} />
+        <YojanaPanel actorId={user.id} t={t} lang={lang} />
         <UsersPanel actorId={user.id} t={t} />
       </main>
     </div>
@@ -577,6 +584,262 @@ function MspForm({ t, initial, onCancel, onSave, seasonLabel }) {
         <input type="checkbox" checked={!!f.is_active} onChange={(e) => setF((s) => ({ ...s, is_active: e.target.checked }))} className="h-5 w-5 accent-green-700" />
         {t('expert_active')}
       </label>
+      <div className="mt-3 flex gap-2">
+        <button onClick={() => onSave(f)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('action_save')}</button>
+        <button onClick={onCancel} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('action_cancel')}</button>
+      </div>
+    </div>
+  )
+}
+
+// --- Community: Kisan Sawaal (Q&A) management -----------------------------
+function SawaalPanel({ actorId, t, lang }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [answering, setAnswering] = useState(null)
+  const load = useCallback(() => {
+    getAdminSawaal(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  const act = async (fn) => { setErr(null); try { await fn(); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } }
+  async function saveAnswer(form) { setErr(null); try { await adminAnswerSawaal(actorId, form); setAnswering(null); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } }
+
+  return (
+    <Section title={t('admin_sawaal')}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {answering && <SawaalAnswerForm t={t} initial={answering} onCancel={() => setAnswering(null)} onSave={saveAnswer} />}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="space-y-2">
+          {rows.map((r) => (
+            <div key={r.id} className="flex flex-wrap items-center gap-2 rounded-xl border border-stone-100 p-3">
+              <div className="min-w-0 flex-1">
+                <div className="truncate font-bold text-stone-900">{sawaalQuestion(r, lang)}</div>
+                <div className="text-xs text-stone-500">{t(`scat_${r.category || 'general'}`)} · {r.asked_by_village || '—'} · {r.created_at?.slice(0, 10)}</div>
+              </div>
+              <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${r.is_published ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
+                {r.is_published ? t('article_published_badge') : t('admin_pending_badge')}
+              </span>
+              {r.is_featured && <span className="rounded-full bg-green-700 px-2 py-0.5 text-xs font-bold text-white">{t('featured_badge')}</span>}
+              <button onClick={() => setAnswering({ id: r.id, answer_hi: r.answer_hi || '', answer_en: r.answer_en || '', answered_by: r.answered_by || 'Team Kisan Sahyog', is_published: true })} className="rounded-lg bg-green-700 px-3 py-1 text-sm font-bold text-white">
+                {r.is_published ? t('action_edit') : t('admin_answer_publish')}
+              </button>
+              {r.is_published && (
+                <>
+                  <button onClick={() => act(() => adminSetSawaalFeatured(actorId, r.id, !r.is_featured))} className="rounded-lg border-2 border-stone-300 px-3 py-1 text-sm font-bold text-stone-700">{r.is_featured ? t('action_unfeature') : t('action_feature')}</button>
+                  <button onClick={() => act(() => adminSetSawaalPublished(actorId, r.id, false))} className="rounded-lg border-2 border-stone-300 px-3 py-1 text-sm font-bold text-stone-700">{t('action_unpublish')}</button>
+                </>
+              )}
+              <button onClick={() => act(() => adminDeleteSawaal(actorId, r.id))} className="rounded-lg bg-red-600 px-3 py-1 text-sm font-bold text-white">{t('action_delete')}</button>
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
+  )
+}
+
+function SawaalAnswerForm({ t, initial, onCancel, onSave }) {
+  const [f, setF] = useState(initial)
+  const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }))
+  return (
+    <div className="mb-4 rounded-xl border-2 border-green-200 bg-green-50 p-4">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label={t('f_answer_hi')} htmlFor="sw_ah"><TextArea id="sw_ah" rows={5} value={f.answer_hi} onChange={set('answer_hi')} /></Field>
+        <Field label={t('f_answer_en')} htmlFor="sw_ae"><TextArea id="sw_ae" rows={5} value={f.answer_en} onChange={set('answer_en')} /></Field>
+        <Field label={t('f_answered_by')} htmlFor="sw_by"><TextInput id="sw_by" value={f.answered_by} onChange={set('answered_by')} /></Field>
+      </div>
+      <label className="mt-3 flex items-center gap-2 font-semibold text-stone-800">
+        <input type="checkbox" checked={!!f.is_published} onChange={(e) => setF((s) => ({ ...s, is_published: e.target.checked }))} className="h-5 w-5 accent-green-700" />
+        {t('article_published_badge')}
+      </label>
+      <div className="mt-3 flex gap-2">
+        <button onClick={() => onSave(f)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('action_save')}</button>
+        <button onClick={onCancel} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('action_cancel')}</button>
+      </div>
+    </div>
+  )
+}
+
+// --- Community: Kisan Safalta (success stories) management ----------------
+const EMPTY_STORY = {
+  farmer_name: '', village: '', district: 'Sagar', crop_or_activity: '', story_hi: '', story_en: '',
+  income_before: '', income_after: '', how_helped_hi: '', how_helped_en: '', photo_url: '', is_published: false, is_featured: false,
+}
+
+function SafaltaPanel({ actorId, t, lang }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [editing, setEditing] = useState(null)
+  const load = useCallback(() => {
+    getAdminSafalta(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  const act = async (fn) => { setErr(null); try { await fn(); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } }
+  async function save(form) { setErr(null); try { await adminUpsertSafalta(actorId, form); setEditing(null); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } }
+
+  return (
+    <Section
+      title={t('admin_safalta')}
+      right={<button onClick={() => setEditing({ ...EMPTY_STORY })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+ {t('story_add')}</button>}
+    >
+      {err && <Notice tone="error">{err}</Notice>}
+      {editing && <StoryForm t={t} initial={editing} onCancel={() => setEditing(null)} onSave={save} />}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="space-y-2">
+          {rows.map((r) => (
+            <div key={r.id} className="flex flex-wrap items-center gap-2 rounded-xl border border-stone-100 p-3">
+              <div className="min-w-0 flex-1">
+                <div className="truncate font-bold text-stone-900">{r.farmer_name} <span className="font-normal text-stone-500">· {r.crop_or_activity}</span></div>
+                <div className="text-xs text-stone-500">{[r.village, r.district].filter(Boolean).join(', ')}{r.contact_phone ? ` · ${r.contact_phone}` : ''}</div>
+              </div>
+              <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${r.is_published ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
+                {r.is_published ? t('article_published_badge') : t('admin_pending_badge')}
+              </span>
+              {r.is_featured && <span className="rounded-full bg-green-700 px-2 py-0.5 text-xs font-bold text-white">{t('featured_badge')}</span>}
+              <button onClick={() => setEditing(r)} className="rounded-lg bg-green-700 px-3 py-1 text-sm font-bold text-white">{r.is_published ? t('action_edit') : t('admin_review_publish')}</button>
+              {r.is_published && (
+                <>
+                  <button onClick={() => act(() => adminSetSafaltaFeatured(actorId, r.id, !r.is_featured))} className="rounded-lg border-2 border-stone-300 px-3 py-1 text-sm font-bold text-stone-700">{r.is_featured ? t('action_unfeature') : t('action_feature')}</button>
+                  <button onClick={() => act(() => adminSetSafaltaPublished(actorId, r.id, false))} className="rounded-lg border-2 border-stone-300 px-3 py-1 text-sm font-bold text-stone-700">{t('action_unpublish')}</button>
+                </>
+              )}
+              <button onClick={() => act(() => adminDeleteSafalta(actorId, r.id))} className="rounded-lg bg-red-600 px-3 py-1 text-sm font-bold text-white">{t('action_delete')}</button>
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
+  )
+}
+
+function StoryForm({ t, initial, onCancel, onSave }) {
+  const [f, setF] = useState(initial)
+  const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }))
+  return (
+    <div className="mb-4 rounded-xl border-2 border-green-200 bg-green-50 p-4">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label={t('f_farmer_name')} htmlFor="st_n"><TextInput id="st_n" value={f.farmer_name} onChange={set('farmer_name')} /></Field>
+        <Field label={t('safalta_f_village')} htmlFor="st_v"><TextInput id="st_v" value={f.village} onChange={set('village')} /></Field>
+        <Field label={t('f_crop_activity')} htmlFor="st_c"><TextInput id="st_c" value={f.crop_or_activity} onChange={set('crop_or_activity')} /></Field>
+        <Field label={t('f_district')} htmlFor="st_d"><TextInput id="st_d" value={f.district} onChange={set('district')} /></Field>
+        <Field label={t('f_income_before')} htmlFor="st_ib"><TextInput id="st_ib" value={f.income_before || ''} onChange={set('income_before')} /></Field>
+        <Field label={t('f_income_after')} htmlFor="st_ia"><TextInput id="st_ia" value={f.income_after || ''} onChange={set('income_after')} /></Field>
+        <Field label={t('f_story_hi')} htmlFor="st_sh"><TextArea id="st_sh" rows={5} value={f.story_hi} onChange={set('story_hi')} /></Field>
+        <Field label={t('f_story_en')} htmlFor="st_se"><TextArea id="st_se" rows={5} value={f.story_en || ''} onChange={set('story_en')} /></Field>
+        <Field label={t('f_how_helped_hi')} htmlFor="st_hh"><TextArea id="st_hh" value={f.how_helped_hi} onChange={set('how_helped_hi')} /></Field>
+        <Field label={t('f_how_helped_en')} htmlFor="st_he"><TextArea id="st_he" value={f.how_helped_en || ''} onChange={set('how_helped_en')} /></Field>
+        <Field label={t('f_photo_url')} htmlFor="st_p"><TextInput id="st_p" value={f.photo_url || ''} onChange={set('photo_url')} /></Field>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-4">
+        <label className="flex items-center gap-2 font-semibold text-stone-800">
+          <input type="checkbox" checked={!!f.is_published} onChange={(e) => setF((s) => ({ ...s, is_published: e.target.checked }))} className="h-5 w-5 accent-green-700" />
+          {t('article_published_badge')}
+        </label>
+        <label className="flex items-center gap-2 font-semibold text-stone-800">
+          <input type="checkbox" checked={!!f.is_featured} onChange={(e) => setF((s) => ({ ...s, is_featured: e.target.checked }))} className="h-5 w-5 accent-green-700" />
+          {t('featured_badge')}
+        </label>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <button onClick={() => onSave(f)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('action_save')}</button>
+        <button onClick={onCancel} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('action_cancel')}</button>
+      </div>
+    </div>
+  )
+}
+
+// --- Community: Sarkari Yojana (schemes) management -----------------------
+const YOJANA_CATS = ['income_support', 'crop_insurance', 'credit', 'equipment', 'solar', 'storage', 'women', 'market', 'general']
+const EMPTY_YOJANA = {
+  scheme_name_hi: '', scheme_name_en: '', ministry_hi: '', ministry_en: '', category: 'income_support',
+  description_hi: '', description_en: '', benefit_hi: '', benefit_en: '', eligibility_hi: '', eligibility_en: '',
+  how_to_apply_hi: '', how_to_apply_en: '', official_website: '', helpline: '', deadline_note_hi: '', deadline_note_en: '',
+  is_active: true, is_featured: false, sort_order: 0,
+}
+
+function YojanaPanel({ actorId, t, lang }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [editing, setEditing] = useState(null)
+  const load = useCallback(() => {
+    getAdminYojana(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  const act = async (fn) => { setErr(null); try { await fn(); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } }
+  async function save(form) { setErr(null); try { await adminUpsertYojana(actorId, form); setEditing(null); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } }
+
+  return (
+    <Section
+      title={t('admin_yojana')}
+      right={<button onClick={() => setEditing({ ...EMPTY_YOJANA })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+ {t('yojana_nav')}</button>}
+    >
+      {err && <Notice tone="error">{err}</Notice>}
+      {editing && <YojanaForm t={t} initial={editing} onCancel={() => setEditing(null)} onSave={save} />}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="space-y-2">
+          {rows.map((r) => (
+            <div key={r.id} className="flex flex-wrap items-center gap-2 rounded-xl border border-stone-100 p-3">
+              <div className="min-w-0 flex-1">
+                <div className="truncate font-bold text-stone-900">{lang === 'hi' ? r.scheme_name_hi : r.scheme_name_en}</div>
+                <div className="text-xs text-stone-500">{t(`ycat_${r.category}`)} · #{r.sort_order}</div>
+              </div>
+              <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${r.is_active ? 'bg-green-100 text-green-800' : 'bg-stone-200 text-stone-600'}`}>
+                {r.is_active ? t('expert_active') : t('expert_inactive')}
+              </span>
+              {r.is_featured && <span className="rounded-full bg-green-700 px-2 py-0.5 text-xs font-bold text-white">{t('featured_badge')}</span>}
+              <button onClick={() => act(() => adminSetYojanaActive(actorId, r.id, !r.is_active))} className="rounded-lg border-2 border-stone-300 px-3 py-1 text-sm font-bold text-stone-700">{r.is_active ? t('expert_make_inactive') : t('expert_make_active')}</button>
+              <button onClick={() => act(() => adminSetYojanaFeatured(actorId, r.id, !r.is_featured))} className="rounded-lg border-2 border-stone-300 px-3 py-1 text-sm font-bold text-stone-700">{r.is_featured ? t('action_unfeature') : t('action_feature')}</button>
+              <button onClick={() => setEditing(r)} className="rounded-lg border-2 border-green-700 px-3 py-1 text-sm font-bold text-green-800">{t('action_edit')}</button>
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
+  )
+}
+
+function YojanaForm({ t, initial, onCancel, onSave }) {
+  const [f, setF] = useState(initial)
+  const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }))
+  return (
+    <div className="mb-4 rounded-xl border-2 border-green-200 bg-green-50 p-4">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label={t('f_scheme_name_hi')} htmlFor="yo_nh"><TextInput id="yo_nh" value={f.scheme_name_hi} onChange={set('scheme_name_hi')} /></Field>
+        <Field label={t('f_scheme_name_en')} htmlFor="yo_ne"><TextInput id="yo_ne" value={f.scheme_name_en} onChange={set('scheme_name_en')} /></Field>
+        <Field label={t('f_ministry_hi')} htmlFor="yo_mh"><TextInput id="yo_mh" value={f.ministry_hi || ''} onChange={set('ministry_hi')} /></Field>
+        <Field label={t('f_ministry_en')} htmlFor="yo_me"><TextInput id="yo_me" value={f.ministry_en || ''} onChange={set('ministry_en')} /></Field>
+        <Field label={t('f_scheme_category')} htmlFor="yo_cat">
+          <Select id="yo_cat" value={f.category} onChange={set('category')}>
+            {YOJANA_CATS.map((c) => (<option key={c} value={c}>{t(`ycat_${c}`)}</option>))}
+          </Select>
+        </Field>
+        <Field label={t('f_sort_order')} htmlFor="yo_so"><TextInput id="yo_so" type="number" value={f.sort_order ?? 0} onChange={(e) => setF((s) => ({ ...s, sort_order: Number(e.target.value) }))} /></Field>
+        <Field label={t('f_benefit_hi')} htmlFor="yo_bh"><TextInput id="yo_bh" value={f.benefit_hi} onChange={set('benefit_hi')} /></Field>
+        <Field label={t('f_benefit_en')} htmlFor="yo_be"><TextInput id="yo_be" value={f.benefit_en} onChange={set('benefit_en')} /></Field>
+        <Field label={t('f_desc_hi')} htmlFor="yo_dh"><TextArea id="yo_dh" value={f.description_hi} onChange={set('description_hi')} /></Field>
+        <Field label={t('f_desc_en')} htmlFor="yo_de"><TextArea id="yo_de" value={f.description_en} onChange={set('description_en')} /></Field>
+        <Field label={t('f_eligibility_hi')} htmlFor="yo_eh"><TextArea id="yo_eh" value={f.eligibility_hi} onChange={set('eligibility_hi')} /></Field>
+        <Field label={t('f_eligibility_en')} htmlFor="yo_ee"><TextArea id="yo_ee" value={f.eligibility_en} onChange={set('eligibility_en')} /></Field>
+        <Field label={t('f_howto_hi')} htmlFor="yo_hh"><TextArea id="yo_hh" value={f.how_to_apply_hi || ''} onChange={set('how_to_apply_hi')} /></Field>
+        <Field label={t('f_howto_en')} htmlFor="yo_he"><TextArea id="yo_he" value={f.how_to_apply_en || ''} onChange={set('how_to_apply_en')} /></Field>
+        <Field label={t('yojana_website')} htmlFor="yo_w"><TextInput id="yo_w" value={f.official_website || ''} onChange={set('official_website')} /></Field>
+        <Field label={t('f_helpline')} htmlFor="yo_hp"><TextInput id="yo_hp" value={f.helpline || ''} onChange={set('helpline')} /></Field>
+        <Field label={t('f_deadline_hi')} htmlFor="yo_ddh"><TextInput id="yo_ddh" value={f.deadline_note_hi || ''} onChange={set('deadline_note_hi')} /></Field>
+        <Field label={t('f_deadline_en')} htmlFor="yo_dde"><TextInput id="yo_dde" value={f.deadline_note_en || ''} onChange={set('deadline_note_en')} /></Field>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-4">
+        <label className="flex items-center gap-2 font-semibold text-stone-800">
+          <input type="checkbox" checked={!!f.is_active} onChange={(e) => setF((s) => ({ ...s, is_active: e.target.checked }))} className="h-5 w-5 accent-green-700" />
+          {t('expert_active')}
+        </label>
+        <label className="flex items-center gap-2 font-semibold text-stone-800">
+          <input type="checkbox" checked={!!f.is_featured} onChange={(e) => setF((s) => ({ ...s, is_featured: e.target.checked }))} className="h-5 w-5 accent-green-700" />
+          {t('featured_badge')}
+        </label>
+      </div>
       <div className="mt-3 flex gap-2">
         <button onClick={() => onSave(f)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('action_save')}</button>
         <button onClick={onCancel} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('action_cancel')}</button>

@@ -68,6 +68,52 @@ export const adminUpsertResource = (actorId, r) =>
     p_is_active: r.is_active ?? true, p_sort_order: r.sort_order ?? 0,
   })
 
+// --- Community: Kisan Sawaal (Q&A) ----------------------------------------
+export const getAdminSawaal = (actorId) => rpc('get_admin_sawaal', { p_actor_id: actorId })
+export const adminAnswerSawaal = (actorId, s) =>
+  rpc('admin_answer_sawaal', {
+    p_actor_id: actorId, p_id: s.id, p_answer_hi: s.answer_hi ?? null, p_answer_en: s.answer_en ?? null,
+    p_answered_by: s.answered_by ?? 'Team Kisan Sahyog', p_is_published: s.is_published ?? false,
+  })
+export const adminSetSawaalFeatured = (actorId, id, featured) =>
+  rpc('admin_set_sawaal_featured', { p_actor_id: actorId, p_id: id, p_featured: featured })
+export const adminSetSawaalPublished = (actorId, id, published) =>
+  rpc('admin_set_sawaal_published', { p_actor_id: actorId, p_id: id, p_published: published })
+export const adminDeleteSawaal = (actorId, id) => rpc('admin_delete_sawaal', { p_actor_id: actorId, p_id: id })
+
+// --- Community: Kisan Safalta (success stories) ---------------------------
+export const getAdminSafalta = (actorId) => rpc('get_admin_safalta', { p_actor_id: actorId })
+export const adminUpsertSafalta = (actorId, s) =>
+  rpc('admin_upsert_safalta', {
+    p_actor_id: actorId, p_id: s.id ?? null, p_farmer_name: s.farmer_name, p_village: s.village ?? '',
+    p_district: s.district ?? 'Sagar', p_crop_or_activity: s.crop_or_activity ?? '', p_story_hi: s.story_hi,
+    p_story_en: s.story_en ?? null, p_income_before: s.income_before ?? null, p_income_after: s.income_after ?? null,
+    p_how_helped_hi: s.how_helped_hi, p_how_helped_en: s.how_helped_en ?? null, p_photo_url: s.photo_url ?? null,
+    p_is_published: s.is_published ?? false, p_is_featured: s.is_featured ?? false,
+  })
+export const adminSetSafaltaPublished = (actorId, id, published) =>
+  rpc('admin_set_safalta_published', { p_actor_id: actorId, p_id: id, p_published: published })
+export const adminSetSafaltaFeatured = (actorId, id, featured) =>
+  rpc('admin_set_safalta_featured', { p_actor_id: actorId, p_id: id, p_featured: featured })
+export const adminDeleteSafalta = (actorId, id) => rpc('admin_delete_safalta', { p_actor_id: actorId, p_id: id })
+
+// --- Community: Sarkari Yojana (schemes) ----------------------------------
+export const getAdminYojana = (actorId) => rpc('get_admin_yojana', { p_actor_id: actorId })
+export const adminSetYojanaActive = (actorId, id, active) =>
+  rpc('admin_set_yojana_active', { p_actor_id: actorId, p_id: id, p_active: active })
+export const adminSetYojanaFeatured = (actorId, id, featured) =>
+  rpc('admin_set_yojana_featured', { p_actor_id: actorId, p_id: id, p_featured: featured })
+export const adminUpsertYojana = (actorId, y) =>
+  rpc('admin_upsert_yojana', {
+    p_actor_id: actorId, p_id: y.id ?? null, p_scheme_name_hi: y.scheme_name_hi, p_scheme_name_en: y.scheme_name_en,
+    p_ministry_hi: y.ministry_hi ?? null, p_ministry_en: y.ministry_en ?? null, p_category: y.category,
+    p_description_hi: y.description_hi, p_description_en: y.description_en, p_benefit_hi: y.benefit_hi, p_benefit_en: y.benefit_en,
+    p_eligibility_hi: y.eligibility_hi, p_eligibility_en: y.eligibility_en, p_how_to_apply_hi: y.how_to_apply_hi ?? null,
+    p_how_to_apply_en: y.how_to_apply_en ?? null, p_official_website: y.official_website ?? null, p_helpline: y.helpline ?? null,
+    p_deadline_note_hi: y.deadline_note_hi ?? null, p_deadline_note_en: y.deadline_note_en ?? null,
+    p_is_active: y.is_active ?? true, p_is_featured: y.is_featured ?? false, p_sort_order: Number(y.sort_order) || 0,
+  })
+
 // Slugify an English title for the article slug field.
 export const slugify = (s) =>
   String(s || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')

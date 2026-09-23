@@ -1,0 +1,142 @@
+import { useEffect, useMemo, useState } from 'react'
+import { useLang } from '../lib/i18n/LanguageProvider'
+import NavBar from '../components/NavBar'
+import { Field, TextInput, TextArea, Select, Notice, Spinner } from '../components/ui'
+import {
+  fetchPublishedSawaal, submitSawaal, sawaalQuestion, sawaalAnswer,
+} from '../lib/community/communityApi'
+
+// Sawaal categories (order per spec). 'all' is a UI-only filter.
+const CATS = ['all', 'land', 'equipment', 'crop', 'pest', 'weather', 'market', 'scheme', 'drone_didi', 'general']
+// Drop markdown bold markers for plain rendering.
+const plain = (s) => String(s || '').replace(/\*\*/g, '')
+
+// Public Kisan Sawaal (Q&A) page — accordion cards + an ask-a-question form.
+export default function Sawaal() {
+  const { t, lang } = useLang()
+  const [rows, setRows] = useState(null)
+  const [error, setError] = useState(null)
+  const [cat, setCat] = useState('all')
+  const [openId, setOpenId] = useState(null)
+  const [showForm, setShowForm] = useState(false)
+
+  useEffect(() => {
+    let alive = true
+    fetchPublishedSawaal()
+      .then((r) => alive && setRows(r))
+      .catch((e) => alive && (setError(t(e.i18nKey || 'err_unknown')), setRows([])))
+    return () => { alive = false }
+  }, [t])
+
+  const shown = useMemo(() => (rows || []).filter((r) => cat === 'all' || r.category === cat), [rows, cat])
+  const chip = (active) =>
+    `whitespace-nowrap rounded-full px-3 py-1 text-sm font-semibold border ${
+      active ? 'border-green-700 bg-green-700 text-white' : 'border-stone-300 bg-white text-stone-700'
+    }`
+
+  return (
+    <div className="min-h-screen bg-stone-50">
+      <NavBar />
+      <main className="mx-auto max-w-3xl px-2 py-4">
+        <div className="flex flex-wrap items-start justify-between gap-2 px-1">
+          <div>
+            <h1 className="text-xl font-bold text-stone-900">{t('sawaal_title')}</h1>
+            <p className="mt-0.5 text-sm text-stone-600">{t('sawaal_sub')}</p>
+          </div>
+          <button type="button" onClick={() => setShowForm((v) => !v)} className="rounded-lg bg-green-700 px-3 py-2 text-sm font-bold text-white active:bg-green-800">
+            + {t('sawaal_ask_cta')}
+          </button>
+        </div>
+
+        {showForm && <AskForm t={t} onDone={() => setShowForm(false)} />}
+
+        {/* Category filter (horizontal scroll on mobile) */}
+        <div className="-mx-2 mt-3 flex gap-1.5 overflow-x-auto px-2 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {CATS.map((c) => (
+            <button key={c} type="button" className={chip(cat === c)} onClick={() => setCat(c)}>{t(`scat_${c}`)}</button>
+          ))}
+        </div>
+
+        {error && <Notice tone="error">{error}</Notice>}
+        {rows === null ? (
+          <Spinner />
+        ) : shown.length === 0 ? (
+          <p className="py-12 text-center text-stone-500">{t('sawaal_empty')}</p>
+        ) : (
+          <div className="mt-3 space-y-2">
+            {shown.map((r) => {
+              const open = openId === r.id
+              return (
+                <div key={r.id} className="overflow-hidden rounded-xl border border-stone-200 bg-white">
+                  <button type="button" onClick={() => setOpenId(open ? null : r.id)} className="flex w-full items-start gap-2 p-3 text-left">
+                    <span className="mt-0.5 text-lg" aria-hidden="true">❓</span>
+                    <span className="flex-1">
+                      <span className="block font-bold leading-snug text-stone-900">{sawaalQuestion(r, lang)}</span>
+                      <span className="mt-1 flex flex-wrap items-center gap-1.5 text-[11px] text-stone-500">
+                        {r.category && <span className="rounded-full bg-green-50 px-1.5 py-0.5 font-semibold text-green-800">{t(`scat_${r.category}`)}</span>}
+                        {r.asked_by_village && <span>📍 {r.asked_by_village}</span>}
+                      </span>
+                    </span>
+                    <span className="text-sm font-bold text-green-700">{open ? t('sawaal_hide_answer') : t('sawaal_show_answer')}</span>
+                  </button>
+                  {open && (
+                    <div className="border-t border-stone-100 bg-green-50/40 p-3">
+                      <p className="whitespace-pre-line text-sm leading-relaxed text-stone-800">{plain(sawaalAnswer(r, lang))}</p>
+                      {r.answered_by && <p className="mt-2 text-xs font-semibold text-stone-500">{t('sawaal_answered_by')}{r.answered_by}</p>}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </main>
+    </div>
+  )
+}
+
+const EMPTY = { asked_by_name: '', asked_by_village: '', category: 'general', question_hi: '' }
+
+function AskForm({ t, onDone }) {
+  const [f, setF] = useState(EMPTY)
+  const [busy, setBusy] = useState(false)
+  const [err, setErr] = useState(null)
+  const [ok, setOk] = useState(false)
+  const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }))
+
+  async function submit() {
+    setErr(null); setBusy(true)
+    try {
+      await submitSawaal(f)
+      setOk(true)
+      setTimeout(onDone, 2500)
+    } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } finally { setBusy(false) }
+  }
+
+  if (ok) return <Notice tone="success">{t('sawaal_submitted')}</Notice>
+
+  return (
+    <div className="mt-3 rounded-xl border-2 border-green-200 bg-green-50 p-4">
+      {err && <Notice tone="error">{err}</Notice>}
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label={t('sawaal_f_name')} htmlFor="sw_name"><TextInput id="sw_name" value={f.asked_by_name} onChange={set('asked_by_name')} /></Field>
+        <Field label={t('sawaal_f_village')} htmlFor="sw_village"><TextInput id="sw_village" value={f.asked_by_village} onChange={set('asked_by_village')} /></Field>
+        <Field label={t('sawaal_f_category')} htmlFor="sw_cat">
+          <Select id="sw_cat" value={f.category} onChange={set('category')}>
+            {['land', 'equipment', 'crop', 'pest', 'weather', 'market', 'scheme', 'drone_didi', 'general'].map((c) => (
+              <option key={c} value={c}>{t(`scat_${c}`)}</option>
+            ))}
+          </Select>
+        </Field>
+      </div>
+      <Field label={t('sawaal_f_question')} htmlFor="sw_q">
+        <TextArea id="sw_q" rows={3} value={f.question_hi} onChange={set('question_hi')} placeholder={t('sawaal_f_question_ph')} />
+      </Field>
+      <p className="mt-1 text-xs text-stone-500">{t('sawaal_ask_note')}</p>
+      <div className="mt-3 flex gap-2">
+        <button type="button" disabled={busy} onClick={submit} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white disabled:opacity-60">{t('submit')}</button>
+        <button type="button" onClick={onDone} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('cancel')}</button>
+      </div>
+    </div>
+  )
+}

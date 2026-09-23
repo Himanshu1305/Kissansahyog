@@ -21,6 +21,7 @@ import { getCategory } from '../lib/listings/registry'
 import { fetchRecentListings, fetchCrops, fetchEquipmentTypes } from '../lib/listings/listingsApi'
 import { fetchExperts } from '../lib/experts/expertsApi'
 import { fetchPublishedArticles, articleTitle } from '../lib/articles/articlesApi'
+import { fetchFeaturedSawaal, fetchFeaturedSafalta, sawaalQuestion, safaltaHelped } from '../lib/community/communityApi'
 import { expertName, expertSpec } from './Experts'
 import { timeAgo } from '../lib/timeAgo'
 
@@ -40,6 +41,8 @@ export default function Homepage() {
   const [listings, setListings] = useState([])
   const [experts, setExperts] = useState([])
   const [articles, setArticles] = useState([])
+  const [sawaal, setSawaal] = useState([])
+  const [safalta, setSafalta] = useState([])
   const [extras, setExtras] = useState({})
   const [weather, setWeather] = useState(undefined) // undefined=loading, null=unavailable
   const [loading, setLoading] = useState(true)
@@ -49,17 +52,21 @@ export default function Homepage() {
     let alive = true
     ;(async () => {
       try {
-        const [rows, exp, arts, crops, equipmentTypes] = await Promise.all([
+        const [rows, exp, arts, crops, equipmentTypes, saw, saf] = await Promise.all([
           fetchRecentListings(12),
           fetchExperts().catch(() => []),
           fetchPublishedArticles().catch(() => []),
           fetchCrops().catch(() => []),
           fetchEquipmentTypes().catch(() => []),
+          fetchFeaturedSawaal(2).catch(() => []),
+          fetchFeaturedSafalta(2).catch(() => []),
         ])
         if (!alive) return
         setListings(rows)
         setExperts(exp)
         setArticles(arts.slice(0, 2))
+        setSawaal(saw)
+        setSafalta(saf)
         setExtras({ crops, equipmentTypes })
       } catch { /* stays usable if the feed fails */ } finally {
         if (alive) setLoading(false)
@@ -195,6 +202,58 @@ export default function Homepage() {
               <div className="mt-1 text-xs font-bold text-amber-700">{t('res_full_details')} →</div>
             </button>
           ))}
+        </div>
+      </section>
+
+      {/* 5b — Community: Today's Question strip + Kisan Safalta teaser */}
+      <section className="mx-auto max-w-5xl px-2 py-3">
+        <div className="grid gap-2 md:grid-cols-2">
+          {/* Featured Q&A */}
+          <div className="rounded-xl border border-green-200 bg-green-50 p-3">
+            <div className="flex items-center justify-between">
+              <h2 className="text-base font-bold text-stone-800">❓ {t('home_sawaal_title')}</h2>
+              <button type="button" onClick={() => navigate('/sawaal')} className="text-xs font-bold text-green-700">{t('home_sawaal_link')} →</button>
+            </div>
+            {sawaal.length > 0 ? (
+              <ul className="mt-2 space-y-1.5">
+                {sawaal.map((q) => (
+                  <li key={q.id}>
+                    <button type="button" onClick={() => navigate('/sawaal')} className="line-clamp-2 text-left text-sm font-semibold text-stone-700 active:text-green-800">
+                      • {sawaalQuestion(q, lang)}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <button type="button" onClick={() => navigate('/sawaal')} className="mt-2 text-sm font-semibold text-green-800">{t('sawaal_ask_cta')} →</button>
+            )}
+          </div>
+
+          {/* Kisan Safalta teaser */}
+          <div className="rounded-xl border border-amber-200 bg-amber-50 p-3">
+            <div className="flex items-center justify-between">
+              <h2 className="text-base font-bold text-stone-800">🌾 {t('home_safalta_title')}</h2>
+              <button type="button" onClick={() => navigate('/safalta')} className="text-xs font-bold text-amber-700">{t('home_safalta_link')} →</button>
+            </div>
+            {safalta.length > 0 ? (
+              <ul className="mt-2 space-y-1.5">
+                {safalta.map((s) => (
+                  <li key={s.id} className="text-sm text-stone-700">
+                    <span className="font-bold text-stone-900">{s.farmer_name}</span>
+                    <span className="text-stone-400"> · </span>{s.crop_or_activity}
+                    {safaltaHelped(s, lang) && safaltaHelped(s, lang) !== '—' && (
+                      <span className="block line-clamp-1 text-xs text-stone-500">{safaltaHelped(s, lang)}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-2 text-sm text-stone-600">
+                {t('safalta_empty')}
+                <button type="button" onClick={() => navigate('/safalta')} className="mt-1 block font-bold text-amber-700">{t('safalta_share_cta')} →</button>
+              </p>
+            )}
+          </div>
         </div>
       </section>
 

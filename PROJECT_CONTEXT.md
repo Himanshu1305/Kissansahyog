@@ -570,3 +570,56 @@ Sagar-district mandis.
   ticker.
 - **Drone Didi banner** on the Browse drone_didi tab: drone SVG + scheme text + "सरकारी ड्रोन दीदी
   योजना ✓" badge + a "और जानें / Learn more" link (never a helicopter — `<CatIcon>` quadcopter).
+
+---
+
+## 20. Community features — Kisan Sawaal, Kisan Safalta, Sarkari Yojana
+
+Three admin-managed CMS features sharing the `articles`/`resources` pattern (public
+read via anon RLS; writes via is_admin-checked SECURITY DEFINER RPCs). **No new
+listing/marketplace logic.** Migration `0021_community_features.sql`.
+
+- **Tables (0021):**
+  - `kisan_sawaal` (Q&A) — public read of `is_published`; **anon may INSERT** but RLS
+    `with check (is_published = false)` forces submissions unpublished (anti-spam);
+    admin answers + publishes via RPCs. Category ∈ land/equipment/crop/pest/weather/
+    market/scheme/drone_didi/general.
+  - `kisan_safalta` (success stories) — public read of `is_published`; constrained
+    anon INSERT (`is_published=false and is_featured=false`) powers the "Share your
+    story" form (deviation from the prompt's "admin-only writes", to support that form;
+    it stays invisible until an admin reviews). `contact_phone` added for follow-up.
+  - `sarkari_yojana` (schemes) — public read of `is_active`; **no anon writes**.
+    Category CHECK includes a `market` value (for e-NAM) beyond the prompt's 8.
+- **Seeds (idempotent, fixed UUIDs):** 8 verified 2026 schemes (PM Kisan, PMFBY,
+  PM KUSUM, KCC, Drone Didi, Soil Health Card, e-NAM, PM-AASHA) in plain class-8 Hindi;
+  3 answered example Q&As; 2 clearly-marked placeholder stories (unpublished).
+- **Admin RPCs (all require_admin):** sawaal — `get_admin_sawaal`, `admin_answer_sawaal`,
+  `admin_set_sawaal_featured/published`, `admin_delete_sawaal`; safalta —
+  `get_admin_safalta`, `admin_upsert_safalta`, `admin_set_safalta_published/featured`,
+  `admin_delete_safalta`; yojana — `get_admin_yojana`, `admin_upsert_yojana`,
+  `admin_set_yojana_active/featured`.
+- **Public pages** (`src/lib/community/communityApi.js` + screens, all no-login):
+  `/sawaal` (accordion Q&A + category filter + ask-a-question form),
+  `/safalta` (story cards with before/after income + "how helped" callout + share form +
+  placeholder invite when empty), `/yojana` (scheme cards: green benefit box first,
+  expandable eligibility/how-to-apply, `tel:` helpline, official website, deadline pill,
+  + MSP-vs-mandi cross-link to `/info#msp`).
+- **Nav:** a single **"समुदाय / Community" dropdown** (NavBar) groups all three (opens on
+  hover/click on desktop; expands inline in the mobile hamburger) — keeps top-level nav clean.
+- **Homepage:** a compact "आज का सवाल / Today's Question" strip (featured Q&As) + a
+  "किसान सफलता" teaser (featured stories, or the invite when none), between the govt-contacts
+  row and the articles row. **`/info`** gains a "सरकारी योजनाएं" section (3 featured scheme
+  cards → `/yojana`).
+- **Admin dashboard:** three new panels — Sawaal (Answer & Publish, feature/unpublish/delete),
+  Safalta (Review & Publish full form, feature/unpublish/delete), Yojana (toggle active/featured,
+  full edit form).
+- All strings bilingual (audit 29/29). Tests: `scripts/test/p_community.mjs` (46 static checks —
+  RLS/insert policies, every admin RPC gated by require_admin, seed counts, routes, nav, i18n).
+
+> **BLOCKER (same as §17/§18):** migration `0021` is **NOT yet applied to the live DB** — the
+> Supabase Management API token (`SUPABASE_ACCESS_TOKEN`) is expired (401). Until applied, the
+> community pages render but show empty/degraded states (fetches fail gracefully; homepage/info
+> strips simply don't appear). **To finish:** refresh the token → `npm run db migrate`; OR paste
+> `supabase/migrations/0021_community_features.sql` (fully idempotent) into the Supabase SQL
+> Editor. Admin management + public pages then light up immediately with the 8 seeded schemes,
+> 3 Q&As, and 2 placeholder stories.

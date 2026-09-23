@@ -9,6 +9,7 @@ import { fetchWeather } from '../lib/weather/weatherApi'
 import { getRainAlert } from '../lib/weather/rainAlert'
 import { fetchMsp, MANDI_TO_MSP, mspCropName } from '../lib/msp/mspApi'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
+import { fetchFeaturedYojana, yojanaName, yojanaBenefit } from '../lib/community/communityApi'
 
 const fmt = (n) => Math.round(Number(n) || 0).toLocaleString('en-IN')
 
@@ -22,12 +23,14 @@ export default function Info() {
   const [msp, setMsp] = useState(null)
   const [mandi, setMandi] = useState({ rows: [], day: 'none' })
   const [season, setSeason] = useState('rabi')
+  const [schemes, setSchemes] = useState([])
 
   useEffect(() => {
     let alive = true
     fetchWeather().then((w) => alive && setWeather(w)).catch(() => alive && setWeather(null))
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
     fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
+    fetchFeaturedYojana(3).then((y) => alive && setSchemes(y)).catch(() => alive && setSchemes([]))
     return () => { alive = false }
   }, [])
 
@@ -140,6 +143,24 @@ export default function Info() {
             <p className="mt-3 text-xs text-stone-400">{t('msp_source')}</p>
             <p className="text-xs text-stone-400">{t('msp_next_update')}</p>
           </section>
+
+          {/* Section 2b — Government schemes (featured) */}
+          {schemes.length > 0 && (
+            <section id="schemes" className="scroll-mt-16 rounded-xl border border-stone-200 border-l-4 border-l-emerald-500 bg-white p-3">
+              <div className="mb-2 flex items-center justify-between">
+                <h2 className="font-bold text-stone-800">🏛️ {t('info_yojana_heading')}</h2>
+                <button type="button" onClick={() => navigate('/yojana')} className="text-sm font-bold text-green-700">{t('info_yojana_link')} →</button>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-3">
+                {schemes.map((s) => (
+                  <button key={s.id} type="button" onClick={() => navigate('/yojana')} className="rounded-xl border border-emerald-200 bg-emerald-50 p-2.5 text-left active:bg-emerald-100">
+                    <div className="text-sm font-bold leading-snug text-stone-900">{yojanaName(s, lang)}</div>
+                    <div className="mt-1 text-xs font-semibold text-emerald-800">{yojanaBenefit(s, lang)}</div>
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Section 3 — Contacts */}
           <section id="contacts" className="scroll-mt-16 rounded-xl border border-stone-200 border-l-4 border-l-amber-400 bg-white p-3">

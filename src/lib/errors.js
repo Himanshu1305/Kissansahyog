@@ -51,6 +51,11 @@ const CODE_TO_KEY = {
   not_authorized: 'err_not_authorized',
   not_admin: 'err_not_admin',
   article_fields_required: 'err_article_fields',
+  question_required: 'err_question_required',
+  story_required: 'err_story_required',
+  story_fields_required: 'err_story_fields_required',
+  scheme_fields_required: 'err_scheme_fields_required',
+  invalid_scheme_category: 'err_invalid_scheme_category',
 }
 
 export class AppError extends Error {

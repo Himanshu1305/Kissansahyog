@@ -28,6 +28,15 @@ const NAV_CATS = [
   { key: 'resources', labelKey: 'resources_nav' },
 ]
 
+// Community features grouped under a single "Samuday / Community" dropdown so the
+// top-level nav stays clean (Kisan Sawaal Q&A, Kisan Safalta stories, schemes).
+const COMMUNITY = [
+  { key: 'sawaal', labelKey: 'sawaal_nav', path: '/sawaal' },
+  { key: 'safalta', labelKey: 'safalta_nav', path: '/safalta' },
+  { key: 'yojana', labelKey: 'yojana_nav', path: '/yojana' },
+]
+const COMMUNITY_PATHS = COMMUNITY.map((c) => c.path)
+
 // Global, sticky navigation bar for the public-facing pages (homepage, privacy,
 // terms). Authenticated feature screens keep their own compact Screen header.
 export default function NavBar() {
@@ -38,10 +47,14 @@ export default function NavBar() {
   const [params] = useSearchParams()
   const [open, setOpen] = useState(false)
   const [menu, setMenu] = useState(false) // user dropdown
+  const [comm, setComm] = useState(false) // community dropdown (desktop)
+
+  const inCommunity = COMMUNITY_PATHS.some((p) => location.pathname.startsWith(p))
 
   // Which nav item (if any) is currently active, for highlighting.
   const activeCat =
-    location.pathname.startsWith('/info') ? 'info'
+    inCommunity ? 'community'
+      : location.pathname.startsWith('/info') ? 'info'
       : location.pathname.startsWith('/resources') ? 'resources'
       : location.pathname.startsWith('/articles') ? 'articles'
         : location.pathname.startsWith('/experts') ? 'experts'
@@ -90,6 +103,34 @@ export default function NavBar() {
               {t(c.labelKey)}
             </button>
           ))}
+          {/* Community dropdown (groups Q&A / Stories / Schemes) */}
+          <div className="relative" onMouseLeave={() => setComm(false)}>
+            <button
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded={comm}
+              className={catBtn(activeCat === 'community')}
+              onClick={() => setComm((v) => !v)}
+              onMouseEnter={() => setComm(true)}
+            >
+              {t('community_nav')} ▾
+            </button>
+            {comm && (
+              <div role="menu" className="absolute left-0 z-40 mt-1 w-48 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+                {COMMUNITY.map((c) => (
+                  <button
+                    key={c.key}
+                    type="button"
+                    role="menuitem"
+                    className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50"
+                    onClick={() => { setComm(false); navigate(c.path) }}
+                  >
+                    {t(c.labelKey)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         {/* Right cluster */}
@@ -165,17 +206,30 @@ export default function NavBar() {
 
       {/* Mobile collapsible category links */}
       {open && (
-        <nav className="grid grid-cols-2 gap-2 border-t border-stone-100 px-4 py-3 md:hidden">
-          {NAV_CATS.map((c) => (
-            <button key={c.key} type="button" className={catBtn(activeCat === c.key)} onClick={() => goCategory(c.key)}>
-              {t(c.labelKey)}
-            </button>
-          ))}
-          {isLoggedIn && (
-            <button type="button" className={catBtn(false)} onClick={() => { setOpen(false); navigate('/my') }}>
-              {t('my_listings')}
-            </button>
-          )}
+        <nav className="border-t border-stone-100 px-4 py-3 md:hidden">
+          <div className="grid grid-cols-2 gap-2">
+            {NAV_CATS.map((c) => (
+              <button key={c.key} type="button" className={catBtn(activeCat === c.key)} onClick={() => goCategory(c.key)}>
+                {t(c.labelKey)}
+              </button>
+            ))}
+            {isLoggedIn && (
+              <button type="button" className={catBtn(false)} onClick={() => { setOpen(false); navigate('/my') }}>
+                {t('my_listings')}
+              </button>
+            )}
+          </div>
+          {/* Community group — expanded inline on mobile */}
+          <div className="mt-3 border-t border-stone-100 pt-3">
+            <div className="mb-1 px-1 text-xs font-bold uppercase tracking-wide text-stone-400">{t('community_nav')}</div>
+            <div className="grid grid-cols-2 gap-2">
+              {COMMUNITY.map((c) => (
+                <button key={c.key} type="button" className={catBtn(location.pathname.startsWith(c.path))} onClick={() => { setOpen(false); navigate(c.path) }}>
+                  {t(c.labelKey)}
+                </button>
+              ))}
+            </div>
+          </div>
         </nav>
       )}
     </header>
