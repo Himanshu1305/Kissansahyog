@@ -1,0 +1,68 @@
+/* Kisan Sahyog design tokens — Homepage v4 "Direction B · Balanced".
+   New palette below; the earlier --ks-primary/--ks-accent tokens are ALIASED to
+   these values so other pages keep working while the homepage uses the new names. */
+:root {
+  /* Backgrounds */
+  --ks-bg: #FBFAF5;
+  --ks-bg-soft: #F1F6E9;
+  --ks-bg-warm: #FFF3DF;
+  --ks-card: #FFFFFF;
+  --ks-border: #E6E2D6;
+  --ks-border-strong: #D8D2C2;
+
+  /* Green (primary action, growth) */
+  --ks-green: #24733F;
+  --ks-green-dark: #185A31;
+  --ks-green-tint: #EAF3DE;
+
+  /* Orange (second action) */
+  --ks-orange: #E8731F;
+  --ks-orange-dark: #B4520A;
+  --ks-orange-tint: #FFE6D5;
+
+  /* Saffron (alerts/accents) + terracotta */
+  --ks-saffron: #E69A2D;
+  --ks-saffron-tint: #FFF3DF;
+  --ks-terracotta: #C96F4B;
+
+  /* Ink (text) */
+  --ks-ink: #173323;
+  --ks-ink-2: #3F4A38;
+  --ks-ink-3: #5B6350;
+
+  /* Dark strips (ticker, footer) */
+  --ks-strip: #173F2A;
+  --ks-strip-2: #12321F;
+
+  /* Info blue + WhatsApp */
+  --ks-blue: #1D4ED8;
+  --ks-blue-tint: #E6F1FB;
+  --ks-whatsapp: #25D366;
+
+  /* Shape + spacing */
+  --ks-radius: 12px;
+  --ks-radius-lg: 16px;
+  --ks-gutter: 12px;
+
+  /* ---- Aliases: keep older pages (Info/Sawaal/Admin/etc.) intact ---- */
+  --ks-primary: var(--ks-green);
+  --ks-primary-dark: var(--ks-green-dark);
+  --ks-primary-light: #2E8B4E;
+  --ks-primary-muted: var(--ks-green-tint);
+  --ks-accent: var(--ks-saffron);
+  --ks-accent-dark: var(--ks-orange-dark);
+  --ks-accent-light: #FBBF24;
+  --ks-accent-muted: var(--ks-saffron-tint);
+  --ks-bg-card: var(--ks-card);
+  --ks-bg-section: var(--ks-bg-soft);
+  --ks-border-light: #F0ECE0;
+  --ks-text: var(--ks-ink);
+  --ks-text-secondary: var(--ks-ink-2);
+  --ks-text-muted: var(--ks-ink-3);
+  --ks-offer: var(--ks-green-tint);
+  --ks-offer-text: var(--ks-green-dark);
+  --ks-requirement: var(--ks-saffron-tint);
+  --ks-requirement-text: var(--ks-orange-dark);
+  --ks-vendor: #FFF7ED;
+  --ks-vendor-text: #7C2D12;
+}

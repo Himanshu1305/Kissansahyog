@@ -745,3 +745,32 @@ Full rewrite of `Homepage.jsx` to the approved V3 design.
   `mandi_short`, `hero_listings_sub`, `articles_home_title`, `articles_all_link`. `TrustCarousel` stays
   deleted. Audit 29/29. Verified at 1280px (hero 2-col, listings 3-col, 40px padding) and 375px (right
   cards hidden, listings 2-col, 14px padding); WA buttons 34×34 inline SVG with correct wa.me URLs.
+
+## Homepage v4 (Direction B · Balanced) — 2026-09-24
+
+Full photograph-first rebuild of `src/screens/Homepage.jsx` on a new design system.
+- **Tokens:** `src/styles/tokens.css` (imported by `index.css`); old `--ks-primary/--ks-accent`
+  aliased to the new palette so other pages are untouched. Noto Sans Devanagari now loaded
+  via Google Fonts (`index.html`) and set as the primary body font.
+- **Shared kit:** `src/components/home/kit.jsx` — Section, SectionHeader, Button (primary/
+  secondary/ghost + `giant`), PhotoTile, InfoTile, CountChip, HomeListingCard, inline
+  WhatsApp/Phone SVG icons. Homepage sections built only from these.
+- **Self-hosted photos:** `public/images/home/*` (17 Pexels photos + 3 YouTube thumbnails),
+  produced by `scripts/fetch-images.mjs` (now `file`-checks every download and rejects
+  non-JPEG/PNG). `manifest.json` drives the new `/credits` page (`src/screens/Credits.jsx`).
+- **Data helpers:** `src/lib/today/forFarmer.js` (getTodayForFarmer → weather/rain/price/
+  advice lines, all via i18n), `src/content/videos.js` (3 verified Hindi videos),
+  `src/lib/listings/nearbyCounts.js` (nearby_counts RPC + pincode resolve/save, default
+  470117 Khurai), `fetchHomeFeed()` in `listingsApi.js` (recent listings enriched with
+  pincode coords → distance-then-recency order). `fetchMandiPrices()` now attaches a `delta`
+  per row (trend arrows ↑/↓ in `MandiTicker`).
+- **Photo Q&A:** Sawaal ask form takes an optional image (≤2MB jpg/png, best-effort upload
+  to `listing-photos`), stored on `kisan_sawaal.photo_url` (migration 0022). Homepage button
+  → `/sawaal?ask=1&photo=1` opens the form with the photo field focused.
+- **NavBar:** container widened `max-w-6xl → max-w-7xl` (gap-2 px-3) to remove a 1280px
+  horizontal overflow — affects all pages, purely more room.
+- **Removed for good:** old weather/MSP strip, category chip strip, stats bar, mission bar,
+  carousel, About block, standalone rain-alert strip (classifier kept; content now in the
+  Today card).
+- Screenshot self-review: `docs/review/HOMEPAGE_V4_REVIEW.md` + `home-desktop.png` /
+  `home-mobile.png`. Trust-row official PIB/MP photos omitted (unverifiable — see review).

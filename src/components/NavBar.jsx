@@ -86,7 +86,7 @@ export default function NavBar() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--ks-border-light)] bg-white shadow-sm">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-1.5">
+      <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-1.5">
         {/* Brand */}
         <button type="button" onClick={goHome} className="flex items-center gap-2 text-left">
           <span className="text-[28px] leading-none" aria-hidden="true">🌾</span>

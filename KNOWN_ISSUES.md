@@ -113,3 +113,18 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 9. **Deployment is not automated.** The app builds for Cloudflare Pages but is not deployed
    here (per scope). Founder connects Cloudflare Pages to the repo and sets the same env
    vars as a follow-up step.
+
+## Homepage v4 (2026-09-24)
+
+- **Official PIB / MP trust-row photos omitted.** drone-didi-official / pm-official /
+  cm-official could not be verified (pib.gov.in returns 403 to automated fetch; no
+  Wikimedia Commons match). Per spec those cells are omitted rather than substituted; the
+  founder cell uses an initials avatar (अ.दी., `TODO: founder photo`). Swap in verified
+  official images later if desired.
+- **Sawaal photo upload is best-effort for anonymous users.** Uploads go to the
+  `listing-photos` bucket; if storage RLS rejects an anonymous upload the question is still
+  submitted (without the photo). Confirm/relax the storage policy for anon Q&A photos, or
+  gate the photo field behind login, in a later pass.
+- **Backend suites not re-run this session** (no service-role run performed). Homepage v4
+  changes are additive (new functions, one optional RPC-backed count, one nullable column
+  already migrated); `npm run build` is green and a Playwright route smoke passed.

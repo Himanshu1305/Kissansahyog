@@ -146,6 +146,48 @@ export async function fetchRecentListings(limit = 12) {
   })
 }
 
+// Phase 3e — homepage feed enriched with village/district + pincode coordinates,
+// so the caller can order by distance from a center then recency. Contact-free,
+// like fetchRecentListings. center = { latitude, longitude } | null.
+export async function fetchHomeFeed({ center = null, limit = 8, pool = 40 } = {}) {
+  const { data, error } = await supabase
+    .from('listings')
+    .select('id,listing_type,category,pincode,details,created_at,listing_source')
+    .eq('status', 'active')
+    .gt('expires_at', new Date().toISOString())
+    .order('created_at', { ascending: false })
+    .limit(pool)
+  if (error) throw toAppError(error)
+  const rows = data || []
+
+  const pins = [...new Set(rows.map((r) => r.pincode).filter(Boolean))]
+  let pinByCode = {}
+  if (pins.length) {
+    const { data: pinRows, error: pinErr } = await supabase
+      .from('pincodes')
+      .select('pincode,village_town,district,latitude,longitude')
+      .in('pincode', pins)
+    if (pinErr) throw toAppError(pinErr)
+    pinByCode = Object.fromEntries((pinRows || []).map((p) => [p.pincode, p]))
+  }
+
+  const enriched = rows.map((r) => {
+    const p = pinByCode[r.pincode]
+    const distanceKm = center && p?.latitude != null && p?.longitude != null
+      ? haversineKm(center.latitude, center.longitude, p.latitude, p.longitude)
+      : null
+    return { ...r, village_town: p?.village_town || null, district: p?.district || null, distanceKm }
+  })
+
+  enriched.sort((a, b) => {
+    if (center && a.distanceKm != null && b.distanceKm != null) return a.distanceKm - b.distanceKm
+    if (center && a.distanceKm != null) return -1
+    if (center && b.distanceKm != null) return 1
+    return new Date(b.created_at) - new Date(a.created_at)
+  })
+  return enriched.slice(0, limit)
+}
+
 // Single listing by id (active only, via RLS). Used by the detail screen.
 export async function fetchListingById(id) {
   const { data, error } = await supabase.from('listings').select('*').eq('id', id).maybeSingle()

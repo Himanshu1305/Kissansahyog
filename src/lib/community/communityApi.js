@@ -30,7 +30,7 @@ export async function fetchFeaturedSawaal(limit = 2) {
 }
 
 // Submit a question for admin review. Never published on insert (RLS enforces).
-export async function submitSawaal({ question_hi, asked_by_name, asked_by_village, category }) {
+export async function submitSawaal({ question_hi, asked_by_name, asked_by_village, category, photo_url }) {
   if (!question_hi || !question_hi.trim()) throw new AppError('question_required')
   // When no name is given, omit the column so the DB default (a Hindi "Kisan")
   // applies — keeps this file free of hardcoded Devanagari (bilingual audit).
@@ -41,6 +41,7 @@ export async function submitSawaal({ question_hi, asked_by_name, asked_by_villag
     is_published: false,
   }
   if (asked_by_name && asked_by_name.trim()) row.asked_by_name = asked_by_name.trim()
+  if (photo_url) row.photo_url = photo_url // Phase 4 §8 — optional attached photo
   const { error } = await supabase.from('kisan_sawaal').insert(row)
   if (error) throw toAppError(error)
   return true

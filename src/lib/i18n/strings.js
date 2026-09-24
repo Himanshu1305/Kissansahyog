@@ -844,6 +844,9 @@ export const strings = {
   sawaal_f_category: { hi: 'विषय', en: 'Category' },
   sawaal_f_question: { hi: 'आपका सवाल', en: 'Your question' },
   sawaal_f_question_ph: { hi: 'अपना सवाल यहां लिखें…', en: 'Write your question here…' },
+  sawaal_f_photo: { hi: 'फोटो (वैकल्पिक)', en: 'Photo (optional)' },
+  sawaal_photo_too_big: { hi: 'फोटो 2MB से छोटी होनी चाहिए', en: 'Photo must be smaller than 2MB' },
+  sawaal_photo_type: { hi: 'केवल JPG या PNG फोटो', en: 'Only JPG or PNG images' },
 
   // Sawaal category filter labels (+ 'all')
   scat_all: { hi: 'सभी', en: 'All' },
@@ -1030,4 +1033,86 @@ export const strings = {
   qa_all_link: { hi: 'सभी सवाल', en: 'All Questions' },
   qa_ask_btn: { hi: 'अपना सवाल पूछें', en: 'Ask Your Question' },
   qa_empty_msg: { hi: 'कोई सवाल पूछें — हम जवाब देंगे', en: "Ask a question — we'll answer" },
+
+  // ===================== Homepage v4 (Direction B) =====================
+  // --- आज किसान के लिए (Today card / hero) ---
+  tf_eyebrow: { hi: 'किसान की आय बढ़ाना · रोज़गार के अवसर', en: 'Growing farmer income · Rural jobs' },
+  tf_title: { hi: 'आज किसान के लिए', en: 'For the farmer, today' },
+  tf_subline: { hi: 'सही जानकारी, सही मौके — आपके आसपास', en: 'The right information and the right opportunities — near you' },
+  tf_weather_cap: { hi: 'मौसम', en: 'Weather' },
+  tf_price_cap: { hi: 'आज का भाव', en: "Today's price" },
+  tf_advice_cap: { hi: 'आज की सलाह', en: "Today's advice" },
+  tf_rain_tomorrow: { hi: 'कल बारिश की संभावना', en: 'Rain likely tomorrow' },
+  tf_rain_none: { hi: 'अगले 2 दिन बारिश नहीं', en: 'No rain for the next 2 days' },
+  tf_advice_heavy: { hi: 'आज छिड़काव और कटाई टालें — भारी बारिश की चेतावनी', en: 'Postpone spraying and harvest today — heavy-rain warning' },
+  tf_advice_rain_soon: { hi: 'आज कटाई पूरी करें, अनाज खुले में न छोड़ें', en: 'Finish harvest today; do not leave grain in the open' },
+  tf_advice_clear: { hi: 'छिड़काव और कटाई के लिए अच्छा दिन', en: 'A good day for spraying and harvest' },
+  tf_from: { hi: 'से', en: 'is' },
+  tf_above_word: { hi: 'ऊपर', en: 'above' },
+  tf_below_word: { hi: 'नीचे', en: 'below' },
+  cta_need: { hi: 'मुझे कुछ चाहिए', en: 'I need something' },
+  cta_need_sub: { hi: 'खोजें, संपर्क करें, किराये पर लें', en: 'Search, connect, rent' },
+  cta_have: { hi: 'मेरे पास कुछ है', en: 'I have something' },
+  cta_have_sub: { hi: 'बेचें, किराये पर दें, लोगों तक पहुँचें', en: 'Sell, rent out, reach people' },
+
+  // --- आपके आसपास (counts) ---
+  near_title: { hi: 'आपके आसपास क्या उपलब्ध है?', en: "What's available near you?" },
+  near_km: { hi: '30 किमी', en: '30 km' },
+  pincode_change: { hi: 'पिनकोड बदलें', en: 'Change pincode' },
+  pincode_prompt: { hi: '6-अंकों का पिनकोड डालें', en: 'Enter a 6-digit pincode' },
+  pincode_label: { hi: 'पिनकोड', en: 'Pincode' },
+  near_cat_equipment: { hi: 'मशीनें', en: 'Machines' },
+  near_cat_labor: { hi: 'कृषि सहयोगी', en: 'Farm helpers' },
+  near_cat_bhusa: { hi: 'भूसा/पराली', en: 'Straw/Stubble' },
+  near_cat_drone_didi: { hi: 'Drone Didi', en: 'Drone Didi' },
+  near_cat_warehouse: { hi: 'गोदाम', en: 'Warehouse' },
+  near_cat_land: { hi: 'ज़मीन', en: 'Land' },
+
+  // --- कृषि बाज़ार की श्रेणियाँ ---
+  cats_title: { hi: 'कृषि बाज़ार की श्रेणियाँ', en: 'Farm marketplace categories' },
+  cat_machines_label: { hi: 'मशीनें', en: 'Machines' },
+  cat_machines_sub: { hi: 'ट्रैक्टर, हार्वेस्टर, किराया', en: 'Tractor, harvester, rental' },
+  cat_labour_label: { hi: 'कृषि सहयोगी', en: 'Farm helpers' },
+  cat_labour_sub: { hi: 'मज़दूर, टीम, दिहाड़ी', en: 'Workers, teams, daily wage' },
+  cat_drone_label: { hi: 'Drone Didi', en: 'Drone Didi' },
+  cat_drone_sub: { hi: 'छिड़काव सेवा', en: 'Spraying service' },
+  cat_straw_label: { hi: 'भूसा/पराली', en: 'Straw/Stubble' },
+  cat_straw_sub: { hi: 'चारा, पराली', en: 'Fodder, stubble' },
+  cat_inputs_label: { hi: 'बीज, खाद व इनपुट', en: 'Seed, fertiliser & inputs' },
+  cat_inputs_sub: { hi: 'बीज, खाद, दवा', en: 'Seed, fertiliser, pesticide' },
+  cat_godown_label: { hi: 'गोदाम/भंडारण', en: 'Warehouse/Storage' },
+  cat_godown_sub: { hi: 'भंडारण जगह', en: 'Storage space' },
+  cat_expert_label: { hi: 'कृषि विशेषज्ञ', en: 'Farm expert' },
+  cat_expert_sub: { hi: 'सलाह, मार्गदर्शन', en: 'Advice, guidance' },
+  cat_land_label: { hi: 'ज़मीन (पट्टा/बटाई)', en: 'Land (lease/sharecrop)' },
+  cat_land_sub: { hi: 'किराया, बटाई', en: 'Lease, sharecrop' },
+
+  // --- listings / videos ---
+  listings_near_title: { hi: 'आपके आसपास की ताज़ा लिस्टिंग', en: 'Fresh listings near you' },
+  videos_title: { hi: 'आज की 2 मिनट की वीडियो सलाह', en: "Today's 2-minute video advice" },
+  video_watch: { hi: 'देखें', en: 'Watch' },
+
+  // --- Q&A ---
+  qa_photo_ask: { hi: 'फोटो भेजकर सवाल पूछें', en: 'Ask a question with a photo' },
+  qa_answers_word: { hi: 'जवाब', en: 'answers' },
+
+  // --- सरकारी मदद ---
+  govt_title: { hi: 'सरकारी मदद', en: 'Government help' },
+  govt_yojana_title: { hi: 'योजनाएँ', en: 'Schemes' },
+  govt_yojana_sub: { hi: 'PM किसान ₹6,000 · फसल बीमा 2% · कुसुम 60%', en: 'PM-Kisan ₹6,000 · Crop insurance 2% · KUSUM 60%' },
+  govt_numbers_title: { hi: 'ज़रूरी नंबर', en: 'Important numbers' },
+  govt_numbers_sub: { hi: 'पशु 1962 · हेल्पलाइन 1800-180-1551 · KVK', en: 'Animal 1962 · Helpline 1800-180-1551 · KVK' },
+  govt_msp_title: { hi: 'MSP 2026-27', en: 'MSP 2026-27' },
+  govt_msp_sub: { hi: 'गेहूं ₹2,585 · सोयाबीन ₹5,708 · चना ₹5,875', en: 'Wheat ₹2,585 · Soybean ₹5,708 · Gram ₹5,875' },
+
+  // --- भरोसेमंद लोग (trust row) ---
+  trust_title: { hi: 'भरोसेमंद लोग', en: 'People you can trust' },
+  founder_quote: { hi: 'यह मंच खेती को समझने वाले लोगों ने किसानों के लिए बनाया है।', en: 'This platform was built for farmers by people who understand farming.' },
+  founder_name: { hi: 'श्री ए.के. दीक्षित', en: 'Shri A.K. Dixit' },
+  founder_role: { hi: 'कृषि विशेषज्ञ, किसान परिवार से', en: 'Agriculture expert, from a farming family' },
+
+  // --- footer / credits ---
+  footer_credits: { hi: 'फोटो श्रेय', en: 'Photo credits' },
+  credits_title: { hi: 'फोटो श्रेय', en: 'Photo credits' },
+  credits_intro: { hi: 'इस पेज पर उपयोग की गई तस्वीरें और उनके स्रोत।', en: 'Photographs used on this site and their sources.' },
 }

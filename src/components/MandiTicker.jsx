@@ -29,6 +29,11 @@ export default function MandiTicker() {
     <span key={`${r.commodity_en}-${r.market}-${i}`} className="whitespace-nowrap px-4 text-[#c8e6b0]">
       <span className="font-bold text-white">{r.commodity_hi}</span>{' '}
       <span>₹{fmt(r.modal_price)}/{t('mandi_qtl')}</span>
+      {r.delta != null && r.delta !== 0 && (
+        <span className="font-bold" style={{ color: r.delta > 0 ? '#FBE9B6' : '#F5B7B7' }}>
+          {' '}{r.delta > 0 ? '↑' : '↓'}{fmt(Math.abs(r.delta))}
+        </span>
+      )}
       <span className="text-[var(--ks-primary-light)]"> · </span>
       <span>{marketHi(r.market)}</span>
       <span className="px-2 text-[var(--ks-primary-light)]">|</span>

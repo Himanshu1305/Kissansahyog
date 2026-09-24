@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
+import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
 import { Field, TextInput, TextArea, Select, Notice, Spinner } from '../components/ui'
+import { uploadPhotos } from '../lib/listings/photos'
 import {
   fetchPublishedSawaal, submitSawaal, sawaalQuestion, sawaalAnswer,
 } from '../lib/community/communityApi'
@@ -18,7 +21,9 @@ export default function Sawaal() {
   const [error, setError] = useState(null)
   const [cat, setCat] = useState('all')
   const [openId, setOpenId] = useState(null)
-  const [showForm, setShowForm] = useState(false)
+  const [params] = useSearchParams()
+  const [showForm, setShowForm] = useState(params.get('ask') === '1')
+  const photoDefault = params.get('photo') === '1'
 
   useEffect(() => {
     let alive = true
@@ -48,7 +53,7 @@ export default function Sawaal() {
           </button>
         </div>
 
-        {showForm && <AskForm t={t} onDone={() => setShowForm(false)} />}
+        {showForm && <AskForm t={t} photoDefault={photoDefault} onDone={() => setShowForm(false)} />}
 
         {/* Category filter (horizontal scroll on mobile) */}
         <div className="-mx-2 mt-3 flex gap-1.5 overflow-x-auto px-2 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -97,17 +102,36 @@ export default function Sawaal() {
 
 const EMPTY = { asked_by_name: '', asked_by_village: '', category: 'general', question_hi: '' }
 
-function AskForm({ t, onDone }) {
+function AskForm({ t, onDone, photoDefault = false }) {
+  const { user } = useAuth()
   const [f, setF] = useState(EMPTY)
+  const [file, setFile] = useState(null)
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState(null)
   const [ok, setOk] = useState(false)
   const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }))
 
+  function pickFile(e) {
+    setErr(null)
+    const fl = e.target.files?.[0]
+    if (!fl) { setFile(null); return }
+    if (!/^image\/(jpe?g|png)$/.test(fl.type)) { setErr(t('sawaal_photo_type')); e.target.value = ''; return }
+    if (fl.size > 2 * 1024 * 1024) { setErr(t('sawaal_photo_too_big')); e.target.value = ''; return }
+    setFile(fl)
+  }
+
   async function submit() {
     setErr(null); setBusy(true)
     try {
-      await submitSawaal(f)
+      let photo_url
+      if (file) {
+        // Best-effort upload; a failed upload must not block the question.
+        try {
+          const urls = await uploadPhotos([file], user?.id || 'sawaal')
+          photo_url = urls[0]
+        } catch { /* submit without photo */ }
+      }
+      await submitSawaal({ ...f, photo_url })
       setOk(true)
       setTimeout(onDone, 2500)
     } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } finally { setBusy(false) }
@@ -131,6 +155,10 @@ function AskForm({ t, onDone }) {
       </div>
       <Field label={t('sawaal_f_question')} htmlFor="sw_q">
         <TextArea id="sw_q" rows={3} value={f.question_hi} onChange={set('question_hi')} placeholder={t('sawaal_f_question_ph')} />
+      </Field>
+      <Field label={`📷 ${t('sawaal_f_photo')}`} htmlFor="sw_photo">
+        <input id="sw_photo" type="file" accept="image/jpeg,image/png" autoFocus={photoDefault} onChange={pickFile} className="block w-full text-sm text-stone-700" />
+        {file && <span className="mt-1 block text-xs text-green-700">✓ {file.name}</span>}
       </Field>
       <p className="mt-1 text-xs text-stone-500">{t('sawaal_ask_note')}</p>
       <div className="mt-3 flex gap-2">
