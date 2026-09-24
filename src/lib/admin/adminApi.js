@@ -112,6 +112,11 @@ export const adminUpsertYojana = (actorId, y) =>
     p_how_to_apply_en: y.how_to_apply_en ?? null, p_official_website: y.official_website ?? null, p_helpline: y.helpline ?? null,
     p_deadline_note_hi: y.deadline_note_hi ?? null, p_deadline_note_en: y.deadline_note_en ?? null,
     p_is_active: y.is_active ?? true, p_is_featured: y.is_featured ?? false, p_sort_order: Number(y.sort_order) || 0,
+    // Phase 3e — individual-scheme-page fields
+    p_slug: y.slug ?? null, p_government_level: y.government_level ?? 'central',
+    p_faqs: Array.isArray(y.faqs) ? y.faqs : [],
+    p_documents_required_hi: y.documents_required_hi ?? null, p_documents_required_en: y.documents_required_en ?? null,
+    p_source_url: y.source_url ?? null, p_last_verified_date: y.last_verified_date || null,
   })
 
 // Slugify an English title for the article slug field.

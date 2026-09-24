@@ -5,6 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
 import { Field, TextInput, TextArea, Select, Notice, Spinner } from '../components/ui'
 import { uploadPhotos } from '../lib/listings/photos'
+import { fetchVideos, videoTitle, videoWatchUrl } from '../lib/videos/videosApi'
 import {
   fetchPublishedSawaal, submitSawaal, sawaalQuestion, sawaalAnswer,
 } from '../lib/community/communityApi'
@@ -24,6 +25,13 @@ export default function Sawaal() {
   const [params] = useSearchParams()
   const [showForm, setShowForm] = useState(params.get('ask') === '1')
   const photoDefault = params.get('photo') === '1'
+  const [videosById, setVideosById] = useState({})
+
+  useEffect(() => {
+    let alive = true
+    fetchVideos().then((vs) => alive && setVideosById(Object.fromEntries((vs || []).map((v) => [v.id, v])))).catch(() => {})
+    return () => { alive = false }
+  }, [])
 
   useEffect(() => {
     let alive = true
@@ -87,6 +95,11 @@ export default function Sawaal() {
                   {open && (
                     <div className="border-t border-stone-100 bg-green-50/40 p-3">
                       <p className="whitespace-pre-line text-sm leading-relaxed text-stone-800">{plain(sawaalAnswer(r, lang))}</p>
+                      {r.related_video_id && videosById[r.related_video_id] && (
+                        <a href={videoWatchUrl(videosById[r.related_video_id])} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-green-700">
+                          ▶ {t('video_related')}: {videoTitle(videosById[r.related_video_id], lang)}
+                        </a>
+                      )}
                       {r.answered_by && <p className="mt-2 text-xs font-semibold text-stone-500">{t('sawaal_answered_by')}{r.answered_by}</p>}
                     </div>
                   )}
@@ -100,7 +113,9 @@ export default function Sawaal() {
   )
 }
 
-const EMPTY = { asked_by_name: '', asked_by_village: '', category: 'general', question_hi: '' }
+const EMPTY = { asked_by_name: '', asked_by_village: '', category: 'general', question_hi: '', crop: '', symptom_tag: '' }
+const CROPS = ['soybean', 'wheat', 'gram', 'mustard', 'paddy', 'maize']
+const SYMPTOMS = ['yellow_leaves', 'wilting', 'pest_visible', 'fungal_spots', 'stunted_growth', 'other']
 
 function AskForm({ t, onDone, photoDefault = false }) {
   const { user } = useAuth()
@@ -156,6 +171,21 @@ function AskForm({ t, onDone, photoDefault = false }) {
       <Field label={t('sawaal_f_question')} htmlFor="sw_q">
         <TextArea id="sw_q" rows={3} value={f.question_hi} onChange={set('question_hi')} placeholder={t('sawaal_f_question_ph')} />
       </Field>
+      {/* Optional crop + symptom (Phase 6 — feeds the pest-report banner) */}
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label={t('sawaal_f_crop')} htmlFor="sw_crop">
+          <Select id="sw_crop" value={f.crop} onChange={set('crop')}>
+            <option value="">{t('sym_none')}</option>
+            {CROPS.map((c) => <option key={c} value={c}>{t(`pest_crop_${c}`)}</option>)}
+          </Select>
+        </Field>
+        <Field label={t('sawaal_f_symptom')} htmlFor="sw_sym">
+          <Select id="sw_sym" value={f.symptom_tag} onChange={set('symptom_tag')}>
+            <option value="">{t('sym_none')}</option>
+            {SYMPTOMS.map((s) => <option key={s} value={s}>{t(`pest_sym_${s}`)}</option>)}
+          </Select>
+        </Field>
+      </div>
       <Field label={`📷 ${t('sawaal_f_photo')}`} htmlFor="sw_photo">
         <input id="sw_photo" type="file" accept="image/jpeg,image/png" autoFocus={photoDefault} onChange={pickFile} className="block w-full text-sm text-stone-700" />
         {file && <span className="mt-1 block text-xs text-green-700">✓ {file.name}</span>}

@@ -1115,4 +1115,87 @@ export const strings = {
   footer_credits: { hi: 'फोटो श्रेय', en: 'Photo credits' },
   credits_title: { hi: 'फोटो श्रेय', en: 'Photo credits' },
   credits_intro: { hi: 'इस पेज पर उपयोग की गई तस्वीरें और उनके स्रोत।', en: 'Photographs used on this site and their sources.' },
+
+  // scheme category labels added for MP state schemes
+  ycat_machinery: { hi: 'कृषि यंत्र', en: 'Farm machinery' },
+  ycat_irrigation: { hi: 'सिंचाई', en: 'Irrigation' },
+
+  // --- scheme detail + listing pages (Phase 3) ---
+  scheme_benefits: { hi: 'लाभ', en: 'Benefits' },
+  scheme_eligibility_q: { hi: 'कौन आवेदन कर सकता है?', en: 'Who can apply?' },
+  scheme_how: { hi: 'आवेदन कैसे करें?', en: 'How to apply' },
+  scheme_docs: { hi: 'ज़रूरी दस्तावेज़', en: 'Documents required' },
+  scheme_faqs: { hi: 'अक्सर पूछे जाने वाले सवाल', en: 'Frequently asked questions' },
+  scheme_sources: { hi: 'स्रोत', en: 'Sources' },
+  scheme_verified: { hi: 'अंतिम सत्यापन', en: 'Last verified' },
+  scheme_official_site: { hi: 'आधिकारिक वेबसाइट', en: 'Official website' },
+  scheme_helpline: { hi: 'हेल्पलाइन', en: 'Helpline' },
+  scheme_share: { hi: 'व्हाट्सएप पर साझा करें', en: 'Share on WhatsApp' },
+  scheme_not_found: { hi: 'योजना नहीं मिली', en: 'Scheme not found' },
+  scheme_central_group: { hi: 'केंद्र सरकार की योजनाएं', en: 'Central Government schemes' },
+  scheme_mp_group: { hi: 'मध्यप्रदेश सरकार की योजनाएं', en: 'Madhya Pradesh Government schemes' },
+  scheme_view: { hi: 'पूरी जानकारी देखें', en: 'View full details' },
+  yojana_all: { hi: 'सभी देखें', en: 'View all' },
+  nav_mandi: { hi: 'मंडी भाव', en: 'Mandi prices' },
+  nav_weather: { hi: 'मौसम', en: 'Weather' },
+  nav_schemes: { hi: 'सरकारी योजनाएं', en: 'Govt schemes' },
+  nav_videos: { hi: 'वीडियो', en: 'Videos' },
+  nav_bazaar: { hi: 'बाज़ार', en: 'Marketplace' },
+  nav_all_categories: { hi: 'सभी श्रेणियाँ', en: 'All categories' },
+
+  // --- Drone Didi page (Phase 4) ---
+  dd_title: { hi: 'ड्रोन दीदी — महिला उद्यमी, आधुनिक तकनीक', en: 'Drone Didi — women entrepreneurs, modern technology' },
+  dd_intro: { hi: 'नमो ड्रोन दीदी योजना के तहत महिला स्वयं सहायता समूह किसानों को ड्रोन से दवा और खाद के छिड़काव की सेवा देती हैं — कम समय, कम पानी, एक समान छिड़काव।', en: 'Under the Namo Drone Didi scheme, women self-help groups provide farmers drone spraying of pesticide and fertiliser — faster, less water, even coverage.' },
+  dd_scheme_h: { hi: 'यह योजना क्या है?', en: 'What is this scheme?' },
+  dd_local_h: { hi: 'खुरई/सागर क्षेत्र में उपलब्ध ड्रोन दीदी सेवाएं', en: 'Drone Didi services available in the Khurai/Sagar area' },
+  dd_official_h: { hi: 'आधिकारिक जानकारी', en: 'Official information' },
+  dd_no_listings: { hi: 'अभी आपके क्षेत्र में कोई ड्रोन दीदी सेवा सूचीबद्ध नहीं है।', en: 'No Drone Didi services are listed in your area yet.' },
+
+  // --- Videos page (Phase 5) ---
+  videos_page_title: { hi: 'खेती के वीडियो', en: 'Farming videos' },
+  videos_all: { hi: 'सभी', en: 'All' },
+  vcat_pest: { hi: 'कीट/रोग', en: 'Pest/Disease' },
+  vcat_sowing: { hi: 'बुवाई', en: 'Sowing' },
+  vcat_irrigation: { hi: 'सिंचाई', en: 'Irrigation' },
+  vcat_drone: { hi: 'ड्रोन', en: 'Drone' },
+  vcat_scheme: { hi: 'योजना', en: 'Scheme' },
+  vcat_market: { hi: 'बाज़ार', en: 'Market' },
+  vcat_general: { hi: 'सामान्य', en: 'General' },
+  video_related: { hi: 'संबंधित वीडियो', en: 'Related video' },
+
+  // --- Pest alert banner (Phase 6) ---
+  pest_banner_prefix: { hi: 'हाल में देखा गया', en: 'Recently reported' },
+  pest_banner_area: { hi: 'सागर क्षेत्र में', en: 'in the Sagar area' },
+  pest_banner_reports: { hi: 'शिकायतें (पिछले 14 दिन)', en: 'reports (last 14 days)' },
+  pest_banner_on: { hi: 'पर', en: 'with' },
+  pest_banner_cta: { hi: 'अपनी फसल जांचें → किसान सवाल में विस्तार से पढ़ें', en: 'Check your crop → read more in Kisan Sawaal' },
+  pest_crop_soybean: { hi: 'सोयाबीन', en: 'soybean' },
+  pest_crop_wheat: { hi: 'गेहूं', en: 'wheat' },
+  pest_crop_gram: { hi: 'चना', en: 'gram' },
+  pest_crop_mustard: { hi: 'सरसों', en: 'mustard' },
+  pest_crop_paddy: { hi: 'धान', en: 'paddy' },
+  pest_crop_maize: { hi: 'मक्का', en: 'maize' },
+  pest_sym_yellow_leaves: { hi: 'पीली पत्तियों की', en: 'yellow-leaf' },
+  pest_sym_wilting: { hi: 'मुरझाने की', en: 'wilting' },
+  pest_sym_pest_visible: { hi: 'कीट दिखने की', en: 'visible-pest' },
+  pest_sym_fungal_spots: { hi: 'फफूँद धब्बों की', en: 'fungal-spot' },
+  pest_sym_stunted_growth: { hi: 'बौने विकास की', en: 'stunted-growth' },
+  pest_sym_other: { hi: 'समस्या की', en: 'problem' },
+
+  // --- Ask form crop/symptom fields (Phase 6) ---
+  sawaal_f_crop: { hi: 'फसल (वैकल्पिक)', en: 'Crop (optional)' },
+  sawaal_f_symptom: { hi: 'समस्या का प्रकार (वैकल्पिक)', en: 'Type of problem (optional)' },
+  sym_none: { hi: 'कोई नहीं / लागू नहीं', en: 'None / N/A' },
+
+  // --- Availability calendar (Phase 7) ---
+  cal_title: { hi: 'उपलब्धता कैलेंडर', en: 'Availability calendar' },
+  cal_busy: { hi: 'बुक्ड', en: 'Booked' },
+  cal_free: { hi: 'उपलब्ध', en: 'Available' },
+  cal_owner_hint: { hi: 'तारीख पर टैप करके बुक्ड/उपलब्ध बदलें', en: 'Tap a date to toggle booked/available' },
+  cal_prev: { hi: 'पिछला', en: 'Prev' },
+  cal_next: { hi: 'अगला', en: 'Next' },
+
+  // --- Events (Phase 7) ---
+  events_title: { hi: 'आने वाले कृषि कार्यक्रम', en: 'Upcoming farm events' },
+  events_none: { hi: 'अभी कोई आगामी कार्यक्रम नहीं।', en: 'No upcoming events right now.' },
 }

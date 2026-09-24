@@ -128,3 +128,13 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 - **Backend suites not re-run this session** (no service-role run performed). Homepage v4
   changes are additive (new functions, one optional RPC-backed count, one nullable column
   already migrated); `npm run build` is green and a Playwright route smoke passed.
+
+## Fixes + Schemes build (2026-09-24)
+- **Availability calendar auth**: writes go through the owner-gated
+  `set_listing_unavailable` RPC (verifies `listings.user_id == actor`). It renders on
+  equipment-offer detail pages (a Protected route), so it is not in the anonymous
+  screenshot set — verified by build + code, not by a logged-in screenshot.
+- **KVK events are seed placeholders** and need ongoing admin maintenance (dates roll
+  forward relative to seeding; keep them current via the admin events panel).
+- **MP `e-krishi-yantra` / `balram-talab` helplines** are null (no single official
+  helpline verified); source URLs recorded instead.

@@ -9,33 +9,33 @@ import LanguageToggle from './LanguageToggle'
 // strings table so no Devanagari literal lives in a component.
 const BRAND_HI = strings.app_name.hi
 
-// Category items shown in the nav. For a logged-in user they route to the
-// authenticated browse tab (Experts to its own screen); for a visitor they point
-// at the public homepage's live-listings section, filtered via ?cat=.
-// Order: Equipment → Labor → Drone Didi → Bhoosa → Seeds → Warehouse → Experts →
-// Land, then secondary links (Articles, Resources). Land is LAST.
-const NAV_CATS = [
+// बाज़ार dropdown — the marketplace categories. Drone Didi points at its richer
+// dedicated page; the rest route to the filtered browse view (or homepage ?cat=).
+const CATEGORIES = [
   { key: 'equipment', labelKey: 'home_cat_equipment' },
   { key: 'labor', labelKey: 'home_cat_labor' },
-  { key: 'drone_didi', labelKey: 'home_cat_drone_didi' },
+  { key: 'drone_didi', labelKey: 'home_cat_drone_didi', path: '/drone-didi' },
   { key: 'bhusa', labelKey: 'home_cat_bhusa' },
   { key: 'agri_inputs', labelKey: 'home_cat_agri_inputs' },
   { key: 'warehouse', labelKey: 'home_cat_warehouse' },
   { key: 'experts', labelKey: 'home_cat_experts' },
   { key: 'land', labelKey: 'home_cat_land' },
-  { key: 'articles', labelKey: 'articles_nav' },
-  { key: 'info', labelKey: 'info_nav' },
-  { key: 'resources', labelKey: 'resources_nav' },
 ]
 
-// Community features grouped under a single "Samuday / Community" dropdown so the
-// top-level nav stays clean (Kisan Sawaal Q&A, Kisan Safalta stories, schemes).
-const COMMUNITY = [
-  { key: 'sawaal', labelKey: 'sawaal_nav', path: '/sawaal' },
-  { key: 'safalta', labelKey: 'safalta_nav', path: '/safalta' },
-  { key: 'yojana', labelKey: 'yojana_nav', path: '/yojana' },
+// सरकारी योजनाएं dropdown — two government levels.
+const SCHEMES_MENU = [
+  { labelKey: 'scheme_central_group', path: '/yojana/central' },
+  { labelKey: 'scheme_mp_group', path: '/yojana/mp' },
 ]
-const COMMUNITY_PATHS = COMMUNITY.map((c) => c.path)
+
+// Direct top-level links (order per spec: मंडी भाव · मौसम · किसान सवाल · वीडियो · संपर्क).
+const NAV_LINKS = [
+  { labelKey: 'nav_mandi', path: '/info#mandi' },
+  { labelKey: 'nav_weather', path: '/info#weather' },
+  { labelKey: 'sawaal_nav', path: '/sawaal' },
+  { labelKey: 'nav_videos', path: '/videos' },
+  { labelKey: 'resources_nav', path: '/resources' },
+]
 
 // Global, sticky navigation bar for the public-facing pages (homepage, privacy,
 // terms). Authenticated feature screens keep their own compact Screen header.
@@ -47,30 +47,18 @@ export default function NavBar() {
   const [params] = useSearchParams()
   const [open, setOpen] = useState(false)
   const [menu, setMenu] = useState(false) // user dropdown
-  const [comm, setComm] = useState(false) // community dropdown (desktop)
+  const [bz, setBz] = useState(false)     // बाज़ार dropdown (desktop)
+  const [sch, setSch] = useState(false)   // सरकारी योजनाएं dropdown (desktop)
 
-  const inCommunity = COMMUNITY_PATHS.some((p) => location.pathname.startsWith(p))
-
-  // Which nav item (if any) is currently active, for highlighting.
-  const activeCat =
-    inCommunity ? 'community'
-      : location.pathname.startsWith('/info') ? 'info'
-      : location.pathname.startsWith('/resources') ? 'resources'
-      : location.pathname.startsWith('/articles') ? 'articles'
-        : location.pathname.startsWith('/experts') ? 'experts'
-          : params.get('cat') || null
-
-  function goCategory(key) {
-    setOpen(false)
-    if (key === 'info') { navigate('/info'); return } // public page for all
-    if (key === 'resources') { navigate('/resources'); return } // public page for all
-    if (key === 'articles') { navigate('/articles'); return } // public page for all
-    if (isLoggedIn) {
-      navigate(key === 'experts' ? '/experts' : `/browse?cat=${key}`)
-    } else {
-      navigate(`/?cat=${key}`)
-    }
+  // Navigate to a marketplace category. Drone Didi → its dedicated page; Experts →
+  // its screen (or signup); others → filtered browse (or homepage ?cat= for anon).
+  function goCategory(c) {
+    setOpen(false); setBz(false)
+    if (c.path) { navigate(c.path); return }
+    if (c.key === 'experts') { navigate(isLoggedIn ? '/experts' : '/signup'); return }
+    navigate(isLoggedIn ? `/browse?cat=${c.key}` : `/?cat=${c.key}`)
   }
+  function goPath(p) { setOpen(false); setSch(false); navigate(p) }
 
   // Logo always links to the public homepage, for authenticated and anonymous
   // users alike (they can still reach the dashboard via the nav / My Listings).
@@ -86,7 +74,7 @@ export default function NavBar() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--ks-border-light)] bg-white shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-1.5">
+      <div className="flex w-full items-center gap-2 px-3 py-1.5">
         {/* Brand */}
         <button type="button" onClick={goHome} className="flex items-center gap-2 text-left">
           <span className="text-[28px] leading-none" aria-hidden="true">🌾</span>
@@ -96,45 +84,47 @@ export default function NavBar() {
           </span>
         </button>
 
-        {/* Category links — centre on desktop */}
+        {/* Primary nav — centre on desktop: बाज़ार▾ · मंडी भाव · मौसम · योजनाएं▾ · सवाल · वीडियो · संपर्क */}
         <nav className="mx-auto hidden items-center gap-1 md:flex">
-          {NAV_CATS.map((c) => (
-            <button key={c.key} type="button" className={catBtn(activeCat === c.key)} onClick={() => goCategory(c.key)}>
-              {t(c.labelKey)}
+          {/* बाज़ार dropdown */}
+          <div className="relative" onMouseLeave={() => setBz(false)}>
+            <button type="button" aria-haspopup="menu" aria-expanded={bz} className={catBtn(bz)} onClick={() => setBz((v) => !v)} onMouseEnter={() => setBz(true)}>
+              {t('nav_bazaar')} ▾
             </button>
-          ))}
-          {/* Community dropdown (groups Q&A / Stories / Schemes) */}
-          <div className="relative" onMouseLeave={() => setComm(false)}>
-            <button
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded={comm}
-              className={catBtn(activeCat === 'community')}
-              onClick={() => setComm((v) => !v)}
-              onMouseEnter={() => setComm(true)}
-            >
-              {t('community_nav')} ▾
-            </button>
-            {comm && (
-              <div role="menu" className="absolute left-0 z-40 mt-1 w-48 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
-                {COMMUNITY.map((c) => (
-                  <button
-                    key={c.key}
-                    type="button"
-                    role="menuitem"
-                    className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50"
-                    onClick={() => { setComm(false); navigate(c.path) }}
-                  >
+            {bz && (
+              <div role="menu" className="absolute left-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+                {CATEGORIES.map((c) => (
+                  <button key={c.key} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goCategory(c)}>
                     {t(c.labelKey)}
                   </button>
                 ))}
               </div>
             )}
           </div>
+          <button type="button" className={catBtn(location.pathname === '/info')} onClick={() => goPath('/info#mandi')}>{t('nav_mandi')}</button>
+          <button type="button" className={catBtn(false)} onClick={() => goPath('/info#weather')}>{t('nav_weather')}</button>
+          {/* सरकारी योजनाएं dropdown */}
+          <div className="relative" onMouseLeave={() => setSch(false)}>
+            <button type="button" aria-haspopup="menu" aria-expanded={sch} className={catBtn(location.pathname.startsWith('/yojana'))} onClick={() => setSch((v) => !v)} onMouseEnter={() => setSch(true)}>
+              {t('nav_schemes')} ▾
+            </button>
+            {sch && (
+              <div role="menu" className="absolute left-0 z-40 mt-1 w-64 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+                {SCHEMES_MENU.map((c) => (
+                  <button key={c.path} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goPath(c.path)}>
+                    {t(c.labelKey)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <button type="button" className={catBtn(location.pathname.startsWith('/sawaal'))} onClick={() => goPath('/sawaal')}>{t('sawaal_nav')}</button>
+          <button type="button" className={catBtn(location.pathname.startsWith('/videos'))} onClick={() => goPath('/videos')}>{t('nav_videos')}</button>
+          <button type="button" className={catBtn(location.pathname.startsWith('/resources'))} onClick={() => goPath('/resources')}>{t('resources_nav')}</button>
         </nav>
 
         {/* Right cluster */}
-        <div className="ml-auto flex items-center gap-2 md:ml-0">
+        <div className="ml-auto flex items-center gap-2">
           <LanguageToggle />
           {/* Admin quick-link — visible directly in the nav for is_admin users only
               (server still gates /admin). Hidden entirely for everyone else. */}
@@ -218,37 +208,42 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* Mobile collapsible category links */}
+      {/* Mobile collapsible menu — dropdowns expand inline */}
       {open && (
         <nav className="border-t border-stone-100 px-4 py-3 md:hidden">
+          {/* बाज़ार group */}
+          <div className="mb-1 px-1 text-xs font-bold uppercase tracking-wide text-stone-400">{t('nav_bazaar')}</div>
           <div className="grid grid-cols-2 gap-2">
-            {NAV_CATS.map((c) => (
-              <button key={c.key} type="button" className={catBtn(activeCat === c.key)} onClick={() => goCategory(c.key)}>
+            {CATEGORIES.map((c) => (
+              <button key={c.key} type="button" className={catBtn(false)} onClick={() => goCategory(c)}>
                 {t(c.labelKey)}
               </button>
             ))}
-            {isLoggedIn && (
-              <button type="button" className={catBtn(false)} onClick={() => { setOpen(false); navigate('/my') }}>
-                {t('my_listings')}
-              </button>
-            )}
-            {/* Admin — mobile menu, is_admin users only */}
-            {isLoggedIn && user?.is_admin && (
-              <button type="button" data-testid="nav-admin-mobile" className={catBtn(activeCat === 'admin' || location.pathname.startsWith('/admin'))} onClick={() => { setOpen(false); navigate('/admin') }}>
-                ⚙️ {t('nav_admin')}
-              </button>
-            )}
           </div>
-          {/* Community group — expanded inline on mobile */}
+          {/* सरकारी योजनाएं group */}
           <div className="mt-3 border-t border-stone-100 pt-3">
-            <div className="mb-1 px-1 text-xs font-bold uppercase tracking-wide text-stone-400">{t('community_nav')}</div>
+            <div className="mb-1 px-1 text-xs font-bold uppercase tracking-wide text-stone-400">{t('nav_schemes')}</div>
             <div className="grid grid-cols-2 gap-2">
-              {COMMUNITY.map((c) => (
-                <button key={c.key} type="button" className={catBtn(location.pathname.startsWith(c.path))} onClick={() => { setOpen(false); navigate(c.path) }}>
+              {SCHEMES_MENU.map((c) => (
+                <button key={c.path} type="button" className={catBtn(false)} onClick={() => goPath(c.path)}>
                   {t(c.labelKey)}
                 </button>
               ))}
             </div>
+          </div>
+          {/* Direct links */}
+          <div className="mt-3 grid grid-cols-2 gap-2 border-t border-stone-100 pt-3">
+            {NAV_LINKS.map((c) => (
+              <button key={c.path} type="button" className={catBtn(location.pathname.startsWith(c.path.split('#')[0]) && c.path !== '/info#weather')} onClick={() => goPath(c.path)}>
+                {t(c.labelKey)}
+              </button>
+            ))}
+            {isLoggedIn && (
+              <button type="button" className={catBtn(false)} onClick={() => { setOpen(false); navigate('/my') }}>{t('my_listings')}</button>
+            )}
+            {isLoggedIn && user?.is_admin && (
+              <button type="button" data-testid="nav-admin-mobile" className={catBtn(location.pathname.startsWith('/admin'))} onClick={() => { setOpen(false); navigate('/admin') }}>⚙️ {t('nav_admin')}</button>
+            )}
           </div>
         </nav>
       )}

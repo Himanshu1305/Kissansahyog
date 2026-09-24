@@ -774,3 +774,48 @@ Full photograph-first rebuild of `src/screens/Homepage.jsx` on a new design syst
   Today card).
 - Screenshot self-review: `docs/review/HOMEPAGE_V4_REVIEW.md` + `home-desktop.png` /
   `home-mobile.png`. Trust-row official PIB/MP photos omitted (unverifiable — see review).
+
+## Fixes + Schemes/Content/Features build — 2026-09-24
+
+Migration **0023_schemes_content_features.sql** (one file) adds: `sarkari_yojana`
+alters (slug UNIQUE, government_level, faqs jsonb, documents_required_hi/en,
+source_url, last_verified_date, updated_at) + expanded category check (+machinery,
+irrigation) + extended `admin_upsert_yojana`; `videos` table + admin RPCs;
+`kisan_sawaal` alters (crop, symptom_tag, related_video_id) + `recent_crop_reports`
+RPC; `farm_events` table + admin RPCs; `listing_unavailable_dates` + owner-gated
+`set_listing_unavailable` RPC. Seeds: 4 MP state schemes, 8 central-scheme FAQ/doc
+backfill, 16 videos, 16 Q&A (incl. a soybean/yellow_leaves pest group), 3 KVK events.
+
+- **Scheme pages**: `src/screens/SchemeDetail.jsx` (`/yojana/:slug`, 7 sections +
+  FAQPage/Article JSON-LD + WA share); `Yojana.jsx` reworked to `level` prop
+  (`/yojana` grouped, `/yojana/central`, `/yojana/mp`). API: `fetchYojanaBySlug`,
+  `fetchYojanaByLevel`, `yojanaDocs`, `faqQ/faqA` in communityApi. Routes registered
+  static-before-dynamic in App.jsx.
+- **Drone Didi**: `src/screens/DroneDidi.jsx` (`/drone-didi`), linked from बाज़ार nav.
+- **Videos**: `src/lib/videos/videosApi.js`, `src/screens/Videos.jsx` (`/videos`),
+  thumbnails in `public/images/videos/`. Homepage featured videos read the table;
+  `src/content/videos.js` deleted. Cross-links via `kisan_sawaal.related_video_id`.
+- **Pest banner**: `src/lib/pest/pestApi.js` + homepage banner below hero (framed as
+  "recently asked", never an alert). Ask form gained optional crop/symptom_tag.
+- **Calendar**: `src/components/AvailabilityCalendar.jsx` on equipment-offer detail
+  (owner toggles busy/free via RPC; others see "बुक्ड").
+- **Events**: `src/lib/events/eventsApi.js`; shown on `/info` and, within 7 days, in
+  the homepage hero. **These KVK events need ongoing admin maintenance.**
+- **Nav**: NavBar rebuilt to 7 items (बाज़ार▾ · मंडी भाव · मौसम · सरकारी योजनाएं▾ ·
+  किसान सवाल · वीडियो · संपर्क), edge-to-edge (`w-full`, no max-w/mx-auto).
+- **Hero photo** replaced + re-cropped (pexels 20445169); **list-thresher.jpg** added;
+  carbon article cover self-hosted at `/images/articles/carbon.jpg`.
+- **SEO**: `public/sitemap.xml` (all scheme slugs + new pages) + `public/robots.txt`.
+- Admin `sarkari_yojana` form extended (slug/level/docs/source/verified + FAQ editor).
+
+## Backlog (logged, not built)
+- Rating/trust layer on listings & transactions (needs real usage volume first).
+- Digital lease/sharecropping agreement PDF template generator.
+- Weekly input price tracker (Urea, DAP, diesel at named local shops).
+- WhatsApp Business API opt-in for personalised rain/weather threshold alerts (needs
+  a paid, approved WhatsApp Business API account).
+- Group/bulk input buying coordination.
+- Produce transport/logistics as a 10th marketplace category.
+- Migrant/seasonal labour coordination across districts.
+- Voice search ("बोलकर खोजें") via Web Speech API.
+- Crop Doctor / AI photo diagnosis (potential separate product).

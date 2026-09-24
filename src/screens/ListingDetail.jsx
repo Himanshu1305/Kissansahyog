@@ -7,6 +7,7 @@ import DisclaimerBanner from '../components/DisclaimerBanner'
 import LanguageToggle from '../components/LanguageToggle'
 import { CatIcon } from '../components/CatIcon'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
+import AvailabilityCalendar from '../components/AvailabilityCalendar'
 import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
@@ -143,6 +144,13 @@ export default function ListingDetail() {
           </div>
         )}
       </dl>
+
+      {/* Equipment offers: owner-maintained availability calendar (Phase 7a). */}
+      {listing.category === 'equipment' && listing.listing_type === 'offer' && (
+        <div className="mb-4">
+          <AvailabilityCalendar listingId={listing.id} isOwner={!!user && user.id === listing.user_id} actorId={user?.id} />
+        </div>
+      )}
 
       {error && <Notice tone="error">{error}</Notice>}
 

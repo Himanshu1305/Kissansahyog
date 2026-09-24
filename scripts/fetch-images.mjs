@@ -18,7 +18,7 @@ const lic = (s) => (s === 'unsplash' ? UNSPLASH : s === 'wikimedia' ? 'Wikimedia
 
 // key → { url, w, h, pos, description, source, author, page }
 const IMAGES = [
-  { file: 'hero-farmer.jpg', url: 'https://images.pexels.com/photos/32277759/pexels-photo-32277759.jpeg', w: 1600, h: 720, pos: 'right', description: 'Elderly Indian farmer in headwear smiling in a field, warm daylight', source: 'pexels', author: 'Anil Sharma', page: 'https://www.pexels.com/photo/32277759' },
+  { file: 'hero-farmer.jpg', url: 'https://images.pexels.com/photos/20445169/pexels-photo-20445169.jpeg', w: 1600, h: 720, pos: 'right', description: 'Indian farmer (woman) working in a lush green wheat field, upper body and face visible, warm light', source: 'pexels', author: 'EqualStock IN', page: 'https://www.pexels.com/photo/20445169/' },
   { file: 'cat-machines.jpg', url: 'https://images.pexels.com/photos/20327958/pexels-photo-20327958.jpeg', w: 640, h: 400, description: 'Indian farmers on a red tractor in a rural field', source: 'pexels', author: 'EqualStock IN', page: 'https://www.pexels.com/photo/farming-in-india-20327958/' },
   { file: 'cat-labour.jpg', url: 'https://images.pexels.com/photos/11070641/pexels-photo-11070641.jpeg', w: 640, h: 400, description: 'Indian workers harvesting by hand in a sunlit field', source: 'pexels', author: 'anjan ghosh', page: 'https://www.pexels.com/photo/11070641' },
   { file: 'cat-drone.jpg', url: 'https://images.pexels.com/photos/34182367/pexels-photo-34182367.jpeg', w: 640, h: 400, description: 'Agricultural drone spraying a crop field', source: 'pexels', author: 'Magda Ehlers', page: 'https://www.pexels.com/photo/advanced-agricultural-drone-spraying-crops-34182367/' },
@@ -35,6 +35,7 @@ const IMAGES = [
   { file: 'list-godown.jpg', url: 'https://images.pexels.com/photos/29948462/pexels-photo-29948462.jpeg', w: 640, h: 400, description: 'Worker with a sack in a warehouse of stacked grain sacks', source: 'pexels', author: 'Jubair Hosen Junet', page: 'https://www.pexels.com/photo/worker-handling-sacks-in-indoor-storage-facility-29948462/' },
   { file: 'list-land.jpg', url: 'https://images.pexels.com/photos/9709717/pexels-photo-9709717.jpeg', w: 640, h: 400, description: 'Flat open farmland fields under a blue sky', source: 'pexels', author: 'Tom Fisk', page: 'https://www.pexels.com/photo/9709717' },
   { file: 'list-shop.jpg', url: 'https://images.pexels.com/photos/28624931/pexels-photo-28624931.jpeg', w: 640, h: 400, description: 'Traditional Indian provision storefront with grain sacks', source: 'pexels', author: 'Paolosbg Vattelapesca', page: 'https://www.pexels.com/photo/traditional-indian-grocery-storefront-with-supplies-28624931/' },
+  { file: 'list-thresher.jpg', url: 'https://images.pexels.com/photos/12058069/pexels-photo-12058069.jpeg', w: 640, h: 400, description: 'Farmer feeding wheat sheaves into an orange wheat thresher machine in a field', source: 'pexels', author: 'Pexels contributor', page: 'https://www.pexels.com/photo/12058069/' },
 ]
 
 // YouTube thumbnails for the three Phase-3d videos (self-hosted, hqdefault 480x360).

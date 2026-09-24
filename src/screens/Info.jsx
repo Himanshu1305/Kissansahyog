@@ -10,6 +10,7 @@ import { getRainAlert } from '../lib/weather/rainAlert'
 import { fetchMsp, MANDI_TO_MSP, mspCropName } from '../lib/msp/mspApi'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 import { fetchFeaturedYojana, yojanaName, yojanaBenefit } from '../lib/community/communityApi'
+import { fetchUpcomingEvents, eventTitle } from '../lib/events/eventsApi'
 
 const fmt = (n) => Math.round(Number(n) || 0).toLocaleString('en-IN')
 
@@ -24,6 +25,7 @@ export default function Info() {
   const [mandi, setMandi] = useState({ rows: [], day: 'none' })
   const [season, setSeason] = useState('rabi')
   const [schemes, setSchemes] = useState([])
+  const [events, setEvents] = useState([])
 
   useEffect(() => {
     let alive = true
@@ -31,6 +33,7 @@ export default function Info() {
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
     fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
     fetchFeaturedYojana(3).then((y) => alive && setSchemes(y)).catch(() => alive && setSchemes([]))
+    fetchUpcomingEvents(30).then((e) => alive && setEvents(e)).catch(() => alive && setEvents([]))
     return () => { alive = false }
   }, [])
 
@@ -65,6 +68,26 @@ export default function Info() {
       <main className="mx-auto max-w-2xl px-2 py-3">
         <h1 className="mb-3 px-1 text-xl font-bold text-stone-900">{t('info_title')}</h1>
 
+        {/* Upcoming KVK / agriculture events (Phase 7b) */}
+        <section id="events" className="mb-3 scroll-mt-16 rounded-xl border border-stone-200 border-l-4 border-l-amber-400 bg-white p-3">
+          <h2 className="mb-2 font-bold text-stone-800">📅 {t('events_title')}</h2>
+          {events.length === 0 ? (
+            <p className="text-sm text-stone-500">{t('events_none')}</p>
+          ) : (
+            <ul className="space-y-2">
+              {events.map((e) => (
+                <li key={e.id} className="flex items-start gap-2 text-sm">
+                  <span className="mt-0.5 shrink-0 rounded-md bg-amber-100 px-2 py-0.5 text-[13px] font-bold text-amber-800">{e.event_date}</span>
+                  <span>
+                    <span className="block font-bold text-stone-800">{eventTitle(e, lang)}</span>
+                    <span className="block text-[13px] text-stone-500">{[e.location, e.organizer].filter(Boolean).join(' · ')}{e.contact ? ` · ☎ ${e.contact}` : ''}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
         <div className="flex flex-col gap-3">
           {/* Section 1 — Weather */}
           <section id="weather" className="scroll-mt-16 rounded-xl border border-stone-200 border-l-4 border-l-sky-400 bg-white p-3">
@@ -75,6 +98,7 @@ export default function Info() {
 
           {/* Section 2 — MSP */}
           <section id="msp" className="scroll-mt-16 rounded-xl border border-stone-200 border-l-4 border-l-green-500 bg-white p-3">
+            <span id="mandi" className="block scroll-mt-16" aria-hidden="true" />
             <h2 className="font-bold text-stone-800">🏷️ {t('info_msp_heading')}</h2>
             <p className="mt-1 text-sm text-stone-600">{t('msp_explain')}</p>
 

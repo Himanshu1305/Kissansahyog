@@ -30,7 +30,7 @@ export async function fetchFeaturedSawaal(limit = 2) {
 }
 
 // Submit a question for admin review. Never published on insert (RLS enforces).
-export async function submitSawaal({ question_hi, asked_by_name, asked_by_village, category, photo_url }) {
+export async function submitSawaal({ question_hi, asked_by_name, asked_by_village, category, photo_url, crop, symptom_tag }) {
   if (!question_hi || !question_hi.trim()) throw new AppError('question_required')
   // When no name is given, omit the column so the DB default (a Hindi "Kisan")
   // applies — keeps this file free of hardcoded Devanagari (bilingual audit).
@@ -42,6 +42,8 @@ export async function submitSawaal({ question_hi, asked_by_name, asked_by_villag
   }
   if (asked_by_name && asked_by_name.trim()) row.asked_by_name = asked_by_name.trim()
   if (photo_url) row.photo_url = photo_url // Phase 4 §8 — optional attached photo
+  if (crop) row.crop = crop                 // Phase 6 — pest-report tags
+  if (symptom_tag) row.symptom_tag = symptom_tag
   const { error } = await supabase.from('kisan_sawaal').insert(row)
   if (error) throw toAppError(error)
   return true
@@ -99,6 +101,23 @@ export async function fetchActiveYojana() {
   return data || []
 }
 
+// Active schemes filtered by government_level ('central' | 'state'); null = all.
+export async function fetchYojanaByLevel(level = null) {
+  let q = supabase.from('sarkari_yojana').select('*').eq('is_active', true).order('sort_order', { ascending: true })
+  if (level) q = q.eq('government_level', level)
+  const { data, error } = await q
+  if (error) throw toAppError(error)
+  return data || []
+}
+
+// Single scheme by slug (active only) for the /yojana/:slug detail page.
+export async function fetchYojanaBySlug(slug) {
+  const { data, error } = await supabase
+    .from('sarkari_yojana').select('*').eq('slug', slug).eq('is_active', true).maybeSingle()
+  if (error) throw toAppError(error)
+  return data
+}
+
 export async function fetchFeaturedYojana(limit = 3) {
   const { data, error } = await supabase
     .from('sarkari_yojana')
@@ -124,3 +143,7 @@ export const yojanaBenefit = (r, lang) => (lang === 'hi' ? pick(r.benefit_hi, r.
 export const yojanaEligibility = (r, lang) => (lang === 'hi' ? pick(r.eligibility_hi, r.eligibility_en) : pick(r.eligibility_en, r.eligibility_hi))
 export const yojanaHowTo = (r, lang) => (lang === 'hi' ? pick(r.how_to_apply_hi, r.how_to_apply_en) : pick(r.how_to_apply_en, r.how_to_apply_hi))
 export const yojanaDeadline = (r, lang) => (lang === 'hi' ? pick(r.deadline_note_hi, r.deadline_note_en) : pick(r.deadline_note_en, r.deadline_note_hi))
+export const yojanaDocs = (r, lang) => (lang === 'hi' ? pick(r.documents_required_hi, r.documents_required_en) : pick(r.documents_required_en, r.documents_required_hi))
+// FAQ pickers for the jsonb faqs array [{q_hi,q_en,a_hi,a_en}]
+export const faqQ = (f, lang) => (lang === 'hi' ? pick(f.q_hi, f.q_en) : pick(f.q_en, f.q_hi))
+export const faqA = (f, lang) => (lang === 'hi' ? pick(f.a_hi, f.a_en) : pick(f.a_en, f.a_hi))

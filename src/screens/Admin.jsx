@@ -751,12 +751,36 @@ function StoryForm({ t, initial, onCancel, onSave }) {
 }
 
 // --- Community: Sarkari Yojana (schemes) management -----------------------
-const YOJANA_CATS = ['income_support', 'crop_insurance', 'credit', 'equipment', 'solar', 'storage', 'women', 'market', 'general']
+const YOJANA_CATS = ['income_support', 'crop_insurance', 'credit', 'equipment', 'solar', 'storage', 'women', 'market', 'general', 'machinery', 'irrigation']
+
+// Repeatable FAQ editor for the scheme form (Phase 3e). Each row = {q_hi,q_en,a_hi,a_en}.
+function FaqEditor({ t, faqs, onChange }) {
+  const upd = (i, k, v) => onChange(faqs.map((f, j) => (j === i ? { ...f, [k]: v } : f)))
+  return (
+    <div className="mt-3 rounded-lg border border-green-200 bg-white p-3">
+      <div className="mb-2 flex items-center justify-between">
+        <span className="font-bold text-stone-800">{t('scheme_faqs')}</span>
+        <button type="button" onClick={() => onChange([...faqs, { q_hi: '', q_en: '', a_hi: '', a_en: '' }])} className="rounded bg-green-700 px-2 py-1 text-xs font-bold text-white">+ FAQ</button>
+      </div>
+      {faqs.map((f, i) => (
+        <div key={i} className="mb-2 grid gap-2 rounded border border-stone-100 p-2 sm:grid-cols-2">
+          <TextInput placeholder="Q (HI)" value={f.q_hi || ''} onChange={(e) => upd(i, 'q_hi', e.target.value)} />
+          <TextInput placeholder="Q (EN)" value={f.q_en || ''} onChange={(e) => upd(i, 'q_en', e.target.value)} />
+          <TextArea placeholder="A (HI)" value={f.a_hi || ''} onChange={(e) => upd(i, 'a_hi', e.target.value)} />
+          <TextArea placeholder="A (EN)" value={f.a_en || ''} onChange={(e) => upd(i, 'a_en', e.target.value)} />
+          <button type="button" onClick={() => onChange(faqs.filter((_, j) => j !== i))} className="w-fit rounded bg-red-100 px-2 py-1 text-xs font-bold text-red-700">✕ remove</button>
+        </div>
+      ))}
+    </div>
+  )
+}
 const EMPTY_YOJANA = {
   scheme_name_hi: '', scheme_name_en: '', ministry_hi: '', ministry_en: '', category: 'income_support',
   description_hi: '', description_en: '', benefit_hi: '', benefit_en: '', eligibility_hi: '', eligibility_en: '',
   how_to_apply_hi: '', how_to_apply_en: '', official_website: '', helpline: '', deadline_note_hi: '', deadline_note_en: '',
   is_active: true, is_featured: false, sort_order: 0,
+  slug: '', government_level: 'central', documents_required_hi: '', documents_required_en: '',
+  source_url: '', last_verified_date: '', faqs: [],
 }
 
 function YojanaPanel({ actorId, t, lang }) {
@@ -829,7 +853,21 @@ function YojanaForm({ t, initial, onCancel, onSave }) {
         <Field label={t('f_helpline')} htmlFor="yo_hp"><TextInput id="yo_hp" value={f.helpline || ''} onChange={set('helpline')} /></Field>
         <Field label={t('f_deadline_hi')} htmlFor="yo_ddh"><TextInput id="yo_ddh" value={f.deadline_note_hi || ''} onChange={set('deadline_note_hi')} /></Field>
         <Field label={t('f_deadline_en')} htmlFor="yo_dde"><TextInput id="yo_dde" value={f.deadline_note_en || ''} onChange={set('deadline_note_en')} /></Field>
+        {/* Phase 3e — individual scheme page fields */}
+        <Field label="slug" htmlFor="yo_slug"><TextInput id="yo_slug" value={f.slug || ''} onChange={set('slug')} /></Field>
+        <Field label="government_level" htmlFor="yo_lvl">
+          <Select id="yo_lvl" value={f.government_level || 'central'} onChange={set('government_level')}>
+            <option value="central">{t('scheme_central_group')}</option>
+            <option value="state">{t('scheme_mp_group')}</option>
+          </Select>
+        </Field>
+        <Field label={t('scheme_docs') + ' (HI)'} htmlFor="yo_dqh"><TextArea id="yo_dqh" value={f.documents_required_hi || ''} onChange={set('documents_required_hi')} /></Field>
+        <Field label={t('scheme_docs') + ' (EN)'} htmlFor="yo_dqe"><TextArea id="yo_dqe" value={f.documents_required_en || ''} onChange={set('documents_required_en')} /></Field>
+        <Field label="source_url" htmlFor="yo_src"><TextInput id="yo_src" value={f.source_url || ''} onChange={set('source_url')} /></Field>
+        <Field label={t('scheme_verified')} htmlFor="yo_lvd"><TextInput id="yo_lvd" type="date" value={f.last_verified_date || ''} onChange={set('last_verified_date')} /></Field>
       </div>
+      {/* FAQ repeatable editor */}
+      <FaqEditor t={t} faqs={Array.isArray(f.faqs) ? f.faqs : []} onChange={(faqs) => setF((s) => ({ ...s, faqs }))} />
       <div className="mt-3 flex flex-wrap gap-4">
         <label className="flex items-center gap-2 font-semibold text-stone-800">
           <input type="checkbox" checked={!!f.is_active} onChange={(e) => setF((s) => ({ ...s, is_active: e.target.checked }))} className="h-5 w-5 accent-green-700" />

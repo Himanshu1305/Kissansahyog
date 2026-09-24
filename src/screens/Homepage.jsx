@@ -21,7 +21,9 @@ import { fetchNearbyCounts, resolvePincode, savePincode, NEARBY_CATEGORIES } fro
 import { fetchPublishedArticles, articleTitle } from '../lib/articles/articlesApi'
 import { fetchFeaturedSawaal, sawaalQuestion, sawaalAnswer } from '../lib/community/communityApi'
 import { whatsappListingUrl } from '../lib/share/shareMessages'
-import { VIDEOS, videoTitle, videoWatchUrl } from '../content/videos'
+import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
+import { fetchPestReports } from '../lib/pest/pestApi'
+import { fetchUpcomingEvents, eventTitle, eventWeekdayKey } from '../lib/events/eventsApi'
 
 const IMG = (f) => `/images/home/${f}`
 
@@ -42,11 +44,18 @@ const LIST_IMG = {
   equipment: 'list-tractor.jpg', labor: 'list-workers.jpg', drone_didi: 'list-drone.jpg',
   bhusa: 'list-straw.jpg', agri_inputs: 'list-shop.jpg', warehouse: 'list-godown.jpg', land: 'list-land.jpg',
 }
+// Equipment sub-type (equipment_types.id) → a more specific photo, so a harvester
+// or thresher listing does not fall back to the generic tractor photo.
+const EQUIP_TYPE_IMG = { 3: 'list-thresher.jpg', 4: 'list-harvester.jpg' }
 const listingPhoto = (l) => {
   const d = l.details || {}
   const cand = d.photo_urls || d.photos || d.images || d.image_urls
   if (Array.isArray(cand) && cand.length && typeof cand[0] === 'string') return cand[0]
   if (typeof d.photo_url === 'string') return d.photo_url
+  if (l.category === 'equipment') {
+    const et = Number(d.equipment_type_id)
+    if (EQUIP_TYPE_IMG[et]) return IMG(EQUIP_TYPE_IMG[et])
+  }
   return IMG(LIST_IMG[l.category] || 'list-harvester.jpg')
 }
 
@@ -65,19 +74,26 @@ export default function Homepage() {
   const [mandi, setMandi] = useState({ rows: [], day: 'none' })
   const [pincode, setPincode] = useState(() => resolvePincode(user?.pincode))
   const [counts, setCounts] = useState(null)
+  const [videos, setVideos] = useState([])
+  const [pestReports, setPestReports] = useState([])
+  const [events, setEvents] = useState([])
 
   // Static data (once).
   useEffect(() => {
     let alive = true
     ;(async () => {
-      const [arts, crops, equipmentTypes, saw] = await Promise.all([
+      const [arts, crops, equipmentTypes, saw, vids, pest, evs] = await Promise.all([
         fetchPublishedArticles().catch(() => []),
         fetchCrops().catch(() => []),
         fetchEquipmentTypes().catch(() => []),
         fetchFeaturedSawaal(2).catch(() => []),
+        fetchFeaturedVideos(3).catch(() => []),
+        fetchPestReports(14, 2).catch(() => []),
+        fetchUpcomingEvents(30).catch(() => []),
       ])
       if (!alive) return
       setArticles(arts.slice(0, 2)); setExtras({ crops, equipmentTypes }); setSawaal(saw)
+      setVideos(vids); setPestReports(pest); setEvents(evs)
     })()
     fetchWeather().then((w) => alive && setWeather(w)).catch(() => alive && setWeather(null))
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
@@ -103,6 +119,18 @@ export default function Homepage() {
   const alert = getRainAlert(weather?.forecast)
   const today = getTodayForFarmer({ weather, mandi, msp, alert, t })
 
+  // Hero event line: nearest active event within the next 7 days (or none).
+  const in7 = (() => {
+    const max = new Date(); max.setDate(max.getDate() + 7)
+    const maxStr = max.toISOString().slice(0, 10)
+    const e = (events || []).find((ev) => ev.event_date <= maxStr)
+    if (!e) return null
+    return `📅 ${t(eventWeekdayKey(e.event_date))} — ${eventTitle(e, lang)}${e.location ? ` · ${e.location}` : ''}`
+  })()
+
+  // Pest banner: top qualifying crop+symptom group (framed as recently asked).
+  const pest = (pestReports && pestReports[0]) || null
+
   function changePincode() {
     const next = window.prompt(t('pincode_prompt'), pincode)
     if (next && /^\d{6}$/.test(next.trim())) {
@@ -120,10 +148,20 @@ export default function Homepage() {
 
       {/* 3 — Hero: आज किसान के लिए */}
       <HeroContent
-        t={t} today={today} weather={weather}
+        t={t} today={today} weather={weather} eventLine={in7}
         onNeed={() => navigate(isLoggedIn ? '/browse' : '/signup')}
         onHave={() => navigate(isLoggedIn ? '/post' : '/signup')}
       />
+
+      {/* Pest/disease "recently reported" banner (Phase 6) — only when a group qualifies */}
+      {pest && (
+        <button type="button" onClick={() => navigate('/sawaal')} className="block w-full text-left" style={{ background: 'var(--ks-saffron-tint)', borderTop: '2px solid var(--ks-saffron)', borderBottom: '2px solid var(--ks-saffron)', padding: '10px var(--ks-gutter)' }}>
+          <span className="block text-[15px] font-bold" style={{ color: 'var(--ks-orange-dark)' }}>
+            ⚠️ {t('pest_banner_prefix')} — {t('pest_banner_area')} {t(`pest_crop_${pest.crop}`)} {t('pest_banner_on')} {pest.report_count} {t(`pest_sym_${pest.symptom_tag}`)} {t('pest_banner_reports')}
+          </span>
+          <span className="block text-[14px] font-semibold" style={{ color: 'var(--ks-green-dark)' }}>{t('pest_banner_cta')}</span>
+        </button>
+      )}
 
       {/* 4 — आपके आसपास (counts, 30km) */}
       <Section bg="var(--ks-bg-soft)">
@@ -187,22 +225,22 @@ export default function Homepage() {
 
       {/* 7 — आज की 2 मिनट की वीडियो सलाह */}
       <Section bg="var(--ks-bg-soft)">
-        <SectionHeader title={t('videos_title')} />
+        <SectionHeader title={t('videos_title')} linkLabel={t('view_all')} onLink={() => navigate('/videos')} />
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          {VIDEOS.map((v) => (
-            <a key={v.youtubeId} href={videoWatchUrl(v)} target="_blank" rel="noopener noreferrer" className="flex flex-col overflow-hidden" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)' }}>
+          {videos.map((v) => (
+            <a key={v.id} href={videoWatchUrl(v)} target="_blank" rel="noopener noreferrer" className="flex flex-col overflow-hidden" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)' }}>
               <div className="relative w-full" style={{ height: 160, background: 'var(--ks-green-dark)' }}>
-                <img src={v.thumb} alt="" loading="lazy" className="h-full w-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                <img src={videoThumb(v)} alt="" loading="lazy" className="h-full w-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none' }} />
                 <span className="absolute inset-0 flex items-center justify-center">
                   <span className="flex h-12 w-12 items-center justify-center rounded-full" style={{ background: 'rgba(0,0,0,.55)' }} aria-hidden="true">
                     <span className="ml-1 border-y-[9px] border-l-[15px] border-y-transparent border-l-white" />
                   </span>
                 </span>
-                <span className="absolute bottom-2 right-2 rounded px-1.5 py-0.5 text-[13px] font-bold text-white" style={{ background: 'rgba(0,0,0,.7)' }}>{v.duration}</span>
+                {v.duration && <span className="absolute bottom-2 right-2 rounded px-1.5 py-0.5 text-[13px] font-bold text-white" style={{ background: 'rgba(0,0,0,.7)' }}>{v.duration}</span>}
               </div>
               <div className="p-3">
                 <div className="text-[16px] font-bold leading-tight" style={{ color: 'var(--ks-ink)' }}>{videoTitle(v, lang)}</div>
-                <div className="mt-1 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>▶ {t('video_watch')} · {v.source}</div>
+                <div className="mt-1 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>▶ {t('video_watch')} · {v.channel_name}</div>
               </div>
             </a>
           ))}
@@ -279,9 +317,13 @@ export default function Homepage() {
           <div className="grid grid-cols-2 gap-3">
             {articles.map((a) => (
               <button key={a.id} type="button" onClick={() => navigate(`/articles/${a.slug}`)} className="flex items-center gap-3 overflow-hidden text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)' }}>
-                {a.cover_image_url
-                  ? <img src={a.cover_image_url} alt="" crossOrigin="anonymous" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none' }} className="h-[72px] w-[96px] shrink-0 object-cover" style={{ background: 'var(--ks-green)' }} />
-                  : <span className="flex h-[72px] w-[96px] shrink-0 items-center justify-center text-2xl" style={{ background: 'var(--ks-green-tint)' }} aria-hidden="true">🌾</span>}
+                {/* Green-bg wrapper so a broken/dead cover URL falls back to a solid
+                    --ks-green block (never a black box) instead of empty space. */}
+                <span className="flex h-[72px] w-[96px] shrink-0 items-center justify-center overflow-hidden text-2xl" style={{ background: 'var(--ks-green)' }} aria-hidden="true">
+                  {a.cover_image_url
+                    ? <img src={a.cover_image_url} alt="" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none' }} className="h-full w-full object-cover" />
+                    : '🌾'}
+                </span>
                 <span className="min-w-0 flex-1 py-2 pr-2 text-[15px] font-semibold leading-snug" style={{ color: 'var(--ks-ink)' }}>{articleTitle(a, lang)}</span>
               </button>
             ))}
@@ -313,7 +355,7 @@ export default function Homepage() {
 
 // Hero content — shared between the desktop background-photo layout and the mobile
 // banner+cream layout.
-function HeroInner({ t, today, onNeed, onHave }) {
+function HeroInner({ t, today, onNeed, onHave, eventLine }) {
   return (
     <div className="w-full md:max-w-[58%]">
       <span className="inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>
@@ -333,6 +375,12 @@ function HeroInner({ t, today, onNeed, onHave }) {
         <InfoTile caption={t('tf_advice_cap')} value={today.advice} />
       </div>
 
+      {eventLine && (
+        <div className="mt-3 rounded-lg px-3 py-2 text-[15px] font-semibold" style={{ background: 'var(--ks-blue-tint)', color: 'var(--ks-blue)' }}>
+          {eventLine}
+        </div>
+      )}
+
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Button variant="primary" giant icon={<SearchGlyph />} sublabel={t('cta_need_sub')} onClick={onNeed}>{t('cta_need')}</Button>
         <Button variant="secondary" giant icon={<PlusGlyph />} sublabel={t('cta_have_sub')} onClick={onHave}>{t('cta_have')}</Button>
@@ -341,8 +389,8 @@ function HeroInner({ t, today, onNeed, onHave }) {
   )
 }
 
-function HeroContent({ t, today, onNeed, onHave }) {
-  const inner = <HeroInner t={t} today={today} onNeed={onNeed} onHave={onHave} />
+function HeroContent({ t, today, onNeed, onHave, eventLine }) {
+  const inner = <HeroInner t={t} today={today} onNeed={onNeed} onHave={onHave} eventLine={eventLine} />
   return (
     <section className="w-full">
       {/* Desktop: farmer photo as background, text on a cream gradient on the left */}

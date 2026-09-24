@@ -149,12 +149,14 @@ export async function fetchRecentListings(limit = 12) {
 // Phase 3e — homepage feed enriched with village/district + pincode coordinates,
 // so the caller can order by distance from a center then recency. Contact-free,
 // like fetchRecentListings. center = { latitude, longitude } | null.
-export async function fetchHomeFeed({ center = null, limit = 8, pool = 40 } = {}) {
-  const { data, error } = await supabase
+export async function fetchHomeFeed({ center = null, limit = 8, pool = 40, category = null } = {}) {
+  let query = supabase
     .from('listings')
     .select('id,listing_type,category,pincode,details,created_at,listing_source')
     .eq('status', 'active')
     .gt('expires_at', new Date().toISOString())
+  if (category) query = query.eq('category', category)
+  const { data, error } = await query
     .order('created_at', { ascending: false })
     .limit(pool)
   if (error) throw toAppError(error)
@@ -186,6 +188,23 @@ export async function fetchHomeFeed({ center = null, limit = 8, pool = 40 } = {}
     return new Date(b.created_at) - new Date(a.created_at)
   })
   return enriched.slice(0, limit)
+}
+
+// Equipment availability calendar (Phase 7a). Public read of busy dates; owner-
+// gated toggle via the set_listing_unavailable RPC (verifies listing.user_id).
+export async function fetchUnavailableDates(listingId) {
+  const { data, error } = await supabase
+    .from('listing_unavailable_dates').select('unavailable_date').eq('listing_id', listingId)
+  if (error) return []
+  return (data || []).map((r) => r.unavailable_date)
+}
+
+export async function setUnavailableDate(actorId, listingId, dateStr, busy) {
+  const { error } = await supabase.rpc('set_listing_unavailable', {
+    p_actor_id: actorId, p_listing_id: listingId, p_date: dateStr, p_busy: busy,
+  })
+  if (error) throw toAppError(error)
+  return true
 }
 
 // Single listing by id (active only, via RLS). Used by the detail screen.

@@ -1,11 +1,11 @@
 [
   {
     "file": "hero-farmer.jpg",
-    "description": "Elderly Indian farmer in headwear smiling in a field, warm daylight",
+    "description": "Indian farmer (woman) working in a lush green wheat field, upper body and face visible, warm light",
     "source": "pexels",
-    "author": "Anil Sharma",
+    "author": "EqualStock IN",
     "license": "Pexels License (free to use, no attribution required)",
-    "page": "https://www.pexels.com/photo/32277759"
+    "page": "https://www.pexels.com/photo/20445169/"
   },
   {
     "file": "cat-machines.jpg",
@@ -134,6 +134,14 @@
     "author": "Paolosbg Vattelapesca",
     "license": "Pexels License (free to use, no attribution required)",
     "page": "https://www.pexels.com/photo/traditional-indian-grocery-storefront-with-supplies-28624931/"
+  },
+  {
+    "file": "list-thresher.jpg",
+    "description": "Farmer feeding wheat sheaves into an orange wheat thresher machine in a field",
+    "source": "pexels",
+    "author": "Pexels contributor",
+    "license": "Pexels License (free to use, no attribution required)",
+    "page": "https://www.pexels.com/photo/12058069/"
   },
   {
     "file": "video-1.jpg",
