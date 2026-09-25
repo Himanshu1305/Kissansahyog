@@ -114,6 +114,28 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
    here (per scope). Founder connects Cloudflare Pages to the repo and sets the same env
    vars as a follow-up step.
 
+## Tech Debt
+
+Deferred, non-urgent cleanup. Not functional bugs — nothing here misbehaves for users; each is
+left because acting on it touches working, pre-existing code with no reported issue driving it.
+
+- **TD-1 — Four hardcoded Hindi strings should move to i18n (`strings.js`).** The
+  `v11_phase6` Devanagari audit (after the comment-stripping + label-allowlist cleanup)
+  correctly flags four spots where Hindi is written inline in render code instead of via a
+  `t()` key. **Low risk, no functional bug** (they render fine today, including in English —
+  three are already `lang === 'en' ? … : …` conditionals). **Deferred** because it edits four
+  working pre-existing files and no reported issue is driving it. This is the sole reason
+  `v11_phase6` stays red (backend suite: 27 pass / 1 fail).
+  - `src/screens/DroneDidi.jsx` — the "official info" paragraph (a `lang===` conditional block
+    of Hindi/English prose).
+  - `src/screens/Homepage.jsx` — the `किमी` distance unit appended inline in the nearby-listings
+    feed, and the `अ.दी.` founder-initials avatar text.
+  - `src/components/pages/shared.jsx` — the InfoTip `aria-label` values `'जानकारी'` / `'बंद करें'`
+    (`lang===` conditionals).
+  - `src/screens/Admin.jsx` — the `(हिं)` suffix on an admin input-price field label.
+  - *Fix when picked up:* add keys to `src/lib/i18n/strings.js`, replace the literals with
+    `t(...)`, then `v11_phase6` goes green with no further changes. Small, self-contained.
+
 ## Homepage v4 (2026-09-24)
 
 - **Official PIB / MP trust-row photos omitted.** drone-didi-official / pm-official /
@@ -230,18 +252,8 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
   `SchemeDetail.jsx` regex Devanagari-digit range `०-९` is now `०-९`. The empty
   `mausam_h1_a` i18n key was removed (the /mausam H1 now renders `{place} {mausam_h1_b}`).
 - **`v11_phase6` still fails — OPTION 2 DEFERRED (documented i18n debt).** After the cleanup the
-  audit precisely pinpoints **4 files with genuinely hardcoded Hindi in render code** that should
-  move into `strings.js`. These are **pre-existing** (none from the 0025/0026 builds) and left
-  as-is by explicit decision:
-  - `src/screens/DroneDidi.jsx` — a hardcoded Hindi "official info" paragraph (bilingual `lang===`
-    conditional).
-  - `src/screens/Homepage.jsx` — the `किमी` distance unit inline in the listings feed, and the
-    `अ.दी.` founder-initials avatar.
-  - `src/components/pages/shared.jsx` — InfoTip `aria-label` values `'जानकारी'` / `'बंद करें'`
-    (bilingual `lang===` conditionals).
-  - `src/screens/Admin.jsx` — the `(हिं)` suffix on an admin field label.
-  Fixing these is a small i18n pass (move the strings to `strings.js` with keys) with minor
-  rendering/behaviour risk on pre-existing screens; do it as a dedicated task. Until then
+  audit precisely pinpoints 4 files with genuinely hardcoded Hindi in render code that should move
+  into `strings.js`. These are pre-existing (none from the 0025/0026 builds) and left as-is by
+  explicit decision — full list + rationale under **Tech Debt → TD-1** above. Until then
   `v11_phase6` is the one intentionally-red suite.
-- **Backend suites: 27 pass / 1 fail** (only `v11_phase6`, failing solely on the 4 debt files
-  above).
+- **Backend suites: 27 pass / 1 fail** (only `v11_phase6`, failing solely on the TD-1 debt files).
