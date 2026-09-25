@@ -15,7 +15,12 @@ import {
   getAdminSawaal, adminAnswerSawaal, adminSetSawaalFeatured, adminSetSawaalPublished, adminDeleteSawaal,
   getAdminSafalta, adminUpsertSafalta, adminSetSafaltaPublished, adminSetSafaltaFeatured, adminDeleteSafalta,
   getAdminYojana, adminSetYojanaActive, adminSetYojanaFeatured, adminUpsertYojana,
+  getAdminSubscriptions, adminSetSubscriptionActive,
+  getAdminProcurement, adminUpsertProcurement, adminDeleteProcurement,
+  getAdminPageFaqs, adminUpsertPageFaq, adminDeletePageFaq,
+  getAdminDataHealth, adminSetSiteSetting,
 } from '../lib/admin/adminApi'
+import { fetchSiteSetting } from '../lib/pages/pagesApi'
 import { sawaalQuestion } from '../lib/community/communityApi'
 import { CATEGORIES } from '../lib/listings/catalog'
 
@@ -55,6 +60,11 @@ export default function Admin() {
         <SawaalPanel actorId={user.id} t={t} lang={lang} />
         <SafaltaPanel actorId={user.id} t={t} lang={lang} />
         <YojanaPanel actorId={user.id} t={t} lang={lang} />
+        <ContentReviewToggle actorId={user.id} t={t} />
+        <SubscriptionsPanel actorId={user.id} t={t} />
+        <ProcurementPanel actorId={user.id} t={t} />
+        <PageFaqsPanel actorId={user.id} t={t} />
+        <DataHealthPanel actorId={user.id} t={t} />
         <UsersPanel actorId={user.id} t={t} />
       </main>
     </div>
@@ -926,6 +936,150 @@ function UsersPanel({ actorId, t }) {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+    </Section>
+  )
+}
+
+// ---- 0024: content review toggle (Phase 7 gate) ----
+function ContentReviewToggle({ actorId, t }) {
+  const [reviewed, setReviewed] = useState(null)
+  const [err, setErr] = useState(null)
+  useEffect(() => { fetchSiteSetting('mausam_msp_content_reviewed').then((v) => setReviewed(v === true)).catch(() => setReviewed(false)) }, [])
+  async function toggle() {
+    setErr(null)
+    try { await adminSetSiteSetting(actorId, 'mausam_msp_content_reviewed', !reviewed); setReviewed(!reviewed) }
+    catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+  return (
+    <Section title={t('admin_content_review')}>
+      {err && <Notice tone="error">{err}</Notice>}
+      <div className="flex items-center gap-3">
+        <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${reviewed ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
+          {reviewed == null ? '…' : reviewed ? t('admin_reviewed') : t('under_review')}
+        </span>
+        <button type="button" onClick={toggle} className="rounded-lg border-2 border-green-700 px-3 py-1.5 text-sm font-bold text-green-800">{reviewed ? t('admin_mark_unreviewed') : t('admin_mark_reviewed')}</button>
+      </div>
+    </Section>
+  )
+}
+
+// ---- 0024: alert subscriptions (list, CSV, deactivate) ----
+function SubscriptionsPanel({ actorId, t }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const load = useCallback(() => { getAdminSubscriptions(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown'))) }, [actorId, t])
+  useEffect(() => { load() }, [load])
+  function exportCsv() {
+    const head = ['phone', 'pincode', 'crops', 'alert_types', 'source_page', 'consented_at', 'is_active']
+    const lines = [head.join(',')].concat((rows || []).map((r) => head.map((k) => `"${String(Array.isArray(r[k]) ? r[k].join('|') : (r[k] ?? '')).replace(/"/g, '""')}"`).join(',')))
+    const blob = new Blob([lines.join('\n')], { type: 'text/csv' })
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'subscriptions.csv'; a.click()
+  }
+  return (
+    <Section title={t('admin_subscriptions')} right={<button onClick={exportCsv} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">CSV</button>}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="overflow-x-auto"><table className="w-full text-sm">
+          <thead><tr className="text-left text-stone-500"><th className="p-1">phone</th><th className="p-1">pincode</th><th className="p-1">crops</th><th className="p-1">page</th><th className="p-1"> </th></tr></thead>
+          <tbody>{rows.map((r) => (
+            <tr key={r.id} className="border-t border-stone-100">
+              <td className="p-1 font-semibold">{r.phone}</td><td className="p-1">{r.pincode}</td>
+              <td className="p-1 text-stone-500">{(r.crops || []).join(', ')}</td><td className="p-1">{r.source_page}</td>
+              <td className="p-1"><button onClick={() => adminSetSubscriptionActive(actorId, r.id, !r.is_active).then(load)} className="rounded border px-2 py-0.5 text-xs font-bold">{r.is_active ? t('expert_make_inactive') : t('expert_make_active')}</button></td>
+            </tr>))}</tbody>
+        </table></div>
+      )}
+    </Section>
+  )
+}
+
+// ---- 0024: procurement centres CRUD ----
+const EMPTY_PROC = { name_hi: '', location: '', district: 'Sagar', crops: [], season: 'rabi', portal_url: '', notes_hi: '', registration_open: '', is_active: true }
+function ProcurementPanel({ actorId, t }) {
+  const [rows, setRows] = useState(null); const [err, setErr] = useState(null); const [editing, setEditing] = useState(null)
+  const load = useCallback(() => { getAdminProcurement(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown'))) }, [actorId, t])
+  useEffect(() => { load() }, [load])
+  async function save(f) { setErr(null); try { await adminUpsertProcurement(actorId, { ...f, crops: typeof f.crops === 'string' ? f.crops.split(',').map((s) => s.trim()).filter(Boolean) : f.crops }); setEditing(null); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } }
+  return (
+    <Section title={t('admin_procurement')} right={<button onClick={() => setEditing({ ...EMPTY_PROC })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+</button>}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {editing && (
+        <div className="mb-3 rounded-xl border-2 border-green-200 bg-green-50 p-3">
+          <div className="grid gap-2 sm:grid-cols-2">
+            <Field label="name_hi" htmlFor="pc_n"><TextInput id="pc_n" value={editing.name_hi} onChange={(e) => setEditing((s) => ({ ...s, name_hi: e.target.value }))} /></Field>
+            <Field label="location" htmlFor="pc_l"><TextInput id="pc_l" value={editing.location} onChange={(e) => setEditing((s) => ({ ...s, location: e.target.value }))} /></Field>
+            <Field label="crops (comma)" htmlFor="pc_c"><TextInput id="pc_c" value={Array.isArray(editing.crops) ? editing.crops.join(', ') : editing.crops} onChange={(e) => setEditing((s) => ({ ...s, crops: e.target.value }))} /></Field>
+            <Field label="season" htmlFor="pc_s"><Select id="pc_s" value={editing.season} onChange={(e) => setEditing((s) => ({ ...s, season: e.target.value }))}><option value="rabi">rabi</option><option value="kharif">kharif</option></Select></Field>
+            <Field label="portal_url" htmlFor="pc_u"><TextInput id="pc_u" value={editing.portal_url} onChange={(e) => setEditing((s) => ({ ...s, portal_url: e.target.value }))} /></Field>
+            <Field label="registration_open" htmlFor="pc_r"><TextInput id="pc_r" type="date" value={editing.registration_open || ''} onChange={(e) => setEditing((s) => ({ ...s, registration_open: e.target.value }))} /></Field>
+          </div>
+          <Field label="notes_hi" htmlFor="pc_no"><TextArea id="pc_no" value={editing.notes_hi} onChange={(e) => setEditing((s) => ({ ...s, notes_hi: e.target.value }))} /></Field>
+          <div className="mt-2 flex gap-2"><button onClick={() => save(editing)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('save')}</button><button onClick={() => setEditing(null)} className="rounded-lg bg-stone-200 px-4 py-2 font-bold">{t('cancel')}</button></div>
+        </div>
+      )}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="space-y-2">{rows.map((r) => (
+          <div key={r.id} className="flex flex-wrap items-center gap-2 rounded-xl border border-stone-100 p-2">
+            <div className="min-w-0 flex-1"><div className="font-bold text-stone-900">{r.name_hi}</div><div className="text-xs text-stone-500">{(r.crops || []).join(', ')} · {r.season}</div></div>
+            <button onClick={() => setEditing(r)} className="rounded border-2 border-green-700 px-2 py-0.5 text-xs font-bold text-green-800">{t('action_edit')}</button>
+            <button onClick={() => adminDeleteProcurement(actorId, r.id).then(load)} className="rounded bg-red-100 px-2 py-0.5 text-xs font-bold text-red-700">✕</button>
+          </div>))}</div>
+      )}
+    </Section>
+  )
+}
+
+// ---- 0024: page FAQs CRUD ----
+const EMPTY_FAQ = { page_key: 'mausam', q_hi: '', q_en: '', a_hi: '', a_en: '', sort_order: 0 }
+function PageFaqsPanel({ actorId, t }) {
+  const [rows, setRows] = useState(null); const [err, setErr] = useState(null); const [editing, setEditing] = useState(null)
+  const load = useCallback(() => { getAdminPageFaqs(actorId, null).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown'))) }, [actorId, t])
+  useEffect(() => { load() }, [load])
+  async function save(f) { setErr(null); try { await adminUpsertPageFaq(actorId, f); setEditing(null); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } }
+  return (
+    <Section title={t('admin_page_faqs')} right={<button onClick={() => setEditing({ ...EMPTY_FAQ })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+</button>}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {editing && (
+        <div className="mb-3 rounded-xl border-2 border-green-200 bg-green-50 p-3">
+          <div className="grid gap-2 sm:grid-cols-2">
+            <Field label="page" htmlFor="f_pg"><Select id="f_pg" value={editing.page_key} onChange={(e) => setEditing((s) => ({ ...s, page_key: e.target.value }))}><option value="mausam">mausam</option><option value="msp">msp</option></Select></Field>
+            <Field label="sort_order" htmlFor="f_so"><TextInput id="f_so" type="number" value={editing.sort_order} onChange={(e) => setEditing((s) => ({ ...s, sort_order: Number(e.target.value) }))} /></Field>
+            <Field label="q_hi" htmlFor="f_qh"><TextInput id="f_qh" value={editing.q_hi} onChange={(e) => setEditing((s) => ({ ...s, q_hi: e.target.value }))} /></Field>
+            <Field label="q_en" htmlFor="f_qe"><TextInput id="f_qe" value={editing.q_en || ''} onChange={(e) => setEditing((s) => ({ ...s, q_en: e.target.value }))} /></Field>
+          </div>
+          <Field label="a_hi" htmlFor="f_ah"><TextArea id="f_ah" value={editing.a_hi} onChange={(e) => setEditing((s) => ({ ...s, a_hi: e.target.value }))} /></Field>
+          <Field label="a_en" htmlFor="f_ae"><TextArea id="f_ae" value={editing.a_en || ''} onChange={(e) => setEditing((s) => ({ ...s, a_en: e.target.value }))} /></Field>
+          <div className="mt-2 flex gap-2"><button onClick={() => save(editing)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('save')}</button><button onClick={() => setEditing(null)} className="rounded-lg bg-stone-200 px-4 py-2 font-bold">{t('cancel')}</button></div>
+        </div>
+      )}
+      {!rows ? <Spinner /> : (
+        <div className="space-y-1">{rows.map((r) => (
+          <div key={r.id} className="flex items-center gap-2 rounded border border-stone-100 p-2 text-sm">
+            <span className="rounded bg-stone-100 px-1.5 py-0.5 text-xs font-bold">{r.page_key}</span>
+            <span className="min-w-0 flex-1 truncate">{r.q_hi}</span>
+            <button onClick={() => setEditing(r)} className="rounded border-2 border-green-700 px-2 py-0.5 text-xs font-bold text-green-800">{t('action_edit')}</button>
+            <button onClick={() => adminDeletePageFaq(actorId, r.id).then(load)} className="rounded bg-red-100 px-2 py-0.5 text-xs font-bold text-red-700">✕</button>
+          </div>))}</div>
+      )}
+    </Section>
+  )
+}
+
+// ---- 0024: data-health (read-only) ----
+function DataHealthPanel({ actorId, t }) {
+  const [data, setData] = useState(null); const [err, setErr] = useState(null)
+  useEffect(() => { getAdminDataHealth(actorId).then(setData).catch((e) => setErr(t(e.i18nKey || 'err_unknown'))) }, [actorId, t])
+  return (
+    <Section title={t('admin_data_health')}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {!data ? <Spinner /> : (
+        <div className="grid gap-3 sm:grid-cols-2 text-sm">
+          <div><div className="mb-1 font-bold text-stone-700">mandi (last date · rows)</div>
+            {(data.mandi || []).map((m) => <div key={m.commodity_en} className="flex justify-between border-t border-stone-100 py-0.5"><span>{m.commodity_en}</span><span className="text-stone-500">{m.last_date} · {m.rows}</span></div>)}</div>
+          <div><div className="mb-1 font-bold text-stone-700">weather cells (fetched_at)</div>
+            {(data.weather || []).map((w) => <div key={w.grid_key} className="flex justify-between border-t border-stone-100 py-0.5"><span>{w.grid_key}</span><span className="text-stone-500">{String(w.fetched_at).slice(0, 16).replace('T', ' ')}</span></div>)}</div>
         </div>
       )}
     </Section>

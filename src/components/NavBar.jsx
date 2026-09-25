@@ -30,8 +30,8 @@ const SCHEMES_MENU = [
 
 // Direct top-level links (order per spec: मंडी भाव · मौसम · किसान सवाल · वीडियो · संपर्क).
 const NAV_LINKS = [
-  { labelKey: 'nav_mandi', path: '/info#mandi' },
-  { labelKey: 'nav_weather', path: '/info#weather' },
+  { labelKey: 'nav_mandi', path: '/msp' },
+  { labelKey: 'nav_weather', path: '/mausam' },
   { labelKey: 'sawaal_nav', path: '/sawaal' },
   { labelKey: 'nav_videos', path: '/videos' },
   { labelKey: 'resources_nav', path: '/resources' },
@@ -101,8 +101,8 @@ export default function NavBar() {
               </div>
             )}
           </div>
-          <button type="button" className={catBtn(location.pathname === '/info')} onClick={() => goPath('/info#mandi')}>{t('nav_mandi')}</button>
-          <button type="button" className={catBtn(false)} onClick={() => goPath('/info#weather')}>{t('nav_weather')}</button>
+          <button type="button" className={catBtn(location.pathname.startsWith('/msp'))} onClick={() => goPath('/msp')}>{t('nav_mandi')}</button>
+          <button type="button" className={catBtn(location.pathname.startsWith('/mausam'))} onClick={() => goPath('/mausam')}>{t('nav_weather')}</button>
           {/* सरकारी योजनाएं dropdown */}
           <div className="relative" onMouseLeave={() => setSch(false)}>
             <button type="button" aria-haspopup="menu" aria-expanded={sch} className={catBtn(location.pathname.startsWith('/yojana'))} onClick={() => setSch((v) => !v)} onMouseEnter={() => setSch(true)}>

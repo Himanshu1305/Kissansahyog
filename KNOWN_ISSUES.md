@@ -138,3 +138,15 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
   forward relative to seeding; keep them current via the admin events panel).
 - **MP `e-krishi-yantra` / `balram-talab` helplines** are null (no single official
   helpline verified); source URLs recorded instead.
+
+## मौसम/MSP build (2026-09-25)
+- **DATA_GOV_IN_API_KEY secret not set → 3-year mandi history not backfilled.** Trend
+  and "पिछले सालों में" sections show only the short history the 3-hourly refresh has
+  gathered; the past-years bar chart stays hidden until ≥12 months exist. Owner action:
+  register at data.gov.in, add the `DATA_GOV_IN_API_KEY` repo secret, run the "Backfill
+  mandi history" GitHub workflow.
+- **ActionWindows / per-crop advice / procurement steps are pending expert review** —
+  they carry a "समीक्षाधीन" tag until Shri A.K. Dixit reviews docs/content/
+  MAUSAM_MSP_CONTENT_REVIEW.md and an admin flips the review flag.
+- **Season-rainfall normal** is computed from the Open-Meteo archive (2015→) at refresh
+  time; labelled "पिछले 10 साल का औसत". Values shift slightly as the archive updates.

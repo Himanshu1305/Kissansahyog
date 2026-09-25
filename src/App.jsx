@@ -30,6 +30,8 @@ const Yojana = lazy(() => import('./screens/Yojana'))
 const SchemeDetail = lazy(() => import('./screens/SchemeDetail'))
 const Videos = lazy(() => import('./screens/Videos'))
 const DroneDidi = lazy(() => import('./screens/DroneDidi'))
+const Mausam = lazy(() => import('./screens/Mausam'))
+const Msp = lazy(() => import('./screens/Msp'))
 const Credits = lazy(() => import('./screens/Credits'))
 
 // Gate for logged-in-only routes.
@@ -83,6 +85,10 @@ function AppRoutes() {
         <Route path="/yojana/:slug" element={<SchemeDetail />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/drone-didi" element={<DroneDidi />} />
+        <Route path="/mausam" element={<Mausam />} />
+        {/* Static /msp before the dynamic /msp/:crop */}
+        <Route path="/msp" element={<Msp />} />
+        <Route path="/msp/:crop" element={<Msp />} />
         <Route path="/credits" element={<Credits />} />
 
         <Route path="/home" element={<Protected><Home /></Protected>} />

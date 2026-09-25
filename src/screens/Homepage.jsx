@@ -9,7 +9,7 @@ import NavBar from '../components/NavBar'
 import LanguageToggle from '../components/LanguageToggle'
 import MandiTicker from '../components/MandiTicker'
 import { Section, SectionHeader, Button, PhotoTile, InfoTile, CountChip, HomeListingCard } from '../components/home/kit'
-import { fetchWeather } from '../lib/weather/weatherApi'
+import { fetchWeatherCell, requestGridCell } from '../lib/weather/weatherApiV2'
 import { getRainAlert } from '../lib/weather/rainAlert'
 import { fetchMsp } from '../lib/msp/mspApi'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
@@ -95,23 +95,25 @@ export default function Homepage() {
       setArticles(arts.slice(0, 2)); setExtras({ crops, equipmentTypes }); setSawaal(saw)
       setVideos(vids); setPestReports(pest); setEvents(evs)
     })()
-    fetchWeather().then((w) => alive && setWeather(w)).catch(() => alive && setWeather(null))
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
     fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
     return () => { alive = false }
   }, [])
 
-  // Pincode-dependent data (counts + nearby feed). Re-runs when pincode changes.
+  // Pincode-dependent data (weather cell + counts + nearby feed). Re-runs on change.
   useEffect(() => {
     let alive = true
     ;(async () => {
       const center = await fetchPincode(pincode).catch(() => null)
-      const [c, feed] = await Promise.all([
+      const coords = center ? { latitude: Number(center.latitude), longitude: Number(center.longitude) } : null
+      if (coords) requestGridCell(coords.latitude, coords.longitude)
+      const [c, feed, w] = await Promise.all([
         fetchNearbyCounts(pincode, 30).catch(() => null),
-        fetchHomeFeed({ center: center ? { latitude: center.latitude, longitude: center.longitude } : null, limit: 8 }).catch(() => []),
+        fetchHomeFeed({ center: coords, limit: 8 }).catch(() => []),
+        fetchWeatherCell(coords?.latitude ?? 24.045, coords?.longitude ?? 78.33).catch(() => null),
       ])
       if (!alive) return
-      setCounts(c); setListings(feed)
+      setCounts(c); setListings(feed); setWeather(w)
     })()
     return () => { alive = false }
   }, [pincode])
@@ -151,6 +153,8 @@ export default function Homepage() {
         t={t} today={today} weather={weather} eventLine={in7}
         onNeed={() => navigate(isLoggedIn ? '/browse' : '/signup')}
         onHave={() => navigate(isLoggedIn ? '/post' : '/signup')}
+        onForecast={() => navigate('/mausam')}
+        onMsp={() => navigate('/msp')}
       />
 
       {/* Pest/disease "recently reported" banner (Phase 6) — only when a group qualifies */}
@@ -280,7 +284,7 @@ export default function Homepage() {
           {[
             { titleKey: 'govt_yojana_title', subKey: 'govt_yojana_sub', to: '/yojana', icon: '🌾' },
             { titleKey: 'govt_numbers_title', subKey: 'govt_numbers_sub', to: '/resources', icon: '☎️' },
-            { titleKey: 'govt_msp_title', subKey: 'govt_msp_sub', to: '/info#msp', icon: '📋' },
+            { titleKey: 'govt_msp_title', subKey: 'govt_msp_sub', to: '/msp', icon: '📋' },
           ].map((c) => (
             <button key={c.titleKey} type="button" onClick={() => navigate(c.to)} className="text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
               <div className="text-[22px]" aria-hidden="true">{c.icon}</div>
@@ -355,7 +359,7 @@ export default function Homepage() {
 
 // Hero content — shared between the desktop background-photo layout and the mobile
 // banner+cream layout.
-function HeroInner({ t, today, onNeed, onHave, eventLine }) {
+function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp }) {
   return (
     <div className="w-full md:max-w-[58%]">
       <span className="inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>
@@ -365,12 +369,13 @@ function HeroInner({ t, today, onNeed, onHave, eventLine }) {
       <p className="mt-2 text-[15px] md:text-[18px]" style={{ color: 'var(--ks-ink-2)' }}>{t('tf_subline')}</p>
 
       <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-        <InfoTile caption={t('tf_weather_cap')} value={today.weatherLine} note={today.rainLine} noteColor="var(--ks-blue)" />
+        <InfoTile caption={t('tf_weather_cap')} value={today.weatherLine} note={`${today.rainLine} · ${t('home_forecast_link')} →`} noteColor="var(--ks-blue)" onClick={onForecast} />
         <InfoTile
           caption={t('tf_price_cap')}
           value={today.priceLine ? today.priceLine.split(' · ')[0] : '—'}
-          note={today.priceLine ? today.priceLine.split(' · ').slice(1).join(' · ') : t('govt_msp_title')}
+          note={`${today.priceLine ? today.priceLine.split(' · ').slice(1).join(' · ') : t('govt_msp_title')} · ${t('home_msp_link')} →`}
           noteColor={today.priceTone === 'above' ? 'var(--ks-green)' : today.priceTone === 'below' ? 'var(--ks-orange-dark)' : 'var(--ks-ink-3)'}
+          onClick={onMsp}
         />
         <InfoTile caption={t('tf_advice_cap')} value={today.advice} />
       </div>
@@ -389,8 +394,8 @@ function HeroInner({ t, today, onNeed, onHave, eventLine }) {
   )
 }
 
-function HeroContent({ t, today, onNeed, onHave, eventLine }) {
-  const inner = <HeroInner t={t} today={today} onNeed={onNeed} onHave={onHave} eventLine={eventLine} />
+function HeroContent({ t, today, onNeed, onHave, eventLine, onForecast, onMsp }) {
+  const inner = <HeroInner t={t} today={today} onNeed={onNeed} onHave={onHave} eventLine={eventLine} onForecast={onForecast} onMsp={onMsp} />
   return (
     <section className="w-full">
       {/* Desktop: farmer photo as background, text on a cream gradient on the left */}

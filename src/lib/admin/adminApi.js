@@ -122,3 +122,27 @@ export const adminUpsertYojana = (actorId, y) =>
 // Slugify an English title for the article slug field.
 export const slugify = (s) =>
   String(s || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+
+// --- 0024: mausam/msp admin (subscriptions, procurement, page FAQs, data health) ---
+export const getAdminSubscriptions = (actorId) => rpc('get_admin_subscriptions', { p_actor_id: actorId })
+export const adminSetSubscriptionActive = (actorId, id, active) => rpc('admin_set_subscription_active', { p_actor_id: actorId, p_id: id, p_active: active })
+
+export const getAdminProcurement = (actorId) => rpc('get_admin_procurement', { p_actor_id: actorId })
+export const adminUpsertProcurement = (actorId, p) => rpc('admin_upsert_procurement', {
+  p_actor_id: actorId, p_id: p.id ?? null, p_name_hi: p.name_hi, p_location: p.location ?? null,
+  p_district: p.district ?? 'Sagar', p_crops: p.crops ?? [], p_season: p.season ?? null,
+  p_registration_open: p.registration_open || null, p_registration_close: p.registration_close || null,
+  p_procurement_from: p.procurement_from || null, p_procurement_to: p.procurement_to || null,
+  p_portal_url: p.portal_url ?? null, p_notes_hi: p.notes_hi ?? null, p_is_active: p.is_active ?? true,
+})
+export const adminDeleteProcurement = (actorId, id) => rpc('admin_delete_procurement', { p_actor_id: actorId, p_id: id })
+
+export const getAdminPageFaqs = (actorId, page = null) => rpc('get_admin_page_faqs', { p_actor_id: actorId, p_page: page })
+export const adminUpsertPageFaq = (actorId, f) => rpc('admin_upsert_page_faq', {
+  p_actor_id: actorId, p_id: f.id ?? null, p_page_key: f.page_key, p_q_hi: f.q_hi, p_q_en: f.q_en ?? null,
+  p_a_hi: f.a_hi, p_a_en: f.a_en ?? null, p_sort_order: Number(f.sort_order) || 0,
+})
+export const adminDeletePageFaq = (actorId, id) => rpc('admin_delete_page_faq', { p_actor_id: actorId, p_id: id })
+
+export const getAdminDataHealth = (actorId) => rpc('get_admin_data_health', { p_actor_id: actorId })
+export const adminSetSiteSetting = (actorId, key, value) => rpc('admin_set_site_setting', { p_actor_id: actorId, p_key: key, p_value: value })

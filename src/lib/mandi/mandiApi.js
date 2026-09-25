@@ -51,3 +51,48 @@ export async function fetchMandiPrices() {
   if (yesterday && yesterday.length) return { rows: await withTrend(yesterday, isoDay(-1)), day: 'yesterday' }
   return { rows: [], day: 'none' }
 }
+
+// ---- /msp page: per-crop today prices + trend history ----------------------
+
+// Today's (or latest available) modal price at every Sagar mandi for a commodity.
+// Returns { rows: [{market, modal_price, min_price, max_price, arrivals_tonnes}], date }.
+export async function fetchMandiForCrop(commodityEn) {
+  const { data, error } = await supabase
+    .from('mandi_prices')
+    .select('market,modal_price,min_price,max_price,arrivals_tonnes,price_date,is_sagar_district')
+    .eq('commodity_en', commodityEn)
+    .order('price_date', { ascending: false })
+    .limit(300)
+  if (error || !data || !data.length) return { rows: [], date: null }
+  const sagar = data.filter((r) => r.is_sagar_district)
+  const pool = sagar.length ? sagar : data
+  const date = pool[0].price_date
+  const rows = pool.filter((r) => r.price_date === date && r.modal_price != null)
+  // de-dup by market (keep first)
+  const seen = new Set()
+  return { rows: rows.filter((r) => (seen.has(r.market) ? false : seen.add(r.market))), date }
+}
+
+// Daily district modal price (median across mandis per date) over the last N days,
+// for the trend chart. Returns [{date, price}] ascending; may be short if history is thin.
+export async function fetchMandiHistory(commodityEn, days = 90) {
+  const from = isoDay(-days)
+  const { data, error } = await supabase
+    .from('mandi_prices')
+    .select('modal_price,price_date')
+    .eq('commodity_en', commodityEn)
+    .gte('price_date', from)
+    .order('price_date', { ascending: true })
+    .limit(5000)
+  if (error || !data) return []
+  const byDate = {}
+  for (const r of data) { if (r.modal_price == null) continue; (byDate[r.price_date] ||= []).push(Number(r.modal_price)) }
+  const median = (a) => { const s = [...a].sort((x, y) => x - y); const m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : Math.round((s[m - 1] + s[m]) / 2) }
+  return Object.entries(byDate).map(([date, arr]) => ({ date, price: median(arr) })).sort((a, b) => (a.date < b.date ? -1 : 1))
+}
+
+// Full available history for the "past years by month" chart (up to ~3 years).
+export async function fetchMandiMonthly(commodityEn) {
+  const rows = await fetchMandiHistory(commodityEn, 365 * 3 + 5)
+  return rows
+}

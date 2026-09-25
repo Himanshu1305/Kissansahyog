@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
+import { cropByMandi } from '../content/crops'
 
 // Raw market name → i18n key for its Hindi mandi label (fallback: raw name).
 const MARKET_KEY = {
@@ -25,8 +26,9 @@ export default function MandiTicker() {
   }, [])
 
   const marketHi = (m) => (MARKET_KEY[m] ? t(MARKET_KEY[m]) : m)
-  const item = (r, i) => (
-    <span key={`${r.commodity_en}-${r.market}-${i}`} className="whitespace-nowrap px-4 text-[#c8e6b0]">
+  const item = (r, i) => {
+    const slug = cropByMandi(r.commodity_en)?.slug
+    const inner = (<>
       <span className="font-bold text-white">{r.commodity_hi}</span>{' '}
       <span>₹{fmt(r.modal_price)}/{t('mandi_qtl')}</span>
       {r.delta != null && r.delta !== 0 && (
@@ -37,8 +39,11 @@ export default function MandiTicker() {
       <span className="text-[var(--ks-primary-light)]"> · </span>
       <span>{marketHi(r.market)}</span>
       <span className="px-2 text-[var(--ks-primary-light)]">|</span>
-    </span>
-  )
+    </>)
+    return slug
+      ? <a key={`${r.commodity_en}-${r.market}-${i}`} href={`/msp/${slug}`} className="whitespace-nowrap px-4 text-[#c8e6b0]">{inner}</a>
+      : <span key={`${r.commodity_en}-${r.market}-${i}`} className="whitespace-nowrap px-4 text-[#c8e6b0]">{inner}</span>
+  }
 
   return (
     <div

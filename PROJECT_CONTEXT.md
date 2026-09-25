@@ -819,3 +819,40 @@ backfill, 16 videos, 16 Q&A (incl. a soybean/yellow_leaves pest group), 3 KVK ev
 - Migrant/seasonal labour coordination across districts.
 - Voice search ("बोलकर खोजें") via Web Speech API.
 - Crop Doctor / AI photo diagnosis (potential separate product).
+
+## मौसम (/mausam) & MSP (/msp) build — 2026-09-25
+
+Migration **0024_mausam_msp.sql**: `weather_cache_v2` (grid_key PK, current/hourly/
+daily/season_rain jsonb) + `weather_grid_requests` (anon upsert) replacing the
+single-row `weather_cache` (dropped); `mandi_prices.arrivals_tonnes`;
+`alert_subscriptions` (anon writes via `subscribe_alert` RPC, upsert on phone+channel,
+phone regex CHECK, no anon read; admin list/CSV/deactivate); `procurement_centres`
+(+admin CRUD, seeded e-Uparjan wheat/soybean + e-NAM); `page_faqs` (admin CRUD, 8
+mausam + 8 msp seeded); `site_settings` (public read/admin write, seed
+`mausam_msp_content_reviewed=false`); Bhavantar scheme row in sarkari_yojana.
+
+- **Weather refresh**: `scripts/refresh-data.mjs` (renamed from refresh-mandi-prices;
+  `npm run refresh-prices` still points here; 3-hourly cron unchanged). Populates every
+  pilot cell + cells requested in the last 30 days: Open-Meteo forecast (48h hourly,
+  16-day daily incl. wind_max/et0/precip-prob/soil-moisture) + archive season rainfall
+  (to-date vs 2015-based 10-yr normal). No browser Open-Meteo calls.
+- **Mandi history backfill**: `scripts/backfill-mandi-history.mjs` +
+  `.github/workflows/backfill-mandi-history.yml` (manual). **Needs `DATA_GOV_IN_API_KEY`
+  repo secret — NOT yet added; backfill NOT yet run** (see docs/review/MAUSAM_MSP_REVIEW.md).
+  Earliest date / rows-per-commodity to be recorded here after the owner runs it.
+- **Pages**: `src/screens/Mausam.jsx` (13 sections), `src/screens/Msp.jsx` (+/msp/:crop,
+  11 sections, default गेहूं Oct–Mar / सोयाबीन Apr–Sep). Shared kit in
+  `src/components/pages/shared.jsx` (PageExplainer, LocationControl, FaqAccordion+schema,
+  ShareWhatsApp, DailyUpdateSignup, TrendChart/TwoBar/MonthBars inline-SVG + sr-only
+  tables, ReviewTag). Rules in `src/lib/weather/weatherRules.js`; crop map in
+  `src/content/crops.js`. Data APIs: `weatherApiV2.js`, `pagesApi.js`, mandi per-crop
+  functions in `mandiApi.js`.
+- **Wiring**: nav मौसम→/mausam, मंडी भाव→/msp; homepage Today card reads
+  weather_cache_v2, tiles link to /mausam & /msp, ticker items → /msp/:crop; /info
+  drops weather+MSP, keeps events/schemes/contacts, client-redirects #weather→/mausam
+  and #msp/#mandi→/msp. Sitemap has /mausam, /msp, 10 /msp/:crop (daily).
+- **Two honesty rules** enforced in copy: never predict prices; never call our rain
+  badge an IMD warning (links to IMD as authority).
+- **Content review gate**: actionable sections (ActionWindows, per-crop advice, MSP
+  procurement + below-MSP routes) show "समीक्षाधीन" until an admin flips
+  `mausam_msp_content_reviewed`. Review doc: docs/content/MAUSAM_MSP_CONTENT_REVIEW.md.

@@ -1,25 +1,22 @@
-name: Refresh Mandi Prices
+name: Backfill mandi history
 
+# Manual only. Pulls up to 3 years of Agmarknet history for MP/Sagar into mandi_prices.
+# Requires the DATA_GOV_IN_API_KEY repository secret (free registration at data.gov.in).
 on:
-  schedule:
-    - cron: '0 */3 * * *'   # Every 3 hours UTC (covers 2:30 PM IST and other key times); keeps weather current
-  workflow_dispatch:         # Keep manual trigger
+  workflow_dispatch:
 
 jobs:
-  refresh:
+  backfill:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - run: npm ci
-
-      - name: Refresh mandi prices and weather
+      - name: Backfill mandi history
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           DATA_GOV_IN_API_KEY: ${{ secrets.DATA_GOV_IN_API_KEY }}
-        run: npm run refresh-prices
+        run: node scripts/backfill-mandi-history.mjs

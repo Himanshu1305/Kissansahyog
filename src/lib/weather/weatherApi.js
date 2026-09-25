@@ -1,17 +1,6 @@
-// Public read of the cached 5-day Khurai/Sagar forecast (populated by the refresh
-// cron). Degrades gracefully to null if the table/data is missing (widget then
-// shows "temporarily unavailable").
-import { supabase } from '../supabaseClient'
-
-export async function fetchWeather() {
-  const { data, error } = await supabase
-    .from('weather_cache')
-    .select('*')
-    .eq('location_name', 'Khurai/Sagar')
-    .maybeSingle()
-  if (error) return null
-  return data
-}
+// Weather code → icon/label map + weekday helper. The location-keyed data read now
+// lives in weatherApiV2.js (weather_cache_v2); the old single-row weather_cache and
+// its fetchWeather() were removed in migration 0024.
 
 // WMO weather code → { i18n key, icon }. Description text lives in strings.js
 // (wcode_*) so nothing bilingual is hardcoded here.
