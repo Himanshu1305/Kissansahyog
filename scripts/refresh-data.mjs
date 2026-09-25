@@ -80,8 +80,9 @@ async function getOfficialPool() {
       const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
       if (!res.ok) { console.error(`official form [${form || 'none'}] HTTP ${res.status}`); continue }
       const raw = (await res.json()).records || []
-      // Narrow to MP + Sagar regardless of which server filter (if any) was applied.
-      const mp = raw.filter((r) => stateOf(r).includes('madhya') && districtOf(r).includes('sagar'))
+      const mpAny = raw.filter((r) => stateOf(r).includes('madhya'))
+      const mp = mpAny.filter((r) => districtOf(r).includes('sagar'))
+      console.log(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} sagar=${mp.length}${raw.length && !form ? ' states=' + JSON.stringify([...new Set(raw.map(stateOf))].slice(0, 6)) : ''}`)
       if (mp.length) { recs = mp; winner = form || 'no-filter'; break }
     } catch (e) { console.error(`official form [${form || 'none'}] failed: ${e.message}`) }
   }
