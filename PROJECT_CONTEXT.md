@@ -871,3 +871,53 @@ mausam + 8 msp seeded); `site_settings` (public read/admin write, seed
 - Real IMD data feed (api.imd.gov.in: district warnings, 7-day forecast, agromet advisory).
 - Widen mandi collection to named MP mandis beyond Sagar (most commodities report from one mandi/day).
 - Voice question asking on /sawaal; AI-generated Q&A answers with "AI-जनित, समीक्षा लंबित" labelling (Crop Doctor extension).
+
+## Geofencing / Location / Mandi search / PWA / Inputs — 2026-09-25 (migration 0025)
+
+Full write-up: `docs/review/PHASE0-8_FULL_REVIEW.md` + `PHASE0_GEOFENCING_FINDING.md` +
+`E2E_TEST_REPORT.md`. Migration `0025_visibility_location_inputs.sql`.
+
+- **Geofencing (single source of truth: `src/lib/distance.js`).** `partitionByRadius(rows,
+  {getDistance,getCategory,getWide})` → `{primary, fallback}`: primary = ≤30 km **plus**
+  wide-eligible+flagged rows to `WIDE_RADIUS_KM` (100); fallback = the 30–50 km ring,
+  returned **only when zero within-30 results**. Used by `fetchNearby` (Browse) and
+  `fetchHomeFeed` (homepage "आपके आसपास" feed + /drone-didi; when no viewer center is
+  known, distance filtering is skipped and newest-first is kept). `nearby_counts` RPC stays
+  strict ≤ `p_km` (local-density indicator). `RADIUS_KM=30`, `FALLBACK_RADIUS_KM=50`,
+  `WIDE_RADIUS_KM=100`, `WIDE_ELIGIBLE_CATEGORIES=['bhusa','agri_inputs']`.
+- **Wide-visibility opt-in (Phase 1).** `listings.wide_visibility` (default false).
+  `create_listing` is now 10-arg (`p_wide_visibility`) and **rejects** the flag server-side
+  for any category other than `bhusa`/`agri_inputs` (`wide_visibility_not_allowed`). The
+  listing form shows the opt-in checkbox (default off) only for those two categories.
+- **Unified LocationControl (Phase 2).** `src/components/pages/shared.jsx` `LocationControl`
+  (props `{value:{pincode,latitude,longitude,label,source}, onChange}`) +
+  `src/lib/location/locationStore.js` (fetchAllPincodes/nearestPincode/recent-locations/
+  geo-prompt dismissal — the `pincodes` table is the single coordinate source). Replaces the
+  three prior controls on homepage, /mausam, /msp. GPS grant → precise lat/lng for weather +
+  nearest-pincode for pincode features; manual pincode always reachable; ≤5 recent chips.
+- **MSP ranking + search (Phase 3).** `/msp/:crop` today table adds a **दूरी** column, sorted
+  nearest-first via `src/content/mandiCoords.js` (approx town centres — informational only).
+  Mandi search box sources names from `SELECT DISTINCT market` (`fetchMandiMarkets`); selecting
+  shows that mandi's latest price + date, or an honest empty state (`fetchMandiForMarket`).
+  **Deliberately NOT geofenced** — `lib/mandi/mandiApi.js` carries a 3c header comment and a
+  static regression test asserts it never imports the cutoff logic.
+- **PWA (Phase 5) — CHANGED from autoUpdate to `prompt`.** `vite.config.js` `registerType:
+  'prompt'`, `injectRegister: null`; SW registered via `virtual:pwa-register/react` in
+  `src/components/PwaPrompts.jsx`. Runtime caching: live data (supabase/open-meteo/mandi/
+  data.gov) = NetworkFirst; static shell precached; fonts CacheFirst. `clientsClaim` on (for
+  offline-first) but **no skipWaiting** — a new build waits for the user's explicit reload via
+  the update banner. PwaPrompts also renders the offline banner + a returning-visitor install
+  prompt (visit ≥ 2, 14-day dismissal). Manifest name "किसान सहयोग" / short_name "Kisan
+  Sahyog", theme `#24733F`, bg `#FBFAF5`.
+- **CSP (Phase 4).** `public/_headers`: `fonts.googleapis.com` in `style-src`,
+  `fonts.gstatic.com` in `font-src` — the Google-Fonts console notice is gone (live-verified).
+- **Input price tracker (Phase 6).** `input_prices` table (public read active; admin RPCs
+  `get_admin_input_prices`/`admin_set_input_price_active`/`admin_upsert_input_price`);
+  `src/lib/inputs/inputsApi.js`; shown on `/info` as "कृषि सामग्री के भाव"; admin panel in
+  `/admin`. **CAVEAT:** the 3 Khurai shops × Urea/DAP/diesel are a **seeded starting point
+  that needs ongoing admin maintenance** (same as KVK events) — they are not auto-refreshed.
+- **Tests (Phase 7, permanent).** `scripts/test/p_0025_visibility.mjs` (backend/logic/static
+  config) + `e2e/phase10_location_pwa.spec.js` + `e2e/phase10_downstream.spec.js`. These are
+  part of the baseline for every future Phase 7a.
+- **Deployed:** https://75d320fb.kissansahyog.pages.dev (live-verified: fonts/CSP clean,
+  mandi ticker live, PWA installable).

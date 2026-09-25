@@ -158,3 +158,32 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
   - **The daily feed currently carries NO Sagar-district rows.** So `refresh-data.mjs` pools MP-wide and picks the best available MP mandi for a commodity (marked `is_sagar_district=false`) when Sagar has none. गेहूं/सोयाबीन/मक्का/सरसों/लहसुन come from the wrapper (Sagar); चना and धान now populate from MP mandis via the official API.
   - **मसूर/मूंग/उड़द** still don't populate on some days: they are simply absent from the MP daily feed (off-season / not reported that day) — a data-availability reality, not a code bug. They fill in automatically on days the feed has them.
 - **Note for the history backfill:** resource `9ef84268-…` is a *daily-snapshot* resource (today's rows only), and its filters are lowercase; `backfill-mandi-history.mjs` should be revisited (lowercase filters + a genuinely historical Agmarknet source) before relying on it for multi-year history.
+
+## Geofencing / Location / Mandi / PWA / Inputs build (2026-09-25, migration 0025)
+- **Pre-existing failing backend suites (NOT introduced here).** Baseline was 21 pass / 5
+  fail; all 5 fail identically on the pre-build tree (verified via `git stash`): `p_community`
+  (expects the old single "Community" nav dropdown), `phase1` (equipment_types seed-count
+  drift = 15), `phase8` (asserts the old autoUpdate SW config), `v11_phase2` (labor label
+  includes "(Labor)"), `v11_phase6` (one empty string `mausam_h1_a` + a narrow Devanagari-in-
+  files allowlist). This build's new suite raised the count to 22 pass; none of the 21 regressed.
+  These 5 are out of scope for this build and remain open.
+- **`input_prices` are seeded starter data**, not a live feed — 3 Khurai shops × Urea/DAP/
+  diesel with plausible prices. They need ongoing admin maintenance via the `/admin` panel
+  (same caveat as KVK events). Not auto-refreshed by any cron.
+- **Mandi distance is approximate + informational only.** `/msp/:crop` ranks the today table
+  by distance from `src/content/mandiCoords.js` (town-centre coordinates for the ~19 markets
+  currently reporting; unlisted markets fall back to a district centre or show "—"). Distance
+  is never a filter here (Phase 3c), so approximation is acceptable; expand the gazetteer if
+  new markets start reporting.
+- **PWA update flow is now explicit (`prompt`).** A new deploy no longer swaps content
+  silently — the user sees a "नया अपडेट उपलब्ध है — रीलोड करें" banner and must accept it. The
+  two-consecutive-deploys manual check (an old tab shows the banner) was not run in this
+  session; the config + `onNeedRefresh` wiring is covered by the static config test and the
+  install/offline E2E. Worth a manual two-deploy confirmation on a real device before launch.
+- **`index.html` `theme-color` meta** was corrected from `#15803d` to `#24733F` (manifest was
+  already correct); the value ships to the live site on the next deploy after the deploy
+  recorded in the review doc.
+- **Auth-gated pages** (`/browse`, `/post`, `/listing/:id`, `/admin`) are covered by the
+  logged-in Phase 8 screenshot pass + backend RPC guard tests, not by the public E2E specs
+  (the legacy `e2e/phase{2..9}` specs still need the new required create-listing fields before
+  they can re-run — carried from earlier).

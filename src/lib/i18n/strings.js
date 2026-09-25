@@ -1380,4 +1380,56 @@ export const strings = {
   sawaal_no_match: { hi: 'कोई सवाल नहीं मिला — अपना सवाल पूछें', en: 'No question found — ask your own' },
   // Phase 6 — drone-didi test-data label
   example_listing: { hi: 'उदाहरण लिस्टिंग', en: 'Example listing' },
+
+  // ===== 0025 build — geofencing / location / mandi search / PWA / inputs =====
+  // Phase 1 — wide-visibility opt-in (Bhoosa/Parali + Seeds & Inputs only)
+  wide_visibility_label: { hi: 'इसे 30 किमी से दूर के लोगों को भी दिखाएं', en: 'Show this to people beyond 30 km too' },
+  wide_visibility_note: { hi: 'नज़दीकी खरीदार मिलना आसान और सुरक्षित होता है — दूर के लोगों से सावधानी से डील करें।', en: 'Nearby buyers are easier and safer to meet — deal carefully with distant people.' },
+  err_wide_visibility_not_allowed: { hi: 'यह विकल्प केवल भूसा/पराली और बीज-खाद के लिए है।', en: 'This option is only for Bhoosa/Parali and Seeds & Inputs.' },
+
+  // Phase 2 — unified LocationControl
+  loc_detect_q: { hi: 'अपनी जगह अपने आप पता करें?', en: 'Detect your location automatically?' },
+  loc_yes: { hi: 'हाँ', en: 'Yes' },
+  loc_enter_pincode: { hi: 'पिनकोड डालें', en: 'Enter pincode' },
+  loc_detecting: { hi: 'जगह पता की जा रही है…', en: 'Detecting location…' },
+  loc_denied_hint: { hi: 'जगह की अनुमति नहीं मिली — नीचे पिनकोड डालें।', en: 'Location permission denied — enter a pincode below.' },
+  loc_unsupported_hint: { hi: 'यह फ़ोन अपने आप जगह नहीं बता सकता — पिनकोड डालें।', en: 'This device can’t auto-detect — enter a pincode.' },
+  loc_recent: { hi: 'हाल की जगहें:', en: 'Recent places:' },
+  loc_current: { hi: 'अभी की जगह', en: 'Current location' },
+  loc_change: { hi: 'जगह बदलें', en: 'Change location' },
+  loc_use_pincode: { hi: 'पिनकोड से चुनें', en: 'Use a pincode' },
+  loc_detected_near: { hi: 'आपके नज़दीक', en: 'Near you' },
+  loc_no_data: { hi: 'इस जगह के लिए डेटा उपलब्ध नहीं', en: 'No data available for this location' },
+  loc_apply: { hi: 'लागू करें', en: 'Apply' },
+
+  // Phase 3 — MSP mandi search + distance ranking
+  mandi_search_label: { hi: 'मंडी का नाम खोजें (जैसे: बीना, रहली)', en: 'Search a mandi (e.g. Bina, Rehli)' },
+  mandi_search_ph: { hi: 'मंडी का नाम लिखें…', en: 'Type a mandi name…' },
+  mandi_search_none: { hi: 'इस मंडी में इस फसल का ताज़ा भाव उपलब्ध नहीं।', en: 'No recent price for this crop in that mandi.' },
+  mandi_search_result_h: { hi: 'खोजी गई मंडी', en: 'Searched mandi' },
+  mandi_last_price_on: { hi: 'अंतिम भाव', en: 'Last price' },
+  col_distance: { hi: 'दूरी', en: 'Distance' },
+  km_short: { hi: 'किमी', en: 'km' },
+  mandi_dist_unknown: { hi: 'दूरी अज्ञात', en: 'distance unknown' },
+
+  // Phase 5 — PWA
+  pwa_update_available: { hi: 'नया अपडेट उपलब्ध है', en: 'A new update is available' },
+  pwa_reload: { hi: 'रीलोड करें', en: 'Reload' },
+  pwa_offline_prefix: { hi: 'आप ऑफ़लाइन हैं — आख़िरी बार अपडेट:', en: 'You are offline — last updated:' },
+  pwa_install_prompt: { hi: 'किसान सहयोग को होम स्क्रीन पर जोड़ें', en: 'Add Kisan Sahyog to your home screen' },
+  pwa_install: { hi: 'जोड़ें', en: 'Add' },
+  pwa_later: { hi: 'बाद में', en: 'Later' },
+
+  // Phase 6 — input price tracker
+  inputs_title: { hi: 'कृषि सामग्री के भाव', en: 'Farm input prices' },
+  inputs_sub: { hi: 'खुरई क्षेत्र की दुकानों के अनुमानित भाव', en: 'Approx. prices at Khurai-area shops' },
+  inputs_updated: { hi: 'अपडेट', en: 'Updated' },
+  inputs_empty: { hi: 'भाव जल्द उपलब्ध होंगे।', en: 'Prices coming soon.' },
+  inputs_col_item: { hi: 'सामग्री', en: 'Item' },
+  inputs_col_shop: { hi: 'दुकान', en: 'Shop' },
+  inputs_col_price: { hi: 'भाव', en: 'Price' },
+  inputs_disclaimer: { hi: 'ये भाव केवल जानकारी के लिए हैं और बदल सकते हैं — दुकान से पुष्टि करें।', en: 'Prices are indicative and may change — confirm at the shop.' },
+  inputs_view_all: { hi: 'सभी भाव देखें', en: 'View all prices' },
+  // Admin — input prices panel
+  admin_inputs_h: { hi: 'कृषि सामग्री भाव प्रबंधन', en: 'Input Prices' },
 }

@@ -6,11 +6,14 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import NavBar from '../components/NavBar'
 import { Spinner } from '../components/ui'
 import { CROPS, cropBySlug, cropName, defaultCropSlug } from '../content/crops'
-import { fetchMandiForCrop, fetchMandiHistory, fetchMandiMonthly, fetchMandiSnapshot } from '../lib/mandi/mandiApi'
+import { fetchMandiForCrop, fetchMandiHistory, fetchMandiMonthly, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket } from '../lib/mandi/mandiApi'
+import { marketDistanceKm } from '../content/mandiCoords'
 import { fetchMsp } from '../lib/msp/mspApi'
-import { fetchHomeFeed } from '../lib/listings/listingsApi'
+import { fetchHomeFeed, fetchPincode } from '../lib/listings/listingsApi'
+import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/pagesApi'
-import { PageExplainer, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, ReviewTag } from '../components/pages/shared'
+import { useAuth } from '../lib/auth/AuthProvider'
+import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, ReviewTag } from '../components/pages/shared'
 
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const MONTHS_HI = ['जन', 'फर', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुल', 'अग', 'सित', 'अक्टू', 'नव', 'दिस']
@@ -19,9 +22,19 @@ const firstNum = (s) => { const m = String(s || '').replace(/,/g, '').match(/\d+
 export default function Msp() {
   const { crop: cropParam } = useParams()
   const { t, lang } = useLang()
+  const { user } = useAuth()
   const navigate = useNavigate()
   const slug = cropBySlug(cropParam) ? cropParam : defaultCropSlug()
   const crop = cropBySlug(slug)
+
+  // Phase 2 — shared location (drives the Phase 3a nearby-mandi ranking).
+  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
+  const [center, setCenter] = useState(null) // { latitude, longitude } for ranking
+  // Phase 3b — free mandi search (deliberately NOT geofenced).
+  const [markets, setMarkets] = useState([])
+  const [mandiQuery, setMandiQuery] = useState('')
+  const [mandiPick, setMandiPick] = useState(null) // { market, modal_price, price_date }
+  const [mandiSearching, setMandiSearching] = useState(false)
 
   const [today, setToday] = useState(undefined) // { rows, date }
   const [mspRow, setMspRow] = useState(null)
@@ -64,6 +77,50 @@ export default function Msp() {
     fetchMandiHistory(crop.mandi_en, trendDays).then((r) => alive && setHistory(r)).catch(() => {})
     return () => { alive = false }
   }, [slug, trendDays])
+
+  // Mandi-name list for the search box (Phase 3b) — from DISTINCT market.
+  useEffect(() => { fetchMandiMarkets().then(setMarkets).catch(() => setMarkets([])) }, [])
+
+  // Resolve the ranking center from the shared location (precise GPS coords, else the
+  // selected pincode's coordinates). Used only to LABEL distance, never to filter.
+  useEffect(() => {
+    let alive = true
+    ;(async () => {
+      if (loc.latitude != null && loc.longitude != null) { if (alive) setCenter({ latitude: loc.latitude, longitude: loc.longitude }); return }
+      const p = await fetchPincode(loc.pincode).catch(() => null)
+      if (alive) setCenter({ latitude: Number(p?.latitude ?? DEFAULT_COORDS.latitude), longitude: Number(p?.longitude ?? DEFAULT_COORDS.longitude) })
+    })()
+    return () => { alive = false }
+  }, [loc])
+
+  // Clear a previous search result when the crop changes.
+  useEffect(() => { setMandiPick(null); setMandiQuery('') }, [slug])
+
+  // Fuzzy candidates for the mandi search box (partial, case-insensitive).
+  const mandiMatches = useMemo(() => {
+    const q = mandiQuery.trim().toLowerCase()
+    if (!q) return []
+    return markets.filter((m) => m.toLowerCase().includes(q)).slice(0, 6)
+  }, [markets, mandiQuery])
+
+  async function pickMandi(market) {
+    setMandiQuery(market); setMandiSearching(true)
+    try {
+      const row = await fetchMandiForMarket(crop.mandi_en, market)
+      setMandiPick(row ? { ...row, notFound: false } : { market, notFound: true })
+    } catch { setMandiPick({ market, notFound: true }) } finally { setMandiSearching(false) }
+  }
+
+  // Phase 3a — today's rows ranked by real distance from the farmer, nearest first.
+  const rankedToday = useMemo(() => {
+    const rows = (today?.rows || []).map((r) => ({ ...r, distanceKm: marketDistanceKm(center, r.market, r.district) }))
+    return rows.sort((a, b) => {
+      if (a.distanceKm == null && b.distanceKm == null) return Number(b.modal_price) - Number(a.modal_price)
+      if (a.distanceKm == null) return 1
+      if (b.distanceKm == null) return -1
+      return a.distanceKm - b.distanceKm
+    })
+  }, [today, center])
 
   const msp = mspRow ? Number(mspRow.msp_per_quintal) : null
   const medianToday = useMemo(() => {
@@ -129,6 +186,9 @@ export default function Msp() {
         {/* 1. explainer */}
         <PageExplainer title={t('page_explainer_title')} lines={[t('msp_explain_1'), t('msp_explain_2'), t('msp_explain_3'), t('msp_explain_4')]} />
 
+        {/* Shared location control (drives the nearby-mandi distance ranking below). */}
+        <LocationControl value={loc} onChange={setLoc} />
+
         {/* 3a. all-crops snapshot table */}
         {snapshotRows && (
           <section>
@@ -160,19 +220,50 @@ export default function Msp() {
           ))}
         </div>
 
-        {/* 3. today's prices vs MSP */}
+        {/* 3. today's prices vs MSP — ranked by real distance (Phase 3a) */}
         <section>
           <H2>{t('msp_today_h')} {today?.date && <span className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('msp_last_price')}: {today.date})</span>}</H2>
+
+          {/* Phase 3b — free mandi search (distance-unrestricted). */}
+          <div className="mb-3">
+            <label className="mb-1 block text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('mandi_search_label')}</label>
+            <input type="search" value={mandiQuery} onChange={(e) => { setMandiQuery(e.target.value); setMandiPick(null) }}
+              placeholder={t('mandi_search_ph')} data-testid="mandi-search"
+              className="w-full rounded-lg px-3 py-2 text-[16px]" style={{ border: '1px solid var(--ks-border-strong)' }} />
+            {mandiMatches.length > 0 && !mandiPick && (
+              <div className="mt-1 flex flex-wrap gap-1.5">
+                {mandiMatches.map((m) => (
+                  <button key={m} type="button" onClick={() => pickMandi(m)} className="rounded-full px-3 py-1 text-[13px] font-semibold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>{m}</button>
+                ))}
+              </div>
+            )}
+            {mandiSearching && <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>…</p>}
+            {mandiPick && (
+              <div className="mt-2 rounded-lg p-3" data-testid="mandi-search-result" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}>
+                {mandiPick.notFound ? (
+                  <p className="text-[14px]" style={{ color: 'var(--ks-orange-dark)' }}>{t('mandi_search_none')}</p>
+                ) : (
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>{mandiPick.market}</span>
+                    <span className="text-[15px] font-extrabold" style={{ color: 'var(--ks-green-dark)' }}>{rs(mandiPick.modal_price)}</span>
+                  </div>
+                )}
+                {!mandiPick.notFound && <p className="mt-0.5 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{t('mandi_last_price_on')}: {mandiPick.price_date}</p>}
+              </div>
+            )}
+          </div>
+
           {today === undefined ? <Spinner /> : !today.rows.length ? (
             <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
           ) : (
             <div className="overflow-hidden rounded-lg" style={{ border: '1px solid var(--ks-border)' }}>
               <table className="w-full text-[14px]">
-                <thead><tr style={{ background: 'var(--ks-bg-soft)' }}><th className="p-2 text-left">{t('col_mandi')}</th><th className="p-2 text-right">{t('col_modal')}</th>{crop.msp_en && <th className="p-2 text-right">MSP {t('col_diff')}</th>}</tr></thead>
+                <thead><tr style={{ background: 'var(--ks-bg-soft)' }}><th className="p-2 text-left">{t('col_mandi')}</th><th className="p-2 text-right">{t('col_distance')}</th><th className="p-2 text-right">{t('col_modal')}</th>{crop.msp_en && <th className="p-2 text-right">MSP {t('col_diff')}</th>}</tr></thead>
                 <tbody>
-                  {[...today.rows].sort((a, b) => Number(b.modal_price) - Number(a.modal_price)).map((r, i) => { const above = msp != null && Number(r.modal_price) >= msp; const d = msp != null ? Number(r.modal_price) - msp : null; return (
+                  {rankedToday.map((r, i) => { const above = msp != null && Number(r.modal_price) >= msp; const d = msp != null ? Number(r.modal_price) - msp : null; return (
                     <tr key={i} style={{ borderTop: '1px solid var(--ks-border)' }}>
                       <td className="p-2 font-semibold" style={{ color: 'var(--ks-ink)' }}>{r.market}{r.arrivals_tonnes ? <span className="ml-1 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>· {r.arrivals_tonnes}{t('tonnes')}</span> : null}</td>
+                      <td className="p-2 text-right text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{r.distanceKm != null ? `${Math.round(r.distanceKm)} ${t('km_short')}` : '—'}</td>
                       <td className="p-2 text-right font-extrabold" style={{ color: 'var(--ks-ink)' }}>{rs(r.modal_price)}</td>
                       {crop.msp_en && <td className="p-2 text-right"><span className="rounded px-1.5 py-0.5 text-[13px] font-bold" style={{ background: above ? 'var(--ks-green-tint)' : 'var(--ks-saffron-tint)', color: above ? 'var(--ks-green-dark)' : 'var(--ks-orange-dark)' }}>{d >= 0 ? '+' : ''}{rs(d)} · {above ? t('msp_above') : t('msp_below')}</span></td>}
                     </tr>) })}
@@ -279,15 +370,11 @@ export default function Msp() {
         <section><ShareWhatsApp text={shareText} /></section>
 
         {/* 11. signup */}
-        <DailyUpdateSignup sourcePage="msp" pincode={resolvePincodeSafe()} heading={t('msp_signup_h')} />
+        <DailyUpdateSignup sourcePage="msp" pincode={loc.pincode} heading={t('msp_signup_h')} />
 
         {/* 9. FAQ */}
         <FaqAccordion faqs={faqs} />
       </div>
     </div>
   )
-}
-
-function resolvePincodeSafe() {
-  try { const v = localStorage.getItem('ks_pincode'); return v && /^\d{6}$/.test(v) ? v : '470117' } catch { return '470117' }
 }

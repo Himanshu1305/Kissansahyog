@@ -3,7 +3,10 @@
 // directly, pre-filtered by a bounding box, then refined by exact Haversine.
 import { supabase } from '../supabaseClient'
 import { toAppError } from '../errors'
-import { boundingBox, haversineKm, RADIUS_KM, FALLBACK_RADIUS_KM } from '../distance'
+import {
+  boundingBox, haversineKm, RADIUS_KM, FALLBACK_RADIUS_KM, WIDE_RADIUS_KM,
+  WIDE_ELIGIBLE_CATEGORIES, partitionByRadius,
+} from '../distance'
 
 // --- lookups (cached in-memory for the session) ---
 let cropsCache = null
@@ -49,6 +52,7 @@ export async function createListing({
   pincode = null,
   selfDeclared = false,
   listingSource = 'farmer',
+  wideVisibility = false,
 }) {
   const { data, error } = await supabase.rpc('create_listing', {
     p_actor_id: actorId,
@@ -60,6 +64,7 @@ export async function createListing({
     p_pincode: pincode,
     p_self_declared: selfDeclared,
     p_listing_source: listingSource,
+    p_wide_visibility: wideVisibility,
   })
   if (error) throw toAppError(error)
   return data
@@ -73,9 +78,12 @@ export async function createListing({
 //   fallback = listings in the 30–50 km ring (only meaningful when primary is
 //              sparse; the Browse screen shows it when primary has < 5 results).
 export async function fetchNearby({ category, listingType = null, center, sort = 'nearest' }) {
-  // Pre-filter with a bounding box sized to the wider fallback radius so the
-  // single query covers both bands; the exact Haversine pass splits them.
-  const box = boundingBox(center.latitude, center.longitude, FALLBACK_RADIUS_KM)
+  // Pre-filter with a bounding box. Standard listings never appear beyond 50 km, but
+  // the two Phase-1 eligible categories can carry wide-visibility rows out to 100 km,
+  // so widen the box for those categories to fetch them; the exact Haversine + policy
+  // pass (partitionByRadius) then decides which rows are actually visible.
+  const maxKm = WIDE_ELIGIBLE_CATEGORIES.includes(category) ? WIDE_RADIUS_KM : FALLBACK_RADIUS_KM
+  const box = boundingBox(center.latitude, center.longitude, maxKm)
   let q = supabase
     .from('listings')
     .select('*')
@@ -100,12 +108,13 @@ export async function fetchNearby({ category, listingType = null, center, sort =
       ? new Date(b.created_at) - new Date(a.created_at)
       : a.distanceKm - b.distanceKm
 
-  const primary = withDistance.filter((r) => r.distanceKm <= RADIUS_KM).sort(byDistanceOrNewest)
-  const fallback = withDistance
-    .filter((r) => r.distanceKm > RADIUS_KM && r.distanceKm <= FALLBACK_RADIUS_KM)
-    .sort(byDistanceOrNewest)
-
-  return { primary, fallback }
+  // Phase 0/1 hard cutoff + wide-visibility opt-in (single source of truth).
+  const { primary, fallback } = partitionByRadius(withDistance, {
+    getDistance: (r) => r.distanceKm,
+    getCategory: (r) => r.category,
+    getWide: (r) => r.wide_visibility,
+  })
+  return { primary: primary.sort(byDistanceOrNewest), fallback: fallback.sort(byDistanceOrNewest) }
 }
 
 // --- public homepage feed (anonymised, no auth required) ---
@@ -152,7 +161,7 @@ export async function fetchRecentListings(limit = 12) {
 export async function fetchHomeFeed({ center = null, limit = 8, pool = 40, category = null } = {}) {
   let query = supabase
     .from('listings')
-    .select('id,listing_type,category,pincode,details,created_at,listing_source,is_test_data')
+    .select('id,listing_type,category,pincode,details,created_at,listing_source,is_test_data,wide_visibility')
     .eq('status', 'active')
     .gt('expires_at', new Date().toISOString())
   if (category) query = query.eq('category', category)
@@ -181,13 +190,23 @@ export async function fetchHomeFeed({ center = null, limit = 8, pool = 40, categ
     return { ...r, village_town: p?.village_town || null, district: p?.district || null, distanceKm }
   })
 
-  enriched.sort((a, b) => {
-    if (center && a.distanceKm != null && b.distanceKm != null) return a.distanceKm - b.distanceKm
-    if (center && a.distanceKm != null) return -1
-    if (center && b.distanceKm != null) return 1
-    return new Date(b.created_at) - new Date(a.created_at)
+  // Without a viewer center we cannot measure distance, so no cutoff can apply — keep the
+  // newest-first showcase (used by /drone-didi with no location). With a center this feed
+  // is labelled "near you", so it obeys the SAME Phase 0/1 cutoff as Browse: within 30 km
+  // (plus wide-eligible rows to 100 km), and the 30–50 km ring only if nothing is within 30.
+  if (!center) {
+    enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    return enriched.slice(0, limit)
+  }
+
+  const { primary, fallback } = partitionByRadius(enriched, {
+    getDistance: (r) => r.distanceKm,
+    getCategory: (r) => r.category,
+    getWide: (r) => r.wide_visibility,
   })
-  return enriched.slice(0, limit)
+  const byDistance = (a, b) => a.distanceKm - b.distanceKm
+  const visible = [...primary.sort(byDistance), ...fallback.sort(byDistance)]
+  return visible.slice(0, limit)
 }
 
 // Equipment availability calendar (Phase 7a). Public read of busy dates; owner-

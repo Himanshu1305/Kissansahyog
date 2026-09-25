@@ -17,7 +17,9 @@ import { getTodayForFarmer } from '../lib/today/forFarmer'
 import { strings } from '../lib/i18n/strings'
 import { getCategory } from '../lib/listings/registry'
 import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes, fetchPincode } from '../lib/listings/listingsApi'
-import { fetchNearbyCounts, resolvePincode, savePincode, NEARBY_CATEGORIES } from '../lib/listings/nearbyCounts'
+import { fetchNearbyCounts, NEARBY_CATEGORIES } from '../lib/listings/nearbyCounts'
+import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
+import { LocationControl } from '../components/pages/shared'
 import { fetchPublishedArticles, articleTitle } from '../lib/articles/articlesApi'
 import { fetchFeaturedSawaal, sawaalQuestion, sawaalAnswer } from '../lib/community/communityApi'
 import { whatsappListingUrl } from '../lib/share/shareMessages'
@@ -72,7 +74,7 @@ export default function Homepage() {
   const [weather, setWeather] = useState(undefined)
   const [msp, setMsp] = useState([])
   const [mandi, setMandi] = useState({ rows: [], day: 'none' })
-  const [pincode, setPincode] = useState(() => resolvePincode(user?.pincode))
+  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
   const [counts, setCounts] = useState(null)
   const [videos, setVideos] = useState([])
   const [pestReports, setPestReports] = useState([])
@@ -100,23 +102,30 @@ export default function Homepage() {
     return () => { alive = false }
   }, [])
 
-  // Pincode-dependent data (weather cell + counts + nearby feed). Re-runs on change.
+  // Location-dependent data (weather cell + counts + nearby feed). Re-runs on change.
   useEffect(() => {
     let alive = true
     ;(async () => {
-      const center = await fetchPincode(pincode).catch(() => null)
-      const coords = center ? { latitude: Number(center.latitude), longitude: Number(center.longitude) } : null
+      // Precise GPS coords are used directly for weather + distance; a pincode-only
+      // selection resolves coordinates from the seeded pincodes table.
+      let coords = loc.latitude != null && loc.longitude != null
+        ? { latitude: loc.latitude, longitude: loc.longitude }
+        : null
+      if (!coords) {
+        const p = await fetchPincode(loc.pincode).catch(() => null)
+        coords = p ? { latitude: Number(p.latitude), longitude: Number(p.longitude) } : null
+      }
       if (coords) requestGridCell(coords.latitude, coords.longitude)
       const [c, feed, w] = await Promise.all([
-        fetchNearbyCounts(pincode, 30).catch(() => null),
+        fetchNearbyCounts(loc.pincode, 30).catch(() => null),
         fetchHomeFeed({ center: coords, limit: 8 }).catch(() => []),
-        fetchWeatherCell(coords?.latitude ?? 24.045, coords?.longitude ?? 78.33).catch(() => null),
+        fetchWeatherCell(coords?.latitude ?? DEFAULT_COORDS.latitude, coords?.longitude ?? DEFAULT_COORDS.longitude).catch(() => null),
       ])
       if (!alive) return
       setCounts(c); setListings(feed); setWeather(w)
     })()
     return () => { alive = false }
-  }, [pincode])
+  }, [loc])
 
   const alert = getRainAlert(weather?.forecast)
   const today = getTodayForFarmer({ weather, mandi, msp, alert, t })
@@ -133,13 +142,6 @@ export default function Homepage() {
   // Pest banner: top qualifying crop+symptom group (framed as recently asked).
   const pest = (pestReports && pestReports[0]) || null
 
-  function changePincode() {
-    const next = window.prompt(t('pincode_prompt'), pincode)
-    if (next && /^\d{6}$/.test(next.trim())) {
-      const v = next.trim()
-      savePincode(v); setPincode(v)
-    }
-  }
   const goBrowse = (cat) => navigate(isLoggedIn ? (cat ? `/browse?cat=${cat}` : '/browse') : '/signup')
   const tileClick = (to) => (to === 'experts' ? navigate(isLoggedIn ? '/experts' : '/signup') : goBrowse(to))
 
@@ -169,14 +171,10 @@ export default function Homepage() {
 
       {/* 4 — आपके आसपास (counts, 30km) */}
       <Section bg="var(--ks-bg-soft)">
-        <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
-          <h2 className="text-[24px] font-bold leading-tight md:text-[28px]" style={{ color: 'var(--ks-ink)' }}>
-            {t('near_title')} <span className="text-[16px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('near_km')})</span>
-          </h2>
-          <button type="button" onClick={changePincode} className="shrink-0 rounded-full px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>
-            📍 {t('pincode_change')} · {pincode}
-          </button>
-        </div>
+        <h2 className="mb-2 text-[24px] font-bold leading-tight md:text-[28px]" style={{ color: 'var(--ks-ink)' }}>
+          {t('near_title')} <span className="text-[16px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('near_km')})</span>
+        </h2>
+        <div className="mb-3"><LocationControl value={loc} onChange={setLoc} /></div>
         <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
           {NEARBY_CATEGORIES.map((c) => (
             <CountChip key={c} n={counts ? counts[c] ?? 0 : '…'} label={t(`near_cat_${c}`)} onClick={() => tileClick(c === 'bhusa' ? 'bhusa' : c === 'warehouse' ? 'warehouse' : c)} />

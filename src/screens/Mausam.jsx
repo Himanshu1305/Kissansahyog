@@ -10,7 +10,7 @@ import { weatherInfo } from '../lib/weather/weatherApi'
 import { fetchWeatherCell, requestGridCell } from '../lib/weather/weatherApiV2'
 import { actionWindows, imdClass, nextRain, STATUS_COLOR } from '../lib/weather/weatherRules'
 import { fetchPincode } from '../lib/listings/listingsApi'
-import { resolvePincode, savePincode, DEFAULT_PINCODE } from '../lib/listings/nearbyCounts'
+import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPageFaqs, fetchSiteSetting } from '../lib/pages/pagesApi'
 import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TwoBar, ReviewTag, JsonLd, InfoTip } from '../components/pages/shared'
 
@@ -23,7 +23,7 @@ export default function Mausam() {
   const { t } = useLang()
   const { user } = useAuth()
   const navigate = useNavigate()
-  const [pincode, setPincode] = useState(() => resolvePincode(user?.pincode))
+  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
   const [place, setPlace] = useState('')
   const [wx, setWx] = useState(undefined)
   const [faqs, setFaqs] = useState([])
@@ -38,20 +38,22 @@ export default function Mausam() {
     let alive = true
     setWx(undefined)
     ;(async () => {
-      const p = await fetchPincode(pincode).catch(() => null)
-      const lat = p?.latitude ?? 24.045, lon = p?.longitude ?? 78.33
-      if (p?.village_town && alive) setPlace(p.village_town)
+      // Precise GPS coords are used directly for weather; a pincode-only selection
+      // resolves coordinates from the seeded pincodes table.
+      let lat = loc.latitude, lon = loc.longitude, label = loc.label
+      if (lat == null || lon == null) {
+        const p = await fetchPincode(loc.pincode).catch(() => null)
+        lat = p?.latitude ?? DEFAULT_COORDS.latitude
+        lon = p?.longitude ?? DEFAULT_COORDS.longitude
+        if (p?.village_town) label = label || p.village_town
+      }
+      if (alive) setPlace(label || '')
       requestGridCell(Number(lat), Number(lon))
       const cell = await fetchWeatherCell(Number(lat), Number(lon)).catch(() => null)
       if (alive) setWx(cell)
     })()
     return () => { alive = false }
-  }, [pincode])
-
-  function changePincode() {
-    const next = window.prompt(t('pincode_prompt'), pincode)
-    if (next && /^\d{6}$/.test(next.trim())) { const v = next.trim(); savePincode(v); setPincode(v); setPlace('') }
-  }
+  }, [loc])
 
   const windows = useMemo(() => (wx ? actionWindows(wx.hourly, wx.daily) : null), [wx])
 
@@ -65,24 +67,24 @@ export default function Mausam() {
     if (!wx || !windows) return ''
     const d = new Date().toLocaleDateString('hi-IN', { day: 'numeric', month: 'long' })
     const rainLine = rain ? `${t('mausam_rain_in')} ${rain.inHours}${t('hours_short')} ~${rain.mm}${t('mm_unit')}` : t('tf_rain_none')
-    return `📍 ${place || pincode} ${t('nav_weather')} — ${d}\n🌤 ${Math.round(wx.current_temp)}°, ${t(info.key)} · ${rainLine}\n✅ ${t('aw_spray')}: ${t(STATUS_LABEL[windows.spray.status])} · ${t('aw_harvest')}: ${t(STATUS_LABEL[windows.harvest.status])}\n${t('daily_see')}: kissansahyog.com/mausam`
-  }, [wx, windows, rain, info, place, pincode, t])
+    return `📍 ${place || loc.pincode} ${t('nav_weather')} — ${d}\n🌤 ${Math.round(wx.current_temp)}°, ${t(info.key)} · ${rainLine}\n✅ ${t('aw_spray')}: ${t(STATUS_LABEL[windows.spray.status])} · ${t('aw_harvest')}: ${t(STATUS_LABEL[windows.harvest.status])}\n${t('daily_see')}: kissansahyog.com/mausam`
+  }, [wx, windows, rain, info, place, loc.pincode, t])
 
   const metaDesc = t('mausam_explain_1') + ' ' + t('mausam_explain_2')
-  const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place || pincode} ${t('nav_weather')}`, description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
+  const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place || loc.pincode} ${t('nav_weather')}`, description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
       <NavBar />
       <JsonLd data={articleLd} />
       <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
-        <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{t('mausam_h1_a')} {place || pincode} {t('mausam_h1_b')}</h1>
+        <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{t('mausam_h1_a')} {place || loc.pincode} {t('mausam_h1_b')}</h1>
 
         {/* 1. PageExplainer */}
         <PageExplainer title={t('page_explainer_title')} lines={[t('mausam_explain_1'), t('mausam_explain_2'), t('mausam_explain_3'), t('mausam_explain_4')]} />
 
         {/* 2. LocationControl */}
-        <LocationControl pincode={pincode} place={place} onChange={changePincode} />
+        <LocationControl value={loc} onChange={setLoc} />
 
         {wx === undefined ? <Spinner /> : !wx ? (
           <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('weather_unavailable')}</p>
@@ -222,7 +224,7 @@ export default function Mausam() {
           <section><ShareWhatsApp text={shareText} /></section>
 
           {/* 13. Signup */}
-          <DailyUpdateSignup sourcePage="mausam" pincode={pincode} heading={t('mausam_signup_h')} />
+          <DailyUpdateSignup sourcePage="mausam" pincode={loc.pincode} heading={t('mausam_signup_h')} />
         </>)}
 
         {/* 11. FAQ */}

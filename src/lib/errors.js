@@ -56,6 +56,7 @@ const CODE_TO_KEY = {
   story_fields_required: 'err_story_fields_required',
   scheme_fields_required: 'err_scheme_fields_required',
   invalid_scheme_category: 'err_invalid_scheme_category',
+  wide_visibility_not_allowed: 'err_wide_visibility_not_allowed',
 }
 
 export class AppError extends Error {

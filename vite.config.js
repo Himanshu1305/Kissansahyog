@@ -8,20 +8,23 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      // autoUpdate = versioned, self-healing SW. Workbox precaches content-hashed
-      // assets; a new build changes the precache manifest, the new SW installs and
-      // (with skipWaiting/clientsClaim) takes over on next load — no stale-cache
-      // lockout, no manual "new version" prompt for these low-literacy users.
-      registerType: 'autoUpdate',
-      injectRegister: 'auto',
+      // Phase 5 — registerType 'prompt' (NOT autoUpdate): this project deploys
+      // frequently, and a silent auto-swap risks locking a farmer onto a stale build
+      // or changing content mid-session. The update flow is explicit and visible —
+      // src/components/PwaPrompts.jsx surfaces a "new update available" banner via
+      // vite-plugin-pwa's onNeedRefresh, and reload calls updateServiceWorker(true).
+      registerType: 'prompt',
+      // We register the SW ourselves through virtual:pwa-register/react (in
+      // PwaPrompts), so disable the auto-injected registration to avoid double-reg.
+      injectRegister: null,
       includeAssets: ['icons/apple-touch-icon.png', 'icons/favicon-32.png'],
       manifest: {
-        name: 'किसान सहयोग · Kisan Sahyog',
-        short_name: 'किसान सहयोग',
+        name: 'किसान सहयोग',
+        short_name: 'Kisan Sahyog',
         description: 'ज़मीन, मशीन और मज़दूरों की जानकारी अपने आस-पास खोजें।',
         lang: 'hi',
-        theme_color: '#15803d',
-        background_color: '#fafaf9',
+        theme_color: '#24733F', // --ks-green
+        background_color: '#FBFAF5', // --ks-bg
         display: 'standalone',
         start_url: '/',
         scope: '/',
@@ -33,12 +36,38 @@ export default defineConfig({
       },
       workbox: {
         cleanupOutdatedCaches: true,
+        // clientsClaim lets the FIRST-installed SW control the already-open page so
+        // offline-first works from the first session. NO skipWaiting: a *new* version
+        // still waits until the user accepts the update prompt (updateServiceWorker(
+        // true)), so a fix never swaps content out from under a farmer mid-session.
         clientsClaim: true,
-        skipWaiting: true,
         // SPA: serve the precached app shell for any navigation, incl. offline —
         // shows the app (not a blank white screen) when the network is down.
         navigateFallback: '/index.html',
+        // CacheFirst (precache) for the static app shell ONLY.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // Live data endpoints are NEVER treated as fresh cache: NetworkFirst so an
+        // online farmer always gets live prices/weather/listings, and an offline one
+        // gets the last-known values — always accompanied by the offline banner
+        // (PwaPrompts) so stale data is never shown silently as current. Supabase
+        // writes (RPC POSTs) are non-GET → Workbox never caches them (NetworkOnly).
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => /(^https:\/\/[^/]+\.supabase\.co)|(^https:\/\/api\.open-meteo\.com)|(^https:\/\/mandi-api\.onrender\.com)|(^https:\/\/api\.data\.gov\.in)/.test(url.href),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'ks-live-data',
+              networkTimeoutSeconds: 8,
+              expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: ({ url }) => /^https:\/\/fonts\.(googleapis|gstatic)\.com/.test(url.href),
+            handler: 'CacheFirst',
+            options: { cacheName: 'ks-fonts', expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 365 }, cacheableResponse: { statuses: [0, 200] } },
+          },
+        ],
       },
       devOptions: { enabled: false },
     }),

@@ -4,6 +4,10 @@ import { useState, useEffect, useRef } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { WhatsAppIcon } from '../home/kit'
 import { faqQ, faqA, subscribeAlert } from '../../lib/pages/pagesApi'
+import {
+  fetchAllPincodes, nearestPincode, savePincode, getRecentLocations, addRecentLocation,
+  isGeoPromptDismissed, dismissGeoPrompt, geolocationSupported,
+} from '../../lib/location/locationStore'
 
 // JSON-LD injector
 export function JsonLd({ data }) {
@@ -68,13 +72,119 @@ export function PageExplainer({ title, lines }) {
   )
 }
 
-// LocationControl — shows the active pincode + a "बदलें" prompt.
-export function LocationControl({ pincode, place, onChange }) {
+// LocationControl (Phase 2) — one shared control used on the homepage, /mausam and
+// /msp. Offers browser Geolocation auto-detect behind a dismissible prompt, always
+// keeps a manual pincode fallback reachable, and shows up-to-5 recent-place chips.
+//   value:    { pincode, latitude, longitude, label, source }
+//   onChange: (nextValue) => void
+export function LocationControl({ value, onChange }) {
   const { t } = useLang()
+  const [pincodes, setPincodes] = useState([])
+  const [manualOpen, setManualOpen] = useState(false)
+  const [pinInput, setPinInput] = useState('')
+  const [detecting, setDetecting] = useState(false)
+  const [error, setError] = useState(null)
+  const [recent, setRecent] = useState([])
+  const geoOk = geolocationSupported()
+  const [showPrompt, setShowPrompt] = useState(geoOk && !isGeoPromptDismissed())
+
+  useEffect(() => {
+    fetchAllPincodes().then(setPincodes).catch(() => {})
+    setRecent(getRecentLocations())
+  }, [])
+
+  function commit(loc) {
+    if (/^\d{6}$/.test(String(loc.pincode || ''))) savePincode(loc.pincode)
+    setRecent(addRecentLocation(loc))
+    onChange(loc)
+  }
+
+  function detect() {
+    setError(null); setDetecting(true)
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords
+        const near = nearestPincode(latitude, longitude, pincodes)
+        commit({
+          pincode: near?.pincode || value.pincode,
+          latitude, longitude, // precise GPS coords (used directly for weather)
+          label: near?.village_town || t('loc_detected_near'),
+          source: 'gps',
+        })
+        setDetecting(false); setShowPrompt(false); setManualOpen(false); dismissGeoPrompt()
+      },
+      () => {
+        setError(t('loc_denied_hint')); setDetecting(false); setShowPrompt(false)
+        setManualOpen(true); dismissGeoPrompt()
+      },
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 },
+    )
+  }
+
+  function applyPincode(pin) {
+    const p = String(pin || '').trim()
+    if (!/^\d{6}$/.test(p)) { setError(t('err_invalid_pincode')); return }
+    const row = pincodes.find((r) => r.pincode === p)
+    // Accept a well-formed pincode even if it isn't in our seed (coords resolved
+    // downstream); label falls back to the number itself.
+    commit({
+      pincode: p,
+      latitude: row?.latitude ?? null,
+      longitude: row?.longitude ?? null,
+      label: row?.village_town || p,
+      source: 'pincode',
+    })
+    setPinInput(''); setManualOpen(false); setError(null)
+  }
+
+  const chip = 'rounded-full px-3 py-1 text-[13px] font-semibold'
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2">
-      <span className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>📍 {place || t('pincode_label')}: {pincode}</span>
-      <button type="button" onClick={onChange} className="rounded-full px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>{t('pincode_change')}</button>
+    <div data-testid="location-control" className="space-y-2">
+      {/* Auto-detect prompt — dismissible; not shown once answered/dismissed. */}
+      {showPrompt && (
+        <div className="flex flex-wrap items-center gap-2 rounded-xl p-3" style={{ background: 'var(--ks-green-tint)', border: '1px solid var(--ks-green)' }}>
+          <span className="text-[15px] font-semibold" style={{ color: 'var(--ks-green-dark)' }}>📍 {t('loc_detect_q')}</span>
+          <button type="button" onClick={detect} className={`${chip} text-white`} style={{ background: 'var(--ks-green)' }}>{t('loc_yes')}</button>
+          <button type="button" onClick={() => { setShowPrompt(false); setManualOpen(true); dismissGeoPrompt() }} className={chip} style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>{t('loc_enter_pincode')}</button>
+          <button type="button" aria-label="✕" onClick={() => { setShowPrompt(false); dismissGeoPrompt() }} className="ml-auto text-[16px]" style={{ color: 'var(--ks-ink-3)' }}>✕</button>
+        </div>
+      )}
+
+      {/* Current place + a "change" toggle that reveals the manual controls. */}
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>📍 {value.label || t('pincode_label')}: {value.pincode}</span>
+        <button type="button" onClick={() => setManualOpen((o) => !o)} className="rounded-full px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>{t('loc_change')}</button>
+      </div>
+
+      {detecting && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('loc_detecting')}</p>}
+      {error && <p className="text-[14px]" style={{ color: 'var(--ks-orange-dark)' }}>{error}</p>}
+
+      {/* Manual controls — always reachable (Phase 2a), even after a GPS grant. */}
+      {manualOpen && (
+        <div className="space-y-2 rounded-xl p-3" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)' }}>
+          <div className="flex flex-wrap items-center gap-2">
+            <input
+              type="text" inputMode="numeric" maxLength={6} placeholder={t('loc_enter_pincode')}
+              value={pinInput} onChange={(e) => setPinInput(e.target.value.replace(/\D/g, '').slice(0, 6))}
+              onKeyDown={(e) => { if (e.key === 'Enter') applyPincode(pinInput) }}
+              className="rounded-lg px-3 py-2 text-[16px]" style={{ border: '1px solid var(--ks-border-strong)', width: 140 }}
+              data-testid="pincode-input"
+            />
+            <button type="button" onClick={() => applyPincode(pinInput)} className="rounded-lg px-3 py-2 text-[14px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>{t('loc_apply')}</button>
+            {geoOk && (
+              <button type="button" onClick={detect} className="rounded-lg px-3 py-2 text-[14px] font-bold" style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>📍 {t('loc_current')}</button>
+            )}
+          </div>
+          {recent.length > 0 && (
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('loc_recent')}</span>
+              {recent.map((r) => (
+                <button key={r.pincode} type="button" onClick={() => commit({ ...r, source: 'recent' })} className={chip} style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>{r.label}</button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 }

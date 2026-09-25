@@ -7,6 +7,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import NavBar from '../components/NavBar'
 import { fetchFeaturedYojana, yojanaName, yojanaBenefit } from '../lib/community/communityApi'
 import { fetchUpcomingEvents, eventTitle } from '../lib/events/eventsApi'
+import { fetchInputPrices, inputItemName } from '../lib/inputs/inputsApi'
 
 export default function Info() {
   const { t, lang } = useLang()
@@ -14,6 +15,7 @@ export default function Info() {
   const location = useLocation()
   const [schemes, setSchemes] = useState([])
   const [events, setEvents] = useState([])
+  const [inputs, setInputs] = useState([])
 
   // Legacy hash links can't be redirected server-side — do it on mount.
   useEffect(() => {
@@ -26,6 +28,7 @@ export default function Info() {
     let alive = true
     fetchFeaturedYojana(3).then((y) => alive && setSchemes(y)).catch(() => alive && setSchemes([]))
     fetchUpcomingEvents(30).then((e) => alive && setEvents(e)).catch(() => alive && setEvents([]))
+    fetchInputPrices().then((r) => alive && setInputs(r)).catch(() => alive && setInputs([]))
     return () => { alive = false }
   }, [])
 
@@ -67,6 +70,31 @@ export default function Info() {
               ))}
             </ul>
           )}
+        </section>
+
+        {/* Farm input prices (Phase 6) */}
+        <section id="inputs" className="mb-3 scroll-mt-16 rounded-xl border border-stone-200 border-l-4 border-l-orange-400 bg-white p-3" data-testid="input-prices">
+          <h2 className="mb-0.5 font-bold text-stone-800">🧪 {t('inputs_title')}</h2>
+          <p className="mb-2 text-[13px] text-stone-500">{t('inputs_sub')}</p>
+          {inputs.length === 0 ? (
+            <p className="text-sm text-stone-500">{t('inputs_empty')}</p>
+          ) : (
+            <div className="overflow-hidden rounded-lg border border-stone-200">
+              <table className="w-full text-[14px]">
+                <thead><tr className="bg-stone-50 text-stone-600"><th className="p-2 text-left">{t('inputs_col_item')}</th><th className="p-2 text-left">{t('inputs_col_shop')}</th><th className="p-2 text-right">{t('inputs_col_price')}</th></tr></thead>
+                <tbody>
+                  {inputs.map((r) => (
+                    <tr key={r.id} className="border-t border-stone-100">
+                      <td className="p-2 font-semibold text-stone-800">{inputItemName(r, lang)}</td>
+                      <td className="p-2 text-stone-600">{r.shop_name}{r.location ? <span className="block text-[12px] text-stone-400">{r.location}</span> : null}</td>
+                      <td className="p-2 text-right font-bold text-stone-900">₹{Math.round(r.price).toLocaleString('en-IN')}<span className="block text-[12px] font-normal text-stone-400">/{r.unit}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          {inputs.length > 0 && <p className="mt-2 text-[12px] text-stone-500">{t('inputs_updated')}: {inputs[0].updated_date} · {t('inputs_disclaimer')}</p>}
         </section>
 
         {/* Government schemes (featured) */}

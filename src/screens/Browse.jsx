@@ -11,7 +11,6 @@ import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { fetchNearby } from '../lib/listings/listingsApi'
-import { MIN_PRIMARY_RESULTS } from '../lib/distance'
 
 // Browse nearby active listings. Category tabs · Offer/Requirement filter ·
 // nearest/newest sort · 30 km radius (computed in fetchNearby).
@@ -129,8 +128,9 @@ export default function Browse() {
             ))}
           </div>
 
-          {/* Soft radius fallback: a compact divider, then the 30–50 km ring. */}
-          {listings.length < MIN_PRIMARY_RESULTS && fallback.length > 0 && (
+          {/* Soft radius fallback: the 30–50 km ring, returned by fetchNearby ONLY when
+              there are zero results within 30 km (Phase 0b). */}
+          {fallback.length > 0 && (
             <div data-testid="fallback-section">
               <div className="my-2 flex items-center gap-2">
                 <span className="h-px flex-1 bg-stone-200" />

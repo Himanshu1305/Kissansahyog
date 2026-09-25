@@ -20,6 +20,7 @@ import {
   getAdminPageFaqs, adminUpsertPageFaq, adminDeletePageFaq,
   getAdminDataHealth, adminSetSiteSetting,
 } from '../lib/admin/adminApi'
+import { getAdminInputPrices, adminSetInputPriceActive, adminUpsertInputPrice } from '../lib/inputs/inputsApi'
 import { fetchSiteSetting } from '../lib/pages/pagesApi'
 import { sawaalQuestion } from '../lib/community/communityApi'
 import { CATEGORIES } from '../lib/listings/catalog'
@@ -57,6 +58,7 @@ export default function Admin() {
         <ArticlesPanel actorId={user.id} t={t} lang={lang} />
         <ResourcesPanel actorId={user.id} t={t} lang={lang} />
         <MspPanel actorId={user.id} t={t} lang={lang} />
+        <InputPricesPanel actorId={user.id} t={t} lang={lang} />
         <SawaalPanel actorId={user.id} t={t} lang={lang} />
         <SafaltaPanel actorId={user.id} t={t} lang={lang} />
         <YojanaPanel actorId={user.id} t={t} lang={lang} />
@@ -589,6 +591,91 @@ function MspForm({ t, initial, onCancel, onSave, seasonLabel }) {
         <Field label={t('f_marketing_year')} htmlFor="msp_y"><TextInput id="msp_y" value={f.marketing_year} onChange={set('marketing_year')} /></Field>
         <Field label={t('f_msp_price')} htmlFor="msp_p"><TextInput id="msp_p" type="number" value={f.msp_per_quintal} onChange={set('msp_per_quintal')} /></Field>
         <Field label={t('f_increase')} htmlFor="msp_i"><TextInput id="msp_i" type="number" value={f.increase_from_previous ?? ''} onChange={set('increase_from_previous')} /></Field>
+      </div>
+      <label className="mt-3 flex items-center gap-2 font-semibold text-stone-800">
+        <input type="checkbox" checked={!!f.is_active} onChange={(e) => setF((s) => ({ ...s, is_active: e.target.checked }))} className="h-5 w-5 accent-green-700" />
+        {t('expert_active')}
+      </label>
+      <div className="mt-3 flex gap-2">
+        <button onClick={() => onSave(f)} className="rounded-lg bg-green-700 px-4 py-2 font-bold text-white">{t('action_save')}</button>
+        <button onClick={onCancel} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('action_cancel')}</button>
+      </div>
+    </div>
+  )
+}
+
+// --- Phase 6: input price tracker management ------------------------------
+const EMPTY_INPUT = { item_hi: '', item_en: '', shop_name: '', location: 'Khurai', price: '', unit: 'बोरी', is_active: true }
+
+function InputPricesPanel({ actorId, t, lang }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [editing, setEditing] = useState(null)
+  const load = useCallback(() => {
+    getAdminInputPrices(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  async function toggle(m) {
+    try { await adminSetInputPriceActive(actorId, m.id, !m.is_active); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+  async function save(form) {
+    setErr(null)
+    try { await adminUpsertInputPrice(actorId, form); setEditing(null); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+
+  return (
+    <Section
+      title={t('admin_inputs_h')}
+      right={<button onClick={() => setEditing({ ...EMPTY_INPUT })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+ {t('msp_add')}</button>}
+    >
+      {err && <Notice tone="error">{err}</Notice>}
+      {editing && <InputPriceForm t={t} initial={editing} onCancel={() => setEditing(null)} onSave={save} />}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead>
+              <tr className="border-b-2 border-stone-100 text-stone-500">
+                <th className="py-2 pr-3">{t('inputs_col_item')}</th>
+                <th className="py-2 pr-3">{t('inputs_col_shop')}</th>
+                <th className="py-2 pr-3">{t('inputs_col_price')}</th>
+                <th className="py-2 pr-3">{t('col_status')}</th>
+                <th className="py-2 pr-3">{t('col_action')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((m) => (
+                <tr key={m.id} className="border-b border-stone-100">
+                  <td className="py-2 pr-3">{(lang === 'en' && m.item_en) ? m.item_en : m.item_hi}</td>
+                  <td className="py-2 pr-3">{m.shop_name}{m.location ? ` · ${m.location}` : ''}</td>
+                  <td className="py-2 pr-3">₹{Number(m.price).toLocaleString('en-IN')}/{m.unit}</td>
+                  <td className="py-2 pr-3">{m.is_active ? t('expert_active') : t('expert_inactive')}</td>
+                  <td className="py-2 pr-3">
+                    <button onClick={() => toggle(m)} className="mr-1 rounded-lg border-2 border-stone-300 px-2 py-1 text-xs font-bold text-stone-700">{m.is_active ? t('expert_make_inactive') : t('expert_make_active')}</button>
+                    <button onClick={() => setEditing(m)} className="rounded-lg border-2 border-green-700 px-2 py-1 text-xs font-bold text-green-800">{t('action_edit')}</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </Section>
+  )
+}
+
+function InputPriceForm({ t, initial, onCancel, onSave }) {
+  const [f, setF] = useState(initial)
+  const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }))
+  return (
+    <div className="mb-4 rounded-xl border-2 border-green-200 bg-green-50 p-4">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label={`${t('inputs_col_item')} (हिं)`} htmlFor="ip_hi"><TextInput id="ip_hi" value={f.item_hi} onChange={set('item_hi')} /></Field>
+        <Field label={`${t('inputs_col_item')} (EN)`} htmlFor="ip_en"><TextInput id="ip_en" value={f.item_en || ''} onChange={set('item_en')} /></Field>
+        <Field label={t('inputs_col_shop')} htmlFor="ip_shop"><TextInput id="ip_shop" value={f.shop_name} onChange={set('shop_name')} /></Field>
+        <Field label={t('loc_current')} htmlFor="ip_loc"><TextInput id="ip_loc" value={f.location || ''} onChange={set('location')} /></Field>
+        <Field label={t('inputs_col_price')} htmlFor="ip_price"><TextInput id="ip_price" type="number" value={f.price} onChange={set('price')} /></Field>
+        <Field label="unit" htmlFor="ip_unit"><TextInput id="ip_unit" value={f.unit} onChange={set('unit')} /></Field>
       </div>
       <label className="mt-3 flex items-center gap-2 font-semibold text-stone-800">
         <input type="checkbox" checked={!!f.is_active} onChange={(e) => setF((s) => ({ ...s, is_active: e.target.checked }))} className="h-5 w-5 accent-green-700" />

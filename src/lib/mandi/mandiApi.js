@@ -1,6 +1,14 @@
 // Public read of cached mandi prices (RLS: read-only). Tries today's rows first,
 // then yesterday's; Sagar-district rows are preferred. Degrades gracefully to an
 // empty result if the table/data is missing (the ticker then shows "coming soon").
+//
+// ─── Phase 3c — DISTANCE IS INFORMATIONAL ONLY HERE, NEVER A FILTER ─────────────
+// Mandi price comparison is a farmer's own selling decision, not a person-to-person
+// trust interaction — distance is informational only here, never a filter. Do NOT
+// apply the 30/50 km listing-visibility rule (src/lib/distance.js partitionByRadius /
+// RADIUS_KM) to this feature. This module deliberately does not import that logic;
+// a farmer must be able to compare a mandi's price however far away it is.
+// ───────────────────────────────────────────────────────────────────────────────
 import { supabase } from '../supabaseClient'
 
 const isoDay = (offsetDays = 0) => {
@@ -59,7 +67,7 @@ export async function fetchMandiPrices() {
 export async function fetchMandiForCrop(commodityEn) {
   const { data, error } = await supabase
     .from('mandi_prices')
-    .select('market,modal_price,min_price,max_price,arrivals_tonnes,price_date,is_sagar_district')
+    .select('market,district,modal_price,min_price,max_price,arrivals_tonnes,price_date,is_sagar_district')
     .eq('commodity_en', commodityEn)
     .order('price_date', { ascending: false })
     .limit(300)
@@ -95,6 +103,37 @@ export async function fetchMandiHistory(commodityEn, days = 90) {
 export async function fetchMandiMonthly(commodityEn) {
   const rows = await fetchMandiHistory(commodityEn, 365 * 3 + 5)
   return rows
+}
+
+// Phase 3b — the list of valid mandi names, sourced from the DISTINCT markets that
+// actually have price rows (not a gazetteer, not a hardcoded list). Cached per session.
+let marketsCache = null
+export async function fetchMandiMarkets() {
+  if (marketsCache) return marketsCache
+  const { data, error } = await supabase
+    .from('mandi_prices')
+    .select('market')
+    .order('market', { ascending: true })
+    .limit(5000)
+  if (error || !data) return []
+  marketsCache = [...new Set(data.map((r) => r.market).filter(Boolean))]
+  return marketsCache
+}
+
+// Phase 3b — the latest price for one commodity at one specific market, HOWEVER far
+// away it is (no distance filter — see the 3c note at the top of this file). Returns
+// { market, modal_price, price_date, min_price, max_price } or null when that mandi
+// has no price for this crop (honest empty state — never a stale/fabricated value).
+export async function fetchMandiForMarket(commodityEn, market) {
+  const { data, error } = await supabase
+    .from('mandi_prices')
+    .select('market,modal_price,min_price,max_price,price_date')
+    .eq('commodity_en', commodityEn)
+    .eq('market', market)
+    .order('price_date', { ascending: false })
+    .limit(1)
+  if (error || !data || !data.length || data[0].modal_price == null) return null
+  return data[0]
 }
 
 // /msp landing snapshot: latest modal price per commodity (prefer Sagar on the

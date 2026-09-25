@@ -4,6 +4,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { createListing, fetchPincode } from '../lib/listings/listingsApi'
+import { WIDE_ELIGIBLE_CATEGORIES } from '../lib/distance'
 import { isValidPincode } from '../lib/auth/authService'
 import { BigButton, Field, Notice, Spinner, TextInput } from './ui'
 import DisclaimerBanner from './DisclaimerBanner'
@@ -29,6 +30,9 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
   const [details, setDetails] = useState(() => mod.initialDetails())
   const [pincode, setPincode] = useState('') // asset location — intentionally blank
   const [selfDeclared, setSelfDeclared] = useState(false)
+  // Phase 1 — wide-visibility opt-in, offered ONLY for Bhoosa/Parali + Seeds & Inputs.
+  const canWiden = WIDE_ELIGIBLE_CATEGORIES.includes(category)
+  const [wideVisibility, setWideVisibility] = useState(false)
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
@@ -88,6 +92,7 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
         pincode: pin,
         selfDeclared: needsSelfDecl ? selfDeclared : false,
         listingSource,
+        wideVisibility: canWiden ? wideVisibility : false,
       })
       onCreated(listing)
     } catch (err) {
@@ -130,6 +135,24 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
           />
         </Field>
       </div>
+
+      {/* Phase 1 — wide-visibility opt-in (Bhoosa/Parali + Seeds & Inputs only),
+          default unchecked. No other category renders this. */}
+      {canWiden && (
+        <label className="my-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-amber-300 bg-amber-50 p-4">
+          <input
+            type="checkbox"
+            checked={wideVisibility}
+            onChange={(e) => setWideVisibility(e.target.checked)}
+            className="mt-1 h-6 w-6 shrink-0 accent-amber-600"
+            data-testid="wide-visibility-checkbox"
+          />
+          <span className="text-base text-stone-800">
+            <span className="block font-semibold">{t('wide_visibility_label')}</span>
+            <span className="mt-1 block text-sm text-stone-600">{t('wide_visibility_note')}</span>
+          </span>
+        </label>
+      )}
 
       {needsSelfDecl && (
         <label className="my-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-stone-300 bg-white p-4">
