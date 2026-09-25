@@ -38,13 +38,42 @@ async function fetchFromWrapper(commodity) {
   const data = await res.json()
   return Array.isArray(data) ? data : (data.records || data.data || [])
 }
+// The official data.gov.in Agmarknet commodity names differ from our short api
+// names (e.g. "Bengal Gram(Gram)(Whole)", "Green Gram (Moong)(Whole)"), and a
+// filters[Commodity]=Gram query returns nothing. So instead of filtering by exact
+// name we fetch the Sagar pool once (real key → limit=1000) and match by token.
+const OFFICIAL_TOKENS = {
+  Wheat: ['wheat'], Soyabean: ['soyabean', 'soybean', 'soya bean'], Gram: ['gram'],
+  Lentil: ['lentil', 'masur'], Moong: ['moong', 'green gram'], Urad: ['urad', 'black gram'],
+  'Paddy(Dhan)(Common)': ['paddy', 'dhan'], Maize: ['maize'], Mustard: ['mustard', 'sarson'],
+  Garlic: ['garlic'],
+}
+function matchCommodity(name, api) {
+  const n = String(name || '').toLowerCase()
+  if (api === 'Gram') return n.includes('gram') && !n.includes('green') && !n.includes('black') // Bengal/Chana only
+  return (OFFICIAL_TOKENS[api] || [api.toLowerCase()]).some((tok) => n.includes(tok))
+}
+
+let _officialPool = null
+async function getOfficialPool() {
+  if (_officialPool) return _officialPool
+  const limit = HAS_REAL_KEY ? 1000 : 50
+  const tryFetch = async (extra) => {
+    const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${DATA_GOV_KEY}&format=json&filters[State]=Madhya Pradesh${extra}&limit=${limit}`
+    const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
+    if (!res.ok) throw new Error(`Official API HTTP ${res.status}`)
+    return (await res.json()).records || []
+  }
+  let recs = []
+  try { recs = await tryFetch('&filters[District]=Sagar') } catch (e) { console.error(`official Sagar fetch failed: ${e.message}`) }
+  if (!recs.length) { try { recs = await tryFetch('') } catch (e) { console.error(`official MP fetch failed: ${e.message}`) } }
+  console.log(`official API pool: ${recs.length} MP records (key: ${HAS_REAL_KEY ? 'real' : 'demo'})`)
+  _officialPool = recs
+  return recs
+}
 async function fetchFromOfficial(commodity) {
-  const limit = HAS_REAL_KEY ? 1000 : 10
-  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${DATA_GOV_KEY}&format=json&filters[State]=Madhya Pradesh&filters[Commodity]=${encodeURIComponent(commodity)}&limit=${limit}`
-  const res = await fetch(url, { signal: AbortSignal.timeout(20000) })
-  if (!res.ok) throw new Error(`Official API HTTP ${res.status}`)
-  const data = await res.json()
-  return data.records || []
+  const pool = await getOfficialPool()
+  return pool.filter((r) => matchCommodity(r.commodity || r.Commodity, commodity))
 }
 function pickBestRecord(records) {
   const sagar = records.filter((r) => (r.district || r.District || '').toLowerCase() === 'sagar')
@@ -71,8 +100,8 @@ async function refreshMandi() {
     let records = [], source = 'wrapper'
     try { records = await fetchFromWrapper(api); if (!records.length) throw new Error('empty') }
     catch { source = 'official'; try { records = await fetchFromOfficial(api) } catch (e) { console.error(`both failed ${api}: ${e.message}`); fail++; continue } }
-    const best = pickBestRecord(records); if (!best) { fail++; continue }
-    const n = normalizeRecord(best.record); if (!n.modal_price) continue
+    const best = pickBestRecord(records); if (!best) { console.log(`✗ ${hi} (${api}) — no records via ${source}`); fail++; continue }
+    const n = normalizeRecord(best.record); if (!n.modal_price) { console.log(`✗ ${hi} (${api}) — no valid modal price`); fail++; continue }
     const row = { commodity_en: api, commodity_hi: hi, market: n.market, district: n.district, state: 'Madhya Pradesh', min_price: n.min_price, max_price: n.max_price, modal_price: n.modal_price, arrivals_tonnes: n.arrivals, price_date: today, is_sagar_district: best.isSagar, fetched_at: new Date().toISOString() }
     const { error } = await supabase.from('mandi_prices').upsert(row, { onConflict: 'commodity_en,market,price_date' })
     if (error) { console.error(`upsert fail ${api}: ${error.message}`); fail++ } else { console.log(`✓ ${hi} ₹${n.modal_price} ${n.market} [${source}]`); ok++ }
