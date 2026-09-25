@@ -921,3 +921,31 @@ Full write-up: `docs/review/PHASE0-8_FULL_REVIEW.md` + `PHASE0_GEOFENCING_FINDIN
   part of the baseline for every future Phase 7a.
 - **Deployed:** https://9a21f891.kissansahyog.pages.dev (live-verified: fonts/CSP clean,
   mandi ticker live, PWA installable).
+
+## Location out-of-area fix + Mandi comparison — 2026-09-25 (0026, no migration)
+
+Full write-up: `docs/review/LOCATION_MANDI_COMPARISON_REVIEW.md`. No schema change.
+
+- **Out-of-service-area fix (root cause: nearest-village match had no distance sanity check).**
+  `src/lib/location/locationStore.js` adds `SERVICE_AREA_KM = 100`. `LocationControl` (in
+  `src/components/pages/shared.jsx`) now: forces a fresh GPS fix (`enableHighAccuracy:true,
+  maximumAge:0`); if the nearest seeded pincode is > 100 km it does NOT commit — it shows the
+  honest amber "…सेवा क्षेत्र से बाहर… निकटतम उपलब्ध जगह: <village> (~N किमी)" notice with the
+  manual pincode override + an explicit "<village> का डेटा फिर भी देखें" opt-in button. Applies
+  on `/mausam`, `/msp`, homepage (single shared component). A `?debug=1`-gated overlay prints
+  raw lat/lng + per-village distances. Permission-denied fallback unchanged.
+- **Mandi comparison (`/msp` + `/msp/:crop`).** View toggle फसल अनुसार / मंडी तुलना. Compare view
+  = a `MandiCompare` component (bottom of `src/screens/Msp.jsx`): chip picker over DISTINCT
+  market, **max 3** (4th blocked with a message), **auto-nearest 1–3 when none selected**
+  (distance ranking + `mandiCoords`). Table rows = CROPS, columns = shown mandis + far-right
+  MSP; best price per row highlighted green when ≥2 mandis. Mobile: table-only horizontal
+  scroll, sticky commodity column, no whole-page overflow. Data: `fetchMandiForMarkets(markets)`
+  + `fetchMandiMarketsWithDistrict()` in `mandiApi.js`.
+- **Consistent price staleness (Phase 3).** `priceStaleness(date)` + `StaleTag` + `PriceCell`
+  in `shared.jsx`, used by every mandi table (crop-first today, snapshot, search result,
+  comparison): today/yesterday plain; older → amber "पुराना भाव (dd/mm)"; never recorded → "—"
+  with a not-recorded `title` tooltip.
+- **Tests (permanent).** `scripts/test/p_0026_location_compare.mjs` (19) +
+  `e2e/phase11_location_compare.spec.js` (4). Part of every future Phase 7a baseline.
+- **Deployed:** https://e1719ed0.kissansahyog.pages.dev (live-verified on mobile emulation with
+  a Hyderabad location: out-of-area message shown; comparison table renders).

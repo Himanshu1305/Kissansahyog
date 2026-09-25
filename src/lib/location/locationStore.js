@@ -18,6 +18,13 @@ import { haversineKm } from '../distance'
 export const DEFAULT_PINCODE = '470117' // Khurai, Sagar (MP) — pilot default.
 export const DEFAULT_COORDS = { latitude: 24.045, longitude: 78.33 }
 
+// Distance-sanity threshold for GPS auto-detect. Every seeded pincode is in the Sagar
+// pilot area, so a genuinely far-away user (e.g. Hyderabad, ~670 km) would otherwise be
+// silently matched to the nearest Sagar village. Beyond this radius we treat the user as
+// OUT OF THE SERVICE AREA and never present a far village's data as local without an
+// explicit opt-in. See LocationControl.
+export const SERVICE_AREA_KM = 100
+
 let pincodesCache = null
 export async function fetchAllPincodes() {
   if (pincodesCache) return pincodesCache

@@ -6,14 +6,14 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import NavBar from '../components/NavBar'
 import { Spinner } from '../components/ui'
 import { CROPS, cropBySlug, cropName, defaultCropSlug } from '../content/crops'
-import { fetchMandiForCrop, fetchMandiHistory, fetchMandiMonthly, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket } from '../lib/mandi/mandiApi'
+import { fetchMandiForCrop, fetchMandiHistory, fetchMandiMonthly, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
 import { marketDistanceKm } from '../content/mandiCoords'
 import { fetchMsp } from '../lib/msp/mspApi'
 import { fetchHomeFeed, fetchPincode } from '../lib/listings/listingsApi'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/pagesApi'
 import { useAuth } from '../lib/auth/AuthProvider'
-import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, ReviewTag } from '../components/pages/shared'
+import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, ReviewTag, PriceCell, StaleTag, priceStaleness } from '../components/pages/shared'
 
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const MONTHS_HI = ['जन', 'फर', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुल', 'अग', 'सित', 'अक्टू', 'नव', 'दिस']
@@ -35,6 +35,13 @@ export default function Msp() {
   const [mandiQuery, setMandiQuery] = useState('')
   const [mandiPick, setMandiPick] = useState(null) // { market, modal_price, price_date }
   const [mandiSearching, setMandiSearching] = useState(false)
+
+  // Phase 2 (0026) — फसल अनुसार / मंडी तुलना view toggle + comparison state.
+  const [view, setView] = useState('crop') // 'crop' | 'compare'
+  const [marketsDist, setMarketsDist] = useState([]) // [{market, district}]
+  const [selectedMandis, setSelectedMandis] = useState([]) // up to 3 market names
+  const [compareData, setCompareData] = useState({}) // `${commodity_en}||${market}` → {modal_price, price_date}
+  const [pickWarn, setPickWarn] = useState(false)
 
   const [today, setToday] = useState(undefined) // { rows, date }
   const [mspRow, setMspRow] = useState(null)
@@ -80,6 +87,39 @@ export default function Msp() {
 
   // Mandi-name list for the search box (Phase 3b) — from DISTINCT market.
   useEffect(() => { fetchMandiMarkets().then(setMarkets).catch(() => setMarkets([])) }, [])
+  // Markets + district for the comparison picker (Phase 2, 0026).
+  useEffect(() => { fetchMandiMarketsWithDistrict().then(setMarketsDist).catch(() => setMarketsDist([])) }, [])
+
+  // Auto-nearest default (up to 3) when nothing is picked — reuses distance ranking.
+  const autoNearest = useMemo(() => {
+    if (!center || !marketsDist.length) return []
+    return [...marketsDist]
+      .map((m) => ({ ...m, km: marketDistanceKm(center, m.market, m.district) }))
+      .filter((m) => m.km != null)
+      .sort((a, b) => a.km - b.km)
+      .slice(0, 3)
+      .map((m) => m.market)
+  }, [center, marketsDist])
+
+  // What the comparison table actually shows: the user's selection, else auto-nearest.
+  const effectiveMandis = selectedMandis.length ? selectedMandis : autoNearest
+
+  // Load the latest price per (commodity, market) for the shown mandis.
+  useEffect(() => {
+    let alive = true
+    if (view !== 'compare' || !effectiveMandis.length) { setCompareData({}); return }
+    fetchMandiForMarkets(effectiveMandis).then((m) => alive && setCompareData(m)).catch(() => alive && setCompareData({}))
+    return () => { alive = false }
+  }, [view, effectiveMandis.join('|')])
+
+  function toggleMandi(market) {
+    setPickWarn(false)
+    setSelectedMandis((prev) => {
+      if (prev.includes(market)) return prev.filter((m) => m !== market)
+      if (prev.length >= 3) { setPickWarn(true); return prev } // block the 4th (Phase 2b)
+      return [...prev, market]
+    })
+  }
 
   // Resolve the ranking center from the shared location (precise GPS coords, else the
   // selected pincode's coordinates). Used only to LABEL distance, never to filter.
@@ -200,7 +240,7 @@ export default function Msp() {
                   {snapshotRows.map(({ c, price, date, msp: m }) => { const above = m != null && price != null && price >= m; return (
                     <tr key={c.slug} onClick={() => navigate(`/msp/${c.slug}`)} className="cursor-pointer" style={{ borderTop: '1px solid var(--ks-border)', background: c.slug === slug ? 'var(--ks-bg-soft)' : undefined }}>
                       <td className="p-2 font-semibold" style={{ color: 'var(--ks-green)' }}>{cropName(c, lang)}</td>
-                      <td className="p-2 text-right font-bold" style={{ color: 'var(--ks-ink)' }}>{price != null ? rs(price) : '—'}{date && date !== latestDate && <span className="ml-1 text-[11px]" style={{ color: 'var(--ks-ink-3)' }}>({date.slice(5)})</span>}</td>
+                      <td className="p-2 text-right font-bold" style={{ color: 'var(--ks-ink)' }}><PriceCell price={price} date={date} bold /></td>
                       <td className="p-2 text-right" style={{ color: 'var(--ks-ink-3)' }}>{m != null ? rs(m) : '—'}</td>
                       <td className="p-2 text-right">{m != null && price != null ? <span className="rounded px-1.5 py-0.5 text-[12px] font-bold" style={{ background: above ? 'var(--ks-green-tint)' : 'var(--ks-saffron-tint)', color: above ? 'var(--ks-green-dark)' : 'var(--ks-orange-dark)' }}>{above ? t('msp_above_short') : t('msp_below_short')}</span> : ''}</td>
                     </tr>) })}
@@ -210,7 +250,19 @@ export default function Msp() {
           </section>
         )}
 
-        {/* 2. crop selector */}
+        {/* View toggle (0026 Phase 2): फसल अनुसार / मंडी तुलना */}
+        <div className="flex gap-2" role="tablist">
+          {[['crop', 'msp_view_crop'], ['compare', 'msp_view_compare']].map(([v, k]) => (
+            <button key={v} type="button" role="tab" aria-selected={view === v} data-testid={`view-${v}`} onClick={() => setView(v)}
+              className="rounded-lg px-4 py-2 text-[15px] font-bold"
+              style={view === v ? { background: 'var(--ks-green)', color: '#fff' } : { background: 'var(--ks-bg-soft)', color: 'var(--ks-ink-2)', border: '1px solid var(--ks-border)' }}>
+              {t(k)}
+            </button>
+          ))}
+        </div>
+
+        {/* 2. crop selector (crop-first view only) */}
+        {view === 'crop' && (
         <div className="flex flex-wrap gap-2">
           {CROPS.map((c) => (
             <button key={c.slug} type="button" onClick={() => navigate(`/msp/${c.slug}`)} className="rounded-full border px-3 py-1.5 text-[14px] font-bold"
@@ -219,8 +271,20 @@ export default function Msp() {
             </button>
           ))}
         </div>
+        )}
+
+        {/* मंडी तुलना — up to 3 mandis compared across all commodities (0026 Phase 2) */}
+        {view === 'compare' && (
+          <MandiCompare
+            t={t} lang={lang} rs={rs}
+            marketsDist={marketsDist} selectedMandis={selectedMandis} toggleMandi={toggleMandi}
+            effectiveMandis={effectiveMandis} compareData={compareData} mspAll={mspAll}
+            pickWarn={pickWarn} usingAuto={!selectedMandis.length}
+          />
+        )}
 
         {/* 3. today's prices vs MSP — ranked by real distance (Phase 3a) */}
+        {view === 'crop' && (
         <section>
           <H2>{t('msp_today_h')} {today?.date && <span className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('msp_last_price')}: {today.date})</span>}</H2>
 
@@ -245,7 +309,7 @@ export default function Msp() {
                 ) : (
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>{mandiPick.market}</span>
-                    <span className="text-[15px] font-extrabold" style={{ color: 'var(--ks-green-dark)' }}>{rs(mandiPick.modal_price)}</span>
+                    <span className="text-[15px] font-extrabold" style={{ color: 'var(--ks-green-dark)' }}><PriceCell price={mandiPick.modal_price} date={mandiPick.price_date} bold /></span>
                   </div>
                 )}
                 {!mandiPick.notFound && <p className="mt-0.5 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{t('mandi_last_price_on')}: {mandiPick.price_date}</p>}
@@ -264,7 +328,7 @@ export default function Msp() {
                     <tr key={i} style={{ borderTop: '1px solid var(--ks-border)' }}>
                       <td className="p-2 font-semibold" style={{ color: 'var(--ks-ink)' }}>{r.market}{r.arrivals_tonnes ? <span className="ml-1 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>· {r.arrivals_tonnes}{t('tonnes')}</span> : null}</td>
                       <td className="p-2 text-right text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{r.distanceKm != null ? `${Math.round(r.distanceKm)} ${t('km_short')}` : '—'}</td>
-                      <td className="p-2 text-right font-extrabold" style={{ color: 'var(--ks-ink)' }}>{rs(r.modal_price)}</td>
+                      <td className="p-2 text-right font-extrabold" style={{ color: 'var(--ks-ink)' }}><PriceCell price={r.modal_price} date={r.price_date || today.date} bold /></td>
                       {crop.msp_en && <td className="p-2 text-right"><span className="rounded px-1.5 py-0.5 text-[13px] font-bold" style={{ background: above ? 'var(--ks-green-tint)' : 'var(--ks-saffron-tint)', color: above ? 'var(--ks-green-dark)' : 'var(--ks-orange-dark)' }}>{d >= 0 ? '+' : ''}{rs(d)} · {above ? t('msp_above') : t('msp_below')}</span></td>}
                     </tr>) })}
                 </tbody>
@@ -275,9 +339,10 @@ export default function Msp() {
           {!crop.msp_en && <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_no_msp_crop')}</p>}
           {crop.msp_en && msp && <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>MSP {new Date().getFullYear()}: {rs(msp)}/{t('qtl')}</p>}
         </section>
+        )}
 
         {/* 4. trend chart */}
-        {crop.msp_en && (
+        {view === 'crop' && crop.msp_en && (
           <section>
             <div className="mb-2 flex items-center justify-between gap-2">
               <H2>{t('msp_trend_h')}</H2>
@@ -298,7 +363,7 @@ export default function Msp() {
         )}
 
         {/* 5. wait-vs-sell calculator */}
-        {crop.msp_en && (
+        {view === 'crop' && crop.msp_en && (
           <section style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
             <H2>{t('msp_calc_h')}</H2>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -376,5 +441,75 @@ export default function Msp() {
         <FaqAccordion faqs={faqs} />
       </div>
     </div>
+  )
+}
+
+// मंडी तुलना (0026 Phase 2) — compare up to 3 mandis across every commodity. Rows =
+// commodities, columns = the shown mandis + MSP; best price per row highlighted green
+// when 2+ mandis are shown. Table-only horizontal scroll; commodity column is sticky.
+function MandiCompare({ t, lang, rs, marketsDist, selectedMandis, toggleMandi, effectiveMandis, compareData, mspAll, pickWarn, usingAuto }) {
+  const mspFor = (c) => { const m = c.msp_en ? mspAll.find((x) => x.crop_en === c.msp_en) : null; return m ? Number(m.msp_per_quintal) : null }
+  const cell = (c, market) => compareData[`${c.mandi_en}||${market}`] || null
+  const stickyBg = 'var(--ks-card)'
+  return (
+    <section className="space-y-3" data-testid="mandi-compare">
+      {/* Mandi picker (max 3). */}
+      <div>
+        <p className="mb-1 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_compare_pick')}</p>
+        <div className="flex flex-wrap gap-1.5">
+          {marketsDist.map(({ market }) => {
+            const on = selectedMandis.includes(market)
+            return (
+              <button key={market} type="button" onClick={() => toggleMandi(market)} data-testid="compare-chip"
+                className="rounded-full px-3 py-1 text-[13px] font-semibold"
+                style={on ? { background: 'var(--ks-green)', color: '#fff' } : { background: '#fff', color: 'var(--ks-ink-2)', border: '1px solid var(--ks-border-strong)' }}>
+                {on ? '✓ ' : ''}{market}
+              </button>
+            )
+          })}
+        </div>
+        {pickWarn && <p className="mt-1 text-[13px] font-semibold" data-testid="compare-max-warn" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_compare_max')}</p>}
+        {usingAuto && effectiveMandis.length > 0 && <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_compare_auto')}</p>}
+      </div>
+
+      {/* Comparison table — table-only horizontal scroll, sticky commodity column. */}
+      {effectiveMandis.length === 0 ? (
+        <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
+      ) : (
+        <div className="overflow-x-auto rounded-lg" style={{ border: '1px solid var(--ks-border)' }}>
+          <table className="text-[14px]" style={{ minWidth: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
+            <thead>
+              <tr style={{ background: 'var(--ks-bg-soft)' }}>
+                <th className="sticky left-0 z-10 p-2 text-left" style={{ background: 'var(--ks-bg-soft)', minWidth: 96 }}>{t('col_crop')}</th>
+                {effectiveMandis.map((m) => <th key={m} className="p-2 text-right" style={{ minWidth: 92 }}>{m}</th>)}
+                <th className="p-2 text-right" style={{ minWidth: 72 }}>MSP</th>
+              </tr>
+            </thead>
+            <tbody>
+              {CROPS.map((c) => {
+                const prices = effectiveMandis.map((m) => { const cel = cell(c, m); return cel ? cel.modal_price : null })
+                const maxP = effectiveMandis.length >= 2 ? Math.max(...prices.filter((p) => p != null), -Infinity) : -Infinity
+                return (
+                  <tr key={c.slug} style={{ borderTop: '1px solid var(--ks-border)' }}>
+                    <td className="sticky left-0 z-10 p-2 font-semibold" style={{ background: stickyBg, color: 'var(--ks-green)', minWidth: 96 }}>{cropName(c, lang)}</td>
+                    {effectiveMandis.map((m) => {
+                      const cel = cell(c, m)
+                      const best = cel && cel.modal_price === maxP && maxP > -Infinity
+                      return (
+                        <td key={m} className="p-2 text-right font-bold" data-testid={best ? 'compare-best' : undefined}
+                          style={{ color: 'var(--ks-ink)', background: best ? 'var(--ks-green-tint)' : undefined }}>
+                          <PriceCell price={cel ? cel.modal_price : null} date={cel ? cel.price_date : null} />
+                        </td>
+                      )
+                    })}
+                    <td className="p-2 text-right" style={{ color: 'var(--ks-ink-3)' }}>{mspFor(c) != null ? rs(mspFor(c)) : '—'}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
   )
 }

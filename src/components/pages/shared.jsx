@@ -6,7 +6,7 @@ import { WhatsAppIcon } from '../home/kit'
 import { faqQ, faqA, subscribeAlert } from '../../lib/pages/pagesApi'
 import {
   fetchAllPincodes, nearestPincode, savePincode, getRecentLocations, addRecentLocation,
-  isGeoPromptDismissed, dismissGeoPrompt, geolocationSupported,
+  isGeoPromptDismissed, dismissGeoPrompt, geolocationSupported, SERVICE_AREA_KM,
 } from '../../lib/location/locationStore'
 
 // JSON-LD injector
@@ -60,6 +60,41 @@ export function ReviewTag({ reviewed }) {
   return <span className="ml-2 inline-block rounded-full px-2 py-0.5 text-[12px] font-bold align-middle" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>{t('under_review')}</span>
 }
 
+// Phase 3 (0026) — one consistent staleness rule for every mandi price on the site.
+// 'fresh' = dated today or yesterday (show plainly); 'stale' = older than that but exists
+// (amber "पुराना भाव (dd/mm)" tag); null = no date.
+const rupee = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
+export function priceStaleness(dateStr) {
+  if (!dateStr) return null
+  const d = new Date(`${dateStr}T00:00:00`)
+  if (Number.isNaN(d.getTime())) return null
+  const today = new Date(); today.setHours(0, 0, 0, 0)
+  const days = Math.floor((today - d) / 86400000)
+  return days <= 1 ? 'fresh' : 'stale'
+}
+
+export function StaleTag({ date }) {
+  const { t } = useLang()
+  const [, m, d] = String(date).split('-')
+  return (
+    <span className="ml-1 inline-block whitespace-nowrap rounded px-1 py-0.5 align-middle text-[11px] font-bold" data-testid="stale-tag"
+      style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)', border: '1px solid var(--ks-orange)' }}>
+      {t('mandi_stale')} ({d}/{m})
+    </span>
+  )
+}
+
+// One price cell used by every mandi table: plain / amber-stale / "—" (never recorded,
+// with a hover/tap tooltip). Keeps the whole site's price labelling identical.
+export function PriceCell({ price, date, bold }) {
+  const { t } = useLang()
+  if (price == null) {
+    return <span title={t('mandi_not_recorded')} data-testid="price-missing" style={{ color: 'var(--ks-ink-3)', cursor: 'help' }}>—</span>
+  }
+  const st = priceStaleness(date)
+  return <span>{bold ? <b>{rupee(price)}</b> : rupee(price)}{st === 'stale' && <StaleTag date={date} />}</span>
+}
+
 // PageExplainer — soft-green card, Hindi-first (EN via global toggle).
 export function PageExplainer({ title, lines }) {
   return (
@@ -85,7 +120,10 @@ export function LocationControl({ value, onChange }) {
   const [detecting, setDetecting] = useState(false)
   const [error, setError] = useState(null)
   const [recent, setRecent] = useState([])
+  const [outOfArea, setOutOfArea] = useState(null) // { latitude, longitude, pincode, village_town, distanceKm } | null
+  const [debug, setDebug] = useState(null) // dev-only: { lat, lng, nearest, dists } — gated by ?debug=1
   const geoOk = geolocationSupported()
+  const debugOn = typeof window !== 'undefined' && /(?:\?|&)debug=1(?:&|$)/.test(window.location.search)
   const [showPrompt, setShowPrompt] = useState(geoOk && !isGeoPromptDismissed())
 
   useEffect(() => {
@@ -96,28 +134,44 @@ export function LocationControl({ value, onChange }) {
   function commit(loc) {
     if (/^\d{6}$/.test(String(loc.pincode || ''))) savePincode(loc.pincode)
     setRecent(addRecentLocation(loc))
+    setOutOfArea(null)
     onChange(loc)
   }
 
   function detect() {
-    setError(null); setDetecting(true)
+    setError(null); setDetecting(true); setOutOfArea(null)
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords
         const near = nearestPincode(latitude, longitude, pincodes)
+        if (debugOn) {
+          const dists = pincodes
+            .map((p) => ({ v: p.village_town, pin: p.pincode, km: near ? Math.round(nearestPincode(latitude, longitude, [p]).distanceKm) : null }))
+            .sort((a, b) => a.km - b.km)
+          setDebug({ lat: latitude, lng: longitude, nearest: near ? `${near.village_town} (${Math.round(near.distanceKm)}km)` : 'none', dists })
+        }
+        setDetecting(false); setShowPrompt(false); dismissGeoPrompt()
+        // Distance-sanity check (Phase 1c): a genuinely far user must NOT be silently
+        // presented with a far village's data as if it were local.
+        if (near && near.distanceKm > SERVICE_AREA_KM) {
+          setOutOfArea({ latitude, longitude, ...near })
+          setManualOpen(true)
+          return
+        }
+        setManualOpen(false)
         commit({
           pincode: near?.pincode || value.pincode,
           latitude, longitude, // precise GPS coords (used directly for weather)
           label: near?.village_town || t('loc_detected_near'),
           source: 'gps',
         })
-        setDetecting(false); setShowPrompt(false); setManualOpen(false); dismissGeoPrompt()
       },
       () => {
         setError(t('loc_denied_hint')); setDetecting(false); setShowPrompt(false)
         setManualOpen(true); dismissGeoPrompt()
       },
-      { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 },
+      // Force a FRESH, high-accuracy fix (no stale OS/browser cache — Phase 1b).
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
     )
   }
 
@@ -158,6 +212,30 @@ export function LocationControl({ value, onChange }) {
 
       {detecting && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('loc_detecting')}</p>}
       {error && <p className="text-[14px]" style={{ color: 'var(--ks-orange-dark)' }}>{error}</p>}
+
+      {/* Out-of-service-area notice (Phase 1c): the nearest seeded village is > 100 km
+          away, so we do NOT default to it — the honest message + manual override + an
+          explicit opt-in to use the far village anyway. */}
+      {outOfArea && (
+        <div data-testid="out-of-area" className="space-y-2 rounded-xl p-3" style={{ background: 'var(--ks-saffron-tint)', border: '1px solid var(--ks-orange)' }}>
+          <p className="text-[14px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>
+            {t('loc_out_of_area')} — {t('loc_nearest_available')}: {outOfArea.village_town} (~{Math.round(outOfArea.distanceKm)} {t('km_short')})
+          </p>
+          <button
+            type="button"
+            onClick={() => commit({ pincode: outOfArea.pincode, latitude: outOfArea.latitude, longitude: outOfArea.longitude, label: outOfArea.village_town, source: 'gps_far' })}
+            className="rounded-lg px-3 py-2 text-[14px] font-bold text-white" style={{ background: 'var(--ks-orange)' }}
+          >
+            {t('loc_use_far_anyway').replace('{v}', outOfArea.village_town)}
+          </button>
+        </div>
+      )}
+
+      {debugOn && debug && (
+        <pre className="overflow-x-auto rounded-lg p-2 text-[11px]" style={{ background: '#111', color: '#9f9' }}>
+          {`raw: ${debug.lat}, ${debug.lng}\nnearest: ${debug.nearest}\n` + debug.dists.slice(0, 6).map((d) => `  ${d.v} (${d.pin}): ${d.km}km`).join('\n')}
+        </pre>
+      )}
 
       {/* Manual controls — always reachable (Phase 2a), even after a GPS grant. */}
       {manualOpen && (

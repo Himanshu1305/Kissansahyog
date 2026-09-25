@@ -186,3 +186,23 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
   logged-in Phase 8 screenshot pass + backend RPC guard tests, not by the public E2E specs
   (the legacy `e2e/phase{2..9}` specs still need the new required create-listing fields before
   they can re-run — carried from earlier).
+
+## Location out-of-area fix + Mandi comparison (2026-09-25, 0026)
+- **Out-of-area threshold is 100 km** (`SERVICE_AREA_KM`). Since the pincode seed is Sagar-only,
+  ANY user outside ~100 km of Sagar (including elsewhere in MP) sees the out-of-service-area
+  message on GPS auto-detect and must either enter a pincode or explicitly tap to view the
+  nearest village's data. This is intended for the Sagar pilot; widen the pincode seed (data-only)
+  to expand the service area. Root cause of the original Hyderabad→Deori bug was the missing
+  distance check (candidate #3), not a cache/logic defect — documented in the review doc.
+- **If the pincodes table hasn't finished loading when the user taps "हाँ"**, the distance check
+  has no data and detect falls back to committing the precise GPS coords with the default pincode
+  (no far-village substitution, but also no out-of-area notice). Normal on a fast load; the E2E
+  waits for the pincodes response to avoid this race.
+- **Mandi comparison distances** reuse the approximate town gazetteer (`mandiCoords.js`); auto-
+  nearest ranking is only as good as that gazetteer (unlisted markets fall back to district
+  centre / are skipped for ranking). Distance is informational, never a filter.
+- **Missing-price "—" uses a native `title` tooltip** (hover / long-press), not an `InfoTip` ⓘ
+  button, to avoid an ⓘ on every empty cell in the dense comparison grid — tap-reveal is
+  therefore browser-dependent on mobile.
+- **Backend suites remain 23 pass / 5 fail** — the 5 are the same pre-existing failures from the
+  0025 build (unrelated); this build added `p_0026_location_compare.mjs` (19) which passes.

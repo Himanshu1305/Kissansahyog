@@ -1401,6 +1401,10 @@ export const strings = {
   loc_detected_near: { hi: 'आपके नज़दीक', en: 'Near you' },
   loc_no_data: { hi: 'इस जगह के लिए डेटा उपलब्ध नहीं', en: 'No data available for this location' },
   loc_apply: { hi: 'लागू करें', en: 'Apply' },
+  // 0026 Phase 1 — out-of-service-area (nearest seeded village > 100 km)
+  loc_out_of_area: { hi: 'आपकी सटीक जगह के लिए डेटा उपलब्ध नहीं है (आप किसान सहयोग के सेवा क्षेत्र से बाहर हैं)', en: 'No data for your exact location (you are outside Kisan Sahyog’s service area)' },
+  loc_nearest_available: { hi: 'निकटतम उपलब्ध जगह', en: 'Nearest available place' },
+  loc_use_far_anyway: { hi: '{v} का डेटा फिर भी देखें', en: 'View {v}’s data anyway' },
 
   // Phase 3 — MSP mandi search + distance ranking
   mandi_search_label: { hi: 'मंडी का नाम खोजें (जैसे: बीना, रहली)', en: 'Search a mandi (e.g. Bina, Rehli)' },
@@ -1408,6 +1412,14 @@ export const strings = {
   mandi_search_none: { hi: 'इस मंडी में इस फसल का ताज़ा भाव उपलब्ध नहीं।', en: 'No recent price for this crop in that mandi.' },
   mandi_search_result_h: { hi: 'खोजी गई मंडी', en: 'Searched mandi' },
   mandi_last_price_on: { hi: 'अंतिम भाव', en: 'Last price' },
+  // 0026 Phase 2/3 — comparison view + staleness/missing labels
+  mandi_stale: { hi: 'पुराना भाव', en: 'Old price' },
+  mandi_not_recorded: { hi: 'इस मंडी में यह फसल दर्ज नहीं है', en: 'This crop is not recorded at this mandi' },
+  msp_view_crop: { hi: 'फसल अनुसार', en: 'By crop' },
+  msp_view_compare: { hi: 'मंडी तुलना', en: 'Compare mandis' },
+  msp_compare_pick: { hi: 'तुलना के लिए मंडी चुनें (अधिकतम 3)', en: 'Pick mandis to compare (max 3)' },
+  msp_compare_max: { hi: 'अधिकतम 3 मंडी चुन सकते हैं — पहले एक हटाएं', en: 'You can pick at most 3 mandis — remove one first' },
+  msp_compare_auto: { hi: 'आपके नज़दीकी मंडियाँ दिखाई जा रही हैं — तुलना के लिए ऊपर से चुनें।', en: 'Showing your nearest mandis — pick above to compare.' },
   col_distance: { hi: 'दूरी', en: 'Distance' },
   km_short: { hi: 'किमी', en: 'km' },
   mandi_dist_unknown: { hi: 'दूरी अज्ञात', en: 'distance unknown' },

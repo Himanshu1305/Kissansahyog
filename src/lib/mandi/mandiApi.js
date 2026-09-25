@@ -120,6 +120,45 @@ export async function fetchMandiMarkets() {
   return marketsCache
 }
 
+// Phase 2 (0026) — DISTINCT markets with their district, for the comparison picker +
+// distance ranking (district feeds the mandiCoords gazetteer fallback). Cached.
+let marketsDistCache = null
+export async function fetchMandiMarketsWithDistrict() {
+  if (marketsDistCache) return marketsDistCache
+  const { data, error } = await supabase
+    .from('mandi_prices')
+    .select('market,district')
+    .order('market', { ascending: true })
+    .limit(5000)
+  if (error || !data) return []
+  const seen = new Map()
+  for (const r of data) if (r.market && !seen.has(r.market)) seen.set(r.market, r.district || null)
+  marketsDistCache = [...seen.entries()].map(([market, district]) => ({ market, district }))
+  return marketsDistCache
+}
+
+// Phase 2 (0026) — for a set of markets, the latest price per (commodity, market).
+// Returns a map keyed `commodity_en||market` → { modal_price, price_date }. Distance is
+// NOT a factor here (see the 3c note above — comparison is deliberately unrestricted).
+export async function fetchMandiForMarkets(markets) {
+  const list = (markets || []).filter(Boolean)
+  if (!list.length) return {}
+  const { data, error } = await supabase
+    .from('mandi_prices')
+    .select('commodity_en,market,modal_price,price_date')
+    .in('market', list)
+    .order('price_date', { ascending: false })
+    .limit(5000)
+  if (error || !data) return {}
+  const by = {}
+  for (const r of data) {
+    if (r.modal_price == null) continue
+    const k = `${r.commodity_en}||${r.market}`
+    if (by[k] === undefined) by[k] = { modal_price: Number(r.modal_price), price_date: r.price_date }
+  }
+  return by
+}
+
 // Phase 3b — the latest price for one commodity at one specific market, HOWEVER far
 // away it is (no distance filter — see the 3c note at the top of this file). Returns
 // { market, modal_price, price_date, min_price, max_price } or null when that mandi
