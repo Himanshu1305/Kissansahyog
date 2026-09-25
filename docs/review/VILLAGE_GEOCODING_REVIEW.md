@@ -60,3 +60,49 @@ town's centroid — and the system was capped to the 20 seeded pincodes.
 - **4b — pilot consistency:** all 8 pilot villages' `village_coordinates` equal the `pincodes` coords
   the weather/mausam system uses (seeded from the same source) — one coordinate set per place, no
   divergence. Verified for Khurai/Bina/Rehli/Deori/Banda/Rahatgarh/Malthon (all ✓).
+
+## Phase 5 — permanent tests + screenshots
+
+### Permanent regression tests (Nominatim MOCKED — never live)
+Per the run rule, no automated test calls the live Nominatim API; they exercise the DB pipeline
+with stubbed coordinates + static source assertions.
+
+- **`scripts/test/p_0029_village_geocoding.mjs`** (15/15 pass) covers:
+  - *Static wiring:* CSP allows `nominatim.openstreetmap.org`; `/geocode` sets the required
+    `User-Agent`; the drain worker claims the 1/sec slot **before** calling `/geocode`; `fetchHomeFeed`
+    ranks on the listing's own coords (no live pincodes-join).
+  - *1-req/sec serialization (2a-i regression):* a burst of 8 concurrent `claim_geocode_slot` calls
+    grants exactly **1**; a further claim succeeds only after the 1s gap — proving outbound calls are
+    serialized, not fired concurrently. (Tests the DB gate, no live Nominatim.)
+  - *The reported bug (direct regression):* two villages sharing pincode 470117 → OLD pincode-centroid
+    distance = **0 km**; NEW village-geocoded distance = **>5 km** (14.6 km) — genuinely different points.
+  - *Non-blocking creation (2e):* a new-village listing saves immediately as `pending` with null coords
+    and enqueues; *cache hit:* a resolved name geocodes immediately at create time.
+  - *Resolve pipeline:* `resolve_village` marks the cache resolved **and** denormalizes coords onto the
+    pending listing, flipping it into distance views.
+  - *Failure fallback (2d):* 3 failed attempts mark the village `failed` (admin log); the listing stays
+    `pending` with **NULL coords — never 0,0**.
+- **`e2e/phase14_village_geocoding.spec.js`** (2/2 pass): the Equipment and Land forms both show the
+  **village-name input** with an autocomplete `datalist` populated from resolved villages, and the old
+  numeric asset-pincode field is **gone**.
+
+### Full suite re-run (no regressions)
+- Backend: **30 pass / 1 fail** — the single failure is the pre-existing `v11_phase6` i18n debt (TD-1),
+  unrelated to this change. The `create_listing` 10→11-arg change did **not** break any prior suite
+  (`p_0025` visibility etc. still pass — old named calls bind to the new arg's default).
+- E2E: prior specs **26/26 pass** (geofencing, weather-split, location-naming) + new **2/2**.
+
+### Screenshots (`docs/review/shots-0029/`, all viewed)
+- `post-village-form-{d,m}` — the listing form's location field is now **"जगह — गाँव/शहर का नाम"** with an
+  autocomplete dropdown + the privacy hint ("…उसका नाम लिखें (आपके घर का नहीं)।"); no pincode field.
+- `post-pending-note-d` — posting a brand-new village shows the success screen + the pending note
+  **"आपकी जगह की पुष्टि हो रही है — कुछ ही देर में लिस्टिंग नज़दीकी खोज में दिखेगी।"**
+- `browse-distance-{d,m}` — a freshly-geocoded **non-pilot** village (Demopur, resolved ~14 km NW of the
+  Khurai viewer) renders an accurate **"14 किमी दूर"** on its card, correctly sorted nearest-first among
+  the pincode-anchored seed listings (0/14/18/18/20/29 km) and displaying **village-only** (no pincode).
+
+### Admin unresolved-geocoding log
+Exposed as the `get_admin_unresolved_villages(p_actor_id)` RPC (require_admin), returning
+failed/pending/processing rows. No dedicated admin UI screen was built this run, so there is no
+screenshot; its behaviour (a nonsense name surfaces as `failed` after 3 attempts) is covered by the
+failure-fallback case in `p_0029`.
