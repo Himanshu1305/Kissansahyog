@@ -6,7 +6,7 @@ staging site). Cross-references: [`PHASE0_GEOFENCING_FINDING.md`](./PHASE0_GEOFE
 and [`E2E_TEST_REPORT.md`](./E2E_TEST_REPORT.md).
 
 **Migration:** `supabase/migrations/0025_visibility_location_inputs.sql` — applied.
-**Deployed:** https://75d320fb.kissansahyog.pages.dev (verified live; see Phase 8).
+**Deployed:** https://9a21f891.kissansahyog.pages.dev (verified live; see Phase 8).
 
 ## Phase 0 — Geofencing verified + enforced
 Full finding in `PHASE0_GEOFENCING_FINDING.md`. Summary:
@@ -112,7 +112,7 @@ homepage renders with Noto Devanagari. Full suite re-confirmed green before depl
 
 ### Minor / follow-up
 - `index.html`'s `theme-color` meta was `#15803d`; corrected to `#24733F` (manifest was
-  already correct). Cosmetic browser-chrome tint; ships on the next deploy.
+  already correct). Cosmetic browser-chrome tint; included in the final deploy below.
 - Mandi distance uses approximate town-centre coordinates (informational only), and the
   town gazetteer covers the ~19 markets currently reporting; unlisted markets fall back to
   a district centre or show "—".

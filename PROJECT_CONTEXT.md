@@ -919,5 +919,5 @@ Full write-up: `docs/review/PHASE0-8_FULL_REVIEW.md` + `PHASE0_GEOFENCING_FINDIN
 - **Tests (Phase 7, permanent).** `scripts/test/p_0025_visibility.mjs` (backend/logic/static
   config) + `e2e/phase10_location_pwa.spec.js` + `e2e/phase10_downstream.spec.js`. These are
   part of the baseline for every future Phase 7a.
-- **Deployed:** https://75d320fb.kissansahyog.pages.dev (live-verified: fonts/CSP clean,
+- **Deployed:** https://9a21f891.kissansahyog.pages.dev (live-verified: fonts/CSP clean,
   mandi ticker live, PWA installable).

@@ -181,8 +181,7 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
   session; the config + `onNeedRefresh` wiring is covered by the static config test and the
   install/offline E2E. Worth a manual two-deploy confirmation on a real device before launch.
 - **`index.html` `theme-color` meta** was corrected from `#15803d` to `#24733F` (manifest was
-  already correct); the value ships to the live site on the next deploy after the deploy
-  recorded in the review doc.
+  already correct); the value shipped in the final deploy recorded in the review doc.
 - **Auth-gated pages** (`/browse`, `/post`, `/listing/:id`, `/admin`) are covered by the
   logged-in Phase 8 screenshot pass + backend RPC guard tests, not by the public E2E specs
   (the legacy `e2e/phase{2..9}` specs still need the new required create-listing fields before
