@@ -53,3 +53,28 @@ today. Part B adds an optional one (3b) defaulting to the profile phone.
   unchanged. No new schema field needed for the rate.
 - **3b (contact):** add an OPTIONAL per-listing `contact_phone` (in Land details), defaulting to the
   profile phone when blank; `get_listing_contact` returns the override when present.
+
+## Phase 2 — numeric acreage (done)
+- `land.jsx`: the `size_range` bucket `OptionSelect` is replaced by a numeric `size_acres` `TextField`
+  labelled **"ज़मीन का आकार (एकड़ में)"** (`inputMode="decimal"`, `min 0.1`, `step 0.1`, no upper cap),
+  with hint "एकड़ में संख्या लिखें — कोई सीमा नहीं (कम से कम 0.1 एकड़)।". `validate()` requires
+  `parseFloat(size_acres) >= 0.1`. Because the three sub-types are a single `arrangement[]` multi-select
+  on one form, this applies to ठेका/बटाई/पट्टा uniformly by construction.
+- **Migration `0028_land_acreage.sql`** rewrites `details`: drops `size_range`, adds numeric `size_acres`
+  using bucket midpoints (`<1`→0.5, `1-2`→1.5, `2-5`→3.5, `5-10`→7.5, `10+`→12) — commented in-file as a
+  documented approximation for pre-existing bucketed data, not a precision claim. Verified: all 9 seed
+  land rows converted (`[3.5,3.5,3.5,1.5,1.5,7.5,1.5,3.5,7.5]`), **0 rows** still carry `size_range`.
+- Display: `summarize()` shows the exact **"X एकड़"** (e.g. "50 एकड़"); the `SIZE_RANGE` catalog export
+  was removed (unused), and the WhatsApp share message + seed script updated to `size_acres`.
+
+## Phase 3 — per-acre rate + contact number (done)
+- **3a rate:** a per-acre ₹ value already existed as `price_amount` for the `fixed`/ठेका type (its
+  placeholder was already "₹8,000 प्रति एकड़"). It is now labelled explicitly **"प्रति एकड़ दर (₹)"**
+  (`field_rate_per_acre`, `inputMode="decimal"`) and rendered as **"₹X/एकड़"** on the detail view.
+  बटाई (`sharecropping`) keeps its existing **% split** field unchanged; `negotiable` has no amount.
+- **3b contact:** an OPTIONAL **"इस लिस्टिंग के लिए संपर्क नंबर (वैकल्पिक)"** field
+  (`details.contact_phone`, 10-digit validated only when filled; blank is allowed). `finalizeDetails`
+  drops it when blank. **Migration `0029_listing_contact_override.sql`** updates `get_listing_contact`
+  to return `coalesce(nullif(details->>'contact_phone',''), profile.phone)`. Verified via the RPC:
+  blank → the poster's profile phone; set → the override number. Privacy unchanged — contact is still
+  revealed only through the gated reveal RPC, never on the public card.
