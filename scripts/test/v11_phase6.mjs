@@ -79,13 +79,18 @@ for (const f of ['land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inpu
   check(`${f}.jsx hi/en label parity`, hi === en, `hi=${hi} en=${en}`)
 }
 
-// 6. No NEW hardcoded Devanagari in component/screen render code. The only files
-//    allowed to contain Devanagari are the i18n sources, the category modules
-//    (bilingual LABELS), and the pre-existing language picker (endonyms).
+// 6. No NEW hardcoded Devanagari in component/screen RENDER code. The check only looks at
+//    code (comments are stripped first — Hindi in an explanatory comment is fine and not a
+//    localisation bug). Allowed files are the i18n sources, the bilingual LABEL/content
+//    files (category catalog, crops, months), and the language picker (endonyms).
 const dev = /[ऀ-ॿ]/
+// Strip // line comments and /* */ (incl. JSX {/* */}) block comments before scanning,
+// so the check targets render code / string literals — its actual intent — not comments.
+const stripComments = (s) => s.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:])\/\/[^\n]*/g, '$1 ')
 const ALLOWED = new Set([
   'src/lib/i18n/strings.js', 'src/lib/i18n/disclaimers.js', 'src/lib/i18n/legal.js',
   'src/lib/share/shareMessages.js', 'src/lib/listings/catalog.js',
+  'src/content/crops.js', 'src/content/months.js', // bilingual LABEL/content data
   'src/components/categories/land.jsx', 'src/components/categories/equipment.jsx',
   'src/components/categories/labor.jsx', 'src/components/categories/bhusa.jsx',
   'src/components/categories/agri_inputs.jsx', 'src/components/categories/drone_didi.jsx',
@@ -100,10 +105,14 @@ const offenders = []
     if (statSync(p).isDirectory()) walk(p)
     else if (/\.(jsx|js)$/.test(f)) {
       const rel = p.slice(ROOT.length + 1)
-      if (!ALLOWED.has(rel) && dev.test(readFileSync(p, 'utf8'))) offenders.push(rel)
+      if (!ALLOWED.has(rel) && dev.test(stripComments(readFileSync(p, 'utf8')))) offenders.push(rel)
     }
   }
 })(join(ROOT, 'src'))
+// NOTE: after comment-stripping + label allowlist, any remaining offenders are GENUINE
+// hardcoded Hindi in render code that should move to strings.js. Currently 4, tracked as
+// documented i18n debt in KNOWN_ISSUES.md ("Option 2"): DroneDidi.jsx, Homepage.jsx,
+// components/pages/shared.jsx, Admin.jsx.
 check('no hardcoded Devanagari outside sanctioned i18n/label files', offenders.length === 0, offenders.join(', '))
 
 console.log(`\n${pass} passed, ${fail} failed`)

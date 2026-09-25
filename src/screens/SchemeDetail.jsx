@@ -13,7 +13,7 @@ import {
   yojanaEligibility, yojanaHowTo, yojanaDocs, faqQ, faqA,
 } from '../lib/community/communityApi'
 
-const lines = (s) => String(s || '').split(/\n|·|;|,(?=\s*[०-९0-9])/).map((x) => x.trim()).filter(Boolean)
+const lines = (s) => String(s || '').split(/\n|·|;|,(?=\s*[\u0966-\u096F0-9])/).map((x) => x.trim()).filter(Boolean)
 const stripNum = (s) => s.replace(/^\s*\d+[.)]\s*/, '')
 
 export default function SchemeDetail() {

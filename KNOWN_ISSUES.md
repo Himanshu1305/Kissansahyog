@@ -219,3 +219,29 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
   fail", `phase8` turned out to be a PWA-change regression (now fixed) and `v11_phase6` had this
   build's new files added to it (now removed at source) — see the corrected 0025 note above.
   The 4 remaining failures are genuinely pre-existing.
+
+## Stale-assertion refresh + v11_phase6 cleanup (2026-09-25 follow-up)
+- **Refreshed 3 stale assertions to current reality:** `phase1` equipment_types count 11→15
+  (4 machines added since v1.1), `v11_phase2` labor label `'कृषि सहयोगी'`→`'कृषि सहयोगी (Labor)'`,
+  `p_community` nav check (old single "Community" dropdown → current schemes-dropdown + सवाल link).
+- **`v11_phase6` option 1 + 3 done:** the Devanagari audit now strips comments before scanning
+  (Hindi in comments is not a localisation bug) and allowlists the bilingual label/content files
+  (`content/crops.js`, new `content/months.js` — `MONTHS_HI` moved there out of `Msp.jsx`); the
+  `SchemeDetail.jsx` regex Devanagari-digit range `०-९` is now `०-९`. The empty
+  `mausam_h1_a` i18n key was removed (the /mausam H1 now renders `{place} {mausam_h1_b}`).
+- **`v11_phase6` still fails — OPTION 2 DEFERRED (documented i18n debt).** After the cleanup the
+  audit precisely pinpoints **4 files with genuinely hardcoded Hindi in render code** that should
+  move into `strings.js`. These are **pre-existing** (none from the 0025/0026 builds) and left
+  as-is by explicit decision:
+  - `src/screens/DroneDidi.jsx` — a hardcoded Hindi "official info" paragraph (bilingual `lang===`
+    conditional).
+  - `src/screens/Homepage.jsx` — the `किमी` distance unit inline in the listings feed, and the
+    `अ.दी.` founder-initials avatar.
+  - `src/components/pages/shared.jsx` — InfoTip `aria-label` values `'जानकारी'` / `'बंद करें'`
+    (bilingual `lang===` conditionals).
+  - `src/screens/Admin.jsx` — the `(हिं)` suffix on an admin field label.
+  Fixing these is a small i18n pass (move the strings to `strings.js` with keys) with minor
+  rendering/behaviour risk on pre-existing screens; do it as a dedicated task. Until then
+  `v11_phase6` is the one intentionally-red suite.
+- **Backend suites: 27 pass / 1 fail** (only `v11_phase6`, failing solely on the 4 debt files
+  above).

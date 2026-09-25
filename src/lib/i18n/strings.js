@@ -1238,7 +1238,6 @@ export const strings = {
   crop_sarson: { hi: 'सरसों', en: 'Mustard' }, crop_lahsun: { hi: 'लहसुन', en: 'Garlic' },
 
   // --- mausam ---
-  mausam_h1_a: { hi: '', en: '' },
   mausam_h1_b: { hi: 'मौसम — आज और 7 दिन का पूर्वानुमान', en: 'weather — today & 7-day forecast' },
   mausam_explain_1: { hi: 'यह पेज आपके पिनकोड के लिए अगले 48 घंटे और 16 दिन का मौसम दिखाता है।', en: 'This page shows the next 48 hours and 16 days of weather for your pincode.' },
   mausam_explain_2: { hi: 'डेटा Open-Meteo मौसम मॉडल से आता है; IMD की आधिकारिक चेतावनी के लिए नीचे दिया लिंक देखें।', en: 'Data comes from the Open-Meteo weather model; for IMD official warnings use the link below.' },

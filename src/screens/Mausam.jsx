@@ -78,7 +78,7 @@ export default function Mausam() {
       <NavBar />
       <JsonLd data={articleLd} />
       <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
-        <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{t('mausam_h1_a')} {place || loc.pincode} {t('mausam_h1_b')}</h1>
+        <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{place || loc.pincode} {t('mausam_h1_b')}</h1>
 
         {/* 1. PageExplainer */}
         <PageExplainer title={t('page_explainer_title')} lines={[t('mausam_explain_1'), t('mausam_explain_2'), t('mausam_explain_3'), t('mausam_explain_4')]} />
