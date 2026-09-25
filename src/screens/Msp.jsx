@@ -14,7 +14,7 @@ import { fetchHomeFeed, fetchPincode } from '../lib/listings/listingsApi'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/pagesApi'
 import { useAuth } from '../lib/auth/AuthProvider'
-import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, ReviewTag, PriceCell, StaleTag, priceStaleness } from '../components/pages/shared'
+import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, ReviewTag, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
 
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const firstNum = (s) => { const m = String(s || '').replace(/,/g, '').match(/\d+(\.\d+)?/); return m ? Number(m[0]) : null }
@@ -97,7 +97,7 @@ export default function Msp() {
       .map((m) => ({ ...m, km: marketDistanceKm(center, m.market, m.district) }))
       .filter((m) => m.km != null)
       .sort((a, b) => a.km - b.km)
-      .slice(0, 3)
+      .slice(0, 5)
       .map((m) => m.market)
   }, [center, marketsDist])
 
@@ -116,19 +116,21 @@ export default function Msp() {
     setPickWarn(false)
     setSelectedMandis((prev) => {
       if (prev.includes(market)) return prev.filter((m) => m !== market)
-      if (prev.length >= 3) { setPickWarn(true); return prev } // block the 4th (Phase 2b)
+      if (prev.length >= 5) { setPickWarn(true); return prev } // block the 6th (Phase 3a, cap 5)
       return [...prev, market]
     })
   }
 
-  // Resolve the ranking center from the shared location (precise GPS coords, else the
-  // selected pincode's coordinates). Used only to LABEL distance, never to filter.
+  // Mandi distance-ranking is VILLAGE-ANCHORED (Phase 1c): the center comes from the
+  // matched village, not raw GPS. When the user is out of the service area (matchedVillage
+  // null), there is no center — the table falls back to price-sort (rankedToday handles a
+  // null center). Distance is only ever a label here, never a filter.
   useEffect(() => {
     let alive = true
     ;(async () => {
-      if (loc.latitude != null && loc.longitude != null) { if (alive) setCenter({ latitude: loc.latitude, longitude: loc.longitude }); return }
-      const p = await fetchPincode(loc.pincode).catch(() => null)
-      if (alive) setCenter({ latitude: Number(p?.latitude ?? DEFAULT_COORDS.latitude), longitude: Number(p?.longitude ?? DEFAULT_COORDS.longitude) })
+      if (!loc.matchedVillage?.pincode) { if (alive) setCenter(null); return }
+      const p = await fetchPincode(loc.matchedVillage.pincode).catch(() => null)
+      if (alive) setCenter(p?.latitude != null ? { latitude: Number(p.latitude), longitude: Number(p.longitude) } : null)
     })()
     return () => { alive = false }
   }, [loc])
@@ -279,7 +281,7 @@ export default function Msp() {
             t={t} lang={lang} rs={rs}
             marketsDist={marketsDist} selectedMandis={selectedMandis} toggleMandi={toggleMandi}
             effectiveMandis={effectiveMandis} compareData={compareData} mspAll={mspAll}
-            pickWarn={pickWarn} usingAuto={!selectedMandis.length}
+            snapshot={snapshot} pickWarn={pickWarn} usingAuto={!selectedMandis.length}
           />
         )}
 
@@ -435,7 +437,7 @@ export default function Msp() {
         <section><ShareWhatsApp text={shareText} /></section>
 
         {/* 11. signup */}
-        <DailyUpdateSignup sourcePage="msp" pincode={loc.pincode} heading={t('msp_signup_h')} />
+        <DailyUpdateSignup sourcePage="msp" pincode={loc.matchedVillage?.pincode || ''} heading={t('msp_signup_h')} />
 
         {/* 9. FAQ */}
         <FaqAccordion faqs={faqs} />
@@ -444,16 +446,24 @@ export default function Msp() {
   )
 }
 
-// मंडी तुलना (0026 Phase 2) — compare up to 3 mandis across every commodity. Rows =
-// commodities, columns = the shown mandis + MSP; best price per row highlighted green
-// when 2+ mandis are shown. Table-only horizontal scroll; commodity column is sticky.
-function MandiCompare({ t, lang, rs, marketsDist, selectedMandis, toggleMandi, effectiveMandis, compareData, mspAll, pickWarn, usingAuto }) {
+// मंडी तुलना (0027) — compare up to 5 mandis across every commodity. Rows = commodities,
+// columns = the shown mandis + MSP; best price per row highlighted green when 2+ mandis are
+// shown. An empty cell whose commodity is priced at ANOTHER mandi shows a "निकटतम भाव" hint
+// (2b) instead of a bare dash; commodities absent everywhere get an honest note (2c).
+// Table-only horizontal scroll; commodity column is sticky.
+function MandiCompare({ t, lang, rs, marketsDist, selectedMandis, toggleMandi, effectiveMandis, compareData, mspAll, snapshot, pickWarn, usingAuto }) {
   const mspFor = (c) => { const m = c.msp_en ? mspAll.find((x) => x.crop_en === c.msp_en) : null; return m ? Number(m.msp_per_quintal) : null }
   const cell = (c, market) => compareData[`${c.mandi_en}||${market}`] || null
+  const ddmm = (d) => (d ? `${String(d).slice(8, 10)}/${String(d).slice(5, 7)}` : '')
+  // Best price for a commodity ANYWHERE (across all mandis), for the cross-mandi hint.
+  const bestElsewhere = (c) => snapshot?.[c.mandi_en] || null
+  const snapshotReady = snapshot && Object.keys(snapshot).length > 0
+  // Commodities not reported by ANY mandi (genuinely absent) — honest note (2c).
+  const absent = snapshotReady ? CROPS.filter((c) => !snapshot[c.mandi_en]) : []
   const stickyBg = 'var(--ks-card)'
   return (
     <section className="space-y-3" data-testid="mandi-compare">
-      {/* Mandi picker (max 3). */}
+      {/* Mandi picker (max 5). */}
       <div>
         <p className="mb-1 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_compare_pick')}</p>
         <div className="flex flex-wrap gap-1.5">
@@ -477,28 +487,33 @@ function MandiCompare({ t, lang, rs, marketsDist, selectedMandis, toggleMandi, e
         <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
       ) : (
         <div className="overflow-x-auto rounded-lg" style={{ border: '1px solid var(--ks-border)' }}>
-          <table className="text-[14px]" style={{ minWidth: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
+          <table className="text-[13px]" style={{ minWidth: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
             <thead>
               <tr style={{ background: 'var(--ks-bg-soft)' }}>
-                <th className="sticky left-0 z-10 p-2 text-left" style={{ background: 'var(--ks-bg-soft)', minWidth: 96 }}>{t('col_crop')}</th>
-                {effectiveMandis.map((m) => <th key={m} className="p-2 text-right" style={{ minWidth: 92 }}>{m}</th>)}
-                <th className="p-2 text-right" style={{ minWidth: 72 }}>MSP</th>
+                <th className="sticky left-0 z-10 p-2 text-left" style={{ background: 'var(--ks-bg-soft)', minWidth: 84 }}>{t('col_crop')}</th>
+                {effectiveMandis.map((m) => <th key={m} className="p-2 text-right align-bottom" style={{ minWidth: 82 }}>{m}</th>)}
+                <th className="p-2 text-right" style={{ minWidth: 60 }}>MSP</th>
               </tr>
             </thead>
             <tbody>
               {CROPS.map((c) => {
                 const prices = effectiveMandis.map((m) => { const cel = cell(c, m); return cel ? cel.modal_price : null })
                 const maxP = effectiveMandis.length >= 2 ? Math.max(...prices.filter((p) => p != null), -Infinity) : -Infinity
+                const alt = bestElsewhere(c)
                 return (
                   <tr key={c.slug} style={{ borderTop: '1px solid var(--ks-border)' }}>
-                    <td className="sticky left-0 z-10 p-2 font-semibold" style={{ background: stickyBg, color: 'var(--ks-green)', minWidth: 96 }}>{cropName(c, lang)}</td>
+                    <td className="sticky left-0 z-10 p-2 font-semibold" style={{ background: stickyBg, color: 'var(--ks-green)', minWidth: 84 }}>{cropName(c, lang)}</td>
                     {effectiveMandis.map((m) => {
                       const cel = cell(c, m)
                       const best = cel && cel.modal_price === maxP && maxP > -Infinity
                       return (
                         <td key={m} className="p-2 text-right font-bold" data-testid={best ? 'compare-best' : undefined}
                           style={{ color: 'var(--ks-ink)', background: best ? 'var(--ks-green-tint)' : undefined }}>
-                          <PriceCell price={cel ? cel.modal_price : null} date={cel ? cel.price_date : null} />
+                          {cel
+                            ? <PriceCell price={cel.modal_price} date={cel.price_date} />
+                            : alt
+                              ? <span data-testid="cross-mandi-hint" style={{ color: 'var(--ks-ink-3)', fontWeight: 400 }}>—<InfoTip label={`${t('mandi_hint_elsewhere')} ${alt.market} ${rs(alt.modal_price)} (${ddmm(alt.price_date)})`} label_en={`${t('mandi_hint_elsewhere')} ${alt.market} ${rs(alt.modal_price)} (${ddmm(alt.price_date)})`} /></span>
+                              : <PriceCell price={null} />}
                         </td>
                       )
                     })}
@@ -509,6 +524,13 @@ function MandiCompare({ t, lang, rs, marketsDist, selectedMandis, toggleMandi, e
             </tbody>
           </table>
         </div>
+      )}
+
+      {/* Honest data-availability note (2c) — commodities absent from every mandi. */}
+      {absent.length > 0 && (
+        <p className="text-[13px]" data-testid="absent-note" style={{ color: 'var(--ks-ink-3)' }}>
+          {t('mandi_absent_note').replace('{crops}', absent.map((c) => cropName(c, lang)).join(', '))}
+        </p>
       )}
     </section>
   )

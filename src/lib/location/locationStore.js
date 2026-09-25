@@ -69,27 +69,38 @@ export function savePincode(pincode) {
   return true
 }
 
-// --- recent locations (localStorage, max 5, newest first, deduped by pincode) ---
+// --- recent locations (localStorage, max 5, newest first) ---
+// Each chip carries BOTH outputs so re-selecting it repopulates weather (rawCoords) AND
+// village-anchored features (matchedVillage) exactly like a fresh detection (Phase 1g).
 const RECENT_KEY = 'ks_recent_locations'
 const MAX_RECENT = 5
+
+// Stable dedupe key: the matched village's pincode if any, else the raw coordinates
+// (rounded), else the label — so a far GPS location (no village) still de-dupes sensibly.
+export function recentKey(loc) {
+  if (loc?.matchedVillage?.pincode) return `p:${loc.matchedVillage.pincode}`
+  if (loc?.rawCoords?.latitude != null) return `c:${Number(loc.rawCoords.latitude).toFixed(2)},${Number(loc.rawCoords.longitude).toFixed(2)}`
+  return `l:${loc?.label || ''}`
+}
 
 export function getRecentLocations() {
   try {
     const raw = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]')
     if (!Array.isArray(raw)) return []
-    return raw.filter((r) => r && r.pincode).slice(0, MAX_RECENT)
+    // Keep only entries that can repopulate at least one feature (coords or a village).
+    return raw.filter((r) => r && (r.rawCoords || r.matchedVillage || r.label)).slice(0, MAX_RECENT)
   } catch { return [] }
 }
 
 export function addRecentLocation(loc) {
-  if (!loc || !loc.pincode) return getRecentLocations()
+  if (!loc || (!loc.rawCoords && !loc.matchedVillage)) return getRecentLocations()
   const entry = {
-    pincode: String(loc.pincode),
-    label: loc.label || String(loc.pincode),
-    latitude: loc.latitude ?? null,
-    longitude: loc.longitude ?? null,
+    label: loc.label || loc.matchedVillage?.village_town || loc.matchedVillage?.pincode || '',
+    rawCoords: loc.rawCoords || null,
+    matchedVillage: loc.matchedVillage || null,
   }
-  const prev = getRecentLocations().filter((r) => r.pincode !== entry.pincode)
+  const key = recentKey(entry)
+  const prev = getRecentLocations().filter((r) => recentKey(r) !== key)
   const next = [entry, ...prev].slice(0, MAX_RECENT)
   try { localStorage.setItem(RECENT_KEY, JSON.stringify(next)) } catch { /* ignore */ }
   return next
@@ -107,10 +118,16 @@ export function dismissGeoPrompt() {
 export const geolocationSupported = () =>
   typeof navigator !== 'undefined' && 'geolocation' in navigator
 
-// Build an initial location from the profile pincode / localStorage / default. Coords
-// are left null here and resolved by the consumer (from the pincode row) unless a GPS
-// fix later supplies precise ones.
+// Build an initial location from the profile pincode / localStorage / default. The split
+// shape: rawCoords (for weather — resolved from the pincode by the consumer until a GPS
+// fix supplies precise ones) and matchedVillage (for village-anchored features — the
+// default pincode is always in-area, distance 0).
 export function initialLocation(profilePincode) {
   const pincode = resolvePincode(profilePincode)
-  return { pincode, latitude: null, longitude: null, label: '', source: 'default' }
+  return {
+    rawCoords: null,
+    matchedVillage: { pincode, village_town: null, distanceKm: 0 },
+    label: '',
+    source: 'default',
+  }
 }

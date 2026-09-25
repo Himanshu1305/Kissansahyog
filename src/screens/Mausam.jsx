@@ -38,11 +38,12 @@ export default function Mausam() {
     let alive = true
     setWx(undefined)
     ;(async () => {
-      // Precise GPS coords are used directly for weather; a pincode-only selection
-      // resolves coordinates from the seeded pincodes table.
-      let lat = loc.latitude, lon = loc.longitude, label = loc.label
+      // Weather is GLOBAL — it consumes rawCoords directly (any lat/lng on Earth), never
+      // the village match and never the service-area gate. When only a pincode is selected
+      // (default / manual), resolve its coordinates for the fetch.
+      let lat = loc.rawCoords?.latitude, lon = loc.rawCoords?.longitude, label = loc.label
       if (lat == null || lon == null) {
-        const p = await fetchPincode(loc.pincode).catch(() => null)
+        const p = loc.matchedVillage?.pincode ? await fetchPincode(loc.matchedVillage.pincode).catch(() => null) : null
         lat = p?.latitude ?? DEFAULT_COORDS.latitude
         lon = p?.longitude ?? DEFAULT_COORDS.longitude
         if (p?.village_town) label = label || p.village_town
@@ -67,24 +68,24 @@ export default function Mausam() {
     if (!wx || !windows) return ''
     const d = new Date().toLocaleDateString('hi-IN', { day: 'numeric', month: 'long' })
     const rainLine = rain ? `${t('mausam_rain_in')} ${rain.inHours}${t('hours_short')} ~${rain.mm}${t('mm_unit')}` : t('tf_rain_none')
-    return `📍 ${place || loc.pincode} ${t('nav_weather')} — ${d}\n🌤 ${Math.round(wx.current_temp)}°, ${t(info.key)} · ${rainLine}\n✅ ${t('aw_spray')}: ${t(STATUS_LABEL[windows.spray.status])} · ${t('aw_harvest')}: ${t(STATUS_LABEL[windows.harvest.status])}\n${t('daily_see')}: kissansahyog.com/mausam`
-  }, [wx, windows, rain, info, place, loc.pincode, t])
+    return `📍 ${place || loc.matchedVillage?.pincode || ''} ${t('nav_weather')} — ${d}\n🌤 ${Math.round(wx.current_temp)}°, ${t(info.key)} · ${rainLine}\n✅ ${t('aw_spray')}: ${t(STATUS_LABEL[windows.spray.status])} · ${t('aw_harvest')}: ${t(STATUS_LABEL[windows.harvest.status])}\n${t('daily_see')}: kissansahyog.com/mausam`
+  }, [wx, windows, rain, info, place, loc.matchedVillage?.pincode, t])
 
   const metaDesc = t('mausam_explain_1') + ' ' + t('mausam_explain_2')
-  const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place || loc.pincode} ${t('nav_weather')}`, description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
+  const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place || loc.matchedVillage?.pincode || ''} ${t('nav_weather')}`, description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
       <NavBar />
       <JsonLd data={articleLd} />
       <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
-        <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{place || loc.pincode} {t('mausam_h1_b')}</h1>
+        <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{place || loc.matchedVillage?.pincode || t('loc_your_location')} {t('mausam_h1_b')}</h1>
 
         {/* 1. PageExplainer */}
         <PageExplainer title={t('page_explainer_title')} lines={[t('mausam_explain_1'), t('mausam_explain_2'), t('mausam_explain_3'), t('mausam_explain_4')]} />
 
         {/* 2. LocationControl */}
-        <LocationControl value={loc} onChange={setLoc} />
+        <LocationControl value={loc} onChange={setLoc} showOutOfArea={false} />
 
         {wx === undefined ? <Spinner /> : !wx ? (
           <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('weather_unavailable')}</p>
@@ -224,7 +225,7 @@ export default function Mausam() {
           <section><ShareWhatsApp text={shareText} /></section>
 
           {/* 13. Signup */}
-          <DailyUpdateSignup sourcePage="mausam" pincode={loc.pincode} heading={t('mausam_signup_h')} />
+          <DailyUpdateSignup sourcePage="mausam" pincode={loc.matchedVillage?.pincode || ''} heading={t('mausam_signup_h')} />
         </>)}
 
         {/* 11. FAQ */}

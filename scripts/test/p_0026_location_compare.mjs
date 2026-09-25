@@ -30,7 +30,7 @@ async function main() {
   const THRESH = m ? Number(m[1]) : null
   ok('Phase 1: locationStore exports SERVICE_AREA_KM', THRESH != null, 'not found')
   ok('Phase 1: threshold is a sane service radius (50–200 km)', THRESH >= 50 && THRESH <= 200, `=${THRESH}`)
-  ok('Phase 1: LocationControl compares nearest distance to SERVICE_AREA_KM', /distanceKm\s*>\s*SERVICE_AREA_KM/.test(shared))
+  ok('Phase 1: LocationControl gates the village match on SERVICE_AREA_KM', /distanceKm\s*<=\s*SERVICE_AREA_KM/.test(shared))
   ok('Phase 1: LocationControl forces a fresh fix (maximumAge: 0, enableHighAccuracy: true)',
     /maximumAge:\s*0/.test(shared) && /enableHighAccuracy:\s*true/.test(shared))
   ok('Phase 1: debug overlay is gated by ?debug=1', /debug=1/.test(shared))
@@ -66,7 +66,8 @@ async function main() {
 
   // Cap: the toggle blocks a 4th selection (source-level assertion of the guard).
   const msp = readFileSync(new URL('../../src/screens/Msp.jsx', import.meta.url), 'utf8')
-  ok('Phase 2: selection cap present (prev.length >= 3 blocks the 4th)', /prev\.length\s*>=\s*3/.test(msp))
+  // Cap raised 3→5 in the 0027 build (blocks the 6th). Updated here, not duplicated.
+  ok('Phase 2: selection cap present (prev.length >= 5 blocks the 6th)', /prev\.length\s*>=\s*5/.test(msp))
   ok('Phase 2: auto-nearest default when nothing selected (effectiveMandis)', /selectedMandis\.length\s*\?\s*selectedMandis\s*:\s*autoNearest/.test(msp))
   ok('Phase 2: best-price highlight computed across columns (compare-best)', /compare-best/.test(msp))
   ok('Phase 2: commodity column is sticky for mobile scroll', /sticky left-0/.test(msp))

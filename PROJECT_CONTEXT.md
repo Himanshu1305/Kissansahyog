@@ -949,3 +949,35 @@ Full write-up: `docs/review/LOCATION_MANDI_COMPARISON_REVIEW.md`. No schema chan
   `e2e/phase11_location_compare.spec.js` (4). Part of every future Phase 7a baseline.
 - **Deployed:** https://e1719ed0.kissansahyog.pages.dev (live-verified on mobile emulation with
   a Hyderabad location: out-of-area message shown; comparison table renders).
+
+## Weather/Location split + missing mandi rates + 5-mandi compare — 2026-09-25 (migration 0026)
+
+Full write-up: `docs/review/WEATHER_LOCATION_SPLIT_REVIEW.md`. Migration
+`0026_weather_cache_write.sql` (the `cache_weather_cell` anon RPC).
+
+- **LocationControl now emits a SPLIT location** (`src/components/pages/shared.jsx`):
+  `{ rawCoords:{latitude,longitude}|null, matchedVillage:{pincode,village_town,distanceKm}|null,
+  label, source }`. **rawCoords = weather (global, ungated); matchedVillage = village-anchored
+  features (30km listings, आपके आसपास counts, MSP mandi distance-ranking), null when >100km.**
+  `initialLocation`, recent-location chips (1g), and all consumers updated. Weather-only pages
+  (`/mausam`, `/fasal-salah`) pass `showOutOfArea={false}` (no village-feature notice).
+  **FasalSalah was still on the old pre-0025 `pincode`/`place` props (a latent crash) — migrated.**
+- **Weather is global with a cache-miss live fetch (1b-i).** `weatherApiV2.fetchWeatherCell`:
+  exact cached cell → **live Open-Meteo** (`fetchLiveWeatherCell`, any lat/lng) → nearby cached
+  cell ONLY if within 30km (never a far MP cell). The live result is persisted via the
+  `cache_weather_cell` SECURITY-DEFINER RPC (anon-callable; `weather_cache_v2` is otherwise
+  service-role-write) + `requestGridCell` for the cron. `fetchNearbyCounts` returns honest zeros
+  for a missing/invalid pincode (no silent Khurai fallback).
+- **Missing mandi rates (Phase 2).** Diagnosis: data is fresh but sparse (2–5 mandis/commodity;
+  उड़द has zero rows ever). `/msp` मंडी तुलना: an empty cell whose commodity is priced elsewhere
+  shows a cross-mandi InfoTip hint ("यहाँ उपलब्ध नहीं — निकटतम भाव: <mandi> ₹<price> (dd/mm)",
+  from `fetchMandiSnapshot`); commodities absent everywhere get an honest note (dynamic list).
+  Cron confirmed healthy (writes today's date).
+- **Mandi comparison cap 3 → 5** (Phase 3): `prev.length >= 5` blocks the 6th; auto-nearest picks
+  up to 5; 7-col mobile keeps the sticky commodity column + table-only scroll (no page overflow).
+- **Tests:** `scripts/test/p_0027_weather_split.mjs` (24) + `e2e/phase12_weather_split.spec.js`
+  (7); `p_0026` cap/threshold assertions + `phase11` cap updated to the new reality. Backend
+  28 pass / 1 fail (only `v11_phase6` = TD-1 i18n debt); E2E 22/22.
+- **OPEN: Phase 1e real-device check is PENDING** the owner's phone test at `/mausam?debug=1`
+  (the overlay shows raw lat/lng + accuracy + timestamp) — emulation once falsely passed, so it
+  is not marked complete on emulation alone.

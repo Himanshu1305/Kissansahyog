@@ -11,8 +11,12 @@ export const NEARBY_CATEGORIES = ['equipment', 'labor', 'bhusa', 'drone_didi', '
 
 export async function fetchNearbyCounts(pincode = DEFAULT_PINCODE, km = 30) {
   const zero = Object.fromEntries(NEARBY_CATEGORIES.map((c) => [c, 0]))
+  // A missing/invalid pincode (e.g. an out-of-service-area user with matchedVillage=null)
+  // returns honest zeros — NOT a silent fall back to the Khurai default.
+  const pin = String(pincode || '')
+  if (!/^\d{6}$/.test(pin)) return zero
   try {
-    const { data, error } = await supabase.rpc('nearby_counts', { p_pincode: String(pincode || DEFAULT_PINCODE), p_km: km })
+    const { data, error } = await supabase.rpc('nearby_counts', { p_pincode: pin, p_km: km })
     if (error) return zero
     const out = { ...zero }
     for (const row of data || []) {

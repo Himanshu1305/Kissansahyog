@@ -106,20 +106,22 @@ export default function Homepage() {
   useEffect(() => {
     let alive = true
     ;(async () => {
-      // Precise GPS coords are used directly for weather + distance; a pincode-only
-      // selection resolves coordinates from the seeded pincodes table.
-      let coords = loc.latitude != null && loc.longitude != null
-        ? { latitude: loc.latitude, longitude: loc.longitude }
-        : null
-      if (!coords) {
-        const p = await fetchPincode(loc.pincode).catch(() => null)
-        coords = p ? { latitude: Number(p.latitude), longitude: Number(p.longitude) } : null
+      // Split: WEATHER uses rawCoords (global, any lat/lng); VILLAGE-anchored features
+      // (आपके आसपास counts + nearby-listings feed) use the matched village's pincode/coords
+      // and are null when the user is out of the service area.
+      const vpin = loc.matchedVillage?.pincode || null
+      let villageCoords = null
+      if (vpin) {
+        const p = await fetchPincode(vpin).catch(() => null)
+        if (p?.latitude != null) villageCoords = { latitude: Number(p.latitude), longitude: Number(p.longitude) }
       }
-      if (coords) requestGridCell(coords.latitude, coords.longitude)
+      // Weather coords: precise rawCoords first, else the selected pincode's coords.
+      const weatherCoords = loc.rawCoords || villageCoords
+      if (weatherCoords) requestGridCell(weatherCoords.latitude, weatherCoords.longitude)
       const [c, feed, w] = await Promise.all([
-        fetchNearbyCounts(loc.pincode, 30).catch(() => null),
-        fetchHomeFeed({ center: coords, limit: 8 }).catch(() => []),
-        fetchWeatherCell(coords?.latitude ?? DEFAULT_COORDS.latitude, coords?.longitude ?? DEFAULT_COORDS.longitude).catch(() => null),
+        fetchNearbyCounts(vpin, 30).catch(() => null),
+        fetchHomeFeed({ center: villageCoords, limit: 8 }).catch(() => []),
+        fetchWeatherCell(weatherCoords?.latitude ?? DEFAULT_COORDS.latitude, weatherCoords?.longitude ?? DEFAULT_COORDS.longitude).catch(() => null),
       ])
       if (!alive) return
       setCounts(c); setListings(feed); setWeather(w)

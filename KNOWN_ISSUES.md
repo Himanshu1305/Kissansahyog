@@ -257,3 +257,26 @@ left because acting on it touches working, pre-existing code with no reported is
   explicit decision — full list + rationale under **Tech Debt → TD-1** above. Until then
   `v11_phase6` is the one intentionally-red suite.
 - **Backend suites: 27 pass / 1 fail** (only `v11_phase6`, failing solely on the TD-1 debt files).
+
+## Weather/Location split + mandi rates + 5-mandi compare (2026-09-25, migration 0026)
+- **Phase 1e real-device verification is OPEN (not marked complete).** The original
+  Hyderabad→Deori bug once falsely passed on emulation. Real-device testing isn't possible from
+  the build environment, so the `?debug=1` overlay surfaces the raw returned lat/lng, accuracy
+  radius, and timestamp (`data-testid="geo-debug"`). **Owner action:** open `/mausam?debug=1` on a
+  phone, tap "हाँ", confirm the three values reflect the real location. Until then 1e is unverified.
+- **Weather live-fetch write-back is anon via `cache_weather_cell` (SECURITY DEFINER).** This is
+  the one narrow anon write path into `weather_cache_v2` (weather is public + self-correcting on
+  the next cron pass, so the abuse surface is negligible). It validates the grid key + coords and
+  preserves any cron-computed `season_rain`. A client live-fetch supplies forecast only
+  (season_rain stays null until the cron fills it), so a brand-new cell's /mausam season section
+  shows "unavailable" for one cron cycle.
+- **Out-of-area homepage/`/msp`**: counts show 0 and the nearby-listings feed shows newest
+  (unfiltered) rather than an empty state; the LocationControl carries the honest "सेवा क्षेत्र से
+  बाहर" notice. Weather still shows the user's real location. This is intended (weather global,
+  village features gated).
+- **उड़द (Urad) is genuinely absent** from the mandi feed (zero rows) — shows a bare "—" + the
+  honest note, not a bug. मसूर/मूंग are sparse (single mandi, may be days old) — shown with the
+  cross-mandi hint / stale tag. Data-availability reality of the Agmarknet daily snapshot.
+- **Cross-mandi hint uses `InfoTip`** (an ⓘ per empty-but-available cell). In a 5-mandi × 10-crop
+  grid that is several ⓘ icons; acceptable for an opt-in comparison view, but if it feels noisy a
+  future pass could switch to a single per-row hint.

@@ -9,7 +9,7 @@ import NavBar from '../components/NavBar'
 import { fetchWeatherCell } from '../lib/weather/weatherApiV2'
 import { actionWindows } from '../lib/weather/weatherRules'
 import { fetchPincode } from '../lib/listings/listingsApi'
-import { resolvePincode, savePincode } from '../lib/listings/nearbyCounts'
+import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchSiteSetting } from '../lib/pages/pagesApi'
 import { CROPS, currentSeason, cropName } from '../content/crops'
 import { PageExplainer, LocationControl, ReviewTag, JsonLd } from '../components/pages/shared'
@@ -21,8 +21,7 @@ export default function FasalSalah() {
   const { t, lang } = useLang()
   const { user } = useAuth()
   const navigate = useNavigate()
-  const [pincode, setPincode] = useState(() => resolvePincode(user?.pincode))
-  const [place, setPlace] = useState('')
+  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
   const [wx, setWx] = useState(null)
   const [reviewed, setReviewed] = useState(true)
 
@@ -31,18 +30,19 @@ export default function FasalSalah() {
   useEffect(() => {
     let alive = true
     ;(async () => {
-      const p = await fetchPincode(pincode).catch(() => null)
-      if (p?.village_town && alive) setPlace(p.village_town)
-      const cell = await fetchWeatherCell(Number(p?.latitude ?? 24.045), Number(p?.longitude ?? 78.33)).catch(() => null)
+      // Weather-driven action windows are GLOBAL — use rawCoords (any lat/lng), falling
+      // back to the selected pincode's coordinates. Never gated by the service area.
+      let lat = loc.rawCoords?.latitude, lon = loc.rawCoords?.longitude
+      if (lat == null || lon == null) {
+        const p = loc.matchedVillage?.pincode ? await fetchPincode(loc.matchedVillage.pincode).catch(() => null) : null
+        lat = p?.latitude ?? DEFAULT_COORDS.latitude
+        lon = p?.longitude ?? DEFAULT_COORDS.longitude
+      }
+      const cell = await fetchWeatherCell(Number(lat), Number(lon)).catch(() => null)
       if (alive) setWx(cell)
     })()
     return () => { alive = false }
-  }, [pincode])
-
-  function changePincode() {
-    const next = window.prompt(t('pincode_prompt'), pincode)
-    if (next && /^\d{6}$/.test(next.trim())) { const v = next.trim(); savePincode(v); setPincode(v); setPlace('') }
-  }
+  }, [loc])
 
   const windows = useMemo(() => (wx ? actionWindows(wx.hourly, wx.daily) : null), [wx])
   const season = currentSeason()
@@ -67,7 +67,7 @@ export default function FasalSalah() {
       <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{t('fasal_h1')}</h1>
         <PageExplainer title={t('page_explainer_title')} lines={[t('fasal_intro_1'), t('fasal_intro_2')]} />
-        <LocationControl pincode={pincode} place={place} onChange={changePincode} />
+        <LocationControl value={loc} onChange={setLoc} showOutOfArea={false} />
 
         {/* cross-link back to /mausam */}
         <button type="button" onClick={() => navigate('/mausam')} className="inline-block text-[15px] font-bold" style={{ color: 'var(--ks-green)' }}>🌤 {t('fasal_see_mausam')} →</button>
