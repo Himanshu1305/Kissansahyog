@@ -54,20 +54,38 @@ function matchCommodity(name, api) {
   return (OFFICIAL_TOKENS[api] || [api.toLowerCase()]).some((tok) => n.includes(tok))
 }
 
+// This resource's filter field names/format have varied (lowercase vs capitalised,
+// plain vs .keyword). Rather than hard-code one, try candidate forms and use the
+// first that returns rows; then narrow to MP + Sagar client-side. Logs the winner.
+const RESOURCE_ID = '9ef84268-d588-465a-a308-a864a43d0070'
+const FILTER_FORMS = [
+  'filters[state]=Madhya Pradesh&filters[district]=Sagar',
+  'filters[state.keyword]=Madhya Pradesh&filters[district.keyword]=Sagar',
+  'filters[State.keyword]=Madhya Pradesh&filters[District.keyword]=Sagar',
+  'filters[State]=Madhya Pradesh&filters[District]=Sagar',
+  'filters[state]=Madhya Pradesh',
+  '', // no filter — last resort, narrowed client-side
+]
+const stateOf = (r) => (r.state || r.State || '').toLowerCase()
+const districtOf = (r) => (r.district || r.District || '').toLowerCase()
+
 let _officialPool = null
 async function getOfficialPool() {
   if (_officialPool) return _officialPool
   const limit = HAS_REAL_KEY ? 1000 : 50
-  const tryFetch = async (extra) => {
-    const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${DATA_GOV_KEY}&format=json&filters[State]=Madhya Pradesh${extra}&limit=${limit}`
-    const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
-    if (!res.ok) throw new Error(`Official API HTTP ${res.status}`)
-    return (await res.json()).records || []
+  let recs = [], winner = 'none'
+  for (const form of FILTER_FORMS) {
+    try {
+      const url = `https://api.data.gov.in/resource/${RESOURCE_ID}?api-key=${DATA_GOV_KEY}&format=json&limit=${limit}${form ? '&' + form : ''}`
+      const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
+      if (!res.ok) { console.error(`official form [${form || 'none'}] HTTP ${res.status}`); continue }
+      const raw = (await res.json()).records || []
+      // Narrow to MP + Sagar regardless of which server filter (if any) was applied.
+      const mp = raw.filter((r) => stateOf(r).includes('madhya') && districtOf(r).includes('sagar'))
+      if (mp.length) { recs = mp; winner = form || 'no-filter'; break }
+    } catch (e) { console.error(`official form [${form || 'none'}] failed: ${e.message}`) }
   }
-  let recs = []
-  try { recs = await tryFetch('&filters[District]=Sagar') } catch (e) { console.error(`official Sagar fetch failed: ${e.message}`) }
-  if (!recs.length) { try { recs = await tryFetch('') } catch (e) { console.error(`official MP fetch failed: ${e.message}`) } }
-  console.log(`official API pool: ${recs.length} MP records (key: ${HAS_REAL_KEY ? 'real' : 'demo'})`)
+  console.log(`official API pool: ${recs.length} MP/Sagar records via [${winner}] (key: ${HAS_REAL_KEY ? 'real' : 'demo'})`)
   _officialPool = recs
   return recs
 }
