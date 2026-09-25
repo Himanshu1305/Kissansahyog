@@ -150,3 +150,11 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
   MAUSAM_MSP_CONTENT_REVIEW.md and an admin flips the review flag.
 - **Season-rainfall normal** is computed from the Open-Meteo archive (2015→) at refresh
   time; labelled "पिछले 10 साल का औसत". Values shift slightly as the archive updates.
+
+## Mandi official-API fallback (2026-09-25)
+- **Fixed:** the refresh workflow ran `node --env-file=.env` in CI (no .env there) → `.env: not found`. CI now runs `node scripts/refresh-data.mjs` directly; local `npm run refresh-prices` keeps `--env-file=.env`. Also bumped both workflows to Node 22 (supabase-js needs native WebSocket).
+- **Official fallback now uses `DATA_GOV_IN_API_KEY`** (secret is set). Findings from live CI runs on resource `9ef84268-…` (data.gov.in "current daily prices"):
+  - Filter field names must be **lowercase** (`filters[state]=Madhya Pradesh`); the capitalised `filters[State]`/`.keyword` forms return 0. The text filter also returns other "*Pradesh" states, so we narrow to true MP client-side (~85 rows/day).
+  - **The daily feed currently carries NO Sagar-district rows.** So `refresh-data.mjs` pools MP-wide and picks the best available MP mandi for a commodity (marked `is_sagar_district=false`) when Sagar has none. गेहूं/सोयाबीन/मक्का/सरसों/लहसुन come from the wrapper (Sagar); चना and धान now populate from MP mandis via the official API.
+  - **मसूर/मूंग/उड़द** still don't populate on some days: they are simply absent from the MP daily feed (off-season / not reported that day) — a data-availability reality, not a code bug. They fill in automatically on days the feed has them.
+- **Note for the history backfill:** resource `9ef84268-…` is a *daily-snapshot* resource (today's rows only), and its filters are lowercase; `backfill-mandi-history.mjs` should be revisited (lowercase filters + a genuinely historical Agmarknet source) before relying on it for multi-year history.
