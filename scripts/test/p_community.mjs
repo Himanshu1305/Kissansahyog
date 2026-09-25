@@ -62,7 +62,12 @@ check('community routes are public (outside Protected)', !/Protected>\s*<(Sawaal
 
 // 6 — Nav dropdown + admin panels.
 const nav = read('src/components/NavBar.jsx')
-check('nav has a single Community dropdown (not 3 top-level items)', nav.includes("t('community_nav')") && nav.includes('COMMUNITY'))
+// Nav was restructured after this test was first written: the old single "समुदाय/Community"
+// dropdown was replaced by a सरकारी-योजनाएं dropdown (SCHEMES_MENU → /yojana) plus a top-level
+// किसान-सवाल link (/sawaal); safalta is reached from the homepage/footer. The anti-clutter
+// intent still holds — schemes are grouped in a dropdown, not exposed as loose per-scheme items.
+check('nav groups schemes in a dropdown + links सवाल (community reachable, uncluttered)',
+  nav.includes('SCHEMES_MENU') && nav.includes("'sawaal_nav'"))
 const admin = read('src/screens/Admin.jsx')
 check('admin renders all 3 community panels', ['SawaalPanel', 'SafaltaPanel', 'YojanaPanel'].every((p) => admin.includes(`<${p} `)))
 

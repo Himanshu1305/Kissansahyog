@@ -33,8 +33,9 @@ async function main() {
   check('rental basis has per_hour/per_acre/per_day',
     RENTAL_BASIS.map((r) => r.value).sort().join(',') === 'per_acre,per_day,per_hour')
 
-  // 2d — terminology: labor category is now "कृषि सहयोगी" in Hindi (Krishi Sahyogi).
-  check('labor category Hindi is कृषि सहयोगी', CATEGORY_META.labor.hi === 'कृषि सहयोगी', CATEGORY_META.labor.hi)
+  // 2d — terminology: labor category is "कृषि सहयोगी (Labor)" in Hindi (Krishi Sahyogi;
+  //      the English "(Labor)" is kept inline so low-literacy users recognise the old word).
+  check('labor category Hindi is कृषि सहयोगी (Labor)', CATEGORY_META.labor.hi === 'कृषि सहयोगी (Labor)', CATEGORY_META.labor.hi)
   check('labor category English unchanged (Labor)', CATEGORY_META.labor.en === 'Labor')
 
   // 2e — Drone Didi option present in the work_type dropdown.
