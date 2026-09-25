@@ -41,6 +41,21 @@ export async function fetchPincode(pincode) {
   return data
 }
 
+// Resolved village names for the listing-form autocomplete (0027). Cached in-memory.
+let villageNamesCache = null
+export async function fetchResolvedVillages() {
+  if (villageNamesCache) return villageNamesCache
+  const { data, error } = await supabase
+    .from('village_coordinates')
+    .select('village_name')
+    .eq('status', 'resolved')
+    .order('village_name', { ascending: true })
+    .limit(2000)
+  if (error) return []
+  villageNamesCache = [...new Set((data || []).map((r) => r.village_name).filter(Boolean))]
+  return villageNamesCache
+}
+
 // --- create ---
 export async function createListing({
   actorId,
@@ -53,6 +68,7 @@ export async function createListing({
   selfDeclared = false,
   listingSource = 'farmer',
   wideVisibility = false,
+  villageName = null,
 }) {
   const { data, error } = await supabase.rpc('create_listing', {
     p_actor_id: actorId,
@@ -65,6 +81,7 @@ export async function createListing({
     p_self_declared: selfDeclared,
     p_listing_source: listingSource,
     p_wide_visibility: wideVisibility,
+    p_village_name: villageName,
   })
   if (error) throw toAppError(error)
   return data
@@ -155,13 +172,14 @@ export async function fetchRecentListings(limit = 12) {
   })
 }
 
-// Phase 3e — homepage feed enriched with village/district + pincode coordinates,
-// so the caller can order by distance from a center then recency. Contact-free,
-// like fetchRecentListings. center = { latitude, longitude } | null.
+// Homepage feed. Distance is measured from the center to each LISTING's OWN denormalized
+// coordinates (row.latitude/longitude — set from village geocoding, 0027 3a-i), NOT a live
+// pincodes join. village_name is the listing's stored anchor; district falls back to the
+// pincode row only for the display label. center = { latitude, longitude } | null.
 export async function fetchHomeFeed({ center = null, limit = 8, pool = 40, category = null } = {}) {
   let query = supabase
     .from('listings')
-    .select('id,listing_type,category,pincode,details,created_at,listing_source,is_test_data,wide_visibility')
+    .select('id,listing_type,category,pincode,village_town:village_name,latitude,longitude,geocoding_status,details,created_at,listing_source,is_test_data,wide_visibility')
     .eq('status', 'active')
     .gt('expires_at', new Date().toISOString())
   if (category) query = query.eq('category', category)
@@ -171,23 +189,21 @@ export async function fetchHomeFeed({ center = null, limit = 8, pool = 40, categ
   if (error) throw toAppError(error)
   const rows = data || []
 
+  // District for the display label only (from the listing's pincode, if any).
   const pins = [...new Set(rows.map((r) => r.pincode).filter(Boolean))]
   let pinByCode = {}
   if (pins.length) {
-    const { data: pinRows, error: pinErr } = await supabase
-      .from('pincodes')
-      .select('pincode,village_town,district,latitude,longitude')
-      .in('pincode', pins)
-    if (pinErr) throw toAppError(pinErr)
+    const { data: pinRows } = await supabase.from('pincodes').select('pincode,district').in('pincode', pins)
     pinByCode = Object.fromEntries((pinRows || []).map((p) => [p.pincode, p]))
   }
 
   const enriched = rows.map((r) => {
-    const p = pinByCode[r.pincode]
-    const distanceKm = center && p?.latitude != null && p?.longitude != null
-      ? haversineKm(center.latitude, center.longitude, p.latitude, p.longitude)
+    // Own coords (village-geocoded). Pending listings have null coords → excluded from
+    // distance views (distanceKm null) but still shown in the no-center category showcase.
+    const distanceKm = center && r.latitude != null && r.longitude != null
+      ? haversineKm(center.latitude, center.longitude, Number(r.latitude), Number(r.longitude))
       : null
-    return { ...r, village_town: p?.village_town || null, district: p?.district || null, distanceKm }
+    return { ...r, district: pinByCode[r.pincode]?.district || null, distanceKm }
   })
 
   // Without a viewer center we cannot measure distance, so no cutoff can apply — keep the

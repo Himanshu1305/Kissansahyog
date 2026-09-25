@@ -1412,6 +1412,12 @@ export const strings = {
   loc_ip_maybe: { hi: 'आप शायद {city} के आसपास हैं', en: 'You’re probably near {city}' },
   loc_ip_confirm: { hi: 'हाँ, यही सही है', en: 'Yes, that’s right' },
   loc_or_pincode: { hi: 'या पिनकोड डालें:', en: 'Or enter a pincode:' },
+  // 0027 Part A — village-name asset location on the listing form
+  field_asset_village: { hi: 'जगह — गाँव/शहर का नाम', en: 'Location — village/town name' },
+  village_ph: { hi: 'जैसे: खुरई, बंडा, रहली', en: 'e.g. Khurai, Banda, Rehli' },
+  asset_village_hint: { hi: 'जिस गाँव/शहर में ज़मीन/सामान/सेवा है — उसका नाम लिखें (आपके घर का नहीं)।', en: 'The village/town where the land/goods/service is — not your home.' },
+  err_asset_village_required: { hi: 'कृपया गाँव/शहर का नाम डालें।', en: 'Please enter the village/town name.' },
+  listing_pending_geocode: { hi: 'आपकी जगह की पुष्टि हो रही है — कुछ ही देर में लिस्टिंग नज़दीकी खोज में दिखेगी।', en: 'Confirming your location — the listing will appear in nearby search shortly.' },
 
   // Phase 3 — MSP mandi search + distance ranking
   mandi_search_label: { hi: 'मंडी का नाम खोजें (जैसे: बीना, रहली)', en: 'Search a mandi (e.g. Bina, Rehli)' },

@@ -3,9 +3,9 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { createListing, fetchPincode } from '../lib/listings/listingsApi'
+import { createListing, fetchResolvedVillages } from '../lib/listings/listingsApi'
+import { drainGeocodeQueue } from '../lib/location/geocodeQueue'
 import { WIDE_ELIGIBLE_CATEGORIES } from '../lib/distance'
-import { isValidPincode } from '../lib/auth/authService'
 import { BigButton, Field, Notice, Spinner, TextInput } from './ui'
 import DisclaimerBanner from './DisclaimerBanner'
 import HelpModal, { HelpButton } from './HelpModal'
@@ -15,12 +15,12 @@ import { CATEGORY_META } from '../lib/listings/catalog'
 // Category-agnostic listing form. Delegates the field set + validation +
 // details finalization to the category module from the registry.
 //
-// ASSET LOCATION (v1.1): every listing must carry the pincode of the thing being
-// offered/sought — the LAND / EQUIPMENT / TEAM / GOODS location — which is asked
-// explicitly here and NOT defaulted from the poster's profile. Distance matching
-// uses these coordinates, so a landowner in Hyderabad listing land in Sagar is
-// found near Sagar, not near Hyderabad. The create_listing RPC re-derives the
-// coordinates from this pincode server-side (authoritative).
+// ASSET LOCATION (0027): every listing carries the VILLAGE NAME of the thing being
+// offered/sought — the platform's primary distance anchor (village-level forward
+// geocoding, cached in village_coordinates). A known village resolves instantly; a
+// brand-new name saves the listing immediately with geocoding_status='pending' and is
+// filled in within seconds by the background geocode worker (non-blocking, 2e). Pincode
+// is no longer asked here — it survives only as LocationControl's manual viewer fallback.
 export default function ListingForm({ listingType, category, listingSource = 'farmer', onCreated }) {
   const { t, lang } = useLang()
   const { user } = useAuth()
@@ -28,7 +28,8 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
 
   const [extras, setExtras] = useState(null)
   const [details, setDetails] = useState(() => mod.initialDetails())
-  const [pincode, setPincode] = useState('') // asset location — intentionally blank
+  const [village, setVillage] = useState('') // asset village — intentionally blank
+  const [villages, setVillages] = useState([]) // autocomplete: previously-resolved names
   const [selfDeclared, setSelfDeclared] = useState(false)
   // Phase 1 — wide-visibility opt-in, offered ONLY for Bhoosa/Parali + Seeds & Inputs.
   const canWiden = WIDE_ELIGIBLE_CATEGORIES.includes(category)
@@ -38,12 +39,11 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
   const [helpOpen, setHelpOpen] = useState(false)
 
   const needsSelfDecl = mod.needsSelfDeclaration(listingType)
-  const locationLabelKey = mod.locationLabelKey || 'field_asset_pincode'
-  const locationPlaceholderKey = mod.locationPlaceholderKey || 'pincode_ph'
 
   useEffect(() => {
     let alive = true
     loadExtras(category).then((e) => alive && setExtras(e))
+    fetchResolvedVillages().then((v) => alive && setVillages(v)).catch(() => {})
     return () => {
       alive = false
     }
@@ -56,14 +56,9 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
       setError(vErr)
       return
     }
-    // Asset-location pincode: required, well-formed, and known to us.
-    const pin = String(pincode).trim()
-    if (!pin) {
-      setError(t('err_asset_pincode_required'))
-      return
-    }
-    if (!isValidPincode(pin)) {
-      setError(t('err_invalid_pincode'))
+    const vname = String(village).trim()
+    if (vname.length < 2) {
+      setError(t('err_asset_village_required'))
       return
     }
     if (needsSelfDecl && !selfDeclared) {
@@ -72,12 +67,6 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
     }
     setBusy(true)
     try {
-      const pinRow = await fetchPincode(pin)
-      if (!pinRow) {
-        setError(t('err_pincode_not_found'))
-        setBusy(false)
-        return
-      }
       const finalDetails = mod.finalizeDetails
         ? await mod.finalizeDetails(details, { actorId: user.id, user, listingType })
         : details
@@ -86,14 +75,14 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
         listingType,
         category,
         details: finalDetails,
-        // Asset location — the listing's own coordinates, from its own pincode.
-        latitude: pinRow.latitude,
-        longitude: pinRow.longitude,
-        pincode: pin,
+        villageName: vname, // primary distance anchor (village-geocoded, cached)
         selfDeclared: needsSelfDecl ? selfDeclared : false,
         listingSource,
         wideVisibility: canWiden ? wideVisibility : false,
       })
+      // New (uncached) village → resolve its coordinates in the background (2e). Fire-and-
+      // forget: the listing is already saved; this fills its coords within seconds.
+      if (listing?.geocoding_status === 'pending') drainGeocodeQueue().catch(() => {})
       onCreated(listing)
     } catch (err) {
       setError(t(err.i18nKey || 'err_unknown'))
@@ -122,17 +111,20 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
       {/* Category-specific advisory (e.g. Bhusa/Parali environmental note). */}
       {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="my-4" />}
 
-      {/* Asset location — prominent, required, and explicitly NOT the home pincode. */}
+      {/* Asset location — the VILLAGE NAME (primary distance anchor), with autocomplete for
+          previously-resolved villages; a new name is geocoded in the background after save. */}
       <div className="my-5 rounded-2xl border-2 border-green-700 bg-green-50 p-4">
-        <Field label={t(locationLabelKey)} htmlFor="f_asset_pincode" required hint={t('asset_pincode_hint')}>
+        <Field label={t('field_asset_village')} htmlFor="f_asset_village" required hint={t('asset_village_hint')}>
           <TextInput
-            id="f_asset_pincode"
-            inputMode="numeric"
-            maxLength={6}
-            placeholder={t(locationPlaceholderKey)}
-            value={pincode}
-            onChange={(e) => setPincode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+            id="f_asset_village"
+            list="known-villages"
+            placeholder={t('village_ph')}
+            value={village}
+            onChange={(e) => setVillage(e.target.value)}
           />
+          <datalist id="known-villages">
+            {villages.map((v) => <option key={v} value={v} />)}
+          </datalist>
         </Field>
       </div>
 

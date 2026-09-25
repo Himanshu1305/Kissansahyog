@@ -102,6 +102,11 @@ export default function Post() {
         <div className="py-6 text-center">
           <div className="text-6xl">✅</div>
           <p className="mt-4 text-xl font-bold text-green-800">{t('post_success')}</p>
+          {created?.geocoding_status === 'pending' && (
+            <p className="mx-auto mt-3 max-w-sm rounded-lg bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-900" data-testid="pending-geocode-note">
+              {t('listing_pending_geocode')}
+            </p>
+          )}
           <div className="mt-8 space-y-3">
             <BigButton onClick={() => navigate(`/listing/${created.id}`)}>
               {t('view_listing')}
