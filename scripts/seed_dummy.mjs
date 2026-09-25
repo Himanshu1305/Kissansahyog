@@ -30,7 +30,7 @@ const USERS = {
 }
 
 // details builders per category (exact JSONB shapes — see PROJECT_CONTEXT §3).
-const land = (o) => ({ size_range: '', arrangement: [], water_source: '', crop_id: null, season: '', price_type: 'negotiable', price_amount: '', photo_urls: [], ...o })
+const land = (o) => ({ size_acres: '', arrangement: [], water_source: '', crop_id: null, season: '', price_type: 'negotiable', price_amount: '', photo_urls: [], ...o })
 const equip = (o) => ({ equipment_type_id: null, rental_basis: '', rate_amount: '', available_now: true, available_from: null, available_to: null, ...o })
 const labor = (o) => ({ worker_count: null, work_type: '', available_from: null, available_to: null, rate_basis: null, rate_amount: '', ...o })
 const bhusa = (o) => ({ residue_type: '', quantity: '', pickup_arrangement: '', buyer_type_preference: '', asking_price: '', available_from: null, ...o })
@@ -44,14 +44,14 @@ const whReq = (o) => ({ crop_type: '', quantity_quintals: 0, duration: '', prefe
 // Listing spec: { u, type, cat, details, sd?, pin? } (pin overrides the poster's home pincode).
 const LISTINGS = [
   // --- Land (8) ---
-  { u: 'ramlal',  type: 'offer',       cat: 'land', sd: true, d: land({ size_range: '2-5', arrangement: ['sharecropping'], water_source: 'borewell', crop_id: CROP.wheat, season: 'rabi', price_type: 'sharecropping', price_amount: '50% बटाई / 50% crop share' }) },
-  { u: 'suresh',  type: 'offer',       cat: 'land', sd: true, d: land({ size_range: '1-2', arrangement: ['lease'], water_source: 'canal', crop_id: CROP.soybean, season: 'kharif', price_type: 'fixed', price_amount: '₹8,000 प्रति एकड़ / ₹8,000 per acre' }) },
-  { u: 'mohan',   type: 'offer',       cat: 'land', sd: true, d: land({ size_range: '5-10', arrangement: ['contract_farming'], water_source: 'rainfed', crop_id: CROP.gram, season: 'rabi', price_type: 'negotiable', price_amount: 'बातचीत से / Negotiable' }) },
-  { u: 'prakash', type: 'offer',       cat: 'land', sd: true, d: land({ size_range: '2-5', arrangement: ['sharecropping'], water_source: 'borewell', crop_id: CROP.masoor, season: 'rabi', price_type: 'sharecropping', price_amount: '40% बटाई' }) },
-  { u: 'rajesh',  type: 'requirement', cat: 'land', d: land({ size_range: '2-5', water_source: '', crop_id: CROP.soybean, season: 'kharif' }) },
-  { u: 'gita',    type: 'requirement', cat: 'land', d: land({ size_range: '1-2', water_source: 'borewell', crop_id: CROP.wheat, season: 'rabi' }) },
-  { u: 'shanti',  type: 'offer',       cat: 'land', sd: true, d: land({ size_range: '1-2', arrangement: ['lease'], water_source: 'canal', crop_id: CROP.garlic, season: 'rabi', price_type: 'fixed', price_amount: '₹12,000 प्रति एकड़' }) },
-  { u: 'ramlal',  type: 'requirement', cat: 'land', d: land({ size_range: '5-10', water_source: 'canal', crop_id: CROP.paddy, season: 'year_round' }) },
+  { u: 'ramlal',  type: 'offer',       cat: 'land', sd: true, d: land({ size_acres: 3.5, arrangement: ['sharecropping'], water_source: 'borewell', crop_id: CROP.wheat, season: 'rabi', price_type: 'sharecropping', price_amount: '50% बटाई / 50% crop share' }) },
+  { u: 'suresh',  type: 'offer',       cat: 'land', sd: true, d: land({ size_acres: 1.5, arrangement: ['lease'], water_source: 'canal', crop_id: CROP.soybean, season: 'kharif', price_type: 'fixed', price_amount: '8000' }) },
+  { u: 'mohan',   type: 'offer',       cat: 'land', sd: true, d: land({ size_acres: 7.5, arrangement: ['contract_farming'], water_source: 'rainfed', crop_id: CROP.gram, season: 'rabi', price_type: 'negotiable', price_amount: 'बातचीत से / Negotiable' }) },
+  { u: 'prakash', type: 'offer',       cat: 'land', sd: true, d: land({ size_acres: 3.5, arrangement: ['sharecropping'], water_source: 'borewell', crop_id: CROP.masoor, season: 'rabi', price_type: 'sharecropping', price_amount: '40% बटाई' }) },
+  { u: 'rajesh',  type: 'requirement', cat: 'land', d: land({ size_acres: 3.5, water_source: '', crop_id: CROP.soybean, season: 'kharif' }) },
+  { u: 'gita',    type: 'requirement', cat: 'land', d: land({ size_acres: 1.5, water_source: 'borewell', crop_id: CROP.wheat, season: 'rabi' }) },
+  { u: 'shanti',  type: 'offer',       cat: 'land', sd: true, d: land({ size_acres: 1.5, arrangement: ['lease'], water_source: 'canal', crop_id: CROP.garlic, season: 'rabi', price_type: 'fixed', price_amount: '12000' }) },
+  { u: 'ramlal',  type: 'requirement', cat: 'land', d: land({ size_acres: 7.5, water_source: 'canal', crop_id: CROP.paddy, season: 'year_round' }) },
 
   // --- Equipment (10) ---
   { u: 'suresh',  type: 'offer',       cat: 'equipment', d: equip({ equipment_type_id: EQ.tractor, rental_basis: 'per_acre', rate_amount: '₹800 प्रति एकड़' }) },

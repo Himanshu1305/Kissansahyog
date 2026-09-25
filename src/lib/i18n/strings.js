@@ -636,6 +636,15 @@ export const strings = {
 
   // --- land fields ---
   field_size: { hi: 'ज़मीन का आकार', en: 'Land size' },
+  field_size_acres: { hi: 'ज़मीन का आकार (एकड़ में)', en: 'Land size (in acres)' },
+  ph_size_acres: { hi: 'जैसे: 50', en: 'e.g. 50' },
+  hint_size_acres: { hi: 'एकड़ में संख्या लिखें — कोई सीमा नहीं (कम से कम 0.1 एकड़)।', en: 'Enter a number of acres — no upper limit (minimum 0.1 acre).' },
+  err_size_acres: { hi: 'सही आकार लिखें (कम से कम 0.1 एकड़)।', en: 'Enter a valid size (minimum 0.1 acre).' },
+  field_rate_per_acre: { hi: 'प्रति एकड़ दर (₹)', en: 'Per-acre rate (₹)' },
+  field_contact_phone: { hi: 'इस लिस्टिंग के लिए संपर्क नंबर (वैकल्पिक)', en: 'Contact number for this listing (optional)' },
+  ph_contact_phone: { hi: 'जैसे: 9876543210', en: 'e.g. 9876543210' },
+  hint_contact_phone: { hi: 'खाली छोड़ें तो आपके खाते का नंबर इस्तेमाल होगा।', en: 'Leave blank to use your account number.' },
+  err_contact_phone: { hi: '10 अंकों का सही मोबाइल नंबर लिखें।', en: 'Enter a valid 10-digit mobile number.' },
   field_arrangement: { hi: 'व्यवस्था', en: 'Arrangement' },
   field_water: { hi: 'पानी का स्रोत', en: 'Water source' },
   field_crop: { hi: 'फसल', en: 'Crop' },

@@ -17,7 +17,7 @@ function keyDetail(listing, lang) {
   const acre = lang === 'hi' ? 'एकड़' : 'acre'
   const qtl = lang === 'hi' ? 'क्विंटल' : 'qtl'
   switch (listing.category) {
-    case 'land': return d.size_range ? `${d.size_range} ${acre}` : ''
+    case 'land': return (d.size_acres != null && String(d.size_acres).trim() !== '') ? `${d.size_acres} ${acre}` : ''
     case 'equipment': return d.rate_amount || ''
     case 'labor': return d.worker_count ? `${d.worker_count}` : ''
     case 'drone_didi': return d.rate_per_acre || ''

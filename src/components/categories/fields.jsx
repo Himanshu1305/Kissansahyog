@@ -103,12 +103,13 @@ export function NumberField({ name, label, value, onChange, required, error, hin
   )
 }
 
-// Labelled free-text input.
-export function TextField({ name, label, value, onChange, required, error, hint, placeholder }) {
+// Labelled free-text input. Pass inputMode="decimal" (+ optional min/step) for a
+// numeric entry like acreage or a rate — keeps the low-literacy numeric keypad on mobile.
+export function TextField({ name, label, value, onChange, required, error, hint, placeholder, inputMode, type, min, step }) {
   const id = fieldId(name, label)
   return (
     <Field label={label} htmlFor={id} required={required} error={error} hint={hint}>
-      <TextInput id={id} value={value ?? ''} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
+      <TextInput id={id} value={value ?? ''} placeholder={placeholder} inputMode={inputMode} type={type} min={min} step={step} onChange={(e) => onChange(e.target.value)} />
     </Field>
   )
 }

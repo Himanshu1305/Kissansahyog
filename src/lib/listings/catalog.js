@@ -33,13 +33,8 @@ export const PRICE_TYPE = [
   { value: 'sharecropping', hi: 'बटाई (% में)', en: 'Sharecropping (% split)' },
   { value: 'negotiable', hi: 'बातचीत से', en: 'Open to negotiation' },
 ]
-export const SIZE_RANGE = [
-  { value: '<1', hi: '1 एकड़ से कम', en: 'Less than 1 acre' },
-  { value: '1-2', hi: '1–2 एकड़', en: '1–2 acres' },
-  { value: '2-5', hi: '2–5 एकड़', en: '2–5 acres' },
-  { value: '5-10', hi: '5–10 एकड़', en: '5–10 acres' },
-  { value: '10+', hi: '10+ एकड़', en: '10+ acres' },
-]
+// Land size is now a plain numeric acreage (details.size_acres); the old SIZE_RANGE
+// buckets were removed in migration 0028 (Part B).
 export const ARRANGEMENT = [
   { value: 'lease', hi: 'पट्टा / किराया (Lease)', en: 'Lease' },
   { value: 'sharecropping', hi: 'बटाई (Sharecropping)', en: 'Sharecropping' },

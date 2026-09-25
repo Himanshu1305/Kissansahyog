@@ -1,23 +1,29 @@
 // Land category module: form fields, validation, detail summary.
 // Shape of details JSONB (see PROJECT_CONTEXT.md):
-//   { size_range, arrangement[], water_source, crop_id|null, season, photo_urls[] }
+//   { size_acres, arrangement[], water_source, crop_id|null, season, price_type,
+//     price_amount, contact_phone?, photo_urls[] }
+// size_acres is a plain positive number of acres (no upper cap) — replaced the old
+// size_range buckets so a farmer can list exactly e.g. 50 acres.
 import { useRef } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { Field } from '../ui'
 import { OptionSelect, MultiChips, LookupSelect, TextField } from './fields'
-import { SIZE_RANGE, ARRANGEMENT, WATER_SOURCE, SEASON, PRICE_TYPE, optionLabel, optionLabels } from '../../lib/listings/catalog'
+import { ARRANGEMENT, WATER_SOURCE, SEASON, PRICE_TYPE, optionLabel, optionLabels } from '../../lib/listings/catalog'
 import { MAX_PHOTOS } from '../../lib/listings/photos'
 import { uploadPhotos } from '../../lib/listings/photos'
 
+export const MIN_ACRES = 0.1
+
 export function initialDetails() {
   return {
-    size_range: '',
+    size_acres: '', // plain positive number of acres, min 0.1, no upper limit
     arrangement: [],
     water_source: '',
     crop_id: null,
     season: '',
     price_type: '', // required: fixed | sharecropping | negotiable
-    price_amount: '', // only meaningful when price_type === 'fixed'
+    price_amount: '', // ₹/acre for 'fixed' (ठेका); % split for 'sharecropping' (बटाई)
+    contact_phone: '', // optional per-listing override; blank → poster's profile phone
     photo_urls: [],
     __photoFiles: [], // transient: File[] pending upload, stripped before save
   }
@@ -35,8 +41,10 @@ export const locationPlaceholderKey = 'ph_land_pincode'
 
 // Returns a localized error string, or null.
 export function validate(details, listingType, t) {
-  if (!details.size_range) return t('field_size') + ' — ' + t('required_field')
+  const acres = parseFloat(details.size_acres)
+  if (!(acres >= MIN_ACRES)) return t('err_size_acres')
   if (!details.price_type) return t('err_price_type_required')
+  if (details.contact_phone && !/^[0-9]{10}$/.test(String(details.contact_phone).trim())) return t('err_contact_phone')
   return null
 }
 
@@ -53,14 +61,17 @@ export function Fields({ details, setDetails, extras }) {
 
   return (
     <>
-      <OptionSelect
-        name="size_range"
-        label={t('field_size')}
-        list={SIZE_RANGE}
-        value={details.size_range}
-        onChange={set('size_range')}
+      <TextField
+        name="size_acres"
+        label={t('field_size_acres')}
+        value={details.size_acres}
+        onChange={set('size_acres')}
+        placeholder={t('ph_size_acres')}
+        hint={t('hint_size_acres')}
+        inputMode="decimal"
+        min={MIN_ACRES}
+        step="0.1"
         required
-        hint={t('ph_land_size')}
       />
       <MultiChips
         label={t('field_arrangement')}
@@ -98,15 +109,35 @@ export function Fields({ details, setDetails, extras }) {
         onChange={set('price_type')}
         required
       />
-      {(details.price_type === 'fixed' || details.price_type === 'sharecropping') && (
+      {details.price_type === 'fixed' && (
+        <TextField
+          name="price_amount"
+          label={t('field_rate_per_acre')}
+          value={details.price_amount}
+          onChange={set('price_amount')}
+          placeholder={t('ph_price_fixed')}
+          inputMode="decimal"
+        />
+      )}
+      {details.price_type === 'sharecropping' && (
         <TextField
           name="price_amount"
           label={t('field_price_amount')}
           value={details.price_amount}
           onChange={set('price_amount')}
-          placeholder={details.price_type === 'sharecropping' ? t('ph_price_sharecropping') : t('ph_price_fixed')}
+          placeholder={t('ph_price_sharecropping')}
         />
       )}
+
+      <TextField
+        name="contact_phone"
+        label={t('field_contact_phone')}
+        value={details.contact_phone}
+        onChange={set('contact_phone')}
+        placeholder={t('ph_contact_phone')}
+        hint={t('hint_contact_phone')}
+        inputMode="numeric"
+      />
 
       <Field label={t('field_photos')} hint={t('photos_help')}>
         <input
@@ -141,6 +172,9 @@ export async function finalizeDetails(details, { actorId }) {
   if (files.length) photo_urls = await uploadPhotos(files, actorId)
   const clean = { ...details }
   delete clean.__photoFiles
+  // Optional per-listing contact: keep only a real 10-digit override; blank falls back to profile phone.
+  clean.contact_phone = String(clean.contact_phone || '').trim()
+  if (!clean.contact_phone) delete clean.contact_phone
   return { ...clean, photo_urls }
 }
 
@@ -149,7 +183,11 @@ export function summarize(listing, lang, extras) {
   const d = listing.details || {}
   const L = (key) => LABELS[key][lang]
   const rows = []
-  if (d.size_range) rows.push({ label: L('size'), value: optionLabel(SIZE_RANGE, d.size_range, lang) })
+  if (d.size_acres != null && String(d.size_acres).trim() !== '') {
+    const n = Number(d.size_acres)
+    const acres = Number.isFinite(n) ? (Number.isInteger(n) ? String(n) : String(n)) : String(d.size_acres)
+    rows.push({ label: L('size'), value: `${acres} ${lang === 'hi' ? 'एकड़' : 'acres'}` })
+  }
   if (d.arrangement?.length)
     rows.push({ label: L('arrangement'), value: optionLabels(ARRANGEMENT, d.arrangement, lang) })
   if (d.water_source) rows.push({ label: L('water'), value: optionLabel(WATER_SOURCE, d.water_source, lang) })
@@ -160,9 +198,12 @@ export function summarize(listing, lang, extras) {
   if (d.season) rows.push({ label: L('season'), value: optionLabel(SEASON, d.season, lang) })
   if (d.price_type) {
     const base = optionLabel(PRICE_TYPE, d.price_type, lang)
-    const amt = d.price_type === 'fixed' && String(d.price_amount || '').trim()
-      ? ` · ${String(d.price_amount).trim()}`
-      : ''
+    const rawAmt = String(d.price_amount || '').trim()
+    let amt = ''
+    if (rawAmt) {
+      if (d.price_type === 'fixed') amt = ` · ₹${rawAmt}${lang === 'hi' ? '/एकड़' : '/acre'}`
+      else if (d.price_type === 'sharecropping') amt = ` · ${rawAmt}`
+    }
     rows.push({ label: L('price'), value: base + amt })
   }
   return rows
