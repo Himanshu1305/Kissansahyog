@@ -118,6 +118,51 @@ export function dismissGeoPrompt() {
 export const geolocationSupported = () =>
   typeof navigator !== 'undefined' && 'geolocation' in navigator
 
+// Phase 2 (0028) — Cloudflare IP-based city, from the /geo Pages Function (request.cf).
+// A silent, non-committal pre-permission guess. Returns { city, latitude, longitude } or
+// null when unavailable (local dev / no edge context / VPN) — the caller falls through
+// cleanly to manual pincode with no error shown. Session-cached (one call per load).
+let ipCityCache
+export async function fetchIpCity() {
+  if (ipCityCache !== undefined) return ipCityCache
+  try {
+    const res = await fetch('/geo', { signal: AbortSignal.timeout(5000) })
+    if (!res.ok) { ipCityCache = null; return null }
+    const d = await res.json()
+    ipCityCache = d && d.city
+      ? { city: d.city, latitude: d.latitude != null ? Number(d.latitude) : null, longitude: d.longitude != null ? Number(d.longitude) : null }
+      : null
+    return ipCityCache
+  } catch {
+    ipCityCache = null
+    return null
+  }
+}
+
+// Phase 1 (0028) — reverse-geocode precise GPS coords to a real place name for ANY location
+// on Earth, via BigDataCloud's free, keyless client API (Hindi names where available).
+// Session-cached by rounded coordinate so we call it once per location resolution (1d).
+// Returns a name string, or null on failure (the caller must fall back — NEVER raw coords).
+const geocodeCache = new Map()
+export async function reverseGeocode(lat, lng) {
+  if (lat == null || lng == null) return null
+  const key = `${Number(lat).toFixed(3)},${Number(lng).toFixed(3)}`
+  if (geocodeCache.has(key)) return geocodeCache.get(key)
+  try {
+    const res = await fetch(
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=hi`,
+      { signal: AbortSignal.timeout(8000) },
+    )
+    if (!res.ok) throw new Error(`geocode HTTP ${res.status}`)
+    const d = await res.json()
+    const name = d.city || d.locality || null
+    if (name) geocodeCache.set(key, name) // cache successes only, so a transient failure can retry
+    return name
+  } catch {
+    return null
+  }
+}
+
 // Build an initial location from the profile pincode / localStorage / default. The split
 // shape: rawCoords (for weather — resolved from the pincode by the consumer until a GPS
 // fix supplies precise ones) and matchedVillage (for village-anchored features — the

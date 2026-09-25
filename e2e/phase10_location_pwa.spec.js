@@ -17,7 +17,7 @@ test.describe('Phase 2 — LocationControl', () => {
     await page.goto('/mausam')
     await expect(page.getByTestId('location-control')).toBeVisible()
     // Accept the auto-detect prompt.
-    await page.getByRole('button', { name: 'हाँ' }).click()
+    await page.getByTestId('gps-detect').click()
     // The control should reflect a detected place (not crash); weather area renders.
     await expect(page.getByTestId('location-control')).toContainText('📍')
     expect(errors.join('\n')).not.toMatch(/Uncaught|is not a function|undefined is not/)
@@ -41,7 +41,7 @@ test.describe('Phase 2 — LocationControl', () => {
     const ctx = await browser.newContext({ permissions: ['geolocation'], geolocation: HYDERABAD })
     const page = await ctx.newPage()
     await page.goto('/mausam')
-    await page.getByRole('button', { name: 'हाँ' }).click()
+    await page.getByTestId('gps-detect').click()
     // Page still renders its heading (no white-screen / thrown error).
     await expect(page.locator('h1')).toBeVisible()
     await ctx.close()

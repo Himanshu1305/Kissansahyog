@@ -33,7 +33,7 @@ async function run() {
       const ctx = await browser.newContext({ viewport: { width: w, height: h }, permissions: ['geolocation'], geolocation: geo })
       const p = await ctx.newPage()
       await p.goto(`${BASE}${path}`); await waitPins(p)
-      await p.getByRole('button', { name: 'हाँ' }).click().catch(() => {})
+      await p.getByTestId('gps-detect').click().catch(() => {})
       await p.locator(waitSel).first().waitFor({ timeout: 15000 }).catch(() => {})
       await p.waitForTimeout(700); await slice(p, name); await p.close(); await ctx.close()
     }
@@ -43,7 +43,7 @@ async function run() {
       const ctx = await browser.newContext({ viewport: { width: w, height: h }, permissions: ['geolocation'], geolocation: HYD })
       const p = await ctx.newPage()
       await p.goto(`${BASE}/`); await waitPins(p)
-      await p.getByRole('button', { name: 'हाँ' }).click().catch(() => {})
+      await p.getByTestId('gps-detect').click().catch(() => {})
       await p.getByTestId('out-of-area').first().waitFor({ timeout: 10000 }).catch(() => {})
       await p.waitForTimeout(600); await slice(p, `home-hyd-oos-${vp}`); await p.close(); await ctx.close()
     }

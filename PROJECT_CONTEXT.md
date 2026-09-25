@@ -981,3 +981,32 @@ Full write-up: `docs/review/WEATHER_LOCATION_SPLIT_REVIEW.md`. Migration
 - **OPEN: Phase 1e real-device check is PENDING** the owner's phone test at `/mausam?debug=1`
   (the overlay shows raw lat/lng + accuracy + timestamp) — emulation once falsely passed, so it
   is not marked complete on emulation alone.
+
+## Location naming: reverse geocoding + Cloudflare IP city — 2026-09-26 (no migration)
+
+Full write-up: `docs/review/LOCATION_NAMING_REVIEW.md`. Builds on the `{rawCoords,
+matchedVillage}` split. Turns GPS coordinates into real place names so a raw lat/lng is
+NEVER shown in a user-facing view (only the `?debug=1` overlay may show coords).
+
+- **Reverse geocoding (Phase 1).** `reverseGeocode(lat,lng)` in `locationStore.js` calls
+  BigDataCloud's free/keyless `reverse-geocode-client?...&localityLanguage=hi` (Hindi names;
+  session-cached). CSP `connect-src` now allows `https://api.bigdatacloud.net`. In
+  `LocationControl.detect`, an OUT-OF-AREA GPS fix is reverse-geocoded and the name stored as
+  `rawCoords.placeName` + used as the display `label`; an IN-AREA fix keeps `matchedVillage`'s
+  own name (1a-ii consistency). Failure → nearest village "लगभग … के पास" (<50km) else "आपकी
+  जगह" — never raw coords. `?debug=1` overlay now also shows the resolved place name.
+- **Cloudflare IP city (Phase 2).** `functions/geo.js` — the project's FIRST Cloudflare Pages
+  Function; a top-level `functions/` dir is auto-picked-up by `wrangler pages deploy dist` and
+  routes at `/geo`, returning `request.cf` (city/region/country/lat/lng) as JSON.
+  `fetchIpCity()` (session-cached) calls it on first load; `LocationControl` shows a soft
+  "आप शायद [city] के आसपास हैं" suggestion (no permission prompt) with a one-tap confirm.
+  GPS supersedes it; unavailable `cf.city` (local dev / `vite preview` / VPN) falls through
+  cleanly to manual pincode (no error).
+- **Ordered prompt (Phase 3).** First-visit `LocationControl` reads as: GPS (सटीक) → IP city
+  suggestion → या पिनकोड डालें (inline). Manual pincode unchanged and always reachable; after a
+  choice the prompt collapses to "📍 <place> · जगह बदलें".
+- **Tests:** `scripts/test/p_0028_location_naming.mjs` (20) + `e2e/phase13_location_naming.spec.js`
+  (4). Backend 29 pass / 1 fail (only `v11_phase6` = TD-1), E2E 26/26.
+- **Deploy note:** the IP suggestion only works on Cloudflare's edge (production) — `vite
+  preview` has no Pages Function, so it no-shows locally (expected). The `/geo` route was
+  verified with `npx wrangler pages dev dist` before building the client.

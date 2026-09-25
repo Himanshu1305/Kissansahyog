@@ -28,3 +28,6 @@ blob-report/
 .idea/
 *.log
 npm-debug.log*
+
+# Cloudflare wrangler local dev state/cache
+.wrangler/

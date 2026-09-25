@@ -280,3 +280,18 @@ left because acting on it touches working, pre-existing code with no reported is
 - **Cross-mandi hint uses `InfoTip`** (an ⓘ per empty-but-available cell). In a 5-mandi × 10-crop
   grid that is several ⓘ icons; acceptable for an opt-in comparison view, but if it feels noisy a
   future pass could switch to a single per-row hint.
+
+## Location naming (2026-09-26)
+- **IP-city suggestion is production-only.** `functions/geo.js` runs on Cloudflare's edge;
+  `vite preview` (local screenshots/E2E) does not execute Pages Functions, so `/geo` returns
+  the SPA fallback and the suggestion no-shows — intended (Phase 2d). Tests mock `/geo` to
+  exercise the suggestion path.
+- **Reverse-geocode names can differ in wording from seeded village names.** Handled by 1a-ii
+  (in-area keeps `matchedVillage`'s name; only out-of-area coords are geocoded), but the
+  geocoder's town-level names for a brand-new area are whatever BigDataCloud returns (Hindi
+  where available, else English — accepted per spec).
+- **BigDataCloud is a free, keyless third-party.** No key/quota managed here; if it is ever
+  down or rate-limited, Phase 1c falls back to the nearest-village/generic label (never raw
+  coords). A future pass could add a second geocoder or self-host if reliability matters.
+- **`?debug=1` overlay is the ONLY place raw coordinates appear** (by design, for real-device
+  diagnosis). Grep-audited: no other user-facing view renders a lat/lng pair.

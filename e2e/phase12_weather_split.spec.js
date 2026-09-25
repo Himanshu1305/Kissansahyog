@@ -9,7 +9,7 @@ const waitPins = (p) => p.waitForResponse((r) => r.url().includes('/rest/v1/pinc
 
 async function detect(page) {
   await waitPins(page)
-  await page.getByRole('button', { name: 'हाँ' }).click().catch(() => {})
+  await page.getByTestId('gps-detect').click().catch(() => {})
 }
 
 test.describe('Phase 1 — weather is global, ungated', () => {

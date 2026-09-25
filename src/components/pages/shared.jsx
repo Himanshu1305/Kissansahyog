@@ -7,6 +7,7 @@ import { faqQ, faqA, subscribeAlert } from '../../lib/pages/pagesApi'
 import {
   fetchAllPincodes, nearestPincode, savePincode, getRecentLocations, addRecentLocation,
   isGeoPromptDismissed, dismissGeoPrompt, geolocationSupported, SERVICE_AREA_KM, recentKey,
+  reverseGeocode, fetchIpCity,
 } from '../../lib/location/locationStore'
 
 // JSON-LD injector
@@ -125,14 +126,20 @@ export function LocationControl({ value, onChange, showOutOfArea = true }) {
   const [error, setError] = useState(null)
   const [recent, setRecent] = useState([])
   const [outOfArea, setOutOfArea] = useState(null) // { latitude, longitude, pincode, village_town, distanceKm } | null
-  const [debug, setDebug] = useState(null) // dev-only: raw lat/lng + accuracy + timestamp — gated by ?debug=1
+  const [debug, setDebug] = useState(null) // dev-only: raw lat/lng + accuracy + timestamp + resolved name — ?debug=1
+  const [ipSuggest, setIpSuggest] = useState(null) // Phase 2 — { city, latitude, longitude } | null (Cloudflare IP guess)
   const geoOk = geolocationSupported()
   const debugOn = typeof window !== 'undefined' && /(?:\?|&)debug=1(?:&|$)/.test(window.location.search)
-  const [showPrompt, setShowPrompt] = useState(geoOk && !isGeoPromptDismissed())
+  const [showPrompt, setShowPrompt] = useState(!isGeoPromptDismissed())
 
   useEffect(() => {
     fetchAllPincodes().then(setPincodes).catch(() => {})
     setRecent(getRecentLocations())
+    // Phase 2 — before the user has chosen, fetch a silent Cloudflare IP-based city as a
+    // soft, non-committal pre-fill (no permission prompt). Absent/edge → cleanly ignored.
+    if (!isGeoPromptDismissed()) {
+      fetchIpCity().then((g) => { if (g?.city) setIpSuggest(g) }).catch(() => {})
+    }
   }, [])
 
   function commit(loc) {
@@ -143,20 +150,29 @@ export function LocationControl({ value, onChange, showOutOfArea = true }) {
   }
 
   function detect() {
-    setError(null); setDetecting(true); setOutOfArea(null)
+    setError(null); setDetecting(true); setOutOfArea(null); setIpSuggest(null)
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
+      async (pos) => {
         const { latitude, longitude, accuracy } = pos.coords
         const near = nearestPincode(latitude, longitude, pincodes)
         const inArea = !!near && near.distanceKm <= SERVICE_AREA_KM
+        // Resolve a DISPLAY name (never raw coordinates):
+        //  - in-area → matchedVillage's own name (1a-ii: keep one name per place across the app)
+        //  - far     → reverse-geocode the precise coords (works anywhere on Earth)
+        //  - geocode fails → nearest village + "लगभग … के पास" if < 50km, else a generic label
+        let placeName = inArea ? near.village_town : null
+        if (!inArea) {
+          const geo = await reverseGeocode(latitude, longitude)
+          placeName = geo
+            || (near && near.distanceKm < 50 ? t('loc_near_approx').replace('{v}', near.village_town) : t('loc_your_location'))
+        }
         if (debugOn) {
-          // 1e — surface the RAW returned fix for real-device verification: exact lat/lng,
-          // accuracy radius (m), and timestamp. (Emulation once falsely passed; a real
-          // phone must confirm these three values.)
+          // 1e/4a — surface the RAW fix (real-device verification) AND the resolved place name.
           setDebug({
             lat: latitude, lng: longitude, accuracy: Math.round(accuracy),
             ts: new Date(pos.timestamp || Date.now()).toISOString(),
             nearest: near ? `${near.village_town} (${Math.round(near.distanceKm)}km)` : 'none',
+            resolved: placeName,
           })
         }
         setDetecting(false); setShowPrompt(false); dismissGeoPrompt()
@@ -164,9 +180,9 @@ export function LocationControl({ value, onChange, showOutOfArea = true }) {
         // only when the nearest seeded village is within the service area; beyond that it is
         // null and the informational out-of-area notice appears (weather still updates).
         commit({
-          rawCoords: { latitude, longitude },
+          rawCoords: { latitude, longitude, placeName: inArea ? null : placeName },
           matchedVillage: inArea ? { pincode: near.pincode, village_town: near.village_town, distanceKm: near.distanceKm } : null,
-          label: inArea ? near.village_town : t('loc_your_location'),
+          label: placeName,
           source: inArea ? 'gps' : 'gps_far',
         })
         // Weather-only pages (/mausam, /fasal-salah) pass showOutOfArea=false: they have no
@@ -190,30 +206,68 @@ export function LocationControl({ value, onChange, showOutOfArea = true }) {
     // A manual pincode is a deliberate in-area choice: it sets BOTH rawCoords (from the
     // pincode's coordinates, for weather) and matchedVillage (for village features).
     commit({
-      rawCoords: row?.latitude != null ? { latitude: Number(row.latitude), longitude: Number(row.longitude) } : null,
+      rawCoords: row?.latitude != null ? { latitude: Number(row.latitude), longitude: Number(row.longitude), placeName: row?.village_town || null } : null,
       matchedVillage: { pincode: p, village_town: row?.village_town || p, distanceKm: 0 },
       label: row?.village_town || p,
       source: 'pincode',
     })
-    setPinInput(''); setManualOpen(false); setError(null); setOutOfArea(null)
+    setPinInput(''); setManualOpen(false); setError(null); setOutOfArea(null); setIpSuggest(null)
+    setShowPrompt(false); dismissGeoPrompt() // a pincode is a deliberate choice → close the first-visit prompt
+  }
+
+  // Phase 2c — the user accepts the Cloudflare IP-based city guess (approximate). It sets
+  // rawCoords (from the IP lat/lng, for weather) + a matchedVillage if that guess happens to
+  // fall inside the pilot service area, and uses the IP city as the display name.
+  function confirmIp() {
+    const s = ipSuggest
+    if (!s?.city) return
+    const lat = s.latitude, lng = s.longitude
+    const near = (lat != null && lng != null) ? nearestPincode(lat, lng, pincodes) : null
+    const inArea = !!near && near.distanceKm <= SERVICE_AREA_KM
+    commit({
+      rawCoords: (lat != null && lng != null) ? { latitude: Number(lat), longitude: Number(lng), placeName: s.city } : null,
+      matchedVillage: inArea ? { pincode: near.pincode, village_town: near.village_town, distanceKm: near.distanceKm } : null,
+      label: s.city,
+      source: 'ip',
+    })
+    setIpSuggest(null); setShowPrompt(false); setManualOpen(false); setOutOfArea(null); dismissGeoPrompt()
   }
 
   const chip = 'rounded-full px-3 py-1 text-[13px] font-semibold'
   return (
     <div data-testid="location-control" className="space-y-2">
-      {/* Auto-detect prompt — dismissible; not shown once answered/dismissed. */}
+      {/* Auto-detect prompt — dismissible; not shown once answered/dismissed. Three ordered
+          choices: GPS (precise) → Cloudflare IP city (approximate, if resolved) → pincode. */}
       {showPrompt && (
-        <div className="flex flex-wrap items-center gap-2 rounded-xl p-3" style={{ background: 'var(--ks-green-tint)', border: '1px solid var(--ks-green)' }}>
-          <span className="text-[15px] font-semibold" style={{ color: 'var(--ks-green-dark)' }}>📍 {t('loc_detect_q')}</span>
-          <button type="button" onClick={detect} className={`${chip} text-white`} style={{ background: 'var(--ks-green)' }}>{t('loc_yes')}</button>
-          <button type="button" onClick={() => { setShowPrompt(false); setManualOpen(true); dismissGeoPrompt() }} className={chip} style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>{t('loc_enter_pincode')}</button>
-          <button type="button" aria-label="✕" onClick={() => { setShowPrompt(false); dismissGeoPrompt() }} className="ml-auto text-[16px]" style={{ color: 'var(--ks-ink-3)' }}>✕</button>
+        <div className="space-y-2 rounded-xl p-3" style={{ background: 'var(--ks-green-tint)', border: '1px solid var(--ks-green)' }}>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[15px] font-semibold" style={{ color: 'var(--ks-green-dark)' }}>📍 {t('loc_detect_q')} <span className="font-normal" style={{ color: 'var(--ks-ink-3)' }}>({t('loc_precise')})</span></span>
+            {geoOk && <button type="button" data-testid="gps-detect" onClick={detect} className={`${chip} text-white`} style={{ background: 'var(--ks-green)' }}>{t('loc_yes')}</button>}
+            <button type="button" aria-label="✕" onClick={() => { setShowPrompt(false); dismissGeoPrompt() }} className="ml-auto text-[16px]" style={{ color: 'var(--ks-ink-3)' }}>✕</button>
+          </div>
+          {ipSuggest?.city && (
+            <div className="flex flex-wrap items-center gap-2" data-testid="ip-suggest">
+              <span className="text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('loc_ip_maybe').replace('{city}', ipSuggest.city)}</span>
+              <button type="button" onClick={confirmIp} className={chip} style={{ background: '#fff', border: '1px solid var(--ks-green)', color: 'var(--ks-green-dark)' }}>{t('loc_ip_confirm')}</button>
+            </div>
+          )}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('loc_or_pincode')}</span>
+            <input
+              type="text" inputMode="numeric" maxLength={6} placeholder={t('loc_enter_pincode')}
+              value={pinInput} onChange={(e) => setPinInput(e.target.value.replace(/\D/g, '').slice(0, 6))}
+              onKeyDown={(e) => { if (e.key === 'Enter') applyPincode(pinInput) }}
+              className="rounded-lg px-3 py-2 text-[16px]" style={{ border: '1px solid var(--ks-border-strong)', width: 130 }}
+              data-testid="pincode-input"
+            />
+            <button type="button" onClick={() => applyPincode(pinInput)} className={`${chip} text-white`} style={{ background: 'var(--ks-green)' }}>{t('loc_apply')}</button>
+          </div>
         </div>
       )}
 
       {/* Current place + a "change" toggle that reveals the manual controls. */}
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>📍 {value.label || t('pincode_label')}{value.matchedVillage?.pincode ? `: ${value.matchedVillage.pincode}` : ''}</span>
+        <span data-testid="location-label" className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>📍 {value.label || t('pincode_label')}{value.matchedVillage?.pincode ? `: ${value.matchedVillage.pincode}` : ''}</span>
         <button type="button" onClick={() => setManualOpen((o) => !o)} className="rounded-full px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>{t('loc_change')}</button>
       </div>
 
@@ -243,12 +297,13 @@ export function LocationControl({ value, onChange, showOutOfArea = true }) {
 
       {debugOn && debug && (
         <pre data-testid="geo-debug" className="overflow-x-auto rounded-lg p-2 text-[11px]" style={{ background: '#111', color: '#9f9' }}>
-          {`raw lat,lng: ${debug.lat}, ${debug.lng}\naccuracy: ±${debug.accuracy} m\ntimestamp: ${debug.ts}\nnearest seeded village: ${debug.nearest}`}
+          {`raw lat,lng: ${debug.lat}, ${debug.lng}\naccuracy: ±${debug.accuracy} m\ntimestamp: ${debug.ts}\nnearest seeded village: ${debug.nearest}\nresolved place name: ${debug.resolved}`}
         </pre>
       )}
 
-      {/* Manual controls — always reachable (Phase 2a), even after a GPS grant. */}
-      {manualOpen && (
+      {/* Manual controls — always reachable, even after a GPS grant (the pincode also lives in
+          the first-visit prompt above; guard against rendering two inputs at once). */}
+      {manualOpen && !showPrompt && (
         <div className="space-y-2 rounded-xl p-3" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)' }}>
           <div className="flex flex-wrap items-center gap-2">
             <input

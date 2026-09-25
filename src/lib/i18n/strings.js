@@ -1406,6 +1406,12 @@ export const strings = {
   loc_nearest_available: { hi: 'निकटतम उपलब्ध जगह', en: 'Nearest available place' },
   loc_use_far_anyway: { hi: '{v} का स्थानीय डेटा फिर भी देखें', en: 'Use {v}’s local data anyway' },
   loc_your_location: { hi: 'आपकी जगह', en: 'Your location' },
+  // 0028 Phase 1/2/3 — reverse-geocoded name, IP-city suggestion, ordered choice copy
+  loc_near_approx: { hi: 'लगभग {v} के पास', en: 'Near {v}' },
+  loc_precise: { hi: 'सटीक', en: 'precise' },
+  loc_ip_maybe: { hi: 'आप शायद {city} के आसपास हैं', en: 'You’re probably near {city}' },
+  loc_ip_confirm: { hi: 'हाँ, यही सही है', en: 'Yes, that’s right' },
+  loc_or_pincode: { hi: 'या पिनकोड डालें:', en: 'Or enter a pincode:' },
 
   // Phase 3 — MSP mandi search + distance ranking
   mandi_search_label: { hi: 'मंडी का नाम खोजें (जैसे: बीना, रहली)', en: 'Search a mandi (e.g. Bina, Rehli)' },
