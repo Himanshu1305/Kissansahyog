@@ -80,13 +80,16 @@ async function getOfficialPool() {
       const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
       if (!res.ok) { console.error(`official form [${form || 'none'}] HTTP ${res.status}`); continue }
       const raw = (await res.json()).records || []
+      // The resource's text filter also returns other "*Pradesh" states, so narrow
+      // to true MP client-side. Sagar-district rows are often absent from the daily
+      // feed, so the pool is MP-wide; per-commodity Sagar preference happens later.
       const mpAny = raw.filter((r) => stateOf(r).includes('madhya'))
-      const mp = mpAny.filter((r) => districtOf(r).includes('sagar'))
-      console.log(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} sagar=${mp.length}${raw.length && !form ? ' states=' + JSON.stringify([...new Set(raw.map(stateOf))].slice(0, 6)) : ''}`)
-      if (mp.length) { recs = mp; winner = form || 'no-filter'; break }
+      const sagar = mpAny.filter((r) => districtOf(r).includes('sagar'))
+      console.log(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} sagar=${sagar.length}`)
+      if (mpAny.length) { recs = mpAny; winner = form || 'no-filter'; break }
     } catch (e) { console.error(`official form [${form || 'none'}] failed: ${e.message}`) }
   }
-  console.log(`official API pool: ${recs.length} MP/Sagar records via [${winner}] (key: ${HAS_REAL_KEY ? 'real' : 'demo'})`)
+  console.log(`official API pool: ${recs.length} MP records via [${winner}] (key: ${HAS_REAL_KEY ? 'real' : 'demo'})`)
   _officialPool = recs
   return recs
 }
