@@ -22,4 +22,7 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           DATA_GOV_IN_API_KEY: ${{ secrets.DATA_GOV_IN_API_KEY }}
-        run: npm run refresh-prices
+        # Run node directly (no --env-file): CI injects env vars via the env: block
+        # above, and there is no .env file in the runner. The local `npm run
+        # refresh-prices` keeps using --env-file=.env for local runs.
+        run: node scripts/refresh-data.mjs
