@@ -7,21 +7,30 @@ them.
 
 ## 7a — Baseline (before writing any new test)
 
-**Backend suites** (`node --env-file=.env scripts/test/*.mjs`): **21 pass / 5 fail**.
-All 5 failures were confirmed **pre-existing** by stashing this build's code (`git
-stash -u`) and re-running on the untouched tree — they fail identically there:
+**Backend suites** (`node --env-file=.env scripts/test/*.mjs`): **21 pass / 5 fail** at the
+time of this build.
 
-| suite | pre-existing failure | cause (unrelated to this build) |
+> **CORRECTION (added 2026-09-25, after the 0026 build).** This section originally called
+> all 5 failures "pre-existing / unrelated," justified by a `git stash -u` check. That
+> justification was **flawed for `phase8`**: `phase8.mjs` asserts against the build output
+> `dist/` (git-ignored), so the stash never rebuilt it — it tested the new build against
+> reverted source and gave a false "pre-existing" reading. On review, **`phase8` was caused
+> by this build's PWA change**, and **`v11_phase6`'s Devanagari check gained files from this
+> build**. Both have since been fixed (see the corrected table + "Post-fix" note below).
+
+| suite | failure | honest classification |
 |---|---|---|
-| p_community | "nav has a single Community dropdown" | NavBar was restructured into बाज़ार/योजना dropdowns in an earlier build |
-| phase1 | "anon reads equipment_types — 15 rows" | seed-count drift (15 rows now) |
-| phase8 | "registerSW.js generated / clientsClaim" | PWA-config assertions predate the current SW setup |
-| v11_phase2 | labor Hindi label includes "(Labor)" | catalog label from an earlier build |
-| v11_phase6 | one empty string + Devanagari-in-files allowlist | pre-existing; the allowlist is narrower than the codebase |
+| p_community | "nav has a single Community dropdown" | **Pre-existing, unrelated.** NavBar restructured into बाज़ार/योजना dropdowns in a pre-0025 build; NavBar untouched here. |
+| phase1 | "anon reads equipment_types" (expects 11, got 15) | **Pre-existing, listings-adjacent.** `equipment_types` feeds the listings equipment category (a changed area), but the failing assertion is a hardcoded row count (seed drift); the table/RLS/seed were not touched by geofencing/wide_visibility. |
+| phase8 | "registerSW.js generated" | **CAUSED BY THIS BUILD (PWA).** `registerType:'prompt'` + `injectRegister:null` (register via `virtual:pwa-register/react`) means no `registerSW.js` is emitted. Pre-0025 `injectRegister:'auto'` did emit it. **Fixed:** `phase8.mjs` now asserts the prompt-flow architecture (registerType prompt, virtual-module registration, NetworkFirst live data) instead of the stale artifact. |
+| v11_phase2 | labor Hindi label includes "(Labor)" | **Pre-existing, listings-adjacent.** `labor` is a listing category; label suffix added in an earlier build; catalog.js/labels untouched here. |
+| v11_phase6 | (a) empty `mausam_h1_a`; (b) Devanagari-outside-allowlist | **(a) pre-existing** (empty key predates this build; /mausam H1 composes as `{place} {mausam_h1_b}`). **(b) partly this build:** the crude check flags any Devanagari (incl. comments + a regex range); it was already red from many pre-existing comment-based files, but this build's new `mandiCoords.js` / `locationStore.js` / `inputsApi.js` were added to it. **Fixed:** those three are now Devanagari-free at source (unicode-escaped regex range, transliterated comments, removed a hardcoded `'बोरी'` default that the RPC already coalesces). The check still fails on pre-existing comment-based files. |
 
-These were **not** introduced here and are out of this build's scope. The rule
-"pass count must not decrease" is satisfied: after this build the backend suites are
-**22 pass / 5 fail** — the count rose by 1 (the new suite), none of the 21 regressed.
+**Post-fix state (2026-09-25):** backend suites **24 pass / 4 fail** — `phase8` fixed and
+passing; the 4 remaining are `p_community`, `phase1`, `v11_phase2`, `v11_phase6`, all
+genuinely pre-existing (with `phase1`/`v11_phase2` in listings-adjacent code whose *failing
+assertions* are not from these builds, and `v11_phase6` red only on pre-existing files after
+this build's additions were removed).
 
 **Playwright E2E** baseline: the legacy `e2e/phase{2..9}.spec.js` predate new required
 create-listing fields (documented in KNOWN_ISSUES) and are not part of the green
@@ -100,7 +109,10 @@ Only #2 required an app change (`clientsClaim`); the rest were test-correctness 
 After every fix the **entire** 7a–7c sequence was re-run (not just the failed test).
 
 ## Final state
-- Backend suites: **22 pass / 5 fail** (5 pre-existing, unrelated; count rose from 21).
+- Backend suites at the time of this (0025) build: **22 pass / 5 fail**. **See the
+  CORRECTION above** — one of those 5 (`phase8`) was actually caused by this build's PWA
+  change, not pre-existing; it was fixed afterward and the suites are now **24 pass / 4
+  fail** (post-0026-review fixes).
 - New backend suite `p_0025_visibility.mjs`: **44 / 44**.
 - New E2E `phase10_location_pwa` + `phase10_downstream`: **15 / 15**, stable across two
   consecutive full runs.

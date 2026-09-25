@@ -68,9 +68,17 @@ and the new comparison table:
 stale-price tag. All clean — no fixes needed.
 
 **Tests (permanent, committed):**
-- Re-ran last build's suites: backend **23 pass / 5 fail** (the 5 are the same pre-existing
-  failures documented in the previous review — count rose from 22, none regressed);
-  E2E from the last build still green.
+- Re-ran last build's suites: backend **23 pass / 5 fail** at the time of this build.
+  **CORRECTION (same-day follow-up):** the "5 same pre-existing failures" claim was wrong for
+  two of them — `phase8` was actually caused by the 0025 PWA change (`phase8.mjs` reads the
+  git-ignored `dist/`, so the earlier `git stash` baseline check never rebuilt it and
+  mis-classified it), and `v11_phase6`'s Devanagari check had this-and-last-build's new
+  location/mandi files added to it. Both were fixed (phase8 updated to the prompt-flow PWA
+  architecture; the three new files made Devanagari-free at source). Suites are now
+  **24 pass / 4 fail** — the 4 (`p_community`, `phase1`, `v11_phase2`, `v11_phase6`) are
+  genuinely pre-existing (`phase1`/`v11_phase2` in listings-adjacent code with non-related
+  failing assertions; `v11_phase6` red only on pre-existing comment-based files).
+- E2E from the last build still green.
 - New: `scripts/test/p_0026_location_compare.mjs` (**19/19** — distance threshold positive/
   negative, comparison data/cap/auto-nearest/sticky, staleness rule) and
   `e2e/phase11_location_compare.spec.js` (**4/4** — far-location shows the honest message,

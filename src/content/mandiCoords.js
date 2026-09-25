@@ -47,7 +47,7 @@ export function marketTownKey(market) {
   return String(market || '')
     .replace(/\(.*?\)/g, ' ') // drop "(F&V)" etc.
     .replace(/\bAPMC\b/gi, ' ')
-    .replace(/[^a-zA-Zऀ-ॿ ]/g, ' ')
+    .replace(/[^a-zA-Z\u0900-\u097F ]/g, ' ') // keep A-Z + the Devanagari block, drop the rest
     .trim()
     .toLowerCase()
     .split(/\s+/)[0] || ''

@@ -83,8 +83,12 @@ Full finding in `PHASE0_GEOFENCING_FINDING.md`. Summary:
   keep the homepage uncluttered — "optionally" per spec.)
 
 ## Phase 7 — Automated E2E + bug-fix loop
-See `E2E_TEST_REPORT.md`. Baseline backend suites 21 pass / 5 fail (all 5 **pre-existing**,
-verified by stashing this build). New permanent tests: `scripts/test/p_0025_visibility.mjs`
+See `E2E_TEST_REPORT.md`. Baseline backend suites 21 pass / 5 fail. **CORRECTION (post-0026):
+the "all 5 pre-existing" claim was wrong for `phase8`** — the `git stash` check didn't rebuild
+the git-ignored `dist/` it reads, so it mis-reported a PWA-change-caused failure as
+pre-existing. `phase8` (and this build's additions to `v11_phase6`'s Devanagari check) were
+fixed afterward; suites are now 24 pass / 4 fail. Full detail in the corrected
+`E2E_TEST_REPORT.md`. New permanent tests: `scripts/test/p_0025_visibility.mjs`
 (44/44 — geofencing logic, wide-visibility server guard, mandi separation, PWA config,
 input prices, downstream feed-non-empty) and `e2e/phase10_location_pwa.spec.js` +
 `e2e/phase10_downstream.spec.js` (15/15 — location, mandi search, PWA install/offline,

@@ -31,6 +31,6 @@ export const adminUpsertInputPrice = (actorId, m) =>
   rpc('admin_upsert_input_price', {
     p_actor_id: actorId, p_id: m.id || null,
     p_item_hi: m.item_hi, p_item_en: m.item_en || null, p_shop_name: m.shop_name,
-    p_location: m.location || null, p_price: Number(m.price) || 0, p_unit: m.unit || 'बोरी',
+    p_location: m.location || null, p_price: Number(m.price) || 0, p_unit: m.unit || null, // server RPC defaults the unit; no client-side Hindi literal
     p_updated_date: m.updated_date || null, p_is_active: m.is_active !== false,
   })

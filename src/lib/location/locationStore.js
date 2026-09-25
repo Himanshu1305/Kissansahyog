@@ -1,5 +1,5 @@
 // Phase 2 — one source of truth for the farmer's location, shared by the homepage
-// "आपके आसपास" control, /mausam, and /msp.
+// "nearby" (aapke aaspaas) control, /mausam, and /msp.
 //
 // A location is { pincode, latitude, longitude, label, source }:
 //   - pincode  drives pincode-dependent features (nearby counts, listings, MSP mandi
@@ -10,7 +10,7 @@
 //   - label    a human place name for display.
 //   - source   'gps' | 'pincode' | 'recent' | 'default'.
 //
-// The seeded `pincodes` table is the SINGLE coordinate source (same one the मौसम/MSP
+// The seeded `pincodes` table is the SINGLE coordinate source (same one the mausam/MSP
 // build already uses via fetchPincode) — we do not create a parallel gazetteer.
 import { supabase } from '../supabaseClient'
 import { haversineKm } from '../distance'

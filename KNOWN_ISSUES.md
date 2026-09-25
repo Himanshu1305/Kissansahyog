@@ -160,13 +160,23 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 - **Note for the history backfill:** resource `9ef84268-…` is a *daily-snapshot* resource (today's rows only), and its filters are lowercase; `backfill-mandi-history.mjs` should be revisited (lowercase filters + a genuinely historical Agmarknet source) before relying on it for multi-year history.
 
 ## Geofencing / Location / Mandi / PWA / Inputs build (2026-09-25, migration 0025)
-- **Pre-existing failing backend suites (NOT introduced here).** Baseline was 21 pass / 5
-  fail; all 5 fail identically on the pre-build tree (verified via `git stash`): `p_community`
-  (expects the old single "Community" nav dropdown), `phase1` (equipment_types seed-count
-  drift = 15), `phase8` (asserts the old autoUpdate SW config), `v11_phase2` (labor label
-  includes "(Labor)"), `v11_phase6` (one empty string `mausam_h1_a` + a narrow Devanagari-in-
-  files allowlist). This build's new suite raised the count to 22 pass; none of the 21 regressed.
-  These 5 are out of scope for this build and remain open.
+- **Failing backend suites — CORRECTED (2026-09-25).** The baseline was 21 pass / 5 fail. This
+  note originally claimed all 5 were pre-existing "verified via `git stash`" — that was wrong
+  for two, because `phase8.mjs` reads the git-ignored `dist/` build output, so the stash never
+  rebuilt it. Accurate breakdown:
+  - `phase8` — **was caused by this build's PWA change** (`registerType:'prompt'` +
+    `injectRegister:null` → no `registerSW.js`). **Fixed:** `phase8.mjs` now asserts the
+    prompt-flow architecture (virtual-module registration, NetworkFirst live data). Passes.
+  - `v11_phase6` (Devanagari-outside-allowlist) — already red on many pre-existing comment-based
+    files, but this build's new `mandiCoords.js`/`locationStore.js`/`inputsApi.js` were added
+    to it. **Fixed:** those three are Devanagari-free at source now (unicode-escaped regex range,
+    transliterated comments, dropped a hardcoded `'बोरी'` the RPC already coalesces). Still red
+    on the pre-existing files + the empty `mausam_h1_a` key.
+  - `p_community` (old "Community" nav dropdown), `phase1` (equipment_types count 11→15 drift),
+    `v11_phase2` (labor label "(Labor)" suffix) — genuinely pre-existing; `phase1`/`v11_phase2`
+    are in listings-adjacent code but their *failing assertions* aren't from these builds.
+  - **Current state: 24 pass / 4 fail** (the 4 above minus `phase8`). The 4 remain open, out of
+    scope for these builds.
 - **`input_prices` are seeded starter data**, not a live feed — 3 Khurai shops × Urea/DAP/
   diesel with plausible prices. They need ongoing admin maintenance via the `/admin` panel
   (same caveat as KVK events). Not auto-refreshed by any cron.
@@ -204,5 +214,8 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 - **Missing-price "—" uses a native `title` tooltip** (hover / long-press), not an `InfoTip` ⓘ
   button, to avoid an ⓘ on every empty cell in the dense comparison grid — tap-reveal is
   therefore browser-dependent on mobile.
-- **Backend suites remain 23 pass / 5 fail** — the 5 are the same pre-existing failures from the
-  0025 build (unrelated); this build added `p_0026_location_compare.mjs` (19) which passes.
+- **Backend suites: 24 pass / 4 fail** after the correction above. This build added
+  `p_0026_location_compare.mjs` (19, passes). Of the previously-reported "5 pre-existing / 5
+  fail", `phase8` turned out to be a PWA-change regression (now fixed) and `v11_phase6` had this
+  build's new files added to it (now removed at source) — see the corrected 0025 note above.
+  The 4 remaining failures are genuinely pre-existing.
