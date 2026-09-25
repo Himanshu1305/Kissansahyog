@@ -117,7 +117,7 @@ export async function fetchNearby({ category, listingType = null, center, sort =
 export async function fetchRecentListings(limit = 12) {
   const { data, error } = await supabase
     .from('listings')
-    .select('id,listing_type,category,pincode,details,created_at,listing_source')
+    .select('id,listing_type,category,pincode,details,created_at,listing_source,is_test_data')
     .eq('status', 'active')
     .gt('expires_at', new Date().toISOString())
     .order('created_at', { ascending: false })
@@ -152,7 +152,7 @@ export async function fetchRecentListings(limit = 12) {
 export async function fetchHomeFeed({ center = null, limit = 8, pool = 40, category = null } = {}) {
   let query = supabase
     .from('listings')
-    .select('id,listing_type,category,pincode,details,created_at,listing_source')
+    .select('id,listing_type,category,pincode,details,created_at,listing_source,is_test_data')
     .eq('status', 'active')
     .gt('expires_at', new Date().toISOString())
   if (category) query = query.eq('category', category)

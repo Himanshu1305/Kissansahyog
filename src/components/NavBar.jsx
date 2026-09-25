@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
@@ -20,6 +20,7 @@ const CATEGORIES = [
   { key: 'warehouse', labelKey: 'home_cat_warehouse' },
   { key: 'experts', labelKey: 'home_cat_experts' },
   { key: 'land', labelKey: 'home_cat_land' },
+  { key: 'fasal', labelKey: 'nav_fasal', path: '/fasal-salah' },
 ]
 
 // सरकारी योजनाएं dropdown — two government levels.
@@ -47,8 +48,21 @@ export default function NavBar() {
   const [params] = useSearchParams()
   const [open, setOpen] = useState(false)
   const [menu, setMenu] = useState(false) // user dropdown
-  const [bz, setBz] = useState(false)     // बाज़ार dropdown (desktop)
-  const [sch, setSch] = useState(false)   // सरकारी योजनाएं dropdown (desktop)
+  const [bz, setBz] = useState(false)     // बाज़ार dropdown (desktop, click-to-open)
+  const [sch, setSch] = useState(false)   // सरकारी योजनाएं dropdown (desktop, click-to-open)
+  const bzRef = useRef(null)
+  const schRef = useRef(null)
+
+  // Click-outside closes the desktop dropdowns (they are click-to-open, not hover).
+  useEffect(() => {
+    if (!bz && !sch) return
+    const onDoc = (e) => {
+      if (bz && bzRef.current && !bzRef.current.contains(e.target)) setBz(false)
+      if (sch && schRef.current && !schRef.current.contains(e.target)) setSch(false)
+    }
+    document.addEventListener('mousedown', onDoc)
+    return () => document.removeEventListener('mousedown', onDoc)
+  }, [bz, sch])
 
   // Navigate to a marketplace category. Drone Didi → its dedicated page; Experts →
   // its screen (or signup); others → filtered browse (or homepage ?cat= for anon).
@@ -86,9 +100,9 @@ export default function NavBar() {
 
         {/* Primary nav — centre on desktop: बाज़ार▾ · मंडी भाव · मौसम · योजनाएं▾ · सवाल · वीडियो · संपर्क */}
         <nav className="mx-auto hidden items-center gap-1 md:flex">
-          {/* बाज़ार dropdown */}
-          <div className="relative" onMouseLeave={() => setBz(false)}>
-            <button type="button" aria-haspopup="menu" aria-expanded={bz} className={catBtn(bz)} onClick={() => setBz((v) => !v)} onMouseEnter={() => setBz(true)}>
+          {/* बाज़ार dropdown (click-to-open) */}
+          <div className="relative" ref={bzRef}>
+            <button type="button" aria-haspopup="menu" aria-expanded={bz} className={catBtn(bz)} onClick={() => { setSch(false); setBz((v) => !v) }}>
               {t('nav_bazaar')} ▾
             </button>
             {bz && (
@@ -103,9 +117,9 @@ export default function NavBar() {
           </div>
           <button type="button" className={catBtn(location.pathname.startsWith('/msp'))} onClick={() => goPath('/msp')}>{t('nav_mandi')}</button>
           <button type="button" className={catBtn(location.pathname.startsWith('/mausam'))} onClick={() => goPath('/mausam')}>{t('nav_weather')}</button>
-          {/* सरकारी योजनाएं dropdown */}
-          <div className="relative" onMouseLeave={() => setSch(false)}>
-            <button type="button" aria-haspopup="menu" aria-expanded={sch} className={catBtn(location.pathname.startsWith('/yojana'))} onClick={() => setSch((v) => !v)} onMouseEnter={() => setSch(true)}>
+          {/* सरकारी योजनाएं dropdown (click-to-open) */}
+          <div className="relative" ref={schRef}>
+            <button type="button" aria-haspopup="menu" aria-expanded={sch} className={catBtn(location.pathname.startsWith('/yojana'))} onClick={() => { setBz(false); setSch((v) => !v) }}>
               {t('nav_schemes')} ▾
             </button>
             {sch && (

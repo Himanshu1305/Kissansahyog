@@ -12,8 +12,7 @@ import { actionWindows, imdClass, nextRain, STATUS_COLOR } from '../lib/weather/
 import { fetchPincode } from '../lib/listings/listingsApi'
 import { resolvePincode, savePincode, DEFAULT_PINCODE } from '../lib/listings/nearbyCounts'
 import { fetchPageFaqs, fetchSiteSetting } from '../lib/pages/pagesApi'
-import { CROPS, currentSeason, cropName } from '../content/crops'
-import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TwoBar, ReviewTag, JsonLd } from '../components/pages/shared'
+import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TwoBar, ReviewTag, JsonLd, InfoTip } from '../components/pages/shared'
 
 const IMD_URL = 'https://mausam.imd.gov.in'
 const STATUS_LABEL = { ok: 'aw_ok', caution: 'aw_caution', stop: 'aw_stop' }
@@ -21,7 +20,7 @@ const dayHi = (dateStr, t) => t(`wday_${new Date(dateStr).getDay()}`)
 const hourLabel = (iso) => { const d = new Date(iso); return `${d.getHours()}:00` }
 
 export default function Mausam() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const { user } = useAuth()
   const navigate = useNavigate()
   const [pincode, setPincode] = useState(() => resolvePincode(user?.pincode))
@@ -55,10 +54,7 @@ export default function Mausam() {
   }
 
   const windows = useMemo(() => (wx ? actionWindows(wx.hourly, wx.daily) : null), [wx])
-  const season = currentSeason()
-  const seasonCrops = CROPS.filter((c) => c.season === season && c.slug !== 'lahsun')
 
-  const loc = place || t('pincode_label') + ' ' + pincode
   const today = wx?.daily?.[0]
   const info = wx ? weatherInfo(wx.current_weathercode) : null
   const rain = wx ? nextRain(wx.hourly) : null
@@ -108,15 +104,20 @@ export default function Mausam() {
               {rain ? `${t('mausam_rain_next')}: ${rain.inHours === 0 ? t('mausam_rain_now') : `${rain.inHours} ${t('hours_short')} ${t('mausam_rain_after')}`} ~${rain.mm} ${t('mm_unit')}` : t('mausam_no_rain_48')}
             </div>
             {imd && (
-              <a href={IMD_URL} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: `2px solid ${imd.color}`, color: imd.color }}>
-                ● {t(`imd_${imd.level}`)} — {t('imd_not_official')} →
-              </a>
+              <div className="mt-2">
+                <span className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: `2px solid ${imd.color}`, color: imd.color }}>
+                  ● {t(`imd_${imd.level}`)}
+                  <InfoTip label={t('imd_tip')} />
+                </span>
+                <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('imd_badge_desc')}</p>
+                <a href={IMD_URL} target="_blank" rel="noopener noreferrer" className="mt-0.5 inline-block text-[14px] font-bold" style={{ color: 'var(--ks-blue)' }}>{t('imd_official_cta')} →</a>
+              </div>
             )}
           </section>
 
           {/* 4. ActionWindows */}
           <section>
-            <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{t('mausam_actions_h')}<ReviewTag reviewed={reviewed} /></h2>
+            <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{t('mausam_actions_h')}<InfoTip label={t('verdict_tip')} /><ReviewTag reviewed={reviewed} /></h2>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {[['spray', 'aw_spray', '💦'], ['irrigation', 'aw_irrigation', '🚰'], ['harvest', 'aw_harvest', '🌾'], ['sowing', 'aw_sowing', '🌱']].map(([k, label, icon]) => {
                 const w = windows[k]; const col = STATUS_COLOR[w.status]
@@ -135,13 +136,14 @@ export default function Mausam() {
 
           {/* 5. 48h hourly strip */}
           <section>
-            <h2 className="mb-2 text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('mausam_48h')}</h2>
+            <h2 className="mb-2 text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('mausam_48h')}<InfoTip label={t('rainprob_tip')} /></h2>
             <div className="flex gap-2 overflow-x-auto pb-2 [scrollbar-width:thin]">
               {wx.hourly.filter((_, i) => i % 3 === 0).map((h, i) => (
                 <div key={i} className="flex shrink-0 flex-col items-center rounded-lg px-3 py-2 text-center" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', minWidth: 64 }}>
                   <span className="text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{hourLabel(h.time)}</span>
-                  <span className="text-[18px]" aria-hidden="true">{weatherInfo(0).icon && ''}{Math.round(h.temp)}°</span>
+                  <span className="text-[18px]">{Math.round(h.temp)}°</span>
                   <span className="text-[12px]" style={{ color: 'var(--ks-blue)' }}>{Math.round((h.precip_mm || 0) * 10) / 10}{t('mm_unit')}</span>
+                  {h.precip_prob != null && <span className="text-[11px]" style={{ color: 'var(--ks-blue)' }}>💧{h.precip_prob}%</span>}
                   <span className="text-[11px]" style={{ color: 'var(--ks-ink-3)' }}>🌬{Math.round(h.wind_kmh)}</span>
                 </div>
               ))}
@@ -170,19 +172,14 @@ export default function Mausam() {
             </div>
           </section>
 
-          {/* 7. per-crop advice */}
-          <section>
-            <h2 className="mb-2 text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('mausam_crops_h')}<ReviewTag reviewed={reviewed} /></h2>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {seasonCrops.map((c) => (
-                <div key={c.slug} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
-                  <div className="text-[16px] font-bold" style={{ color: 'var(--ks-ink)' }}>{cropName(c, lang)}</div>
-                  <p className="mt-1 text-[14px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>{t(`cropadv_${c.slug}`)}</p>
-                  <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>🌾 {t('aw_harvest')}: {t(STATUS_LABEL[windows.harvest.status])} · 💦 {t('aw_spray')}: {t(STATUS_LABEL[windows.spray.status])}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* 7. crop-advice teaser (full content moved to /fasal-salah) */}
+          <button type="button" onClick={() => navigate('/fasal-salah')} className="flex w-full items-center justify-between gap-3 text-left" style={{ background: 'var(--ks-green-tint)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
+            <span>
+              <span className="block text-[17px] font-bold" style={{ color: 'var(--ks-green-dark)' }}>🌱 {t('teaser_crops_q')}</span>
+              <span className="block text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('teaser_crops_sub')}</span>
+            </span>
+            <span className="shrink-0 text-[15px] font-bold" style={{ color: 'var(--ks-green)' }}>{t('teaser_crops_cta')} →</span>
+          </button>
 
           {/* 8. season rainfall */}
           {wx.season_rain && (
@@ -194,6 +191,7 @@ export default function Mausam() {
                   {(() => { const diff = Math.round(((wx.season_rain.to_date_mm - wx.season_rain.normal_mm) / (wx.season_rain.normal_mm || 1)) * 100); return diff >= 0 ? `${t('mausam_rain_above').replace('{n}', Math.abs(diff))}` : `${t('mausam_rain_below').replace('{n}', Math.abs(diff))}` })()}
                 </p>
               )}
+              <p className="mt-2 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{t('src_season')}</p>
             </section>
           )}
 
@@ -209,6 +207,7 @@ export default function Mausam() {
                 </div>
               ))}
             </div>
+            <p className="mt-2 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{t('src_16day')}</p>
           </section>
 
           {/* 10. glossary */}

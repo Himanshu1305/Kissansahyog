@@ -69,7 +69,14 @@ export default function DroneDidi() {
             {listings.map((l) => {
               const rows = getCategory(l.category).summarize(l, lang, extras).slice(0, 2)
               const place = [l.village_town || l.district].filter(Boolean).join(' · ')
-              return <HomeListingCard key={l.id} image="/images/home/list-drone.jpg" badge={t('cat_drone_label')} badgeTone="offer" title={rows[0]?.value || t('cat_drone_label')} price={rows[1]?.value} place={place} waHref={whatsappListingUrl(l)} tel={null} />
+              return (
+                <div key={l.id} className="relative">
+                  {l.is_test_data && (
+                    <span className="absolute right-1 top-1 z-10 rounded-md px-1.5 py-0.5 text-[11px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)', border: '1px solid var(--ks-saffron)' }}>{t('example_listing')}</span>
+                  )}
+                  <HomeListingCard image="/images/home/list-drone.jpg" badge={t('cat_drone_label')} badgeTone="offer" title={rows[0]?.value || t('cat_drone_label')} price={rows[1]?.value} place={place} waHref={whatsappListingUrl(l)} tel={null} />
+                </div>
+              )
             })}
           </div>
         ) : (

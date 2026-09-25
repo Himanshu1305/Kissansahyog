@@ -26,6 +26,10 @@ export default function Sawaal() {
   const [showForm, setShowForm] = useState(params.get('ask') === '1')
   const photoDefault = params.get('photo') === '1'
   const [videosById, setVideosById] = useState({})
+  const [q, setQ] = useState('')
+  const [dq, setDq] = useState('') // debounced search term
+
+  useEffect(() => { const id = setTimeout(() => setDq(q.trim().toLowerCase()), 250); return () => clearTimeout(id) }, [q])
 
   useEffect(() => {
     let alive = true
@@ -41,7 +45,18 @@ export default function Sawaal() {
     return () => { alive = false }
   }, [t])
 
-  const shown = useMemo(() => (rows || []).filter((r) => cat === 'all' || r.category === cat), [rows, cat])
+  // Per-category counts for the chip labels.
+  const counts = useMemo(() => {
+    const c = { all: (rows || []).length }
+    for (const r of rows || []) c[r.category] = (c[r.category] || 0) + 1
+    return c
+  }, [rows])
+  // Filter by category AND debounced search over question text (client-side; small set).
+  const shown = useMemo(() => (rows || []).filter((r) => {
+    if (cat !== 'all' && r.category !== cat) return false
+    if (!dq) return true
+    return `${r.question_hi || ''} ${r.question_en || ''}`.toLowerCase().includes(dq)
+  }), [rows, cat, dq])
   const chip = (active) =>
     `whitespace-nowrap rounded-full px-3 py-1 text-sm font-semibold border ${
       active ? 'border-green-700 bg-green-700 text-white' : 'border-stone-300 bg-white text-stone-700'
@@ -63,10 +78,16 @@ export default function Sawaal() {
 
         {showForm && <AskForm t={t} photoDefault={photoDefault} onDone={() => setShowForm(false)} />}
 
-        {/* Category filter (horizontal scroll on mobile) */}
+        {/* Search (debounced, client-side) */}
+        <div className="mt-3">
+          <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('sawaal_search_ph')}
+            className="w-full rounded-lg border px-3 py-2 text-[16px]" style={{ borderColor: 'var(--ks-border-strong)' }} />
+        </div>
+
+        {/* Category filter chips with counts (horizontal scroll on mobile) */}
         <div className="-mx-2 mt-3 flex gap-1.5 overflow-x-auto px-2 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {CATS.map((c) => (
-            <button key={c} type="button" className={chip(cat === c)} onClick={() => setCat(c)}>{t(`scat_${c}`)}</button>
+          {CATS.filter((c) => c === 'all' || counts[c]).map((c) => (
+            <button key={c} type="button" className={chip(cat === c)} onClick={() => setCat(c)}>{t(`scat_${c}`)} ({counts[c] || 0})</button>
           ))}
         </div>
 
@@ -74,7 +95,10 @@ export default function Sawaal() {
         {rows === null ? (
           <Spinner />
         ) : shown.length === 0 ? (
-          <p className="py-12 text-center text-stone-500">{t('sawaal_empty')}</p>
+          <div className="py-10 text-center">
+            <p className="text-stone-500">{dq ? t('sawaal_no_match') : t('sawaal_empty')}</p>
+            <button type="button" onClick={() => setShowForm(true)} className="mt-3 rounded-lg bg-green-700 px-4 py-2 text-sm font-bold text-white">📷 {t('qa_photo_ask')}</button>
+          </div>
         ) : (
           <div className="mt-3 space-y-2">
             {shown.map((r) => {

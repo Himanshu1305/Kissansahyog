@@ -1344,4 +1344,40 @@ export const strings = {
   admin_procurement: { hi: 'खरीद केंद्र', en: 'Procurement centres' },
   admin_page_faqs: { hi: 'पेज FAQ (मौसम/MSP)', en: 'Page FAQs (mausam/msp)' },
   admin_data_health: { hi: 'डेटा हेल्थ', en: 'Data health' },
+
+  // ===================== मौसम/MSP polish (2026-09-25) =====================
+  // 2a IMD badge reframe + InfoTips
+  imd_badge_desc: { hi: 'किसान सहयोग का अनुमान — Open-Meteo के मौसम मॉडल पर आधारित, IMD के बारिश वर्गीकरण के अनुसार।', en: 'Kisan Sahyog estimate — based on the Open-Meteo weather model, per IMD’s rainfall classification.' },
+  imd_official_cta: { hi: 'आधिकारिक चेतावनी यहाँ देखें', en: 'See the official warning here' },
+  imd_tip: { hi: 'IMD बारिश वर्गीकरण (24 घंटे): पीला ≥64.5 मिमी (भारी), नारंगी ≥115.5 मिमी (बहुत भारी), लाल ≥204.5 मिमी (अत्यधिक)।', en: 'IMD rainfall classes (24h): Yellow ≥64.5mm (heavy), Orange ≥115.5mm (very heavy), Red ≥204.5mm (extremely heavy).' },
+  verdict_tip: { hi: 'ठीक = कर सकते हैं · सावधानी = ध्यान से करें · रुकें = अभी न करें।', en: 'OK = go ahead · Caution = take care · Stop = don’t do it now.' },
+  rainprob_tip: { hi: 'बारिश की संभावना (%) बताती है उस समय बारिश होने के कितने आसार हैं; मिमी बताती है कितनी बारिश। 70% = ज़्यादा आसार।', en: 'Rain probability (%) is the chance of rain then; mm is how much. 70% = high chance.' },
+  // 2b teaser + fasal-salah page
+  teaser_crops_q: { hi: 'आपकी फसल के लिए आज क्या करें?', en: 'What to do for your crop today?' },
+  teaser_crops_sub: { hi: 'मौसम अनुसार प्रति-फसल सलाह', en: 'Per-crop advice based on the weather' },
+  teaser_crops_cta: { hi: 'फसल सलाह देखें', en: 'See crop advice' },
+  nav_fasal: { hi: 'फसल सलाह', en: 'Crop advice' },
+  fasal_h1: { hi: 'फसल सलाह — इस मौसम में क्या करें', en: 'Crop advice — what to do this season' },
+  fasal_intro_1: { hi: 'यह पेज आपकी फसल के लिए मौसम-आधारित सलाह देता है — छिड़काव, सिंचाई और कटाई के फैसले में मदद के लिए।', en: 'This page gives weather-based advice for your crop — to help decide spraying, irrigation and harvest.' },
+  fasal_intro_2: { hi: 'सलाह वही नियम इस्तेमाल करती है जो मौसम पेज के "आज क्या करें" में हैं। रोज़ का मौसम मौसम पेज पर देखें।', en: 'It uses the same rules as the weather page’s “what to do today”. See daily weather on the weather page.' },
+  fasal_season_h: { hi: 'इस सीज़न की फसलें', en: 'This season’s crops' },
+  fasal_all_h: { hi: 'अन्य फसलें', en: 'Other crops' },
+  fasal_see_mausam: { hi: 'मौसम अनुसार सलाह देखें', en: 'See weather-based advice' },
+  season_kharif: { hi: 'खरीफ', en: 'Kharif' },
+  season_rabi: { hi: 'रबी', en: 'Rabi' },
+  // 2d/2e source citations
+  src_season: { hi: 'स्रोत: Open-Meteo ऐतिहासिक डेटा — 2015–2025 का औसत।', en: 'Source: Open-Meteo historical data — 2015–2025 average.' },
+  src_16day: { hi: 'स्रोत: Open-Meteo मौसम मॉडल · 7 दिन से आगे का अनुमान कम भरोसेमंद है।', en: 'Source: Open-Meteo weather model · forecasts beyond 7 days are less reliable.' },
+  // Phase 3 — MSP snapshot, trend note, mandi note, calculator
+  msp_snapshot_h: { hi: 'सभी फसलें — आज का भाव', en: 'All crops — today’s price' },
+  col_crop: { hi: 'फसल', en: 'Crop' },
+  msp_only_ndays: { hi: 'इस अवधि में केवल {n} दिन का डेटा उपलब्ध', en: 'Only {n} days of data available in this window' },
+  msp_one_mandi: { hi: 'आज केवल {m} मंडी से डेटा उपलब्ध है', en: 'Only {m} mandi reported data today' },
+  msp_calc_trend_note: { hi: 'यह पिछले {d} दिन के रुझान पर आधारित गणित है, भविष्यवाणी नहीं — फैसला आपका है।', en: 'This is maths based on the last {d} days’ trend, not a prediction — the decision is yours.' },
+  msp_calc_above_note: { hi: 'भाव MSP से ऊपर है — रोकने पर केवल गोदाम का खर्च लगेगा:', en: 'Price is above MSP — holding only costs storage:' },
+  // Phase 5 — /sawaal search
+  sawaal_search_ph: { hi: 'सवाल खोजें…', en: 'Search questions…' },
+  sawaal_no_match: { hi: 'कोई सवाल नहीं मिला — अपना सवाल पूछें', en: 'No question found — ask your own' },
+  // Phase 6 — drone-didi test-data label
+  example_listing: { hi: 'उदाहरण लिस्टिंग', en: 'Example listing' },
 }

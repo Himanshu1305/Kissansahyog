@@ -96,3 +96,23 @@ export async function fetchMandiMonthly(commodityEn) {
   const rows = await fetchMandiHistory(commodityEn, 365 * 3 + 5)
   return rows
 }
+
+// /msp landing snapshot: latest modal price per commodity (prefer Sagar on the
+// latest date). Returns a map keyed by commodity_en → {modal_price, price_date, market}.
+export async function fetchMandiSnapshot() {
+  const { data, error } = await supabase
+    .from('mandi_prices')
+    .select('commodity_en,modal_price,price_date,market,is_sagar_district')
+    .order('price_date', { ascending: false })
+    .limit(3000)
+  if (error || !data) return {}
+  const by = {}
+  for (const r of data) {
+    if (r.modal_price == null) continue
+    const c = by[r.commodity_en]
+    if (!c) { by[r.commodity_en] = r; continue }
+    if (r.price_date > c.price_date) by[r.commodity_en] = r
+    else if (r.price_date === c.price_date && r.is_sagar_district && !c.is_sagar_district) by[r.commodity_en] = r
+  }
+  return by
+}

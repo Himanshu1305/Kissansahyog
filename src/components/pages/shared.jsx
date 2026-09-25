@@ -1,6 +1,6 @@
 // Shared building blocks for the /mausam and /msp pages. Same tokens + kit as the
 // v4 homepage. Charts are inline SVG with a screen-reader table fallback.
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { WhatsAppIcon } from '../home/kit'
 import { faqQ, faqA, subscribeAlert } from '../../lib/pages/pagesApi'
@@ -8,6 +8,45 @@ import { faqQ, faqA, subscribeAlert } from '../../lib/pages/pagesApi'
 // JSON-LD injector
 export function JsonLd({ data }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+}
+
+// InfoTip — a tappable "ⓘ" that opens a short point-of-need explanation. Click to
+// open (mobile-first — no hover), dismiss by tapping outside or the ✕. Anchors left
+// or right depending on screen position so the popover never causes horizontal scroll.
+export function InfoTip({ label, label_en }) {
+  const { lang } = useLang()
+  const [open, setOpen] = useState(false)
+  const [side, setSide] = useState('left')
+  const ref = useRef(null)
+  useEffect(() => {
+    if (!open) return
+    const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false) }
+    document.addEventListener('mousedown', onDoc)
+    document.addEventListener('touchstart', onDoc)
+    return () => { document.removeEventListener('mousedown', onDoc); document.removeEventListener('touchstart', onDoc) }
+  }, [open])
+  const text = lang === 'en' ? (label_en || label) : label
+  const toggle = (e) => {
+    e.preventDefault(); e.stopPropagation()
+    const r = ref.current?.getBoundingClientRect()
+    if (r) setSide(r.left > window.innerWidth * 0.5 ? 'right' : 'left')
+    setOpen((v) => !v)
+  }
+  return (
+    <span ref={ref} className="relative inline-flex align-middle">
+      <button type="button" aria-label={lang === 'en' ? 'More info' : 'जानकारी'} aria-expanded={open} onClick={toggle}
+        className="ml-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[13px] font-bold leading-none"
+        style={{ background: 'var(--ks-blue-tint)', color: 'var(--ks-blue)', minHeight: 0 }}>ⓘ</button>
+      {open && (
+        <span role="tooltip" className="absolute z-50 mt-1 block rounded-lg p-3 text-left text-[13px] font-normal leading-snug shadow-lg"
+          style={{ top: '100%', [side]: 0, width: 'min(240px, 78vw)', background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-ink-2)' }}>
+          <button type="button" aria-label={lang === 'en' ? 'Close' : 'बंद करें'} onClick={(e) => { e.stopPropagation(); setOpen(false) }}
+            className="absolute right-1 top-1 text-[14px] leading-none" style={{ color: 'var(--ks-ink-3)', minHeight: 0 }}>✕</button>
+          <span className="block pr-4">{text}</span>
+        </span>
+      )}
+    </span>
+  )
 }
 
 // "समीक्षाधीन" tag shown on act-on-able content until Shri A.K. Dixit reviews it.
@@ -137,30 +176,52 @@ export function DailyUpdateSignup({ sourcePage, pincode, heading }) {
 
 // ---- Inline SVG charts (no library) + screen-reader table fallback ----------
 
-// Line chart of a price series with an optional MSP reference line.
+// Line chart of a price series with an optional MSP reference line. Renders per-day
+// dot markers (native title tooltip) and shades the band between the price line and
+// the MSP line green (above MSP) / amber (below MSP) via clip rects.
 export function TrendChart({ series, mspValue, ariaLabel }) {
   const { t } = useLang()
   if (!series?.length) return <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
-  const W = 640, H = 200, PL = 44, PR = 12, PT = 12, PB = 24
+  const W = 640, H = 200, PL = 44, PR = 14, PT = 14, PB = 24
   const prices = series.map((d) => d.price)
   const vals = mspValue ? [...prices, mspValue] : prices
   const min = Math.min(...vals), max = Math.max(...vals)
   const span = max - min || 1
   const x = (i) => PL + (i / Math.max(1, series.length - 1)) * (W - PL - PR)
   const y = (v) => PT + (1 - (v - min) / span) * (H - PT - PB)
-  const path = series.map((d, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(d.price).toFixed(1)}`).join(' ')
+  const pts = series.map((d, i) => [x(i), y(d.price)])
+  const path = pts.map(([px, py], i) => `${i ? 'L' : 'M'}${px.toFixed(1)},${py.toFixed(1)}`).join(' ')
   const mspY = mspValue ? y(mspValue) : null
+  const uid = `tc${series.length}_${Math.round(mspValue || 0)}`
+  const band = mspY != null
+    ? `${pts.map(([px, py]) => `${px.toFixed(1)},${py.toFixed(1)}`).join(' ')} ${x(series.length - 1).toFixed(1)},${mspY.toFixed(1)} ${x(0).toFixed(1)},${mspY.toFixed(1)}`
+    : null
   return (
     <div>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label={ariaLabel} style={{ maxWidth: '100%' }}>
+        {mspY != null && (
+          <defs>
+            <clipPath id={`${uid}-a`}><rect x={PL} y={PT} width={W - PL - PR} height={Math.max(0, mspY - PT)} /></clipPath>
+            <clipPath id={`${uid}-b`}><rect x={PL} y={mspY} width={W - PL - PR} height={Math.max(0, (H - PB) - mspY)} /></clipPath>
+          </defs>
+        )}
+        {band && (<>
+          <polygon points={band} fill="var(--ks-green-tint)" clipPath={`url(#${uid}-a)`} />
+          <polygon points={band} fill="var(--ks-saffron-tint)" clipPath={`url(#${uid}-b)`} />
+        </>)}
         <line x1={PL} y1={H - PB} x2={W - PR} y2={H - PB} stroke="var(--ks-border-strong)" />
-        <text x={PL} y={y(max) - 2} fontSize="11" fill="var(--ks-ink-3)">₹{Math.round(max)}</text>
-        <text x={PL} y={y(min) + 10} fontSize="11" fill="var(--ks-ink-3)">₹{Math.round(min)}</text>
+        <text x={PL} y={y(max) - 3} fontSize="11" fill="var(--ks-ink-3)">₹{Math.round(max)}</text>
+        <text x={PL} y={y(min) + 11} fontSize="11" fill="var(--ks-ink-3)">₹{Math.round(min)}</text>
         {mspY != null && (<>
           <line x1={PL} y1={mspY} x2={W - PR} y2={mspY} stroke="var(--ks-orange)" strokeDasharray="5 4" />
           <text x={W - PR} y={mspY - 3} fontSize="11" fill="var(--ks-orange-dark)" textAnchor="end">MSP ₹{Math.round(mspValue)}</text>
         </>)}
         <path d={path} fill="none" stroke="var(--ks-green)" strokeWidth="2.5" />
+        {pts.map(([px, py], i) => (
+          <circle key={i} cx={px} cy={py} r="3.5" fill="var(--ks-green-dark)">
+            <title>{series[i].date}: ₹{series[i].price}</title>
+          </circle>
+        ))}
       </svg>
       <table className="sr-only">
         <caption>{ariaLabel}</caption>
