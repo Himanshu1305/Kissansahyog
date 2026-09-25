@@ -856,3 +856,18 @@ mausam + 8 msp seeded); `site_settings` (public read/admin write, seed
 - **Content review gate**: actionable sections (ActionWindows, per-crop advice, MSP
   procurement + below-MSP routes) show "समीक्षाधीन" until an admin flips
   `mausam_msp_content_reviewed`. Review doc: docs/content/MAUSAM_MSP_CONTENT_REVIEW.md.
+
+## मौसम/MSP polish + /fasal-salah + /sawaal search — 2026-09-25
+
+- **InfoTip** (`src/components/pages/shared.jsx`): click-to-open point-of-need tooltip (props label/label_en), used on /mausam (IMD badge, 48h rain-prob, ActionWindows).
+- **/mausam:** IMD badge reframed to confident sourcing (still distinct from official IMD; links to mausam.imd.gov.in). Crops-season section **moved to new `/fasal-salah`** (`src/screens/FasalSalah.jsx`, route added, in बाज़ार dropdown + sitemap); /mausam shows a teaser card. Source citations on season-rainfall (2015–2025) and 16-day. 48h strip now shows rain probability %.
+- **/msp:** all-crops snapshot table (`fetchMandiSnapshot` in mandiApi); today table shows all reporting mandis sorted desc + one-mandi note; trend chart has day-dot markers + green/amber above/below-MSP shaded band + takeaway above & below + "केवल N दिन का डेटा" note; calculator shows step-by-step arithmetic. Trend fix: 7/30/90 windows query correctly — identical series is due to only ≤3 distinct dates (daily-snapshot source), not a bug.
+- **Nav:** बाज़ार + सरकारी योजनाएं dropdowns switched to click-to-open / click-outside-close (`useRef` + document mousedown listener); hover removed.
+- **/sawaal:** category chips now show counts; debounced client-side search over question_hi/en; no-match empty state with ask button.
+- **/drone-didi:** all 8 drone_didi listings are `is_test_data=true` → each card badged "उदाहरण लिस्टिंग" (`is_test_data` added to `fetchHomeFeed` select).
+- **backfill-mandi-history.mjs:** filter casing fixed (lowercase `filters[state]` + MP-wide token match). Confirmed resource 9ef84268 is a daily snapshot — cannot backfill multi-year history; needs a different Agmarknet source (backlog).
+
+## Backlog (added 2026-09-25)
+- Real IMD data feed (api.imd.gov.in: district warnings, 7-day forecast, agromet advisory).
+- Widen mandi collection to named MP mandis beyond Sagar (most commodities report from one mandi/day).
+- Voice question asking on /sawaal; AI-generated Q&A answers with "AI-जनित, समीक्षा लंबित" labelling (Crop Doctor extension).
