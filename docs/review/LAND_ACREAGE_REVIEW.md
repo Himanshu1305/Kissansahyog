@@ -73,8 +73,50 @@ today. Part B adds an optional one (3b) defaulting to the profile phone.
   (`field_rate_per_acre`, `inputMode="decimal"`) and rendered as **"₹X/एकड़"** on the detail view.
   बटाई (`sharecropping`) keeps its existing **% split** field unchanged; `negotiable` has no amount.
 - **3b contact:** an OPTIONAL **"इस लिस्टिंग के लिए संपर्क नंबर (वैकल्पिक)"** field
-  (`details.contact_phone`, 10-digit validated only when filled; blank is allowed). `finalizeDetails`
-  drops it when blank. **Migration `0029_listing_contact_override.sql`** updates `get_listing_contact`
-  to return `coalesce(nullif(details->>'contact_phone',''), profile.phone)`. Verified via the RPC:
-  blank → the poster's profile phone; set → the override number. Privacy unchanged — contact is still
-  revealed only through the gated reveal RPC, never on the public card.
+  (10-digit validated only when filled; blank allowed). The client sends it inside `details`, but it is
+  **never stored there** — see the privacy correction below.
+- **3b privacy correction (`0030_private_listing_contact.sql`):** `listings.details` is anon-readable
+  (browse/detail select it wholesale), so an override kept in `details` would leak publicly and defeat
+  the gated phone-reveal. Corrected to mirror the profiles pattern: a dedicated
+  **`listing_private_contact`** table with RLS + `revoke all` from anon/authenticated (only
+  SECURITY DEFINER functions touch it); `create_listing` **strips `contact_phone` out of the stored
+  details** and writes it privately; `get_listing_contact` returns
+  `coalesce(private.contact_phone, profile.phone)`. (This supersedes the interim `0029` approach that
+  read `details->>'contact_phone'`.) Verified end-to-end: a 50-acre listing with an override stores
+  `size_acres:50` with **no `contact_phone` in `details`**, anon gets *permission denied* on the private
+  table, and the reveal RPC returns the override (blank → profile phone). Contact is still revealed only
+  through the gated RPC, never on the public card.
+- **Scope fix (`0031_scope_private_contact_to_land.sql`):** the private-override behaviour applies to
+  **Land only**. `agri_inputs`/vendor listings legitimately keep a *public* `contact_phone` in details
+  (the shop's number, shown on the card); 0030's generic strip had removed it, so 0031 restores the
+  vendor numbers and re-scopes `create_listing` to privatize `contact_phone` only for `p_category='land'`.
+
+## Phase 4 — screenshots, geofence check, tests
+
+### Screenshots (`docs/review/shots-0031/`, all viewed)
+- `land-form-{d,m}` — the Land creation form: a plain numeric **"ज़मीन का आकार (एकड़ में)"** input holding
+  **50** with hint "…कोई सीमा नहीं (कम से कम 0.1 एकड़)।" (no bucket dropdown, no cap); all three
+  arrangements selected (पट्टा/किराया, बटाई, ठेका खेती) sharing that one input; **"प्रति एकड़ दर (₹)"**
+  = 6000 for the fixed type; the optional **"संपर्क नंबर"** field with its fallback hint.
+- `land-detail-50acre-{d,m}` — the detail view of a 50-acre ठेका listing shows **"ज़मीन का आकार: 50 एकड़"**
+  and **"दर / कीमत: तय ठेका दर · ₹6000/एकड़"**, with **village-only** location (no exact plot address
+  anywhere; the phone stays behind the gated "नंबर देखें" reveal).
+
+### 4b — 30km visibility unchanged
+The geofencing logic (`partitionByRadius`, `RADIUS_KM=30`) is shared and untouched. `p_0031` verifies a
+50-acre Land listing at the viewer's village is in the 30km primary set, and a distant one is excluded
+by the same rule — i.e. Land behaves identically to every other category for distance visibility.
+
+### 4c — permanent tests (no regressions)
+- **`scripts/test/p_0031_land_acreage.mjs`** (19/19): buckets gone / numeric `size_acres` field + min 0.1
+  (static); migration converted all seed rows with no bucket left and no `contact_phone` leaked in public
+  details; a **50-acre** listing is created and stored/displayed exactly (no cap, no rounding), public read
+  shows the village name but no contact/address; 30km geofence in/out; contact override stays private
+  (not in details, anon denied on the private table) and the reveal RPC returns override→number,
+  blank→profile phone.
+- **`e2e/phase15_land_acreage.spec.js`** (2/2): the Land form's acreage is a numeric `<input inputmode=decimal>`
+  (not a bucket `<select>`, no `#f_size_range`), accepts "50"; the fixed type shows the per-acre rate label
+  and the optional contact field is present.
+- Full suite re-run: **backend 31 pass / 1 fail** (only the pre-existing `v11_phase6` i18n debt, TD-1);
+  **E2E all pass** (prior geofencing/weather/location + new village + land specs). The generic-strip
+  regression in `v11_phase4` (vendor keys) was caught by the suite and fixed by `0031` before commit.
