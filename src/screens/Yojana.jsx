@@ -39,10 +39,13 @@ export default function Yojana({ level = null }) {
 
   const Group = ({ id, title, list, moreHref }) => (
     <section id={id} className="w-full scroll-mt-16" style={{ padding: 'var(--ks-gutter)' }}>
-      <div className="mb-3 flex items-end justify-between gap-3">
-        <h2 className="text-[22px] font-bold md:text-[26px]" style={{ color: 'var(--ks-ink)' }}>{title}</h2>
-        {moreHref && list.length > 0 && <button type="button" onClick={() => navigate(moreHref)} className="shrink-0 text-[14px] font-bold" style={{ color: 'var(--ks-green)' }}>{t('yojana_all')} →</button>}
-      </div>
+      {/* Header omitted when there is no title (single-level views already show it as the page H1). */}
+      {title && (
+        <div className="mb-3 flex items-end justify-between gap-3">
+          <h2 className="text-[22px] font-bold md:text-[26px]" style={{ color: 'var(--ks-ink)' }}>{title}</h2>
+          {moreHref && list.length > 0 && <button type="button" onClick={() => navigate(moreHref)} className="shrink-0 text-[14px] font-bold" style={{ color: 'var(--ks-green)' }}>{t('yojana_all')} →</button>}
+        </div>
+      )}
       {list.length === 0
         ? <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>—</p>
         : <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">{list.map(Card)}</div>}
@@ -65,7 +68,9 @@ export default function Yojana({ level = null }) {
             <Group id="mp" title={t('scheme_mp_group')} list={state} moreHref="/yojana/mp" />
           </>
         ) : (
-          <Group id={level} title={level === 'state' ? t('scheme_mp_group') : t('scheme_central_group')} list={level === 'state' ? state : central} />
+          // Single-level view: the page H1 already shows the title, so the Group renders
+          // cards only (no repeated heading).
+          <Group id={level} list={level === 'state' ? state : central} />
         )
       )}
     </div>

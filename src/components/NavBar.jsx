@@ -21,7 +21,6 @@ const CATEGORIES = [
   { key: 'experts', labelKey: 'home_cat_experts' },
   { key: 'land', labelKey: 'home_cat_land' },
   { key: 'fasal', labelKey: 'nav_fasal', path: '/fasal-salah' },
-  { key: 'agroforestry', labelKey: 'nav_agroforestry', path: '/agro-forestry' },
 ]
 
 // सरकारी योजनाएं dropdown — two government levels.
@@ -30,10 +29,11 @@ const SCHEMES_MENU = [
   { labelKey: 'scheme_mp_group', path: '/yojana/mp' },
 ]
 
-// Direct top-level links (order per spec: मंडी भाव · मौसम · किसान सवाल · वीडियो · संपर्क).
+// Direct top-level links. Agro Forestry is its own top-level item (not under बाज़ार).
 const NAV_LINKS = [
   { labelKey: 'nav_mandi', path: '/msp' },
   { labelKey: 'nav_weather', path: '/mausam' },
+  { labelKey: 'nav_agroforestry', path: '/agro-forestry' },
   { labelKey: 'sawaal_nav', path: '/sawaal' },
   { labelKey: 'nav_videos', path: '/videos' },
   { labelKey: 'resources_nav', path: '/resources' },
@@ -133,6 +133,7 @@ export default function NavBar() {
               </div>
             )}
           </div>
+          <button type="button" className={catBtn(location.pathname.startsWith('/agro-forestry'))} onClick={() => goPath('/agro-forestry')}>{t('nav_agroforestry')}</button>
           <button type="button" className={catBtn(location.pathname.startsWith('/sawaal'))} onClick={() => goPath('/sawaal')}>{t('sawaal_nav')}</button>
           <button type="button" className={catBtn(location.pathname.startsWith('/videos'))} onClick={() => goPath('/videos')}>{t('nav_videos')}</button>
           <button type="button" className={catBtn(location.pathname.startsWith('/resources'))} onClick={() => goPath('/resources')}>{t('resources_nav')}</button>
