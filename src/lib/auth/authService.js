@@ -65,8 +65,30 @@ export function logout() {
   supabaseAuth.auth.signOut().catch(() => {})
 }
 
+// Phase 5 — optional किसान-profile fields. Applied AFTER account creation so signup is
+// never blocked by them. Returns the updated profile, or the input profile if nothing to set.
+function hasKisan(k) {
+  return k && (k.land_acres != null && k.land_acres !== '' || (k.main_crops && k.main_crops.trim()) || k.interest_lease || k.interest_equipment)
+}
+async function applyKisan(profile, kisan) {
+  if (!profile?.id || !hasKisan(kisan)) return profile
+  try {
+    const { data, error } = await supabase.rpc('update_kisan_profile', {
+      p_actor_id: profile.id,
+      p_land_acres: kisan.land_acres === '' || kisan.land_acres == null ? null : Number(kisan.land_acres),
+      p_main_crops: kisan.main_crops ?? null,
+      p_interest_lease: !!kisan.interest_lease,
+      p_interest_equipment: !!kisan.interest_equipment,
+    })
+    if (error) return profile // non-blocking — account already created
+    return data || profile
+  } catch {
+    return profile
+  }
+}
+
 // ---- signup ----
-export async function signup({ full_name, phone, village_town, pincode, language, disclaimer_accepted }) {
+export async function signup({ full_name, phone, village_town, pincode, language, disclaimer_accepted, kisan }) {
   if (!full_name || !full_name.trim()) throw new AppError('name_required')
   if (!isValidPhone(phone)) throw new AppError('invalid_phone')
   if (!isValidPincode(pincode)) throw new AppError('invalid_pincode')
@@ -79,6 +101,19 @@ export async function signup({ full_name, phone, village_town, pincode, language
     p_pincode: String(pincode).trim(),
     p_language: language || 'hi',
     p_disclaimer_accepted: true,
+  })
+  if (error) throw toAppError(error)
+  return storeSession(await applyKisan(data, kisan))
+}
+
+// Edit only the किसान-profile fields (optional; no pincode dependency) + refresh the session.
+export async function updateKisanProfile(actorId, { land_acres, main_crops, interest_lease, interest_equipment }) {
+  const { data, error } = await supabase.rpc('update_kisan_profile', {
+    p_actor_id: actorId,
+    p_land_acres: land_acres === '' || land_acres == null ? null : Number(land_acres),
+    p_main_crops: main_crops ?? null,
+    p_interest_lease: !!interest_lease,
+    p_interest_equipment: !!interest_equipment,
   })
   if (error) throw toAppError(error)
   return storeSession(data)
@@ -128,7 +163,7 @@ function mapAuthError(error) {
   return new AppError('unknown')
 }
 
-export async function signupEmail({ full_name, email, password, village_town, pincode, language, disclaimer_accepted }) {
+export async function signupEmail({ full_name, email, password, village_town, pincode, language, disclaimer_accepted, kisan }) {
   if (!full_name || !full_name.trim()) throw new AppError('name_required')
   if (!isValidEmail(email)) throw new AppError('invalid_email')
   if (!password || String(password).length < MIN_PASSWORD) throw new AppError('password_too_short')
@@ -157,7 +192,7 @@ export async function signupEmail({ full_name, email, password, village_town, pi
     p_language: language || 'hi',
   })
   if (rpcErr) throw toAppError(rpcErr)
-  return storeSession(profile)
+  return storeSession(await applyKisan(profile, kisan))
 }
 
 export async function loginEmail(email, password) {

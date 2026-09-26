@@ -55,9 +55,16 @@ export function AuthProvider({ children }) {
     return next
   }, [user])
 
+  const updateKisanProfile = useCallback(async (patch) => {
+    if (!user?.id) throw new Error('not logged in')
+    const next = await authService.updateKisanProfile(user.id, patch)
+    setUser(next)
+    return next
+  }, [user])
+
   const value = useMemo(
-    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, deleteAccount }),
-    [user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, deleteAccount],
+    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, updateKisanProfile, deleteAccount }),
+    [user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, updateKisanProfile, deleteAccount],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

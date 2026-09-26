@@ -4,6 +4,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, Field, TextInput, Select, BigButton, Notice, Spinner } from '../components/ui'
 import LanguageToggle from '../components/LanguageToggle'
+import KisanFields from '../components/KisanFields'
 import { changePassword } from '../lib/auth/authService'
 import { getMyListings } from '../lib/listings/listingsApi'
 import { CATEGORY_META, CATEGORIES } from '../lib/listings/catalog'
@@ -12,7 +13,7 @@ import { CatIcon } from '../components/CatIcon'
 // Authenticated user profile: edit info, listings summary, account management.
 export default function Profile() {
   const { t, lang, setLang } = useLang()
-  const { user, updateProfile, deleteAccount } = useAuth()
+  const { user, updateProfile, updateKisanProfile, deleteAccount } = useAuth()
   const navigate = useNavigate()
 
   const isEmail = user?.auth_provider === 'email'
@@ -25,6 +26,26 @@ export default function Profile() {
   const [saving, setSaving] = useState(false)
 
   const [counts, setCounts] = useState(null)
+
+  // Phase 5c — editable किसान profile.
+  const [kisan, setKisan] = useState({
+    land_acres: user?.land_acres ?? '', main_crops: user?.main_crops ?? '',
+    interest_lease: !!user?.interest_lease, interest_equipment: !!user?.interest_equipment,
+  })
+  const setK = (k) => (e) => setKisan((s) => ({ ...s, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }))
+  const [kisanMsg, setKisanMsg] = useState(null)
+  const [kisanBusy, setKisanBusy] = useState(false)
+  async function saveKisan() {
+    setKisanMsg(null); setKisanBusy(true)
+    try {
+      await updateKisanProfile(kisan)
+      setKisanMsg(t('kisan_saved'))
+    } catch (err) {
+      setKisanMsg(t(err.i18nKey || 'err_unknown'))
+    } finally {
+      setKisanBusy(false)
+    }
+  }
 
   const [pw, setPw] = useState({ current: '', next: '', confirm: '' })
   const [pwMsg, setPwMsg] = useState(null)
@@ -156,6 +177,15 @@ export default function Profile() {
             {joined && <p className="mt-3 text-sm text-stone-500">{t('member_since')} {joined}</p>}
           </>
         )}
+      </section>
+
+      {/* Phase 5c — किसान profile (editable; never public). */}
+      <section className="mb-6">
+        <h2 className="mb-1 text-lg font-bold text-stone-800">{t('kisan_profile_section')}</h2>
+        <p className="mb-3 rounded-lg bg-green-50 px-3 py-2 text-xs font-semibold text-green-800">🔒 {t('kisan_privacy')}</p>
+        {kisanMsg && <Notice tone="success">{kisanMsg}</Notice>}
+        <KisanFields kisan={kisan} setK={setK} t={t} />
+        {kisanBusy ? <Spinner /> : <BigButton variant="secondary" className="mt-3" onClick={saveKisan}>{t('save')}</BigButton>}
       </section>
 
       {/* Phase 4/6 — admin resource dashboard entry point (admins only). */}

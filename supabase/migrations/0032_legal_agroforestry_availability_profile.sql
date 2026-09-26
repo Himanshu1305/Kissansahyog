@@ -371,3 +371,67 @@ begin
 end;
 $$;
 grant execute on function public.get_admin_availability_listings(uuid, text) to anon, authenticated;
+
+-- =====================================================================
+-- PHASE 5 — किसान प्रोफाइल (farmer profile at registration)
+-- =====================================================================
+-- 5a fields (village_town already exists). All optional; never blocking signup.
+-- 5d: these live on `profiles`, which anon CANNOT read (RLS) — they are visible only to the
+-- owner (their own session) and to admin (Phase 6 RPC). Never exposed on listings.
+alter table public.profiles add column if not exists land_acres numeric;
+alter table public.profiles add column if not exists main_crops text;
+alter table public.profiles add column if not exists interest_lease boolean not null default false;
+alter table public.profiles add column if not exists interest_equipment boolean not null default false;
+
+-- 5c: owner edits their own किसान-profile fields any time (no pincode dependency, unlike
+-- update_profile). Optional — nulls/blank are allowed.
+create or replace function public.update_kisan_profile(
+  p_actor_id           uuid,
+  p_land_acres         numeric default null,
+  p_main_crops         text    default null,
+  p_interest_lease     boolean default false,
+  p_interest_equipment boolean default false
+) returns public.profiles
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+declare v_profile public.profiles%rowtype;
+begin
+  if not exists (select 1 from public.profiles where id = p_actor_id) then raise exception 'not_authorized'; end if;
+  update public.profiles set
+    land_acres         = p_land_acres,
+    main_crops         = nullif(trim(coalesce(p_main_crops, '')), ''),
+    interest_lease     = coalesce(p_interest_lease, false),
+    interest_equipment = coalesce(p_interest_equipment, false)
+  where id = p_actor_id
+  returning * into v_profile;
+  return v_profile;
+end;
+$$;
+grant execute on function public.update_kisan_profile(uuid, numeric, text, boolean, boolean) to anon, authenticated;
+
+-- =====================================================================
+-- PHASE 6 — Admin tabular view of farmer profiles
+-- =====================================================================
+create or replace function public.get_admin_farmer_profiles(p_actor_id uuid)
+returns table (
+  id uuid, full_name text, village_town text, pincode text,
+  land_acres numeric, main_crops text, interest_lease boolean, interest_equipment boolean,
+  created_at timestamptz
+)
+language plpgsql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+begin
+  perform public.require_admin(p_actor_id);
+  return query
+  select p.id, p.full_name, p.village_town, p.pincode,
+         p.land_acres, p.main_crops, p.interest_lease, p.interest_equipment, p.created_at
+  from public.profiles p
+  order by p.created_at desc;
+end;
+$$;
+grant execute on function public.get_admin_farmer_profiles(uuid) to anon, authenticated;

@@ -7,6 +7,7 @@ import { Screen, Field, TextInput, Select, BigButton, Notice, Spinner } from '..
 import DisclaimerBanner from '../components/DisclaimerBanner'
 import LanguageToggle from '../components/LanguageToggle'
 import AuthTabs from '../components/AuthTabs'
+import KisanFields from '../components/KisanFields'
 
 // Two-step signup: (1) details form, (2) one-time disclaimer acknowledgment.
 // Phone tab: trust-based phone signup (unchanged). Email tab: Supabase email+password.
@@ -18,6 +19,9 @@ export default function Signup() {
   const [mode, setMode] = useState('phone') // 'phone' | 'email'
   const [step, setStep] = useState('form') // 'form' | 'disclaimer'
   const [form, setForm] = useState({ full_name: '', phone: '', email: '', password: '', village_town: '', pincode: '' })
+  // Phase 5 — optional किसान profile captured at registration (never blocks signup).
+  const [kisan, setKisan] = useState({ land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false })
+  const setK = (k) => (e) => setKisan((s) => ({ ...s, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }))
   const [accepted, setAccepted] = useState(false)
   const [fieldErrors, setFieldErrors] = useState({})
   const [error, setError] = useState(null)
@@ -56,12 +60,12 @@ export default function Signup() {
       if (mode === 'phone') {
         await signup({
           full_name: form.full_name, phone: form.phone, village_town: form.village_town,
-          pincode: form.pincode, language: lang, disclaimer_accepted: true,
+          pincode: form.pincode, language: lang, disclaimer_accepted: true, kisan,
         })
       } else {
         await signupEmail({
           full_name: form.full_name, email: form.email, password: form.password,
-          village_town: form.village_town, pincode: form.pincode, language: lang, disclaimer_accepted: true,
+          village_town: form.village_town, pincode: form.pincode, language: lang, disclaimer_accepted: true, kisan,
         })
       }
       navigate('/home', { replace: true })
@@ -124,6 +128,13 @@ export default function Signup() {
               <option value="en">{t('english')}</option>
             </Select>
           </Field>
+
+          {/* Phase 5 — optional किसान profile (never blocks account creation). */}
+          <div className="mt-4 rounded-2xl border-2 border-green-100 bg-green-50/40 p-4">
+            <h3 className="mb-1 font-bold text-stone-800">{t('kisan_profile_title')}</h3>
+            <p className="mb-3 text-xs font-semibold text-green-800">🔒 {t('kisan_privacy')}</p>
+            <KisanFields kisan={kisan} setK={setK} t={t} />
+          </div>
 
           <BigButton type="submit" className="mt-2">{t('continue')}</BigButton>
         </form>

@@ -519,6 +519,19 @@ export const strings = {
   avail_col_clicks: { hi: 'संपर्क क्लिक', en: 'Contact clicks' },
   avail_col_status: { hi: 'स्थिति', en: 'Status' },
 
+  // Phase 5 — किसान प्रोफाइल fields.
+  kisan_profile_title: { hi: 'किसान प्रोफाइल (वैकल्पिक)', en: 'Farmer profile (optional)' },
+  kisan_profile_section: { hi: 'किसान प्रोफाइल', en: 'Farmer profile' },
+  kisan_land_acres: { hi: 'आपके पास कुल कितनी ज़मीन है? (एकड़)', en: 'How much land do you own? (acres)' },
+  kisan_main_crops: { hi: 'मुख्य फसलें', en: 'Main crops grown' },
+  kisan_main_crops_ph: { hi: 'जैसे: सोयाबीन, गेहूं, चना', en: 'e.g. Soybean, Wheat, Gram' },
+  kisan_interest_lease: { hi: 'क्या आप कभी ज़मीन बटाई/ठेके पर देने में रुचि रखते हैं?', en: 'Would you ever be interested in giving land on sharecropping/contract?' },
+  kisan_interest_equipment: { hi: 'क्या आप कभी उपकरण किराये पर देने में रुचि रखते हैं?', en: 'Would you ever be interested in renting out equipment?' },
+  kisan_privacy: { hi: 'यह जानकारी केवल किसान सहयोग के उपयोग के लिए है — हम इसे कभी किसी को नहीं बेचते।', en: 'This information is only for Kisan Sahyog’s use — we never sell it to anyone.' },
+  kisan_saved: { hi: 'किसान प्रोफाइल सहेज ली गई।', en: 'Farmer profile saved.' },
+  yes: { hi: 'हाँ', en: 'Yes' },
+  no: { hi: 'नहीं', en: 'No' },
+
   // --- admin dashboard ---
   admin_title: { hi: 'एडमिन डैशबोर्ड', en: 'Admin Dashboard' },
   access_denied: { hi: 'पहुँच नहीं', en: 'Access denied' },
