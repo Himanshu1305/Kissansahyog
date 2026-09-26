@@ -34,6 +34,7 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
   // Phase 1 — wide-visibility opt-in, offered ONLY for Bhoosa/Parali + Seeds & Inputs.
   const canWiden = WIDE_ELIGIBLE_CATEGORIES.includes(category)
   const [wideVisibility, setWideVisibility] = useState(false)
+  const [rulesAgreed, setRulesAgreed] = useState(false) // Phase 1a — mandatory, server-enforced
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
@@ -65,6 +66,10 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
       setError(t('err_self_declaration_required'))
       return
     }
+    if (!rulesAgreed) {
+      setError(t('err_rules_agreement_required'))
+      return
+    }
     setBusy(true)
     try {
       const finalDetails = mod.finalizeDetails
@@ -79,6 +84,7 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
         selfDeclared: needsSelfDecl ? selfDeclared : false,
         listingSource,
         wideVisibility: canWiden ? wideVisibility : false,
+        rulesAgreed,
       })
       // New (uncached) village → resolve its coordinates in the background (2e). Fire-and-
       // forget: the listing is already saved; this fills its coords within seconds.
@@ -158,12 +164,29 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
         </label>
       )}
 
+      {/* Phase 1a — mandatory rules-compliance agreement (server-enforced in create_listing). */}
+      <label className="my-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-stone-300 bg-white p-4">
+        <input
+          type="checkbox"
+          checked={rulesAgreed}
+          onChange={(e) => setRulesAgreed(e.target.checked)}
+          className="mt-1 h-6 w-6 shrink-0 accent-green-700"
+          data-testid="rules-agree-checkbox"
+        />
+        <span className="text-sm leading-relaxed text-stone-800">
+          {t('rules_agreement_seller')}{' '}
+          <a href="/terms" target="_blank" rel="noopener noreferrer" className="font-semibold text-green-800 underline">
+            {t('terms_title')}
+          </a>
+        </span>
+      </label>
+
       <DisclaimerBanner which="listingForm" className="my-5" />
 
       {busy ? (
         <Spinner label={t('posting')} />
       ) : (
-        <BigButton onClick={submit} disabled={needsSelfDecl && !selfDeclared}>
+        <BigButton onClick={submit} disabled={(needsSelfDecl && !selfDeclared) || !rulesAgreed}>
           {t('submit')}
         </BigButton>
       )}

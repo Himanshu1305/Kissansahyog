@@ -452,6 +452,22 @@ export const strings = {
   },
   back_to_home: { hi: 'वापस होमपेज', en: 'Back to Homepage' },
 
+  // Phase 1 — rules-compliance agreement (seller checkbox + one-time buyer modal).
+  rules_agreement_seller: {
+    hi: 'मैं सभी लागू नियमों और कानूनों का पालन करने के लिए सहमत हूं। किसी भी उल्लंघन की स्थिति में मैं स्वयं ज़िम्मेदार हूँगा/हूँगी। मैं समझता/समझती हूं कि किसान सहयोग लेन-देन का हिस्सा नहीं है और लिस्टिंग की पुष्टि नहीं करता।',
+    en: 'I agree to follow all applicable rules and laws. In case of any violation I am solely responsible. I understand that Kisan Sahyog is not part of the transaction and does not verify listings.',
+  },
+  err_rules_agreement_required: {
+    hi: 'आगे बढ़ने के लिए नियमों से सहमति ज़रूरी है।',
+    en: 'You must agree to the rules to continue.',
+  },
+  rules_modal_title: { hi: 'संपर्क करने से पहले', en: 'Before you make contact' },
+  rules_agreement_buyer: {
+    hi: 'मैं सभी लागू नियमों और कानूनों का पालन करने के लिए सहमत हूं। किसी भी लेन-देन की ज़िम्मेदारी मेरी स्वयं की है। मैं समझता/समझती हूं कि किसान सहयोग लेन-देन का हिस्सा नहीं है, किसी लिस्टिंग या व्यक्ति की पुष्टि नहीं करता, और संपर्क करने से पहले मुझे जानकारी स्वयं जांचनी चाहिए।',
+    en: 'I agree to follow all applicable rules and laws. Any transaction is my own responsibility. I understand that Kisan Sahyog is not part of the transaction, does not verify any listing or person, and that I should verify details myself before making contact.',
+  },
+  rules_agreement_accept: { hi: 'मैं सहमत हूं और आगे बढ़ता/बढ़ती हूं', en: 'I agree and continue' },
+
   // --- admin dashboard ---
   admin_title: { hi: 'एडमिन डैशबोर्ड', en: 'Admin Dashboard' },
   access_denied: { hi: 'पहुँच नहीं', en: 'Access denied' },

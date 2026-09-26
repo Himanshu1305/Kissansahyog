@@ -69,6 +69,7 @@ export async function createListing({
   listingSource = 'farmer',
   wideVisibility = false,
   villageName = null,
+  rulesAgreed = false,
 }) {
   const { data, error } = await supabase.rpc('create_listing', {
     p_actor_id: actorId,
@@ -82,6 +83,7 @@ export async function createListing({
     p_listing_source: listingSource,
     p_wide_visibility: wideVisibility,
     p_village_name: villageName,
+    p_rules_agreed: rulesAgreed,
   })
   if (error) throw toAppError(error)
   return data

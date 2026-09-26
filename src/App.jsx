@@ -4,6 +4,7 @@ import { LanguageProvider } from './lib/i18n/LanguageProvider'
 import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
 import { Spinner } from './components/ui'
 import PwaPrompts from './components/PwaPrompts'
+import BuyerComplianceGate from './components/BuyerComplianceGate'
 
 // Route-level code splitting (perf budget: keep the initial bundle small).
 const Homepage = lazy(() => import('./screens/Homepage'))
@@ -117,6 +118,7 @@ export default function App() {
         <BrowserRouter>
           <AppRoutes />
           <PwaPrompts />
+          <BuyerComplianceGate />
         </BrowserRouter>
       </AuthProvider>
     </LanguageProvider>
