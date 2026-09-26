@@ -468,6 +468,37 @@ export const strings = {
   },
   rules_agreement_accept: { hi: 'मैं सहमत हूं और आगे बढ़ता/बढ़ती हूं', en: 'I agree and continue' },
 
+  // Phase 2 — Agro Forestry hub page.
+  nav_agroforestry: { hi: 'एग्रो फॉरेस्ट्री', en: 'Agro Forestry' },
+  ycat_horticulture: { hi: 'उद्यानिकी', en: 'Horticulture' },
+  agro_title: { hi: 'एग्रो फॉरेस्ट्री और उद्यानिकी', en: 'Agro Forestry & Horticulture' },
+  agro_explain_title: { hi: 'यह पेज किस लिए है', en: 'What this page is for' },
+  agro_explain_1: {
+    hi: 'यह पेज सरल भाषा में बताता है कि खेत में पेड़ और फसलें साथ लगाना (एग्रो फॉरेस्ट्री) और फल/औषधीय पौधे लगाना (उद्यानिकी) कैसे किसान की आय बढ़ा सकते हैं और जोखिम घटा सकते हैं।',
+    en: 'This page explains, in simple terms, how growing trees with crops (agroforestry) and planting fruit/medicinal crops (horticulture) can raise a farmer’s income and reduce risk.',
+  },
+  agro_explain_2: {
+    hi: 'यहाँ आपको मध्यप्रदेश की दो सरकारी उद्यानिकी योजनाएं, एक विस्तृत लेख, और आपके क्षेत्र की वन एजेंसी की जानकारी मिलेगी।',
+    en: 'You’ll find two Madhya Pradesh government horticulture schemes, a detailed article, and information about your area’s forest agency.',
+  },
+  agro_hero_h: { hi: 'पेड़ और फसल — साथ में ज़्यादा फ़ायदा', en: 'Trees and crops — more benefit together' },
+  agro_hero_body: {
+    hi: 'एग्रो फॉरेस्ट्री में खेत की मेड़ों या कतारों में पेड़ लगाए जाते हैं और बीच की ज़मीन में फसलें उगाई जाती हैं। इससे लकड़ी, चारा, फल और छाया मिलती है, मिट्टी सुरक्षित रहती है, और आय के एक से अधिक स्रोत बनते हैं। इंटरक्रॉपिंग (अंतरवर्ती खेती) इसी सोच का हिस्सा है — एक ही खेत में एक साथ कई फसलें।',
+    en: 'In agroforestry, trees are planted on field bunds or in rows and crops are grown in between. This provides timber, fodder, fruit and shade, protects the soil, and creates more than one source of income. Intercropping is part of the same idea — several crops together on one field.',
+  },
+  agro_region_h: { hi: 'आपके क्षेत्र में', en: 'In your area' },
+  agro_region_body: {
+    hi: 'सागर ज़िले के लिए स्थानीय वन एजेंसी दक्षिण सागर वन विकास अभिकरण (South Sagar Forest Development Agency) है। वन विकास अभिकरण (FDA) आमतौर पर वनीकरण, पौधशाला और किसानों/समुदायों के साथ वृक्षारोपण जैसे कार्यों में सहयोग करते हैं।',
+    en: 'For Sagar district the local forest agency is the South Sagar Forest Development Agency. Forest Development Agencies (FDAs) generally support afforestation, nurseries, and tree-planting work with farmers and communities.',
+  },
+  agro_schemes_h: { hi: 'सरकारी योजनाएं', en: 'Government schemes' },
+  agro_article_h: { hi: 'विस्तार से पढ़ें', en: 'Read in detail' },
+  agro_article_cta: { hi: 'इंटरक्रॉपिंग: मध्यप्रदेश के किसानों के लिए मार्गदर्शिका', en: 'Intercropping: a guide for Madhya Pradesh farmers' },
+  agro_share_text: {
+    hi: 'एग्रो फॉरेस्ट्री और उद्यानिकी — किसान सहयोग पर पढ़ें: पेड़+फसल साथ लगाकर आय बढ़ाएं और जोखिम घटाएं।',
+    en: 'Agro Forestry & Horticulture on Kisan Sahyog: grow trees with crops to raise income and reduce risk.',
+  },
+
   // --- admin dashboard ---
   admin_title: { hi: 'एडमिन डैशबोर्ड', en: 'Admin Dashboard' },
   access_denied: { hi: 'पहुँच नहीं', en: 'Access denied' },

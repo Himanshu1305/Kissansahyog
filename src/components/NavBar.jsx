@@ -21,6 +21,7 @@ const CATEGORIES = [
   { key: 'experts', labelKey: 'home_cat_experts' },
   { key: 'land', labelKey: 'home_cat_land' },
   { key: 'fasal', labelKey: 'nav_fasal', path: '/fasal-salah' },
+  { key: 'agroforestry', labelKey: 'nav_agroforestry', path: '/agro-forestry' },
 ]
 
 // सरकारी योजनाएं dropdown — two government levels.

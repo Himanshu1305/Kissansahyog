@@ -173,3 +173,12 @@ begin
 end;
 $$;
 grant execute on function public.create_listing(uuid, text, text, jsonb, numeric, numeric, text, boolean, text, boolean, text, boolean) to anon, authenticated;
+
+-- =====================================================================
+-- PHASE 2a — Horticulture scheme category
+-- =====================================================================
+-- Add 'horticulture' to the sarkari_yojana category CHECK (for the two MP schemes seeded
+-- by scripts/seed_agroforestry.mjs). Re-declares the full allowed set idempotently.
+alter table public.sarkari_yojana drop constraint if exists sarkari_yojana_category_check;
+alter table public.sarkari_yojana add constraint sarkari_yojana_category_check
+  check (category in ('income_support','crop_insurance','credit','equipment','solar','storage','women','general','market','machinery','irrigation','horticulture'));

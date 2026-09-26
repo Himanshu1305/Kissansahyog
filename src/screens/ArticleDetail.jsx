@@ -8,6 +8,16 @@ import WhatsAppShareButton from '../components/WhatsAppShareButton'
 import { generateArticleMessage } from '../lib/share/shareMessages'
 import { fetchArticleBySlug, articleTitle, articleContent } from '../lib/articles/articlesApi'
 
+// Parse "## heading" / paragraph blocks (blank-line separated) so articles can carry
+// question-shaped H2s (SEO/AEO), while plain articles still render as paragraphs.
+function parseBlocks(md) {
+  return String(md || '')
+    .split(/\n\s*\n/)
+    .map((c) => c.trim())
+    .filter(Boolean)
+    .map((c) => (c.startsWith('## ') ? { type: 'h2', text: c.slice(3).trim() } : { type: 'p', text: c }))
+}
+
 // Public article detail. Renders plain-text/markdown-ish content as paragraphs.
 export default function ArticleDetail() {
   const { slug } = useParams()
@@ -44,9 +54,31 @@ export default function ArticleDetail() {
   }
 
   const fmtDate = (d) => (d ? new Date(d).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN') : '')
-  const paragraphs = article ? articleContent(article, lang).split(/\n\s*\n/).filter((p) => p.trim()) : []
+  const blocks = article ? parseBlocks(articleContent(article, lang)) : []
+  const summary = article ? (lang === 'hi' ? article.summary_hi : article.summary_en) || '' : ''
   // The Parali article relates to the Bhusa-Parali marketplace.
   const relatesToBhusa = article?.slug?.includes('parali')
+
+  // JSON-LD — Article always; FAQPage derived from question-shaped H2s (heading ends "?"
+  // → the following paragraph is its answer), matching the rendered content exactly.
+  let articleLd = null
+  let faqLd = null
+  if (article) {
+    articleLd = {
+      '@context': 'https://schema.org', '@type': 'Article', headline: articleTitle(article, lang),
+      ...(article.author_name ? { author: { '@type': 'Person', name: article.author_name } } : {}),
+      ...(article.published_at ? { datePublished: article.published_at } : {}),
+      ...(summary ? { description: summary } : {}),
+    }
+    const faqs = []
+    for (let i = 0; i < blocks.length; i++) {
+      if (blocks[i].type === 'h2' && blocks[i].text.endsWith('?')) {
+        const ans = blocks[i + 1]?.type === 'p' ? blocks[i + 1].text : ''
+        if (ans) faqs.push({ '@type': 'Question', name: blocks[i].text, acceptedAnswer: { '@type': 'Answer', text: ans } })
+      }
+    }
+    if (faqs.length) faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs }
+  }
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -64,13 +96,23 @@ export default function ArticleDetail() {
           <p className="py-12 text-center text-stone-500">{t('article_not_found')}</p>
         ) : (
           <article>
+            {articleLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />}
+            {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
             <h1 className="text-2xl font-extrabold leading-snug text-stone-900 sm:text-3xl">{articleTitle(article, lang)}</h1>
             <p className="mt-2 text-sm text-stone-500">{t('article_by')} {article.author_name} · {fmtDate(article.published_at)}</p>
 
+            {summary && (
+              <p className="mt-4 rounded-xl bg-green-50 p-4 text-base font-medium leading-relaxed text-stone-800">{summary}</p>
+            )}
+
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-stone-800">
-              {paragraphs.map((p, i) => (
-                <p key={i} className="whitespace-pre-line">{p}</p>
-              ))}
+              {blocks.map((b, i) =>
+                b.type === 'h2' ? (
+                  <h2 key={i} className="pt-2 text-xl font-bold text-stone-900 sm:text-2xl">{b.text}</h2>
+                ) : (
+                  <p key={i} className="whitespace-pre-line">{b.text}</p>
+                )
+              )}
             </div>
 
             {relatesToBhusa && (
