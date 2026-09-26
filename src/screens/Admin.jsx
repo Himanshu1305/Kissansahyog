@@ -54,6 +54,7 @@ export default function Admin() {
         <h1 className="mb-4 text-2xl font-bold text-stone-900">{t('admin_title')}</h1>
         <StatsBar actorId={user.id} t={t} />
         <AvailabilityPanel actorId={user.id} t={t} lang={lang} />
+        <FarmerProfilesPanel actorId={user.id} t={t} />
         <VendorReportPanel actorId={user.id} t={t} lang={lang} />
         <ListingsPanel actorId={user.id} t={t} lang={lang} />
         <ExpertsPanel actorId={user.id} t={t} />
@@ -193,6 +194,93 @@ function AvailabilityPanel({ actorId, t, lang }) {
             </tbody>
           </table>
         </div>
+      )}
+    </Section>
+  )
+}
+
+// Phase 6 — sortable/filterable admin table of किसान profiles (campaign planning).
+// A separate section from the availability panel, per the prompt.
+function FarmerProfilesPanel({ actorId, t }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [q, setQ] = useState('')
+  const [interest, setInterest] = useState('all') // all | lease | equipment
+  const [sort, setSort] = useState({ key: 'created_at', dir: 'desc' })
+
+  useEffect(() => {
+    getAdminFarmerProfiles(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+
+  function toggleSort(key) {
+    setSort((s) => (s.key === key ? { key, dir: s.dir === 'asc' ? 'desc' : 'asc' } : { key, dir: 'asc' }))
+  }
+
+  const filtered = (rows || [])
+    .filter((r) => {
+      if (q && !String(r.village_town || '').toLowerCase().includes(q.toLowerCase())) return false
+      if (interest === 'lease' && !r.interest_lease) return false
+      if (interest === 'equipment' && !r.interest_equipment) return false
+      return true
+    })
+    .sort((a, b) => {
+      const dir = sort.dir === 'asc' ? 1 : -1
+      const av = a[sort.key], bv = b[sort.key]
+      if (sort.key === 'land_acres') return ((Number(av) || 0) - (Number(bv) || 0)) * dir
+      return String(av || '').localeCompare(String(bv || '')) * dir
+    })
+
+  const arrow = (key) => (sort.key === key ? (sort.dir === 'asc' ? ' ▲' : ' ▼') : '')
+  const Th = ({ k, children }) => (
+    <th className="cursor-pointer py-2 pr-3 select-none" onClick={() => toggleSort(k)}>{children}{arrow(k)}</th>
+  )
+
+  return (
+    <Section title={`👨‍🌾 ${t('admin_farmers_title')}`}>
+      <p id="farmers" className="scroll-mt-16" />
+      {err && <Notice tone="error">{err}</Notice>}
+      <div className="mb-3 flex flex-wrap items-end gap-2">
+        <Field label={t('farmer_col_village')} htmlFor="fp_q"><TextInput id="fp_q" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('farmer_search_ph')} /></Field>
+        <Field label={t('farmer_filter_all')} htmlFor="fp_int">
+          <Select id="fp_int" value={interest} onChange={(e) => setInterest(e.target.value)}>
+            <option value="all">{t('farmer_filter_all')}</option>
+            <option value="lease">{t('farmer_filter_lease')}</option>
+            <option value="equipment">{t('farmer_filter_equipment')}</option>
+          </Select>
+        </Field>
+      </div>
+      {!rows ? <Spinner /> : (
+        <>
+          <p className="mb-2 text-sm font-semibold text-stone-700">{t('farmer_count')}: <span className="text-green-800">{filtered.length}</span></p>
+          {filtered.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b-2 border-stone-100 text-stone-500">
+                    <Th k="full_name">{t('farmer_col_name')}</Th>
+                    <Th k="village_town">{t('farmer_col_village')}</Th>
+                    <Th k="land_acres">{t('farmer_col_land')}</Th>
+                    <th className="py-2 pr-3">{t('farmer_col_crops')}</th>
+                    <th className="py-2 pr-3">{t('farmer_col_lease')}</th>
+                    <th className="py-2 pr-3">{t('farmer_col_equipment')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((r) => (
+                    <tr key={r.id} className="border-b border-stone-100">
+                      <td className="py-2 pr-3">{r.full_name || '—'}</td>
+                      <td className="py-2 pr-3">{r.village_town || '—'}</td>
+                      <td className="py-2 pr-3">{r.land_acres != null ? r.land_acres : '—'}</td>
+                      <td className="py-2 pr-3">{r.main_crops || '—'}</td>
+                      <td className="py-2 pr-3">{r.interest_lease ? '✅' : '—'}</td>
+                      <td className="py-2 pr-3">{r.interest_equipment ? '✅' : '—'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
       )}
     </Section>
   )

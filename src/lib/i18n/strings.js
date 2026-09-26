@@ -519,6 +519,20 @@ export const strings = {
   avail_col_clicks: { hi: 'संपर्क क्लिक', en: 'Contact clicks' },
   avail_col_status: { hi: 'स्थिति', en: 'Status' },
 
+  // Phase 6 — admin farmer-profiles table.
+  admin_farmers_title: { hi: 'किसान प्रोफाइल डेटा', en: 'Farmer Profile Data' },
+  farmer_col_name: { hi: 'नाम', en: 'Name' },
+  farmer_col_village: { hi: 'गाँव', en: 'Village' },
+  farmer_col_land: { hi: 'ज़मीन (एकड़)', en: 'Land (acres)' },
+  farmer_col_crops: { hi: 'मुख्य फसलें', en: 'Main crops' },
+  farmer_col_lease: { hi: 'बटाई/ठेका रुचि', en: 'Lease interest' },
+  farmer_col_equipment: { hi: 'उपकरण रुचि', en: 'Equipment interest' },
+  farmer_search_ph: { hi: 'गाँव से खोजें…', en: 'Search by village…' },
+  farmer_filter_all: { hi: 'सभी', en: 'All' },
+  farmer_filter_lease: { hi: 'बटाई/ठेका रुचि', en: 'Lease interest' },
+  farmer_filter_equipment: { hi: 'उपकरण रुचि', en: 'Equipment interest' },
+  farmer_count: { hi: 'कुल किसान', en: 'Total farmers' },
+
   // Phase 5 — किसान प्रोफाइल fields.
   kisan_profile_title: { hi: 'किसान प्रोफाइल (वैकल्पिक)', en: 'Farmer profile (optional)' },
   kisan_profile_section: { hi: 'किसान प्रोफाइल', en: 'Farmer profile' },
