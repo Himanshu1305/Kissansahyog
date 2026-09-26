@@ -158,6 +158,24 @@ export default function Profile() {
         )}
       </section>
 
+      {/* Phase 4/6 — admin resource dashboard entry point (admins only). */}
+      {user?.is_admin && (
+        <section className="mb-6">
+          <button
+            type="button"
+            onClick={() => navigate('/admin')}
+            data-testid="profile-admin-dashboard"
+            className="flex w-full items-center justify-between rounded-2xl border-2 border-green-700 bg-green-50 p-4 text-left"
+          >
+            <span>
+              <span className="block font-bold text-green-900">⚙️ {t('admin_resource_dashboard')}</span>
+              <span className="mt-0.5 block text-sm text-stone-600">{t('admin_resource_dashboard_note')}</span>
+            </span>
+            <span className="text-green-800">→</span>
+          </button>
+        </section>
+      )}
+
       {/* 3c — account management */}
       <section className="mb-6">
         <h2 className="mb-3 text-lg font-bold text-stone-800">{t('account_section')}</h2>

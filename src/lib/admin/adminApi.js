@@ -52,6 +52,12 @@ export const adminUpsertMsp = (actorId, m) =>
     p_is_active: m.is_active ?? true,
   })
 
+// --- Phase 4: availability dashboard / Phase 6: farmer profiles ---
+export const getAdminAvailability = (actorId) => rpc('get_admin_availability', { p_actor_id: actorId })
+export const getAdminAvailabilityListings = (actorId, category = null) =>
+  rpc('get_admin_availability_listings', { p_actor_id: actorId, p_category: category })
+export const getAdminFarmerProfiles = (actorId) => rpc('get_admin_farmer_profiles', { p_actor_id: actorId })
+
 export const getAdminSourceStats = (actorId) => rpc('get_admin_source_stats', { p_actor_id: actorId })
 export const getAdminVendorListings = (actorId) => rpc('get_admin_vendor_listings', { p_actor_id: actorId })
 

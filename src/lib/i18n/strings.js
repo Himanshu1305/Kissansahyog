@@ -510,6 +510,15 @@ export const strings = {
   nudge_yes: { hi: 'हाँ, है', en: 'Yes, it is' },
   nudge_hide: { hi: 'नहीं, छुपाएं', en: 'No, hide it' },
 
+  // Phase 4 — admin availability dashboard.
+  admin_availability_title: { hi: 'संसाधन उपलब्धता डैशबोर्ड', en: 'Resource Availability Dashboard' },
+  admin_resource_dashboard: { hi: 'एडमिन संसाधन डैशबोर्ड', en: 'Admin Resource Dashboard' },
+  admin_resource_dashboard_note: { hi: 'हर श्रेणी में लिस्टिंग की उपलब्धता और किसान प्रोफाइल देखें।', en: 'View listing availability by category and farmer profiles.' },
+  avail_col_total: { hi: 'कुल', en: 'Total' },
+  avail_col_village: { hi: 'गाँव', en: 'Village' },
+  avail_col_clicks: { hi: 'संपर्क क्लिक', en: 'Contact clicks' },
+  avail_col_status: { hi: 'स्थिति', en: 'Status' },
+
   // --- admin dashboard ---
   admin_title: { hi: 'एडमिन डैशबोर्ड', en: 'Admin Dashboard' },
   access_denied: { hi: 'पहुँच नहीं', en: 'Access denied' },

@@ -324,3 +324,50 @@ begin
   from cats c;
 end;
 $$;
+
+-- =====================================================================
+-- PHASE 4 — Admin resource/booking dashboard (availability)
+-- =====================================================================
+-- Per-category availability counts across active listings (require_admin).
+create or replace function public.get_admin_availability(p_actor_id uuid)
+returns table (category text, total bigint, available bigint, unavailable bigint)
+language plpgsql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+begin
+  perform public.require_admin(p_actor_id);
+  return query
+  select l.category,
+         count(*) as total,
+         count(*) filter (where l.is_available) as available,
+         count(*) filter (where not l.is_available) as unavailable
+  from public.listings l
+  where l.status = 'active'
+  group by l.category
+  order by l.category;
+end;
+$$;
+grant execute on function public.get_admin_availability(uuid) to anon, authenticated;
+
+-- Every active listing's availability status, filterable by category (require_admin).
+create or replace function public.get_admin_availability_listings(p_actor_id uuid, p_category text default null)
+returns table (id uuid, category text, listing_type text, is_available boolean, contact_click_count integer, village_name text, created_at timestamptz)
+language plpgsql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+begin
+  perform public.require_admin(p_actor_id);
+  return query
+  select l.id, l.category, l.listing_type, l.is_available, l.contact_click_count, l.village_name, l.created_at
+  from public.listings l
+  where l.status = 'active'
+    and (p_category is null or l.category = p_category)
+  order by l.is_available asc, l.contact_click_count desc, l.created_at desc
+  limit 300;
+end;
+$$;
+grant execute on function public.get_admin_availability_listings(uuid, text) to anon, authenticated;

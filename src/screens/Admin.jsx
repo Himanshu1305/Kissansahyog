@@ -19,6 +19,7 @@ import {
   getAdminProcurement, adminUpsertProcurement, adminDeleteProcurement,
   getAdminPageFaqs, adminUpsertPageFaq, adminDeletePageFaq,
   getAdminDataHealth, adminSetSiteSetting,
+  getAdminAvailability, getAdminAvailabilityListings, getAdminFarmerProfiles,
 } from '../lib/admin/adminApi'
 import { getAdminInputPrices, adminSetInputPriceActive, adminUpsertInputPrice } from '../lib/inputs/inputsApi'
 import { fetchSiteSetting } from '../lib/pages/pagesApi'
@@ -52,6 +53,7 @@ export default function Admin() {
       <main className="mx-auto max-w-6xl px-4 py-6">
         <h1 className="mb-4 text-2xl font-bold text-stone-900">{t('admin_title')}</h1>
         <StatsBar actorId={user.id} t={t} />
+        <AvailabilityPanel actorId={user.id} t={t} lang={lang} />
         <VendorReportPanel actorId={user.id} t={t} lang={lang} />
         <ListingsPanel actorId={user.id} t={t} lang={lang} />
         <ExpertsPanel actorId={user.id} t={t} />
@@ -116,6 +118,84 @@ function StatsBar({ actorId, t }) {
 // Best-effort short "key detail" for a vendor row from its details JSONB.
 function vendorKeyDetail(d = {}) {
   return d.business_name || d.operator_name || d.item_name || d.warehouse_type || d.residue_type || d.crop_type || d.item_name || '—'
+}
+
+// Phase 4 — resource/booking dashboard: per-category availability counts + a
+// category-filterable table of every active listing's availability status.
+function AvailabilityPanel({ actorId, t, lang }) {
+  const [counts, setCounts] = useState(null)
+  const [rows, setRows] = useState(null)
+  const [cat, setCat] = useState('all')
+  const [err, setErr] = useState(null)
+
+  useEffect(() => {
+    getAdminAvailability(actorId).then(setCounts).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => {
+    setRows(null)
+    getAdminAvailabilityListings(actorId, cat === 'all' ? null : cat).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, cat, t])
+
+  return (
+    <Section title={`📊 ${t('admin_availability_title')}`}>
+      <p id="availability" className="scroll-mt-16" />
+      {err && <Notice tone="error">{err}</Notice>}
+      {!counts ? <Spinner /> : (
+        <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {counts.map((c) => (
+            <div key={c.category} className="rounded-xl border-2 border-stone-100 bg-stone-50 p-3">
+              <div className="font-bold text-stone-800">{CATEGORY_META[c.category]?.[lang] || c.category}</div>
+              <div className="mt-1 text-sm text-stone-600">
+                {t('avail_col_total')}: <span className="font-bold text-stone-900">{c.total}</span>
+                <span className="mx-1.5 text-stone-300">·</span>
+                <span className="font-bold text-green-700">{c.available}</span> {t('avail_available')}
+                <span className="mx-1.5 text-stone-300">·</span>
+                <span className="font-bold text-amber-700">{c.unavailable}</span> {t('avail_unavailable')}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="mb-3 flex flex-wrap items-end gap-2">
+        <Field label={t('col_category')} htmlFor="av_cat">
+          <Select id="av_cat" value={cat} onChange={(e) => setCat(e.target.value)}>
+            <option value="all">{t('vendor_filter_all_cat')}</option>
+            {CATEGORIES.map((c) => (<option key={c} value={c}>{CATEGORY_META[c][lang]}</option>))}
+          </Select>
+        </Field>
+      </div>
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead>
+              <tr className="border-b-2 border-stone-100 text-stone-500">
+                <th className="py-2 pr-3">{t('col_category')}</th>
+                <th className="py-2 pr-3">{t('col_type')}</th>
+                <th className="py-2 pr-3">{t('avail_col_village')}</th>
+                <th className="py-2 pr-3">{t('avail_col_clicks')}</th>
+                <th className="py-2 pr-3">{t('avail_col_status')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.id} className="border-b border-stone-100">
+                  <td className="py-2 pr-3">{CATEGORY_META[r.category]?.[lang] || r.category}</td>
+                  <td className="py-2 pr-3">{r.listing_type === 'offer' ? t('home_offer') : t('home_requirement')}</td>
+                  <td className="py-2 pr-3">{r.village_name || '—'}</td>
+                  <td className="py-2 pr-3">{r.contact_click_count}</td>
+                  <td className="py-2 pr-3">
+                    {r.is_available
+                      ? <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-bold text-green-800">{t('avail_available')}</span>
+                      : <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-800">{t('avail_unavailable')}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </Section>
+  )
 }
 
 function VendorReportPanel({ actorId, t, lang }) {
