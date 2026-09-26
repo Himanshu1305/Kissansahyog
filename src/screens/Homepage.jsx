@@ -23,6 +23,8 @@ import { LocationControl } from '../components/pages/shared'
 import { fetchPublishedArticles, articleTitle } from '../lib/articles/articlesApi'
 import { fetchFeaturedSawaal, sawaalQuestion, sawaalAnswer } from '../lib/community/communityApi'
 import { whatsappListingUrl } from '../lib/share/shareMessages'
+import { incrementContactClick } from '../lib/listings/listingsApi'
+import AvailabilityNudge from '../components/AvailabilityNudge'
 import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
 import { fetchPestReports } from '../lib/pest/pestApi'
 import { fetchUpcomingEvents, eventTitle, eventWeekdayKey } from '../lib/events/eventsApi'
@@ -171,6 +173,13 @@ export default function Homepage() {
         </button>
       )}
 
+      {/* Phase 3d — owner engagement nudge (self-hides when not logged in / none qualify). */}
+      {isLoggedIn && (
+        <div style={{ padding: '10px var(--ks-gutter) 0' }}>
+          <AvailabilityNudge />
+        </div>
+      )}
+
       {/* 4 — आपके आसपास (counts, 30km) */}
       <Section bg="var(--ks-bg-soft)">
         <h2 className="mb-2 text-[24px] font-bold leading-tight md:text-[28px]" style={{ color: 'var(--ks-ink)' }}>
@@ -215,6 +224,7 @@ export default function Homepage() {
                   place={place}
                   waHref={whatsappListingUrl(l)}
                   tel={null}
+                  onWhatsApp={() => incrementContactClick(l.id)}
                 />
               )
             })}

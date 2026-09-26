@@ -2,7 +2,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 
 // Universal WhatsApp share link (wa.me works on mobile app + WhatsApp Web).
 // `message` is the pre-filled text; `label` overrides the default button text.
-export default function WhatsAppShareButton({ message, label, className = '' }) {
+export default function WhatsAppShareButton({ message, label, className = '', onClick }) {
   const { t } = useLang()
   const href = `https://wa.me/?text=${encodeURIComponent(message)}`
   return (
@@ -10,6 +10,7 @@ export default function WhatsAppShareButton({ message, label, className = '' }) 
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={onClick}
       data-testid="whatsapp-share"
       className={`flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 font-bold text-white active:brightness-95 ${className}`}
     >

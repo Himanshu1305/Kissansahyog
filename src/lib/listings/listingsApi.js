@@ -108,6 +108,7 @@ export async function fetchNearby({ category, listingType = null, center, sort =
     .select('*')
     .eq('category', category)
     .eq('status', 'active')
+    .eq('is_available', true) // Phase 3e: hide owner-marked-unavailable listings
     .gte('latitude', box.minLat)
     .lte('latitude', box.maxLat)
     .gte('longitude', box.minLon)
@@ -147,6 +148,7 @@ export async function fetchRecentListings(limit = 12) {
     .from('listings')
     .select('id,listing_type,category,pincode,details,created_at,listing_source,is_test_data')
     .eq('status', 'active')
+    .eq('is_available', true) // Phase 3e: hide owner-marked-unavailable listings
     .gt('expires_at', new Date().toISOString())
     .order('created_at', { ascending: false })
     .limit(limit)
@@ -183,6 +185,7 @@ export async function fetchHomeFeed({ center = null, limit = 8, pool = 40, categ
     .from('listings')
     .select('id,listing_type,category,pincode,village_town:village_name,latitude,longitude,geocoding_status,details,created_at,listing_source,is_test_data,wide_visibility')
     .eq('status', 'active')
+    .eq('is_available', true) // Phase 3e: hide owner-marked-unavailable listings
     .gt('expires_at', new Date().toISOString())
   if (category) query = query.eq('category', category)
   const { data, error } = await query
@@ -272,4 +275,30 @@ export async function closeListing({ actorId, listingId }) {
   })
   if (error) throw toAppError(error)
   return data
+}
+
+// --- Phase 3: owner availability toggle + engagement counter + nudge ---
+export async function setListingAvailability({ actorId, listingId, isAvailable }) {
+  const { data, error } = await supabase.rpc('set_listing_availability', {
+    p_actor_id: actorId,
+    p_listing_id: listingId,
+    p_is_available: isAvailable,
+  })
+  if (error) throw toAppError(error)
+  return data
+}
+
+// Fire-and-forget engagement counter (stores no clicker identity). Never throws to the UI.
+export async function incrementContactClick(listingId) {
+  if (!listingId) return
+  try {
+    await supabase.rpc('increment_contact_click', { p_listing_id: listingId })
+  } catch { /* engagement metric is best-effort */ }
+}
+
+export async function getAvailabilityNudges(actorId) {
+  if (!actorId) return []
+  const { data, error } = await supabase.rpc('get_availability_nudges', { p_actor_id: actorId })
+  if (error) return []
+  return data || []
 }

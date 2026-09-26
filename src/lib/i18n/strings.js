@@ -499,6 +499,17 @@ export const strings = {
     en: 'Agro Forestry & Horticulture on Kisan Sahyog: grow trees with crops to raise income and reduce risk.',
   },
 
+  // Phase 3 — availability toggle + engagement nudge.
+  avail_available: { hi: 'उपलब्ध', en: 'Available' },
+  avail_unavailable: { hi: 'उपलब्ध नहीं', en: 'Unavailable' },
+  avail_hidden_note: { hi: 'यह लिस्टिंग अभी खोज में नहीं दिख रही (केवल आपको दिख रही है)।', en: 'This listing is hidden from search (only you can see it).' },
+  nudge_recent_interest: {
+    hi: 'आपकी {cat} लिस्टिंग में हाल में कई लोगों ने संपर्क किया है। क्या यह अभी भी उपलब्ध है?',
+    en: 'Several people recently contacted your {cat} listing. Is it still available?',
+  },
+  nudge_yes: { hi: 'हाँ, है', en: 'Yes, it is' },
+  nudge_hide: { hi: 'नहीं, छुपाएं', en: 'No, hide it' },
+
   // --- admin dashboard ---
   admin_title: { hi: 'एडमिन डैशबोर्ड', en: 'Admin Dashboard' },
   access_denied: { hi: 'पहुँच नहीं', en: 'Access denied' },

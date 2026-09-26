@@ -102,7 +102,7 @@ export function CountChip({ n, label, onClick }) {
 }
 
 // ---- HomeListingCard: photo + badge + title + price + place + WhatsApp/Call ----
-export function HomeListingCard({ image, badge, badgeTone = 'offer', title, price, place, waHref, tel }) {
+export function HomeListingCard({ image, badge, badgeTone = 'offer', title, price, place, waHref, tel, onWhatsApp }) {
   const navigate = useNavigate()
   const badgeStyle = badgeTone === 'offer'
     ? { background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }
@@ -121,7 +121,7 @@ export function HomeListingCard({ image, badge, badgeTone = 'offer', title, pric
         {place && <div className="mt-0.5 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>📍 {place}</div>}
       </div>
       <div className="flex items-stretch gap-1.5 p-2 pt-0">
-        <a href={waHref} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} data-testid="card-whatsapp" aria-label="WhatsApp" className="flex flex-1 items-center justify-center gap-1.5 text-[15px] font-bold text-white" style={{ background: 'var(--ks-whatsapp)', borderRadius: '10px', minHeight: '44px' }}>
+        <a href={waHref} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.stopPropagation(); onWhatsApp && onWhatsApp() }} data-testid="card-whatsapp" aria-label="WhatsApp" className="flex flex-1 items-center justify-center gap-1.5 text-[15px] font-bold text-white" style={{ background: 'var(--ks-whatsapp)', borderRadius: '10px', minHeight: '44px' }}>
           <WhatsAppIcon size={18} /> WhatsApp
         </a>
         <a href={tel ? `tel:${tel}` : undefined} onClick={(e) => { e.stopPropagation(); if (!tel) { e.preventDefault(); navigate('/signup') } }} aria-label="Call" className="flex items-center justify-center" style={{ width: 44, height: 44, minHeight: 44, background: 'var(--ks-green)', borderRadius: '10px', color: '#fff', flexShrink: 0 }}>

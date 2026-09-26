@@ -182,3 +182,145 @@ grant execute on function public.create_listing(uuid, text, text, jsonb, numeric
 alter table public.sarkari_yojana drop constraint if exists sarkari_yojana_category_check;
 alter table public.sarkari_yojana add constraint sarkari_yojana_category_check
   check (category in ('income_support','crop_insurance','credit','equipment','solar','storage','women','general','market','machinery','irrigation','horticulture'));
+
+-- =====================================================================
+-- PHASE 3 — Owner-controlled availability + engagement nudge
+-- =====================================================================
+-- 3a: per-listing availability (owner-toggled, never auto). contact_click_count is a
+-- lightweight engagement counter (no per-clicker data). availability_changed_at resets the
+-- nudge window on create/toggle; last_contact_at gives the "recent" test for the nudge.
+alter table public.listings add column if not exists is_available boolean not null default true;
+alter table public.listings add column if not exists contact_click_count integer not null default 0;
+alter table public.listings add column if not exists availability_changed_at timestamptz not null default now();
+alter table public.listings add column if not exists last_contact_at timestamptz;
+
+-- 3b: one-tap owner toggle (owner-gated). Resets the click counter + nudge window so a nudge
+-- reflects interest since the owner last confirmed availability.
+create or replace function public.set_listing_availability(p_actor_id uuid, p_listing_id uuid, p_is_available boolean)
+returns public.listings
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+declare v_row public.listings%rowtype;
+begin
+  select * into v_row from public.listings where id = p_listing_id;
+  if not found then raise exception 'not_found'; end if;
+  if v_row.user_id <> p_actor_id then raise exception 'not_owner'; end if;
+  update public.listings
+    set is_available = coalesce(p_is_available, true),
+        availability_changed_at = now(),
+        contact_click_count = 0
+    where id = p_listing_id
+    returning * into v_row;
+  return v_row;
+end;
+$$;
+grant execute on function public.set_listing_availability(uuid, uuid, boolean) to anon, authenticated;
+
+-- 3c: engagement counter increment (anon; active listings only; stores no clicker identity).
+create or replace function public.increment_contact_click(p_listing_id uuid)
+returns void
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+begin
+  update public.listings
+    set contact_click_count = contact_click_count + 1, last_contact_at = now()
+    where id = p_listing_id and status = 'active';
+end;
+$$;
+grant execute on function public.increment_contact_click(uuid) to anon, authenticated;
+
+-- 3d: nudge trigger (owner-scoped, reusable). Returns the owner's available listings that
+-- crossed the threshold (>=3 contact clicks within the last 5 days). The SAME trigger query
+-- can later feed a WhatsApp send with no restructuring — it is data, not UI.
+create or replace function public.get_availability_nudges(p_actor_id uuid)
+returns table (id uuid, category text, listing_type text, contact_click_count integer, last_contact_at timestamptz)
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select l.id, l.category, l.listing_type, l.contact_click_count, l.last_contact_at
+  from public.listings l
+  where l.user_id = p_actor_id
+    and l.status = 'active'
+    and l.is_available = true
+    and l.contact_click_count >= 3
+    and l.last_contact_at is not null
+    and l.last_contact_at >= now() - interval '5 days'
+  order by l.contact_click_count desc;
+$$;
+grant execute on function public.get_availability_nudges(uuid) to anon, authenticated;
+
+-- 3e: My Listings must show availability + the click count (owner sees ALL rows, unfiltered).
+drop function if exists public.get_my_listings(uuid);
+create or replace function public.get_my_listings(p_actor_id uuid)
+returns table (
+  id            uuid,
+  listing_type  text,
+  category      text,
+  status        text,
+  latitude      numeric,
+  longitude     numeric,
+  pincode       text,
+  details       jsonb,
+  self_declared boolean,
+  created_at    timestamptz,
+  expires_at    timestamptz,
+  is_expired    boolean,
+  is_available  boolean,
+  contact_click_count integer
+)
+language sql
+security definer
+set search_path = public, pg_temp
+as $$
+  select l.id, l.listing_type, l.category, l.status, l.latitude, l.longitude,
+         l.pincode, l.details, l.self_declared, l.created_at, l.expires_at,
+         (l.expires_at <= now()) as is_expired,
+         l.is_available, l.contact_click_count
+  from public.listings l
+  where l.user_id = p_actor_id
+  order by l.created_at desc;
+$$;
+grant execute on function public.get_my_listings(uuid) to anon, authenticated;
+
+-- 3e: nearby_counts must exclude unavailable listings (public local-density indicator).
+create or replace function public.nearby_counts(p_pincode text, p_km int default 30)
+returns table (category text, count bigint)
+language plpgsql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+declare
+  v_lat double precision;
+  v_lon double precision;
+begin
+  select latitude, longitude into v_lat, v_lon
+  from public.pincodes where pincode = coalesce(p_pincode, '') limit 1;
+
+  return query
+  with cats(category) as (
+    values ('equipment'), ('labor'), ('bhusa'), ('drone_didi'), ('warehouse'), ('land')
+  )
+  select c.category,
+         coalesce((
+           select count(*) from public.listings l
+           where l.category = c.category
+             and l.status = 'active'
+             and l.is_available = true
+             and (l.expires_at is null or l.expires_at > now())
+             and v_lat is not null and l.latitude is not null and l.longitude is not null
+             and 111.045 * degrees(acos(least(1.0,
+                   cos(radians(v_lat)) * cos(radians(l.latitude)) *
+                   cos(radians(l.longitude) - radians(v_lon)) +
+                   sin(radians(v_lat)) * sin(radians(l.latitude))
+                 ))) <= greatest(1, coalesce(p_km, 30))
+         ), 0) as count
+  from cats c;
+end;
+$$;

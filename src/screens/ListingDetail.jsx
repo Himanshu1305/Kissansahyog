@@ -11,7 +11,7 @@ import AvailabilityCalendar from '../components/AvailabilityCalendar'
 import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { fetchListingById, getListingContact } from '../lib/listings/listingsApi'
+import { fetchListingById, getListingContact, incrementContactClick } from '../lib/listings/listingsApi'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { haversineKm } from '../lib/distance'
 
@@ -51,6 +51,8 @@ export default function ListingDetail() {
     setError(null)
     setRevealBusy(true)
     try {
+      // Phase 3c — engagement counter (Call intent). Not for the owner's own listing.
+      if (!user || user.id !== listing?.user_id) incrementContactClick(id)
       setContact(await getListingContact(id))
     } catch (err) {
       setError(t(err.i18nKey || 'err_unknown'))
@@ -158,6 +160,7 @@ export default function ListingDetail() {
       <WhatsAppShareButton
         message={generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)}
         className="mb-3"
+        onClick={() => { if (!user || user.id !== listing.user_id) incrementContactClick(listing.id) }}
       />
 
       {/* Phone reveal — short caution banner sits directly above the Call button. */}
