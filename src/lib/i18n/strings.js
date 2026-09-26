@@ -533,6 +533,12 @@ export const strings = {
   farmer_filter_equipment: { hi: 'उपकरण रुचि', en: 'Equipment interest' },
   farmer_count: { hi: 'कुल किसान', en: 'Total farmers' },
 
+  // Phase 7 — homepage PWA install banner.
+  pwa_banner_text: { hi: 'किसान सहयोग को अपने फ़ोन में इंस्टॉल करें — बिल्कुल मुफ़्त, कोई स्पैम नहीं', en: 'Install Kisan Sahyog on your phone — completely free, no spam' },
+  pwa_banner_install: { hi: 'इंस्टॉल करें', en: 'Install' },
+  pwa_ios_help: { hi: "अपने फ़ोन में: नीचे शेयर बटन दबाएं, फिर 'होम स्क्रीन पर जोड़ें' चुनें।", en: "On your phone: tap the Share button below, then choose 'Add to Home Screen'." },
+  pwa_banner_dismiss: { hi: 'बंद करें', en: 'Dismiss' },
+
   // Phase 5 — किसान प्रोफाइल fields.
   kisan_profile_title: { hi: 'किसान प्रोफाइल (वैकल्पिक)', en: 'Farmer profile (optional)' },
   kisan_profile_section: { hi: 'किसान प्रोफाइल', en: 'Farmer profile' },

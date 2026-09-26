@@ -25,6 +25,7 @@ import { fetchFeaturedSawaal, sawaalQuestion, sawaalAnswer } from '../lib/commun
 import { whatsappListingUrl } from '../lib/share/shareMessages'
 import { incrementContactClick } from '../lib/listings/listingsApi'
 import AvailabilityNudge from '../components/AvailabilityNudge'
+import PwaInstallBanner from '../components/PwaInstallBanner'
 import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
 import { fetchPestReports } from '../lib/pest/pestApi'
 import { fetchUpcomingEvents, eventTitle, eventWeekdayKey } from '../lib/events/eventsApi'
@@ -152,6 +153,8 @@ export default function Homepage() {
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
       <NavBar />
+      {/* Phase 7 — slim install banner below nav, above hero (self-hides in standalone). */}
+      <PwaInstallBanner />
       <MandiTicker />
 
       {/* 3 — Hero: आज किसान के लिए */}
