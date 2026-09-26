@@ -19,7 +19,7 @@ async function main() {
   })
 
   // Offer, per_hour, available now
-  const offer = await sb.rpc('create_listing', {
+  const offer = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment',
     p_details: { equipment_type_id: tractor.id, rental_basis: 'per_hour', available_now: true, available_from: null, available_to: null },
     p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false,
@@ -27,7 +27,7 @@ async function main() {
   check('equipment offer (tractor, per_hour, now) created', !offer.error && offer.data?.category === 'equipment', offer.error?.message)
 
   // Requirement, per_acre, date range
-  const req = await sb.rpc('create_listing', {
+  const req = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'equipment',
     p_details: { equipment_type_id: thresher.id, rental_basis: 'per_acre', available_now: false, available_from: '2026-09-01', available_to: '2026-09-30' },
     p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false,
@@ -35,7 +35,7 @@ async function main() {
   check('equipment requirement (thresher, per_acre, dates) created', !req.error && req.data?.listing_type === 'requirement', req.error?.message)
 
   // Negative: no equipment type -> equipment_type_required
-  const noType = await sb.rpc('create_listing', {
+  const noType = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment',
     p_details: { rental_basis: 'per_day', available_now: true },
     p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false,

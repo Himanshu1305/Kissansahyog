@@ -100,7 +100,7 @@ async function main() {
 
   if (actorId) {
     // negative: wide_visibility=true on equipment must be REJECTED server-side
-    const { data: d1, error: e1 } = await db.rpc('create_listing', {
+    const { data: d1, error: e1 } = await db.rpc('create_listing', { p_rules_agreed: true,
       p_actor_id: actorId, p_listing_type: 'offer', p_category: 'equipment', p_details: eqDetails,
       p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false,
       p_listing_source: 'farmer', p_wide_visibility: true,
@@ -109,7 +109,7 @@ async function main() {
     if (d1?.id) await db.from('listings').delete().eq('id', d1.id)
 
     // positive: wide_visibility=true on bhusa is allowed and stored true
-    const { data: d2, error: e2 } = await db.rpc('create_listing', {
+    const { data: d2, error: e2 } = await db.rpc('create_listing', { p_rules_agreed: true,
       p_actor_id: actorId, p_listing_type: 'offer', p_category: 'bhusa', p_details: bhusaDetails,
       p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false,
       p_listing_source: 'farmer', p_wide_visibility: true,
@@ -119,7 +119,7 @@ async function main() {
     if (d2?.id) await db.from('listings').delete().eq('id', d2.id)
 
     // default: a normal listing (no flag) is wide_visibility=false
-    const { data: d3 } = await db.rpc('create_listing', {
+    const { data: d3 } = await db.rpc('create_listing', { p_rules_agreed: true,
       p_actor_id: actorId, p_listing_type: 'offer', p_category: 'bhusa', p_details: bhusaDetails,
       p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false,
     })

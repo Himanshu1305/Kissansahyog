@@ -32,7 +32,7 @@ async function main() {
   check('update with unknown pincode rejected', !!bad.error && /pincode_not_found/.test(bad.error.message || ''))
 
   // Delete account cascades listings.
-  const listing = (await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'labor', p_details: { worker_count: 3, work_type: 'sowing', available_from: null, available_to: null, rate_basis: 'per_day', rate_amount: '₹400' }, p_latitude: null, p_longitude: null, p_pincode: '470227', p_self_declared: false })).data
+  const listing = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'labor', p_details: { worker_count: 3, work_type: 'sowing', available_from: null, available_to: null, rate_basis: 'per_day', rate_amount: '₹400' }, p_latitude: null, p_longitude: null, p_pincode: '470227', p_self_declared: false })).data
   check('listing created before deletion', !!listing?.id)
 
   const del = await sb.rpc('delete_account', { p_actor_id: actor.id })

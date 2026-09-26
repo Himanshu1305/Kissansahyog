@@ -27,21 +27,21 @@ async function main() {
   })).data
 
   // POSITIVE: farmer surplus (DAP, Sagar).
-  const a = await sb.rpc('create_listing', {
+  const a = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'agri_inputs',
     p_details: surplus(), p_latitude: null, p_longitude: null, p_pincode: '470001', p_self_declared: false,
   })
   check('farmer surplus created', !a.error && a.data?.category === 'agri_inputs', a.error?.message)
 
   // POSITIVE: vendor listing (seed shop, Khurai).
-  const b = await sb.rpc('create_listing', {
+  const b = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'agri_inputs',
     p_details: vendor(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false,
   })
   check('vendor listing created', !b.error && b.data?.pincode === '470117', b.error?.message)
 
   // POSITIVE: agri-input Requirement (looking for wheat seeds).
-  const c = await sb.rpc('create_listing', {
+  const c = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'agri_inputs',
     p_details: surplus({ input_type: 'seeds', item_name: 'HI-8498 Wheat Seed', condition: 'good' }),
     p_latitude: null, p_longitude: null, p_pincode: '470001', p_self_declared: false,
@@ -49,21 +49,21 @@ async function main() {
   check('agri-input requirement created', !c.error && c.data?.listing_type === 'requirement', c.error?.message)
 
   // NEGATIVE: farmer surplus without material_address rejected.
-  const noAddr = await sb.rpc('create_listing', {
+  const noAddr = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'agri_inputs',
     p_details: surplus({ material_address: '' }), p_latitude: null, p_longitude: null, p_pincode: '470001', p_self_declared: false,
   })
   check('surplus without material_address rejected', !!noAddr.error && /material_address_required/.test(noAddr.error.message || ''))
 
   // NEGATIVE: vendor without shop pincode rejected (unknown pincode).
-  const noPin = await sb.rpc('create_listing', {
+  const noPin = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'agri_inputs',
     p_details: vendor(), p_latitude: null, p_longitude: null, p_pincode: '111111', p_self_declared: false,
   })
   check('vendor with unknown shop pincode rejected', !!noPin.error && /pincode_not_found/.test(noPin.error.message || ''))
 
   // NEGATIVE: vendor with no input_types rejected.
-  const noInputs = await sb.rpc('create_listing', {
+  const noInputs = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'agri_inputs',
     p_details: vendor({ input_types: [] }), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false,
   })

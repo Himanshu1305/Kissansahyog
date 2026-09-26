@@ -43,7 +43,7 @@ async function main() {
 
   const posted = {}
   for (const cat of ['land', 'equipment', 'labor', 'bhusa', 'agri_inputs']) {
-    const res = await sb.rpc('create_listing', {
+    const res = await sb.rpc('create_listing', { p_rules_agreed: true,
       p_actor_id: poster.id, p_listing_type: 'offer', p_category: cat,
       p_details: DETAILS[cat], p_latitude: null, p_longitude: null, p_pincode: '470001', p_self_declared: SELF[cat],
     })

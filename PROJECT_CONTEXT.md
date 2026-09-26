@@ -1010,3 +1010,40 @@ NEVER shown in a user-facing view (only the `?debug=1` overlay may show coords).
 - **Deploy note:** the IP suggestion only works on Cloudflare's edge (production) — `vite
   preview` has no Pages Function, so it no-shows locally (expected). The `/geo` route was
   verified with `npx wrangler pages dev dist` before building the client.
+
+## Village geocoding + Land acreage — 2026-09-26 (migrations 0027–0031)
+Prior build (see docs/review/VILLAGE_GEOCODING_REVIEW.md + LAND_ACREAGE_REVIEW.md):
+- **Village geocoding (0027):** `village_coordinates` cache/queue + `geocode_state` 1/sec slot +
+  `/geocode` Cloudflare Pages Function (Nominatim proxy, UA header) + client drain worker; village name is
+  now the primary distance anchor (pincode = fallback), coords denormalized onto each listing.
+- **Land acreage (0028–0031):** `size_range` buckets → numeric `details.size_acres` (no cap); per-acre
+  rate label for fixed/ठेका; optional per-listing contact stored in a private `listing_private_contact`
+  table (Land-only, anon-locked) revealed via `get_listing_contact`.
+
+## Legal / Agro-Forestry / Availability / Profile — 2026-09-26 (migration 0032)
+Full write-up: docs/review/COMBINED_LEGAL_AGROFORESTRY_AVAILABILITY_PROFILE_REVIEW.md. One migration
+`0032_legal_agroforestry_availability_profile.sql`; content seeded by `scripts/seed_agroforestry.mjs`.
+- **Rules compliance (P1):** `create_listing` now requires `p_rules_agreed=true` (12-arg; old 11-arg dropped
+  — no bypass). Seller checkbox on every listing form + a one-time buyer modal (`BuyerComplianceGate`,
+  document capture-phase interceptor on any `tel:`/`wa.me` tap, `localStorage.ks_buyer_agreed_v1`). Both link
+  to `/terms`.
+- **Agro-Forestry (P2):** `sarkari_yojana` category += `horticulture`; 2 verified MP schemes
+  (`fal-podharopan-yojana`, `aushadhi-sugandhit-fasal-vistar`) render via `/yojana/:slug`; `/agro-forestry`
+  hub (`AgroForestry.jsx`, in बाज़ार nav) + a researched Hindi intercropping article
+  (`/articles/intercropping-madhya-pradesh`, ए.के. दीक्षित credit). `ArticleDetail` now renders summary +
+  `## ` H2s + Article/FAQPage JSON-LD. 2 CC BY-SA Commons images in `public/images/agroforestry/` (+ /credits).
+- **Availability (P3):** `listings.is_available` + `contact_click_count`/`availability_changed_at`/
+  `last_contact_at`; `set_listing_availability` (owner toggle, My Listings), `increment_contact_click` (anon),
+  `get_availability_nudges` (owner). Reusable `AvailabilityNudge` (My Listings + homepage), WhatsApp-ready.
+  `is_available=false` filtered from fetchNearby/fetchRecentListings/fetchHomeFeed/nearby_counts; `get_my_listings`
+  returns availability (owner sees all).
+- **Admin (P4/P6):** `get_admin_availability` + `get_admin_availability_listings` (AvailabilityPanel) and
+  `get_admin_farmer_profiles` (FarmerProfilesPanel) in `/admin` (require_admin); admins also reach `/admin`
+  via a profile-page card.
+- **किसान profile (P5):** `profiles.land_acres/main_crops/interest_lease/interest_equipment` (optional at
+  signup + editable on Profile via `update_kisan_profile` + shared `KisanFields`); no-sell disclaimer;
+  anon-locked (owner+admin only).
+- **PWA banner (P7):** `PwaInstallBanner` on the homepage (below nav) — Android native prompt / iOS
+  instructions / hidden in standalone / session-only dismiss; complements the PwaPrompts returning-visitor prompt.
+- **Tests:** `scripts/test/p_0032_legal_availability_profile.mjs` (29) + `e2e/phase16_legal_availability.spec.js`
+  (4). Every listing-creating backend test now passes `p_rules_agreed:true`.

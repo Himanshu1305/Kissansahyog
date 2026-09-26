@@ -27,7 +27,7 @@ async function main() {
   check('non-admin get_admin_stats denied', !!denied.error && /not_admin/.test(denied.error.message || ''))
 
   // Moderation: remove a listing → gone from public browse.
-  const listing = (await sb.rpc('create_listing', { p_actor_id: normalP.id, p_listing_type: 'offer', p_category: 'labor', p_details: { worker_count: 2, work_type: 'sowing', available_from: null, available_to: null, rate_basis: 'per_day', rate_amount: '₹300' }, p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })).data
+  const listing = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: normalP.id, p_listing_type: 'offer', p_category: 'labor', p_details: { worker_count: 2, work_type: 'sowing', available_from: null, available_to: null, rate_basis: 'per_day', rate_amount: '₹300' }, p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })).data
   const rem = await sb.rpc('remove_listing', { p_actor_id: adminP.id, p_listing_id: listing.id })
   check('admin remove_listing sets removed', !rem.error && rem.data?.status === 'removed', rem.error?.message)
   const publicVisible = (await sb.from('listings').select('id').eq('id', listing.id).eq('status', 'active')).data || []

@@ -26,7 +26,7 @@ async function main() {
   check('poster home coords are Rehli (far from Sagar)', poster.latitude === rehli.latitude)
 
   // Post a LAND offer whose asset pincode is Sagar (not the poster's home).
-  const land = (await sb.rpc('create_listing', {
+  const land = (await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: poster.id, p_listing_type: 'offer', p_category: 'land',
     p_details: { size_range: '2-5', arrangement: ['lease'], water_source: 'borewell', crop_id: null, season: 'rabi', photo_urls: [] },
     p_latitude: null, p_longitude: null, p_pincode: '470001', p_self_declared: true,
@@ -40,7 +40,7 @@ async function main() {
 
   // Coordinates are derived SERVER-SIDE from the pincode even if the client lies:
   // pass deliberately-wrong lat/long and confirm the pincode row wins.
-  const lied = (await sb.rpc('create_listing', {
+  const lied = (await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: poster.id, p_listing_type: 'offer', p_category: 'land',
     p_details: { size_range: '1-2' },
     p_latitude: 0, p_longitude: 0, p_pincode: '470001', p_self_declared: true,
@@ -49,7 +49,7 @@ async function main() {
     Number(lied.latitude) === Number(sagar.latitude) && Number(lied.longitude) === Number(sagar.longitude))
 
   // NEGATIVE: an unknown asset pincode is rejected (mirrors client validation).
-  const bad = await sb.rpc('create_listing', {
+  const bad = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: poster.id, p_listing_type: 'offer', p_category: 'land',
     p_details: { size_range: '1-2' },
     p_latitude: null, p_longitude: null, p_pincode: '999999', p_self_declared: true,

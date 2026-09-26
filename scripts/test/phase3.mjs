@@ -47,7 +47,7 @@ async function main() {
   const actorId = actor.id
 
   // --- create_listing: land offer (self_declared true) succeeds ---
-  const offer = await sb.rpc('create_listing', {
+  const offer = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actorId, p_listing_type: 'offer', p_category: 'land',
     p_details: { size_range: '2-5', arrangement: ['lease'], water_source: 'borewell', crop_id: null, season: 'rabi', photo_urls: [] },
     p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true,
@@ -55,7 +55,7 @@ async function main() {
   check('land offer (self-declared) created', !offer.error && offer.data?.self_declared === true && offer.data?.latitude === 23.8388, offer.error?.message)
 
   // --- create_listing: land requirement (no self-declaration) succeeds ---
-  const req = await sb.rpc('create_listing', {
+  const req = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actorId, p_listing_type: 'requirement', p_category: 'land',
     p_details: { size_range: '1-2', arrangement: [], water_source: 'canal', crop_id: null, season: 'kharif', photo_urls: [] },
     p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false,
@@ -63,7 +63,7 @@ async function main() {
   check('land requirement created (no self-decl needed)', !req.error && req.data?.self_declared === false, req.error?.message)
 
   // --- RPC rejects land offer without self-declaration (friendly) ---
-  const badOffer = await sb.rpc('create_listing', {
+  const badOffer = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actorId, p_listing_type: 'offer', p_category: 'land',
     p_details: { size_range: '2-5' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false,
   })

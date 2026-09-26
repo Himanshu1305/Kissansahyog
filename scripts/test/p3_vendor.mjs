@@ -15,14 +15,14 @@ async function main() {
   const actor = (await sb.rpc('app_signup', { p_full_name: 'Vendor Tester', p_phone: testPhone(), p_village_town: 'Khurai', p_pincode: '470117', p_language: 'hi', p_disclaimer_accepted: true })).data
 
   // Farmer (default) vs vendor.
-  const farmerL = (await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment', p_details: eqDetails(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })).data
+  const farmerL = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment', p_details: eqDetails(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })).data
   check('default listing_source = farmer', farmerL.listing_source === 'farmer', farmerL.listing_source)
 
-  const vendorL = (await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment', p_details: eqDetails(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false, p_listing_source: 'vendor' })).data
+  const vendorL = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment', p_details: eqDetails(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false, p_listing_source: 'vendor' })).data
   check('vendor listing_source = vendor', vendorL.listing_source === 'vendor', vendorL.listing_source)
 
   // Invalid source coerced to farmer (defensive).
-  const weird = (await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment', p_details: eqDetails(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false, p_listing_source: 'nonsense' })).data
+  const weird = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment', p_details: eqDetails(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false, p_listing_source: 'nonsense' })).data
   check('invalid source coerced to farmer', weird.listing_source === 'farmer')
 
   // Admin gate.

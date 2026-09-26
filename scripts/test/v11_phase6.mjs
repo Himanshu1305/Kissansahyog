@@ -33,7 +33,7 @@ check('terms of use points all bilingual', termsOfUse.length >= 4 && termsOfUse.
 const badCat = Object.entries(catalog.CATEGORY_META).filter(([, v]) => !bi(v)).map(([k]) => k)
 check('CATEGORY_META bilingual (incl. bhusa, agri_inputs)', badCat.length === 0, badCat.join(', '))
 const OPTION_LISTS = [
-  'PRICE_TYPE', 'SIZE_RANGE', 'ARRANGEMENT', 'WATER_SOURCE', 'SEASON', 'RENTAL_BASIS',
+  'PRICE_TYPE', 'ARRANGEMENT', 'WATER_SOURCE', 'SEASON', 'RENTAL_BASIS',
   'WORK_TYPE', 'RATE_BASIS', 'RESIDUE_TYPE', 'PICKUP_ARRANGEMENT', 'BUYER_TYPE_PREFERENCE',
   'AGRI_SUBTYPE', 'INPUT_TYPE', 'INPUT_CONDITION',
 ]
@@ -90,7 +90,7 @@ const stripComments = (s) => s.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:
 const ALLOWED = new Set([
   'src/lib/i18n/strings.js', 'src/lib/i18n/disclaimers.js', 'src/lib/i18n/legal.js',
   'src/lib/share/shareMessages.js', 'src/lib/listings/catalog.js',
-  'src/content/crops.js', 'src/content/months.js', // bilingual LABEL/content data
+  'src/content/crops.js', 'src/content/months.js', 'src/content/agroforestry.js', // bilingual LABEL/content data
   'src/components/categories/land.jsx', 'src/components/categories/equipment.jsx',
   'src/components/categories/labor.jsx', 'src/components/categories/bhusa.jsx',
   'src/components/categories/agri_inputs.jsx', 'src/components/categories/drone_didi.jsx',

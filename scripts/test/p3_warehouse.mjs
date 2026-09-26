@@ -18,25 +18,25 @@ async function main() {
   const actor = (await sb.rpc('app_signup', { p_full_name: 'WH Tester', p_phone: testPhone(), p_village_town: 'Khurai', p_pincode: '470117', p_language: 'hi', p_disclaimer_accepted: true })).data
 
   // Offer (vendor) at Bina pincode.
-  const o = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer(), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false, p_listing_source: 'vendor' })
+  const o = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer(), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false, p_listing_source: 'vendor' })
   check('warehouse offer created (vendor)', !o.error && o.data?.category === 'warehouse' && o.data?.listing_source === 'vendor', o.error?.message)
   check('warehouse located at asset pincode (Bina)', Number(o.data?.latitude) === Number(bina.latitude) && o.data?.pincode === '470113')
 
   // Requirement.
-  const r = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'warehouse', p_details: req(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
+  const r = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'warehouse', p_details: req(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
   check('warehouse requirement created', !r.error && r.data?.listing_type === 'requirement', r.error?.message)
 
   // Negatives (offer).
-  const noType = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer({ warehouse_type: '' }), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false })
+  const noType = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer({ warehouse_type: '' }), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false })
   check('offer without warehouse_type rejected', !!noType.error && /warehouse_type_required/.test(noType.error.message || ''))
-  const noCap = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer({ capacity_quintals: 0 }), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false })
+  const noCap = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer({ capacity_quintals: 0 }), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false })
   check('offer without capacity rejected', !!noCap.error && /capacity_required/.test(noCap.error.message || ''))
-  const noRate = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer({ rate: '' }), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false })
+  const noRate = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer({ rate: '' }), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false })
   check('offer without rate rejected', !!noRate.error && /warehouse_rate_required/.test(noRate.error.message || ''))
-  const noAddr = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer({ address: '' }), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false })
+  const noAddr = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'warehouse', p_details: offer({ address: '' }), p_latitude: null, p_longitude: null, p_pincode: '470113', p_self_declared: false })
   check('offer without address rejected', !!noAddr.error && /warehouse_address_required/.test(noAddr.error.message || ''))
   // Negatives (requirement).
-  const noDur = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'warehouse', p_details: req({ duration: '' }), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
+  const noDur = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'warehouse', p_details: req({ duration: '' }), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
   check('requirement without duration rejected', !!noDur.error && /duration_required/.test(noDur.error.message || ''))
 
   // Shapes.

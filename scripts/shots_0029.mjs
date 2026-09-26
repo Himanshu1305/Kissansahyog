@@ -38,7 +38,7 @@ async function setup() {
   // A freshly-geocoded non-pilot village + an equipment listing anchored to it (cache hit → accurate coords).
   await db.from('village_coordinates').delete().eq('village_name', 'Demopur')
   await db.from('village_coordinates').insert({ village_name: 'Demopur', district: 'Sagar', latitude: DEMO.latitude, longitude: DEMO.longitude, status: 'resolved', source: 'shot-seed', resolved_at: new Date().toISOString() })
-  const { data: listing } = await db.rpc('create_listing', { p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'equipment', p_details: { equipment_type_id: 1, rental_basis: 'per_hour', rate_amount: '600', available_now: true }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Demopur' })
+  const { data: listing } = await db.rpc('create_listing', { p_rules_agreed: true, p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'equipment', p_details: { equipment_type_id: 1, rental_basis: 'per_hour', rate_amount: '600', available_now: true }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Demopur' })
   return { prof, listingId: listing?.id }
 }
 

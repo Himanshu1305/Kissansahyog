@@ -28,7 +28,7 @@ async function main() {
   const emailP = (await c.rpc('app_signup_email', { p_full_name: 'Email Kisan', p_village_town: 'Sagar', p_pincode: '470001', p_language: 'en' })).data
   check('email user profile created', emailP?.auth_provider === 'email')
 
-  const listing = (await sb.rpc('create_listing', {
+  const listing = (await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: emailP.id, p_listing_type: 'offer', p_category: 'land',
     p_details: { size_range: '2-5', arrangement: ['lease'], water_source: 'borewell', crop_id: null, season: 'rabi', price_type: 'fixed', price_amount: '₹25000', photo_urls: [] },
     p_latitude: null, p_longitude: null, p_pincode: '470001', p_self_declared: true,

@@ -34,7 +34,7 @@ async function setup() {
     prof = data
   }
   // A 50-acre ठेका (contract) listing anchored to Khurai for the detail screenshot.
-  const { data: listing } = await db.rpc('create_listing', { p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_acres: 50, arrangement: ['contract_farming'], water_source: 'borewell', crop_id: 1, season: 'rabi', price_type: 'fixed', price_amount: '6000' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai' })
+  const { data: listing } = await db.rpc('create_listing', { p_rules_agreed: true, p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_acres: 50, arrangement: ['contract_farming'], water_source: 'borewell', crop_id: 1, season: 'rabi', price_type: 'fixed', price_amount: '6000' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai' })
   return { prof, listingId: listing?.id }
 }
 

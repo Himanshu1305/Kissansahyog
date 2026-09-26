@@ -21,16 +21,16 @@ async function main() {
   const eqTypes = (await sb.from('equipment_types').select('*')).data
 
   // --- create one listing per category (no per-listing location override) ---
-  const land = (await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_range: '2-5', arrangement: ['lease'], water_source: 'borewell', crop_id: null, season: 'rabi', photo_urls: [] }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true })).data
-  const equip = (await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'equipment', p_details: { equipment_type_id: eqTypes[0].id, rental_basis: 'per_day', available_now: true, available_from: null, available_to: null }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false })).data
-  const labor = (await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'labor', p_details: { worker_count: 6, work_type: 'harvesting', available_from: '2026-10-01', available_to: '2026-10-10', rate_basis: 'per_day', rate_amount: '₹400' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false })).data
+  const land = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_range: '2-5', arrangement: ['lease'], water_source: 'borewell', crop_id: null, season: 'rabi', photo_urls: [] }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true })).data
+  const equip = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'equipment', p_details: { equipment_type_id: eqTypes[0].id, rental_basis: 'per_day', available_now: true, available_from: null, available_to: null }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false })).data
+  const labor = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'labor', p_details: { worker_count: 6, work_type: 'harvesting', available_from: '2026-10-01', available_to: '2026-10-10', rate_basis: 'per_day', rate_amount: '₹400' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false })).data
 
   // Listings with no override inherit the poster's (pincode-derived) coordinates.
   check('listing inherits poster coords when not overridden', land.latitude === actor.latitude && land.longitude === actor.longitude)
 
   // --- per-listing location OVERRIDE works (land not at home village) ---
   const binaPin = (await admin.from('pincodes').select('*').eq('pincode', '470113').single()).data
-  const override = (await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_range: '1-2' }, p_latitude: binaPin.latitude, p_longitude: binaPin.longitude, p_pincode: '470113', p_self_declared: true })).data
+  const override = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_range: '1-2' }, p_latitude: binaPin.latitude, p_longitude: binaPin.longitude, p_pincode: '470113', p_self_declared: true })).data
   check('per-listing location override applied', override.latitude === binaPin.latitude && override.pincode === '470113')
 
   // --- JSONB shape consistency: raw rows have exactly the expected keys ---

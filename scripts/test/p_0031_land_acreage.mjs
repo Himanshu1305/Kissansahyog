@@ -32,7 +32,7 @@ async function main() {
   const KH = { latitude: 24.045, longitude: 78.33 }
 
   // ---------- A 50-acre listing (far exceeds the old 10+ cap) stores + displays exactly ----------
-  const { data: big, error: bigErr } = await db.rpc('create_listing', { p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_acres: 50, arrangement: ['contract_farming'], price_type: 'fixed', price_amount: '5000' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai' })
+  const { data: big, error: bigErr } = await db.rpc('create_listing', { p_rules_agreed: true, p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_acres: 50, arrangement: ['contract_farming'], price_type: 'fixed', price_amount: '5000' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai' })
   ok('50-acre Land listing is created (no bucket cap)', !bigErr && big?.category === 'land', bigErr?.message)
   ok('50-acre value stored exactly (no rounding into a bucket)', Number(big?.details?.size_acres) === 50)
   // anon (public) read shows the exact acreage + a village name, never contact/exact plot
@@ -51,14 +51,14 @@ async function main() {
   ok('a distant 50-acre listing is excluded by the same 30km rule', partitionByRadius(far, accessors).primary.length === 0)
 
   // ---------- Contact override privacy (permanent) ----------
-  const { data: big2 } = await db.rpc('create_listing', { p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_acres: 12, arrangement: ['lease'], price_type: 'fixed', price_amount: '3000', contact_phone: '9123400009' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai' })
+  const { data: big2 } = await db.rpc('create_listing', { p_rules_agreed: true, p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_acres: 12, arrangement: ['lease'], price_type: 'fixed', price_amount: '3000', contact_phone: '9123400009' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai' })
   const { data: pub2 } = await anon.from('listings').select('details').eq('id', big2.id).single()
   ok('override NOT leaked into public details', !('contact_phone' in pub2.details))
   const { error: privErr } = await anon.from('listing_private_contact').select('*').eq('listing_id', big2.id)
   ok('anon cannot read the private contact table', !!privErr)
   const rev = await anon.rpc('get_listing_contact', { p_listing_id: big2.id })
   ok('reveal RPC returns the override number', rev.data?.[0]?.phone === '9123400009')
-  const { data: big3 } = await db.rpc('create_listing', { p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_acres: 5, arrangement: ['lease'], price_type: 'negotiable' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai' })
+  const { data: big3 } = await db.rpc('create_listing', { p_rules_agreed: true, p_actor_id: prof.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_acres: 5, arrangement: ['lease'], price_type: 'negotiable' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai' })
   const rev3 = await anon.rpc('get_listing_contact', { p_listing_id: big3.id })
   ok('blank override falls back to the poster profile phone', rev3.data?.[0]?.phone === prof.phone)
 

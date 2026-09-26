@@ -13,7 +13,7 @@ async function main() {
     p_full_name: 'Labor Leader', p_phone: testPhone(), p_village_town: 'Sagar',
     p_pincode: '470001', p_language: 'hi', p_disclaimer_accepted: true,
   })
-  const mk = (type, details) => sb.rpc('create_listing', {
+  const mk = (type, details) => sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: type, p_category: 'labor',
     p_details: details, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false,
   })

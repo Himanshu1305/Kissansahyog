@@ -295,3 +295,20 @@ left because acting on it touches working, pre-existing code with no reported is
   coords). A future pass could add a second geocoder or self-host if reliability matters.
 - **`?debug=1` overlay is the ONLY place raw coordinates appear** (by design, for real-device
   diagnosis). Grep-audited: no other user-facing view renders a lat/lng pair.
+
+## Legal / Agro-Forestry / Availability / Profile (2026-09-26, migration 0032)
+- **v1 E2E specs `phase2–9` remain pre-existing-broken (23 tests) — NOT a regression from this build.**
+  They predate the homepage-as-landing redesign (`/welcome` button is now `t('new_user')`, not the
+  "नया खाता बनाएं" they assert — a screen untouched here), the required asset fields, the Land `size_acres`
+  change, and now the mandatory rules checkbox. Updating them is out of scope; the maintained suites cover
+  the shipped behaviour: backend 32/1 (only the TD-1 `v11_phase6` i18n debt), maintained E2E phase10–16 = 34/34.
+- **Rules-compliance is mandatory server-side:** any future code path that creates a listing MUST pass
+  `p_rules_agreed=true` to `create_listing` (the old 11-arg overload was dropped). Direct-insert seeding
+  (`seed_dummy.mjs`) bypasses the RPC and is unaffected.
+- **Availability of listing detail-by-id + phone reveal are intentionally NOT `is_available`-filtered** — an
+  unavailable listing stays reachable by a direct link / owner preview; it is only removed from browse/feed/
+  counts. Documented decision (Phase 3e).
+- **Buyer-side engagement nudge is deferred** (needs WhatsApp API or login-to-browse). The owner-side nudge
+  is WhatsApp-ready (`get_availability_nudges` + `set_listing_availability`).
+- **Agro-forestry images** are 2 CC BY-SA 3.0 Wikimedia Commons photos (attributed in
+  `public/images/agroforestry/manifest.json` + /credits) — attribution must be retained.

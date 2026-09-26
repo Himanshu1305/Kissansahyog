@@ -48,7 +48,7 @@ async function main() {
   const NEW = `Zzt Village ${Date.now() % 100000}`
 
   // Non-blocking creation (2e): new village → saved immediately, pending, coords null.
-  const { data: listing } = await db.rpc('create_listing', { p_actor_id: prof.id, p_listing_type: 'requirement', p_category: 'equipment', p_details: { equipment_type_id: '1' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: NEW })
+  const { data: listing } = await db.rpc('create_listing', { p_rules_agreed: true, p_actor_id: prof.id, p_listing_type: 'requirement', p_category: 'equipment', p_details: { equipment_type_id: '1' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: NEW })
   ok('2e non-blocking: new-village listing saved immediately as pending, coords null', listing?.geocoding_status === 'pending' && listing.latitude == null)
   const { data: q1 } = await db.from('village_coordinates').select('status').eq('village_name', NEW).maybeSingle()
   ok('new village enqueued as pending', q1?.status === 'pending')
@@ -62,12 +62,12 @@ async function main() {
   ok('resolve_village DENORMALIZES coords onto the listing + flips status', Number(l2.latitude) === RLAT && Number(l2.longitude) === RLNG && l2.geocoding_status === 'resolved')
 
   // Cache HIT: a resolved name geocodes immediately at create time (no pending).
-  const { data: l3 } = await db.rpc('create_listing', { p_actor_id: prof.id, p_listing_type: 'requirement', p_category: 'equipment', p_details: { equipment_type_id: '1' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: NEW })
+  const { data: l3 } = await db.rpc('create_listing', { p_rules_agreed: true, p_actor_id: prof.id, p_listing_type: 'requirement', p_category: 'equipment', p_details: { equipment_type_id: '1' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: NEW })
   ok('cache hit: second listing for the same village resolves immediately', l3?.geocoding_status === 'resolved' && Number(l3.latitude) === RLAT)
 
   // Failure fallback (2d): 3 failures mark the village 'failed'; listing NEVER gets 0,0.
   const BAD = `Zzt Nonsense ${Date.now() % 100000}`
-  await db.rpc('create_listing', { p_actor_id: prof.id, p_listing_type: 'requirement', p_category: 'equipment', p_details: { equipment_type_id: '1' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: BAD })
+  await db.rpc('create_listing', { p_rules_agreed: true, p_actor_id: prof.id, p_listing_type: 'requirement', p_category: 'equipment', p_details: { equipment_type_id: '1' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: BAD })
   for (let i = 0; i < 3; i++) await anon.rpc('fail_village', { p_village: BAD, p_district: 'Sagar', p_reason: 'not found' })
   const { data: qb } = await db.from('village_coordinates').select('status').eq('village_name', BAD).maybeSingle()
   const { data: lb } = await db.from('listings').select('latitude,longitude,geocoding_status').eq('village_name', BAD).limit(1).maybeSingle()

@@ -22,24 +22,24 @@ async function main() {
   const actor = (await sb.rpc('app_signup', { p_full_name: 'Drone Tester', p_phone: testPhone(), p_village_town: 'Rehli', p_pincode: '470227', p_language: 'hi', p_disclaimer_accepted: true })).data
 
   // POSITIVE: offer located at operator pincode (Khurai), not poster home (Rehli).
-  const o = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'drone_didi', p_details: offer(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
+  const o = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'drone_didi', p_details: offer(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
   check('drone offer created', !o.error && o.data?.category === 'drone_didi', o.error?.message)
   check('drone offer at operator pincode (Khurai), not poster home', Number(o.data?.latitude) === Number(khurai.latitude) && o.data?.pincode === '470117')
 
   // POSITIVE: requirement.
-  const r = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'drone_didi', p_details: req(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
+  const r = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'requirement', p_category: 'drone_didi', p_details: req(), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
   check('drone requirement created', !r.error && r.data?.listing_type === 'requirement', r.error?.message)
 
   // NEGATIVE: offer without rate_per_acre.
-  const noRate = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'drone_didi', p_details: offer({ rate_per_acre: '' }), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
+  const noRate = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'drone_didi', p_details: offer({ rate_per_acre: '' }), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
   check('offer without rate_per_acre rejected', !!noRate.error && /rate_per_acre_required/.test(noRate.error.message || ''))
 
   // NEGATIVE: offer without services.
-  const noSvc = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'drone_didi', p_details: offer({ service_type: [] }), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
+  const noSvc = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'drone_didi', p_details: offer({ service_type: [] }), p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false })
   check('offer without services rejected', !!noSvc.error && /service_type_required/.test(noSvc.error.message || ''))
 
   // NEGATIVE: missing asset pincode (unknown) rejected.
-  const noPin = await sb.rpc('create_listing', { p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'drone_didi', p_details: offer(), p_latitude: null, p_longitude: null, p_pincode: '000000', p_self_declared: false })
+  const noPin = await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'drone_didi', p_details: offer(), p_latitude: null, p_longitude: null, p_pincode: '000000', p_self_declared: false })
   check('unknown asset pincode rejected', !!noPin.error && /pincode_not_found/.test(noPin.error.message || ''))
 
   // Shape consistency (raw rows).

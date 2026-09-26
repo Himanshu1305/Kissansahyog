@@ -13,7 +13,7 @@ async function main() {
     p_full_name: 'Homepage Tester', p_phone: testPhone(), p_village_town: 'Khurai',
     p_pincode: '470117', p_language: 'hi', p_disclaimer_accepted: true,
   })).data
-  const listing = (await sb.rpc('create_listing', {
+  const listing = (await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'land',
     p_details: { size_range: '2-5', arrangement: ['lease'], water_source: 'borewell', crop_id: null, season: 'rabi', price_type: 'negotiable', price_amount: '', photo_urls: [] },
     p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: true,
