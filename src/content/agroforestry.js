@@ -2,6 +2,19 @@
 // Kept here (a content/label module, like content/crops.js) so the FAQ text lives in a
 // sanctioned bilingual-data file rather than inline in render code. Sourced strictly from
 // the two seeded MP horticulture schemes' verified facts (see scripts/seed_agroforestry.mjs).
+// Two key points from the intercropping article (verified facts) — shown as a short teaser
+// on /agro-forestry alongside the article's own summary, with a link to the full article.
+export const AGRO_KEYPOINTS = [
+  {
+    hi: 'सोयाबीन + अरहर मध्यप्रदेश का परखा हुआ अंतरवर्ती संयोजन है, जो अकेली फसल से अधिक कुल उपज देता है।',
+    en: 'Soybean + pigeonpea is a well-tested intercrop in Madhya Pradesh, giving more total yield than a sole crop.',
+  },
+  {
+    hi: 'दलहन फसलें हवा से नाइट्रोजन लेकर मिट्टी में स्थिर करती हैं, जिससे अगली फसल को लाभ मिलता है।',
+    en: 'Pulses fix nitrogen from the air into the soil, benefiting the next crop.',
+  },
+]
+
 export const AGRO_FAQS = [
   {
     q_hi: 'एग्रो फॉरेस्ट्री क्या है?',

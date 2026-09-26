@@ -5,9 +5,11 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import NavBar from '../components/NavBar'
+import BackButton from '../components/BackButton'
 import { PageExplainer, FaqAccordion, ShareWhatsApp } from '../components/pages/shared'
 import { fetchYojanaBySlug, yojanaName, yojanaBenefit, yojanaDesc } from '../lib/community/communityApi'
-import { AGRO_FAQS as FAQS } from '../content/agroforestry'
+import { fetchArticleBySlug } from '../lib/articles/articlesApi'
+import { AGRO_FAQS as FAQS, AGRO_KEYPOINTS } from '../content/agroforestry'
 
 const SCHEME_SLUGS = ['fal-podharopan-yojana', 'aushadhi-sugandhit-fasal-vistar']
 const ARTICLE_SLUG = 'intercropping-madhya-pradesh'
@@ -16,13 +18,17 @@ export default function AgroForestry() {
   const { t, lang } = useLang()
   const navigate = useNavigate()
   const [schemes, setSchemes] = useState([])
+  const [article, setArticle] = useState(null)
 
   useEffect(() => {
     let alive = true
     Promise.all(SCHEME_SLUGS.map((s) => fetchYojanaBySlug(s).catch(() => null)))
       .then((rows) => alive && setSchemes(rows.filter(Boolean)))
+    fetchArticleBySlug(ARTICLE_SLUG).then((a) => alive && setArticle(a)).catch(() => {})
     return () => { alive = false }
   }, [])
+
+  const articleSummary = article ? (lang === 'hi' ? article.summary_hi : article.summary_en) : ''
 
   const shareText = `${t('agro_share_text')} ${typeof window !== 'undefined' ? window.location.href : ''}`
 
@@ -30,6 +36,7 @@ export default function AgroForestry() {
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
       <NavBar />
       <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 1000 }}>
+        <BackButton fallback="/" />
         <h1 className="text-[28px] font-extrabold leading-tight md:text-[34px]" style={{ color: 'var(--ks-ink)' }}>{t('agro_title')}</h1>
 
         {/* 1 — Page explainer */}
@@ -50,10 +57,11 @@ export default function AgroForestry() {
           </div>
         </section>
 
-        {/* 3 — Your area (South Sagar FDA) */}
+        {/* 3 — Your area (South Sagar FDA) — expanded with more sourced FDA-role detail */}
         <section style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '14px' }}>
           <h2 className="text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('agro_region_h')}</h2>
           <p className="mt-1 text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>{t('agro_region_body')}</p>
+          <p className="mt-2 text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>{t('agro_region_body2')}</p>
         </section>
 
         {/* 4 — Government schemes */}
@@ -77,17 +85,28 @@ export default function AgroForestry() {
           </div>
         </section>
 
-        {/* 5 — Full article link */}
+        {/* 5 — Embedded article excerpt (teaser summary + 2 key points) → full article.
+               Kept short on purpose so it does not duplicate the article at length (SEO). */}
         <section style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '14px' }}>
-          <h2 className="text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('agro_article_h')}</h2>
+          <h2 className="text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('agro_excerpt_h')}</h2>
+          {articleSummary && (
+            <p className="mt-2 text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>{articleSummary}</p>
+          )}
+          <ul className="mt-2 space-y-1.5">
+            {AGRO_KEYPOINTS.map((k, i) => (
+              <li key={i} className="flex gap-2 text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>
+                <span style={{ color: 'var(--ks-green)' }}>✔</span><span>{k[lang]}</span>
+              </li>
+            ))}
+          </ul>
           <button
             type="button"
             onClick={() => navigate(`/articles/${ARTICLE_SLUG}`)}
             data-testid="agro-article-link"
-            className="mt-2 inline-block text-left text-[16px] font-bold"
+            className="mt-3 inline-block text-left text-[16px] font-bold"
             style={{ color: 'var(--ks-green)' }}
           >
-            📖 {t('agro_article_cta')} →
+            📖 {t('agro_read_full')} →
           </button>
         </section>
 

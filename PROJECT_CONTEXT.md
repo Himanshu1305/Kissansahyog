@@ -1047,3 +1047,23 @@ Full write-up: docs/review/COMBINED_LEGAL_AGROFORESTRY_AVAILABILITY_PROFILE_REVI
   instructions / hidden in standalone / session-only dismiss; complements the PwaPrompts returning-visitor prompt.
 - **Tests:** `scripts/test/p_0032_legal_availability_profile.mjs` (29) + `e2e/phase16_legal_availability.spec.js`
   (4). Every listing-creating backend test now passes `p_rules_agreed:true`.
+
+## Sawaal grid · PWA banner fix · BackButton · Ticker · Agro Forestry depth — 2026-09-26 (no migration)
+Full write-up: docs/review/SAWAAL_PWA_BACKBUTTON_TICKER_AGROFORESTRY_REVIEW.md.
+- **/sawaal**: Q&A cards now a `/yojana`-style responsive grid (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`,
+  `max-w-6xl`), line-clamped answer preview, `data-testid="sawaal-card"`. Chips/search unchanged.
+- **PWA install banner (`PwaInstallBanner.jsx`)**: fixed — visibility no longer gated on
+  `beforeinstallprompt` (that event rarely fires for real visitors). Shows for all non-standalone,
+  non-dismissed visitors; button = native prompt when available, else manual install steps
+  (`pwa_ios_help` / new `pwa_install_help`). Root cause + test blind-spot documented in the review.
+- **Shared `BackButton.jsx`** (+ exported `goBack(navigate, location, fallback)`): "← वापस"
+  (`nav_back`), `history.back()` when `location.key !== 'default'`, else fallback route. Applied to
+  SchemeDetail (`/yojana`), AgroForestry (`/`), DroneDidi (`/`), Msp (`/msp`|`/`), ArticleDetail
+  (`/articles`), FasalSalah (`/mausam`), ListingDetail (Screen back → `goBack`, `/browse`).
+- **Mandi ticker**: items opt out of the global 44px tap-target `min-height` via `min-h-0` + inner
+  `flex items-center` → text vertically centered in the 38px strip (was clipped).
+- **/agro-forestry depth**: expanded FDA section (2 paras), embedded article summary + 2 key points
+  (`content/agroforestry.js` `AGRO_KEYPOINTS`) with "पूरा लेख पढ़ें →"; hero verified rendering; no
+  cross-links added (no real matching sawaal/video content). BackButton added.
+- **Tests**: `e2e/phase17` (grid columns, PWA fresh/standalone, BackButton fallback vs history, ticker
+  centered) + `e2e/phase16` PWA blind-spot fix. Backend 32/1 (v11_phase6 TD-1 only); maintained E2E 38/38.

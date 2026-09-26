@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
+import BackButton from '../components/BackButton'
 import { Notice, Spinner } from '../components/ui'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
 import { generateArticleMessage } from '../lib/share/shareMessages'
@@ -84,9 +85,7 @@ export default function ArticleDetail() {
     <div className="min-h-screen bg-stone-50">
       <NavBar />
       <main className="mx-auto max-w-3xl px-5 py-10">
-        <button type="button" onClick={() => navigate('/articles')} className="mb-4 text-sm font-semibold text-green-800 underline">
-          ‹ {t('back_to_articles')}
-        </button>
+        <div className="mb-4"><BackButton fallback="/articles" /></div>
 
         {loading ? (
           <Spinner />

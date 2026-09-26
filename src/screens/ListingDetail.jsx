@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
 import LanguageToggle from '../components/LanguageToggle'
 import { CatIcon } from '../components/CatIcon'
+import { goBack } from '../components/BackButton'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
 import AvailabilityCalendar from '../components/AvailabilityCalendar'
 import { generateListingMessage } from '../lib/share/shareMessages'
@@ -20,6 +21,9 @@ export default function ListingDetail() {
   const { t, lang } = useLang()
   const { user } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  // Screen's back arrow: real history when in-app, else fall back to browse (direct/shared link).
+  const onBack = () => goBack(navigate, location, '/browse')
 
   const [listing, setListing] = useState(null)
   const [extras, setExtras] = useState({})
@@ -61,10 +65,10 @@ export default function ListingDetail() {
     }
   }
 
-  if (loading) return <Screen title={t('detail_title')} onBack={() => navigate(-1)}><Spinner /></Screen>
+  if (loading) return <Screen title={t('detail_title')} onBack={onBack}><Spinner /></Screen>
   if (!listing)
     return (
-      <Screen title={t('detail_title')} onBack={() => navigate(-1)}>
+      <Screen title={t('detail_title')} onBack={onBack}>
         <p className="py-12 text-center text-stone-500">{t('listing_not_found')}</p>
       </Screen>
     )
@@ -81,7 +85,7 @@ export default function ListingDetail() {
       : null
 
   return (
-    <Screen title={t('detail_title')} onBack={() => navigate(-1)} right={<LanguageToggle />}>
+    <Screen title={t('detail_title')} onBack={onBack} right={<LanguageToggle />}>
       <div className="mb-4 flex items-center gap-2">
         <CatIcon category={listing.category} className="text-4xl" />
         <div>

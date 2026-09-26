@@ -69,17 +69,18 @@ test('PWA install banner: hidden in standalone, shown otherwise (Android event)'
   const p1 = await standalone.newPage()
   await p1.goto('/')
   await p1.getByRole('heading', { level: 1 }).first().waitFor({ timeout: 15000 })
-  await p1.evaluate(() => window.dispatchEvent(new Event('beforeinstallprompt')))
   await p1.waitForTimeout(300)
   await expect(p1.getByTestId('pwa-install-strip')).toHaveCount(0)
   await standalone.close()
 
-  // Not standalone + an install event → banner shows with the install CTA.
+  // BLIND-SPOT FIX (Phase 2): a fresh visitor must see the banner WITHOUT any synthetic
+  // beforeinstallprompt. The earlier test dispatched that event before asserting, which is
+  // exactly why it passed while the banner was invisible to real users (whose browsers
+  // never fired the event). No dispatch here — this is the real-visitor path.
   const normal = await browser.newContext()
   const p2 = await normal.newPage()
   await p2.goto('/')
   await p2.getByRole('heading', { level: 1 }).first().waitFor({ timeout: 15000 })
-  await p2.evaluate(() => window.dispatchEvent(new Event('beforeinstallprompt')))
   await expect(p2.getByTestId('pwa-install-strip')).toBeVisible()
   await expect(p2.getByTestId('pwa-install-cta')).toBeVisible()
   await normal.close()

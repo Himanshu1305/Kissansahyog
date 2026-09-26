@@ -13,6 +13,7 @@ export const strings = {
   // --- generic actions ---
   continue: { hi: 'आगे बढ़ें', en: 'Continue' },
   back: { hi: 'पीछे', en: 'Back' },
+  nav_back: { hi: 'वापस', en: 'Back' },
   submit: { hi: 'जमा करें', en: 'Submit' },
   cancel: { hi: 'रद्द करें', en: 'Cancel' },
   save: { hi: 'सेव करें', en: 'Save' },
@@ -491,6 +492,12 @@ export const strings = {
     hi: 'सागर ज़िले के लिए स्थानीय वन एजेंसी दक्षिण सागर वन विकास अभिकरण (South Sagar Forest Development Agency) है। वन विकास अभिकरण (FDA) आमतौर पर वनीकरण, पौधशाला और किसानों/समुदायों के साथ वृक्षारोपण जैसे कार्यों में सहयोग करते हैं।',
     en: 'For Sagar district the local forest agency is the South Sagar Forest Development Agency. Forest Development Agencies (FDAs) generally support afforestation, nurseries, and tree-planting work with farmers and communities.',
   },
+  agro_region_body2: {
+    hi: 'FDA वन विभाग के अंतर्गत पंजीकृत संस्थाएँ हैं जो ग्राम स्तर की वन समितियों के ज़रिए योजनाएँ लागू करती हैं — पौधशाला चलाना, पौधे उपलब्ध कराना, और खेत की मेड़ों व सामुदायिक भूमि पर वृक्षारोपण में मदद करना। कृषि-वानिकी या पौधरोपण में रुचि होने पर स्थानीय वन कार्यालय या कृषि विज्ञान केंद्र (KVK) से संपर्क कर सकते हैं।',
+    en: 'FDAs are registered bodies under the Forest Department that implement schemes through village-level forest committees — running nurseries, supplying saplings, and helping with planting on field bunds and community land. For agroforestry or plantation help, you can contact the local forest office or your Krishi Vigyan Kendra (KVK).',
+  },
+  agro_excerpt_h: { hi: 'इंटरक्रॉपिंग — एक झलक', en: 'Intercropping — a quick look' },
+  agro_read_full: { hi: 'पूरा लेख पढ़ें', en: 'Read the full article' },
   agro_schemes_h: { hi: 'सरकारी योजनाएं', en: 'Government schemes' },
   agro_article_h: { hi: 'विस्तार से पढ़ें', en: 'Read in detail' },
   agro_article_cta: { hi: 'इंटरक्रॉपिंग: मध्यप्रदेश के किसानों के लिए मार्गदर्शिका', en: 'Intercropping: a guide for Madhya Pradesh farmers' },
@@ -537,6 +544,7 @@ export const strings = {
   pwa_banner_text: { hi: 'किसान सहयोग को अपने फ़ोन में इंस्टॉल करें — बिल्कुल मुफ़्त, कोई स्पैम नहीं', en: 'Install Kisan Sahyog on your phone — completely free, no spam' },
   pwa_banner_install: { hi: 'इंस्टॉल करें', en: 'Install' },
   pwa_ios_help: { hi: "अपने फ़ोन में: नीचे शेयर बटन दबाएं, फिर 'होम स्क्रीन पर जोड़ें' चुनें।", en: "On your phone: tap the Share button below, then choose 'Add to Home Screen'." },
+  pwa_install_help: { hi: "ब्राउज़र का मेन्यू (⋮) खोलें, फिर 'ऐप इंस्टॉल करें' या 'होम स्क्रीन पर जोड़ें' चुनें।", en: "Open your browser menu (⋮), then choose 'Install app' or 'Add to Home screen'." },
   pwa_banner_dismiss: { hi: 'बंद करें', en: 'Dismiss' },
 
   // Phase 5 — किसान प्रोफाइल fields.

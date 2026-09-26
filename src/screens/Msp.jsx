@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import NavBar from '../components/NavBar'
+import BackButton from '../components/BackButton'
 import { Spinner } from '../components/ui'
 import { CROPS, cropBySlug, cropName, defaultCropSlug } from '../content/crops'
 import { MONTHS_HI } from '../content/months'
@@ -223,6 +224,8 @@ export default function Msp() {
       <NavBar />
       <JsonLd data={articleLd} /><JsonLd data={datasetLd} />
       <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
+        {/* A per-crop page (/msp/:crop) falls back to the MSP hub; the hub falls back home. */}
+        <BackButton fallback={cropParam ? '/msp' : '/'} />
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{cropName(crop, lang)} {t('msp_h1')}</h1>
 
         {/* 1. explainer */}

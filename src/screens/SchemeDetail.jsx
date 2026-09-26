@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import NavBar from '../components/NavBar'
+import BackButton from '../components/BackButton'
 import { Spinner } from '../components/ui'
 import { WhatsAppIcon } from '../components/home/kit'
 import {
@@ -71,6 +72,7 @@ export default function SchemeDetail() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
 
       <article className="w-full" style={{ padding: '20px var(--ks-gutter)', maxWidth: 900 }}>
+        <BackButton fallback="/yojana" className="mb-2" />
         <span className="inline-block rounded-full px-3 py-1 text-[13px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>
           {row.government_level === 'state' ? t('scheme_mp_group') : t('scheme_central_group')}
         </span>

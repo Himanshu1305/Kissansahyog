@@ -40,9 +40,11 @@ export default function MandiTicker() {
       <span>{marketHi(r.market)}</span>
       <span className="px-2 text-[var(--ks-primary-light)]">|</span>
     </>)
+    // min-h-0 opts these ticker links out of the global 44px tap-target min-height, which
+    // would otherwise make each <a> taller than the 38px strip and clip the text (Phase 4).
     return slug
-      ? <a key={`${r.commodity_en}-${r.market}-${i}`} href={`/msp/${slug}`} className="whitespace-nowrap px-4 text-[#c8e6b0]">{inner}</a>
-      : <span key={`${r.commodity_en}-${r.market}-${i}`} className="whitespace-nowrap px-4 text-[#c8e6b0]">{inner}</span>
+      ? <a key={`${r.commodity_en}-${r.market}-${i}`} href={`/msp/${slug}`} className="flex min-h-0 items-center whitespace-nowrap px-4 text-[#c8e6b0]">{inner}</a>
+      : <span key={`${r.commodity_en}-${r.market}-${i}`} className="flex min-h-0 items-center whitespace-nowrap px-4 text-[#c8e6b0]">{inner}</span>
   }
 
   return (

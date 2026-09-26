@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
+import BackButton from '../components/BackButton'
 import { fetchWeatherCell } from '../lib/weather/weatherApiV2'
 import { actionWindows } from '../lib/weather/weatherRules'
 import { fetchPincode } from '../lib/listings/listingsApi'
@@ -65,6 +66,7 @@ export default function FasalSalah() {
       <NavBar />
       <JsonLd data={articleLd} />
       <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
+        <BackButton fallback="/mausam" />
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{t('fasal_h1')}</h1>
         <PageExplainer title={t('page_explainer_title')} lines={[t('fasal_intro_1'), t('fasal_intro_2')]} />
         <LocationControl value={loc} onChange={setLoc} showOutOfArea={false} />

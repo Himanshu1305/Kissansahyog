@@ -39,7 +39,7 @@ export default function PwaInstallBanner() {
     try { return sessionStorage.getItem(DISMISS_KEY) === '1' } catch { return false }
   })
   const [hasPrompt, setHasPrompt] = useState(!!deferredPrompt)
-  const [iosHelp, setIosHelp] = useState(false)
+  const [showHelp, setShowHelp] = useState(false)
   const ios = typeof navigator !== 'undefined' && isIos()
 
   useEffect(() => {
@@ -48,10 +48,14 @@ export default function PwaInstallBanner() {
     return () => window.removeEventListener('ks-install-available', onAvail)
   }, [])
 
-  // Never in standalone; never once dismissed this session; only when installable
-  // (Android event captured) or on iOS (instructions path).
+  // Show to EVERY fresh visitor except in installed/standalone mode or after a session
+  // dismiss. Visibility is intentionally NOT gated on `beforeinstallprompt` — that event
+  // only fires under Chrome's own install heuristics (and never on iOS/Firefox), so gating
+  // on it hid the banner from most real visitors (the Phase-2 root cause). The BUTTON adapts:
+  // native prompt when the event was captured, otherwise manual add-to-home-screen steps.
   if (isStandalone() || dismissed) return null
-  if (!hasPrompt && !ios) return null
+  // hasPrompt referenced so the listener-driven re-render is not linted as unused.
+  void hasPrompt
 
   function dismiss() {
     try { sessionStorage.setItem(DISMISS_KEY, '1') } catch { /* ignore */ }
@@ -59,13 +63,19 @@ export default function PwaInstallBanner() {
   }
 
   async function install() {
-    if (ios) { setIosHelp((v) => !v); return }
-    if (!deferredPrompt) return
-    deferredPrompt.prompt()
-    try { await deferredPrompt.userChoice } catch { /* ignore */ }
-    deferredPrompt = null
-    setHasPrompt(false)
+    if (deferredPrompt) {
+      deferredPrompt.prompt()
+      try { await deferredPrompt.userChoice } catch { /* ignore */ }
+      deferredPrompt = null
+      setHasPrompt(false)
+      return
+    }
+    // No native prompt available (iOS always; Android/desktop when the event hasn't fired):
+    // reveal platform-appropriate manual install instructions instead of a broken button.
+    setShowHelp((v) => !v)
   }
+
+  const helpText = ios ? t('pwa_ios_help') : t('pwa_install_help')
 
   return (
     <div
@@ -87,8 +97,8 @@ export default function PwaInstallBanner() {
         </button>
         <button type="button" onClick={dismiss} aria-label={t('pwa_banner_dismiss')} className="px-1 text-[18px] font-bold text-white/90">✕</button>
       </span>
-      {ios && iosHelp && (
-        <p className="mt-1 w-full text-[13px] text-white/95" data-testid="pwa-ios-help">{t('pwa_ios_help')}</p>
+      {showHelp && (
+        <p className="mt-1 w-full text-[13px] text-white/95" data-testid="pwa-install-help">{helpText}</p>
       )}
     </div>
   )

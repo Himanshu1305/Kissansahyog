@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
+import BackButton from '../components/BackButton'
 import { HomeListingCard, WhatsAppIcon } from '../components/home/kit'
 import { getCategory } from '../lib/listings/registry'
 import { fetchHomeFeed, fetchCrops } from '../lib/listings/listingsApi'
@@ -35,6 +36,8 @@ export default function DroneDidi() {
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
       <NavBar />
+
+      <div style={{ padding: '12px var(--ks-gutter) 0' }}><BackButton fallback="/" /></div>
 
       {/* 1 — Hero band */}
       <section className="w-full" style={{ padding: 'var(--ks-gutter)' }}>

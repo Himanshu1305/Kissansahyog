@@ -65,7 +65,7 @@ export default function Sawaal() {
   return (
     <div className="min-h-screen bg-stone-50">
       <NavBar />
-      <main className="mx-auto max-w-3xl px-2 py-4">
+      <main className="mx-auto max-w-6xl px-2 py-4">
         <div className="flex flex-wrap items-start justify-between gap-2 px-1">
           <div>
             <h1 className="text-xl font-bold text-stone-900">{t('sawaal_title')}</h1>
@@ -100,33 +100,35 @@ export default function Sawaal() {
             <button type="button" onClick={() => setShowForm(true)} className="mt-3 rounded-lg bg-green-700 px-4 py-2 text-sm font-bold text-white">📷 {t('qa_photo_ask')}</button>
           </div>
         ) : (
-          <div className="mt-3 space-y-2">
+          // Responsive card grid (matches /yojana: 1 col mobile, 2 col ≥640px, 3 col ≥1024px).
+          // Each card shows the question, category badge, village, a line-clamped answer preview
+          // (kept even across cards), and a "जवाब देखें" toggle that expands the full answer inline.
+          <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((r) => {
               const open = openId === r.id
+              const relatedVideo = r.related_video_id && videosById[r.related_video_id]
               return (
-                <div key={r.id} className="overflow-hidden rounded-xl border border-stone-200 bg-white">
-                  <button type="button" onClick={() => setOpenId(open ? null : r.id)} className="flex w-full items-start gap-2 p-3 text-left">
-                    <span className="mt-0.5 text-lg" aria-hidden="true">❓</span>
-                    <span className="flex-1">
-                      <span className="block font-bold leading-snug text-stone-900">{sawaalQuestion(r, lang)}</span>
-                      <span className="mt-1 flex flex-wrap items-center gap-1.5 text-[11px] text-stone-500">
-                        {r.category && <span className="rounded-full bg-green-50 px-1.5 py-0.5 font-semibold text-green-800">{t(`scat_${r.category}`)}</span>}
-                        {r.asked_by_village && <span>📍 {r.asked_by_village}</span>}
-                      </span>
-                    </span>
-                    <span className="text-sm font-bold text-green-700">{open ? t('sawaal_hide_answer') : t('sawaal_show_answer')}</span>
-                  </button>
-                  {open && (
-                    <div className="border-t border-stone-100 bg-green-50/40 p-3">
-                      <p className="whitespace-pre-line text-sm leading-relaxed text-stone-800">{plain(sawaalAnswer(r, lang))}</p>
-                      {r.related_video_id && videosById[r.related_video_id] && (
-                        <a href={videoWatchUrl(videosById[r.related_video_id])} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-green-700">
-                          ▶ {t('video_related')}: {videoTitle(videosById[r.related_video_id], lang)}
-                        </a>
-                      )}
-                      {r.answered_by && <p className="mt-2 text-xs font-semibold text-stone-500">{t('sawaal_answered_by')}{r.answered_by}</p>}
-                    </div>
+                <div key={r.id} data-testid="sawaal-card" className="flex flex-col rounded-xl border border-stone-200 bg-white p-3.5">
+                  <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-stone-500">
+                    {r.category && <span className="rounded-full bg-green-50 px-1.5 py-0.5 font-semibold text-green-800">{t(`scat_${r.category}`)}</span>}
+                    {r.asked_by_village && <span>📍 {r.asked_by_village}</span>}
+                  </div>
+                  <h3 className="mt-1.5 flex items-start gap-1.5 font-bold leading-snug text-stone-900">
+                    <span aria-hidden="true">❓</span>
+                    <span>{sawaalQuestion(r, lang)}</span>
+                  </h3>
+                  <p className={`mt-1.5 whitespace-pre-line text-sm leading-relaxed text-stone-700 ${open ? '' : 'line-clamp-3'}`}>
+                    {plain(sawaalAnswer(r, lang))}
+                  </p>
+                  {open && relatedVideo && (
+                    <a href={videoWatchUrl(relatedVideo)} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-green-700">
+                      ▶ {t('video_related')}: {videoTitle(relatedVideo, lang)}
+                    </a>
                   )}
+                  {open && r.answered_by && <p className="mt-2 text-xs font-semibold text-stone-500">{t('sawaal_answered_by')}{r.answered_by}</p>}
+                  <button type="button" onClick={() => setOpenId(open ? null : r.id)} className="mt-2 self-start text-sm font-bold text-green-700">
+                    {open ? t('sawaal_hide_answer') : t('sawaal_show_answer')} {open ? '↑' : '→'}
+                  </button>
                 </div>
               )
             })}

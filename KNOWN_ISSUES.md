@@ -312,3 +312,17 @@ left because acting on it touches working, pre-existing code with no reported is
   is WhatsApp-ready (`get_availability_nudges` + `set_listing_availability`).
 - **Agro-forestry images** are 2 CC BY-SA 3.0 Wikimedia Commons photos (attributed in
   `public/images/agroforestry/manifest.json` + /credits) — attribution must be retained.
+
+## Sawaal/PWA/BackButton/Ticker/AgroForestry build (2026-09-26)
+- **PWA install-banner regression root cause + test blind spot (fixed).** The banner was invisible to
+  real visitors because its render gate required `beforeinstallprompt` to have fired (rare in practice;
+  never on iOS/Firefox/incognito/installed). The earlier E2E masked this by dispatching a synthetic
+  `beforeinstallprompt` before asserting visibility. Fixed: visibility decoupled from the event; the
+  fresh-visitor test no longer dispatches it. Lesson: never synthesise a browser-gated event before
+  asserting a "shows for everyone" state.
+- **Global 44px tap-target `min-height`** (index.css, on `a/button/input/select/textarea`) can break
+  compact strips (it clipped the 38px mandi ticker). Opt slim in-strip controls out with `min-h-0`.
+- **BackButton relies on `location.key`** to distinguish in-app history (`!== 'default'`) from a direct
+  link. This is React Router's initial-entry marker; if the router setup changes, revisit this heuristic.
+- **/agro-forestry cross-links intentionally omitted** — no genuinely relevant Kisan Sawaal question or
+  video exists yet; add them later if matching horticulture/agroforestry content is created.
