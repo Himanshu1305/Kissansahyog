@@ -1148,3 +1148,7 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   early-morning the ticker said "आज" while the MSP said "कल का भाव" for the same date). `mandi_title` neutralized
   to "मंडी भाव" so it never contradicts the dated badge. Screenshots (1280×800 + 375×812) of transport browse,
   the /sawaal mic (shown vs hidden), the ticker + MSP "कल का भाव (dd/mm)" labeling, and /mausam were all viewed.
+- **Deployed & live-verified:** https://b67e6a91.kissansahyog.pages.dev — all routes 200 (incl. `/?cat=transport`);
+  the live `/transcribe` edge function returns `{configured:false}` (graceful, no key yet) and `/geocode` is
+  intact; the homepage mandi ticker shows **live prices** with the honest "कल का भाव (30/09)" badge; the transport
+  browse renders 2 cards; the `/sawaal` voice mic is present. Sitemap carries the transport route.
