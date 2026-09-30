@@ -1137,3 +1137,9 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   `label_suffix_hi` (+ dropped the `unit:'बोरी'` form default, which the RPC coalesces). `transport.jsx` added
   to the `v11_phase6` label allowlist + parity list. **`v11_phase6` is now fully green (29/0)** — no longer the
   intentionally-red backend suite.
+- **Tests (Phase 7, all permanent):** new `scripts/test/p_transport.mjs` (11) + `scripts/test/p_mandi_labeling.mjs`
+  (9) + `e2e/phase18_transport.spec.js` (2) + `e2e/phase19_voice_mandi.spec.js` (5, voice fully mocked — never
+  hits a live Gemini API). `priceStaleness` extracted to pure `lib/mandi/staleness.js` for unit-testing.
+  **Full E2E = 70/70** (was 63 baseline; only increased), key backend suites green (p_transport 11, p_mandi_labeling
+  9, v11_phase6 29, p_0032 29, p_0025 44). Full write-up:
+  `docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md`.

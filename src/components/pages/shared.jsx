@@ -9,6 +9,10 @@ import {
   isGeoPromptDismissed, dismissGeoPrompt, geolocationSupported, SERVICE_AREA_KM, recentKey,
   reverseGeocode, fetchIpCity,
 } from '../../lib/location/locationStore'
+// Pure staleness classifier (unit-testable, no JSX) — re-exported so Msp.jsx's existing
+// import site keeps working.
+import { priceStaleness } from '../../lib/mandi/staleness'
+export { priceStaleness }
 
 // JSON-LD injector
 export function JsonLd({ data }) {
@@ -68,16 +72,6 @@ export function ReviewTag({ reviewed }) {
 //   'older'     → amber "पिछला भाव (dd/mm)" tag (more than one day old — honest elapsed time)
 //   null        → no date (used with a null price → the "—" never-recorded treatment)
 const rupee = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
-export function priceStaleness(dateStr) {
-  if (!dateStr) return null
-  const d = new Date(`${dateStr}T00:00:00`)
-  if (Number.isNaN(d.getTime())) return null
-  const today = new Date(); today.setHours(0, 0, 0, 0)
-  const days = Math.floor((today - d) / 86400000)
-  if (days <= 0) return 'today'
-  if (days === 1) return 'yesterday'
-  return 'older'
-}
 
 // Dated staleness tag. `kind` = 'yesterday' (neutral) | 'older' (amber). The date (dd/mm)
 // is always rendered so a farmer sees exactly how old the price is.
