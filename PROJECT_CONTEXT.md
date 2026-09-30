@@ -1087,3 +1087,20 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   "N categories" is rendered anywhere (`stat_categories_label` exists but is unused since Homepage v4 dropped the
   stats bar); the `nearby_counts` RPC deliberately covers a 6-category subset (already excludes agri_inputs), so
   transport is not shown there — consistent with that precedent. Land stays LAST in every ordered list.
+- **Voice search (Phase 3):** `बोलकर खोजें` mic on the `/sawaal` search box (`VoiceSearchButton` +
+  `lib/voice/voiceSearch.js`). **Primary = Web Speech API** (`SpeechRecognition`/`webkitSpeechRecognition`,
+  `lang='hi-IN'`, interim results fill the field live) — free, client-side, no key; covers the pilot's
+  Chrome-Android audience. **Fallback = Gemini `gemini-3.5-transcribe`** via the new `functions/transcribe.js`
+  Pages Function (record with MediaRecorder → POST same-origin → function calls Gemini with the key
+  server-side; key NEVER in the browser). Fallback is offered ONLY on browsers lacking SpeechRecognition AND
+  only when the function's `GET /transcribe` probe reports `{configured:true}` AND MediaRecorder has a usable
+  mime — otherwise no mic is shown (no broken icon). Failures (permission denied, no-speech, network) show a
+  brief bilingual message and reset the button — never stuck listening. **Rate limit (3c-i):** DB-backed
+  `check_transcribe_rate` RPC + `voice_transcribe_calls` table (migration `0034`), 20/IP/hour, fail-open if the
+  function's Supabase env is unset. **No CSP change** — the browser only calls same-origin `/transcribe`
+  (`connect-src 'self'`); Gemini is reached server-side. **OWNER ACTION REQUIRED** for the fallback to activate
+  for Safari/Firefox users: set `GEMINI_API_KEY` (and optionally `GEMINI_MODEL`, plus `SUPABASE_URL` +
+  `SUPABASE_SERVICE_ROLE_KEY` for the rate limit) as **Cloudflare Pages environment variables**. Until then the
+  primary Web-Speech path works and unsupported browsers cleanly show no mic. Verified locally (wrangler): GET
+  `{configured:false}`, POST `503 not_configured`; rate-limit RPC 20 allowed / 5 denied. Migrations this prompt:
+  `0033` (transport) + `0034` (voice rate limit) — split because each phase is committed independently.

@@ -791,6 +791,16 @@ export const strings = {
   rate_amount_ph: { hi: 'जैसे: ₹400 या बातचीत से', en: 'e.g. ₹400 or negotiable' },
   workers_unit: { hi: 'कृषि सहयोगी', en: 'workers' },
 
+  // --- voice search (Web Speech API primary; Gemini transcribe fallback) ---
+  voice_search_aria: { hi: 'बोलकर खोजें', en: 'Search by voice' },
+  voice_stop_aria: { hi: 'सुनना रोकें', en: 'Stop listening' },
+  voice_listening: { hi: 'सुन रहे हैं…', en: 'Listening…' },
+  voice_recording: { hi: 'सुन रहे हैं… (रोकने के लिए दबाएं)', en: 'Listening… (tap to stop)' },
+  voice_transcribing: { hi: 'सुन रहे हैं…', en: 'Transcribing…' },
+  voice_err_denied: { hi: 'माइक की अनुमति नहीं मिली — टाइप करके खोजें', en: 'Microphone permission denied — type to search' },
+  voice_err_nomatch: { hi: 'सुन नहीं पाया, दोबारा कोशिश करें', en: "Couldn't hear that — please try again" },
+  voice_err_unavailable: { hi: 'अभी आवाज़ से खोज उपलब्ध नहीं — टाइप करके खोजें', en: 'Voice search is unavailable right now — type to search' },
+
   // --- transport / logistics ---
   field_vehicle_type: { hi: 'वाहन का प्रकार', en: 'Vehicle type' },
   field_transport_capacity: { hi: 'क्षमता', en: 'Capacity' },

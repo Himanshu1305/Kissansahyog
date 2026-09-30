@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
+import VoiceSearchButton from '../components/VoiceSearchButton'
 import { Field, TextInput, TextArea, Select, Notice, Spinner } from '../components/ui'
 import { uploadPhotos } from '../lib/listings/photos'
 import { fetchVideos, videoTitle, videoWatchUrl } from '../lib/videos/videosApi'
@@ -78,10 +79,11 @@ export default function Sawaal() {
 
         {showForm && <AskForm t={t} photoDefault={photoDefault} onDone={() => setShowForm(false)} />}
 
-        {/* Search (debounced, client-side) */}
-        <div className="mt-3">
+        {/* Search (debounced, client-side) — with an optional voice mic (बोलकर खोजें). */}
+        <div className="mt-3 flex items-center gap-2">
           <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('sawaal_search_ph')}
-            className="w-full rounded-lg border px-3 py-2 text-[16px]" style={{ borderColor: 'var(--ks-border-strong)' }} />
+            className="min-w-0 flex-1 rounded-lg border px-3 py-2 text-[16px]" style={{ borderColor: 'var(--ks-border-strong)' }} />
+          <VoiceSearchButton onTranscript={(text) => setQ(text)} />
         </div>
 
         {/* Category filter chips with counts (horizontal scroll on mobile) */}
