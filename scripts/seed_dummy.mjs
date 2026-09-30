@@ -40,6 +40,7 @@ const droneOffer = (o) => ({ operator_name: '', drone_type: 'multi_rotor', servi
 const droneReq = (o) => ({ crop_type: '', acreage: '', service_needed: '', preferred_date: null, asset_village: '', ...o })
 const whOffer = (o) => ({ warehouse_type: '', capacity_quintals: 0, rate: '', available_from: null, facilities: [], address: '', contact_name: '', ...o })
 const whReq = (o) => ({ crop_type: '', quantity_quintals: 0, duration: '', preferred_type: '', ...o })
+const transport = (o) => ({ vehicle_type: '', capacity: '', rate_basis: '', rate_amount: '', ...o })
 
 // Listing spec: { u, type, cat, details, sd?, pin? } (pin overrides the poster's home pincode).
 const LISTINGS = [
@@ -106,6 +107,12 @@ const LISTINGS = [
   { u: 'radha',   type: 'offer',       cat: 'warehouse', source: 'vendor', d: whOffer({ warehouse_type: 'general', capacity_quintals: 200, rate: '₹12 प्रति क्विंटल प्रति माह', facilities: ['electricity', 'loading'], address: 'खुरई रोड, सागर' }) },
   { u: 'mohan',   type: 'offer',       cat: 'warehouse', source: 'farmer', d: whOffer({ warehouse_type: 'general', capacity_quintals: 100, rate: '₹10 प्रति क्विंटल प्रति माह', facilities: ['electricity'], address: 'ग्राम रेहली' }) },
   { u: 'ramlal',  type: 'requirement', cat: 'warehouse', d: whReq({ crop_type: 'गेहूं', quantity_quintals: 50, duration: '3 महीने', preferred_type: 'general' }) },
+
+  // --- Transport / logistics (4) — 3 offers + 1 requirement ---
+  { u: 'suresh',  type: 'offer',       cat: 'transport', d: transport({ vehicle_type: 'tractor_trolley', capacity: '5 टन / 50 क्विंटल', rate_basis: 'per_trip', rate_amount: '₹1,200 प्रति ट्रिप (बांदा-सागर)' }) },
+  { u: 'rajesh',  type: 'offer',       cat: 'transport', d: transport({ vehicle_type: 'truck', capacity: '10 टन', rate_basis: 'per_km', rate_amount: '₹35 प्रति किमी' }) },
+  { u: 'prakash', type: 'offer',       cat: 'transport', d: transport({ vehicle_type: 'pickup', capacity: '1.5 टन', rate_basis: 'negotiable', rate_amount: 'बातचीत से' }) },
+  { u: 'mohan',   type: 'requirement', cat: 'transport', d: transport({ vehicle_type: 'tempo', capacity: '2 टन सब्ज़ी', rate_basis: 'per_trip' }) },
 ]
 
 async function main() {
@@ -150,10 +157,11 @@ async function main() {
   // seed_log (idempotent: clear prior dummy_data_* rows, then re-log each seed).
   const droneCount = insertedListings.filter((r) => r.category === 'drone_didi').length
   const whCount = insertedListings.filter((r) => r.category === 'warehouse').length
+  const transportCount = insertedListings.filter((r) => r.category === 'transport').length
   await admin.from('seed_log').delete().like('seed_name', 'dummy_data_%')
   await admin.from('seed_log').insert([
     {
-      seed_name: 'dummy_data_khurai_v1', record_count: insertedListings.length - droneCount - whCount,
+      seed_name: 'dummy_data_khurai_v1', record_count: insertedListings.length - droneCount - whCount - transportCount,
       notes: 'Test data for Khurai area. 7 fake users (9999000001-7), 38 listings across 5 categories. Delete with: DELETE FROM listings WHERE is_test_data = true; DELETE FROM profiles WHERE is_test_data = true;',
     },
     {
@@ -164,17 +172,22 @@ async function main() {
       seed_name: 'dummy_data_warehouse_v1', record_count: whCount,
       notes: "Warehouse category test data. 4 listings (3 offers incl 2 vendor, 1 requirement). Remove with: DELETE FROM listings WHERE category = 'warehouse' AND is_test_data = true;",
     },
+    {
+      seed_name: 'dummy_data_transport_v1', record_count: transportCount,
+      notes: "Transport/logistics category test data. 4 listings (3 offers, 1 requirement). Remove with: DELETE FROM listings WHERE category = 'transport' AND is_test_data = true;",
+    },
   ])
 
   // Verify.
-  const [{ count: dummyUsers }, { count: dummyListings }, { count: droneListings }, { count: whListings }] = await Promise.all([
+  const [{ count: dummyUsers }, { count: dummyListings }, { count: droneListings }, { count: whListings }, { count: transportListings }] = await Promise.all([
     admin.from('profiles').select('*', { count: 'exact', head: true }).eq('is_test_data', true),
     admin.from('listings').select('*', { count: 'exact', head: true }).eq('is_test_data', true),
     admin.from('listings').select('*', { count: 'exact', head: true }).eq('is_test_data', true).eq('category', 'drone_didi'),
     admin.from('listings').select('*', { count: 'exact', head: true }).eq('is_test_data', true).eq('category', 'warehouse'),
+    admin.from('listings').select('*', { count: 'exact', head: true }).eq('is_test_data', true).eq('category', 'transport'),
   ])
-  console.log(`\nVERIFY → dummy_users=${dummyUsers} (expect 9), dummy_listings=${dummyListings} (expect 50), drone_didi=${droneListings} (expect 8), warehouse=${whListings} (expect 4)`)
-  if (dummyUsers !== 9 || dummyListings !== 50 || droneListings !== 8 || whListings !== 4) { console.error('COUNT MISMATCH'); process.exit(1) }
+  console.log(`\nVERIFY → dummy_users=${dummyUsers} (expect 9), dummy_listings=${dummyListings} (expect 54), drone_didi=${droneListings} (expect 8), warehouse=${whListings} (expect 4), transport=${transportListings} (expect 4)`)
+  if (dummyUsers !== 9 || dummyListings !== 54 || droneListings !== 8 || whListings !== 4 || transportListings !== 4) { console.error('COUNT MISMATCH'); process.exit(1) }
   console.log('Seed complete.')
 }
 main().catch((e) => { console.error('SEED ERROR:', e.message); process.exit(1) })

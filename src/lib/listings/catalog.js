@@ -4,7 +4,7 @@
 
 // Order matters (nav strip, browse tabs, post selector). Land is intentionally
 // LAST; Drone Didi sits after Labor.
-export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'land']
+export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'transport', 'land']
 export const LISTING_TYPES = ['offer', 'requirement']
 
 // Category display metadata (icon + bilingual name).
@@ -18,6 +18,7 @@ export const CATEGORY_META = {
   bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
   warehouse: { icon: '🏬', hi: 'गोदाम / भंडारण', en: 'Warehouse & Storage' },
+  transport: { icon: '🚚', hi: 'परिवहन / ढुलाई', en: 'Transport' },
 }
 
 export const LISTING_TYPE_META = {
@@ -137,6 +138,21 @@ export const INPUT_CONDITION = [
   { value: 'good', hi: 'अच्छी स्थिति में', en: 'Good condition' },
   { value: 'original_packaging', hi: 'मूल पैकेजिंग में', en: 'Original packaging' },
   { value: 'opened', hi: 'खुली', en: 'Opened' },
+]
+
+// --- Transport / logistics (a transporter listing themselves; no route model) ---
+// vehicle_type + rate_basis are required (dropdowns); capacity + rate_amount are optional.
+export const VEHICLE_TYPE = [
+  { value: 'tractor_trolley', hi: 'ट्रैक्टर-ट्रॉली', en: 'Tractor-trolley' },
+  { value: 'pickup', hi: 'पिकअप', en: 'Pickup' },
+  { value: 'truck', hi: 'ट्रक', en: 'Truck' },
+  { value: 'tempo', hi: 'टेम्पो', en: 'Tempo' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const TRANSPORT_RATE_BASIS = [
+  { value: 'per_km', hi: 'प्रति किमी', en: 'Per km' },
+  { value: 'per_trip', hi: 'प्रति ट्रिप', en: 'Per trip' },
+  { value: 'negotiable', hi: 'बातचीत से', en: 'Negotiable' },
 ]
 
 // Look up a bilingual label for an option value; falls back to the raw value.

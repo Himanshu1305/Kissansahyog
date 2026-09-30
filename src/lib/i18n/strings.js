@@ -189,6 +189,10 @@ export const strings = {
     hi: 'फसल कटाई के बाद तुरंत बेचने की मजबूरी से बचें — गोदाम में सुरक्षित रखें और अच्छे दाम का इंतज़ार करें। गोदाम मालिक अपनी जगह और दाम यहाँ लिस्ट कर सकते हैं।',
     en: 'Avoid the pressure to sell immediately after harvest — store safely and wait for better prices. Warehouse owners can list their space and rates here.',
   },
+  help_transport: {
+    hi: 'खेत से मंडी या गोदाम तक फसल पहुँचाने के लिए वाहन चाहिए? ट्रैक्टर-ट्रॉली, पिकअप, ट्रक या टेम्पो वाले अपने वाहन और दर यहाँ लिस्ट करें। किसान पास के वाहन मालिक से फ़ोन/WhatsApp पर रास्ता और किराया तय कर सकते हैं।',
+    en: 'Need a vehicle to move produce from farm to mandi or warehouse? Owners of a tractor-trolley, pickup, truck or tempo can list their vehicle and rate here. Farmers contact a nearby owner by phone/WhatsApp to agree the route and fare.',
+  },
 
   // --- articles / blog ---
   articles_title: { hi: 'लेख', en: 'Articles' },
@@ -247,6 +251,7 @@ export const strings = {
   home_cat_bhusa: { hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   home_cat_agri_inputs: { hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
   home_cat_warehouse: { hi: 'गोदाम / भंडारण', en: 'Warehouse & Storage' },
+  home_cat_transport: { hi: 'परिवहन / ढुलाई', en: 'Transport' },
   home_cat_experts: { hi: 'विशेषज्ञ', en: 'Experts' },
 
   // --- mandi price ticker ---
@@ -786,6 +791,14 @@ export const strings = {
   rate_amount_ph: { hi: 'जैसे: ₹400 या बातचीत से', en: 'e.g. ₹400 or negotiable' },
   workers_unit: { hi: 'कृषि सहयोगी', en: 'workers' },
 
+  // --- transport / logistics ---
+  field_vehicle_type: { hi: 'वाहन का प्रकार', en: 'Vehicle type' },
+  field_transport_capacity: { hi: 'क्षमता', en: 'Capacity' },
+  ph_transport_capacity: { hi: 'जैसे: 5 टन या 50 क्विंटल', en: 'e.g. 5 tonnes or 50 quintal' },
+  field_transport_rate_basis: { hi: 'दर किस आधार पर', en: 'Rate basis' },
+  field_transport_rate_amount: { hi: 'दर / किराया', en: 'Rate / fare' },
+  ph_transport_rate: { hi: 'जैसे: ₹25/किमी या बातचीत से', en: 'e.g. ₹25/km or negotiable' },
+
   // --- bhusa / parali (agricultural residue) ---
   field_residue_type: { hi: 'अवशेष का प्रकार', en: 'Residue type' },
   field_quantity: { hi: 'मात्रा', en: 'Quantity' },
@@ -912,6 +925,14 @@ export const strings = {
   err_invalid_worker_count: {
     hi: 'कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।',
     en: 'Number of workers must be 1 or more.',
+  },
+  err_vehicle_type_required: {
+    hi: 'कृपया वाहन का प्रकार चुनें।',
+    en: 'Please select the vehicle type.',
+  },
+  err_transport_rate_basis_required: {
+    hi: 'कृपया दर किस आधार पर है, यह चुनें।',
+    en: 'Please select the rate basis.',
   },
   err_invalid_date_range: {
     hi: '“से” तारीख “तक” तारीख के बाद नहीं हो सकती।',
@@ -1183,6 +1204,7 @@ export const strings = {
   near_cat_bhusa: { hi: 'भूसा/पराली', en: 'Straw/Stubble' },
   near_cat_drone_didi: { hi: 'Drone Didi', en: 'Drone Didi' },
   near_cat_warehouse: { hi: 'गोदाम', en: 'Warehouse' },
+  near_cat_transport: { hi: 'परिवहन', en: 'Transport' },
   near_cat_land: { hi: 'ज़मीन', en: 'Land' },
 
   // --- कृषि बाज़ार की श्रेणियाँ ---
@@ -1199,6 +1221,8 @@ export const strings = {
   cat_inputs_sub: { hi: 'बीज, खाद, दवा', en: 'Seed, fertiliser, pesticide' },
   cat_godown_label: { hi: 'गोदाम/भंडारण', en: 'Warehouse/Storage' },
   cat_godown_sub: { hi: 'भंडारण जगह', en: 'Storage space' },
+  cat_transport_label: { hi: 'परिवहन/ढुलाई', en: 'Transport' },
+  cat_transport_sub: { hi: 'ट्रैक्टर-ट्रॉली, ट्रक, पिकअप', en: 'Tractor-trolley, truck, pickup' },
   cat_expert_label: { hi: 'कृषि विशेषज्ञ', en: 'Farm expert' },
   cat_expert_sub: { hi: 'सलाह, मार्गदर्शन', en: 'Advice, guidance' },
   cat_land_label: { hi: 'ज़मीन (पट्टा/बटाई)', en: 'Land (lease/sharecrop)' },

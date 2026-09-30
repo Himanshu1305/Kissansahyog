@@ -1067,3 +1067,23 @@ Full write-up: docs/review/SAWAAL_PWA_BACKBUTTON_TICKER_AGROFORESTRY_REVIEW.md.
   cross-links added (no real matching sawaal/video content). BackButton added.
 - **Tests**: `e2e/phase17` (grid columns, PWA fresh/standalone, BackButton fallback vs history, ticker
   centered) + `e2e/phase16` PWA blind-spot fix. Backend 32/1 (v11_phase6 TD-1 only); maintained E2E 38/38.
+
+## Legacy E2E cleanup · Transport category · Voice search · Mandi labeling · IMD research · i18n debt — 2026-09-30
+Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migration `0033_transport_category.sql`.
+- **Legacy E2E cleanup (Phase 1):** the 22 stale `e2e/phase2–9` specs were rewritten to current reality
+  (homepage-as-landing → /welcome; post source step; numeric `#f_size_acres`; asset VILLAGE name not pincode;
+  mandatory `rules-agree-checkbox`; CategoryStrip `chip-<cat>` with Land last; integer "N km away") and the
+  redundant phase8 offline test was removed (covered by phase10_location_pwa). Result: `e2e/phase2–9` = 25 green.
+- **Transport / logistics = 10th marketplace category (Phase 2):** anchored like every other category (the
+  transporter lists at their own location; standard 30/50 km radius; NO route model, NO wide-visibility).
+  `catalog.CATEGORIES`/`CATEGORY_META` (+`VEHICLE_TYPE`, `TRANSPORT_RATE_BASIS`), `registry` (ENABLED +
+  EXTRAS), `components/categories/transport.jsx` (details `{ vehicle_type, capacity, rate_basis, rate_amount }`;
+  vehicle_type + rate_basis required, capacity + rate optional). Migration `0033` widens `listings_category_check`
+  to include `transport` and adds its `create_listing` validation (12-arg signature unchanged). Placement: NavBar
+  बाज़ार dropdown, homepage `CATEGORY_TILES` tile + `LIST_IMG` fallback (reuses `list-tractor.jpg` — a
+  tractor-trolley; a dedicated truck photo can be swapped in later), browse/detail/post are category-agnostic,
+  `/?cat=transport` added to `public/sitemap.xml`. Seeded 4 dummy transport listings (`is_test_data`, 3 offers +
+  1 requirement) via `scripts/seed_dummy.mjs` (now 54 rows total). **Category-count audit (2d):** no hardcoded
+  "N categories" is rendered anywhere (`stat_categories_label` exists but is unused since Homepage v4 dropped the
+  stats bar); the `nearby_counts` RPC deliberately covers a 6-category subset (already excludes agri_inputs), so
+  transport is not shown there — consistent with that precedent. Land stays LAST in every ordered list.

@@ -40,6 +40,7 @@ const CATEGORY_TILES = [
   { img: 'cat-straw.jpg', labelKey: 'cat_straw_label', subKey: 'cat_straw_sub', to: 'bhusa' },
   { img: 'cat-inputs.jpg', labelKey: 'cat_inputs_label', subKey: 'cat_inputs_sub', to: 'agri_inputs' },
   { img: 'cat-godown.jpg', labelKey: 'cat_godown_label', subKey: 'cat_godown_sub', to: 'warehouse' },
+  { img: 'list-tractor.jpg', labelKey: 'cat_transport_label', subKey: 'cat_transport_sub', to: 'transport' },
   { img: 'cat-expert.jpg', labelKey: 'cat_expert_label', subKey: 'cat_expert_sub', to: 'experts' },
   { img: 'cat-land.jpg', labelKey: 'cat_land_label', subKey: 'cat_land_sub', to: 'land' },
 ]
@@ -48,6 +49,7 @@ const CATEGORY_TILES = [
 const LIST_IMG = {
   equipment: 'list-tractor.jpg', labor: 'list-workers.jpg', drone_didi: 'list-drone.jpg',
   bhusa: 'list-straw.jpg', agri_inputs: 'list-shop.jpg', warehouse: 'list-godown.jpg', land: 'list-land.jpg',
+  transport: 'list-tractor.jpg',
 }
 // Equipment sub-type (equipment_types.id) → a more specific photo, so a harvester
 // or thresher listing does not fall back to the generic tractor photo.

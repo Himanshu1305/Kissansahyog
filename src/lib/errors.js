@@ -17,6 +17,8 @@ const CODE_TO_KEY = {
   not_found: 'err_not_found',
   self_declaration_required: 'err_self_declaration_required',
   equipment_type_required: 'err_equipment_type_required',
+  vehicle_type_required: 'err_vehicle_type_required',
+  transport_rate_basis_required: 'err_transport_rate_basis_required',
   invalid_worker_count: 'err_invalid_worker_count',
   invalid_date_range: 'err_invalid_date_range',
   residue_type_required: 'err_residue_type_required',
