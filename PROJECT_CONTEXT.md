@@ -1143,3 +1143,8 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   **Full E2E = 70/70** (was 63 baseline; only increased), key backend suites green (p_transport 11, p_mandi_labeling
   9, v11_phase6 29, p_0032 29, p_0025 44). Full write-up:
   `docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md`.
+- **Screenshot-review fix (Phase 8):** the ticker now classifies staleness via the SAME local-time
+  `priceStaleness()` as the MSP `PriceCell` (it previously compared against a UTC day-boundary, so at IST
+  early-morning the ticker said "आज" while the MSP said "कल का भाव" for the same date). `mandi_title` neutralized
+  to "मंडी भाव" so it never contradicts the dated badge. Screenshots (1280×800 + 375×812) of transport browse,
+  the /sawaal mic (shown vs hidden), the ticker + MSP "कल का भाव (dd/mm)" labeling, and /mausam were all viewed.

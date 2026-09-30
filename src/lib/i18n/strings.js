@@ -255,7 +255,7 @@ export const strings = {
   home_cat_experts: { hi: 'विशेषज्ञ', en: 'Experts' },
 
   // --- mandi price ticker ---
-  mandi_title: { hi: 'आज के मंडी भाव', en: "Today's Mandi Prices" },
+  mandi_title: { hi: 'मंडी भाव', en: 'Mandi Prices' },
   mandi_yesterday: { hi: 'कल के', en: "Yesterday's" },
   mandi_soon: { hi: 'मंडी भाव जल्द उपलब्ध होंगे', en: 'Prices coming soon' },
   mandi_qtl: { hi: 'क्विंटल', en: 'qtl' },

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
+import { priceStaleness, ddmm } from '../lib/mandi/staleness'
 import { cropByMandi } from '../content/crops'
 
 // Raw market name → i18n key for its Hindi mandi label (fallback: raw name).
@@ -26,11 +27,13 @@ export default function MandiTicker() {
   }, [])
 
   const marketHi = (m) => (MARKET_KEY[m] ? t(MARKET_KEY[m]) : m)
-  // Honest, dated label for a non-today ticker (Phase 4c): "कल का भाव (dd/mm)" for
-  // yesterday, "पिछला भाव (dd/mm)" for older. The exact date is always visible.
-  const ddmm = (iso) => { const [, m, d] = String(iso || '').split('-'); return d && m ? `${d}/${m}` : '' }
-  const dateBadge = (state.day === 'yesterday' || state.day === 'older') && state.date
-    ? `${t(state.day === 'yesterday' ? 'mandi_price_yesterday' : 'mandi_price_older')} (${ddmm(state.date)})`
+  // Honest, dated label for a non-today ticker (Phase 4c). The staleness is classified by the
+  // SAME local-time priceStaleness() used by the MSP page's PriceCell, so the ticker and the
+  // MSP tables never disagree about whether a given date is "today" vs "कल का भाव" (the ticker
+  // used to compare against a UTC day-boundary, which drifted from the MSP's local one).
+  const st = state.date ? priceStaleness(state.date) : null
+  const dateBadge = (st === 'yesterday' || st === 'older')
+    ? `${t(st === 'yesterday' ? 'mandi_price_yesterday' : 'mandi_price_older')} (${ddmm(state.date)})`
     : null
   const item = (r, i) => {
     const slug = cropByMandi(r.commodity_en)?.slug
