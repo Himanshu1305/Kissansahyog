@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test'
 import { adminClient, testPhone } from './support.js'
 
+// REWRITTEN (legacy-cleanup). Browse defaults to the equipment chip (Land is last), so
+// the seeded land/labor listings need their chip selected before counting; tab testids
+// are now CategoryStrip chips (chip-<cat>). The mark-Found lifecycle itself is unchanged.
+
 async function loginAs(page, profile) {
   await page.addInitScript(
     ([p]) => {
@@ -32,12 +36,13 @@ test('mark Found closes listing: disappears from browse, stays (Found) in My Lis
   await admin.from('listings').insert({
     user_id: user.id, listing_type: 'offer', category: 'land',
     latitude: user.latitude, longitude: user.longitude, pincode: user.pincode,
-    details: { size_range: '2-5' }, self_declared: true,
+    village_name: 'Remote', details: { size_acres: 3, price_type: 'negotiable' }, self_declared: true,
   })
   await loginAs(page, user)
 
-  // Present in browse first.
+  // Present in browse first (select the Land chip — browse defaults to equipment).
   await page.goto('/browse')
+  await page.getByTestId('chip-land').click()
   await expect(page.getByTestId('listing-card')).toHaveCount(1)
 
   // My Listings: mark Found (accept the confirm dialog).
@@ -52,6 +57,7 @@ test('mark Found closes listing: disappears from browse, stays (Found) in My Lis
 
   // Gone from browse.
   await page.goto('/browse')
+  await page.getByTestId('chip-land').click()
   await expect(page.getByTestId('listing-card')).toHaveCount(0)
 })
 
@@ -61,7 +67,7 @@ test('expired listing shows Expired in My Listings and is absent from browse', a
   await admin.from('listings').insert({
     user_id: user.id, listing_type: 'requirement', category: 'labor',
     latitude: user.latitude, longitude: user.longitude, pincode: user.pincode,
-    details: { worker_count: 4, work_type: 'general' }, self_declared: false,
+    village_name: 'Remote', details: { worker_count: 4, work_type: 'general' }, self_declared: false,
     expires_at: '2020-01-01T00:00:00Z',
   })
   await loginAs(page, user)
@@ -71,6 +77,6 @@ test('expired listing shows Expired in My Listings and is absent from browse', a
   await expect(page.getByTestId('mark-found')).toHaveCount(0)
 
   await page.goto('/browse')
-  await page.getByTestId('tab-labor').click()
+  await page.getByTestId('chip-labor').click()
   await expect(page.getByTestId('listing-card')).toHaveCount(0)
 })

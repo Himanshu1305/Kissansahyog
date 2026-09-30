@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test'
 import { adminClient, testPhone } from './support.js'
 
+// phase7:28 (language toggle chrome) still passes as-is. The other two are REWRITTEN
+// to add the source step before Offering/Looking-for and the numeric land form; the
+// DB-driven crop labels and the "functions in Hindi" intent are unchanged.
+
 async function loginAs(page, profile, lang = 'en') {
   await page.addInitScript(
     ([p, l]) => {
@@ -48,8 +52,10 @@ test('crop dropdown labels come from the DB and switch language', async ({ page 
   const user = await makeUser()
   await loginAs(page, user, 'en')
   await page.goto('/post')
+  await page.getByRole('button', { name: 'Continue' }).click() // source step
   await page.getByRole('button', { name: 'Offering' }).click()
-  await page.getByRole('button', { name: 'Land' }).click()
+  await page.getByRole('button', { name: 'Land' }).first().click()
+  await page.locator('#f_crop_id').waitFor({ timeout: 8000 })
 
   // English: "Wheat" option present.
   await expect(page.locator('#f_crop_id option', { hasText: 'Wheat' })).toHaveCount(1)
@@ -64,11 +70,15 @@ test('posting works in Hindi UI (functional, not just visual)', async ({ page })
   const user = await makeUser()
   await loginAs(page, user, 'hi')
   await page.goto('/post')
-  // Hindi labels on the type step.
+  await page.getByRole('button', { name: /आगे बढ़ें/ }).click() // Continue (source step)
   await page.getByRole('button', { name: /दे रहे हैं/ }).click() // Offering
-  await page.getByRole('button', { name: /ज़मीन/ }).click() // Land
-  await page.getByLabel('ज़मीन का आकार').selectOption({ label: '2–5 एकड़' })
-  await page.getByRole('checkbox').check() // self-declaration
+  await page.getByRole('button', { name: /ज़मीन/ }).first().click() // Land
+  await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
+  await page.locator('#f_size_acres').fill('2')
+  await page.locator('#f_price_type').selectOption('negotiable')
+  await page.locator('#f_asset_village').fill('खुरई')
+  await page.getByRole('checkbox').nth(0).check() // self-declaration (land offer)
+  await page.getByTestId('rules-agree-checkbox').check() // mandatory rules
   await page.getByRole('button', { name: 'जमा करें' }).click() // Submit
   await expect(page.getByRole('button', { name: 'लिस्टिंग देखें' })).toBeVisible() // View listing
 })

@@ -1,6 +1,11 @@
 import { test, expect } from '@playwright/test'
 import { adminClient, testPhone } from './support.js'
 
+// REWRITTEN (legacy-cleanup). Adds the source step and the mandatory rules checkbox;
+// validation copy ("must be 1 or more", "cannot be after") is unchanged. The blank-rate
+// listing still needs the asset village to submit; the two validation tests surface the
+// module error (from mod.validate) before the village check, so no village is needed there.
+
 async function loginAs(page, profile) {
   await page.addInitScript(
     ([p]) => {
@@ -24,17 +29,25 @@ async function makeUser() {
   return data
 }
 
+async function startPost(page, type, category) {
+  await page.goto('/post')
+  await page.getByRole('button', { name: 'Continue' }).click()
+  await page.getByRole('button', { name: type }).click()
+  await page.getByRole('button', { name: category }).first().click()
+}
+
 test('labor OFFER with blank rate renders cleanly (no undefined)', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
-  await page.goto('/post')
-  await page.getByRole('button', { name: 'Offering' }).click()
-  await page.getByRole('button', { name: 'Labor' }).click()
+  await startPost(page, 'Offering', 'Labor')
+  await page.getByLabel('Number of workers').waitFor({ timeout: 8000 })
 
   await page.getByLabel('Number of workers').fill('8')
   await page.getByLabel('Type of work').selectOption({ label: 'Harvesting' })
   // Leave rate basis + rate amount blank (optional).
 
+  await page.locator('#f_asset_village').fill('Khurai')
+  await page.getByTestId('rules-agree-checkbox').check()
   await page.getByRole('button', { name: 'Submit' }).click()
   await page.getByRole('button', { name: 'View listing' }).click()
 
@@ -46,10 +59,10 @@ test('labor OFFER with blank rate renders cleanly (no undefined)', async ({ page
 test('labor rejects zero workers', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
-  await page.goto('/post')
-  await page.getByRole('button', { name: 'Looking for' }).click()
-  await page.getByRole('button', { name: 'Labor' }).click()
+  await startPost(page, 'Looking for', 'Labor')
+  await page.getByLabel('Number of workers').waitFor({ timeout: 8000 })
   await page.getByLabel('Number of workers').fill('0')
+  await page.getByTestId('rules-agree-checkbox').check()
   await page.getByRole('button', { name: 'Submit' }).click()
   await expect(page.getByText(/must be 1 or more/)).toBeVisible()
 })
@@ -57,12 +70,12 @@ test('labor rejects zero workers', async ({ page }) => {
 test('labor rejects from-date after to-date', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
-  await page.goto('/post')
-  await page.getByRole('button', { name: 'Offering' }).click()
-  await page.getByRole('button', { name: 'Labor' }).click()
+  await startPost(page, 'Offering', 'Labor')
+  await page.getByLabel('Number of workers').waitFor({ timeout: 8000 })
   await page.getByLabel('Number of workers').fill('3')
   await page.getByLabel('From date').fill('2026-10-20')
   await page.getByLabel('To date').fill('2026-10-01')
+  await page.getByTestId('rules-agree-checkbox').check()
   await page.getByRole('button', { name: 'Submit' }).click()
   await expect(page.getByText(/cannot be after/)).toBeVisible()
 })

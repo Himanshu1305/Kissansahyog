@@ -1,14 +1,21 @@
 import { test, expect } from '@playwright/test'
 import { testPhone, adminClient } from './support.js'
 
-// Helper: land on Welcome and switch UI to English for stable selectors.
-async function openInEnglish(page) {
-  await page.goto('/')
+// REWRITTEN (legacy-cleanup): the registration/login flow moved off `/` (now the
+// public Homepage) to `/welcome` → `/signup` / `/login`. The Welcome screen keeps
+// the "नया खाता बनाएं / Create new account" CTA + a हिंदी/English language choice;
+// the हिं/EN pill in the app chrome is the LanguageToggle. Field placeholders and
+// the error copy are unchanged, so only the entry points/selectors are updated here.
+
+// Land on Welcome and switch the UI to English, then open the signup form.
+async function openSignupInEnglish(page) {
+  await page.goto('/welcome')
   await page.getByRole('button', { name: 'English' }).click()
+  await page.getByRole('button', { name: 'Create new account' }).click()
 }
 
 test('welcome defaults to Hindi and toggles to English', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('/welcome')
   // Hindi default: the signup CTA reads in Hindi.
   await expect(page.getByRole('button', { name: 'नया खाता बनाएं' })).toBeVisible()
   await page.getByRole('button', { name: 'English' }).click()
@@ -17,8 +24,7 @@ test('welcome defaults to Hindi and toggles to English', async ({ page }) => {
 
 test('signup happy path reaches home', async ({ page }) => {
   const phone = testPhone()
-  await openInEnglish(page)
-  await page.getByRole('button', { name: 'Create new account' }).click()
+  await openSignupInEnglish(page)
 
   await page.getByPlaceholder('e.g. Ramprasad Patel').fill('Playwright Kisan')
   await page.getByPlaceholder('10-digit number').fill(phone)
@@ -33,12 +39,12 @@ test('signup happy path reaches home', async ({ page }) => {
   await accept.click()
 
   await expect(page).toHaveURL(/\/home$/)
-  await expect(page.getByText('Playwright Kisan')).toBeVisible()
+  // The name shows in the nav (hidden on mobile) and the greeting — assert the greeting.
+  await expect(page.locator('main').getByText('Playwright Kisan')).toBeVisible()
 })
 
 test('client-side rejects malformed phone before disclaimer', async ({ page }) => {
-  await openInEnglish(page)
-  await page.getByRole('button', { name: 'Create new account' }).click()
+  await openSignupInEnglish(page)
   await page.getByPlaceholder('e.g. Ramprasad Patel').fill('Bad Phone')
   await page.getByPlaceholder('10-digit number').fill('123')
   await page.getByPlaceholder('6-digit pincode').fill('470001')
@@ -51,8 +57,7 @@ test('client-side rejects malformed phone before disclaimer', async ({ page }) =
 
 test('unknown pincode is handled gracefully', async ({ page }) => {
   const phone = testPhone()
-  await openInEnglish(page)
-  await page.getByRole('button', { name: 'Create new account' }).click()
+  await openSignupInEnglish(page)
   await page.getByPlaceholder('e.g. Ramprasad Patel').fill('Bad Pin')
   await page.getByPlaceholder('10-digit number').fill(phone)
   await page.getByPlaceholder('6-digit pincode').fill('999999')
@@ -77,8 +82,7 @@ test('duplicate phone is rejected with a clear message', async ({ page }) => {
     disclaimer_accepted_at: new Date().toISOString(),
   })
 
-  await openInEnglish(page)
-  await page.getByRole('button', { name: 'Create new account' }).click()
+  await openSignupInEnglish(page)
   await page.getByPlaceholder('e.g. Ramprasad Patel').fill('Duplicate')
   await page.getByPlaceholder('10-digit number').fill(phone)
   await page.getByPlaceholder('6-digit pincode').fill('470001')
@@ -90,7 +94,8 @@ test('duplicate phone is rejected with a clear message', async ({ page }) => {
 })
 
 test('login with unknown phone shows not-found path', async ({ page }) => {
-  await openInEnglish(page)
+  await page.goto('/welcome')
+  await page.getByRole('button', { name: 'English' }).click()
   await page.getByRole('button', { name: 'I already have an account — Log in' }).click()
   await page.getByPlaceholder('10-digit number').fill('9000099998')
   await page.getByRole('button', { name: 'Log in' }).click()
@@ -101,8 +106,7 @@ test('login with unknown phone shows not-found path', async ({ page }) => {
 test('language persists across logout/login', async ({ page }) => {
   const phone = testPhone()
   // Sign up with English UI selected.
-  await openInEnglish(page)
-  await page.getByRole('button', { name: 'Create new account' }).click()
+  await openSignupInEnglish(page)
   await page.getByPlaceholder('e.g. Ramprasad Patel').fill('Lang Persist')
   await page.getByPlaceholder('10-digit number').fill(phone)
   await page.getByPlaceholder('6-digit pincode').fill('470001')
@@ -111,9 +115,10 @@ test('language persists across logout/login', async ({ page }) => {
   await page.getByRole('button', { name: 'Accept and continue' }).click()
   await expect(page).toHaveURL(/\/home$/)
 
-  // Log out, then log back in — UI should return in English (from profile).
+  // Log out (returns to the public homepage), then log back in — UI returns in
+  // English (persisted to the profile via set_language).
   await page.getByRole('button', { name: 'Log out' }).click()
-  await page.getByRole('button', { name: 'I already have an account — Log in' }).click()
+  await page.goto('/login')
   await page.getByPlaceholder('10-digit number').fill(phone)
   await page.getByRole('button', { name: 'Log in' }).click()
   await expect(page).toHaveURL(/\/home$/)
