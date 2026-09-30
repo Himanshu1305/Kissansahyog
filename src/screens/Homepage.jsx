@@ -217,7 +217,7 @@ export default function Homepage() {
               const rows = getCategory(l.category).summarize(l, lang, extras).slice(0, 2)
               const isOffer = l.listing_type === 'offer'
               const isVendor = l.listing_source === 'vendor'
-              const place = [l.village_town || l.district, l.distanceKm != null ? `${Math.round(l.distanceKm)} किमी` : null].filter(Boolean).join(' · ')
+              const place = [l.village_town || l.district, l.distanceKm != null ? `${Math.round(l.distanceKm)} ${t('unit_km')}` : null].filter(Boolean).join(' · ')
               return (
                 <HomeListingCard
                   key={l.id}
@@ -318,7 +318,7 @@ export default function Homepage() {
           {/* TODO: founder photo — not available; render initials avatar (no stock face). */}
           <div className="flex flex-col" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
             <div className="flex items-center gap-3">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-extrabold text-white" style={{ background: 'var(--ks-green)' }} aria-hidden="true">अ.दी.</span>
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-extrabold text-white" style={{ background: 'var(--ks-green)' }} aria-hidden="true">{t('founder_initials')}</span>
               <span>
                 <span className="block text-[16px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('founder_name')}</span>
                 <span className="block text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('founder_role')}</span>

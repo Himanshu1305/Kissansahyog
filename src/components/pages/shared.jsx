@@ -19,7 +19,7 @@ export function JsonLd({ data }) {
 // open (mobile-first — no hover), dismiss by tapping outside or the ✕. Anchors left
 // or right depending on screen position so the popover never causes horizontal scroll.
 export function InfoTip({ label, label_en }) {
-  const { lang } = useLang()
+  const { t, lang } = useLang()
   const [open, setOpen] = useState(false)
   const [side, setSide] = useState('left')
   const ref = useRef(null)
@@ -39,13 +39,13 @@ export function InfoTip({ label, label_en }) {
   }
   return (
     <span ref={ref} className="relative inline-flex align-middle">
-      <button type="button" aria-label={lang === 'en' ? 'More info' : 'जानकारी'} aria-expanded={open} onClick={toggle}
+      <button type="button" aria-label={t('infotip_more')} aria-expanded={open} onClick={toggle}
         className="ml-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[13px] font-bold leading-none"
         style={{ background: 'var(--ks-blue-tint)', color: 'var(--ks-blue)', minHeight: 0 }}>ⓘ</button>
       {open && (
         <span role="tooltip" className="absolute z-50 mt-1 block rounded-lg p-3 text-left text-[13px] font-normal leading-snug shadow-lg"
           style={{ top: '100%', [side]: 0, width: 'min(240px, 78vw)', background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-ink-2)' }}>
-          <button type="button" aria-label={lang === 'en' ? 'Close' : 'बंद करें'} onClick={(e) => { e.stopPropagation(); setOpen(false) }}
+          <button type="button" aria-label={t('infotip_close')} onClick={(e) => { e.stopPropagation(); setOpen(false) }}
             className="absolute right-1 top-1 text-[14px] leading-none" style={{ color: 'var(--ks-ink-3)', minHeight: 0 }}>✕</button>
           <span className="block pr-4">{text}</span>
         </span>

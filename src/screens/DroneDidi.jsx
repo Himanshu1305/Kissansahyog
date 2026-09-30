@@ -89,9 +89,7 @@ export default function DroneDidi() {
         {/* 4 — Official info (no verified PIB photo available → text only) */}
         <H2>{t('dd_official_h')}</H2>
         <p className="text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>
-          {lang === 'hi'
-            ? 'नमो ड्रोन दीदी भारत सरकार की केंद्रीय योजना है (कृषि एवं किसान कल्याण मंत्रालय)। यहाँ दी गई जानकारी केवल किसानों की सुविधा के लिए है; किसान सहयोग किसी सौदे या समर्थन का हिस्सा नहीं है।'
-            : 'Namo Drone Didi is a Central Government scheme (Ministry of Agriculture & Farmers Welfare). The information here is for farmers’ convenience only; Kisan Sahyog is not a party to any deal or endorsement.'}
+          {t('dd_official_body')}
           {scheme?.source_url && (<> <a href={scheme.source_url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ks-green)', fontWeight: 700 }}>{t('scheme_sources')} ↗</a></>)}
         </p>
 

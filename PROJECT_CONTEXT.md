@@ -1131,3 +1131,9 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   later** (when the owner registers + gets a key): add a `/imd-warning` Cloudflare Function proxy (key
   server-side, same pattern as `/transcribe`) calling `districtwarning?id=<Sagar id>` and render an official IMD
   badge on `/mausam` alongside the derived one. No code change this phase.
+- **Tech debt TD-1 cleared (Phase 6):** the four hardcoded Hindi strings moved into `strings.js` —
+  `DroneDidi.jsx` official paragraph → `dd_official_body`; `Homepage.jsx` `किमी` → `unit_km` and `अ.दी.` →
+  `founder_initials`; `shared.jsx` InfoTip aria-labels → `infotip_more`/`infotip_close`; `Admin.jsx` `(हिं)` →
+  `label_suffix_hi` (+ dropped the `unit:'बोरी'` form default, which the RPC coalesces). `transport.jsx` added
+  to the `v11_phase6` label allowlist + parity list. **`v11_phase6` is now fully green (29/0)** — no longer the
+  intentionally-red backend suite.

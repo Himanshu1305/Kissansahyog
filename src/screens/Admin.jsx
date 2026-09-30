@@ -773,7 +773,7 @@ function MspForm({ t, initial, onCancel, onSave, seasonLabel }) {
 }
 
 // --- Phase 6: input price tracker management ------------------------------
-const EMPTY_INPUT = { item_hi: '', item_en: '', shop_name: '', location: 'Khurai', price: '', unit: 'बोरी', is_active: true }
+const EMPTY_INPUT = { item_hi: '', item_en: '', shop_name: '', location: 'Khurai', price: '', unit: '', is_active: true }
 
 function InputPricesPanel({ actorId, t, lang }) {
   const [rows, setRows] = useState(null)
@@ -838,7 +838,7 @@ function InputPriceForm({ t, initial, onCancel, onSave }) {
   return (
     <div className="mb-4 rounded-xl border-2 border-green-200 bg-green-50 p-4">
       <div className="grid gap-3 sm:grid-cols-2">
-        <Field label={`${t('inputs_col_item')} (हिं)`} htmlFor="ip_hi"><TextInput id="ip_hi" value={f.item_hi} onChange={set('item_hi')} /></Field>
+        <Field label={`${t('inputs_col_item')} (${t('label_suffix_hi')})`} htmlFor="ip_hi"><TextInput id="ip_hi" value={f.item_hi} onChange={set('item_hi')} /></Field>
         <Field label={`${t('inputs_col_item')} (EN)`} htmlFor="ip_en"><TextInput id="ip_en" value={f.item_en || ''} onChange={set('item_en')} /></Field>
         <Field label={t('inputs_col_shop')} htmlFor="ip_shop"><TextInput id="ip_shop" value={f.shop_name} onChange={set('shop_name')} /></Field>
         <Field label={t('loc_current')} htmlFor="ip_loc"><TextInput id="ip_loc" value={f.location || ''} onChange={set('location')} /></Field>

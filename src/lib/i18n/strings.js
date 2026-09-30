@@ -869,6 +869,11 @@ export const strings = {
   no_listings: { hi: 'आस-पास कोई लिस्टिंग नहीं मिली।', en: 'No listings found nearby.' },
   radius_fallback: { hi: '30–50 किमी दूर', en: '30–50 km away' },
   km_away: { hi: 'किमी दूर', en: 'km away' },
+  unit_km: { hi: 'किमी', en: 'km' },
+  founder_initials: { hi: 'अ.दी.', en: 'AD' },
+  infotip_more: { hi: 'जानकारी', en: 'More info' },
+  infotip_close: { hi: 'बंद करें', en: 'Close' },
+  label_suffix_hi: { hi: 'हिं', en: 'HI' },
   posted_label: { hi: 'डाली गई', en: 'Posted' },
 
   // --- my listings ---
@@ -1300,6 +1305,10 @@ export const strings = {
   dd_scheme_h: { hi: 'यह योजना क्या है?', en: 'What is this scheme?' },
   dd_local_h: { hi: 'खुरई/सागर क्षेत्र में उपलब्ध ड्रोन दीदी सेवाएं', en: 'Drone Didi services available in the Khurai/Sagar area' },
   dd_official_h: { hi: 'आधिकारिक जानकारी', en: 'Official information' },
+  dd_official_body: {
+    hi: 'नमो ड्रोन दीदी भारत सरकार की केंद्रीय योजना है (कृषि एवं किसान कल्याण मंत्रालय)। यहाँ दी गई जानकारी केवल किसानों की सुविधा के लिए है; किसान सहयोग किसी सौदे या समर्थन का हिस्सा नहीं है।',
+    en: 'Namo Drone Didi is a Central Government scheme (Ministry of Agriculture & Farmers Welfare). The information here is for farmers’ convenience only; Kisan Sahyog is not a party to any deal or endorsement.',
+  },
   dd_no_listings: { hi: 'अभी आपके क्षेत्र में कोई ड्रोन दीदी सेवा सूचीबद्ध नहीं है।', en: 'No Drone Didi services are listed in your area yet.' },
 
   // --- Videos page (Phase 5) ---

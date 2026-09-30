@@ -119,7 +119,12 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 Deferred, non-urgent cleanup. Not functional bugs — nothing here misbehaves for users; each is
 left because acting on it touches working, pre-existing code with no reported issue driving it.
 
-- **TD-1 — Four hardcoded Hindi strings should move to i18n (`strings.js`).** The
+- **TD-1 — RESOLVED (2026-09-30).** The four hardcoded Hindi strings were moved into `strings.js`
+  (`dd_official_body`, `unit_km` + `founder_initials`, `infotip_more` + `infotip_close`, `label_suffix_hi`;
+  the Admin `unit: 'बोरी'` default was dropped — the RPC coalesces a missing unit). `v11_phase6` is now
+  fully green (29 passed / 0 failed); it is no longer the intentionally-red suite. Original note below.
+
+- **TD-1 (original) — Four hardcoded Hindi strings should move to i18n (`strings.js`).** The
   `v11_phase6` Devanagari audit (after the comment-stripping + label-allowlist cleanup)
   correctly flags four spots where Hindi is written inline in render code instead of via a
   `t()` key. **Low risk, no functional bug** (they render fine today, including in English —
