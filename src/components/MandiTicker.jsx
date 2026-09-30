@@ -15,17 +15,23 @@ const fmt = (n) => Math.round(Number(n) || 0).toLocaleString('en-IN')
 // else "coming soon". CSS-only scroll (see index.css), paused on hover/tap.
 export default function MandiTicker() {
   const { t } = useLang()
-  const [state, setState] = useState({ loading: true, rows: [], day: 'none' })
+  const [state, setState] = useState({ loading: true, rows: [], day: 'none', date: null })
 
   useEffect(() => {
     let alive = true
     fetchMandiPrices()
-      .then((r) => alive && setState({ loading: false, rows: r.rows, day: r.day }))
-      .catch(() => alive && setState({ loading: false, rows: [], day: 'none' }))
+      .then((r) => alive && setState({ loading: false, rows: r.rows, day: r.day, date: r.date }))
+      .catch(() => alive && setState({ loading: false, rows: [], day: 'none', date: null }))
     return () => { alive = false }
   }, [])
 
   const marketHi = (m) => (MARKET_KEY[m] ? t(MARKET_KEY[m]) : m)
+  // Honest, dated label for a non-today ticker (Phase 4c): "कल का भाव (dd/mm)" for
+  // yesterday, "पिछला भाव (dd/mm)" for older. The exact date is always visible.
+  const ddmm = (iso) => { const [, m, d] = String(iso || '').split('-'); return d && m ? `${d}/${m}` : '' }
+  const dateBadge = (state.day === 'yesterday' || state.day === 'older') && state.date
+    ? `${t(state.day === 'yesterday' ? 'mandi_price_yesterday' : 'mandi_price_older')} (${ddmm(state.date)})`
+    : null
   const item = (r, i) => {
     const slug = cropByMandi(r.commodity_en)?.slug
     const inner = (<>
@@ -57,8 +63,8 @@ export default function MandiTicker() {
       {/* Fixed, non-scrolling label */}
       <div className="flex w-[140px] shrink-0 flex-col justify-center gap-0.5 border-r border-black/20 bg-[var(--ks-primary)] px-2 text-[13px] font-bold leading-none text-[var(--ks-accent-muted)]">
         <span className="truncate">📊 {t('mandi_title')}</span>
-        {state.day === 'yesterday' && (
-          <span className="w-fit rounded-full bg-[var(--ks-accent)] px-1.5 py-0.5 text-[10px] font-bold text-[var(--ks-accent-dark)]">{t('mandi_yesterday')}</span>
+        {dateBadge && (
+          <span className="w-fit whitespace-nowrap rounded-full bg-[var(--ks-accent)] px-1.5 py-0.5 text-[10px] font-bold text-[var(--ks-accent-dark)]" data-testid="ticker-stale-badge">{dateBadge}</span>
         )}
       </div>
 

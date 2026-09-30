@@ -1578,6 +1578,10 @@ export const strings = {
   mandi_last_price_on: { hi: 'अंतिम भाव', en: 'Last price' },
   // 0026 Phase 2/3 — comparison view + staleness/missing labels
   mandi_stale: { hi: 'पुराना भाव', en: 'Old price' },
+  // Neutral, honest "yesterday's rate / previous rate" labels — the date is ALWAYS shown next
+  // to any non-today price (Phase 4c), never hidden in a tooltip.
+  mandi_price_yesterday: { hi: 'कल का भाव', en: "Yesterday's price" },
+  mandi_price_older: { hi: 'पिछला भाव', en: 'Previous price' },
   mandi_not_recorded: { hi: 'इस मंडी में यह फसल दर्ज नहीं है', en: 'This crop is not recorded at this mandi' },
   msp_view_crop: { hi: 'फसल अनुसार', en: 'By crop' },
   msp_view_compare: { hi: 'मंडी तुलना', en: 'Compare mandis' },

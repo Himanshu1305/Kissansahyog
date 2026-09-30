@@ -1104,3 +1104,17 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   primary Web-Speech path works and unsupported browsers cleanly show no mic. Verified locally (wrangler): GET
   `{configured:false}`, POST `503 not_configured`; rate-limit RPC 20 allowed / 5 denied. Migrations this prompt:
   `0033` (transport) + `0034` (voice rate limit) — split because each phase is committed independently.
+- **Mandi data — diagnosed, then honest labeling (Phase 4):** *Diagnosis (4a):* the 3-hourly cron
+  (`refresh-mandi-prices.yml`, 8 runs/day) is healthy — over the last 2 weeks 29/39 runs succeeded, and
+  **all 10 failures predate the 2026-09-25 Node-22 WebSocket fix**; every run since 09-26 is green (20/20).
+  Data lands near-daily (only gap in the window was 09-24, inside the pre-fix failure window). MP-wide
+  collection is **already the default** (`refresh-data.mjs` `getOfficialPool()` fetches an MP-wide pool and
+  merely *prefers* Sagar rows within it; `is_sagar_district=false` when Sagar has none) — not an emergency
+  fallback. Coverage: Wheat/Soyabean/Garlic/Maize/Mustard reliable daily; Gram/Paddy/Lentil/Moong sparse
+  (data-availability reality, already documented). *So per 4b no refresh-script change was needed.*
+  *Labeling (4c):* no "बासी/स्टेल" wording existed. The staleness rule (`priceStaleness`/`StaleTag`/`PriceCell`
+  in `pages/shared.jsx`) now returns `today|yesterday|older` and the **exact date is always shown** next to a
+  non-today price — neutral "कल का भाव (dd/mm)" (yesterday) / amber "पिछला भाव (dd/mm)" (older), never a
+  tooltip; never-recorded commodities keep "—". The homepage `MandiTicker` no longer shows an undated "कल के"
+  badge or "coming soon" when data is 2+ days old: `fetchMandiPrices` now falls back to the most-recent
+  available date and returns `{day,date}`, and the ticker renders a dated "कल का भाव/पिछला भाव (dd/mm)" badge.

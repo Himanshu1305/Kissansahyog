@@ -51,13 +51,33 @@ async function withTrend(rows, currentDay) {
   })
 }
 
-// Returns { rows, day: 'today' | 'yesterday' | 'none' }. Each row carries `delta`.
+// The single most recent price_date that has any rows (used when today has none, so the
+// ticker shows the latest real prices with an HONEST date rather than "coming soon").
+async function latestMandiDate() {
+  const { data, error } = await supabase
+    .from('mandi_prices')
+    .select('price_date')
+    .order('price_date', { ascending: false })
+    .limit(1)
+  if (error || !data || !data.length) return null
+  return data[0].price_date
+}
+
+// Returns { rows, day: 'today' | 'yesterday' | 'older' | 'none', date }. Each row carries
+// `delta`. `date` is the actual price_date shown so the UI can label a non-today price with
+// its exact date ("कल का भाव (dd/mm)" / "पिछला भाव (dd/mm)") — Phase 4c honest labeling.
 export async function fetchMandiPrices() {
-  const today = await pricesFor(isoDay(0))
-  if (today && today.length) return { rows: await withTrend(today, isoDay(0)), day: 'today' }
-  const yesterday = await pricesFor(isoDay(-1))
-  if (yesterday && yesterday.length) return { rows: await withTrend(yesterday, isoDay(-1)), day: 'yesterday' }
-  return { rows: [], day: 'none' }
+  const t0 = isoDay(0)
+  const today = await pricesFor(t0)
+  if (today && today.length) return { rows: await withTrend(today, t0), day: 'today', date: t0 }
+  // No rows for today — fall back to the most recent available date (yesterday OR older),
+  // labeled honestly by how old it actually is, instead of showing "coming soon".
+  const latest = await latestMandiDate()
+  if (!latest) return { rows: [], day: 'none', date: null }
+  const rows = await pricesFor(latest)
+  if (!rows || !rows.length) return { rows: [], day: 'none', date: null }
+  const day = latest === isoDay(-1) ? 'yesterday' : 'older'
+  return { rows: await withTrend(rows, latest), day, date: latest }
 }
 
 // ---- /msp page: per-crop today prices + trend history ----------------------

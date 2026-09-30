@@ -61,9 +61,12 @@ export function ReviewTag({ reviewed }) {
   return <span className="ml-2 inline-block rounded-full px-2 py-0.5 text-[12px] font-bold align-middle" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>{t('under_review')}</span>
 }
 
-// Phase 3 (0026) — one consistent staleness rule for every mandi price on the site.
-// 'fresh' = dated today or yesterday (show plainly); 'stale' = older than that but exists
-// (amber "पुराना भाव (dd/mm)" tag); null = no date.
+// Phase 4c — one consistent, honest staleness rule for every mandi price on the site.
+// The specific date is ALWAYS shown next to a non-today price (never hidden in a tooltip):
+//   'today'     → plain price, no tag
+//   'yesterday' → neutral "कल का भाव (dd/mm)" tag (exactly one day old)
+//   'older'     → amber "पिछला भाव (dd/mm)" tag (more than one day old — honest elapsed time)
+//   null        → no date (used with a null price → the "—" never-recorded treatment)
 const rupee = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 export function priceStaleness(dateStr) {
   if (!dateStr) return null
@@ -71,29 +74,43 @@ export function priceStaleness(dateStr) {
   if (Number.isNaN(d.getTime())) return null
   const today = new Date(); today.setHours(0, 0, 0, 0)
   const days = Math.floor((today - d) / 86400000)
-  return days <= 1 ? 'fresh' : 'stale'
+  if (days <= 0) return 'today'
+  if (days === 1) return 'yesterday'
+  return 'older'
 }
 
-export function StaleTag({ date }) {
+// Dated staleness tag. `kind` = 'yesterday' (neutral) | 'older' (amber). The date (dd/mm)
+// is always rendered so a farmer sees exactly how old the price is.
+export function StaleTag({ date, kind = 'older' }) {
   const { t } = useLang()
   const [, m, d] = String(date).split('-')
+  const older = kind === 'older'
+  const style = older
+    ? { background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)', border: '1px solid var(--ks-orange)' }
+    : { background: 'var(--ks-bg-soft)', color: 'var(--ks-ink-2)', border: '1px solid var(--ks-border-strong)' }
   return (
-    <span className="ml-1 inline-block whitespace-nowrap rounded px-1 py-0.5 align-middle text-[11px] font-bold" data-testid="stale-tag"
-      style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)', border: '1px solid var(--ks-orange)' }}>
-      {t('mandi_stale')} ({d}/{m})
+    <span className="ml-1 inline-block whitespace-nowrap rounded px-1 py-0.5 align-middle text-[11px] font-bold" data-testid="stale-tag" style={style}>
+      {t(older ? 'mandi_price_older' : 'mandi_price_yesterday')} ({d}/{m})
     </span>
   )
 }
 
-// One price cell used by every mandi table: plain / amber-stale / "—" (never recorded,
-// with a hover/tap tooltip). Keeps the whole site's price labelling identical.
+// One price cell used by every mandi table: plain (today) / dated "कल का भाव" or "पिछला भाव"
+// tag (non-today) / "—" (never recorded, with a hover/tap tooltip). Keeps the whole site's
+// price labelling identical and always date-visible for non-today prices.
 export function PriceCell({ price, date, bold }) {
   const { t } = useLang()
   if (price == null) {
     return <span title={t('mandi_not_recorded')} data-testid="price-missing" style={{ color: 'var(--ks-ink-3)', cursor: 'help' }}>—</span>
   }
   const st = priceStaleness(date)
-  return <span>{bold ? <b>{rupee(price)}</b> : rupee(price)}{st === 'stale' && <StaleTag date={date} />}</span>
+  return (
+    <span>
+      {bold ? <b>{rupee(price)}</b> : rupee(price)}
+      {st === 'yesterday' && <StaleTag date={date} kind="yesterday" />}
+      {st === 'older' && <StaleTag date={date} kind="older" />}
+    </span>
+  )
 }
 
 // PageExplainer — soft-green card, Hindi-first (EN via global toggle).
