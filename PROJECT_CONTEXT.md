@@ -1118,3 +1118,16 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   tooltip; never-recorded commodities keep "—". The homepage `MandiTicker` no longer shows an undated "कल के"
   badge or "coming soon" when data is 2+ days old: `fetchMandiPrices` now falls back to the most-recent
   available date and returns `{day,date}`, and the ticker renders a dated "कल का भाव/पिछला भाव (dd/mm)" badge.
+- **IMD feed research — NOT integrated (Phase 5, decision-gated):** researched the live IMD API surface
+  (`api.imd.gov.in`). The modern API *does* expose a genuinely district-granular feed —
+  `GET https://api.imd.gov.in/api/v1/districtwarning?id=<district_id>` returns 5-day color-coded warnings
+  (Red/Orange/Yellow/Green) per district — which would meaningfully improve on our derived classification.
+  **But real requests confirmed it is not usable right now:** `districtwarning` returns `401 {"error":"API key
+  missing"}` and sends **no CORS header** (browser-blocked), and the legacy `city.imd.gov.in` forecast returns
+  `401 "IP … needs to be whitelisted"` (server-IP allow-list). The key is **registration-gated** (create an
+  account at api.imd.gov.in + accept terms; not a public/demo key), Sagar's district id can't be enumerated
+  without access, and any use needs a server-side proxy for CORS. Per the 5b gate, **no integration was forced**
+  — the existing `/mausam` behavior (derived classification + link to mausam.imd.gov.in) is unchanged. **Path for
+  later** (when the owner registers + gets a key): add a `/imd-warning` Cloudflare Function proxy (key
+  server-side, same pattern as `/transcribe`) calling `districtwarning?id=<Sagar id>` and render an official IMD
+  badge on `/mausam` alongside the derived one. No code change this phase.
