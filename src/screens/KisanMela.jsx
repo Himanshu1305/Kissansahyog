@@ -7,7 +7,7 @@ import { Notice, Spinner, Select } from '../components/ui'
 import { PageExplainer, LocationControl, ShareWhatsApp } from '../components/pages/shared'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPincode } from '../lib/listings/listingsApi'
-import { fetchMelas, getMyMelaInterests, setMelaInterest, MELA_TAGS } from '../lib/mela/melaApi'
+import { fetchMelas, getMyMelaInterests, setMelaInterest, resolveActiveMela, MELA_TAGS } from '../lib/mela/melaApi'
 import { filterMelas, sortByDistance, statesIn, melaDateLabel, isExpectedDate, melaDistanceKm } from '../lib/mela/melaFormat'
 import { stateLabel } from '../content/states.js'
 import { generateMelaMessage } from '../lib/share/shareMessages'
@@ -27,11 +27,32 @@ export default function KisanMela() {
   const [stateFilter, setStateFilter] = useState('')
   const [monthFilter, setMonthFilter] = useState('')
   const [interested, setInterested] = useState(new Set())
+  const [highlightId, setHighlightId] = useState(null)
   const months = lang === 'hi' ? MONTHS_FULL_HI : MONTHS_FULL_EN
 
   useEffect(() => {
     fetchMelas().then(setMelas).catch((e) => { setError(t(e.i18nKey || 'err_unknown')); setMelas([]) })
   }, [t])
+
+  // Shared-link redirect (3e): /kisan-mela?mela=<id> may point at a row that was merged away. Resolve
+  // it to the active survivor, then scroll to + highlight that card — never a "not found" page.
+  useEffect(() => {
+    if (!melas || !melas.length) return
+    const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '')
+    const want = params.get('mela')
+    if (!want) return
+    let alive = true
+    ;(async () => {
+      const target = (await resolveActiveMela(want).catch(() => null)) || want
+      if (!alive) return
+      setHighlightId(target)
+      requestAnimationFrame(() => {
+        const el = document.querySelector(`[data-mela-id="${target}"]`)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      })
+    })()
+    return () => { alive = false }
+  }, [melas])
 
   useEffect(() => {
     if (isLoggedIn && user?.id) getMyMelaInterests(user.id).then((ids) => setInterested(new Set(ids))).catch(() => {})
@@ -126,7 +147,7 @@ export default function KisanMela() {
               const nm = lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)
               const highlights = lang === 'hi' ? m.highlights_hi : (m.highlights_en || m.highlights_hi)
               const place = [m.venue, m.district, m.state].filter(Boolean).join(', ')
-              const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/kisan-mela`
+              const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/kisan-mela?mela=${m.id}`
               // Corroboration: all real http(s) sources across source_urls[] + the legacy source_url, deduped.
               // >=2 distinct → "found via multiple sources"; exactly 1 → shown plainly. Never worded as "verified accurate".
               const allSources = [...new Set([...(Array.isArray(m.source_urls) ? m.source_urls : []), m.source_url].filter((u) => /^https?:\/\//i.test(u || '')))]
@@ -134,7 +155,7 @@ export default function KisanMela() {
               const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, '') } catch { return u } }
               const disclaimerSource = multiSource ? t('mela_sources_multiple') : (allSources[0] ? hostOf(allSources[0]) : t('mela_source'))
               return (
-                <div key={m.id} data-testid="mela-card" className="flex flex-col rounded-xl border bg-white p-4" style={{ borderColor: 'var(--ks-border)' }}>
+                <div key={m.id} data-mela-id={m.id} data-testid="mela-card" className="flex flex-col rounded-xl border bg-white p-4" style={{ borderColor: highlightId === m.id ? 'var(--ks-primary)' : 'var(--ks-border)', boxShadow: highlightId === m.id ? '0 0 0 2px var(--ks-primary)' : undefined }}>
                   <div className="mb-1 flex flex-wrap items-center gap-1">
                     {(m.category_tags || []).map((tag) => (
                       <span key={tag} className="rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' }}>{tagLabel(tag)}</span>

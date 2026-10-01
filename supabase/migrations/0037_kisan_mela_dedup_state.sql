@@ -364,3 +364,86 @@ update public.kisan_mela_candidates kc set raw_state = a.canonical
 -- coordinate-only merge); new promotions record 'venue' | 'area' from Nominatim's result class/type.
 -- ===========================================================================================
 alter table public.kisan_mela add column if not exists geocode_precision text;
+
+-- ===========================================================================================
+-- Phase 3 — merge support: survivor links, interest ownership tracking, do-not-merge exclusions,
+-- and admin RPCs (recent merges, split, link redirect). Merges are reversible + auditable (3d/3f).
+-- ===========================================================================================
+alter table public.kisan_mela add column if not exists merged_into uuid references public.kisan_mela(id);
+alter table public.kisan_mela add column if not exists merge_reason text;
+alter table public.kisan_mela add column if not exists merged_at timestamptz;
+create index if not exists kisan_mela_merged_into_idx on public.kisan_mela(merged_into) where merged_into is not null;
+
+-- Track which Mela an interest mark ORIGINALLY belonged to, so an admin split can move it back (3f).
+alter table public.kisan_mela_interest add column if not exists original_mela_id uuid;
+
+-- Pairs an admin split apart — the pipeline must never re-merge them (3f).
+create table if not exists public.mela_merge_exclusions (
+  pair_key text primary key,
+  id_a uuid not null,
+  id_b uuid not null,
+  created_at timestamptz not null default now()
+);
+alter table public.mela_merge_exclusions enable row level security; -- default-deny to anon; service role bypasses
+
+-- Resolve a (possibly merged-away) Mela id to its ACTIVE survivor by following merged_into (3e).
+-- SECURITY DEFINER so a public shared link can resolve even though the merged-away row is not
+-- anon-readable under RLS. Returns the active survivor's id, or null if none.
+create or replace function public.resolve_active_mela(p_id uuid)
+returns uuid language plpgsql security definer set search_path = public, pg_temp stable as $$
+declare cur uuid := p_id; nxt uuid; act boolean; guard int := 0;
+begin
+  loop
+    guard := guard + 1; if guard > 10 then return null; end if;
+    select is_active, merged_into into act, nxt from public.kisan_mela where id = cur;
+    if not found then return null; end if;
+    if act then return cur; end if;
+    if nxt is null then return null; end if; -- inactive and not merged → gone
+    cur := nxt;
+  end loop;
+end; $$;
+grant execute on function public.resolve_active_mela(uuid) to anon, authenticated;
+
+-- Recent merges for the admin "हाल के विलय" panel — merged-away rows with their survivor + reason.
+create or replace function public.get_recent_mela_merges(p_actor_id uuid)
+returns table (
+  merged_id uuid, merged_name text, merged_state text, survivor_id uuid, survivor_name text,
+  reason text, merged_at timestamptz
+) language plpgsql security definer set search_path = public, pg_temp as $$
+begin
+  perform public.require_admin(p_actor_id);
+  return query
+    select m.id, coalesce(m.name_en, m.name_hi), m.state, s.id, coalesce(s.name_en, s.name_hi),
+           m.merge_reason, m.merged_at
+    from public.kisan_mela m
+    join public.kisan_mela s on s.id = m.merged_into
+    where m.merged_into is not null
+    order by m.merged_at desc nulls last
+    limit 100;
+end; $$;
+grant execute on function public.get_recent_mela_merges(uuid) to anon, authenticated;
+
+-- Split a merged-away row back out (3f): reactivate it, drop its merged_into link, move its original
+-- interest marks back from the survivor, and record a do-not-merge exclusion so the next run won't
+-- re-merge the pair. Its own source_urls were never removed, so they are intact on reactivation.
+create or replace function public.admin_split_mela(p_actor_id uuid, p_id uuid)
+returns public.kisan_mela language plpgsql security definer set search_path = public, pg_temp as $$
+declare m public.kisan_mela%rowtype; surv uuid; v public.kisan_mela%rowtype;
+begin
+  perform public.require_admin(p_actor_id);
+  select * into m from public.kisan_mela where id = p_id;
+  if not found then raise exception 'not_found'; end if;
+  if m.merged_into is null then return m; end if; -- not merged; nothing to do
+  surv := m.merged_into;
+  -- Move interest marks that originally belonged to p_id back to it, skipping any that would collide.
+  update public.kisan_mela_interest ki set mela_id = p_id, original_mela_id = null
+    where ki.mela_id = surv and ki.original_mela_id = p_id
+      and not exists (select 1 from public.kisan_mela_interest x where x.mela_id = p_id and x.user_id = ki.user_id);
+  update public.kisan_mela set is_active = true, merged_into = null, merge_reason = null, merged_at = null where id = p_id
+    returning * into v;
+  insert into public.mela_merge_exclusions (pair_key, id_a, id_b)
+    values ((select string_agg(x, '::' order by x) from unnest(array[p_id::text, surv::text]) x), p_id, surv)
+    on conflict (pair_key) do nothing;
+  return v;
+end; $$;
+grant execute on function public.admin_split_mela(uuid, uuid) to anon, authenticated;

@@ -22,6 +22,7 @@ import {
   getAdminAvailability, getAdminAvailabilityListings, getAdminFarmerProfiles,
   getAdminMelas, adminSetMelaStatus, adminSetMelaActive, adminDeleteMela, adminUpsertMela,
   getAdminMelaCandidates, adminPublishCandidate,
+  getRecentMelaMerges, adminSplitMela,
 } from '../lib/admin/adminApi'
 import { MELA_TAGS } from '../lib/mela/melaApi'
 import { getAdminInputPrices, adminSetInputPriceActive, adminUpsertInputPrice } from '../lib/inputs/inputsApi'
@@ -67,6 +68,7 @@ export default function Admin() {
         <InputPricesPanel actorId={user.id} t={t} lang={lang} />
         <MelaPanel actorId={user.id} t={t} lang={lang} />
         <MelaCandidatesPanel actorId={user.id} t={t} lang={lang} />
+        <MelaMergesPanel actorId={user.id} t={t} lang={lang} />
         <SawaalPanel actorId={user.id} t={t} lang={lang} />
         <SafaltaPanel actorId={user.id} t={t} lang={lang} />
         <YojanaPanel actorId={user.id} t={t} lang={lang} />
@@ -996,6 +998,41 @@ function MelaCandidatesPanel({ actorId, t, lang }) {
               {r.promoted_to_kisan_mela
                 ? <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-bold text-green-800">{t('admin_cand_published')}</span>
                 : <button onClick={() => publish(r.id)} disabled={busy === r.id} data-testid="admin-mela-candidate-publish" className="rounded-lg border-2 border-green-700 px-3 py-1 text-sm font-bold text-green-700 disabled:opacity-50">{t('admin_cand_publish_anyway')}</button>}
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
+  )
+}
+
+// --- Recent automatic merges (dedup) with an "अलग करें" (split) undo (Phase 3f) ---
+function MelaMergesPanel({ actorId, t, lang }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [busy, setBusy] = useState(null)
+  const load = useCallback(() => {
+    getRecentMelaMerges(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  const split = async (id) => {
+    setErr(null); setBusy(id)
+    try { await adminSplitMela(actorId, id); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } finally { setBusy(null) }
+  }
+  return (
+    <Section title={t('admin_merge_h')} right={rows?.length ? <span className="rounded-full bg-stone-200 px-2 py-0.5 text-xs font-bold text-stone-700">{rows.length}</span> : null}>
+      <p className="mb-3 text-xs text-stone-500">{t('admin_merge_help')}</p>
+      {err && <Notice tone="error">{err}</Notice>}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_merge_none')}</p> : (
+        <div className="space-y-2">
+          {rows.map((r) => (
+            <div key={r.merged_id} data-testid="admin-mela-merge-row" className="flex flex-wrap items-center gap-2 rounded-xl border border-stone-100 p-3">
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-sm text-stone-900"><span className="font-bold">{r.merged_name || '—'}</span> → <span className="font-bold text-green-800">{r.survivor_name || '—'}</span></div>
+                <div className="text-xs text-stone-500">{r.merged_state || ''}{r.reason ? ` · ${r.reason}` : ''}{r.merged_at ? ` · ${String(r.merged_at).slice(0, 10)}` : ''}</div>
+              </div>
+              <button onClick={() => split(r.merged_id)} disabled={busy === r.merged_id} data-testid="admin-mela-split" className="rounded-lg border-2 border-stone-300 px-3 py-1 text-sm font-bold text-stone-700 disabled:opacity-50">{t('admin_merge_split')}</button>
             </div>
           ))}
         </div>

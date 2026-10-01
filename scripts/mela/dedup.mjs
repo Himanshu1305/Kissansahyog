@@ -129,8 +129,110 @@ export function matchEvents(a, b, opts = {}) {
   return { match: true, reason, signals }
 }
 
+// =============================================================================================
+// Phase 3 — merge rules (pure planning; the DB-applying mergeIntoSurvivor lives below)
+// =============================================================================================
+
+const AGGREGATOR_HOSTS = /taazabhav\.com|kisaanhelpline\.com/i
+const hasPrimarySource = (r) => (r.source_urls || []).some((u) => /^https?:\/\//i.test(u) && !AGGREGATOR_HOSTS.test(u))
+const completeness = (r) => ['address', 'highlights_hi', 'highlights_en', 'contact_name', 'contact_number', 'latitude', 'longitude', 'district'].filter((k) => r[k] != null && r[k] !== '').length
+
+// 3a — choose the survivor from a group of same-event rows: confirmed date > expected; then verified
+// against an official (non-aggregator) primary source; then more complete; then most recently checked;
+// then stable by id so the choice is deterministic.
+export function pickSurvivor(rows) {
+  return [...rows].sort((a, b) => {
+    if (fConfirmed(a) !== fConfirmed(b)) return fConfirmed(a) ? -1 : 1
+    if (hasPrimarySource(a) !== hasPrimarySource(b)) return hasPrimarySource(a) ? -1 : 1
+    const c = completeness(b) - completeness(a); if (c) return c
+    const la = String(a.last_checked_date || ''); const lb = String(b.last_checked_date || '')
+    if (la !== lb) return la < lb ? 1 : -1
+    return String(a.id) < String(b.id) ? -1 : 1
+  })[0]
+}
+
+// 3b — plan the survivor's field updates: union every source_urls (earns the multi-source badge),
+// fill any field blank on the survivor from a duplicate, and adopt a confirmed date if the survivor
+// only had an expected one. Pure — returns just the update object.
+export function planMerge(survivor, dups) {
+  const u = {}
+  const all = [survivor, ...dups]
+  const urls = [...new Set(all.flatMap((r) => r.source_urls || []).filter((x) => x && /^https?:\/\//i.test(x)))]
+  u.source_urls = urls
+  // Adopt a confirmed date if the survivor lacks one but a duplicate has it.
+  if (!fConfirmed(survivor)) {
+    const conf = dups.find((d) => fConfirmed(d) && d.event_date_start)
+    if (conf) { u.event_date_start = conf.event_date_start; u.event_date_end = conf.event_date_end || null; u.is_date_confirmed = true; u.expected_period = null }
+  }
+  const FILL = ['name_en', 'organizer_name', 'address', 'district', 'highlights_hi', 'highlights_en', 'contact_name', 'contact_number', 'latitude', 'longitude', 'geocode_precision', 'expected_period']
+  for (const k of FILL) {
+    if (k in u) continue
+    if (survivor[k] == null || survivor[k] === '') {
+      const d = all.find((r) => r[k] != null && r[k] !== '')
+      if (d) u[k] = d[k]
+    }
+  }
+  const tags = new Set(all.flatMap((r) => r.category_tags || []))
+  if (tags.size) u.category_tags = [...tags]
+  return u
+}
+
 // A pair key for the "do not merge" exclusion set (order-independent).
 export function pairKey(idA, idB) { return [idA, idB].sort().join('::') }
+
+// =============================================================================================
+// DB-applying merge (used by the one-time cleanup AND ongoing promotion). `db` is a service-role
+// Supabase client; still testable with an in-memory mock. Preserves farmers' interest marks (3c) and
+// deactivates — never deletes — merged-away rows with a merged_into reference (3d).
+// =============================================================================================
+export async function mergeIntoSurvivor({ db, survivor, dups, reason, asOf, log = () => {} }) {
+  const stamp = asOf || new Date().toISOString().slice(0, 10)
+  const updates = planMerge(survivor, dups)
+  await db.from('kisan_mela').update(updates).eq('id', survivor.id)
+
+  for (const dup of dups) {
+    // 3c — re-point interest marks to the survivor; skip a user who already marked the survivor
+    // (leave theirs on the now-inactive dup so a later split can restore it). Track original ownership.
+    const { data: survInt } = await db.from('kisan_mela_interest').select('user_id').eq('mela_id', survivor.id)
+    const survUsers = new Set((survInt || []).map((r) => r.user_id))
+    const { data: dupInt } = await db.from('kisan_mela_interest').select('user_id, original_mela_id').eq('mela_id', dup.id)
+    for (const r of dupInt || []) {
+      if (survUsers.has(r.user_id)) continue // conflict → preserve on the dup
+      await db.from('kisan_mela_interest').update({ mela_id: survivor.id, original_mela_id: r.original_mela_id || dup.id }).eq('mela_id', dup.id).eq('user_id', r.user_id)
+      survUsers.add(r.user_id)
+    }
+    // Re-point candidate back-references, then deactivate the dup with an auditable merged_into link (3d).
+    await db.from('kisan_mela_candidates').update({ kisan_mela_id: survivor.id }).eq('kisan_mela_id', dup.id)
+    await db.from('kisan_mela').update({ is_active: false, merged_into: survivor.id, merge_reason: reason, merged_at: new Date().toISOString() }).eq('id', dup.id)
+    log(`[merge] '${dup.name_en || dup.name_hi}' (${String(dup.id).slice(0, 8)}) → '${survivor.name_en || survivor.name_hi}' (${String(survivor.id).slice(0, 8)}) — ${reason}`)
+  }
+  return { survivor_id: survivor.id, survivor_name: survivor.name_en || survivor.name_hi, merged: dups.map((d) => ({ id: d.id, name: d.name_en || d.name_hi, reason })) }
+}
+
+// Group active rows into same-event clusters and merge each cluster into its survivor (one-time
+// cleanup 4a, and reusable). Honors the exclusions set. Returns the list of merge records.
+export async function dedupActiveMelas({ db, rows, exclusions, asOf, log = () => {}, opts = {} }) {
+  const remaining = [...rows]
+  const clusters = []
+  while (remaining.length) {
+    const seed = remaining.shift()
+    const cluster = [seed]
+    for (let i = remaining.length - 1; i >= 0; i -= 1) {
+      const other = remaining[i]
+      if (exclusions && seed.id && other.id && exclusions.has(pairKey(seed.id, other.id))) continue
+      if (cluster.some((m) => matchEvents(m, other, opts).match)) { cluster.push(other); remaining.splice(i, 1) }
+    }
+    if (cluster.length > 1) clusters.push(cluster)
+  }
+  const records = []
+  for (const cluster of clusters) {
+    const survivor = pickSurvivor(cluster)
+    const dups = cluster.filter((r) => r.id !== survivor.id)
+    const reason = matchEvents(survivor, dups[0], opts).reason || 'duplicate'
+    records.push(await mergeIntoSurvivor({ db, survivor, dups, reason, asOf, log }))
+  }
+  return records
+}
 
 // Find the first already-present row that is the same event as `row` (or null). `exclusions` is a Set
 // of pairKey() strings an admin split apart — those pairs must never re-merge (3f).

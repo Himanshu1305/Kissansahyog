@@ -1703,6 +1703,11 @@ export const strings = {
   admin_cand_unverifiable: { hi: 'असत्यापित', en: 'Unverifiable' },
   admin_cand_publish_anyway: { hi: 'फिर भी प्रकाशित करें', en: 'Publish anyway' },
   admin_cand_published: { hi: 'प्रकाशित', en: 'Published' },
+  // Phase 3f — recent automatic merges + split (undo).
+  admin_merge_h: { hi: 'हाल के विलय', en: 'Recent merges' },
+  admin_merge_help: { hi: 'डुप्लिकेट मेले अपने-आप एक में मिला दिए जाते हैं। यदि कोई विलय ग़लत है, तो "अलग करें" दबाएँ — वह प्रविष्टि फिर से दिखने लगेगी और दोबारा नहीं मिलाई जाएगी।', en: 'Duplicate Melas are merged automatically. If a merge is wrong, use "split" — the entry reappears and will not be re-merged.' },
+  admin_merge_none: { hi: 'अभी तक कोई विलय नहीं।', en: 'No merges yet.' },
+  admin_merge_split: { hi: 'अलग करें', en: 'Split' },
   // homepage teaser
   mela_home_title: { hi: 'आस-पास के किसान मेले', en: 'Kisan Melas near you' },
   mela_home_all: { hi: 'सभी मेले देखें', en: 'See all Melas' },

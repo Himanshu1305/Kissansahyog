@@ -78,6 +78,15 @@ export async function setMelaInterest(actorId, melaId, interested) {
   return true
 }
 
+// Resolve a (possibly merged-away) Mela id to its ACTIVE survivor id, following merged_into (3e).
+// Used when a shared /kisan-mela?mela=<id> link points at a row that was merged into another.
+export async function resolveActiveMela(melaId) {
+  if (!melaId) return null
+  const { data, error } = await supabase.rpc('resolve_active_mela', { p_id: melaId })
+  if (error) return null
+  return data || null
+}
+
 export async function getMyMelaInterests(actorId) {
   if (!actorId) return []
   const { data, error } = await supabase.rpc('get_my_mela_interests', { p_actor_id: actorId })

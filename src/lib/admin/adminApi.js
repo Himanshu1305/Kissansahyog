@@ -173,3 +173,7 @@ export const adminUpsertMela = (actorId, m) => rpc('admin_upsert_mela', {
 // --- Kisan Mela AI-discovery candidates (rejected/unverifiable review + manual publish-anyway) ---
 export const getAdminMelaCandidates = (actorId) => rpc('get_admin_mela_candidates', { p_actor_id: actorId })
 export const adminPublishCandidate = (actorId, id) => rpc('admin_publish_candidate', { p_actor_id: actorId, p_id: id })
+
+// --- Kisan Mela recent merges (auto-dedup audit) + split (undo a wrong merge) ---
+export const getRecentMelaMerges = (actorId) => rpc('get_recent_mela_merges', { p_actor_id: actorId })
+export const adminSplitMela = (actorId, id) => rpc('admin_split_mela', { p_actor_id: actorId, p_id: id })
