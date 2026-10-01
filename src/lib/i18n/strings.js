@@ -1694,6 +1694,14 @@ export const strings = {
   admin_mela_approve: { hi: 'स्वीकृत करें', en: 'Approve' },
   admin_mela_reject: { hi: 'अस्वीकार करें', en: 'Reject' },
   admin_mela_none: { hi: 'कोई मेला नहीं।', en: 'No Melas.' },
+  // Phase 7 — AI-discovery candidates that failed automated verification (rejected/unverifiable).
+  admin_cand_h: { hi: 'स्वतः-खोज में अस्वीकृत/असत्यापित मेले', en: 'Auto-discovery: rejected / unverifiable' },
+  admin_cand_help: { hi: 'ये मेले स्वचालित खोज में मिले पर सत्यापन में पुष्टि नहीं हो पाई। यदि आप स्वयं जानते हैं कि कोई आयोजन असली है, तो "फिर भी प्रकाशित करें" दबाएँ।', en: 'These were found by automated discovery but could not be confirmed on verification. If you independently know an event is real, use "publish anyway".' },
+  admin_cand_none: { hi: 'समीक्षा हेतु कोई उम्मीदवार नहीं।', en: 'No candidates to review.' },
+  admin_cand_rejected: { hi: 'अस्वीकृत', en: 'Rejected' },
+  admin_cand_unverifiable: { hi: 'असत्यापित', en: 'Unverifiable' },
+  admin_cand_publish_anyway: { hi: 'फिर भी प्रकाशित करें', en: 'Publish anyway' },
+  admin_cand_published: { hi: 'प्रकाशित', en: 'Published' },
   // homepage teaser
   mela_home_title: { hi: 'आस-पास के किसान मेले', en: 'Kisan Melas near you' },
   mela_home_all: { hi: 'सभी मेले देखें', en: 'See all Melas' },

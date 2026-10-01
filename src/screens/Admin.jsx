@@ -21,6 +21,7 @@ import {
   getAdminDataHealth, adminSetSiteSetting,
   getAdminAvailability, getAdminAvailabilityListings, getAdminFarmerProfiles,
   getAdminMelas, adminSetMelaStatus, adminSetMelaActive, adminDeleteMela, adminUpsertMela,
+  getAdminMelaCandidates, adminPublishCandidate,
 } from '../lib/admin/adminApi'
 import { MELA_TAGS } from '../lib/mela/melaApi'
 import { getAdminInputPrices, adminSetInputPriceActive, adminUpsertInputPrice } from '../lib/inputs/inputsApi'
@@ -65,6 +66,7 @@ export default function Admin() {
         <MspPanel actorId={user.id} t={t} lang={lang} />
         <InputPricesPanel actorId={user.id} t={t} lang={lang} />
         <MelaPanel actorId={user.id} t={t} lang={lang} />
+        <MelaCandidatesPanel actorId={user.id} t={t} lang={lang} />
         <SawaalPanel actorId={user.id} t={t} lang={lang} />
         <SafaltaPanel actorId={user.id} t={t} lang={lang} />
         <YojanaPanel actorId={user.id} t={t} lang={lang} />
@@ -951,6 +953,54 @@ function MelaEditForm({ t, initial, onCancel, onSave }) {
         <button onClick={onCancel} className="rounded-lg bg-stone-200 px-4 py-2 font-bold text-stone-700">{t('action_cancel')}</button>
       </div>
     </div>
+  )
+}
+
+// --- AI-discovery candidates that failed automated verification (rejected / unverifiable) ---
+// Read-only review with a manual "publish anyway" escape hatch for genuine misses (Phase 7).
+function MelaCandidatesPanel({ actorId, t, lang }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [busy, setBusy] = useState(null)
+  const load = useCallback(() => {
+    getAdminMelaCandidates(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  // Only rejected/unverifiable are actionable here; verified ones already live in the public list.
+  const review = (rows || []).filter((r) => r.verification_status === 'rejected' || r.verification_status === 'unverifiable')
+  const publish = async (id) => {
+    setErr(null); setBusy(id)
+    try { await adminPublishCandidate(actorId, id); load() } catch (e) { setErr(t(e.i18nKey || 'err_unknown')) } finally { setBusy(null) }
+  }
+  return (
+    <Section title={t('admin_cand_h')} right={review.length ? <span className="rounded-full bg-stone-200 px-2 py-0.5 text-xs font-bold text-stone-700">{review.length}</span> : null}>
+      <p className="mb-3 text-xs text-stone-500">{t('admin_cand_help')}</p>
+      {err && <Notice tone="error">{err}</Notice>}
+      {!rows ? <Spinner /> : review.length === 0 ? <p className="text-stone-500">{t('admin_cand_none')}</p> : (
+        <div className="space-y-2">
+          {review.map((r) => (
+            <div key={r.id} data-testid="admin-mela-candidate-row" className="flex flex-wrap items-center gap-2 rounded-xl border border-stone-100 p-3">
+              <div className="min-w-0 flex-1">
+                <div className="truncate font-bold text-stone-900">{r.raw_name || '—'}</div>
+                <div className="text-xs text-stone-500">
+                  {[r.raw_venue, r.raw_district, r.raw_state].filter(Boolean).join(', ')}
+                  {r.raw_date_text ? ` · ${r.raw_date_text}` : ''} · {r.source_name}
+                </div>
+                {r.verification_reason && <div className="mt-0.5 text-xs text-stone-400">{r.verification_reason}</div>}
+                {r.source_url && /^https?:\/\//i.test(r.source_url) && (
+                  <a href={r.source_url} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-green-700 underline">{t('mela_source')} ↗</a>
+                )}
+              </div>
+              <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${r.verification_status === 'rejected' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}`}>{t(`admin_cand_${r.verification_status}`)}</span>
+              {r.promoted_to_kisan_mela
+                ? <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-bold text-green-800">{t('admin_cand_published')}</span>
+                : <button onClick={() => publish(r.id)} disabled={busy === r.id} data-testid="admin-mela-candidate-publish" className="rounded-lg border-2 border-green-700 px-3 py-1 text-sm font-bold text-green-700 disabled:opacity-50">{t('admin_cand_publish_anyway')}</button>}
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
   )
 }
 

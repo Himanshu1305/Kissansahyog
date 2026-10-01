@@ -169,3 +169,7 @@ export const adminUpsertMela = (actorId, m) => rpc('admin_upsert_mela', {
   p_contact_name: m.contact_name ?? null, p_contact_number: m.contact_number ?? null, p_source_url: m.source_url,
   p_moderation_status: m.moderation_status ?? 'approved', p_is_active: m.is_active ?? true,
 })
+
+// --- Kisan Mela AI-discovery candidates (rejected/unverifiable review + manual publish-anyway) ---
+export const getAdminMelaCandidates = (actorId) => rpc('get_admin_mela_candidates', { p_actor_id: actorId })
+export const adminPublishCandidate = (actorId, id) => rpc('admin_publish_candidate', { p_actor_id: actorId, p_id: id })
