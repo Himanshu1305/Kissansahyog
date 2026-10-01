@@ -11,6 +11,41 @@ import { isIndiaScoped } from './pipeline.mjs'
 // hitting the ceiling with useful results still pending.
 export const SCOPED_MAX_SEARCHES = Number(process.env.MELA_BROAD_SEARCH_CAP) || 12
 
+// --- Cadence gate (Phase 9 cost finding) -------------------------------------------------------
+// The scoped broad search is the ONLY unbounded-ish per-run cost: its web_search results accumulate
+// in the agent's context across the loop, so even at the 12-search cap it costs ~$1.5–1.8 in input
+// tokens EVERY run. Running it on every every-3-days discovery pass makes the steady-state run cost
+// ~$2 — no cheaper than the old monolith. New hyper-local KVK/SAU notices do not appear every 3 days,
+// so we gate the broad search to run at FULL depth but only periodically (default ~21 days). The free
+// aggregator scrape + per-candidate verification of genuinely new leads still run EVERY pass, so
+// discovery of the big/aggregated events is never delayed — only the expensive gap-hunt is spaced out.
+// This reduces FREQUENCY, not thoroughness (the search still uses all 12 searches when it runs).
+export const BROAD_SEARCH_MIN_DAYS = Number(process.env.MELA_BROAD_SEARCH_MIN_DAYS) || 21
+export const BROAD_SEARCH_SETTING_KEY = 'mela_last_broad_search_at'
+
+const dayNum = (d) => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(d || '')); return m ? Math.floor(Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000) : null }
+
+// Pure: is the broad search due given the last-run date, "today", and the minimum spacing?
+export function broadSearchDue(lastRunIso, asOf, minDays = BROAD_SEARCH_MIN_DAYS) {
+  const last = dayNum(lastRunIso)
+  const base = dayNum(asOf)
+  if (base == null) return true // can't reason about the date → don't silently skip discovery
+  if (last == null) return true // never run → due
+  return base - last >= minDays
+}
+
+// Read the last-broad-search marker from site_settings (service-role client). Null if unset.
+export async function getLastBroadSearch({ db }) {
+  const { data } = await db.from('site_settings').select('value').eq('key', BROAD_SEARCH_SETTING_KEY).maybeSingle()
+  const v = data?.value
+  return typeof v === 'string' ? v : (v && typeof v === 'object' && typeof v.date === 'string' ? v.date : null)
+}
+
+// Stamp today's date as the last broad-search run (jsonb string).
+export async function markBroadSearchRun({ db, asOf }) {
+  await db.from('site_settings').upsert({ key: BROAD_SEARCH_SETTING_KEY, value: asOf, updated_at: new Date().toISOString() }, { onConflict: 'key' })
+}
+
 // Angles aimed at what aggregators miss — NOT "Kisan Mela India" (the scraper owns that).
 export const SCOPED_SEARCH_ANGLES = [
   'Krishi Vigyan Kendra (KVK) किसान मेला आगामी तिथि — district-level notices India',

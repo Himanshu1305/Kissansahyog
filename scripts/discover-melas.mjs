@@ -13,7 +13,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@supabase/supabase-js'
 import { scrapeAggregators } from './mela/scraper.mjs'
-import { runBroadSearch, insertBroadLeads } from './mela/broadsearch.mjs'
+import { runBroadSearch, insertBroadLeads, broadSearchDue, getLastBroadSearch, markBroadSearchRun, BROAD_SEARCH_MIN_DAYS } from './mela/broadsearch.mjs'
 import { runVerification } from './mela/verify.mjs'
 
 const MODEL = process.env.ANTHROPIC_MODEL || 'claude-opus-4-8'
@@ -37,11 +37,21 @@ async function main() {
   const scrape = await scrapeAggregators({ db })
   console.log(`discover-melas: scrape → inserted ${scrape.inserted}, reopened ${scrape.reopened}, refreshed ${scrape.updated}` + (scrape.failures.length ? `, FAILURES: ${scrape.failures.join('; ')}` : ''))
 
-  // ---- Step 2: scoped AI broad search (hyper-local gaps only) ----
-  console.log(`discover-melas: [2/3] scoped AI broad search with ${MODEL}…`)
-  const bs = await runBroadSearch({ client, model: MODEL })
-  totals.input_tokens += bs.usage.input_tokens; totals.output_tokens += bs.usage.output_tokens; totals.web_search_requests += bs.usage.web_search_requests
-  await insertBroadLeads({ db, leads: bs.leads })
+  // ---- Step 2: scoped AI broad search (hyper-local gaps only) — cadence-gated (Phase 9 cost fix) ----
+  // This is the only expensive-every-run step (web_search results balloon the context). It adds no new
+  // BIG events the free scraper already found, so running it every pass just re-pays ~$1.5–1.8 for the
+  // same gap-hunt. Gate it to full-depth-but-periodic; scrape + verification of new leads still run every pass.
+  const asOf = new Date().toISOString().slice(0, 10)
+  const lastBroad = await getLastBroadSearch({ db })
+  if (broadSearchDue(lastBroad, asOf)) {
+    console.log(`discover-melas: [2/3] scoped AI broad search with ${MODEL} (last ran ${lastBroad || 'never'}; cadence ${BROAD_SEARCH_MIN_DAYS}d)…`)
+    const bs = await runBroadSearch({ client, model: MODEL })
+    totals.input_tokens += bs.usage.input_tokens; totals.output_tokens += bs.usage.output_tokens; totals.web_search_requests += bs.usage.web_search_requests
+    await insertBroadLeads({ db, leads: bs.leads })
+    await markBroadSearchRun({ db, asOf })
+  } else {
+    console.log(`discover-melas: [2/3] SKIPPING scoped broad search — ran ${lastBroad}, next due after ${BROAD_SEARCH_MIN_DAYS}d (keeps steady-state runs cheap; scrape + verification still run).`)
+  }
 
   // ---- Step 3: narrow per-candidate verification + promotion + lifecycle ----
   console.log(`discover-melas: [3/3] verifying pending candidates with ${MODEL}…`)

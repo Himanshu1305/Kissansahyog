@@ -8,7 +8,7 @@ import {
   candidatesMatch, groupCandidates, selectForVerification, datePassed,
   parseVerdict, interpretVerdict, buildPromotionRow, REVERIFY_UNVERIFIABLE_DAYS,
 } from '../mela/verify.mjs'
-import { parseBroadLeads } from '../mela/broadsearch.mjs'
+import { parseBroadLeads, broadSearchDue, BROAD_SEARCH_MIN_DAYS } from '../mela/broadsearch.mjs'
 import { selectDigestMelas } from '../../src/lib/mela/melaDigest.js'
 
 let pass = 0, fail = 0
@@ -160,6 +160,14 @@ ok('broad search: keeps the India KVK lead', bl.some((l) => /Nashik/.test(l.raw_
 ok('broad search: drops the non-India (California) lead', !bl.some((l) => /California/.test(l.raw_name)))
 ok('broad search: drops the lead with no source_url', !bl.some((l) => /No-URL/.test(l.raw_name)))
 ok('broad search: tags leads with source_name=ai_broad_search', bl.every((l) => l.source_name === 'ai_broad_search'))
+
+// Cadence gate (Phase 9 cost fix): run at full depth but only periodically — the broad search is the
+// one expensive-every-run step. Frequency is reduced, NOT thoroughness (still 12 searches when it runs).
+ok('cadence: never run before → due', broadSearchDue(null, '2026-10-01') === true)
+ok('cadence: ran today → NOT due (keeps steady-state runs cheap)', broadSearchDue('2026-10-01', '2026-10-01') === false)
+ok('cadence: ran 3 days ago → NOT due (every-3-days pass skips it)', broadSearchDue('2026-09-28', '2026-10-01') === false)
+ok(`cadence: ran >=${BROAD_SEARCH_MIN_DAYS}d ago → due again (periodic full-depth gap-hunt)`, broadSearchDue('2026-09-01', '2026-10-01') === true)
+ok('cadence: unreadable asOf → due (never silently skip discovery)', broadSearchDue('2026-09-01', 'not-a-date') === true)
 
 // ============================================================================================
 // DIGEST REGRESSION — a row that arrived via the NEW verification-promotion pathway is still
