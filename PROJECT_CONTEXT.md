@@ -1213,3 +1213,9 @@ Full write-up: docs/review/KISAN_MELA_REVIEW.md. ONE migration `0035_kisan_mela.
   (migration 0035). **Integration point documented in-file:** no separate reminder scheduler — when the planned
   daily WhatsApp digest (weather + mandi) is built, it calls the RPC once and folds each farmer's interested
   Melas into that single message. Nothing sends anything yet.
+- **Tests + review (Phase 7):** new permanent suites `scripts/test/p_mela_pipeline.mjs` (25),
+  `p_mela_digest.mjs` (12), `p_mela_format.mjs` (14), `p_mela_backend.mjs` (14) + `e2e/phase20_mela.spec.js`
+  (4) — all mocked, never hitting the live Anthropic API or aggregators. Full E2E **74/74** (70→74),
+  `v11_phase6` 29/0. Phase 7 caught + fixed two bugs: the `get_mela_interest_digest` RPC was anon-callable
+  (now revoked, live + migration) and three hardcoded "अपेक्षित" render literals (→ `mela_expected_prefix`).
+  Full write-up: `docs/review/KISAN_MELA_REVIEW.md`.

@@ -888,7 +888,7 @@ function MelaPanel({ actorId, t, lang }) {
             <div key={r.id} data-testid="admin-mela-row" className="flex flex-wrap items-center gap-2 rounded-xl border border-stone-100 p-3">
               <div className="min-w-0 flex-1">
                 <div className="truncate font-bold text-stone-900">{(lang === 'hi' ? r.name_hi : (r.name_en || r.name_hi))}{r.submitted_by_user ? ' 👤' : ''}</div>
-                <div className="text-xs text-stone-500">{[r.venue, r.state].filter(Boolean).join(', ')} · {r.is_date_confirmed ? (r.event_date_start || '—') : (r.expected_period ? `अपेक्षित ${r.expected_period}` : '—')}</div>
+                <div className="text-xs text-stone-500">{[r.venue, r.state].filter(Boolean).join(', ')} · {r.is_date_confirmed ? (r.event_date_start || '—') : (r.expected_period ? `${t('mela_expected_prefix')} ${r.expected_period}` : '—')}</div>
               </div>
               <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${r.moderation_status === 'approved' ? 'bg-green-100 text-green-800' : r.moderation_status === 'pending' ? 'bg-amber-100 text-amber-800' : 'bg-stone-200 text-stone-600'}`}>{r.moderation_status}</span>
               {!r.is_active && <span className="rounded-full bg-stone-200 px-2 py-0.5 text-xs font-bold text-stone-600">inactive</span>}

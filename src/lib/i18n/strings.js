@@ -1638,6 +1638,7 @@ export const strings = {
   mela_filter_all_states: { hi: 'सभी राज्य', en: 'All states' },
   mela_filter_all_months: { hi: 'सभी महीने', en: 'All months' },
   mela_none: { hi: 'अभी कोई मेला नहीं मिला। क्या आप किसी मेले के बारे में जानते हैं? नीचे जानकारी दें।', en: 'No Melas found yet. Know of one? Add it below.' },
+  mela_expected_prefix: { hi: 'अपेक्षित', en: 'Expected' },
   mela_source: { hi: 'स्रोत', en: 'Source' },
   mela_last_checked: { hi: 'अंतिम सत्यापन', en: 'Last checked' },
   mela_contact: { hi: 'संपर्क', en: 'Contact' },

@@ -119,7 +119,7 @@ export default function KisanMela() {
         ) : (
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             {shown.map((m) => {
-              const dateLabel = melaDateLabel(m, lang, { expectedLabel: lang === 'hi' ? 'अपेक्षित' : 'Expected', tbdLabel: t('mela_none') })
+              const dateLabel = melaDateLabel(m, lang, { expectedLabel: t('mela_expected_prefix'), tbdLabel: t('mela_none') })
               const expected = isExpectedDate(m)
               const dist = melaDistanceKm(center, m)
               const nm = lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)

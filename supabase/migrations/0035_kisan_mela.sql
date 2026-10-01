@@ -237,3 +237,8 @@ as $$
     and coalesce(m.event_date_end, m.event_date_start) >= p_as_of
   order by i.user_id, m.event_date_start;
 $$;
+-- Functions default to EXECUTE for PUBLIC — revoke it so this user-id-bearing digest is
+-- callable only with the service role (the future digest job), never by anon/authenticated.
+revoke execute on function public.get_mela_interest_digest(date) from public;
+revoke execute on function public.get_mela_interest_digest(date) from anon;
+revoke execute on function public.get_mela_interest_digest(date) from authenticated;

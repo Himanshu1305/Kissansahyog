@@ -1,8 +1,8 @@
 // Pure display / filter / distance helpers for Kisan Mela (unit-testable; no React, no network).
 // Month-name label data lives in content/months.js (the audit-sanctioned label file), so this
 // module stays free of hardcoded Devanagari.
-import { haversineKm } from '../distance'
-import { MONTHS_FULL_HI, MONTHS_FULL_EN } from '../../content/months'
+import { haversineKm } from '../distance.js'
+import { MONTHS_FULL_HI, MONTHS_FULL_EN } from '../../content/months.js'
 
 const MON_LC = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 }
 

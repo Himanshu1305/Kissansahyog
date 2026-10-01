@@ -305,7 +305,7 @@ export default function Homepage() {
               <button key={m.id} type="button" data-testid="home-mela-card" onClick={() => navigate('/kisan-mela')} className="flex flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
                 <span className="text-[15px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>🌾 {lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)}</span>
                 <span className="mt-1 text-[13px] font-semibold" style={{ color: m.is_date_confirmed ? 'var(--ks-green)' : 'var(--ks-orange-dark)' }}>
-                  📅 {melaDateLabel(m, lang, { expectedLabel: lang === 'hi' ? 'अपेक्षित' : 'Expected', tbdLabel: '' })}
+                  📅 {melaDateLabel(m, lang, { expectedLabel: t('mela_expected_prefix'), tbdLabel: '' })}
                 </span>
                 <span className="mt-0.5 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>📍 {[m.venue, m.state].filter(Boolean).join(', ')}</span>
               </button>
