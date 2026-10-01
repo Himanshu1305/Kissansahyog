@@ -357,3 +357,10 @@ update public.kisan_mela_candidates kc set raw_state = a.canonical
   from aliases a
   where kc.raw_state is not null
     and public._mela_state_key(kc.raw_state) = a.k and kc.raw_state is distinct from a.canonical;
+
+-- ===========================================================================================
+-- Phase 2 — geocode precision (2a-i): trust coordinates for a merge ONLY at venue-level precision.
+-- Existing rows are left null (precision unknown → they fall back to the text match, never a
+-- coordinate-only merge); new promotions record 'venue' | 'area' from Nominatim's result class/type.
+-- ===========================================================================================
+alter table public.kisan_mela add column if not exists geocode_precision text;
