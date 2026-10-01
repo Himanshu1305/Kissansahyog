@@ -1207,3 +1207,9 @@ Full write-up: docs/review/KISAN_MELA_REVIEW.md. ONE migration `0035_kisan_mela.
   (/kisan-mela). Homepage gained a **Kisan Mela teaser** (`fetchUpcomingMelas(3)`, soonest-first) with a
   "सभी मेले देखें →" link and a graceful empty state inviting submission. `/kisan-mela` added to
   `public/sitemap.xml`.
+- **Interest digest-readiness (Phase 6, WhatsApp-ready, NOT wired):** `src/lib/mela/melaDigest.js` — pure,
+  unit-testable `selectDigestMelas(melas, asOf)` / `daysUntil` / `groupDigestByUser` (confirmed-date Melas
+  happening today..today+3, grouped by user). Mirrors the server-side `get_mela_interest_digest(p_as_of)` RPC
+  (migration 0035). **Integration point documented in-file:** no separate reminder scheduler — when the planned
+  daily WhatsApp digest (weather + mandi) is built, it calls the RPC once and folds each farmer's interested
+  Melas into that single message. Nothing sends anything yet.
