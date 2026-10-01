@@ -1152,3 +1152,19 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   the live `/transcribe` edge function returns `{configured:false}` (graceful, no key yet) and `/geocode` is
   intact; the homepage mandi ticker shows **live prices** with the honest "कल का भाव (30/09)" badge; the transport
   browse renders 2 cards; the `/sawaal` voice mic is present. Sitemap carries the transport route.
+
+## Kisan Mela calendar — nationwide, self-sourced, AI-assisted discovery — 2026-10-01 (migration 0035)
+Full write-up: docs/review/KISAN_MELA_REVIEW.md. ONE migration `0035_kisan_mela.sql` for the whole feature.
+- **Schema (Phase 1):** `kisan_mela` (name_hi/en, organizer, venue, address, state/district, lat/long,
+  event_date_start/end, `is_date_confirmed` + `expected_period` for the honest "अपेक्षित" pattern,
+  `category_tags text[]` CHECK-constrained to seeds/machinery/livestock/horticulture/scheme_scientist/general,
+  highlights, contact, `source_url` NOT NULL, `last_checked_date`, `submitted_by_user`, `moderation_status`
+  pending/approved/rejected, `is_active`) + `kisan_mela_interest` (mela_id, user_id → profiles, PK both).
+  **RLS:** anon/auth read only `is_active AND moderation_status='approved'`; constrained anon INSERT (submissions
+  can only land `pending` + `submitted_by_user=true`, invisible until approved — same pattern as kisan_sawaal);
+  all admin writes via `require_admin` RPCs. **POLICY (flagged):** AI-discovered entries default to `approved`
+  (no human review — the Phase 2 verification discipline IS the gate); user submissions default to `pending`.
+  **RPCs:** `get_admin_melas`, `admin_upsert_mela` (insert/edit-and-approve), `admin_set_mela_status`,
+  `admin_set_mela_active`, `admin_delete_mela`; `set_mela_interest` + `get_my_mela_interests` (owner-scoped by
+  actor id, trust-based like create_listing); `get_mela_interest_digest(as_of)` (Phase 6 digest-readiness —
+  confirmed-date Melas within today+3 days, service-role only, exposes user_ids so NOT granted to anon).
