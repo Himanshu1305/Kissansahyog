@@ -1219,3 +1219,9 @@ Full write-up: docs/review/KISAN_MELA_REVIEW.md. ONE migration `0035_kisan_mela.
   `v11_phase6` 29/0. Phase 7 caught + fixed two bugs: the `get_mela_interest_digest` RPC was anon-callable
   (now revoked, live + migration) and three hardcoded "अपेक्षित" render literals (→ `mela_expected_prefix`).
   Full write-up: `docs/review/KISAN_MELA_REVIEW.md`.
+- **Screenshot review + deploy (Phase 8):** all required views screenshotted at 1280×800 + 375×812 and viewed
+  (page with confirmed-vs-अपेक्षित, filters, WhatsApp share text, submission form, admin moderation queue with a
+  pending submission, homepage teaser, Resources nav dropdown); fixed one raw-i18n-key label (`action_add`).
+  **Deployed & live-verified:** https://873c3617.kissansahyog.pages.dev — `/kisan-mela` + `/kisan-mela/submit`
+  200, sitemap carries `/kisan-mela`, the live page renders 4 seeded melas (1 confirmed + 3 अपेक्षित), no console
+  errors. Full E2E 74/74; mela backend/pure suites green; `v11_phase6` 29/0.
