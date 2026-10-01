@@ -152,3 +152,20 @@ export const adminDeletePageFaq = (actorId, id) => rpc('admin_delete_page_faq', 
 
 export const getAdminDataHealth = (actorId) => rpc('get_admin_data_health', { p_actor_id: actorId })
 export const adminSetSiteSetting = (actorId, key, value) => rpc('admin_set_site_setting', { p_actor_id: actorId, p_key: key, p_value: value })
+
+// --- Kisan Mela moderation + management ---
+export const getAdminMelas = (actorId) => rpc('get_admin_melas', { p_actor_id: actorId })
+export const adminSetMelaStatus = (actorId, id, status) => rpc('admin_set_mela_status', { p_actor_id: actorId, p_id: id, p_status: status })
+export const adminSetMelaActive = (actorId, id, active) => rpc('admin_set_mela_active', { p_actor_id: actorId, p_id: id, p_active: active })
+export const adminDeleteMela = (actorId, id) => rpc('admin_delete_mela', { p_actor_id: actorId, p_id: id })
+export const adminUpsertMela = (actorId, m) => rpc('admin_upsert_mela', {
+  p_actor_id: actorId, p_id: m.id ?? null,
+  p_name_hi: m.name_hi, p_name_en: m.name_en ?? null, p_organizer_name: m.organizer_name ?? null,
+  p_venue: m.venue, p_address: m.address ?? null, p_state: m.state, p_district: m.district ?? null,
+  p_latitude: m.latitude ?? null, p_longitude: m.longitude ?? null,
+  p_event_date_start: m.event_date_start || null, p_event_date_end: m.event_date_end || null,
+  p_is_date_confirmed: !!m.is_date_confirmed, p_expected_period: m.expected_period ?? null,
+  p_category_tags: m.category_tags ?? [], p_highlights_hi: m.highlights_hi ?? null, p_highlights_en: m.highlights_en ?? null,
+  p_contact_name: m.contact_name ?? null, p_contact_number: m.contact_number ?? null, p_source_url: m.source_url,
+  p_moderation_status: m.moderation_status ?? 'approved', p_is_active: m.is_active ?? true,
+})

@@ -1195,3 +1195,10 @@ Full write-up: docs/review/KISAN_MELA_REVIEW.md. ONE migration `0035_kisan_mela.
   जानकारी दें" CTA → `/kisan-mela/submit` (Phase 4). Graceful empty state. Route added in App.jsx.
   `scripts/seed_melas.mjs` seeds 4 real, source-cited sample Melas (mostly honest "अपेक्षित", one confirmed
   sample) for UI demo until the discovery pipeline runs.
+- **Submission + moderation (Phase 4):** `src/screens/KisanMelaSubmit.jsx` (`/kisan-mela/submit`, Sawaal-style
+  form — name/organizer/venue/address/state/district, dates OR "तारीख़ पक्की नहीं"→expected_period, tag
+  checkboxes, contact, source link, submitter relationship [informational]) → `submitMela` lands `pending` +
+  `submitted_by_user=true`, invisible until approved. `MelaPanel` + `MelaEditForm` in `/admin` (require_admin
+  RPCs `getAdminMelas`/`admin_set_mela_status`/`admin_set_mela_active`/`admin_upsert_mela`/`admin_delete_mela`):
+  a pending-first queue with edit-and-approve / reject / activate / delete. Verified end-to-end: anon submit →
+  invisible publicly → shows in admin queue → approve → publicly visible.

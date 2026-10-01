@@ -1670,6 +1670,7 @@ export const strings = {
   mela_f_contact_name: { hi: 'संपर्क नाम', en: 'Contact name' },
   mela_f_contact_number: { hi: 'संपर्क नंबर', en: 'Contact number' },
   mela_f_source: { hi: 'स्रोत लिंक (यदि हो)', en: 'Source link (if any)' },
+  mela_f_highlights: { hi: 'मुख्य बातें', en: 'Highlights' },
   mela_f_relationship: { hi: 'आपका इस मेले से संबंध', en: 'Your relationship to this Mela' },
   mela_rel_hosting: { hi: 'मैं आयोजक हूँ', en: "I'm hosting it" },
   mela_rel_aware: { hi: 'मुझे इसकी जानकारी है', en: "I'm aware of it" },
