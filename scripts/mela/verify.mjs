@@ -7,6 +7,7 @@
 import { ALLOWED_TAGS, lifecycleDecision, isIndiaScoped, expectedPeriodEnd } from './pipeline.mjs'
 import { geocodeVenue, reverseGeocodeState } from './geocode.mjs'
 import { normalizeState } from '../../src/content/states.js'
+import { clusterByEvent, findDuplicate, dedupActiveMelas, planMerge, pairKey } from './dedup.mjs'
 
 export const VERIFY_MAX_SEARCHES = Number(process.env.MELA_VERIFY_CAP) || 3
 export const REVERIFY_UNVERIFIABLE_DAYS = 14 // 4f: retry an unverifiable lead at most ~every 2 weeks
@@ -14,31 +15,8 @@ export const REVERIFY_UNVERIFIABLE_DAYS = 14 // 4f: retry an unverifiable lead a
 const s = (v) => (typeof v === 'string' ? v.trim() : '')
 const dayNum = (d) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d || '')); return m ? Math.floor(Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000) : null }
 
-// --- 4c corroboration: deterministic, free "same event?" across sources ------------------------
-const STOP = new Set(['kisan', 'krishi', 'mela', 'agri', 'agro', 'agricultural', 'agriculture', 'expo', 'show', 'india', 'indian', 'fair', 'exhibition', 'the', 'and', 'all', 'national'])
-export function sigTokens(name) {
-  return new Set(String(name || '').toLowerCase()
-    .replace(/\b(19|20)\d{2}\b/g, ' ').replace(/\b\d+(st|nd|rd|th)\b/g, ' ')
-    .split(/[^a-z0-9ऀ-ॿ]+/).filter((w) => w.length >= 3 && !STOP.has(w)))
-}
-function jaccard(a, b) { if (!a.size || !b.size) return 0; let inter = 0; for (const x of a) if (b.has(x)) inter += 1; return inter / (a.size + b.size - inter) }
-const stateCompat = (a, b) => { const x = s(a).toLowerCase(); const y = s(b).toLowerCase(); return !x || !y || x === y }
-
-// Two candidate-like objects ({raw_name/name, raw_state/state}) describe the same event?
-export function candidatesMatch(a, b, { threshold = 0.6 } = {}) {
-  if (s(a.source_url) && s(a.source_url) === s(b.source_url)) return true
-  return jaccard(sigTokens(a.raw_name || a.name), sigTokens(b.raw_name || b.name)) >= threshold && stateCompat(a.raw_state || a.state, b.raw_state || b.state)
-}
-
-// Group candidates into connected components of "same event" — each group verified ONCE.
-export function groupCandidates(cands) {
-  const groups = []
-  for (const c of cands) {
-    const g = groups.find((grp) => grp.some((m) => candidatesMatch(m, c)))
-    if (g) g.push(c); else groups.push([c])
-  }
-  return groups
-}
+// Candidate grouping + all live/promotion dedup now use the ONE shared matcher in dedup.mjs
+// (clusterByEvent / findDuplicate / dedupActiveMelas) — no second name-only implementation here (4b).
 
 // --- 4f: which candidates are due for a verification attempt this run --------------------------
 export function datePassed(candidate, asOf) {
@@ -178,13 +156,18 @@ export async function runVerification({ db, client, model, asOf, log = console.l
   const stamp = asOf || new Date().toISOString().slice(0, 10)
   const summary = { groups: 0, verified: 0, rejected: 0, unverifiable: 0, corroborated_existing: 0, usage: { input_tokens: 0, output_tokens: 0, web_search_requests: 0 }, outcomes: [] }
 
+  // Do-not-merge pairs an admin split apart — never re-cluster/re-merge them (3f/4b).
+  const { data: exRows } = await db.from('mela_merge_exclusions').select('pair_key')
+  const exclusions = new Set((exRows || []).map((r) => r.pair_key))
+
   const { data: all } = await db.from('kisan_mela_candidates').select('*')
   const due = selectForVerification(all || [], stamp)
-  const groups = groupCandidates(due)
+  const groups = clusterByEvent(due, { exclusions }) // ONE shared matcher (4b)
   summary.groups = groups.length
 
-  // Existing public rows, to corroborate against (don't re-verify what's already live) — 4c.
-  const { data: liveRows } = await db.from('kisan_mela').select('id,name_hi,name_en,state,source_urls,is_active,moderation_status').eq('submitted_by_user', false)
+  // Existing active public rows, to corroborate against (don't re-verify what's already live) — 4c.
+  const liveCols = 'id,name_hi,name_en,organizer_name,venue,district,state,latitude,longitude,geocode_precision,source_urls,is_date_confirmed,event_date_start,event_date_end,expected_period,last_checked_date'
+  const { data: liveRows } = await db.from('kisan_mela').select(liveCols).eq('submitted_by_user', false).eq('is_active', true)
 
   for (const group of groups) {
     const sourceUrls = [...new Set(group.map((c) => c.source_url).filter(Boolean))]
@@ -192,8 +175,8 @@ export async function runVerification({ db, client, model, asOf, log = console.l
     const ids = group.map((c) => c.id)
     const stampTs = new Date().toISOString()
 
-    // Already live? Corroborate (merge source_urls) instead of spending AI — 4c against existing rows.
-    const existing = (liveRows || []).find((r) => candidatesMatch({ raw_name: r.name_en || r.name_hi, raw_state: r.state }, lead))
+    // Already live? Corroborate (merge source_urls) instead of spending AI — 4c, via the shared matcher.
+    const existing = findDuplicate({ raw_name: lead.raw_name, raw_venue: lead.raw_venue, raw_state: lead.raw_state, raw_date_text: lead.raw_date_text }, liveRows || [], { exclusions })
     if (existing) {
       const merged = [...new Set([...(existing.source_urls || []), ...sourceUrls])]
       await db.from('kisan_mela').update({ source_urls: merged, last_checked_date: stamp }).eq('id', existing.id)
@@ -237,5 +220,13 @@ export async function runVerification({ db, client, model, asOf, log = console.l
   let deactivated = 0
   for (const r of liveActive || []) { if (lifecycleDecision(r, stamp).deactivate) { await db.from('kisan_mela').update({ is_active: false }).eq('id', r.id); deactivated += 1 } }
   summary.deactivated = deactivated
+
+  // 4b — final dedup pass over the active set: merges any duplicates created this run (two promotions
+  // of the same event, or a promotion that matches a pre-existing row the corroboration step missed).
+  // Same shared matcher + merge path as the one-time cleanup — one implementation, run every time.
+  const { data: activeNow } = await db.from('kisan_mela').select('*').eq('is_active', true).eq('submitted_by_user', false)
+  const mergeRecords = await dedupActiveMelas({ db, rows: activeNow || [], exclusions, asOf: stamp, log })
+  summary.merges = mergeRecords.length
+  summary.merge_records = mergeRecords
   return summary
 }

@@ -27,6 +27,7 @@ const fState = (r) => normalizeState(r.state || r.raw_state) || r.state || r.raw
 const fLat = (r) => (r.latitude != null ? Number(r.latitude) : null)
 const fLng = (r) => (r.longitude != null ? Number(r.longitude) : null)
 const fPrecision = (r) => r.geocode_precision || null
+const fDistrict = (r) => r.district || r.raw_district || ''
 const fConfirmed = (r) => r.is_date_confirmed === true
 const fStart = (r) => r.event_date_start || null
 const fEnd = (r) => r.event_date_end || null
@@ -93,9 +94,22 @@ export function sigTokens(name) {
   return new Set(norm(name).replace(/\b(19|20)\d{2}\b/g, ' ').replace(/\b\d+(st|nd|rd|th)\b/g, ' ').split(' ').filter((w) => w.length >= 3 && !NAME_STOP.has(w)))
 }
 
+// Districts are compatible unless both are present and share no token. Guards against merging an
+// institution's DIFFERENT regional editions — e.g. PAU runs separate Kisan Melas at Ludhiana,
+// Faridkot and Patiala in the same month; same org + same state + same dates but different districts
+// are different events.
+export function districtCompatible(a, b) {
+  const da = tokens(fDistrict(a)); const db = tokens(fDistrict(b))
+  if (!da.size || !db.size) return true
+  for (const x of da) if (db.has(x)) return true
+  return false
+}
+
 // Normalized-text match (2b): same institution, OR identical/one-contains-other venue, OR identical
-// organizer, OR a strong distinctive-name overlap. Never a single shared city token alone.
+// organizer, OR a strong distinctive-name overlap — AND the districts must be compatible (so an org's
+// different regional melas don't merge). Never a single shared city token alone.
 export function textMatch(a, b) {
+  if (!districtCompatible(a, b)) return { ok: false, signal: null }
   const ia = instKey(a); const ib = instKey(b)
   if (ia && ia === ib) return { ok: true, signal: `institution:${ia}` }
   const va = tokens(fVenue(a)); const vb = tokens(fVenue(b))
@@ -118,8 +132,11 @@ export function locationMatch(a, b, { maxKm = MERGE_MAX_KM } = {}) {
 // THE match decision. Same event ⇔ same canonical state AND dates compatible AND (precise location
 // OR text). Returns { match, reason, signals } for the audit trail.
 export function matchEvents(a, b, opts = {}) {
+  // State COMPATIBILITY: reject only when both rows carry a state and they differ. Candidate-stage
+  // rows (scraper) have no state yet (it's set at promotion), so an empty state must not block the
+  // text/date match; once both rows are promoted they both carry a canonical state → strict equality.
   const sa = fState(a); const sb = fState(b)
-  if (!sa || !sb || sa.toLowerCase() !== sb.toLowerCase()) return { match: false, reason: 'state_mismatch', signals: {} }
+  if (sa && sb && sa.toLowerCase() !== sb.toLowerCase()) return { match: false, reason: 'state_mismatch', signals: {} }
   if (!datesCompatible(a, b, opts)) return { match: false, reason: 'dates_apart', signals: {} }
   const loc = locationMatch(a, b, opts)
   const txt = textMatch(a, b)
@@ -209,10 +226,11 @@ export async function mergeIntoSurvivor({ db, survivor, dups, reason, asOf, log 
   return { survivor_id: survivor.id, survivor_name: survivor.name_en || survivor.name_hi, merged: dups.map((d) => ({ id: d.id, name: d.name_en || d.name_hi, reason })) }
 }
 
-// Group active rows into same-event clusters and merge each cluster into its survivor (one-time
-// cleanup 4a, and reusable). Honors the exclusions set. Returns the list of merge records.
-export async function dedupActiveMelas({ db, rows, exclusions, asOf, log = () => {}, opts = {} }) {
-  const remaining = [...rows]
+// Cluster rows into same-event groups (connected by matchEvents). Returns ALL clusters, including
+// singletons. Pure — the single clustering used for candidate grouping AND the cleanup/dedup pass.
+// An admin-split pair in `exclusions` is never placed in the same cluster (3f).
+export function clusterByEvent(rows, { exclusions, ...opts } = {}) {
+  const remaining = [...(rows || [])]
   const clusters = []
   while (remaining.length) {
     const seed = remaining.shift()
@@ -222,13 +240,20 @@ export async function dedupActiveMelas({ db, rows, exclusions, asOf, log = () =>
       if (exclusions && seed.id && other.id && exclusions.has(pairKey(seed.id, other.id))) continue
       if (cluster.some((m) => matchEvents(m, other, opts).match)) { cluster.push(other); remaining.splice(i, 1) }
     }
-    if (cluster.length > 1) clusters.push(cluster)
+    clusters.push(cluster)
   }
+  return clusters
+}
+
+// Merge each same-event cluster into its survivor (one-time cleanup 4a + ongoing dedup 4b). Returns
+// the merge records. Honors the do-not-merge exclusions set.
+export async function dedupActiveMelas({ db, rows, exclusions, asOf, log = () => {}, opts = {} }) {
+  const clusters = clusterByEvent(rows, { exclusions, ...opts }).filter((c) => c.length > 1)
   const records = []
   for (const cluster of clusters) {
     const survivor = pickSurvivor(cluster)
     const dups = cluster.filter((r) => r.id !== survivor.id)
-    const reason = matchEvents(survivor, dups[0], opts).reason || 'duplicate'
+    const reason = (matchEvents(survivor, dups[0], opts).reason) || 'duplicate'
     records.push(await mergeIntoSurvivor({ db, survivor, dups, reason, asOf, log }))
   }
   return records

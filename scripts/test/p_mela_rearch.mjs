@@ -5,10 +5,11 @@ import {
   parseTaazaBhav, parseKisaanHelpline, leadChanged, robotsAllows, ScraperError,
 } from '../mela/scraper.mjs'
 import {
-  candidatesMatch, groupCandidates, selectForVerification, datePassed,
+  selectForVerification, datePassed,
   parseVerdict, interpretVerdict, buildPromotionRow, REVERIFY_UNVERIFIABLE_DAYS,
 } from '../mela/verify.mjs'
 import { parseBroadLeads, broadSearchDue, BROAD_SEARCH_MIN_DAYS } from '../mela/broadsearch.mjs'
+import { matchEvents, clusterByEvent } from '../mela/dedup.mjs'
 import { selectDigestMelas } from '../../src/lib/mela/melaDigest.js'
 
 let pass = 0, fail = 0
@@ -71,12 +72,11 @@ const fromTB = { source_name: 'taazabhav', source_url: 'https://taazabhav.com/bh
 const fromKH = { source_name: 'kisaanhelpline', source_url: 'https://www.kisaanhelpline.com/bharat-agri-tech-2027', raw_name: 'Bharat Agri Tech 2027', raw_state: '' }
 const unrelated = { source_name: 'ai_broad_search', source_url: 'https://kvk.example.gov.in/x', raw_name: 'Horticulture Kisan Mela, Nashik', raw_state: 'Maharashtra' }
 
-ok('dedup: same event across two sources matches', candidatesMatch(fromTB, fromKH) === true)
-ok('dedup: unrelated event does NOT match', candidatesMatch(fromTB, unrelated) === false)
-ok('dedup: identical source_url always matches', candidatesMatch({ source_url: 'https://x/a', raw_name: 'Totally Different' }, { source_url: 'https://x/a', raw_name: 'Also Different' }) === true)
-const groups = groupCandidates([fromTB, fromKH, unrelated])
-ok('dedup: 3 candidates → 2 groups (the duplicate pair merges)', groups.length === 2, `got ${groups.length}`)
-ok('dedup: the merged group holds both sources', groups.find((g) => g.length === 2)?.map((c) => c.source_name).sort().join(',') === 'kisaanhelpline,taazabhav')
+ok('dedup: same event across two sources matches (shared matcher, candidate stage)', matchEvents(fromTB, fromKH).match === true)
+ok('dedup: unrelated event does NOT match', matchEvents(fromTB, unrelated).match === false)
+const groups = clusterByEvent([fromTB, fromKH, unrelated])
+ok('dedup: 3 candidates → 2 clusters (the duplicate pair groups)', groups.length === 2, `got ${groups.length}`)
+ok('dedup: the merged cluster holds both sources', groups.find((g) => g.length === 2)?.map((c) => c.source_name).sort().join(',') === 'kisaanhelpline,taazabhav')
 
 // ============================================================================================
 // VERIFICATION — the four outcomes, each with the right status + reason
