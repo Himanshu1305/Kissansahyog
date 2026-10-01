@@ -595,6 +595,7 @@ export const strings = {
   col_listings: { hi: 'लिस्टिंग', en: 'Listings' },
   action_remove: { hi: 'हटाएं', en: 'Remove' },
   action_edit: { hi: 'बदलें', en: 'Edit' },
+  action_add: { hi: 'नया जोड़ें', en: 'Add new' },
   action_save: { hi: 'सहेजें', en: 'Save' },
   action_cancel: { hi: 'रद्द', en: 'Cancel' },
   action_delete: { hi: 'डिलीट', en: 'Delete' },

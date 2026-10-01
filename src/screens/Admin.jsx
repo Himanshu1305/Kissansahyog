@@ -880,7 +880,7 @@ function MelaPanel({ actorId, t, lang }) {
       {err && <Notice tone="error">{err}</Notice>}
       {editing && <MelaEditForm t={t} initial={editing} onCancel={() => setEditing(null)} onSave={save} />}
       <div className="mb-3">
-        <button onClick={() => setEditing({ id: null, name_hi: '', name_en: '', organizer_name: '', venue: '', address: '', state: '', district: '', event_date_start: '', event_date_end: '', is_date_confirmed: false, expected_period: '', category_tags: [], highlights_hi: '', highlights_en: '', contact_name: '', contact_number: '', source_url: '', moderation_status: 'approved', is_active: true })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+ {t('action_add') || 'Add'}</button>
+        <button onClick={() => setEditing({ id: null, name_hi: '', name_en: '', organizer_name: '', venue: '', address: '', state: '', district: '', event_date_start: '', event_date_end: '', is_date_confirmed: false, expected_period: '', category_tags: [], highlights_hi: '', highlights_en: '', contact_name: '', contact_number: '', source_url: '', moderation_status: 'approved', is_active: true })} className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-bold text-white">+ {t('action_add')}</button>
       </div>
       {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_mela_none')}</p> : (
         <div className="space-y-2">
