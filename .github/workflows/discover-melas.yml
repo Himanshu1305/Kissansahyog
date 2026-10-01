@@ -2,7 +2,8 @@ name: Discover Kisan Melas
 
 on:
   schedule:
-    - cron: '30 1 * * *'    # Once per day, 01:30 UTC (07:00 IST) — Mela announcements don't change hourly
+    - cron: '30 1 */3 * *'  # Every 3 days, 01:30 UTC (07:00 IST) — Mela announcements change slowly; the
+                             # re-architecture's cost-consciousness extends the daily→every-3-days reasoning
   workflow_dispatch:          # Manual trigger
 
 jobs:
