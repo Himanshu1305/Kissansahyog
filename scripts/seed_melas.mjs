@@ -60,6 +60,8 @@ const ROWS = [
     highlights_hi: 'बीज, पशुधन प्रदर्शनी, कृषि यंत्र, बागवानी।',
     highlights_en: 'Seeds, livestock show, farm machinery, horticulture.',
     source_url: 'https://uasbangalore.edu.in/',
+    // Multi-source sample — corroborated by two independent sources → "कई स्रोतों से" badge (Phase 6a).
+    source_urls: ['https://uasbangalore.edu.in/', 'https://krishimela.uasbangalore.edu.in/'],
   },
 ]
 

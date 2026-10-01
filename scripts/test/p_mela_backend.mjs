@@ -1,6 +1,7 @@
 // PERMANENT backend regression suite for Kisan Mela (RLS gates + RPCs, against the live DB).
 // Run: node --env-file=.env scripts/test/p_mela_backend.mjs
 import { createClient } from '@supabase/supabase-js'
+import { spawnSync } from 'node:child_process'
 
 const db = createClient(process.env.VITE_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 const anon = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY, { auth: { persistSession: false } })
@@ -68,6 +69,43 @@ async function main() {
   let mine2 = await anon.rpc('get_my_mela_interests', { p_actor_id: farmer.id })
   ok('interest removed', !(mine2.data || []).includes(near.data.id))
   await anon.rpc('set_mela_interest', { p_actor_id: farmer.id, p_mela_id: far.data.id, p_interested: false })
+
+  // --- Re-architecture: source_urls backfill + candidates review + "publish anyway" (Phase 8) ---
+  // Backfill is a one-time migration UPDATE (no trigger maintains the invariant), so test the exact
+  // migration SQL against a controlled legacy-shaped row: source_url set, source_urls still '{}'.
+  const backfillUrl = `https://legacy.example/${marker}`
+  const legacy = await db.from('kisan_mela').insert({ name_hi: 'लेगेसी मेला', venue: marker + '-legacy', state: 'MP', source_url: backfillUrl, source_urls: [], is_date_confirmed: false, expected_period: 'Mar 2027', moderation_status: 'approved', is_active: true }).select('id').single()
+  cleanup.push(legacy.data.id)
+  const BACKFILL_SQL = "update public.kisan_mela set source_urls = array[source_url] where source_url is not null and source_url <> '' and source_urls = '{}';"
+  const bf = spawnSync('npm', ['run', '--silent', 'db', 'query', BACKFILL_SQL], { env: process.env, encoding: 'utf8', timeout: 30000 })
+  ok('backfill SQL runs without error', bf.status === 0, (bf.stderr || '').slice(0, 200))
+  const { data: legacyRow } = await db.from('kisan_mela').select('source_urls').eq('id', legacy.data.id).maybeSingle()
+  ok('backfill: a pre-existing row with a real source_url gets source_urls = [source_url]', Array.isArray(legacyRow?.source_urls) && legacyRow.source_urls.length === 1 && legacyRow.source_urls[0] === backfillUrl, JSON.stringify(legacyRow))
+
+  // candidates table is default-deny to anon (RLS), readable only via the admin RPC.
+  const candUrl = `https://verify-test.example/${marker}`
+  const { data: candIns } = await db.from('kisan_mela_candidates').insert({ source_name: 'ai_broad_search', source_url: candUrl, raw_name: `REJECTED CANDIDATE ${marker}`, raw_venue: 'Test Ground', raw_state: 'Rajasthan', raw_date_text: 'Mar 2027', verification_status: 'rejected', verification_reason: 'test: primary source not found' }).select('id').single()
+  const candId = candIns.id
+  let anonCand = await anon.from('kisan_mela_candidates').select('id').eq('id', candId)
+  ok('candidates table is NOT anon-readable (RLS default-deny)', (anonCand.data || []).length === 0)
+  let adminCands = await anon.rpc('get_admin_mela_candidates', { p_actor_id: admin.id })
+  ok('admin RPC lists the rejected candidate', (adminCands.data || []).some((c) => c.id === candId))
+  let naCands = await anon.rpc('get_admin_mela_candidates', { p_actor_id: farmer.id })
+  ok('non-admin cannot read candidates', !!naCands.error && /not_admin/.test(naCands.error.message))
+
+  // "publish anyway" promotes the rejected candidate into the public kisan_mela table.
+  let pub = await anon.rpc('admin_publish_candidate', { p_actor_id: admin.id, p_id: candId })
+  ok('publish-anyway succeeds for an admin', !pub.error, pub.error?.message)
+  const { data: candAfter } = await db.from('kisan_mela_candidates').select('promoted_to_kisan_mela,kisan_mela_id,verification_status,verification_reason').eq('id', candId).maybeSingle()
+  ok('candidate marked promoted (verified) + override note after publish-anyway', candAfter?.promoted_to_kisan_mela === true && !!candAfter.kisan_mela_id && candAfter.verification_status === 'verified' && /override/i.test(candAfter.verification_reason || ''))
+  if (candAfter?.kisan_mela_id) {
+    const { data: promoted } = await db.from('kisan_mela').select('name_hi,moderation_status,is_active').eq('id', candAfter.kisan_mela_id).maybeSingle()
+    ok('published row is live (approved + active) with the candidate name', promoted?.moderation_status === 'approved' && promoted.is_active === true && /REJECTED CANDIDATE/.test(promoted.name_hi || ''))
+    await db.from('kisan_mela').delete().eq('id', candAfter.kisan_mela_id)
+  }
+  let naPub = await anon.rpc('admin_publish_candidate', { p_actor_id: farmer.id, p_id: candId })
+  ok('non-admin cannot publish-anyway', !!naPub.error && /not_admin/.test(naPub.error.message))
+  await db.from('kisan_mela_candidates').delete().eq('id', candId)
 
   for (const id of cleanup) await db.from('kisan_mela').delete().eq('id', id)
   await db.from('kisan_mela').delete().like('venue', `${marker}%`)
