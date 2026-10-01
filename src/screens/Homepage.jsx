@@ -29,6 +29,8 @@ import PwaInstallBanner from '../components/PwaInstallBanner'
 import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
 import { fetchPestReports } from '../lib/pest/pestApi'
 import { fetchUpcomingEvents, eventTitle, eventWeekdayKey } from '../lib/events/eventsApi'
+import { fetchUpcomingMelas } from '../lib/mela/melaApi'
+import { melaDateLabel } from '../lib/mela/melaFormat'
 
 const IMG = (f) => `/images/home/${f}`
 
@@ -84,6 +86,7 @@ export default function Homepage() {
   const [videos, setVideos] = useState([])
   const [pestReports, setPestReports] = useState([])
   const [events, setEvents] = useState([])
+  const [melas, setMelas] = useState([])
 
   // Static data (once).
   useEffect(() => {
@@ -104,6 +107,7 @@ export default function Homepage() {
     })()
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
     fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
+    fetchUpcomingMelas(3).then((m) => alive && setMelas(m)).catch(() => alive && setMelas([]))
     return () => { alive = false }
   }, [])
 
@@ -290,6 +294,29 @@ export default function Homepage() {
         <div className="mt-3">
           <Button variant="primary" onClick={() => navigate('/sawaal?ask=1&photo=1')}>📷 {t('qa_photo_ask')}</Button>
         </div>
+      </Section>
+
+      {/* Kisan Mela teaser (upcoming nearby melas, graceful empty state) */}
+      <Section>
+        <SectionHeader title={t('mela_home_title')} linkLabel={t('mela_home_all')} onLink={() => navigate('/kisan-mela')} />
+        {melas.length > 0 ? (
+          <div className="grid gap-3 md:grid-cols-3">
+            {melas.map((m) => (
+              <button key={m.id} type="button" data-testid="home-mela-card" onClick={() => navigate('/kisan-mela')} className="flex flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
+                <span className="text-[15px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>🌾 {lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)}</span>
+                <span className="mt-1 text-[13px] font-semibold" style={{ color: m.is_date_confirmed ? 'var(--ks-green)' : 'var(--ks-orange-dark)' }}>
+                  📅 {melaDateLabel(m, lang, { expectedLabel: lang === 'hi' ? 'अपेक्षित' : 'Expected', tbdLabel: '' })}
+                </span>
+                <span className="mt-0.5 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>📍 {[m.venue, m.state].filter(Boolean).join(', ')}</span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div data-testid="home-mela-empty" className="rounded-xl border border-dashed p-4 text-center" style={{ borderColor: 'var(--ks-border-strong)' }}>
+            <p className="text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('mela_home_empty')}</p>
+            <div className="mt-2"><Button variant="secondary" onClick={() => navigate('/kisan-mela/submit')}>➕ {t('mela_submit_cta')}</Button></div>
+          </div>
+        )}
       </Section>
 
       {/* 9 — सरकारी मदद */}

@@ -89,6 +89,7 @@ export const strings = {
   experts_nav: { hi: 'विशेषज्ञ', en: 'Experts' },
   articles_nav: { hi: 'लेख', en: 'Articles' },
   resources_nav: { hi: 'उपयोगी संपर्क', en: 'Resources' },
+  nav_resources_dir: { hi: 'संपर्क सूची', en: 'Contacts directory' },
 
   // --- resources directory ---
   resources_title: { hi: 'उपयोगी संपर्क — किसान सहयोग', en: 'Useful Contacts — Kisan Sahyog' },

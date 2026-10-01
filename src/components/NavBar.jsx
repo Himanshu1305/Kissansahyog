@@ -30,6 +30,12 @@ const SCHEMES_MENU = [
   { labelKey: 'scheme_mp_group', path: '/yojana/mp' },
 ]
 
+// उपयोगी संपर्क (Resources) dropdown — the contacts directory + the Kisan Mela calendar.
+const RESOURCES_MENU = [
+  { labelKey: 'nav_resources_dir', path: '/resources' },
+  { labelKey: 'nav_mela', path: '/kisan-mela' },
+]
+
 // Direct top-level links. Agro Forestry is its own top-level item (not under बाज़ार).
 const NAV_LINKS = [
   { labelKey: 'nav_mandi', path: '/msp' },
@@ -37,7 +43,6 @@ const NAV_LINKS = [
   { labelKey: 'nav_agroforestry', path: '/agro-forestry' },
   { labelKey: 'sawaal_nav', path: '/sawaal' },
   { labelKey: 'nav_videos', path: '/videos' },
-  { labelKey: 'resources_nav', path: '/resources' },
 ]
 
 // Global, sticky navigation bar for the public-facing pages (homepage, privacy,
@@ -52,19 +57,22 @@ export default function NavBar() {
   const [menu, setMenu] = useState(false) // user dropdown
   const [bz, setBz] = useState(false)     // बाज़ार dropdown (desktop, click-to-open)
   const [sch, setSch] = useState(false)   // सरकारी योजनाएं dropdown (desktop, click-to-open)
+  const [res, setRes] = useState(false)   // उपयोगी संपर्क dropdown (desktop, click-to-open)
   const bzRef = useRef(null)
   const schRef = useRef(null)
+  const resRef = useRef(null)
 
   // Click-outside closes the desktop dropdowns (they are click-to-open, not hover).
   useEffect(() => {
-    if (!bz && !sch) return
+    if (!bz && !sch && !res) return
     const onDoc = (e) => {
       if (bz && bzRef.current && !bzRef.current.contains(e.target)) setBz(false)
       if (sch && schRef.current && !schRef.current.contains(e.target)) setSch(false)
+      if (res && resRef.current && !resRef.current.contains(e.target)) setRes(false)
     }
     document.addEventListener('mousedown', onDoc)
     return () => document.removeEventListener('mousedown', onDoc)
-  }, [bz, sch])
+  }, [bz, sch, res])
 
   // Navigate to a marketplace category. Drone Didi → its dedicated page; Experts →
   // its screen (or signup); others → filtered browse (or homepage ?cat= for anon).
@@ -74,7 +82,7 @@ export default function NavBar() {
     if (c.key === 'experts') { navigate(isLoggedIn ? '/experts' : '/signup'); return }
     navigate(isLoggedIn ? `/browse?cat=${c.key}` : `/?cat=${c.key}`)
   }
-  function goPath(p) { setOpen(false); setSch(false); navigate(p) }
+  function goPath(p) { setOpen(false); setSch(false); setRes(false); setBz(false); navigate(p) }
 
   // Logo always links to the public homepage, for authenticated and anonymous
   // users alike (they can still reach the dashboard via the nav / My Listings).
@@ -137,7 +145,21 @@ export default function NavBar() {
           <button type="button" className={catBtn(location.pathname.startsWith('/agro-forestry'))} onClick={() => goPath('/agro-forestry')}>{t('nav_agroforestry')}</button>
           <button type="button" className={catBtn(location.pathname.startsWith('/sawaal'))} onClick={() => goPath('/sawaal')}>{t('sawaal_nav')}</button>
           <button type="button" className={catBtn(location.pathname.startsWith('/videos'))} onClick={() => goPath('/videos')}>{t('nav_videos')}</button>
-          <button type="button" className={catBtn(location.pathname.startsWith('/resources'))} onClick={() => goPath('/resources')}>{t('resources_nav')}</button>
+          {/* उपयोगी संपर्क dropdown — contacts directory + Kisan Mela */}
+          <div className="relative" ref={resRef}>
+            <button type="button" aria-haspopup="menu" aria-expanded={res} className={catBtn(location.pathname.startsWith('/resources') || location.pathname.startsWith('/kisan-mela'))} onClick={() => { setBz(false); setSch(false); setRes((v) => !v) }}>
+              {t('resources_nav')} ▾
+            </button>
+            {res && (
+              <div role="menu" className="absolute left-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+                {RESOURCES_MENU.map((c) => (
+                  <button key={c.path} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goPath(c.path)}>
+                    {t(c.labelKey)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         {/* Right cluster */}
@@ -243,6 +265,17 @@ export default function NavBar() {
             <div className="grid grid-cols-2 gap-2">
               {SCHEMES_MENU.map((c) => (
                 <button key={c.path} type="button" className={catBtn(false)} onClick={() => goPath(c.path)}>
+                  {t(c.labelKey)}
+                </button>
+              ))}
+            </div>
+          </div>
+          {/* उपयोगी संपर्क group */}
+          <div className="mt-3 border-t border-stone-100 pt-3">
+            <div className="mb-1 px-1 text-xs font-bold uppercase tracking-wide text-stone-400">{t('resources_nav')}</div>
+            <div className="grid grid-cols-2 gap-2">
+              {RESOURCES_MENU.map((c) => (
+                <button key={c.path} type="button" className={catBtn(location.pathname.startsWith(c.path))} onClick={() => goPath(c.path)}>
                   {t(c.labelKey)}
                 </button>
               ))}

@@ -1202,3 +1202,8 @@ Full write-up: docs/review/KISAN_MELA_REVIEW.md. ONE migration `0035_kisan_mela.
   RPCs `getAdminMelas`/`admin_set_mela_status`/`admin_set_mela_active`/`admin_upsert_mela`/`admin_delete_mela`):
   a pending-first queue with edit-and-approve / reject / activate / delete. Verified end-to-end: anon submit →
   invisible publicly → shows in admin queue → approve → publicly visible.
+- **Nav + homepage + sitemap (Phase 5):** the top-level संपर्क nav item became an **उपयोगी संपर्क dropdown**
+  (`RESOURCES_MENU`) on both desktop and mobile, containing "संपर्क सूची" (/resources) + "किसान मेला"
+  (/kisan-mela). Homepage gained a **Kisan Mela teaser** (`fetchUpcomingMelas(3)`, soonest-first) with a
+  "सभी मेले देखें →" link and a graceful empty state inviting submission. `/kisan-mela` added to
+  `public/sitemap.xml`.
