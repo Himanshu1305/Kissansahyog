@@ -3,6 +3,7 @@
 // they are invisible until an admin approves. Interest writes go through owner-scoped RPCs.
 import { supabase } from '../supabaseClient'
 import { toAppError, AppError } from '../errors'
+import { normalizeState } from '../../content/states.js'
 
 export const MELA_TAGS = ['seeds', 'machinery', 'livestock', 'horticulture', 'scheme_scientist', 'general']
 
@@ -39,7 +40,9 @@ export async function fetchUpcomingMelas(limit = 3) {
 export async function submitMela(payload) {
   const name_hi = (payload.name_hi || '').trim()
   const venue = (payload.venue || '').trim()
-  const state = (payload.state || '').trim()
+  // Fold to canonical at entry (1b). The form uses a canonical dropdown, so this is defense-in-depth;
+  // keep the raw value if somehow unmappable rather than blocking the submission.
+  const state = normalizeState(payload.state) || (payload.state || '').trim()
   if (!name_hi) throw new AppError('mela_name_required')
   if (!venue) throw new AppError('mela_venue_required')
   if (!state) throw new AppError('mela_state_required')

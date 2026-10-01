@@ -3,6 +3,7 @@
 // module stays free of hardcoded Devanagari.
 import { haversineKm } from '../distance.js'
 import { MONTHS_FULL_HI, MONTHS_FULL_EN } from '../../content/months.js'
+import { normalizeState } from '../../content/states.js'
 
 const MON_LC = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 }
 
@@ -22,11 +23,13 @@ export function melaDistanceKm(center, mela) {
   return haversineKm(center.latitude, center.longitude, Number(mela.latitude), Number(mela.longitude))
 }
 
-// Filter by state (exact) and month (1–12). Empty filter value = no constraint.
+// Filter by state and month (1–12). Empty filter value = no constraint. The `state` filter value is
+// always a canonical English name (1e); compare against each Mela's canonicalized state so a stray
+// raw variant still matches the right bucket.
 export function filterMelas(melas, { state = '', month = '' } = {}) {
   const mNum = month ? Number(month) : null
   return (melas || []).filter((m) => {
-    if (state && m.state !== state) return false
+    if (state && (normalizeState(m.state) || m.state) !== state) return false
     if (mNum) { const mm = melaMonth(m); if (mm !== mNum) return false }
     return true
   })
@@ -69,7 +72,9 @@ export function isExpectedDate(mela) {
   return !(mela?.is_date_confirmed && /^\d{4}-\d{2}-\d{2}$/.test(mela?.event_date_start || ''))
 }
 
-// Distinct states present in a list, sorted — for the state dropdown.
+// Distinct CANONICAL states present in a list, sorted — for the state dropdown (1e). Built only from
+// canonical names (raw variants folded via normalizeState); an unmappable value falls back to its raw
+// text so the Mela is still filterable rather than silently excluded.
 export function statesIn(melas) {
-  return [...new Set((melas || []).map((m) => m.state).filter(Boolean))].sort()
+  return [...new Set((melas || []).map((m) => normalizeState(m.state) || m.state).filter(Boolean))].sort()
 }

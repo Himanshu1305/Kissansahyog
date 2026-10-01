@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import { Screen, Field, TextInput, BigButton, Notice, Spinner } from '../components/ui'
+import { Screen, Field, TextInput, BigButton, Notice, Spinner, Select } from '../components/ui'
 import LanguageToggle from '../components/LanguageToggle'
 import { submitMela, MELA_TAGS } from '../lib/mela/melaApi'
+import { CANONICAL_STATES, stateLabel } from '../content/states.js'
 
 // Public submission form (Phase 4a) — same submit UX spirit as the Kisan Sawaal "ask" form.
 // Lands as moderation_status='pending' (RLS-enforced), invisible until an admin approves.
 export default function KisanMelaSubmit() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const navigate = useNavigate()
   const [f, setF] = useState({
     name_hi: '', organizer_name: '', venue: '', address: '', state: '', district: '',
@@ -51,7 +52,15 @@ export default function KisanMelaSubmit() {
           <Field label={t('mela_f_venue')} htmlFor="m_venue" required><TextInput id="m_venue" value={f.venue} onChange={set('venue')} /></Field>
           <Field label={t('mela_f_address')} htmlFor="m_addr"><TextInput id="m_addr" value={f.address} onChange={set('address')} /></Field>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field label={t('mela_f_state')} htmlFor="m_state" required><TextInput id="m_state" value={f.state} onChange={set('state')} /></Field>
+            <Field label={t('mela_f_state')} htmlFor="m_state" required>
+              {/* Canonical dropdown (1b) so a submission can never introduce a new state-name variant. */}
+              <Select id="m_state" value={f.state} onChange={set('state')} data-testid="m-state-select">
+                <option value="">{t('mela_f_state_choose')}</option>
+                {CANONICAL_STATES.slice().sort((a, b) => a.en.localeCompare(b.en)).map((st) => (
+                  <option key={st.en} value={st.en}>{stateLabel(st.en, lang)}</option>
+                ))}
+              </Select>
+            </Field>
             <Field label={t('mela_f_district')} htmlFor="m_dist"><TextInput id="m_dist" value={f.district} onChange={set('district')} /></Field>
           </div>
 

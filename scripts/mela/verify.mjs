@@ -5,7 +5,8 @@
 // aggregator lead was stale → 4d-i), rejected (primary source contradicts existence), or unverifiable
 // (no primary source found). All outcomes stay in kisan_mela_candidates as a permanent audit trail.
 import { ALLOWED_TAGS, lifecycleDecision, isIndiaScoped, expectedPeriodEnd } from './pipeline.mjs'
-import { geocodeVenue } from './geocode.mjs'
+import { geocodeVenue, reverseGeocodeState } from './geocode.mjs'
+import { normalizeState } from '../../src/content/states.js'
 
 export const VERIFY_MAX_SEARCHES = Number(process.env.MELA_VERIFY_CAP) || 3
 export const REVERIFY_UNVERIFIABLE_DAYS = 14 // 4f: retry an unverifiable lead at most ~every 2 weeks
@@ -95,13 +96,18 @@ export function buildPromotionRow(v, lead, sourceUrls, lastCheckedDate) {
   const confirmed = v.is_date_confirmed === true && !!startIso
   const contactOfficial = s(v.contact_source).toLowerCase() === 'official_event_page' || s(v.contact_source).toLowerCase() === 'official'
   const urls = [...new Set([...(sourceUrls || []), s(v.primary_source_url)].filter((u) => u && /^https?:\/\//i.test(u)))]
+  // Fold the state to canonical at promotion (1b). If neither the verdict's nor the lead's state maps
+  // to a known state/UT, keep the raw text (never 'India'/empty) so runVerification can try a
+  // reverse-geocode fallback and, failing that, log it for admin review (1c) — never silently drop.
+  const rawState = s(v.confirmed_state) || s(lead.raw_state)
+  const canonState = normalizeState(v.confirmed_state) || normalizeState(lead.raw_state)
   return {
     name_hi: s(v.confirmed_name_hi) || s(v.confirmed_name) || s(lead.raw_name),
     name_en: s(v.confirmed_name_en) || s(v.confirmed_name) || null,
     organizer_name: s(v.organizer_name) || null,
     venue: s(v.confirmed_venue) || s(lead.raw_venue) || s(lead.raw_state) || 'India',
     address: s(v.confirmed_address) || null,
-    state: s(v.confirmed_state) || s(lead.raw_state) || 'India',
+    state: canonState || rawState || 'India',
     district: s(v.confirmed_district) || s(lead.raw_district) || null,
     event_date_start: confirmed ? startIso : null,
     event_date_end: confirmed && /^\d{4}-\d{2}-\d{2}$/.test(s(v.confirmed_date_end)) ? s(v.confirmed_date_end) : null,
@@ -203,7 +209,17 @@ export async function runVerification({ db, client, model, asOf, log = console.l
     if (decision.status === 'verified') {
       const row = buildPromotionRow(verdict, lead, sourceUrls, stamp)
       const geo = await geocodeVenue({ venue: row.venue, district: row.district, state: row.state }).catch(() => null)
-      if (geo) { row.latitude = geo.latitude; row.longitude = geo.longitude }
+      if (geo) { row.latitude = geo.latitude; row.longitude = geo.longitude; row.geocode_precision = geo.precision }
+      // 1c — if the state didn't map to a canonical name, try reverse-geocoding the coords; else log for review.
+      if (!normalizeState(row.state)) {
+        if (row.latitude != null && row.longitude != null) {
+          const rev = normalizeState(await reverseGeocodeState({ latitude: row.latitude, longitude: row.longitude }).catch(() => null))
+          if (rev) { log(`[state] derived '${rev}' via reverse-geocode for '${lead.raw_name}' (raw '${row.state}' was unmappable)`); row.state = rev }
+          else log(`::warning::[state] UNMAPPABLE state '${row.state}' for '${lead.raw_name}' — promoted as-is, left for admin review`)
+        } else {
+          log(`::warning::[state] UNMAPPABLE state '${row.state}' for '${lead.raw_name}' (no coords for fallback) — left for admin review`)
+        }
+      }
       const { data: inserted, error } = await db.from('kisan_mela').insert(row).select('id').single()
       if (error) { log(`::error::promote failed (${lead.raw_name}): ${error.message}`); continue }
       await db.from('kisan_mela_candidates').update({ verification_status: 'verified', verification_reason: decision.reason, verified_primary_source_url: decision.primary_source_url, promoted_to_kisan_mela: true, kisan_mela_id: inserted.id, last_verification_attempt_at: stampTs }).in('id', ids)

@@ -90,7 +90,7 @@ const stripComments = (s) => s.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:
 const ALLOWED = new Set([
   'src/lib/i18n/strings.js', 'src/lib/i18n/disclaimers.js', 'src/lib/i18n/legal.js',
   'src/lib/share/shareMessages.js', 'src/lib/listings/catalog.js',
-  'src/content/crops.js', 'src/content/months.js', 'src/content/agroforestry.js', // bilingual LABEL/content data
+  'src/content/crops.js', 'src/content/months.js', 'src/content/agroforestry.js', 'src/content/states.js', // bilingual LABEL/content data
   'src/components/categories/land.jsx', 'src/components/categories/equipment.jsx',
   'src/components/categories/labor.jsx', 'src/components/categories/bhusa.jsx',
   'src/components/categories/agri_inputs.jsx', 'src/components/categories/drone_didi.jsx',

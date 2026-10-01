@@ -1670,6 +1670,7 @@ export const strings = {
   mela_f_venue: { hi: 'स्थान (मैदान/संस्थान)', en: 'Venue' },
   mela_f_address: { hi: 'पता', en: 'Address' },
   mela_f_state: { hi: 'राज्य', en: 'State' },
+  mela_f_state_choose: { hi: 'राज्य चुनें', en: 'Choose a state' },
   mela_f_district: { hi: 'ज़िला', en: 'District' },
   mela_f_date_start: { hi: 'शुरू होने की तारीख़', en: 'Start date' },
   mela_f_date_end: { hi: 'खत्म होने की तारीख़', en: 'End date' },

@@ -5,6 +5,7 @@
 // (source_name='ai_broad_search') into kisan_mela_candidates; it never verifies or promotes — the same
 // per-candidate verification (Phase 4) handles every source for one consistent, auditable path.
 import { isIndiaScoped } from './pipeline.mjs'
+import { normalizeState } from '../../src/content/states.js'
 
 // 3c — reduced cap. The original was 18 when this step also had to rediscover everything the scraper
 // now finds for free; scoped to only hyper-local gaps, 12 is ample. Tune via env if a run shows it
@@ -86,7 +87,8 @@ export function parseBroadLeads(text) {
     if (!s(r.name) || !s(r.venue)) continue
     leads.push({
       source_name: 'ai_broad_search', source_url: s(r.source_url),
-      raw_name: s(r.name), raw_venue: s(r.venue) || null, raw_state: s(r.state) || null,
+      // Fold the state to canonical at entry (1b). Keep the raw value if unmappable so it isn't lost.
+      raw_name: s(r.name), raw_venue: s(r.venue) || null, raw_state: normalizeState(r.state) || s(r.state) || null,
       raw_district: s(r.district) || null, raw_date_text: s(r.date_text) || null, raw_highlights: s(r.highlights) || null,
     })
   }

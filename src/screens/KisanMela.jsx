@@ -9,6 +9,7 @@ import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPincode } from '../lib/listings/listingsApi'
 import { fetchMelas, getMyMelaInterests, setMelaInterest, MELA_TAGS } from '../lib/mela/melaApi'
 import { filterMelas, sortByDistance, statesIn, melaDateLabel, isExpectedDate, melaDistanceKm } from '../lib/mela/melaFormat'
+import { stateLabel } from '../content/states.js'
 import { generateMelaMessage } from '../lib/share/shareMessages'
 import { MONTHS_FULL_HI, MONTHS_FULL_EN } from '../content/months'
 
@@ -84,7 +85,7 @@ export default function KisanMela() {
             {t('mela_filter_state')}
             <Select value={stateFilter} onChange={(e) => setStateFilter(e.target.value)} className="mt-1 min-w-[150px]" data-testid="mela-state-filter">
               <option value="">{t('mela_filter_all_states')}</option>
-              {states.map((s) => <option key={s} value={s}>{s}</option>)}
+              {states.map((s) => <option key={s} value={s}>{stateLabel(s, lang)}</option>)}
             </Select>
           </label>
           <label className="flex flex-col text-xs font-semibold" style={{ color: 'var(--ks-ink-3)' }}>
