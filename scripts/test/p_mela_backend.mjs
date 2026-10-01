@@ -107,6 +107,42 @@ async function main() {
   ok('non-admin cannot publish-anyway', !!naPub.error && /not_admin/.test(naPub.error.message))
   await db.from('kisan_mela_candidates').delete().eq('id', candId)
 
+  // --- Dedup: shared-link redirect (resolve_active_mela) + admin split undo (Phase 5, live RPCs) ---
+  const surv = await db.from('kisan_mela').insert({ name_hi: 'विलय सर्वाइवर', venue: marker + '-surv', state: 'Rajasthan', source_url: 'https://x.gov', source_urls: ['https://x.gov'], is_date_confirmed: true, event_date_start: iso(5), event_date_end: iso(5), moderation_status: 'approved', is_active: true }).select('id').single()
+  cleanup.push(surv.data.id)
+  const dup = await db.from('kisan_mela').insert({ name_hi: 'विलय डुप्लिकेट', venue: marker + '-dup', state: 'Rajasthan', source_url: 'https://y.gov', source_urls: ['https://y.gov'], is_date_confirmed: true, event_date_start: iso(5), event_date_end: iso(5), moderation_status: 'approved', is_active: false, merged_into: surv.data.id, merge_reason: 'test merge', merged_at: new Date().toISOString() }).select('id').single()
+  cleanup.push(dup.data.id)
+  // a farmer's interest originally on the dup, re-pointed to the survivor (as a merge would leave it)
+  await db.from('kisan_mela_interest').insert({ mela_id: surv.data.id, user_id: farmer.id, original_mela_id: dup.data.id })
+
+  // 3e: a shared link to the merged-away dup resolves to the active survivor.
+  let res = await anon.rpc('resolve_active_mela', { p_id: dup.data.id })
+  ok('resolve_active_mela: merged-away id → active survivor', res.data === surv.data.id, JSON.stringify(res.data))
+  let resSelf = await anon.rpc('resolve_active_mela', { p_id: surv.data.id })
+  ok('resolve_active_mela: an active id resolves to itself', resSelf.data === surv.data.id)
+
+  // admin sees the merge in the recent-merges list
+  let merges = await anon.rpc('get_recent_mela_merges', { p_actor_id: admin.id })
+  ok('get_recent_mela_merges lists the merge', (merges.data || []).some((m) => m.merged_id === dup.data.id && m.survivor_id === surv.data.id))
+  let naMerges = await anon.rpc('get_recent_mela_merges', { p_actor_id: farmer.id })
+  ok('non-admin cannot read recent merges', !!naMerges.error && /not_admin/.test(naMerges.error.message))
+
+  // 3f: split reactivates the dup, moves its original interest back, and records a do-not-merge pair.
+  let split = await anon.rpc('admin_split_mela', { p_actor_id: admin.id, p_id: dup.data.id })
+  ok('admin_split_mela succeeds', !split.error, split.error?.message)
+  const { data: dupAfter } = await db.from('kisan_mela').select('is_active,merged_into').eq('id', dup.data.id).maybeSingle()
+  ok('split reactivates the dup and clears merged_into', dupAfter?.is_active === true && dupAfter.merged_into === null)
+  const { data: movedInt } = await db.from('kisan_mela_interest').select('mela_id,original_mela_id').eq('user_id', farmer.id).eq('mela_id', dup.data.id)
+  ok('split moves the original interest mark back to the dup', (movedInt || []).length === 1)
+  const { data: excl } = await db.from('mela_merge_exclusions').select('pair_key').eq('id_a', dup.data.id).eq('id_b', surv.data.id)
+  const { data: excl2 } = await db.from('mela_merge_exclusions').select('pair_key').eq('id_b', dup.data.id).eq('id_a', surv.data.id)
+  ok('split records a do-not-merge exclusion pair', ((excl || []).length + (excl2 || []).length) >= 1)
+  let naSplit = await anon.rpc('admin_split_mela', { p_actor_id: farmer.id, p_id: dup.data.id })
+  ok('non-admin cannot split', !!naSplit.error && /not_admin/.test(naSplit.error.message))
+  // cleanup the exclusion + interest
+  await db.from('mela_merge_exclusions').delete().or(`id_a.eq.${dup.data.id},id_b.eq.${dup.data.id}`)
+  await db.from('kisan_mela_interest').delete().eq('user_id', farmer.id).in('mela_id', [surv.data.id, dup.data.id])
+
   for (const id of cleanup) await db.from('kisan_mela').delete().eq('id', id)
   await db.from('kisan_mela').delete().like('venue', `${marker}%`)
   console.log(`\n${pass} passed, ${fail} failed`)

@@ -11,16 +11,40 @@ test('public page: confirmed vs अपेक्षित clearly distinguished, 
   await expect(page.getByTestId('mela-date-confirmed').first()).toBeVisible()
   await expect(page.getByTestId('mela-date-expected').first()).toBeVisible()
 
-  // State filter: Punjab (seeded PAU) → the PAU card remains, others drop.
-  const before = await page.getByTestId('mela-card').count()
-  await page.getByTestId('mela-state-filter').selectOption('Punjab')
-  await expect(page.getByTestId('mela-card')).toHaveCount(1)
-  expect(before).toBeGreaterThan(1)
+  // Filter dropdown is built only from CANONICAL state names (1e): no raw "MP", and former-MP
+  // entries appear under "Madhya Pradesh" (option value is the canonical English name).
+  const stateValues = await page.getByTestId('mela-state-filter').locator('option').evaluateAll((els) => els.map((e) => e.value))
+  expect(stateValues).not.toContain('MP')
+  expect(stateValues).not.toContain('Chandigarh (UT)')
+  expect(stateValues).toContain('Madhya Pradesh')
 
-  // Month filter with no matches → graceful empty state (reset state first).
+  // State filter narrows the list (data-robust: filtering by one state shows fewer than all).
+  const before = await page.getByTestId('mela-card').count()
+  expect(before).toBeGreaterThan(1)
+  const firstState = stateValues.find(Boolean)
+  await page.getByTestId('mela-state-filter').selectOption(firstState)
+  const afterState = await page.getByTestId('mela-card').count()
+  expect(afterState).toBeGreaterThanOrEqual(1)
+  expect(afterState).toBeLessThan(before)
+
+  // A state+month combination with no matches → graceful empty state (find an empty month deterministically).
   await page.getByTestId('mela-state-filter').selectOption('')
-  await page.getByTestId('mela-month-filter').selectOption('1') // January — no seeded mela
-  await expect(page.getByTestId('mela-empty')).toBeVisible()
+  let foundEmpty = false
+  for (let m = 1; m <= 12; m += 1) {
+    await page.getByTestId('mela-month-filter').selectOption(String(m))
+    if (await page.getByTestId('mela-card').count() === 0) { await expect(page.getByTestId('mela-empty')).toBeVisible(); foundEmpty = true; break }
+  }
+  expect(foundEmpty).toBeTruthy()
+})
+
+test('a shared link to a merged-away Mela redirects to its active survivor (3e, no 404)', async ({ page }) => {
+  // The Pantnagar seed (fixed id) was merged into a survivor during the one-time cleanup.
+  const mergedAwayId = '22222222-0000-4000-8000-0000000000a2'
+  const { data } = await adminClient().from('kisan_mela').select('merged_into').eq('id', mergedAwayId).maybeSingle()
+  test.skip(!data?.merged_into, 'Pantnagar seed is not in a merged state in this environment')
+  await page.goto(`/kisan-mela?mela=${mergedAwayId}`)
+  // resolve_active_mela follows merged_into → the survivor card is shown (never an empty/not-found page).
+  await expect(page.locator(`[data-mela-id="${data.merged_into}"]`)).toBeVisible({ timeout: 15000 })
 })
 
 test('"दिलचस्पी है" requires login (anon → redirected to /login)', async ({ page }) => {
@@ -35,7 +59,7 @@ test('a user submission lands pending and is NOT visible on the public page unti
   await page.goto('/kisan-mela/submit')
   await page.locator('#m_name').fill('E2E टेस्ट मेला')
   await page.locator('#m_venue').fill(venue)
-  await page.locator('#m_state').fill('Rajasthan')
+  await page.locator('#m_state').selectOption('Rajasthan') // canonical-state dropdown (1b)
   await page.getByTestId('m-date-unknown').check()
   await page.locator('#m_exp').fill('Mar 2027')
   await page.getByRole('button', { name: /जानकारी भेजें|Submit/ }).click()

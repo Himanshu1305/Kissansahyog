@@ -5,6 +5,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
 import { haversineKm } from '../../src/lib/distance.js'
+import { priceStaleness, stalenessLabelKey } from '../../src/lib/mandi/staleness.js'
 
 const db = createClient(process.env.VITE_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 let pass = 0, fail = 0
@@ -73,10 +74,13 @@ async function main() {
   ok('Phase 2: commodity column is sticky for mobile scroll', /sticky left-0/.test(msp))
 
   // ---------- Phase 3: staleness rule ----------
-  ok('Phase 3: priceStaleness classifies today/yesterday as fresh, older as stale',
-    /days\s*<=\s*1\s*\?\s*'fresh'\s*:\s*'stale'/.test(shared))
+  // priceStaleness was extracted to src/lib/mandi/staleness.js (today / yesterday / older); test the
+  // behaviour directly rather than a stale inline-regex on shared.jsx (the old 'fresh'/'stale' form).
+  const iso = (off) => { const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() + off); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` }
+  ok('Phase 3: priceStaleness → today for today / older for >1 day',
+    priceStaleness(iso(0)) === 'today' && priceStaleness(iso(-1)) === 'yesterday' && priceStaleness(iso(-5)) === 'older' && priceStaleness(null) === null)
   ok('Phase 3: missing price renders "—" with a not-recorded tooltip', /mandi_not_recorded/.test(shared) && /price-missing/.test(shared))
-  ok('Phase 3: stale tag component present', /StaleTag/.test(shared) && /mandi_stale/.test(shared))
+  ok('Phase 3: stale tag component present with honest labels', /StaleTag/.test(shared) && stalenessLabelKey('older') === 'mandi_price_older' && stalenessLabelKey('yesterday') === 'mandi_price_yesterday')
   // Data sanity: there exist both fresh and stale-eligible dates so the tag is reachable.
   const { data: dates } = await db.from('mandi_prices').select('price_date').order('price_date', { ascending: false }).limit(500)
   const uniqDates = [...new Set((dates || []).map((r) => r.price_date))]
