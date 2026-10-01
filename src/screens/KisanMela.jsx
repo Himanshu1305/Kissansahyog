@@ -126,7 +126,12 @@ export default function KisanMela() {
               const highlights = lang === 'hi' ? m.highlights_hi : (m.highlights_en || m.highlights_hi)
               const place = [m.venue, m.district, m.state].filter(Boolean).join(', ')
               const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/kisan-mela`
-              const sourceReal = /^https?:\/\//i.test(m.source_url || '')
+              // Corroboration: all real http(s) sources across source_urls[] + the legacy source_url, deduped.
+              // >=2 distinct → "found via multiple sources"; exactly 1 → shown plainly. Never worded as "verified accurate".
+              const allSources = [...new Set([...(Array.isArray(m.source_urls) ? m.source_urls : []), m.source_url].filter((u) => /^https?:\/\//i.test(u || '')))]
+              const multiSource = allSources.length >= 2
+              const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, '') } catch { return u } }
+              const disclaimerSource = multiSource ? t('mela_sources_multiple') : (allSources[0] ? hostOf(allSources[0]) : t('mela_source'))
               return (
                 <div key={m.id} data-testid="mela-card" className="flex flex-col rounded-xl border bg-white p-4" style={{ borderColor: 'var(--ks-border)' }}>
                   <div className="mb-1 flex flex-wrap items-center gap-1">
@@ -154,9 +159,22 @@ export default function KisanMela() {
                       <a href={`tel:${m.contact_number}`} className="font-semibold underline" style={{ color: 'var(--ks-primary)' }}>{m.contact_number}</a>
                     </p>
                   )}
-                  <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>
-                    {sourceReal && <a href={m.source_url} target="_blank" rel="noopener noreferrer" className="font-semibold underline" style={{ color: 'var(--ks-primary)' }}>{t('mela_source')} ↗</a>}
-                    {m.last_checked_date && <span>{t('mela_last_checked')}: {m.last_checked_date}</span>}
+                  <div className="mt-2 flex flex-col gap-1 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>
+                    {multiSource && (
+                      <span data-testid="mela-multi-source" className="inline-flex w-fit items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' }}>✓ {t('mela_multi_source')}</span>
+                    )}
+                    {allSources.length > 0 && (
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        {allSources.map((u, i) => (
+                          <a key={u} href={u} target="_blank" rel="noopener noreferrer" className="font-semibold underline" style={{ color: 'var(--ks-primary)' }}>{t('mela_source')}{allSources.length > 1 ? ` ${i + 1}` : ''} ↗</a>
+                        ))}
+                        {m.last_checked_date && <span>{t('mela_last_checked')}: {m.last_checked_date}</span>}
+                      </div>
+                    )}
+                    {/* Universal verify-yourself disclaimer — on EVERY card, not buried (Phase 6b). */}
+                    <p data-testid="mela-disclaimer" className="mt-0.5 text-[11px] leading-snug" style={{ color: 'var(--ks-ink-3)' }}>
+                      {t('mela_disclaimer_lead')} {disclaimerSource} {t('mela_disclaimer_tail')}
+                    </p>
                   </div>
                   <div className="mt-3 flex items-center gap-2 border-t pt-3" style={{ borderColor: 'var(--ks-border)' }}>
                     <button

@@ -1632,8 +1632,8 @@ export const strings = {
   mela_title: { hi: 'किसान मेला कैलेंडर', en: 'Kisan Mela Calendar' },
   mela_subtitle: { hi: 'देश भर के किसान मेलों की जानकारी', en: 'Farmer fairs (Melas) from across India' },
   mela_explain_1: { hi: 'यह पेज देश भर के आगामी किसान मेलों की जानकारी दिखाता है — बीज, मशीन, पशुधन, बागवानी व योजना जानकारी।', en: 'This page shows upcoming farmer fairs (Melas) from across India — seeds, machinery, livestock, horticulture and scheme information.' },
-  mela_explain_2: { hi: 'जानकारी हमारी अपनी खोज और सत्यापन से जुटाई जाती है — किसी और वेबसाइट की सूची नहीं ली जाती। हर मेले का स्रोत लिंक साथ दिया जाता है।', en: 'The information is gathered by our own search and verification — we do not copy any other website’s list. Every Mela cites its source link.' },
-  mela_explain_3: { hi: '"अपेक्षित" तारीख़ें अंतिम नहीं हैं — जाने से पहले आयोजक से पुष्टि ज़रूर करें।', en: '"Expected" dates are not final — always confirm with the organizer before travelling.' },
+  mela_explain_2: { hi: 'जानकारी हमारी अपनी स्वचालित खोज और सत्यापन प्रक्रिया से जुटाई जाती है — कोई व्यक्ति हर मेले की अलग-अलग पुष्टि नहीं करता, इसलिए गलती संभव है। हर मेले का स्रोत लिंक साथ दिया जाता है।', en: 'This is gathered through our own automated research and verification process — not by a person individually confirming each event, so errors are possible. Every Mela cites its source link.' },
+  mela_explain_3: { hi: 'जाने से पहले आयोजक से सीधे पुष्टि ज़रूर करें — "अपेक्षित" तारीख़ें अंतिम नहीं हैं।', en: 'Always confirm directly with the organizer before travelling — "Expected" dates are not final.' },
   mela_filter_state: { hi: 'राज्य', en: 'State' },
   mela_filter_month: { hi: 'महीना', en: 'Month' },
   mela_filter_all_states: { hi: 'सभी राज्य', en: 'All states' },
@@ -1641,6 +1641,12 @@ export const strings = {
   mela_none: { hi: 'अभी कोई मेला नहीं मिला। क्या आप किसी मेले के बारे में जानते हैं? नीचे जानकारी दें।', en: 'No Melas found yet. Know of one? Add it below.' },
   mela_expected_prefix: { hi: 'अपेक्षित', en: 'Expected' },
   mela_source: { hi: 'स्रोत', en: 'Source' },
+  // Phase 6a — multi-source corroboration badge (never worded as "verified accurate").
+  mela_multi_source: { hi: 'कई स्रोतों से जानकारी मिली', en: 'Found via multiple sources' },
+  mela_sources_multiple: { hi: 'कई स्रोतों', en: 'multiple sources' },
+  // Phase 6b — universal verify-yourself disclaimer on EVERY card (rendered: lead + source + tail).
+  mela_disclaimer_lead: { hi: 'जानकारी', en: 'Information from' },
+  mela_disclaimer_tail: { hi: 'से ली गई है — कृपया जाने से पहले आयोजक से सीधे पुष्टि ज़रूर करें।', en: '— please confirm directly with the organizer before you travel.' },
   mela_last_checked: { hi: 'अंतिम सत्यापन', en: 'Last checked' },
   mela_contact: { hi: 'संपर्क', en: 'Contact' },
   mela_interested: { hi: 'दिलचस्पी है', en: "I'm interested" },

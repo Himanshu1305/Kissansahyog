@@ -10,7 +10,7 @@ export const MELA_TAGS = ['seeds', 'machinery', 'livestock', 'horticulture', 'sc
 export async function fetchMelas() {
   const { data, error } = await supabase
     .from('kisan_mela')
-    .select('id,name_hi,name_en,organizer_name,venue,address,state,district,latitude,longitude,event_date_start,event_date_end,is_date_confirmed,expected_period,category_tags,highlights_hi,highlights_en,contact_name,contact_number,source_url,last_checked_date')
+    .select('id,name_hi,name_en,organizer_name,venue,address,state,district,latitude,longitude,event_date_start,event_date_end,is_date_confirmed,expected_period,category_tags,highlights_hi,highlights_en,contact_name,contact_number,source_url,source_urls,last_checked_date')
     .eq('is_active', true)
     .eq('moderation_status', 'approved')
     .order('event_date_start', { ascending: true, nullsFirst: false })
