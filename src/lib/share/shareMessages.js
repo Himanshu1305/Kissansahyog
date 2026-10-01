@@ -49,6 +49,16 @@ export function generateArticleMessage(title, url, lang) {
   return `${title} — ${read}: ${url}`
 }
 
+// Kisan Mela share — real event details + brand, not a bare link (Phase 3 §5). The caller
+// passes the already-localized date label (confirmed range or "अपेक्षित: period").
+export function generateMelaMessage(mela, dateLabel, url, lang) {
+  const brand = lang === 'hi' ? 'किसान सहयोग' : 'Kisan Sahyog'
+  const name = (lang === 'hi' ? mela.name_hi : (mela.name_en || mela.name_hi)) || mela.name_hi
+  const info = lang === 'hi' ? 'पूरी जानकारी' : 'Full details'
+  const parts = [`🌾 ${brand} — ${name}`, mela.venue, dateLabel].filter(Boolean).join(', ')
+  return `${parts}. ${info}: ${url}`
+}
+
 // Direct wa.me URL for the hero "Share on WhatsApp" button (fixed platform message).
 export function whatsappPlatformUrl() {
   return `https://wa.me/?text=${encodeURIComponent('किसान सहयोग — kissansahyog.com')}`

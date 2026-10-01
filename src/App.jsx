@@ -37,6 +37,7 @@ const Msp = lazy(() => import('./screens/Msp'))
 const FasalSalah = lazy(() => import('./screens/FasalSalah'))
 const AgroForestry = lazy(() => import('./screens/AgroForestry'))
 const Credits = lazy(() => import('./screens/Credits'))
+const KisanMela = lazy(() => import('./screens/KisanMela'))
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -96,6 +97,8 @@ function AppRoutes() {
         <Route path="/msp" element={<Msp />} />
         <Route path="/msp/:crop" element={<Msp />} />
         <Route path="/credits" element={<Credits />} />
+        <Route path="/kisan-mela" element={<KisanMela />} />
+        {/* /kisan-mela/submit route is added in Phase 4 (submission form). */}
 
         <Route path="/home" element={<Protected><Home /></Protected>} />
         <Route path="/browse" element={<Protected><Browse /></Protected>} />

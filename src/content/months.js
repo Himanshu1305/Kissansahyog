@@ -2,3 +2,7 @@
 // in render code" audit (scripts/test/v11_phase6.mjs) treats them as sanctioned labels,
 // like the crop/category names — not as stray hardcoded UI strings.
 export const MONTHS_HI = ['जन', 'फर', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुल', 'अग', 'सित', 'अक्टू', 'नव', 'दिस']
+
+// Full month names (both languages) — used by the Kisan Mela date labels + month filter.
+export const MONTHS_FULL_HI = ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर']
+export const MONTHS_FULL_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']

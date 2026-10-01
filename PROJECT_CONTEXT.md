@@ -1184,3 +1184,14 @@ Full write-up: docs/review/KISAN_MELA_REVIEW.md. ONE migration `0035_kisan_mela.
 > **OWNER ACTION REQUIRED (Kisan Mela discovery):** add a production **`ANTHROPIC_API_KEY`** as a GitHub Actions
 > repository secret for the daily discovery pipeline to run. Until then the calendar is simply sparse (seed +
 > user submissions only), not broken.
+- **Public page `/kisan-mela` (Phase 3):** `src/screens/KisanMela.jsx` + `src/lib/mela/melaApi.js`
+  (fetch/submit/interest) + `src/lib/mela/melaFormat.js` (PURE, testable: `filterMelas`, `sortByDistance`,
+  `melaMonth`, `melaDateLabel`, `statesIn` — month-name label data lives in the audit-sanctioned
+  `content/months.js`). PageExplainer (self-sourced + "अपेक्षित not final, confirm before travelling"),
+  state + month filters, distance sort from the viewer's real coords (nationwide — `rawCoords` → matched-village
+  pincode → DEFAULT), cards showing name/venue/date (confirmed vs amber "अपेक्षित")/distance/tags/highlights/
+  contact/source link/last-checked, a login-gated "दिलचस्पी है" toggle (`set_mela_interest`), a WhatsApp share
+  with real event details (`generateMelaMessage` in the allowlisted shareMessages.js), and a prominent "मेले की
+  जानकारी दें" CTA → `/kisan-mela/submit` (Phase 4). Graceful empty state. Route added in App.jsx.
+  `scripts/seed_melas.mjs` seeds 4 real, source-cited sample Melas (mostly honest "अपेक्षित", one confirmed
+  sample) for UI demo until the discovery pipeline runs.
