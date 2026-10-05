@@ -77,10 +77,10 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Poll (one-per-device, results after voting) + suggestions (unpublished→admin approve) tables + RPCs (RLS, constrained anon insert, no anon raw read); admin CarbonSuggestionsPanel
 - [x] 5 quotable stats (cited); PastExampleNote + Calc(avg) on examples; Article/FAQPage schema; links from Agro Forestry + homepage tile; tests v2_phase8 32/32; SEO 88 routes. (screenshots → Phase 15)
 
-## Phase 9 — Jugaad (marketplace + info page)
-- [ ] Category जुगाड़ + offer types + fields + road-vehicle validation
-- [ ] /jugaad info page (3000+ words, prerendered)
-- [ ] Tests; screenshots; commit
+## Phase 9 — Jugaad (marketplace + info page)  (migration 0044)
+- [x] Category जुगाड़ + 5 offer types (incl "विकास में — मदद/साझेदारी") + fields (name/problem/crop/how/video/price/units/tested+body/maker/village) + road-vehicle validation (not_road_vehicle required, server-enforced) + jugaad provider declaration; 3 samples
+- [x] /jugaad info page (~3005 words Hindi, 18 FAQs: NIF/MVIF/NIDHI-PRAYAS/Startup India/MP Startup 2025/CFMTTI; legal guide RSRTC v Santosh, RTO v Jayachandra, Shreya Singhal, Dangerous Machines Act, CPA 2019, Patents; soft-help text; §9.3 no patent/award solicitation)
+- [x] Tests v2_phase9 20/20; e2e phase18 chips→10; SEO 89 routes; citation green. (screenshots → Phase 15)
 
 ## Phase 10 — Site-wide search (typing + voice)
 - [ ] NavBar search (desktop inline / mobile fullscreen + mic)

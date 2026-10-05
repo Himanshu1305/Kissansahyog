@@ -1786,6 +1786,30 @@ export const strings = {
   // --- Phase 4: sponsored (built, no ads live) ---
   sponsored_label: { hi: 'प्रायोजित', en: 'Sponsored' },
 
+  // --- Phase 9: jugaad marketplace fields ---
+  home_cat_jugaad: { hi: 'जुगाड़ / ग्रामीण नवाचार', en: 'Jugaad / Rural Innovations' },
+  jugaad_tile_label: { hi: 'जुगाड़', en: 'Jugaad' },
+  jugaad_tile_sub: { hi: 'ग्रामीण नवाचार', en: 'Rural innovations' },
+  jugaad_nav: { hi: 'जुगाड़', en: 'Jugaad' },
+  field_jugaad_offer_type: { hi: 'किस रूप में', en: 'Offer type' },
+  field_jugaad_name: { hi: 'नवाचार का नाम', en: 'Name of the innovation' },
+  ph_jugaad_name: { hi: 'जैसे बीज बोने का यंत्र', en: 'e.g. seed-sowing device' },
+  field_jugaad_problem: { hi: 'किस समस्या को हल करता है', en: 'Problem it solves' },
+  field_jugaad_crop: { hi: 'फसल / कार्य', en: 'Crop / activity' },
+  field_jugaad_help: { hi: 'यह कैसे मदद करता है', en: 'How it helps' },
+  field_jugaad_video: { hi: 'डेमो वीडियो लिंक (वैकल्पिक)', en: 'Demo video link (optional)' },
+  ph_jugaad_video: { hi: 'YouTube लिंक', en: 'YouTube link' },
+  field_jugaad_price: { hi: 'दाम / किराया (आपका अपना)', en: 'Price / rent (your own)' },
+  field_jugaad_units: { hi: 'अब तक कितने बनाए', en: 'Units made so far' },
+  field_jugaad_tested: { hi: 'परीक्षण', en: 'Tested' },
+  field_jugaad_testing_body: { hi: 'परीक्षण संस्था (वैकल्पिक)', en: 'Testing body (optional)' },
+  field_jugaad_maker: { hi: 'बनाने वाले का नाम', en: 'Maker name' },
+  field_jugaad_village: { hi: 'गाँव', en: 'Village' },
+  jugaad_not_road_vehicle: { hi: 'मैं पुष्टि करता/करती हूँ कि यह सड़क पर चलने वाला वाहन नहीं है। (सड़क पर चलने वाले वाहन स्वीकार नहीं किए जाते।)', en: 'I confirm this is not a road-going vehicle. (Road-going vehicles are not accepted.)' },
+  err_jugaad_offer_type_required: { hi: 'कृपया चुनें कि किस रूप में दे रहे हैं।', en: 'Please choose the offer type.' },
+  err_jugaad_name_required: { hi: 'नवाचार का नाम भरें।', en: 'Enter the innovation name.' },
+  err_road_vehicle_not_allowed: { hi: 'सड़क पर चलने वाले वाहन स्वीकार नहीं। कृपया पुष्टि करें कि यह सड़क वाहन नहीं है।', en: 'Road-going vehicles are not accepted. Please confirm this is not a road vehicle.' },
+
   // --- Phase 8: carbon credit page (poll + suggestions) ---
   carbon_tile_label: { hi: 'कार्बन क्रेडिट', en: 'Carbon credit' },
   carbon_tile_sub: { hi: 'किसान आय का नया ज़रिया?', en: 'A new income source?' },

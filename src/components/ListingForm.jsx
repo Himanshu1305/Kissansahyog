@@ -43,7 +43,7 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
   const needsSelfDecl = mod.needsSelfDeclaration(listingType)
   // Phase 4 — provider declaration for offer-side provider categories (server-enforced
   // in create_listing). Water tanker adds an extra line (Phase 5, equipment sub-type).
-  const PROVIDER_DECL_KEY = { equipment: 'provider_decl_equipment', warehouse: 'provider_decl_cold_storage' }
+  const PROVIDER_DECL_KEY = { equipment: 'provider_decl_equipment', warehouse: 'provider_decl_cold_storage', greenhouse: 'provider_decl_greenhouse', jugaad: 'provider_decl_jugaad' }
   const providerDeclKey = PROVIDER_DECL_KEY[category]
   const isTanker = category === 'equipment' && details?.is_tanker === true
   const needsProviderDecl = listingType === 'offer' && !!providerDeclKey

@@ -11,12 +11,13 @@ import * as drone_didi from '../../components/categories/drone_didi.jsx'
 import * as warehouse from '../../components/categories/warehouse.jsx'
 import * as transport from '../../components/categories/transport.jsx'
 import * as greenhouse from '../../components/categories/greenhouse.jsx'
+import * as jugaad from '../../components/categories/jugaad.jsx'
 
-const REGISTRY = { land, equipment, labor, drone_didi, bhusa, agri_inputs, warehouse, transport, greenhouse }
+const REGISTRY = { land, equipment, labor, drone_didi, bhusa, agri_inputs, warehouse, transport, greenhouse, jugaad }
 
 // Categories wired end-to-end and shown in the UI. Order matters (nav/tabs) —
 // Land is LAST.
-export const ENABLED_CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'greenhouse', 'transport', 'land']
+export const ENABLED_CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'greenhouse', 'jugaad', 'transport', 'land']
 
 export function getCategory(category) {
   const mod = REGISTRY[category]
@@ -39,4 +40,5 @@ export const EXTRAS_NEEDED = {
   warehouse: [],
   transport: [],
   greenhouse: [],
+  jugaad: [],
 }

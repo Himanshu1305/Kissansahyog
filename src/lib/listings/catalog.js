@@ -4,7 +4,20 @@
 
 // Order matters (nav strip, browse tabs, post selector). Land is intentionally
 // LAST; Drone Didi sits after Labor.
-export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'greenhouse', 'transport', 'land']
+export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'greenhouse', 'jugaad', 'transport', 'land']
+
+// --- Jugaad / Rural Innovations (Phase 9) ---
+export const JUGAAD_OFFER_TYPE = [
+  { value: 'sell', hi: 'बेचना', en: 'Sell' },
+  { value: 'rent', hi: 'किराये पर', en: 'Rent' },
+  { value: 'service', hi: 'सेवा', en: 'Service' },
+  { value: 'make_to_order', hi: 'ऑर्डर पर बनाना', en: 'Make to order' },
+  { value: 'wip_help', hi: 'विकास में — मदद/साझेदारी चाहिए', en: 'Work in progress — need help/partnership' },
+]
+export const JUGAAD_TESTED = [
+  { value: 'tested', hi: 'परीक्षित', en: 'Tested' },
+  { value: 'untested', hi: 'अपरीक्षित', en: 'Untested' },
+]
 
 // --- Greenhouse / polyhouse (Phase 7) ---
 export const GH_VENDOR_SUBTYPE = [
@@ -35,6 +48,7 @@ export const CATEGORY_META = {
   agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
   warehouse: { icon: '🏬', hi: 'गोदाम और कोल्ड स्टोरेज', en: 'Warehouse & Cold Storage' },
   greenhouse: { icon: '🏡', hi: 'ग्रीनहाउस / पॉलीहाउस', en: 'Greenhouse / Polyhouse' },
+  jugaad: { icon: '🛠️', hi: 'जुगाड़ / ग्रामीण नवाचार', en: 'Jugaad / Rural Innovations' },
   transport: { icon: '🚚', hi: 'परिवहन / ढुलाई', en: 'Transport' },
 }
 

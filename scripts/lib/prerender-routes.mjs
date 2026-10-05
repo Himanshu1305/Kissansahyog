@@ -15,6 +15,7 @@ export const STATIC_ROUTES = [
   '/greenhouse',
   '/carbon-credit',
   '/carbon-credit/niti-sujhav',
+  '/jugaad',
   '/articles',
   '/resources',
   '/info',
