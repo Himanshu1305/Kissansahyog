@@ -41,13 +41,13 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Static test scripts/test/v2_brand.mjs (13/13); citation+i18n still green
 - [ ] Commit
 
-## Phase 4 — Legal, trust & compliance
-- [ ] Provider declarations (server-enforced) per category
-- [ ] /grievance page + footer link (IT Rules 2021 as amended GSR 120(E))
-- [ ] Report button + listing_reports table + admin queue
-- [ ] Terms & Privacy update (DPDP notice, FARMS disclaimer)
-- [ ] SponsoredBadge + is_sponsored flag (CP E-Commerce Rules 2026)
-- [ ] Tests; commit
+## Phase 4 — Legal, trust & compliance  (migration 0039)
+- [x] Provider declarations server-enforced (create_listing: equipment+warehouse offers need details.provider_declared; greenhouse/jugaad/tanker added in their phases); ListingForm checkbox above rules; bilingual texts per category
+- [x] /grievance content page + /contact; footer links grievance (IT Rules 2021 / GSR 120(E) cited S-JUG-29/30; GAC S-JUG-71). eGazette PDF 403 → cited registered gazette source (report note)
+- [x] Report button (ReportButton modal) + listing_reports table (constrained anon insert, no anon read, per-IP/device rate limit) + admin ReportsPanel (age vs 24h/7d, remove/dismiss)
+- [x] Terms & Privacy update (intermediary, provider decl, report/takedown+grievance, DPDP notice, FARMS model, sponsored policy, legal-review note) in legal.js
+- [x] SponsoredBadge + is_sponsored flag + admin toggle (CP E-Commerce Rules 2026 S-JUG-31); wired into ListingCard + ListingDetail; feed selects include is_sponsored
+- [x] Tests: v2_phase4.mjs (20/20); e2e phase4 updated for provider-decl; commit
 
 ## Phase 5 — Water tanker (inside Equipment)
 - [ ] Tanker equipment type + conditional fields

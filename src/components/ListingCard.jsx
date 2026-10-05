@@ -2,6 +2,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { getCategory } from '../lib/listings/registry'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { CatIcon } from './CatIcon'
+import SponsoredBadge from './SponsoredBadge'
 import { timeAgo } from '../lib/timeAgo'
 
 // Compact listing summary used in Browse (2-col grid) and My Listings. Shows the
@@ -30,6 +31,7 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
         {isVendor && (
           <span className="rounded-full bg-amber-100 px-1.5 py-0.5 text-[11px] font-bold text-amber-800">🏪 {t('vendor_badge')}</span>
         )}
+        <SponsoredBadge sponsored={listing.is_sponsored} />
         {statusBadge}
         {typeof listing.distanceKm === 'number' && (
           <span className="ml-auto text-xs font-semibold text-stone-500">{listing.distanceKm.toFixed(0)} {t('km_away')}</span>

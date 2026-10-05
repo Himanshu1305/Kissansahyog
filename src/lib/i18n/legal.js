@@ -21,8 +21,16 @@ export const privacyPolicy = [
     en: 'What we do NOT do: we do not process any payments, we do not sell your data, and we do not share data for third-party advertising at this time.',
   },
   {
-    hi: 'डेटा से जुड़े सवाल या अपना डेटा हटवाने के लिए संपर्क करें: usdvisionai@gmail.com',
-    en: 'For data queries or to request deletion of your data, contact: usdvisionai@gmail.com',
+    hi: 'वैकल्पिक जानकारी: आपकी प्रोफ़ाइल का अतिरिक्त विवरण, और यदि आप सहमति दें तो WhatsApp पर जानकारी पाने की पसंद (डिफ़ॉल्ट रूप से बंद) — जैसे पसंदीदा मंडी और मुख्य फसलें। यह सहमति देना ज़रूरी नहीं है।',
+    en: 'Optional information: extra profile details, and — only if you opt in — a preference to receive information on WhatsApp (off by default), such as a preferred mandi and your main crops. This consent is not required.',
+  },
+  {
+    hi: 'आपकी सहमति और उसे वापस लेना: आप कभी भी अपनी WhatsApp सहमति या खाता Profile पेज से या grievance@kissansahyog.com पर लिखकर वापस ले/हटवा सकते हैं। यह डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) नियम, 2025 (13 नवंबर 2025 को अधिसूचित) की भावना के अनुरूप है।',
+    en: 'Your consent and withdrawal: you can withdraw your WhatsApp consent or delete your account anytime from the Profile page or by writing to grievance@kissansahyog.com. This follows the spirit of the Digital Personal Data Protection (DPDP) Rules, 2025 (notified 13 November 2025).',
+  },
+  {
+    hi: 'डेटा से जुड़े सवाल या अपना डेटा हटवाने के लिए संपर्क करें: सामान्य — hello@kissansahyog.com; शिकायत/डेटा अधिकार — grievance@kissansahyog.com (शिकायत अधिकारी: श्री अभिनंदन दीक्षित)।',
+    en: 'For data queries or deletion requests, contact: general — hello@kissansahyog.com; grievance/data rights — grievance@kissansahyog.com (Grievance Officer: Shri Abhinandan Dixit).',
   },
 ]
 
@@ -46,5 +54,25 @@ export const termsOfUse = [
   {
     hi: 'गलत या भ्रामक जानकारी वाली लिस्टिंग हटाई जा सकती है।',
     en: 'False or misleading listings may be removed.',
+  },
+  {
+    hi: 'विक्रेता घोषणाएँ: कुछ श्रेणियों (जैसे उपकरण, गोदाम/कोल्ड स्टोरेज) में लिस्टिंग डालने से पहले विक्रेता को सुरक्षा व जानकारी की सत्यता की घोषणा पर सहमति देनी होती है। इन घोषणाओं की ज़िम्मेदारी विक्रेता की है।',
+    en: 'Provider declarations: in some categories (e.g. equipment, warehouse/cold storage) the seller must agree to a declaration about safety and the accuracy of information before posting. Responsibility for these declarations lies with the seller.',
+  },
+  {
+    hi: 'शिकायत व हटाने की प्रक्रिया: किसी लिस्टिंग या विक्रेता की शिकायत "शिकायत करें" बटन से या grievance@kissansahyog.com पर करें। हमारे शिकायत अधिकारी श्री अभिनंदन दीक्षित 24 घंटे में पावती और आमतौर पर 7 दिन में निपटारा करते हैं (सूचना प्रौद्योगिकी नियम, 2021 — G.S.R. 120(E), 10 फ़रवरी 2026 को संशोधित)।',
+    en: 'Report & takedown: report any listing or seller via the "Report" button or grievance@kissansahyog.com. Our Grievance Officer, Shri Abhinandan Dixit, acknowledges within 24 hours and usually resolves within 7 days (Information Technology Rules, 2021 — as amended by G.S.R. 120(E), 10 February 2026).',
+  },
+  {
+    hi: 'मध्यस्थ की भूमिका: किसान सहयोग एक मध्यवर्ती मंच (intermediary) है और मंच पर कोई लेन-देन नहीं होता। सरकारी FARMS ऐप की तरह, उपयोगकर्ता व सेवा प्रदाता को जानकारी स्वयं स्वतंत्र रूप से जाँचनी चाहिए और मोल-भाव आमने-सामने करना चाहिए।',
+    en: 'Intermediary role: Kissan Sahyog is an intermediary platform and no transaction happens on the platform. As with the government FARMS app, users and providers should verify information independently and negotiate offline.',
+  },
+  {
+    hi: 'प्रायोजित सामग्री: भविष्य में कोई भुगतान-आधारित (प्रायोजित) लिस्टिंग स्पष्ट रूप से "प्रायोजित" लेबल के साथ दिखाई जाएगी (उपभोक्ता संरक्षण (ई-कॉमर्स) संशोधन नियम, 2026 — 10 सितंबर 2026 को अधिसूचित, 1 जनवरी 2027 से लागू)। अभी कोई विज्ञापन सक्रिय नहीं है।',
+    en: 'Sponsored content: any future paid (sponsored) listing will be clearly labelled "Sponsored" (Consumer Protection (E-Commerce) Amendment Rules, 2026 — notified 10 September 2026, effective 1 January 2027). No ads are active at this time.',
+  },
+  {
+    hi: 'यह शर्तों का प्रारंभिक मसौदा है; कानूनी समीक्षा लंबित है। सार्वजनिक लॉन्च से पहले इसे वकील से समीक्षित कराया जाएगा।',
+    en: 'This is an initial draft of the terms; legal review is pending. It will be reviewed by counsel before public launch.',
   },
 ]

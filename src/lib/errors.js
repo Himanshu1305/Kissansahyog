@@ -60,6 +60,12 @@ const CODE_TO_KEY = {
   invalid_scheme_category: 'err_invalid_scheme_category',
   wide_visibility_not_allowed: 'err_wide_visibility_not_allowed',
   rules_not_agreed: 'err_rules_agreement_required',
+  provider_declaration_required: 'err_provider_declaration_required',
+  invalid_report_reason: 'err_report_reason_required',
+  invalid_target_type: 'err_report_failed',
+  target_id_required: 'err_report_failed',
+  rate_limited: 'err_report_rate_limited',
+  invalid_action: 'err_report_failed',
 }
 
 export class AppError extends Error {

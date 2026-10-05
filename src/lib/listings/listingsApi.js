@@ -146,7 +146,7 @@ export async function fetchNearby({ category, listingType = null, center, sort =
 export async function fetchRecentListings(limit = 12) {
   const { data, error } = await supabase
     .from('listings')
-    .select('id,listing_type,category,pincode,details,created_at,listing_source,is_test_data')
+    .select('id,listing_type,category,pincode,details,created_at,listing_source,is_test_data,is_sponsored')
     .eq('status', 'active')
     .eq('is_available', true) // Phase 3e: hide owner-marked-unavailable listings
     .gt('expires_at', new Date().toISOString())
@@ -183,7 +183,7 @@ export async function fetchRecentListings(limit = 12) {
 export async function fetchHomeFeed({ center = null, limit = 8, pool = 40, category = null } = {}) {
   let query = supabase
     .from('listings')
-    .select('id,listing_type,category,pincode,village_town:village_name,latitude,longitude,geocoding_status,details,created_at,listing_source,is_test_data,wide_visibility')
+    .select('id,listing_type,category,pincode,village_town:village_name,latitude,longitude,geocoding_status,details,created_at,listing_source,is_test_data,wide_visibility,is_sponsored')
     .eq('status', 'active')
     .eq('is_available', true) // Phase 3e: hide owner-marked-unavailable listings
     .gt('expires_at', new Date().toISOString())

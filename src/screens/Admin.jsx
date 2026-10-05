@@ -23,6 +23,7 @@ import {
   getAdminMelas, adminSetMelaStatus, adminSetMelaActive, adminDeleteMela, adminUpsertMela,
   getAdminMelaCandidates, adminPublishCandidate,
   getRecentMelaMerges, adminSplitMela,
+  getListingReports, resolveListingReport,
 } from '../lib/admin/adminApi'
 import { MELA_TAGS } from '../lib/mela/melaApi'
 import { getAdminInputPrices, adminSetInputPriceActive, adminUpsertInputPrice } from '../lib/inputs/inputsApi'
@@ -72,6 +73,7 @@ export default function Admin() {
         <SawaalPanel actorId={user.id} t={t} lang={lang} />
         <SafaltaPanel actorId={user.id} t={t} lang={lang} />
         <YojanaPanel actorId={user.id} t={t} lang={lang} />
+        <ReportsPanel actorId={user.id} t={t} />
         <SubscriptionsPanel actorId={user.id} t={t} />
         <ProcurementPanel actorId={user.id} t={t} />
         <PageFaqsPanel actorId={user.id} t={t} />
@@ -1373,6 +1375,62 @@ function UsersPanel({ actorId, t }) {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+    </Section>
+  )
+}
+
+// ---- Phase 4: complaints queue (age vs 24h/7-day targets; remove / dismiss) ----
+function ReportsPanel({ actorId, t }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const [notes, setNotes] = useState({})
+  const load = useCallback(() => {
+    getListingReports(actorId, 'open').then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+
+  async function act(id, action) {
+    setErr(null)
+    try { await resolveListingReport(actorId, id, action, notes[id] || null); load() }
+    catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+  // Age in hours; flag overdue against the 24h acknowledgement / 7-day resolution targets.
+  const ageHours = (iso) => Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 3.6e6))
+
+  return (
+    <Section title={t('admin_reports')}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_reports_empty')}</p> : (
+        <div className="space-y-3">
+          {rows.map((r) => {
+            const h = ageHours(r.created_at)
+            const overdue = h > 168 // 7 days
+            return (
+              <div key={r.id} className="rounded-xl border border-stone-200 p-3">
+                <div className="flex flex-wrap items-center gap-2 text-sm">
+                  <span className="rounded-full bg-red-100 px-2 py-0.5 font-bold text-red-800">{t(`report_reason_${r.reason}`)}</span>
+                  <span className="text-stone-500">{t('admin_report_target')}: {r.target_type} {r.listing_category ? `(${r.listing_category})` : ''}</span>
+                  <span className={`ml-auto font-semibold ${overdue ? 'text-red-600' : 'text-stone-500'}`}>{t('admin_report_age')}: {h}h {overdue ? `· ${t('admin_report_overdue')}` : ''}</span>
+                </div>
+                {r.note && <p className="mt-1 text-sm text-stone-700">{r.note}</p>}
+                {r.reporter_phone && <p className="mt-1 text-xs text-stone-500">📞 {r.reporter_phone}</p>}
+                <input
+                  value={notes[r.id] || ''}
+                  onChange={(e) => setNotes((n) => ({ ...n, [r.id]: e.target.value }))}
+                  placeholder={t('admin_report_resolution')}
+                  className="mt-2 w-full rounded-lg border border-stone-300 p-2 text-sm"
+                />
+                <div className="mt-2 flex gap-2">
+                  {r.listing_id && (
+                    <button type="button" onClick={() => act(r.id, 'removed')} className="rounded-lg bg-red-600 px-3 py-1.5 text-sm font-bold text-white">{t('admin_report_action_remove')}</button>
+                  )}
+                  <button type="button" onClick={() => act(r.id, 'dismissed')} className="rounded-lg border-2 border-stone-300 px-3 py-1.5 text-sm font-bold text-stone-700">{t('admin_report_action_dismiss')}</button>
+                </div>
+              </div>
+            )
+          })}
         </div>
       )}
     </Section>

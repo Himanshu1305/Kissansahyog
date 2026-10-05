@@ -1751,4 +1751,48 @@ export const strings = {
   msp_seo_hub_desc: { hi: 'सागर व मध्य प्रदेश की मंडियों का आज का भाव, न्यूनतम समर्थन मूल्य (MSP), रुझान और कब बेचें की सलाह।', en: "Today's Sagar & MP mandi prices, Minimum Support Price (MSP), trends and when-to-sell advice." },
   msp_seo_crop_title: { hi: '{crop} मंडी भाव व MSP — किसान सहयोग', en: '{crop} mandi price & MSP — Kissan Sahyog' },
   msp_seo_crop_desc: { hi: '{crop} का आज का मंडी भाव, न्यूनतम समर्थन मूल्य (MSP) और रुझान — सागर व मध्य प्रदेश।', en: "{crop} today's mandi price, Minimum Support Price (MSP) and trend — Sagar & MP." },
+
+  // --- Phase 4: provider declarations (shown above the rules checkbox for offers) ---
+  provider_decl_heading: { hi: 'विक्रेता घोषणा', en: 'Provider declaration' },
+  provider_decl_equipment: { hi: 'मेरा उपकरण चालू हालत में है, सुरक्षा गार्ड लगे हैं, ऑपरेटर प्रशिक्षित/लाइसेंसधारी है, सामान्य उपयोग में खराबी की ज़िम्मेदारी मेरी है, कोई छिपा शुल्क नहीं।', en: 'My equipment is in working condition, safety guards are fitted, the operator is trained/licensed, I am responsible for faults in normal use, and there are no hidden charges.' },
+  provider_decl_tanker_extra: { hi: 'पानी का स्रोत वैध है; पीने योग्य होने का दावा मेरी स्वयं की घोषणा है।', en: 'The water source is legal; any claim that it is potable is my own self-declaration.' },
+  provider_decl_cold_storage: { hi: 'बताया गया तापमान बनाए रखूँगा; भंडारित माल के बीमा की स्थिति सही बताई है।', en: 'I will maintain the stated temperature; I have stated the insurance status of stored goods correctly.' },
+  provider_decl_greenhouse: { hi: 'काम की लिखित वारंटी दूँगा; किसी सब्सिडी की गारंटी का वादा नहीं करता।', en: 'I will give a written warranty for the work; I do not promise any subsidy guarantee.' },
+  provider_decl_jugaad: { hi: 'यह मशीन/सेवा सुरक्षित है, मैं इसका निर्माता/मालिक हूँ, कानून और सुरक्षा की ज़िम्मेदारी मेरी है; यह सड़क पर चलने वाला वाहन नहीं है।', en: 'This machine/service is safe, I am its maker/owner, legal and safety responsibility is mine; it is not a road-going vehicle.' },
+  err_provider_declaration_required: { hi: 'जारी रखने के लिए विक्रेता घोषणा पर सहमति दें।', en: 'Please agree to the provider declaration to continue.' },
+
+  // --- Phase 4: report / complaint (शिकायत करें) ---
+  report_button: { hi: 'शिकायत करें', en: 'Report' },
+  report_title: { hi: 'शिकायत करें', en: 'Report a problem' },
+  report_intro: { hi: 'कारण चुनें। आपकी शिकायत हमारे शिकायत अधिकारी के पास जाएगी।', en: 'Choose a reason. Your complaint goes to our Grievance Officer.' },
+  report_reason_label: { hi: 'कारण', en: 'Reason' },
+  report_reason_fraud: { hi: 'धोखाधड़ी', en: 'Fraud' },
+  report_reason_wrong_info: { hi: 'गलत जानकारी', en: 'Wrong information' },
+  report_reason_unsafe_equipment: { hi: 'असुरक्षित उपकरण', en: 'Unsafe equipment' },
+  report_reason_wrong_rate: { hi: 'गलत भाव', en: 'Wrong rate' },
+  report_reason_illegal_item: { hi: 'अवैध वस्तु', en: 'Illegal item' },
+  report_reason_duplicate: { hi: 'डुप्लीकेट', en: 'Duplicate' },
+  report_reason_harassment: { hi: 'उत्पीड़न', en: 'Harassment' },
+  report_reason_other: { hi: 'अन्य', en: 'Other' },
+  report_note_label: { hi: 'विवरण (वैकल्पिक)', en: 'Note (optional)' },
+  report_phone_label: { hi: 'आपका फ़ोन नंबर (वैकल्पिक)', en: 'Your phone number (optional)' },
+  report_submit: { hi: 'शिकायत भेजें', en: 'Send complaint' },
+  report_cancel: { hi: 'रद्द करें', en: 'Cancel' },
+  report_success: { hi: 'धन्यवाद — आपकी शिकायत मिल गई। हम 24 घंटे में पावती देंगे।', en: 'Thank you — your complaint was received. We will acknowledge within 24 hours.' },
+  err_report_reason_required: { hi: 'कृपया एक कारण चुनें।', en: 'Please choose a reason.' },
+  err_report_rate_limited: { hi: 'बहुत सी शिकायतें — थोड़ी देर बाद फिर कोशिश करें।', en: 'Too many reports — please try again later.' },
+  err_report_failed: { hi: 'शिकायत भेजने में समस्या — फिर कोशिश करें।', en: 'Could not send the complaint — please try again.' },
+
+  // --- Phase 4: sponsored (built, no ads live) ---
+  sponsored_label: { hi: 'प्रायोजित', en: 'Sponsored' },
+
+  // --- Phase 4: admin reports queue ---
+  admin_reports: { hi: 'शिकायतें', en: 'Reports' },
+  admin_reports_empty: { hi: 'कोई खुली शिकायत नहीं।', en: 'No open complaints.' },
+  admin_report_age: { hi: 'आयु', en: 'Age' },
+  admin_report_target: { hi: 'किस पर', en: 'Target' },
+  admin_report_action_remove: { hi: 'लिस्टिंग हटाएँ', en: 'Remove listing' },
+  admin_report_action_dismiss: { hi: 'खारिज करें', en: 'Dismiss' },
+  admin_report_resolution: { hi: 'निपटारा टिप्पणी', en: 'Resolution note' },
+  admin_report_overdue: { hi: 'समय-सीमा पार', en: 'Overdue' },
 }

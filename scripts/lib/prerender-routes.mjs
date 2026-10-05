@@ -9,6 +9,8 @@ export const STATIC_ROUTES = [
   '/',
   '/privacy',
   '/terms',
+  '/grievance',
+  '/contact',
   '/articles',
   '/resources',
   '/info',

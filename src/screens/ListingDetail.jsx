@@ -9,6 +9,8 @@ import { CatIcon } from '../components/CatIcon'
 import { goBack } from '../components/BackButton'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
 import AvailabilityCalendar from '../components/AvailabilityCalendar'
+import ReportButton from '../components/ReportButton'
+import SponsoredBadge from '../components/SponsoredBadge'
 import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
@@ -102,6 +104,7 @@ export default function ListingDetail() {
           {listing.listing_source === 'vendor' && (
             <span className="ml-1 inline-block rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-800">🏪 {t('vendor_badge')}</span>
           )}
+          <SponsoredBadge sponsored={listing.is_sponsored} className="ml-1 align-middle" />
         </div>
         {distance != null && (
           <span className="ml-auto text-sm font-semibold text-stone-500">
@@ -186,6 +189,11 @@ export default function ListingDetail() {
           </a>
         </div>
       )}
+
+      {/* Report / complaint (§Phase 4) */}
+      <div className="mt-5 flex justify-center">
+        <ReportButton targetType="listing" targetId={listing.id} listingId={listing.id} />
+      </div>
     </Screen>
   )
 }

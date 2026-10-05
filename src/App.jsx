@@ -42,6 +42,8 @@ const AgroForestry = lazy(() => import('./screens/AgroForestry'))
 const Credits = lazy(() => import('./screens/Credits'))
 const KisanMela = lazy(() => import('./screens/KisanMela'))
 const KisanMelaSubmit = lazy(() => import('./screens/KisanMelaSubmit'))
+const Grievance = lazy(() => import('./screens/Grievance'))
+const Contact = lazy(() => import('./screens/Contact'))
 const NotFound = lazy(() => import('./screens/NotFound'))
 
 // Gate for logged-in-only routes.
@@ -82,6 +84,8 @@ function AppRoutes() {
         {/* Informational pages — reachable by everyone (no auth gate). */}
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/grievance" element={<Grievance />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:slug" element={<ArticleDetail />} />
         <Route path="/resources" element={<Resources />} />

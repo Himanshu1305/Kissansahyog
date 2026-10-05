@@ -35,11 +35,18 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
   const canWiden = WIDE_ELIGIBLE_CATEGORIES.includes(category)
   const [wideVisibility, setWideVisibility] = useState(false)
   const [rulesAgreed, setRulesAgreed] = useState(false) // Phase 1a — mandatory, server-enforced
+  const [providerDeclared, setProviderDeclared] = useState(false) // Phase 4 — provider declaration
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
 
   const needsSelfDecl = mod.needsSelfDeclaration(listingType)
+  // Phase 4 — provider declaration for offer-side provider categories (server-enforced
+  // in create_listing). Water tanker adds an extra line (Phase 5, equipment sub-type).
+  const PROVIDER_DECL_KEY = { equipment: 'provider_decl_equipment', warehouse: 'provider_decl_cold_storage' }
+  const providerDeclKey = PROVIDER_DECL_KEY[category]
+  const isTanker = category === 'equipment' && String(details?.equipment_type_id || '') === 'water_tanker'
+  const needsProviderDecl = listingType === 'offer' && !!providerDeclKey
 
   useEffect(() => {
     let alive = true
@@ -66,15 +73,20 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
       setError(t('err_self_declaration_required'))
       return
     }
+    if (needsProviderDecl && !providerDeclared) {
+      setError(t('err_provider_declaration_required'))
+      return
+    }
     if (!rulesAgreed) {
       setError(t('err_rules_agreement_required'))
       return
     }
     setBusy(true)
     try {
-      const finalDetails = mod.finalizeDetails
+      const baseDetails = mod.finalizeDetails
         ? await mod.finalizeDetails(details, { actorId: user.id, user, listingType })
         : details
+      const finalDetails = needsProviderDecl ? { ...baseDetails, provider_declared: true } : baseDetails
       const listing = await createListing({
         actorId: user.id,
         listingType,
@@ -161,6 +173,25 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
             className="mt-1 h-6 w-6 shrink-0 accent-green-700"
           />
           <span className="text-base font-medium text-stone-800">{t('self_declaration_land')}</span>
+        </label>
+      )}
+
+      {/* Phase 4 — category-specific provider declaration, above the rules checkbox
+          (server-enforced in create_listing for offer-side provider categories). */}
+      {needsProviderDecl && (
+        <label className="my-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-green-300 bg-green-50 p-4">
+          <input
+            type="checkbox"
+            checked={providerDeclared}
+            onChange={(e) => setProviderDeclared(e.target.checked)}
+            className="mt-1 h-6 w-6 shrink-0 accent-green-700"
+            data-testid="provider-decl-checkbox"
+          />
+          <span className="text-sm leading-relaxed text-stone-800">
+            <span className="block font-semibold">{t('provider_decl_heading')}</span>
+            <span className="mt-1 block">{t(providerDeclKey)}</span>
+            {isTanker && <span className="mt-1 block">{t('provider_decl_tanker_extra')}</span>}
+          </span>
         </label>
       )}
 

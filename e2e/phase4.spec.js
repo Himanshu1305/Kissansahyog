@@ -42,8 +42,9 @@ test('equipment OFFER with availability toggle, no self-declaration', async ({ p
   await startPost(page, 'Offering', 'Equipment')
   await page.locator('#f_equipment_type_id').waitFor({ timeout: 8000 })
 
-  // Equipment needs no self-declaration; the mandatory rules checkbox is the only one.
-  await expect(page.getByRole('checkbox')).toHaveCount(1)
+  // Equipment OFFER (Phase 4): no land self-declaration, but the provider
+  // declaration + mandatory rules checkbox are both present (2 checkboxes).
+  await expect(page.getByRole('checkbox')).toHaveCount(2)
 
   await page.getByLabel('Equipment type').selectOption({ label: 'Tractor' })
   await page.getByLabel('Rental basis').selectOption({ label: 'Per hour' })
@@ -59,6 +60,7 @@ test('equipment OFFER with availability toggle, no self-declaration', async ({ p
   await expect(page.getByLabel('From date')).toHaveCount(0)
 
   await page.locator('#f_asset_village').fill('Khurai')
+  await page.getByTestId('provider-decl-checkbox').check()
   await page.getByTestId('rules-agree-checkbox').check()
   await page.getByRole('button', { name: 'Submit' }).click()
   await page.getByRole('button', { name: 'View listing' }).click()

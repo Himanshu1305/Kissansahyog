@@ -19,6 +19,14 @@ export const getAdminUsers = (actorId, { limit = 25, offset = 0, search = '' } =
 export const removeListing = (actorId, listingId) =>
   rpc('remove_listing', { p_actor_id: actorId, p_listing_id: listingId })
 
+// Phase 4 — complaints queue + sponsored toggle.
+export const getListingReports = (actorId, status = 'open') =>
+  rpc('get_listing_reports', { p_actor_id: actorId, p_status: status, p_limit: 100 })
+export const resolveListingReport = (actorId, reportId, action, resolutionNote = null) =>
+  rpc('resolve_listing_report', { p_actor_id: actorId, p_report_id: reportId, p_action: action, p_resolution_note: resolutionNote })
+export const adminSetListingSponsored = (actorId, listingId, sponsored) =>
+  rpc('admin_set_listing_sponsored', { p_actor_id: actorId, p_listing_id: listingId, p_sponsored: sponsored })
+
 export const adminListExperts = (actorId) => rpc('admin_list_experts', { p_actor_id: actorId })
 export const adminSetExpertActive = (actorId, expertId, active) =>
   rpc('admin_set_expert_active', { p_actor_id: actorId, p_expert_id: expertId, p_active: active })
