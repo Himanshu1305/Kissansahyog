@@ -17,13 +17,13 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Commit Phase 0
 
 ## Phase 1 — Citation & accuracy framework
-- [ ] docs/research/SOURCES.md (seed from dossiers + Appendix A)
-- [ ] src/content/sources.js (generated from SOURCES.md)
-- [ ] Structured content model src/content/pages/<slug>.js + block renderer
-- [ ] Components: Cite, SourcesList, LastUpdated, PastExampleNote, Calc
-- [ ] scripts/test/v2_citation_audit.mjs
-- [ ] scripts/test/v2_link_check.mjs
-- [ ] Commit
+- [x] docs/research/SOURCES.md (seed from dossiers + Appendix A)
+- [x] src/content/sources.js (generated from SOURCES.md)
+- [x] Structured content model src/content/pages/<slug>.js + block renderer
+- [x] Components: Cite, SourcesList, LastUpdated, PastExampleNote, Calc
+- [x] scripts/test/v2_citation_audit.mjs
+- [x] scripts/test/v2_link_check.mjs
+- [x] Commit
 
 ## Phase 2 — Central layout + SEO/prerender infra
 - [ ] PageShell + Section/ContentColumn/Grid/Breadcrumbs + tokens.css

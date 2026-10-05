@@ -105,7 +105,10 @@ const offenders = []
     if (statSync(p).isDirectory()) walk(p)
     else if (/\.(jsx|js)$/.test(f)) {
       const rel = p.slice(ROOT.length + 1)
-      if (!ALLOWED.has(rel) && dev.test(stripComments(readFileSync(p, 'utf8')))) offenders.push(rel)
+      // src/content/ is the bilingual content/data layer (sources register, structured
+      // content pages, Q&A) — Hindi there is data, not hardcoded render copy.
+      const allowed = ALLOWED.has(rel) || rel.startsWith('src/content/')
+      if (!allowed && dev.test(stripComments(readFileSync(p, 'utf8')))) offenders.push(rel)
     }
   }
 })(join(ROOT, 'src'))

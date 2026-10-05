@@ -1712,4 +1712,22 @@ export const strings = {
   mela_home_title: { hi: 'आस-पास के किसान मेले', en: 'Kisan Melas near you' },
   mela_home_all: { hi: 'सभी मेले देखें', en: 'See all Melas' },
   mela_home_empty: { hi: 'अभी कोई मेला सूचीबद्ध नहीं — किसी मेले की जानकारी हो तो साझा करें।', en: 'No Melas listed yet — share one if you know of it.' },
+
+  // --- V2 content / citation framework (Phase 1) ---
+  sources_heading: { hi: 'स्रोत', en: 'Sources' },
+  summary_heading: { hi: 'संक्षेप में', en: 'In brief' },
+  faq_heading: { hi: 'अक्सर पूछे जाने वाले सवाल', en: 'Frequently asked questions' },
+  calc_label: { hi: 'गणना', en: 'calculation' },
+  calc_disclaimer: { hi: 'अनुमान — अंतिम राशि विभाग तय करेगा।', en: 'Estimate — the final amount is decided by the department.' },
+  last_updated: { hi: 'अंतिम अपडेट', en: 'Last updated' },
+  last_checked: { hi: 'अंतिम जाँच', en: 'Last checked' },
+  byline: { hi: 'Team Kissan Sahyog', en: 'Team Kissan Sahyog' },
+  past_example_note: { hi: 'पिछला उदाहरण — गारंटी नहीं', en: 'Past example — not a guarantee' },
+  src_type_official: { hi: 'सरकारी स्रोत', en: 'Official' },
+  src_type_news: { hi: 'समाचार', en: 'News' },
+  src_type_company: { hi: 'कंपनी का दावा', en: 'Company claim' },
+  src_type_judgment: { hi: 'न्यायालय निर्णय', en: 'Judgment' },
+  src_type_secondary: { hi: 'अन्य स्रोत', en: 'Secondary' },
+  breadcrumb_home: { hi: 'होम', en: 'Home' },
+  content_toc: { hi: 'इस पेज में', en: 'On this page' },
 }
