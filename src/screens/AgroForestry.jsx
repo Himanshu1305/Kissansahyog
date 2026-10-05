@@ -110,6 +110,13 @@ export default function AgroForestry() {
           </button>
         </section>
 
+        {/* Link to the greenhouse / carbon hubs (Phase 7/8). */}
+        <section className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => navigate('/greenhouse')} className="rounded-xl border-2 px-4 py-2 text-[15px] font-bold" style={{ borderColor: 'var(--ks-green)', color: 'var(--ks-green)' }}>
+            🏡 {t('home_cat_greenhouse')} →
+          </button>
+        </section>
+
         {/* 6 — WhatsApp share */}
         <ShareWhatsApp text={shareText} />
 

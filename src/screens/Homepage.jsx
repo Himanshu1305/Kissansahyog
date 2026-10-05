@@ -44,6 +44,7 @@ const CATEGORY_TILES = [
   { img: 'cat-inputs.jpg', labelKey: 'cat_inputs_label', subKey: 'cat_inputs_sub', to: 'agri_inputs' },
   { img: 'cat-godown.jpg', labelKey: 'cat_godown_label', subKey: 'cat_godown_sub', to: 'warehouse' },
   { img: 'cat-godown.jpg', labelKey: 'cs_tile_label', subKey: 'cs_tile_sub', path: '/cold-storage' },
+  { img: 'cat-inputs.jpg', labelKey: 'gh_tile_label', subKey: 'gh_tile_sub', path: '/greenhouse' },
   { img: 'list-tractor.jpg', labelKey: 'cat_transport_label', subKey: 'cat_transport_sub', to: 'transport' },
   { img: 'cat-expert.jpg', labelKey: 'cat_expert_label', subKey: 'cat_expert_sub', to: 'experts' },
   { img: 'cat-land.jpg', labelKey: 'cat_land_label', subKey: 'cat_land_sub', to: 'land' },

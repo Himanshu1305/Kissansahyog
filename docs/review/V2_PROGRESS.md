@@ -63,13 +63,13 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] District pages /cold-storage/<district> (prerendered, ItemList + LocalBusiness JSON-LD, Sagar special note); warehouse 100km wide-visibility
 - [x] Tests v2_phase6.mjs (25/25); SEO 85 routes; E2E pending; commits after import + after pages. (screenshots → Phase 15)
 
-## Phase 7 — Greenhouse/polyhouse hub + marketplace
-- [ ] /greenhouse hub (3000+ words Hindi, structured, prerendered)
-- [ ] MPFSTS scanned PDF read (cost norms) per §0.2(7)
-- [ ] Calculators (cost, MP subsidy)
-- [ ] Marketplace category + vendor sub-types + fields (100km)
-- [ ] Ad slots empty w/ SponsoredBadge
-- [ ] Links; tests; screenshots; commit
+## Phase 7 — Greenhouse/polyhouse hub + marketplace  (migration 0042)
+- [x] /greenhouse hub (~3046 words Hindi, structured content, prerendered, 22 FAQs, HowTo, cost-norm table)
+- [x] MP cost norms cited from S-GH-14 (official MIDH-pattern slabs) + S-GH-38 (MP news 935/844/50%) + S-GH-10 (fan-pad) — scanned MP PDF not re-rendered (values already verified in registered sources; D15)
+- [x] Calculators (cost + MP 50% subsidy, formula visible, cited S-GH-14, disclaimer)
+- [x] Marketplace category 'greenhouse' (vendor sub-types + farmer requirement + vendor fields; 100km wide; provider declaration; 4 samples)
+- [x] Ad slot gated via SponsoredBadge (no ads live)
+- [x] Links from Agro Forestry + homepage tile + बाज़ार menu; tests v2_phase7 20/20; e2e phase18 chip count →9; SEO 86 routes. (screenshots → Phase 15)
 
 ## Phase 8 — Carbon credit page
 - [ ] /carbon-credit (2500-3500 words, structured, prerendered)

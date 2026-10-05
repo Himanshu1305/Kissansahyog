@@ -1,43 +1,34 @@
--- V2 Phase 5 — Water tanker (an equipment sub-type, not a new category).
---   1. Add the "पानी का टैंकर / Water tanker" equipment type.
---   2. create_listing validates tanker fields (capacity in litres) when the
---      selected equipment type is Water tanker.
---   3. A system "sample" profile + a few is_test_data tanker listings so the
---      page is not empty.
+-- V2 Phase 7 — Greenhouse / polyhouse marketplace category.
+--   1. listings.category CHECK admits 'greenhouse'.
+--   2. create_listing: validates greenhouse (vendor sub-type / farmer area),
+--      provider declaration for greenhouse offers, 100km wide-visibility.
+--   3. Sample greenhouse listings (is_test_data).
 -- Additive + idempotent.
 
--- 1. The equipment type (unique on name_en → idempotent).
-insert into public.equipment_types (name_hi, name_en)
-  values ('पानी का टैंकर', 'Water tanker')
-  on conflict (name_en) do nothing;
+-- Expand the listings category CHECK to admit 'greenhouse'.
+alter table public.listings drop constraint if exists listings_category_check;
+alter table public.listings
+  add constraint listings_category_check
+  check (category in ('land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'transport', 'greenhouse'));
 
--- 3a. A single shared system profile for all is_test_data sample listings
--- across V2 (fixed uuid so phases can reuse it). Not a real user.
+-- The sample system profile must sit OUTSIDE the E2E test-phone range
+-- (9000000000–9000099999, wiped by e2e/global-teardown.js). Re-create it with a
+-- safe phone (the earlier 9000… row was deleted by a teardown) and restore the
+-- Phase 5 tanker samples that cascaded away with it.
 insert into public.profiles (id, full_name, phone, village_town, pincode, latitude, longitude, disclaimer_accepted_at, is_test_data)
   values ('00000000-0000-0000-0000-0000000005a9', 'किसान सहयोग (नमूना)', '9400000001', 'Sagar', '470001', 23.8388, 78.7378, now(), true)
-  on conflict (id) do nothing;
+  on conflict (id) do update set phone = excluded.phone;
 
--- 3b. Sample tanker listings (is_test_data). Delete-then-insert so re-running is clean.
 delete from public.listings
-  where is_test_data = true and user_id = '00000000-0000-0000-0000-0000000005a9' and category = 'equipment'
-    and (details->>'is_tanker') = 'true';
-
+  where is_test_data = true and user_id = '00000000-0000-0000-0000-0000000005a9' and category = 'equipment' and (details->>'is_tanker') = 'true';
 insert into public.listings (user_id, listing_type, category, latitude, longitude, pincode, village_name, geocoding_status, details, listing_source, is_test_data, expires_at)
 select '00000000-0000-0000-0000-0000000005a9', v.listing_type, 'equipment', 23.8388, 78.7378, '470001', 'Sagar', 'resolved',
        jsonb_build_object(
          'equipment_type_id', (select id from public.equipment_types where name_en = 'Water tanker'),
-         'is_tanker', true,
-         'capacity_litres', v.cap,
-         'tanker_vehicle', v.veh,
-         'water_use', v.use,
-         'water_source', v.src,
-         'rate_per_trip', v.trip,
-         'rate_per_1000l', v.k,
-         'service_radius_km', v.radius,
-         'available_months', v.months,
-         'provider_declared', true
-       ),
-       'farmer', true, now() + interval '10 years'
+         'is_tanker', true, 'capacity_litres', v.cap, 'tanker_vehicle', v.veh, 'water_use', v.use,
+         'water_source', v.src, 'rate_per_trip', v.trip, 'rate_per_1000l', v.k,
+         'service_radius_km', v.radius, 'available_months', v.months, 'provider_declared', true
+       ), 'farmer', true, now() + interval '10 years'
 from (values
   ('offer', 5000, 'tractor_trolley', 'both', 'own_borewell', '₹600/ट्रिप', '₹120', 15, '["mar","apr","may","jun"]'::jsonb),
   ('offer', 10000, 'truck', 'non_potable', 'river_pond', '₹1200/ट्रिप', '₹120', 25, '["mar","apr","may","jun"]'::jsonb),
@@ -45,8 +36,22 @@ from (values
   ('requirement', 5000, 'other', 'both', 'other', null, null, 20, '["may","jun"]'::jsonb)
 ) as v(listing_type, cap, veh, use, src, trip, k, radius, months);
 
--- 2. create_listing with Water-tanker validation (recreate; full body kept in sync
---    with 0039 + the tanker check in the equipment block).
+-- Sample greenhouse listings (delete-then-insert for idempotency).
+delete from public.listings
+  where is_test_data = true and user_id = '00000000-0000-0000-0000-0000000005a9' and category = 'greenhouse';
+
+insert into public.listings (user_id, listing_type, category, latitude, longitude, pincode, village_name, geocoding_status, details, listing_source, is_test_data, expires_at)
+select '00000000-0000-0000-0000-0000000005a9', v.lt, 'greenhouse', 23.8388, 78.7378, '470001', 'Sagar', 'resolved',
+       v.details::jsonb, v.src, true, now() + interval '10 years'
+from (values
+  ('offer', 'vendor', '{"vendor_subtype":"construction","structure_types":["polyhouse","shadenet"],"pipe_gauge":"2 inch GI","film_micron":"200 micron","warranty_years":"5","price_range_per_sqm":"₹900–₹1100/m²","districts_served":"Sagar, Damoh, Vidisha","mp_agro_year":"2022-23 (दावा)","provider_declared":true}'),
+  ('offer', 'vendor', '{"vendor_subtype":"drip_fogger","structure_types":["polyhouse"],"price_range_per_sqm":"परियोजना अनुसार","districts_served":"Sagar","provider_declared":true}'),
+  ('offer', 'vendor', '{"vendor_subtype":"nursery","structure_types":["shadenet"],"price_range_per_sqm":"पौध दर अनुसार","districts_served":"Bundelkhand","provider_declared":true}'),
+  ('requirement', 'farmer', '{"area_sqm":"2000","structure_type":"polyhouse","crop":"शिमला मिर्च","budget":"₹15 लाख तक","village":"Sagar"}')
+) as v(lt, src, details);
+
+-- create_listing with 'greenhouse' admitted (category set + wide set + provider
+-- set + a light greenhouse validation block). Body kept in sync with 0041.
 create or replace function public.create_listing(
   p_actor_id      uuid,
   p_listing_type  text,
@@ -90,14 +95,14 @@ begin
   if not found then raise exception 'not_authorized'; end if;
   if v_actor.disclaimer_accepted_at is null then raise exception 'disclaimer_not_accepted'; end if;
   if p_listing_type not in ('offer', 'requirement') then raise exception 'invalid_listing_type'; end if;
-  if p_category not in ('land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'transport') then
+  if p_category not in ('land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'transport', 'greenhouse') then
     raise exception 'invalid_category';
   end if;
-  if v_wide and p_category not in ('bhusa', 'agri_inputs') then
+  if v_wide and p_category not in ('bhusa', 'agri_inputs', 'warehouse', 'greenhouse') then
     raise exception 'wide_visibility_not_allowed';
   end if;
 
-  if p_listing_type = 'offer' and p_category in ('equipment', 'warehouse')
+  if p_listing_type = 'offer' and p_category in ('equipment', 'warehouse', 'greenhouse')
      and coalesce(p_details->>'provider_declared', '') <> 'true' then
     raise exception 'provider_declaration_required';
   end if;
@@ -131,13 +136,20 @@ begin
   end if;
   if p_category = 'equipment' then
     if coalesce(p_details->>'equipment_type_id', '') = '' then raise exception 'equipment_type_required'; end if;
-    -- Water-tanker sub-type: capacity in litres is required (both offers + requirements).
     select exists (
       select 1 from public.equipment_types et
       where et.id = nullif(p_details->>'equipment_type_id', '')::int and et.name_en = 'Water tanker'
     ) into v_is_tanker;
     if v_is_tanker and coalesce((p_details->>'capacity_litres')::numeric, 0) <= 0 then
       raise exception 'tanker_capacity_required';
+    end if;
+  end if;
+  if p_category = 'greenhouse' then
+    if p_listing_type = 'offer' then
+      if coalesce(trim(p_details->>'vendor_subtype'), '') = '' then raise exception 'vendor_subtype_required'; end if;
+    else
+      if coalesce(trim(p_details->>'structure_type'), '') = '' then raise exception 'gh_structure_required'; end if;
+      if coalesce(trim(p_details->>'area_sqm'), '') = '' then raise exception 'gh_area_required'; end if;
     end if;
   end if;
   if p_category = 'labor' then

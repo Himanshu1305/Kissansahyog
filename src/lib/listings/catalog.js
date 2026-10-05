@@ -4,7 +4,23 @@
 
 // Order matters (nav strip, browse tabs, post selector). Land is intentionally
 // LAST; Drone Didi sits after Labor.
-export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'transport', 'land']
+export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'greenhouse', 'transport', 'land']
+
+// --- Greenhouse / polyhouse (Phase 7) ---
+export const GH_VENDOR_SUBTYPE = [
+  { value: 'construction', hi: 'निर्माण / टर्नकी', en: 'Construction / turnkey' },
+  { value: 'repair_film', hi: 'मरम्मत व फ़िल्म बदलना', en: 'Repair & film replacement' },
+  { value: 'drip_fogger', hi: 'ड्रिप / फॉगर / फर्टिगेशन', en: 'Drip / fogger / fertigation' },
+  { value: 'nursery', hi: 'पौध / नर्सरी', en: 'Seedlings / nursery' },
+  { value: 'advice_docs', hi: 'सलाह व सब्सिडी कागज़ात', en: 'Advice & subsidy paperwork' },
+  { value: 'used_material', hi: 'पुराना ढांचा / सामग्री', en: 'Used structure / material' },
+]
+export const GH_STRUCTURE = [
+  { value: 'polyhouse', hi: 'पॉलीहाउस', en: 'Polyhouse' },
+  { value: 'shadenet', hi: 'शेड-नेट', en: 'Shade-net' },
+  { value: 'fanpad', hi: 'फैन-पैड', en: 'Fan-pad' },
+  { value: 'lowtunnel', hi: 'वॉक-इन / लो-टनल', en: 'Walk-in / low tunnel' },
+]
 export const LISTING_TYPES = ['offer', 'requirement']
 
 // Category display metadata (icon + bilingual name).
@@ -18,6 +34,7 @@ export const CATEGORY_META = {
   bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
   warehouse: { icon: '🏬', hi: 'गोदाम और कोल्ड स्टोरेज', en: 'Warehouse & Cold Storage' },
+  greenhouse: { icon: '🏡', hi: 'ग्रीनहाउस / पॉलीहाउस', en: 'Greenhouse / Polyhouse' },
   transport: { icon: '🚚', hi: 'परिवहन / ढुलाई', en: 'Transport' },
 }
 
