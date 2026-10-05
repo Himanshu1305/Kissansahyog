@@ -54,14 +54,14 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Offer+Requirement (no borewell warning, no benchmarks); homepage tile + seasonal box (Mar–Jun); बाज़ार menu entry; Browse etype=water_tanker filter
 - [x] Validation client (equipment.jsx validate) + create_listing (tanker_capacity_required); 4 sample listings (is_test_data); test v2_phase5.mjs (13/13); E2E 77/77; eager bundle 189KB. (screenshots → Phase 15 per D7)
 
-## Phase 6 — Cold storage (directory + marketplace)
-- [ ] Rename category; tile + menu
-- [ ] /cold-storage hub (bilingual, prerendered)
-- [ ] New cold-storage listing fields
-- [ ] cold_storage_directory table + import 243 rows
-- [ ] Claim + removal flow
-- [ ] District pages /cold-storage/<district>
-- [ ] Tests; screenshots; commit (after import + after pages)
+## Phase 6 — Cold storage (directory + marketplace)  (migration 0041)
+- [x] Rename category label → "गोदाम और कोल्ड स्टोरेज / Warehouse & Cold Storage"; कोल्ड स्टोरेज tile + बाज़ार menu entry → /cold-storage
+- [x] /cold-storage hub (bilingual content page + live directory with district/type filters + browse-by-district index; prerendered; A.4 capacity cited S-CS-01)
+- [x] New cold-storage listing fields (warehouse_type='cold': facility type, temp, crops, space-available+updated, rate unit, season, loading, power, insurance, WDRA, pledge-loan)
+- [x] cold_storage_directory table + public column-safe view + import 243 rows (notes private, phones shown, OLD LIST flagged, Kajal→Niwari §0.7)
+- [x] Claim (submit_cs_claim → admin approve → owner-managed) + correction/removal via ReportButton target_type=cold_storage; admin ColdStorageClaimsPanel
+- [x] District pages /cold-storage/<district> (prerendered, ItemList + LocalBusiness JSON-LD, Sagar special note); warehouse 100km wide-visibility
+- [x] Tests v2_phase6.mjs (25/25); SEO 85 routes; E2E pending; commits after import + after pages. (screenshots → Phase 15)
 
 ## Phase 7 — Greenhouse/polyhouse hub + marketplace
 - [ ] /greenhouse hub (3000+ words Hindi, structured, prerendered)

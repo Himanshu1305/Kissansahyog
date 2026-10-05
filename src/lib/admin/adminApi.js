@@ -27,6 +27,12 @@ export const resolveListingReport = (actorId, reportId, action, resolutionNote =
 export const adminSetListingSponsored = (actorId, listingId, sponsored) =>
   rpc('admin_set_listing_sponsored', { p_actor_id: actorId, p_listing_id: listingId, p_sponsored: sponsored })
 
+// Phase 6 — cold storage directory claims.
+export const getCsClaims = (actorId, status = 'pending') =>
+  rpc('get_cs_claims', { p_actor_id: actorId, p_status: status })
+export const resolveCsClaim = (actorId, claimId, approve) =>
+  rpc('resolve_cs_claim', { p_actor_id: actorId, p_claim_id: claimId, p_approve: approve })
+
 export const adminListExperts = (actorId) => rpc('admin_list_experts', { p_actor_id: actorId })
 export const adminSetExpertActive = (actorId, expertId, active) =>
   rpc('admin_set_expert_active', { p_actor_id: actorId, p_expert_id: expertId, p_active: active })

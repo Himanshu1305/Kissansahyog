@@ -11,6 +11,7 @@ export const STATIC_ROUTES = [
   '/terms',
   '/grievance',
   '/contact',
+  '/cold-storage',
   '/articles',
   '/resources',
   '/info',

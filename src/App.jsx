@@ -44,6 +44,8 @@ const KisanMela = lazy(() => import('./screens/KisanMela'))
 const KisanMelaSubmit = lazy(() => import('./screens/KisanMelaSubmit'))
 const Grievance = lazy(() => import('./screens/Grievance'))
 const Contact = lazy(() => import('./screens/Contact'))
+const ColdStorage = lazy(() => import('./screens/ColdStorage'))
+const ColdStorageDistrict = lazy(() => import('./screens/ColdStorageDistrict'))
 const NotFound = lazy(() => import('./screens/NotFound'))
 
 // Gate for logged-in-only routes.
@@ -86,6 +88,9 @@ function AppRoutes() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/grievance" element={<Grievance />} />
         <Route path="/contact" element={<Contact />} />
+        {/* Static /cold-storage before the dynamic district route. */}
+        <Route path="/cold-storage" element={<ColdStorage />} />
+        <Route path="/cold-storage/:district" element={<ColdStorageDistrict />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:slug" element={<ArticleDetail />} />
         <Route path="/resources" element={<Resources />} />

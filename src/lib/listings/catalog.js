@@ -17,7 +17,7 @@ export const CATEGORY_META = {
   drone_didi: { icon: '🛰️', hi: 'ड्रोन दीदी', en: 'Drone Didi' },
   bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
-  warehouse: { icon: '🏬', hi: 'गोदाम / भंडारण', en: 'Warehouse & Storage' },
+  warehouse: { icon: '🏬', hi: 'गोदाम और कोल्ड स्टोरेज', en: 'Warehouse & Cold Storage' },
   transport: { icon: '🚚', hi: 'परिवहन / ढुलाई', en: 'Transport' },
 }
 
@@ -128,6 +128,24 @@ export const WAREHOUSE_FACILITY = [
   { value: 'security', hi: 'सुरक्षा', en: 'Security Guard' },
   { value: 'loading', hi: 'लोडिंग-अनलोडिंग', en: 'Loading-Unloading' },
   { value: 'weighing', hi: 'वजन काँटा', en: 'Weighing Scale' },
+]
+// Cold-storage specific (Phase 6) — shown when warehouse_type = 'cold'.
+export const CS_FACILITY_TYPE = [
+  { value: 'bulk', hi: 'बल्क (एक फसल)', en: 'Bulk (single commodity)' },
+  { value: 'multi', hi: 'मल्टी-कमोडिटी', en: 'Multi-commodity' },
+  { value: 'solar', hi: 'सोलर कोल्ड रूम', en: 'Solar cold room' },
+  { value: 'ripening', hi: 'राइपनिंग चैंबर', en: 'Ripening chamber' },
+  { value: 'ca', hi: 'CA (नियंत्रित वातावरण)', en: 'CA (controlled atmosphere)' },
+]
+export const CS_RATE_UNIT = [
+  { value: 'per_qtl_month', hi: 'प्रति क्विंटल/माह', en: 'Per quintal/month' },
+  { value: 'per_bag_season', hi: 'प्रति बोरी/सीज़न', en: 'Per bag/season' },
+  { value: 'per_crate_day', hi: 'प्रति क्रेट/दिन', en: 'Per crate/day' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const YES_NO = [
+  { value: 'yes', hi: 'हाँ', en: 'Yes' },
+  { value: 'no', hi: 'नहीं', en: 'No' },
 ]
 
 // --- Bhusa / Parali (agricultural residue) ---

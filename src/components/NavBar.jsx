@@ -19,6 +19,7 @@ const CATEGORIES = [
   { key: 'bhusa', labelKey: 'home_cat_bhusa' },
   { key: 'agri_inputs', labelKey: 'home_cat_agri_inputs' },
   { key: 'warehouse', labelKey: 'home_cat_warehouse' },
+  { key: 'cold_storage', labelKey: 'cs_hub_nav', path: '/cold-storage' },
   { key: 'transport', labelKey: 'home_cat_transport' },
   { key: 'experts', labelKey: 'home_cat_experts' },
   { key: 'land', labelKey: 'home_cat_land' },

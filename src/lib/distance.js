@@ -15,7 +15,7 @@ export const MIN_PRIMARY_RESULTS = 5
 // wide_visibility flag (enforced server-side in create_listing); when set, such a
 // listing is visible out to WIDE_RADIUS_KM. Every other listing obeys the 30/50 rule.
 export const WIDE_RADIUS_KM = 100
-export const WIDE_ELIGIBLE_CATEGORIES = ['bhusa', 'agri_inputs']
+export const WIDE_ELIGIBLE_CATEGORIES = ['bhusa', 'agri_inputs', 'warehouse']
 
 // True only for an eligible category flagged wide_visibility, in the 30–100 km band.
 // (Within 30 km every listing is already "primary"; this only extends the reach.)

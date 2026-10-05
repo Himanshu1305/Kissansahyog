@@ -43,6 +43,7 @@ const CATEGORY_TILES = [
   { img: 'cat-straw.jpg', labelKey: 'cat_straw_label', subKey: 'cat_straw_sub', to: 'bhusa' },
   { img: 'cat-inputs.jpg', labelKey: 'cat_inputs_label', subKey: 'cat_inputs_sub', to: 'agri_inputs' },
   { img: 'cat-godown.jpg', labelKey: 'cat_godown_label', subKey: 'cat_godown_sub', to: 'warehouse' },
+  { img: 'cat-godown.jpg', labelKey: 'cs_tile_label', subKey: 'cs_tile_sub', path: '/cold-storage' },
   { img: 'list-tractor.jpg', labelKey: 'cat_transport_label', subKey: 'cat_transport_sub', to: 'transport' },
   { img: 'cat-expert.jpg', labelKey: 'cat_expert_label', subKey: 'cat_expert_sub', to: 'experts' },
   { img: 'cat-land.jpg', labelKey: 'cat_land_label', subKey: 'cat_land_sub', to: 'land' },
@@ -230,7 +231,7 @@ export default function Homepage() {
         <SectionHeader title={t('cats_title')} />
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {CATEGORY_TILES.map((c) => (
-            <PhotoTile key={c.labelKey} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} onClick={() => tileClick(c.to, c.etype)} />
+            <PhotoTile key={c.labelKey} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} onClick={() => (c.path ? navigate(c.path) : tileClick(c.to, c.etype))} />
           ))}
         </div>
       </Section>
