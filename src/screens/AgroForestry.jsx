@@ -115,6 +115,9 @@ export default function AgroForestry() {
           <button type="button" onClick={() => navigate('/greenhouse')} className="rounded-xl border-2 px-4 py-2 text-[15px] font-bold" style={{ borderColor: 'var(--ks-green)', color: 'var(--ks-green)' }}>
             🏡 {t('home_cat_greenhouse')} →
           </button>
+          <button type="button" onClick={() => navigate('/carbon-credit')} className="rounded-xl border-2 px-4 py-2 text-[15px] font-bold" style={{ borderColor: 'var(--ks-green)', color: 'var(--ks-green)' }}>
+            🌱 {t('carbon_nav')} →
+          </button>
         </section>
 
         {/* 6 — WhatsApp share */}

@@ -63,6 +63,8 @@ const CODE_TO_KEY = {
   provider_declaration_required: 'err_provider_declaration_required',
   tanker_capacity_required: 'err_tanker_capacity_required',
   claim_fields_required: 'err_claim_fields_required',
+  invalid_choice: 'err_poll_choice',
+  suggestion_body_required: 'err_suggestion_body',
   vendor_subtype_required: 'err_gh_vendor_subtype_required',
   gh_structure_required: 'err_gh_structure_required',
   gh_area_required: 'err_gh_area_required',

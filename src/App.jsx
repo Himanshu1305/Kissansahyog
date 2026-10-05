@@ -47,6 +47,8 @@ const Contact = lazy(() => import('./screens/Contact'))
 const ColdStorage = lazy(() => import('./screens/ColdStorage'))
 const ColdStorageDistrict = lazy(() => import('./screens/ColdStorageDistrict'))
 const Greenhouse = lazy(() => import('./screens/Greenhouse'))
+const CarbonCredit = lazy(() => import('./screens/CarbonCredit'))
+const CarbonBrief = lazy(() => import('./screens/CarbonBrief'))
 const NotFound = lazy(() => import('./screens/NotFound'))
 
 // Gate for logged-in-only routes.
@@ -93,6 +95,9 @@ function AppRoutes() {
         <Route path="/cold-storage" element={<ColdStorage />} />
         <Route path="/cold-storage/:district" element={<ColdStorageDistrict />} />
         <Route path="/greenhouse" element={<Greenhouse />} />
+        {/* Static /carbon-credit/niti-sujhav before /carbon-credit (distinct literals, order safe). */}
+        <Route path="/carbon-credit/niti-sujhav" element={<CarbonBrief />} />
+        <Route path="/carbon-credit" element={<CarbonCredit />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:slug" element={<ArticleDetail />} />
         <Route path="/resources" element={<Resources />} />

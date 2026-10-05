@@ -71,11 +71,11 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Ad slot gated via SponsoredBadge (no ads live)
 - [x] Links from Agro Forestry + homepage tile + बाज़ार menu; tests v2_phase7 20/20; e2e phase18 chip count →9; SEO 86 routes. (screenshots → Phase 15)
 
-## Phase 8 — Carbon credit page
-- [ ] /carbon-credit (2500-3500 words, structured, prerendered)
-- [ ] /carbon-credit/niti-sujhav printable brief
-- [ ] Poll + suggestions tables (RLS, constrained anon insert)
-- [ ] 5 quotable stats; schema; links; tests; screenshots; commit
+## Phase 8 — Carbon credit page  (migration 0043)
+- [x] /carbon-credit (~2845 words Hindi, question title, structured, prerendered, 21 FAQs, पक्ष/विपक्ष, risks, policy options, glossary, red-flag checklist; §0.7 clean)
+- [x] /carbon-credit/niti-sujhav printable policy brief (print CSS A4, cited)
+- [x] Poll (one-per-device, results after voting) + suggestions (unpublished→admin approve) tables + RPCs (RLS, constrained anon insert, no anon raw read); admin CarbonSuggestionsPanel
+- [x] 5 quotable stats (cited); PastExampleNote + Calc(avg) on examples; Article/FAQPage schema; links from Agro Forestry + homepage tile; tests v2_phase8 32/32; SEO 88 routes. (screenshots → Phase 15)
 
 ## Phase 9 — Jugaad (marketplace + info page)
 - [ ] Category जुगाड़ + offer types + fields + road-vehicle validation

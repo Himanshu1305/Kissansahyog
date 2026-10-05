@@ -33,6 +33,12 @@ export const getCsClaims = (actorId, status = 'pending') =>
 export const resolveCsClaim = (actorId, claimId, approve) =>
   rpc('resolve_cs_claim', { p_actor_id: actorId, p_claim_id: claimId, p_approve: approve })
 
+// Phase 8 — carbon suggestions moderation.
+export const getCarbonSuggestionsAdmin = (actorId, status = 'pending') =>
+  rpc('get_carbon_suggestions_admin', { p_actor_id: actorId, p_status: status })
+export const resolveCarbonSuggestion = (actorId, id, approve) =>
+  rpc('resolve_carbon_suggestion', { p_actor_id: actorId, p_id: id, p_approve: approve })
+
 export const adminListExperts = (actorId) => rpc('admin_list_experts', { p_actor_id: actorId })
 export const adminSetExpertActive = (actorId, expertId, active) =>
   rpc('admin_set_expert_active', { p_actor_id: actorId, p_expert_id: expertId, p_active: active })

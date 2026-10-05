@@ -25,6 +25,7 @@ import {
   getRecentMelaMerges, adminSplitMela,
   getListingReports, resolveListingReport,
   getCsClaims, resolveCsClaim,
+  getCarbonSuggestionsAdmin, resolveCarbonSuggestion,
 } from '../lib/admin/adminApi'
 import { MELA_TAGS } from '../lib/mela/melaApi'
 import { getAdminInputPrices, adminSetInputPriceActive, adminUpsertInputPrice } from '../lib/inputs/inputsApi'
@@ -76,6 +77,7 @@ export default function Admin() {
         <YojanaPanel actorId={user.id} t={t} lang={lang} />
         <ReportsPanel actorId={user.id} t={t} />
         <ColdStorageClaimsPanel actorId={user.id} t={t} />
+        <CarbonSuggestionsPanel actorId={user.id} t={t} />
         <SubscriptionsPanel actorId={user.id} t={t} />
         <ProcurementPanel actorId={user.id} t={t} />
         <PageFaqsPanel actorId={user.id} t={t} />
@@ -1462,6 +1464,40 @@ function ColdStorageClaimsPanel({ actorId, t }) {
               <div className="font-bold text-stone-800">{r.dir_name}</div>
               <div className="text-stone-600">{r.name} · {r.phone}</div>
               {r.proof_note && <div className="mt-1 text-stone-500">{r.proof_note}</div>}
+              <div className="mt-2 flex gap-2">
+                <button type="button" onClick={() => act(r.id, true)} className="rounded-lg bg-green-700 px-3 py-1.5 font-bold text-white">{t('admin_cs_approve')}</button>
+                <button type="button" onClick={() => act(r.id, false)} className="rounded-lg border-2 border-stone-300 px-3 py-1.5 font-bold text-stone-700">{t('admin_cs_reject')}</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
+  )
+}
+
+// ---- Phase 8: carbon-credit suggestions moderation ----
+function CarbonSuggestionsPanel({ actorId, t }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  const load = useCallback(() => {
+    getCarbonSuggestionsAdmin(actorId, 'pending').then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
+  }, [actorId, t])
+  useEffect(() => { load() }, [load])
+  async function act(id, approve) {
+    setErr(null)
+    try { await resolveCarbonSuggestion(actorId, id, approve); load() }
+    catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
+  }
+  return (
+    <Section title={t('admin_carbon_sugg')}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_carbon_sugg_empty')}</p> : (
+        <div className="space-y-3">
+          {rows.map((r) => (
+            <div key={r.id} className="rounded-xl border border-stone-200 p-3 text-sm">
+              <p className="text-stone-700">{r.body}</p>
+              {(r.name || r.village) && <p className="mt-1 text-xs text-stone-500">— {[r.name, r.village].filter(Boolean).join(', ')}</p>}
               <div className="mt-2 flex gap-2">
                 <button type="button" onClick={() => act(r.id, true)} className="rounded-lg bg-green-700 px-3 py-1.5 font-bold text-white">{t('admin_cs_approve')}</button>
                 <button type="button" onClick={() => act(r.id, false)} className="rounded-lg border-2 border-stone-300 px-3 py-1.5 font-bold text-stone-700">{t('admin_cs_reject')}</button>

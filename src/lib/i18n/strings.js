@@ -1786,6 +1786,33 @@ export const strings = {
   // --- Phase 4: sponsored (built, no ads live) ---
   sponsored_label: { hi: 'प्रायोजित', en: 'Sponsored' },
 
+  // --- Phase 8: carbon credit page (poll + suggestions) ---
+  carbon_tile_label: { hi: 'कार्बन क्रेडिट', en: 'Carbon credit' },
+  carbon_tile_sub: { hi: 'किसान आय का नया ज़रिया?', en: 'A new income source?' },
+  carbon_nav: { hi: 'कार्बन क्रेडिट', en: 'Carbon credit' },
+  carbon_poll_q: { hi: 'क्या मध्य प्रदेश में किसानों के लिए कार्बन क्रेडिट योजना होनी चाहिए?', en: 'Should Madhya Pradesh have a carbon-credit scheme for farmers?' },
+  carbon_poll_yes: { hi: 'हाँ', en: 'Yes' },
+  carbon_poll_no: { hi: 'नहीं', en: 'No' },
+  carbon_poll_unsure: { hi: 'पता नहीं', en: 'Not sure' },
+  carbon_poll_thanks: { hi: 'आपका मत दर्ज हो गया — धन्यवाद।', en: 'Your vote is recorded — thank you.' },
+  carbon_poll_total: { hi: 'कुल मत', en: 'total votes' },
+  err_poll_choice: { hi: 'कृपया एक विकल्प चुनें।', en: 'Please choose an option.' },
+  carbon_sugg_title: { hi: 'अपना सुझाव दें', en: 'Share your suggestion' },
+  carbon_sugg_intro: { hi: 'नाम और गाँव वैकल्पिक हैं। सुझाव जाँच के बाद यहाँ दिखाया जाएगा।', en: 'Name and village are optional. Suggestions appear here after review.' },
+  carbon_sugg_name: { hi: 'नाम (वैकल्पिक)', en: 'Name (optional)' },
+  carbon_sugg_village: { hi: 'गाँव (वैकल्पिक)', en: 'Village (optional)' },
+  carbon_sugg_body: { hi: 'आपका सुझाव', en: 'Your suggestion' },
+  carbon_sugg_submit: { hi: 'सुझाव भेजें', en: 'Send suggestion' },
+  carbon_sugg_success: { hi: 'धन्यवाद — आपका सुझाव मिल गया। जाँच के बाद प्रकाशित होगा।', en: 'Thank you — received. It will be published after review.' },
+  carbon_sugg_heading: { hi: 'किसानों व नागरिकों के सुझाव', en: 'Suggestions from farmers & citizens' },
+  carbon_sugg_empty: { hi: 'अभी कोई प्रकाशित सुझाव नहीं।', en: 'No published suggestions yet.' },
+  err_suggestion_body: { hi: 'कृपया अपना सुझाव लिखें।', en: 'Please write your suggestion.' },
+  carbon_brief_cta: { hi: 'नीति सुझाव (प्रिंट करें)', en: 'Policy brief (print)' },
+  carbon_brief_print: { hi: 'प्रिंट करें / PDF सहेजें', en: 'Print / Save PDF' },
+  carbon_share: { hi: 'कार्बन क्रेडिट — किसानों की आय का नया ज़रिया? किसान सहयोग पर पढ़ें:', en: 'Carbon credit — a new income source for farmers? Read on Kissan Sahyog:' },
+  admin_carbon_sugg: { hi: 'कार्बन सुझाव', en: 'Carbon suggestions' },
+  admin_carbon_sugg_empty: { hi: 'कोई लंबित सुझाव नहीं।', en: 'No pending suggestions.' },
+
   // --- Phase 7: greenhouse marketplace fields ---
   home_cat_greenhouse: { hi: 'ग्रीनहाउस / पॉलीहाउस', en: 'Greenhouse / Polyhouse' },
   gh_tile_label: { hi: 'ग्रीनहाउस', en: 'Greenhouse' },
