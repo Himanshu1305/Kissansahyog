@@ -11,8 +11,8 @@ import { fetchWeatherCell, requestGridCell } from '../lib/weather/weatherApiV2'
 import { actionWindows, imdClass, nextRain, STATUS_COLOR } from '../lib/weather/weatherRules'
 import { fetchPincode } from '../lib/listings/listingsApi'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
-import { fetchPageFaqs, fetchSiteSetting } from '../lib/pages/pagesApi'
-import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TwoBar, ReviewTag, JsonLd, InfoTip } from '../components/pages/shared'
+import { fetchPageFaqs } from '../lib/pages/pagesApi'
+import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TwoBar, JsonLd, InfoTip } from '../components/pages/shared'
 
 const IMD_URL = 'https://mausam.imd.gov.in'
 const STATUS_LABEL = { ok: 'aw_ok', caution: 'aw_caution', stop: 'aw_stop' }
@@ -27,11 +27,9 @@ export default function Mausam() {
   const [place, setPlace] = useState('')
   const [wx, setWx] = useState(undefined)
   const [faqs, setFaqs] = useState([])
-  const [reviewed, setReviewed] = useState(true)
 
   useEffect(() => {
     fetchPageFaqs('mausam').then(setFaqs).catch(() => {})
-    fetchSiteSetting('mausam_msp_content_reviewed').then((v) => setReviewed(v === true)).catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -120,7 +118,7 @@ export default function Mausam() {
 
           {/* 4. ActionWindows */}
           <section>
-            <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{t('mausam_actions_h')}<InfoTip label={t('verdict_tip')} /><ReviewTag reviewed={reviewed} /></h2>
+            <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{t('mausam_actions_h')}<InfoTip label={t('verdict_tip')} /></h2>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {[['spray', 'aw_spray', '💦'], ['irrigation', 'aw_irrigation', '🚰'], ['harvest', 'aw_harvest', '🌾'], ['sowing', 'aw_sowing', '🌱']].map(([k, label, icon]) => {
                 const w = windows[k]; const col = STATUS_COLOR[w.status]

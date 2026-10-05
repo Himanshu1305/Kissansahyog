@@ -35,9 +35,10 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Screenshot every route; commit (full screenshot review consolidated to Phase 15 per D7; key-page build verified)
 
 ## Phase 3 — Brand spelling & greeting
-- [ ] Rename brand to Kissan Sahyog (migration author_name default + rows)
-- [ ] Greeting सीताराम 🙏 {name}
-- [ ] Static test: no English "Kisan Sahyog"; protected words untouched
+- [x] Rename brand to Kissan Sahyog (global src rename; migration 0038 author_name default + rows + RPC defaults; applied)
+- [x] Greeting सीताराम 🙏 {name} (Home.jsx + Homepage logged-in; greeting_sitaram string, same in English)
+- [x] §0.2(8) removed ReviewTag/समीक्षाधीन + mausam_msp_content_reviewed gating (Msp/Mausam/FasalSalah/Admin); fixed mausam_rules_by byline (no individual, no "under review")
+- [x] Static test scripts/test/v2_brand.mjs (13/13); citation+i18n still green
 - [ ] Commit
 
 ## Phase 4 — Legal, trust & compliance

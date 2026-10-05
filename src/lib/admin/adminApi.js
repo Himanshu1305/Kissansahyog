@@ -36,7 +36,7 @@ export const adminUpsertArticle = (actorId, a) =>
     p_actor_id: actorId, p_id: a.id ?? null, p_slug: a.slug, p_title_hi: a.title_hi, p_title_en: a.title_en,
     p_summary_hi: a.summary_hi ?? null, p_summary_en: a.summary_en ?? null,
     p_content_hi: a.content_hi, p_content_en: a.content_en,
-    p_author_name: a.author_name ?? 'Team Kisan Sahyog', p_cover_image_url: a.cover_image_url ?? null,
+    p_author_name: a.author_name ?? 'Team Kissan Sahyog', p_cover_image_url: a.cover_image_url ?? null,
     p_is_published: a.is_published ?? false,
   })
 export const adminDeleteArticle = (actorId, id) => rpc('admin_delete_article', { p_actor_id: actorId, p_id: id })
@@ -79,7 +79,7 @@ export const getAdminSawaal = (actorId) => rpc('get_admin_sawaal', { p_actor_id:
 export const adminAnswerSawaal = (actorId, s) =>
   rpc('admin_answer_sawaal', {
     p_actor_id: actorId, p_id: s.id, p_answer_hi: s.answer_hi ?? null, p_answer_en: s.answer_en ?? null,
-    p_answered_by: s.answered_by ?? 'Team Kisan Sahyog', p_is_published: s.is_published ?? false,
+    p_answered_by: s.answered_by ?? 'Team Kissan Sahyog', p_is_published: s.is_published ?? false,
   })
 export const adminSetSawaalFeatured = (actorId, id, featured) =>
   rpc('admin_set_sawaal_featured', { p_actor_id: actorId, p_id: id, p_featured: featured })

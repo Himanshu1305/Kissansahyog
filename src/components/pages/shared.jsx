@@ -58,13 +58,6 @@ export function InfoTip({ label, label_en }) {
   )
 }
 
-// "समीक्षाधीन" tag shown on act-on-able content until Shri A.K. Dixit reviews it.
-export function ReviewTag({ reviewed }) {
-  const { t } = useLang()
-  if (reviewed) return null
-  return <span className="ml-2 inline-block rounded-full px-2 py-0.5 text-[12px] font-bold align-middle" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>{t('under_review')}</span>
-}
-
 // Phase 4c — one consistent, honest staleness rule for every mandi price on the site.
 // The specific date is ALWAYS shown next to a non-today price (never hidden in a tooltip):
 //   'today'     → plain price, no tag

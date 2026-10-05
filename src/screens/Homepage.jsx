@@ -163,6 +163,15 @@ export default function Homepage() {
       <PwaInstallBanner />
       <MandiTicker />
 
+      {/* Greeting for logged-in users (§0.3): "सीताराम 🙏, {name}". */}
+      {isLoggedIn && (
+        <div style={{ padding: '10px var(--ks-gutter) 0' }}>
+          <p className="text-[16px] font-semibold" style={{ color: 'var(--ks-ink)' }}>
+            {t('greeting_sitaram')} 🙏{user?.full_name ? `, ${user.full_name}` : ''}
+          </p>
+        </div>
+      )}
+
       {/* 3 — Hero: आज किसान के लिए */}
       <HeroContent
         t={t} today={today} weather={weather} eventLine={in7}

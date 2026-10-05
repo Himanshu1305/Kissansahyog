@@ -6,7 +6,7 @@ export const disclaimers = {
   // One-time signup acknowledgment.
   signup: {
     hi: 'किसान सहयोग एक जानकारी साझा करने वाला मंच है। हम किसी भी सौदे, भुगतान या समझौते में शामिल नहीं हैं। कृपया किसी भी लेन-देन से पहले दूसरे व्यक्ति की पहचान और जानकारी स्वयं जांच लें।',
-    en: 'Kisan Sahyog is an information-sharing platform only. We are not involved in any deal, payment, or agreement between users. Please verify the other person’s identity and details yourself before proceeding.',
+    en: 'Kissan Sahyog is an information-sharing platform only. We are not involved in any deal, payment, or agreement between users. Please verify the other person’s identity and details yourself before proceeding.',
   },
   // Short caution shown right above a phone-number reveal / Call button.
   phoneReveal: {

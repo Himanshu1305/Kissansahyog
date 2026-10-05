@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-stone-50">
       <NavBar />
-      <main className="mx-auto w-full max-w-xl px-4 py-6">
+      <main className="ks-content w-full py-6">
         <p className="mb-1 text-lg text-stone-600">
-          {t('home_greeting')}, <span className="font-bold text-stone-900">{user?.full_name}</span> 🙏
+          {t('greeting_sitaram')} 🙏{user?.full_name ? <>, <span className="font-bold text-stone-900">{user.full_name}</span></> : null}
         </p>
         {user?.village_town && <p className="mb-6 text-stone-500">{user.village_town}</p>}
 

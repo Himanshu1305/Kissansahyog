@@ -29,7 +29,7 @@ export const privacyPolicy = [
 export const termsOfUse = [
   {
     hi: 'किसान सहयोग केवल एक जानकारी सेवा है। हम उपयोगकर्ताओं के बीच किसी भी लेन-देन, सौदे या समझौते के लिए ज़िम्मेदार नहीं हैं।',
-    en: 'Kisan Sahyog is an information service only. We are not liable for any transaction, deal, or agreement between users.',
+    en: 'Kissan Sahyog is an information service only. We are not liable for any transaction, deal, or agreement between users.',
   },
   {
     hi: 'ज़मीन की लिस्टिंग के लिए स्व-घोषणा ज़रूरी है — आप पुष्टि करते हैं कि ज़मीन आपकी है या आपको इसे लिस्ट करने का अधिकार है।',

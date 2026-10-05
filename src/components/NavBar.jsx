@@ -104,7 +104,7 @@ export default function NavBar() {
           <span className="text-[28px] leading-none" aria-hidden="true">🌾</span>
           <span className="leading-tight">
             <span className="block text-[15px] font-extrabold text-[var(--ks-primary)]">{BRAND_HI}</span>
-            <span className="block text-[10px] font-semibold text-[var(--ks-text-muted)]">Kisan Sahyog</span>
+            <span className="block text-[10px] font-semibold text-[var(--ks-text-muted)]">Kissan Sahyog</span>
           </span>
         </button>
 

@@ -11,9 +11,8 @@ import { fetchWeatherCell } from '../lib/weather/weatherApiV2'
 import { actionWindows } from '../lib/weather/weatherRules'
 import { fetchPincode } from '../lib/listings/listingsApi'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
-import { fetchSiteSetting } from '../lib/pages/pagesApi'
 import { CROPS, currentSeason, cropName } from '../content/crops'
-import { PageExplainer, LocationControl, ReviewTag, JsonLd } from '../components/pages/shared'
+import { PageExplainer, LocationControl, JsonLd } from '../components/pages/shared'
 
 const STATUS_LABEL = { ok: 'aw_ok', caution: 'aw_caution', stop: 'aw_stop' }
 const SEASON_LABEL = { kharif: 'season_kharif', rabi: 'season_rabi' }
@@ -24,9 +23,6 @@ export default function FasalSalah() {
   const navigate = useNavigate()
   const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
   const [wx, setWx] = useState(null)
-  const [reviewed, setReviewed] = useState(true)
-
-  useEffect(() => { fetchSiteSetting('mausam_msp_content_reviewed').then((v) => setReviewed(v === true)).catch(() => {}) }, [])
 
   useEffect(() => {
     let alive = true
@@ -75,7 +71,7 @@ export default function FasalSalah() {
         <button type="button" onClick={() => navigate('/mausam')} className="inline-block text-[15px] font-bold" style={{ color: 'var(--ks-green)' }}>🌤 {t('fasal_see_mausam')} →</button>
 
         <section>
-          <h2 className="mb-2 text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('fasal_season_h')} — {t(SEASON_LABEL[season])}<ReviewTag reviewed={reviewed} /></h2>
+          <h2 className="mb-2 text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('fasal_season_h')} — {t(SEASON_LABEL[season])}</h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">{seasonCrops.map((c) => Card(c, true))}</div>
         </section>
 

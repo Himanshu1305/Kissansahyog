@@ -7,7 +7,7 @@
 
 export const strings = {
   // --- app / brand ---
-  app_name: { hi: 'किसान सहयोग', en: 'Kisan Sahyog' },
+  app_name: { hi: 'किसान सहयोग', en: 'Kissan Sahyog' },
   tagline: { hi: 'जानकारी साझा करने वाला मंच', en: 'An information-sharing platform' },
 
   // --- generic actions ---
@@ -82,6 +82,8 @@ export const strings = {
 
   // --- home / nav ---
   home_greeting: { hi: 'नमस्ते', en: 'Namaste' },
+  // Greeting per §0.3: "सीताराम 🙏, {name}" logged-in; "सीताराम 🙏" otherwise. Same in English.
+  greeting_sitaram: { hi: 'सीताराम', en: 'सीताराम' },
   logout: { hi: 'लॉग आउट', en: 'Log out' },
   browse: { hi: 'खोजें', en: 'Browse' },
   post_listing: { hi: 'नई लिस्टिंग डालें', en: 'Post a listing' },
@@ -92,7 +94,7 @@ export const strings = {
   nav_resources_dir: { hi: 'संपर्क सूची', en: 'Contacts directory' },
 
   // --- resources directory ---
-  resources_title: { hi: 'उपयोगी संपर्क — किसान सहयोग', en: 'Useful Contacts — Kisan Sahyog' },
+  resources_title: { hi: 'उपयोगी संपर्क — किसान सहयोग', en: 'Useful Contacts — Kissan Sahyog' },
   resources_subtitle: { hi: 'सागर जिले के किसानों के लिए महत्वपूर्ण सरकारी संपर्क', en: 'Important government contacts for farmers of Sagar district' },
   resources_disclaimer: {
     hi: 'ये संपर्क सार्वजनिक सरकारी जानकारी के आधार पर दिए गए हैं। कृपया जाने से पहले फ़ोन पर समय की पुष्टि करें।',
@@ -363,7 +365,7 @@ export const strings = {
   car_aria: { hi: 'विश्वास कैरोसेल', en: 'Trust carousel' },
   car_prev: { hi: 'पिछला', en: 'Previous' },
   car_next: { hi: 'अगला', en: 'Next' },
-  car_welcome_title: { hi: 'किसान सहयोग में आपका स्वागत है', en: 'Welcome to Kisan Sahyog' },
+  car_welcome_title: { hi: 'किसान सहयोग में आपका स्वागत है', en: 'Welcome to Kissan Sahyog' },
   car_pm_caption: { hi: 'माननीय प्रधानमंत्री श्री नरेंद्र मोदी जी का किसानों के प्रति समर्पण', en: "Hon'ble Prime Minister Shri Narendra Modi's dedication to farmers" },
   car_cm_caption: { hi: 'मध्यप्रदेश के मुख्यमंत्री जी का किसान कल्याण के प्रति संकल्प', en: "Madhya Pradesh Chief Minister's commitment to farmer welfare" },
   car_drone_caption: { hi: 'ड्रोन दीदी — महिला किसान, आधुनिक तकनीक', en: 'Drone Didi — women farmers, modern technology' },
@@ -413,7 +415,7 @@ export const strings = {
   home_requirement: { hi: 'चाहिए', en: 'Requirement' },
   vendor_badge: { hi: 'व्यापारी', en: 'Vendor' },
   share_whatsapp: { hi: 'WhatsApp पर शेयर करें', en: 'Share on WhatsApp' },
-  share_platform_label: { hi: '📲 किसान सहयोग किसानों को शेयर करें', en: '📲 Share Kisan Sahyog with farmers' },
+  share_platform_label: { hi: '📲 किसान सहयोग किसानों को शेयर करें', en: '📲 Share Kissan Sahyog with farmers' },
   // --- who-are-you (listing_source) toggle ---
   post_q_source: { hi: 'आप कौन हैं?', en: 'Who are you posting as?' },
   source_farmer: { hi: 'किसान / Farmer', en: 'Farmer' },
@@ -433,11 +435,11 @@ export const strings = {
   mission_title: { hi: 'हम क्यों बने?', en: 'Why we exist' },
   mission_body: {
     hi: 'किसान सहयोग के दो मुख्य उद्देश्य हैं: पहला, किसान की आय बढ़ाना — ज़मीन, उपकरण और कृषि सामग्री तक आसान पहुँच के ज़रिए। दूसरा, रोज़गार के अवसर बनाना — कृषि सहयोगी, ड्रोन दीदी और व्यापारियों को एक मंच पर लाकर।',
-    en: 'Kisan Sahyog has two core objectives: first, increasing farmer income — through easier access to land, equipment, and farm supplies. Second, creating employment opportunities — by connecting farm workers, Drone Didi operators, and agricultural businesses on one platform.',
+    en: 'Kissan Sahyog has two core objectives: first, increasing farmer income — through easier access to land, equipment, and farm supplies. Second, creating employment opportunities — by connecting farm workers, Drone Didi operators, and agricultural businesses on one platform.',
   },
   mission_disclaimer: {
     hi: 'किसान सहयोग एक जानकारी मंच है — हम किसी भी लेन-देन में शामिल नहीं हैं।',
-    en: 'Kisan Sahyog is an information platform — we are not involved in any transaction.',
+    en: 'Kissan Sahyog is an information platform — we are not involved in any transaction.',
   },
   // Two mission objectives (mission strip + about section).
   mission_income: { hi: 'किसान की आय बढ़ाना', en: 'Increasing Farmer Income' },
@@ -450,7 +452,7 @@ export const strings = {
   footer_grievance: { hi: 'शिकायत अधिकारी', en: 'Grievance Officer' },
   footer_grievance_email: { hi: 'grievance@kissansahyog.com', en: 'grievance@kissansahyog.com' },
   footer_general_email: { hi: 'hello@kissansahyog.com', en: 'hello@kissansahyog.com' },
-  footer_copyright: { hi: '© 2026 Kisan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित', en: '© 2026 Kisan Sahyog | kissansahyog.com | All rights reserved' },
+  footer_copyright: { hi: '© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित', en: '© 2026 Kissan Sahyog | kissansahyog.com | All rights reserved' },
   footer_company: { hi: 'USD Vision AI LLP · मध्यप्रदेश, भारत', en: 'USD Vision AI LLP · Madhya Pradesh, India' },
 
   // --- legal pages ---
@@ -465,7 +467,7 @@ export const strings = {
   // Phase 1 — rules-compliance agreement (seller checkbox + one-time buyer modal).
   rules_agreement_seller: {
     hi: 'मैं सभी लागू नियमों और कानूनों का पालन करने के लिए सहमत हूं। किसी भी उल्लंघन की स्थिति में मैं स्वयं ज़िम्मेदार हूँगा/हूँगी। मैं समझता/समझती हूं कि किसान सहयोग लेन-देन का हिस्सा नहीं है और लिस्टिंग की पुष्टि नहीं करता।',
-    en: 'I agree to follow all applicable rules and laws. In case of any violation I am solely responsible. I understand that Kisan Sahyog is not part of the transaction and does not verify listings.',
+    en: 'I agree to follow all applicable rules and laws. In case of any violation I am solely responsible. I understand that Kissan Sahyog is not part of the transaction and does not verify listings.',
   },
   err_rules_agreement_required: {
     hi: 'आगे बढ़ने के लिए नियमों से सहमति ज़रूरी है।',
@@ -474,7 +476,7 @@ export const strings = {
   rules_modal_title: { hi: 'संपर्क करने से पहले', en: 'Before you make contact' },
   rules_agreement_buyer: {
     hi: 'मैं सभी लागू नियमों और कानूनों का पालन करने के लिए सहमत हूं। किसी भी लेन-देन की ज़िम्मेदारी मेरी स्वयं की है। मैं समझता/समझती हूं कि किसान सहयोग लेन-देन का हिस्सा नहीं है, किसी लिस्टिंग या व्यक्ति की पुष्टि नहीं करता, और संपर्क करने से पहले मुझे जानकारी स्वयं जांचनी चाहिए।',
-    en: 'I agree to follow all applicable rules and laws. Any transaction is my own responsibility. I understand that Kisan Sahyog is not part of the transaction, does not verify any listing or person, and that I should verify details myself before making contact.',
+    en: 'I agree to follow all applicable rules and laws. Any transaction is my own responsibility. I understand that Kissan Sahyog is not part of the transaction, does not verify any listing or person, and that I should verify details myself before making contact.',
   },
   rules_agreement_accept: { hi: 'मैं सहमत हूं और आगे बढ़ता/बढ़ती हूं', en: 'I agree and continue' },
 
@@ -512,7 +514,7 @@ export const strings = {
   agro_article_cta: { hi: 'इंटरक्रॉपिंग: मध्यप्रदेश के किसानों के लिए मार्गदर्शिका', en: 'Intercropping: a guide for Madhya Pradesh farmers' },
   agro_share_text: {
     hi: 'एग्रो फॉरेस्ट्री और उद्यानिकी — किसान सहयोग पर पढ़ें: पेड़+फसल साथ लगाकर आय बढ़ाएं और जोखिम घटाएं।',
-    en: 'Agro Forestry & Horticulture on Kisan Sahyog: grow trees with crops to raise income and reduce risk.',
+    en: 'Agro Forestry & Horticulture on Kissan Sahyog: grow trees with crops to raise income and reduce risk.',
   },
 
   // Phase 3 — availability toggle + engagement nudge.
@@ -550,7 +552,7 @@ export const strings = {
   farmer_count: { hi: 'कुल किसान', en: 'Total farmers' },
 
   // Phase 7 — homepage PWA install banner.
-  pwa_banner_text: { hi: 'किसान सहयोग को अपने फ़ोन में इंस्टॉल करें — बिल्कुल मुफ़्त, कोई स्पैम नहीं', en: 'Install Kisan Sahyog on your phone — completely free, no spam' },
+  pwa_banner_text: { hi: 'किसान सहयोग को अपने फ़ोन में इंस्टॉल करें — बिल्कुल मुफ़्त, कोई स्पैम नहीं', en: 'Install Kissan Sahyog on your phone — completely free, no spam' },
   pwa_banner_install: { hi: 'इंस्टॉल करें', en: 'Install' },
   pwa_ios_help: { hi: "अपने फ़ोन में: नीचे शेयर बटन दबाएं, फिर 'होम स्क्रीन पर जोड़ें' चुनें।", en: "On your phone: tap the Share button below, then choose 'Add to Home Screen'." },
   pwa_install_help: { hi: "ब्राउज़र का मेन्यू (⋮) खोलें, फिर 'ऐप इंस्टॉल करें' या 'होम स्क्रीन पर जोड़ें' चुनें।", en: "Open your browser menu (⋮), then choose 'Install app' or 'Add to Home screen'." },
@@ -564,7 +566,7 @@ export const strings = {
   kisan_main_crops_ph: { hi: 'जैसे: सोयाबीन, गेहूं, चना', en: 'e.g. Soybean, Wheat, Gram' },
   kisan_interest_lease: { hi: 'क्या आप कभी ज़मीन बटाई/ठेके पर देने में रुचि रखते हैं?', en: 'Would you ever be interested in giving land on sharecropping/contract?' },
   kisan_interest_equipment: { hi: 'क्या आप कभी उपकरण किराये पर देने में रुचि रखते हैं?', en: 'Would you ever be interested in renting out equipment?' },
-  kisan_privacy: { hi: 'यह जानकारी केवल किसान सहयोग के उपयोग के लिए है — हम इसे कभी किसी को नहीं बेचते।', en: 'This information is only for Kisan Sahyog’s use — we never sell it to anyone.' },
+  kisan_privacy: { hi: 'यह जानकारी केवल किसान सहयोग के उपयोग के लिए है — हम इसे कभी किसी को नहीं बेचते।', en: 'This information is only for Kissan Sahyog’s use — we never sell it to anyone.' },
   kisan_saved: { hi: 'किसान प्रोफाइल सहेज ली गई।', en: 'Farmer profile saved.' },
   yes: { hi: 'हाँ', en: 'Yes' },
   no: { hi: 'नहीं', en: 'No' },
@@ -1028,7 +1030,7 @@ export const strings = {
   },
   safalta_before: { hi: 'पहले', en: 'Before' },
   safalta_after: { hi: 'अब', en: 'Now' },
-  safalta_how_helped: { hi: 'किसान सहयोग ने कैसे मदद की', en: 'How Kisan Sahyog helped' },
+  safalta_how_helped: { hi: 'किसान सहयोग ने कैसे मदद की', en: 'How Kissan Sahyog helped' },
   safalta_share_cta: { hi: 'अपनी कहानी शेयर करें', en: 'Share your story' },
   safalta_read_more: { hi: 'पूरी कहानी पढ़ें', en: 'Read full story' },
   safalta_read_less: { hi: 'कम दिखाएं', en: 'Show less' },
@@ -1312,7 +1314,7 @@ export const strings = {
   dd_official_h: { hi: 'आधिकारिक जानकारी', en: 'Official information' },
   dd_official_body: {
     hi: 'नमो ड्रोन दीदी भारत सरकार की केंद्रीय योजना है (कृषि एवं किसान कल्याण मंत्रालय)। यहाँ दी गई जानकारी केवल किसानों की सुविधा के लिए है; किसान सहयोग किसी सौदे या समर्थन का हिस्सा नहीं है।',
-    en: 'Namo Drone Didi is a Central Government scheme (Ministry of Agriculture & Farmers Welfare). The information here is for farmers’ convenience only; Kisan Sahyog is not a party to any deal or endorsement.',
+    en: 'Namo Drone Didi is a Central Government scheme (Ministry of Agriculture & Farmers Welfare). The information here is for farmers’ convenience only; Kissan Sahyog is not a party to any deal or endorsement.',
   },
   dd_no_listings: { hi: 'अभी आपके क्षेत्र में कोई ड्रोन दीदी सेवा सूचीबद्ध नहीं है।', en: 'No Drone Didi services are listed in your area yet.' },
 
@@ -1390,7 +1392,7 @@ export const strings = {
   msp_sagar: { hi: 'सागर', en: 'Sagar' },
 
   // consent + signup
-  consent_sentence: { hi: 'मैं किसान सहयोग से WhatsApp पर मौसम और भाव के संदेश पाने के लिए सहमत हूँ। कभी भी STOP लिखकर बंद कर सकते हैं।', en: 'I agree to receive weather and price messages from Kisan Sahyog on WhatsApp. I can stop anytime by sending STOP.' },
+  consent_sentence: { hi: 'मैं किसान सहयोग से WhatsApp पर मौसम और भाव के संदेश पाने के लिए सहमत हूँ। कभी भी STOP लिखकर बंद कर सकते हैं।', en: 'I agree to receive weather and price messages from Kissan Sahyog on WhatsApp. I can stop anytime by sending STOP.' },
   signup_phone: { hi: 'मोबाइल नंबर', en: 'Mobile number' },
   signup_crops: { hi: 'फसलें (चुनें)', en: 'Crops (select)' },
   signup_bad_phone: { hi: 'सही 10-अंकों का मोबाइल नंबर डालें', en: 'Enter a valid 10-digit mobile number' },
@@ -1425,7 +1427,7 @@ export const strings = {
   aw_sow_stop: { hi: '24 घंटे में भारी बारिश — रुकें', en: 'Heavy rain in 24h — wait' },
   aw_sow_ok: { hi: 'अगले 5 दिन अच्छी नमी — बुवाई ठीक', en: 'Good moisture over 5 days — sowing is fine' },
   aw_sow_caution: { hi: 'सूखा — नमी का इंतज़ार करें', en: 'Dry — wait for moisture' },
-  mausam_rules_by: { hi: 'नियम: किसान सहयोग कृषि विशेषज्ञ — श्री ए.के. दीक्षित की समीक्षा में (TODO)', en: 'Rules: under review by Kisan Sahyog agri expert Shri A.K. Dixit (TODO)' },
+  mausam_rules_by: { hi: 'ये सलाह मौसम मॉडल और सामान्य कृषि नियमों पर आधारित हैं — Team Kissan Sahyog', en: 'These advisories are based on weather models and general agronomy rules — Team Kissan Sahyog' },
   mausam_48h: { hi: 'अगले 48 घंटे', en: 'Next 48 hours' },
   mausam_7day: { hi: '7 दिन का पूर्वानुमान', en: '7-day forecast' },
   mausam_crops_h: { hi: 'इस मौसम में आपकी फसल', en: 'Your crops this season' },
@@ -1511,7 +1513,7 @@ export const strings = {
 
   // ===================== मौसम/MSP polish (2026-09-25) =====================
   // 2a IMD badge reframe + InfoTips
-  imd_badge_desc: { hi: 'किसान सहयोग का अनुमान — Open-Meteo के मौसम मॉडल पर आधारित, IMD के बारिश वर्गीकरण के अनुसार।', en: 'Kisan Sahyog estimate — based on the Open-Meteo weather model, per IMD’s rainfall classification.' },
+  imd_badge_desc: { hi: 'किसान सहयोग का अनुमान — Open-Meteo के मौसम मॉडल पर आधारित, IMD के बारिश वर्गीकरण के अनुसार।', en: 'Kissan Sahyog estimate — based on the Open-Meteo weather model, per IMD’s rainfall classification.' },
   imd_official_cta: { hi: 'आधिकारिक चेतावनी यहाँ देखें', en: 'See the official warning here' },
   imd_tip: { hi: 'IMD बारिश वर्गीकरण (24 घंटे): पीला ≥64.5 मिमी (भारी), नारंगी ≥115.5 मिमी (बहुत भारी), लाल ≥204.5 मिमी (अत्यधिक)।', en: 'IMD rainfall classes (24h): Yellow ≥64.5mm (heavy), Orange ≥115.5mm (very heavy), Red ≥204.5mm (extremely heavy).' },
   verdict_tip: { hi: 'ठीक = कर सकते हैं · सावधानी = ध्यान से करें · रुकें = अभी न करें।', en: 'OK = go ahead · Caution = take care · Stop = don’t do it now.' },
@@ -1567,7 +1569,7 @@ export const strings = {
   loc_apply: { hi: 'लागू करें', en: 'Apply' },
   // 0026 Phase 1 — out-of-service-area (nearest seeded village > 100 km). Weather still
   // works for the exact location (0027 split); this notice is about village-anchored features.
-  loc_out_of_area: { hi: 'मौसम आपकी जगह का दिख रहा है। आस-पास की लिस्टिंग, गिनती और मंडी किसान सहयोग के सेवा क्षेत्र (सागर) से बाहर हैं', en: 'Weather is shown for your location. Nearby listings, counts and mandi data are outside Kisan Sahyog’s service area (Sagar)' },
+  loc_out_of_area: { hi: 'मौसम आपकी जगह का दिख रहा है। आस-पास की लिस्टिंग, गिनती और मंडी किसान सहयोग के सेवा क्षेत्र (सागर) से बाहर हैं', en: 'Weather is shown for your location. Nearby listings, counts and mandi data are outside Kissan Sahyog’s service area (Sagar)' },
   loc_nearest_available: { hi: 'निकटतम उपलब्ध जगह', en: 'Nearest available place' },
   loc_use_far_anyway: { hi: '{v} का स्थानीय डेटा फिर भी देखें', en: 'Use {v}’s local data anyway' },
   loc_your_location: { hi: 'आपकी जगह', en: 'Your location' },
@@ -1613,7 +1615,7 @@ export const strings = {
   pwa_update_available: { hi: 'नया अपडेट उपलब्ध है', en: 'A new update is available' },
   pwa_reload: { hi: 'रीलोड करें', en: 'Reload' },
   pwa_offline_prefix: { hi: 'आप ऑफ़लाइन हैं — आख़िरी बार अपडेट:', en: 'You are offline — last updated:' },
-  pwa_install_prompt: { hi: 'किसान सहयोग को होम स्क्रीन पर जोड़ें', en: 'Add Kisan Sahyog to your home screen' },
+  pwa_install_prompt: { hi: 'किसान सहयोग को होम स्क्रीन पर जोड़ें', en: 'Add Kissan Sahyog to your home screen' },
   pwa_install: { hi: 'जोड़ें', en: 'Add' },
   pwa_later: { hi: 'बाद में', en: 'Later' },
 

@@ -15,7 +15,7 @@ import { fetchHomeFeed, fetchPincode } from '../lib/listings/listingsApi'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/pagesApi'
 import { useAuth } from '../lib/auth/AuthProvider'
-import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, ReviewTag, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
+import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
 import Seo, { PrerenderReady } from '../components/layout/Seo'
 
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
@@ -55,14 +55,12 @@ export default function Msp() {
   const [trendDays, setTrendDays] = useState(30)
   const [qty, setQty] = useState(50)
   const [months, setMonths] = useState(3)
-  const [reviewed, setReviewed] = useState(true)
   const [snapshot, setSnapshot] = useState(null)
   const [mspAll, setMspAll] = useState([])
 
   useEffect(() => {
     fetchPageFaqs('msp').then(setFaqs).catch(() => {})
     fetchProcurement().then(setProcurement).catch(() => {})
-    fetchSiteSetting('mausam_msp_content_reviewed').then((v) => setReviewed(v === true)).catch(() => {})
     fetchMandiSnapshot().then(setSnapshot).catch(() => setSnapshot({}))
     fetchMsp().then((rows) => setMspAll(rows || [])).catch(() => {})
     // storage rate from active warehouse listings (median), fallback ₹15/qtl/month
@@ -404,7 +402,7 @@ export default function Msp() {
 
         {/* 6. procurement centres */}
         <section>
-          <H2>{t('msp_procurement_h')}<ReviewTag reviewed={reviewed} /></H2>
+          <H2>{t('msp_procurement_h')}</H2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {procurement.map((p) => (
               <div key={p.id} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
@@ -420,7 +418,7 @@ export default function Msp() {
 
         {/* 7. sold below MSP routes */}
         <section>
-          <H2>{t('msp_below_h')}<ReviewTag reviewed={reviewed} /></H2>
+          <H2>{t('msp_below_h')}</H2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button type="button" onClick={() => navigate('/yojana/bhavantar')} className="text-left" style={{ background: 'var(--ks-green-tint)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
               <div className="text-[16px] font-bold" style={{ color: 'var(--ks-green-dark)' }}>{t('msp_bhavantar_t')}</div>

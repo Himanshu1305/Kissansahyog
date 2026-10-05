@@ -72,7 +72,6 @@ export default function Admin() {
         <SawaalPanel actorId={user.id} t={t} lang={lang} />
         <SafaltaPanel actorId={user.id} t={t} lang={lang} />
         <YojanaPanel actorId={user.id} t={t} lang={lang} />
-        <ContentReviewToggle actorId={user.id} t={t} />
         <SubscriptionsPanel actorId={user.id} t={t} />
         <ProcurementPanel actorId={user.id} t={t} />
         <PageFaqsPanel actorId={user.id} t={t} />
@@ -510,7 +509,7 @@ function ExpertForm({ t, initial, onCancel, onSave }) {
   )
 }
 
-const EMPTY_ARTICLE = { slug: '', title_hi: '', title_en: '', summary_hi: '', summary_en: '', content_hi: '', content_en: '', author_name: 'Team Kisan Sahyog', is_published: false }
+const EMPTY_ARTICLE = { slug: '', title_hi: '', title_en: '', summary_hi: '', summary_en: '', content_hi: '', content_en: '', author_name: 'Team Kissan Sahyog', is_published: false }
 
 function ArticlesPanel({ actorId, t, lang }) {
   const [rows, setRows] = useState(null)
@@ -1069,7 +1068,7 @@ function SawaalPanel({ actorId, t, lang }) {
                 {r.is_published ? t('article_published_badge') : t('admin_pending_badge')}
               </span>
               {r.is_featured && <span className="rounded-full bg-green-700 px-2 py-0.5 text-xs font-bold text-white">{t('featured_badge')}</span>}
-              <button onClick={() => setAnswering({ id: r.id, answer_hi: r.answer_hi || '', answer_en: r.answer_en || '', answered_by: r.answered_by || 'Team Kisan Sahyog', is_published: true })} className="rounded-lg bg-green-700 px-3 py-1 text-sm font-bold text-white">
+              <button onClick={() => setAnswering({ id: r.id, answer_hi: r.answer_hi || '', answer_en: r.answer_en || '', answered_by: r.answered_by || 'Team Kissan Sahyog', is_published: true })} className="rounded-lg bg-green-700 px-3 py-1 text-sm font-bold text-white">
                 {r.is_published ? t('action_edit') : t('admin_answer_publish')}
               </button>
               {r.is_published && (
@@ -1376,29 +1375,6 @@ function UsersPanel({ actorId, t }) {
           </table>
         </div>
       )}
-    </Section>
-  )
-}
-
-// ---- 0024: content review toggle (Phase 7 gate) ----
-function ContentReviewToggle({ actorId, t }) {
-  const [reviewed, setReviewed] = useState(null)
-  const [err, setErr] = useState(null)
-  useEffect(() => { fetchSiteSetting('mausam_msp_content_reviewed').then((v) => setReviewed(v === true)).catch(() => setReviewed(false)) }, [])
-  async function toggle() {
-    setErr(null)
-    try { await adminSetSiteSetting(actorId, 'mausam_msp_content_reviewed', !reviewed); setReviewed(!reviewed) }
-    catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
-  }
-  return (
-    <Section title={t('admin_content_review')}>
-      {err && <Notice tone="error">{err}</Notice>}
-      <div className="flex items-center gap-3">
-        <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${reviewed ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
-          {reviewed == null ? '…' : reviewed ? t('admin_reviewed') : t('under_review')}
-        </span>
-        <button type="button" onClick={toggle} className="rounded-lg border-2 border-green-700 px-3 py-1.5 text-sm font-bold text-green-800">{reviewed ? t('admin_mark_unreviewed') : t('admin_mark_reviewed')}</button>
-      </div>
     </Section>
   )
 }

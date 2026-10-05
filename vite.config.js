@@ -20,7 +20,7 @@ export default defineConfig({
       includeAssets: ['icons/apple-touch-icon.png', 'icons/favicon-32.png'],
       manifest: {
         name: 'किसान सहयोग',
-        short_name: 'Kisan Sahyog',
+        short_name: 'Kissan Sahyog',
         description: 'ज़मीन, मशीन और मज़दूरों की जानकारी अपने आस-पास खोजें।',
         lang: 'hi',
         theme_color: '#24733F', // --ks-green

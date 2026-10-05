@@ -33,7 +33,7 @@ export function generateListingMessage(listing, url, lang) {
   const cat = CATEGORY_META[listing.category]?.[lang] || listing.category
   const oreq = offerReqWord(listing.listing_type, lang)
   const detail = keyDetail(listing, lang)
-  const suffix = lang === 'hi' ? 'किसान सहयोग पर देखें' : 'View on Kisan Sahyog'
+  const suffix = lang === 'hi' ? 'किसान सहयोग पर देखें' : 'View on Kissan Sahyog'
   const parts = [`${emoji} ${cat} ${oreq}`, detail, listing.pincode].filter(Boolean).join(' — ')
   return `${parts} | ${suffix}: ${url}`
 }
@@ -41,18 +41,18 @@ export function generateListingMessage(listing, url, lang) {
 export function generatePlatformMessage(lang) {
   return lang === 'hi'
     ? 'किसान सहयोग — ज़मीन, उपकरण, मज़दूर, ड्रोन दीदी और कृषि सामग्री के लिए सीधा संपर्क। kissansahyog.com पर जोड़ें।'
-    : 'Kisan Sahyog — direct connections for land, equipment, labor, drone services and farm supplies. Join at kissansahyog.com'
+    : 'Kissan Sahyog — direct connections for land, equipment, labor, drone services and farm supplies. Join at kissansahyog.com'
 }
 
 export function generateArticleMessage(title, url, lang) {
-  const read = lang === 'hi' ? 'किसान सहयोग पर पढ़ें' : 'Read on Kisan Sahyog'
+  const read = lang === 'hi' ? 'किसान सहयोग पर पढ़ें' : 'Read on Kissan Sahyog'
   return `${title} — ${read}: ${url}`
 }
 
 // Kisan Mela share — real event details + brand, not a bare link (Phase 3 §5). The caller
 // passes the already-localized date label (confirmed range or "अपेक्षित: period").
 export function generateMelaMessage(mela, dateLabel, url, lang) {
-  const brand = lang === 'hi' ? 'किसान सहयोग' : 'Kisan Sahyog'
+  const brand = lang === 'hi' ? 'किसान सहयोग' : 'Kissan Sahyog'
   const name = (lang === 'hi' ? mela.name_hi : (mela.name_en || mela.name_hi)) || mela.name_hi
   const info = lang === 'hi' ? 'पूरी जानकारी' : 'Full details'
   const parts = [`🌾 ${brand} — ${name}`, mela.venue, dateLabel].filter(Boolean).join(', ')
