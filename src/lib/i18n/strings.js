@@ -447,6 +447,9 @@ export const strings = {
   footer_privacy: { hi: 'गोपनीयता नीति', en: 'Privacy Policy' },
   footer_terms: { hi: 'उपयोग की शर्तें', en: 'Terms of Use' },
   footer_contact: { hi: 'संपर्क', en: 'Contact' },
+  footer_grievance: { hi: 'शिकायत अधिकारी', en: 'Grievance Officer' },
+  footer_grievance_email: { hi: 'grievance@kissansahyog.com', en: 'grievance@kissansahyog.com' },
+  footer_general_email: { hi: 'hello@kissansahyog.com', en: 'hello@kissansahyog.com' },
   footer_copyright: { hi: '© 2026 Kisan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित', en: '© 2026 Kisan Sahyog | kissansahyog.com | All rights reserved' },
   footer_company: { hi: 'USD Vision AI LLP · मध्यप्रदेश, भारत', en: 'USD Vision AI LLP · Madhya Pradesh, India' },
 
@@ -1730,4 +1733,20 @@ export const strings = {
   src_type_secondary: { hi: 'अन्य स्रोत', en: 'Secondary' },
   breadcrumb_home: { hi: 'होम', en: 'Home' },
   content_toc: { hi: 'इस पेज में', en: 'On this page' },
+
+  // --- 404 (Phase 2) ---
+  nf_title: { hi: 'पेज नहीं मिला', en: 'Page not found' },
+  nf_h1: { hi: 'यह पेज नहीं मिला (404)', en: "This page wasn't found (404)" },
+  nf_body: { hi: 'जिस पेज की आप तलाश कर रहे हैं वह हटा दिया गया है या पता ग़लत है। नीचे के मुख्य पेजों पर जाएँ।', en: 'The page you are looking for was removed or the address is wrong. Try the main pages below.' },
+  nf_home: { hi: 'होम पेज', en: 'Home' },
+  nf_mandi: { hi: 'मंडी भाव व MSP', en: 'Mandi prices & MSP' },
+  nf_weather: { hi: 'मौसम', en: 'Weather' },
+  nf_sawaal: { hi: 'किसान सवाल', en: 'Kisan Sawaal' },
+  nav_greenhouse: { hi: 'ग्रीनहाउस / पॉलीहाउस', en: 'Greenhouse / Polyhouse' },
+
+  // MSP page SEO (templated; {crop} is replaced at render — keeps render code free of literals).
+  msp_seo_hub_title: { hi: 'मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य', en: "Mandi prices & MSP — today's rate vs support price" },
+  msp_seo_hub_desc: { hi: 'सागर व मध्य प्रदेश की मंडियों का आज का भाव, न्यूनतम समर्थन मूल्य (MSP), रुझान और कब बेचें की सलाह।', en: "Today's Sagar & MP mandi prices, Minimum Support Price (MSP), trends and when-to-sell advice." },
+  msp_seo_crop_title: { hi: '{crop} मंडी भाव व MSP — किसान सहयोग', en: '{crop} mandi price & MSP — Kissan Sahyog' },
+  msp_seo_crop_desc: { hi: '{crop} का आज का मंडी भाव, न्यूनतम समर्थन मूल्य (MSP) और रुझान — सागर व मध्य प्रदेश।', en: "{crop} today's mandi price, Minimum Support Price (MSP) and trend — Sagar & MP." },
 }

@@ -10,7 +10,8 @@ export function Screen({ title, onBack, right, children, contentClassName = '' }
     <div className="min-h-screen flex flex-col bg-stone-50">
       {(title || onBack || right) && (
         <header className="sticky top-0 z-10 bg-green-700 text-white shadow-md">
-          <div className="mx-auto flex max-w-xl items-center gap-2 px-3 py-3">
+          {/* V2 central layout: readable column + token side-padding (14/40px). */}
+          <div className="ks-content flex items-center gap-2 py-3">
             {onBack && (
               <button
                 type="button"
@@ -26,7 +27,7 @@ export function Screen({ title, onBack, right, children, contentClassName = '' }
           </div>
         </header>
       )}
-      <main className={`mx-auto w-full max-w-xl flex-1 px-2 py-3 sm:px-4 sm:py-4 ${contentClassName}`}>{children}</main>
+      <main className={`ks-content flex-1 py-3 sm:py-4 ${contentClassName}`}>{children}</main>
     </div>
   )
 }

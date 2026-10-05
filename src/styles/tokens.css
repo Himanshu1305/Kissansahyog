@@ -65,4 +65,36 @@
   --ks-requirement-text: var(--ks-orange-dark);
   --ks-vendor: #FFF7ED;
   --ks-vendor-text: #7C2D12;
+
+  /* ---- V2 central layout (Phase 2): mobile/desktop defined once ---- */
+  --page-pad: 14px;        /* edge padding on mobile */
+  --content-max: 42rem;    /* ~70ch readable measure for prose + forms */
+  --wide-max: 80rem;       /* grids / directories */
+  --section-gap: 1.5rem;
 }
+
+@media (min-width: 768px) {
+  :root {
+    --page-pad: 40px;      /* edge padding on desktop */
+    --section-gap: 2.5rem;
+  }
+}
+
+/* Full-bleed section: spans the viewport; inner content is padded + centred. */
+.ks-section { width: 100%; }
+.ks-section-inner {
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+  width: 100%;
+  max-width: var(--wide-max);
+}
+/* Readable column for long text + forms. */
+.ks-content {
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+  width: 100%;
+  max-width: var(--content-max);
+}
+/* Long-form structured content page defaults. */
+.content-page { font-size: 1.0625rem; line-height: 1.7; }
+.content-page :where(h2, h3, h4) { scroll-margin-top: 5rem; }

@@ -377,37 +377,24 @@ export default function Homepage() {
         </Section>
       )}
 
-      {/* 12 — Footer */}
-      <footer className="w-full" style={{ background: 'var(--ks-strip)', padding: '20px var(--ks-gutter)' }}>
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <div className="text-[17px] font-bold" style={{ color: '#fff' }}>🌾 {strings.app_name.hi}</div>
-            <div className="mt-1 text-[14px]" style={{ color: '#B7CFBE' }}>{t('mission_income')} · {t('mission_rojgar')}</div>
-            <div className="mt-1 text-[13px]" style={{ color: '#8FB29C' }}>{t('footer_company')}</div>
-          </div>
-          <nav className="flex flex-wrap items-center gap-3 text-[14px]" style={{ color: '#B7CFBE' }}>
-            <button type="button" onClick={() => navigate('/credits')}>{t('footer_credits')}</button>
-            <button type="button" onClick={() => navigate('/privacy')}>{t('footer_privacy')}</button>
-            <button type="button" onClick={() => navigate('/terms')}>{t('footer_terms')}</button>
-            <button type="button" onClick={() => navigate('/resources')}>{t('resources_nav')}</button>
-            <a href="mailto:admin@kissansahyog.com">{t('footer_contact')}</a>
-            <LanguageToggle />
-          </nav>
-        </div>
-      </footer>
+      {/* Footer is the shared global <Footer/> (mounted once in App). */}
     </div>
   )
 }
 
 // Hero content — shared between the desktop background-photo layout and the mobile
 // banner+cream layout.
-function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp }) {
+function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp, heading = 'h1' }) {
+  // The hero renders twice (desktop bg layout + mobile banner layout). Only one
+  // instance is an <h1> so the DOM has exactly one H1 (SEO); the other is a
+  // visually-identical <p>.
+  const Heading = heading
   return (
     <div className="w-full md:max-w-[58%]">
       <span className="inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>
         🌾 {t('tf_eyebrow')}
       </span>
-      <h1 className="mt-3 text-[32px] font-extrabold leading-[1.1] md:text-[50px]" style={{ color: 'var(--ks-ink)' }}>{t('tf_title')}</h1>
+      <Heading className="mt-3 text-[32px] font-extrabold leading-[1.1] md:text-[50px]" style={{ color: 'var(--ks-ink)' }}>{t('tf_title')}</Heading>
       <p className="mt-2 text-[15px] md:text-[18px]" style={{ color: 'var(--ks-ink-2)' }}>{t('tf_subline')}</p>
 
       <div className="mt-4 flex flex-col gap-3 sm:flex-row">
@@ -437,10 +424,12 @@ function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp }) {
 }
 
 function HeroContent({ t, today, onNeed, onHave, eventLine, onForecast, onMsp }) {
-  const inner = <HeroInner t={t} today={today} onNeed={onNeed} onHave={onHave} eventLine={eventLine} onForecast={onForecast} onMsp={onMsp} />
+  const common = { t, today, onNeed, onHave, eventLine, onForecast, onMsp }
   return (
     <section className="w-full">
-      {/* Desktop: farmer photo as background, text on a cream gradient on the left */}
+      {/* Desktop: farmer photo as background, text on a cream gradient on the left.
+          Heading is a <p> here; the single <h1> lives in the mobile instance (always
+          in the DOM, so SEO sees exactly one H1, and it is the visible heading on mobile). */}
       <div
         className="hidden w-full items-center md:flex"
         style={{
@@ -451,12 +440,12 @@ function HeroContent({ t, today, onNeed, onHave, eventLine, onForecast, onMsp })
           backgroundPosition: 'right center',
         }}
       >
-        {inner}
+        <HeroInner {...common} heading="p" />
       </div>
-      {/* Mobile: photo banner on top, content below on cream */}
+      {/* Mobile: photo banner on top, content below on cream. This instance carries the <h1>. */}
       <div className="md:hidden">
         <img src="/images/home/hero-farmer.jpg" alt="" className="h-[200px] w-full object-cover" style={{ objectPosition: 'right center' }} />
-        <div style={{ background: 'var(--ks-bg)', padding: 'var(--ks-gutter)' }}>{inner}</div>
+        <div style={{ background: 'var(--ks-bg)', padding: 'var(--ks-gutter)' }}><HeroInner {...common} heading="h1" /></div>
       </div>
     </section>
   )

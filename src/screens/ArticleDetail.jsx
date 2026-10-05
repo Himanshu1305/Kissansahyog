@@ -8,6 +8,8 @@ import { Notice, Spinner } from '../components/ui'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
 import { generateArticleMessage } from '../lib/share/shareMessages'
 import { fetchArticleBySlug, articleTitle, articleContent } from '../lib/articles/articlesApi'
+import Seo from '../components/layout/Seo'
+import { PrerenderReady } from '../components/layout/Seo'
 
 // Parse "## heading" / paragraph blocks (blank-line separated) so articles can carry
 // question-shaped H2s (SEO/AEO), while plain articles still render as paragraphs.
@@ -84,7 +86,8 @@ export default function ArticleDetail() {
   return (
     <div className="min-h-screen bg-stone-50">
       <NavBar />
-      <main className="mx-auto max-w-3xl px-5 py-10">
+      <PrerenderReady when={!loading} />
+      <main className="ks-content py-10">
         <div className="mb-4"><BackButton fallback="/articles" /></div>
 
         {loading ? (
@@ -95,8 +98,13 @@ export default function ArticleDetail() {
           <p className="py-12 text-center text-stone-500">{t('article_not_found')}</p>
         ) : (
           <article>
-            {articleLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />}
-            {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
+            <Seo
+              title={`${articleTitle(article, lang)} — Kissan Sahyog`.slice(0, 70)}
+              description={(summary || articleTitle(article, lang)).slice(0, 155)}
+              path={`/articles/${article.slug}`}
+              type="article"
+              jsonLd={[articleLd, faqLd].filter(Boolean)}
+            />
             <h1 className="text-2xl font-extrabold leading-snug text-stone-900 sm:text-3xl">{articleTitle(article, lang)}</h1>
             <p className="mt-2 text-sm text-stone-500">{t('article_by')} {article.author_name} · {fmtDate(article.published_at)}</p>
 

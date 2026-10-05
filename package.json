@@ -10,6 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "vite build",
+    "build:full": "vite build && node --env-file=.env scripts/prerender.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "db": "node --env-file=.env scripts/db.mjs",

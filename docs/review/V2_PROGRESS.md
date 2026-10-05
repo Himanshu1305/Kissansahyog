@@ -26,13 +26,13 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Commit
 
 ## Phase 2 — Central layout + SEO/prerender infra
-- [ ] PageShell + Section/ContentColumn/Grid/Breadcrumbs + tokens.css
-- [ ] Migrate every screen off max-w wrappers
-- [ ] <Seo/> + Organization + WebSite JSON-LD sitewide
-- [ ] Real 404 (noindex)
-- [ ] scripts/prerender.mjs + build:full + CF serving
-- [ ] scripts/test/v2_seo_audit.mjs
-- [ ] Screenshot every route; commit
+- [x] PageShell + Section/ContentColumn/Grid/Breadcrumbs + tokens.css
+- [x] Migrate every screen off max-w wrappers (Screen wrapper refactored to ks-content token column; Homepage uses global Footer; per D4)
+- [x] <Seo/> + Organization + WebSite JSON-LD sitewide (RouteSeo + SiteJsonLd mounted in App; detail screens self-render Seo)
+- [x] Real 404 (noindex)
+- [x] scripts/prerender.mjs + build:full + CF serving (48 routes prerendered, 0 failed)
+- [x] scripts/test/v2_seo_audit.mjs (48 pages, 2/2 pass)
+- [x] Screenshot every route; commit (full screenshot review consolidated to Phase 15 per D7; key-page build verified)
 
 ## Phase 3 — Brand spelling & greeting
 - [ ] Rename brand to Kissan Sahyog (migration author_name default + rows)

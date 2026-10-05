@@ -16,6 +16,7 @@ import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/pagesApi'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, ReviewTag, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
+import Seo, { PrerenderReady } from '../components/layout/Seo'
 
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const firstNum = (s) => { const m = String(s || '').replace(/,/g, '').match(/\d+(\.\d+)?/); return m ? Number(m[0]) : null }
@@ -222,7 +223,14 @@ export default function Msp() {
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
       <NavBar />
-      <JsonLd data={articleLd} /><JsonLd data={datasetLd} />
+      <PrerenderReady when={today !== undefined} />
+      <Seo
+        title={(cropParam ? t('msp_seo_crop_title').replace('{crop}', cropName(crop, lang)) : t('msp_seo_hub_title')).slice(0, 70)}
+        description={(cropParam ? t('msp_seo_crop_desc').replace('{crop}', cropName(crop, lang)) : t('msp_seo_hub_desc')).slice(0, 155)}
+        path={cropParam ? `/msp/${slug}` : '/msp'}
+        type="article"
+        jsonLd={[articleLd, datasetLd]}
+      />
       <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
         {/* A per-crop page (/msp/:crop) falls back to the MSP hub; the hub falls back home. */}
         <BackButton fallback={cropParam ? '/msp' : '/'} />

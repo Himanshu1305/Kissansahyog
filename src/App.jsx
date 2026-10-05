@@ -5,6 +5,9 @@ import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
 import { Spinner } from './components/ui'
 import PwaPrompts from './components/PwaPrompts'
 import BuyerComplianceGate from './components/BuyerComplianceGate'
+import Footer from './components/layout/Footer'
+import { SiteJsonLd } from './components/layout/Seo'
+import RouteSeo from './components/layout/RouteSeo'
 
 // Route-level code splitting (perf budget: keep the initial bundle small).
 const Homepage = lazy(() => import('./screens/Homepage'))
@@ -39,6 +42,7 @@ const AgroForestry = lazy(() => import('./screens/AgroForestry'))
 const Credits = lazy(() => import('./screens/Credits'))
 const KisanMela = lazy(() => import('./screens/KisanMela'))
 const KisanMelaSubmit = lazy(() => import('./screens/KisanMelaSubmit'))
+const NotFound = lazy(() => import('./screens/NotFound'))
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -112,7 +116,8 @@ function AppRoutes() {
         <Route path="/profile" element={<Protected><Profile /></Protected>} />
         <Route path="/admin" element={<AdminOnly><Admin /></AdminOnly>} />
 
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* Real 404 (noindex) — replaces the old soft-404 <Navigate to="/">. */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   )
@@ -123,7 +128,12 @@ export default function App() {
     <LanguageProvider>
       <AuthProvider>
         <BrowserRouter>
+          {/* Per-route SEO for mapped public pages (central; before routes so head is set early). */}
+          <RouteSeo />
           <AppRoutes />
+          {/* Shared site footer + sitewide JSON-LD on every route (central layout). */}
+          <Footer />
+          <SiteJsonLd />
           <PwaPrompts />
           <BuyerComplianceGate />
         </BrowserRouter>

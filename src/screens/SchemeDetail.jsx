@@ -9,6 +9,7 @@ import NavBar from '../components/NavBar'
 import BackButton from '../components/BackButton'
 import { Spinner } from '../components/ui'
 import { WhatsAppIcon } from '../components/home/kit'
+import Seo, { PrerenderReady } from '../components/layout/Seo'
 import {
   fetchYojanaBySlug, yojanaName, yojanaMinistry, yojanaDesc, yojanaBenefit,
   yojanaEligibility, yojanaHowTo, yojanaDocs, faqQ, faqA,
@@ -68,8 +69,14 @@ export default function SchemeDetail() {
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
       <NavBar />
-      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
+      <PrerenderReady when={row !== undefined} />
+      <Seo
+        title={`${name} — Kissan Sahyog`.slice(0, 70)}
+        description={(summary || name).slice(0, 155)}
+        path={`/yojana/${slug}`}
+        type="article"
+        jsonLd={[articleLd, faqLd].filter(Boolean)}
+      />
 
       <article className="w-full" style={{ padding: '20px var(--ks-gutter)', maxWidth: 900 }}>
         <BackButton fallback="/yojana" className="mb-2" />
