@@ -329,7 +329,9 @@ and need those fields filled before re-running — see KNOWN_ISSUES.md.
 
 Out of scope for this MVP (do not implement without a scope change): Phone OTP, payments/
 escrow, in-app chat/contact forms, document/police verification, ratings, algorithmic
-matching, voice I/O, languages beyond Hindi/English, native app, automated deployment.
+matching, languages beyond Hindi/English, native app, automated deployment.
+(Voice I/O is now IN scope and shipped — voice search exists via `lib/voice/voiceSearch.js`,
+Web Speech hi-IN with a Gemini `/transcribe` fallback.)
 
 ---
 
@@ -505,14 +507,8 @@ Sagar-district mandis.
 > daily price-refresh cron. Without them the cron fails silently; the ticker still shows the
 > last cached prices (it won't break), but prices stop updating daily.
 
-> **BLOCKER — migration 0019 not yet applied to the live DB.** The Supabase Management API
-> personal access token (`SUPABASE_ACCESS_TOKEN` in `.env`) had **expired** (HTTP 401) when
-> this was built, so `npm run db migrate` could not create the table. To finish: EITHER
-> refresh that token (Supabase dashboard → Account → Access Tokens) then run `npm run db
-> migrate` + `npm run refresh-prices`; OR paste **`supabase/manual/mandi_setup.sql`** into the
-> Supabase dashboard SQL Editor (creates the table + RLS + a yesterday-dated fallback seed).
-> Until then the ticker shows the graceful "मंडी भाव जल्द उपलब्ध होंगे / Prices coming soon"
-> state — the app is not broken.
+> **RESOLVED (2026-10):** migration 0019 is applied to the live DB; the `SUPABASE_ACCESS_TOKEN`
+> in `.env` is current and `npm run db migrate` works. Mandi prices refresh via the daily cron.
 
 ---
 
@@ -539,14 +535,9 @@ Sagar-district mandis.
   Both degrade gracefully (weather → "temporarily unavailable"; MSP → empty/"—") if the tables
   are missing — the app never crashes.
 
-> **BLOCKER (same as §17):** migrations `0019` (mandi) and `0020` (weather/MSP) are **NOT yet
-> applied to the live DB** — the Supabase Management API token (`SUPABASE_ACCESS_TOKEN`) is
-> expired (401). Until fixed, the ticker shows "coming soon", weather shows "temporarily
-> unavailable", and the /info MSP tables are empty (homepage MSP highlight still shows the
-> static 2026-27 values). **To finish:** refresh the token → `npm run db migrate` +
-> `npm run refresh-prices`; OR paste `supabase/manual/mandi_setup.sql` **and**
-> `supabase/migrations/0020_weather_msp.sql` (both idempotent) into the Supabase SQL Editor.
-> Then the GitHub Actions secrets (§17) keep weather + prices auto-refreshing every 3 hours.
+> **RESOLVED (2026-10):** migrations `0019` (mandi) and `0020` (weather/MSP) are applied to the
+> live DB; the `SUPABASE_ACCESS_TOKEN` is current. Weather, MSP tables and the mandi ticker are
+> live and auto-refresh via the GitHub Actions cron.
 
 ---
 
@@ -616,13 +607,9 @@ listing/marketplace logic.** Migration `0021_community_features.sql`.
 - All strings bilingual (audit 29/29). Tests: `scripts/test/p_community.mjs` (46 static checks —
   RLS/insert policies, every admin RPC gated by require_admin, seed counts, routes, nav, i18n).
 
-> **BLOCKER (same as §17/§18):** migration `0021` is **NOT yet applied to the live DB** — the
-> Supabase Management API token (`SUPABASE_ACCESS_TOKEN`) is expired (401). Until applied, the
-> community pages render but show empty/degraded states (fetches fail gracefully; homepage/info
-> strips simply don't appear). **To finish:** refresh the token → `npm run db migrate`; OR paste
-> `supabase/migrations/0021_community_features.sql` (fully idempotent) into the Supabase SQL
-> Editor. Admin management + public pages then light up immediately with the 8 seeded schemes,
-> 3 Q&As, and 2 placeholder stories.
+> **RESOLVED (2026-10):** migration `0021` is applied to the live DB; the `SUPABASE_ACCESS_TOKEN`
+> is current. Community pages, admin management and the homepage/info strips are live with the
+> seeded schemes, Q&As and stories.
 
 ---
 
@@ -1098,10 +1085,9 @@ Full write-up: docs/review/TRANSPORT_VOICE_MANDI_IMD_TECHDEBT_REVIEW.md. Migrati
   brief bilingual message and reset the button — never stuck listening. **Rate limit (3c-i):** DB-backed
   `check_transcribe_rate` RPC + `voice_transcribe_calls` table (migration `0034`), 20/IP/hour, fail-open if the
   function's Supabase env is unset. **No CSP change** — the browser only calls same-origin `/transcribe`
-  (`connect-src 'self'`); Gemini is reached server-side. **OWNER ACTION REQUIRED** for the fallback to activate
-  for Safari/Firefox users: set `GEMINI_API_KEY` (and optionally `GEMINI_MODEL`, plus `SUPABASE_URL` +
-  `SUPABASE_SERVICE_ROLE_KEY` for the rate limit) as **Cloudflare Pages environment variables**. Until then the
-  primary Web-Speech path works and unsupported browsers cleanly show no mic. Verified locally (wrangler): GET
+  (`connect-src 'self'`); Gemini is reached server-side. **`GEMINI_API_KEY` is now set in Cloudflare Pages**
+  (environment variable), so the `/transcribe` fallback is live for Safari/Firefox users; the primary
+  Web-Speech path handles Chrome/Android. (It is not in local `.env`; set it there only for local fallback testing.) Verified locally (wrangler): GET
   `{configured:false}`, POST `503 not_configured`; rate-limit RPC 20 allowed / 5 denied. Migrations this prompt:
   `0033` (transport) + `0034` (voice rate limit) — split because each phase is committed independently.
 - **Mandi data — diagnosed, then honest labeling (Phase 4):** *Diagnosis (4a):* the 3-hourly cron
@@ -1225,3 +1211,14 @@ Full write-up: docs/review/KISAN_MELA_REVIEW.md. ONE migration `0035_kisan_mela.
   **Deployed & live-verified:** https://873c3617.kissansahyog.pages.dev — `/kisan-mela` + `/kisan-mela/submit`
   200, sitemap carries `/kisan-mela`, the live page renders 4 seeded melas (1 confirmed + 3 अपेक्षित), no console
   errors. Full E2E 74/74; mela backend/pure suites green; `v11_phase6` 29/0.
+
+### Kisan Mela follow-ups (1 Oct 2026)
+- **Candidates re-architecture (migration `0036_kisan_mela_candidates.sql`):** the discovery pipeline now lands
+  raw aggregator hits in a `kisan_mela_candidates` staging table (admin-reviewed) instead of writing directly to
+  `kisan_mela`, separating noisy discovery from published events. Tests: `scripts/test/p_mela_rearch.mjs`. Review:
+  `docs/review/KISAN_MELA_REARCHITECTURE_REVIEW.md`.
+- **State normalization + location-based dedup (migration `0037_kisan_mela_dedup_state.sql`):** canonical state
+  normalization for all states/UTs (Hindi + abbreviation aliases) applied at every entry point and backfilled;
+  location-based dedup (coordinates + date-overlap, expected-month aware, keeps separate editions apart) with
+  merge rules that preserve sources and farmers' interest marks; a one-time cleanup with an audit trail. Tests:
+  `scripts/test/p_mela_dedup.mjs`. Review: `docs/review/KISAN_MELA_DEDUP_STATE_REVIEW.md`.
