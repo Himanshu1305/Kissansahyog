@@ -82,12 +82,12 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] /jugaad info page (~3005 words Hindi, 18 FAQs: NIF/MVIF/NIDHI-PRAYAS/Startup India/MP Startup 2025/CFMTTI; legal guide RSRTC v Santosh, RTO v Jayachandra, Shreya Singhal, Dangerous Machines Act, CPA 2019, Patents; soft-help text; §9.3 no patent/award solicitation)
 - [x] Tests v2_phase9 20/20; e2e phase18 chips→10; SEO 89 routes; citation green. (screenshots → Phase 15)
 
-## Phase 10 — Site-wide search (typing + voice)
-- [ ] NavBar search (desktop inline / mobile fullscreen + mic)
-- [ ] searchSynonyms.js + search_all RPC (pg_trgm) + static index
-- [ ] Results page grouped + chips + no-result state
-- [ ] search_misses table + admin view
-- [ ] SearchAction JSON-LD; /search noindex; tests; commit
+## Phase 10 — Site-wide search (typing + voice)  (migration 0045)
+- [x] NavBar SearchBar (desktop inline / mobile fullscreen + VoiceSearchButton mic)
+- [x] searchSynonyms.js (crops/categories hi/hinglish/en + expandQuery) + search_listings RPC (pg_trgm, live listings) + build-time static index public/search-index.json (370 items; built in build:full) [D17]
+- [x] /search results grouped by type + counts, listing distance, popular chips, no-result state (nearby categories + post-your-need)
+- [x] search_misses table + log RPC (rate-limited) + admin SearchMissesPanel
+- [x] SearchAction JSON-LD → /search?q= (sitewide); /search noindex + excluded from prerender; tests v2_phase10 17/17; SEO 89 routes. (screenshots → Phase 15)
 
 ## Phase 11 — Interlinking boxes
 - [ ] boxRegistry.js + RelatedBoxes component

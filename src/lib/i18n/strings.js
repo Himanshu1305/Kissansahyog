@@ -1786,6 +1786,32 @@ export const strings = {
   // --- Phase 4: sponsored (built, no ads live) ---
   sponsored_label: { hi: 'प्रायोजित', en: 'Sponsored' },
 
+  // --- Phase 10: site-wide search ---
+  search_placeholder: { hi: 'खोजें — फसल, मशीन, योजना, गाँव…', en: 'Search — crop, machine, scheme, village…' },
+  search_open: { hi: 'खोजें', en: 'Search' },
+  search_title: { hi: 'खोज — किसान सहयोग', en: 'Search — Kissan Sahyog' },
+  search_voice: { hi: 'बोलकर खोजें', en: 'Search by voice' },
+  search_listening: { hi: 'सुन रहे हैं…', en: 'Listening…' },
+  search_results_for: { hi: 'परिणाम', en: 'Results for' },
+  search_no_results: { hi: 'कोई परिणाम नहीं मिला।', en: 'No results found.' },
+  search_nearby_cats: { hi: 'ये श्रेणियाँ देखें', en: 'Try these categories' },
+  search_post_need: { hi: 'अपनी ज़रूरत पोस्ट करें', en: 'Post your requirement' },
+  search_popular: { hi: 'लोकप्रिय खोज', en: 'Popular searches' },
+  search_empty_prompt: { hi: 'ऊपर कुछ लिखकर या बोलकर खोजें।', en: 'Type or speak above to search.' },
+  search_group_listing: { hi: 'बाज़ार लिस्टिंग', en: 'Marketplace listings' },
+  search_group_cold_storage: { hi: 'कोल्ड स्टोरेज', en: 'Cold storage' },
+  search_group_video: { hi: 'वीडियो', en: 'Videos' },
+  search_group_sawaal: { hi: 'किसान सवाल', en: 'Kisan Sawaal' },
+  search_group_scheme: { hi: 'सरकारी योजनाएं', en: 'Government schemes' },
+  search_group_article: { hi: 'लेख', en: 'Articles' },
+  search_group_mela: { hi: 'किसान मेला', en: 'Kisan Mela' },
+  search_group_resource: { hi: 'संपर्क', en: 'Contacts' },
+  search_group_expert: { hi: 'विशेषज्ञ', en: 'Experts' },
+  search_group_msp: { hi: 'मंडी भाव व MSP', en: 'Mandi & MSP' },
+  search_group_hub: { hi: 'जानकारी पेज', en: 'Info pages' },
+  admin_search_misses: { hi: 'बिना परिणाम खोजें', en: 'Zero-result searches' },
+  admin_search_misses_empty: { hi: 'कोई रिकॉर्ड नहीं।', en: 'No records.' },
+
   // --- Phase 9: jugaad marketplace fields ---
   home_cat_jugaad: { hi: 'जुगाड़ / ग्रामीण नवाचार', en: 'Jugaad / Rural Innovations' },
   jugaad_tile_label: { hi: 'जुगाड़', en: 'Jugaad' },

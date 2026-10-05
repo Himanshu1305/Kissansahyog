@@ -4,6 +4,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { strings } from '../lib/i18n/strings'
 import LanguageToggle from './LanguageToggle'
+import SearchBar from './SearchBar'
 
 // Fixed brand wordmark (always the Hindi mark + Latin subtitle), sourced from the
 // strings table so no Devanagari literal lives in a component.
@@ -169,6 +170,7 @@ export default function NavBar() {
 
         {/* Right cluster */}
         <div className="ml-auto flex items-center gap-2">
+          <SearchBar />
           <LanguageToggle />
           {/* Admin quick-link — visible directly in the nav for is_admin users only
               (server still gates /admin). Hidden entirely for everyone else. */}

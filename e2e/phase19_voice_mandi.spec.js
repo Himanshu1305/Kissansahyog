@@ -19,12 +19,12 @@ test('voice: Web Speech API populates the /sawaal search field (mocked recogniti
   })
   const page = await ctx.newPage()
   await page.goto('/sawaal')
-  const mic = page.getByTestId('voice-search-btn')
+  const mic = page.locator('main').getByTestId('voice-search-btn')
   await expect(mic).toBeVisible()
   await expect(mic).toHaveAttribute('data-voice-mode', 'webspeech')
   await mic.click()
   // The transcript populates the search box live.
-  await expect(page.locator('input[type="search"]')).toHaveValue('गेहूं का भाव', { timeout: 5000 })
+  await expect(page.locator('main input[type="search"]')).toHaveValue('गेहूं का भाव', { timeout: 5000 })
   await ctx.close()
 })
 
@@ -41,7 +41,7 @@ test('voice: unsupported browser WITH a key shows the Gemini-fallback mic', asyn
       ? r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ configured: true }) })
       : r.continue())
   await page.goto('/sawaal')
-  const mic = page.getByTestId('voice-search-btn')
+  const mic = page.locator('main').getByTestId('voice-search-btn')
   await expect(mic).toBeVisible({ timeout: 5000 })
   await expect(mic).toHaveAttribute('data-voice-mode', 'gemini')
   await ctx.close()
@@ -63,9 +63,9 @@ test('voice: unsupported browser with NO key hides the mic — text search still
       : r.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'not_configured' }) }))
   await page.goto('/sawaal')
   await page.waitForTimeout(800) // let resolveVoiceMode() settle
-  await expect(page.getByTestId('voice-search-btn')).toHaveCount(0)
+  await expect(page.locator('main').getByTestId('voice-search-btn')).toHaveCount(0)
   // Normal text search still functions.
-  const box = page.locator('input[type="search"]')
+  const box = page.locator('main input[type="search"]')
   await box.fill('ड्रोन')
   await expect(box).toHaveValue('ड्रोन')
   expect(errors, errors.join(' | ')).toHaveLength(0)

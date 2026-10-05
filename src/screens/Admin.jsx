@@ -26,6 +26,7 @@ import {
   getListingReports, resolveListingReport,
   getCsClaims, resolveCsClaim,
   getCarbonSuggestionsAdmin, resolveCarbonSuggestion,
+  getSearchMisses,
 } from '../lib/admin/adminApi'
 import { MELA_TAGS } from '../lib/mela/melaApi'
 import { getAdminInputPrices, adminSetInputPriceActive, adminUpsertInputPrice } from '../lib/inputs/inputsApi'
@@ -78,6 +79,7 @@ export default function Admin() {
         <ReportsPanel actorId={user.id} t={t} />
         <ColdStorageClaimsPanel actorId={user.id} t={t} />
         <CarbonSuggestionsPanel actorId={user.id} t={t} />
+        <SearchMissesPanel actorId={user.id} t={t} />
         <SubscriptionsPanel actorId={user.id} t={t} />
         <ProcurementPanel actorId={user.id} t={t} />
         <PageFaqsPanel actorId={user.id} t={t} />
@@ -1504,6 +1506,32 @@ function CarbonSuggestionsPanel({ actorId, t }) {
               </div>
             </div>
           ))}
+        </div>
+      )}
+    </Section>
+  )
+}
+
+// ---- Phase 10: zero-result search queries ----
+function SearchMissesPanel({ actorId, t }) {
+  const [rows, setRows] = useState(null)
+  const [err, setErr] = useState(null)
+  useEffect(() => { getSearchMisses(actorId).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown'))) }, [actorId, t])
+  return (
+    <Section title={t('admin_search_misses')}>
+      {err && <Notice tone="error">{err}</Notice>}
+      {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_search_misses_empty')}</p> : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <tbody>
+              {rows.map((r, i) => (
+                <tr key={i} className="border-b border-stone-100">
+                  <td className="py-1.5 font-semibold text-stone-800">{r.query}</td>
+                  <td className="py-1.5 text-right text-stone-500">{r.misses}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </Section>

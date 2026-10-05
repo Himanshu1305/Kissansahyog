@@ -33,6 +33,9 @@ export const getCsClaims = (actorId, status = 'pending') =>
 export const resolveCsClaim = (actorId, claimId, approve) =>
   rpc('resolve_cs_claim', { p_actor_id: actorId, p_claim_id: claimId, p_approve: approve })
 
+// Phase 10 — zero-result search log.
+export const getSearchMisses = (actorId) => rpc('get_search_misses', { p_actor_id: actorId, p_limit: 100 })
+
 // Phase 8 — carbon suggestions moderation.
 export const getCarbonSuggestionsAdmin = (actorId, status = 'pending') =>
   rpc('get_carbon_suggestions_admin', { p_actor_id: actorId, p_status: status })
