@@ -61,7 +61,7 @@ export async function getRoutes({ verbose = false } = {}) {
     } catch (e) { if (verbose) console.warn('articles fetch failed', e.message) }
     // Cold storage districts + Q&A slugs (tables arrive in Phases 6/12 — fail-soft).
     try {
-      const { data: cs } = await db.from('cold_storage_directory').select('district').eq('status', 'active')
+      const { data: cs } = await db.from('cold_storage_public').select('district')
       const districts = [...new Set((cs || []).map((r) => r.district).filter(Boolean))]
       for (const d of districts) routes.add(`/cold-storage/${slugifyDistrict(d)}`)
     } catch { /* table not created yet */ }
