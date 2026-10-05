@@ -45,7 +45,7 @@ export default function ListingForm({ listingType, category, listingSource = 'fa
   // in create_listing). Water tanker adds an extra line (Phase 5, equipment sub-type).
   const PROVIDER_DECL_KEY = { equipment: 'provider_decl_equipment', warehouse: 'provider_decl_cold_storage' }
   const providerDeclKey = PROVIDER_DECL_KEY[category]
-  const isTanker = category === 'equipment' && String(details?.equipment_type_id || '') === 'water_tanker'
+  const isTanker = category === 'equipment' && details?.is_tanker === true
   const needsProviderDecl = listingType === 'offer' && !!providerDeclKey
 
   useEffect(() => {

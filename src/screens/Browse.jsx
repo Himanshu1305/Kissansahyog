@@ -25,6 +25,8 @@ export default function Browse() {
     ? searchParams.get('cat')
     : ENABLED_CATEGORIES[0]
   const [category, setCategory] = useState(initialCat)
+  // Equipment sub-type deep-link (Phase 5): /browse?cat=equipment&etype=water_tanker.
+  const etype = searchParams.get('etype')
   const [typeFilter, setTypeFilter] = useState(null) // null | 'offer' | 'requirement'
   const [sort, setSort] = useState('nearest')
   const [extras, setExtras] = useState({})
@@ -67,6 +69,12 @@ export default function Browse() {
   // Land shows full-width single-column cards (more detail); the rest use a
   // 2-column mobile grid so more results are visible at once.
   const gridClass = category === 'land' ? 'grid grid-cols-1 gap-2' : 'grid grid-cols-2 gap-2 md:grid-cols-3'
+
+  // Optional equipment sub-type filter (water tanker): keep only tanker listings.
+  const tankerId = (extras.equipmentTypes || []).find((e) => e.name_en === 'Water tanker')?.id ?? null
+  const matchesEtype = (l) => etype !== 'water_tanker' ? true : (l.details?.is_tanker === true || l.details?.equipment_type_id === tankerId)
+  const shownListings = listings.filter(matchesEtype)
+  const shownFallback = fallback.filter(matchesEtype)
 
   return (
     <Screen title={t('browse_title')} onBack={() => navigate('/home')} right={<LanguageToggle />}>
@@ -118,19 +126,19 @@ export default function Browse() {
 
       {loading ? (
         <Spinner />
-      ) : listings.length === 0 && fallback.length === 0 ? (
+      ) : shownListings.length === 0 && shownFallback.length === 0 ? (
         <p className="py-12 text-center text-stone-500">{t('no_listings')}</p>
       ) : (
         <>
           <div className={gridClass}>
-            {listings.map((l) => (
+            {shownListings.map((l) => (
               <ListingCard key={l.id} listing={l} extras={extras} onClick={() => navigate(`/listing/${l.id}`)} />
             ))}
           </div>
 
           {/* Soft radius fallback: the 30–50 km ring, returned by fetchNearby ONLY when
               there are zero results within 30 km (Phase 0b). */}
-          {fallback.length > 0 && (
+          {shownFallback.length > 0 && (
             <div data-testid="fallback-section">
               <div className="my-2 flex items-center gap-2">
                 <span className="h-px flex-1 bg-stone-200" />
@@ -138,7 +146,7 @@ export default function Browse() {
                 <span className="h-px flex-1 bg-stone-200" />
               </div>
               <div className={gridClass}>
-                {fallback.map((l) => (
+                {shownFallback.map((l) => (
                   <ListingCard key={l.id} listing={l} extras={extras} onClick={() => navigate(`/listing/${l.id}`)} />
                 ))}
               </div>

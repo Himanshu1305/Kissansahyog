@@ -1786,6 +1786,34 @@ export const strings = {
   // --- Phase 4: sponsored (built, no ads live) ---
   sponsored_label: { hi: 'प्रायोजित', en: 'Sponsored' },
 
+  // --- Phase 4: contact page ---
+  contact_crumb: { hi: 'संपर्क', en: 'Contact' },
+  contact_title: { hi: 'संपर्क — किसान सहयोग', en: 'Contact — Kissan Sahyog' },
+  contact_desc: { hi: 'किसान सहयोग से hello@kissansahyog.com पर संपर्क करें। शिकायत के लिए शिकायत अधिकारी पेज देखें।', en: 'Contact Kissan Sahyog at hello@kissansahyog.com. For complaints, see the Grievance Officer page.' },
+  contact_h1: { hi: 'हमसे संपर्क करें', en: 'Contact us' },
+  contact_general_lead: { hi: 'सामान्य सवालों के लिए हमें ईमेल करें: ', en: 'For general questions, email us at ' },
+  contact_grievance_lead: { hi: 'किसी लिस्टिंग, विक्रेता या जानकारी की शिकायत के लिए कृपया ', en: 'For complaints about a listing, seller or information, please use the ' },
+  contact_grievance_tail: { hi: ' पेज देखें (grievance@kissansahyog.com)।', en: ' page (grievance@kissansahyog.com).' },
+
+  // --- Phase 5: water tanker (equipment sub-type) ---
+  home_cat_water_tanker: { hi: 'पानी का टैंकर', en: 'Water tanker' },
+  cat_tanker_label: { hi: 'पानी का टैंकर', en: 'Water tanker' },
+  cat_tanker_sub: { hi: 'गर्मी में पानी की ढुलाई', en: 'Water supply in summer' },
+  field_tanker_capacity: { hi: 'क्षमता (लीटर)', en: 'Capacity (litres)' },
+  ph_tanker_capacity: { hi: 'जैसे 5000', en: 'e.g. 5000' },
+  field_tanker_vehicle: { hi: 'वाहन', en: 'Vehicle' },
+  field_tanker_use: { hi: 'पानी का उपयोग (स्वयं घोषित)', en: 'Water use (self-declared)' },
+  field_tanker_source: { hi: 'पानी का स्रोत', en: 'Water source' },
+  field_tanker_rate_trip: { hi: 'भाव — प्रति ट्रिप (वैकल्पिक)', en: 'Rate — per trip (optional)' },
+  ph_tanker_rate_trip: { hi: 'जैसे ₹600/ट्रिप', en: 'e.g. ₹600/trip' },
+  field_tanker_rate_1000l: { hi: 'भाव — प्रति 1,000 लीटर (वैकल्पिक)', en: 'Rate — per 1,000 L (optional)' },
+  ph_tanker_rate_1000l: { hi: 'जैसे ₹120', en: 'e.g. ₹120' },
+  field_tanker_radius: { hi: 'सेवा दायरा (किमी)', en: 'Service radius (km)' },
+  field_tanker_months: { hi: 'उपलब्ध महीने', en: 'Available months' },
+  err_tanker_capacity_required: { hi: 'टैंकर की क्षमता (लीटर) ज़रूरी है।', en: 'Tanker capacity (litres) is required.' },
+  tanker_season_title: { hi: 'गर्मी में पानी का टैंकर चाहिए या देना है?', en: 'Need or offer a water tanker this summer?' },
+  tanker_season_cta: { hi: 'पानी के टैंकर देखें', en: 'See water tankers' },
+
   // --- Phase 4: admin reports queue ---
   admin_reports: { hi: 'शिकायतें', en: 'Reports' },
   admin_reports_empty: { hi: 'कोई खुली शिकायत नहीं।', en: 'No open complaints.' },

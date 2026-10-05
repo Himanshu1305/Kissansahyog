@@ -37,6 +37,7 @@ const IMG = (f) => `/images/home/${f}`
 // Category tiles (Phase 4 §5) — image + label/sublabel + browse target.
 const CATEGORY_TILES = [
   { img: 'cat-machines.jpg', labelKey: 'cat_machines_label', subKey: 'cat_machines_sub', to: 'equipment' },
+  { img: 'list-tractor.jpg', labelKey: 'cat_tanker_label', subKey: 'cat_tanker_sub', to: 'equipment', etype: 'water_tanker' },
   { img: 'cat-labour.jpg', labelKey: 'cat_labour_label', subKey: 'cat_labour_sub', to: 'labor' },
   { img: 'cat-drone.jpg', labelKey: 'cat_drone_label', subKey: 'cat_drone_sub', to: 'drone_didi' },
   { img: 'cat-straw.jpg', labelKey: 'cat_straw_label', subKey: 'cat_straw_sub', to: 'bhusa' },
@@ -153,8 +154,8 @@ export default function Homepage() {
   // Pest banner: top qualifying crop+symptom group (framed as recently asked).
   const pest = (pestReports && pestReports[0]) || null
 
-  const goBrowse = (cat) => navigate(isLoggedIn ? (cat ? `/browse?cat=${cat}` : '/browse') : '/signup')
-  const tileClick = (to) => (to === 'experts' ? navigate(isLoggedIn ? '/experts' : '/signup') : goBrowse(to))
+  const goBrowse = (cat, etype) => navigate(isLoggedIn ? (cat ? `/browse?cat=${cat}${etype ? `&etype=${etype}` : ''}` : '/browse') : '/signup')
+  const tileClick = (to, etype) => (to === 'experts' ? navigate(isLoggedIn ? '/experts' : '/signup') : goBrowse(to, etype))
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
@@ -170,6 +171,19 @@ export default function Homepage() {
             {t('greeting_sitaram')} 🙏{user?.full_name ? `, ${user.full_name}` : ''}
           </p>
         </div>
+      )}
+
+      {/* Seasonal water-tanker box — prominent March–June (summer). */}
+      {(() => { const m = new Date().getMonth(); return m >= 2 && m <= 5 })() && (
+        <button
+          type="button"
+          onClick={() => goBrowse('equipment', 'water_tanker')}
+          className="block w-full text-left"
+          style={{ background: 'var(--ks-blue-tint)', borderTop: '2px solid var(--ks-blue)', borderBottom: '2px solid var(--ks-blue)', padding: '10px var(--ks-gutter)' }}
+        >
+          <span className="block text-[15px] font-bold" style={{ color: 'var(--ks-blue)' }}>🚰 {t('tanker_season_title')}</span>
+          <span className="block text-[14px] font-semibold" style={{ color: 'var(--ks-green-dark)' }}>{t('tanker_season_cta')} →</span>
+        </button>
       )}
 
       {/* 3 — Hero: आज किसान के लिए */}
@@ -216,7 +230,7 @@ export default function Homepage() {
         <SectionHeader title={t('cats_title')} />
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {CATEGORY_TILES.map((c) => (
-            <PhotoTile key={c.img} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} onClick={() => tileClick(c.to)} />
+            <PhotoTile key={c.labelKey} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} onClick={() => tileClick(c.to, c.etype)} />
           ))}
         </div>
       </Section>

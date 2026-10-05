@@ -13,6 +13,7 @@ const BRAND_HI = strings.app_name.hi
 // dedicated page; the rest route to the filtered browse view (or homepage ?cat=).
 const CATEGORIES = [
   { key: 'equipment', labelKey: 'home_cat_equipment' },
+  { key: 'water_tanker', labelKey: 'home_cat_water_tanker', browseQuery: 'cat=equipment&etype=water_tanker' },
   { key: 'labor', labelKey: 'home_cat_labor' },
   { key: 'drone_didi', labelKey: 'home_cat_drone_didi', path: '/drone-didi' },
   { key: 'bhusa', labelKey: 'home_cat_bhusa' },
@@ -80,6 +81,7 @@ export default function NavBar() {
     setOpen(false); setBz(false)
     if (c.path) { navigate(c.path); return }
     if (c.key === 'experts') { navigate(isLoggedIn ? '/experts' : '/signup'); return }
+    if (c.browseQuery) { navigate(isLoggedIn ? `/browse?${c.browseQuery}` : `/?${c.browseQuery}`); return }
     navigate(isLoggedIn ? `/browse?cat=${c.key}` : `/?cat=${c.key}`)
   }
   function goPath(p) { setOpen(false); setSch(false); setRes(false); setBz(false); navigate(p) }

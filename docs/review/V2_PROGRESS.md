@@ -49,10 +49,10 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] SponsoredBadge + is_sponsored flag + admin toggle (CP E-Commerce Rules 2026 S-JUG-31); wired into ListingCard + ListingDetail; feed selects include is_sponsored
 - [x] Tests: v2_phase4.mjs (20/20); e2e phase4 updated for provider-decl; commit
 
-## Phase 5 — Water tanker (inside Equipment)
-- [ ] Tanker equipment type + conditional fields
-- [ ] Offer+Requirement; homepage tile; menu; seasonal box
-- [ ] Validation client+create_listing; samples; tests; screenshots; commit
+## Phase 5 — Water tanker (inside Equipment)  (migration 0040)
+- [x] Tanker equipment type (DB) + conditional fields in equipment.jsx (capacity/vehicle/use/source/rates/radius/months; photo omitted — equipment has no photo support, D14)
+- [x] Offer+Requirement (no borewell warning, no benchmarks); homepage tile + seasonal box (Mar–Jun); बाज़ार menu entry; Browse etype=water_tanker filter
+- [x] Validation client (equipment.jsx validate) + create_listing (tanker_capacity_required); 4 sample listings (is_test_data); test v2_phase5.mjs (13/13); E2E 77/77; eager bundle 189KB. (screenshots → Phase 15 per D7)
 
 ## Phase 6 — Cold storage (directory + marketplace)
 - [ ] Rename category; tile + menu

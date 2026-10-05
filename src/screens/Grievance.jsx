@@ -6,9 +6,9 @@ import { grievancePage } from '../content/pages/grievance.js'
 // /grievance — Grievance Officer page (Phase 4). Bilingual content page +
 // breadcrumbs + Seo (self-rendered per D6). Linked from the global footer.
 export default function Grievance() {
-  const { lang } = useLang()
+  const { t, lang } = useLang()
   const jsonLd = buildContentJsonLd(grievancePage.blocks, lang)
-  const crumbs = [{ label: { hi: 'शिकायत अधिकारी', en: 'Grievance Officer' } }]
+  const crumbs = [{ label: t('footer_grievance') }]
   return (
     <PageShell width="content" crumbs={crumbs}>
       <Seo

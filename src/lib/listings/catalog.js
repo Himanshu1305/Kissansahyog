@@ -61,6 +61,32 @@ export const RENTAL_BASIS = [
   { value: 'per_day', hi: 'प्रति दिन', en: 'Per day' },
 ]
 
+// --- Water tanker (equipment sub-type, Phase 5) ---
+export const TANKER_VEHICLE = [
+  { value: 'tractor_trolley', hi: 'ट्रैक्टर-ट्रॉली', en: 'Tractor-trolley' },
+  { value: 'truck', hi: 'ट्रक', en: 'Truck' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const TANKER_WATER_USE = [
+  { value: 'potable', hi: 'पीने योग्य', en: 'Potable' },
+  { value: 'non_potable', hi: 'गैर-पीने योग्य', en: 'Non-potable' },
+  { value: 'both', hi: 'दोनों', en: 'Both' },
+]
+export const TANKER_WATER_SOURCE = [
+  { value: 'own_borewell', hi: 'अपना बोरवेल', en: 'Own borewell' },
+  { value: 'panchayat_municipal', hi: 'पंचायत/नगर पालिका', en: 'Panchayat/Municipal' },
+  { value: 'river_pond', hi: 'नदी/तालाब', en: 'River/Pond' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const MONTH_OPTIONS = [
+  { value: 'jan', hi: 'जन', en: 'Jan' }, { value: 'feb', hi: 'फ़र', en: 'Feb' },
+  { value: 'mar', hi: 'मार्च', en: 'Mar' }, { value: 'apr', hi: 'अप्रैल', en: 'Apr' },
+  { value: 'may', hi: 'मई', en: 'May' }, { value: 'jun', hi: 'जून', en: 'Jun' },
+  { value: 'jul', hi: 'जुल', en: 'Jul' }, { value: 'aug', hi: 'अग', en: 'Aug' },
+  { value: 'sep', hi: 'सित', en: 'Sep' }, { value: 'oct', hi: 'अक्टू', en: 'Oct' },
+  { value: 'nov', hi: 'नव', en: 'Nov' }, { value: 'dec', hi: 'दिस', en: 'Dec' },
+]
+
 // --- Labor ---
 export const WORK_TYPE = [
   { value: 'sowing', hi: 'बुवाई', en: 'Sowing' },
