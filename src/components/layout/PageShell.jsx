@@ -14,7 +14,7 @@ import { PrerenderReady } from './Seo.jsx'
 //   </PageShell>
 export default function PageShell({
   children,
-  width = 'content',
+  width = 'wide',
   crumbs,
   ready = true,
   mainClassName = '',
