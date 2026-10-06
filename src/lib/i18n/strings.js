@@ -210,6 +210,27 @@ export const strings = {
   related_bhusa_cta: { hi: 'भूसा / पराली मंच देखें', en: 'Visit the Bhoosa / Parali marketplace' },
   read_about_this: { hi: 'इस बारे में पढ़ें', en: 'Read about this' },
 
+  // --- Phase 13: WhatsApp groundwork ---
+  wa_join_nav: { hi: 'WhatsApp पर जुड़ें', en: 'Join on WhatsApp' },
+  wa_join_title: { hi: 'रोज़ सुबह सागर मंडी भाव + मौसम WhatsApp पर — मुफ़्त', en: 'Daily Sagar mandi prices + weather on WhatsApp — free' },
+  wa_join_sub: { hi: 'हर सुबह आपके फ़ोन पर आज के भाव और मौसम की जानकारी।', en: "Today's prices and weather on your phone every morning." },
+  wa_join_cta: { hi: 'अभी जुड़ें', en: 'Join now' },
+  wa_join_box: { hi: 'मंडी भाव + मौसम WhatsApp पर पाएँ', en: 'Get mandi prices + weather on WhatsApp' },
+  wa_scan_qr: { hi: 'जुड़ने के लिए QR स्कैन करें', en: 'Scan the QR to join' },
+  wa_consent_label: { hi: 'मुझे Kissan Sahyog से WhatsApp पर जानकारी भेजें', en: 'Send me information from Kissan Sahyog on WhatsApp' },
+  wa_pref_mandi: { hi: 'पसंदीदा मंडी (वैकल्पिक)', en: 'Preferred mandi (optional)' },
+  wa_joining: { hi: 'WhatsApp पर भेजा जा रहा है…', en: 'Taking you to WhatsApp…' },
+  // Admin "आज की पोस्ट" builder
+  admin_today_post: { hi: 'आज की पोस्ट', en: "Today's post" },
+  admin_today_download: { hi: 'इमेज डाउनलोड करें', en: 'Download image' },
+  admin_today_copy: { hi: 'कैप्शन कॉपी करें', en: 'Copy caption' },
+  admin_today_reel: { hi: 'रील/वीडियो लिंक (वैकल्पिक)', en: 'Reel/video link (optional)' },
+  admin_wa_channel: { hi: 'WhatsApp चैनल URL', en: 'WhatsApp channel URL' },
+  admin_wa_save: { hi: 'सेव करें', en: 'Save' },
+  admin_wa_export: { hi: 'WhatsApp ऑप्ट-इन सूची डाउनलोड करें (CSV)', en: 'Download WhatsApp opt-in list (CSV)' },
+  admin_wa_qr: { hi: 'पोस्टर के लिए QR डाउनलोड करें', en: 'Download QR for posters' },
+  admin_wa_tab: { hi: 'WhatsApp', en: 'WhatsApp' },
+
   // --- Phase 12: Kisan Sawaal knowledge base ---
   sawaal_kb_heading: { hi: 'किसान सवाल — जानकारी', en: 'Kisan Sawaal — knowledge base' },
   sawaal_related_q: { hi: 'इनसे जुड़े सवाल', en: 'Related questions' },

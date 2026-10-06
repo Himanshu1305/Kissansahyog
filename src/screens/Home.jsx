@@ -3,6 +3,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { BigButton } from '../components/ui'
 import NavBar from '../components/NavBar'
+import WhatsAppJoin from '../components/WhatsAppJoin'
 
 // Logged-in dashboard: global nav (so the logo links back to the public homepage)
 // + greeting + primary actions.
@@ -44,6 +45,8 @@ export default function Home() {
         >
           {t('logout')}
         </button>
+
+        <WhatsAppJoin variant="box" src="home_dashboard" />
       </main>
     </div>
   )

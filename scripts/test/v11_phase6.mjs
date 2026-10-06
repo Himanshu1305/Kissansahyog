@@ -96,6 +96,9 @@ const ALLOWED = new Set([
   'src/components/categories/agri_inputs.jsx', 'src/components/categories/drone_didi.jsx',
   'src/components/categories/warehouse.jsx', 'src/components/categories/transport.jsx', 'src/components/categories/greenhouse.jsx', 'src/components/categories/jugaad.jsx',
   'src/components/LanguageToggle.jsx', 'src/screens/Welcome.jsx',
+  // Admin-only "आज की पोस्ट" builder: draws a Hindi WhatsApp card + caption (post
+  // content, like shareMessages.js) — Hindi is intentional, not UI render copy.
+  'src/components/admin/WhatsAppAdminPanel.jsx',
 ])
 import { readdirSync, statSync } from 'node:fs'
 const offenders = []

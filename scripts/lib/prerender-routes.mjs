@@ -39,7 +39,7 @@ export const STATIC_ROUTES = [
 ]
 
 // Routes that must NEVER be prerendered (auth-gated / app shell / dynamic app).
-export const EXCLUDE = ['/home', '/browse', '/post', '/my', '/experts', '/profile', '/admin', '/login', '/signup', '/welcome', '/listing', '/search']
+export const EXCLUDE = ['/home', '/browse', '/post', '/my', '/experts', '/profile', '/admin', '/login', '/signup', '/welcome', '/listing', '/search', '/join']
 
 async function supa() {
   const url = process.env.VITE_SUPABASE_URL

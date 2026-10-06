@@ -24,6 +24,7 @@ import { fetchPublishedArticles, articleTitle } from '../lib/articles/articlesAp
 import { fetchFeaturedSawaal, sawaalQuestion, sawaalAnswer } from '../lib/community/communityApi'
 import { whatsappListingUrl } from '../lib/share/shareMessages'
 import { incrementContactClick } from '../lib/listings/listingsApi'
+import WhatsAppJoin from '../components/WhatsAppJoin'
 import AvailabilityNudge from '../components/AvailabilityNudge'
 import PwaInstallBanner from '../components/PwaInstallBanner'
 import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
@@ -178,6 +179,9 @@ export default function Homepage() {
           </p>
         </div>
       )}
+
+      {/* WhatsApp join banner — hidden until admin sets whatsapp_channel_url (§13.2). */}
+      <WhatsAppJoin variant="banner" src="home" />
 
       {/* Seasonal water-tanker box — prominent March–June (summer). */}
       {(() => { const m = new Date().getMonth(); return m >= 2 && m <= 5 })() && (

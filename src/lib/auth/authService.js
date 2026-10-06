@@ -68,7 +68,7 @@ export function logout() {
 // Phase 5 — optional किसान-profile fields. Applied AFTER account creation so signup is
 // never blocked by them. Returns the updated profile, or the input profile if nothing to set.
 function hasKisan(k) {
-  return k && (k.land_acres != null && k.land_acres !== '' || (k.main_crops && k.main_crops.trim()) || k.interest_lease || k.interest_equipment)
+  return k && (k.land_acres != null && k.land_acres !== '' || (k.main_crops && k.main_crops.trim()) || k.interest_lease || k.interest_equipment || k.whatsapp_opt_in || (k.preferred_mandi && k.preferred_mandi.trim()))
 }
 async function applyKisan(profile, kisan) {
   if (!profile?.id || !hasKisan(kisan)) return profile
@@ -79,6 +79,8 @@ async function applyKisan(profile, kisan) {
       p_main_crops: kisan.main_crops ?? null,
       p_interest_lease: !!kisan.interest_lease,
       p_interest_equipment: !!kisan.interest_equipment,
+      p_whatsapp_opt_in: !!kisan.whatsapp_opt_in,
+      p_preferred_mandi: kisan.preferred_mandi ?? null,
     })
     if (error) return profile // non-blocking — account already created
     return data || profile
@@ -107,13 +109,15 @@ export async function signup({ full_name, phone, village_town, pincode, language
 }
 
 // Edit only the किसान-profile fields (optional; no pincode dependency) + refresh the session.
-export async function updateKisanProfile(actorId, { land_acres, main_crops, interest_lease, interest_equipment }) {
+export async function updateKisanProfile(actorId, { land_acres, main_crops, interest_lease, interest_equipment, whatsapp_opt_in, preferred_mandi }) {
   const { data, error } = await supabase.rpc('update_kisan_profile', {
     p_actor_id: actorId,
     p_land_acres: land_acres === '' || land_acres == null ? null : Number(land_acres),
     p_main_crops: main_crops ?? null,
     p_interest_lease: !!interest_lease,
     p_interest_equipment: !!interest_equipment,
+    p_whatsapp_opt_in: whatsapp_opt_in == null ? null : !!whatsapp_opt_in,
+    p_preferred_mandi: preferred_mandi ?? null,
   })
   if (error) throw toAppError(error)
   return storeSession(data)

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useLang } from '../../lib/i18n/LanguageProvider'
+import WhatsAppJoin from '../WhatsAppJoin'
 
 // Shared site footer, mounted once globally (App) so every public page has it.
 // Always links the Grievance Officer page (§0.3 / Phase 4) and shows hello@ for
@@ -23,6 +24,7 @@ export default function Footer() {
             <Link to="/resources" className={link}>{t('resources_nav')}</Link>
             <Link to="/credits" className={link}>{t('footer_credits')}</Link>
             <a href={`mailto:${t('footer_general_email')}`} className={link}>{t('footer_general_email')}</a>
+            <WhatsAppJoin variant="link" src="footer" className="!text-green-300" />
           </nav>
         </div>
         <div className="mt-5 border-t border-white/10 pt-3 text-[12px]" style={{ color: '#8FB29C' }}>

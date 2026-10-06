@@ -20,7 +20,7 @@ export default function Signup() {
   const [step, setStep] = useState('form') // 'form' | 'disclaimer'
   const [form, setForm] = useState({ full_name: '', phone: '', email: '', password: '', village_town: '', pincode: '' })
   // Phase 5 — optional किसान profile captured at registration (never blocks signup).
-  const [kisan, setKisan] = useState({ land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false })
+  const [kisan, setKisan] = useState({ land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' })
   const setK = (k) => (e) => setKisan((s) => ({ ...s, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }))
   const [accepted, setAccepted] = useState(false)
   const [fieldErrors, setFieldErrors] = useState({})

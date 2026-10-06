@@ -7,6 +7,7 @@ import { CATEGORIES, CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/ca
 import { CatIcon } from '../components/CatIcon'
 import { isEnabled } from '../lib/listings/registry'
 import ListingForm from '../components/ListingForm'
+import WhatsAppJoin from '../components/WhatsAppJoin'
 
 // Post flow: (1) Offering or Looking For? (2) which category? (3) the form,
 // (4) success. Kept as one screen with an in-screen back arrow (simplest for
@@ -107,6 +108,7 @@ export default function Post() {
               {t('listing_pending_geocode')}
             </p>
           )}
+          <div className="mx-auto mt-4 max-w-sm"><WhatsAppJoin variant="box" src="post_listing" /></div>
           <div className="mt-8 space-y-3">
             <BigButton onClick={() => navigate(`/listing/${created.id}`)}>
               {t('view_listing')}

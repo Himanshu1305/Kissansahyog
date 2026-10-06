@@ -33,6 +33,7 @@ import { getAdminInputPrices, adminSetInputPriceActive, adminUpsertInputPrice } 
 import { fetchSiteSetting } from '../lib/pages/pagesApi'
 import { sawaalQuestion } from '../lib/community/communityApi'
 import { CATEGORIES } from '../lib/listings/catalog'
+import WhatsAppAdminPanel from '../components/admin/WhatsAppAdminPanel'
 
 // Admin dashboard. Route-gated to authenticated users; a non-admin sees Access
 // Denied here (not a 404/crash). All data comes from is_admin-checked RPCs.
@@ -80,6 +81,7 @@ export default function Admin() {
         <ColdStorageClaimsPanel actorId={user.id} t={t} />
         <CarbonSuggestionsPanel actorId={user.id} t={t} />
         <SearchMissesPanel actorId={user.id} t={t} />
+        <WhatsAppAdminPanel actorId={user.id} t={t} />
         <SubscriptionsPanel actorId={user.id} t={t} />
         <ProcurementPanel actorId={user.id} t={t} />
         <PageFaqsPanel actorId={user.id} t={t} />

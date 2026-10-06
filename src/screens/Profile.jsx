@@ -31,6 +31,7 @@ export default function Profile() {
   const [kisan, setKisan] = useState({
     land_acres: user?.land_acres ?? '', main_crops: user?.main_crops ?? '',
     interest_lease: !!user?.interest_lease, interest_equipment: !!user?.interest_equipment,
+    whatsapp_opt_in: !!user?.whatsapp_opt_in, preferred_mandi: user?.preferred_mandi ?? '',
   })
   const setK = (k) => (e) => setKisan((s) => ({ ...s, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }))
   const [kisanMsg, setKisanMsg] = useState(null)

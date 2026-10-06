@@ -12,6 +12,7 @@ import { filterMelas, sortByDistance, statesIn, melaDateLabel, isExpectedDate, m
 import { stateLabel } from '../content/states.js'
 import { generateMelaMessage } from '../lib/share/shareMessages'
 import { MONTHS_FULL_HI, MONTHS_FULL_EN } from '../content/months'
+import WhatsAppJoin from '../components/WhatsAppJoin'
 
 // Public Kisan Mela calendar — no login to browse. Self-sourced, honest ("अपेक्षित" dates
 // clearly marked), state + month filters, distance-sorted from the viewer's location.
@@ -218,6 +219,7 @@ export default function KisanMela() {
             })}
           </div>
         )}
+        <WhatsAppJoin variant="box" src="mela" />
       </main>
     </div>
   )

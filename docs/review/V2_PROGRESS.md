@@ -101,11 +101,11 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Authored 40 fetch-and-quoted Q&As (15 schemes [official PIB/HP/FAO], 13 grains [TNAU/ICAR/HP + labeled News/Company], 12 pulses+veg [ICAR PDFs]); 19 legacy rows slugged → 59 published pages. Banned pesticides (endosulfan/carbofuran/phorate) kept out of published blocks; chemical lines carry "लेबल पर लिखी मात्रा". Backlog (lentil/urad/moong/doses) → report per §12.5
 - [x] QAPage+ItemList+BreadcrumbList schema; SourcesList; RelatedBoxes; tests v2_phase12 17/17; citation 6/6; SEO 176 routes; i18n green; build:full prerendered 176/176. (E2E → Phase 15 per D7)
 
-## Phase 13 — WhatsApp groundwork (no sending)
-- [ ] Admin "आज की पोस्ट" builder (canvas 1080×1350)
-- [ ] Hidden WhatsApp pieces gated on whatsapp_channel_url
-- [ ] Consent at signup + profile (whatsapp_opt_in)
-- [ ] Tests; commit
+## Phase 13 — WhatsApp groundwork (no sending)  (migration 0049)
+- [x] Admin "आज की पोस्ट" builder (WhatsAppAdminPanel: canvas 1080×1350 from mandi+weather, Hindi caption w/ channel placeholder+reel, download image/copy caption) + channel URL setter + opt-in CSV export + poster QR download
+- [x] Hidden WhatsApp pieces gated on site_settings.whatsapp_channel_url (empty→nothing shows): Footer link, Homepage banner, contextual boxes (Mausam/Msp/KisanMela/Home post-signup/Post post-listing), in-app QR (qrcode lib, no third-party service), /join?src= → log_join_click → redirect
+- [x] Consent at signup + profile (KisanFields whatsapp_opt_in unchecked default + preferred_mandi; update_kisan_profile extended w/ opt-in+timestamp; withdraw clears; admin export get_whatsapp_optins; privacy notice covers it)
+- [x] Tests v2_phase13 26/26; i18n 31/31 (panel allowlisted — Hindi post content); citation 6/6; build green; commit
 
 ## Phase 14 — SEO/AEO/GEO completion
 - [ ] §0.6 on every page; OG share images
