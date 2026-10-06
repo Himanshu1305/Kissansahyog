@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom'
 import { PageShell, Seo } from '../components/layout'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { fetchColdStorageByDistrict } from '../lib/coldStorage/coldStorageApi'
-import ColdStorageCard from '../components/ColdStorageCard'
+import ColdStorageFinder from '../components/coldStorage/ColdStorageFinder'
 
-// /cold-storage/:district — one district's directory with ItemList +
-// LocalBusiness JSON-LD for local SEO.
+// /cold-storage/:district — one district's directory with the SAME finder (search
+// + distance sort + cards), district preselected, plus ItemList + LocalBusiness
+// JSON-LD for local SEO.
 export default function ColdStorageDistrict() {
   const { district: slug } = useParams()
   const { t } = useLang()
@@ -40,11 +41,7 @@ export default function ColdStorageDistrict() {
       itemListElement: rows.map((r, i) => ({ '@type': 'ListItem', position: i + 1, name: r.name })),
     }
     const localBusinessLd = rows.map((r) => {
-      const obj = {
-        '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
-        name: r.name,
-      }
+      const obj = { '@context': 'https://schema.org', '@type': 'LocalBusiness', name: r.name }
       const address = r.address || r.city
       if (address) obj.address = address
       if (r.phone) obj.telephone = r.phone
@@ -70,26 +67,14 @@ export default function ColdStorageDistrict() {
 
       <h1 className="text-3xl font-bold text-stone-900">{heading} {t('cs_hub_nav')}</h1>
       <p className="mt-2 text-stone-700">{t('cs_district_intro')}</p>
-      <p className="mt-3 text-sm font-semibold text-stone-600">{rows.length} {t('cs_entries_count')}</p>
 
       {isSagar && (
-        <p className="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
-          {t('cs_sagar_note')}
-        </p>
+        <p className="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">{t('cs_sagar_note')}</p>
       )}
 
-      {rows.length === 0 ? (
-        <div className="mt-4">
-          <p className="rounded-lg bg-stone-100 px-4 py-6 text-center text-sm text-stone-600">{t('cs_no_entries')}</p>
-          <p className="mt-3 rounded-lg bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">{t('cs_sagar_note')}</p>
-        </div>
-      ) : (
-        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {rows.map((e) => (
-            <ColdStorageCard key={e.id} entry={e} />
-          ))}
-        </div>
-      )}
+      <div className="mt-5">
+        <ColdStorageFinder entries={rows} lockedDistrict={heading} />
+      </div>
     </PageShell>
   )
 }

@@ -838,12 +838,30 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Jayanti Cold Storage",
-    "title_en": "Jayanti Cold Storage",
-    "subtitle_hi": "pushprajgarh anuppur",
-    "subtitle_en": "pushprajgarh anuppur",
-    "url": "/cold-storage/anuppur",
-    "keywords": "jayanti cold storage pushprajgarh anuppur cold storage godown warehouse"
+    "title_hi": "Satish Ice And Cold Storage Pvt Ltd",
+    "title_en": "Satish Ice And Cold Storage Pvt Ltd",
+    "subtitle_hi": "rau indore",
+    "subtitle_en": "rau indore",
+    "url": "/cold-storage/indore",
+    "keywords": "satish ice and cold storage pvt ltd rau indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Vrindavan Cold Storage Pvt. Ltd",
+    "title_en": "Vrindavan Cold Storage Pvt. Ltd",
+    "subtitle_hi": "indore",
+    "subtitle_en": "indore",
+    "url": "/cold-storage/indore",
+    "keywords": "vrindavan cold storage pvt. ltd indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Ramraja Cold Storage",
+    "title_en": "Ramraja Cold Storage",
+    "subtitle_hi": "orchha area niwari",
+    "subtitle_en": "orchha area niwari",
+    "url": "/cold-storage/niwari",
+    "keywords": "ramraja cold storage orchha area niwari cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -910,30 +928,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Chaudhary Dilip Singh Cold Storage",
-    "title_en": "Chaudhary Dilip Singh Cold Storage",
-    "subtitle_hi": "didi bhind",
-    "subtitle_en": "didi bhind",
-    "url": "/cold-storage/bhind",
-    "keywords": "chaudhary dilip singh cold storage didi bhind cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Guru Kripa Agritech Pvt. Ltd.",
     "title_en": "Guru Kripa Agritech Pvt. Ltd.",
     "subtitle_hi": "gurikha bhind",
     "subtitle_en": "gurikha bhind",
     "url": "/cold-storage/bhind",
     "keywords": "guru kripa agritech pvt. ltd. gurikha bhind cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Hindustan Cold Storage",
-    "title_en": "Hindustan Cold Storage",
-    "subtitle_hi": "bhind bhind",
-    "subtitle_en": "bhind bhind",
-    "url": "/cold-storage/bhind",
-    "keywords": "hindustan cold storage bhind bhind cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -964,12 +964,21 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "S.T. Cold Storage Pvt. Ltd.",
-    "title_en": "S.T. Cold Storage Pvt. Ltd.",
-    "subtitle_hi": "phoop bhind",
-    "subtitle_en": "phoop bhind",
-    "url": "/cold-storage/bhind",
-    "keywords": "s.t. cold storage pvt. ltd. phoop bhind cold storage godown warehouse"
+    "title_hi": "Pandey Cold Storage",
+    "title_en": "Pandey Cold Storage",
+    "subtitle_hi": "katni katni",
+    "subtitle_en": "katni katni",
+    "url": "/cold-storage/katni",
+    "keywords": "pandey cold storage katni katni cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Snow Line Cold Store",
+    "title_en": "Snow Line Cold Store",
+    "subtitle_hi": "new bhopal bypass bhopal",
+    "subtitle_en": "new bhopal bypass bhopal",
+    "url": "/cold-storage/bhopal",
+    "keywords": "snow line cold store new bhopal bypass bhopal cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1027,15 +1036,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Gangotri Cold Storage",
-    "title_en": "Gangotri Cold Storage",
-    "subtitle_hi": "bhopal (plus code 8cm4+25q) bhopal",
-    "subtitle_en": "bhopal (plus code 8cm4+25q) bhopal",
-    "url": "/cold-storage/bhopal",
-    "keywords": "gangotri cold storage bhopal (plus code 8cm4+25q) bhopal cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Nidhi Associates",
     "title_en": "Nidhi Associates",
     "subtitle_hi": "bhopal bhopal",
@@ -1051,15 +1051,6 @@
     "subtitle_en": "bairagarh kalan bhopal",
     "url": "/cold-storage/bhopal",
     "keywords": "satguru cold storage bairagarh kalan bhopal cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Snow Line Cold Store",
-    "title_en": "Snow Line Cold Store",
-    "subtitle_hi": "new bhopal bypass bhopal",
-    "subtitle_en": "new bhopal bypass bhopal",
-    "url": "/cold-storage/bhopal",
-    "keywords": "snow line cold store new bhopal bypass bhopal cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1099,15 +1090,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Shree Cold Storage",
-    "title_en": "Shree Cold Storage",
-    "subtitle_hi": "near krushnal kela group burhanpur",
-    "subtitle_en": "near krushnal kela group burhanpur",
-    "url": "/cold-storage/burhanpur",
-    "keywords": "shree cold storage near krushnal kela group burhanpur cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Chhatarpur Cold Storage",
     "title_en": "Chhatarpur Cold Storage",
     "subtitle_hi": "chhatarpur chhatarpur",
@@ -1117,12 +1099,21 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Jatashankar Cold Storage",
-    "title_en": "Jatashankar Cold Storage",
-    "subtitle_hi": "chhatarpur district chhatarpur",
-    "subtitle_en": "chhatarpur district chhatarpur",
-    "url": "/cold-storage/chhatarpur",
-    "keywords": "jatashankar cold storage chhatarpur district chhatarpur cold storage godown warehouse"
+    "title_hi": "N.K. Agro Cold Storages Private Limited",
+    "title_en": "N.K. Agro Cold Storages Private Limited",
+    "subtitle_hi": "khargone",
+    "subtitle_en": "khargone",
+    "url": "/cold-storage/khargone",
+    "keywords": "n.k. agro cold storages private limited khargone cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Agrospace Steading Pvt Ltd",
+    "title_en": "Agrospace Steading Pvt Ltd",
+    "subtitle_hi": "ralamandal gaon dewas",
+    "subtitle_en": "ralamandal gaon dewas",
+    "url": "/cold-storage/dewas",
+    "keywords": "agrospace steading pvt ltd ralamandal gaon dewas cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1141,15 +1132,6 @@
     "subtitle_en": "chhindwara chhindwara",
     "url": "/cold-storage/chhindwara",
     "keywords": "chhindwara cold storage chhindwara chhindwara cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Krishak Cold Storage",
-    "title_en": "Krishak Cold Storage",
-    "subtitle_hi": "chhindwara chhindwara",
-    "subtitle_en": "chhindwara chhindwara",
-    "url": "/cold-storage/chhindwara",
-    "keywords": "krishak cold storage chhindwara chhindwara cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1186,15 +1168,6 @@
     "subtitle_en": "chhindwara",
     "url": "/cold-storage/chhindwara",
     "keywords": "shanti cold storage & ice factory unit-2 chhindwara cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Agrospace Steading Pvt Ltd",
-    "title_en": "Agrospace Steading Pvt Ltd",
-    "subtitle_hi": "ralamandal gaon dewas",
-    "subtitle_en": "ralamandal gaon dewas",
-    "url": "/cold-storage/dewas",
-    "keywords": "agrospace steading pvt ltd ralamandal gaon dewas cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1261,12 +1234,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Maa Bhagwati Cold Storage",
-    "title_en": "Maa Bhagwati Cold Storage",
-    "subtitle_hi": "nh 3 dhar",
-    "subtitle_en": "nh 3 dhar",
-    "url": "/cold-storage/dhar",
-    "keywords": "maa bhagwati cold storage nh 3 dhar cold storage godown warehouse"
+    "title_hi": "Govind Ice and Cold Storage",
+    "title_en": "Govind Ice and Cold Storage",
+    "subtitle_hi": "morena morena",
+    "subtitle_en": "morena morena",
+    "url": "/cold-storage/morena",
+    "keywords": "govind ice and cold storage morena morena cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1312,15 +1285,6 @@
     "subtitle_en": "guna guna",
     "url": "/cold-storage/guna",
     "keywords": "pitambra mangal cold storage guna guna cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Agrasen Cold Storage",
-    "title_en": "Agrasen Cold Storage",
-    "subtitle_hi": "gwalior gwalior",
-    "subtitle_en": "gwalior gwalior",
-    "url": "/cold-storage/gwalior",
-    "keywords": "agrasen cold storage gwalior gwalior cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1396,21 +1360,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Jai Balaji Kripa Cold Storage",
-    "title_en": "Jai Balaji Kripa Cold Storage",
-    "subtitle_hi": "gwalior gwalior",
-    "subtitle_en": "gwalior gwalior",
-    "url": "/cold-storage/gwalior",
-    "keywords": "jai balaji kripa cold storage gwalior gwalior cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Jai Mahakal Cold Storage",
-    "title_en": "Jai Mahakal Cold Storage",
-    "subtitle_hi": "gangapur gwalior",
-    "subtitle_en": "gangapur gwalior",
-    "url": "/cold-storage/gwalior",
-    "keywords": "jai mahakal cold storage gangapur gwalior cold storage godown warehouse"
+    "title_hi": "Pradeep Cold Storage",
+    "title_en": "Pradeep Cold Storage",
+    "subtitle_hi": "morena morena",
+    "subtitle_en": "morena morena",
+    "url": "/cold-storage/morena",
+    "keywords": "pradeep cold storage morena morena cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1420,6 +1375,15 @@
     "subtitle_en": "lashkar, gwalior gwalior",
     "url": "/cold-storage/gwalior",
     "keywords": "jai mahakal cold storage unit 2 lashkar, gwalior gwalior cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Prakash Cold Storage",
+    "title_en": "Prakash Cold Storage",
+    "subtitle_hi": "malanpur gwalior",
+    "subtitle_en": "malanpur gwalior",
+    "url": "/cold-storage/gwalior",
+    "keywords": "prakash cold storage malanpur gwalior cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1468,15 +1432,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Prakash Cold Storage",
-    "title_en": "Prakash Cold Storage",
-    "subtitle_hi": "malanpur gwalior",
-    "subtitle_en": "malanpur gwalior",
-    "url": "/cold-storage/gwalior",
-    "keywords": "prakash cold storage malanpur gwalior cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Prakash Cold Storage-II",
     "title_en": "Prakash Cold Storage-II",
     "subtitle_hi": "gwalior gwalior",
@@ -1513,21 +1468,21 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Sudarshan Cold Storage (Fruit and Vegetable)",
-    "title_en": "Sudarshan Cold Storage (Fruit and Vegetable)",
-    "subtitle_hi": "gwalior gwalior",
-    "subtitle_en": "gwalior gwalior",
-    "url": "/cold-storage/gwalior",
-    "keywords": "sudarshan cold storage (fruit and vegetable) gwalior gwalior cold storage godown warehouse"
+    "title_hi": "Shivam Cold Storage",
+    "title_en": "Shivam Cold Storage",
+    "subtitle_hi": "morena morena",
+    "subtitle_en": "morena morena",
+    "url": "/cold-storage/morena",
+    "keywords": "shivam cold storage morena morena cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
-    "title_hi": "Sudarshan Cold Storage And Ice Factory",
-    "title_en": "Sudarshan Cold Storage And Ice Factory",
-    "subtitle_hi": "gwalior gwalior",
-    "subtitle_en": "gwalior gwalior",
-    "url": "/cold-storage/gwalior",
-    "keywords": "sudarshan cold storage and ice factory gwalior gwalior cold storage godown warehouse"
+    "title_hi": "Gandhi Cold Storage (Unit Gandhi Fertilizer Pvt Ltd)",
+    "title_en": "Gandhi Cold Storage (Unit Gandhi Fertilizer Pvt Ltd)",
+    "subtitle_hi": "kapaliya khedi indore",
+    "subtitle_en": "kapaliya khedi indore",
+    "url": "/cold-storage/indore",
+    "keywords": "gandhi cold storage (unit gandhi fertilizer pvt ltd) kapaliya khedi indore cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1621,15 +1576,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Devi Shri Ahilya Sahkari Sheet Grih",
-    "title_en": "Devi Shri Ahilya Sahkari Sheet Grih",
-    "subtitle_hi": "tejpur gadbadi indore",
-    "subtitle_en": "tejpur gadbadi indore",
-    "url": "/cold-storage/indore",
-    "keywords": "devi shri ahilya sahkari sheet grih tejpur gadbadi indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Dhanuka Cold Storage Pvt Ltd",
     "title_en": "Dhanuka Cold Storage Pvt Ltd",
     "subtitle_hi": "pigdamber indore",
@@ -1648,15 +1594,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Gandhi Cold Storage (Unit Gandhi Fertilizer Pvt Ltd)",
-    "title_en": "Gandhi Cold Storage (Unit Gandhi Fertilizer Pvt Ltd)",
-    "subtitle_hi": "kapaliya khedi indore",
-    "subtitle_en": "kapaliya khedi indore",
-    "url": "/cold-storage/indore",
-    "keywords": "gandhi cold storage (unit gandhi fertilizer pvt ltd) kapaliya khedi indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Maa Annpurna Ice Cold Storage Pvt. Ltd",
     "title_en": "Maa Annpurna Ice Cold Storage Pvt. Ltd",
     "subtitle_hi": "indore indore",
@@ -1666,21 +1603,30 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Gangotri Cold Storage",
-    "title_en": "Gangotri Cold Storage",
-    "subtitle_hi": "khudel indore",
-    "subtitle_en": "khudel indore",
-    "url": "/cold-storage/indore",
-    "keywords": "gangotri cold storage khudel indore cold storage godown warehouse"
+    "title_hi": "Baba Devpuri Cold Storage",
+    "title_en": "Baba Devpuri Cold Storage",
+    "subtitle_hi": "kakarvaya shivpuri",
+    "subtitle_en": "kakarvaya shivpuri",
+    "url": "/cold-storage/shivpuri",
+    "keywords": "baba devpuri cold storage kakarvaya shivpuri cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
-    "title_hi": "Gaurav Ice And Cold Storage Pvt Ltd",
-    "title_en": "Gaurav Ice And Cold Storage Pvt Ltd",
-    "subtitle_hi": "bijalpur indore",
-    "subtitle_en": "bijalpur indore",
+    "title_hi": "Devi Shri Ahilya Sahkari Sheet Grih",
+    "title_en": "Devi Shri Ahilya Sahkari Sheet Grih",
+    "subtitle_hi": "tejpur gadbadi indore",
+    "subtitle_en": "tejpur gadbadi indore",
     "url": "/cold-storage/indore",
-    "keywords": "gaurav ice and cold storage pvt ltd bijalpur indore cold storage godown warehouse"
+    "keywords": "devi shri ahilya sahkari sheet grih tejpur gadbadi indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Kalyan Cold Storage (A unit of M/s Shree Ram & Company)",
+    "title_en": "Kalyan Cold Storage (A unit of M/s Shree Ram & Company)",
+    "subtitle_hi": "asrawad buzurg indore",
+    "subtitle_en": "asrawad buzurg indore",
+    "url": "/cold-storage/indore",
+    "keywords": "kalyan cold storage (a unit of m/s shree ram & company) asrawad buzurg indore cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1729,15 +1675,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Indore Ice And Cold Storage Pvt Ltd",
-    "title_en": "Indore Ice And Cold Storage Pvt Ltd",
-    "subtitle_hi": "indore",
-    "subtitle_en": "indore",
-    "url": "/cold-storage/indore",
-    "keywords": "indore ice and cold storage pvt ltd indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Jagdamba Ice & Cold Storage",
     "title_en": "Jagdamba Ice & Cold Storage",
     "subtitle_hi": "palda indore",
@@ -1762,15 +1699,6 @@
     "subtitle_en": "arjun baroda indore",
     "url": "/cold-storage/indore",
     "keywords": "jhawar ice & cold storage arjun baroda indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Kalyan Cold Storage (A unit of M/s Shree Ram & Company)",
-    "title_en": "Kalyan Cold Storage (A unit of M/s Shree Ram & Company)",
-    "subtitle_hi": "asrawad buzurg indore",
-    "subtitle_en": "asrawad buzurg indore",
-    "url": "/cold-storage/indore",
-    "keywords": "kalyan cold storage (a unit of m/s shree ram & company) asrawad buzurg indore cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1810,12 +1738,21 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Maa Umiya Ice & Cold Storage",
-    "title_en": "Maa Umiya Ice & Cold Storage",
-    "subtitle_hi": "indore",
-    "subtitle_en": "indore",
+    "title_hi": "Suresh Cold Storage & Ice Factory",
+    "title_en": "Suresh Cold Storage & Ice Factory",
+    "subtitle_hi": "morena morena",
+    "subtitle_en": "morena morena",
+    "url": "/cold-storage/morena",
+    "keywords": "suresh cold storage & ice factory morena morena cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Munmji Cold Storage",
+    "title_en": "Munmji Cold Storage",
+    "subtitle_hi": "bhorasla indore",
+    "subtitle_en": "bhorasla indore",
     "url": "/cold-storage/indore",
-    "keywords": "maa umiya ice & cold storage indore cold storage godown warehouse"
+    "keywords": "munmji cold storage bhorasla indore cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1843,24 +1780,6 @@
     "subtitle_en": "indore",
     "url": "/cold-storage/indore",
     "keywords": "mittal cold storage pvt ltd indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Munmji Cold Storage",
-    "title_en": "Munmji Cold Storage",
-    "subtitle_hi": "bhorasla indore",
-    "subtitle_en": "bhorasla indore",
-    "url": "/cold-storage/indore",
-    "keywords": "munmji cold storage bhorasla indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Narang Cold Storage",
-    "title_en": "Narang Cold Storage",
-    "subtitle_hi": "bijalpur indore",
-    "subtitle_en": "bijalpur indore",
-    "url": "/cold-storage/indore",
-    "keywords": "narang cold storage bijalpur indore cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1945,12 +1864,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Satish Ice And Cold Storage Pvt Ltd",
-    "title_en": "Satish Ice And Cold Storage Pvt Ltd",
-    "subtitle_hi": "rau indore",
-    "subtitle_en": "rau indore",
-    "url": "/cold-storage/indore",
-    "keywords": "satish ice and cold storage pvt ltd rau indore cold storage godown warehouse"
+    "title_hi": "K.V. Fruit Trading Company",
+    "title_en": "K.V. Fruit Trading Company",
+    "subtitle_hi": "pawasa ujjain",
+    "subtitle_en": "pawasa ujjain",
+    "url": "/cold-storage/ujjain",
+    "keywords": "k.v. fruit trading company pawasa ujjain cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -1981,15 +1900,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Shri Ambika Aalu Utpadak Vipanan Evam Prakriya Sahakari",
-    "title_en": "Shri Ambika Aalu Utpadak Vipanan Evam Prakriya Sahakari",
-    "subtitle_hi": "gawli palasia indore",
-    "subtitle_en": "gawli palasia indore",
-    "url": "/cold-storage/indore",
-    "keywords": "shri ambika aalu utpadak vipanan evam prakriya sahakari gawli palasia indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Shri Dutt Sheetgrah Pvt. Ltd",
     "title_en": "Shri Dutt Sheetgrah Pvt. Ltd",
     "subtitle_hi": "bijalpur indore",
@@ -1999,39 +1909,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Shri Ganesh Cold Storage",
-    "title_en": "Shri Ganesh Cold Storage",
-    "subtitle_hi": "kodariya indore",
-    "subtitle_en": "kodariya indore",
-    "url": "/cold-storage/indore",
-    "keywords": "shri ganesh cold storage kodariya indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Shri Jankeshwar Cold Storage",
-    "title_en": "Shri Jankeshwar Cold Storage",
-    "subtitle_hi": "rajpura kutti indore",
-    "subtitle_en": "rajpura kutti indore",
-    "url": "/cold-storage/indore",
-    "keywords": "shri jankeshwar cold storage rajpura kutti indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Shri Krishna Cold Storage",
     "title_en": "Shri Krishna Cold Storage",
     "subtitle_hi": "indore",
     "subtitle_en": "indore",
     "url": "/cold-storage/indore",
     "keywords": "shri krishna cold storage indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Shruti Snacks Pvt Ltd",
-    "title_en": "Shruti Snacks Pvt Ltd",
-    "subtitle_hi": "bihardia indore",
-    "subtitle_en": "bihardia indore",
-    "url": "/cold-storage/indore",
-    "keywords": "shruti snacks pvt ltd bihardia indore cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2062,15 +1945,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Swan Cold Storage",
-    "title_en": "Swan Cold Storage",
-    "subtitle_hi": "gawli palasia indore",
-    "subtitle_en": "gawli palasia indore",
-    "url": "/cold-storage/indore",
-    "keywords": "swan cold storage gawli palasia indore cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Vijaya Cold Storage",
     "title_en": "Vijaya Cold Storage",
     "subtitle_hi": "indore",
@@ -2098,12 +1972,48 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Vrindavan Cold Storage Pvt. Ltd",
-    "title_en": "Vrindavan Cold Storage Pvt. Ltd",
-    "subtitle_hi": "indore",
-    "subtitle_en": "indore",
+    "title_hi": "Shri Ambika Aalu Utpadak Vipanan Evam Prakriya Sahakari",
+    "title_en": "Shri Ambika Aalu Utpadak Vipanan Evam Prakriya Sahakari",
+    "subtitle_hi": "gawli palasia indore",
+    "subtitle_en": "gawli palasia indore",
     "url": "/cold-storage/indore",
-    "keywords": "vrindavan cold storage pvt. ltd indore cold storage godown warehouse"
+    "keywords": "shri ambika aalu utpadak vipanan evam prakriya sahakari gawli palasia indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Shri Ganesh Cold Storage",
+    "title_en": "Shri Ganesh Cold Storage",
+    "subtitle_hi": "kodariya indore",
+    "subtitle_en": "kodariya indore",
+    "url": "/cold-storage/indore",
+    "keywords": "shri ganesh cold storage kodariya indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Shri Jankeshwar Cold Storage",
+    "title_en": "Shri Jankeshwar Cold Storage",
+    "subtitle_hi": "rajpura kutti indore",
+    "subtitle_en": "rajpura kutti indore",
+    "url": "/cold-storage/indore",
+    "keywords": "shri jankeshwar cold storage rajpura kutti indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Shruti Snacks Pvt Ltd",
+    "title_en": "Shruti Snacks Pvt Ltd",
+    "subtitle_hi": "bihardia indore",
+    "subtitle_en": "bihardia indore",
+    "url": "/cold-storage/indore",
+    "keywords": "shruti snacks pvt ltd bihardia indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Satnam Cold Storage",
+    "title_en": "Satnam Cold Storage",
+    "subtitle_hi": "pandhana-khandwa main rd khandwa",
+    "subtitle_en": "pandhana-khandwa main rd khandwa",
+    "url": "/cold-storage/khandwa",
+    "keywords": "satnam cold storage pandhana-khandwa main rd khandwa cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2131,15 +2041,6 @@
     "subtitle_en": "jabalpur jabalpur",
     "url": "/cold-storage/jabalpur",
     "keywords": "k.s agrawal cold storage jabalpur jabalpur cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "K.S. Agarwal Cold Storage",
-    "title_en": "K.S. Agarwal Cold Storage",
-    "subtitle_hi": "padwarkala jabalpur",
-    "subtitle_en": "padwarkala jabalpur",
-    "url": "/cold-storage/jabalpur",
-    "keywords": "k.s. agarwal cold storage padwarkala jabalpur cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2188,15 +2089,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Pandey Cold Storage",
-    "title_en": "Pandey Cold Storage",
-    "subtitle_hi": "katni katni",
-    "subtitle_en": "katni katni",
-    "url": "/cold-storage/katni",
-    "keywords": "pandey cold storage katni katni cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Pandey Ice Factory",
     "title_en": "Pandey Ice Factory",
     "subtitle_hi": "katni katni",
@@ -2224,15 +2116,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Satnam Cold Storage",
-    "title_en": "Satnam Cold Storage",
-    "subtitle_hi": "pandhana-khandwa main rd khandwa",
-    "subtitle_en": "pandhana-khandwa main rd khandwa",
-    "url": "/cold-storage/khandwa",
-    "keywords": "satnam cold storage pandhana-khandwa main rd khandwa cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Kaveri Cold Storage",
     "title_en": "Kaveri Cold Storage",
     "subtitle_hi": "khargone",
@@ -2242,12 +2125,21 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "N.K. Agro Cold Storages Private Limited",
-    "title_en": "N.K. Agro Cold Storages Private Limited",
-    "subtitle_hi": "khargone",
-    "subtitle_en": "khargone",
-    "url": "/cold-storage/khargone",
-    "keywords": "n.k. agro cold storages private limited khargone cold storage godown warehouse"
+    "title_hi": "K.S. Agarwal Cold Storage",
+    "title_en": "K.S. Agarwal Cold Storage",
+    "subtitle_hi": "padwarkala jabalpur",
+    "subtitle_en": "padwarkala jabalpur",
+    "url": "/cold-storage/jabalpur",
+    "keywords": "k.s. agarwal cold storage padwarkala jabalpur cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Singh Cold Storage",
+    "title_en": "Singh Cold Storage",
+    "subtitle_hi": "nagziri ujjain",
+    "subtitle_en": "nagziri ujjain",
+    "url": "/cold-storage/ujjain",
+    "keywords": "singh cold storage nagziri ujjain cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2305,15 +2197,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Govind Ice and Cold Storage",
-    "title_en": "Govind Ice and Cold Storage",
-    "subtitle_hi": "morena morena",
-    "subtitle_en": "morena morena",
-    "url": "/cold-storage/morena",
-    "keywords": "govind ice and cold storage morena morena cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Kamadgiri Cold Storage Pvt. Ltd.",
     "title_en": "Kamadgiri Cold Storage Pvt. Ltd.",
     "subtitle_hi": "morena morena",
@@ -2368,12 +2251,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Pradeep Cold Storage",
-    "title_en": "Pradeep Cold Storage",
-    "subtitle_hi": "morena morena",
-    "subtitle_en": "morena morena",
+    "title_hi": "Sita Ice & Cold Storage",
+    "title_en": "Sita Ice & Cold Storage",
+    "subtitle_hi": "jaura khurd morena",
+    "subtitle_en": "jaura khurd morena",
     "url": "/cold-storage/morena",
-    "keywords": "pradeep cold storage morena morena cold storage godown warehouse"
+    "keywords": "sita ice & cold storage jaura khurd morena cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2404,24 +2287,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Shivam Cold Storage",
-    "title_en": "Shivam Cold Storage",
-    "subtitle_hi": "morena morena",
-    "subtitle_en": "morena morena",
-    "url": "/cold-storage/morena",
-    "keywords": "shivam cold storage morena morena cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Sita Ice & Cold Storage",
-    "title_en": "Sita Ice & Cold Storage",
-    "subtitle_hi": "jaura khurd morena",
-    "subtitle_en": "jaura khurd morena",
-    "url": "/cold-storage/morena",
-    "keywords": "sita ice & cold storage jaura khurd morena cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Sitadevi Cold Storage",
     "title_en": "Sitadevi Cold Storage",
     "subtitle_hi": "morena morena",
@@ -2437,15 +2302,6 @@
     "subtitle_en": "morena",
     "url": "/cold-storage/morena",
     "keywords": "siya devi ice factory & cold storage morena cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Suresh Cold Storage & Ice Factory",
-    "title_en": "Suresh Cold Storage & Ice Factory",
-    "subtitle_hi": "morena morena",
-    "subtitle_en": "morena morena",
-    "url": "/cold-storage/morena",
-    "keywords": "suresh cold storage & ice factory morena morena cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2485,21 +2341,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Kajal Cold Storage",
-    "title_en": "Kajal Cold Storage",
-    "subtitle_hi": "devendrapura niwari",
-    "subtitle_en": "devendrapura niwari",
-    "url": "/cold-storage/niwari",
-    "keywords": "kajal cold storage devendrapura niwari cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Ramraja Cold Storage",
-    "title_en": "Ramraja Cold Storage",
-    "subtitle_hi": "orchha area niwari",
-    "subtitle_en": "orchha area niwari",
-    "url": "/cold-storage/niwari",
-    "keywords": "ramraja cold storage orchha area niwari cold storage godown warehouse"
+    "title_hi": "ShriRam Warehouse",
+    "title_en": "ShriRam Warehouse",
+    "subtitle_hi": "bina sagar",
+    "subtitle_en": "bina sagar",
+    "url": "/cold-storage/sagar",
+    "keywords": "shriram warehouse bina sagar cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2527,6 +2374,24 @@
     "subtitle_en": "ratlam ratlam",
     "url": "/cold-storage/ratlam",
     "keywords": "manjeet cold storage and ice factory ratlam ratlam cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Jain Brothers And Co.",
+    "title_en": "Jain Brothers And Co.",
+    "subtitle_hi": "satna satna",
+    "subtitle_en": "satna satna",
+    "url": "/cold-storage/satna",
+    "keywords": "jain brothers and co. satna satna cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Mahalaxmi Cold Store",
+    "title_en": "Mahalaxmi Cold Store",
+    "subtitle_hi": "sagar sagar",
+    "subtitle_en": "sagar sagar",
+    "url": "/cold-storage/sagar",
+    "keywords": "mahalaxmi cold store sagar sagar cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2575,21 +2440,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Gopal Sheet Bhandar & Ice Factory",
-    "title_en": "Gopal Sheet Bhandar & Ice Factory",
-    "subtitle_hi": "satna satna",
-    "subtitle_en": "satna satna",
-    "url": "/cold-storage/satna",
-    "keywords": "gopal sheet bhandar & ice factory satna satna cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Jain Brothers And Co.",
-    "title_en": "Jain Brothers And Co.",
-    "subtitle_hi": "satna satna",
-    "subtitle_en": "satna satna",
-    "url": "/cold-storage/satna",
-    "keywords": "jain brothers and co. satna satna cold storage godown warehouse"
+    "title_hi": "Janta Cold Storage and Ice Factory",
+    "title_en": "Janta Cold Storage and Ice Factory",
+    "subtitle_hi": "sagar sagar",
+    "subtitle_en": "sagar sagar",
+    "url": "/cold-storage/sagar",
+    "keywords": "janta cold storage and ice factory sagar sagar cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2602,39 +2458,21 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Mahalaxmi Cold Store",
-    "title_en": "Mahalaxmi Cold Store",
-    "subtitle_hi": "sagar sagar",
-    "subtitle_en": "sagar sagar",
-    "url": "/cold-storage/sagar",
-    "keywords": "mahalaxmi cold store sagar sagar cold storage godown warehouse"
+    "title_hi": "Chaudhary Dilip Singh Cold Storage",
+    "title_en": "Chaudhary Dilip Singh Cold Storage",
+    "subtitle_hi": "didi bhind",
+    "subtitle_en": "didi bhind",
+    "url": "/cold-storage/bhind",
+    "keywords": "chaudhary dilip singh cold storage didi bhind cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
-    "title_hi": "ShriRam Warehouse",
-    "title_en": "ShriRam Warehouse",
-    "subtitle_hi": "bina sagar",
-    "subtitle_en": "bina sagar",
-    "url": "/cold-storage/sagar",
-    "keywords": "shriram warehouse bina sagar cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Janta Cold Storage and Ice Factory",
-    "title_en": "Janta Cold Storage and Ice Factory",
-    "subtitle_hi": "sagar sagar",
-    "subtitle_en": "sagar sagar",
-    "url": "/cold-storage/sagar",
-    "keywords": "janta cold storage and ice factory sagar sagar cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Sitaram Cold Storage",
-    "title_en": "Sitaram Cold Storage",
-    "subtitle_hi": "satna satna",
-    "subtitle_en": "satna satna",
-    "url": "/cold-storage/satna",
-    "keywords": "sitaram cold storage satna satna cold storage godown warehouse"
+    "title_hi": "Sardar Patel Cold Storage",
+    "title_en": "Sardar Patel Cold Storage",
+    "subtitle_hi": "alaumrodh shajapur",
+    "subtitle_en": "alaumrodh shajapur",
+    "url": "/cold-storage/shajapur",
+    "keywords": "sardar patel cold storage alaumrodh shajapur cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2737,24 +2575,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Sardar Patel Cold Storage",
-    "title_en": "Sardar Patel Cold Storage",
-    "subtitle_hi": "alaumrodh shajapur",
-    "subtitle_en": "alaumrodh shajapur",
-    "url": "/cold-storage/shajapur",
-    "keywords": "sardar patel cold storage alaumrodh shajapur cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Shree Shiv Khandsari Sugar Mills (Unit Sagar Ice)",
-    "title_en": "Shree Shiv Khandsari Sugar Mills (Unit Sagar Ice)",
-    "subtitle_hi": "shajapur",
-    "subtitle_en": "shajapur",
-    "url": "/cold-storage/shajapur",
-    "keywords": "shree shiv khandsari sugar mills (unit sagar ice) shajapur cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Ayush Cold Storage",
     "title_en": "Ayush Cold Storage",
     "subtitle_hi": "agra-mumbai rd shivpuri",
@@ -2764,12 +2584,30 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Baba Devpuri Cold Storage",
-    "title_en": "Baba Devpuri Cold Storage",
-    "subtitle_hi": "kakarvaya shivpuri",
-    "subtitle_en": "kakarvaya shivpuri",
+    "title_hi": "Pattewal Cold Storage",
+    "title_en": "Pattewal Cold Storage",
+    "subtitle_hi": "kalarwaya shivpuri",
+    "subtitle_en": "kalarwaya shivpuri",
     "url": "/cold-storage/shivpuri",
-    "keywords": "baba devpuri cold storage kakarvaya shivpuri cold storage godown warehouse"
+    "keywords": "pattewal cold storage kalarwaya shivpuri cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "M/S Cold Storage",
+    "title_en": "M/S Cold Storage",
+    "subtitle_hi": "tigla tikamgarh",
+    "subtitle_en": "tigla tikamgarh",
+    "url": "/cold-storage/tikamgarh",
+    "keywords": "m/s cold storage tigla tikamgarh cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Yamunotri Cold Storage",
+    "title_en": "Yamunotri Cold Storage",
+    "subtitle_hi": "ghughuwa tikamgarh",
+    "subtitle_en": "ghughuwa tikamgarh",
+    "url": "/cold-storage/tikamgarh",
+    "keywords": "yamunotri cold storage ghughuwa tikamgarh cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2827,15 +2665,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Pattewal Cold Storage",
-    "title_en": "Pattewal Cold Storage",
-    "subtitle_hi": "kalarwaya shivpuri",
-    "subtitle_en": "kalarwaya shivpuri",
-    "url": "/cold-storage/shivpuri",
-    "keywords": "pattewal cold storage kalarwaya shivpuri cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Shanti Cold Storage",
     "title_en": "Shanti Cold Storage",
     "subtitle_hi": "shivpuri shivpuri",
@@ -2851,24 +2680,6 @@
     "subtitle_en": "kolaras shivpuri",
     "url": "/cold-storage/shivpuri",
     "keywords": "shri ramarchan cold storage kolaras shivpuri cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "M/S Cold Storage",
-    "title_en": "M/S Cold Storage",
-    "subtitle_hi": "tigla tikamgarh",
-    "subtitle_en": "tigla tikamgarh",
-    "url": "/cold-storage/tikamgarh",
-    "keywords": "m/s cold storage tigla tikamgarh cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Yamunotri Cold Storage",
-    "title_en": "Yamunotri Cold Storage",
-    "subtitle_hi": "ghughuwa tikamgarh",
-    "subtitle_en": "ghughuwa tikamgarh",
-    "url": "/cold-storage/tikamgarh",
-    "keywords": "yamunotri cold storage ghughuwa tikamgarh cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -2890,93 +2701,12 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "K.V. Fruit Trading Company",
-    "title_en": "K.V. Fruit Trading Company",
-    "subtitle_hi": "pawasa ujjain",
-    "subtitle_en": "pawasa ujjain",
-    "url": "/cold-storage/ujjain",
-    "keywords": "k.v. fruit trading company pawasa ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Malwa Cold Storage Pvt Ltd",
     "title_en": "Malwa Cold Storage Pvt Ltd",
     "subtitle_hi": "ujjain-maksi rd ujjain",
     "subtitle_en": "ujjain-maksi rd ujjain",
     "url": "/cold-storage/ujjain",
     "keywords": "malwa cold storage pvt ltd ujjain-maksi rd ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Sant Dudhahari Cold Storage",
-    "title_en": "Sant Dudhahari Cold Storage",
-    "subtitle_hi": "ujjain district ujjain",
-    "subtitle_en": "ujjain district ujjain",
-    "url": "/cold-storage/ujjain",
-    "keywords": "sant dudhahari cold storage ujjain district ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Shree Balaji Cold Storage",
-    "title_en": "Shree Balaji Cold Storage",
-    "subtitle_hi": "panwasa ujjain",
-    "subtitle_en": "panwasa ujjain",
-    "url": "/cold-storage/ujjain",
-    "keywords": "shree balaji cold storage panwasa ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Shri Gajanand Cold Storage",
-    "title_en": "Shri Gajanand Cold Storage",
-    "subtitle_hi": "ujjain ujjain",
-    "subtitle_en": "ujjain ujjain",
-    "url": "/cold-storage/ujjain",
-    "keywords": "shri gajanand cold storage ujjain ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Shukra Cold Storage",
-    "title_en": "Shukra Cold Storage",
-    "subtitle_hi": "harsodan ujjain",
-    "subtitle_en": "harsodan ujjain",
-    "url": "/cold-storage/ujjain",
-    "keywords": "shukra cold storage harsodan ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Singh Cold Storage",
-    "title_en": "Singh Cold Storage",
-    "subtitle_hi": "nagziri ujjain",
-    "subtitle_en": "nagziri ujjain",
-    "url": "/cold-storage/ujjain",
-    "keywords": "singh cold storage nagziri ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Tirupati Cold Storage",
-    "title_en": "Tirupati Cold Storage",
-    "subtitle_hi": "ujjain",
-    "subtitle_en": "ujjain",
-    "url": "/cold-storage/ujjain",
-    "keywords": "tirupati cold storage ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Ujjain Ice & Cold Storage Pvt Ltd",
-    "title_en": "Ujjain Ice & Cold Storage Pvt Ltd",
-    "subtitle_hi": "ujjain ujjain",
-    "subtitle_en": "ujjain ujjain",
-    "url": "/cold-storage/ujjain",
-    "keywords": "ujjain ice & cold storage pvt ltd ujjain ujjain cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "New Jadon Warehouse",
-    "title_en": "New Jadon Warehouse",
-    "subtitle_hi": "vidisha vidisha",
-    "subtitle_en": "vidisha vidisha",
-    "url": "/cold-storage/vidisha",
-    "keywords": "new jadon warehouse vidisha vidisha cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -3016,12 +2746,282 @@
   },
   {
     "type": "cold_storage",
+    "title_hi": "Sant Dudhahari Cold Storage",
+    "title_en": "Sant Dudhahari Cold Storage",
+    "subtitle_hi": "ujjain district ujjain",
+    "subtitle_en": "ujjain district ujjain",
+    "url": "/cold-storage/ujjain",
+    "keywords": "sant dudhahari cold storage ujjain district ujjain cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Shree Balaji Cold Storage",
+    "title_en": "Shree Balaji Cold Storage",
+    "subtitle_hi": "panwasa ujjain",
+    "subtitle_en": "panwasa ujjain",
+    "url": "/cold-storage/ujjain",
+    "keywords": "shree balaji cold storage panwasa ujjain cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Shri Gajanand Cold Storage",
+    "title_en": "Shri Gajanand Cold Storage",
+    "subtitle_hi": "ujjain ujjain",
+    "subtitle_en": "ujjain ujjain",
+    "url": "/cold-storage/ujjain",
+    "keywords": "shri gajanand cold storage ujjain ujjain cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Shukra Cold Storage",
+    "title_en": "Shukra Cold Storage",
+    "subtitle_hi": "harsodan ujjain",
+    "subtitle_en": "harsodan ujjain",
+    "url": "/cold-storage/ujjain",
+    "keywords": "shukra cold storage harsodan ujjain cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Tirupati Cold Storage",
+    "title_en": "Tirupati Cold Storage",
+    "subtitle_hi": "ujjain",
+    "subtitle_en": "ujjain",
+    "url": "/cold-storage/ujjain",
+    "keywords": "tirupati cold storage ujjain cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Ujjain Ice & Cold Storage Pvt Ltd",
+    "title_en": "Ujjain Ice & Cold Storage Pvt Ltd",
+    "subtitle_hi": "ujjain ujjain",
+    "subtitle_en": "ujjain ujjain",
+    "url": "/cold-storage/ujjain",
+    "keywords": "ujjain ice & cold storage pvt ltd ujjain ujjain cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "New Jadon Warehouse",
+    "title_en": "New Jadon Warehouse",
+    "subtitle_hi": "vidisha vidisha",
+    "subtitle_en": "vidisha vidisha",
+    "url": "/cold-storage/vidisha",
+    "keywords": "new jadon warehouse vidisha vidisha cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Gangotri Cold Storage",
+    "title_en": "Gangotri Cold Storage",
+    "subtitle_hi": "bhopal (plus code 8cm4+25q) bhopal",
+    "subtitle_en": "bhopal (plus code 8cm4+25q) bhopal",
+    "url": "/cold-storage/bhopal",
+    "keywords": "gangotri cold storage bhopal (plus code 8cm4+25q) bhopal cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Kajal Cold Storage",
+    "title_en": "Kajal Cold Storage",
+    "subtitle_hi": "devendrapura niwari",
+    "subtitle_en": "devendrapura niwari",
+    "url": "/cold-storage/niwari",
+    "keywords": "kajal cold storage devendrapura niwari cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Jayanti Cold Storage",
+    "title_en": "Jayanti Cold Storage",
+    "subtitle_hi": "pushprajgarh anuppur",
+    "subtitle_en": "pushprajgarh anuppur",
+    "url": "/cold-storage/anuppur",
+    "keywords": "jayanti cold storage pushprajgarh anuppur cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Hindustan Cold Storage",
+    "title_en": "Hindustan Cold Storage",
+    "subtitle_hi": "bhind bhind",
+    "subtitle_en": "bhind bhind",
+    "url": "/cold-storage/bhind",
+    "keywords": "hindustan cold storage bhind bhind cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "S.T. Cold Storage Pvt. Ltd.",
+    "title_en": "S.T. Cold Storage Pvt. Ltd.",
+    "subtitle_hi": "phoop bhind",
+    "subtitle_en": "phoop bhind",
+    "url": "/cold-storage/bhind",
+    "keywords": "s.t. cold storage pvt. ltd. phoop bhind cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Jatashankar Cold Storage",
+    "title_en": "Jatashankar Cold Storage",
+    "subtitle_hi": "chhatarpur district chhatarpur",
+    "subtitle_en": "chhatarpur district chhatarpur",
+    "url": "/cold-storage/chhatarpur",
+    "keywords": "jatashankar cold storage chhatarpur district chhatarpur cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Krishak Cold Storage",
+    "title_en": "Krishak Cold Storage",
+    "subtitle_hi": "chhindwara chhindwara",
+    "subtitle_en": "chhindwara chhindwara",
+    "url": "/cold-storage/chhindwara",
+    "keywords": "krishak cold storage chhindwara chhindwara cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Maa Bhagwati Cold Storage",
+    "title_en": "Maa Bhagwati Cold Storage",
+    "subtitle_hi": "nh 3 dhar",
+    "subtitle_en": "nh 3 dhar",
+    "url": "/cold-storage/dhar",
+    "keywords": "maa bhagwati cold storage nh 3 dhar cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Agrasen Cold Storage",
+    "title_en": "Agrasen Cold Storage",
+    "subtitle_hi": "gwalior gwalior",
+    "subtitle_en": "gwalior gwalior",
+    "url": "/cold-storage/gwalior",
+    "keywords": "agrasen cold storage gwalior gwalior cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Jai Balaji Kripa Cold Storage",
+    "title_en": "Jai Balaji Kripa Cold Storage",
+    "subtitle_hi": "gwalior gwalior",
+    "subtitle_en": "gwalior gwalior",
+    "url": "/cold-storage/gwalior",
+    "keywords": "jai balaji kripa cold storage gwalior gwalior cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
     "title_hi": "Shiv Shankar Cold Storage",
     "title_en": "Shiv Shankar Cold Storage",
     "subtitle_hi": "sagar 470002) sagar",
     "subtitle_en": "sagar 470002) sagar",
     "url": "/cold-storage/sagar",
     "keywords": "shiv shankar cold storage sagar 470002) sagar cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Jai Mahakal Cold Storage",
+    "title_en": "Jai Mahakal Cold Storage",
+    "subtitle_hi": "gangapur gwalior",
+    "subtitle_en": "gangapur gwalior",
+    "url": "/cold-storage/gwalior",
+    "keywords": "jai mahakal cold storage gangapur gwalior cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Sudarshan Cold Storage (Fruit and Vegetable)",
+    "title_en": "Sudarshan Cold Storage (Fruit and Vegetable)",
+    "subtitle_hi": "gwalior gwalior",
+    "subtitle_en": "gwalior gwalior",
+    "url": "/cold-storage/gwalior",
+    "keywords": "sudarshan cold storage (fruit and vegetable) gwalior gwalior cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Sudarshan Cold Storage And Ice Factory",
+    "title_en": "Sudarshan Cold Storage And Ice Factory",
+    "subtitle_hi": "gwalior gwalior",
+    "subtitle_en": "gwalior gwalior",
+    "url": "/cold-storage/gwalior",
+    "keywords": "sudarshan cold storage and ice factory gwalior gwalior cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Gaurav Ice And Cold Storage Pvt Ltd",
+    "title_en": "Gaurav Ice And Cold Storage Pvt Ltd",
+    "subtitle_hi": "bijalpur indore",
+    "subtitle_en": "bijalpur indore",
+    "url": "/cold-storage/indore",
+    "keywords": "gaurav ice and cold storage pvt ltd bijalpur indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Indore Ice And Cold Storage Pvt Ltd",
+    "title_en": "Indore Ice And Cold Storage Pvt Ltd",
+    "subtitle_hi": "indore",
+    "subtitle_en": "indore",
+    "url": "/cold-storage/indore",
+    "keywords": "indore ice and cold storage pvt ltd indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Maa Umiya Ice & Cold Storage",
+    "title_en": "Maa Umiya Ice & Cold Storage",
+    "subtitle_hi": "indore",
+    "subtitle_en": "indore",
+    "url": "/cold-storage/indore",
+    "keywords": "maa umiya ice & cold storage indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Narang Cold Storage",
+    "title_en": "Narang Cold Storage",
+    "subtitle_hi": "bijalpur indore",
+    "subtitle_en": "bijalpur indore",
+    "url": "/cold-storage/indore",
+    "keywords": "narang cold storage bijalpur indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Gopal Sheet Bhandar & Ice Factory",
+    "title_en": "Gopal Sheet Bhandar & Ice Factory",
+    "subtitle_hi": "satna satna",
+    "subtitle_en": "satna satna",
+    "url": "/cold-storage/satna",
+    "keywords": "gopal sheet bhandar & ice factory satna satna cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Sitaram Cold Storage",
+    "title_en": "Sitaram Cold Storage",
+    "subtitle_hi": "satna satna",
+    "subtitle_en": "satna satna",
+    "url": "/cold-storage/satna",
+    "keywords": "sitaram cold storage satna satna cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Shree Shiv Khandsari Sugar Mills (Unit Sagar Ice)",
+    "title_en": "Shree Shiv Khandsari Sugar Mills (Unit Sagar Ice)",
+    "subtitle_hi": "shajapur",
+    "subtitle_en": "shajapur",
+    "url": "/cold-storage/shajapur",
+    "keywords": "shree shiv khandsari sugar mills (unit sagar ice) shajapur cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Shree Cold Storage",
+    "title_en": "Shree Cold Storage",
+    "subtitle_hi": "near krushnal kela group burhanpur",
+    "subtitle_en": "near krushnal kela group burhanpur",
+    "url": "/cold-storage/burhanpur",
+    "keywords": "shree cold storage near krushnal kela group burhanpur cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Gangotri Cold Storage",
+    "title_en": "Gangotri Cold Storage",
+    "subtitle_hi": "khudel indore",
+    "subtitle_en": "khudel indore",
+    "url": "/cold-storage/indore",
+    "keywords": "gangotri cold storage khudel indore cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Swan Cold Storage",
+    "title_en": "Swan Cold Storage",
+    "subtitle_hi": "gawli palasia indore",
+    "subtitle_en": "gawli palasia indore",
+    "url": "/cold-storage/indore",
+    "keywords": "swan cold storage gawli palasia indore cold storage godown warehouse"
   },
   {
     "type": "mela",

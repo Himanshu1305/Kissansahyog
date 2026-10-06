@@ -58,7 +58,7 @@ export const coldStoragePage = {
         },
         {
           q: { hi: 'मेरा कोल्ड स्टोरेज इस सूची में है — मैं इसे कैसे ठीक करूँ?', en: 'My cold storage is listed — how do I correct it?' },
-          a: { hi: 'हर कार्ड पर "दावा करें · सुधार करें · हटवाएँ" का विकल्प है। दावा करने पर, पुष्टि के बाद आप जानकारी (जैसे खाली जगह) अपडेट करवा सकते हैं।', en: 'Each card has "Claim · Correct · Remove". After you claim and it is approved, you can get details (like available space) updated.' },
+          a: { hi: 'हर कार्ड पर "गलत जानकारी? बताएँ" लिंक है — उससे सही जानकारी भेजें, हम सुधार कर देंगे। अपनी इकाई खुद डालने के लिए ऊपर दिया बटन दबाएँ।', en: 'Each card has a "Wrong info? Tell us" link — send the correction and we will fix it. To list your own unit, use the button above.' },
         },
         {
           q: { hi: 'सागर ज़िले में इतनी कम प्रविष्टियाँ क्यों हैं?', en: 'Why so few entries in Sagar district?' },

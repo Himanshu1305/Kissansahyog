@@ -83,7 +83,11 @@ async function main() {
   ok('ColdStorage + district screens exist', read('src/screens/ColdStorage.jsx').length > 0 && read('src/screens/ColdStorageDistrict.jsx').length > 0)
   ok('App routes /cold-storage + :district', read('src/App.jsx').includes('/cold-storage') && read('src/App.jsx').includes('/cold-storage/:district'))
   ok('Homepage tile + NavBar menu for cold storage', read('src/screens/Homepage.jsx').includes("path: '/cold-storage'") && read('src/components/NavBar.jsx').includes("key: 'cold_storage'"))
-  ok('Admin renders ColdStorageClaimsPanel', read('src/screens/Admin.jsx').includes('<ColdStorageClaimsPanel '))
+  // Batch 2 item B: the claim queue was removed; the card now uses the report flow
+  // (target_type='cold_storage'). The claim RPCs tested above stay in the DB (hidden).
+  ok('Admin claim queue removed', !read('src/screens/Admin.jsx').includes('<ColdStorageClaimsPanel '))
+  ok('ColdStorageCard uses the cold_storage report flow (no claim modal)',
+    read('src/components/ColdStorageCard.jsx').includes("targetType=\"cold_storage\"") && !read('src/components/ColdStorageCard.jsx').includes('submitColdStorageClaim'))
   ok('prerender includes /cold-storage + district slugs', read('scripts/lib/prerender-routes.mjs').includes("'/cold-storage'") && read('scripts/lib/prerender-routes.mjs').includes('cold_storage_public'))
 
   console.log(`\n${pass} passed, ${fail} failed`)

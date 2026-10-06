@@ -6,7 +6,7 @@ const REASONS = ['fraud', 'wrong_info', 'unsafe_equipment', 'wrong_rate', 'illeg
 
 // "शिकायत करें" button + modal. Works on listings, vendors, cold-storage and
 // jugaad pages (pass targetType/targetId). Anonymous-capable.
-export default function ReportButton({ targetType = 'listing', targetId, listingId = null, className = '' }) {
+export default function ReportButton({ targetType = 'listing', targetId, listingId = null, className = '', label = null }) {
   const { t } = useLang()
   const [open, setOpen] = useState(false)
   const [reason, setReason] = useState('')
@@ -37,7 +37,7 @@ export default function ReportButton({ targetType = 'listing', targetId, listing
         onClick={() => setOpen(true)}
         className={`inline-flex items-center gap-1 text-sm font-semibold text-stone-500 hover:text-red-600 ${className}`}
       >
-        ⚠️ {t('report_button')}
+        ⚠️ {label || t('report_button')}
       </button>
 
       {open && (

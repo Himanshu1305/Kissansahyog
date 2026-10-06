@@ -1,4 +1,5 @@
 // Cloudflare Pages Function — GET /geocode?village=<name>&district=<name>
+//   or (Batch 2 item B) GET /geocode?q=<free-form MP place> for the cold-storage finder.
 //
 // Stateless forward-geocoding proxy: it makes the actual Nominatim call so it can set the
 // descriptive User-Agent that Nominatim's usage policy requires (browsers cannot set that
@@ -14,8 +15,11 @@ export async function onRequest(context) {
   const url = new URL(context.request.url)
   const village = (url.searchParams.get('village') || '').trim()
   const district = (url.searchParams.get('district') || 'Sagar').trim()
-  if (!village) return json({ found: false, error: 'village required' }, 400)
-  const q = `${village}, ${district}, Madhya Pradesh, India`
+  // `q` is a free-form Madhya Pradesh place search (cold-storage finder); `village`
+  // keeps the original Sagar-scoped lookup used by the village geocode worker.
+  const free = (url.searchParams.get('q') || '').trim()
+  if (!free && !village) return json({ found: false, error: 'village or q required' }, 400)
+  const q = free ? `${free}, Madhya Pradesh, India` : `${village}, ${district}, Madhya Pradesh, India`
   const nomUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1`
   try {
     const res = await fetch(nomUrl, {
