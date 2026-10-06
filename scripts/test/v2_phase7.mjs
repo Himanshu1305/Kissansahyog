@@ -29,8 +29,8 @@ async function main() {
   // create_listing validation
   let r = await db.rpc('create_listing', base('offer', { structure_types: ['polyhouse'], provider_declared: true }))
   ok('NEGATIVE: greenhouse offer without vendor_subtype → vendor_subtype_required', !!r.error && /vendor_subtype_required/.test(r.error.message), r.error?.message)
-  r = await db.rpc('create_listing', base('offer', { vendor_subtype: 'construction', structure_types: ['polyhouse'] }))
-  ok('NEGATIVE: greenhouse offer without provider declaration → provider_declaration_required', !!r.error && /provider_declaration_required/.test(r.error.message), r.error?.message)
+  r = await db.rpc('create_listing', base('offer', { vendor_subtype: 'construction', structure_types: ['polyhouse'], provider_declared: false }))
+  ok('NEGATIVE: greenhouse offer with provider_declared=false → provider_declaration_required', !!r.error && /provider_declaration_required/.test(r.error.message), r.error?.message)
   r = await db.rpc('create_listing', base('offer', { vendor_subtype: 'construction', structure_types: ['polyhouse'], provider_declared: true }))
   ok('POSITIVE: greenhouse vendor offer created', !r.error && !!r.data?.id, r.error?.message)
   if (r.data?.id) cleanup.push(r.data.id)

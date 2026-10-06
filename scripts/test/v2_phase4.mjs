@@ -31,8 +31,10 @@ async function main() {
   const cleanup = []
 
   // ---- 1. Provider declaration enforced in create_listing ----
-  let r = await db.rpc('create_listing', equipOffer({ p_actor_id: farmer.id }))
-  ok('NEGATIVE: equipment offer without provider_declared → provider_declaration_required',
+  // Batch1 0050 hotfix: the guard fires only when provider_declared is PRESENT and
+  // not 'true'. A missing key now succeeds; provider_declared:false still fails.
+  let r = await db.rpc('create_listing', equipOffer({ p_actor_id: farmer.id, p_details: { equipment_type_id: EQUIP_TYPE_ID, provider_declared: false } }))
+  ok('NEGATIVE: equipment offer with provider_declared=false → provider_declaration_required',
     !!r.error && /provider_declaration_required/.test(r.error.message), r.error?.message)
 
   r = await db.rpc('create_listing', equipOffer({ p_actor_id: farmer.id, p_details: { equipment_type_id: EQUIP_TYPE_ID, provider_declared: true } }))
@@ -41,8 +43,8 @@ async function main() {
   if (equipId) cleanup.push(equipId)
   ok('declaration persisted in details', r.data?.details?.provider_declared === true)
 
-  r = await db.rpc('create_listing', whOffer({ p_actor_id: farmer.id }))
-  ok('NEGATIVE: warehouse offer without provider_declared → provider_declaration_required',
+  r = await db.rpc('create_listing', whOffer({ p_actor_id: farmer.id, p_details: { warehouse_type: 'godown', capacity_quintals: 500, rate: '₹15/qtl/माह', address: 'Khurai Road', provider_declared: false } }))
+  ok('NEGATIVE: warehouse offer with provider_declared=false → provider_declaration_required',
     !!r.error && /provider_declaration_required/.test(r.error.message), r.error?.message)
 
   r = await db.rpc('create_listing', whOffer({ p_actor_id: farmer.id, p_details: { warehouse_type: 'godown', capacity_quintals: 500, rate: '₹15', address: 'X', provider_declared: true } }))
