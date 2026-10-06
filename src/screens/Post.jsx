@@ -309,6 +309,10 @@ export default function Post() {
               <a href="/terms" target="_blank" rel="noopener noreferrer" className="font-semibold text-green-800 underline">
                 {t('terms_title')}
               </a>
+              {/* Jugaad offers: the no-road-vehicle rule is one line inside this declaration (Batch 2 item D). */}
+              {category === 'jugaad' && listingType === 'offer' && (
+                <span className="mt-1 block text-sm text-stone-600">{t('jugaad_not_road_vehicle')}</span>
+              )}
             </span>
           </label>
 

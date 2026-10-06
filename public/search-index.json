@@ -3655,12 +3655,21 @@
   },
   {
     "type": "hub",
-    "title_hi": "जुगाड़",
-    "title_en": "Jugaad",
+    "title_hi": "जुगाड़ — ग्रामीण नवाचार बाज़ार",
+    "title_en": "Jugaad — rural innovation marketplace",
     "subtitle_hi": "",
     "subtitle_en": "",
     "url": "/jugaad",
-    "keywords": "jugaad innovation जुगाड़ नवाचार"
+    "keywords": "jugaad innovation marketplace जुगाड़ नवाचार बाज़ार"
+  },
+  {
+    "type": "hub",
+    "title_hi": "जुगाड़ की जानकारी और नियम",
+    "title_en": "Jugaad information and rules",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/jugaad/jankari",
+    "keywords": "jugaad guide rules legal जुगाड़ जानकारी नियम"
   },
   {
     "type": "hub",

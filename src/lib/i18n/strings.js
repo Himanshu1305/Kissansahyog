@@ -1919,6 +1919,24 @@ export const strings = {
   err_jugaad_name_required: { hi: 'नवाचार का नाम भरें।', en: 'Enter the innovation name.' },
   err_road_vehicle_not_allowed: { hi: 'सड़क पर चलने वाले वाहन स्वीकार नहीं। कृपया पुष्टि करें कि यह सड़क वाहन नहीं है।', en: 'Road-going vehicles are not accepted. Please confirm this is not a road vehicle.' },
 
+  // --- Batch 2 item D: simpler jugaad form ---
+  field_jugaad_what: { hi: 'यह क्या करता है (1–2 लाइन)', en: 'What it does (1–2 lines)' },
+  ph_jugaad_what: { hi: 'जैसे एक दिन में 2 एकड़ बुवाई', en: 'e.g. sows 2 acres in a day' },
+  jugaad_photos_help: { hi: 'कम से कम 1 फोटो (ज़्यादा से ज़्यादा 3)', en: 'At least 1 photo (up to 3)' },
+  err_jugaad_what_required: { hi: 'बताएँ कि यह क्या करता है।', en: 'Say what it does.' },
+  err_jugaad_price_required: { hi: 'दाम या किराया भरें (विकास में हो तो छोड़ सकते हैं)।', en: 'Enter a price or rent (optional if it is still in development).' },
+  err_jugaad_photo_required: { hi: 'कम से कम 1 फोटो डालें।', en: 'Add at least 1 photo.' },
+
+  // --- Batch 2 item D: jugaad marketplace + guide split ---
+  jugaad_mkt_intro: { hi: 'गाँव के जुगाड़ और नए यंत्र — बेचें, किराये पर दें, सेवा दें या बनवाएँ। सीधे फ़ोन पर बात करें।', en: 'Village jugaad and new tools — sell, rent, offer a service or get one made. Talk directly by phone.' },
+  jugaad_add_btn: { hi: 'अपना जुगाड़ डालें', en: 'Post your jugaad' },
+  jugaad_guide_box: { hi: 'जुगाड़ की जानकारी और नियम', en: 'Jugaad information and rules' },
+  jugaad_guide_crumb: { hi: 'जानकारी', en: 'Information' },
+  jugaad_mkt_empty: { hi: 'अभी कोई जुगाड़ नहीं। पहले आप डालें — ऊपर बटन दबाएँ।', en: 'No jugaad yet. Be the first — use the button above.' },
+  jugaad_results: { hi: 'जुगाड़', en: 'jugaad' },
+  jugaad_filter_all: { hi: 'सभी', en: 'All' },
+  jugaad_mkt_seo_title: { hi: 'जुगाड़ / ग्रामीण नवाचार — बाज़ार', en: 'Jugaad / Rural Innovations — marketplace' },
+
   // --- Phase 8: carbon credit page (poll + suggestions) ---
   carbon_tile_label: { hi: 'कार्बन क्रेडिट', en: 'Carbon credit' },
   carbon_tile_sub: { hi: 'किसान आय का नया ज़रिया?', en: 'A new income source?' },

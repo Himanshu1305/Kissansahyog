@@ -55,6 +55,7 @@ const GreenhouseSubsidy = lazy(() => import('./screens/GreenhouseSubsidy'))
 const CarbonCredit = lazy(() => import('./screens/CarbonCredit'))
 const CarbonBrief = lazy(() => import('./screens/CarbonBrief'))
 const Jugaad = lazy(() => import('./screens/Jugaad'))
+const JugaadJankari = lazy(() => import('./screens/JugaadJankari'))
 const Join = lazy(() => import('./screens/Join'))
 const Search = lazy(() => import('./screens/Search'))
 const NotFound = lazy(() => import('./screens/NotFound'))
@@ -114,6 +115,8 @@ function AppRoutes() {
         {/* Static /carbon-credit/niti-sujhav before /carbon-credit (distinct literals, order safe). */}
         <Route path="/carbon-credit/niti-sujhav" element={<CarbonBrief />} />
         <Route path="/carbon-credit" element={<CarbonCredit />} />
+        {/* Static /jugaad/jankari before /jugaad (distinct literals; order safe). */}
+        <Route path="/jugaad/jankari" element={<JugaadJankari />} />
         <Route path="/jugaad" element={<Jugaad />} />
         <Route path="/join" element={<Join />} />
         <Route path="/search" element={<Search />} />
