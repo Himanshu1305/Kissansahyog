@@ -30,6 +30,8 @@ const ArticleDetail = lazy(() => import('./screens/ArticleDetail'))
 const Resources = lazy(() => import('./screens/Resources'))
 const Info = lazy(() => import('./screens/Info'))
 const Sawaal = lazy(() => import('./screens/Sawaal'))
+const SawaalDetail = lazy(() => import('./screens/SawaalDetail'))
+const SawaalHub = lazy(() => import('./screens/SawaalHub'))
 const Safalta = lazy(() => import('./screens/Safalta'))
 const Yojana = lazy(() => import('./screens/Yojana'))
 const SchemeDetail = lazy(() => import('./screens/SchemeDetail'))
@@ -106,7 +108,11 @@ function AppRoutes() {
         <Route path="/articles/:slug" element={<ArticleDetail />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/info" element={<Info />} />
+        {/* Static /sawaal routes MUST precede the dynamic /sawaal/:slug route. */}
         <Route path="/sawaal" element={<Sawaal />} />
+        <Route path="/sawaal/vishay/:category" element={<SawaalHub mode="category" />} />
+        <Route path="/fasal/:crop/samasya" element={<SawaalHub mode="crop" />} />
+        <Route path="/sawaal/:slug" element={<SawaalDetail />} />
         <Route path="/safalta" element={<Safalta />} />
         {/* Static /yojana routes MUST precede the dynamic /yojana/:slug route. */}
         <Route path="/yojana" element={<Yojana level={null} />} />

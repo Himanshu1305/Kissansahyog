@@ -17,6 +17,39 @@ export async function fetchPublishedSawaal() {
   return data || []
 }
 
+// Phase 12 — knowledge-base helpers. Published Q&As that have a slug + answer.
+export async function fetchSawaalBySlug(slug) {
+  const { data, error } = await supabase
+    .from('kisan_sawaal').select('*').eq('slug', slug).eq('is_published', true).maybeSingle()
+  if (error) throw toAppError(error)
+  return data
+}
+
+// All published knowledge-base Q&As (have a slug). Lightweight columns for lists.
+export async function fetchKbSawaal() {
+  const { data, error } = await supabase
+    .from('kisan_sawaal')
+    .select('id,slug,question_hi,question_en,answer_hi,answer_en,crop,category,season,is_featured,published_at')
+    .eq('is_published', true)
+    .not('slug', 'is', null)
+    .order('is_featured', { ascending: false })
+    .order('published_at', { ascending: true })
+  if (error) throw toAppError(error)
+  return data || []
+}
+
+// Related Q&As: same crop or category, excluding the current slug.
+export async function fetchRelatedSawaal({ crop, category, excludeSlug, limit = 6 }) {
+  let q = supabase.from('kisan_sawaal')
+    .select('slug,question_hi,question_en,crop,category')
+    .eq('is_published', true).not('slug', 'is', null)
+  if (crop) q = q.eq('crop', crop)
+  else if (category) q = q.eq('category', category)
+  const { data, error } = await q.limit(limit + 1)
+  if (error) return []
+  return (data || []).filter((r) => r.slug !== excludeSlug).slice(0, limit)
+}
+
 export async function fetchFeaturedSawaal(limit = 2) {
   const { data, error } = await supabase
     .from('kisan_sawaal')

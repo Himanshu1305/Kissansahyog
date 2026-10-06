@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
@@ -129,9 +129,15 @@ export default function Sawaal() {
                     </a>
                   )}
                   {open && r.answered_by && <p className="mt-2 text-xs font-semibold text-stone-500">{t('sawaal_answered_by')}{r.answered_by}</p>}
-                  <button type="button" onClick={() => setOpenId(open ? null : r.id)} className="mt-2 self-start text-sm font-bold text-green-700">
-                    {open ? t('sawaal_hide_answer') : t('sawaal_show_answer')} {open ? '↑' : '→'}
-                  </button>
+                  {r.slug ? (
+                    <Link to={`/sawaal/${r.slug}`} className="mt-2 self-start text-sm font-bold text-green-700">
+                      {t('sawaal_show_answer')} →
+                    </Link>
+                  ) : (
+                    <button type="button" onClick={() => setOpenId(open ? null : r.id)} className="mt-2 self-start text-sm font-bold text-green-700">
+                      {open ? t('sawaal_hide_answer') : t('sawaal_show_answer')} {open ? '↑' : '→'}
+                    </button>
+                  )}
                 </div>
               )
             })}

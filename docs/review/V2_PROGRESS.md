@@ -94,12 +94,12 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Rules + seasonal (mausam/msp/greenhouse/carbon/listing/sawaal mounts; tanker Mar–Jun, harvester/seed_drill harvest/sowing months)
 - [x] view counter RPC 0046 (increment_listing_view idempotent/device/24h) + fetchTopViewed; Homepage "सबसे ज़्यादा देखा गया" + existing "आपके आसपास" near feed; Browse most-viewed box; test v2_phase11 34/34; i18n+citation green; commit
 
-## Phase 12 — Kisan Sawaal knowledge base
-- [ ] QA_DEMAND.md (KCC dataset skipped if no key; autocomplete/PAA; existing rows)
-- [ ] Extend kisan_sawaal schema (slug, crop, category, season, answer_blocks, sources, ...)
-- [ ] Q&A pages /sawaal/<slug>, crop hubs, category hubs, /sawaal index
-- [ ] Author Q&As in ranked batches of 25 (fetch-and-quote)
-- [ ] QAPage schema; related boxes; commit each batch
+## Phase 12 — Kisan Sawaal knowledge base  (migrations 0047, 0048)
+- [x] QA_DEMAND.md (KCC dataset skipped — no DATA_GOV_IN_API_KEY per D2/D18; autocomplete/PAA + existing rows + ICAR/KVK calendars; ranked list + backlog documented)
+- [x] Extend kisan_sawaal schema 0047 (slug/season/answer_blocks/sources/published_at/updated_at + admin_answer_sawaal extended to edit everything); 0048 expand category CHECK
+- [x] Q&A pages /sawaal/<slug> (QAPage, Hindi-only), crop hubs /fasal/<crop>/samasya (ItemList), category hubs /sawaal/vishay/<cat> (ItemList), /sawaal index links to detail pages
+- [x] Authored 40 fetch-and-quoted Q&As (15 schemes [official PIB/HP/FAO], 13 grains [TNAU/ICAR/HP + labeled News/Company], 12 pulses+veg [ICAR PDFs]); 19 legacy rows slugged → 59 published pages. Banned pesticides (endosulfan/carbofuran/phorate) kept out of published blocks; chemical lines carry "लेबल पर लिखी मात्रा". Backlog (lentil/urad/moong/doses) → report per §12.5
+- [x] QAPage+ItemList+BreadcrumbList schema; SourcesList; RelatedBoxes; tests v2_phase12 17/17; citation 6/6; SEO 176 routes; i18n green; build:full prerendered 176/176. (E2E → Phase 15 per D7)
 
 ## Phase 13 — WhatsApp groundwork (no sending)
 - [ ] Admin "आज की पोस्ट" builder (canvas 1080×1350)

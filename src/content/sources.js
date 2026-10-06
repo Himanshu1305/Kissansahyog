@@ -1317,6 +1317,181 @@ export const sources = {
     "url": "file:///Users/hidixit/projects/Kissansahyog/docs/research/mp_cold_storages.csv",
     "date": "n/a",
     "type": "Secondary"
+  },
+  "S-QAG-01": {
+    "title": "Crop Protection :: Pest of Soybean (Girdle Beetle)",
+    "publisher": "TNAU Agritech Portal, Tamil Nadu Agricultural University",
+    "url": "https://agritech.tnau.ac.in/crop_protection/soyabean/crop_prot_crop_insect_pulsh_soyabean_8.html",
+    "date": "n.d.",
+    "type": "Official"
+  },
+  "S-QAG-02": {
+    "title": "High-Yielding Soybean Varieties Recommended for Madhya Pradesh: Optimum Sowing Time and Full Variety List",
+    "publisher": "Global Agriculture",
+    "url": "https://www.global-agriculture.com/seed-industry/high-yielding-soybean-varieties-recommended-for-madhya-pradesh-optimum-sowing-time-and-full-variety-list/",
+    "date": "2025-05-25",
+    "type": "News"
+  },
+  "S-QAG-03": {
+    "title": "Soybean (Crop Production)",
+    "publisher": "TNAU Agritech Portal, Tamil Nadu Agricultural University",
+    "url": "https://agritech.tnau.ac.in/agriculture/CropProduction/Pulses/pulses_soybean.html",
+    "date": "n.d.",
+    "type": "Official"
+  },
+  "S-QAG-04": {
+    "title": "Soybean (Pests, Diseases and Sowing)",
+    "publisher": "Apni Kheti",
+    "url": "https://www.apnikheti.com/en/pn/agriculture/crops/oilseeds/soybean",
+    "date": "n.d.",
+    "type": "Company"
+  },
+  "S-QAG-05": {
+    "title": "Stripe Rust (Yellow Rust) of Wheat control in major wheat growing states in rabi 2010-11",
+    "publisher": "Indian Council of Agricultural Research (ICAR)",
+    "url": "https://icar.org.in/en/node/5291",
+    "date": "n.d.",
+    "type": "Official"
+  },
+  "S-QAG-06": {
+    "title": "Disease Control (Wheat)",
+    "publisher": "Department of Agriculture, Himachal Pradesh",
+    "url": "https://agriculture.hp.gov.in/en/disease-control/",
+    "date": "n.d.",
+    "type": "Official"
+  },
+  "S-QAG-07": {
+    "title": "Recommended Wheat Varieties for Rabi Season for Farmers of Madhya Pradesh",
+    "publisher": "Global Agriculture",
+    "url": "https://www.global-agriculture.com/seed-industry/recommended-wheat-varieties-for-rabi-season-for-farmers-of-madhya-pradesh/",
+    "date": "2022-10-10",
+    "type": "News"
+  },
+  "S-QAG-08": {
+    "title": "Field Efficacy of Insecticides for Management of Invasive Fall Armyworm, Spodoptera frugiperda (J. E. Smith) on Maize in India",
+    "publisher": "Florida Entomologist",
+    "url": "https://bioone.org/journals/florida-entomologist/volume-103/issue-2/024.103.0211/Field-Efficacy-of-Insecticides-for-Management-of-Invasive-Fall-Armyworm/10.1653/024.103.0211.full",
+    "date": "2020-01-01",
+    "type": "Official"
+  },
+  "S-QAG-09": {
+    "title": "Maize or Makka or Corn Crop Cultivation Guide",
+    "publisher": "IndiaAgroNet",
+    "url": "https://indiaagronet.com/indiaagronet/crop%20info/maize.htm",
+    "date": "n.d.",
+    "type": "Company"
+  },
+  "S-QAG-10": {
+    "title": "Weed Management in Wheat Field: Sustainable Control Methods",
+    "publisher": "BigHaat Agro Private Limited (Kisan Vedika)",
+    "url": "https://www.bighaat.com/kisan-vedika/blogs/weed-free-wheat-field-sustainable-practices-for-effective-weed-management",
+    "date": "n.d.",
+    "type": "Company"
+  },
+  "S-QAP-01": {
+    "title": "Districtwise Promising Technologies for Rainfed Chickpea based Production System in India",
+    "publisher": "ICAR - Central Research Institute for Dryland Agriculture (CRIDA) / AICRPDA, Hyderabad",
+    "url": "https://www.icar-crida.res.in/assets/img/Books/2005-06/chickpea.pdf",
+    "date": "2005",
+    "type": "Official"
+  },
+  "S-QAP-02": {
+    "title": "Integrated pest management approaches against major insect pests and diseases of tomato (Indian Horticulture, Jan-Feb 2023)",
+    "publisher": "ICAR (Indian Horticulture journal); authors Raghavendra K V, Rekha Balodi, Subhash Chander",
+    "url": "https://epubs.icar.org.in/index.php/IndHort/article/download/125318/49197/472788",
+    "date": "2023-02-01",
+    "type": "Official"
+  },
+  "S-QAP-03": {
+    "title": "Good Agricultural Practices in Onion and Garlic Production",
+    "publisher": "ICAR - Directorate of Onion and Garlic Research (DOGR), Pune & National Institute of Agricultural Extension Management (MANAGE), Hyderabad",
+    "url": "https://www.manage.gov.in/publications/eBooks/Good%20Agricultural%20Practices%20in%20Onion%20and%20Garlic.pdf",
+    "date": "2022",
+    "type": "Official"
+  },
+  "S-QAP-04": {
+    "title": "Chilli - Good Agricultural Practices",
+    "publisher": "ICAR - Indian Institute of Spices Research, Kozhikode",
+    "url": "https://www.indianspices.com/sites/default/files/cultivation_practices-Chillli-1.pdf",
+    "date": "2019-09-01",
+    "type": "Official"
+  },
+  "S-QAS-01": {
+    "title": "PM-KISAN: ₹6,000/year in three equal ₹2,000 instalments; eligibility",
+    "publisher": "Press Information Bureau (PIB), Ministry of Agriculture & Farmers Welfare",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2146932&reg=48&lang=2",
+    "date": "2025-07-22",
+    "type": "Official"
+  },
+  "S-QAS-02": {
+    "title": "PM-KISAN official portal — Farmers Corner (Know Your Status / Know Your Registration Number / e-KYC)",
+    "publisher": "PM-KISAN, Ministry of Agriculture & Farmers Welfare (Government of India)",
+    "url": "https://pmkisan.gov.in/",
+    "date": "n.d.",
+    "type": "Official"
+  },
+  "S-QAS-03": {
+    "title": "Pradhan Mantri Fasal Bima Yojana (PMFBY) — premium rates and covered risks",
+    "publisher": "Department of Agriculture, Government of Himachal Pradesh",
+    "url": "https://agriculture.hp.gov.in/en/our-scheme/pradhanmantri-fasal-bima-yojna-pmfby/",
+    "date": "n.d.",
+    "type": "Official"
+  },
+  "S-QAS-04": {
+    "title": "PMFBY premium rates and operational timelines (72-hour intimation, prevented sowing, post-harvest, premium sharing)",
+    "publisher": "Press Information Bureau (PIB), Ministry of Agriculture & Farmers Welfare",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2237736&reg=48&lang=2",
+    "date": "2026-03-10",
+    "type": "Official"
+  },
+  "S-QAS-05": {
+    "title": "Kisan Credit Card — interest subvention: 7% concessional rate up to ₹3 lakh, 3% prompt-repayment incentive (effective 4%)",
+    "publisher": "Press Information Bureau (PIB) — Government Strengthens Farmer Support through Continued Interest Subvention",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2132139&reg=3&lang=2",
+    "date": "2025-01-01",
+    "type": "Official"
+  },
+  "S-QAS-06": {
+    "title": "Kisan Credit Card ecosystem — collateral-free limit raised ₹1.6 lakh → ₹2 lakh (from 1 Jan 2025); MISS loan limit enhanced to ₹5 lakh",
+    "publisher": "Press Information Bureau (PIB) — Government Measures strengthen Kisan Credit Card ecosystem",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246855&reg=3&lang=2",
+    "date": "2025-06-01",
+    "type": "Official"
+  },
+  "S-QAS-07": {
+    "title": "Soil Health Card — launched 19 Feb 2015; issued every two years; provided free",
+    "publisher": "Press Information Bureau (PIB) — Celebrating a Decade of Soil Health Cards",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2104403&reg=48&lang=2",
+    "date": "2025-02-18",
+    "type": "Official"
+  },
+  "S-QAS-08": {
+    "title": "Soil Health Card — the 12 parameters (N, P, K, S, Zn, Fe, Cu, Mn, B, pH, EC, OC)",
+    "publisher": "Press Information Bureau (PIB) — Soil Health Card Factsheet",
+    "url": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=148602&reg=48&lang=2",
+    "date": "n.d.",
+    "type": "Official"
+  },
+  "S-QAS-09": {
+    "title": "Minimum Support Price — CACP recommends, CCEA approves; 22 mandated crops; minimum 50% margin over cost",
+    "publisher": "Press Information Bureau (PIB) — Minimum Support Prices: From Safety Net to Self-Sufficiency",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2177219&reg=48&lang=2",
+    "date": "2025-10-01",
+    "type": "Official"
+  },
+  "S-QAS-10": {
+    "title": "MP e-Uparjan — Madhya Pradesh official MSP procurement portal (registration)",
+    "publisher": "MP e-Uparjan, Government of Madhya Pradesh",
+    "url": "https://mpeuparjan.nic.in/",
+    "date": "n.d.",
+    "type": "Official"
+  },
+  "S-QAS-11": {
+    "title": "Grain storage techniques - Storage at farm/village level",
+    "publisher": "Food and Agriculture Organization of the United Nations (FAO)",
+    "url": "https://www.fao.org/4/t1838e/t1838e12.htm",
+    "date": "n.d.",
+    "type": "Official"
   }
 }
 

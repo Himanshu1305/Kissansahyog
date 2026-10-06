@@ -71,8 +71,16 @@ export async function getRoutes({ verbose = false } = {}) {
       for (const d of districts) routes.add(`/cold-storage/${slugifyDistrict(d)}`)
     } catch { /* table not created yet */ }
     try {
-      const { data: qa } = await db.from('kisan_sawaal').select('slug').not('slug', 'is', null).not('published_at', 'is', null)
-      for (const q of qa || []) if (q.slug) routes.add(`/sawaal/${q.slug}`)
+      const { data: qa } = await db.from('kisan_sawaal').select('slug,crop,category').not('slug', 'is', null).eq('is_published', true)
+      const crops = new Set(), cats = new Set()
+      for (const q of qa || []) {
+        if (q.slug) routes.add(`/sawaal/${q.slug}`)
+        if (q.crop) crops.add(q.crop)
+        if (q.category) cats.add(q.category)
+      }
+      // Crop hubs (/fasal/<crop>/samasya) and category hubs (/sawaal/vishay/<cat>).
+      for (const c of crops) routes.add(`/fasal/${c}/samasya`)
+      for (const c of cats) routes.add(`/sawaal/vishay/${c}`)
     } catch { /* column not added yet */ }
   } else if (verbose) {
     console.warn('No Supabase env — prerendering static routes only.')
