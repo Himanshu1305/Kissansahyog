@@ -60,7 +60,9 @@ check('initial JS gzip < 200 KB', initialKb < 200, `${initialKb} KB`)
 // No single route chunk should be bloated (code-splitting working).
 const routeChunks = assets.filter((f) => !/react-vendor|supabase|^index-/.test(f))
 const biggest = Math.max(0, ...routeChunks.map((f) => gz(f)))
-check('largest route chunk gzip < 20 KB (split correctly)', biggest < 20 * 1024, `${Math.round(biggest / 1024)} KB`)
+// V2: content hubs (greenhouse/carbon ~3000 words each) ship as their own lazy
+// route chunks, so the per-route ceiling is higher — still split, not a monolith.
+check('largest route chunk gzip < 70 KB (split correctly)', biggest < 70 * 1024, `${Math.round(biggest / 1024)} KB`)
 
 console.log(`\n${pass} passed, ${fail} failed`)
 process.exit(fail ? 1 : 0)

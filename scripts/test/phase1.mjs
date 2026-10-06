@@ -28,9 +28,9 @@ async function main() {
   check('anon reads pincodes', !pins.error && pins.data.length === 20, `${pins.data?.length} rows`)
 
   const eq = await sb.from('equipment_types').select('*')
-  // 15 = the 11 v1.1 types + 4 later additions (Pit Digging/Crane Tractor, JCB, Paddy
-  // Planting Machine). Bump this when the equipment_types seed legitimately grows.
-  check('anon reads equipment_types', !eq.error && eq.data.length === 15, `${eq.data?.length} rows`)
+  // 16 = the 11 v1.1 types + 4 later additions (Pit Digging/Crane Tractor, JCB, Paddy
+  // Planting Machine) + Water tanker (V2 Phase 5). Bump when the seed legitimately grows.
+  check('anon reads equipment_types', !eq.error && eq.data.length === 16, `${eq.data?.length} rows`)
 
   // --- Negative: anon CANNOT read profiles (locked, no policy) ---
   // First create a real profile via the service role so there is a row to (fail to) read.

@@ -9,9 +9,10 @@ let pass = 0, fail = 0
 const ok = (n, c, extra = '') => { if (c) { pass++; console.log(`PASS  ${n}`) } else { fail++; console.log(`FAIL  ${n} ${extra}`) } }
 const read = (p) => readFileSync(new URL(`../../${p}`, import.meta.url), 'utf8')
 
+let EQUIP_TYPE_ID = null // resolved in main() to a real equipment_types.id (integer FK, Phase 5)
 const equipOffer = (extra) => ({
   p_actor_id: null, p_listing_type: 'offer', p_category: 'equipment',
-  p_details: { equipment_type_id: 'tractor' },
+  p_details: { equipment_type_id: EQUIP_TYPE_ID },
   p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false,
   p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai', p_rules_agreed: true, ...extra,
 })
@@ -25,6 +26,8 @@ const whOffer = (extra) => ({
 async function main() {
   const { data: farmer } = await db.from('profiles').select('id').eq('phone', '9999000001').maybeSingle()
   if (!farmer) { console.log('FAIL  test farmer 9999000001 missing (run scripts/seed_dummy.mjs)'); process.exit(1) }
+  const { data: et } = await db.from('equipment_types').select('id').neq('name_en', 'Water tanker').limit(1).maybeSingle()
+  EQUIP_TYPE_ID = et?.id ?? null
   const cleanup = []
 
   // ---- 1. Provider declaration enforced in create_listing ----
@@ -32,7 +35,7 @@ async function main() {
   ok('NEGATIVE: equipment offer without provider_declared → provider_declaration_required',
     !!r.error && /provider_declaration_required/.test(r.error.message), r.error?.message)
 
-  r = await db.rpc('create_listing', equipOffer({ p_actor_id: farmer.id, p_details: { equipment_type_id: 'tractor', provider_declared: true } }))
+  r = await db.rpc('create_listing', equipOffer({ p_actor_id: farmer.id, p_details: { equipment_type_id: EQUIP_TYPE_ID, provider_declared: true } }))
   ok('POSITIVE: equipment offer WITH provider_declared=true is created', !r.error && !!r.data?.id, r.error?.message)
   const equipId = r.data?.id
   if (equipId) cleanup.push(equipId)

@@ -8,7 +8,7 @@ const admin = adminClient()
 let pass = 0, fail = 0
 const check = (n, ok, d = '') => { console.log(`${ok ? 'PASS' : 'FAIL'}  ${n}${d ? '  — ' + d : ''}`); ok ? pass++ : fail++ }
 
-const eqDetails = (o = {}) => ({ equipment_type_id: 1, rental_basis: 'per_day', rate_amount: '₹500', available_now: true, available_from: null, available_to: null, ...o })
+const eqDetails = (o = {}) => ({ provider_declared: true, equipment_type_id: 1, rental_basis: 'per_day', rate_amount: '₹500', available_now: true, available_from: null, available_to: null, ...o })
 
 async function main() {
   await cleanupTestData()

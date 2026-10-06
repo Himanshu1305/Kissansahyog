@@ -23,7 +23,7 @@ async function main() {
   ok('greenhouse in CATEGORIES + registry ENABLED', CATEGORIES.includes('greenhouse') && /ENABLED_CATEGORIES = \[[^\]]*'greenhouse'/.test(regSrc))
   ok('greenhouse is wide-eligible (100km)', WIDE_ELIGIBLE_CATEGORIES.includes('greenhouse'))
   ok('CATEGORY_META greenhouse label', CATEGORY_META.greenhouse.hi === 'ग्रीनहाउस / पॉलीहाउस')
-  ok('Land still LAST', CATEGORIES[CATEGORIES.length - 1] === 'land' && /'greenhouse', 'transport', 'land'\]/.test(regSrc))
+  ok('Land still LAST', CATEGORIES[CATEGORIES.length - 1] === 'land' && /'transport', 'land'\]/.test(regSrc))
   ok('GH option lists bilingual', GH_VENDOR_SUBTYPE.length === 6 && GH_STRUCTURE.length === 4 && [...GH_VENDOR_SUBTYPE, ...GH_STRUCTURE].every((o) => o.value && o.hi && o.en))
 
   // create_listing validation

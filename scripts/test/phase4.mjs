@@ -21,7 +21,7 @@ async function main() {
   // Offer, per_hour, available now
   const offer = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment',
-    p_details: { equipment_type_id: tractor.id, rental_basis: 'per_hour', available_now: true, available_from: null, available_to: null },
+    p_details: { provider_declared: true, equipment_type_id: tractor.id, rental_basis: 'per_hour', available_now: true, available_from: null, available_to: null },
     p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false,
   })
   check('equipment offer (tractor, per_hour, now) created', !offer.error && offer.data?.category === 'equipment', offer.error?.message)
@@ -37,7 +37,7 @@ async function main() {
   // Negative: no equipment type -> equipment_type_required
   const noType = await sb.rpc('create_listing', { p_rules_agreed: true,
     p_actor_id: actor.id, p_listing_type: 'offer', p_category: 'equipment',
-    p_details: { rental_basis: 'per_day', available_now: true },
+    p_details: { provider_declared: true, rental_basis: 'per_day', available_now: true },
     p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false,
   })
   check('equipment without type rejected', !!noType.error && /equipment_type_required/.test(noType.error.message), noType.error?.message)

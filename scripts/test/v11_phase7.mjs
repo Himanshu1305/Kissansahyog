@@ -36,7 +36,7 @@ async function main() {
   const sagar = (await admin.from('pincodes').select('*').eq('pincode', '470001').single()).data
   const rehli = (await admin.from('pincodes').select('*').eq('pincode', '470227').single()).data
   const eqTypes = (await sb.from('equipment_types').select('*')).data
-  DETAILS.equipment = { equipment_type_id: eqTypes[0].id, rental_basis: 'per_day', rate_amount: '₹800', available_now: true, available_from: null, available_to: null }
+  DETAILS.equipment = { provider_declared: true, equipment_type_id: eqTypes[0].id, rental_basis: 'per_day', rate_amount: '₹800', available_now: true, available_from: null, available_to: null }
 
   // Poster A lives in Rehli (~42 km from Sagar) but lists everything AT Sagar.
   const poster = (await sb.rpc('app_signup', { p_full_name: 'Poster A', p_phone: testPhone(), p_village_town: 'Rehli', p_pincode: '470227', p_language: 'hi', p_disclaimer_accepted: true })).data

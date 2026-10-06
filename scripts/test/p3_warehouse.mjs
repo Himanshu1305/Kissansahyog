@@ -9,7 +9,7 @@ let pass = 0, fail = 0
 const check = (n, ok, d = '') => { console.log(`${ok ? 'PASS' : 'FAIL'}  ${n}${d ? '  — ' + d : ''}`); ok ? pass++ : fail++ }
 const set = (a) => [...a].sort().join(',')
 
-const offer = (o = {}) => ({ warehouse_type: 'general', capacity_quintals: 200, rate: '₹12/qtl/month', available_from: null, facilities: ['electricity'], address: 'Main Road, Khurai', contact_name: '', ...o })
+const offer = (o = {}) => ({ provider_declared: true, warehouse_type: 'general', capacity_quintals: 200, rate: '₹12/qtl/month', available_from: null, facilities: ['electricity'], address: 'Main Road, Khurai', contact_name: '', ...o })
 const req = (o = {}) => ({ crop_type: 'गेहूं', quantity_quintals: 50, duration: '3 महीने', preferred_type: 'general', ...o })
 
 async function main() {
@@ -43,7 +43,7 @@ async function main() {
   const rows = (await admin.from('listings').select('id,details').in('id', [o.data.id, r.data.id])).data
   const byId = Object.fromEntries(rows.map((x) => [x.id, x.details]))
   check('warehouse offer JSONB keys exact',
-    set(Object.keys(byId[o.data.id])) === set(['warehouse_type', 'capacity_quintals', 'rate', 'available_from', 'facilities', 'address', 'contact_name']))
+    set(Object.keys(byId[o.data.id])) === set(['provider_declared', 'warehouse_type', 'capacity_quintals', 'rate', 'available_from', 'facilities', 'address', 'contact_name']))
   check('warehouse requirement JSONB keys exact',
     set(Object.keys(byId[r.data.id])) === set(['crop_type', 'quantity_quintals', 'duration', 'preferred_type']))
 

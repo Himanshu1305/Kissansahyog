@@ -16,7 +16,7 @@ async function main() {
   // Owner creates one listing per category.
   const land = (await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: owner.id, p_listing_type: 'offer', p_category: 'land', p_details: { size_range: '1-2' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: true })).data
   const eqTypes = (await sb.from('equipment_types').select('*')).data
-  await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: owner.id, p_listing_type: 'offer', p_category: 'equipment', p_details: { equipment_type_id: eqTypes[0].id, rental_basis: 'per_day', available_now: true }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false })
+  await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: owner.id, p_listing_type: 'offer', p_category: 'equipment', p_details: { provider_declared: true, equipment_type_id: eqTypes[0].id, rental_basis: 'per_day', available_now: true }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false })
   await sb.rpc('create_listing', { p_rules_agreed: true, p_actor_id: owner.id, p_listing_type: 'requirement', p_category: 'labor', p_details: { worker_count: 3, work_type: 'general' }, p_latitude: null, p_longitude: null, p_pincode: null, p_self_declared: false })
 
   // get_my_listings returns all three, across categories.

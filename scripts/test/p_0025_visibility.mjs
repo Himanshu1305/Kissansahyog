@@ -76,7 +76,8 @@ async function main() {
   ok('wide: bhusa+true at 120km is NOT wide-visible (>100)', !isWideVisible('bhusa', true, 120))
   ok('wide: bhusa+false at 80km is NOT wide-visible', !isWideVisible('bhusa', false, 80))
   ok('constants: RADIUS 30 / FALLBACK 50 / WIDE 100', RADIUS_KM === 30 && FALLBACK_RADIUS_KM === 50 && WIDE_RADIUS_KM === 100)
-  ok('constants: wide-eligible categories are exactly bhusa+agri_inputs', JSON.stringify([...WIDE_ELIGIBLE_CATEGORIES].sort()) === JSON.stringify(['agri_inputs', 'bhusa']))
+  // Grew in V2: + warehouse/cold-storage (Phase 6) + greenhouse (Phase 7), both 100km wide-visibility.
+  ok('constants: wide-eligible categories are bhusa+agri_inputs+warehouse+greenhouse', JSON.stringify([...WIDE_ELIGIBLE_CATEGORIES].sort()) === JSON.stringify(['agri_inputs', 'bhusa', 'greenhouse', 'warehouse']))
 
   // ---------- Phase 1: server-side wide_visibility guard (create_listing RPC) ----------
   const testPhone = '9000000251'

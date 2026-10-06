@@ -8,7 +8,7 @@ const anon = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABA
 let pass = 0, fail = 0
 const ok = (n, c, extra = '') => { if (c) { pass++; console.log(`PASS  ${n}`) } else { fail++; console.log(`FAIL  ${n} ${extra}`) } }
 const read = (p) => readFileSync(new URL(`../../${p}`, import.meta.url), 'utf8')
-const base = (extra) => ({ p_listing_type: 'offer', p_category: 'equipment', p_details: { equipment_type_id: '1', rental_basis: 'per_day', rate_amount: '500', available_now: true }, p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai', ...extra })
+const base = (extra) => ({ p_listing_type: 'offer', p_category: 'equipment', p_details: { provider_declared: true, equipment_type_id: '1', rental_basis: 'per_day', rate_amount: '500', available_now: true }, p_latitude: null, p_longitude: null, p_pincode: '470117', p_self_declared: false, p_listing_source: 'farmer', p_wide_visibility: false, p_village_name: 'Khurai', ...extra })
 
 async function main() {
   const { data: farmer } = await db.from('profiles').select('id,phone').eq('phone', '9999000001').maybeSingle()
