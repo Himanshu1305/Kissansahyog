@@ -85,8 +85,9 @@ export default function NavBar() {
     setOpen(false); setBz(false)
     if (c.path) { navigate(c.path); return }
     if (c.key === 'experts') { navigate(isLoggedIn ? '/experts' : '/signup'); return }
-    if (c.browseQuery) { navigate(isLoggedIn ? `/browse?${c.browseQuery}` : `/?${c.browseQuery}`); return }
-    navigate(isLoggedIn ? `/browse?cat=${c.key}` : `/?cat=${c.key}`)
+    // Batch1 item 3A: browsing is public, so बाज़ार categories open /browse for everyone.
+    if (c.browseQuery) { navigate(`/browse?${c.browseQuery}`); return }
+    navigate(`/browse?cat=${c.key}`)
   }
   function goPath(p) { setOpen(false); setSch(false); setRes(false); setBz(false); navigate(p) }
 

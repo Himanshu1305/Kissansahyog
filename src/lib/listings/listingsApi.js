@@ -306,12 +306,17 @@ export async function incrementListingView(listingId) {
 }
 
 // Phase 11 — "सबसे ज़्यादा देखा गया": most-viewed active listings (teasers).
-export async function fetchTopViewed({ limit = 6 } = {}) {
-  const { data, error } = await supabase
+// Batch1 item 3: `category` filters the box to the selected category so Browse
+// never shows another category's listings under the current tab. Sample
+// listings (is_test_data) are intentionally NOT excluded (owner decision).
+export async function fetchTopViewed({ limit = 6, category = null } = {}) {
+  let q = supabase
     .from('listings')
     .select('id,listing_type,category,pincode,village_town:village_name,latitude,longitude,details,created_at,listing_source,is_sponsored,view_count')
     .eq('status', 'active')
     .gt('view_count', 0)
+  if (category) q = q.eq('category', category)
+  const { data, error } = await q
     .order('view_count', { ascending: false })
     .limit(limit)
   if (error) return []

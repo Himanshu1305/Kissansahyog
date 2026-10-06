@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
+import { resolveNext } from '../lib/returnPath'
 import { isValidPhone, isValidPincode, isValidEmail, MIN_PASSWORD } from '../lib/auth/authService'
 import { Screen, Field, TextInput, Select, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
@@ -15,6 +16,9 @@ export default function Signup() {
   const { t, lang, setLang } = useLang()
   const { signup, signupEmail } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  const [params] = useSearchParams()
+  const next = resolveNext(params, location.state)
 
   const [mode, setMode] = useState('phone') // 'phone' | 'email'
   const [step, setStep] = useState('form') // 'form' | 'disclaimer'
@@ -68,7 +72,7 @@ export default function Signup() {
           village_town: form.village_town, pincode: form.pincode, language: lang, disclaimer_accepted: true, kisan,
         })
       }
-      navigate('/home', { replace: true })
+      navigate(next, { replace: true })
     } catch (err) {
       setError(t(err.i18nKey || 'err_unknown'))
       setStep('form')

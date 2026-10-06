@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { isValidPhone, isValidEmail } from '../lib/auth/authService'
+import { resolveNext } from '../lib/returnPath'
 import { Screen, Field, TextInput, BigButton, Notice, Spinner } from '../components/ui'
 import LanguageToggle from '../components/LanguageToggle'
 import AuthTabs from '../components/AuthTabs'
@@ -13,6 +14,10 @@ export default function Login() {
   const { t, lang, setLang } = useLang()
   const { login, loginEmail } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  const [params] = useSearchParams()
+  // Where to return after login — the listing the user came from, or the dashboard.
+  const next = resolveNext(params, location.state)
 
   const [mode, setMode] = useState('phone')
   const [phone, setPhone] = useState('')
@@ -38,7 +43,7 @@ export default function Login() {
     try {
       const profile = mode === 'phone' ? await login(phone) : await loginEmail(email, password)
       if (profile?.preferred_language) setLang(profile.preferred_language)
-      navigate('/home', { replace: true })
+      navigate(next, { replace: true })
     } catch (err) {
       setError(t(err.i18nKey || 'err_unknown'))
     } finally {
@@ -73,7 +78,7 @@ export default function Login() {
 
         {busy ? <Spinner /> : <BigButton type="submit">{t('login_button')}</BigButton>}
 
-        <Link to="/signup" className="mt-5 block text-center text-base font-semibold text-green-800 underline">
+        <Link to={next && next !== '/home' ? `/signup?next=${encodeURIComponent(next)}` : '/signup'} className="mt-5 block text-center text-base font-semibold text-green-800 underline">
           {t('no_account_yet')}
         </Link>
       </form>

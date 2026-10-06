@@ -3,17 +3,21 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, Notice, Spinner } from '../components/ui'
+import { Seo } from '../components/layout'
 import LanguageToggle from '../components/LanguageToggle'
 import ListingCard from '../components/ListingCard'
-import CategoryStrip from '../components/CategoryStrip'
+import { LocationControl } from '../components/pages/shared'
 import { CatIcon } from '../components/CatIcon'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { fetchNearby, fetchTopViewed } from '../lib/listings/listingsApi'
+import { fetchNearby, fetchTopViewed, fetchPincode } from '../lib/listings/listingsApi'
+import { initialLocation, DEFAULT_COORDS, DEFAULT_PINCODE } from '../lib/location/locationStore'
 
-// Browse nearby active listings. Category tabs · Offer/Requirement filter ·
-// nearest/newest sort · 30 km radius (computed in fetchNearby).
+// Browse nearby active listings. Public — no login needed to look (Batch1 item 3A);
+// the phone number stays behind login (reveal flow in ListingCard/ListingDetail).
+// All 10 category chips wrap (no hidden horizontal scroll). Location comes from the
+// shared LocationControl for logged-out visitors; logged-in users seed from profile.
 export default function Browse() {
   const { t, lang } = useLang()
   const { user } = useAuth()
@@ -35,23 +39,36 @@ export default function Browse() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [topViewed, setTopViewed] = useState([])
+  // Location works without a profile: seed from the profile pincode when logged in,
+  // else the Sagar default; the LocationControl lets anyone pick GPS/pincode/village.
+  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
 
+  // Most-viewed teasers, filtered to the selected category (Batch1 item 3).
   useEffect(() => {
     let alive = true
-    fetchTopViewed({ limit: 4 }).then((v) => alive && setTopViewed(v)).catch(() => {})
+    fetchTopViewed({ limit: 4, category }).then((v) => alive && setTopViewed(v)).catch(() => {})
     return () => { alive = false }
-  }, [])
+  }, [category])
 
   const load = useCallback(async () => {
     setLoading(true)
     setError(null)
     try {
+      // Resolve the search centre: precise GPS coords when present, else the
+      // selected pincode's coordinates, else the Sagar default.
+      let lat = loc.rawCoords?.latitude
+      let lon = loc.rawCoords?.longitude
+      if (lat == null || lon == null) {
+        const p = await fetchPincode(loc.matchedVillage?.pincode || DEFAULT_PINCODE)
+        lat = p?.latitude ?? DEFAULT_COORDS.latitude
+        lon = p?.longitude ?? DEFAULT_COORDS.longitude
+      }
       const [ex, res] = await Promise.all([
         loadExtras(category),
         fetchNearby({
           category,
           listingType: typeFilter,
-          center: { latitude: user.latitude, longitude: user.longitude },
+          center: { latitude: lat, longitude: lon },
           sort,
         }),
       ])
@@ -63,7 +80,7 @@ export default function Browse() {
     } finally {
       setLoading(false)
     }
-  }, [category, typeFilter, sort, user, t])
+  }, [category, typeFilter, sort, loc, t])
 
   useEffect(() => {
     load()
@@ -73,9 +90,13 @@ export default function Browse() {
     `rounded-full px-3 py-1 text-sm font-semibold border ${
       active ? 'border-green-700 bg-green-700 text-white' : 'border-stone-300 bg-white text-stone-700'
     }`
-  // Land shows full-width single-column cards (more detail); the rest use a
-  // 2-column mobile grid so more results are visible at once.
-  const gridClass = category === 'land' ? 'grid grid-cols-1 gap-2' : 'grid grid-cols-2 gap-2 md:grid-cols-3'
+  const catChip = (active) =>
+    `flex min-h-[44px] items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold ${
+      active ? 'border-[var(--ks-green)] bg-[var(--ks-green)] text-white' : 'border-stone-300 bg-white text-stone-700'
+    }`
+  // Land shows full-width single-column cards on mobile (more detail); the rest use a
+  // responsive grid: 2 (mobile) · 3 (tablet) · 4 (desktop).
+  const gridClass = category === 'land' ? 'grid grid-cols-1 gap-2 md:grid-cols-2' : 'grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4'
 
   // Optional equipment sub-type filter (water tanker): keep only tanker listings.
   const tankerId = (extras.equipmentTypes || []).find((e) => e.name_en === 'Water tanker')?.id ?? null
@@ -84,14 +105,28 @@ export default function Browse() {
   const shownFallback = fallback.filter(matchesEtype)
 
   return (
-    <Screen title={t('browse_title')} onBack={() => navigate('/home')} right={<LanguageToggle />}>
-      {/* Horizontal scrollable category strip (compact chips, one row). */}
-      <div className="mb-2">
-        <CategoryStrip
-          items={ENABLED_CATEGORIES.map((c) => ({ key: c, icon: <CatIcon category={c} />, label: CATEGORY_META[c][lang] }))}
-          active={category}
-          onSelect={setCategory}
-        />
+    <Screen title={t('browse_title')} onBack={() => navigate(user ? '/home' : '/')} right={<LanguageToggle />} width="wide">
+      {/* Browse + listings are noindex for now (SEO for listings is a later batch). */}
+      <Seo noindex path="/browse" />
+      {/* Category chips — all 10 wrap into rows (no hidden horizontal scroll). */}
+      <div className="mb-3 flex flex-wrap gap-2" data-testid="browse-cats">
+        {ENABLED_CATEGORIES.map((c) => (
+          <button
+            key={c}
+            type="button"
+            data-testid="browse-cat-chip"
+            aria-pressed={category === c}
+            className={catChip(category === c)}
+            onClick={() => setCategory(c)}
+          >
+            <CatIcon category={c} /> {CATEGORY_META[c][lang]}
+          </button>
+        ))}
+      </div>
+
+      {/* Location (GPS / pincode / village) — works without a profile. */}
+      <div className="mb-3">
+        <LocationControl value={loc} onChange={setLoc} showOutOfArea={false} />
       </div>
 
       {/* Offer / Requirement filter + sort — one compact row. */}
@@ -129,7 +164,7 @@ export default function Browse() {
         </button>
       )}
 
-      {/* सबसे ज़्यादा देखा गया (Phase 11 discovery box) */}
+      {/* सबसे ज़्यादा देखा गया (Phase 11 discovery box) — current category only, hidden when empty. */}
       {topViewed.length > 0 && (
         <section className="mb-3" aria-label={t('most_viewed_heading')}>
           <h2 className="mb-1.5 text-sm font-bold text-stone-900">{t('most_viewed_heading')}</h2>

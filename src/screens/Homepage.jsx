@@ -161,7 +161,8 @@ export default function Homepage() {
   // Pest banner: top qualifying crop+symptom group (framed as recently asked).
   const pest = (pestReports && pestReports[0]) || null
 
-  const goBrowse = (cat, etype) => navigate(isLoggedIn ? (cat ? `/browse?cat=${cat}${etype ? `&etype=${etype}` : ''}` : '/browse') : '/signup')
+  // Batch1 item 3A: browsing is public — category tiles open /browse for everyone.
+  const goBrowse = (cat, etype) => navigate(cat ? `/browse?cat=${cat}${etype ? `&etype=${etype}` : ''}` : '/browse')
   const tileClick = (to, etype) => (to === 'experts' ? navigate(isLoggedIn ? '/experts' : '/signup') : goBrowse(to, etype))
 
   return (
@@ -199,7 +200,7 @@ export default function Homepage() {
       {/* 3 — Hero: आज किसान के लिए */}
       <HeroContent
         t={t} today={today} weather={weather} eventLine={in7}
-        onNeed={() => navigate(isLoggedIn ? '/browse' : '/signup')}
+        onNeed={() => navigate('/browse')}
         onHave={() => navigate(isLoggedIn ? '/post' : '/signup')}
         onForecast={() => navigate('/mausam')}
         onMsp={() => navigate('/msp')}

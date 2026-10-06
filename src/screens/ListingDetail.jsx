@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
-import { Screen, BigButton, Notice, Spinner } from '../components/ui'
-import DisclaimerBanner from '../components/DisclaimerBanner'
+import { Screen, Notice, Spinner } from '../components/ui'
+import { Seo } from '../components/layout'
 import LanguageToggle from '../components/LanguageToggle'
 import { CatIcon } from '../components/CatIcon'
 import { goBack } from '../components/BackButton'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
+import ContactActions from '../components/ContactActions'
 import AvailabilityCalendar from '../components/AvailabilityCalendar'
 import ReportButton from '../components/ReportButton'
 import SponsoredBadge from '../components/SponsoredBadge'
@@ -15,7 +16,7 @@ import RelatedBoxes from '../components/RelatedBoxes'
 import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { fetchListingById, getListingContact, incrementContactClick, incrementListingView } from '../lib/listings/listingsApi'
+import { fetchListingById, incrementContactClick, incrementListingView } from '../lib/listings/listingsApi'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { haversineKm } from '../lib/distance'
 
@@ -31,8 +32,6 @@ export default function ListingDetail() {
   const [listing, setListing] = useState(null)
   const [extras, setExtras] = useState({})
   const [loading, setLoading] = useState(true)
-  const [contact, setContact] = useState(null)
-  const [revealBusy, setRevealBusy] = useState(false)
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -53,20 +52,6 @@ export default function ListingDetail() {
       alive = false
     }
   }, [id, t])
-
-  async function reveal() {
-    setError(null)
-    setRevealBusy(true)
-    try {
-      // Phase 3c — engagement counter (Call intent). Not for the owner's own listing.
-      if (!user || user.id !== listing?.user_id) incrementContactClick(id)
-      setContact(await getListingContact(id))
-    } catch (err) {
-      setError(t(err.i18nKey || 'err_unknown'))
-    } finally {
-      setRevealBusy(false)
-    }
-  }
 
   if (loading) return <Screen title={t('detail_title')} onBack={onBack}><Spinner /></Screen>
   if (!listing)
@@ -89,6 +74,8 @@ export default function ListingDetail() {
 
   return (
     <Screen title={t('detail_title')} onBack={onBack} right={<LanguageToggle />}>
+      {/* Listings are noindex for now (SEO for listings is a later batch). */}
+      <Seo noindex path={`/listing/${listing.id}`} />
       <div className="mb-4 flex items-center gap-2">
         <CatIcon category={listing.category} className="text-4xl" />
         <div>
@@ -113,6 +100,10 @@ export default function ListingDetail() {
           </span>
         )}
       </div>
+
+      {/* Call + WhatsApp — the primary action, right under the title (Batch1 item 4).
+          Hidden on your own listing; sends logged-out users to login and back. */}
+      <ContactActions listing={listing} size="detail" className="mb-4" />
 
       {/* Category-specific prominent badges (e.g. Drone Didi govt scheme + services). */}
       {badges.length > 0 && (
@@ -164,32 +155,14 @@ export default function ListingDetail() {
 
       {error && <Notice tone="error">{error}</Notice>}
 
-      {/* WhatsApp share — prominent, below the disclaimer, above the Call button. */}
+      {/* Share — now a smaller secondary action (Batch1 item 4; the phone contact
+          actions moved to the top under the title). */}
       <WhatsAppShareButton
+        label={t('contact_share')}
         message={generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)}
-        className="mb-3"
+        className="mx-auto mb-3 max-w-xs !bg-white !text-[var(--ks-green)] border-2 border-[var(--ks-green)] !py-1.5 text-sm"
         onClick={() => { if (!user || user.id !== listing.user_id) incrementContactClick(listing.id) }}
       />
-
-      {/* Phone reveal — short caution banner sits directly above the Call button. */}
-      <DisclaimerBanner which="phoneReveal" className="mb-3" />
-
-      {!contact ? (
-        revealBusy ? (
-          <Spinner />
-        ) : (
-          <BigButton onClick={reveal}>📞 {t('show_number')}</BigButton>
-        )
-      ) : (
-        <div>
-          <p className="mb-2 text-center text-lg font-bold text-stone-900">
-            {contact.full_name} · {contact.phone}
-          </p>
-          <a href={`tel:${contact.phone}`} className="block">
-            <BigButton>📞 {t('call_now')} — {contact.phone}</BigButton>
-          </a>
-        </div>
-      )}
 
       {/* Report / complaint (§Phase 4) */}
       <div className="mt-5 flex justify-center">

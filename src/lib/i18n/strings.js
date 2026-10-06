@@ -963,6 +963,11 @@ export const strings = {
   call_now: { hi: 'फ़ोन करें', en: 'Call now' },
   show_number: { hi: 'नंबर देखें', en: 'Show number' },
   listing_not_found: { hi: 'यह लिस्टिंग नहीं मिली।', en: 'This listing was not found.' },
+  // contact actions on cards + detail (Batch1 item 4)
+  contact_call: { hi: 'कॉल करें', en: 'Call' },
+  contact_whatsapp: { hi: 'WhatsApp करें', en: 'WhatsApp' },
+  contact_share: { hi: 'शेयर करें', en: 'Share' },
+  contact_login_prompt: { hi: 'नंबर देखने के लिए लॉगिन करें', en: 'Login to see the number' },
 
   // --- errors (mirrors src/lib/errors.js codes) ---
   err_name_required: { hi: 'कृपया अपना पूरा नाम भरें।', en: 'Please enter your full name.' },

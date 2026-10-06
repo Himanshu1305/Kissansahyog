@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams } from 'react-router-dom'
+import { isSafePath } from './lib/returnPath'
 import { LanguageProvider } from './lib/i18n/LanguageProvider'
 import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
 import { Spinner } from './components/ui'
@@ -65,10 +66,16 @@ function Protected({ children }) {
   return children
 }
 
-// Send already-logged-in users away from the public entry screens.
+// Send already-logged-in users away from the public entry screens. Honour a
+// ?next= return path (Batch1 item 3A) so a reveal→login round-trip still lands
+// the user back on the listing they came from.
 function PublicOnly({ children }) {
   const { isLoggedIn } = useAuth()
-  if (isLoggedIn) return <Navigate to="/home" replace />
+  const [params] = useSearchParams()
+  if (isLoggedIn) {
+    const next = params.get('next')
+    return <Navigate to={isSafePath(next) ? next : '/home'} replace />
+  }
   return children
 }
 
@@ -136,9 +143,11 @@ function AppRoutes() {
         <Route path="/kisan-mela" element={<KisanMela />} />
 
         <Route path="/home" element={<Protected><Home /></Protected>} />
-        <Route path="/browse" element={<Protected><Browse /></Protected>} />
+        {/* Public browsing (Batch1 item 3A): anyone can browse and open a listing.
+            Login is needed only to reveal a phone number (handled in-component). */}
+        <Route path="/browse" element={<Browse />} />
         <Route path="/post" element={<Protected><Post /></Protected>} />
-        <Route path="/listing/:id" element={<Protected><ListingDetail /></Protected>} />
+        <Route path="/listing/:id" element={<ListingDetail />} />
         <Route path="/my" element={<Protected><MyListings /></Protected>} />
         <Route path="/experts" element={<Protected><Experts /></Protected>} />
         <Route path="/experts/:id" element={<Protected><ExpertDetail /></Protected>} />
