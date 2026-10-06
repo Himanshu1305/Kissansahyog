@@ -53,7 +53,7 @@ export function Fields({ details, setDetails, extras, listingType }) {
   const set = (k) => (v) => setDetails((d) => ({ ...d, [k]: v }))
   const tankerId = tankerTypeId(extras)
 
-  // Selecting the type also flags the tanker sub-type so validate()/ListingForm can
+  // Selecting the type also flags the tanker sub-type so validate()/the Post form can
   // branch without re-reading the lookup rows.
   const onType = (id) => setDetails((d) => ({ ...d, equipment_type_id: id, is_tanker: id != null && id === tankerId }))
 

@@ -17,6 +17,7 @@ export default function Welcome() {
 
   return (
     <div className="min-h-screen bg-stone-50">
+      {/* ks-allow-width: first-launch language chooser is an intentional centred entry screen (no NavBar before the user picks a language) — not a content page. */}
       <div className="mx-auto flex min-h-screen max-w-xl flex-col px-6 py-10">
         <button
           type="button"
@@ -30,6 +31,7 @@ export default function Welcome() {
             🌾
           </div>
           <h1 className="mt-3 text-3xl font-extrabold text-green-800">{t('app_name')}</h1>
+          {/* ks-allow-width: readable intro line inside the centred chooser */}
           <p className="mt-6 max-w-sm text-stone-600">{t('welcome_intro')}</p>
         </div>
 

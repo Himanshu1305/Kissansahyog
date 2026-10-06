@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
-import NavBar from '../components/NavBar'
 import BackButton from '../components/BackButton'
 import { fetchWeatherCell } from '../lib/weather/weatherApiV2'
 import { actionWindows } from '../lib/weather/weatherRules'
@@ -13,6 +12,7 @@ import { fetchPincode } from '../lib/listings/listingsApi'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { CROPS, currentSeason, cropName } from '../content/crops'
 import { PageExplainer, LocationControl, JsonLd } from '../components/pages/shared'
+import { PageShell } from '../components/layout'
 
 const STATUS_LABEL = { ok: 'aw_ok', caution: 'aw_caution', stop: 'aw_stop' }
 const SEASON_LABEL = { kharif: 'season_kharif', rabi: 'season_rabi' }
@@ -58,10 +58,9 @@ export default function FasalSalah() {
   )
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
+    <PageShell width="wide">
       <JsonLd data={articleLd} />
-      <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
+      <div className="w-full space-y-5">
         <BackButton fallback="/mausam" />
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{t('fasal_h1')}</h1>
         <PageExplainer title={t('page_explainer_title')} lines={[t('fasal_intro_1'), t('fasal_intro_2')]} />
@@ -80,6 +79,6 @@ export default function FasalSalah() {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">{otherCrops.map((c) => Card(c, false))}</div>
         </section>
       </div>
-    </div>
+    </PageShell>
   )
 }

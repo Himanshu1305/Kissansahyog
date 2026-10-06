@@ -5,11 +5,11 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import BackButton from '../components/BackButton'
 import { Spinner } from '../components/ui'
 import { WhatsAppIcon } from '../components/home/kit'
-import Seo, { PrerenderReady } from '../components/layout/Seo'
+import Seo from '../components/layout/Seo'
 import {
   fetchYojanaBySlug, yojanaName, yojanaMinistry, yojanaDesc, yojanaBenefit,
   yojanaEligibility, yojanaHowTo, yojanaDocs, faqQ, faqA,
@@ -31,16 +31,13 @@ export default function SchemeDetail() {
     return () => { alive = false }
   }, [slug])
 
-  if (row === undefined) return (<div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}><NavBar /><Spinner /></div>)
+  if (row === undefined) return (<PageShell width="content" ready={false}><Spinner /></PageShell>)
   if (row === null) {
     return (
-      <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-        <NavBar />
-        <div style={{ padding: '24px var(--ks-gutter)' }}>
-          <p className="text-[18px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('scheme_not_found')}</p>
-          <button type="button" onClick={() => navigate('/yojana')} className="mt-3 rounded-lg px-4 py-2 text-[15px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>← {t('yojana_all')}</button>
-        </div>
-      </div>
+      <PageShell width="content">
+        <p className="text-[18px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('scheme_not_found')}</p>
+        <button type="button" onClick={() => navigate('/yojana')} className="mt-3 rounded-lg px-4 py-2 text-[15px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>← {t('yojana_all')}</button>
+      </PageShell>
     )
   }
 
@@ -67,9 +64,7 @@ export default function SchemeDetail() {
   const H2 = ({ children }) => <h2 className="mt-6 mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{children}</h2>
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
-      <PrerenderReady when={row !== undefined} />
+    <PageShell width="content" ready={row !== undefined}>
       <Seo
         title={`${name} — Kissan Sahyog`.slice(0, 70)}
         description={(summary || name).slice(0, 155)}
@@ -78,7 +73,7 @@ export default function SchemeDetail() {
         jsonLd={[articleLd, faqLd].filter(Boolean)}
       />
 
-      <article className="w-full" style={{ padding: '20px var(--ks-gutter)', maxWidth: 900 }}>
+      <article className="w-full">
         <BackButton fallback="/yojana" className="mb-2" />
         <span className="inline-block rounded-full px-3 py-1 text-[13px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>
           {row.government_level === 'state' ? t('scheme_mp_group') : t('scheme_central_group')}
@@ -116,7 +111,7 @@ export default function SchemeDetail() {
           <WhatsAppIcon size={20} /> {t('scheme_share')}
         </a>
       </article>
-    </div>
+    </PageShell>
   )
 }
 

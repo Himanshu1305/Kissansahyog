@@ -4,9 +4,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
 import BackButton from '../components/BackButton'
 import { PageExplainer, FaqAccordion, ShareWhatsApp } from '../components/pages/shared'
+import { PageShell } from '../components/layout'
 import { fetchYojanaBySlug, yojanaName, yojanaBenefit, yojanaDesc } from '../lib/community/communityApi'
 import { fetchArticleBySlug } from '../lib/articles/articlesApi'
 import { AGRO_FAQS as FAQS, AGRO_KEYPOINTS } from '../content/agroforestry'
@@ -33,9 +33,8 @@ export default function AgroForestry() {
   const shareText = `${t('agro_share_text')} ${typeof window !== 'undefined' ? window.location.href : ''}`
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
-      <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 1000 }}>
+    <PageShell width="wide">
+      <div className="w-full space-y-5">
         <BackButton fallback="/" />
         <h1 className="text-[28px] font-extrabold leading-tight md:text-[34px]" style={{ color: 'var(--ks-ink)' }}>{t('agro_title')}</h1>
 
@@ -126,6 +125,6 @@ export default function AgroForestry() {
         {/* 7 — FAQ + FAQPage JSON-LD */}
         <FaqAccordion faqs={FAQS} />
       </div>
-    </div>
+    </PageShell>
   )
 }

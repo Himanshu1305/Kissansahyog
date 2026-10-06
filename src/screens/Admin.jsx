@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import { Field, TextInput, TextArea, Select, Notice, Spinner, BigButton } from '../components/ui'
 import { CATEGORY_META } from '../lib/listings/catalog'
 import {
@@ -44,23 +44,21 @@ export default function Admin() {
 
   if (!user?.is_admin) {
     return (
-      <div className="min-h-screen bg-stone-50">
-        <NavBar />
-        <main className="mx-auto max-w-md px-5 py-20 text-center">
+      <PageShell width="content">
+        {/* ks-allow-width: access-denied notice stays narrow/centred, not a full-width page */}
+        <div className="mx-auto max-w-md py-20 text-center">
           <div className="text-5xl">🔒</div>
           <h1 className="mt-4 text-2xl font-bold text-stone-900">{t('access_denied')}</h1>
           <p className="mt-2 text-stone-600">{t('access_denied_body')}</p>
           <button onClick={() => navigate('/home')} className="mt-6 font-bold text-green-800 underline">{t('nav_home')}</button>
-        </main>
-      </div>
+        </div>
+      </PageShell>
     )
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <NavBar />
-      <main className="mx-auto max-w-6xl px-4 py-6">
-        <h1 className="mb-4 text-2xl font-bold text-stone-900">{t('admin_title')}</h1>
+    <PageShell width="wide">
+      <h1 className="mb-4 text-2xl font-bold text-stone-900">{t('admin_title')}</h1>
         <StatsBar actorId={user.id} t={t} />
         <AvailabilityPanel actorId={user.id} t={t} lang={lang} />
         <FarmerProfilesPanel actorId={user.id} t={t} />
@@ -87,8 +85,7 @@ export default function Admin() {
         <PageFaqsPanel actorId={user.id} t={t} />
         <DataHealthPanel actorId={user.id} t={t} />
         <UsersPanel actorId={user.id} t={t} />
-      </main>
-    </div>
+    </PageShell>
   )
 }
 

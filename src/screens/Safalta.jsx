@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import { Field, TextInput, TextArea, Notice, Spinner } from '../components/ui'
 import {
   fetchPublishedSafalta, submitSafalta, safaltaStory, safaltaHelped,
@@ -22,10 +22,8 @@ export default function Safalta() {
   }, [t])
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <NavBar />
-      <main className="mx-auto max-w-3xl px-2 py-4">
-        <div className="flex flex-wrap items-start justify-between gap-2 px-1">
+    <PageShell width="wide">
+      <div className="flex flex-wrap items-start justify-between gap-2 px-1">
           <div>
             <h1 className="text-xl font-bold text-stone-900">{t('safalta_title')}</h1>
             <p className="mt-0.5 text-sm text-stone-600">{t('safalta_sub')}</p>
@@ -43,6 +41,7 @@ export default function Safalta() {
         ) : rows.length === 0 ? (
           <div className="mt-4 rounded-xl border border-dashed border-green-300 bg-green-50 p-6 text-center">
             <div className="text-4xl">🌱</div>
+            {/* ks-allow-width: empty-state message stays readable/centred, not a page clamp */}
             <p className="mx-auto mt-2 max-w-md text-sm font-semibold text-green-900">{t('safalta_empty')}</p>
             <button type="button" onClick={() => setShowForm(true)} className="mt-3 rounded-lg bg-green-700 px-4 py-2 text-sm font-bold text-white">{t('safalta_share_cta')} →</button>
           </div>
@@ -51,8 +50,7 @@ export default function Safalta() {
             {rows.map((r) => <StoryCard key={r.id} r={r} t={t} lang={lang} />)}
           </div>
         )}
-      </main>
-    </div>
+    </PageShell>
   )
 }
 

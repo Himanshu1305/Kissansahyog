@@ -156,6 +156,7 @@ export default function ListingDetail() {
 
       {/* Share — now a smaller secondary action (Batch1 item 4; the phone contact
           actions moved to the top under the title). */}
+      {/* ks-allow-width: compact share button width */}
       <WhatsAppShareButton
         label={t('contact_share')}
         message={generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)}

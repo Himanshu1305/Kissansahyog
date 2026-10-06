@@ -98,8 +98,11 @@ async function main() {
   ok('errors.js maps provider_declaration_required', read('src/lib/errors.js').includes('provider_declaration_required'))
   ok('ReportButton + SponsoredBadge components exist', read('src/components/ReportButton.jsx').length > 0 && read('src/components/SponsoredBadge.jsx').length > 0)
   ok('Admin renders ReportsPanel', read('src/screens/Admin.jsx').includes('<ReportsPanel '))
-  ok('ListingForm renders provider declaration + ListingDetail renders ReportButton',
-    read('src/components/ListingForm.jsx').includes('provider-decl-checkbox') && read('src/screens/ListingDetail.jsx').includes('<ReportButton'))
+  // Batch 2 item A: ListingForm.jsx deleted (dead code; replaced by the 3-step Post.jsx).
+  // Provider declaration is now the combined rules-agree checkbox in Post.jsx, which sets
+  // details.provider_declared for the offer provider categories.
+  ok('Post renders the combined rules/provider declaration + ListingDetail renders ReportButton',
+    read('src/screens/Post.jsx').includes('rules-agree-checkbox') && read('src/screens/Post.jsx').includes('provider_declared') && read('src/screens/ListingDetail.jsx').includes('<ReportButton'))
   ok('Footer + App wire /grievance', read('src/components/layout/Footer.jsx').includes("to=\"/grievance\"") && read('src/App.jsx').includes('/grievance'))
 
   // cleanup

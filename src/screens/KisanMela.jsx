@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import { Notice, Spinner, Select } from '../components/ui'
 import { PageExplainer, LocationControl, ShareWhatsApp } from '../components/pages/shared'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
@@ -91,10 +91,8 @@ export default function KisanMela() {
   const tagLabel = (tag) => t(`mela_tag_${tag}`)
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
-      <main className="mx-auto w-full max-w-4xl px-[14px] py-5 md:px-6">
-        <h1 className="mb-1 text-[26px] font-extrabold md:text-[30px]" style={{ color: 'var(--ks-ink)' }}>{t('mela_title')}</h1>
+    <PageShell width="wide">
+      <h1 className="mb-1 text-[26px] font-extrabold md:text-[30px]" style={{ color: 'var(--ks-ink)' }}>{t('mela_title')}</h1>
         <p className="mb-3 text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('mela_subtitle')}</p>
 
         <PageExplainer title={t('page_explainer_title')} lines={[t('mela_explain_1'), t('mela_explain_2'), t('mela_explain_3')]} />
@@ -220,7 +218,6 @@ export default function KisanMela() {
           </div>
         )}
         <WhatsAppJoin variant="box" src="mela" />
-      </main>
-    </div>
+    </PageShell>
   )
 }

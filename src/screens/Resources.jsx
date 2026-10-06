@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import { Notice, Spinner } from '../components/ui'
 import { fetchResources, resName, resDesc, resAddress, resTimings } from '../lib/resources/resourcesApi'
 
@@ -40,10 +40,8 @@ export default function Resources() {
   const shown = useMemo(() => (rows || []).filter((r) => r.resource_type === active), [rows, active])
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <NavBar />
-      <main className="mx-auto max-w-4xl px-5 py-8">
-        <h1 className="text-2xl font-bold text-stone-900">{t('resources_title')}</h1>
+    <PageShell width="wide">
+      <h1 className="text-2xl font-bold text-stone-900">{t('resources_title')}</h1>
         <p className="mt-1 text-stone-600">{t('resources_subtitle')}</p>
 
         <div className="mt-4 rounded-xl border-2 border-amber-300 bg-amber-50 px-4 py-3 text-amber-900">
@@ -77,8 +75,7 @@ export default function Resources() {
 
         {/* Soil-sample process guide — only under the soil tab. */}
         {active === 'soil_lab' && rows !== null && <SoilGuide t={t} />}
-      </main>
-    </div>
+    </PageShell>
   )
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import { Notice, Spinner } from '../components/ui'
 import { fetchPublishedArticles, articleTitle, articleSummary } from '../lib/articles/articlesApi'
 
@@ -27,10 +27,8 @@ export default function Articles() {
   const fmtDate = (d) => (d ? new Date(d).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN') : '')
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <NavBar />
-      <main className="mx-auto max-w-5xl px-5 py-10">
-        <h1 className="mb-6 text-2xl font-bold text-stone-900">{t('articles_title')}</h1>
+    <PageShell width="wide">
+      <h1 className="mb-6 text-2xl font-bold text-stone-900">{t('articles_title')}</h1>
         {error && <Notice tone="error">{error}</Notice>}
         {rows === null ? (
           <Spinner />
@@ -66,7 +64,6 @@ export default function Articles() {
             ))}
           </div>
         )}
-      </main>
-    </div>
+    </PageShell>
   )
 }

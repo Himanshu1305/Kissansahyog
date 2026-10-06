@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import RelatedBoxes from '../components/RelatedBoxes'
 import VoiceSearchButton from '../components/VoiceSearchButton'
 import { Field, TextInput, TextArea, Select, Notice, Spinner } from '../components/ui'
@@ -65,10 +65,8 @@ export default function Sawaal() {
     }`
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <NavBar />
-      <main className="mx-auto max-w-6xl px-2 py-4">
-        <div className="flex flex-wrap items-start justify-between gap-2 px-1">
+    <PageShell width="wide">
+      <div className="flex flex-wrap items-start justify-between gap-2 px-1">
           <div>
             <h1 className="text-xl font-bold text-stone-900">{t('sawaal_title')}</h1>
             <p className="mt-0.5 text-sm text-stone-600">{t('sawaal_sub')}</p>
@@ -145,8 +143,7 @@ export default function Sawaal() {
         )}
 
         <RelatedBoxes page="sawaal" />
-      </main>
-    </div>
+    </PageShell>
   )
 }
 

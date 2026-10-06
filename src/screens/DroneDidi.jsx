@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import BackButton from '../components/BackButton'
 import { HomeListingCard, WhatsAppIcon } from '../components/home/kit'
 import { getCategory } from '../lib/listings/registry'
@@ -34,9 +34,7 @@ export default function DroneDidi() {
   const H2 = ({ children }) => <h2 className="mt-6 mb-2 text-[22px] font-bold md:text-[26px]" style={{ color: 'var(--ks-ink)' }}>{children}</h2>
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
-
+    <PageShell width="wide">
       <div style={{ padding: '12px var(--ks-gutter) 0' }}><BackButton fallback="/" /></div>
 
       {/* 1 — Hero band */}
@@ -45,6 +43,7 @@ export default function DroneDidi() {
           <div className="relative w-full" style={{ height: 240, background: 'var(--ks-green-dark)' }}>
             <img src="/images/home/cat-drone.jpg" alt="" className="h-full w-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none' }} />
             <span className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(23,51,35,.85) 0%, rgba(23,51,35,.35) 100%)' }} />
+            {/* ks-allow-width: hero text overlay width */}
             <div className="absolute inset-0 flex flex-col justify-center p-4" style={{ maxWidth: 640 }}>
               <h1 className="text-[26px] font-extrabold leading-tight text-white md:text-[34px]">{t('dd_title')}</h1>
               <p className="mt-2 text-[15px] text-white/90 md:text-[17px]">{t('dd_intro')}</p>
@@ -53,7 +52,7 @@ export default function DroneDidi() {
         </div>
       </section>
 
-      <div style={{ padding: '0 var(--ks-gutter)', maxWidth: 900 }}>
+      <div>
         {/* 2 — Scheme explainer (from drone-didi row) */}
         {scheme && (
           <section>
@@ -98,6 +97,6 @@ export default function DroneDidi() {
           <WhatsAppIcon size={20} /> {t('scheme_share')}
         </a>
       </div>
-    </div>
+    </PageShell>
   )
 }

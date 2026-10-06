@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import RelatedBoxes from '../components/RelatedBoxes'
 import WhatsAppJoin from '../components/WhatsAppJoin'
 import { Spinner } from '../components/ui'
@@ -75,10 +75,9 @@ export default function Mausam() {
   const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place || loc.matchedVillage?.pincode || ''} ${t('nav_weather')}`, description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
+    <PageShell width="wide">
       <JsonLd data={articleLd} />
-      <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
+      <div className="w-full space-y-5">
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{place || loc.matchedVillage?.pincode || t('loc_your_location')} {t('mausam_h1_b')}</h1>
 
         {/* 1. PageExplainer */}
@@ -234,6 +233,6 @@ export default function Mausam() {
         <WhatsAppJoin variant="box" src="mausam" />
         <RelatedBoxes page="mausam" />
       </div>
-    </div>
+    </PageShell>
   )
 }

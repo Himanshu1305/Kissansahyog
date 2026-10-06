@@ -34,7 +34,7 @@ export function needsSelfDeclaration(listingType) {
   return listingType === 'offer'
 }
 
-// Label for the required asset-location pincode field (rendered by ListingForm).
+// Label for the required asset-location pincode field (rendered by the Post form).
 // Land is explicit and prominent: this is the LAND's pincode, not the poster's.
 export const locationLabelKey = 'field_land_pincode'
 export const locationPlaceholderKey = 'ph_land_pincode'

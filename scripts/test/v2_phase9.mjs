@@ -50,7 +50,9 @@ async function main() {
   // static wiring
   ok('jugaad category module exists', read('src/components/categories/jugaad.jsx').includes('not_road_vehicle'))
   ok('registry enables jugaad (land last)', /ENABLED_CATEGORIES = \[[^\]]*'jugaad'[^\]]*'land'\]/.test(read('src/lib/listings/registry.jsx')))
-  ok('ListingForm maps jugaad provider declaration', read('src/components/ListingForm.jsx').includes("jugaad: 'provider_decl_jugaad'"))
+  // Batch 2 item A: ListingForm.jsx deleted; provider declaration for jugaad offers is now
+  // driven by PROVIDER_CATS in the 3-step Post.jsx (jugaad included → sets provider_declared).
+  ok('Post maps jugaad provider declaration', /PROVIDER_CATS = \[[^\]]*'jugaad'[^\]]*\]/.test(read('src/screens/Post.jsx')))
   ok('App route /jugaad', read('src/App.jsx').includes("path=\"/jugaad\""))
   ok('prerender + NavBar + homepage tile for jugaad', read('scripts/lib/prerender-routes.mjs').includes("'/jugaad'") && read('src/components/NavBar.jsx').includes("key: 'jugaad'") && read('src/screens/Homepage.jsx').includes("path: '/jugaad'"))
 

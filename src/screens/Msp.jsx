@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
 import RelatedBoxes from '../components/RelatedBoxes'
 import WhatsAppJoin from '../components/WhatsAppJoin'
 import BackButton from '../components/BackButton'
@@ -18,7 +17,8 @@ import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/pagesApi'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
-import Seo, { PrerenderReady } from '../components/layout/Seo'
+import Seo from '../components/layout/Seo'
+import { PageShell } from '../components/layout'
 
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const firstNum = (s) => { const m = String(s || '').replace(/,/g, '').match(/\d+(\.\d+)?/); return m ? Number(m[0]) : null }
@@ -221,9 +221,7 @@ export default function Msp() {
   const H2 = ({ children }) => <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{children}</h2>
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
-      <PrerenderReady when={today !== undefined} />
+    <PageShell width="wide" ready={today !== undefined}>
       <Seo
         title={(cropParam ? t('msp_seo_crop_title').replace('{crop}', cropName(crop, lang)) : t('msp_seo_hub_title')).slice(0, 70)}
         description={(cropParam ? t('msp_seo_crop_desc').replace('{crop}', cropName(crop, lang)) : t('msp_seo_hub_desc')).slice(0, 155)}
@@ -231,7 +229,7 @@ export default function Msp() {
         type="article"
         jsonLd={[articleLd, datasetLd]}
       />
-      <div className="w-full space-y-5" style={{ padding: '16px var(--ks-gutter)', maxWidth: 960, margin: '0 auto' }}>
+      <div className="w-full space-y-5">
         {/* A per-crop page (/msp/:crop) falls back to the MSP hub; the hub falls back home. */}
         <BackButton fallback={cropParam ? '/msp' : '/'} />
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{cropName(crop, lang)} {t('msp_h1')}</h1>
@@ -456,7 +454,7 @@ export default function Msp() {
         <WhatsAppJoin variant="box" src="msp" />
         <RelatedBoxes page="msp" />
       </div>
-    </div>
+    </PageShell>
   )
 }
 

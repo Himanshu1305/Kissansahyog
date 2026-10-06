@@ -452,6 +452,7 @@ function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp, hea
   // instance is an <h1> so the DOM has exactly one H1 (SEO); the other is a
   // visually-identical <p>.
   const Heading = heading
+  // ks-allow-width: hero flex column proportion
   return (
     <div className="w-full md:max-w-[58%]">
       <span className="inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>

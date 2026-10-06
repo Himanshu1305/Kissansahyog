@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 import { fetchFeaturedYojana, yojanaName, yojanaBenefit } from '../lib/community/communityApi'
 import { fetchUpcomingEvents, eventTitle } from '../lib/events/eventsApi'
 import { fetchInputPrices, inputItemName } from '../lib/inputs/inputsApi'
@@ -33,10 +33,8 @@ export default function Info() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <NavBar />
-      <main className="mx-auto max-w-2xl px-2 py-3">
-        <h1 className="mb-3 px-1 text-xl font-bold text-stone-900">{t('info_title')}</h1>
+    <PageShell width="wide">
+      <h1 className="mb-3 px-1 text-xl font-bold text-stone-900">{t('info_title')}</h1>
 
         {/* Link-outs to the two daily pages */}
         <div className="mb-3 grid grid-cols-2 gap-2">
@@ -122,7 +120,6 @@ export default function Info() {
             {t('info_contacts_link')}
           </button>
         </section>
-      </main>
-    </div>
+    </PageShell>
   )
 }
