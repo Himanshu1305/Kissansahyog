@@ -123,4 +123,10 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 
 ---
 ## Commit log
-(phase → hash)
+(phase → hash; phases 0–10 in earlier history, see `git log`)
+- Phase 11 → 633a90a
+- Phase 12 → 0a6322e (migrations 0047–0048)
+- Phase 13 → 0bc9ce9 (migration 0049)
+- Phase 14 → f0eace1
+- Phase 15 → e13afe7 (test fixes) + af93be2 (verify/deploy/report)
+- Preview deploy: https://v2-preview.kissansahyog.pages.dev
