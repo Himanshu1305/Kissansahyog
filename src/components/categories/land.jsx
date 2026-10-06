@@ -43,12 +43,14 @@ export const locationPlaceholderKey = 'ph_land_pincode'
 export function validate(details, listingType, t) {
   const acres = parseFloat(details.size_acres)
   if (!(acres >= MIN_ACRES)) return t('err_size_acres')
-  if (!details.price_type) return t('err_price_type_required')
+  // Batch1 item 5 — essentials only: price type is required for an OFFER, optional
+  // for a requirement.
+  if (listingType === 'offer' && !details.price_type) return t('err_price_type_required')
   if (details.contact_phone && !/^[0-9]{10}$/.test(String(details.contact_phone).trim())) return t('err_contact_phone')
   return null
 }
 
-export function Fields({ details, setDetails, extras }) {
+export function Fields({ details, setDetails, extras, listingType }) {
   const { t } = useLang()
   const fileRef = useRef(null)
   const set = (k) => (v) => setDetails((d) => ({ ...d, [k]: v }))
@@ -107,7 +109,7 @@ export function Fields({ details, setDetails, extras }) {
         list={PRICE_TYPE}
         value={details.price_type}
         onChange={set('price_type')}
-        required
+        required={listingType === 'offer'}
       />
       {details.price_type === 'fixed' && (
         <TextField

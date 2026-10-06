@@ -46,7 +46,7 @@ export function validate(details, listingType, t) {
   if (!String(details.quantity || '').trim()) return t('err_quantity_required')
   if (!String(details.asking_price || '').trim()) return t('err_asking_price_required')
   if (!String(details.material_address || '').trim()) return t('err_material_address_required')
-  if (conditionRequired(details.input_type) && !details.condition) return t('err_condition_required')
+  // Batch1 item 5 — condition is optional (not essential, not server-enforced).
   return null
 }
 
@@ -88,7 +88,7 @@ export function Fields({ details, setDetails, listingType, user }) {
           <TextField name="asking_price" label={t('field_asking_price')} value={details.asking_price} onChange={set('asking_price')} placeholder={t('ph_agri_price')} required />
           <TextField name="material_address" label={t('field_material_address')} value={details.material_address} onChange={set('material_address')} placeholder={t('ph_agri_material_address')} required />
           {conditionRequired(details.input_type) && (
-            <OptionSelect name="condition" label={t('field_condition')} list={INPUT_CONDITION} value={details.condition} onChange={set('condition')} required />
+            <OptionSelect name="condition" label={t('field_condition')} list={INPUT_CONDITION} value={details.condition} onChange={set('condition')} />
           )}
         </>
       )}

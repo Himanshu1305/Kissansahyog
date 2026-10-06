@@ -114,7 +114,7 @@ export default function Browse() {
           <button
             key={c}
             type="button"
-            data-testid="browse-cat-chip"
+            data-testid={`chip-${c}`}
             aria-pressed={category === c}
             className={catChip(category === c)}
             onClick={() => setCategory(c)}

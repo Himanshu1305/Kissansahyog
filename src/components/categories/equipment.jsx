@@ -38,9 +38,9 @@ export function validate(details, listingType, t) {
     // Water tanker: capacity in litres is required; rates are the seller's own (optional).
     if (!(Number(details.capacity_litres) > 0)) return t('err_tanker_capacity_required')
   } else {
-    // Non-tanker equipment: rental basis + rate amount are required together (v1.1).
-    if (!details.rental_basis) return t('err_rental_basis_required')
-    if (!String(details.rate_amount || '').trim()) return t('err_equipment_rate_required')
+    // Batch1 item 5 — essentials only: the rate is required for an OFFER (what you
+    // charge), optional for a requirement; rental basis is optional either way.
+    if (listingType === 'offer' && !String(details.rate_amount || '').trim()) return t('err_equipment_rate_required')
   }
   if (!details.available_now && details.available_from && details.available_to) {
     if (details.available_from > details.available_to) return t('err_invalid_date_range')
@@ -87,7 +87,6 @@ export function Fields({ details, setDetails, extras, listingType }) {
             list={RENTAL_BASIS}
             value={details.rental_basis}
             onChange={set('rental_basis')}
-            required
           />
           <TextField
             name="rate_amount"
@@ -95,7 +94,7 @@ export function Fields({ details, setDetails, extras, listingType }) {
             value={details.rate_amount}
             onChange={set('rate_amount')}
             placeholder={t('ph_equipment_rate')}
-            required
+            required={listingType === 'offer'}
           />
         </>
       )}

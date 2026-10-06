@@ -714,6 +714,18 @@ export const strings = {
   // --- post flow ---
   post_q_type: { hi: 'आप क्या करना चाहते हैं?', en: 'What do you want to do?' },
   post_q_category: { hi: 'किस चीज़ के बारे में?', en: 'About what?' },
+  // 3-step post flow (Batch1 item 5)
+  post_offer_toggle: { hi: 'देना / बेचना है', en: 'Offering / selling' },
+  post_req_toggle: { hi: 'चाहिए', en: 'Looking for' },
+  post_step_what: { hi: 'क्या पोस्ट करना है?', en: 'What do you want to post?' },
+  post_step_details: { hi: 'जानकारी भरें', en: 'Fill in the details' },
+  post_step_location: { hi: 'जगह और पुष्टि', en: 'Location and confirm' },
+  post_who_posting: { hi: 'कौन डाल रहा है?', en: 'Who is posting?' },
+  post_phone_check: { hi: 'खरीदार इसी नंबर पर कॉल करेंगे', en: 'Buyers will call this number' },
+  post_phone_missing: { hi: 'अपनी प्रोफ़ाइल में फ़ोन नंबर जोड़ें ताकि खरीदार कॉल कर सकें।', en: 'Add a phone number in your profile so buyers can call you.' },
+  post_confirm_simple: { hi: 'मैं नियम मानता/मानती हूँ और दी गई जानकारी सही है।', en: 'I accept the rules and the information I have given is correct.' },
+  post_confirm_provider: { hi: 'मैं नियम मानता/मानती हूँ, जानकारी सही है, और मैं इसका असली प्रदाता हूँ — इसकी ज़िम्मेदारी मेरी है।', en: 'I accept the rules, the information is correct, and I am the genuine provider — I take responsibility for this.' },
+  post_confirm_owner: { hi: 'मैं नियम मानता/मानती हूँ, जानकारी सही है, और यह ज़मीन मेरी है या देने का हक़ मुझे है।', en: 'I accept the rules, the information is correct, and this land is mine or I am authorised to offer it.' },
   posting: { hi: 'लिस्टिंग जोड़ी जा रही है…', en: 'Posting your listing…' },
   post_success: { hi: 'आपकी लिस्टिंग जुड़ गई!', en: 'Your listing has been posted!' },
   view_listing: { hi: 'लिस्टिंग देखें', en: 'View listing' },
