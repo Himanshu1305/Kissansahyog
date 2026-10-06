@@ -3628,12 +3628,21 @@
   },
   {
     "type": "hub",
-    "title_hi": "ग्रीनहाउस / पॉलीहाउस",
-    "title_en": "Greenhouse / Polyhouse",
+    "title_hi": "ग्रीनहाउस / पॉलीहाउस — वेंडर व ज़रूरतें",
+    "title_en": "Greenhouse / Polyhouse — vendors & needs",
     "subtitle_hi": "",
     "subtitle_en": "",
     "url": "/greenhouse",
-    "keywords": "greenhouse polyhouse ग्रीनहाउस पॉलीहाउस"
+    "keywords": "greenhouse polyhouse vendor ग्रीनहाउस पॉलीहाउस वेंडर"
+  },
+  {
+    "type": "hub",
+    "title_hi": "ग्रीनहाउस / पॉलीहाउस सब्सिडी गाइड (मध्य प्रदेश)",
+    "title_en": "Greenhouse / Polyhouse Subsidy Guide (MP)",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/greenhouse/subsidy",
+    "keywords": "greenhouse polyhouse subsidy mp cost norm ग्रीनहाउस पॉलीहाउस सब्सिडी लागत"
   },
   {
     "type": "hub",

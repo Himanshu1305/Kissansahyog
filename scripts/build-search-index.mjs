@@ -229,7 +229,8 @@ items.push(...await safe('msp', async () => {
 
 // --- Hub pages (static) ---
 const HUBS = [
-  { title_hi: 'ग्रीनहाउस / पॉलीहाउस', title_en: 'Greenhouse / Polyhouse', url: '/greenhouse', keywords: 'greenhouse polyhouse ग्रीनहाउस पॉलीहाउस' },
+  { title_hi: 'ग्रीनहाउस / पॉलीहाउस — वेंडर व ज़रूरतें', title_en: 'Greenhouse / Polyhouse — vendors & needs', url: '/greenhouse', keywords: 'greenhouse polyhouse vendor ग्रीनहाउस पॉलीहाउस वेंडर' },
+  { title_hi: 'ग्रीनहाउस / पॉलीहाउस सब्सिडी गाइड (मध्य प्रदेश)', title_en: 'Greenhouse / Polyhouse Subsidy Guide (MP)', url: '/greenhouse/subsidy', keywords: 'greenhouse polyhouse subsidy MP cost norm ग्रीनहाउस पॉलीहाउस सब्सिडी लागत' },
   { title_hi: 'कार्बन क्रेडिट', title_en: 'Carbon Credit', url: '/carbon-credit', keywords: 'carbon credit कार्बन क्रेडिट' },
   { title_hi: 'जुगाड़', title_en: 'Jugaad', url: '/jugaad', keywords: 'jugaad innovation जुगाड़ नवाचार' },
   { title_hi: 'कोल्ड स्टोरेज खोजें', title_en: 'Cold Storage Finder', url: '/cold-storage', keywords: 'cold storage godown warehouse कोल्ड स्टोरेज गोदाम' },

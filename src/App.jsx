@@ -51,6 +51,7 @@ const Contact = lazy(() => import('./screens/Contact'))
 const ColdStorage = lazy(() => import('./screens/ColdStorage'))
 const ColdStorageDistrict = lazy(() => import('./screens/ColdStorageDistrict'))
 const Greenhouse = lazy(() => import('./screens/Greenhouse'))
+const GreenhouseSubsidy = lazy(() => import('./screens/GreenhouseSubsidy'))
 const CarbonCredit = lazy(() => import('./screens/CarbonCredit'))
 const CarbonBrief = lazy(() => import('./screens/CarbonBrief'))
 const Jugaad = lazy(() => import('./screens/Jugaad'))
@@ -107,6 +108,8 @@ function AppRoutes() {
         {/* Static /cold-storage before the dynamic district route. */}
         <Route path="/cold-storage" element={<ColdStorage />} />
         <Route path="/cold-storage/:district" element={<ColdStorageDistrict />} />
+        {/* Static /greenhouse/subsidy before /greenhouse (distinct literals; order safe). */}
+        <Route path="/greenhouse/subsidy" element={<GreenhouseSubsidy />} />
         <Route path="/greenhouse" element={<Greenhouse />} />
         {/* Static /carbon-credit/niti-sujhav before /carbon-credit (distinct literals, order safe). */}
         <Route path="/carbon-credit/niti-sujhav" element={<CarbonBrief />} />

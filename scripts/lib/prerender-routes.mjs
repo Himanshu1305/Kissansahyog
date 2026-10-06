@@ -13,6 +13,7 @@ export const STATIC_ROUTES = [
   '/contact',
   '/cold-storage',
   '/greenhouse',
+  '/greenhouse/subsidy',
   '/carbon-credit',
   '/carbon-credit/niti-sujhav',
   '/jugaad',

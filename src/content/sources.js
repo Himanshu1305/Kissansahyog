@@ -786,6 +786,13 @@ export const sources = {
     "date": "n/a",
     "type": "Company"
   },
+  "S-GH-56": {
+    "title": "MP state protected-cultivation scheme guideline (व्यावसायिक उद्यानिकी फसलों की संरक्षित खेती को प्रोत्साहन योजना — राज्य)",
+    "publisher": "Directorate of Horticulture & Food Processing, MP (MPFSTS portal)",
+    "url": "https://mpfsts.mp.gov.in/mphd/#/SchemeGuidLine",
+    "date": "2015-03-24",
+    "type": "Official"
+  },
   "S-JUG-01": {
     "title": "National Innovation Foundation — about",
     "publisher": "NIF-India (DST)",

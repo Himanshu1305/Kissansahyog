@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, BigButton, Field, Notice, Spinner, TextInput } from '../components/ui'
@@ -27,6 +27,7 @@ export default function Post() {
   const { t, lang } = useLang()
   const { user } = useAuth()
   const navigate = useNavigate()
+  const [params] = useSearchParams()
 
   const [step, setStep] = useState(1)           // 1 | 2 | 3
   const [listingType, setListingType] = useState(null)
@@ -42,6 +43,16 @@ export default function Post() {
   const [busy, setBusy] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
   const [created, setCreated] = useState(null)
+
+  // Preselect category + offer/requirement from ?cat=&type= (the cold-storage,
+  // greenhouse and jugaad CTAs deep-link into the form). Runs once on mount.
+  useEffect(() => {
+    const c = params.get('cat')
+    const ty = params.get('type')
+    if (c && isEnabled(c)) setCategory(c)
+    if (ty === 'offer' || ty === 'requirement') setListingType(ty)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const mod = category ? getCategory(category) : null
   const needsSelfDecl = mod ? mod.needsSelfDeclaration(listingType) : false

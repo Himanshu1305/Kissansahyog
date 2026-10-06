@@ -140,7 +140,7 @@ export const greenhousePage = {
         hi: 'मध्य प्रदेश राज्य योजना में NVPH (पॉलीहाउस) के लिए सरकार एक "लागत मानक" (cost norm) तय करती है, और उस पर 50% सब्सिडी देती है। लागत मानक क्षेत्रफल बढ़ने के साथ प्रति वर्ग मीटर घटता जाता है (बड़े ढाँचे की प्रति-इकाई लागत कम होती है)। नीचे की तालिका राज्य योजना के मानक और उन पर 50% सब्सिडी दिखाती है।',
         en: 'In the MP state scheme the government fixes a "cost norm" for NVPH (polyhouse) and gives 50% subsidy on it. The norm per m² falls as area grows (larger structures cost less per unit). The table below shows the state-scheme norms and 50% subsidy on them.',
       },
-      cites: ['S-GH-14', 'S-GH-38'],
+      cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'],
     },
     {
       type: 'paragraph',
@@ -148,7 +148,7 @@ export const greenhousePage = {
         hi: 'नोट: वित्तीय वर्ष 2026-27 · स्रोत: MP राज्य योजना · अंतिम जाँच 6 अक्टूबर 2026। मानक और दरें बदल सकती हैं — आवेदन से पहले MPFSTS पोर्टल पर पुनः जाँच करें।',
         en: 'Note: FY 2026-27 · Source: MP state scheme · last checked 6 October 2026. Norms and rates can change — re-check on the MPFSTS portal before applying.',
       },
-      cites: ['S-GH-14', 'S-GH-38', 'S-GH-27'],
+      cites: ['S-GH-56', 'S-GH-14', 'S-GH-38', 'S-GH-27'],
     },
     {
       type: 'table',
@@ -160,24 +160,24 @@ export const greenhousePage = {
       ],
       rows: [
         [
-          { text: { hi: '≤ 500 वर्ग मीटर', en: '≤ 500 m²' }, cites: ['S-GH-14', 'S-GH-38'] },
-          { text: { hi: '₹1,060', en: '₹1,060' }, cites: ['S-GH-14', 'S-GH-38'] },
-          { text: { hi: '₹530', en: '₹530' }, cites: ['S-GH-14', 'S-GH-38'] },
+          { text: { hi: '≤ 500 वर्ग मीटर', en: '≤ 500 m²' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+          { text: { hi: '₹1,060', en: '₹1,060' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+          { text: { hi: '₹530', en: '₹530' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
         ],
         [
-          { text: { hi: '500–1,008 वर्ग मीटर', en: '500–1,008 m²' }, cites: ['S-GH-14', 'S-GH-38'] },
-          { text: { hi: '₹935', en: '₹935' }, cites: ['S-GH-14', 'S-GH-38'] },
-          { text: { hi: '₹467.50', en: '₹467.50' }, cites: ['S-GH-14', 'S-GH-38'] },
+          { text: { hi: '500–1,008 वर्ग मीटर', en: '500–1,008 m²' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+          { text: { hi: '₹935', en: '₹935' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+          { text: { hi: '₹467.50', en: '₹467.50' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
         ],
         [
-          { text: { hi: '1,008–2,080 वर्ग मीटर', en: '1,008–2,080 m²' }, cites: ['S-GH-14', 'S-GH-38'] },
-          { text: { hi: '₹890', en: '₹890' }, cites: ['S-GH-14', 'S-GH-38'] },
-          { text: { hi: '₹445', en: '₹445' }, cites: ['S-GH-14', 'S-GH-38'] },
+          { text: { hi: '1,008–2,080 वर्ग मीटर', en: '1,008–2,080 m²' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+          { text: { hi: '₹890', en: '₹890' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+          { text: { hi: '₹445', en: '₹445' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
         ],
         [
-          { text: { hi: '2,080–4,000 वर्ग मीटर', en: '2,080–4,000 m²' }, cites: ['S-GH-14', 'S-GH-38'] },
-          { text: { hi: '₹844', en: '₹844' }, cites: ['S-GH-14', 'S-GH-38'] },
-          { text: { hi: '₹422', en: '₹422' }, cites: ['S-GH-14', 'S-GH-38'] },
+          { text: { hi: '2,080–4,000 वर्ग मीटर', en: '2,080–4,000 m²' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+          { text: { hi: '₹844', en: '₹844' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+          { text: { hi: '₹422', en: '₹422' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
         ],
       ],
     },
@@ -187,7 +187,7 @@ export const greenhousePage = {
         hi: 'एक उदाहरण गणना: यदि आप 4,000 वर्ग मीटर का पॉलीहाउस 2,080–4,000 वर्ग मीटर स्लैब के ₹844 प्रति वर्ग मीटर मानक पर लगाते हैं, तो 4,000 × ₹844 × 50% = ₹16,88,000 सब्सिडी बनती है। बाक़ी हिस्सा किसान को वहन करना होता है।',
         en: 'A worked example: at the 2,080–4,000 m² slab norm of ₹844/m², a 4,000 m² polyhouse gives 4,000 × ₹844 × 50% = ₹16,88,000 subsidy. The farmer bears the rest.',
       },
-      cites: ['S-GH-14'],
+      cites: ['S-GH-56', 'S-GH-14'],
     },
     {
       type: 'paragraph',
@@ -195,7 +195,7 @@ export const greenhousePage = {
         hi: 'दूसरे ढाँचों के मानक अलग हैं। फैन-पैड (fan-pad) सिस्टम का मानक लगभग ₹1,400–1,650 प्रति वर्ग मीटर के आसपास रहता है (पहाड़ी/दुर्गम क्षेत्रों में अधिक)। शेड-नेट हाउस का मानक लगभग ₹710 प्रति वर्ग मीटर है, जिस पर 50% यानी लगभग ₹355 प्रति वर्ग मीटर सब्सिडी बनती है।',
         en: 'Other structures have different norms. The fan-pad system norm is around ₹1,400–1,650 per m² (higher in hilly/remote areas). The shade-net house norm is about ₹710 per m², giving 50% — about ₹355 per m² — subsidy.',
       },
-      cites: ['S-GH-10', 'S-GH-14'],
+      cites: ['S-GH-56', 'S-GH-10', 'S-GH-14'],
     },
 
     {
@@ -204,7 +204,7 @@ export const greenhousePage = {
         hi: 'यहाँ एक बात साफ़ समझ लेनी चाहिए: सब्सिडी "लागत मानक" पर मिलती है, आपके द्वारा विक्रेता को दी गई असली क़ीमत पर नहीं। यदि कोई विक्रेता मानक से ज़्यादा दाम लेता है, तो वह अतिरिक्त रक़म पूरी तरह किसान की जेब से जाती है — उस पर सब्सिडी नहीं मिलती। इसलिए ढाँचा बनवाने से पहले मानक, स्लैब और अपनी गणना अच्छी तरह समझ लेना बहुत ज़रूरी है, ताकि कोई आपको बढ़ा-चढ़ाकर दाम न बता सके।',
         en: 'One thing must be clear: subsidy is given on the "cost norm", not on the actual price you pay the vendor. If a vendor charges more than the norm, that extra amount comes entirely from the farmer’s pocket — no subsidy applies to it. So before getting a structure built, it is very important to understand the norm, the slab and your own maths, so no one can overstate the price to you.',
       },
-      cites: ['S-GH-14'],
+      cites: ['S-GH-56', 'S-GH-14'],
     },
     {
       type: 'paragraph',
@@ -402,9 +402,9 @@ export const greenhousePage = {
       type: 'faq',
       faqs: [
         { q: { hi: 'पॉलीहाउस क्या होता है?', en: 'What is a polyhouse?' }, a: { hi: 'पॉलीहाउस एक पारदर्शी प्लास्टिक शीट से ढका ढाँचा है जिसमें फसल को मौसम, कीट और तापमान की मार से बचाकर उगाया जाता है। यह संरक्षित खेती का एक सामान्य प्रकार है।', en: 'A polyhouse is a structure covered with clear plastic sheet where crops are grown protected from weather, pests and temperature. It is a common form of protected cultivation.' } },
-        { q: { hi: 'मध्य प्रदेश राज्य योजना में पॉलीहाउस पर कितनी सब्सिडी मिलती है?', en: 'How much subsidy does the MP state scheme give on a polyhouse?' }, a: { hi: 'राज्य योजना में NVPH के लागत मानक पर 50% सब्सिडी मिलती है — प्रति वर्ग मीटर ₹530 (≤500 वर्ग मीटर) से घटकर ₹422 (2,080–4,000 वर्ग मीटर) तक।', en: 'The state scheme gives 50% subsidy on the NVPH cost norm — from ₹530/m² (≤500 m²) down to ₹422/m² (2,080–4,000 m²).' }, cites: ['S-GH-14', 'S-GH-38'] },
-        { q: { hi: 'लागत मानक क्षेत्रफल के साथ क्यों घटता है?', en: 'Why does the cost norm fall with area?' }, a: { hi: 'बड़े ढाँचे की प्रति वर्ग मीटर लागत कम होती है। इसलिए मानक ≤500 वर्ग मीटर पर ₹1,060, और 2,080–4,000 वर्ग मीटर पर ₹844 है।', en: 'Larger structures cost less per m². So the norm is ₹1,060 at ≤500 m² and ₹844 at 2,080–4,000 m².' }, cites: ['S-GH-14', 'S-GH-38'] },
-        { q: { hi: '4,000 वर्ग मीटर पॉलीहाउस पर राज्य योजना में कितनी सब्सिडी बनेगी?', en: 'What subsidy does a 4,000 m² polyhouse get in the state scheme?' }, a: { hi: '₹844 प्रति वर्ग मीटर मानक पर: 4,000 × ₹844 × 50% = ₹16,88,000 सब्सिडी। बाक़ी हिस्सा किसान वहन करता है।', en: 'At the ₹844/m² norm: 4,000 × ₹844 × 50% = ₹16,88,000 subsidy. The farmer bears the rest.' }, cites: ['S-GH-14'] },
+        { q: { hi: 'मध्य प्रदेश राज्य योजना में पॉलीहाउस पर कितनी सब्सिडी मिलती है?', en: 'How much subsidy does the MP state scheme give on a polyhouse?' }, a: { hi: 'राज्य योजना में NVPH के लागत मानक पर 50% सब्सिडी मिलती है — प्रति वर्ग मीटर ₹530 (≤500 वर्ग मीटर) से घटकर ₹422 (2,080–4,000 वर्ग मीटर) तक।', en: 'The state scheme gives 50% subsidy on the NVPH cost norm — from ₹530/m² (≤500 m²) down to ₹422/m² (2,080–4,000 m²).' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+        { q: { hi: 'लागत मानक क्षेत्रफल के साथ क्यों घटता है?', en: 'Why does the cost norm fall with area?' }, a: { hi: 'बड़े ढाँचे की प्रति वर्ग मीटर लागत कम होती है। इसलिए मानक ≤500 वर्ग मीटर पर ₹1,060, और 2,080–4,000 वर्ग मीटर पर ₹844 है।', en: 'Larger structures cost less per m². So the norm is ₹1,060 at ≤500 m² and ₹844 at 2,080–4,000 m².' }, cites: ['S-GH-56', 'S-GH-14', 'S-GH-38'] },
+        { q: { hi: '4,000 वर्ग मीटर पॉलीहाउस पर राज्य योजना में कितनी सब्सिडी बनेगी?', en: 'What subsidy does a 4,000 m² polyhouse get in the state scheme?' }, a: { hi: '₹844 प्रति वर्ग मीटर मानक पर: 4,000 × ₹844 × 50% = ₹16,88,000 सब्सिडी। बाक़ी हिस्सा किसान वहन करता है।', en: 'At the ₹844/m² norm: 4,000 × ₹844 × 50% = ₹16,88,000 subsidy. The farmer bears the rest.' }, cites: ['S-GH-56', 'S-GH-14'] },
         { q: { hi: 'MIDH योजना क्या देती है?', en: 'What does MIDH give?' }, a: { hi: 'MIDH संरक्षित खेती पर 50% सहायता देता है, जो प्रति लाभार्थी अधिकतम 4,000 वर्ग मीटर तक सीमित है। यह केंद्रीय योजना है।', en: 'MIDH gives 50% assistance for protected cultivation, up to 4,000 m² per beneficiary. It is a central scheme.' }, cites: ['S-GH-01'] },
         { q: { hi: 'NHB योजना में क्या बदला है?', en: 'What changed in the NHB scheme?' }, a: { hi: 'NHB की केंद्रीय योजना में सहायता 50% से घटाकर 35% कर दी गई है (संशोधित दिशानिर्देश 21 अगस्त 2026)। यह MP राज्य योजना से अलग है।', en: 'In the NHB central scheme, assistance was cut from 50% to 35% (revised guidelines dated 21 August 2026). It is separate from the MP state scheme.' }, cites: ['S-GH-34'] },
         { q: { hi: 'क्या मैं राज्य और NHB दोनों की सब्सिडी एक साथ जोड़ सकता हूँ?', en: 'Can I combine state and NHB subsidy?' }, a: { hi: 'नहीं — ये अलग-अलग योजनाएँ हैं। इन्हें मिलाकर न पढ़ें; पात्रता और शर्तें पोर्टल/विभाग से जाँचें।', en: 'No — these are separate schemes. Do not read them as one; check eligibility and conditions with the portal/department.' }, cites: ['S-GH-27'] },
