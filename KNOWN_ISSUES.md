@@ -331,3 +331,29 @@ left because acting on it touches working, pre-existing code with no reported is
   link. This is React Router's initial-entry marker; if the router setup changes, revisit this heuristic.
 - **/agro-forestry cross-links intentionally omitted** — no genuinely relevant Kisan Sawaal question or
   video exists yet; add them later if matching horticulture/agroforestry content is created.
+
+---
+
+## V2 release known issues / follow-ups
+
+- **Source links that return 403 to automated fetch (not dead):** all `pib.gov.in` PIB
+  press-release URLs (e.g. S-QAS-01/04/05/06/07/08/09, S-JUG-*) return HTTP 403 to the link
+  checker but open normally in a browser. The facts were verified via domain-restricted search
+  (D13/D18). `bioone.org` (S-QAG-08) returned 500 (transient). Several govt sites (TNAU
+  `agritech.tnau.ac.in` S-QAG-03, `icar.gov.in` S-GH-21/22, fmttibudni, pmkisan) have
+  expired/unverifiable TLS certs — transient, reachable in a browser. None are genuine dead links.
+- **Total JS gzip grew to ~434 KB (from 306 KB baseline)** — by design (D1b): V2 content hubs
+  (greenhouse/carbon/jugaad ~3000 words each), the Kisan Sawaal pages, and the `qrcode` lib all ship
+  as **lazy route chunks**. The governing guard is the **eager** bundle (index+react-vendor+supabase),
+  currently **~140 KB**, well under the ~209 KB cap.
+- **`qrcode` npm dependency** flags 4 high-severity advisories in transitive deps (build-time/client
+  QR only, used in lazy admin/join chunks). Low risk; revisit or vendor a smaller encoder if desired.
+- **Kisan Sawaal backlog:** 40 Q&As published; the ranked remainder (lentil/urad/moong YMV, several
+  pesticide doses, wheat irrigation day-counts, weather-damage advisories) could not be fetch-and-quoted
+  this run (expired certs / image-only PDFs) and are listed in `docs/research/QA_DEMAND.md` + the final
+  report. Adding `DATA_GOV_IN_API_KEY` unblocks KCC-ranked expansion toward the 150–300 target.
+- **Unknown URLs serve HTTP 200 (SPA) with the real noindex 404 page rendered client-side.** The
+  catch-all route is `<Route path="*" element={<NotFound/>}/>` (noindex, links to key hubs) — no longer
+  the old soft-redirect. If a hard 404 status is wanted, add a `dist/404.html` for Cloudflare Pages.
+- **WhatsApp features are built but hidden** until an admin pastes the channel URL into
+  Admin → WhatsApp (`site_settings.whatsapp_channel_url`). Nothing WhatsApp-related shows while empty.

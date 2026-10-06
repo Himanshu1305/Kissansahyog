@@ -114,12 +114,12 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] v2_seo_audit 176/176; 20 sample routes curl-verified (content present without JS incl Q&A/district/hubs); test v2_phase14 22/22; i18n+citation green; commit
 
 ## Phase 15 — Verification, PREVIEW deploy, report
-- [ ] Run everything green (backend, e2e, citation, seo, link, i18n, bundle, build:full)
-- [ ] Screenshot review all routes → docs/review/shots-v2/
-- [ ] Deploy PREVIEW: npx wrangler pages deploy dist --project-name kissansahyog --branch v2-preview
-- [ ] Live-verify preview
-- [ ] Update PROJECT_CONTEXT + KNOWN_ISSUES
-- [ ] V2_FINAL_REPORT.md (incl. production deploy command)
+- [x] Run everything green: full backend+V2 suite 959/0 (baseline 690); citation 6/6; seo 176/176; i18n 31/31; link-check 151 reachable/16 blocked-not-dead (PIB 403 + transient certs); clean build:full 176/176; bundle eager ~140KB (<209KB cap). Fixed stale pre-V2 tests (provider-decl, equipment type-id, grown constants, land-last regex)
+- [x] Screenshot review → docs/review/shots-v2/ (40 shots, key routes × 375×812 + 1280×800; reviewed Q&A detail/404/cold-storage/hubs — clean, no overflow)
+- [x] Deployed PREVIEW: https://v2-preview.kissansahyog.pages.dev (also db5a1a0f.kissansahyog.pages.dev)
+- [x] Live-verified preview (routes 200, prerendered content without JS, real 404 w/ hub links, grievance officer+email+timelines, sitemaps/robots/llms/OG 200, search-index 412 items)
+- [x] Updated PROJECT_CONTEXT.md (per-phase section) + KNOWN_ISSUES.md (V2 follow-ups)
+- [x] V2_FINAL_REPORT.md written (deploy URL, test counts, unverified facts, dead links, Q&A backlog, decisions, owner actions incl. production deploy command)
 
 ---
 ## Commit log

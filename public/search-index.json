@@ -2575,24 +2575,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Mahalaxmi Cold Store",
-    "title_en": "Mahalaxmi Cold Store",
-    "subtitle_hi": "sagar sagar",
-    "subtitle_en": "sagar sagar",
-    "url": "/cold-storage/sagar",
-    "keywords": "mahalaxmi cold store sagar sagar cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
-    "title_hi": "Shiv Shankar Cold Storage",
-    "title_en": "Shiv Shankar Cold Storage",
-    "subtitle_hi": "sagar 470002) sagar",
-    "subtitle_en": "sagar 470002) sagar",
-    "url": "/cold-storage/sagar",
-    "keywords": "shiv shankar cold storage sagar 470002) sagar cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "ShriRam Warehouse",
     "title_en": "ShriRam Warehouse",
     "subtitle_hi": "bina sagar",
@@ -2635,6 +2617,15 @@
     "subtitle_en": "sagar sagar",
     "url": "/cold-storage/sagar",
     "keywords": "janta cold storage and ice factory sagar sagar cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Mahalaxmi Cold Store",
+    "title_en": "Mahalaxmi Cold Store",
+    "subtitle_hi": "sagar sagar",
+    "subtitle_en": "sagar sagar",
+    "url": "/cold-storage/sagar",
+    "keywords": "mahalaxmi cold store sagar sagar cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -3024,6 +3015,15 @@
     "keywords": "vrindavan cold storage kolod kartal cold storage godown warehouse"
   },
   {
+    "type": "cold_storage",
+    "title_hi": "Shiv Shankar Cold Storage",
+    "title_en": "Shiv Shankar Cold Storage",
+    "subtitle_hi": "sagar 470002) sagar",
+    "subtitle_en": "sagar 470002) sagar",
+    "url": "/cold-storage/sagar",
+    "keywords": "shiv shankar cold storage sagar 470002) sagar cold storage godown warehouse"
+  },
+  {
     "type": "mela",
     "title_hi": "REJECTED CANDIDATE BACKENDTEST 44813",
     "title_en": "",
@@ -3058,6 +3058,15 @@
     "subtitle_en": "bengaluru karnataka gkvk campus",
     "url": "/kisan-mela",
     "keywords": "कृषि मेला, कृषि विज्ञान विश्वविद्यालय बेंगलुरु krishi mela, uas bengaluru bengaluru karnataka gkvk campus kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "REJECTED CANDIDATE BACKENDTEST 76952",
+    "title_en": "",
+    "subtitle_hi": "rajasthan test ground",
+    "subtitle_en": "rajasthan test ground",
+    "url": "/kisan-mela",
+    "keywords": "rejected candidate backendtest 76952 rajasthan test ground kisan mela"
   },
   {
     "type": "mela",
@@ -3364,6 +3373,15 @@
     "subtitle_en": "pune maharashtra pune international exhibition and convention centre (piecc), moshi",
     "url": "/kisan-mela",
     "keywords": "किसान एग्री शो 2026 kisan agri show 2026 pune maharashtra pune international exhibition and convention centre (piecc), moshi kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "REJECTED CANDIDATE BACKENDTEST 96438",
+    "title_en": "",
+    "subtitle_hi": "rajasthan test ground",
+    "subtitle_en": "rajasthan test ground",
+    "url": "/kisan-mela",
+    "keywords": "rejected candidate backendtest 96438 rajasthan test ground kisan mela"
   },
   {
     "type": "resource",
