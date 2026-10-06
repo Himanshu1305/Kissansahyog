@@ -10,6 +10,24 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 
 ---
 
+## Batch 1 — deferred / follow-ups (2026-10-06)
+
+- **Item 1 info-page width cleanup — DEFERRED (prompt-permitted).** `PageShell` now defaults to
+  `wide` and Browse is edge-to-edge, but the per-page `max-w-*` / inline `maxWidth` wrappers on the
+  information/homepage-style screens are still in place, so those pages are centred in a ~960 px
+  column on wide desktops instead of full-bleed. Screens to widen (keeping long prose inside a
+  readable `ContentColumn`): Mausam, Msp, Info, FasalSalah, AgroForestry, Resources, Sawaal,
+  KisanMela, Articles, Admin, DroneDidi, SchemeDetail, Safalta, Privacy, Terms, Welcome, and the
+  content-hub PageShell pages Greenhouse, Jugaad, Search. The static guard
+  `scripts/test/batch1_layout.mjs` (fail on any page-level `max-w-`/`maxWidth` in `src/screens/`,
+  allowlisting only modals/cards/chips) is to be added as part of that cleanup.
+- **`components/ListingForm.jsx` is now dead code** — the 3-step `Post.jsx` replaced it. Some static
+  backend checks (`v2_phase4/7/9`) still read it for provider-declaration wiring; delete it together
+  with updating those checks in a later pass.
+- **"Most viewed" is global-within-category, not distance-filtered** — intentional (it surfaces the
+  most-viewed listings in a category); a remote viewer may see Sagar listings there. Revisit if the
+  pilot expands beyond one district.
+
 ## Resolved in Phase 3
 
 - **Homepage nav home button — FIXED.** The NavBar logo now links to `/` (public homepage)

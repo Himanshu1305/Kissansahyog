@@ -2575,15 +2575,6 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "ShriRam Warehouse",
-    "title_en": "ShriRam Warehouse",
-    "subtitle_hi": "bina sagar",
-    "subtitle_en": "bina sagar",
-    "url": "/cold-storage/sagar",
-    "keywords": "shriram warehouse bina sagar cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Gopal Sheet Bhandar & Ice Factory",
     "title_en": "Gopal Sheet Bhandar & Ice Factory",
     "subtitle_hi": "satna satna",
@@ -2611,21 +2602,30 @@
   },
   {
     "type": "cold_storage",
-    "title_hi": "Janta Cold Storage and Ice Factory",
-    "title_en": "Janta Cold Storage and Ice Factory",
-    "subtitle_hi": "sagar sagar",
-    "subtitle_en": "sagar sagar",
-    "url": "/cold-storage/sagar",
-    "keywords": "janta cold storage and ice factory sagar sagar cold storage godown warehouse"
-  },
-  {
-    "type": "cold_storage",
     "title_hi": "Mahalaxmi Cold Store",
     "title_en": "Mahalaxmi Cold Store",
     "subtitle_hi": "sagar sagar",
     "subtitle_en": "sagar sagar",
     "url": "/cold-storage/sagar",
     "keywords": "mahalaxmi cold store sagar sagar cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "ShriRam Warehouse",
+    "title_en": "ShriRam Warehouse",
+    "subtitle_hi": "bina sagar",
+    "subtitle_en": "bina sagar",
+    "url": "/cold-storage/sagar",
+    "keywords": "shriram warehouse bina sagar cold storage godown warehouse"
+  },
+  {
+    "type": "cold_storage",
+    "title_hi": "Janta Cold Storage and Ice Factory",
+    "title_en": "Janta Cold Storage and Ice Factory",
+    "subtitle_hi": "sagar sagar",
+    "subtitle_en": "sagar sagar",
+    "url": "/cold-storage/sagar",
+    "keywords": "janta cold storage and ice factory sagar sagar cold storage godown warehouse"
   },
   {
     "type": "cold_storage",
@@ -3247,6 +3247,15 @@
     "subtitle_en": "bengaluru karnataka icar-iihr campus, hesaraghatta lake post",
     "url": "/kisan-mela",
     "keywords": "राष्ट्रीय बागवानी मेला (icar-iihr बेंगलुरु) national horticulture fair bengaluru karnataka icar-iihr campus, hesaraghatta lake post kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "REJECTED CANDIDATE BACKENDTEST 72128",
+    "title_en": "",
+    "subtitle_hi": "rajasthan test ground",
+    "subtitle_en": "rajasthan test ground",
+    "url": "/kisan-mela",
+    "keywords": "rejected candidate backendtest 72128 rajasthan test ground kisan mela"
   },
   {
     "type": "mela",

@@ -1262,3 +1262,39 @@ in `docs/review/V2_FINAL_REPORT.md`. Migrations **0038–0049**.
   (`scripts/gen-sitemaps.mjs` in build:full); robots.txt; llms.txt; `docs/seo/KEYWORDS.md` + `SEO_CHECKLIST.md`.
 - **Phase 15 — Verify/deploy:** full suite 959/0; preview at https://v2-preview.kissansahyog.pages.dev.
   Production deploy: `npm run build:full && npx wrangler pages deploy dist --project-name kissansahyog`.
+
+## Batch 1 — marketplace basics (preview only) — 2026-10-06 (migration 0050)
+
+Owner rejected the V2 marketplace experience; Batch 1 fixes **only** the basics (content/Hindi/
+cold-storage/greenhouse/jugaad/Q&A/fasal-salah untouched). Spec: `docs/review/BATCH1_PROMPT.md`;
+report: `docs/review/BATCH1_REPORT.md`.
+
+- **0050 provider-declaration hotfix:** `create_listing` = 0044 except the provider-declaration
+  guard fires only when `provider_declared` is *present* and ≠ `'true'` (missing key now succeeds).
+  The only DB change in this batch. Tests: `batch1_item0.mjs`, `batch1_categories.mjs`.
+- **NavBar everywhere + mobile bottom tab bar:** `Screen` (`components/ui.jsx`) now renders inside
+  `PageShell` (NavBar + slim title row), so the 10 legacy Screen routes get the global NavBar.
+  `components/BottomTabBar.jsx` (fixed, below `md`, rendered once in App): logged-in
+  होम/खोजें/पोस्ट करें/मेरी लिस्टिंग/प्रोफ़ाइल; logged-out होम/खोजें/पोस्ट करें→login/लॉगिन. Body gets
+  mobile bottom padding + safe area. NavBar Login/Signup hidden below `md`; redundant per-screen
+  language toggle removed.
+- **Public browsing (item 3A):** `/browse` + `/listing/:id` are no longer `Protected`. Browse uses the
+  shared `LocationControl` for logged-out visitors (logged-in keep exact profile coords via rawCoords).
+  The phone stays behind login — `ContactActions` routes logged-out users to `/login?next=/listing/:id`
+  and back; Login/Signup + `PublicOnly` honour `?next=`/`state.from` (`src/lib/returnPath.js`). Both routes
+  are `noindex` and excluded from prerender/sitemaps.
+- **Browse (item 3):** 10 category chips wrap (`flex-wrap`, no hidden h-scroll; `chip-<cat>` testids kept);
+  `fetchTopViewed({category})` filters "Most viewed" to the tab (hidden when empty); grids 2/3/4, Land 1-col.
+- **Call + WhatsApp (item 4):** `components/ContactActions.jsx` on every `ListingCard` + top of
+  `ListingDetail`; reuses `getListingContact`, `BuyerComplianceGate`, the `phoneReveal` disclaimer and
+  `incrementContactClick`; WhatsApp → `wa.me/91<10-digit>?text=<title+link>`; hidden on own listings.
+- **Posting in 3 steps (item 5):** `Post.jsx` = What? (category+offer/requirement) → Details (fields +
+  किसान/व्यापारी) → Location+confirm (asset village + phone check + ONE combined rules/provider/ownership
+  checkbox). Client-side essentials-only relaxations (DB unchanged): equipment rate offer-only + rental
+  basis optional; land price_type offer-only; agri condition optional. `components/ListingForm.jsx` now
+  **unused** (dead code, left in place).
+- **Layout (item 1, PARTIAL):** `PageShell` default → `wide`; Browse edge-to-edge. The per-page
+  `max-w-*`/`maxWidth` cleanup on information/homepage screens + the `batch1_layout.mjs` static guard are
+  **deferred** (prompt permits). See KNOWN_ISSUES.
+- **Tests:** full e2e 82/0 (new `e2e/batch1.spec.js` + 8 legacy post specs updated to the 3-step flow via
+  `postStep1()`); all backend suites green; `v11_phase6` 31/0; `v2_seo_audit` 2/0; `build:full` OK.
