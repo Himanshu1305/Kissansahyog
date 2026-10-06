@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone } from './support.js'
+import { adminClient, testPhone, postStep1 } from './support.js'
 
 // REWRITTEN (legacy-cleanup). Adds the source step before Offering/Looking-for, fills
 // the now-required equipment rate, expects the mandatory rules checkbox (so the old
@@ -29,40 +29,30 @@ async function makeUser() {
   return data
 }
 
-async function startPost(page, type, category) {
-  await page.goto('/post')
-  await page.getByRole('button', { name: 'Continue' }).click()
-  await page.getByRole('button', { name: type }).click()
-  await page.getByRole('button', { name: category }).first().click()
-}
-
-test('equipment OFFER with availability toggle, no self-declaration', async ({ page }) => {
+test('equipment OFFER with availability toggle (3-step flow)', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
-  await startPost(page, 'Offering', 'Equipment')
+  await postStep1(page, 'offer', 'equipment')
   await page.locator('#f_equipment_type_id').waitFor({ timeout: 8000 })
 
-  // Equipment OFFER (Phase 4): no land self-declaration, but the provider
-  // declaration + mandatory rules checkbox are both present (2 checkboxes).
-  await expect(page.getByRole('checkbox')).toHaveCount(2)
-
   await page.getByLabel('Equipment type').selectOption({ label: 'Tractor' })
-  await page.getByLabel('Rental basis').selectOption({ label: 'Per hour' })
-  await page.locator('#f_rate_amount').fill('500') // rate is required (v1.1)
+  await page.locator('#f_rate_amount').fill('500') // rate is required for an offer (rental basis is optional)
 
   // Default is "Available now"; switching to specific dates reveals date inputs.
   await expect(page.getByLabel('From date')).toHaveCount(0)
   await page.getByRole('button', { name: 'Specific dates' }).click()
   await expect(page.getByLabel('From date')).toBeVisible()
   await expect(page.getByLabel('To date')).toBeVisible()
-  // Switch back to "Available now" — date inputs disappear.
   await page.getByRole('button', { name: 'Available now' }).click()
   await expect(page.getByLabel('From date')).toHaveCount(0)
 
+  await page.getByTestId('post-next').click() // → step 3 (Location + confirm)
+
   await page.locator('#f_asset_village').fill('Khurai')
-  await page.getByTestId('provider-decl-checkbox').check()
+  // ONE combined confirm checkbox covers the rules + provider declaration.
+  await expect(page.getByRole('checkbox')).toHaveCount(1)
   await page.getByTestId('rules-agree-checkbox').check()
-  await page.getByRole('button', { name: 'Submit' }).click()
+  await page.getByTestId('post-submit').click()
   await page.getByRole('button', { name: 'View listing' }).click()
   await expect(page.getByText('Tractor')).toBeVisible()
   await expect(page.getByText('Available now')).toBeVisible()
@@ -71,11 +61,9 @@ test('equipment OFFER with availability toggle, no self-declaration', async ({ p
 test('equipment requires an equipment type', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
-  await startPost(page, 'Looking for', 'Equipment')
-  await page.getByTestId('rules-agree-checkbox').waitFor({ timeout: 8000 })
-  // Submit without picking a type (rules ticked so the button is enabled).
-  await page.getByTestId('rules-agree-checkbox').check()
-  await page.getByRole('button', { name: 'Submit' }).click()
+  await postStep1(page, 'requirement', 'equipment')
+  // Advancing from Details without picking a type is blocked by validation.
+  await page.getByTestId('post-next').click()
   await expect(page.getByText('select the equipment type')).toBeVisible()
 })
 

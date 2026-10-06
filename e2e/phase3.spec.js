@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone } from './support.js'
+import { adminClient, testPhone, postStep1 } from './support.js'
 
 // REWRITTEN (legacy-cleanup). Current post flow: /post → source step (farmer/vendor
 // + Continue) → Offering/Looking-for → category → form. The Land form now uses a
@@ -40,64 +40,49 @@ async function makeUser(pincode = '470001', lat = 23.8388, lon = 78.7378) {
   return data
 }
 
-// Walk the source → type → category steps (English UI).
-async function startPost(page, type, category) {
-  await page.goto('/post')
-  await page.getByRole('button', { name: 'Continue' }).click() // source step (farmer default)
-  await page.getByRole('button', { name: type }).click() // 'Offering' | 'Looking for'
-  await page.getByRole('button', { name: category }).first().click()
-}
-
-test('land OFFER: self-declaration gates submit, end-to-end to phone reveal', async ({ page }) => {
+// Batch1 3-step flow (item 5): step 1 What? (type + category) → step 2 Details →
+// step 3 Location + the SINGLE combined confirm checkbox (rules + land ownership).
+test('land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals number', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
 
-  await startPost(page, 'Offering', 'Land')
+  await postStep1(page, 'offer', 'land')
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('3')
   await page.locator('#f_price_type').selectOption('negotiable')
-  await page.locator('#f_asset_village').fill('Khurai')
+  await page.getByTestId('post-next').click() // → step 3
 
-  // Submit is gated by BOTH the self-declaration (offers only) and the rules checkbox.
-  const submit = page.getByRole('button', { name: 'Submit' })
-  const selfDecl = page.getByRole('checkbox').nth(0) // rendered before the rules checkbox
-  const rules = page.getByTestId('rules-agree-checkbox')
+  await page.locator('#f_asset_village').fill('Khurai')
+  const submit = page.getByTestId('post-submit')
+  const confirm = page.getByTestId('rules-agree-checkbox') // one checkbox covers rules + ownership
   await expect(submit).toBeDisabled()
-  await rules.check()
-  await expect(submit).toBeDisabled() // self-declaration still missing
-  await selfDecl.check()
+  await confirm.check()
   await expect(submit).toBeEnabled()
   await submit.click()
 
   await page.getByRole('button', { name: 'View listing' }).click()
   await expect(page).toHaveURL(/\/listing\//)
-
-  // Detail view renders the category heading.
   await expect(page.getByRole('heading', { name: 'Land', exact: true })).toBeVisible()
 
-  // Phone reveal: caution banner + reveal → tel: link with the poster's number.
-  await page.getByRole('button', { name: /Show number/ }).click()
-  const callLink = page.locator('a[href^="tel:"]')
-  await expect(callLink).toBeVisible()
-  await expect(callLink).toHaveAttribute('href', new RegExp(`tel:${user.phone}`))
+  // Item 4: contact buttons are HIDDEN on your OWN listing (the reveal flow for a
+  // different viewer is covered end-to-end in batch1.spec.js).
+  await expect(page.getByTestId('contact-call')).toHaveCount(0)
 })
 
-test('land REQUIREMENT: no self-declaration checkbox, only the rules checkbox', async ({ page }) => {
+test('land REQUIREMENT: 3-step flow, single confirm checkbox', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
 
-  await startPost(page, 'Looking for', 'Land')
+  await postStep1(page, 'requirement', 'land')
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('2')
-  await page.locator('#f_price_type').selectOption('negotiable')
-  await page.locator('#f_asset_village').fill('Khurai')
+  await page.getByTestId('post-next').click() // price_type optional for requirements → straight on
 
-  // Requirements skip the self-declaration; the mandatory rules checkbox is the ONLY
-  // checkbox on the form now.
+  await page.locator('#f_asset_village').fill('Khurai')
+  // Only ONE checkbox on the confirm step now (rules + ownership combined).
   await expect(page.getByRole('checkbox')).toHaveCount(1)
   await page.getByTestId('rules-agree-checkbox').check()
-
-  await page.getByRole('button', { name: 'Submit' }).click()
+  await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 })
 

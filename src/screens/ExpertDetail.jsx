@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { Screen, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
-import LanguageToggle from '../components/LanguageToggle'
 import { fetchExpertById } from '../lib/experts/expertsApi'
 import { expertName, expertSpec, expertBio } from './Experts'
 
@@ -45,7 +44,7 @@ export default function ExpertDetail() {
     )
 
   return (
-    <Screen title={t('experts_title')} onBack={() => navigate(-1)} right={<LanguageToggle />}>
+    <Screen title={t('experts_title')} onBack={() => navigate(-1)}>
       <div className="mb-3 flex items-center gap-2">
         <span className="text-4xl" aria-hidden="true">👨‍🌾</span>
         <div>

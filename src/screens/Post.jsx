@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, BigButton, Field, Notice, Spinner, TextInput } from '../components/ui'
-import LanguageToggle from '../components/LanguageToggle'
 import DisclaimerBanner from '../components/DisclaimerBanner'
 import HelpModal, { HelpButton } from '../components/HelpModal'
 import { CATEGORIES, CATEGORY_META } from '../lib/listings/catalog'
@@ -123,7 +122,7 @@ export default function Post() {
   const title = created ? t('post_success') : `${t('post_listing')} · ${step}/3`
 
   return (
-    <Screen title={title} onBack={created ? undefined : back} right={<LanguageToggle />}>
+    <Screen title={title} onBack={created ? undefined : back}>
       {error && <Notice tone="error">{error}</Notice>}
 
       {/* ---- Step 1: What? (category + offer/requirement) ---- */}

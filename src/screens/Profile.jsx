@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, Field, TextInput, Select, BigButton, Notice, Spinner } from '../components/ui'
-import LanguageToggle from '../components/LanguageToggle'
 import KisanFields from '../components/KisanFields'
 import { changePassword } from '../lib/auth/authService'
 import { getMyListings } from '../lib/listings/listingsApi'
@@ -114,7 +113,7 @@ export default function Profile() {
   const joined = user?.created_at ? new Date(user.created_at).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN') : ''
 
   return (
-    <Screen title={t('my_profile')} onBack={() => navigate('/home')} right={<LanguageToggle />}>
+    <Screen title={t('my_profile')} onBack={() => navigate('/home')}>
       {/* 3a — editable profile info */}
       <section className="mb-6">
         <h2 className="mb-3 text-lg font-bold text-stone-800">{t('profile_info_title')}</h2>

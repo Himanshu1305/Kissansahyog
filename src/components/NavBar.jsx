@@ -226,17 +226,19 @@ export default function NavBar() {
             </div>
           ) : (
             <>
+              {/* On mobile the bottom tab bar carries Login; hide these here to keep
+                  the narrow top bar from overflowing (Batch1 items 2 + 3). */}
               <button
                 type="button"
                 onClick={() => navigate('/login')}
-                className="rounded-lg border-2 border-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-[var(--ks-primary)]"
+                className="hidden rounded-lg border-2 border-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-[var(--ks-primary)] md:inline-block"
               >
                 {t('nav_login')}
               </button>
               <button
                 type="button"
                 onClick={() => navigate('/signup')}
-                className="rounded-lg bg-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-white"
+                className="hidden rounded-lg bg-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-white md:inline-block"
               >
                 {t('nav_signup')}
               </button>

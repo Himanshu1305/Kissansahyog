@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { Screen, Field, TextInput, BigButton, Notice, Spinner, Select } from '../components/ui'
-import LanguageToggle from '../components/LanguageToggle'
 import { submitMela, MELA_TAGS } from '../lib/mela/melaApi'
 import { CANONICAL_STATES, stateLabel } from '../content/states.js'
 
@@ -35,7 +34,7 @@ export default function KisanMelaSubmit() {
   }
 
   return (
-    <Screen title={t('mela_form_title')} onBack={() => navigate('/kisan-mela')} right={<LanguageToggle />}>
+    <Screen title={t('mela_form_title')} onBack={() => navigate('/kisan-mela')}>
       {ok ? (
         <div className="py-6 text-center">
           <div className="text-5xl">✅</div>

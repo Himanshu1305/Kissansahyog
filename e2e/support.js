@@ -24,6 +24,15 @@ export function anonClient() {
   return createClient(url, key, { auth: { persistSession: false } })
 }
 
+// Batch1 3-step post flow: step 1 picks the listing type + category and advances to
+// the Details step. `type` is 'offer' | 'requirement'; `category` is a catalog key.
+export async function postStep1(page, type, category) {
+  await page.goto('/post')
+  await page.getByTestId(`post-type-${type}`).click()
+  await page.getByTestId(`post-cat-${category}`).click()
+  await page.getByTestId('post-next').click() // → Details (step 2)
+}
+
 // Delete every profile (and cascade its listings) in the reserved test range.
 export async function cleanupTestData() {
   const admin = adminClient()

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone } from './support.js'
+import { adminClient, testPhone, postStep1 } from './support.js'
 
 // Phase 9: whole-system journeys, not isolated units. REWRITTEN (legacy-cleanup):
 // registration moved to /welcome→/signup; the post flow gained a source step; the Land
@@ -36,44 +36,35 @@ test('Journey A: signup → post all 3 categories → My Listings → close one'
   await page.getByRole('button', { name: 'Accept and continue' }).click()
   await expect(page).toHaveURL(/\/home$/)
 
-  // Post Land Offer
-  await page.goto('/post')
-  await page.getByRole('button', { name: 'Continue' }).click()
-  await page.getByRole('button', { name: 'Offering' }).click()
-  await page.getByRole('button', { name: 'Land' }).first().click()
+  // Post Land Offer (3-step flow)
+  await postStep1(page, 'offer', 'land')
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('3')
   await page.locator('#f_price_type').selectOption('negotiable')
+  await page.getByTestId('post-next').click()
   await page.locator('#f_asset_village').fill('Deori')
-  await page.getByRole('checkbox').nth(0).check() // self-declaration
-  await page.getByTestId('rules-agree-checkbox').check()
-  await page.getByRole('button', { name: 'Submit' }).click()
+  await page.getByTestId('rules-agree-checkbox').check() // single confirm = rules + ownership
+  await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 
-  // Post Equipment Requirement
-  await page.goto('/post')
-  await page.getByRole('button', { name: 'Continue' }).click()
-  await page.getByRole('button', { name: 'Looking for' }).click()
-  await page.getByRole('button', { name: 'Equipment' }).first().click()
+  // Post Equipment Requirement (3-step flow)
+  await postStep1(page, 'requirement', 'equipment')
   await page.locator('#f_equipment_type_id').waitFor({ timeout: 8000 })
   await page.getByLabel('Equipment type').selectOption({ label: 'Tractor' })
-  await page.getByLabel('Rental basis').selectOption({ label: 'Per day' })
-  await page.locator('#f_rate_amount').fill('400')
+  await page.getByTestId('post-next').click()
   await page.locator('#f_asset_village').fill('Deori')
   await page.getByTestId('rules-agree-checkbox').check()
-  await page.getByRole('button', { name: 'Submit' }).click()
+  await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 
-  // Post Labor Offer
-  await page.goto('/post')
-  await page.getByRole('button', { name: 'Continue' }).click()
-  await page.getByRole('button', { name: 'Offering' }).click()
-  await page.getByRole('button', { name: 'Labor' }).first().click()
+  // Post Labor Offer (3-step flow)
+  await postStep1(page, 'offer', 'labor')
   await page.getByLabel('Number of workers').waitFor({ timeout: 8000 })
   await page.getByLabel('Number of workers').fill('5')
+  await page.getByTestId('post-next').click()
   await page.locator('#f_asset_village').fill('Deori')
   await page.getByTestId('rules-agree-checkbox').check()
-  await page.getByRole('button', { name: 'Submit' }).click()
+  await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 
   // My Listings shows all three.
@@ -150,11 +141,13 @@ test('Journey B: 30km filter consistent across all categories', async ({ page })
   await admin.from('listings').insert(rows)
 
   await loginAs(page, viewer, 'en')
-  await page.goto('/browse')
   for (const cat of ['land', 'equipment', 'labor']) {
-    await page.getByTestId(`chip-${cat}`).click()
-    // Exactly the NEAR one shows; the FAR (~55km) one is filtered out — same for every category.
-    await expect(page.getByTestId('listing-card')).toHaveCount(1)
-    await expect(page.getByText('0 km away')).toBeVisible()
+    // Deep-link each category for a clean single load (avoids the chip-transition race).
+    await page.goto(`/browse?cat=${cat}`)
+    // Among the distance-ranked RESULTS, exactly the NEAR one shows (0 km) and the FAR
+    // (~55 km) one is filtered out — same for every category. (The "Most viewed" box is
+    // global-within-category and carries no distance label, so count by that label.)
+    await expect(page.getByTestId('listing-card').first()).toBeVisible()
+    await expect(page.getByText(/0 km away/)).toHaveCount(1)
   }
 })

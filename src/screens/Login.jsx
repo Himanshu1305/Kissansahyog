@@ -5,7 +5,6 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { isValidPhone, isValidEmail } from '../lib/auth/authService'
 import { resolveNext } from '../lib/returnPath'
 import { Screen, Field, TextInput, BigButton, Notice, Spinner } from '../components/ui'
-import LanguageToggle from '../components/LanguageToggle'
 import AuthTabs from '../components/AuthTabs'
 
 // Returning-user login. Phone tab: number match, no OTP (MVP trust-based).
@@ -52,7 +51,7 @@ export default function Login() {
   }
 
   return (
-    <Screen title={t('login_title')} onBack={() => navigate('/')} right={<LanguageToggle />}>
+    <Screen title={t('login_title')} onBack={() => navigate('/')}>
       {error && <Notice tone="error">{error}</Notice>}
       <form onSubmit={submit} noValidate>
         <AuthTabs mode={mode} onChange={(m) => { setMode(m); setFieldError(null); setError(null) }} />

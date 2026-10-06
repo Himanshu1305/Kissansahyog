@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, BigButton, Notice, Spinner } from '../components/ui'
-import LanguageToggle from '../components/LanguageToggle'
 import ListingCard from '../components/ListingCard'
 import AvailabilityNudge from '../components/AvailabilityNudge'
 import { fetchCrops, fetchEquipmentTypes, getMyListings, closeListing, setListingAvailability } from '../lib/listings/listingsApi'
@@ -73,7 +72,7 @@ export default function MyListings() {
   }
 
   return (
-    <Screen title={t('my_listings_title')} onBack={() => navigate('/home')} right={<LanguageToggle />}>
+    <Screen title={t('my_listings_title')} onBack={() => navigate('/home')}>
       {error && <Notice tone="error">{error}</Notice>}
 
       {/* Phase 3d — engagement nudge for listings with recent interest. */}

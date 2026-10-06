@@ -4,7 +4,6 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, Notice, Spinner } from '../components/ui'
 import { Seo } from '../components/layout'
-import LanguageToggle from '../components/LanguageToggle'
 import ListingCard from '../components/ListingCard'
 import { LocationControl } from '../components/pages/shared'
 import { CatIcon } from '../components/CatIcon'
@@ -41,7 +40,15 @@ export default function Browse() {
   const [topViewed, setTopViewed] = useState([])
   // Location works without a profile: seed from the profile pincode when logged in,
   // else the Sagar default; the LocationControl lets anyone pick GPS/pincode/village.
-  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
+  // Logged-in users keep their exact profile coordinates (rawCoords), matching the
+  // pre-Batch1 behaviour; logged-out visitors resolve coords from the chosen pincode.
+  const [loc, setLoc] = useState(() => {
+    const base = initialLocation(user?.pincode)
+    if (user?.latitude != null && user?.longitude != null) {
+      return { ...base, rawCoords: { latitude: Number(user.latitude), longitude: Number(user.longitude) } }
+    }
+    return base
+  })
 
   // Most-viewed teasers, filtered to the selected category (Batch1 item 3).
   useEffect(() => {
@@ -105,7 +112,7 @@ export default function Browse() {
   const shownFallback = fallback.filter(matchesEtype)
 
   return (
-    <Screen title={t('browse_title')} onBack={() => navigate(user ? '/home' : '/')} right={<LanguageToggle />} width="wide">
+    <Screen title={t('browse_title')} onBack={() => navigate(user ? '/home' : '/')} width="wide">
       {/* Browse + listings are noindex for now (SEO for listings is a later batch). */}
       <Seo noindex path="/browse" />
       {/* Category chips — all 10 wrap into rows (no hidden horizontal scroll). */}

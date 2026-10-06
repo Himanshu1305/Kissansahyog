@@ -6,7 +6,6 @@ import { resolveNext } from '../lib/returnPath'
 import { isValidPhone, isValidPincode, isValidEmail, MIN_PASSWORD } from '../lib/auth/authService'
 import { Screen, Field, TextInput, Select, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
-import LanguageToggle from '../components/LanguageToggle'
 import AuthTabs from '../components/AuthTabs'
 import KisanFields from '../components/KisanFields'
 
@@ -91,7 +90,6 @@ export default function Signup() {
     <Screen
       title={t('signup_title')}
       onBack={() => (step === 'disclaimer' ? setStep('form') : navigate('/'))}
-      right={<LanguageToggle />}
     >
       {error && <Notice tone="error">{error}</Notice>}
 

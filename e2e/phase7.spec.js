@@ -52,9 +52,9 @@ test('crop dropdown labels come from the DB and switch language', async ({ page 
   const user = await makeUser()
   await loginAs(page, user, 'en')
   await page.goto('/post')
-  await page.getByRole('button', { name: 'Continue' }).click() // source step
-  await page.getByRole('button', { name: 'Offering' }).click()
-  await page.getByRole('button', { name: 'Land' }).first().click()
+  await page.getByTestId('post-type-offer').click()
+  await page.getByTestId('post-cat-land').click()
+  await page.getByTestId('post-next').click() // → Details (crop dropdown lives here)
   await page.locator('#f_crop_id').waitFor({ timeout: 8000 })
 
   // English: "Wheat" option present.
@@ -70,15 +70,15 @@ test('posting works in Hindi UI (functional, not just visual)', async ({ page })
   const user = await makeUser()
   await loginAs(page, user, 'hi')
   await page.goto('/post')
-  await page.getByRole('button', { name: /आगे बढ़ें/ }).click() // Continue (source step)
-  await page.getByRole('button', { name: /दे रहे हैं/ }).click() // Offering
-  await page.getByRole('button', { name: /ज़मीन/ }).first().click() // Land
+  await page.getByTestId('post-type-offer').click()
+  await page.getByTestId('post-cat-land').click()
+  await page.getByTestId('post-next').click() // → Details
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('2')
   await page.locator('#f_price_type').selectOption('negotiable')
+  await page.getByTestId('post-next').click() // → Location + confirm
   await page.locator('#f_asset_village').fill('खुरई')
-  await page.getByRole('checkbox').nth(0).check() // self-declaration (land offer)
-  await page.getByTestId('rules-agree-checkbox').check() // mandatory rules
-  await page.getByRole('button', { name: 'जमा करें' }).click() // Submit
+  await page.getByTestId('rules-agree-checkbox').check() // single confirm (rules + ownership)
+  await page.getByTestId('post-submit').click() // Submit
   await expect(page.getByRole('button', { name: 'लिस्टिंग देखें' })).toBeVisible() // View listing
 })

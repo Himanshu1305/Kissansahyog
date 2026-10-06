@@ -4,7 +4,6 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, Notice, Spinner } from '../components/ui'
 import { Seo } from '../components/layout'
-import LanguageToggle from '../components/LanguageToggle'
 import { CatIcon } from '../components/CatIcon'
 import { goBack } from '../components/BackButton'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
@@ -73,7 +72,7 @@ export default function ListingDetail() {
       : null
 
   return (
-    <Screen title={t('detail_title')} onBack={onBack} right={<LanguageToggle />}>
+    <Screen title={t('detail_title')} onBack={onBack}>
       {/* Listings are noindex for now (SEO for listings is a later batch). */}
       <Seo noindex path={`/listing/${listing.id}`} />
       <div className="mb-4 flex items-center gap-2">

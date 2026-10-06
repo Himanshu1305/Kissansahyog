@@ -13,9 +13,11 @@ async function openLandForm(browser) {
   await ctx.addInitScript((s) => localStorage.setItem('ks_session_v1', JSON.stringify(s)), FAKE_SESSION)
   const page = await ctx.newPage()
   await page.goto('/post')
-  await page.getByRole('button', { name: /आगे बढ़ें/ }).click()
-  await page.getByRole('button', { name: /दे रहे हैं/ }).click()
-  await page.getByRole('button', { name: /ज़मीन|Land/ }).first().click()
+  // 3-step flow — the land fields live on the Details step (step 2). UI stays in the
+  // default Hindi (this spec also asserts a Hindi label); nav uses language-free testids.
+  await page.getByTestId('post-type-offer').click()
+  await page.getByTestId('post-cat-land').click()
+  await page.getByTestId('post-next').click()
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   return { ctx, page }
 }

@@ -13,13 +13,17 @@ const FAKE_SESSION = {
 
 test('Land/Equipment form asks for a VILLAGE name with autocomplete, not a pincode', async ({ browser }) => {
   const ctx = await browser.newContext()
-  await ctx.addInitScript((s) => localStorage.setItem('ks_session_v1', JSON.stringify(s)), FAKE_SESSION)
+  await ctx.addInitScript((s) => { localStorage.setItem('ks_session_v1', JSON.stringify(s)); localStorage.setItem('ks_lang_v1', 'en') }, FAKE_SESSION)
   const page = await ctx.newPage()
   await page.goto('/post')
-  // Wizard: source → continue → offer → equipment category → form.
-  await page.getByRole('button', { name: /आगे बढ़ें/ }).click()
-  await page.getByRole('button', { name: /दे रहे हैं|Offer/ }).click()
-  await page.getByRole('button', { name: /मशीन/ }).first().click()
+  // 3-step flow: step 1 → equipment Details → pick a type → step 3 (Location + confirm).
+  await page.getByTestId('post-type-offer').click()
+  await page.getByTestId('post-cat-equipment').click()
+  await page.getByTestId('post-next').click()
+  await page.locator('#f_equipment_type_id').waitFor({ timeout: 8000 })
+  await page.locator('#f_equipment_type_id').selectOption({ index: 1 })
+  await page.locator('#f_rate_amount').fill('500')
+  await page.getByTestId('post-next').click()
 
   // Village-name input is present…
   await expect(page.locator('#f_asset_village')).toBeVisible({ timeout: 8000 })
@@ -34,12 +38,16 @@ test('Land/Equipment form asks for a VILLAGE name with autocomplete, not a pinco
 
 test('Land form (contract) also uses the village input, no pincode', async ({ browser }) => {
   const ctx = await browser.newContext()
-  await ctx.addInitScript((s) => localStorage.setItem('ks_session_v1', JSON.stringify(s)), FAKE_SESSION)
+  await ctx.addInitScript((s) => { localStorage.setItem('ks_session_v1', JSON.stringify(s)); localStorage.setItem('ks_lang_v1', 'en') }, FAKE_SESSION)
   const page = await ctx.newPage()
   await page.goto('/post')
-  await page.getByRole('button', { name: /आगे बढ़ें/ }).click()
-  await page.getByRole('button', { name: /दे रहे हैं|Offer/ }).click()
-  await page.getByRole('button', { name: /ज़मीन|Land/ }).first().click()
+  await page.getByTestId('post-type-offer').click()
+  await page.getByTestId('post-cat-land').click()
+  await page.getByTestId('post-next').click()
+  await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
+  await page.locator('#f_size_acres').fill('2')
+  await page.locator('#f_price_type').selectOption('negotiable')
+  await page.getByTestId('post-next').click()
   await expect(page.locator('#f_asset_village')).toBeVisible({ timeout: 8000 })
   await expect(page.locator('#f_asset_pincode')).toHaveCount(0)
   await ctx.close()
