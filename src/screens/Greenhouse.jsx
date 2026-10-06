@@ -5,6 +5,7 @@ import { ContentPage, buildContentJsonLd } from '../components/content'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { greenhousePage } from '../content/pages/greenhouse.js'
 import GreenhouseCalculators from '../components/GreenhouseCalculators'
+import RelatedBoxes from '../components/RelatedBoxes'
 import ListingCard from '../components/ListingCard'
 import SponsoredBadge from '../components/SponsoredBadge'
 import { fetchHomeFeed } from '../lib/listings/listingsApi'
@@ -73,6 +74,8 @@ export default function Greenhouse() {
           {t('post_listing')}
         </button>
       </section>
+
+      <RelatedBoxes page="greenhouse" />
     </PageShell>
   )
 }

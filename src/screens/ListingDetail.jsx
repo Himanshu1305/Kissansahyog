@@ -11,10 +11,11 @@ import WhatsAppShareButton from '../components/WhatsAppShareButton'
 import AvailabilityCalendar from '../components/AvailabilityCalendar'
 import ReportButton from '../components/ReportButton'
 import SponsoredBadge from '../components/SponsoredBadge'
+import RelatedBoxes from '../components/RelatedBoxes'
 import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { fetchListingById, getListingContact, incrementContactClick } from '../lib/listings/listingsApi'
+import { fetchListingById, getListingContact, incrementContactClick, incrementListingView } from '../lib/listings/listingsApi'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { haversineKm } from '../lib/distance'
 
@@ -41,7 +42,7 @@ export default function ListingDetail() {
         const row = await fetchListingById(id)
         if (!alive) return
         setListing(row)
-        if (row) setExtras(await loadExtras(row.category))
+        if (row) { setExtras(await loadExtras(row.category)); incrementListingView(row.id) }
       } catch (err) {
         if (alive) setError(t(err.i18nKey || 'err_unknown'))
       } finally {
@@ -194,6 +195,8 @@ export default function ListingDetail() {
       <div className="mt-5 flex justify-center">
         <ReportButton targetType="listing" targetId={listing.id} listingId={listing.id} />
       </div>
+
+      <RelatedBoxes page="listing" />
     </Screen>
   )
 }

@@ -296,6 +296,28 @@ export async function incrementContactClick(listingId) {
   } catch { /* engagement metric is best-effort */ }
 }
 
+// Phase 11 — rate-limited view counter (one per device per listing per 24h). Best-effort.
+export async function incrementListingView(listingId) {
+  if (!listingId) return
+  try {
+    const { getDeviceId } = await import('../device')
+    await supabase.rpc('increment_listing_view', { p_listing_id: listingId, p_device: getDeviceId() })
+  } catch { /* best-effort */ }
+}
+
+// Phase 11 — "सबसे ज़्यादा देखा गया": most-viewed active listings (teasers).
+export async function fetchTopViewed({ limit = 6 } = {}) {
+  const { data, error } = await supabase
+    .from('listings')
+    .select('id,listing_type,category,pincode,village_town:village_name,latitude,longitude,details,created_at,listing_source,is_sponsored,view_count')
+    .eq('status', 'active')
+    .gt('view_count', 0)
+    .order('view_count', { ascending: false })
+    .limit(limit)
+  if (error) return []
+  return data || []
+}
+
 export async function getAvailabilityNudges(actorId) {
   if (!actorId) return []
   const { data, error } = await supabase.rpc('get_availability_nudges', { p_actor_id: actorId })

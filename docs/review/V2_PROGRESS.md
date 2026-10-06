@@ -39,7 +39,7 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Greeting सीताराम 🙏 {name} (Home.jsx + Homepage logged-in; greeting_sitaram string, same in English)
 - [x] §0.2(8) removed ReviewTag/समीक्षाधीन + mausam_msp_content_reviewed gating (Msp/Mausam/FasalSalah/Admin); fixed mausam_rules_by byline (no individual, no "under review")
 - [x] Static test scripts/test/v2_brand.mjs (13/13); citation+i18n still green
-- [ ] Commit
+- [x] Commit (committed as part of Phase 3 history; verified in git log)
 
 ## Phase 4 — Legal, trust & compliance  (migration 0039)
 - [x] Provider declarations server-enforced (create_listing: equipment+warehouse offers need details.provider_declared; greenhouse/jugaad/tanker added in their phases); ListingForm checkbox above rules; bilingual texts per category
@@ -89,10 +89,10 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] search_misses table + log RPC (rate-limited) + admin SearchMissesPanel
 - [x] SearchAction JSON-LD → /search?q= (sitewide); /search noindex + excluded from prerender; tests v2_phase10 17/17; SEO 89 routes. (screenshots → Phase 15)
 
-## Phase 11 — Interlinking boxes
-- [ ] boxRegistry.js + RelatedBoxes component
-- [ ] Rules + seasonal
-- [ ] view counter RPC + homepage/Browse boxes; commit
+## Phase 11 — Interlinking boxes  (migration 0046)
+- [x] boxRegistry.js + RelatedBoxes component (15 boxes, bilingual data layer; pickBoxes seasonal+priority)
+- [x] Rules + seasonal (mausam/msp/greenhouse/carbon/listing/sawaal mounts; tanker Mar–Jun, harvester/seed_drill harvest/sowing months)
+- [x] view counter RPC 0046 (increment_listing_view idempotent/device/24h) + fetchTopViewed; Homepage "सबसे ज़्यादा देखा गया" + existing "आपके आसपास" near feed; Browse most-viewed box; test v2_phase11 34/34; i18n+citation green; commit
 
 ## Phase 12 — Kisan Sawaal knowledge base
 - [ ] QA_DEMAND.md (KCC dataset skipped if no key; autocomplete/PAA; existing rows)

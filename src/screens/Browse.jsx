@@ -10,7 +10,7 @@ import { CatIcon } from '../components/CatIcon'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { fetchNearby } from '../lib/listings/listingsApi'
+import { fetchNearby, fetchTopViewed } from '../lib/listings/listingsApi'
 
 // Browse nearby active listings. Category tabs · Offer/Requirement filter ·
 // nearest/newest sort · 30 km radius (computed in fetchNearby).
@@ -34,6 +34,13 @@ export default function Browse() {
   const [fallback, setFallback] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [topViewed, setTopViewed] = useState([])
+
+  useEffect(() => {
+    let alive = true
+    fetchTopViewed({ limit: 4 }).then((v) => alive && setTopViewed(v)).catch(() => {})
+    return () => { alive = false }
+  }, [])
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -120,6 +127,18 @@ export default function Browse() {
         >
           📖 {t('read_about_this')} →
         </button>
+      )}
+
+      {/* सबसे ज़्यादा देखा गया (Phase 11 discovery box) */}
+      {topViewed.length > 0 && (
+        <section className="mb-3" aria-label={t('most_viewed_heading')}>
+          <h2 className="mb-1.5 text-sm font-bold text-stone-900">{t('most_viewed_heading')}</h2>
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+            {topViewed.map((l) => (
+              <ListingCard key={l.id} listing={l} extras={extras} onClick={() => navigate(`/listing/${l.id}`)} />
+            ))}
+          </div>
+        </section>
       )}
 
       {error && <Notice tone="error">{error}</Notice>}

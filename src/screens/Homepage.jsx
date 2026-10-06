@@ -16,7 +16,7 @@ import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 import { getTodayForFarmer } from '../lib/today/forFarmer'
 import { strings } from '../lib/i18n/strings'
 import { getCategory } from '../lib/listings/registry'
-import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes, fetchPincode } from '../lib/listings/listingsApi'
+import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes, fetchPincode, fetchTopViewed } from '../lib/listings/listingsApi'
 import { fetchNearbyCounts, NEARBY_CATEGORIES } from '../lib/listings/nearbyCounts'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { LocationControl } from '../components/pages/shared'
@@ -92,6 +92,7 @@ export default function Homepage() {
   const [pestReports, setPestReports] = useState([])
   const [events, setEvents] = useState([])
   const [melas, setMelas] = useState([])
+  const [topViewed, setTopViewed] = useState([])
 
   // Static data (once).
   useEffect(() => {
@@ -113,6 +114,7 @@ export default function Homepage() {
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
     fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
     fetchUpcomingMelas(3).then((m) => alive && setMelas(m)).catch(() => alive && setMelas([]))
+    fetchTopViewed({ limit: 4 }).then((v) => alive && setTopViewed(v)).catch(() => {})
     return () => { alive = false }
   }, [])
 
@@ -272,6 +274,35 @@ export default function Homepage() {
           </div>
         )}
       </Section>
+
+      {/* 6b — सबसे ज़्यादा देखा गया (Phase 11 discovery box) */}
+      {topViewed.length > 0 && (
+        <Section>
+          <SectionHeader title={t('most_viewed_heading')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            {topViewed.map((l) => {
+              const rows = getCategory(l.category).summarize(l, lang, extras).slice(0, 2)
+              const isOffer = l.listing_type === 'offer'
+              const isVendor = l.listing_source === 'vendor'
+              const place = [l.village_town || l.district].filter(Boolean).join(' · ')
+              return (
+                <HomeListingCard
+                  key={l.id}
+                  image={listingPhoto(l)}
+                  badge={isVendor ? t('vendor_badge') : isOffer ? t('home_offer') : t('home_requirement')}
+                  badgeTone={isVendor ? 'vendor' : isOffer ? 'offer' : 'requirement'}
+                  title={rows[0]?.value || t(`home_cat_${l.category}`)}
+                  price={rows[1]?.value}
+                  place={place}
+                  waHref={whatsappListingUrl(l)}
+                  tel={null}
+                  onWhatsApp={() => incrementContactClick(l.id)}
+                />
+              )
+            })}
+          </div>
+        </Section>
+      )}
 
       {/* 7 — आज की 2 मिनट की वीडियो सलाह */}
       <Section bg="var(--ks-bg-soft)">

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import NavBar from '../components/NavBar'
+import RelatedBoxes from '../components/RelatedBoxes'
 import BackButton from '../components/BackButton'
 import { Spinner } from '../components/ui'
 import { CROPS, cropBySlug, cropName, defaultCropSlug } from '../content/crops'
@@ -450,6 +451,8 @@ export default function Msp() {
 
         {/* 9. FAQ */}
         <FaqAccordion faqs={faqs} />
+
+        <RelatedBoxes page="msp" />
       </div>
     </div>
   )

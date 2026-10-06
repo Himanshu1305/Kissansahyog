@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
+import RelatedBoxes from '../components/RelatedBoxes'
 import VoiceSearchButton from '../components/VoiceSearchButton'
 import { Field, TextInput, TextArea, Select, Notice, Spinner } from '../components/ui'
 import { uploadPhotos } from '../lib/listings/photos'
@@ -136,6 +137,8 @@ export default function Sawaal() {
             })}
           </div>
         )}
+
+        <RelatedBoxes page="sawaal" />
       </main>
     </div>
   )

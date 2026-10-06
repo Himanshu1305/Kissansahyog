@@ -3,6 +3,7 @@ import { PageShell, Seo } from '../components/layout'
 import { ContentPage, buildContentJsonLd } from '../components/content'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { carbonCreditPage } from '../content/pages/carbon-credit.js'
+import RelatedBoxes from '../components/RelatedBoxes'
 import CarbonPoll from '../components/CarbonPoll'
 import CarbonSuggestions from '../components/CarbonSuggestions'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
@@ -38,6 +39,8 @@ export default function CarbonCredit() {
 
       <CarbonPoll />
       <CarbonSuggestions />
+
+      <RelatedBoxes page="carbon" />
     </PageShell>
   )
 }

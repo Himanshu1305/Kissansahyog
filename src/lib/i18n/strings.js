@@ -210,6 +210,11 @@ export const strings = {
   related_bhusa_cta: { hi: 'भूसा / पराली मंच देखें', en: 'Visit the Bhoosa / Parali marketplace' },
   read_about_this: { hi: 'इस बारे में पढ़ें', en: 'Read about this' },
 
+  // --- Phase 11: interlinking + discovery boxes ---
+  related_heading: { hi: 'इससे जुड़ी सेवाएँ', en: 'Related services' },
+  new_near_you_heading: { hi: 'आपके आसपास नया', en: 'New near you' },
+  most_viewed_heading: { hi: 'सबसे ज़्यादा देखा गया', en: 'Most viewed' },
+
   // --- experts directory ---
   experts_title: { hi: 'विशेषज्ञ / Experts', en: 'Experts' },
   experts_filter_label: { hi: 'विशेषज्ञता से खोजें', en: 'Filter by specialisation' },

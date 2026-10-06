@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
+import RelatedBoxes from '../components/RelatedBoxes'
 import { Spinner } from '../components/ui'
 import { weatherInfo } from '../lib/weather/weatherApi'
 import { fetchWeatherCell, requestGridCell } from '../lib/weather/weatherApiV2'
@@ -228,6 +229,8 @@ export default function Mausam() {
 
         {/* 11. FAQ */}
         <FaqAccordion faqs={faqs} />
+
+        <RelatedBoxes page="mausam" />
       </div>
     </div>
   )
