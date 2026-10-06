@@ -286,6 +286,10 @@ export const strings = {
   nav_home: { hi: 'होम', en: 'Home' },
   my_profile: { hi: 'मेरी प्रोफ़ाइल', en: 'My Profile' },
   nav_admin: { hi: 'एडमिन', en: 'Admin' },
+  // mobile bottom tab bar (short labels)
+  tab_post: { hi: 'पोस्ट करें', en: 'Post' },
+  tab_profile: { hi: 'प्रोफ़ाइल', en: 'Profile' },
+  tab_bar_label: { hi: 'मुख्य मेन्यू', en: 'Main menu' },
 
   // --- profile page ---
   profile_info_title: { hi: 'प्रोफ़ाइल जानकारी', en: 'Profile info' },

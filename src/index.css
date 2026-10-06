@@ -21,6 +21,13 @@
   textarea {
     min-height: 44px;
   }
+  /* Reserve space at the foot of every page for the fixed mobile bottom tab bar
+     (below md); honour the iPhone home-indicator safe area. Desktop has none. */
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    }
+  }
 }
 
 /* --- Mandi price ticker (CSS-only horizontal scroll) --- */

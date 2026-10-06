@@ -2,33 +2,34 @@
 // Designed for low digital-literacy users: large tap targets, clear labels,
 // generous spacing, obvious primary actions.
 import { useLang } from '../lib/i18n/LanguageProvider'
+import PageShell from './layout/PageShell.jsx'
 
-// Page shell with an optional sticky header (title + optional back button).
-export function Screen({ title, onBack, right, children, contentClassName = '' }) {
+// Page shell: the global NavBar (via PageShell) + a slim title row with an
+// optional back button. Every Screen-based route therefore gets the same NavBar
+// and (on mobile) the global bottom tab bar. `width` picks the inner measure:
+// 'content' (~70ch readable column, default) for forms/prose, 'wide' for grids.
+export function Screen({ title, onBack, right, children, contentClassName = '', width = 'content' }) {
   const { t } = useLang()
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50">
+    <PageShell width={width} mainClassName={contentClassName}>
       {(title || onBack || right) && (
-        <header className="sticky top-0 z-10 bg-green-700 text-white shadow-md">
-          {/* V2 central layout: readable column + token side-padding (14/40px). */}
-          <div className="ks-content flex items-center gap-2 py-3">
-            {onBack && (
-              <button
-                type="button"
-                onClick={onBack}
-                aria-label={t('back')}
-                className="grid h-11 w-11 place-items-center rounded-lg text-2xl hover:bg-green-600 active:bg-green-800"
-              >
-                ‹
-              </button>
-            )}
-            <h1 className="flex-1 truncate text-lg font-bold">{title}</h1>
-            {right}
-          </div>
-        </header>
+        <div className="mb-3 flex items-center gap-2">
+          {onBack && (
+            <button
+              type="button"
+              onClick={onBack}
+              aria-label={t('back')}
+              className="grid h-11 w-11 place-items-center rounded-lg text-2xl text-[var(--ks-ink)] hover:bg-[var(--ks-bg-soft)] active:bg-[var(--ks-border)]"
+            >
+              ‹
+            </button>
+          )}
+          {title && <h1 className="flex-1 truncate text-xl font-bold text-[var(--ks-ink)]">{title}</h1>}
+          {right}
+        </div>
       )}
-      <main className={`ks-content flex-1 py-3 sm:py-4 ${contentClassName}`}>{children}</main>
-    </div>
+      {children}
+    </PageShell>
   )
 }
 

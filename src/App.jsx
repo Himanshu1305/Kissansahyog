@@ -6,6 +6,7 @@ import { Spinner } from './components/ui'
 import PwaPrompts from './components/PwaPrompts'
 import BuyerComplianceGate from './components/BuyerComplianceGate'
 import Footer from './components/layout/Footer'
+import BottomTabBar from './components/BottomTabBar'
 import { SiteJsonLd } from './components/layout/Seo'
 import RouteSeo from './components/layout/RouteSeo'
 
@@ -162,6 +163,8 @@ export default function App() {
           {/* Shared site footer + sitewide JSON-LD on every route (central layout). */}
           <Footer />
           <SiteJsonLd />
+          {/* Fixed mobile bottom tab bar on every route (below md); desktop uses the top NavBar. */}
+          <BottomTabBar />
           <PwaPrompts />
           <BuyerComplianceGate />
         </BrowserRouter>
