@@ -1612,6 +1612,20 @@ export const strings = {
   fasal_season_h: { hi: 'इस सीज़न की फसलें', en: 'This season’s crops' },
   fasal_all_h: { hi: 'अन्य फसलें', en: 'Other crops' },
   fasal_see_mausam: { hi: 'मौसम अनुसार सलाह देखें', en: 'See weather-based advice' },
+
+  // --- Batch 2 item E: crop panel (tap a crop for today's call + work + problems + help) ---
+  fasal_tap_hint: { hi: 'किसी फसल पर दबाएँ — आज की सलाह, इस मौसम का काम, समस्याएँ और पास की मदद देखें।', en: 'Tap a crop — see today’s call, this season’s work, common problems and nearby help.' },
+  fasal_today_call: { hi: 'आज की सलाह', en: 'Today’s call' },
+  fasal_season_work: { hi: 'इस मौसम का काम', en: 'This season’s work' },
+  fasal_problems_h: { hi: 'आम समस्याएँ', en: 'Common problems' },
+  fasal_problems_all: { hi: 'सभी समस्याएँ देखें', en: 'See all problems' },
+  fasal_nearby_h: { hi: 'पास में मदद', en: 'Nearby help' },
+  fasal_nearby_inputs: { hi: 'बीज · खाद · दवा खोजें', en: 'Find seed · fertiliser · pesticide' },
+  fasal_nearby_drone: { hi: 'ड्रोन दीदी (छिड़काव)', en: 'Drone Didi (spraying)' },
+  fasal_nearby_equip: { hi: 'हार्वेस्टर · थ्रेशर व अन्य यंत्र', en: 'Harvester · thresher & other equipment' },
+  fasal_nearby_kvk: { hi: 'KVK सागर के संपर्क', en: 'KVK Sagar contacts' },
+  fasal_close: { hi: 'बंद करें', en: 'Close' },
+  fasal_no_weather: { hi: 'मौसम जानकारी अभी नहीं मिली — लोकेशन चुनें।', en: 'Weather not available yet — pick a location.' },
   season_kharif: { hi: 'खरीफ', en: 'Kharif' },
   season_rabi: { hi: 'रबी', en: 'Rabi' },
   // 2d/2e source citations
