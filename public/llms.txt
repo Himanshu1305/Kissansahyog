@@ -1,0 +1,35 @@
+# Kissan Sahyog (किसान सहयोग)
+
+> A free, bilingual (Hindi-first) marketplace and knowledge hub for farmers in
+> Sagar district, Madhya Pradesh, India. We list farm equipment, land, labour,
+> inputs, transport, cold storage, greenhouses and rural innovations; publish
+> cited knowledge (schemes, crop problems, weather, mandi/MSP prices); and never
+> handle payments. Every published fact is sourced and cited. English brand name:
+> Kissan Sahyog. Contact: hello@kissansahyog.com · grievance@kissansahyog.com.
+
+## Marketplace (login-gated browse; public hub teasers)
+- Equipment, land, labour, agri-inputs, bhusa/parali, transport, water tanker
+- Warehouse & cold storage, greenhouse/polyhouse, jugaad (rural innovations)
+
+## Knowledge hubs (public, prerendered, cited)
+- /greenhouse — greenhouse & polyhouse: MP subsidy cost-norms, MPFSTS, calculators, vendor-safety
+- /carbon-credit — carbon credit for farmers: facts, Indian examples, policy options (/carbon-credit/niti-sujhav printable brief)
+- /jugaad — rural innovations: support schemes (NIF, NIDHI-PRAYAS, Startup India), legal & safety
+- /cold-storage — MP Cold Storage Finder (public directory + district pages /cold-storage/<district>)
+
+## Kisan Sawaal — farmer Q&A knowledge base (Hindi, cited)
+- /sawaal — index (search + filters)
+- /sawaal/<slug> — individual answers (symptoms, causes, cultural→biological→chemical control, prevention)
+- /fasal/<crop>/samasya — crop problem hubs (soybean, wheat, maize, gram, lentil, urad, moong, tomato, onion, garlic, chilli)
+- /sawaal/vishay/<category> — category hubs (pest, disease, nutrient, weed, variety, sowing, irrigation, harvest, soil, scheme, mandi, storage)
+
+## Prices, weather, schemes
+- /mausam — weather (IMD-based advisories)
+- /msp and /msp/<crop> — MSP + Sagar mandi prices
+- /yojana, /yojana/<slug> — government schemes
+- /kisan-mela — agri fairs & events
+
+## Reference
+- /articles, /safalta (success stories), /videos, /drone-didi, /resources (KVK & agri contacts)
+- /grievance, /terms, /privacy, /contact
+- Sources register: every number is cited to an official/news/company/judgment source.

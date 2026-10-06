@@ -108,10 +108,10 @@ Baseline: backend **690 passed / 0 failed**; E2E target **74/74**; JS gzip total
 - [x] Tests v2_phase13 26/26; i18n 31/31 (panel allowlisted — Hindi post content); citation 6/6; build green; commit
 
 ## Phase 14 — SEO/AEO/GEO completion
-- [ ] §0.6 on every page; OG share images
-- [ ] Split sitemaps + index; robots.txt; llms.txt
-- [ ] KEYWORDS.md + SEO_CHECKLIST.md
-- [ ] v2_seo_audit full; curl 20 routes; commit
+- [x] §0.6 enforced by v2_seo_audit on all 176 prerendered pages; OG share images generated (scripts/gen-og.mjs → /og/default+greenhouse+carbon-credit+jugaad+cold-storage+sawaal.png, 1200×630, Devanagari verified); Seo resolves relative→absolute; per-hub images wired
+- [x] Split sitemaps + index generated in build:full (scripts/gen-sitemaps.mjs → sitemap-pages/sawaal/cold-storage/schemes.xml + sitemap.xml index; 35/88/35/18=176); robots.txt (disallow /search,/join,admin,profile,my,post + sitemap ref); llms.txt (sections + key pages)
+- [x] docs/seo/KEYWORDS.md (primary+secondary hi/Hinglish/en, AC/PAA sourced) + SEO_CHECKLIST.md
+- [x] v2_seo_audit 176/176; 20 sample routes curl-verified (content present without JS incl Q&A/district/hubs); test v2_phase14 22/22; i18n+citation green; commit
 
 ## Phase 15 — Verification, PREVIEW deploy, report
 - [ ] Run everything green (backend, e2e, citation, seo, link, i18n, bundle, build:full)

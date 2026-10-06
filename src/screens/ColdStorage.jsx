@@ -51,7 +51,7 @@ export default function ColdStorage() {
       <Seo
         title={coldStoragePage.title[lang].slice(0, 60)}
         description={coldStoragePage.blocks[0].text[lang].slice(0, 155)}
-        path="/cold-storage"
+        path="/cold-storage" image="/og/cold-storage.png"
         type="article"
         jsonLd={buildContentJsonLd(coldStoragePage.blocks, lang)}
       />

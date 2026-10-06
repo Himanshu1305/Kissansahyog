@@ -35,7 +35,7 @@ export default function Jugaad() {
       <Seo
         title={jugaadPage.title[lang].slice(0, 60)}
         description={jugaadPage.blocks[0].text[lang].slice(0, 155)}
-        path="/jugaad"
+        path="/jugaad" image="/og/jugaad.png"
         type="article"
         jsonLd={buildContentJsonLd(jugaadPage.blocks, lang)}
       />

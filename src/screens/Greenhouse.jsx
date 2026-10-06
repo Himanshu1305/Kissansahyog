@@ -37,7 +37,7 @@ export default function Greenhouse() {
       <Seo
         title={greenhousePage.title[lang].slice(0, 60)}
         description={greenhousePage.blocks[0].text[lang].slice(0, 155)}
-        path="/greenhouse"
+        path="/greenhouse" image="/og/greenhouse.png"
         type="article"
         jsonLd={buildContentJsonLd(greenhousePage.blocks, lang)}
       />

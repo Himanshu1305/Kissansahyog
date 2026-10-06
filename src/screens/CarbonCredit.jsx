@@ -19,7 +19,7 @@ export default function CarbonCredit() {
       <Seo
         title={carbonCreditPage.title[lang].slice(0, 60)}
         description={carbonCreditPage.blocks[0].text[lang].slice(0, 155)}
-        path="/carbon-credit"
+        path="/carbon-credit" image="/og/carbon-credit.png"
         type="article"
         jsonLd={buildContentJsonLd(carbonCreditPage.blocks, lang)}
       />

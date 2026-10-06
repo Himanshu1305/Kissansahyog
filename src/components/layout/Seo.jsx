@@ -30,6 +30,7 @@ export default function Seo({
 }) {
   const { lang } = useLang()
   const url = ORIGIN + (path === '/' ? '' : path)
+  const imageUrl = image && image.startsWith('http') ? image : ORIGIN + (image || '/og/default.png')
   const ld = Array.isArray(jsonLd) ? jsonLd : [jsonLd]
   return (
     <>
@@ -46,14 +47,14 @@ export default function Seo({
       {title && <meta property="og:title" content={title} />}
       {description && <meta property="og:description" content={description} />}
       <meta property="og:url" content={url || ORIGIN} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={imageUrl} />
       <meta property="og:site_name" content="Kissan Sahyog" />
       <meta property="og:locale" content={lang === 'en' ? 'en_IN' : 'hi_IN'} />
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       {title && <meta name="twitter:title" content={title} />}
       {description && <meta name="twitter:description" content={description} />}
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={imageUrl} />
       {ld.filter(Boolean).map((obj, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(obj) }} />
       ))}

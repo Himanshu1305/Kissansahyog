@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /search
+Disallow: /join
+Disallow: /admin
+Disallow: /profile
+Disallow: /my
+Disallow: /post
 
 Sitemap: https://kissansahyog.com/sitemap.xml
