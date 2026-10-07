@@ -62,9 +62,11 @@ async function main() {
   // ---- Content ----
   ok('carbon-credit title is a question', /\?|？/.test(carbonCreditPage.title.hi))
   const faqBlock = carbonCreditPage.blocks.find((b) => b.type === 'faq')
-  ok('≥20 FAQs', (faqBlock?.faqs?.length || 0) >= 20, `got ${faqBlock?.faqs?.length}`)
+  // Batch 3 trimmed to "up to 10 FAQs" and moved quotable figures into cited
+  // paragraphs/table/calc (facts stayed, structure got leaner) — assert the new spec.
+  ok('6–10 FAQs (Batch 3 spec)', (faqBlock?.faqs?.length || 0) >= 6 && (faqBlock?.faqs?.length || 0) <= 10, `got ${faqBlock?.faqs?.length}`)
   ok('has a calc block (average)', carbonCreditPage.blocks.some((b) => b.type === 'calc'))
-  ok('has ≥5 fact (quotable) blocks', carbonCreditPage.blocks.filter((b) => b.type === 'fact').length >= 5)
+  ok('has ≥5 cited (quotable) blocks', carbonCreditPage.blocks.filter((b) => Array.isArray(b.cites) && b.cites.length).length >= 5)
   ok('uses pastExample on real examples', JSON.stringify(carbonCreditPage.blocks).includes('"pastExample":true') || JSON.stringify(carbonCreditPage.blocks).includes('pastExample'))
   const words = JSON.stringify(carbonCreditPage.blocks).split(/\s+/).length
   ok('content substantial (≥2200 tokens)', words >= 2200, `~${words}`)

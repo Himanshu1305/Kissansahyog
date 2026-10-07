@@ -47,12 +47,14 @@ async function main() {
 
   // content page
   const faqBlock = greenhousePage.blocks.find((b) => b.type === 'faq')
-  ok('content page has ≥20 FAQs', (faqBlock?.faqs?.length || 0) >= 20, `got ${faqBlock?.faqs?.length}`)
+  // Batch 3 trimmed the guide to "up to 10 FAQs" and 1,000–1,500 Hindi words (owner
+  // wanted shorter, more actionable pages) — assert the new spec, not the old ≥20/≥2500.
+  ok('content page has 6–10 FAQs (Batch 3 spec)', (faqBlock?.faqs?.length || 0) >= 6 && (faqBlock?.faqs?.length || 0) <= 10, `got ${faqBlock?.faqs?.length}`)
   ok('content page has a HowTo list', greenhousePage.blocks.some((b) => b.type === 'list' && b.howto))
   ok('content page has the cost-norm table', greenhousePage.blocks.some((b) => b.type === 'table'))
   ok('content page summary present', greenhousePage.blocks[0].type === 'summary')
   const wordCount = JSON.stringify(greenhousePage.blocks).split(/\s+/).length
-  ok('content is substantial (≥2500 tokens)', wordCount >= 2500, `~${wordCount}`)
+  ok('content is substantial but trimmed (≥1500 tokens, Batch 3)', wordCount >= 1500, `~${wordCount}`)
 
   // static wiring
   ok('GreenhouseCalculators + screen exist', read('src/components/GreenhouseCalculators.jsx').length > 0 && read('src/screens/Greenhouse.jsx').length > 0)

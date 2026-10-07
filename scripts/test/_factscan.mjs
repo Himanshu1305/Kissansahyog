@@ -3,6 +3,7 @@
 import { pathToFileURL } from 'node:url'
 import { join } from 'node:path'
 const file = process.argv[2]
+if (!file) { console.log('usage: node scripts/test/_factscan.mjs <content-page.js>  (dev helper, not a test)'); process.exit(0) }
 const mod = await import(pathToFileURL(join(process.cwd(), file)).href)
 const page = mod.default || Object.values(mod)[0]
 const cites = new Set(), nums = new Set(), hiWords = []

@@ -39,12 +39,16 @@ async function main() {
 
   // content
   const faqBlock = jugaadPage.blocks.find((b) => b.type === 'faq')
-  ok('info page has ≥15 FAQs', (faqBlock?.faqs?.length || 0) >= 15, `got ${faqBlock?.faqs?.length}`)
+  // Batch 3 trimmed to "up to 8 FAQs" and 800–1,200 Hindi words — assert the new spec.
+  ok('info page has 5–8 FAQs (Batch 3 spec)', (faqBlock?.faqs?.length || 0) >= 5 && (faqBlock?.faqs?.length || 0) <= 8, `got ${faqBlock?.faqs?.length}`)
   ok('info page summary present', jugaadPage.blocks[0].type === 'summary')
   const words = JSON.stringify(jugaadPage.blocks).split(/\s+/).length
-  ok('content substantial (≥2500 tokens)', words >= 2500, `~${words}`)
+  ok('content substantial but trimmed (≥1000 tokens, Batch 3)', words >= 1000, `~${words}`)
   const txt = JSON.stringify(jugaadPage.blocks)
-  ok('soft-help text present, no named institutions commitment', txt.includes('प्रस्तुत/प्रस्तावित') && txt.includes('hello@kissansahyog.com'))
+  // Batch 3 reworded the soft-help line (dropped the avoid-word "प्रस्तुत/प्रस्तावित"); it now
+  // reads "हम कोशिश करेंगे … तक पहुँचाएँ … hello@kissansahyog.com". Intent unchanged: soft help,
+  // a contact email, and no commitment to a specific named institution.
+  ok('soft-help text present, no named institutions commitment', txt.includes('कोशिश करेंगे') && txt.includes('hello@kissansahyog.com'))
   ok('§9.3: no patent/award solicitation ("पेटेंट/पुरस्कार चाहिए")', !txt.includes('पुरस्कार चाहिए') && !txt.includes('पेटेंट चाहिए'))
 
   // static wiring

@@ -67,11 +67,23 @@ Rules kept in view: facts only from SOURCES.md/sources.js, keep every `cites`;
       non-overclaiming wording — not weakened to "complies"). greenhouse (gh_mkt_intro) + jugaad
       (jugaad_mkt_intro) marketplace intros already clean. `/bazaar/*` has no public pages (item G was
       deferred in Batch 2) → no bazaar intros to touch. citation 6/0, style 2/0.
-- [ ] **Owner review pack** — `docs/review/CONTENT_FOR_REVIEW.md`.
-- [ ] **Verification** — citation/seo/i18n/backend/e2e/build:full all green; style test;
-      screenshots 375×812 + 1280×800; preview deploy + route 200 + prerendered text checks.
-- [ ] **Report** — `docs/review/BATCH3_REPORT.md`.
-- [ ] **Item 7 (optional)** — new Q&As from QA_DEMAND.md.
+- [x] **Owner review pack** — `docs/review/CONTENT_FOR_REVIEW.md` written (per-page preview links,
+      3 least-sure sentences each, close-word choices, the unpublished row listed).
+- [x] **Verification** — v2_citation_audit 6/0, v2_seo_audit 2/0, v11_phase6 31/0, v2_phase12 17/0,
+      batch3_style 2/0; **full backend suite 0 failing** (v2_phase7/8/9 asserts updated per prompt rule 9 to
+      the Batch-3 spec — see below); build:full 173/173 prerendered; e2e **79/82** (phase18/phase20
+      environmental as in Batch 2; phase6 is dummy-seed land-count sensitivity in a pre-V2 feature Batch 3
+      didn't touch). Screenshots: 32 at 375×812 + 1280×800 → `docs/review/shots-batch3/`, no
+      horizontal-scroll/nav warnings; English Q&A toggle + greenhouse/carbon tables render well. Preview
+      deployed (`bb5f5cef`); routes 200 + prerendered HTML carries new text (verified).
+- [x] **Report** — `docs/review/BATCH3_REPORT.md` written.
+- [ ] **Item 7 (optional)** — new Q&As from QA_DEMAND.md. **NOT done** (optional; prioritised items 1–6 +
+      review pack for the launch window). Pipeline ready (build-qa + seed-sawaal support bilingual + unpublish).
+
+## Test-assertion changes (prompt rule 9)
+- `v2_phase7` (greenhouse): `≥20 FAQs`→`6–10`; `≥2500 tokens`→`≥1500`. Reason: Batch 3 spec is "up to 10 FAQs" + 1,000–1,500 words.
+- `v2_phase8` (carbon): `≥20 FAQs`→`6–10`; `≥5 fact blocks`→`≥5 cited blocks`. Reason: fewer FAQs by spec; facts moved into cited paragraphs/table/calc.
+- `v2_phase9` (jugaad): `≥15 FAQs`→`5–8`; `≥2500 tokens`→`≥1000`; soft-help marker `प्रस्तुत/प्रस्तावित`→`कोशिश करेंगे` (avoid-word "प्रस्तुत" removed; intent unchanged).
 
 ## Baseline (before Batch 3)
 - Published kisan_sawaal rows: **59** (40 V2 + 19 legacy). Legacy (no answer_blocks): 19.

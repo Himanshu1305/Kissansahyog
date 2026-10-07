@@ -10,6 +10,30 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 
 ---
 
+## Batch 3 — content rewrite (2026-10-08)
+
+- **Kisan Sawaal English is now filled (RESOLVED from Batch 2).** All 58 published Q&As have
+  `question_en` / `answer_en` / `answer_blocks_en`; the EN toggle renders English. 19 legacy rows were
+  restructured + sourced; **1 row unpublished** (`saala-soyaabina-bhaava-kaisaa-rahegaa-mandi-bechane` — a
+  price forecast that cannot be sourced). 4 new sources `S-QAL-01..04` quoted into `SOURCES.md`.
+- **Item 7 (new Q&As) NOT done** — explicitly optional ("only if time allows"); items 1–6 + the owner
+  review pack were prioritised for the ~1-day launch window. `build-qa.mjs`/`seed-sawaal.mjs` now support
+  `short_en`/`blocks_en`/`unpublish`, so the backlog in `QA_DEMAND.md` can be added cleanly.
+- **cropadv_<slug> left as single-sentence advice** (not literal 3–5 bullet lists) — the fasal-salah panel
+  renders each as one `<p>`, so bullets would need a rendering change (out of Batch 3's "words only" scope),
+  and padding each to 5 points would require unsourced agronomic facts. They were reworded to plain Hindi.
+- **E2E `phase6` (land "mark Found") fails on dummy-seed land count** — it expects exactly 1 land card in
+  browse, but the dummy seed (migration 0014, 2026-09-30) has 2 land listings within the test account's
+  30 km. Test-data/distance sensitivity in a pre-V2 feature untouched by Batch 3; shared seed data was not
+  deleted (PROJECT_CONTEXT §14). Same environmental category as the carried `phase18_transport` /
+  `phase20_mela` failures. Backend suite: 0 failing; e2e 79/82.
+- **`v2_phase7/8/9` assertions updated to the Batch-3 spec** (prompt rule 9): `≥20/≥15 FAQs`→the new
+  "up to 10/8" ranges; `≥2500 tokens`→the new shorter targets; carbon `≥5 fact-blocks`→`≥5 cited blocks`
+  (facts moved into cited paragraphs/table/calc); jugaad soft-help marker updated after the avoid-word
+  "प्रस्तुत" was removed. Reasons recorded in `docs/review/BATCH3_PROGRESS.md`.
+
+---
+
 ## Batch 2 — deferred / follow-ups (2026-10-07)
 
 - **Item G NOT built (public `/bazaar/*` category landing pages)** — explicitly optional in the spec
