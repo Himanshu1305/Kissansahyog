@@ -56,8 +56,17 @@ Rules kept in view: facts only from SOURCES.md/sources.js, keep every `cites`;
       Brief updated to match (279 → 282 words). ALL 16 main + 5 brief cites kept, every verified figure
       preserved (calc ₹11,373 intact). No "allowed/legalised/permitted" or any §0.7 banned phrase (audit
       enforces). Byline Team Kissan Sahyog; no "under review" labels.
-- [ ] **Item 6** — Smaller pages: cold-storage, fasal-salah crop lines, homepage hero/intros,
-      grievance, Terms, Privacy, greenhouse/jugaad/bazaar intros.
+- [x] **Item 6** — Smaller pages. cold-storage.js: temperature "how to choose" bullet reworded
+      (उपयुक्त→सही), intro/FAQ confirmed plain. fasal-salah `cropadv_*` (9 crops): reviewed — already
+      plain, short, actionable, seasonal; urad fixed in item 1; literal 3–5-bullet lists deferred (the
+      panel renders each as a single `<p>`, so bullets would need a rendering change — out of scope
+      "words only"; and padding to 5 points would need unsourced facts). Homepage hero/subline/mission
+      reviewed — already natural, no change needed. grievance.js: passive "भारत द्वारा होता है"→active
+      "USD Vision AI LLP … चलाती है", GAC-appeal long sentence split. Terms/Privacy (legal.js): plain
+      already; simplified the draft-disclaimer line; deliberately kept "DPDP की भावना के अनुरूप" (careful
+      non-overclaiming wording — not weakened to "complies"). greenhouse (gh_mkt_intro) + jugaad
+      (jugaad_mkt_intro) marketplace intros already clean. `/bazaar/*` has no public pages (item G was
+      deferred in Batch 2) → no bazaar intros to touch. citation 6/0, style 2/0.
 - [ ] **Owner review pack** — `docs/review/CONTENT_FOR_REVIEW.md`.
 - [ ] **Verification** — citation/seo/i18n/backend/e2e/build:full all green; style test;
       screenshots 375×812 + 1280×800; preview deploy + route 200 + prerendered text checks.

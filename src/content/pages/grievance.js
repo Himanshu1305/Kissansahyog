@@ -28,7 +28,7 @@ export const grievancePage = {
     {
       type: 'paragraph',
       text: {
-        hi: 'शिकायत अधिकारी: श्री अभिनंदन दीक्षित। ईमेल: grievance@kissansahyog.com। किसान सहयोग का संचालन USD Vision AI LLP, मध्य प्रदेश, भारत द्वारा होता है। सामान्य संपर्क के लिए hello@kissansahyog.com पर लिखें।',
+        hi: 'शिकायत अधिकारी: श्री अभिनंदन दीक्षित। ईमेल: grievance@kissansahyog.com। किसान सहयोग को USD Vision AI LLP, मध्य प्रदेश, भारत चलाती है। सामान्य संपर्क के लिए hello@kissansahyog.com पर लिखें।',
         en: 'Grievance Officer: Shri Abhinandan Dixit. Email: grievance@kissansahyog.com. Kissan Sahyog is operated by USD Vision AI LLP, Madhya Pradesh, India. For general contact, write to hello@kissansahyog.com.',
       },
     },
@@ -71,7 +71,7 @@ export const grievancePage = {
     {
       type: 'paragraph',
       text: {
-        hi: 'यदि आप हमारे शिकायत अधिकारी के निर्णय से संतुष्ट नहीं हैं, तो आप भारत सरकार की शिकायत अपीलीय समिति (Grievance Appellate Committee) में अपील कर सकते हैं — gac.gov.in पर, निर्णय की सूचना के 30 दिन के भीतर।',
+        hi: 'हमारे शिकायत अधिकारी के निर्णय से संतुष्ट न हों तो आप आगे अपील कर सकते हैं। अपील भारत सरकार की शिकायत अपीलीय समिति (Grievance Appellate Committee) में gac.gov.in पर करें — निर्णय की सूचना के 30 दिन के भीतर।',
         en: 'If you are not satisfied with the Grievance Officer’s decision, you may appeal to the Government of India’s Grievance Appellate Committee at gac.gov.in, within 30 days of being informed of the decision.',
       },
       cites: ['S-JUG-71'],

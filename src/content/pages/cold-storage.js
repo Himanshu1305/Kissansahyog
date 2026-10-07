@@ -36,7 +36,7 @@ export const coldStoragePage = {
       type: 'checklist',
       title: { hi: 'भंडारण से पहले यह जाँचें', en: 'Check before you store' },
       items: [
-        { text: { hi: 'सही तापमान: आपकी फसल (आलू के लिए ठंडा; प्याज/लहसुन के लिए सूखा व हवादार) के लिए उपयुक्त तापमान बनता है या नहीं।', en: 'Right temperature: whether it suits your crop (cold for potato; dry and ventilated for onion/garlic).' } },
+        { text: { hi: 'सही तापमान: आपकी फसल के लिए सही तापमान बनता है या नहीं — आलू के लिए ठंडा, प्याज और लहसुन के लिए सूखा और हवादार।', en: 'Right temperature: whether it suits your crop — cold for potato, dry and ventilated for onion and garlic.' } },
         { text: { hi: 'खाली जगह: अभी कितनी जगह उपलब्ध है और वह जानकारी कब अपडेट हुई।', en: 'Space available now and when that was last updated.' } },
         { text: { hi: 'भाव और इकाई: प्रति क्विंटल/माह, प्रति बोरी/सीज़न या प्रति क्रेट/दिन — और लोडिंग शुल्क।', en: 'Rate and unit: per quintal/month, per bag/season or per crate/day — and loading charges.' } },
         { text: { hi: 'बिजली बैकअप और बीमा: पावर बैकअप है या नहीं, और भंडारित माल का बीमा है या नहीं।', en: 'Power backup and insurance of stored goods.' } },

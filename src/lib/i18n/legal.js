@@ -72,7 +72,7 @@ export const termsOfUse = [
     en: 'Sponsored content: any future paid (sponsored) listing will be clearly labelled "Sponsored" (Consumer Protection (E-Commerce) Amendment Rules, 2026 — notified 10 September 2026, effective 1 January 2027). No ads are active at this time.',
   },
   {
-    hi: 'यह शर्तों का प्रारंभिक मसौदा है; कानूनी समीक्षा लंबित है। सार्वजनिक लॉन्च से पहले इसे वकील से समीक्षित कराया जाएगा।',
+    hi: 'ये शर्तें अभी शुरुआती मसौदा हैं। कानूनी समीक्षा बाकी है। लॉन्च से पहले इन्हें वकील से जँचवाया जाएगा।',
     en: 'This is an initial draft of the terms; legal review is pending. It will be reviewed by counsel before public launch.',
   },
 ]
