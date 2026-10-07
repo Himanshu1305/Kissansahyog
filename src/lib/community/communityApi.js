@@ -25,6 +25,14 @@ export async function fetchSawaalBySlug(slug) {
   return data
 }
 
+// Batch 2 item F — resolve an old (legacy) Q&A slug to its new slug, so
+// /sawaal/<old-slug> can client-redirect (Navigate replace) to the new URL.
+export async function fetchSawaalSlugRedirect(oldSlug) {
+  const { data } = await supabase
+    .from('kisan_sawaal_slug_redirects').select('new_slug').eq('old_slug', oldSlug).maybeSingle()
+  return data?.new_slug || null
+}
+
 // All published knowledge-base Q&As (have a slug). Lightweight columns for lists.
 export async function fetchKbSawaal() {
   const { data, error } = await supabase

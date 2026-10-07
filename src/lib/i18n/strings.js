@@ -235,6 +235,8 @@ export const strings = {
   sawaal_kb_heading: { hi: 'किसान सवाल — जानकारी', en: 'Kisan Sawaal — knowledge base' },
   sawaal_related_q: { hi: 'इनसे जुड़े सवाल', en: 'Related questions' },
   sawaal_all_q: { hi: 'सभी सवाल देखें', en: 'See all questions' },
+  sawaal_hindi_only: { hi: 'यह जवाब अभी सिर्फ़ हिंदी में उपलब्ध है।', en: 'This answer is available in Hindi only for now.' },
+  sawaal_topic: { hi: 'विषय', en: 'Topic' },
   sawaal_kvk_contact: { hi: 'KVK सागर या कृषि कार्यालय से कब संपर्क करें', en: 'When to contact KVK Sagar or the agriculture office' },
   sawaal_kvk_line: { hi: 'अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।', en: 'If the problem worsens or identification is unclear, contact your nearest Krishi Vigyan Kendra (KVK) Sagar or block agriculture office. See the resources page for contacts.' },
   fasal_samasya_title: { hi: 'की आम समस्याएँ और समाधान', en: 'common problems & solutions' },

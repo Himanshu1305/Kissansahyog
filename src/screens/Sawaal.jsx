@@ -64,6 +64,50 @@ export default function Sawaal() {
       active ? 'border-green-700 bg-green-700 text-white' : 'border-stone-300 bg-white text-stone-700'
     }`
 
+  // One Q&A card (shared by the grouped and flat layouts).
+  const renderCard = (r) => {
+    const open = openId === r.id
+    const relatedVideo = r.related_video_id && videosById[r.related_video_id]
+    return (
+      <div key={r.id} data-testid="sawaal-card" className="flex flex-col rounded-xl border border-stone-200 bg-white p-3.5">
+        <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-stone-500">
+          {r.category && <span className="rounded-full bg-green-50 px-1.5 py-0.5 font-semibold text-green-800">{t(`scat_${r.category}`)}</span>}
+          {r.crop && <span className="rounded-full bg-amber-50 px-1.5 py-0.5 font-semibold text-amber-800">{t(`kbcrop_${r.crop}`)}</span>}
+          {r.asked_by_village && <span>📍 {r.asked_by_village}</span>}
+        </div>
+        <h3 className="mt-1.5 flex items-start gap-1.5 font-bold leading-snug text-stone-900">
+          <span aria-hidden="true">❓</span>
+          <span>{sawaalQuestion(r, lang)}</span>
+        </h3>
+        <p className={`mt-1.5 whitespace-pre-line text-sm leading-relaxed text-stone-700 ${open ? '' : 'line-clamp-3'}`}>
+          {plain(sawaalAnswer(r, lang))}
+        </p>
+        {open && relatedVideo && (
+          <a href={videoWatchUrl(relatedVideo)} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-green-700">
+            ▶ {t('video_related')}: {videoTitle(relatedVideo, lang)}
+          </a>
+        )}
+        {open && r.answered_by && <p className="mt-2 text-xs font-semibold text-stone-500">{t('sawaal_answered_by')}{r.answered_by}</p>}
+        {r.slug ? (
+          <Link to={`/sawaal/${r.slug}`} className="mt-2 self-start text-sm font-bold text-green-700">
+            {t('sawaal_show_answer')} →
+          </Link>
+        ) : (
+          <button type="button" onClick={() => setOpenId(open ? null : r.id)} className="mt-2 self-start text-sm font-bold text-green-700">
+            {open ? t('sawaal_hide_answer') : t('sawaal_show_answer')} {open ? '↑' : '→'}
+          </button>
+        )}
+      </div>
+    )
+  }
+
+  // Grouped-by-topic layout (only when no filter/search is active) — each topic
+  // (category) is a heading over a full-width grid.
+  const grouped = cat === 'all' && !dq
+  const groups = grouped
+    ? CATS.filter((c) => c !== 'all' && counts[c]).map((c) => ({ key: c, rows: (rows || []).filter((r) => r.category === c) }))
+    : []
+
   return (
     <PageShell width="wide">
       <div className="flex flex-wrap items-start justify-between gap-2 px-1">
@@ -75,8 +119,6 @@ export default function Sawaal() {
             + {t('sawaal_ask_cta')}
           </button>
         </div>
-
-        {showForm && <AskForm t={t} photoDefault={photoDefault} onDone={() => setShowForm(false)} />}
 
         {/* Search (debounced, client-side) — with an optional voice mic (बोलकर खोजें). */}
         <div className="mt-3 flex items-center gap-2">
@@ -100,47 +142,26 @@ export default function Sawaal() {
             <p className="text-stone-500">{dq ? t('sawaal_no_match') : t('sawaal_empty')}</p>
             <button type="button" onClick={() => setShowForm(true)} className="mt-3 rounded-lg bg-green-700 px-4 py-2 text-sm font-bold text-white">📷 {t('qa_photo_ask')}</button>
           </div>
-        ) : (
-          // Responsive card grid (matches /yojana: 1 col mobile, 2 col ≥640px, 3 col ≥1024px).
-          // Each card shows the question, category badge, village, a line-clamped answer preview
-          // (kept even across cards), and a "जवाब देखें" toggle that expands the full answer inline.
-          <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {shown.map((r) => {
-              const open = openId === r.id
-              const relatedVideo = r.related_video_id && videosById[r.related_video_id]
-              return (
-                <div key={r.id} data-testid="sawaal-card" className="flex flex-col rounded-xl border border-stone-200 bg-white p-3.5">
-                  <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-stone-500">
-                    {r.category && <span className="rounded-full bg-green-50 px-1.5 py-0.5 font-semibold text-green-800">{t(`scat_${r.category}`)}</span>}
-                    {r.asked_by_village && <span>📍 {r.asked_by_village}</span>}
-                  </div>
-                  <h3 className="mt-1.5 flex items-start gap-1.5 font-bold leading-snug text-stone-900">
-                    <span aria-hidden="true">❓</span>
-                    <span>{sawaalQuestion(r, lang)}</span>
-                  </h3>
-                  <p className={`mt-1.5 whitespace-pre-line text-sm leading-relaxed text-stone-700 ${open ? '' : 'line-clamp-3'}`}>
-                    {plain(sawaalAnswer(r, lang))}
-                  </p>
-                  {open && relatedVideo && (
-                    <a href={videoWatchUrl(relatedVideo)} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-green-700">
-                      ▶ {t('video_related')}: {videoTitle(relatedVideo, lang)}
-                    </a>
-                  )}
-                  {open && r.answered_by && <p className="mt-2 text-xs font-semibold text-stone-500">{t('sawaal_answered_by')}{r.answered_by}</p>}
-                  {r.slug ? (
-                    <Link to={`/sawaal/${r.slug}`} className="mt-2 self-start text-sm font-bold text-green-700">
-                      {t('sawaal_show_answer')} →
-                    </Link>
-                  ) : (
-                    <button type="button" onClick={() => setOpenId(open ? null : r.id)} className="mt-2 self-start text-sm font-bold text-green-700">
-                      {open ? t('sawaal_hide_answer') : t('sawaal_show_answer')} {open ? '↑' : '→'}
-                    </button>
-                  )}
+        ) : grouped ? (
+          // Grouped by topic (full-width): a heading per topic over a responsive grid.
+          <div className="mt-3 space-y-6">
+            {groups.map((g) => (
+              <section key={g.key}>
+                <h2 className="mb-2 text-lg font-bold text-stone-900">{t(`scat_${g.key}`)} <span className="text-sm font-semibold text-stone-500">({g.rows.length})</span></h2>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {g.rows.map(renderCard)}
                 </div>
-              )
-            })}
+              </section>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {shown.map(renderCard)}
           </div>
         )}
+
+        {/* Ask-a-question form below the list (Batch 2 item F). */}
+        {showForm && <div className="mt-6"><AskForm t={t} photoDefault={photoDefault} onDone={() => setShowForm(false)} /></div>}
 
         <RelatedBoxes page="sawaal" />
     </PageShell>

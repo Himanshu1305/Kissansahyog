@@ -433,12 +433,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "सोयाबीन की बुवाई के लिए सीड ड्रिल सही है या हाथ से छिटककर बोना ठीक रहेगा?",
+    "title_hi": "ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे करा सकते हैं?",
     "title_en": "",
-    "subtitle_hi": "सोयाबीन में सीड ड्रिल (या सीड-कम-फर्टिलाइजर ड्रिल) से बुवाई हाथ से छिटकने की तुलना में बेहतर है। ड्रिल से कतार-से-कतार 30-45 सेमी और गहराई 3-4 सेमी एक समान रहती",
+    "subtitle_hi": "नमो ड्रोन दीदी योजना के तहत महिला स्वयं सहायता समूहों (SHG) को ड्रोन दिए जाते हैं ताकि वे किसानों को किराए पर दवा और तरल उर्वरक के छिड़काव की सेवा दे सकें। इससे",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-equipment",
-    "keywords": "सोयाबीन की बुवाई के लिए सीड ड्रिल सही है या हाथ से छिटककर बोना ठीक रहेगा? equipment सोयाबीन में सीड ड्रिल (या सीड-कम-फर्टिलाइजर ड्रिल) से बुवाई हाथ से छिटकने की तुलना में बेहतर है। ड्रिल से कतार-से-कतार 30-45 सेमी और गहराई 3-4 सेमी एक समान रहती"
+    "url": "/sawaal/drona-didi-yojanaa-gaanva-drona-davaa-chhidakaava",
+    "keywords": "ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे करा सकते हैं? drone_didi नमो ड्रोन दीदी योजना के तहत महिला स्वयं सहायता समूहों (shg) को ड्रोन दिए जाते हैं ताकि वे किसानों को किराए पर दवा और तरल उर्वरक के छिड़काव की सेवा दे सकें। इससे"
   },
   {
     "type": "sawaal",
@@ -446,8 +446,17 @@
     "title_en": "",
     "subtitle_hi": "सागर की काली भारी मिट्टी में हर 2-3 साल में मिट्टी परीक्षण जरूर कराएँ। खरीफ बुवाई से पहले, यानी अप्रैल-मई में नमूना लें। खेत के अलग-अलग हिस्सों से 15 सेमी गहराई",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-land",
+    "url": "/sawaal/mere-kheta-mitti-kaali-chikani-soyaabina-bone",
     "keywords": "मेरे खेत की मिट्टी काली और चिकनी है, सोयाबीन बोने से पहले मिट्टी की जाँच कब और कैसे कराऊँ? land सागर की काली भारी मिट्टी में हर 2-3 साल में मिट्टी परीक्षण जरूर कराएँ। खरीफ बुवाई से पहले, यानी अप्रैल-मई में नमूना लें। खेत के अलग-अलग हिस्सों से 15 सेमी गहराई"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सोयाबीन की बुवाई के लिए सीड ड्रिल सही है या हाथ से छिटककर बोना ठीक रहेगा?",
+    "title_en": "",
+    "subtitle_hi": "सोयाबीन में सीड ड्रिल (या सीड-कम-फर्टिलाइजर ड्रिल) से बुवाई हाथ से छिटकने की तुलना में बेहतर है। ड्रिल से कतार-से-कतार 30-45 सेमी और गहराई 3-4 सेमी एक समान रहती",
+    "subtitle_en": "",
+    "url": "/sawaal/soyaabina-buvaai-sida-drila-sahi-haatha-chhitakakara",
+    "keywords": "सोयाबीन की बुवाई के लिए सीड ड्रिल सही है या हाथ से छिटककर बोना ठीक रहेगा? equipment सोयाबीन में सीड ड्रिल (या सीड-कम-फर्टिलाइजर ड्रिल) से बुवाई हाथ से छिटकने की तुलना में बेहतर है। ड्रिल से कतार-से-कतार 30-45 सेमी और गहराई 3-4 सेमी एक समान रहती"
   },
   {
     "type": "sawaal",
@@ -455,7 +464,7 @@
     "title_en": "",
     "subtitle_hi": "चने में फली छेदक (हेलिकोवर्पा) सबसे बड़ा दुश्मन है, जो फूल और फलियों में छेद कर दाना खा जाती है। सबसे पहले खेत में T आकार की पक्षी-बैठकें (बर्ड पर्च) प्रति एकड़",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-pest",
+    "url": "/sawaal/chane-phasala-illi-phali-chhedaka-laga-gai",
     "keywords": "चने की फसल में इल्ली (फली छेदक) लग गई है, फलियाँ खा रही है, कैसे नियंत्रण करूँ? gram pest चने में फली छेदक (हेलिकोवर्पा) सबसे बड़ा दुश्मन है, जो फूल और फलियों में छेद कर दाना खा जाती है। सबसे पहले खेत में t आकार की पक्षी-बैठकें (बर्ड पर्च) प्रति एकड़"
   },
   {
@@ -464,7 +473,7 @@
     "title_en": "",
     "subtitle_hi": "मसूर रबी की फसल है, सागर में इसकी बुवाई अक्टूबर के दूसरे पखवाड़े से नवंबर के पहले पखवाड़े तक सबसे अच्छी रहती है। सामान्यतः बीज दर लगभग 30-40 किलो प्रति हेक्टेयर",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-crop",
+    "url": "/sawaal/masura-buvaai-sahi-samaya-bija-dara-bija",
     "keywords": "मसूर की बुवाई का सही समय, बीज दर और बीज उपचार क्या होना चाहिए? lentil crop मसूर रबी की फसल है, सागर में इसकी बुवाई अक्टूबर के दूसरे पखवाड़े से नवंबर के पहले पखवाड़े तक सबसे अच्छी रहती है। सामान्यतः बीज दर लगभग 30-40 किलो प्रति हेक्टेयर"
   },
   {
@@ -473,8 +482,26 @@
     "title_en": "",
     "subtitle_hi": "धान की नर्सरी में पौधों का पीला रहना अक्सर नाइट्रोजन या जिंक की कमी, अधिक पानी भरे रहने, या कम रोशनी से होता है। पहले नर्सरी में पानी का स्तर ठीक करें, लगातार ग",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-pest-2",
+    "url": "/sawaal/dhaana-narsari-paudhe-pile-kamajora-raha-gae",
     "keywords": "धान की नर्सरी में पौधे पीले और कमजोर रह गए हैं, रोपाई से पहले क्या करूँ? paddy pest धान की नर्सरी में पौधों का पीला रहना अक्सर नाइट्रोजन या जिंक की कमी, अधिक पानी भरे रहने, या कम रोशनी से होता है। पहले नर्सरी में पानी का स्तर ठीक करें, लगातार ग"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "गेहूं की कौन सी किस्म सागर के लिए अच्छी है और सिंचाई कितनी बार करनी चाहिए?",
+    "title_en": "",
+    "subtitle_hi": "सागर की सिंचित दशा के लिए GW-322, GW-366, HI-1544 और पूसा तेजस (HI-8759, ड्यूरम) जैसी किस्में अच्छी मानी जाती हैं। समय पर बुवाई नवंबर के पहले पखवाड़े में करें। ",
+    "subtitle_en": "",
+    "url": "/sawaal/gehun-kauna-kisma-saagara-achchhi-sinchaai-kitani",
+    "keywords": "गेहूं की कौन सी किस्म सागर के लिए अच्छी है और सिंचाई कितनी बार करनी चाहिए? wheat crop सागर की सिंचित दशा के लिए gw-322, gw-366, hi-1544 और पूसा तेजस (hi-8759, ड्यूरम) जैसी किस्में अच्छी मानी जाती हैं। समय पर बुवाई नवंबर के पहले पखवाड़े में करें।"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "प्रधानमंत्री किसान सम्मान निधि (PM-KISAN) की किस्त नहीं आ रही, क्या करूँ?",
+    "title_en": "",
+    "subtitle_hi": "PM-KISAN की किस्त रुकने का सबसे आम कारण e-KYC न होना, बैंक खाते का आधार से लिंक न होना, या भूलेख सत्यापन अधूरा रहना है। सबसे पहले pmkisan.gov.in पर 'Beneficiary",
+    "subtitle_en": "",
+    "url": "/sawaal/pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista",
+    "keywords": "प्रधानमंत्री किसान सम्मान निधि (pm-kisan) की किस्त नहीं आ रही, क्या करूँ? scheme pm-kisan की किस्त रुकने का सबसे आम कारण e-kyc न होना, बैंक खाते का आधार से लिंक न होना, या भूलेख सत्यापन अधूरा रहना है। सबसे पहले pmkisan.gov.in पर 'beneficiary"
   },
   {
     "type": "sawaal",
@@ -487,29 +514,11 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "प्रधानमंत्री किसान सम्मान निधि (PM-KISAN) की किस्त नहीं आ रही, क्या करूँ?",
-    "title_en": "",
-    "subtitle_hi": "PM-KISAN की किस्त रुकने का सबसे आम कारण e-KYC न होना, बैंक खाते का आधार से लिंक न होना, या भूलेख सत्यापन अधूरा रहना है। सबसे पहले pmkisan.gov.in पर 'Beneficiary",
-    "subtitle_en": "",
-    "url": "/sawaal/sawaal-scheme",
-    "keywords": "प्रधानमंत्री किसान सम्मान निधि (pm-kisan) की किस्त नहीं आ रही, क्या करूँ? scheme pm-kisan की किस्त रुकने का सबसे आम कारण e-kyc न होना, बैंक खाते का आधार से लिंक न होना, या भूलेख सत्यापन अधूरा रहना है। सबसे पहले pmkisan.gov.in पर 'beneficiary"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "गेहूं की कौन सी किस्म सागर के लिए अच्छी है और सिंचाई कितनी बार करनी चाहिए?",
-    "title_en": "",
-    "subtitle_hi": "सागर की सिंचित दशा के लिए GW-322, GW-366, HI-1544 और पूसा तेजस (HI-8759, ड्यूरम) जैसी किस्में अच्छी मानी जाती हैं। समय पर बुवाई नवंबर के पहले पखवाड़े में करें। ",
-    "subtitle_en": "",
-    "url": "/sawaal/sawaal-crop-2",
-    "keywords": "गेहूं की कौन सी किस्म सागर के लिए अच्छी है और सिंचाई कितनी बार करनी चाहिए? wheat crop सागर की सिंचित दशा के लिए gw-322, gw-366, hi-1544 और पूसा तेजस (hi-8759, ड्यूरम) जैसी किस्में अच्छी मानी जाती हैं। समय पर बुवाई नवंबर के पहले पखवाड़े में करें।"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी हुई सोयाबीन खेत में पड़ी है, क्या करूँ?",
     "title_en": "",
     "subtitle_hi": "अगर मौसम विभाग ने भारी बारिश का अनुमान दिया है और कटी सोयाबीन खेत में पड़ी है, तो उसे तुरंत सुरक्षित स्थान या तिरपाल से ढके गोदाम में हटाएँ, नहीं तो दाना काला प",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-weather",
+    "url": "/sawaal/agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri",
     "keywords": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी हुई सोयाबीन खेत में पड़ी है, क्या करूँ? weather अगर मौसम विभाग ने भारी बारिश का अनुमान दिया है और कटी सोयाबीन खेत में पड़ी है, तो उसे तुरंत सुरक्षित स्थान या तिरपाल से ढके गोदाम में हटाएँ, नहीं तो दाना काला प"
   },
   {
@@ -518,17 +527,8 @@
     "title_en": "",
     "subtitle_hi": "सरसों में माहू (एफिड) फूल और फलियों बनने के समय टहनियों व फलियों पर झुंड में चिपककर रस चूसता है, जिससे पौधा कमजोर और चिपचिपा हो जाता है और उपज घटती है। ठंडे-नम ",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-pest-4",
+    "url": "/sawaal/sarason-phasala-maahu-chenpaa-laga-gayaa-tahaniyon",
     "keywords": "सरसों की फसल में माहू (चेंपा) लग गया है, टहनियों पर छोटे कीड़ों का झुंड है, क्या करूँ? mustard pest सरसों में माहू (एफिड) फूल और फलियों बनने के समय टहनियों व फलियों पर झुंड में चिपककर रस चूसता है, जिससे पौधा कमजोर और चिपचिपा हो जाता है और उपज घटती है। ठंडे-नम"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे नियमित रूप से कहाँ से मिल सकती है?",
-    "title_en": "",
-    "subtitle_hi": "किसानों के लिए कई भरोसेमंद स्रोत हैं। कृषि विज्ञान केंद्र (KVK) सागर समय-समय पर फसल सलाह, प्रशिक्षण और मिट्टी परीक्षण की सुविधा देता है, वहाँ संपर्क में रहें। म",
-    "subtitle_en": "",
-    "url": "/sawaal/sawaal-general",
-    "keywords": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे नियमित रूप से कहाँ से मिल सकती है? general किसानों के लिए कई भरोसेमंद स्रोत हैं। कृषि विज्ञान केंद्र (kvk) सागर समय-समय पर फसल सलाह, प्रशिक्षण और मिट्टी परीक्षण की सुविधा देता है, वहाँ संपर्क में रहें। म"
   },
   {
     "type": "sawaal",
@@ -536,8 +536,17 @@
     "title_en": "",
     "subtitle_hi": "अगर पत्तों पर पीले और हरे चकत्ते बन रहे हैं, पौधे बौने रह गए हैं और पास-पास कई खेतों में फैल रहा है, तो यह पीला मोजेक वायरस (YMV) हो सकता है, जो सफेद मक्खी से फ",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-pest-7",
+    "url": "/sawaal/pada-kheton-soyaabina-pili-pada-rahi-yaha",
     "keywords": "पड़ोस के खेतों में भी सोयाबीन पीली पड़ रही है, यह पीला मोजेक तो नहीं? कैसे रोकूँ? soybean pest अगर पत्तों पर पीले और हरे चकत्ते बन रहे हैं, पौधे बौने रह गए हैं और पास-पास कई खेतों में फैल रहा है, तो यह पीला मोजेक वायरस (ymv) हो सकता है, जो सफेद मक्खी से फ"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे नियमित रूप से कहाँ से मिल सकती है?",
+    "title_en": "",
+    "subtitle_hi": "किसानों के लिए कई भरोसेमंद स्रोत हैं। कृषि विज्ञान केंद्र (KVK) सागर समय-समय पर फसल सलाह, प्रशिक्षण और मिट्टी परीक्षण की सुविधा देता है, वहाँ संपर्क में रहें। म",
+    "subtitle_en": "",
+    "url": "/sawaal/kheti-juda-sarakaari-salaaha-mausama-jaanakaari-mujhe",
+    "keywords": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे नियमित रूप से कहाँ से मिल सकती है? general किसानों के लिए कई भरोसेमंद स्रोत हैं। कृषि विज्ञान केंद्र (kvk) सागर समय-समय पर फसल सलाह, प्रशिक्षण और मिट्टी परीक्षण की सुविधा देता है, वहाँ संपर्क में रहें। म"
   },
   {
     "type": "sawaal",
@@ -613,15 +622,6 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "इस साल सोयाबीन का भाव कैसा रहेगा और मंडी में बेचने का सही समय क्या है?",
-    "title_en": "",
-    "subtitle_hi": "भाव का सटीक अनुमान लगाना कठिन है, पर कुछ बातें ध्यान रखें। नई फसल आने पर (अक्टूबर-नवंबर) आवक ज्यादा होने से भाव अक्सर दबाव में रहते हैं; थोड़ा रुककर बेचने पर बे",
-    "subtitle_en": "",
-    "url": "/sawaal/sawaal-market",
-    "keywords": "इस साल सोयाबीन का भाव कैसा रहेगा और मंडी में बेचने का सही समय क्या है? market भाव का सटीक अनुमान लगाना कठिन है, पर कुछ बातें ध्यान रखें। नई फसल आने पर (अक्टूबर-नवंबर) आवक ज्यादा होने से भाव अक्सर दबाव में रहते हैं; थोड़ा रुककर बेचने पर बे"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "फसल बीमा में किसान को कितना प्रीमियम देना होता है?",
     "title_en": "How much premium does a farmer pay under PMFBY?",
     "subtitle_hi": "किसान को खरीफ फसल पर बीमित राशि का 2%, रबी फसल पर 1.5%, और वार्षिक व्यावसायिक/बागवानी फसल पर 5% प्रीमियम देना होता है। बाकी प्रीमियम सरकार देती है।",
@@ -640,6 +640,15 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "इस साल सोयाबीन का भाव कैसा रहेगा और मंडी में बेचने का सही समय क्या है?",
+    "title_en": "",
+    "subtitle_hi": "भाव का सटीक अनुमान लगाना कठिन है, पर कुछ बातें ध्यान रखें। नई फसल आने पर (अक्टूबर-नवंबर) आवक ज्यादा होने से भाव अक्सर दबाव में रहते हैं; थोड़ा रुककर बेचने पर बे",
+    "subtitle_en": "",
+    "url": "/sawaal/saala-soyaabina-bhaava-kaisaa-rahegaa-mandi-bechane",
+    "keywords": "इस साल सोयाबीन का भाव कैसा रहेगा और मंडी में बेचने का सही समय क्या है? market भाव का सटीक अनुमान लगाना कठिन है, पर कुछ बातें ध्यान रखें। नई फसल आने पर (अक्टूबर-नवंबर) आवक ज्यादा होने से भाव अक्सर दबाव में रहते हैं; थोड़ा रुककर बेचने पर बे"
+  },
+  {
+    "type": "sawaal",
     "title_hi": "किसान क्रेडिट कार्ड पर ब्याज दर कितनी है?",
     "title_en": "What is the interest rate on a Kisan Credit Card?",
     "subtitle_hi": "समय पर कर्ज चुकाने वाले किसान को 3% का प्रॉम्प्ट रीपेमेंट इंसेंटिव (PRI) मिलता है, जिससे प्रभावी ब्याज दर घटकर सालाना 4% रह जाती है। यह 3 लाख रुपये तक के पात्र ",
@@ -653,7 +662,7 @@
     "title_en": "",
     "subtitle_hi": "गेहूं में पत्तियों पर नारंगी-भूरे धब्बे या धारियाँ दिखें तो यह रतुआ (रस्ट) रोग हो सकता है, जो ठंडी-नम और ओसदार सुबह में तेजी से फैलता है। छूने पर हाथ में पीला-भ",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-pest-3",
+    "url": "/sawaal/gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan",
     "keywords": "गेहूं की पत्तियों पर भूरे-पीले चकत्ते और नारंगी धारियाँ दिख रही हैं, यह कौन सा रोग है? wheat pest गेहूं में पत्तियों पर नारंगी-भूरे धब्बे या धारियाँ दिखें तो यह रतुआ (रस्ट) रोग हो सकता है, जो ठंडी-नम और ओसदार सुबह में तेजी से फैलता है। छूने पर हाथ में पीला-भ"
   },
   {
@@ -667,30 +676,21 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मक्का की फसल में तना छेदक जैसा कीट पत्तियों में छेद कर रहा है और गोभ खराब हो रही है, उपाय बताएँ?",
-    "title_en": "",
-    "subtitle_hi": "मक्का में पत्तियों पर कतार में छेद, गोभ (पौधे का बीच वाला भाग) में लीद जैसा मल और मुरझाना दिखे तो यह फॉल आर्मीवर्म या तना छेदक हो सकता है, जो सागर क्षेत्र में म",
-    "subtitle_en": "",
-    "url": "/sawaal/sawaal-pest-5",
-    "keywords": "मक्का की फसल में तना छेदक जैसा कीट पत्तियों में छेद कर रहा है और गोभ खराब हो रही है, उपाय बताएँ? maize pest मक्का में पत्तियों पर कतार में छेद, गोभ (पौधे का बीच वाला भाग) में लीद जैसा मल और मुरझाना दिखे तो यह फॉल आर्मीवर्म या तना छेदक हो सकता है, जो सागर क्षेत्र में म"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "मेरी सोयाबीन के पत्ते ऊपर से पीले पड़ रहे हैं और पौधे कमजोर दिख रहे हैं, क्या करूँ?",
     "title_en": "",
     "subtitle_hi": "सोयाबीन में पत्तों का पीला पड़ना कई कारणों से होता है। नई पत्तियाँ पीली हों तो अक्सर आयरन की कमी या अधिक पानी से जड़ों तक हवा न पहुँचना कारण होता है; खेत में पा",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-pest-6",
+    "url": "/sawaal/meri-soyaabina-patte-upara-pile-pada-rahe",
     "keywords": "मेरी सोयाबीन के पत्ते ऊपर से पीले पड़ रहे हैं और पौधे कमजोर दिख रहे हैं, क्या करूँ? soybean pest सोयाबीन में पत्तों का पीला पड़ना कई कारणों से होता है। नई पत्तियाँ पीली हों तो अक्सर आयरन की कमी या अधिक पानी से जड़ों तक हवा न पहुँचना कारण होता है; खेत में पा"
   },
   {
     "type": "sawaal",
-    "title_hi": "ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे करा सकते हैं?",
+    "title_hi": "मक्का की फसल में तना छेदक जैसा कीट पत्तियों में छेद कर रहा है और गोभ खराब हो रही है, उपाय बताएँ?",
     "title_en": "",
-    "subtitle_hi": "नमो ड्रोन दीदी योजना के तहत महिला स्वयं सहायता समूहों (SHG) को ड्रोन दिए जाते हैं ताकि वे किसानों को किराए पर दवा और तरल उर्वरक के छिड़काव की सेवा दे सकें। इससे",
+    "subtitle_hi": "मक्का में पत्तियों पर कतार में छेद, गोभ (पौधे का बीच वाला भाग) में लीद जैसा मल और मुरझाना दिखे तो यह फॉल आर्मीवर्म या तना छेदक हो सकता है, जो सागर क्षेत्र में म",
     "subtitle_en": "",
-    "url": "/sawaal/sawaal-drone_didi",
-    "keywords": "ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे करा सकते हैं? drone_didi नमो ड्रोन दीदी योजना के तहत महिला स्वयं सहायता समूहों (shg) को ड्रोन दिए जाते हैं ताकि वे किसानों को किराए पर दवा और तरल उर्वरक के छिड़काव की सेवा दे सकें। इससे"
+    "url": "/sawaal/makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon",
+    "keywords": "मक्का की फसल में तना छेदक जैसा कीट पत्तियों में छेद कर रहा है और गोभ खराब हो रही है, उपाय बताएँ? maize pest मक्का में पत्तियों पर कतार में छेद, गोभ (पौधे का बीच वाला भाग) में लीद जैसा मल और मुरझाना दिखे तो यह फॉल आर्मीवर्म या तना छेदक हो सकता है, जो सागर क्षेत्र में म"
   },
   {
     "type": "sawaal",
@@ -3025,30 +3025,12 @@
   },
   {
     "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 44813",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
-    "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 44813 rajasthan test ground kisan mela"
-  },
-  {
-    "type": "mela",
     "title_hi": "पीएयू किसान मेला, लुधियाना",
     "title_en": "PAU Kisan Mela, Ludhiana",
     "subtitle_hi": "ludhiana punjab pau campus",
     "subtitle_en": "ludhiana punjab pau campus",
     "url": "/kisan-mela",
     "keywords": "पीएयू किसान मेला, लुधियाना pau kisan mela, ludhiana ludhiana punjab pau campus kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "पूसा कृषि विज्ञान मेला, आई.ए.आर.आई",
-    "title_en": "Pusa Krishi Vigyan Mela, IARI",
-    "subtitle_hi": "new delhi delhi iari, pusa",
-    "subtitle_en": "new delhi delhi iari, pusa",
-    "url": "/kisan-mela",
-    "keywords": "पूसा कृषि विज्ञान मेला, आई.ए.आर.आई pusa krishi vigyan mela, iari new delhi delhi iari, pusa kisan mela"
   },
   {
     "type": "mela",
@@ -3061,12 +3043,12 @@
   },
   {
     "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 76952",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
+    "title_hi": "पूसा कृषि विज्ञान मेला, आई.ए.आर.आई",
+    "title_en": "Pusa Krishi Vigyan Mela, IARI",
+    "subtitle_hi": "new delhi delhi iari, pusa",
+    "subtitle_en": "new delhi delhi iari, pusa",
     "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 76952 rajasthan test ground kisan mela"
+    "keywords": "पूसा कृषि विज्ञान मेला, आई.ए.आर.आई pusa krishi vigyan mela, iari new delhi delhi iari, pusa kisan mela"
   },
   {
     "type": "mela",
@@ -3076,15 +3058,6 @@
     "subtitle_en": "meerut uttar pradesh svpuat campus, modipuram",
     "url": "/kisan-mela",
     "keywords": "किसान मेला (एसवीपीयूएटी, मेरठ) svpuat kisan mela, meerut meerut uttar pradesh svpuat campus, modipuram kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "120वां अखिल भारतीय किसान मेला एवं कृषि औद्योगिक प्रदर्शनी",
-    "title_en": "120th All India Kisan Mela & Agricultural Industrial Exhibition",
-    "subtitle_hi": "udham singh nagar uttarakhand g.b. pant university of agriculture & technology campus, pantnagar",
-    "subtitle_en": "udham singh nagar uttarakhand g.b. pant university of agriculture & technology campus, pantnagar",
-    "url": "/kisan-mela",
-    "keywords": "120वां अखिल भारतीय किसान मेला एवं कृषि औद्योगिक प्रदर्शनी 120th all india kisan mela & agricultural industrial exhibition udham singh nagar uttarakhand g.b. pant university of agriculture & technology campus, pantnagar kisan mela"
   },
   {
     "type": "mela",
@@ -3214,6 +3187,15 @@
   },
   {
     "type": "mela",
+    "title_hi": "REJECTED CANDIDATE BACKENDTEST 72128",
+    "title_en": "",
+    "subtitle_hi": "rajasthan test ground",
+    "subtitle_en": "rajasthan test ground",
+    "url": "/kisan-mela",
+    "keywords": "rejected candidate backendtest 72128 rajasthan test ground kisan mela"
+  },
+  {
+    "type": "mela",
     "title_hi": "किसान मेला सह कृषि प्रदर्शनी, रानी लक्ष्मीबाई केन्द्रीय कृषि विश्वविद्यालय, झांसी",
     "title_en": "Kisan Mela cum Agricultural Exhibition, RLBCAU Jhansi",
     "subtitle_hi": "jhansi uttar pradesh rlbcau campus, jhansi",
@@ -3250,15 +3232,6 @@
   },
   {
     "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 72128",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
-    "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 72128 rajasthan test ground kisan mela"
-  },
-  {
-    "type": "mela",
     "title_hi": "एग्रोटेक किसान मेला",
     "title_en": "Agrotech Kisan Mela",
     "subtitle_hi": "ranchi jharkhand birsa agricultural university campus",
@@ -3292,15 +3265,6 @@
     "subtitle_en": "ludhiana punjab gadvasu campus, ludhiana",
     "url": "/kisan-mela",
     "keywords": "पशु पालन मेला (गडवासु) pashu palan mela (gadvasu) ludhiana punjab gadvasu campus, ludhiana kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 65737",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
-    "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 65737 rajasthan test ground kisan mela"
   },
   {
     "type": "mela",
@@ -3382,15 +3346,6 @@
     "subtitle_en": "pune maharashtra pune international exhibition and convention centre (piecc), moshi",
     "url": "/kisan-mela",
     "keywords": "किसान एग्री शो 2026 kisan agri show 2026 pune maharashtra pune international exhibition and convention centre (piecc), moshi kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 96438",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
-    "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 96438 rajasthan test ground kisan mela"
   },
   {
     "type": "resource",

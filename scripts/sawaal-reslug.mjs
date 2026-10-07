@@ -1,0 +1,116 @@
+// Batch 2 item F — give the legacy kisan_sawaal rows meaningful slugs.
+// Transliterates the Hindi question to a Latin slug (e.g. sawaal-crop ->
+// masoor-buvai-samay-beej-dar), updates kisan_sawaal.slug, records old->new in
+// kisan_sawaal_slug_redirects, and writes 301 rules into public/_redirects.
+// Only touches rows whose slug still looks legacy (sawaal-* or null). Idempotent.
+// Run:  node --env-file=.env scripts/sawaal-reslug.mjs [--dry]
+import { createClient } from '@supabase/supabase-js'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+const DRY = process.argv.includes('--dry')
+const db = createClient(process.env.VITE_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+
+// --- Devanagari -> Latin (phonetic, good enough for readable slugs) ---------
+const CONS = {
+  'क':'k','ख':'kh','ग':'g','घ':'gh','ङ':'ng','च':'ch','छ':'chh','ज':'j','झ':'jh','ञ':'ny',
+  'ट':'t','ठ':'th','ड':'d','ढ':'dh','ण':'n','त':'t','थ':'th','द':'d','ध':'dh','न':'n',
+  'प':'p','फ':'ph','ब':'b','भ':'bh','म':'m','य':'y','र':'r','ल':'l','व':'v','श':'sh','ष':'sh',
+  'स':'s','ह':'h','ळ':'l','क़':'q','ख़':'kh','ग़':'g','ज़':'z','ड़':'r','ढ़':'rh','फ़':'f','य़':'y',
+}
+const VOW = { 'अ':'a','आ':'aa','इ':'i','ई':'i','उ':'u','ऊ':'u','ए':'e','ऐ':'ai','ओ':'o','औ':'au','ऋ':'ri','ॠ':'ri','ऑ':'o','ऎ':'e' }
+const MATRA = { 'ा':'aa','ि':'i','ी':'i','ु':'u','ू':'u','े':'e','ै':'ai','ो':'o','ौ':'au','ृ':'ri','ॉ':'o','ॅ':'e' }
+const NASAL = { 'ं':'n','ँ':'n','ः':'h' }
+const VIRAMA = '्'
+const NUKTA = '़'
+
+function translit(text) {
+  // Normalize NFC so precomposed nukta letters (ड़, ज़…) are single code points.
+  const s = String(text || '').normalize('NFC')
+  let out = ''
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i]
+    if (ch === NUKTA) continue
+    if (CONS[ch]) {
+      out += CONS[ch]
+      const next = s[i + 1]
+      if (next === VIRAMA) { i++; continue }           // cluster: no inherent 'a'
+      if (next && MATRA[next]) { out += MATRA[next]; i++; continue }
+      if (next && NASAL[next]) { out += 'a' + NASAL[next]; i++; continue }
+      out += 'a'                                         // inherent vowel
+    } else if (VOW[ch]) {
+      out += VOW[ch]
+    } else if (NASAL[ch]) {
+      out += NASAL[ch]
+    } else if (/[a-zA-Z0-9]/.test(ch)) {
+      out += ch.toLowerCase()
+    } else {
+      out += ' '                                         // punctuation/space -> separator
+    }
+  }
+  return out
+}
+
+const STOP = new Set([
+  'ka','ke','ki','ko','kaa','me','men','par','para','se','hai','hain','aur','aura',
+  'ya','yaa','kya','kyaa','kaise','liye','lie','bhi','si','sa','he','ho','isa','aise',
+])
+
+function slugify(hindi) {
+  const latin = translit(hindi)
+  const words = latin.split(/\s+/).map((w) => w.replace(/[^a-z0-9]/g, '')).filter(Boolean).filter((w) => !STOP.has(w))
+  const slug = words.slice(0, 7).join('-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+  return slug || 'sawaal'
+}
+
+async function main() {
+  const { data: rows, error } = await db.from('kisan_sawaal')
+    .select('id, slug, question_hi').eq('is_published', true).order('id')
+  if (error) { console.error('load error', error.message); process.exit(1) }
+
+  const legacy = rows.filter((r) => !r.slug || /^sawaal-/.test(r.slug))
+  const existingSlugs = new Set(rows.map((r) => r.slug).filter(Boolean))
+  console.log(`${legacy.length} legacy row(s) to re-slug${DRY ? ' (dry run)' : ''}`)
+
+  const redirects = []
+  for (const r of legacy) {
+    let base = slugify(r.question_hi)
+    let slug = base, n = 2
+    while (existingSlugs.has(slug)) { slug = `${base}-${n++}` }
+    existingSlugs.add(slug)
+    console.log(`  ${r.slug}  ->  ${slug}   (${(r.question_hi || '').slice(0, 40)})`)
+    if (!DRY) {
+      const up = await db.from('kisan_sawaal').update({ slug, updated_at: new Date().toISOString() }).eq('id', r.id)
+      if (up.error) { console.error(`  update failed for ${r.id}: ${up.error.message}`); continue }
+      if (r.slug) {
+        await db.from('kisan_sawaal_slug_redirects').upsert({ old_slug: r.slug, new_slug: slug }, { onConflict: 'old_slug' })
+      }
+    }
+    if (r.slug) redirects.push({ old: r.slug, new: slug })
+  }
+
+  // Write/refresh the Cloudflare _redirects 301 rules (from ALL stored redirects).
+  if (!DRY) {
+    const { data: allRedirects } = await db.from('kisan_sawaal_slug_redirects').select('old_slug,new_slug').order('old_slug')
+    writeRedirectsFile(allRedirects || redirects.map((r) => ({ old_slug: r.old, new_slug: r.new })))
+  }
+  console.log(`\nDone. ${legacy.length} row(s) processed, ${redirects.length} redirect(s).`)
+}
+
+function writeRedirectsFile(rules) {
+  const path = join(ROOT, 'public', '_redirects')
+  const MARK_START = '# --- kisan_sawaal slug redirects (generated by scripts/sawaal-reslug.mjs) ---'
+  const MARK_END = '# --- end kisan_sawaal slug redirects ---'
+  const block = [MARK_START, ...rules.map((r) => `/sawaal/${r.old_slug}  /sawaal/${r.new_slug}  301`), MARK_END].join('\n')
+  let existing = existsSync(path) ? readFileSync(path, 'utf8') : ''
+  // Replace any previous generated block, else append.
+  const re = new RegExp(`${MARK_START.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${MARK_END.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`)
+  if (re.test(existing)) existing = existing.replace(re, block)
+  else existing = (existing.trim() ? existing.trim() + '\n\n' : '') + block + '\n'
+  writeFileSync(path, existing)
+  console.log(`Wrote ${rules.length} _redirects rule(s) to public/_redirects`)
+}
+
+main().catch((e) => { console.error('ERROR', e.message); process.exit(1) })
