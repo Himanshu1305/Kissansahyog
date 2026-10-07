@@ -2,14 +2,21 @@
 // the shared BackButton (real history vs direct-link fallback), and ticker centering.
 import { test, expect } from '@playwright/test'
 
-// Count how many cards sit in the first visual row (share the smallest top).
-async function firstRowCount(page, testid) {
+// Widest visual row of cards (cards sharing a top coordinate). Batch 2 item F groups
+// the /sawaal index by topic, so the FIRST row may hold fewer than the column count
+// (a small group); the widest row across all groups reveals the grid's column count.
+async function maxRowCount(page, testid) {
   return page.evaluate((tid) => {
     const els = [...document.querySelectorAll(`[data-testid="${tid}"]`)]
     if (!els.length) return 0
     const tops = els.map((e) => Math.round(e.getBoundingClientRect().top))
-    const minTop = Math.min(...tops)
-    return tops.filter((t) => Math.abs(t - minTop) <= 4).length
+    const counts = {}
+    for (const t of tops) {
+      const key = Object.keys(counts).find((k) => Math.abs(Number(k) - t) <= 4)
+      if (key) counts[key]++
+      else counts[t] = 1
+    }
+    return Math.max(...Object.values(counts))
   }, testid)
 }
 
@@ -18,14 +25,14 @@ test('/sawaal cards render as a grid: 3 columns at desktop, 1 at mobile', async 
   const dp = await desktop.newPage()
   await dp.goto('/sawaal')
   await dp.getByTestId('sawaal-card').first().waitFor({ timeout: 15000 })
-  expect(await firstRowCount(dp, 'sawaal-card')).toBe(3)
+  expect(await maxRowCount(dp, 'sawaal-card')).toBe(3)
   await desktop.close()
 
   const mobile = await browser.newContext({ viewport: { width: 375, height: 812 } })
   const mp = await mobile.newPage()
   await mp.goto('/sawaal')
   await mp.getByTestId('sawaal-card').first().waitFor({ timeout: 15000 })
-  expect(await firstRowCount(mp, 'sawaal-card')).toBe(1)
+  expect(await maxRowCount(mp, 'sawaal-card')).toBe(1)
   await mobile.close()
 })
 
