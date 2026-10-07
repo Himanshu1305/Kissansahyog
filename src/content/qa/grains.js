@@ -8,11 +8,12 @@ export default [
     "season": "kharif",
     "question_hi": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें?",
     "question_en": "How to control girdle beetle in soybean?",
-    "short_hi": "गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है, जिससे पत्तियाँ सूखकर पौधा टूट जाता है। गहरी गर्मी की जुताई, मानसून आते ही बुआई और फसल चक्र अपनाएं। ग्रसित पौधे निकाल दें। जरूरत पर लेबल के अनुसार कीटनाशक डालें।",
+    "short_hi": "गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाएं। ग्रसित पौधे निकाल दें। जरूरत पर लेबल के अनुसार कीटनाशक डालें।",
+    "short_en": "The girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. Do deep summer ploughing, sow as the monsoon starts, and follow crop rotation. Pull out affected plants. Spray an insecticide only if needed, as per the label.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "गर्डल बीटल की सूंडी तने और डंठल (पेटियोल) पर छल्ला बनाती है और तने के अंदर सुरंग बनाती है। ग्रसित भाग की पत्तियों को पोषण नहीं मिलता और वे सूख जाती हैं। बाद में पौधा जमीन से लगभग 15 से 25 सेमी ऊपर से टूट जाता है।",
+        "text": "गर्डल बीटल की सूंडी तने और डंठल (पेटियोल) पर छल्ला बनाती है। यह तने के अंदर सुरंग भी बनाती है। ग्रसित भाग की पत्तियों को पोषण नहीं मिलता और वे सूख जाती हैं। बाद में पौधा जमीन से लगभग 15 से 25 सेमी ऊपर से टूट जाता है।",
         "cites": [
           "S-QAG-01"
         ]
@@ -39,7 +40,7 @@ export default [
             ]
           },
           {
-            "text": "रासायनिक: 30-35 दिन की फसल पर क्विनालफॉस 25 EC @ 2 मिली/लीटर छिड़काव करें और 15-20 दिन बाद दोहराएं — लेबल पर लिखी मात्रा और केवल अनुमोदित (registered) कीटनाशक ही उपयोग करें।",
+            "text": "रासायनिक: 30-35 दिन की फसल पर क्विनालफॉस 25 EC @ 2 मिली/लीटर छिड़काव करें और 15-20 दिन बाद दोहराएं — लेबल पर लिखी मात्रा और केवल मंज़ूर (registered) कीटनाशक ही उपयोग करें।",
             "cites": [
               "S-QAG-01"
             ]
@@ -63,6 +64,60 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "The girdle beetle larva girdles the stem and the petiole. It also tunnels inside the stem. The leaves above the damaged part get no nutrients and dry up. Later the plant breaks at about 15 to 25 cm above the ground.",
+        "cites": [
+          "S-QAG-01"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What to do"
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Cultural: do deep summer ploughing, sow as soon as the monsoon starts, and follow crop rotation.",
+            "cites": [
+              "S-QAG-01"
+            ]
+          },
+          {
+            "text": "Mechanical: cut the girdled and dried affected plants and branches and remove them from the field.",
+            "cites": [
+              "S-QAG-01"
+            ]
+          },
+          {
+            "text": "Chemical: on a 30-35 day crop, spray quinalphos 25 EC @ 2 ml/litre and repeat after 15-20 days — use only the dose written on the label, and only registered insecticides.",
+            "cites": [
+              "S-QAG-01"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Prevention"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Sow at the start of the monsoon and follow crop rotation.",
+            "cites": [
+              "S-QAG-01"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-01"
     ]
@@ -74,11 +129,12 @@ export default [
     "season": "kharif",
     "question_hi": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें?",
     "question_en": "How to manage yellow mosaic virus in soybean?",
-    "short_hi": "पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें और सफेद मक्खी को लेबल के अनुसार दवा से रोकें।",
+    "short_hi": "पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद मक्खी को लेबल के अनुसार दवा से रोकें।",
+    "short_en": "Yellow mosaic spreads through whitefly. Leaves get yellow-green patches and pods do not form. The best step is to grow a resistant variety. Remove diseased plants. Control the whitefly with a spray, as per the label.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "यह वायरस रोग सफेद मक्खी (व्हाइटफ्लाई) से फैलता है। पत्तियों पर अनियमित पीले-हरे धब्बे दिखते हैं और रोगग्रस्त पौधों पर फली नहीं बनती।",
+        "text": "यह वायरस रोग सफेद मक्खी (व्हाइटफ्लाई) से फैलता है। पत्तियों पर अनियमित पीले-हरे धब्बे दिखते हैं। रोगग्रस्त पौधों पर फली नहीं बनती।",
         "cites": [
           "S-QAG-04"
         ]
@@ -126,6 +182,57 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "This virus disease spreads through the whitefly. Leaves show irregular yellow-green patches. Diseased plants do not form pods.",
+        "cites": [
+          "S-QAG-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What to do"
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Cultural: grow yellow mosaic resistant varieties. Pull out and destroy diseased plants early.",
+            "cites": [
+              "S-QAG-04"
+            ]
+          },
+          {
+            "text": "Biological: put up yellow sticky traps to catch whiteflies."
+          },
+          {
+            "text": "Chemical: to control whitefly, spray thiamethoxam @ 40 g or triazophos @ 300 ml/acre; if needed, give a second spray after 10 days — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-04"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Prevention"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Grow a resistant variety and watch for whitefly in the early crop stage.",
+            "cites": [
+              "S-QAG-04"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-04"
     ]
@@ -137,11 +244,12 @@ export default [
     "season": "kharif",
     "question_hi": "सोयाबीन की बुआई कब करें और बीज दर कितनी रखें?",
     "question_en": "What is the right sowing time and seed rate for soybean in MP?",
-    "short_hi": "मध्य प्रदेश में सोयाबीन की बुआई जून के दूसरे सप्ताह से जुलाई के पहले सप्ताह तक, कम से कम 100 मिमी बारिश के बाद करें। बीज दर लगभग 25-30 किग्रा प्रति एकड़ रखें और बुआई से पहले बीज उपचार करें।",
+    "short_hi": "मध्य प्रदेश में सोयाबीन की बुआई जून के दूसरे सप्ताह से जुलाई के पहले सप्ताह तक करें। कम से कम 100 मिमी बारिश के बाद ही बोएं। बीज दर लगभग 25-30 किग्रा प्रति एकड़ रखें। बुआई से पहले बीज उपचार करें।",
+    "short_en": "In Madhya Pradesh, sow soybean from the second week of June to the first week of July, after at least 100 mm rain. Keep the seed rate at about 25-30 kg per acre. Treat the seed before sowing.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "समय पर और सही बीज दर पर बुआई से पौधों की संख्या सही रहती है और उपज अच्छी मिलती है।",
+        "text": "समय पर और सही बीज दर पर बुआई से पौधों की संख्या सही रहती है। इससे उपज अच्छी मिलती है।",
         "cites": []
       },
       {
@@ -179,6 +287,47 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Sowing on time and at the right seed rate keeps the plant count right. This gives a good yield.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Sowing details"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Sowing time: in Madhya Pradesh, from the second week of June to the first week of July, after at least 100 mm rain.",
+            "cites": [
+              "S-QAG-02"
+            ]
+          },
+          {
+            "text": "Seed rate: use 25-30 kg seed for one acre.",
+            "cites": [
+              "S-QAG-04"
+            ]
+          },
+          {
+            "text": "Spacing: keep 30 cm between rows and 5 cm between plants.",
+            "cites": [
+              "S-QAG-03"
+            ]
+          },
+          {
+            "text": "Seed treatment: 24 hours before sowing, treat the seed with carbendazim or thiram @ 2 g/kg seed — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-03"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-02",
       "S-QAG-03",
@@ -192,7 +341,8 @@ export default [
     "season": "kharif",
     "question_hi": "मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?",
     "question_en": "Which soybean varieties are recommended for Madhya Pradesh?",
-    "short_hi": "मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में उपलब्ध हैं जैसे NRC 165, JS 22-12, JS 22-16, NRC 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार 2-3 किस्में चुनें।",
+    "short_hi": "मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में हैं। जैसे NRC 165, JS 22-12, JS 22-16, NRC 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार 2-3 किस्में चुनें।",
+    "short_en": "For Madhya Pradesh there are centrally notified high-yield varieties, such as NRC 165, JS 22-12, JS 22-16, NRC 150 and more. Pick 2-3 varieties that suit your area and maturity time.",
     "blocks": [
       {
         "type": "paragraph",
@@ -214,7 +364,36 @@ export default [
             ]
           },
           {
-            "text": "राज्य सरकार द्वारा अनुशंसित: NRC 157, NRC 131 और NRC 136।",
+            "text": "राज्य सरकार की अनुशंसित किस्में: NRC 157, NRC 131 और NRC 136।",
+            "cites": [
+              "S-QAG-02"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "For a good yield, choose only a notified variety that suits your field and season.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Recommended varieties"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Centrally notified varieties: NRC 165, JS 22-12, JS 22-16, NRC 150, NRC 152, JS 21-72, RVSM 2011-35, NRC 138, EMS 100-39, RVS 76, NRC 142, NRC 130 and more.",
+            "cites": [
+              "S-QAG-02"
+            ]
+          },
+          {
+            "text": "Varieties recommended by the state government: NRC 157, NRC 131 and NRC 136.",
             "cites": [
               "S-QAG-02"
             ]
@@ -234,10 +413,11 @@ export default [
     "question_hi": "सोयाबीन की कटाई कब करें?",
     "question_en": "When should soybean be harvested?",
     "short_hi": "जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें।",
+    "short_en": "The crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. Cut the whole plant, dry it, and thresh.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "सही समय पर कटाई से दाने की गुणवत्ता बनी रहती है और झड़ने (shattering) से नुकसान कम होता है।",
+        "text": "सही समय पर कटाई से दाने की गुणवत्ता बनी रहती है। झड़ने (shattering) से नुकसान भी कम होता है।",
         "cites": []
       },
       {
@@ -263,6 +443,35 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Harvesting at the right time keeps the grain quality good. It also cuts losses from shattering.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Signs it is ready"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "When the pods dry and the leaves turn yellow and fall, the crop is ready to harvest.",
+            "cites": [
+              "S-QAG-04"
+            ]
+          },
+          {
+            "text": "When most pods turn yellow, cut the whole plant, dry it, and thresh.",
+            "cites": [
+              "S-QAG-03"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-03",
       "S-QAG-04"
@@ -275,11 +484,12 @@ export default [
     "season": "kharif",
     "question_hi": "सोयाबीन में बीज उपचार कैसे करें?",
     "question_en": "How to treat soybean seed before sowing?",
-    "short_hi": "बुआई से पहले बीज को फफूंदनाशी से उपचारित करने से बीजजनित रोग कम होते हैं। बुआई से 24 घंटे पहले कार्बेंडाज़िम या थायरम @ 2 ग्राम/किग्रा बीज से उपचार करें — हमेशा लेबल की मात्रा मानें।",
+    "short_hi": "बुआई से पहले बीज को फफूंदनाशी से उपचारित करें। इससे बीजजनित रोग कम होते हैं। बुआई से 24 घंटे पहले कार्बेंडाज़िम या थायरम @ 2 ग्राम/किग्रा बीज से उपचार करें — हमेशा लेबल की मात्रा मानें।",
+    "short_en": "Treat the seed with a fungicide before sowing. This cuts seed-borne diseases. Treat with carbendazim or thiram @ 2 g/kg seed, 24 hours before sowing — always use only the dose written on the label.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "बीज उपचार से बीजजनित फफूंदी रोगों से बचाव होता है और अंकुरण अच्छा रहता है।",
+        "text": "बीज उपचार से बीजजनित फफूंदी रोगों से बचाव होता है। अंकुरण भी अच्छा रहता है।",
         "cites": []
       },
       {
@@ -306,6 +516,36 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Seed treatment protects against seed-borne fungal diseases. It also gives good germination.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What to do"
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "24 hours before sowing, treat the seed with carbendazim or thiram @ 2 g/kg seed — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-03"
+            ]
+          },
+          {
+            "text": "As an option, you can also treat with thiram or captan @ 3 g/kg seed — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-04"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-03",
       "S-QAG-04"
@@ -319,6 +559,7 @@ export default [
     "question_hi": "गेहूं में पीला रतुआ (येलो रस्ट) रोग का नियंत्रण कैसे करें?",
     "question_en": "How to control yellow rust in wheat?",
     "short_hi": "पीला रतुआ पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसा दिखता है। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% का छिड़काव करें। रोग-रोधी किस्म लगाएं। हमेशा लेबल की मात्रा मानें।",
+    "short_en": "Yellow rust looks like yellow-orange striped powder on the leaves. As soon as you see it, spray propiconazole (Tilt) 25 EC @ 0.1%. Grow a resistant variety. Always use only the dose written on the label.",
     "blocks": [
       {
         "type": "paragraph",
@@ -352,6 +593,39 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Yellow rust spreads like yellow-orange striped powder on the leaves. It grows fast in cool and damp weather.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What to do"
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Cultural: grow resistant varieties and watch for the first signs of disease."
+          },
+          {
+            "text": "Chemical: spray propiconazole (Tilt) 25 EC @ 0.1% (1 ml/litre); about 0.5 litre per hectare is enough to cover the crop — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-05"
+            ]
+          },
+          {
+            "text": "Alternative: spray propiconazole 25 EC (0.1%) or mancozeb 75 WP (0.2%) at a 15-day interval — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-06"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-05",
       "S-QAG-06"
@@ -365,10 +639,11 @@ export default [
     "question_hi": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें?",
     "question_en": "How to control loose smut in wheat?",
     "short_hi": "कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक्सिल) से उपचारित करें। लेबल की मात्रा मानें।",
+    "short_en": "In loose smut, the ear heads turn into black powder. It spreads through seed, so seed treatment matters most. Treat the seed with carbendazim (2.5 g/kg) or tebuconazole (Rexil). Use only the dose written on the label.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "कंडवा एक बीजजनित फफूंदी रोग है। संक्रमित बालियां काले पाउडर में बदल जाती हैं जो हवा से दूसरे पौधों तक फैलता है।",
+        "text": "कंडवा एक बीजजनित फफूंदी रोग है। संक्रमित बालियां काले पाउडर में बदल जाती हैं। यह पाउडर हवा से दूसरे पौधों तक फैलता है।",
         "cites": []
       },
       {
@@ -398,6 +673,39 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Loose smut is a seed-borne fungal disease. Infected ear heads turn into black powder. This powder spreads on the wind to other plants.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What to do"
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Cultural: sow only healthy, certified seed."
+          },
+          {
+            "text": "Chemical (seed treatment): treat the seed with carbendazim (2.5 g/kg seed) or Rexil/tebuconazole (1 g/kg seed) — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-06"
+            ]
+          },
+          {
+            "text": "Alternative: soak the seed for 6 hours in propiconazole 25 EC solution and then sow — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-06"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-06"
     ]
@@ -409,7 +717,8 @@ export default [
     "season": "rabi",
     "question_hi": "गेहूं में गेहूंसा (फैलारिस माइनर/मंडूसी) खरपतवार को कैसे रोकें?",
     "question_en": "How to control Phalaris minor weed in wheat?",
-    "short_hi": "गेहूंसा (फैलारिस माइनर) गेहूं जैसा दिखने वाला मुख्य घास खरपतवार है। अगेती बुआई से इसका प्रकोप घटता है। बुआई के 0-3 दिन बाद पेंडीमेथालिन और बाद में क्लोडिनाफॉप जैसे खरपतवारनाशी से नियंत्रण करें। लेबल की मात्रा मानें।",
+    "short_hi": "गेहूंसा (फैलारिस माइनर) गेहूं जैसा दिखने वाला मुख्य घास खरपतवार है। अगेती बुआई से इसका प्रकोप घटता है। बुआई के 0-3 दिन बाद पेंडीमेथालिन डालें। बाद में क्लोडिनाफॉप जैसे खरपतवारनाशी से नियंत्रण करें। लेबल की मात्रा मानें।",
+    "short_en": "Phalaris minor is the main grassy weed that looks like wheat. Early sowing lowers its attack. Spray pendimethalin 0-3 days after sowing. Later, control it with a herbicide like clodinafop. Use only the dose written on the label.",
     "blocks": [
       {
         "type": "paragraph",
@@ -462,6 +771,58 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Phalaris minor looks like wheat early on, so it is hard to spot. It can cut the wheat yield a lot.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What to do"
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Cultural: early sowing can lower the attack of Phalaris minor.",
+            "cites": [
+              "S-QAG-10"
+            ]
+          },
+          {
+            "text": "Chemical (pre-emergence): within 0-3 days of sowing, spray pendimethalin 30% EC @ 1 litre per acre — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-10"
+            ]
+          },
+          {
+            "text": "Chemical (post-emergence): at a later stage, spray clodinafop propargyl 15% WP @ 160 g per acre — use only the dose written on the label.",
+            "cites": [
+              "S-QAG-10"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Prevention"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Sow early and do not repeat the same herbicide every year.",
+            "cites": [
+              "S-QAG-10"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-10"
     ]
@@ -473,7 +834,8 @@ export default [
     "season": "rabi",
     "question_hi": "मध्य प्रदेश के लिए गेहूं की कौन-सी किस्में अच्छी हैं?",
     "question_en": "Which wheat varieties are recommended for Madhya Pradesh?",
-    "short_hi": "मध्य प्रदेश में लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में और शरबती किस्म C-306, अमृता (HI 1500) लोकप्रिय हैं। डुरम गेहूं में पूसा तेजस (HI-8759) अच्छी है।",
+    "short_hi": "मध्य प्रदेश में लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती किस्म में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम गेहूं में पूसा तेजस (HI-8759) अच्छी है।",
+    "short_en": "In Madhya Pradesh, common wheat varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. Among durum wheat, Pusa Tejas (HI-8759) is good.",
     "blocks": [
       {
         "type": "paragraph",
@@ -509,6 +871,41 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Choose a variety to suit your area, irrigation and market demand.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Popular varieties"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Common wheat: Lok-1, GW-322, GW-273, GW-366, GW-173, MP-1203, GW-451, GW-3288, JW-3211 and more.",
+            "cites": [
+              "S-QAG-07"
+            ]
+          },
+          {
+            "text": "Sharbati wheat: C-306, Sujata (HI-617), Amar (HW 2004), Amrita (HI 1500), Harshita (HI 1531), HD 2987 and more.",
+            "cites": [
+              "S-QAG-07"
+            ]
+          },
+          {
+            "text": "Durum wheat: Pusa Tejas (HI-8759) and more.",
+            "cites": [
+              "S-QAG-07"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-07"
     ]
@@ -520,11 +917,12 @@ export default [
     "season": "kharif",
     "question_hi": "मक्का में फॉल आर्मीवर्म (फॉल सैन्य कीट) का नियंत्रण कैसे करें?",
     "question_en": "How to control fall armyworm in maize?",
-    "short_hi": "फॉल आर्मीवर्म की सूंडी पत्तियों और पौधे के बीच के भाग (व्होरल) को खाकर छेद और मल छोड़ती है। शुरुआत में अंडे-सूंडियाँ हाथ से नष्ट करें। ज़्यादा प्रकोप पर क्लोरेंट्रानिलिप्रोल या इमामेक्टिन बेंज़ोएट जैसी दवा लेबल के अनुसार छिड़कें।",
+    "short_hi": "फॉल आर्मीवर्म की सूंडी पत्तियों और पौधे के बीच के भाग (व्होरल) को खाती है। यह छेद और मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्यादा प्रकोप पर क्लोरेंट्रानिलिप्रोल या इमामेक्टिन बेंज़ोएट जैसी दवा लेबल के अनुसार छिड़कें।",
+    "short_en": "The fall armyworm larva eats the leaves and the whorl of the plant. It leaves holes and droppings. Early on, destroy eggs and larvae by hand. In heavy attack, spray a product like chlorantraniliprole or emamectin benzoate, as per the label.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "फॉल आर्मीवर्म मक्का का एक बड़ा आक्रमणकारी कीट है। सूंडी पौधे के बीच के कोमल भाग (व्होरल) में घुसकर पत्तियां खाती है और छेद तथा मल (फ़्रास) छोड़ती है।",
+        "text": "फॉल आर्मीवर्म मक्का का एक बड़ा आक्रमणकारी कीट है। सूंडी पौधे के बीच के कोमल भाग (व्होरल) में घुसकर पत्तियां खाती है। यह छेद और मल (फ़्रास) छोड़ती है।",
         "cites": []
       },
       {
@@ -540,7 +938,34 @@ export default [
             "text": "सांस्कृतिक: शुरुआत में अंडे के समूह और सूंडियां हाथ से निकालकर नष्ट करें; समय पर बुआई करें।"
           },
           {
-            "text": "रासायनिक: भारत में किए गए खेत परीक्षणों में क्लोरेंट्रानिलिप्रोल 18.5 SC, फिर इमामेक्टिन बेंज़ोएट 5 SG और स्पिनेटोराम 11.7 SC सबसे प्रभावी रहे; पहला छिड़काव बुआई के 15 दिन बाद किया गया — लेबल पर लिखी मात्रा और केवल अनुमोदित कीटनाशक ही उपयोग करें।",
+            "text": "रासायनिक: भारत में किए गए खेत परीक्षणों में क्लोरेंट्रानिलिप्रोल 18.5 SC, फिर इमामेक्टिन बेंज़ोएट 5 SG और स्पिनेटोराम 11.7 SC सबसे प्रभावी रहे; पहला छिड़काव बुआई के 15 दिन बाद किया गया — लेबल पर लिखी मात्रा और केवल मंज़ूर कीटनाशक ही उपयोग करें।",
+            "cites": [
+              "S-QAG-08"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Fall armyworm is a major invasive pest of maize. The larva enters the soft whorl of the plant and eats the leaves. It leaves holes and droppings (frass).",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What to do"
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Cultural: early on, pick off and destroy egg masses and larvae by hand; sow on time."
+          },
+          {
+            "text": "Chemical: in field trials in India, chlorantraniliprole 18.5 SC, then emamectin benzoate 5 SG and spinetoram 11.7 SC were the most effective; the first spray was given 15 days after sowing — use only the dose written on the label, and only registered insecticides.",
             "cites": [
               "S-QAG-08"
             ]
@@ -559,11 +984,12 @@ export default [
     "season": "kharif",
     "question_hi": "मक्का की बुआई कब करें और बीज दर कितनी रखें?",
     "question_en": "What is the right sowing time and seed rate for maize?",
-    "short_hi": "खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें और 60x20 सेमी की दूरी पर कतार में बोएं।",
+    "short_hi": "खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी की दूरी पर बोएं।",
+    "short_en": "Sow kharif maize from the last week of June to the first fortnight of July. For grain maize, keep the seed rate at about 20 kg per hectare. Sow in rows at 60x20 cm spacing.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "सही समय और दूरी पर बुआई से पौधों की संख्या सही रहती है और उपज बढ़ती है।",
+        "text": "सही समय और दूरी पर बुआई से पौधों की संख्या सही रहती है। इससे उपज बढ़ती है।",
         "cites": []
       },
       {
@@ -589,6 +1015,35 @@ export default [
         ]
       }
     ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "Sowing at the right time and spacing keeps the plant count right. This raises the yield.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Sowing details"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Sowing time: from the last week of June to the first fortnight of July.",
+            "cites": [
+              "S-QAG-09"
+            ]
+          },
+          {
+            "text": "Seed rate and spacing: for grain maize, about 20 kg/hectare, at 60x20 cm spacing.",
+            "cites": [
+              "S-QAG-09"
+            ]
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-QAG-09"
     ]
@@ -600,11 +1055,12 @@ export default [
     "season": "kharif",
     "question_hi": "मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?",
     "question_en": "Which maize varieties and hybrids are recommended?",
-    "short_hi": "मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड और विजय (100-110 दिन) व किसान जैसी कंपोजिट किस्में प्रचलित हैं। अपने क्षेत्र के लिए अनुशंसित किस्म चुनें।",
+    "short_hi": "मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनुशंसित किस्म चुनें।",
+    "short_en": "In maize, medium-duration hybrids like Ganga-5 (95-110 days) are common. Composites like Vijay (100-110 days) and Kisan are also used. Choose a variety recommended for your area.",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "अच्छी उपज और रोग प्रतिरोध के लिए उपयुक्त अवधि की किस्म चुनें।",
+        "text": "अच्छी उपज और रोग प्रतिरोध के लिए सही अवधि की किस्म चुनें।",
         "cites": []
       },
       {
@@ -623,6 +1079,35 @@ export default [
           },
           {
             "text": "कंपोजिट: विजय — मध्यम अवधि (100-110 दिन); किसान — मध्यम अवधि (105-110 दिन)।",
+            "cites": [
+              "S-QAG-09"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "For good yield and disease resistance, choose a variety of the right duration.",
+        "cites": []
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Common varieties"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Hybrid: Ganga-5 — medium duration (95-110 days), widely adapted.",
+            "cites": [
+              "S-QAG-09"
+            ]
+          },
+          {
+            "text": "Composite: Vijay — medium duration (100-110 days); Kisan — medium duration (105-110 days).",
             "cites": [
               "S-QAG-09"
             ]

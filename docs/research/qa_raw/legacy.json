@@ -1,0 +1,1066 @@
+{
+  "sources": [
+    {
+      "id": "S-QAL-01",
+      "title": "Lentil (Masur) Crop — sowing, seed rate and seed treatment",
+      "publisher": "Apni Kheti",
+      "url": "https://www.apnikheti.com/en/pn/agriculture/crops/pulses/lentil-masur",
+      "date": "",
+      "accessed": "2026-10-07",
+      "type": "news",
+      "quotes": [
+        "Seed should be sown in the mid of October to First week of November.",
+        "Seed rate of 12-15 kg/acre is optimum.",
+        "Treat seeds with Captan or Thiram @3gm/kg of seed before sowing.",
+        "5 kg of Nitrogen (12 kg of Urea), 8kg of P2O5 (50 kg of Superphosphate) should be applied per acre at time of sowing when seeds are inoculated with rhizobium culture."
+      ]
+    },
+    {
+      "id": "S-QAL-02",
+      "title": "Paddy :: Nutrient Management (nutrient deficiency symptoms and correction)",
+      "publisher": "TNAU Agritech Portal, Tamil Nadu Agricultural University",
+      "url": "https://agritech.tnau.ac.in/expert_system/paddy/nutrientmanagement.html",
+      "date": "",
+      "accessed": "2026-10-07",
+      "type": "university",
+      "quotes": [
+        "Older leaves of whole plants are yellowish green.",
+        "Old leaves sometimes all leaves become light green.",
+        "Leaf base of younger leaves become chlorotic brown and blotches/streaks on lower leaves.",
+        "Foliar application of Urea 1% at weekly interval till the symptoms disappear",
+        "foliar application of 0.5% Zinc sulphate + 1.0% urea can be given at 15 days interval until the Zn deficiency symptoms disappear."
+      ]
+    },
+    {
+      "id": "S-QAL-03",
+      "title": "Crop Protection :: Pest :: Mustard (mustard aphid)",
+      "publisher": "TNAU Agritech Portal, Tamil Nadu Agricultural University",
+      "url": "https://agritech.tnau.ac.in/crop_protection/mustard/crop_prot_crop_insect_oil_mustard_6.html",
+      "date": "",
+      "accessed": "2026-10-07",
+      "type": "university",
+      "quotes": [
+        "Both nymphs and adults suck the sap from leaves, buds and pods",
+        "Curling may occur in infested leaves and at advanced stage plants may wither and die.",
+        "Use tolerant varieties like JM-1 and RK-9501",
+        "The crop sown before 20th October escapes the damage",
+        "Set up yellow stick trap to monitor aphid population",
+        "Spray the crop with one of the following in the flowering stage: oxydemeton methyl, dimethoate @625-1000 ml per ha"
+      ]
+    },
+    {
+      "id": "S-QAL-04",
+      "title": "NAMO Drone Didi Scheme — subsidy, eligibility and loan facility",
+      "publisher": "GovtSchemes.in",
+      "url": "https://www.govtschemes.in/namo-drone-didi-scheme",
+      "date": "",
+      "accessed": "2026-10-07",
+      "type": "news",
+      "quotes": [
+        "Subsidy of 80% of Drone Cost or a Maximum of Rs. 8 Lakh will be Provided",
+        "Loan Facility from AIF will also available for remaining cost of drone",
+        "Nominal Interest Rate of 3% will be payable on the loan",
+        "Only Women Self Help Groups (SHGs) are eligible to apply",
+        "Drone will only be use for rental purpose for Agricultural Activity",
+        "Free of Cost Training will be provide to fly drone",
+        "Women SHGs can earn Additional of Rs. 1 Lakh per year with the help of drone",
+        "Beneficiary Women can contact their nearest Gram Panchayat Office or Pradhanmantri Kisan Samriddhi Kendra"
+      ]
+    }
+  ],
+  "qas": [
+    {
+      "slug": "chane-phasala-illi-phali-chhedaka-laga-gai",
+      "crop": "gram",
+      "category": "pest",
+      "season": "rabi",
+      "question_hi": "चने में इल्ली (फली छेदक) लग गई है, क्या करें?",
+      "question_en": "My chickpea has caterpillars (pod borer) — what should I do?",
+      "short_hi": "यह फली छेदक (इल्ली) है, जो चने में सबसे ज़्यादा नुकसान करती है। खेत में फेरोमोन ट्रैप लगाएँ। फूल आने पर 5% नीम बीज गिरी घोल (NSKE) छिड़कें और 2 हफ्ते बाद दोहराएँ। ज़रूरत पड़ने पर NPV 250 L.E. डालें। धनिया या कुसुम के साथ अंतर-फसल लें।",
+      "short_en": "This is the pod borer caterpillar, which does the most damage to chickpea. Hang pheromone traps. At flowering, spray 5% neem seed kernel extract (NSKE) and repeat after 2 weeks. If needed, spray NPV 250 L.E. Intercrop with coriander or safflower.",
+      "blocks": [
+        { "type": "paragraph", "text": "आपके चने में फली छेदक (Helicoverpa armigera) की इल्ली लगी है। स्रोत के अनुसार \"Pod borers cause maximum damage\" यानी यही सबसे ज़्यादा नुकसान करती है। यह इल्ली फली में छेद करके दाने खाती है।", "cites": ["S-QAP-01"] },
+        { "type": "heading", "level": 3, "text": "पहचान" },
+        { "type": "list", "items": [
+          { "text": "फलियों में गोल छेद दिखते हैं और इल्ली का सिर फली में घुसा रहता है।", "cites": ["S-QAP-01"] },
+          { "text": "फूल और कोमल फलियाँ कटी-खाई मिलती हैं।", "cites": ["S-QAP-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सांस्कृतिक: धनिया या कुसुम (safflower) के साथ अंतर-फसल लें। पतंगों की निगरानी के लिए फेरोमोन ट्रैप लगाएँ।", "cites": ["S-QAP-01"] },
+          { "text": "जैविक: फूल आने पर 5% नीम बीज गिरी घोल (NSKE) छिड़कें और 2 हफ्ते बाद दोहराएँ। उसके बाद NPV 250 L.E. (विषाणु-आधारित जैव-कीटनाशक) का प्रयोग करें।", "cites": ["S-QAP-01"] },
+          { "text": "रासायनिक: बुवाई से पहले कटवर्म के लिए मिट्टी में क्लोरपायरीफॉस 2% चूर्ण @ 25 किग्रा/हेक्टेयर मिलाएँ। कोई भी कीटनाशक लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QAP-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "IPM (एकीकृत कीट प्रबंधन) पैकेज अपनाएँ और फेरोमोन ट्रैप से पतंगों की संख्या पर नज़र रखें।", "cites": ["S-QAP-01"] },
+          { "text": "समय पर बुवाई करें — अक्टूबर के पहले पखवाड़े में।", "cites": ["S-QAP-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "अगर प्रकोप तेज़ है या सही दवा-मात्रा समझ न आए, तो KVK सागर से पूछें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Your chickpea has pod borer (Helicoverpa armigera) larvae. The source says \"Pod borers cause maximum damage.\" This caterpillar bores into the pod and eats the grains.", "cites": ["S-QAP-01"] },
+        { "type": "heading", "level": 3, "text": "How to identify" },
+        { "type": "list", "items": [
+          { "text": "You see round holes in the pods, with the larva's head pushed inside the pod.", "cites": ["S-QAP-01"] },
+          { "text": "Flowers and tender pods are found cut and eaten.", "cites": ["S-QAP-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cultural: intercrop with coriander or safflower. Hang pheromone traps to monitor moths.", "cites": ["S-QAP-01"] },
+          { "text": "Biological: at flowering, spray 5% neem seed kernel extract (NSKE) and repeat after 2 weeks. After that, use NPV 250 L.E. (a virus-based biopesticide).", "cites": ["S-QAP-01"] },
+          { "text": "Chemical: before sowing, mix Chlorpyriphos 2% dust @ 25 kg/ha into the soil for cutworms. Use only the dose written on the label for any pesticide.", "cites": ["S-QAP-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Follow the IPM (integrated pest management) package and watch moth numbers with pheromone traps.", "cites": ["S-QAP-01"] },
+          { "text": "Sow on time — in the first fortnight of October.", "cites": ["S-QAP-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If the attack is heavy or you are not sure of the right pesticide and dose, ask KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAP-01"]
+    },
+    {
+      "slug": "pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista",
+      "crop": "",
+      "category": "scheme",
+      "season": "all",
+      "question_hi": "पीएम-किसान की किस्त नहीं आई, क्या करूँ?",
+      "question_en": "My PM-KISAN instalment has not come — what should I do?",
+      "short_hi": "पहले pmkisan.gov.in पर अपना स्टेटस देखें। फिर जाँचें कि ई-केवाईसी पूरी है, बैंक खाता आधार से DBT के लिए जुड़ा है, और जमीन का रिकॉर्ड पोर्टल पर दर्ज है। इनमें से कोई अधूरा हो तो किस्त रुक जाती है।",
+      "short_en": "First check your status on pmkisan.gov.in. Then make sure e-KYC is done, your bank account is Aadhaar-linked for DBT, and your land record is seeded on the portal. If any of these is incomplete, the instalment stops.",
+      "blocks": [
+        { "type": "paragraph", "text": "पीएम-किसान का पैसा 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे आधार से जुड़े बैंक खाते में आता है। किस्त तभी आती है जब जमीन का रिकॉर्ड, आधार-बैंक लिंक और ई-केवाईसी पूरी हो।", "cites": ["S-QAS-01"] },
+        { "type": "heading", "level": 3, "text": "पहचान — क्यों रुकी" },
+        { "type": "list", "items": [
+          { "text": "ई-केवाईसी अधूरी हो सकती है।", "cites": ["S-QAS-01"] },
+          { "text": "बैंक खाता आधार से DBT के लिए न जुड़ा हो।", "cites": ["S-QAS-01"] },
+          { "text": "जमीन का रिकॉर्ड पोर्टल पर दर्ज न हो।", "cites": ["S-QAS-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "pmkisan.gov.in खोलें; Farmers Corner में 'Know Your Status' पर रजिस्ट्रेशन नंबर और OTP से अपना भुगतान स्टेटस देखें।", "cites": ["S-QAS-02"] },
+          { "text": "ई-केवाईसी पूरी करें — पोर्टल पर OTP से, या नजदीकी CSC पर बायोमेट्रिक से।", "cites": ["S-QAS-02"] },
+          { "text": "बैंक जाकर पक्का करें कि खाता आधार से जुड़ा और DBT चालू है।", "cites": ["S-QAS-01"] },
+          { "text": "जमीन का रिकॉर्ड पोर्टल पर दर्ज कराएँ।", "cites": ["S-QAS-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "हर साल ई-केवाईसी और बैंक-आधार लिंक समय रहते जाँच लें, ताकि किस्त न रुके।", "cites": ["S-QAS-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "कहाँ संपर्क करें" },
+        { "type": "list", "items": [
+          { "text": "समस्या बनी रहे तो नजदीकी CSC या कृषि कार्यालय से संपर्क करें।", "cites": ["S-QAS-02"] }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "PM-KISAN money comes as three equal instalments of 2,000 rupees, straight to the Aadhaar-linked bank account. The instalment comes only when the land record, Aadhaar-bank link and e-KYC are all complete.", "cites": ["S-QAS-01"] },
+        { "type": "heading", "level": 3, "text": "How to identify — why it stopped" },
+        { "type": "list", "items": [
+          { "text": "e-KYC may be incomplete.", "cites": ["S-QAS-01"] },
+          { "text": "The bank account may not be Aadhaar-linked for DBT.", "cites": ["S-QAS-01"] },
+          { "text": "The land record may not be seeded on the portal.", "cites": ["S-QAS-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Open pmkisan.gov.in; in Farmers Corner use 'Know Your Status' with your registration number and OTP to see your payment status.", "cites": ["S-QAS-02"] },
+          { "text": "Complete e-KYC — by OTP on the portal, or by biometric at a nearby CSC.", "cites": ["S-QAS-02"] },
+          { "text": "Go to the bank and make sure the account is Aadhaar-linked and DBT is active.", "cites": ["S-QAS-01"] },
+          { "text": "Get your land record seeded on the portal.", "cites": ["S-QAS-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Check e-KYC and the Aadhaar-bank link in time every year, so the instalment does not stop.", "cites": ["S-QAS-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Where to get help" },
+        { "type": "list", "items": [
+          { "text": "If the problem continues, contact a nearby CSC or the agriculture office.", "cites": ["S-QAS-02"] }
+        ]}
+      ],
+      "sources": ["S-QAS-01", "S-QAS-02"]
+    },
+    {
+      "slug": "what-documents-are-needed-for-kisan-credit-card",
+      "crop": "",
+      "category": "scheme",
+      "season": "all",
+      "question_hi": "किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए?",
+      "question_en": "What documents are needed for a Kisan Credit Card?",
+      "short_hi": "KCC के लिए जमीन के कागज़ और आधार लेकर नजदीकी बैंक शाखा जाएँ। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना गारंटी मिलता है। सरकार 3 लाख रुपये तक के कर्ज पर 7% रियायती ब्याज देती है, समय पर चुकाने पर यह प्रभावी रूप से 4% रह जाता है।",
+      "short_en": "For KCC, take your land papers and Aadhaar to a nearby bank branch. From 1 January 2025, loans up to 2 lakh rupees are collateral-free. The government gives 7% concessional interest up to 3 lakh rupees, which drops to an effective 4% if you repay on time.",
+      "blocks": [
+        { "type": "paragraph", "text": "किसान क्रेडिट कार्ड (KCC) किसानों को कम ब्याज पर खेती के लिए कर्ज देता है। आवेदन के लिए मुख्य कागज़ जमीन का रिकॉर्ड और पहचान (आधार) हैं।", "cites": ["S-QAS-05"] },
+        { "type": "heading", "level": 3, "text": "क्या-क्या चाहिए (कागज़)" },
+        { "type": "list", "items": [
+          { "text": "जमीन के कागज़ (खसरा/खतौनी/ऋण पुस्तिका)।", "cites": ["S-QAS-05"] },
+          { "text": "आधार और पहचान-पत्र।", "cites": ["S-QAS-05"] },
+          { "text": "बैंक खाता (जहाँ कर्ज खाता खुलेगा)।", "cites": ["S-QAS-05"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "जमीन के कागज और आधार लेकर नजदीकी बैंक शाखा में जाएँ।", "cites": ["S-QAS-05"] },
+          { "text": "या बैंक की वेबसाइट से ऑनलाइन आवेदन करें।", "cites": ["S-QAS-05"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "जानने लायक रकम" },
+        { "type": "list", "items": [
+          { "text": "1 जनवरी 2025 से बिना गारंटी कर्ज की सीमा 1.60 लाख से बढ़ाकर 2 लाख रुपये प्रति किसान कर दी गई है।", "cites": ["S-QAS-06"] },
+          { "text": "सरकार 3 लाख रुपये तक के अल्पकालिक कर्ज पर 7% रियायती ब्याज देती है; समय पर चुकाने पर 3% छूट से यह प्रभावी रूप से 4% रह जाता है।", "cites": ["S-QAS-05"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "कहाँ संपर्क करें" },
+        { "type": "list", "items": [
+          { "text": "कागज़ या पात्रता पर शक हो तो अपनी बैंक शाखा से पूछें।", "cites": ["S-QAS-05"] }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "The Kisan Credit Card (KCC) gives farmers low-interest loans for farming. The main documents to apply are your land record and identity (Aadhaar).", "cites": ["S-QAS-05"] },
+        { "type": "heading", "level": 3, "text": "What you need (documents)" },
+        { "type": "list", "items": [
+          { "text": "Land papers (khasra/khatauni/rin pustika).", "cites": ["S-QAS-05"] },
+          { "text": "Aadhaar and identity proof.", "cites": ["S-QAS-05"] },
+          { "text": "A bank account (where the loan account will open).", "cites": ["S-QAS-05"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Take your land papers and Aadhaar to a nearby bank branch.", "cites": ["S-QAS-05"] },
+          { "text": "Or apply online from the bank's website.", "cites": ["S-QAS-05"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Amounts worth knowing" },
+        { "type": "list", "items": [
+          { "text": "From 1 January 2025, the collateral-free loan limit was raised from 1.60 lakh to 2 lakh rupees per farmer.", "cites": ["S-QAS-06"] },
+          { "text": "The government gives 7% concessional interest on short-term loans up to 3 lakh rupees; with a 3% incentive for timely repayment, this becomes an effective 4%.", "cites": ["S-QAS-05"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Where to get help" },
+        { "type": "list", "items": [
+          { "text": "If you are unsure of documents or eligibility, ask your bank branch.", "cites": ["S-QAS-05"] }
+        ]}
+      ],
+      "sources": ["S-QAS-05", "S-QAS-06"]
+    },
+    {
+      "slug": "pada-kheton-soyaabina-pili-pada-rahi-yaha",
+      "crop": "soybean",
+      "category": "disease",
+      "season": "kharif",
+      "question_hi": "पड़ोस के खेतों में सोयाबीन पीली पड़ रही है — यह क्या है?",
+      "question_en": "Soybean in nearby fields is turning yellow — what is this?",
+      "short_hi": "अगर पत्तियों पर अनियमित पीले-हरे धब्बे हैं और फली नहीं बन रही, तो यह पीला मोज़ायक वायरस है। यह सफेद मक्खी से फैलता है। सबसे अच्छा उपाय रोग-रोधी किस्म है। रोगग्रस्त पौधे उखाड़ें। सफेद मक्खी को लेबल के अनुसार दवा से रोकें।",
+      "short_en": "If leaves have irregular yellow-green patches and no pods form, it is yellow mosaic virus. It spreads through whitefly. The best step is a resistant variety. Pull out diseased plants. Control the whitefly with a spray, as per the label.",
+      "blocks": [
+        { "type": "paragraph", "text": "सोयाबीन का पीलापन कई कारणों से हो सकता है। अगर यह पीला मोज़ायक वायरस है, तो यह सफेद मक्खी (व्हाइटफ्लाई) से फैलता है और पड़ोसी खेतों तक पहुँचता है।", "cites": ["S-QAG-04"] },
+        { "type": "heading", "level": 3, "text": "पहचान" },
+        { "type": "list", "items": [
+          { "text": "पत्तियों पर अनियमित पीले-हरे धब्बे दिखते हैं।", "cites": ["S-QAG-04"] },
+          { "text": "रोगग्रस्त पौधों पर फली नहीं बनती।", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सांस्कृतिक: पीला मोज़ायक रोधी किस्में लगाएँ। रोगग्रस्त पौधों को शुरू में ही उखाड़कर नष्ट करें।", "cites": ["S-QAG-04"] },
+          { "text": "जैविक: सफेद मक्खी पकड़ने के लिए पीले चिपचिपे जाल (येलो स्टिकी ट्रैप) लगाएँ।" },
+          { "text": "रासायनिक: सफेद मक्खी रोकने के लिए थायमेथॉक्साम @ 40 ग्राम या ट्रायज़ोफॉस @ 300 मिली/एकड़ छिड़कें; ज़रूरत पर 10 दिन बाद दूसरा छिड़काव — लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "रोग-रोधी किस्म लगाएँ और फसल की शुरुआती अवस्था में सफेद मक्खी पर नज़र रखें।", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "पीलापन तेज़ी से फैल रहा हो या कारण साफ़ न हो, तो पत्ती का नमूना लेकर KVK सागर से जाँच कराएँ।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Yellowing in soybean can have several causes. If it is yellow mosaic virus, it spreads through whitefly and moves to nearby fields.", "cites": ["S-QAG-04"] },
+        { "type": "heading", "level": 3, "text": "How to identify" },
+        { "type": "list", "items": [
+          { "text": "Leaves show irregular yellow-green patches.", "cites": ["S-QAG-04"] },
+          { "text": "Diseased plants do not form pods.", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cultural: grow yellow mosaic resistant varieties. Pull out and destroy diseased plants early.", "cites": ["S-QAG-04"] },
+          { "text": "Biological: put up yellow sticky traps to catch whiteflies." },
+          { "text": "Chemical: to control whitefly, spray thiamethoxam @ 40 g or triazophos @ 300 ml/acre; if needed, a second spray after 10 days — use only the dose written on the label.", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Grow a resistant variety and watch for whitefly in the early crop stage.", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If the yellowing spreads fast or the cause is unclear, take a leaf sample and get it checked by KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAG-04"]
+    },
+    {
+      "slug": "meri-soyaabina-patte-upara-pile-pada-rahe",
+      "crop": "soybean",
+      "category": "disease",
+      "season": "kharif",
+      "question_hi": "मेरी सोयाबीन के पत्ते ऊपर से पीले पड़ रहे हैं, क्या करूँ?",
+      "question_en": "My soybean leaves are turning yellow from the top — what should I do?",
+      "short_hi": "पीलेपन के कई कारण हो सकते हैं — वायरस, पोषक तत्व की कमी, या जड़ सड़न। अगर पत्तियों पर पीले-हरे धब्बे हैं और फली नहीं बन रही, तो यह पीला मोज़ायक वायरस है। पक्का कारण जानने के लिए पत्ती का नमूना लेकर KVK सागर से जाँच कराएँ।",
+      "short_en": "Yellowing can have several causes — virus, nutrient shortage, or root rot. If leaves have yellow-green patches and no pods form, it is yellow mosaic virus. To be sure of the cause, take a leaf sample and get it checked by KVK Sagar.",
+      "blocks": [
+        { "type": "paragraph", "text": "सोयाबीन में पीलापन कई कारणों से हो सकता है — वायरस रोग, पोषक तत्व की कमी या जड़ सड़न। इसलिए पक्का कारण जाने बिना कोई दवा न डालें।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "पहचान" },
+        { "type": "list", "items": [
+          { "text": "अगर पत्तियों पर अनियमित पीले-हरे धब्बे हैं और फली नहीं बन रही, तो यह पीला मोज़ायक वायरस है, जो सफेद मक्खी से फैलता है।", "cites": ["S-QAG-04"] },
+          { "text": "अलग तरह का पीलापन (नसों के बीच, पूरे खेत में) पोषक तत्व की कमी या जड़ सड़न भी हो सकता है — कई कारण हो सकते हैं, पत्ती का नमूना लेकर KVK सागर से जाँच कराएँ।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सांस्कृतिक: अगर पीला मोज़ायक है तो रोग-रोधी किस्में लगाएँ और रोगग्रस्त पौधे शुरू में ही उखाड़ दें।", "cites": ["S-QAG-04"] },
+          { "text": "जैविक: सफेद मक्खी पकड़ने के लिए पीले चिपचिपे जाल लगाएँ।" },
+          { "text": "रासायनिक: पीला मोज़ायक की वाहक सफेद मक्खी के लिए थायमेथॉक्साम @ 40 ग्राम या ट्रायज़ोफॉस @ 300 मिली/एकड़ छिड़कें — लेबल पर लिखी मात्रा ही उपयोग करें। पोषक कमी/जड़ सड़न लगे तो सही दवा और मात्रा के लिए KVK सागर से पूछें।", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "रोग-रोधी किस्म लगाएँ और शुरुआती अवस्था में सफेद मक्खी पर नज़र रखें।", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "कारण साफ़ न हो तो पत्ती का नमूना लेकर KVK सागर से जाँच कराएँ — बिना कारण जाने दवा न डालें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Yellowing in soybean can have several causes — virus disease, a nutrient shortage, or root rot. So do not spray anything before you are sure of the cause.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "How to identify" },
+        { "type": "list", "items": [
+          { "text": "If leaves have irregular yellow-green patches and no pods form, it is yellow mosaic virus, which spreads through whitefly.", "cites": ["S-QAG-04"] },
+          { "text": "A different kind of yellowing (between the veins, across the whole field) can be a nutrient shortage or root rot — there can be many causes, so take a leaf sample and get it checked by KVK Sagar." }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cultural: if it is yellow mosaic, grow resistant varieties and pull out diseased plants early.", "cites": ["S-QAG-04"] },
+          { "text": "Biological: put up yellow sticky traps to catch whiteflies." },
+          { "text": "Chemical: for the carrier whitefly of yellow mosaic, spray thiamethoxam @ 40 g or triazophos @ 300 ml/acre — use only the dose written on the label. If it looks like a nutrient shortage or root rot, ask KVK Sagar for the right medicine and dose.", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Grow a resistant variety and watch for whitefly in the early stage.", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If the cause is unclear, take a leaf sample and get it checked by KVK Sagar — do not spray before you know the cause." }
+        ]}
+      ],
+      "sources": ["S-QAG-04"]
+    },
+    {
+      "slug": "why-are-soybean-leaves-turning-yellow-what-should-i-do",
+      "crop": "soybean",
+      "category": "disease",
+      "season": "kharif",
+      "question_hi": "सोयाबीन के पत्ते पीले क्यों हो रहे हैं और क्या करें?",
+      "question_en": "Why are soybean leaves turning yellow and what should I do?",
+      "short_hi": "पीलेपन के कई कारण हो सकते हैं — वायरस, पोषक तत्व की कमी, या जड़ सड़न। पत्तियों पर पीले-हरे धब्बे और फली न बनना पीला मोज़ायक वायरस का संकेत है। पक्का कारण जानने के लिए पत्ती का नमूना लेकर KVK सागर से जाँच कराएँ, फिर उपाय करें।",
+      "short_en": "There can be several causes — virus, nutrient shortage, or root rot. Yellow-green patches with no pods point to yellow mosaic virus. To be sure of the cause, take a leaf sample to KVK Sagar, then act.",
+      "blocks": [
+        { "type": "paragraph", "text": "सोयाबीन के पत्ते कई कारणों से पीले हो सकते हैं — वायरस रोग, पोषक तत्व की कमी या जड़ सड़न। इसलिए अंदाज़े से दवा न डालें।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "पहचान" },
+        { "type": "list", "items": [
+          { "text": "पत्तियों पर अनियमित पीले-हरे धब्बे और फली न बनना — यह पीला मोज़ायक वायरस है, जो सफेद मक्खी से फैलता है।", "cites": ["S-QAG-04"] },
+          { "text": "दूसरी तरह का पीलापन पोषक कमी या जड़ सड़न भी हो सकता है — कई कारण हो सकते हैं, पत्ती का नमूना लेकर KVK सागर से जाँच कराएँ।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सांस्कृतिक: पीला मोज़ायक होने पर रोग-रोधी किस्में लगाएँ और रोगग्रस्त पौधे उखाड़ दें।", "cites": ["S-QAG-04"] },
+          { "text": "जैविक: सफेद मक्खी के लिए पीले चिपचिपे जाल लगाएँ।" },
+          { "text": "रासायनिक: सफेद मक्खी के लिए थायमेथॉक्साम @ 40 ग्राम या ट्रायज़ोफॉस @ 300 मिली/एकड़ छिड़कें — लेबल पर लिखी मात्रा ही उपयोग करें। पोषक कमी/जड़ सड़न लगे तो सही दवा और मात्रा के लिए KVK सागर से पूछें।", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "रोग-रोधी किस्म लगाएँ और शुरुआती अवस्था में सफेद मक्खी पर नज़र रखें।", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "कारण साफ़ न हो तो पत्ती का नमूना लेकर KVK सागर से जाँच कराएँ।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Soybean leaves can turn yellow for several reasons — virus disease, a nutrient shortage, or root rot. So do not spray on a guess.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "How to identify" },
+        { "type": "list", "items": [
+          { "text": "Irregular yellow-green patches with no pods — this is yellow mosaic virus, which spreads through whitefly.", "cites": ["S-QAG-04"] },
+          { "text": "Another kind of yellowing can be a nutrient shortage or root rot — there can be many causes, so take a leaf sample and get it checked by KVK Sagar." }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cultural: if it is yellow mosaic, grow resistant varieties and pull out diseased plants.", "cites": ["S-QAG-04"] },
+          { "text": "Biological: put up yellow sticky traps for whitefly." },
+          { "text": "Chemical: for whitefly, spray thiamethoxam @ 40 g or triazophos @ 300 ml/acre — use only the dose written on the label. If it looks like a nutrient shortage or root rot, ask KVK Sagar for the right medicine and dose.", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Grow a resistant variety and watch for whitefly in the early stage.", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If the cause is unclear, take a leaf sample and get it checked by KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAG-04"]
+    },
+    {
+      "slug": "gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan",
+      "crop": "wheat",
+      "category": "disease",
+      "season": "rabi",
+      "question_hi": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें?",
+      "question_en": "My wheat leaves have yellow-orange striped patches — what should I do?",
+      "short_hi": "यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% छिड़कें। रोग-रोधी किस्म लगाएँ। हमेशा लेबल की मात्रा मानें।",
+      "short_en": "This is yellow rust. Leaves get yellow-orange striped powdery stripes. As soon as you see it, spray propiconazole (Tilt) 25 EC @ 0.1%. Grow a resistant variety. Always use only the label dose.",
+      "blocks": [
+        { "type": "paragraph", "text": "गेहूं की पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ पीला रतुआ (येलो रस्ट) का संकेत हैं। ठंडे और नम मौसम में यह तेज़ी से बढ़ता है।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "पहचान" },
+        { "type": "list", "items": [
+          { "text": "पत्तियों पर पीली-नारंगी धारियों में पाउडर जैसा जमाव; हाथ या कपड़े पर पीला रंग लग जाता है।", "cites": [] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सांस्कृतिक: रोग-रोधी किस्में लगाएँ और रोग के पहले लक्षण पर नज़र रखें।" },
+          { "text": "रासायनिक: प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% (1 मिली/लीटर) छिड़कें; लगभग 0.5 लीटर प्रति हेक्टेयर फसल को ढकने के लिए पर्याप्त है — लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QAG-05"] },
+          { "text": "विकल्प: प्रोपिकोनाज़ोल 25 EC (0.1%) या मैंकोज़ेब 75 WP (0.2%) का 15 दिन के अंतराल पर छिड़काव करें — लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QAG-06"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "रोग-रोधी किस्म लगाएँ और खेत की नियमित निगरानी करें, ताकि शुरू में ही पकड़ में आए।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "रोग तेज़ी से फैल रहा हो या दवा-चुनाव में शक हो, तो KVK सागर से पूछें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Yellow-orange striped powdery stripes on wheat leaves point to yellow rust. It grows fast in cool, damp weather.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "How to identify" },
+        { "type": "list", "items": [
+          { "text": "Powdery deposits in yellow-orange stripes on the leaves; a yellow stain rubs off on your hand or cloth.", "cites": [] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cultural: grow resistant varieties and watch for the first signs of disease." },
+          { "text": "Chemical: spray propiconazole (Tilt) 25 EC @ 0.1% (1 ml/litre); about 0.5 litre per hectare is enough to cover the crop — use only the dose written on the label.", "cites": ["S-QAG-05"] },
+          { "text": "Alternative: spray propiconazole 25 EC (0.1%) or mancozeb 75 WP (0.2%) at a 15-day interval — use only the dose written on the label.", "cites": ["S-QAG-06"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Grow a resistant variety and scout the field regularly, so you catch it early." }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If the disease spreads fast or you are unsure which product to use, ask KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAG-05", "S-QAG-06"]
+    },
+    {
+      "slug": "makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon",
+      "crop": "maize",
+      "category": "pest",
+      "season": "kharif",
+      "question_hi": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें?",
+      "question_en": "A borer-like pest is eating my maize leaves — what should I do?",
+      "short_hi": "यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्यादा प्रकोप पर क्लोरेंट्रानिलिप्रोल या इमामेक्टिन बेंज़ोएट जैसी दवा लेबल के अनुसार छिड़कें।",
+      "short_en": "This is often fall armyworm. Its larva eats the soft whorl of the plant and leaves holes and droppings. Early on, destroy eggs and larvae by hand. In a heavy attack, spray a product like chlorantraniliprole or emamectin benzoate, as per the label.",
+      "blocks": [
+        { "type": "paragraph", "text": "मक्का में व्होरल (बीच का कोमल भाग) खाने वाला कीट अक्सर फॉल आर्मीवर्म होता है। सूंडी पत्तियों में छेद और मल (फ़्रास) छोड़ती है।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "पहचान" },
+        { "type": "list", "items": [
+          { "text": "पत्तियों और व्होरल में कटे-फटे छेद और सूखा मल (फ़्रास) दिखता है।", "cites": [] },
+          { "text": "सूंडी के सिर पर उल्टा 'Y' और शरीर पर काले धब्बे होते हैं।", "cites": [] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सांस्कृतिक: शुरुआत में अंडे के समूह और सूंडियाँ हाथ से निकालकर नष्ट करें; समय पर बुआई करें।" },
+          { "text": "रासायनिक: भारत में किए गए खेत परीक्षणों में क्लोरेंट्रानिलिप्रोल 18.5 SC, फिर इमामेक्टिन बेंज़ोएट 5 SG और स्पिनेटोराम 11.7 SC सबसे प्रभावी रहे; पहला छिड़काव बुआई के 15 दिन बाद किया गया — लेबल पर लिखी मात्रा और केवल मंज़ूर कीटनाशक ही उपयोग करें।", "cites": ["S-QAG-08"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "समय पर बुआई करें और शुरुआती अवस्था में नियमित निगरानी करें।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "कीट की पहचान या सही दवा में शक हो, तो KVK सागर से पूछें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "A whorl-eating pest in maize is often fall armyworm. The larva leaves holes and droppings (frass) in the leaves.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "How to identify" },
+        { "type": "list", "items": [
+          { "text": "You see ragged holes and dry droppings (frass) in the leaves and whorl.", "cites": [] },
+          { "text": "The larva has an inverted 'Y' on its head and black spots on its body.", "cites": [] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cultural: early on, pick off and destroy egg masses and larvae by hand; sow on time." },
+          { "text": "Chemical: in field trials in India, chlorantraniliprole 18.5 SC, then emamectin benzoate 5 SG and spinetoram 11.7 SC were the most effective; the first spray was given 15 days after sowing — use only the dose written on the label, and only registered insecticides.", "cites": ["S-QAG-08"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Sow on time and scout regularly in the early stage." }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If you are unsure of the pest or the right product, ask KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAG-08"]
+    },
+    {
+      "slug": "gehun-kauna-kisma-saagara-achchhi-sinchaai-kitani",
+      "crop": "wheat",
+      "category": "variety",
+      "season": "rabi",
+      "question_hi": "सागर में गेहूं की कौन-सी किस्म अच्छी है और कितनी सिंचाई चाहिए?",
+      "question_en": "Which wheat variety is good for Sagar and how much irrigation does it need?",
+      "short_hi": "सागर जैसे मध्य प्रदेश के इलाके के लिए लोक-1, GW-322, GW-366, GW-273 जैसी किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। सिंचाई फसल की क्रांतिक (नाज़ुक) अवस्थाओं पर करें — सही संख्या के लिए KVK सागर से पुष्टि करें।",
+      "short_en": "For a Madhya Pradesh area like Sagar, varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. Irrigate at the crop's critical stages — confirm the number of irrigations with KVK Sagar.",
+      "blocks": [
+        { "type": "paragraph", "text": "अपने क्षेत्र, सिंचाई की सुविधा और बाज़ार की मांग के अनुसार किस्म चुनें।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "अनुशंसित किस्में" },
+        { "type": "list", "items": [
+          { "text": "सामान्य गेहूं: लोक-1, GW-322, GW-273, GW-366, GW-173, MP-1203, GW-451, GW-3288, JW-3211 आदि।", "cites": ["S-QAG-07"] },
+          { "text": "शरबती गेहूं: C-306, सुजाता (HI-617), अमर (HW 2004), अमृता (HI 1500), हर्षिता (HI 1531), HD 2987 आदि।", "cites": ["S-QAG-07"] },
+          { "text": "डुरम गेहूं: पूसा तेजस (HI-8759) आदि।", "cites": ["S-QAG-07"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "सिंचाई" },
+        { "type": "list", "items": [
+          { "text": "गेहूं में सिंचाई फसल की क्रांतिक (नाज़ुक) अवस्थाओं पर करें। सिंचाई की संख्या जमीन और मौसम पर निर्भर करती है — सही संख्या के लिए KVK सागर से पुष्टि करें।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "किस्म-चुनाव और सिंचाई-समय पर पक्की सलाह के लिए KVK सागर से पूछें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Choose a variety to suit your area, irrigation facility and market demand.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "Recommended varieties" },
+        { "type": "list", "items": [
+          { "text": "Common wheat: Lok-1, GW-322, GW-273, GW-366, GW-173, MP-1203, GW-451, GW-3288, JW-3211 and more.", "cites": ["S-QAG-07"] },
+          { "text": "Sharbati wheat: C-306, Sujata (HI-617), Amar (HW 2004), Amrita (HI 1500), Harshita (HI 1531), HD 2987 and more.", "cites": ["S-QAG-07"] },
+          { "text": "Durum wheat: Pusa Tejas (HI-8759) and more.", "cites": ["S-QAG-07"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Irrigation" },
+        { "type": "list", "items": [
+          { "text": "Irrigate wheat at the crop's critical stages. The number of irrigations depends on soil and weather — confirm the right number with KVK Sagar." }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "For firm advice on variety choice and irrigation timing, ask KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAG-07"]
+    },
+    {
+      "slug": "which-wheat-seed-variety-is-best-for-sagar-district",
+      "crop": "wheat",
+      "category": "variety",
+      "season": "rabi",
+      "question_hi": "सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है?",
+      "question_en": "Which wheat seed variety is best for Sagar district?",
+      "short_hi": "मध्य प्रदेश के लिए लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम में पूसा तेजस (HI-8759) अच्छी है। अपने क्षेत्र और सिंचाई के अनुसार 2-3 किस्में चुनें।",
+      "short_en": "For Madhya Pradesh, common wheat varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. In durum, Pusa Tejas (HI-8759) is good. Pick 2-3 varieties to suit your area and irrigation.",
+      "blocks": [
+        { "type": "paragraph", "text": "'सबसे अच्छी' एक किस्म नहीं होती — अपने क्षेत्र, सिंचाई और बाज़ार के अनुसार अनुशंसित किस्म चुनें।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "अनुशंसित किस्में" },
+        { "type": "list", "items": [
+          { "text": "सामान्य गेहूं: लोक-1, GW-322, GW-273, GW-366, GW-173, MP-1203, GW-451, GW-3288, JW-3211 आदि।", "cites": ["S-QAG-07"] },
+          { "text": "शरबती गेहूं: C-306, सुजाता (HI-617), अमर (HW 2004), अमृता (HI 1500), हर्षिता (HI 1531), HD 2987 आदि।", "cites": ["S-QAG-07"] },
+          { "text": "डुरम गेहूं: पूसा तेजस (HI-8759) आदि।", "cites": ["S-QAG-07"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "कैसे चुनें" },
+        { "type": "list", "items": [
+          { "text": "सिंचाई की सुविधा, पकने का समय और बाज़ार की मांग देखकर 2-3 किस्में चुनें।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "अपने खेत के लिए सबसे सही किस्म की पुष्टि KVK सागर से करें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "There is no single 'best' variety — choose a recommended variety to suit your area, irrigation and market.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "Recommended varieties" },
+        { "type": "list", "items": [
+          { "text": "Common wheat: Lok-1, GW-322, GW-273, GW-366, GW-173, MP-1203, GW-451, GW-3288, JW-3211 and more.", "cites": ["S-QAG-07"] },
+          { "text": "Sharbati wheat: C-306, Sujata (HI-617), Amar (HW 2004), Amrita (HI 1500), Harshita (HI 1531), HD 2987 and more.", "cites": ["S-QAG-07"] },
+          { "text": "Durum wheat: Pusa Tejas (HI-8759) and more.", "cites": ["S-QAG-07"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "How to choose" },
+        { "type": "list", "items": [
+          { "text": "Look at your irrigation, maturity period and market demand, and pick 2-3 varieties." }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "Confirm the variety that best suits your field with KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAG-07"]
+    },
+    {
+      "slug": "mere-kheta-mitti-kaali-chikani-soyaabina-bone",
+      "crop": "",
+      "category": "soil",
+      "season": "kharif",
+      "question_hi": "मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ?",
+      "question_en": "My field has black clay soil — how do I get the soil tested before sowing soybean?",
+      "short_hi": "soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए खाद की मात्रा बताता है। यह हर दो साल में मुफ़्त मिलता है।",
+      "short_en": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or Krishi Vigyan Kendra. The card gives your soil's status on 12 parameters and the fertiliser amount for the crop. It is free, every two years.",
+      "blocks": [
+        { "type": "paragraph", "text": "सॉयल हेल्थ कार्ड (SHC) एक रिपोर्ट कार्ड है, जो मिट्टी की स्थिति 12 मापदंडों पर बताता है। यह किसानों को हर दो साल में मुफ़्त दिया जाता है।", "cites": ["S-QAS-07", "S-QAS-08"] },
+        { "type": "heading", "level": 3, "text": "कार्ड क्या बताता है" },
+        { "type": "list", "items": [
+          { "text": "12 मापदंड: N, P, K (मुख्य पोषक), S (गौण), Zn, Cu, Fe, Bo, Mn (सूक्ष्म पोषक), और pH, OC, EC (भौतिक गुण)।", "cites": ["S-QAS-08"] },
+          { "text": "कार्ड फसल के लिए खाद की मात्रा की सलाह भी देता है।", "cites": ["S-QAS-07", "S-QAS-08"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें (जाँच कैसे कराएँ)" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि विज्ञान केंद्र (KVK)/ब्लॉक कृषि कार्यालय पर मिट्टी जाँच का अनुरोध करें।", "cites": ["S-QAS-07"] },
+          { "text": "कृषि कर्मचारी खेत से मिट्टी का नमूना लेते हैं और प्रयोगशाला में जाँच होती है।", "cites": ["S-QAS-07"] },
+          { "text": "कार्ड में लिखी सलाह के अनुसार सोयाबीन में खाद डालें।", "cites": ["S-QAS-07", "S-QAS-08"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "हर दो साल में मिट्टी जाँच कराएँ, ताकि पोषक तत्वों का सही संतुलन बना रहे।", "cites": ["S-QAS-07"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "कहाँ संपर्क करें" },
+        { "type": "list", "items": [
+          { "text": "नमूना लेने के सही तरीके और गहराई के लिए KVK सागर या ब्लॉक कृषि कार्यालय से पूछें।", "cites": ["S-QAS-07"] }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "The Soil Health Card (SHC) is a report card that tells your soil's status on 12 parameters. It is given to farmers free every two years.", "cites": ["S-QAS-07", "S-QAS-08"] },
+        { "type": "heading", "level": 3, "text": "What the card shows" },
+        { "type": "list", "items": [
+          { "text": "The 12 parameters: N, P, K (main nutrients), S (secondary), Zn, Cu, Fe, Bo, Mn (micro-nutrients), and pH, OC, EC (physical properties).", "cites": ["S-QAS-08"] },
+          { "text": "The card also advises the fertiliser amount for the crop.", "cites": ["S-QAS-07", "S-QAS-08"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do (how to get it tested)" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby Krishi Vigyan Kendra (KVK) or block agriculture office.", "cites": ["S-QAS-07"] },
+          { "text": "Agriculture staff take a soil sample from the field and it is tested in a lab.", "cites": ["S-QAS-07"] },
+          { "text": "Add fertiliser to the soybean as per the advice written on the card.", "cites": ["S-QAS-07", "S-QAS-08"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Get the soil tested every two years, so the nutrient balance stays right.", "cites": ["S-QAS-07"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Where to get help" },
+        { "type": "list", "items": [
+          { "text": "For the correct sampling method and depth, ask KVK Sagar or the block agriculture office.", "cites": ["S-QAS-07"] }
+        ]}
+      ],
+      "sources": ["S-QAS-07", "S-QAS-08"]
+    },
+    {
+      "slug": "soyaabina-buvaai-sida-drila-sahi-haatha-chhitakakara",
+      "crop": "soybean",
+      "category": "sowing",
+      "season": "kharif",
+      "question_hi": "सोयाबीन की बुवाई सीड ड्रिल से सही है या हाथ से छिटककर?",
+      "question_en": "Is seed drill sowing better for soybean, or broadcasting by hand?",
+      "short_hi": "सीड ड्रिल (कतार में बुवाई) बेहतर है, क्योंकि इससे बीज सही गहराई और दूरी पर पड़ता है और पौधों की संख्या एक-सी रहती है। कतारों में 30 सेमी और पौधों में 5 सेमी की दूरी रखें। छिटककर बुवाई में बीज असमान पड़ता है।",
+      "short_en": "A seed drill (line sowing) is better, because the seed goes in at the right depth and spacing and the plant stand stays even. Keep 30 cm between rows and 5 cm between plants. Broadcasting scatters the seed unevenly.",
+      "blocks": [
+        { "type": "paragraph", "text": "सीड ड्रिल से कतार में बुवाई करने पर बीज सही गहराई और दूरी पर पड़ता है, जिससे पौधों की संख्या एक-सी रहती है। हाथ से छिटककर बोने पर बीज असमान पड़ता है और कुछ जगह घना, कुछ जगह खाली रह जाता है।", "cites": ["S-QAG-03"] },
+        { "type": "heading", "level": 3, "text": "सही दूरी" },
+        { "type": "list", "items": [
+          { "text": "कतारों में 30 सेमी और पौधों में 5 सेमी की दूरी रखें।", "cites": ["S-QAG-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सीड ड्रिल से कतार में बोएँ, ताकि गहराई और दूरी एक-सी रहे।", "cites": ["S-QAG-03"] },
+          { "text": "बुआई से 24 घंटे पहले बीज को कार्बेंडाज़िम या थायरम @ 2 ग्राम/किग्रा बीज से उपचारित करें — लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QAG-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "ध्यान रखें" },
+        { "type": "list", "items": [
+          { "text": "काली-भारी (चिकनी) मिट्टी में जल-निकासी के लिए ब्रॉड-बेड और फरो (BBF) या मेड़-नाली पद्धति अपनाना उपयोगी होता है — सही तरीके के लिए KVK सागर से पूछें।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "मशीन, गहराई या BBF पद्धति पर सलाह के लिए KVK सागर से पूछें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "With a seed drill, line sowing places the seed at the right depth and spacing, so the plant stand stays even. Broadcasting by hand scatters the seed unevenly — thick in some spots, empty in others.", "cites": ["S-QAG-03"] },
+        { "type": "heading", "level": 3, "text": "Right spacing" },
+        { "type": "list", "items": [
+          { "text": "Keep 30 cm between rows and 5 cm between plants.", "cites": ["S-QAG-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Sow in lines with a seed drill, so depth and spacing stay even.", "cites": ["S-QAG-03"] },
+          { "text": "24 hours before sowing, treat the seed with carbendazim or thiram @ 2 g/kg seed — use only the dose written on the label.", "cites": ["S-QAG-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Keep in mind" },
+        { "type": "list", "items": [
+          { "text": "In heavy black (clay) soil, a broad-bed and furrow (BBF) or ridge-and-furrow method helps drainage — ask KVK Sagar for the right method." }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "For advice on the machine, depth or the BBF method, ask KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAG-03"]
+    },
+    {
+      "slug": "agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri",
+      "crop": "soybean",
+      "category": "weather",
+      "season": "kharif",
+      "question_hi": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ?",
+      "question_en": "Rain is likely in the next three-four days — what do I do with my cut soybean?",
+      "short_hi": "कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ही थ्रेशिंग करें — फलियाँ पीली-सूखी होने पर काटें।",
+      "short_en": "Protect cut soybean from rain, or the grain can blacken and germination drops. Cover the crop with a tarpaulin on high, dry ground. Thresh only after the grain is properly dry — cut when the pods are yellow and dry.",
+      "blocks": [
+        { "type": "paragraph", "text": "कटी-रखी सोयाबीन पर बारिश पड़ने से दाना गीला होकर काला पड़ सकता है और गुणवत्ता घट जाती है। इसलिए फसल को सूखी और सुरक्षित जगह रखना ज़रूरी है।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "पहचान — कटाई का सही समय" },
+        { "type": "list", "items": [
+          { "text": "जब ज़्यादातर फलियाँ पीली-सूखी हों और पत्तियाँ गिरने लगें, तब फसल कटाई के लिए तैयार है।", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "कटी फसल को तिरपाल/पॉलिथीन से ढककर ऊँची, सूखी जगह पर रखें, ताकि बारिश का पानी न लगे।" },
+          { "text": "दाना ठीक से सूखने पर ही थ्रेशिंग करें; जब ज़्यादातर फलियाँ पीली पड़ जाएँ तब पूरा पौधा काटें, सुखाएँ और थ्रेशिंग करें।", "cites": ["S-QAG-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "मौसम की जानकारी देखकर कटाई का दिन तय करें; बारिश के ठीक पहले बड़ी कटाई से बचें।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "भंडारण या थ्रेशिंग के लिए सही नमी पर सलाह चाहिए, तो KVK सागर से पूछें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "If rain falls on cut-and-kept soybean, the grain gets wet, can blacken and loses quality. So it is important to keep the crop in a dry, safe place.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "How to identify — the right harvest time" },
+        { "type": "list", "items": [
+          { "text": "When most pods are yellow and dry and the leaves start to fall, the crop is ready to harvest.", "cites": ["S-QAG-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cover the cut crop with a tarpaulin or polythene on high, dry ground, so rainwater does not reach it." },
+          { "text": "Thresh only after the grain is properly dry; when most pods turn yellow, cut the whole plant, dry it, and thresh.", "cites": ["S-QAG-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Check the weather forecast to pick the harvest day; avoid a big harvest just before rain." }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If you need advice on the right moisture for storage or threshing, ask KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAG-03", "S-QAG-04"]
+    },
+    {
+      "slug": "masura-buvaai-sahi-samaya-bija-dara-bija",
+      "crop": "lentil",
+      "category": "sowing",
+      "season": "rabi",
+      "question_hi": "मसूर की बुवाई का सही समय, बीज दर और बीज उपचार क्या है?",
+      "question_en": "What is the right sowing time, seed rate and seed treatment for lentil (masoor)?",
+      "short_hi": "मसूर रबी की फसल है। बुवाई अक्टूबर के मध्य से नवंबर के पहले सप्ताह तक करें। बीज दर लगभग 12-15 किग्रा प्रति एकड़ रखें। बुवाई से पहले बीज को कैप्टान या थायरम @ 3 ग्राम/किग्रा से उपचारित करें — लेबल की मात्रा मानें।",
+      "short_en": "Lentil is a rabi crop. Sow from mid-October to the first week of November. Keep the seed rate at about 12-15 kg per acre. Before sowing, treat the seed with captan or thiram @ 3 g/kg — use only the label dose.",
+      "blocks": [
+        { "type": "paragraph", "text": "मसूर रबी (सर्दी) की दलहन फसल है। सही समय, बीज दर और बीज उपचार से अंकुरण अच्छा होता है और बीमारियाँ कम आती हैं।", "cites": ["S-QAL-01"] },
+        { "type": "heading", "level": 3, "text": "बुवाई की जानकारी" },
+        { "type": "list", "items": [
+          { "text": "बुवाई का समय: अक्टूबर के मध्य से नवंबर के पहले सप्ताह तक।", "cites": ["S-QAL-01"] },
+          { "text": "बीज दर: लगभग 12-15 किग्रा प्रति एकड़।", "cites": ["S-QAL-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें (बीज उपचार)" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "बुवाई से पहले बीज को कैप्टान या थायरम @ 3 ग्राम/किग्रा बीज से उपचारित करें — लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QAL-01"] },
+          { "text": "बीज को राइज़ोबियम कल्चर से भी उपचारित करें; तब बुआई के समय प्रति एकड़ 12 किग्रा यूरिया और 50 किग्रा सुपर फॉस्फेट डालें।", "cites": ["S-QAL-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "स्वस्थ, उपचारित बीज समय पर बोएँ, ताकि बीजजनित रोग कम आएँ।", "cites": ["S-QAL-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "अपने क्षेत्र के लिए सही किस्म और बीज दर की पुष्टि KVK सागर से करें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Lentil is a rabi (winter) pulse crop. The right time, seed rate and seed treatment give good germination and fewer diseases.", "cites": ["S-QAL-01"] },
+        { "type": "heading", "level": 3, "text": "Sowing details" },
+        { "type": "list", "items": [
+          { "text": "Sowing time: from mid-October to the first week of November.", "cites": ["S-QAL-01"] },
+          { "text": "Seed rate: about 12-15 kg per acre.", "cites": ["S-QAL-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do (seed treatment)" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Before sowing, treat the seed with captan or thiram @ 3 g/kg seed — use only the dose written on the label.", "cites": ["S-QAL-01"] },
+          { "text": "Also treat the seed with Rhizobium culture; then at sowing apply 12 kg urea and 50 kg super phosphate per acre.", "cites": ["S-QAL-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Sow healthy, treated seed on time, so seed-borne disease stays low.", "cites": ["S-QAL-01"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "Confirm the right variety and seed rate for your area with KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAL-01"]
+    },
+    {
+      "slug": "dhaana-narsari-paudhe-pile-kamajora-raha-gae",
+      "crop": "paddy",
+      "category": "pest",
+      "season": "kharif",
+      "question_hi": "धान की नर्सरी के पौधे पीले और कमजोर रह गए हैं, क्या करूँ?",
+      "question_en": "My paddy nursery seedlings are yellow and weak — what should I do?",
+      "short_hi": "नर्सरी का पीलापन अक्सर नाइट्रोजन या जिंक की कमी, या पानी की गड़बड़ी से होता है। अगर पुरानी (नीचे की) पत्तियाँ पीली हों तो नाइट्रोजन की कमी हो सकती है। सुधार के लिए 1% यूरिया के साथ 0.5% ज़िंक सल्फेट का पर्णीय छिड़काव करें — लेबल की मात्रा मानें।",
+      "short_en": "Nursery yellowing is often from nitrogen or zinc shortage, or a water problem. If the old (lower) leaves are yellow, it can be nitrogen shortage. To correct it, give a foliar spray of 1% urea with 0.5% zinc sulphate — use only the label dose.",
+      "blocks": [
+        { "type": "paragraph", "text": "धान की नर्सरी का पीलापन अक्सर पोषक तत्व की कमी या पानी की गड़बड़ी से होता है। सही कारण पहचानकर ही सुधार करें।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "पहचान" },
+        { "type": "list", "items": [
+          { "text": "पुरानी (नीचे की) पत्तियाँ पीली-हरी हो जाएँ, तो अक्सर नाइट्रोजन की कमी होती है।", "cites": ["S-QAL-02"] },
+          { "text": "छोटी (ऊपर की) पत्तियों के आधार पर भूरे-धुंधले धब्बे हों, तो जिंक की कमी हो सकती है।", "cites": ["S-QAL-02"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सांस्कृतिक: नर्सरी में पानी का स्तर ठीक रखें — न ज़्यादा जलभराव, न सूखा।" },
+          { "text": "पोषण (नाइट्रोजन): लक्षण मिटने तक हर हफ्ते 1% यूरिया का पर्णीय छिड़काव करें — लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QAL-02"] },
+          { "text": "पोषण (नाइट्रोजन+जिंक दोनों): 0.5% ज़िंक सल्फेट + 1.0% यूरिया का छिड़काव 15 दिन के अंतराल पर, लक्षण मिटने तक करें — लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QAL-02"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "संतुलित खाद दें और नर्सरी में पानी का प्रबंधन ठीक रखें, ताकि पौधे मजबूत रहें।" }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "कारण साफ़ न हो या सुधार न दिखे, तो KVK सागर से पूछें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Yellowing in a paddy nursery is often from a nutrient shortage or a water problem. Correct it only after you identify the right cause.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "How to identify" },
+        { "type": "list", "items": [
+          { "text": "If the old (lower) leaves turn yellowish-green, it is often a nitrogen shortage.", "cites": ["S-QAL-02"] },
+          { "text": "If the base of the young (upper) leaves has brown chlorotic blotches, it can be a zinc shortage.", "cites": ["S-QAL-02"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cultural: keep the water level in the nursery right — neither waterlogged nor dry." },
+          { "text": "Nutrition (nitrogen): give a foliar spray of 1% urea every week until the symptoms disappear — use only the dose written on the label.", "cites": ["S-QAL-02"] },
+          { "text": "Nutrition (nitrogen + zinc): spray 0.5% zinc sulphate + 1.0% urea at a 15-day interval until the symptoms disappear — use only the dose written on the label.", "cites": ["S-QAL-02"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Give balanced fertiliser and manage nursery water well, so the seedlings stay strong." }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If the cause is unclear or there is no improvement, ask KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAL-02"]
+    },
+    {
+      "slug": "sarason-phasala-maahu-chenpaa-laga-gayaa-tahaniyon",
+      "crop": "mustard",
+      "category": "pest",
+      "season": "rabi",
+      "question_hi": "सरसों की फसल में माहू (चेंपा) टहनियों पर लग गया है, क्या करें?",
+      "question_en": "Aphid (chenpa) has attacked the shoots of my mustard — what should I do?",
+      "short_hi": "यह माहू (सरसों का एफिड) है। निम्फ और वयस्क पत्तियों, कलियों और फलियों का रस चूसते हैं, जिससे पत्तियाँ मुड़ जाती हैं। पीला चिपचिपा जाल लगाएँ और परभक्षी कीटों (लेडीबर्ड) को बचाएँ। फूल अवस्था में ऑक्सीडेमेटन-मिथाइल या डाइमिथोएट लेबल के अनुसार छिड़कें।",
+      "short_en": "This is mustard aphid. Nymphs and adults suck sap from leaves, buds and pods, so leaves curl. Hang yellow sticky traps and protect predators like ladybird beetles. At flowering, spray oxydemeton-methyl or dimethoate, as per the label.",
+      "blocks": [
+        { "type": "paragraph", "text": "सरसों में माहू (चेंपा) एक बड़ा कीट है। स्रोत के अनुसार \"Both nymphs and adults suck the sap from leaves, buds and pods\" — निम्फ और वयस्क दोनों पत्तियों, कलियों और फलियों का रस चूसते हैं।", "cites": ["S-QAL-03"] },
+        { "type": "heading", "level": 3, "text": "पहचान" },
+        { "type": "list", "items": [
+          { "text": "ग्रसित पत्तियाँ मुड़ जाती हैं और तेज़ प्रकोप में पौधा मुरझाकर सूख सकता है।", "cites": ["S-QAL-03"] },
+          { "text": "टहनियों और फलियों पर हरे-भूरे छोटे कीटों के झुंड दिखते हैं।", "cites": ["S-QAL-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "सांस्कृतिक: सहनशील किस्में (जैसे JM-1, RK-9501) लगाएँ; 20 अक्टूबर से पहले बोई फसल नुकसान से बच जाती है।", "cites": ["S-QAL-03"] },
+          { "text": "यांत्रिक/जैविक: निगरानी के लिए पीला चिपचिपा जाल लगाएँ; लेडीबर्ड भृंग जैसे परभक्षी कीटों को बचाएँ, जो माहू खाते हैं।", "cites": ["S-QAL-03"] },
+          { "text": "रासायनिक: फूल अवस्था में ऑक्सीडेमेटन-मिथाइल या डाइमिथोएट @ 625-1000 मिली प्रति हेक्टेयर छिड़कें — लेबल पर लिखी मात्रा और केवल मंज़ूर कीटनाशक ही उपयोग करें।", "cites": ["S-QAL-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "रोकथाम" },
+        { "type": "list", "items": [
+          { "text": "समय पर (20 अक्टूबर से पहले) बुवाई करें और शुरुआती प्रकोप में ग्रसित भाग हटा दें।", "cites": ["S-QAL-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "KVK सागर को कब फ़ोन करें" },
+        { "type": "list", "items": [
+          { "text": "प्रकोप तेज़ हो या सही दवा-मात्रा में शक हो, तो KVK सागर से पूछें।" }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Mustard aphid (chenpa) is a major pest of mustard. The source says \"Both nymphs and adults suck the sap from leaves, buds and pods\" — both nymphs and adults suck sap from leaves, buds and pods.", "cites": ["S-QAL-03"] },
+        { "type": "heading", "level": 3, "text": "How to identify" },
+        { "type": "list", "items": [
+          { "text": "Infested leaves curl, and in a heavy attack the plant can wither and die.", "cites": ["S-QAL-03"] },
+          { "text": "Clusters of small green-brown insects appear on the shoots and pods.", "cites": ["S-QAL-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Cultural: grow tolerant varieties (like JM-1, RK-9501); a crop sown before 20 October escapes the damage.", "cites": ["S-QAL-03"] },
+          { "text": "Mechanical/biological: set up yellow sticky traps to monitor; protect predators like ladybird beetles that feed on aphids.", "cites": ["S-QAL-03"] },
+          { "text": "Chemical: at flowering, spray oxydemeton-methyl or dimethoate @ 625-1000 ml per hectare — use only the dose written on the label, and only registered insecticides.", "cites": ["S-QAL-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Prevention" },
+        { "type": "list", "items": [
+          { "text": "Sow on time (before 20 October) and remove infested parts in an early attack.", "cites": ["S-QAL-03"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "When to call KVK Sagar" },
+        { "type": "list", "items": [
+          { "text": "If the attack is heavy or you are unsure of the right product and dose, ask KVK Sagar." }
+        ]}
+      ],
+      "sources": ["S-QAL-03"]
+    },
+    {
+      "slug": "drona-didi-yojanaa-gaanva-drona-davaa-chhidakaava",
+      "crop": "",
+      "category": "drone_didi",
+      "season": "all",
+      "question_hi": "नमो ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे मिलेगा?",
+      "question_en": "What is the Namo Drone Didi scheme and how can we get drone spraying in the village?",
+      "short_hi": "नमो ड्रोन दीदी एक केंद्र सरकार की योजना है। इसमें महिला स्वयं सहायता समूहों (SHG) को ड्रोन दिया जाता है, ताकि वे किराए पर किसानों के खेतों में तरल खाद और कीटनाशक का छिड़काव करें। ड्रोन लागत पर 80% (अधिकतम 8 लाख रुपये) की सब्सिडी मिलती है।",
+      "short_en": "Namo Drone Didi is a central government scheme. It gives drones to women Self Help Groups (SHGs) so they can spray liquid fertilizers and pesticides on farmers' fields on rent. A subsidy of 80% of the drone cost (up to 8 lakh rupees) is given.",
+      "blocks": [
+        { "type": "paragraph", "text": "नमो ड्रोन दीदी एक केंद्र सरकार की योजना है। इसमें महिला स्वयं सहायता समूहों (SHG) को ड्रोन दिया जाता है, जिससे वे किसानों को किराए पर खेती-सेवा दें।", "cites": ["S-QAL-04"] },
+        { "type": "heading", "level": 3, "text": "यह क्या है" },
+        { "type": "list", "items": [
+          { "text": "ड्रोन का उपयोग केवल खेती के किराए-कार्य के लिए — खेतों में तरल खाद और कीटनाशक के छिड़काव के लिए होता है।", "cites": ["S-QAL-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "कौन पात्र है" },
+        { "type": "list", "items": [
+          { "text": "केवल महिला स्वयं सहायता समूह (SHG) आवेदन कर सकते हैं।", "cites": ["S-QAL-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या मिलता है (रकम)" },
+        { "type": "list", "items": [
+          { "text": "ड्रोन लागत पर 80% या अधिकतम 8 लाख रुपये की सब्सिडी मिलती है।", "cites": ["S-QAL-04"] },
+          { "text": "बाकी रकम AIF से कर्ज के रूप में ले सकते हैं, जिस पर 3% ब्याज लगता है।", "cites": ["S-QAL-04"] },
+          { "text": "ड्रोन उड़ाने की मुफ़्त ट्रेनिंग दी जाती है।", "cites": ["S-QAL-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "कहाँ संपर्क करें" },
+        { "type": "list", "items": [
+          { "text": "लाभार्थी महिलाएँ नजदीकी ग्राम पंचायत कार्यालय या प्रधानमंत्री किसान समृद्धि केंद्र से संपर्क कर सकती हैं।", "cites": ["S-QAL-04"] }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Namo Drone Didi is a central government scheme. It gives drones to women Self Help Groups (SHGs) so they can offer farming services to farmers on rent.", "cites": ["S-QAL-04"] },
+        { "type": "heading", "level": 3, "text": "What it is" },
+        { "type": "list", "items": [
+          { "text": "The drone is used only for farming rental work — spraying liquid fertilizers and pesticides on fields.", "cites": ["S-QAL-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Who is eligible" },
+        { "type": "list", "items": [
+          { "text": "Only women Self Help Groups (SHGs) can apply.", "cites": ["S-QAL-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What you get (amounts)" },
+        { "type": "list", "items": [
+          { "text": "A subsidy of 80% of the drone cost, or a maximum of 8 lakh rupees.", "cites": ["S-QAL-04"] },
+          { "text": "The balance can be taken as a loan from AIF, at a 3% interest rate.", "cites": ["S-QAL-04"] },
+          { "text": "Free training to fly the drone is given.", "cites": ["S-QAL-04"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Where to get help" },
+        { "type": "list", "items": [
+          { "text": "Beneficiary women can contact the nearest Gram Panchayat office or Pradhan Mantri Kisan Samriddhi Kendra.", "cites": ["S-QAL-04"] }
+        ]}
+      ],
+      "sources": ["S-QAL-04"]
+    },
+    {
+      "slug": "kheti-juda-sarakaari-salaaha-mausama-jaanakaari-mujhe",
+      "crop": "",
+      "category": "general",
+      "season": "all",
+      "question_hi": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे कहाँ से मिलेगी?",
+      "question_en": "Where can I get government farming advice and weather information?",
+      "short_hi": "भरोसेमंद सलाह के लिए अपने नजदीकी कृषि विज्ञान केंद्र (KVK) या ब्लॉक कृषि कार्यालय से संपर्क करें। एमएसपी पर बिक्री के लिए MP e-Uparjan पोर्टल है। सरकारी पोर्टल और OTP-आधारित सेवाओं से योजना और भुगतान की जानकारी भी मिलती है।",
+      "short_en": "For reliable advice, contact your nearest Krishi Vigyan Kendra (KVK) or block agriculture office. For MSP sales there is the MP e-Uparjan portal. Government portals and OTP-based services also give scheme and payment information.",
+      "blocks": [
+        { "type": "paragraph", "text": "खेती की भरोसेमंद सलाह और योजनाओं की जानकारी के लिए सरकारी स्रोत ही सबसे सही हैं। नजदीकी KVK या कृषि कार्यालय सीधी सलाह देते हैं।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "कहाँ-कहाँ से मिलेगा" },
+        { "type": "list", "items": [
+          { "text": "नजदीकी कृषि विज्ञान केंद्र (KVK) या ब्लॉक कृषि कार्यालय — फसल, कीट-रोग और किस्म पर सीधी सलाह के लिए।" },
+          { "text": "योजना और भुगतान की जानकारी सरकारी पोर्टल पर OTP से देखें, जैसे pmkisan.gov.in पर अपना स्टेटस।", "cites": ["S-QAS-02"] },
+          { "text": "एमएसपी पर फसल बेचने के लिए मध्य प्रदेश का e-Uparjan पोर्टल (mpeuparjan.nic.in)।", "cites": ["S-QAS-10"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "फसल या कीट की समस्या पर पहले KVK सागर या कृषि कार्यालय से पूछें।" },
+          { "text": "योजना की किस्त या पात्रता के लिए सरकारी पोर्टल पर अपना स्टेटस देखें।", "cites": ["S-QAS-02"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "कहाँ संपर्क करें" },
+        { "type": "list", "items": [
+          { "text": "एमएसपी बिक्री में मदद के लिए अपने तहसील/खरीद केंद्र या e-Uparjan पोर्टल की हेल्पलाइन से संपर्क करें।", "cites": ["S-QAS-10"] }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "For reliable farming advice and scheme information, government sources are the best. A nearby KVK or agriculture office gives direct advice.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "Where to get it" },
+        { "type": "list", "items": [
+          { "text": "Your nearest Krishi Vigyan Kendra (KVK) or block agriculture office — for direct advice on crops, pests, diseases and varieties." },
+          { "text": "Check scheme and payment information on government portals with OTP, such as your status on pmkisan.gov.in.", "cites": ["S-QAS-02"] },
+          { "text": "To sell crops at MSP, use the Madhya Pradesh e-Uparjan portal (mpeuparjan.nic.in).", "cites": ["S-QAS-10"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "For a crop or pest problem, first ask KVK Sagar or the agriculture office." },
+          { "text": "For a scheme instalment or eligibility, check your status on the government portal.", "cites": ["S-QAS-02"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "Where to get help" },
+        { "type": "list", "items": [
+          { "text": "For help with MSP sales, contact your tehsil or procurement centre, or the e-Uparjan portal helpline.", "cites": ["S-QAS-10"] }
+        ]}
+      ],
+      "sources": ["S-QAS-02", "S-QAS-10"]
+    },
+    {
+      "slug": "saala-soyaabina-bhaava-kaisaa-rahegaa-mandi-bechane",
+      "crop": "",
+      "category": "market",
+      "season": "all",
+      "unpublish": true,
+      "unpublish_reason": "Price forecast cannot be sourced; selling-decision guidance is covered by msp-par-kaise-bechein-mp and msp-kya-hai.",
+      "question_hi": "इस साल सोयाबीन का भाव कैसा रहेगा, मंडी में कब बेचूँ?",
+      "question_en": "What will the soybean price be this year, and when should I sell in the mandi?",
+      "short_hi": "भविष्य का भाव कोई पक्का नहीं बता सकता — यह मांग, आवक और मौसम पर निर्भर करता है। बेचने का फैसला एमएसपी और मंडी भाव की तुलना करके लें। एमएसपी पर बेचने के लिए मध्य प्रदेश में e-Uparjan पोर्टल पर पंजीकरण कराएँ।",
+      "short_en": "No one can predict the future price — it depends on demand, arrivals and weather. Make the selling decision by comparing MSP and the mandi price. To sell at MSP in Madhya Pradesh, register on the e-Uparjan portal.",
+      "blocks": [
+        { "type": "paragraph", "text": "आने वाले समय का भाव कोई पक्का नहीं बता सकता, क्योंकि यह मांग, आवक और मौसम पर निर्भर करता है। इसलिए भाव का अनुमान देने के बजाय, बेचने का सही फैसला कैसे लें, यह देखें।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "बेचने का फैसला कैसे लें" },
+        { "type": "list", "items": [
+          { "text": "एमएसपी वह न्यूनतम दाम है जो सरकार तय करती है, ताकि बाजार भाव गिरने पर भी उचित मूल्य मिले; इसमें उत्पादन लागत पर कम-से-कम 50% लाभ तय होता है।", "cites": ["S-QAS-09"] },
+          { "text": "मंडी भाव और एमएसपी की तुलना करें; जो ऊँचा और भरोसेमंद हो, वहीं बेचें।", "cites": ["S-QAS-09"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "एमएसपी पर कैसे बेचें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "मध्य प्रदेश में e-Uparjan पोर्टल (mpeuparjan.nic.in) पर पंजीकरण कराएँ।", "cites": ["S-QAS-10"] },
+          { "text": "आधार, जमीन के रिकॉर्ड, बैंक खाता और मोबाइल नंबर देकर स्लॉट बुक करें और खरीद केंद्र पर फसल ले जाएँ।", "cites": ["S-QAS-10"] }
+        ]}
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "No one can predict the future price, because it depends on demand, arrivals and weather. So, instead of guessing the price, look at how to make the right selling decision.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "How to decide on selling" },
+        { "type": "list", "items": [
+          { "text": "MSP is the minimum price the government fixes, so you get a fair price even if the market falls; it sets a margin of at least 50% over the cost of production.", "cites": ["S-QAS-09"] },
+          { "text": "Compare the mandi price and MSP; sell wherever it is higher and reliable.", "cites": ["S-QAS-09"] }
+        ]},
+        { "type": "heading", "level": 3, "text": "How to sell at MSP" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "In Madhya Pradesh, register on the e-Uparjan portal (mpeuparjan.nic.in).", "cites": ["S-QAS-10"] },
+          { "text": "Give your Aadhaar, land records, bank account and mobile number, book a slot, and take your crop to the procurement centre.", "cites": ["S-QAS-10"] }
+        ]}
+      ],
+      "sources": ["S-QAS-09", "S-QAS-10"]
+    }
+  ]
+}

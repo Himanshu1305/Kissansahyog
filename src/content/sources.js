@@ -1499,6 +1499,34 @@ export const sources = {
     "url": "https://www.fao.org/4/t1838e/t1838e12.htm",
     "date": "n.d.",
     "type": "Official"
+  },
+  "S-QAL-01": {
+    "title": "Lentil (Masur) Crop — sowing, seed rate and seed treatment",
+    "publisher": "Apni Kheti",
+    "url": "https://www.apnikheti.com/en/pn/agriculture/crops/pulses/lentil-masur",
+    "date": "",
+    "type": "news"
+  },
+  "S-QAL-02": {
+    "title": "Paddy :: Nutrient Management (nutrient deficiency symptoms and correction)",
+    "publisher": "TNAU Agritech Portal, Tamil Nadu Agricultural University",
+    "url": "https://agritech.tnau.ac.in/expert_system/paddy/nutrientmanagement.html",
+    "date": "",
+    "type": "university"
+  },
+  "S-QAL-03": {
+    "title": "Crop Protection :: Pest :: Mustard (mustard aphid)",
+    "publisher": "TNAU Agritech Portal, Tamil Nadu Agricultural University",
+    "url": "https://agritech.tnau.ac.in/crop_protection/mustard/crop_prot_crop_insect_oil_mustard_6.html",
+    "date": "",
+    "type": "university"
+  },
+  "S-QAL-04": {
+    "title": "NAMO Drone Didi Scheme — subsidy, eligibility and loan facility",
+    "publisher": "GovtSchemes.in",
+    "url": "https://www.govtschemes.in/namo-drone-didi-scheme",
+    "date": "",
+    "type": "news"
   }
 }
 

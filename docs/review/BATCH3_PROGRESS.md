@@ -20,9 +20,23 @@ Rules kept in view: facts only from SOURCES.md/sources.js, keep every `cites`;
       (item 6) and the Q&A seeds (item 2); the style test goes fully green as those items complete.
       Judgement: a full stiffness re-read of all 217 KB of strings is impractical; the concrete
       avoid-list criterion + the already-<18 sentence average are the gate used for the UI sweep.
-- [ ] **Item 2** — Kisan Sawaal: English for every published Q&A (question_en, answer_en,
-      answer_blocks_en); rewrite 19 legacy rows into structure; reword 40 V2 Hindi to guide;
-      संक्षेप में ≤50 words (hi+en) on every Q&A.
+- [x] **Item 2** — Kisan Sawaal. Pipeline extended: `build-qa.mjs` now carries `short_en`/`blocks_en`/
+      `unpublish`; `seed-sawaal.mjs` now writes `question_en`, `answer_en` (संक्षेप EN), `answer_blocks_en`,
+      and sets `is_published=false` for unpublish rows. **All 40 V2 Q&As** got `short_en` + `blocks_en`
+      (English mirror, identical cites) + a light Hindi style reword (avoid words, long sentences) with
+      every number/dose/cite preserved — verified. **19 legacy rows** authored into
+      `docs/research/qa_raw/legacy.json` in the 5-part structure (short/पहचान/क्या करें
+      cultural→bio→chem/रोकथाम/KVK), bilingual, each sourced: 13 reuse the matching V2 cites (doses verified
+      to exist verbatim in the cited source), 4 fetch-and-quoted new sources **S-QAL-01** masoor (Apni Kheti),
+      **S-QAL-02** paddy nursery (TNAU), **S-QAL-03** mustard aphid (TNAU), **S-QAL-04** Namo Drone Didi
+      (GovtSchemes.in — PIB 403s to fetch), 1 reworded-general (dropped the unsourceable Kisan Call Centre
+      number), **1 unpublished**: `saala-soyaabina-bhaava-kaisaa-rahegaa-mandi-bechane` (price forecast cannot
+      be sourced; selling advice covered by msp-* Q&As). Re-seeded: **58 published**, 0 missing question_en/
+      answer_en/answer_blocks_en/answer_blocks; संक्षेप ≤50 words (hi+en) everywhere. v2_citation_audit 6/0;
+      Q&A seeds avoid-word clean. Safe for live app: only kisan_sawaal (V2-only) touched, content rows +
+      already-migrated additive columns (0052 answer_blocks_en), nothing renamed/required.
+      Judgement: unsourced legacy doses (FeSO4 0.5%, Carbendazim, HI-8498/GW-496/K-9107 varieties, the KCC
+      helpline) were dropped and replaced with "KVK सागर से पूछें", per the no-unsourced-fact rule.
 - [ ] **Item 3** — Greenhouse guide `/greenhouse/subsidy` (1,000–1,500 Hindi words).
 - [ ] **Item 4** — Jugaad guide `/jugaad/jankari` (800–1,200 Hindi words).
 - [ ] **Item 5** — Carbon credit `/carbon-credit` + brief `/carbon-credit/niti-sujhav`

@@ -35,7 +35,9 @@ for (const file of batches) {
   const recs = data.qas.map((q) => ({
     slug: q.slug, crop: q.crop || '', category: q.category, season: q.season || 'all',
     question_hi: q.question_hi, question_en: q.question_en,
-    short_hi: q.short_hi, blocks: q.blocks, sources: q.sources,
+    short_hi: q.short_hi, short_en: q.short_en,
+    blocks: q.blocks, blocks_en: q.blocks_en, sources: q.sources,
+    ...(q.unpublish ? { unpublish: true, unpublish_reason: q.unpublish_reason || '' } : {}),
   }))
   totalQas += recs.length
   const base = file.replace(/\.json$/, '')
