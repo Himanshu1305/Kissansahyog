@@ -1298,3 +1298,47 @@ report: `docs/review/BATCH1_REPORT.md`.
   **deferred** (prompt permits). See KNOWN_ISSUES.
 - **Tests:** full e2e 82/0 (new `e2e/batch1.spec.js` + 8 legacy post specs updated to the 3-step flow via
   `postStep1()`); all backend suites green; `v11_phase6` 31/0; `v2_seo_audit` 2/0; `build:full` OK.
+
+## Batch 2 — finish the structure (preview only) — 2026-10-07 (migrations 0051–0052)
+
+Spec: `docs/review/BATCH2_PROMPT.md`; report: `docs/review/BATCH2_REPORT.md`; progress:
+`docs/review/BATCH2_PROGRESS.md`. Items A–F done; G (public `/bazaar/*`) deferred (optional).
+Preview: **https://v2-preview.kissansahyog.pages.dev**.
+
+- **A — one layout everywhere:** finished the Batch 1 deferral. All 21 page-level `max-w-*`/`maxWidth`
+  removed from `src/screens/`; prose → `PageShell width="content"` (~70ch), the rest → `width="wide"`;
+  inner readable clamps marked `ks-allow-width`. Static guard `scripts/test/batch2_layout.mjs`. Dead
+  `components/ListingForm.jsx` **deleted** (v2_phase4/9 assertions repointed at `Post.jsx`).
+- **B — cold storage rebuilt** (`/cold-storage`, `/cold-storage/:district`): claim/correct UI + Admin
+  claim queue removed (RPCs/tables kept, hidden) → one **"गलत जानकारी? बताएँ"** `ReportButton`
+  (`cold_storage`). `ColdStorageFinder` (text + "मेरी लोकेशन" GPS + district/crop/type filters,
+  distance-sorted "~X किमी", post CTA → `/post?cat=warehouse&type=offer`). Cards: full address, products,
+  capacity, type, 📞 कॉल करें (tel:), WhatsApp (valid 10-digit mobile only), दिशा देखें (maps search, no
+  key). **Migration 0051** adds `latitude`/`longitude`/`geo_precision` + refreshes `cold_storage_public`;
+  `scripts/geocode-cold-storage.mjs` (Nominatim ≤1 req/s) → **239/243 = 98.4%**. V2-only, additive, safe.
+- **C — greenhouse split:** `/greenhouse` = marketplace (two preselect CTAs, listings grid w/ vendor
+  sub-type/type/district filters, link box → guide); **`/greenhouse/subsidy`** = moved guide (prerendered,
+  sitemap, SEO, FAQPage JSON-LD). `/post?cat=&type=` preselect added. **MP subsidy table VERIFIED** against
+  the MPFSTS state guideline PDF (p.2) → new primary source **S-GH-56**; Haryana MIDH kept secondary.
+- **D — jugaad split:** `/jugaad` = marketplace ("अपना जुगाड़ डालें" → `/post?cat=jugaad&type=offer`, chips
+  बेचना/किराया/सेवा/ऑर्डर पर बनाना/विकास में); **`/jugaad/jankari`** = moved info/legal guide (prerendered).
+  Simpler `categories/jugaad.jsx` (photo req, name, what-it-does, 5 types, own price; units-made +
+  testing-body removed from form, legacy values still shown; road-vehicle line inside the Post declaration,
+  `finalizeDetails` sets `not_road_vehicle:'true'`). Client + RPC agree.
+- **E — fasal-salah actionable:** crop cards are **buttons** → in-page crop **panel** (not a route):
+  आज की सलाह (`actionWindows` + weather), इस मौसम का काम (`cropadv_<slug>` only), आम समस्याएँ (crop Q&A,
+  hidden when none), पास में मदद (Browse + Drone Didi + equipment + KVK Sagar). Location control at top, public.
+- **F — kisan sawaal structure:** **Migration 0052** adds `answer_blocks_en` (jsonb) + a
+  `kisan_sawaal_slug_redirects` table (RLS public-read). `scripts/sawaal-reslug.mjs` gives every Q&A a
+  meaningful transliterated slug (0 legacy `sawaal-*` left, 16 redirects) and regenerates
+  `public/_redirects` 301s; `/sawaal/<old>` also client-redirects (`Navigate replace`). `SawaalDetail`:
+  EN only when toggle=EN **and** English exists, else Hindi + "available in Hindi only" note; legacy
+  (no `answer_blocks`) rows render in the box+body layout; breadcrumb होम › किसान सवाल › `<crop/topic>` ›
+  question. `/sawaal` index grouped by topic (full-width grid), ask form below. V2-only, additive, safe.
+- **Verification fixes:** `ContentBlocks` `break-words` (long URLs wrap on mobile); NavBar/SearchBar
+  compacted so the English top bar fits at 1280.
+- **Tests:** full backend suite green (0 failed); new `batch2_*` 50/0 total (`layout` 1, `coldstorage` 13,
+  `jugaad` 14, `fasal` 8, `sawaal` 14); `v11_phase6` 31/0, `v2_seo_audit` 2/0, `v2_citation_audit` 6/0;
+  `build:full` 178/178. E2E **80/82** — `phase17` sawaal-grid updated for the grouped layout (passes); the
+  2 failures (`phase18_transport`, `phase20_mela`) are pre-existing data/time dependencies (the mela seed
+  event ended 2026-10-06) in features untouched by Batch 2. Screenshots in `docs/review/shots-batch2/`.

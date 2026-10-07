@@ -10,6 +10,32 @@ follow-ups — documented so they're picked up deliberately, not discovered by s
 
 ---
 
+## Batch 2 — deferred / follow-ups (2026-10-07)
+
+- **Item G NOT built (public `/bazaar/*` category landing pages)** — explicitly optional in the spec
+  ("only if time allows"); deferred to avoid adding new public/prerendered SEO surface two days before
+  launch. The infrastructure (prerender-routes, sitemaps, Browse components, FAQPage/BreadcrumbList
+  JSON-LD) is already in place, so it can be picked up cleanly in Batch 3.
+- **Kisan Sawaal English is empty for now (by design)** — migration 0052 added `answer_blocks_en` and
+  `question_en`/`answer_en` exist, but they are unpopulated. When the language toggle is EN, the Q&A shows
+  the Hindi content with the note "This answer is available in Hindi only for now." **Batch 3 fills the
+  English.** The re-slug transliteration is phonetic (readable, not reversible).
+- **Batch 1 layout deferral is now RESOLVED** — all 21 page-level `max-w-*`/`maxWidth` wrappers were
+  removed in Batch 2 item A, and the static guard shipped as `scripts/test/batch2_layout.mjs` (not the
+  originally-planned `batch1_layout.mjs`). The Batch 1 "Item 1 info-page width cleanup — DEFERRED" entry
+  below is superseded.
+- **`components/ListingForm.jsx` is now DELETED** — the Batch 1 "dead code, left in place" note below is
+  superseded; v2_phase4/9 static assertions were repointed at `Post.jsx`.
+- **E2E 80/82 — two environmental failures (NOT regressions):**
+  - `phase20_mela` — the seeded merged-away mela's survivor event **ended 2026-10-06** (`is_active=false`),
+    so it no longer renders (the test was passing when Batch 1 ran on 2026-10-06). Re-seed a future-dated
+    mela chain to restore it; no code fix applies to an expired seed.
+  - `phase18_transport` — depends on the spec's self-created transport listing + geocoding/distance timing;
+    transport is a pre-V2 feature untouched by Batch 2.
+  - `phase17` (`/sawaal` grid) was updated for the required grouped-by-topic layout and passes.
+
+---
+
 ## Batch 1 — deferred / follow-ups (2026-10-06)
 
 - **Item 1 info-page width cleanup — DEFERRED (prompt-permitted).** `PageShell` now defaults to
