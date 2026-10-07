@@ -99,7 +99,7 @@ export default function NavBar() {
   }
 
   const catBtn = (active) =>
-    `whitespace-nowrap rounded-lg px-3 py-2 text-[12px] font-bold ${
+    `whitespace-nowrap rounded-lg px-2 py-2 text-[12px] font-bold 2xl:px-3 ${
       active ? 'bg-[var(--ks-primary)] text-white' : 'text-[var(--ks-text-secondary)] hover:bg-[var(--ks-primary-muted)]'
     }`
 

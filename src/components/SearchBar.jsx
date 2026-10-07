@@ -30,7 +30,7 @@ export default function SearchBar() {
           onChange={(e) => setQ(e.target.value)}
           placeholder={t('search_placeholder')}
           aria-label={t('search_placeholder')}
-          className="w-40 bg-transparent px-2 text-sm outline-none lg:w-56"
+          className="w-36 bg-transparent px-2 text-sm outline-none lg:w-44"
         />
         <VoiceSearchButton onTranscript={(txt) => setQ(txt)} />
         <button

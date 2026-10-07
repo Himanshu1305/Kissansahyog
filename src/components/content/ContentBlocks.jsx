@@ -28,7 +28,7 @@ function Heading({ block, i, lang }) {
 
 function Paragraph({ block, lang }) {
   return (
-    <p className="my-3 leading-relaxed text-stone-700">
+    <p className="my-3 leading-relaxed text-stone-700 break-words">
       {pick(block.text, lang)}
       <Cite ids={block.cites} />
       {block.pastExample && <> <PastExampleNote /></>}
@@ -41,7 +41,7 @@ function List({ block, lang }) {
   return (
     <Tag className={`my-3 space-y-1.5 pl-6 text-stone-700 ${block.ordered ? 'list-decimal' : 'list-disc'}`}>
       {block.items.map((it, i) => (
-        <li key={i} className="leading-relaxed">
+        <li key={i} className="leading-relaxed break-words">
           {pick(it.text ?? it, lang)}
           <Cite ids={it.cites} />
         </li>
@@ -87,7 +87,7 @@ function Table({ block, lang }) {
 
 function Fact({ block, lang }) {
   return (
-    <blockquote className="my-5 border-l-4 border-green-500 bg-green-50/50 px-4 py-3 text-lg font-semibold text-stone-800">
+    <blockquote className="my-5 border-l-4 border-green-500 bg-green-50/50 px-4 py-3 text-lg font-semibold text-stone-800 break-words">
       {pick(block.text, lang)}
       <Cite ids={block.cites} />
       {block.pastExample && <> <PastExampleNote /></>}
@@ -99,7 +99,7 @@ function Summary({ block, lang, t }) {
   return (
     <section aria-label={t('summary_heading')} className="my-5 rounded-2xl border border-green-200 bg-green-50 p-4">
       <h2 className="mb-2 text-base font-bold text-green-900">{t('summary_heading')}</h2>
-      <p className="leading-relaxed text-stone-800">
+      <p className="leading-relaxed text-stone-800 break-words">
         {pick(block.text, lang)}
         <Cite ids={block.cites} />
       </p>
@@ -115,7 +115,7 @@ function Checklist({ block, lang }) {
         {block.items.map((it, i) => (
           <li key={i} className="flex gap-2 leading-relaxed text-stone-700">
             <span aria-hidden className="mt-0.5 text-green-600">✓</span>
-            <span>{pick(it.text ?? it, lang)}<Cite ids={it.cites} /></span>
+            <span className="break-words min-w-0">{pick(it.text ?? it, lang)}<Cite ids={it.cites} /></span>
           </li>
         ))}
       </ul>
@@ -131,7 +131,7 @@ function Faq({ block, lang, t }) {
         {block.faqs.map((f, i) => (
           <details key={i} className="rounded-xl border border-stone-200 bg-white p-3">
             <summary className="cursor-pointer font-semibold text-stone-800">{pick(f.q, lang)}</summary>
-            <div className="mt-2 leading-relaxed text-stone-700">
+            <div className="mt-2 leading-relaxed text-stone-700 break-words">
               {pick(f.a, lang)}
               <Cite ids={f.cites} />
             </div>
