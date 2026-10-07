@@ -13,7 +13,7 @@ export const BOXES = [
   { id: 'gh_vendors', icon: '🏡', title: { hi: 'ग्रीनहाउस वेंडर', en: 'Greenhouse vendors' }, link: '/browse?cat=greenhouse', pages: ['greenhouse'], months: [], priority: 9 },
   { id: 'nursery', icon: '🪴', title: { hi: 'पौध / नर्सरी', en: 'Seedlings / nursery' }, link: '/browse?cat=greenhouse', pages: ['greenhouse'], months: [], priority: 5 },
   { id: 'agro_forestry', icon: '🌳', title: { hi: 'एग्रो फ़ॉरेस्ट्री', en: 'Agro forestry' }, link: '/agro-forestry', pages: ['carbon'], months: [], priority: 8 },
-  { id: 'jugaad', icon: '🛠️', title: { hi: 'जुगाड़ / नवाचार', en: 'Jugaad / innovations' }, link: '/jugaad', pages: ['carbon'], months: [], priority: 7 },
+  { id: 'jugaad', icon: '🛠️', title: { hi: 'जुगाड़ / देसी आविष्कार', en: 'Jugaad / innovations' }, link: '/jugaad', pages: ['carbon'], months: [], priority: 7 },
   { id: 'greenhouse', icon: '🏡', title: { hi: 'ग्रीनहाउस / पॉलीहाउस', en: 'Greenhouse / polyhouse' }, link: '/greenhouse', pages: ['carbon'], months: [], priority: 6 },
   { id: 'experts', icon: '👨‍🌾', title: { hi: 'विशेषज्ञ', en: 'Experts' }, link: '/experts', pages: ['sawaal', 'crop'], months: [], priority: 9 },
   { id: 'inputs_qa', icon: '🧪', title: { hi: 'बीज, खाद व दवा', en: 'Seeds, fertiliser & medicine' }, link: '/browse?cat=agri_inputs', pages: ['sawaal', 'crop'], months: [], priority: 8 },

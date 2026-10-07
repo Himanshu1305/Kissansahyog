@@ -355,7 +355,7 @@ export const strings = {
   rl_moderate: { hi: 'मध्यम बारिश', en: 'Moderate rain' },
   rl_heavy: { hi: 'भारी बारिश', en: 'Heavy rain' },
   rl_very_heavy: { hi: 'बहुत भारी बारिश', en: 'Very heavy rain' },
-  rl_extreme: { hi: 'अत्यधिक भारी बारिश', en: 'Extremely heavy rain' },
+  rl_extreme: { hi: 'अत्यधिक भारी बारिश', en: 'Extremely heavy rain' }, // ks-style-ok: IMD class label, distinct from बहुत भारी
   imd_yellow: { hi: 'IMD पीली चेतावनी', en: 'IMD Yellow Alert' },
   imd_orange: { hi: 'IMD नारंगी चेतावनी', en: 'IMD Orange Alert' },
   imd_red: { hi: 'IMD लाल चेतावनी', en: 'IMD Red Alert' },
@@ -363,7 +363,7 @@ export const strings = {
   advice_moderate: { hi: 'मध्यम बारिश — छिड़काव टालें, कटी फसल सुरक्षित रखें', en: 'Moderate rain — delay spraying, protect harvested crops' },
   advice_heavy: { hi: 'भारी बारिश (IMD पीली चेतावनी) — कटाई रोकें, मज़दूर बुकिंग टालें, पशुओं को सुरक्षित स्थान पर रखें', en: 'Heavy rain (IMD Yellow Alert) — stop harvesting, delay labor bookings, shelter animals' },
   advice_very_heavy: { hi: 'बहुत भारी बारिश (IMD नारंगी चेतावनी) — खेत में न जाएं, फसल को नुकसान हो सकता है, निचले इलाकों में बाढ़ का खतरा', en: 'Very heavy rain (IMD Orange Alert) — avoid fields, crop damage likely, flood risk in low areas' },
-  advice_extreme: { hi: 'अत्यधिक भारी बारिश (IMD लाल चेतावनी) — घर में रहें, प्रशासन के निर्देशों का पालन करें', en: 'Extremely heavy rain (IMD Red Alert) — stay indoors, follow district administration orders' },
+  advice_extreme: { hi: 'अत्यधिक भारी बारिश (IMD लाल चेतावनी) — घर में रहें, प्रशासन के निर्देशों का पालन करें', en: 'Extremely heavy rain (IMD Red Alert) — stay indoors, follow district administration orders' }, // ks-style-ok: IMD class label
   wday_0: { hi: 'रवि', en: 'Sun' },
   wday_1: { hi: 'सोम', en: 'Mon' },
   wday_2: { hi: 'मंगल', en: 'Tue' },
@@ -1398,10 +1398,10 @@ export const strings = {
   dd_local_h: { hi: 'खुरई/सागर क्षेत्र में उपलब्ध ड्रोन दीदी सेवाएं', en: 'Drone Didi services available in the Khurai/Sagar area' },
   dd_official_h: { hi: 'आधिकारिक जानकारी', en: 'Official information' },
   dd_official_body: {
-    hi: 'नमो ड्रोन दीदी भारत सरकार की केंद्रीय योजना है (कृषि एवं किसान कल्याण मंत्रालय)। यहाँ दी गई जानकारी केवल किसानों की सुविधा के लिए है; किसान सहयोग किसी सौदे या समर्थन का हिस्सा नहीं है।',
+    hi: 'नमो ड्रोन दीदी भारत सरकार की योजना है (कृषि और किसान कल्याण मंत्रालय)। यहाँ दी जानकारी सिर्फ़ आपकी सुविधा के लिए है। किसान सहयोग किसी सौदे या समर्थन का हिस्सा नहीं है।',
     en: 'Namo Drone Didi is a Central Government scheme (Ministry of Agriculture & Farmers Welfare). The information here is for farmers’ convenience only; Kissan Sahyog is not a party to any deal or endorsement.',
   },
-  dd_no_listings: { hi: 'अभी आपके क्षेत्र में कोई ड्रोन दीदी सेवा सूचीबद्ध नहीं है।', en: 'No Drone Didi services are listed in your area yet.' },
+  dd_no_listings: { hi: 'अभी आपके इलाके में कोई ड्रोन दीदी सेवा नहीं डली है।', en: 'No Drone Didi services are listed in your area yet.' },
 
   // --- Videos page (Phase 5) ---
   videos_page_title: { hi: 'खेती के वीडियो', en: 'Farming videos' },
@@ -1532,7 +1532,7 @@ export const strings = {
   mausam_not_sure: { hi: 'अनुमान — पक्का नहीं', en: 'estimate — not certain' },
   imd_green: { hi: 'हल्की बारिश', en: 'Light rain' }, imd_blue: { hi: 'मध्यम बारिश', en: 'Moderate rain' },
   imd_yellow: { hi: 'भारी बारिश (पीली)', en: 'Heavy rain (Yellow)' }, imd_orange: { hi: 'बहुत भारी (नारंगी)', en: 'Very heavy (Orange)' },
-  imd_red: { hi: 'अत्यधिक (लाल)', en: 'Extremely heavy (Red)' },
+  imd_red: { hi: 'अत्यधिक (लाल)', en: 'Extremely heavy (Red)' }, // ks-style-ok: IMD class label
   imd_not_official: { hi: 'IMD की आधिकारिक चेतावनी यहाँ देखें', en: 'See IMD official warnings here' },
   gloss_mm: { hi: '5 मिमी = हल्की फुहार, 10 मिमी = अच्छी बारिश, 25 मिमी = तेज़ बारिश।', en: '5 mm = light drizzle, 10 mm = good rain, 25 mm = heavy rain.' },
   gloss_yellow: { hi: 'IMD पीला = 24 घंटे में 64.5–115.5 मिमी बारिश — सतर्क रहें।', en: 'IMD Yellow = 64.5–115.5 mm in 24h — be alert.' },
@@ -1545,7 +1545,7 @@ export const strings = {
   cropadv_masoor: { hi: 'रबी दलहन। बीज उपचार व राइजोबियम टीका लाभदायक; अधिक नमी से बचाएँ।', en: 'Rabi pulse. Seed treatment and Rhizobium inoculation help; avoid excess moisture.' },
   cropadv_sarson: { hi: 'तिलहन। माहू (चेंपा) की निगरानी करें; फूल आते समय हल्की सिंचाई उपज बढ़ाती है।', en: 'Oilseed. Watch for aphids; a light irrigation at flowering boosts yield.' },
   cropadv_soyabean: { hi: 'खरीफ मुख्य फसल। पीला मोज़ेक व इल्ली की निगरानी; अधिक वर्षा में जल-निकास खुला रखें।', en: 'Main kharif crop. Watch for yellow mosaic and caterpillars; keep drainage open in heavy rain.' },
-  cropadv_urad: { hi: 'खरीफ दलहन। जल-जमाव से बचाएँ; पीला मोज़ेक हेतु सफेद मक्खी नियंत्रण करें।', en: 'Kharif pulse. Avoid waterlogging; control whitefly for yellow mosaic.' },
+  cropadv_urad: { hi: 'खरीफ दलहन। जल-जमाव से बचाएँ; पीले मोज़ेक को रोकने के लिए सफेद मक्खी काबू करें।', en: 'Kharif pulse. Avoid waterlogging; control whitefly to prevent yellow mosaic.' },
   cropadv_moong: { hi: 'कम अवधि की दलहन। समय पर तुड़ाई करें; अधिक वर्षा फली को नुकसान पहुँचाती है।', en: 'Short-duration pulse. Pick pods on time; heavy rain damages pods.' },
   cropadv_dhan: { hi: 'धान को पानी चाहिए पर लगातार गहरा पानी न भरें; बालियों के समय जल-स्तर बनाए रखें।', en: 'Paddy needs water but avoid constant deep flooding; maintain water level at panicle stage.' },
   cropadv_makka: { hi: 'खरीफ अनाज। फॉल आर्मीवर्म की निगरानी करें; जल-निकास अच्छा रखें।', en: 'Kharif cereal. Monitor for fall armyworm; keep good drainage.' },
@@ -1600,7 +1600,7 @@ export const strings = {
   // 2a IMD badge reframe + InfoTips
   imd_badge_desc: { hi: 'किसान सहयोग का अनुमान — Open-Meteo के मौसम मॉडल पर आधारित, IMD के बारिश वर्गीकरण के अनुसार।', en: 'Kissan Sahyog estimate — based on the Open-Meteo weather model, per IMD’s rainfall classification.' },
   imd_official_cta: { hi: 'आधिकारिक चेतावनी यहाँ देखें', en: 'See the official warning here' },
-  imd_tip: { hi: 'IMD बारिश वर्गीकरण (24 घंटे): पीला ≥64.5 मिमी (भारी), नारंगी ≥115.5 मिमी (बहुत भारी), लाल ≥204.5 मिमी (अत्यधिक)।', en: 'IMD rainfall classes (24h): Yellow ≥64.5mm (heavy), Orange ≥115.5mm (very heavy), Red ≥204.5mm (extremely heavy).' },
+  imd_tip: { hi: 'IMD बारिश वर्गीकरण (24 घंटे): पीला ≥64.5 मिमी (भारी), नारंगी ≥115.5 मिमी (बहुत भारी), लाल ≥204.5 मिमी (अत्यधिक)।', en: 'IMD rainfall classes (24h): Yellow ≥64.5mm (heavy), Orange ≥115.5mm (very heavy), Red ≥204.5mm (extremely heavy).' }, // ks-style-ok: IMD class label
   verdict_tip: { hi: 'ठीक = कर सकते हैं · सावधानी = ध्यान से करें · रुकें = अभी न करें।', en: 'OK = go ahead · Caution = take care · Stop = don’t do it now.' },
   rainprob_tip: { hi: 'बारिश की संभावना (%) बताती है उस समय बारिश होने के कितने आसार हैं; मिमी बताती है कितनी बारिश। 70% = ज़्यादा आसार।', en: 'Rain probability (%) is the chance of rain then; mm is how much. 70% = high chance.' },
   // 2b teaser + fasal-salah page
@@ -1795,14 +1795,14 @@ export const strings = {
   err_mela_state_required: { hi: 'कृपया राज्य भरें।', en: 'Please enter the state.' },
   // admin moderation
   admin_mela_h: { hi: 'किसान मेला प्रबंधन', en: 'Kisan Mela' },
-  admin_mela_pending: { hi: 'समीक्षा हेतु लंबित', en: 'Pending review' },
+  admin_mela_pending: { hi: 'समीक्षा के लिए बाकी', en: 'Pending review' },
   admin_mela_approve: { hi: 'स्वीकृत करें', en: 'Approve' },
   admin_mela_reject: { hi: 'अस्वीकार करें', en: 'Reject' },
   admin_mela_none: { hi: 'कोई मेला नहीं।', en: 'No Melas.' },
   // Phase 7 — AI-discovery candidates that failed automated verification (rejected/unverifiable).
   admin_cand_h: { hi: 'स्वतः-खोज में अस्वीकृत/असत्यापित मेले', en: 'Auto-discovery: rejected / unverifiable' },
   admin_cand_help: { hi: 'ये मेले स्वचालित खोज में मिले पर सत्यापन में पुष्टि नहीं हो पाई। यदि आप स्वयं जानते हैं कि कोई आयोजन असली है, तो "फिर भी प्रकाशित करें" दबाएँ।', en: 'These were found by automated discovery but could not be confirmed on verification. If you independently know an event is real, use "publish anyway".' },
-  admin_cand_none: { hi: 'समीक्षा हेतु कोई उम्मीदवार नहीं।', en: 'No candidates to review.' },
+  admin_cand_none: { hi: 'समीक्षा के लिए कोई मेला नहीं।', en: 'No candidates to review.' },
   admin_cand_rejected: { hi: 'अस्वीकृत', en: 'Rejected' },
   admin_cand_unverifiable: { hi: 'असत्यापित', en: 'Unverifiable' },
   admin_cand_publish_anyway: { hi: 'फिर भी प्रकाशित करें', en: 'Publish anyway' },
@@ -1815,7 +1815,7 @@ export const strings = {
   // homepage teaser
   mela_home_title: { hi: 'आस-पास के किसान मेले', en: 'Kisan Melas near you' },
   mela_home_all: { hi: 'सभी मेले देखें', en: 'See all Melas' },
-  mela_home_empty: { hi: 'अभी कोई मेला सूचीबद्ध नहीं — किसी मेले की जानकारी हो तो साझा करें।', en: 'No Melas listed yet — share one if you know of it.' },
+  mela_home_empty: { hi: 'अभी कोई मेला नहीं डला — किसी मेले की जानकारी हो तो बताएँ।', en: 'No Melas listed yet — share one if you know of it.' },
 
   // --- V2 content / citation framework (Phase 1) ---
   sources_heading: { hi: 'स्रोत', en: 'Sources' },
@@ -1912,12 +1912,12 @@ export const strings = {
   admin_search_misses_empty: { hi: 'कोई रिकॉर्ड नहीं।', en: 'No records.' },
 
   // --- Phase 9: jugaad marketplace fields ---
-  home_cat_jugaad: { hi: 'जुगाड़ / ग्रामीण नवाचार', en: 'Jugaad / Rural Innovations' },
+  home_cat_jugaad: { hi: 'जुगाड़ / देसी आविष्कार', en: 'Jugaad / Rural Innovations' },
   jugaad_tile_label: { hi: 'जुगाड़', en: 'Jugaad' },
-  jugaad_tile_sub: { hi: 'ग्रामीण नवाचार', en: 'Rural innovations' },
+  jugaad_tile_sub: { hi: 'गाँव के देसी आविष्कार', en: 'Rural innovations' },
   jugaad_nav: { hi: 'जुगाड़', en: 'Jugaad' },
   field_jugaad_offer_type: { hi: 'किस रूप में', en: 'Offer type' },
-  field_jugaad_name: { hi: 'नवाचार का नाम', en: 'Name of the innovation' },
+  field_jugaad_name: { hi: 'जुगाड़/मशीन का नाम', en: 'Name of the innovation' },
   ph_jugaad_name: { hi: 'जैसे बीज बोने का यंत्र', en: 'e.g. seed-sowing device' },
   field_jugaad_problem: { hi: 'किस समस्या को हल करता है', en: 'Problem it solves' },
   field_jugaad_crop: { hi: 'फसल / कार्य', en: 'Crop / activity' },
@@ -1932,7 +1932,7 @@ export const strings = {
   field_jugaad_village: { hi: 'गाँव', en: 'Village' },
   jugaad_not_road_vehicle: { hi: 'मैं पुष्टि करता/करती हूँ कि यह सड़क पर चलने वाला वाहन नहीं है। (सड़क पर चलने वाले वाहन स्वीकार नहीं किए जाते।)', en: 'I confirm this is not a road-going vehicle. (Road-going vehicles are not accepted.)' },
   err_jugaad_offer_type_required: { hi: 'कृपया चुनें कि किस रूप में दे रहे हैं।', en: 'Please choose the offer type.' },
-  err_jugaad_name_required: { hi: 'नवाचार का नाम भरें।', en: 'Enter the innovation name.' },
+  err_jugaad_name_required: { hi: 'जुगाड़/मशीन का नाम भरें।', en: 'Enter the innovation name.' },
   err_road_vehicle_not_allowed: { hi: 'सड़क पर चलने वाले वाहन स्वीकार नहीं। कृपया पुष्टि करें कि यह सड़क वाहन नहीं है।', en: 'Road-going vehicles are not accepted. Please confirm this is not a road vehicle.' },
 
   // --- Batch 2 item D: simpler jugaad form ---
@@ -1951,7 +1951,7 @@ export const strings = {
   jugaad_mkt_empty: { hi: 'अभी कोई जुगाड़ नहीं। पहले आप डालें — ऊपर बटन दबाएँ।', en: 'No jugaad yet. Be the first — use the button above.' },
   jugaad_results: { hi: 'जुगाड़', en: 'jugaad' },
   jugaad_filter_all: { hi: 'सभी', en: 'All' },
-  jugaad_mkt_seo_title: { hi: 'जुगाड़ / ग्रामीण नवाचार — बाज़ार', en: 'Jugaad / Rural Innovations — marketplace' },
+  jugaad_mkt_seo_title: { hi: 'जुगाड़ / देसी आविष्कार — बाज़ार', en: 'Jugaad / Rural Innovations — marketplace' },
 
   // --- Phase 8: carbon credit page (poll + suggestions) ---
   carbon_tile_label: { hi: 'कार्बन क्रेडिट', en: 'Carbon credit' },

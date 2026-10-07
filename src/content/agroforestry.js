@@ -31,17 +31,17 @@ export const AGRO_FAQS = [
   {
     q_hi: 'औषधीय और सुगंधित फसलों पर कौन सी योजना है?',
     q_en: 'Which scheme covers medicinal and aromatic crops?',
-    a_hi: '“औषधि एवं सुगंधित फसल क्षेत्र विस्तार” योजना में आँवला, अश्वगंधा, सफेद मूसली, तुलसी जैसी फसलों के विस्तार पर 20 से 50 प्रतिशत तक अनुदान मिलता है।',
+    a_hi: '“औषधि एवं सुगंधित फसल क्षेत्र विस्तार” योजना में आँवला, अश्वगंधा, सफेद मूसली, तुलसी जैसी फसलों के विस्तार पर 20 से 50 प्रतिशत तक अनुदान मिलता है।', // ks-style-ok: एवं — official scheme name
     a_en: 'The “Aushadhi Avam Sugandhit Fasal Shetra Vistar” scheme gives a 20–50% subsidy to expand crops such as Amla, Ashwagandha, Safed Musli and Tulsi.',
   },
   {
     q_hi: 'इन योजनाओं के लिए आवेदन कहां करें?',
     q_en: 'Where do I apply for these schemes?',
-    a_hi: 'मध्यप्रदेश उद्यानिकी एवं खाद्य प्रसंस्करण विभाग के किसान पोर्टल पर ऑनलाइन आवेदन करें। सटीक प्रक्रिया व तिथियों के लिए विभागीय पोर्टल और योजना पेज देखें।',
+    a_hi: 'मध्यप्रदेश उद्यानिकी एवं खाद्य प्रसंस्करण विभाग के किसान पोर्टल पर ऑनलाइन आवेदन करें। सही प्रक्रिया और तारीख़ों के लिए विभाग का पोर्टल और योजना पेज देखें।', // ks-style-ok: एवं — official department name
     a_en: 'Apply online on the MP Horticulture & Food Processing Department farmer portal. Check the department portal and the scheme page for the exact process and dates.',
   },
   {
-    q_hi: 'क्या इंटरक्रॉपिंग मध्यप्रदेश के लिए उपयुक्त है?',
+    q_hi: 'क्या इंटरक्रॉपिंग मध्यप्रदेश के लिए सही है?',
     q_en: 'Is intercropping suitable for Madhya Pradesh?',
     a_hi: 'हाँ। सोयाबीन + अरहर जैसे संयोजन मध्यप्रदेश में परखे गए हैं और अकेली फसल की तुलना में अधिक कुल उपज व आय देते हैं। विस्तार से लेख पढ़ें।',
     a_en: 'Yes. Combinations like soybean + pigeonpea are well tested in Madhya Pradesh and give higher total yield and income than the sole crop. Read the article for details.',
