@@ -169,7 +169,7 @@ export const strings = {
     en: 'Rent out or hire agricultural equipment like tractors, threshers, harvesters, drones, and more. Specify the rental rate (per acre/hour/day) and when the equipment is available.',
   },
   help_labor: {
-    hi: 'बुवाई, कटाई, निराई या अन्य कृषि कार्यों के लिए मज़दूर उपलब्ध कराएं या खोजें। ड्रोन दीदी योजना के तहत ड्रोन ऑपरेटर भी यहाँ लिस्ट कर सकते हैं।',
+    hi: 'बुवाई, कटाई, निराई या दूसरे खेत के कामों के लिए मज़दूर दें या खोजें। ड्रोन दीदी योजना के ड्रोन ऑपरेटर भी यहाँ लिस्ट कर सकते हैं।',
     en: 'Offer or find farm workers for sowing, harvesting, weeding, or general labor. Drone Didi operators can also list here. Specify the number of workers, type of work, and daily rate.',
   },
   help_bhusa: {
@@ -572,7 +572,7 @@ export const strings = {
     en: 'For Sagar district the local forest agency is the South Sagar Forest Development Agency. Forest Development Agencies (FDAs) generally support afforestation, nurseries, and tree-planting work with farmers and communities.',
   },
   agro_region_body2: {
-    hi: 'FDA वन विभाग के अंतर्गत पंजीकृत संस्थाएँ हैं जो ग्राम स्तर की वन समितियों के ज़रिए योजनाएँ लागू करती हैं — पौधशाला चलाना, पौधे उपलब्ध कराना, और खेत की मेड़ों व सामुदायिक भूमि पर वृक्षारोपण में मदद करना। कृषि-वानिकी या पौधरोपण में रुचि होने पर स्थानीय वन कार्यालय या कृषि विज्ञान केंद्र (KVK) से संपर्क कर सकते हैं।',
+    hi: 'FDA वन विभाग के अंतर्गत पंजीकृत संस्थाएँ हैं जो ग्राम स्तर की वन समितियों के ज़रिए योजनाएँ लागू करती हैं — पौधशाला चलाना, पौधे देना, और खेत की मेड़ों व सामुदायिक भूमि पर वृक्षारोपण में मदद करना। कृषि-वानिकी या पौधरोपण में रुचि होने पर स्थानीय वन कार्यालय या कृषि विज्ञान केंद्र (KVK) से संपर्क कर सकते हैं।',
     en: 'FDAs are registered bodies under the Forest Department that implement schemes through village-level forest committees — running nurseries, supplying saplings, and helping with planting on field bunds and community land. For agroforestry or plantation help, you can contact the local forest office or your Krishi Vigyan Kendra (KVK).',
   },
   agro_excerpt_h: { hi: 'इंटरक्रॉपिंग — एक झलक', en: 'Intercropping — a quick look' },

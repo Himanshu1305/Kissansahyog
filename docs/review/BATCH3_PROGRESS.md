@@ -37,10 +37,25 @@ Rules kept in view: facts only from SOURCES.md/sources.js, keep every `cites`;
       already-migrated additive columns (0052 answer_blocks_en), nothing renamed/required.
       Judgement: unsourced legacy doses (FeSO4 0.5%, Carbendazim, HI-8498/GW-496/K-9107 varieties, the KCC
       helpline) were dropped and replaced with "KVK सागर से पूछें", per the no-unsourced-fact rule.
-- [ ] **Item 3** — Greenhouse guide `/greenhouse/subsidy` (1,000–1,500 Hindi words).
-- [ ] **Item 4** — Jugaad guide `/jugaad/jankari` (800–1,200 Hindi words).
-- [ ] **Item 5** — Carbon credit `/carbon-credit` + brief `/carbon-credit/niti-sujhav`
-      (1,500–2,000 Hindi words).
+- [x] **Item 3** — Greenhouse guide rewritten to the 7-section order (is-it-right-for-me 6-pt
+      checklist → cost+subsidy table with cites → MPFSTS numbered steps+docs+timelines → NHB 50%→35%
+      stated separately → before-you-pay safety checklist + Khargone fraud → vendor lists by year →
+      10 FAQs). **3337 → 1221 Hindi words.** All ₹/m² norms + area slabs copied exactly; 15 cites kept,
+      S-GH-21/22 (ICAR income examples) dropped with their whole section. Table renders via caption/head/
+      rows (matches ContentBlocks). No banned phrases (₹150/m², 80–85% drip, empanel). citation audit 6/0.
+- [x] **Item 4** — Jugaad guide rewritten to the order (what to list → help cards NIF/MVIF/NIDHI-PRAYAS/
+      Seed Fund/MP Startup Policy/CFMTTI Budni → safety+law plain: 2 SC cases one line each, machine safety,
+      seller responsibility, patents in 2 lines no offer of help → soft "how we help" with no named bodies →
+      8 FAQs). **3172 → 915 Hindi words.** Both SC holdings preserved; 18 cites kept, 9 dropped with their
+      cut facts. Reintroduced नवाचार/प्रस्तुत/एवं fixed (→ आविष्कार/रखें/पहुँचाएँ; MVIF fund name + OTR order
+      name + search synonym marked ks-style-ok). Also fixed two strings.js stiff phrases missed in item 1
+      (उपलब्ध कराएं/कराना → दें/देना).
+- [x] **Item 5** — Carbon page rewritten to the order (what is it +Sagar example → what has happened in
+      India keeping PastExampleNote/Calc blocks → Sagar/Bundelkhand → for/against 2-col table → red-flag
+      checklist → what MP could do → poll+suggestions unchanged → 10 FAQs). **2802 → 1661 Hindi words.**
+      Brief updated to match (279 → 282 words). ALL 16 main + 5 brief cites kept, every verified figure
+      preserved (calc ₹11,373 intact). No "allowed/legalised/permitted" or any §0.7 banned phrase (audit
+      enforces). Byline Team Kissan Sahyog; no "under review" labels.
 - [ ] **Item 6** — Smaller pages: cold-storage, fasal-salah crop lines, homepage hero/intros,
       grievance, Terms, Privacy, greenhouse/jugaad/bazaar intros.
 - [ ] **Owner review pack** — `docs/review/CONTENT_FOR_REVIEW.md`.

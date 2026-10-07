@@ -24,7 +24,7 @@ export const SYNONYMS = {
   'cold storage': ['कोल्ड स्टोरेज', 'cold storage', 'coldstorage', 'godown', 'गोदाम', 'godaam'],
   greenhouse: ['ग्रीनहाउस', 'greenhouse', 'polyhouse', 'पॉलीहाउस', 'poly house'],
   carbon: ['कार्बन', 'carbon', 'carbon credit'],
-  jugaad: ['जुगाड़', 'jugaad', 'innovation', 'नवाचार'],
+  jugaad: ['जुगाड़', 'jugaad', 'innovation', 'नवाचार', 'आविष्कार'], // ks-style-ok: नवाचार kept as a search keyword so users searching it still find jugaad
   drone: ['ड्रोन', 'drone', 'didi', 'दीदी', 'drone didi'],
   warehouse: ['वेयरहाउस', 'warehouse', 'godown', 'गोदाम', 'store'],
   labor: ['मजदूर', 'mazdoor', 'majdoor', 'labour', 'labor', 'worker'],
