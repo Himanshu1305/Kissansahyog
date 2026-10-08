@@ -1527,6 +1527,27 @@ export const sources = {
     "url": "https://www.govtschemes.in/namo-drone-didi-scheme",
     "date": "",
     "type": "news"
+  },
+  "S-QBR-01": {
+    "title": "गेहूँ उत्पादन की उन्नत तकनीक — बुवाई समय, बीज दर, किस्में, खाद, सिंचाई, बीज उपचार (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_wheat_New.aspx",
+    "date": "2026",
+    "type": "Official"
+  },
+  "S-QBR-02": {
+    "title": "चना उत्पादन की उन्नत तकनीक — बुवाई समय, बीज दर, किस्में, खाद, बीज उपचार, फली छेदक (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_chana_New.aspx",
+    "date": "2026",
+    "type": "Official"
+  },
+  "S-QBR-03": {
+    "title": "मसूर उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, सिंचाई, उकठा/रतुआ/माहू नियंत्रण (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_masoor_New.aspx",
+    "date": "2026",
+    "type": "Official"
   }
 }
 

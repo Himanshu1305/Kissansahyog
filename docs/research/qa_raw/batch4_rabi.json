@@ -1,0 +1,425 @@
+{
+  "sources": [
+    {
+      "id": "S-QBR-01",
+      "title": "गेहूँ उत्पादन की उन्नत तकनीक — बुवाई समय, बीज दर, किस्में, खाद, सिंचाई, बीज उपचार (मध्य प्रदेश)",
+      "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+      "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_wheat_New.aspx",
+      "date": "2026",
+      "accessed": "2026-10-08",
+      "type": "Official",
+      "quotes": [
+        "बुवाई का समय — असिंचित: मध्य अक्टूबर से नवम्बर के प्रथम सप्ताह तक; अर्धसिंचित: नवम्बर माह का प्रथम पखवाड़ा; सिंचित (समय से): नवम्बर माह का द्वितीय पखवाड़ा; सिंचित (देरी से): दिसंबर माह का द्वितीय सप्ताह से",
+        "बीज दर औसत रूप में 100 कि.ग्रा./हे.",
+        "उन्नत किस्में: जे.डब्ल्यू. 17, जे.डब्ल्यू. 1201, जे.डब्ल्यू. 1202, एच.आई. 1544, एम.पी. 4010, एच.डी. 2864",
+        "उर्वरक (नत्रजन-स्फुर-पोटाश कि.ग्रा./हे.) — असिंचित: 40-20-0; अर्धसिंचित: 60-30-15; सिंचित: 120-60-30; देरी से: 80-40-20",
+        "3 - 4 सिंचाई पर्याप्त (55 - 60 क्विंटल उपज); सिंचाई की क्रांतिक अवस्थाएँ: किरीट अवस्था, कल्ले निकलना, फूल आना, दूधिया अवस्था",
+        "बीज उपचार: कार्बाक्सिन 75% wp / कार्बेन्डाजिम 50% wp 2.5-3.0 ग्रा दवा/किलो बीज; अथवा टेबूकोनाजोल 1 ग्राम/किलो बीज"
+      ]
+    },
+    {
+      "id": "S-QBR-02",
+      "title": "चना उत्पादन की उन्नत तकनीक — बुवाई समय, बीज दर, किस्में, खाद, बीज उपचार, फली छेदक (मध्य प्रदेश)",
+      "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+      "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_chana_New.aspx",
+      "date": "2026",
+      "accessed": "2026-10-08",
+      "type": "Official",
+      "quotes": [
+        "असिंचित अवस्था में चना की बुआई अक्टूबर के द्वितीय सप्ताह तक कर देनी चाहिए; अक्टूबर का प्रथम सप्ताह चना की बुआई के लिए सर्वोत्तम होता है",
+        "बीज दर: देशी छोटे दानों वाली किस्मों 65 से 75 कि.ग्रा./हे.; मध्यम दानों वाली किस्मों 75-80 कि.ग्रा./हे.; काबुली चना 100 कि.ग्रा./हे.",
+        "उन्नत किस्में — देशी: जे.जी. 315, जे.जी. 322, जे.जी. 74, जे.जी. 130, जे.जी. 11, जे.जी. 14, जे.जी. 16, जे.जी. 63, जाकी 9218; काबुली: जे.जी.के. 1, जे.जी.के. 2, जे.जी.के. 3",
+        "उर्वरक: 20-25 किलोग्राम नत्रजन 50-60 किलोग्राम फास्फोरस 20 किलोग्राम पोटाष व 20 किलोग्राम गंधक प्रति हेक्टेयर",
+        "बीज उपचार: 2 ग्राम थायरम 1 ग्राम कार्बेन्डाजिम के मिश्रण से प्रति किलो बीज; राइजोबियम कल्चर 5 ग्राम मात्रा प्रति किलो बीज; मोलेब्डनम 1 ग्राम प्रति किलो बीज",
+        "फली छेदक नियंत्रण: इमामेक्टिन बेन्जोइट की 200 ग्राम दवा प्रति हेक्टेयर 500 लीटर पानी में घोल बनाकर छिड़काव करें"
+      ]
+    },
+    {
+      "id": "S-QBR-03",
+      "title": "मसूर उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, सिंचाई, उकठा/रतुआ/माहू नियंत्रण (मध्य प्रदेश)",
+      "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+      "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_masoor_New.aspx",
+      "date": "2026",
+      "accessed": "2026-10-08",
+      "type": "Official",
+      "quotes": [
+        "बुवाई का समय — असिंचित अवस्था में नमी उपलब्ध रहने पर अक्टूबर के प्रथम सप्ताह से नवम्बर के प्रथम सप्ताह तक; सिंचित अवस्था में मसूर की बोनी 15 अक्टूबर से 15 नवम्बर तक",
+        "सामान्यतः बीज की मात्रा 40 कि.ग्रा. प्रति हें. क्षेत्र में बोनी के लिये पर्याप्त होती है; बीज का आकार छोटा होने पर यह मात्रा 35 किलोग्राम प्रति हें. होनी चाहिये",
+        "उन्नत किस्में: जे.एल-3, जे.एल-1, आई.पी.एल-81, पंत एल-209, एल.4594, वी.एल. मसूर 4, मल्लिका, पी.एल. 5, पी.एल. 7, एच.यू.एल. 57, के-75",
+        "उर्वरक: 15 टन अच्छी सड़ी गोबर की खाद व 20 कि.ग्रा. नत्रजन तथा 50 कि.ग्रा. स्फुर/हें. एवं 20 कि.ग्रा./हें. पोटास",
+        "बीज उपचार: 2 ग्राम थाइरम + 1 ग्राम कार्बेन्डाजिम से एक किलोग्राम बीज",
+        "सिंचाई: उपलब्ध होने पर एक सिंचाई 45 दिन बाद और आवश्यक हो तो फलियां भरते समय सिंचाई करें",
+        "उकठा (विल्ट) रोग के लिए रोग-रोधी किस्में जे.एल-3, जे.एल-1, आई.पी.एल-81 लगाएँ",
+        "गेरूई/रतुआ नियंत्रण: 0.3% मेन्कोजेब एम-45 का 15 दिन के अन्तर पर दो बार छिड़काव",
+        "माहू नियंत्रण: इमिडाक्लोप्रिड 150 मिलीलीटर/हें.",
+        "फली छेदक नियंत्रण: इमामेक्टीन बेन्जोइट 100 ग्रा. प्रति हें."
+      ]
+    }
+  ],
+  "qas": [
+    {
+      "slug": "gehun-buwai-ka-sahi-samay-sagar",
+      "crop": "wheat",
+      "category": "sowing",
+      "season": "rabi",
+      "question_hi": "गेहूं की बुवाई का सही समय क्या है?",
+      "question_en": "What is the right time to sow wheat?",
+      "short_hi": "सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से बुवाई दिसंबर के दूसरे हफ़्ते तक करें।",
+      "short_en": "Sow irrigated wheat in the second fortnight of November. In rainfed fields sow from mid-October to the first week of November, and in semi-irrigated fields in the first fortnight of November. Late sowing can run to the second week of December.",
+      "blocks": [
+        { "type": "paragraph", "text": "समय पर बुवाई से पैदावार सबसे अच्छी रहती है। अपने खेत में पानी की सुविधा देखकर समय चुनें।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "कब बोएं" },
+        { "type": "list", "ordered": false, "items": [
+          { "text": "असिंचित खेत: मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक।", "cites": ["S-QBR-01"] },
+          { "text": "अर्धसिंचित खेत: नवंबर का पहला पखवाड़ा।", "cites": ["S-QBR-01"] },
+          { "text": "सिंचित, समय से: नवंबर का दूसरा पखवाड़ा।", "cites": ["S-QBR-01"] },
+          { "text": "सिंचित, देर से: दिसंबर के दूसरे हफ़्ते से।", "cites": ["S-QBR-01"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Sowing on time gives the best yield. Pick the time by how much water your field has.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "When to sow" },
+        { "type": "list", "ordered": false, "items": [
+          { "text": "Rainfed field: mid-October to the first week of November.", "cites": ["S-QBR-01"] },
+          { "text": "Semi-irrigated field: first fortnight of November.", "cites": ["S-QBR-01"] },
+          { "text": "Irrigated, timely: second fortnight of November.", "cites": ["S-QBR-01"] },
+          { "text": "Irrigated, late: from the second week of December.", "cites": ["S-QBR-01"] }
+        ] }
+      ],
+      "sources": ["S-QBR-01"]
+    },
+    {
+      "slug": "gehun-beej-dar-kitni-rakhein",
+      "crop": "wheat",
+      "category": "sowing",
+      "season": "rabi",
+      "question_hi": "गेहूं में बीज दर कितनी रखें?",
+      "question_en": "How much seed rate should wheat have?",
+      "short_hi": "सामान्य तौर पर गेहूं में औसतन 100 किलो बीज प्रति हेक्टेयर रखें। अच्छे अंकुरण के लिए बीज उपचार करके ही बोएं।",
+      "short_en": "On average keep about 100 kg of wheat seed per hectare. For good germination, always treat the seed before sowing.",
+      "blocks": [
+        { "type": "list", "ordered": false, "items": [
+          { "text": "औसतन 100 किलो बीज प्रति हेक्टेयर रखें।", "cites": ["S-QBR-01"] },
+          { "text": "साफ़, मोटा और एक जैसा बीज चुनें; बुवाई से पहले बीज उपचार ज़रूर करें।", "cites": [] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "list", "ordered": false, "items": [
+          { "text": "Keep about 100 kg of seed per hectare.", "cites": ["S-QBR-01"] },
+          { "text": "Pick clean, bold, even seed; always treat the seed before sowing.", "cites": [] }
+        ] }
+      ],
+      "sources": ["S-QBR-01"]
+    },
+    {
+      "slug": "gehun-khaad-urvarak-matra-mp",
+      "crop": "wheat",
+      "category": "nutrient",
+      "season": "rabi",
+      "question_hi": "गेहूं में खाद (उर्वरक) कितनी डालें?",
+      "question_en": "How much fertiliser should wheat get?",
+      "short_hi": "पानी की सुविधा से मात्रा तय होती है (नत्रजन-स्फुर-पोटाश किलो/हेक्टेयर)। सिंचित खेत में 120-60-30, अर्धसिंचित में 60-30-15, असिंचित में 40-20-0, और देर से बुवाई में 80-40-20 डालें।",
+      "short_en": "The dose depends on water (N-P-K kg/hectare). Irrigated 120-60-30, semi-irrigated 60-30-15, rainfed 40-20-0, and late sowing 80-40-20.",
+      "blocks": [
+        { "type": "paragraph", "text": "नत्रजन (N), स्फुर (P) और पोटाश (K) किलो प्रति हेक्टेयर में। खेत की स्थिति के हिसाब से डालें।", "cites": [] },
+        { "type": "list", "ordered": false, "items": [
+          { "text": "असिंचित: 40-20-0।", "cites": ["S-QBR-01"] },
+          { "text": "अर्धसिंचित: 60-30-15।", "cites": ["S-QBR-01"] },
+          { "text": "सिंचित (समय से): 120-60-30।", "cites": ["S-QBR-01"] },
+          { "text": "देर से बुवाई: 80-40-20।", "cites": ["S-QBR-01"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Nitrogen (N), phosphorus (P) and potash (K) in kg per hectare. Match the field's condition.", "cites": [] },
+        { "type": "list", "ordered": false, "items": [
+          { "text": "Rainfed: 40-20-0.", "cites": ["S-QBR-01"] },
+          { "text": "Semi-irrigated: 60-30-15.", "cites": ["S-QBR-01"] },
+          { "text": "Irrigated (timely): 120-60-30.", "cites": ["S-QBR-01"] },
+          { "text": "Late sowing: 80-40-20.", "cites": ["S-QBR-01"] }
+        ] }
+      ],
+      "sources": ["S-QBR-01"]
+    },
+    {
+      "slug": "gehun-sinchai-kab-aur-kitni-bar",
+      "crop": "wheat",
+      "category": "irrigation",
+      "season": "rabi",
+      "question_hi": "गेहूं में सिंचाई कब और कितनी बार करें?",
+      "question_en": "When and how many times to irrigate wheat?",
+      "short_hi": "गेहूं में 3 से 4 सिंचाई पर्याप्त हैं। क्रांतिक अवस्थाओं पर पानी दें — किरीट (क्राउन रूट), कल्ले निकलना, फूल आना और दूधिया अवस्था। इन अवस्थाओं पर पानी की कमी से पैदावार घटती है।",
+      "short_en": "Three to four irrigations are enough for wheat. Water at the critical stages — crown-root, tillering, flowering and milk stage. A water shortage at these stages lowers yield.",
+      "blocks": [
+        { "type": "paragraph", "text": "क्रांतिक अवस्थाओं पर पानी सबसे ज़रूरी है। पानी कम हो तो इन्हीं अवस्थाओं को पहले दें।", "cites": [] },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "कुल 3 से 4 सिंचाई पर्याप्त हैं।", "cites": ["S-QBR-01"] },
+          { "text": "सिंचाई की क्रांतिक अवस्थाएँ: किरीट अवस्था, कल्ले निकलना, फूल आना और दूधिया अवस्था।", "cites": ["S-QBR-01"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Water at the critical stages matters most. If water is short, give these stages first.", "cites": [] },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Three to four irrigations in all are enough.", "cites": ["S-QBR-01"] },
+          { "text": "Critical stages: crown-root, tillering, flowering and milk stage.", "cites": ["S-QBR-01"] }
+        ] }
+      ],
+      "sources": ["S-QBR-01"]
+    },
+    {
+      "slug": "gehun-beej-upchar-buwai-se-pehle",
+      "crop": "wheat",
+      "category": "disease",
+      "season": "rabi",
+      "question_hi": "गेहूं का बीज उपचार बुवाई से पहले कैसे करें?",
+      "question_en": "How to treat wheat seed before sowing?",
+      "short_hi": "बीज उपचार से कंडवा जैसे बीज-जनित रोग रुकते हैं। कार्बाक्सिन 75% WP या कार्बेन्डाजिम 50% WP को 2.5-3.0 ग्राम प्रति किलो बीज की दर से लगाएं; या टेबूकोनाजोल 1 ग्राम प्रति किलो बीज। लेबल पर लिखी मात्रा ही उपयोग करें।",
+      "short_en": "Seed treatment stops seed-borne diseases like loose smut. Use carboxin 75% WP or carbendazim 50% WP at 2.5-3.0 g per kg of seed; or tebuconazole 1 g per kg of seed. Use only the dose on the label.",
+      "blocks": [
+        { "type": "paragraph", "text": "बुवाई से पहले बीज को दवा से उपचारित करें। इससे कंडवा जैसे बीज-जनित रोग दबते हैं।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "कैसे करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "कार्बाक्सिन 75% WP या कार्बेन्डाजिम 50% WP — 2.5-3.0 ग्राम प्रति किलो बीज। लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QBR-01"] },
+          { "text": "या टेबूकोनाजोल 1 ग्राम प्रति किलो बीज से उपचार करें। लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QBR-01"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Treat the seed with a chemical before sowing. This suppresses seed-borne diseases like loose smut.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "How to do it" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Carboxin 75% WP or carbendazim 50% WP — 2.5-3.0 g per kg of seed. Use only the dose on the label.", "cites": ["S-QBR-01"] },
+          { "text": "Or treat with tebuconazole 1 g per kg of seed. Use only the dose on the label.", "cites": ["S-QBR-01"] }
+        ] }
+      ],
+      "sources": ["S-QBR-01"]
+    },
+    {
+      "slug": "chana-beej-dar-desi-kabuli",
+      "crop": "gram",
+      "category": "sowing",
+      "season": "rabi",
+      "question_hi": "चने में बीज दर कितनी रखें (देशी और काबुली)?",
+      "question_en": "What seed rate for gram (desi and kabuli)?",
+      "short_hi": "देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर करें।",
+      "short_en": "Keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. Always treat the seed before sowing.",
+      "blocks": [
+        { "type": "list", "ordered": false, "items": [
+          { "text": "देशी, छोटे दाने: 65-75 किलो प्रति हेक्टेयर।", "cites": ["S-QBR-02"] },
+          { "text": "मध्यम दाने: 75-80 किलो प्रति हेक्टेयर।", "cites": ["S-QBR-02"] },
+          { "text": "काबुली चना: 100 किलो प्रति हेक्टेयर।", "cites": ["S-QBR-02"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "list", "ordered": false, "items": [
+          { "text": "Desi, small seed: 65-75 kg per hectare.", "cites": ["S-QBR-02"] },
+          { "text": "Medium seed: 75-80 kg per hectare.", "cites": ["S-QBR-02"] },
+          { "text": "Kabuli gram: 100 kg per hectare.", "cites": ["S-QBR-02"] }
+        ] }
+      ],
+      "sources": ["S-QBR-02"]
+    },
+    {
+      "slug": "chana-khaad-urvarak-matra-mp",
+      "crop": "gram",
+      "category": "nutrient",
+      "season": "rabi",
+      "question_hi": "चने में खाद (उर्वरक) कितनी डालें?",
+      "question_en": "How much fertiliser for gram?",
+      "short_hi": "बुवाई के समय प्रति हेक्टेयर 20-25 किलो नत्रजन, 50-60 किलो फास्फोरस, 20 किलो पोटाश और 20 किलो गंधक डालें। चना अपनी जड़ों से हवा की नत्रजन लेता है, इसलिए नत्रजन कम लगती है।",
+      "short_en": "At sowing, apply 20-25 kg nitrogen, 50-60 kg phosphorus, 20 kg potash and 20 kg sulphur per hectare. Gram fixes air nitrogen through its roots, so it needs little nitrogen.",
+      "blocks": [
+        { "type": "list", "ordered": false, "items": [
+          { "text": "नत्रजन: 20-25 किलो प्रति हेक्टेयर।", "cites": ["S-QBR-02"] },
+          { "text": "फास्फोरस: 50-60 किलो प्रति हेक्टेयर।", "cites": ["S-QBR-02"] },
+          { "text": "पोटाश: 20 किलो, और गंधक: 20 किलो प्रति हेक्टेयर।", "cites": ["S-QBR-02"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "list", "ordered": false, "items": [
+          { "text": "Nitrogen: 20-25 kg per hectare.", "cites": ["S-QBR-02"] },
+          { "text": "Phosphorus: 50-60 kg per hectare.", "cites": ["S-QBR-02"] },
+          { "text": "Potash: 20 kg, and sulphur: 20 kg per hectare.", "cites": ["S-QBR-02"] }
+        ] }
+      ],
+      "sources": ["S-QBR-02"]
+    },
+    {
+      "slug": "chana-beej-upchar-rhizobium-mp",
+      "crop": "gram",
+      "category": "disease",
+      "season": "rabi",
+      "question_hi": "चने का बीज उपचार कैसे करें?",
+      "question_en": "How to treat gram seed before sowing?",
+      "short_hi": "पहले फफूंदनाशक, फिर कल्चर लगाएं। प्रति किलो बीज 2 ग्राम थायरम और 1 ग्राम कार्बेन्डाजिम के मिश्रण से उपचार करें। फिर राइजोबियम कल्चर 5 ग्राम और मोलेब्डेनम 1 ग्राम प्रति किलो बीज लगाएं। लेबल पर लिखी मात्रा ही उपयोग करें।",
+      "short_en": "Fungicide first, then culture. Treat each kg of seed with a mix of 2 g thiram and 1 g carbendazim. Then apply rhizobium culture 5 g and molybdenum 1 g per kg of seed. Use only the dose on the label.",
+      "blocks": [
+        { "type": "heading", "level": 3, "text": "क्रम से करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "2 ग्राम थायरम + 1 ग्राम कार्बेन्डाजिम के मिश्रण से प्रति किलो बीज उपचार करें। लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QBR-02"] },
+          { "text": "फिर राइजोबियम कल्चर 5 ग्राम प्रति किलो बीज लगाएं — इससे जड़ों में गाँठें बनती हैं।", "cites": ["S-QBR-02"] },
+          { "text": "मोलेब्डेनम 1 ग्राम प्रति किलो बीज भी लगाएं।", "cites": ["S-QBR-02"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "heading", "level": 3, "text": "Do it in order" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Treat each kg of seed with a mix of 2 g thiram + 1 g carbendazim. Use only the dose on the label.", "cites": ["S-QBR-02"] },
+          { "text": "Then apply rhizobium culture 5 g per kg of seed — it helps form root nodules.", "cites": ["S-QBR-02"] },
+          { "text": "Also apply molybdenum 1 g per kg of seed.", "cites": ["S-QBR-02"] }
+        ] }
+      ],
+      "sources": ["S-QBR-02"]
+    },
+    {
+      "slug": "masoor-unnat-kismein-mp",
+      "crop": "lentil",
+      "category": "variety",
+      "season": "rabi",
+      "question_hi": "मध्य प्रदेश के लिए मसूर की उन्नत किस्में कौन-सी हैं?",
+      "question_en": "Which improved lentil (masoor) varieties suit Madhya Pradesh?",
+      "short_hi": "MP कृषि विभाग की सूची में मसूर की किस्में हैं — JL-3 (जे.एल-3), JL-1 (जे.एल-1), IPL-81 (आई.पी.एल-81), Pant L-209 (पंत एल-209), L-4594, PL 5, PL 7, HUL 57 और K-75 (के-75)। उकठा वाले खेत में JL-3, JL-1 या IPL-81 चुनें।",
+      "short_en": "The MP Agriculture list has lentil varieties — JL-3, JL-1, IPL-81, Pant L-209, L-4594, PL 5, PL 7, HUL 57 and K-75. In wilt-prone fields pick JL-3, JL-1 or IPL-81.",
+      "blocks": [
+        { "type": "paragraph", "text": "किस्म अपने खेत और बीज की उपलब्धता के हिसाब से चुनें। उकठा की समस्या हो तो रोग-रोधी किस्म लें।", "cites": [] },
+        { "type": "list", "ordered": false, "items": [
+          { "text": "सुझाई किस्में: JL-3 (जे.एल-3), JL-1 (जे.एल-1), IPL-81 (आई.पी.एल-81), Pant L-209 (पंत एल-209), L-4594, PL 5 (पी.एल. 5), PL 7 (पी.एल. 7), HUL 57 (एच.यू.एल. 57), K-75 (के-75)।", "cites": ["S-QBR-03"] },
+          { "text": "उकठा-रोधी किस्में: JL-3, JL-1, IPL-81।", "cites": ["S-QBR-03"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Pick a variety by your field and by what seed is available. If wilt is a problem, choose a resistant one.", "cites": [] },
+        { "type": "list", "ordered": false, "items": [
+          { "text": "Suggested varieties: JL-3, JL-1, IPL-81, Pant L-209, L-4594, PL 5, PL 7, HUL 57, K-75.", "cites": ["S-QBR-03"] },
+          { "text": "Wilt-resistant: JL-3, JL-1, IPL-81.", "cites": ["S-QBR-03"] }
+        ] }
+      ],
+      "sources": ["S-QBR-03"]
+    },
+    {
+      "slug": "masoor-khaad-urvarak-matra-mp",
+      "crop": "lentil",
+      "category": "nutrient",
+      "season": "rabi",
+      "question_hi": "मसूर में खाद (उर्वरक) कितनी डालें?",
+      "question_en": "How much fertiliser for lentil (masoor)?",
+      "short_hi": "प्रति हेक्टेयर 15 टन अच्छी सड़ी गोबर खाद, और बुवाई के समय 20 किलो नत्रजन, 50 किलो स्फुर और 20 किलो पोटाश डालें। मसूर भी जड़ों से नत्रजन बनाती है, इसलिए नत्रजन कम लगती है।",
+      "short_en": "Per hectare apply 15 tonnes of well-rotted farmyard manure, and at sowing 20 kg nitrogen, 50 kg phosphorus and 20 kg potash. Lentil also fixes nitrogen in its roots, so it needs little nitrogen.",
+      "blocks": [
+        { "type": "list", "ordered": false, "items": [
+          { "text": "अच्छी सड़ी गोबर खाद: 15 टन प्रति हेक्टेयर।", "cites": ["S-QBR-03"] },
+          { "text": "नत्रजन 20 किलो, स्फुर 50 किलो और पोटाश 20 किलो प्रति हेक्टेयर।", "cites": ["S-QBR-03"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "list", "ordered": false, "items": [
+          { "text": "Well-rotted farmyard manure: 15 tonnes per hectare.", "cites": ["S-QBR-03"] },
+          { "text": "Nitrogen 20 kg, phosphorus 50 kg and potash 20 kg per hectare.", "cites": ["S-QBR-03"] }
+        ] }
+      ],
+      "sources": ["S-QBR-03"]
+    },
+    {
+      "slug": "masoor-ukatha-wilt-rokthaam",
+      "crop": "lentil",
+      "category": "disease",
+      "season": "rabi",
+      "question_hi": "मसूर में उकठा (विल्ट) रोग को कैसे रोकें?",
+      "question_en": "How to prevent wilt (ukatha) in lentil?",
+      "short_hi": "उकठा में पौधे अचानक मुरझाकर सूख जाते हैं। सबसे पक्का उपाय रोग-रोधी किस्म लगाना है — JL-3, JL-1 या IPL-81। साथ में फसल-चक्र अपनाएं और बीज उपचार करके बोएं।",
+      "short_en": "In wilt, plants suddenly droop and dry up. The surest step is a resistant variety — JL-3, JL-1 or IPL-81. Also rotate crops and sow treated seed.",
+      "blocks": [
+        { "type": "paragraph", "text": "उकठा मिट्टी में रहने वाली फफूंद से होता है। पौधे बढ़वार के समय मुरझाकर सूखने लगते हैं।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "रोग-रोधी किस्म लगाएं: JL-3 (जे.एल-3), JL-1 (जे.एल-1) या IPL-81 (आई.पी.एल-81)।", "cites": ["S-QBR-03"] },
+          { "text": "बीज उपचार करके बोएं और उसी खेत में हर साल मसूर न लें (फसल-चक्र)।", "cites": [] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Wilt comes from a soil-borne fungus. Plants droop and dry during growth.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Grow a resistant variety: JL-3, JL-1 or IPL-81.", "cites": ["S-QBR-03"] },
+          { "text": "Sow treated seed and do not grow lentil in the same field every year (rotate).", "cites": [] }
+        ] }
+      ],
+      "sources": ["S-QBR-03"]
+    },
+    {
+      "slug": "masoor-gerui-ratua-rust-control",
+      "crop": "lentil",
+      "category": "disease",
+      "season": "rabi",
+      "question_hi": "मसूर में गेरूई / रतुआ रोग का नियंत्रण कैसे करें?",
+      "question_en": "How to control rust (gerui) in lentil?",
+      "short_hi": "रतुआ में पत्तियों पर भूरे-पीले दाने जैसे धब्बे बनते हैं। रोग दिखते ही 0.3% मेन्कोजेब M-45 का छिड़काव करें और 15 दिन के अंतर पर दो बार दोहराएं। लेबल पर लिखी मात्रा ही उपयोग करें।",
+      "short_en": "In rust, brown-yellow powdery spots form on the leaves. As soon as you see it, spray 0.3% mancozeb M-45 and repeat twice at a 15-day gap. Use only the dose on the label.",
+      "blocks": [
+        { "type": "paragraph", "text": "रतुआ ठंडे-नम मौसम में फैलता है। पत्तियों और तनों पर भूरे-पीले दाने जैसे धब्बे दिखते हैं।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "0.3% मेन्कोजेब M-45 (एम-45) का छिड़काव करें, 15 दिन के अंतर पर दो बार। लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QBR-03"] },
+          { "text": "रोग के पहले लक्षण पर ही छिड़काव करें; देर करने पर नुकसान बढ़ता है।", "cites": [] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Rust spreads in cool, damp weather. Brown-yellow powdery spots appear on leaves and stems.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Spray 0.3% mancozeb M-45, twice at a 15-day gap. Use only the dose on the label.", "cites": ["S-QBR-03"] },
+          { "text": "Spray at the first sign; delay increases the damage.", "cites": [] }
+        ] }
+      ],
+      "sources": ["S-QBR-03"]
+    },
+    {
+      "slug": "masoor-mahu-aphid-control",
+      "crop": "lentil",
+      "category": "pest",
+      "season": "rabi",
+      "question_hi": "मसूर में माहू (चेंपा) का नियंत्रण कैसे करें?",
+      "question_en": "How to control aphids (mahu) in lentil?",
+      "short_hi": "माहू कोमल टहनियों और फलियों का रस चूसते हैं, जिससे फसल कमज़ोर होती है। ज़्यादा रोक-थाम के लिए इमिडाक्लोप्रिड 150 मिलीलीटर प्रति हेक्टेयर का छिड़काव करें। लेबल पर लिखी मात्रा ही उपयोग करें।",
+      "short_en": "Aphids suck sap from tender shoots and pods, weakening the crop. For heavy infestation, spray imidacloprid 150 ml per hectare. Use only the dose on the label.",
+      "blocks": [
+        { "type": "paragraph", "text": "माहू छोटे हरे-काले कीट हैं जो टहनियों और फलियों पर झुंड में बैठते हैं।", "cites": [] },
+        { "type": "heading", "level": 3, "text": "क्या करें" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "इमिडाक्लोप्रिड 150 मिलीलीटर प्रति हेक्टेयर का छिड़काव करें। लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QBR-03"] },
+          { "text": "खेत में पीले चिपचिपे कार्ड लगाकर माहू की निगरानी करें।", "cites": [] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "paragraph", "text": "Aphids are tiny green-black insects that cluster on shoots and pods.", "cites": [] },
+        { "type": "heading", "level": 3, "text": "What to do" },
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Spray imidacloprid 150 ml per hectare. Use only the dose on the label.", "cites": ["S-QBR-03"] },
+          { "text": "Use yellow sticky cards in the field to watch for aphids.", "cites": [] }
+        ] }
+      ],
+      "sources": ["S-QBR-03"]
+    },
+    {
+      "slug": "masoor-sinchai-kab-karein",
+      "crop": "lentil",
+      "category": "irrigation",
+      "season": "rabi",
+      "question_hi": "मसूर में सिंचाई कब करें?",
+      "question_en": "When to irrigate lentil (masoor)?",
+      "short_hi": "मसूर कम पानी में होने वाली फसल है। पानी उपलब्ध हो तो एक सिंचाई बुवाई के 45 दिन बाद करें, और ज़रूरत हो तो दूसरी फलियां भरते समय। ज़्यादा पानी से उकठा और गिरना बढ़ सकता है।",
+      "short_en": "Lentil is a low-water crop. If water is available, give one irrigation 45 days after sowing, and a second at pod-filling if needed. Too much water can increase wilt and lodging.",
+      "blocks": [
+        { "type": "list", "ordered": true, "items": [
+          { "text": "पहली सिंचाई: बुवाई के 45 दिन बाद (पानी उपलब्ध हो तो)।", "cites": ["S-QBR-03"] },
+          { "text": "दूसरी सिंचाई: फलियां भरते समय, ज़रूरत हो तब।", "cites": ["S-QBR-03"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "list", "ordered": true, "items": [
+          { "text": "First irrigation: 45 days after sowing (if water is available).", "cites": ["S-QBR-03"] },
+          { "text": "Second irrigation: at pod-filling, only if needed.", "cites": ["S-QBR-03"] }
+        ] }
+      ],
+      "sources": ["S-QBR-03"]
+    }
+  ]
+}
