@@ -289,8 +289,8 @@ export default function Post() {
                 data-testid="wide-visibility-checkbox"
               />
               <span className="text-base text-stone-800">
-                <span className="block font-semibold">{t('wide_visibility_label')}</span>
-                <span className="mt-1 block text-sm text-stone-600">{t('wide_visibility_note')}</span>
+                <span className="block font-semibold">{t(source === 'vendor' ? 'wide_visibility_label_vendor' : 'wide_visibility_label')}</span>
+                <span className="mt-1 block text-sm text-stone-600">{t(source === 'vendor' ? 'wide_visibility_note_vendor' : 'wide_visibility_note')}</span>
               </span>
             </label>
           )}
@@ -333,6 +333,9 @@ export default function Post() {
         <div className="py-6 text-center">
           <div className="text-6xl">✅</div>
           <p className="mt-4 text-xl font-bold text-green-800">{t('post_success')}</p>
+          {created?.wide_visibility && (
+            <p className="mx-auto mt-3 inline-block rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-800" data-testid="wide-badge">📍 {t('wide_badge')}</p>
+          )}
           {created?.geocoding_status === 'pending' && (
             /* ks-allow-width: success-state note */
             <p className="mx-auto mt-3 max-w-sm rounded-lg bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-900" data-testid="pending-geocode-note">

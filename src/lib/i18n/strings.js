@@ -1648,8 +1648,11 @@ export const strings = {
 
   // ===== 0025 build — geofencing / location / mandi search / PWA / inputs =====
   // Phase 1 — wide-visibility opt-in (Bhoosa/Parali + Seeds & Inputs only)
-  wide_visibility_label: { hi: 'इसे 30 किमी से दूर के लोगों को भी दिखाएं', en: 'Show this to people beyond 30 km too' },
-  wide_visibility_note: { hi: 'नज़दीकी खरीदार मिलना आसान और सुरक्षित होता है — दूर के लोगों से सावधानी से डील करें।', en: 'Nearby buyers are easier and safer to meet — deal carefully with distant people.' },
+  wide_visibility_label: { hi: '100 किमी तक के किसानों को दिखाएँ', en: 'Show to farmers up to 100 km away' },
+  wide_visibility_note: { hi: 'ज़्यादा किसानों तक पहुँचेगा। दूर के लोगों से सोच-समझकर डील करें।', en: 'Reaches more farmers. Deal carefully with people far away.' },
+  wide_visibility_label_vendor: { hi: '100 किमी तक के किसानों तक पहुँचें', en: 'Reach farmers up to 100 km away' },
+  wide_visibility_note_vendor: { hi: 'आपकी दुकान/व्यापार ज़्यादा किसान देखेंगे। दूर के ग्राहकों से सोच-समझकर डील करें।', en: 'More farmers will see your shop or business. Deal carefully with distant customers.' },
+  wide_badge: { hi: '100 किमी तक दिखेगा', en: 'Visible up to 100 km' },
   err_wide_visibility_not_allowed: { hi: 'यह विकल्प केवल भूसा/पराली और बीज-खाद के लिए है।', en: 'This option is only for Bhoosa/Parali and Seeds & Inputs.' },
 
   // Phase 2 — unified LocationControl

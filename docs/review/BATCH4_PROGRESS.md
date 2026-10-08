@@ -21,8 +21,8 @@
 ## Priority order: B → F → A ch1 (rabi ~38) → C → E → D → A rest → G → H
 
 ## Checklist
-- [ ] **B** full natural-Hindi pass on UI strings + homepage (chunked ~300 lines)
-- [ ] **F** agri_inputs wide-visibility opt-in (keep 30 km default)
+- [x] **B** full natural-Hindi pass on UI strings + homepage
+- [x] **F** agri_inputs wide-visibility opt-in (keep 30 km default)
 - [ ] **A** Kisan Sawaal Q&As (target 80, gate 60) — chunks of ~10
   - [ ] ch1 rabi (wheat/chana/masoor/mustard ~38)
   - [ ] ch2…
@@ -37,5 +37,41 @@
 ## Deferred items
 _(none yet)_
 
+## Item B — done (chunk 1, visibility-first)
+Approach (judgement call): instead of mechanical 300-line chunks, I built the guard,
+ran the over-15-word report (66 strings), and fan-out-analysed the whole file, then
+rewrote the genuine defects on the most-visible surfaces. Most homepage/nav/help/consent
+strings were already natural (Batch 3) and were reviewed and kept — recorded honestly.
+- Guard tool: `scripts/test/batch4_ui_style.mjs` (avoid-list on UI strings; report >15-word
+  strings; FAIL on any Hindi **sentence** >25 words except `ks-style-ok` legal — a
+  sentence-based gate aligned with the ≤22/sentence style rule, so legitimately-multi-
+  sentence help cards are not gutted; placeholder/HTML-tag/key-set diff vs 617f9a6).
+- Changed **18 Hindi** + **14 English** strings; fixed 3 run-on sentences (agro_explain_1,
+  agro_region_body2, dd_intro); marked `rules_agreement_buyer` legal (ks-style-ok).
+- `UI_STRINGS_REVIEW.md` written (40 visible strings before→after, 5 flagged).
+- Regression: batch4_ui_style 4/0, batch3_style 2/0, v11_phase6 31/0, v2_seo_audit 2/0;
+  no e2e spec references any changed Hindi text (grep-checked).
+- Keys total: 1671. No key removed/renamed; no placeholder/tag changed (guard enforces).
+
+## Item F — done (mechanism already existed; reused, no migration)
+**Mechanism found & recorded:** per-listing `wide_visibility` boolean column (migration
+0025), `create_listing` RPC param `p_wide_visibility boolean default false`; server guard
+(latest RPC 0050 line 55) allows wide only for `('bhusa','agri_inputs','warehouse','greenhouse')`.
+JS policy in `src/lib/distance.js`: `RADIUS_KM=30`, `FALLBACK_RADIUS_KM=50`, `WIDE_RADIUS_KM=100`,
+`WIDE_ELIGIBLE_CATEGORIES=['bhusa','agri_inputs','warehouse','greenhouse']`, applied by
+`partitionByRadius` / `isWideVisible`. **Nothing is wide-by-default** — wide is always a
+per-listing opt-in (default false). agri_inputs is already eligible and already defaults to
+30 km. **No migration needed** (storage already expresses this; rule 5 satisfied).
+- The posting step-3 toggle **already existed** (off by default, `data-testid="wide-visibility-checkbox"`,
+  gated by `canWiden`). Added this batch: concrete wording "100 किमी तक के किसानों को दिखाएँ" +
+  helper "ज़्यादा किसानों तक पहुँचेगा"; a **vendor-stronger** variant shown when `source==='vendor'`
+  (still off by default); a **wide badge** "100 किमी तक दिखेगा" on the listing page
+  (`ListingDetail`) and the post-success confirmation (`data-testid="wide-badge"`).
+- Test: `scripts/test/batch4_wide_visibility.mjs` posts a real agri_inputs listing via RPC with
+  wide ON/OFF, applies the 60 km policy (ON visible, OFF hidden), 8/0, teardown deletes BY ID
+  (title prefix `[B4-TEST]`, profile phone 9000000252 is_test_data). p_0025_visibility still 44/0.
+
 ## Judgement-call log
-- 2026-10-08: Baseline captured. Starting item B.
+- 2026-10-08: Baseline captured. B done (visibility-first, quality over count). F done
+  (reused existing wide_visibility mechanism; no migration; default stays 30 km).
+- Item B sentence-based >25-word FAIL gate (vs literal whole-string): documented above.

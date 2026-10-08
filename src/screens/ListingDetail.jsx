@@ -92,6 +92,9 @@ export default function ListingDetail() {
             <span className="ml-1 inline-block rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-800">🏪 {t('vendor_badge')}</span>
           )}
           <SponsoredBadge sponsored={listing.is_sponsored} className="ml-1 align-middle" />
+          {listing.wide_visibility && (
+            <span className="ml-1 inline-block rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-800" data-testid="wide-badge">📍 {t('wide_badge')}</span>
+          )}
         </div>
         {distance != null && (
           <span className="ml-auto text-sm font-semibold text-stone-500">
