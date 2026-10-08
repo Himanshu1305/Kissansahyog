@@ -1562,6 +1562,20 @@ export const sources = {
     "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_Alsi_New.aspx",
     "date": "2026",
     "type": "Official"
+  },
+  "S-QBR-06": {
+    "title": "मटर उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, बीज उपचार, रोग-कीट (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_pea_New.aspx",
+    "date": "2026",
+    "type": "Official"
+  },
+  "S-QBR-07": {
+    "title": "लहसुन उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, सिंचाई, रोग-कीट (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_garlic_New.aspx",
+    "date": "2026",
+    "type": "Official"
   }
 }
 
