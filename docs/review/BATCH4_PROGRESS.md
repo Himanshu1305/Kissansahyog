@@ -37,9 +37,12 @@
 - [x] **D** `/bazaar/*` — hub + 6 landing pages (equipment/labor/bhusa/agri-inputs/transport/land),
       ≥250 words hi+en each, FAQ+Breadcrumb JSON-LD, Browse/Post buttons, footer link, sitemap pages 44,
       196/196 prerendered, v2_seo_audit 2/0, batch4_bazaar 58/0. Dedicated pages linked, not duplicated.
-- [ ] **G** STRAY_LISTINGS.md (read-only)
-- [ ] **H** stabilise phase18_transport, phase20_mela, phase6 e2e specs
-- [ ] Verification + screenshots + preview deploy
+- [x] **A** — **61 new published** (58→119). 5 chunks, all MP agri dept (S-QBR-01..11). Gate (60) met.
+      QA_NEW_FOR_REVIEW.md written (61 rows). Aim-80 not reached — see report "not done".
+- [x] **G** STRAY_LISTINGS.md — no stray/test listings found (6 real, 65 sample kept). Read-only.
+- [x] **H** phase18_transport + phase20_mela + phase6 — all self-contained now (create own data,
+      assert tolerantly, teardown by id). 11/11 pass. No seed data deleted/changed.
+- [ ] Verification (full e2e + build:full) + screenshots + preview deploy
 - [ ] BATCH4_REPORT.md (finish marker)
 
 ## Deferred items

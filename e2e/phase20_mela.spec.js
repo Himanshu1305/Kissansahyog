@@ -38,13 +38,23 @@ test('public page: confirmed vs अपेक्षित clearly distinguished, 
 })
 
 test('a shared link to a merged-away Mela redirects to its active survivor (3e, no 404)', async ({ page }) => {
-  // The Pantnagar seed (fixed id) was merged into a survivor during the one-time cleanup.
-  const mergedAwayId = '22222222-0000-4000-8000-0000000000a2'
-  const { data } = await adminClient().from('kisan_mela').select('merged_into').eq('id', mergedAwayId).maybeSingle()
-  test.skip(!data?.merged_into, 'Pantnagar seed is not in a merged state in this environment')
-  await page.goto(`/kisan-mela?mela=${mergedAwayId}`)
-  // resolve_active_mela follows merged_into → the survivor card is shown (never an empty/not-found page).
-  await expect(page.locator(`[data-mela-id="${data.merged_into}"]`)).toBeVisible({ timeout: 15000 })
+  // Self-contained (Batch 4 item H): create an approved, FUTURE-dated survivor and a
+  // merged-away row pointing at it, so the test never depends on seed melas whose dates
+  // have passed (the public list shows only future, approved, active melas). Clean up both.
+  const admin = adminClient()
+  const future = new Date(Date.now() + 90 * 864e5).toISOString().slice(0, 10)
+  const base = { state: 'Madhya Pradesh', district: 'Sagar', is_active: true, moderation_status: 'approved', is_date_confirmed: true, event_date_start: future, category_tags: ['general'], venue: 'B4 Test Ground', source_url: 'https://kissansahyog.com/e2e-self-test' }
+  const { data: survivor, error: e1 } = await admin.from('kisan_mela').insert({ ...base, name_en: 'B4 Survivor Mela', name_hi: 'B4 सर्वाइवर मेला' }).select('id').single()
+  if (e1) throw new Error(e1.message)
+  const { data: merged, error: e2 } = await admin.from('kisan_mela').insert({ ...base, is_active: false, name_en: 'B4 Merged Mela', name_hi: 'B4 मर्ज मेला', merged_into: survivor.id, merge_reason: 'e2e self-contained test' }).select('id').single()
+  if (e2) throw new Error(e2.message)
+  try {
+    await page.goto(`/kisan-mela?mela=${merged.id}`)
+    // resolve_active_mela follows merged_into → the survivor card is shown (never a 404/empty page).
+    await expect(page.locator(`[data-mela-id="${survivor.id}"]`)).toBeVisible({ timeout: 15000 })
+  } finally {
+    await admin.from('kisan_mela').delete().in('id', [merged.id, survivor.id])
+  }
 })
 
 test('"दिलचस्पी है" requires login (anon → redirected to /login)', async ({ page }) => {

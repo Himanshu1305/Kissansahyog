@@ -46,13 +46,22 @@ test('Transport listing appears within 30km and is filtered beyond 50km', async 
     details: { vehicle_type: 'truck', capacity: '10 टन', rate_basis: 'per_km', rate_amount: '₹35/किमी' },
     self_declared: false,
   })
-  await admin.from('listings').insert([row(NEAR), row(FAR)])
-
-  await loginAs(page, viewer)
-  await page.goto('/browse?cat=transport')
-  // Exactly the near (0 km) one shows; the ~55km one is filtered out (no wrong fallback).
-  await expect(page.getByTestId('listing-card')).toHaveCount(1)
-  await expect(page.getByText('0 km away')).toBeVisible()
-  // The card renders transport detail (truck), proving the category module is wired.
-  await expect(page.getByTestId('listing-card').first()).toContainText(/Truck|ट्रक/)
+  // Self-contained + cleaned up: insert our own NEAR/FAR rows, capture ids, delete in
+  // teardown. Assertions tolerate any other listings so the test does not depend on
+  // (or accumulate) seed data (Batch 4 item H).
+  const { data: inserted } = await admin.from('listings').insert([row(NEAR), row(FAR)]).select('id')
+  const ids = (inserted || []).map((r) => r.id)
+  try {
+    await loginAs(page, viewer)
+    await page.goto('/browse?cat=transport')
+    // The near (0 km) transport listing shows…
+    await expect(page.getByText('0 km away')).toBeVisible({ timeout: 15000 })
+    // …and it renders transport detail (truck), proving the category module is wired.
+    await expect(page.getByTestId('listing-card').filter({ hasText: /Truck|ट्रक/ }).first()).toBeVisible()
+    // …while the ~55km FAR one is filtered out: no card shows a 51–99 km distance (the
+    // 30–50 ring is suppressed whenever a within-30 result exists).
+    await expect(page.getByTestId('listing-card').filter({ hasText: /\b(5[1-9]|[6-9][0-9])(\.\d)? km away\b/ })).toHaveCount(0)
+  } finally {
+    if (ids.length) await admin.from('listings').delete().in('id', ids)
+  }
 })
