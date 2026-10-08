@@ -34,7 +34,9 @@
       +unit test, 44px mic, offline msg, Privacy voice line, e2e denied path. batch4_voice 23/0, phase19 6/6.
       NOTE for owner: preview env lacks GEMINI_API_KEY → the MediaRecorder/Gemini fallback path cannot be
       tested on preview; Web Speech (Chrome/Android) works without a key. Owner adds the secret to test fallback.
-- [ ] **D** `/bazaar/*` category landing pages
+- [x] **D** `/bazaar/*` — hub + 6 landing pages (equipment/labor/bhusa/agri-inputs/transport/land),
+      ≥250 words hi+en each, FAQ+Breadcrumb JSON-LD, Browse/Post buttons, footer link, sitemap pages 44,
+      196/196 prerendered, v2_seo_audit 2/0, batch4_bazaar 58/0. Dedicated pages linked, not duplicated.
 - [ ] **G** STRAY_LISTINGS.md (read-only)
 - [ ] **H** stabilise phase18_transport, phase20_mela, phase6 e2e specs
 - [ ] Verification + screenshots + preview deploy

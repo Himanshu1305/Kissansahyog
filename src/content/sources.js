@@ -1548,6 +1548,20 @@ export const sources = {
     "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_masoor_New.aspx",
     "date": "2026",
     "type": "Official"
+  },
+  "S-QBR-04": {
+    "title": "सरसों/राई उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, बीज उपचार, सिंचाई (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_sarso_New.aspx",
+    "date": "2026",
+    "type": "Official"
+  },
+  "S-QBR-05": {
+    "title": "अलसी (लिनसीड) उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, सिंचाई, कीट-रोग (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_Alsi_New.aspx",
+    "date": "2026",
+    "type": "Official"
   }
 }
 
