@@ -307,6 +307,24 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "सूरजमुखी की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved sunflower varieties are recommended?",
+    "subtitle_hi": "सूरजमुखी की सुझाई किस्में हैं — मार्डन, BSH-1, MSH-17, MSFS-8, SHFH-1, MSFH-4, ज्वालामुखी, EC 68415 और सूर्या। संकर किस्में उपज में अच्छी रहती हैं।",
+    "subtitle_en": "Suggested sunflower varieties are — Morden, BSH-1, MSH-17, MSFS-8, SHFH-1, MSFH-4, Jwalamukhi, EC 68415 and Surya. Hybrids tend to yield better.",
+    "url": "/sawaal/surajmukhi-unnat-kismein-mp",
+    "keywords": "सूरजमुखी की उन्नत किस्में कौन-सी हैं? which improved sunflower varieties are recommended? sunflower variety सूरजमुखी की सुझाई किस्में हैं — मार्डन, bsh-1, msh-17, msfs-8, shfh-1, msfh-4, ज्वालामुखी, ec 68415 और सूर्या। संकर किस्में उपज में अच्छी रहती हैं। suggested sunflower varieties are — morden, bsh-1, msh-17, msfs-8, shfh-1, msfh-4, jwalamukhi, ec 68415 and surya. hybrids tend to yield better."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "गन्ने की शरदकालीन बुवाई का समय और बीज दर क्या है?",
+    "title_en": "What is the autumn sowing time and seed rate for sugarcane?",
+    "subtitle_hi": "शरदकालीन गन्ना अक्टूबर-नवंबर में बोएं; फसल 10-14 माह में तैयार होती है। बीज दर 75-80 क्विंटल प्रति हेक्टेयर रखें, और 2 आँख वाले स्वस्थ टुकड़े लगाएं।",
+    "subtitle_en": "Sow autumn sugarcane in October-November; the crop is ready in 10-14 months. Keep seed rate at 75-80 quintals per hectare, using healthy two-bud setts.",
+    "url": "/sawaal/ganna-buwai-samay-beej-dar-mp",
+    "keywords": "गन्ने की शरदकालीन बुवाई का समय और बीज दर क्या है? what is the autumn sowing time and seed rate for sugarcane? sugarcane sowing शरदकालीन गन्ना अक्टूबर-नवंबर में बोएं; फसल 10-14 माह में तैयार होती है। बीज दर 75-80 क्विंटल प्रति हेक्टेयर रखें, और 2 आँख वाले स्वस्थ टुकड़े लगाएं। sow autumn sugarcane in october-november; the crop is ready in 10-14 months. keep seed rate at 75-80 quintals per hectare, using healthy two-bud setts."
+  },
+  {
+    "type": "sawaal",
     "title_hi": "सोयाबीन के पत्ते पीले क्यों हो रहे हैं और क्या करें?",
     "title_en": "Why are soybean leaves turning yellow and what should I do?",
     "subtitle_hi": "पीलेपन के कई कारण हो सकते हैं — वायरस, पोषक तत्व की कमी, या जड़ सड़न। पत्तियों पर पीले-हरे धब्बे और फली न बनना पीला मोज़ायक वायरस का संकेत है। पक्का कारण जानने ",
@@ -316,84 +334,57 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें?",
-    "title_en": "How to manage yellow mosaic virus in soybean?",
-    "subtitle_hi": "पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद",
-    "subtitle_en": "Yellow mosaic spreads through whitefly. Leaves get yellow-green patches and pods do not form. The best step is to grow a resistant variety. Remove diseased plan",
-    "url": "/sawaal/soybean-yellow-mosaic-virus",
-    "keywords": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें? how to manage yellow mosaic virus in soybean? soybean disease पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद yellow mosaic spreads through whitefly. leaves get yellow-green patches and pods do not form. the best step is to grow a resistant variety. remove diseased plan"
+    "title_hi": "सरसों की बुवाई का सही समय क्या है?",
+    "title_en": "What is the right time to sow mustard?",
+    "subtitle_hi": "असिंचित सरसों 15 सितंबर से 15 अक्टूबर के बीच बोएं। सिंचित सरसों 10 अक्टूबर से 30 अक्टूबर तक बोएं। तोरिया की बुवाई सितंबर के पहले पखवाड़े में करें।",
+    "subtitle_en": "Sow rainfed mustard between 15 September and 15 October. Sow irrigated mustard from 10 to 30 October. Sow toria in the first fortnight of September.",
+    "url": "/sawaal/sarson-buwai-ka-sahi-samay-mp",
+    "keywords": "सरसों की बुवाई का सही समय क्या है? what is the right time to sow mustard? mustard sowing असिंचित सरसों 15 सितंबर से 15 अक्टूबर के बीच बोएं। सिंचित सरसों 10 अक्टूबर से 30 अक्टूबर तक बोएं। तोरिया की बुवाई सितंबर के पहले पखवाड़े में करें। sow rainfed mustard between 15 september and 15 october. sow irrigated mustard from 10 to 30 october. sow toria in the first fortnight of september."
   },
   {
     "type": "sawaal",
-    "title_hi": "मध्य प्रदेश के लिए गेहूं की कौन-सी किस्में अच्छी हैं?",
-    "title_en": "Which wheat varieties are recommended for Madhya Pradesh?",
-    "subtitle_hi": "मध्य प्रदेश में लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती किस्म में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम गेहूं में पूसा त",
-    "subtitle_en": "In Madhya Pradesh, common wheat varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. Among durum",
-    "url": "/sawaal/wheat-recommended-varieties-mp",
-    "keywords": "मध्य प्रदेश के लिए गेहूं की कौन-सी किस्में अच्छी हैं? which wheat varieties are recommended for madhya pradesh? wheat variety मध्य प्रदेश में लोक-1, gw-322, gw-366, gw-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती किस्म में c-306 और अमृता (hi 1500) अच्छी हैं। डुरम गेहूं में पूसा त in madhya pradesh, common wheat varieties like lok-1, gw-322, gw-366, gw-273 are popular. among sharbati types, c-306 and amrita (hi 1500) are good. among durum"
+    "title_hi": "मध्य प्रदेश के लिए सरसों की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved mustard varieties suit Madhya Pradesh?",
+    "subtitle_hi": "MP कृषि विभाग की सूची में सरसों की किस्में हैं — जवाहर सरसों-2, जवाहर सरसों-3, राज विजय सरसों-2, CS-56, NRCHB-101, पूसा सरसों-21 और पूसा सरसों-27। तोरिया में जव",
+    "subtitle_en": "The MP Agriculture list has mustard varieties — Javahar Sarson-2, Javahar Sarson-3, Raj Vijay Sarson-2, CS-56, NRCHB-101, Pusa Sarson-21 and Pusa Sarson-27. For",
+    "url": "/sawaal/sarson-unnat-kismein-mp",
+    "keywords": "मध्य प्रदेश के लिए सरसों की उन्नत किस्में कौन-सी हैं? which improved mustard varieties suit madhya pradesh? mustard variety mp कृषि विभाग की सूची में सरसों की किस्में हैं — जवाहर सरसों-2, जवाहर सरसों-3, राज विजय सरसों-2, cs-56, nrchb-101, पूसा सरसों-21 और पूसा सरसों-27। तोरिया में जव the mp agriculture list has mustard varieties — javahar sarson-2, javahar sarson-3, raj vijay sarson-2, cs-56, nrchb-101, pusa sarson-21 and pusa sarson-27. for"
   },
   {
     "type": "sawaal",
-    "title_hi": "मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?",
-    "title_en": "Which maize varieties and hybrids are recommended?",
-    "subtitle_hi": "मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनुशंसित",
-    "subtitle_en": "In maize, medium-duration hybrids like Ganga-5 (95-110 days) are common. Composites like Vijay (100-110 days) and Kisan are also used. Choose a variety recommen",
-    "url": "/sawaal/maize-recommended-varieties",
-    "keywords": "मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं? which maize varieties and hybrids are recommended? maize variety मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनुशंसित in maize, medium-duration hybrids like ganga-5 (95-110 days) are common. composites like vijay (100-110 days) and kisan are also used. choose a variety recommen"
+    "title_hi": "सूरजमुखी में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser for sunflower?",
+    "subtitle_hi": "बुवाई के समय प्रति हेक्टेयर 30-40 किलो नत्रजन, 60 किलो स्फुर और 30 किलो पोटाश डालें। फूल बनते समय पानी और खाद की कमी न होने दें।",
+    "subtitle_en": "At sowing, apply 30-40 kg nitrogen, 60 kg phosphorus and 30 kg potash per hectare. Do not let water or nutrients run short at flowering.",
+    "url": "/sawaal/surajmukhi-khaad-urvarak-matra-mp",
+    "keywords": "सूरजमुखी में खाद (उर्वरक) कितनी डालें? how much fertiliser for sunflower? sunflower nutrient बुवाई के समय प्रति हेक्टेयर 30-40 किलो नत्रजन, 60 किलो स्फुर और 30 किलो पोटाश डालें। फूल बनते समय पानी और खाद की कमी न होने दें। at sowing, apply 30-40 kg nitrogen, 60 kg phosphorus and 30 kg potash per hectare. do not let water or nutrients run short at flowering."
   },
   {
     "type": "sawaal",
-    "title_hi": "मिर्च में थ्रिप्स व रस चूसक कीटों का सुरक्षित (कम-दवा) प्रबंधन कैसे करें?",
-    "title_en": "How to manage chilli thrips and sucking pests with low-pesticide IPM?",
-    "subtitle_hi": "मिर्च में रस चूसक कीट वायरस भी फैलाते हैं। नर्सरी में नीम खली डालें। चारों ओर ज्वार/मक्का की रक्षक फसल और गेंदा-अरंडी की ट्रैप फसल लगाएँ। चिपचिपे व फेरोमोन ट्रै",
-    "subtitle_en": "In chilli, sucking pests also spread viruses. Add neem cake in the nursery. Plant sorghum/maize border crops all around, and marigold-castor trap crops. Install",
-    "url": "/sawaal/chilli-thrips-sucking-pests-ipm",
-    "keywords": "मिर्च में थ्रिप्स व रस चूसक कीटों का सुरक्षित (कम-दवा) प्रबंधन कैसे करें? how to manage chilli thrips and sucking pests with low-pesticide ipm? chilli pest मिर्च में रस चूसक कीट वायरस भी फैलाते हैं। नर्सरी में नीम खली डालें। चारों ओर ज्वार/मक्का की रक्षक फसल और गेंदा-अरंडी की ट्रैप फसल लगाएँ। चिपचिपे व फेरोमोन ट्रै in chilli, sucking pests also spread viruses. add neem cake in the nursery. plant sorghum/maize border crops all around, and marigold-castor trap crops. install"
+    "title_hi": "सूरजमुखी की बुवाई का समय और बीज दर क्या है?",
+    "title_en": "What is the sowing time and seed rate for sunflower (surajmukhi)?",
+    "subtitle_hi": "सिंचित सूरजमुखी खरीफ कटाई के बाद अक्टूबर के मध्य से नवंबर के अंत तक बोएं। असिंचित में सितंबर में बोएं। उन्नत किस्म में 10 किलो और संकर किस्म में 6-7 किलो बीज प्",
+    "subtitle_en": "Sow irrigated sunflower from mid-October to end-November after the kharif harvest. Sow rainfed in September. Keep 10 kg seed per hectare for improved varieties ",
+    "url": "/sawaal/surajmukhi-buwai-beej-dar-mp",
+    "keywords": "सूरजमुखी की बुवाई का समय और बीज दर क्या है? what is the sowing time and seed rate for sunflower (surajmukhi)? sunflower sowing सिंचित सूरजमुखी खरीफ कटाई के बाद अक्टूबर के मध्य से नवंबर के अंत तक बोएं। असिंचित में सितंबर में बोएं। उन्नत किस्म में 10 किलो और संकर किस्म में 6-7 किलो बीज प् sow irrigated sunflower from mid-october to end-november after the kharif harvest. sow rainfed in september. keep 10 kg seed per hectare for improved varieties"
   },
   {
     "type": "sawaal",
-    "title_hi": "पीएम-किसान का पैसा किस किसान को मिलता है (पात्रता)?",
-    "title_en": "Who is eligible for PM-KISAN?",
-    "subtitle_hi": "जिन किसान परिवारों के नाम पर खेती की जमीन दर्ज है, वे पात्र हैं। आयकर भरने वाले, डॉक्टर-वकील जैसे पेशेवर, और 10,000 रुपये या ज्यादा पेंशन पाने वाले सेवानिवृत्त ",
-    "subtitle_en": "Farmer families with cultivable land recorded in their name are eligible. Income-tax payers, professionals like doctors and lawyers, and retired people drawing ",
-    "url": "/sawaal/pm-kisan-patrata",
-    "keywords": "पीएम-किसान का पैसा किस किसान को मिलता है (पात्रता)? who is eligible for pm-kisan? scheme जिन किसान परिवारों के नाम पर खेती की जमीन दर्ज है, वे पात्र हैं। आयकर भरने वाले, डॉक्टर-वकील जैसे पेशेवर, और 10,000 रुपये या ज्यादा पेंशन पाने वाले सेवानिवृत्त farmer families with cultivable land recorded in their name are eligible. income-tax payers, professionals like doctors and lawyers, and retired people drawing"
+    "title_hi": "गन्ने में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser for sugarcane?",
+    "subtitle_hi": "गन्ने में प्रति हेक्टेयर 300 किलो नत्रजन, 85 किलो स्फुर और 60 किलो पोटाश डालें। नत्रजन को कई बार में बाँटकर दें, क्योंकि गन्ना लंबी अवधि की फसल है।",
+    "subtitle_en": "For sugarcane apply 300 kg nitrogen, 85 kg phosphorus and 60 kg potash per hectare. Split the nitrogen into several doses, as sugarcane is a long-duration crop.",
+    "url": "/sawaal/ganna-khaad-urvarak-matra-mp",
+    "keywords": "गन्ने में खाद (उर्वरक) कितनी डालें? how much fertiliser for sugarcane? sugarcane nutrient गन्ने में प्रति हेक्टेयर 300 किलो नत्रजन, 85 किलो स्फुर और 60 किलो पोटाश डालें। नत्रजन को कई बार में बाँटकर दें, क्योंकि गन्ना लंबी अवधि की फसल है। for sugarcane apply 300 kg nitrogen, 85 kg phosphorus and 60 kg potash per hectare. split the nitrogen into several doses, as sugarcane is a long-duration crop."
   },
   {
     "type": "sawaal",
-    "title_hi": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ?",
-    "title_en": "Rain is likely in the next three-four days — what do I do with my cut soybean?",
-    "subtitle_hi": "कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ही थ्र",
-    "subtitle_en": "Protect cut soybean from rain, or the grain can blacken and germination drops. Cover the crop with a tarpaulin on high, dry ground. Thresh only after the grain ",
-    "url": "/sawaal/agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri",
-    "keywords": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ? rain is likely in the next three-four days — what do i do with my cut soybean? soybean weather कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ही थ्र protect cut soybean from rain, or the grain can blacken and germination drops. cover the crop with a tarpaulin on high, dry ground. thresh only after the grain"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "नमो ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे मिलेगा?",
-    "title_en": "What is the Namo Drone Didi scheme and how can we get drone spraying in the village?",
-    "subtitle_hi": "नमो ड्रोन दीदी एक केंद्र सरकार की योजना है। इसमें महिला स्वयं सहायता समूहों (SHG) को ड्रोन दिया जाता है, ताकि वे किराए पर किसानों के खेतों में तरल खाद और कीटनाश",
-    "subtitle_en": "Namo Drone Didi is a central government scheme. It gives drones to women Self Help Groups (SHGs) so they can spray liquid fertilizers and pesticides on farmers'",
-    "url": "/sawaal/drona-didi-yojanaa-gaanva-drona-davaa-chhidakaava",
-    "keywords": "नमो ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे मिलेगा? what is the namo drone didi scheme and how can we get drone spraying in the village? drone_didi नमो ड्रोन दीदी एक केंद्र सरकार की योजना है। इसमें महिला स्वयं सहायता समूहों (shg) को ड्रोन दिया जाता है, ताकि वे किराए पर किसानों के खेतों में तरल खाद और कीटनाश namo drone didi is a central government scheme. it gives drones to women self help groups (shgs) so they can spray liquid fertilizers and pesticides on farmers'"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें?",
-    "title_en": "How to manage tomato fruit borer?",
-    "subtitle_hi": "फल छेदक (Helicoverpa) टमाटर में बहुत नुकसान करता है। गेंदा को ट्रैप फसल के रूप में 16:1 में लगाएँ। फेरोमोन ट्रैप 10-12/हेक्टेयर लगाएँ। Bt @ 500 ग्राम/हेक्टेयर य",
-    "subtitle_en": "Fruit borer (Helicoverpa) does heavy damage to tomato. Plant marigold as a trap crop at 16:1. Install 10-12 pheromone traps per hectare. Spray Bt @ 500 g/ha or ",
-    "url": "/sawaal/tomato-fruit-borer-control",
-    "keywords": "टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें? how to manage tomato fruit borer? tomato pest फल छेदक (helicoverpa) टमाटर में बहुत नुकसान करता है। गेंदा को ट्रैप फसल के रूप में 16:1 में लगाएँ। फेरोमोन ट्रैप 10-12/हेक्टेयर लगाएँ। bt @ 500 ग्राम/हेक्टेयर य fruit borer (helicoverpa) does heavy damage to tomato. plant marigold as a trap crop at 16:1. install 10-12 pheromone traps per hectare. spray bt @ 500 g/ha or"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "मसूर की बुवाई का सही समय, बीज दर और बीज उपचार क्या है?",
-    "title_en": "What is the right sowing time, seed rate and seed treatment for lentil (masoor)?",
-    "subtitle_hi": "मसूर रबी की फसल है। बुवाई अक्टूबर के मध्य से नवंबर के पहले सप्ताह तक करें। बीज दर लगभग 12-15 किग्रा प्रति एकड़ रखें। बुवाई से पहले बीज को कैप्टान या थायरम @ 3 ग",
-    "subtitle_en": "Lentil is a rabi crop. Sow from mid-October to the first week of November. Keep the seed rate at about 12-15 kg per acre. Before sowing, treat the seed with cap",
-    "url": "/sawaal/masura-buvaai-sahi-samaya-bija-dara-bija",
-    "keywords": "मसूर की बुवाई का सही समय, बीज दर और बीज उपचार क्या है? what is the right sowing time, seed rate and seed treatment for lentil (masoor)? lentil sowing मसूर रबी की फसल है। बुवाई अक्टूबर के मध्य से नवंबर के पहले सप्ताह तक करें। बीज दर लगभग 12-15 किग्रा प्रति एकड़ रखें। बुवाई से पहले बीज को कैप्टान या थायरम @ 3 ग lentil is a rabi crop. sow from mid-october to the first week of november. keep the seed rate at about 12-15 kg per acre. before sowing, treat the seed with cap"
+    "title_hi": "गन्ने की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved sugarcane varieties are recommended?",
+    "subtitle_hi": "शीघ्र पकने वाली किस्में — Co.C.-671, CoJN 86-141, Co. 86-572, Co. 94008 और CoJN 9823। मध्यम/देर से पकने वाली — Co. 86032, Co. 7318, K. 99004, CoJN 86-600 और CoJ",
+    "subtitle_en": "Early-maturing varieties — Co.C.-671, CoJN 86-141, Co. 86-572, Co. 94008 and CoJN 9823. Mid/late-maturing — Co. 86032, Co. 7318, K. 99004, CoJN 86-600 and CoJN ",
+    "url": "/sawaal/ganna-unnat-kismein-mp",
+    "keywords": "गन्ने की उन्नत किस्में कौन-सी हैं? which improved sugarcane varieties are recommended? sugarcane variety शीघ्र पकने वाली किस्में — co.c.-671, cojn 86-141, co. 86-572, co. 94008 और cojn 9823। मध्यम/देर से पकने वाली — co. 86032, co. 7318, k. 99004, cojn 86-600 और coj early-maturing varieties — co.c.-671, cojn 86-141, co. 86-572, co. 94008 and cojn 9823. mid/late-maturing — co. 86032, co. 7318, k. 99004, cojn 86-600 and cojn"
   },
   {
     "type": "sawaal",
@@ -406,21 +397,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मध्य प्रदेश में चने की कौन सी किस्में और बुवाई का समय ठीक है?",
-    "title_en": "Which chickpea varieties and sowing time suit Madhya Pradesh?",
-    "subtitle_hi": "चना रबी की फसल है। बुवाई अक्टूबर के पहले पखवाड़े में करें। बीज दर 80-100 किग्रा/हेक्टेयर रखें। कतार-पौध दूरी 30 x 10 सेमी रखें। स्रोत में सुझाई किस्मों में JG 3",
-    "subtitle_en": "Chickpea is a rabi crop. Sow in the first fortnight of October. Keep seed rate at 80-100 kg/ha and row-to-plant spacing at 30 x 10 cm. Varieties suggested by th",
-    "url": "/sawaal/chana-sowing-varieties-mp",
-    "keywords": "मध्य प्रदेश में चने की कौन सी किस्में और बुवाई का समय ठीक है? which chickpea varieties and sowing time suit madhya pradesh? gram variety चना रबी की फसल है। बुवाई अक्टूबर के पहले पखवाड़े में करें। बीज दर 80-100 किग्रा/हेक्टेयर रखें। कतार-पौध दूरी 30 x 10 सेमी रखें। स्रोत में सुझाई किस्मों में jg 3 chickpea is a rabi crop. sow in the first fortnight of october. keep seed rate at 80-100 kg/ha and row-to-plant spacing at 30 x 10 cm. varieties suggested by th"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें?",
-    "title_en": "How to control girdle beetle in soybean?",
-    "subtitle_hi": "गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाए",
-    "subtitle_en": "The girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. Do deep summer ploughing, sow as the monsoon starts, and follow crop rotati",
-    "url": "/sawaal/soybean-girdle-beetle-control",
-    "keywords": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें? how to control girdle beetle in soybean? soybean pest गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाए the girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. do deep summer ploughing, sow as the monsoon starts, and follow crop rotati"
+    "title_hi": "गन्ने में सिंचाई कितने अंतराल पर करें?",
+    "title_en": "How often to irrigate sugarcane?",
+    "subtitle_hi": "गर्मी के दिनों में भारी मिट्टी वाले खेत में 8-10 दिन के अंतर पर सिंचाई करें। ठंड के दिनों में 15 दिन के अंतर पर पानी दें। गन्ने को पूरे साल नमी चाहिए।",
+    "subtitle_en": "In summer, irrigate heavy-soil fields every 8-10 days. In winter, water every 15 days. Sugarcane needs moisture through the year.",
+    "url": "/sawaal/ganna-sinchai-garmi-thand-mp",
+    "keywords": "गन्ने में सिंचाई कितने अंतराल पर करें? how often to irrigate sugarcane? sugarcane irrigation गर्मी के दिनों में भारी मिट्टी वाले खेत में 8-10 दिन के अंतर पर सिंचाई करें। ठंड के दिनों में 15 दिन के अंतर पर पानी दें। गन्ने को पूरे साल नमी चाहिए। in summer, irrigate heavy-soil fields every 8-10 days. in winter, water every 15 days. sugarcane needs moisture through the year."
   },
   {
     "type": "sawaal",
@@ -433,12 +415,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मिट्टी की जांच कैसे कराएं और कार्ड कैसे पढ़ें?",
-    "title_en": "How to get soil tested and read the Soil Health Card?",
-    "subtitle_hi": "soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जांच का अनुरोध करें। कार्ड में हर पोषक तत्व की स्थिति और कितनी खाद डालनी है, ",
-    "subtitle_en": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or Krishi Vigyan Kendra. The card states the status of each nutrient",
-    "url": "/sawaal/soil-health-card-kaise",
-    "keywords": "मिट्टी की जांच कैसे कराएं और कार्ड कैसे पढ़ें? how to get soil tested and read the soil health card? soil soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जांच का अनुरोध करें। कार्ड में हर पोषक तत्व की स्थिति और कितनी खाद डालनी है, request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or krishi vigyan kendra. the card states the status of each nutrient"
+    "title_hi": "गन्ने के टुकड़ों (बीज) का उपचार कैसे करें?",
+    "title_en": "How to treat sugarcane setts (seed) before planting?",
+    "subtitle_hi": "बुवाई से पहले गन्ने के टुकड़ों को कार्बेन्डाजिम या कार्बाक्सिन के घोल (2 ग्राम प्रति लीटर पानी) में डुबोकर उपचारित करें। इससे बीज-जनित रोग दबते हैं। लेबल पर लिख",
+    "subtitle_en": "Before planting, dip sugarcane setts in a carbendazim or carboxin solution (2 g per litre of water). This suppresses seed-borne diseases. Use only the dose on t",
+    "url": "/sawaal/ganna-beej-upchar-mp",
+    "keywords": "गन्ने के टुकड़ों (बीज) का उपचार कैसे करें? how to treat sugarcane setts (seed) before planting? sugarcane disease बुवाई से पहले गन्ने के टुकड़ों को कार्बेन्डाजिम या कार्बाक्सिन के घोल (2 ग्राम प्रति लीटर पानी) में डुबोकर उपचारित करें। इससे बीज-जनित रोग दबते हैं। लेबल पर लिख before planting, dip sugarcane setts in a carbendazim or carboxin solution (2 g per litre of water). this suppresses seed-borne diseases. use only the dose on t"
   },
   {
     "type": "sawaal",
@@ -451,12 +433,39 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "पीएम-किसान की किस्त नहीं आई, क्या करूँ?",
-    "title_en": "My PM-KISAN instalment has not come — what should I do?",
-    "subtitle_hi": "पहले pmkisan.gov.in पर अपना स्टेटस देखें। फिर जाँचें कि ई-केवाईसी पूरी है, बैंक खाता आधार से DBT के लिए जुड़ा है, और जमीन का रिकॉर्ड पोर्टल पर दर्ज है। इनमें से",
-    "subtitle_en": "First check your status on pmkisan.gov.in. Then make sure e-KYC is done, your bank account is Aadhaar-linked for DBT, and your land record is seeded on the port",
-    "url": "/sawaal/pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista",
-    "keywords": "पीएम-किसान की किस्त नहीं आई, क्या करूँ? my pm-kisan instalment has not come — what should i do? scheme पहले pmkisan.gov.in पर अपना स्टेटस देखें। फिर जाँचें कि ई-केवाईसी पूरी है, बैंक खाता आधार से dbt के लिए जुड़ा है, और जमीन का रिकॉर्ड पोर्टल पर दर्ज है। इनमें से first check your status on pmkisan.gov.in. then make sure e-kyc is done, your bank account is aadhaar-linked for dbt, and your land record is seeded on the port"
+    "title_hi": "मिट्टी की जांच कैसे कराएं और कार्ड कैसे पढ़ें?",
+    "title_en": "How to get soil tested and read the Soil Health Card?",
+    "subtitle_hi": "soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जांच का अनुरोध करें। कार्ड में हर पोषक तत्व की स्थिति और कितनी खाद डालनी है, ",
+    "subtitle_en": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or Krishi Vigyan Kendra. The card states the status of each nutrient",
+    "url": "/sawaal/soil-health-card-kaise",
+    "keywords": "मिट्टी की जांच कैसे कराएं और कार्ड कैसे पढ़ें? how to get soil tested and read the soil health card? soil soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जांच का अनुरोध करें। कार्ड में हर पोषक तत्व की स्थिति और कितनी खाद डालनी है, request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or krishi vigyan kendra. the card states the status of each nutrient"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मसूर की बुवाई का सही समय, बीज दर और बीज उपचार क्या है?",
+    "title_en": "What is the right sowing time, seed rate and seed treatment for lentil (masoor)?",
+    "subtitle_hi": "मसूर रबी की फसल है। बुवाई अक्टूबर के मध्य से नवंबर के पहले सप्ताह तक करें। बीज दर लगभग 12-15 किग्रा प्रति एकड़ रखें। बुवाई से पहले बीज को कैप्टान या थायरम @ 3 ग",
+    "subtitle_en": "Lentil is a rabi crop. Sow from mid-October to the first week of November. Keep the seed rate at about 12-15 kg per acre. Before sowing, treat the seed with cap",
+    "url": "/sawaal/masura-buvaai-sahi-samaya-bija-dara-bija",
+    "keywords": "मसूर की बुवाई का सही समय, बीज दर और बीज उपचार क्या है? what is the right sowing time, seed rate and seed treatment for lentil (masoor)? lentil sowing मसूर रबी की फसल है। बुवाई अक्टूबर के मध्य से नवंबर के पहले सप्ताह तक करें। बीज दर लगभग 12-15 किग्रा प्रति एकड़ रखें। बुवाई से पहले बीज को कैप्टान या थायरम @ 3 ग lentil is a rabi crop. sow from mid-october to the first week of november. keep the seed rate at about 12-15 kg per acre. before sowing, treat the seed with cap"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें?",
+    "title_en": "How to manage yellow mosaic virus in soybean?",
+    "subtitle_hi": "पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद",
+    "subtitle_en": "Yellow mosaic spreads through whitefly. Leaves get yellow-green patches and pods do not form. The best step is to grow a resistant variety. Remove diseased plan",
+    "url": "/sawaal/soybean-yellow-mosaic-virus",
+    "keywords": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें? how to manage yellow mosaic virus in soybean? soybean disease पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद yellow mosaic spreads through whitefly. leaves get yellow-green patches and pods do not form. the best step is to grow a resistant variety. remove diseased plan"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ?",
+    "title_en": "Rain is likely in the next three-four days — what do I do with my cut soybean?",
+    "subtitle_hi": "कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ही थ्र",
+    "subtitle_en": "Protect cut soybean from rain, or the grain can blacken and germination drops. Cover the crop with a tarpaulin on high, dry ground. Thresh only after the grain ",
+    "url": "/sawaal/agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri",
+    "keywords": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ? rain is likely in the next three-four days — what do i do with my cut soybean? soybean weather कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ही थ्र protect cut soybean from rain, or the grain can blacken and germination drops. cover the crop with a tarpaulin on high, dry ground. thresh only after the grain"
   },
   {
     "type": "sawaal",
@@ -469,48 +478,21 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें?",
-    "title_en": "My wheat leaves have yellow-orange striped patches — what should I do?",
-    "subtitle_hi": "यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% छिड़कें। रोग-रोधी किस",
-    "subtitle_en": "This is yellow rust. Leaves get yellow-orange striped powdery stripes. As soon as you see it, spray propiconazole (Tilt) 25 EC @ 0.1%. Grow a resistant variety.",
-    "url": "/sawaal/gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan",
-    "keywords": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें? my wheat leaves have yellow-orange striped patches — what should i do? wheat disease यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 ec @ 0.1% छिड़कें। रोग-रोधी किस this is yellow rust. leaves get yellow-orange striped powdery stripes. as soon as you see it, spray propiconazole (tilt) 25 ec @ 0.1%. grow a resistant variety."
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें?",
-    "title_en": "How to manage purple blotch in onion?",
-    "subtitle_hi": "रबी में थ्रिप्स का प्रकोप बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाता है। उठी क्यारी व अच्छी निकासी रखें। फव्वारा सिंचाई से बचें। रोग दिखते ही मैंकोजेब 0.25% य",
-    "subtitle_en": "In rabi, a thrips attack worsens purple blotch and Stemphylium blight. Use raised beds and good drainage, and avoid sprinkler irrigation. As soon as disease sho",
-    "url": "/sawaal/onion-purple-blotch",
-    "keywords": "प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें? how to manage purple blotch in onion? onion disease रबी में थ्रिप्स का प्रकोप बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाता है। उठी क्यारी व अच्छी निकासी रखें। फव्वारा सिंचाई से बचें। रोग दिखते ही मैंकोजेब 0.25% य in rabi, a thrips attack worsens purple blotch and stemphylium blight. use raised beds and good drainage, and avoid sprinkler irrigation. as soon as disease sho"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "सोयाबीन में बीज उपचार कैसे करें?",
-    "title_en": "How to treat soybean seed before sowing?",
-    "subtitle_hi": "बुआई से पहले बीज को फफूंदनाशी से उपचारित करें। इससे बीजजनित रोग कम होते हैं। बुआई से 24 घंटे पहले कार्बेंडाज़िम या थायरम @ 2 ग्राम/किग्रा बीज से उपचार करें — हम",
-    "subtitle_en": "Treat the seed with a fungicide before sowing. This cuts seed-borne diseases. Treat with carbendazim or thiram @ 2 g/kg seed, 24 hours before sowing — always us",
-    "url": "/sawaal/soybean-seed-treatment",
-    "keywords": "सोयाबीन में बीज उपचार कैसे करें? how to treat soybean seed before sowing? soybean sowing बुआई से पहले बीज को फफूंदनाशी से उपचारित करें। इससे बीजजनित रोग कम होते हैं। बुआई से 24 घंटे पहले कार्बेंडाज़िम या थायरम @ 2 ग्राम/किग्रा बीज से उपचार करें — हम treat the seed with a fungicide before sowing. this cuts seed-borne diseases. treat with carbendazim or thiram @ 2 g/kg seed, 24 hours before sowing — always us"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए?",
-    "title_en": "What documents are needed for a Kisan Credit Card?",
-    "subtitle_hi": "KCC के लिए जमीन के कागज़ और आधार लेकर नजदीकी बैंक शाखा जाएँ। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना गारंटी मिलता है। सरकार 3 लाख रुपये तक के कर्ज पर 7% रिय",
-    "subtitle_en": "For KCC, take your land papers and Aadhaar to a nearby bank branch. From 1 January 2025, loans up to 2 lakh rupees are collateral-free. The government gives 7% ",
-    "url": "/sawaal/what-documents-are-needed-for-kisan-credit-card",
-    "keywords": "किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए? what documents are needed for a kisan credit card? scheme kcc के लिए जमीन के कागज़ और आधार लेकर नजदीकी बैंक शाखा जाएँ। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना गारंटी मिलता है। सरकार 3 लाख रुपये तक के कर्ज पर 7% रिय for kcc, take your land papers and aadhaar to a nearby bank branch. from 1 january 2025, loans up to 2 lakh rupees are collateral-free. the government gives 7%"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "सोयाबीन की बुवाई सीड ड्रिल से सही है या हाथ से छिटककर?",
     "title_en": "Is seed drill sowing better for soybean, or broadcasting by hand?",
     "subtitle_hi": "सीड ड्रिल (कतार में बुवाई) बेहतर है, क्योंकि इससे बीज सही गहराई और दूरी पर पड़ता है और पौधों की संख्या एक-सी रहती है। कतारों में 30 सेमी और पौधों में 5 सेमी की ",
     "subtitle_en": "A seed drill (line sowing) is better, because the seed goes in at the right depth and spacing and the plant stand stays even. Keep 30 cm between rows and 5 cm b",
     "url": "/sawaal/soyaabina-buvaai-sida-drila-sahi-haatha-chhitakakara",
     "keywords": "सोयाबीन की बुवाई सीड ड्रिल से सही है या हाथ से छिटककर? is seed drill sowing better for soybean, or broadcasting by hand? soybean sowing सीड ड्रिल (कतार में बुवाई) बेहतर है, क्योंकि इससे बीज सही गहराई और दूरी पर पड़ता है और पौधों की संख्या एक-सी रहती है। कतारों में 30 सेमी और पौधों में 5 सेमी की a seed drill (line sowing) is better, because the seed goes in at the right depth and spacing and the plant stand stays even. keep 30 cm between rows and 5 cm b"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मध्य प्रदेश के लिए गेहूं की कौन-सी किस्में अच्छी हैं?",
+    "title_en": "Which wheat varieties are recommended for Madhya Pradesh?",
+    "subtitle_hi": "मध्य प्रदेश में लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती किस्म में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम गेहूं में पूसा त",
+    "subtitle_en": "In Madhya Pradesh, common wheat varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. Among durum",
+    "url": "/sawaal/wheat-recommended-varieties-mp",
+    "keywords": "मध्य प्रदेश के लिए गेहूं की कौन-सी किस्में अच्छी हैं? which wheat varieties are recommended for madhya pradesh? wheat variety मध्य प्रदेश में लोक-1, gw-322, gw-366, gw-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती किस्म में c-306 और अमृता (hi 1500) अच्छी हैं। डुरम गेहूं में पूसा त in madhya pradesh, common wheat varieties like lok-1, gw-322, gw-366, gw-273 are popular. among sharbati types, c-306 and amrita (hi 1500) are good. among durum"
   },
   {
     "type": "sawaal",
@@ -532,6 +514,15 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "मूंग में बीज दर कितनी रखें?",
+    "title_en": "How much seed rate for moong?",
+    "subtitle_hi": "खरीफ मूंग कतार विधि से बोने पर 20 किलो बीज प्रति हेक्टेयर रखें। ग्रीष्मकालीन मूंग में 25-30 किलो प्रति हेक्टेयर लगता है। बीज उपचार करके ही बोएं।",
+    "subtitle_en": "For kharif moong sown in rows, keep 20 kg seed per hectare. Summer moong needs 25-30 kg per hectare. Sow only treated seed.",
+    "url": "/sawaal/moong-beej-dar-kitni-mp",
+    "keywords": "मूंग में बीज दर कितनी रखें? how much seed rate for moong? moong sowing खरीफ मूंग कतार विधि से बोने पर 20 किलो बीज प्रति हेक्टेयर रखें। ग्रीष्मकालीन मूंग में 25-30 किलो प्रति हेक्टेयर लगता है। बीज उपचार करके ही बोएं। for kharif moong sown in rows, keep 20 kg seed per hectare. summer moong needs 25-30 kg per hectare. sow only treated seed."
+  },
+  {
+    "type": "sawaal",
     "title_hi": "पड़ोस के खेतों में सोयाबीन पीली पड़ रही है — यह क्या है?",
     "title_en": "Soybean in nearby fields is turning yellow — what is this?",
     "subtitle_hi": "अगर पत्तियों पर अनियमित पीले-हरे धब्बे हैं और फली नहीं बन रही, तो यह पीला मोज़ायक वायरस है। यह सफेद मक्खी से फैलता है। सबसे अच्छा उपाय रोग-रोधी किस्म है। रोगग्र",
@@ -541,21 +532,21 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "गेहूं की बुवाई का सही समय क्या है?",
-    "title_en": "What is the right time to sow wheat?",
-    "subtitle_hi": "सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से ",
-    "subtitle_en": "Sow irrigated wheat in the second fortnight of November. In rainfed fields sow from mid-October to the first week of November, and in semi-irrigated fields in t",
-    "url": "/sawaal/gehun-buwai-ka-sahi-samay-sagar",
-    "keywords": "गेहूं की बुवाई का सही समय क्या है? what is the right time to sow wheat? wheat sowing सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से sow irrigated wheat in the second fortnight of november. in rainfed fields sow from mid-october to the first week of november, and in semi-irrigated fields in t"
+    "title_hi": "मूंग की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved moong (green gram) varieties are recommended?",
+    "subtitle_hi": "मूंग की सुझाई किस्में हैं — टॉम्बे जवाहर मूंग-3 (TJM-3), जवाहर मूंग-721, K-851, HUM-1, PDM-11 और पूसा विशाल। अपने क्षेत्र और बाज़ार की माँग के हिसाब से चुनें।",
+    "subtitle_en": "Suggested moong varieties are — Tombe Jawahar Moong-3 (TJM-3), Jawahar Moong-721, K-851, HUM-1, PDM-11 and Pusa Vishal. Pick by your area and market demand.",
+    "url": "/sawaal/moong-unnat-kismein-mp",
+    "keywords": "मूंग की उन्नत किस्में कौन-सी हैं? which improved moong (green gram) varieties are recommended? moong variety मूंग की सुझाई किस्में हैं — टॉम्बे जवाहर मूंग-3 (tjm-3), जवाहर मूंग-721, k-851, hum-1, pdm-11 और पूसा विशाल। अपने क्षेत्र और बाज़ार की माँग के हिसाब से चुनें। suggested moong varieties are — tombe jawahar moong-3 (tjm-3), jawahar moong-721, k-851, hum-1, pdm-11 and pusa vishal. pick by your area and market demand."
   },
   {
     "type": "sawaal",
-    "title_hi": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे कहाँ से मिलेगी?",
-    "title_en": "Where can I get government farming advice and weather information?",
-    "subtitle_hi": "भरोसेमंद सलाह के लिए अपने नजदीकी कृषि विज्ञान केंद्र (KVK) या ब्लॉक कृषि कार्यालय से संपर्क करें। एमएसपी पर बिक्री के लिए MP e-Uparjan पोर्टल है। सरकारी पोर्टल ",
-    "subtitle_en": "For reliable advice, contact your nearest Krishi Vigyan Kendra (KVK) or block agriculture office. For MSP sales there is the MP e-Uparjan portal. Government por",
-    "url": "/sawaal/kheti-juda-sarakaari-salaaha-mausama-jaanakaari-mujhe",
-    "keywords": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे कहाँ से मिलेगी? where can i get government farming advice and weather information? general भरोसेमंद सलाह के लिए अपने नजदीकी कृषि विज्ञान केंद्र (kvk) या ब्लॉक कृषि कार्यालय से संपर्क करें। एमएसपी पर बिक्री के लिए mp e-uparjan पोर्टल है। सरकारी पोर्टल for reliable advice, contact your nearest krishi vigyan kendra (kvk) or block agriculture office. for msp sales there is the mp e-uparjan portal. government por"
+    "title_hi": "उड़द की बुवाई कब करें?",
+    "title_en": "When to sow urad (black gram)?",
+    "subtitle_hi": "उड़द की बुवाई मानसून आने पर, आम तौर पर जून के अंतिम सप्ताह में पर्याप्त वर्षा होने पर करें। खेत में पर्याप्त नमी होने पर ही बोएं।",
+    "subtitle_en": "Sow urad when the monsoon arrives, usually in the last week of June after enough rain. Sow only when the field has enough moisture.",
+    "url": "/sawaal/urad-buwai-samay-mp",
+    "keywords": "उड़द की बुवाई कब करें? when to sow urad (black gram)? urad sowing उड़द की बुवाई मानसून आने पर, आम तौर पर जून के अंतिम सप्ताह में पर्याप्त वर्षा होने पर करें। खेत में पर्याप्त नमी होने पर ही बोएं। sow urad when the monsoon arrives, usually in the last week of june after enough rain. sow only when the field has enough moisture."
   },
   {
     "type": "sawaal",
@@ -568,21 +559,39 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "प्याज में थ्रिप्स (रस चूसक कीट) का नियंत्रण कैसे करें?",
-    "title_en": "How to control thrips in onion?",
-    "subtitle_hi": "थ्रिप्स प्याज का सबसे बड़ा कीट है। तेज प्रकोप में 50% तक उपज घट सकती है। ये पत्तियों पर चाँदी जैसे धब्बे बनाते हैं। नीम घोल 2-3% छिड़कें। ETL (3-5 थ्रिप्स/पत्ती",
-    "subtitle_en": "Thrips is the biggest onion pest; a severe attack can cut yield by up to 50%. They make silvery spots on leaves. Spray 2-3% neem solution. Above ETL (3-5 thrips",
-    "url": "/sawaal/onion-thrips-control",
-    "keywords": "प्याज में थ्रिप्स (रस चूसक कीट) का नियंत्रण कैसे करें? how to control thrips in onion? onion pest थ्रिप्स प्याज का सबसे बड़ा कीट है। तेज प्रकोप में 50% तक उपज घट सकती है। ये पत्तियों पर चाँदी जैसे धब्बे बनाते हैं। नीम घोल 2-3% छिड़कें। etl (3-5 थ्रिप्स/पत्ती thrips is the biggest onion pest; a severe attack can cut yield by up to 50%. they make silvery spots on leaves. spray 2-3% neem solution. above etl (3-5 thrips"
+    "title_hi": "मूंग में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser for moong?",
+    "subtitle_hi": "बुवाई के समय प्रति हेक्टेयर नत्रजन 20, फास्फोरस 40, पोटाश 20, गंधक 25 और जिंक 20 किलो डालें। मूंग जड़ों से नत्रजन बनाती है, इसलिए नत्रजन कम लगती है।",
+    "subtitle_en": "At sowing, apply nitrogen 20, phosphorus 40, potash 20, sulphur 25 and zinc 20 kg per hectare. Moong fixes nitrogen in its roots, so it needs little nitrogen.",
+    "url": "/sawaal/moong-khaad-urvarak-matra-mp",
+    "keywords": "मूंग में खाद (उर्वरक) कितनी डालें? how much fertiliser for moong? moong nutrient बुवाई के समय प्रति हेक्टेयर नत्रजन 20, फास्फोरस 40, पोटाश 20, गंधक 25 और जिंक 20 किलो डालें। मूंग जड़ों से नत्रजन बनाती है, इसलिए नत्रजन कम लगती है। at sowing, apply nitrogen 20, phosphorus 40, potash 20, sulphur 25 and zinc 20 kg per hectare. moong fixes nitrogen in its roots, so it needs little nitrogen."
   },
   {
     "type": "sawaal",
-    "title_hi": "गेहूं में बीज दर कितनी रखें?",
-    "title_en": "How much seed rate should wheat have?",
-    "subtitle_hi": "सामान्य तौर पर गेहूं में औसतन 100 किलो बीज प्रति हेक्टेयर रखें। अच्छे अंकुरण के लिए बीज उपचार करके ही बोएं।",
-    "subtitle_en": "On average keep about 100 kg of wheat seed per hectare. For good germination, always treat the seed before sowing.",
-    "url": "/sawaal/gehun-beej-dar-kitni-rakhein",
-    "keywords": "गेहूं में बीज दर कितनी रखें? how much seed rate should wheat have? wheat sowing सामान्य तौर पर गेहूं में औसतन 100 किलो बीज प्रति हेक्टेयर रखें। अच्छे अंकुरण के लिए बीज उपचार करके ही बोएं। on average keep about 100 kg of wheat seed per hectare. for good germination, always treat the seed before sowing."
+    "title_hi": "मूंग में फली छेदक का नियंत्रण कैसे करें?",
+    "title_en": "How to control pod borer in moong?",
+    "subtitle_hi": "फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए क्विनालफॉस 1.5 लीटर या मोनोक्रोटोफॉस 750 मिली प्रति हेक्टेयर का छिड़काव करें। लेबल पर लिखी मात्रा ही उपयोग",
+    "subtitle_en": "Pod borers bore into pods and eat the grain. To control them, spray quinalphos 1.5 litres or monocrotophos 750 ml per hectare. Use only the dose on the label.",
+    "url": "/sawaal/moong-fali-chhedak-control",
+    "keywords": "मूंग में फली छेदक का नियंत्रण कैसे करें? how to control pod borer in moong? moong pest फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए क्विनालफॉस 1.5 लीटर या मोनोक्रोटोफॉस 750 मिली प्रति हेक्टेयर का छिड़काव करें। लेबल पर लिखी मात्रा ही उपयोग pod borers bore into pods and eat the grain. to control them, spray quinalphos 1.5 litres or monocrotophos 750 ml per hectare. use only the dose on the label."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "उड़द में बीज दर कितनी रखें?",
+    "title_en": "How much seed rate for urad (black gram)?",
+    "subtitle_hi": "उड़द का बीज 6-8 किलो प्रति एकड़ की दर से बोएं। साफ़, स्वस्थ बीज चुनें और बुवाई से पहले बीज उपचार ज़रूर करें।",
+    "subtitle_en": "Sow urad seed at 6-8 kg per acre. Choose clean, healthy seed and always treat it before sowing.",
+    "url": "/sawaal/urad-beej-dar-prati-acre-mp",
+    "keywords": "उड़द में बीज दर कितनी रखें? how much seed rate for urad (black gram)? urad sowing उड़द का बीज 6-8 किलो प्रति एकड़ की दर से बोएं। साफ़, स्वस्थ बीज चुनें और बुवाई से पहले बीज उपचार ज़रूर करें। sow urad seed at 6-8 kg per acre. choose clean, healthy seed and always treat it before sowing."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मूंग का बीज उपचार कैसे करें?",
+    "title_en": "How to treat moong seed before sowing?",
+    "subtitle_hi": "पहले फफूंदनाशक, फिर कल्चर लगाएं। प्रति किलो बीज कार्बेन्डाजिम और कैप्टान (1+2) का 3 ग्राम मिश्रण लगाएं। फिर राइजोबियम कल्चर 5 ग्राम प्रति किलो बीज। लेबल पर लिखी",
+    "subtitle_en": "Fungicide first, then culture. Treat each kg of seed with 3 g of a carbendazim and captan (1+2) mix. Then apply rhizobium culture 5 g per kg. Use only the dose ",
+    "url": "/sawaal/moong-beej-upchar-rhizobium-mp",
+    "keywords": "मूंग का बीज उपचार कैसे करें? how to treat moong seed before sowing? moong disease पहले फफूंदनाशक, फिर कल्चर लगाएं। प्रति किलो बीज कार्बेन्डाजिम और कैप्टान (1+2) का 3 ग्राम मिश्रण लगाएं। फिर राइजोबियम कल्चर 5 ग्राम प्रति किलो बीज। लेबल पर लिखी fungicide first, then culture. treat each kg of seed with 3 g of a carbendazim and captan (1+2) mix. then apply rhizobium culture 5 g per kg. use only the dose"
   },
   {
     "type": "sawaal",
@@ -595,30 +604,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "गेहूं में खाद (उर्वरक) कितनी डालें?",
-    "title_en": "How much fertiliser should wheat get?",
-    "subtitle_hi": "पानी की सुविधा से मात्रा तय होती है (नत्रजन-स्फुर-पोटाश किलो/हेक्टेयर)। सिंचित खेत में 120-60-30, अर्धसिंचित में 60-30-15, असिंचित में 40-20-0, और देर से बुवाई ",
-    "subtitle_en": "The dose depends on water (N-P-K kg/hectare). Irrigated 120-60-30, semi-irrigated 60-30-15, rainfed 40-20-0, and late sowing 80-40-20.",
-    "url": "/sawaal/gehun-khaad-urvarak-matra-mp",
-    "keywords": "गेहूं में खाद (उर्वरक) कितनी डालें? how much fertiliser should wheat get? wheat nutrient पानी की सुविधा से मात्रा तय होती है (नत्रजन-स्फुर-पोटाश किलो/हेक्टेयर)। सिंचित खेत में 120-60-30, अर्धसिंचित में 60-30-15, असिंचित में 40-20-0, और देर से बुवाई the dose depends on water (n-p-k kg/hectare). irrigated 120-60-30, semi-irrigated 60-30-15, rainfed 40-20-0, and late sowing 80-40-20."
-  },
-  {
-    "type": "sawaal",
     "title_hi": "गेहूं में सिंचाई कब और कितनी बार करें?",
     "title_en": "When and how many times to irrigate wheat?",
     "subtitle_hi": "गेहूं में 3 से 4 सिंचाई पर्याप्त हैं। क्रांतिक अवस्थाओं पर पानी दें — किरीट (क्राउन रूट), कल्ले निकलना, फूल आना और दूधिया अवस्था। इन अवस्थाओं पर पानी की कमी से ",
     "subtitle_en": "Three to four irrigations are enough for wheat. Water at the critical stages — crown-root, tillering, flowering and milk stage. A water shortage at these stages",
     "url": "/sawaal/gehun-sinchai-kab-aur-kitni-bar",
     "keywords": "गेहूं में सिंचाई कब और कितनी बार करें? when and how many times to irrigate wheat? wheat irrigation गेहूं में 3 से 4 सिंचाई पर्याप्त हैं। क्रांतिक अवस्थाओं पर पानी दें — किरीट (क्राउन रूट), कल्ले निकलना, फूल आना और दूधिया अवस्था। इन अवस्थाओं पर पानी की कमी से three to four irrigations are enough for wheat. water at the critical stages — crown-root, tillering, flowering and milk stage. a water shortage at these stages"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "सागर में गेहूं की कौन-सी किस्म अच्छी है और कितनी सिंचाई चाहिए?",
-    "title_en": "Which wheat variety is good for Sagar and how much irrigation does it need?",
-    "subtitle_hi": "सागर जैसे मध्य प्रदेश के इलाके के लिए लोक-1, GW-322, GW-366, GW-273 जैसी किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। सिंचाई फसल की क्रां",
-    "subtitle_en": "For a Madhya Pradesh area like Sagar, varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. Irrig",
-    "url": "/sawaal/gehun-kauna-kisma-saagara-achchhi-sinchaai-kitani",
-    "keywords": "सागर में गेहूं की कौन-सी किस्म अच्छी है और कितनी सिंचाई चाहिए? which wheat variety is good for sagar and how much irrigation does it need? wheat variety सागर जैसे मध्य प्रदेश के इलाके के लिए लोक-1, gw-322, gw-366, gw-273 जैसी किस्में लोकप्रिय हैं। शरबती में c-306 और अमृता (hi 1500) अच्छी हैं। सिंचाई फसल की क्रां for a madhya pradesh area like sagar, varieties like lok-1, gw-322, gw-366, gw-273 are popular. among sharbati types, c-306 and amrita (hi 1500) are good. irrig"
   },
   {
     "type": "sawaal",
@@ -631,12 +622,39 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "गेहूं का बीज उपचार बुवाई से पहले कैसे करें?",
-    "title_en": "How to treat wheat seed before sowing?",
-    "subtitle_hi": "बीज उपचार से कंडवा जैसे बीज-जनित रोग रुकते हैं। कार्बाक्सिन 75% WP या कार्बेन्डाजिम 50% WP को 2.5-3.0 ग्राम प्रति किलो बीज की दर से लगाएं; या टेबूकोनाजोल 1 ग्रा",
-    "subtitle_en": "Seed treatment stops seed-borne diseases like loose smut. Use carboxin 75% WP or carbendazim 50% WP at 2.5-3.0 g per kg of seed; or tebuconazole 1 g per kg of s",
-    "url": "/sawaal/gehun-beej-upchar-buwai-se-pehle",
-    "keywords": "गेहूं का बीज उपचार बुवाई से पहले कैसे करें? how to treat wheat seed before sowing? wheat disease बीज उपचार से कंडवा जैसे बीज-जनित रोग रुकते हैं। कार्बाक्सिन 75% wp या कार्बेन्डाजिम 50% wp को 2.5-3.0 ग्राम प्रति किलो बीज की दर से लगाएं; या टेबूकोनाजोल 1 ग्रा seed treatment stops seed-borne diseases like loose smut. use carboxin 75% wp or carbendazim 50% wp at 2.5-3.0 g per kg of seed; or tebuconazole 1 g per kg of s"
+    "title_hi": "मूंग में पर्णदाग रोग और हरा फुदका/माहू का नियंत्रण कैसे करें?",
+    "title_en": "How to control leaf spot and jassid/aphid in moong?",
+    "subtitle_hi": "पर्णदाग के लिए डायथेन M-45, 2.5 ग्राम प्रति लीटर या कार्बेन्डाजिम के साथ डायथेन M-45, 2.0 ग्राम प्रति लीटर छिड़कें। हरा फुदका और माहू के लिए इमिडाक्लोप्रिड 17.8",
+    "subtitle_en": "For leaf spot, spray dithane M-45 at 2.5 g per litre, or carbendazim with dithane M-45 at 2.0 g per litre. For jassid and aphid, imidacloprid 17.8 SL at 125 ml ",
+    "url": "/sawaal/moong-parndaag-hara-fudka-control",
+    "keywords": "मूंग में पर्णदाग रोग और हरा फुदका/माहू का नियंत्रण कैसे करें? how to control leaf spot and jassid/aphid in moong? moong disease पर्णदाग के लिए डायथेन m-45, 2.5 ग्राम प्रति लीटर या कार्बेन्डाजिम के साथ डायथेन m-45, 2.0 ग्राम प्रति लीटर छिड़कें। हरा फुदका और माहू के लिए इमिडाक्लोप्रिड 17.8 for leaf spot, spray dithane m-45 at 2.5 g per litre, or carbendazim with dithane m-45 at 2.0 g per litre. for jassid and aphid, imidacloprid 17.8 sl at 125 ml"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सागर में गेहूं की कौन-सी किस्म अच्छी है और कितनी सिंचाई चाहिए?",
+    "title_en": "Which wheat variety is good for Sagar and how much irrigation does it need?",
+    "subtitle_hi": "सागर जैसे मध्य प्रदेश के इलाके के लिए लोक-1, GW-322, GW-366, GW-273 जैसी किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। सिंचाई फसल की क्रां",
+    "subtitle_en": "For a Madhya Pradesh area like Sagar, varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. Irrig",
+    "url": "/sawaal/gehun-kauna-kisma-saagara-achchhi-sinchaai-kitani",
+    "keywords": "सागर में गेहूं की कौन-सी किस्म अच्छी है और कितनी सिंचाई चाहिए? which wheat variety is good for sagar and how much irrigation does it need? wheat variety सागर जैसे मध्य प्रदेश के इलाके के लिए लोक-1, gw-322, gw-366, gw-273 जैसी किस्में लोकप्रिय हैं। शरबती में c-306 और अमृता (hi 1500) अच्छी हैं। सिंचाई फसल की क्रां for a madhya pradesh area like sagar, varieties like lok-1, gw-322, gw-366, gw-273 are popular. among sharbati types, c-306 and amrita (hi 1500) are good. irrig"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "उड़द की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved urad (black gram) varieties are recommended?",
+    "subtitle_hi": "उड़द की सुझाई किस्में हैं — T-9 (टी-9), पंत U-30, PDU-1 (बसंत बहार) और जवाहर उड़द-2। ये लगभग 70-80 दिन में पक जाती हैं।",
+    "subtitle_en": "Suggested urad varieties are — T-9, Pant U-30, PDU-1 (Basant Bahar) and Jawahar Urad-2. They mature in about 70-80 days.",
+    "url": "/sawaal/urad-unnat-kismein-mp",
+    "keywords": "उड़द की उन्नत किस्में कौन-सी हैं? which improved urad (black gram) varieties are recommended? urad variety उड़द की सुझाई किस्में हैं — t-9 (टी-9), पंत u-30, pdu-1 (बसंत बहार) और जवाहर उड़द-2। ये लगभग 70-80 दिन में पक जाती हैं। suggested urad varieties are — t-9, pant u-30, pdu-1 (basant bahar) and jawahar urad-2. they mature in about 70-80 days."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "गेहूं में बीज दर कितनी रखें?",
+    "title_en": "How much seed rate should wheat have?",
+    "subtitle_hi": "सामान्य तौर पर गेहूं में औसतन 100 किलो बीज प्रति हेक्टेयर रखें। अच्छे अंकुरण के लिए बीज उपचार करके ही बोएं।",
+    "subtitle_en": "On average keep about 100 kg of wheat seed per hectare. For good germination, always treat the seed before sowing.",
+    "url": "/sawaal/gehun-beej-dar-kitni-rakhein",
+    "keywords": "गेहूं में बीज दर कितनी रखें? how much seed rate should wheat have? wheat sowing सामान्य तौर पर गेहूं में औसतन 100 किलो बीज प्रति हेक्टेयर रखें। अच्छे अंकुरण के लिए बीज उपचार करके ही बोएं। on average keep about 100 kg of wheat seed per hectare. for good germination, always treat the seed before sowing."
   },
   {
     "type": "sawaal",
@@ -649,12 +667,21 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "चने में बीज दर कितनी रखें (देशी और काबुली)?",
-    "title_en": "What seed rate for gram (desi and kabuli)?",
-    "subtitle_hi": "देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर कर",
-    "subtitle_en": "Keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. Always treat the seed before sowing.",
-    "url": "/sawaal/chana-beej-dar-desi-kabuli",
-    "keywords": "चने में बीज दर कितनी रखें (देशी और काबुली)? what seed rate for gram (desi and kabuli)? gram sowing देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर कर keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. always treat the seed before sowing."
+    "title_hi": "उड़द में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser for urad (black gram)?",
+    "subtitle_hi": "बुवाई के समय प्रति एकड़ नत्रजन 8-12 किलो, स्फुर 20-24 किलो और पोटाश 10 किलो डालें। उड़द दलहन है, इसलिए नत्रजन कम लगती है।",
+    "subtitle_en": "At sowing, apply nitrogen 8-12 kg, phosphorus 20-24 kg and potash 10 kg per acre. Urad is a pulse, so it needs little nitrogen.",
+    "url": "/sawaal/urad-khaad-urvarak-matra-mp",
+    "keywords": "उड़द में खाद (उर्वरक) कितनी डालें? how much fertiliser for urad (black gram)? urad nutrient बुवाई के समय प्रति एकड़ नत्रजन 8-12 किलो, स्फुर 20-24 किलो और पोटाश 10 किलो डालें। उड़द दलहन है, इसलिए नत्रजन कम लगती है। at sowing, apply nitrogen 8-12 kg, phosphorus 20-24 kg and potash 10 kg per acre. urad is a pulse, so it needs little nitrogen."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें?",
+    "title_en": "A borer-like pest is eating my maize leaves — what should I do?",
+    "subtitle_hi": "यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्य",
+    "subtitle_en": "This is often fall armyworm. Its larva eats the soft whorl of the plant and leaves holes and droppings. Early on, destroy eggs and larvae by hand. In a heavy at",
+    "url": "/sawaal/makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon",
+    "keywords": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें? a borer-like pest is eating my maize leaves — what should i do? maize pest यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्य this is often fall armyworm. its larva eats the soft whorl of the plant and leaves holes and droppings. early on, destroy eggs and larvae by hand. in a heavy at"
   },
   {
     "type": "sawaal",
@@ -676,21 +703,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें?",
-    "title_en": "A borer-like pest is eating my maize leaves — what should I do?",
-    "subtitle_hi": "यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्य",
-    "subtitle_en": "This is often fall armyworm. Its larva eats the soft whorl of the plant and leaves holes and droppings. Early on, destroy eggs and larvae by hand. In a heavy at",
-    "url": "/sawaal/makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon",
-    "keywords": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें? a borer-like pest is eating my maize leaves — what should i do? maize pest यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्य this is often fall armyworm. its larva eats the soft whorl of the plant and leaves holes and droppings. early on, destroy eggs and larvae by hand. in a heavy at"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "चने का बीज उपचार कैसे करें?",
-    "title_en": "How to treat gram seed before sowing?",
-    "subtitle_hi": "पहले फफूंदनाशक, फिर कल्चर लगाएं। प्रति किलो बीज 2 ग्राम थायरम और 1 ग्राम कार्बेन्डाजिम के मिश्रण से उपचार करें। फिर राइजोबियम कल्चर 5 ग्राम और मोलेब्डेनम 1 ग्रा",
-    "subtitle_en": "Fungicide first, then culture. Treat each kg of seed with a mix of 2 g thiram and 1 g carbendazim. Then apply rhizobium culture 5 g and molybdenum 1 g per kg of",
-    "url": "/sawaal/chana-beej-upchar-rhizobium-mp",
-    "keywords": "चने का बीज उपचार कैसे करें? how to treat gram seed before sowing? gram disease पहले फफूंदनाशक, फिर कल्चर लगाएं। प्रति किलो बीज 2 ग्राम थायरम और 1 ग्राम कार्बेन्डाजिम के मिश्रण से उपचार करें। फिर राइजोबियम कल्चर 5 ग्राम और मोलेब्डेनम 1 ग्रा fungicide first, then culture. treat each kg of seed with a mix of 2 g thiram and 1 g carbendazim. then apply rhizobium culture 5 g and molybdenum 1 g per kg of"
+    "title_hi": "गेहूं का बीज उपचार बुवाई से पहले कैसे करें?",
+    "title_en": "How to treat wheat seed before sowing?",
+    "subtitle_hi": "बीज उपचार से कंडवा जैसे बीज-जनित रोग रुकते हैं। कार्बाक्सिन 75% WP या कार्बेन्डाजिम 50% WP को 2.5-3.0 ग्राम प्रति किलो बीज की दर से लगाएं; या टेबूकोनाजोल 1 ग्रा",
+    "subtitle_en": "Seed treatment stops seed-borne diseases like loose smut. Use carboxin 75% WP or carbendazim 50% WP at 2.5-3.0 g per kg of seed; or tebuconazole 1 g per kg of s",
+    "url": "/sawaal/gehun-beej-upchar-buwai-se-pehle",
+    "keywords": "गेहूं का बीज उपचार बुवाई से पहले कैसे करें? how to treat wheat seed before sowing? wheat disease बीज उपचार से कंडवा जैसे बीज-जनित रोग रुकते हैं। कार्बाक्सिन 75% wp या कार्बेन्डाजिम 50% wp को 2.5-3.0 ग्राम प्रति किलो बीज की दर से लगाएं; या टेबूकोनाजोल 1 ग्रा seed treatment stops seed-borne diseases like loose smut. use carboxin 75% wp or carbendazim 50% wp at 2.5-3.0 g per kg of seed; or tebuconazole 1 g per kg of s"
   },
   {
     "type": "sawaal",
@@ -703,12 +721,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मसूर में खाद (उर्वरक) कितनी डालें?",
-    "title_en": "How much fertiliser for lentil (masoor)?",
-    "subtitle_hi": "प्रति हेक्टेयर 15 टन अच्छी सड़ी गोबर खाद, और बुवाई के समय 20 किलो नत्रजन, 50 किलो स्फुर और 20 किलो पोटाश डालें। मसूर भी जड़ों से नत्रजन बनाती है, इसलिए नत्रजन क",
-    "subtitle_en": "Per hectare apply 15 tonnes of well-rotted farmyard manure, and at sowing 20 kg nitrogen, 50 kg phosphorus and 20 kg potash. Lentil also fixes nitrogen in its r",
-    "url": "/sawaal/masoor-khaad-urvarak-matra-mp",
-    "keywords": "मसूर में खाद (उर्वरक) कितनी डालें? how much fertiliser for lentil (masoor)? lentil nutrient प्रति हेक्टेयर 15 टन अच्छी सड़ी गोबर खाद, और बुवाई के समय 20 किलो नत्रजन, 50 किलो स्फुर और 20 किलो पोटाश डालें। मसूर भी जड़ों से नत्रजन बनाती है, इसलिए नत्रजन क per hectare apply 15 tonnes of well-rotted farmyard manure, and at sowing 20 kg nitrogen, 50 kg phosphorus and 20 kg potash. lentil also fixes nitrogen in its r"
+    "title_hi": "गेहूं में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser should wheat get?",
+    "subtitle_hi": "पानी की सुविधा से मात्रा तय होती है (नत्रजन-स्फुर-पोटाश किलो/हेक्टेयर)। सिंचित खेत में 120-60-30, अर्धसिंचित में 60-30-15, असिंचित में 40-20-0, और देर से बुवाई ",
+    "subtitle_en": "The dose depends on water (N-P-K kg/hectare). Irrigated 120-60-30, semi-irrigated 60-30-15, rainfed 40-20-0, and late sowing 80-40-20.",
+    "url": "/sawaal/gehun-khaad-urvarak-matra-mp",
+    "keywords": "गेहूं में खाद (उर्वरक) कितनी डालें? how much fertiliser should wheat get? wheat nutrient पानी की सुविधा से मात्रा तय होती है (नत्रजन-स्फुर-पोटाश किलो/हेक्टेयर)। सिंचित खेत में 120-60-30, अर्धसिंचित में 60-30-15, असिंचित में 40-20-0, और देर से बुवाई the dose depends on water (n-p-k kg/hectare). irrigated 120-60-30, semi-irrigated 60-30-15, rainfed 40-20-0, and late sowing 80-40-20."
   },
   {
     "type": "sawaal",
@@ -721,21 +739,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मक्का की बुआई कब करें और बीज दर कितनी रखें?",
-    "title_en": "What is the right sowing time and seed rate for maize?",
-    "subtitle_hi": "खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी क",
-    "subtitle_en": "Sow kharif maize from the last week of June to the first fortnight of July. For grain maize, keep the seed rate at about 20 kg per hectare. Sow in rows at 60x20",
-    "url": "/sawaal/maize-sowing-time-seed-rate",
-    "keywords": "मक्का की बुआई कब करें और बीज दर कितनी रखें? what is the right sowing time and seed rate for maize? maize sowing खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी क sow kharif maize from the last week of june to the first fortnight of july. for grain maize, keep the seed rate at about 20 kg per hectare. sow in rows at 60x20"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "मसूर में गेरूई / रतुआ रोग का नियंत्रण कैसे करें?",
-    "title_en": "How to control rust (gerui) in lentil?",
-    "subtitle_hi": "रतुआ में पत्तियों पर भूरे-पीले दाने जैसे धब्बे बनते हैं। रोग दिखते ही 0.3% मेन्कोजेब M-45 का छिड़काव करें और 15 दिन के अंतर पर दो बार दोहराएं। लेबल पर लिखी मात्",
-    "subtitle_en": "In rust, brown-yellow powdery spots form on the leaves. As soon as you see it, spray 0.3% mancozeb M-45 and repeat twice at a 15-day gap. Use only the dose on t",
-    "url": "/sawaal/masoor-gerui-ratua-rust-control",
-    "keywords": "मसूर में गेरूई / रतुआ रोग का नियंत्रण कैसे करें? how to control rust (gerui) in lentil? lentil disease रतुआ में पत्तियों पर भूरे-पीले दाने जैसे धब्बे बनते हैं। रोग दिखते ही 0.3% मेन्कोजेब m-45 का छिड़काव करें और 15 दिन के अंतर पर दो बार दोहराएं। लेबल पर लिखी मात् in rust, brown-yellow powdery spots form on the leaves. as soon as you see it, spray 0.3% mancozeb m-45 and repeat twice at a 15-day gap. use only the dose on t"
+    "title_hi": "चने का बीज उपचार कैसे करें?",
+    "title_en": "How to treat gram seed before sowing?",
+    "subtitle_hi": "पहले फफूंदनाशक, फिर कल्चर लगाएं। प्रति किलो बीज 2 ग्राम थायरम और 1 ग्राम कार्बेन्डाजिम के मिश्रण से उपचार करें। फिर राइजोबियम कल्चर 5 ग्राम और मोलेब्डेनम 1 ग्रा",
+    "subtitle_en": "Fungicide first, then culture. Treat each kg of seed with a mix of 2 g thiram and 1 g carbendazim. Then apply rhizobium culture 5 g and molybdenum 1 g per kg of",
+    "url": "/sawaal/chana-beej-upchar-rhizobium-mp",
+    "keywords": "चने का बीज उपचार कैसे करें? how to treat gram seed before sowing? gram disease पहले फफूंदनाशक, फिर कल्चर लगाएं। प्रति किलो बीज 2 ग्राम थायरम और 1 ग्राम कार्बेन्डाजिम के मिश्रण से उपचार करें। फिर राइजोबियम कल्चर 5 ग्राम और मोलेब्डेनम 1 ग्रा fungicide first, then culture. treat each kg of seed with a mix of 2 g thiram and 1 g carbendazim. then apply rhizobium culture 5 g and molybdenum 1 g per kg of"
   },
   {
     "type": "sawaal",
@@ -748,12 +757,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "टमाटर में अगेती व पछेती झुलसा (early & late blight) का इलाज क्या है?",
-    "title_en": "How to treat early and late blight in tomato?",
-    "subtitle_hi": "अगेती झुलसा (Alternaria solani) से 78% तक नुकसान हो सकता है। बचाव के लिए गहरी जुताई और फसल-चक्र अपनाएँ। पौधों को सहारा (स्टेकिंग) दें। स्रोत अनुसार मैंकोजेब या ",
-    "subtitle_en": "Early blight (Alternaria solani) can cause up to 78% loss. To protect the crop, do deep ploughing, follow crop rotation and stake the plants. Per the source, sp",
-    "url": "/sawaal/tomato-early-late-blight",
-    "keywords": "टमाटर में अगेती व पछेती झुलसा (early & late blight) का इलाज क्या है? how to treat early and late blight in tomato? tomato disease अगेती झुलसा (alternaria solani) से 78% तक नुकसान हो सकता है। बचाव के लिए गहरी जुताई और फसल-चक्र अपनाएँ। पौधों को सहारा (स्टेकिंग) दें। स्रोत अनुसार मैंकोजेब या early blight (alternaria solani) can cause up to 78% loss. to protect the crop, do deep ploughing, follow crop rotation and stake the plants. per the source, sp"
+    "title_hi": "टमाटर में उकठा (फ्यूजेरियम विल्ट) का प्रबंधन कैसे करें?",
+    "title_en": "How to manage Fusarium wilt in tomato?",
+    "subtitle_hi": "उकठा (Fusarium wilt) से 10-60% तक नुकसान हो सकता है। बीज व पौध को Trichoderma/Pseudomonas से उपचारित करें। खेत में नीम खली डालें। रोगी पौधे उखाड़कर मिट्टी में क",
+    "subtitle_en": "Fusarium wilt can cause 10-60% loss. Treat seed and seedlings with Trichoderma/Pseudomonas. Apply neem cake to the field. Pull out diseased plants and drench th",
+    "url": "/sawaal/tomato-fusarium-wilt",
+    "keywords": "टमाटर में उकठा (फ्यूजेरियम विल्ट) का प्रबंधन कैसे करें? how to manage fusarium wilt in tomato? tomato disease उकठा (fusarium wilt) से 10-60% तक नुकसान हो सकता है। बीज व पौध को trichoderma/pseudomonas से उपचारित करें। खेत में नीम खली डालें। रोगी पौधे उखाड़कर मिट्टी में क fusarium wilt can cause 10-60% loss. treat seed and seedlings with trichoderma/pseudomonas. apply neem cake to the field. pull out diseased plants and drench th"
   },
   {
     "type": "sawaal",
@@ -766,12 +775,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "टमाटर में उकठा (फ्यूजेरियम विल्ट) का प्रबंधन कैसे करें?",
-    "title_en": "How to manage Fusarium wilt in tomato?",
-    "subtitle_hi": "उकठा (Fusarium wilt) से 10-60% तक नुकसान हो सकता है। बीज व पौध को Trichoderma/Pseudomonas से उपचारित करें। खेत में नीम खली डालें। रोगी पौधे उखाड़कर मिट्टी में क",
-    "subtitle_en": "Fusarium wilt can cause 10-60% loss. Treat seed and seedlings with Trichoderma/Pseudomonas. Apply neem cake to the field. Pull out diseased plants and drench th",
-    "url": "/sawaal/tomato-fusarium-wilt",
-    "keywords": "टमाटर में उकठा (फ्यूजेरियम विल्ट) का प्रबंधन कैसे करें? how to manage fusarium wilt in tomato? tomato disease उकठा (fusarium wilt) से 10-60% तक नुकसान हो सकता है। बीज व पौध को trichoderma/pseudomonas से उपचारित करें। खेत में नीम खली डालें। रोगी पौधे उखाड़कर मिट्टी में क fusarium wilt can cause 10-60% loss. treat seed and seedlings with trichoderma/pseudomonas. apply neem cake to the field. pull out diseased plants and drench th"
+    "title_hi": "टमाटर में अगेती व पछेती झुलसा (early & late blight) का इलाज क्या है?",
+    "title_en": "How to treat early and late blight in tomato?",
+    "subtitle_hi": "अगेती झुलसा (Alternaria solani) से 78% तक नुकसान हो सकता है। बचाव के लिए गहरी जुताई और फसल-चक्र अपनाएँ। पौधों को सहारा (स्टेकिंग) दें। स्रोत अनुसार मैंकोजेब या ",
+    "subtitle_en": "Early blight (Alternaria solani) can cause up to 78% loss. To protect the crop, do deep ploughing, follow crop rotation and stake the plants. Per the source, sp",
+    "url": "/sawaal/tomato-early-late-blight",
+    "keywords": "टमाटर में अगेती व पछेती झुलसा (early & late blight) का इलाज क्या है? how to treat early and late blight in tomato? tomato disease अगेती झुलसा (alternaria solani) से 78% तक नुकसान हो सकता है। बचाव के लिए गहरी जुताई और फसल-चक्र अपनाएँ। पौधों को सहारा (स्टेकिंग) दें। स्रोत अनुसार मैंकोजेब या early blight (alternaria solani) can cause up to 78% loss. to protect the crop, do deep ploughing, follow crop rotation and stake the plants. per the source, sp"
   },
   {
     "type": "sawaal",
@@ -802,12 +811,21 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "किसान क्रेडिट कार्ड (KCC) क्या है और लोन लिमिट कितनी है?",
-    "title_en": "What is the Kisan Credit Card and what is the loan limit?",
-    "subtitle_hi": "KCC किसानों को कम ब्याज पर खेती के लिए कर्ज देने की योजना है। सरकार 3 लाख रुपये तक के अल्पकालिक कर्ज पर 7% की रियायती दर देती है। संशोधित ब्याज सहायता योजना (MI",
-    "subtitle_en": "KCC is a scheme that gives farmers low-interest loans for farming. The government gives a concessional rate of 7% on short-term loans up to 3 lakh rupees. Under",
-    "url": "/sawaal/kcc-kya-hai",
-    "keywords": "किसान क्रेडिट कार्ड (kcc) क्या है और लोन लिमिट कितनी है? what is the kisan credit card and what is the loan limit? scheme kcc किसानों को कम ब्याज पर खेती के लिए कर्ज देने की योजना है। सरकार 3 लाख रुपये तक के अल्पकालिक कर्ज पर 7% की रियायती दर देती है। संशोधित ब्याज सहायता योजना (mi kcc is a scheme that gives farmers low-interest loans for farming. the government gives a concessional rate of 7% on short-term loans up to 3 lakh rupees. under"
+    "title_hi": "सरसों में बीज दर कितनी रखें?",
+    "title_en": "How much seed rate for mustard?",
+    "subtitle_hi": "असिंचित सरसों में 5-6 किलो और सिंचित सरसों में 4.5-5 किलो बीज प्रति हेक्टेयर रखें। तोरिया में 4-5 किलो प्रति हेक्टेयर। बीज उपचार करके ही बोएं।",
+    "subtitle_en": "Keep 5-6 kg for rainfed mustard and 4.5-5 kg for irrigated mustard per hectare. Toria needs 4-5 kg per hectare. Sow only treated seed.",
+    "url": "/sawaal/sarson-beej-dar-kitni-mp",
+    "keywords": "सरसों में बीज दर कितनी रखें? how much seed rate for mustard? mustard sowing असिंचित सरसों में 5-6 किलो और सिंचित सरसों में 4.5-5 किलो बीज प्रति हेक्टेयर रखें। तोरिया में 4-5 किलो प्रति हेक्टेयर। बीज उपचार करके ही बोएं। keep 5-6 kg for rainfed mustard and 4.5-5 kg for irrigated mustard per hectare. toria needs 4-5 kg per hectare. sow only treated seed."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "अलसी की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved linseed (alsi) varieties are recommended?",
+    "subtitle_hi": "सिंचित के लिए जवाहर अलसी-23 और सुयोग (JLS-27) अच्छी हैं। असिंचित के लिए जवाहर अलसी-9, JLS-66, JLS-67 और JLS-73 लगाएं।",
+    "subtitle_en": "For irrigated conditions, Jawahar Alsi-23 and Suyog (JLS-27) are good. For rainfed, grow Jawahar Alsi-9, JLS-66, JLS-67 and JLS-73.",
+    "url": "/sawaal/alsi-unnat-kismein-mp",
+    "keywords": "अलसी की उन्नत किस्में कौन-सी हैं? which improved linseed (alsi) varieties are recommended? linseed variety सिंचित के लिए जवाहर अलसी-23 और सुयोग (jls-27) अच्छी हैं। असिंचित के लिए जवाहर अलसी-9, jls-66, jls-67 और jls-73 लगाएं। for irrigated conditions, jawahar alsi-23 and suyog (jls-27) are good. for rainfed, grow jawahar alsi-9, jls-66, jls-67 and jls-73."
   },
   {
     "type": "sawaal",
@@ -820,12 +838,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "सोयाबीन की कटाई कब करें?",
-    "title_en": "When should soybean be harvested?",
-    "subtitle_hi": "जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें।",
-    "subtitle_en": "The crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. Cut the whole plant, dry it, and thresh.",
-    "url": "/sawaal/soybean-harvesting-maturity",
-    "keywords": "सोयाबीन की कटाई कब करें? when should soybean be harvested? soybean harvest जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें। the crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. cut the whole plant, dry it, and thresh."
+    "title_hi": "अलसी की बुवाई का समय और बीज दर क्या है?",
+    "title_en": "What is the sowing time and seed rate for linseed (alsi)?",
+    "subtitle_hi": "असिंचित अलसी अक्टूबर के पहले पखवाड़े में और सिंचित नवंबर के पहले पखवाड़े में बोएं। बीज दर 25-30 किलो प्रति हेक्टेयर रखें; उतेरा विधि में 40-45 किलो।",
+    "subtitle_en": "Sow rainfed linseed in the first fortnight of October and irrigated in the first fortnight of November. Keep seed rate at 25-30 kg per hectare; 40-45 kg for the",
+    "url": "/sawaal/alsi-buwai-samay-beej-dar-mp",
+    "keywords": "अलसी की बुवाई का समय और बीज दर क्या है? what is the sowing time and seed rate for linseed (alsi)? linseed sowing असिंचित अलसी अक्टूबर के पहले पखवाड़े में और सिंचित नवंबर के पहले पखवाड़े में बोएं। बीज दर 25-30 किलो प्रति हेक्टेयर रखें; उतेरा विधि में 40-45 किलो। sow rainfed linseed in the first fortnight of october and irrigated in the first fortnight of november. keep seed rate at 25-30 kg per hectare; 40-45 kg for the"
   },
   {
     "type": "sawaal",
@@ -838,30 +856,39 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "एमएसपी (MSP) क्या है और यह कैसे तय होती है?",
-    "title_en": "What is MSP and how is it decided?",
-    "subtitle_hi": "एमएसपी (न्यूनतम समर्थन मूल्य) वह सबसे कम दाम है जो सरकार तय करती है, ताकि बाजार भाव गिरने पर भी किसान को फसल का उचित दाम मिले। इसे CACP सुझाता है और CCEA मंजूरी",
-    "subtitle_en": "MSP (Minimum Support Price) is the lowest price the government fixes, so that a farmer gets a fair price even if the market price falls. CACP recommends it and ",
-    "url": "/sawaal/msp-kya-hai",
-    "keywords": "एमएसपी (msp) क्या है और यह कैसे तय होती है? what is msp and how is it decided? mandi एमएसपी (न्यूनतम समर्थन मूल्य) वह सबसे कम दाम है जो सरकार तय करती है, ताकि बाजार भाव गिरने पर भी किसान को फसल का उचित दाम मिले। इसे cacp सुझाता है और ccea मंजूरी msp (minimum support price) is the lowest price the government fixes, so that a farmer gets a fair price even if the market price falls. cacp recommends it and"
+    "title_hi": "अलसी में खाद और सिंचाई कैसे करें?",
+    "title_en": "How to fertilise and irrigate linseed (alsi)?",
+    "subtitle_hi": "असिंचित अलसी में 40-20-20 (नत्रजन-स्फुर-पोटाश) और सिंचित में 60-80 नत्रजन, 40 स्फुर, 20 पोटाश के साथ 20 किलो जिंक सल्फेट डालें। पहली सिंचाई बुवाई के एक माह बाद,",
+    "subtitle_en": "For rainfed linseed apply 40-20-20 (N-P-K); for irrigated, 60-80 N, 40 P, 20 K with 20 kg zinc sulphate. Give the first irrigation one month after sowing, the s",
+    "url": "/sawaal/alsi-khaad-aur-sinchai-mp",
+    "keywords": "अलसी में खाद और सिंचाई कैसे करें? how to fertilise and irrigate linseed (alsi)? linseed nutrient असिंचित अलसी में 40-20-20 (नत्रजन-स्फुर-पोटाश) और सिंचित में 60-80 नत्रजन, 40 स्फुर, 20 पोटाश के साथ 20 किलो जिंक सल्फेट डालें। पहली सिंचाई बुवाई के एक माह बाद, for rainfed linseed apply 40-20-20 (n-p-k); for irrigated, 60-80 n, 40 p, 20 k with 20 kg zinc sulphate. give the first irrigation one month after sowing, the s"
   },
   {
     "type": "sawaal",
-    "title_hi": "घर/खेत पर अनाज का सुरक्षित भंडारण कैसे करें?",
-    "title_en": "How to store grain safely on the farm?",
-    "subtitle_hi": "भंडारण से पहले अनाज को अच्छी तरह सुखाएं—नमी 12% से कम होनी चाहिए। भंडार को साफ करें और दरारें बंद करें। अनाज को बारिश, कीट, चूहे और पक्षियों से बचाएं। ज्यादा नम",
-    "subtitle_en": "Dry the grain well before storage; moisture should be under 12%. Clean the store and seal the cracks. Protect the grain from rain, insects, rats and birds. If m",
-    "url": "/sawaal/anaj-bhandaran-basics",
-    "keywords": "घर/खेत पर अनाज का सुरक्षित भंडारण कैसे करें? how to store grain safely on the farm? storage भंडारण से पहले अनाज को अच्छी तरह सुखाएं—नमी 12% से कम होनी चाहिए। भंडार को साफ करें और दरारें बंद करें। अनाज को बारिश, कीट, चूहे और पक्षियों से बचाएं। ज्यादा नम dry the grain well before storage; moisture should be under 12%. clean the store and seal the cracks. protect the grain from rain, insects, rats and birds. if m"
+    "title_hi": "मटर में भभूतिया (चूर्णिल आसिता) रोग का नियंत्रण कैसे करें?",
+    "title_en": "How to control powdery mildew (bhabhutiya) in pea?",
+    "subtitle_hi": "भभूतिया में पत्तियों पर सफेद पाउडर जैसा जमता है। घुलनशील सल्फर या मैंकोजेब का छिड़काव करें — घुलनशील सल्फर 2.5 ग्राम/लीटर, या मैंकोजेब 1-1.5 ग्राम/लीटर। लेबल पर",
+    "subtitle_en": "In powdery mildew a white powder coats the leaves. Spray soluble sulphur or mancozeb — soluble sulphur 2.5 g/litre, or mancozeb 1-1.5 g/litre. Use only the dose",
+    "url": "/sawaal/matar-bhabhutiya-powdery-mildew-control",
+    "keywords": "मटर में भभूतिया (चूर्णिल आसिता) रोग का नियंत्रण कैसे करें? how to control powdery mildew (bhabhutiya) in pea? pea disease भभूतिया में पत्तियों पर सफेद पाउडर जैसा जमता है। घुलनशील सल्फर या मैंकोजेब का छिड़काव करें — घुलनशील सल्फर 2.5 ग्राम/लीटर, या मैंकोजेब 1-1.5 ग्राम/लीटर। लेबल पर in powdery mildew a white powder coats the leaves. spray soluble sulphur or mancozeb — soluble sulphur 2.5 g/litre, or mancozeb 1-1.5 g/litre. use only the dose"
   },
   {
     "type": "sawaal",
-    "title_hi": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें?",
-    "title_en": "How to control loose smut in wheat?",
-    "subtitle_hi": "कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक्",
-    "subtitle_en": "In loose smut, the ear heads turn into black powder. It spreads through seed, so seed treatment matters most. Treat the seed with carbendazim (2.5 g/kg) or tebu",
-    "url": "/sawaal/wheat-loose-smut-control",
-    "keywords": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें? how to control loose smut in wheat? wheat disease कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक् in loose smut, the ear heads turn into black powder. it spreads through seed, so seed treatment matters most. treat the seed with carbendazim (2.5 g/kg) or tebu"
+    "title_hi": "मटर में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser for pea (matar)?",
+    "subtitle_hi": "ऊँची किस्म में प्रति हेक्टेयर नत्रजन 20, फास्फोरस 40, पोटाश 40 और सल्फर 20 किलो डालें। बौनी किस्म में फास्फोरस और पोटाश 50-50 किलो। मटर भी जड़ों से नत्रजन बनाती",
+    "subtitle_en": "For tall varieties apply nitrogen 20, phosphorus 40, potash 40 and sulphur 20 kg per hectare. For dwarf varieties, phosphorus and potash 50 each. Pea also fixes",
+    "url": "/sawaal/matar-khaad-urvarak-matra-mp",
+    "keywords": "मटर में खाद (उर्वरक) कितनी डालें? how much fertiliser for pea (matar)? pea nutrient ऊँची किस्म में प्रति हेक्टेयर नत्रजन 20, फास्फोरस 40, पोटाश 40 और सल्फर 20 किलो डालें। बौनी किस्म में फास्फोरस और पोटाश 50-50 किलो। मटर भी जड़ों से नत्रजन बनाती for tall varieties apply nitrogen 20, phosphorus 40, potash 40 and sulphur 20 kg per hectare. for dwarf varieties, phosphorus and potash 50 each. pea also fixes"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सूरजमुखी में काले धब्बे और फूल गलन रोग का नियंत्रण कैसे करें?",
+    "title_en": "How to control leaf spot and flower rot in sunflower?",
+    "subtitle_hi": "काले धब्बे (अल्टरनेरिया) में मैंकोजेब M-45, 1250-1500 ग्राम का 10 दिन के अंतराल पर 2-3 छिड़काव करें। फूल गलन में मैंकोजेब M-45 या कॉपर ऑक्सीक्लोराइड का 15 दिन प",
+    "subtitle_en": "For leaf spot (alternaria), spray mancozeb M-45 at 1250-1500 g, 2-3 times at 10-day gaps. For flower rot, spray mancozeb M-45 or copper oxychloride twice at 15-",
+    "url": "/sawaal/surajmukhi-kale-dhabbe-phool-galan-control",
+    "keywords": "सूरजमुखी में काले धब्बे और फूल गलन रोग का नियंत्रण कैसे करें? how to control leaf spot and flower rot in sunflower? sunflower disease काले धब्बे (अल्टरनेरिया) में मैंकोजेब m-45, 1250-1500 ग्राम का 10 दिन के अंतराल पर 2-3 छिड़काव करें। फूल गलन में मैंकोजेब m-45 या कॉपर ऑक्सीक्लोराइड का 15 दिन प for leaf spot (alternaria), spray mancozeb m-45 at 1250-1500 g, 2-3 times at 10-day gaps. for flower rot, spray mancozeb m-45 or copper oxychloride twice at 15-"
   },
   {
     "type": "sawaal",
@@ -874,12 +901,75 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "गन्ने में अग्रतना छेदक और पाइरिल्ला का नियंत्रण कैसे करें?",
+    "title_en": "How to control top borer and pyrilla in sugarcane?",
+    "subtitle_hi": "अग्रतना छेदक के लिए फोरेट 10 G, 15-20 किलो प्रति हेक्टेयर या कार्बोफ्यूरान 3 G, 33 किलो प्रति हेक्टेयर डालें। पाइरिल्ला के लिए क्विनालफॉस 25 EC, 1.5 लीटर प्रति ",
+    "subtitle_en": "For top borer, apply phorate 10 G at 15-20 kg per hectare or carbofuran 3 G at 33 kg per hectare. For pyrilla, spray quinalphos 25 EC at 1.5 litres per hectare.",
+    "url": "/sawaal/ganna-agratana-chhedak-pyrilla-control",
+    "keywords": "गन्ने में अग्रतना छेदक और पाइरिल्ला का नियंत्रण कैसे करें? how to control top borer and pyrilla in sugarcane? sugarcane pest अग्रतना छेदक के लिए फोरेट 10 g, 15-20 किलो प्रति हेक्टेयर या कार्बोफ्यूरान 3 g, 33 किलो प्रति हेक्टेयर डालें। पाइरिल्ला के लिए क्विनालफॉस 25 ec, 1.5 लीटर प्रति for top borer, apply phorate 10 g at 15-20 kg per hectare or carbofuran 3 g at 33 kg per hectare. for pyrilla, spray quinalphos 25 ec at 1.5 litres per hectare."
+  },
+  {
+    "type": "sawaal",
     "title_hi": "गेहूं में गेहूंसा (फैलारिस माइनर/मंडूसी) खरपतवार को कैसे रोकें?",
     "title_en": "How to control Phalaris minor weed in wheat?",
     "subtitle_hi": "गेहूंसा (फैलारिस माइनर) गेहूं जैसा दिखने वाला मुख्य घास खरपतवार है। अगेती बुआई से इसका प्रकोप घटता है। बुआई के 0-3 दिन बाद पेंडीमेथालिन डालें। बाद में क्लोडिनाफ",
     "subtitle_en": "Phalaris minor is the main grassy weed that looks like wheat. Early sowing lowers its attack. Spray pendimethalin 0-3 days after sowing. Later, control it with ",
     "url": "/sawaal/wheat-phalaris-weed-control",
     "keywords": "गेहूं में गेहूंसा (फैलारिस माइनर/मंडूसी) खरपतवार को कैसे रोकें? how to control phalaris minor weed in wheat? wheat weed गेहूंसा (फैलारिस माइनर) गेहूं जैसा दिखने वाला मुख्य घास खरपतवार है। अगेती बुआई से इसका प्रकोप घटता है। बुआई के 0-3 दिन बाद पेंडीमेथालिन डालें। बाद में क्लोडिनाफ phalaris minor is the main grassy weed that looks like wheat. early sowing lowers its attack. spray pendimethalin 0-3 days after sowing. later, control it with"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "किसान क्रेडिट कार्ड पर ब्याज दर कितनी है?",
+    "title_en": "What is the interest rate on a Kisan Credit Card?",
+    "subtitle_hi": "समय पर कर्ज चुकाने वाले किसान को 3% का प्रॉम्प्ट रीपेमेंट इंसेंटिव (PRI) मिलता है, जिससे प्रभावी ब्याज दर घटकर सालाना 4% रह जाती है। यह 3 लाख रुपये तक के पात्र ",
+    "subtitle_en": "A farmer who repays on time gets a 3% Prompt Repayment Incentive (PRI), which brings the effective interest rate down to 4% a year. This applies on eligible loa",
+    "url": "/sawaal/kcc-byaj-dar",
+    "keywords": "किसान क्रेडिट कार्ड पर ब्याज दर कितनी है? what is the interest rate on a kisan credit card? scheme समय पर कर्ज चुकाने वाले किसान को 3% का प्रॉम्प्ट रीपेमेंट इंसेंटिव (pri) मिलता है, जिससे प्रभावी ब्याज दर घटकर सालाना 4% रह जाती है। यह 3 लाख रुपये तक के पात्र a farmer who repays on time gets a 3% prompt repayment incentive (pri), which brings the effective interest rate down to 4% a year. this applies on eligible loa"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सोयाबीन की कटाई कब करें?",
+    "title_en": "When should soybean be harvested?",
+    "subtitle_hi": "जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें।",
+    "subtitle_en": "The crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. Cut the whole plant, dry it, and thresh.",
+    "url": "/sawaal/soybean-harvesting-maturity",
+    "keywords": "सोयाबीन की कटाई कब करें? when should soybean be harvested? soybean harvest जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें। the crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. cut the whole plant, dry it, and thresh."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सरसों का बीज उपचार कैसे करें (सफेद रतुआ, तना गलन)?",
+    "title_en": "How to treat mustard seed (white rust, stem rot)?",
+    "subtitle_hi": "सफेद रतुआ और मृदुरोमिल आसिता से बचाव के लिए मेटालैक्सिल (एप्रन SD-35) 6 ग्राम प्रति किलो बीज लगाएं। तना गलन के लिए कार्बेन्डाजिम 3 ग्राम प्रति किलो बीज। लेबल पर",
+    "subtitle_en": "Against white rust and downy mildew, use metalaxyl (Apron SD-35) 6 g per kg of seed. For stem rot, carbendazim 3 g per kg of seed. Use only the dose on the labe",
+    "url": "/sawaal/sarson-beej-upchar-safed-ratua",
+    "keywords": "सरसों का बीज उपचार कैसे करें (सफेद रतुआ, तना गलन)? how to treat mustard seed (white rust, stem rot)? mustard disease सफेद रतुआ और मृदुरोमिल आसिता से बचाव के लिए मेटालैक्सिल (एप्रन sd-35) 6 ग्राम प्रति किलो बीज लगाएं। तना गलन के लिए कार्बेन्डाजिम 3 ग्राम प्रति किलो बीज। लेबल पर against white rust and downy mildew, use metalaxyl (apron sd-35) 6 g per kg of seed. for stem rot, carbendazim 3 g per kg of seed. use only the dose on the labe"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें?",
+    "title_en": "How to control loose smut in wheat?",
+    "subtitle_hi": "कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक्",
+    "subtitle_en": "In loose smut, the ear heads turn into black powder. It spreads through seed, so seed treatment matters most. Treat the seed with carbendazim (2.5 g/kg) or tebu",
+    "url": "/sawaal/wheat-loose-smut-control",
+    "keywords": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें? how to control loose smut in wheat? wheat disease कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक् in loose smut, the ear heads turn into black powder. it spreads through seed, so seed treatment matters most. treat the seed with carbendazim (2.5 g/kg) or tebu"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए?",
+    "title_en": "What documents are needed for a Kisan Credit Card?",
+    "subtitle_hi": "KCC के लिए जमीन के कागज़ और आधार लेकर नजदीकी बैंक शाखा जाएँ। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना गारंटी मिलता है। सरकार 3 लाख रुपये तक के कर्ज पर 7% रिय",
+    "subtitle_en": "For KCC, take your land papers and Aadhaar to a nearby bank branch. From 1 January 2025, loans up to 2 lakh rupees are collateral-free. The government gives 7% ",
+    "url": "/sawaal/what-documents-are-needed-for-kisan-credit-card",
+    "keywords": "किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए? what documents are needed for a kisan credit card? scheme kcc के लिए जमीन के कागज़ और आधार लेकर नजदीकी बैंक शाखा जाएँ। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना गारंटी मिलता है। सरकार 3 लाख रुपये तक के कर्ज पर 7% रिय for kcc, take your land papers and aadhaar to a nearby bank branch. from 1 january 2025, loans up to 2 lakh rupees are collateral-free. the government gives 7%"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सरसों में सिंचाई कब करें?",
+    "title_en": "When to irrigate mustard?",
+    "subtitle_hi": "सरसों में दो सिंचाई काफ़ी हैं। पहली बुवाई के 30-35 दिन बाद (फूल आने के समय) और दूसरी 60-70 दिन पर (फली भरते समय) करें। इन अवस्थाओं पर पानी की कमी से उपज घटती है",
+    "subtitle_en": "Two irrigations are enough for mustard. Give the first 30-35 days after sowing (at flowering) and the second at 60-70 days (at pod-filling). A water shortage at",
+    "url": "/sawaal/sarson-sinchai-kab-karein",
+    "keywords": "सरसों में सिंचाई कब करें? when to irrigate mustard? mustard irrigation सरसों में दो सिंचाई काफ़ी हैं। पहली बुवाई के 30-35 दिन बाद (फूल आने के समय) और दूसरी 60-70 दिन पर (फली भरते समय) करें। इन अवस्थाओं पर पानी की कमी से उपज घटती है two irrigations are enough for mustard. give the first 30-35 days after sowing (at flowering) and the second at 60-70 days (at pod-filling). a water shortage at"
   },
   {
     "type": "sawaal",
@@ -892,12 +982,201 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "मक्का की बुआई कब करें और बीज दर कितनी रखें?",
+    "title_en": "What is the right sowing time and seed rate for maize?",
+    "subtitle_hi": "खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी क",
+    "subtitle_en": "Sow kharif maize from the last week of June to the first fortnight of July. For grain maize, keep the seed rate at about 20 kg per hectare. Sow in rows at 60x20",
+    "url": "/sawaal/maize-sowing-time-seed-rate",
+    "keywords": "मक्का की बुआई कब करें और बीज दर कितनी रखें? what is the right sowing time and seed rate for maize? maize sowing खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी क sow kharif maize from the last week of june to the first fortnight of july. for grain maize, keep the seed rate at about 20 kg per hectare. sow in rows at 60x20"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "अलसी में फली मक्खी और गेरूआ रोग का नियंत्रण कैसे करें?",
+    "title_en": "How to control bud fly and rust (gerua) in linseed?",
+    "subtitle_hi": "फली मक्खी के लिए इमिडाक्लोप्रिड 17.8 SL, 100 मिली प्रति हेक्टेयर का छिड़काव करें। गेरूआ रोग के लिए टेबूकोनाजोल 2% का 1 लीटर प्रति हेक्टेयर छिड़काव करें। लेबल पर",
+    "subtitle_en": "For bud fly, spray imidacloprid 17.8 SL at 100 ml per hectare. For rust (gerua), spray tebuconazole 2% at 1 litre per hectare. Use only the dose on the label.",
+    "url": "/sawaal/alsi-fali-makkhi-gerua-control",
+    "keywords": "अलसी में फली मक्खी और गेरूआ रोग का नियंत्रण कैसे करें? how to control bud fly and rust (gerua) in linseed? linseed pest फली मक्खी के लिए इमिडाक्लोप्रिड 17.8 sl, 100 मिली प्रति हेक्टेयर का छिड़काव करें। गेरूआ रोग के लिए टेबूकोनाजोल 2% का 1 लीटर प्रति हेक्टेयर छिड़काव करें। लेबल पर for bud fly, spray imidacloprid 17.8 sl at 100 ml per hectare. for rust (gerua), spray tebuconazole 2% at 1 litre per hectare. use only the dose on the label."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सोयाबीन में बीज उपचार कैसे करें?",
+    "title_en": "How to treat soybean seed before sowing?",
+    "subtitle_hi": "बुआई से पहले बीज को फफूंदनाशी से उपचारित करें। इससे बीजजनित रोग कम होते हैं। बुआई से 24 घंटे पहले कार्बेंडाज़िम या थायरम @ 2 ग्राम/किग्रा बीज से उपचार करें — हम",
+    "subtitle_en": "Treat the seed with a fungicide before sowing. This cuts seed-borne diseases. Treat with carbendazim or thiram @ 2 g/kg seed, 24 hours before sowing — always us",
+    "url": "/sawaal/soybean-seed-treatment",
+    "keywords": "सोयाबीन में बीज उपचार कैसे करें? how to treat soybean seed before sowing? soybean sowing बुआई से पहले बीज को फफूंदनाशी से उपचारित करें। इससे बीजजनित रोग कम होते हैं। बुआई से 24 घंटे पहले कार्बेंडाज़िम या थायरम @ 2 ग्राम/किग्रा बीज से उपचार करें — हम treat the seed with a fungicide before sowing. this cuts seed-borne diseases. treat with carbendazim or thiram @ 2 g/kg seed, 24 hours before sowing — always us"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "नमो ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे मिलेगा?",
+    "title_en": "What is the Namo Drone Didi scheme and how can we get drone spraying in the village?",
+    "subtitle_hi": "नमो ड्रोन दीदी एक केंद्र सरकार की योजना है। इसमें महिला स्वयं सहायता समूहों (SHG) को ड्रोन दिया जाता है, ताकि वे किराए पर किसानों के खेतों में तरल खाद और कीटनाश",
+    "subtitle_en": "Namo Drone Didi is a central government scheme. It gives drones to women Self Help Groups (SHGs) so they can spray liquid fertilizers and pesticides on farmers'",
+    "url": "/sawaal/drona-didi-yojanaa-gaanva-drona-davaa-chhidakaava",
+    "keywords": "नमो ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़काव कैसे मिलेगा? what is the namo drone didi scheme and how can we get drone spraying in the village? drone_didi नमो ड्रोन दीदी एक केंद्र सरकार की योजना है। इसमें महिला स्वयं सहायता समूहों (shg) को ड्रोन दिया जाता है, ताकि वे किराए पर किसानों के खेतों में तरल खाद और कीटनाश namo drone didi is a central government scheme. it gives drones to women self help groups (shgs) so they can spray liquid fertilizers and pesticides on farmers'"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "घर/खेत पर अनाज का सुरक्षित भंडारण कैसे करें?",
+    "title_en": "How to store grain safely on the farm?",
+    "subtitle_hi": "भंडारण से पहले अनाज को अच्छी तरह सुखाएं—नमी 12% से कम होनी चाहिए। भंडार को साफ करें और दरारें बंद करें। अनाज को बारिश, कीट, चूहे और पक्षियों से बचाएं। ज्यादा नम",
+    "subtitle_en": "Dry the grain well before storage; moisture should be under 12%. Clean the store and seal the cracks. Protect the grain from rain, insects, rats and birds. If m",
+    "url": "/sawaal/anaj-bhandaran-basics",
+    "keywords": "घर/खेत पर अनाज का सुरक्षित भंडारण कैसे करें? how to store grain safely on the farm? storage भंडारण से पहले अनाज को अच्छी तरह सुखाएं—नमी 12% से कम होनी चाहिए। भंडार को साफ करें और दरारें बंद करें। अनाज को बारिश, कीट, चूहे और पक्षियों से बचाएं। ज्यादा नम dry the grain well before storage; moisture should be under 12%. clean the store and seal the cracks. protect the grain from rain, insects, rats and birds. if m"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "किसान क्रेडिट कार्ड (KCC) क्या है और लोन लिमिट कितनी है?",
+    "title_en": "What is the Kisan Credit Card and what is the loan limit?",
+    "subtitle_hi": "KCC किसानों को कम ब्याज पर खेती के लिए कर्ज देने की योजना है। सरकार 3 लाख रुपये तक के अल्पकालिक कर्ज पर 7% की रियायती दर देती है। संशोधित ब्याज सहायता योजना (MI",
+    "subtitle_en": "KCC is a scheme that gives farmers low-interest loans for farming. The government gives a concessional rate of 7% on short-term loans up to 3 lakh rupees. Under",
+    "url": "/sawaal/kcc-kya-hai",
+    "keywords": "किसान क्रेडिट कार्ड (kcc) क्या है और लोन लिमिट कितनी है? what is the kisan credit card and what is the loan limit? scheme kcc किसानों को कम ब्याज पर खेती के लिए कर्ज देने की योजना है। सरकार 3 लाख रुपये तक के अल्पकालिक कर्ज पर 7% की रियायती दर देती है। संशोधित ब्याज सहायता योजना (mi kcc is a scheme that gives farmers low-interest loans for farming. the government gives a concessional rate of 7% on short-term loans up to 3 lakh rupees. under"
+  },
+  {
+    "type": "sawaal",
     "title_hi": "टमाटर में पत्ती मोड़ (लीफ कर्ल) वायरस को कैसे रोकें?",
     "title_en": "How to prevent tomato leaf curl virus?",
     "subtitle_hi": "पत्ती मोड़ रोग सफेद मक्खी (whitefly) फैलाती है। बेगोमोवायरस से 100% तक नुकसान हो सकता है। नर्सरी में 100-मेश जाली लगाएँ और पीले चिपचिपे ट्रैप लगाएँ। सफेद मक्खी ",
     "subtitle_en": "Leaf curl disease is spread by whitefly, and begomovirus can cause up to 100% loss. Cover the nursery with 100-mesh net and hang yellow sticky traps. Stop the w",
     "url": "/sawaal/tomato-leaf-curl-virus",
     "keywords": "टमाटर में पत्ती मोड़ (लीफ कर्ल) वायरस को कैसे रोकें? how to prevent tomato leaf curl virus? tomato disease पत्ती मोड़ रोग सफेद मक्खी (whitefly) फैलाती है। बेगोमोवायरस से 100% तक नुकसान हो सकता है। नर्सरी में 100-मेश जाली लगाएँ और पीले चिपचिपे ट्रैप लगाएँ। सफेद मक्खी leaf curl disease is spread by whitefly, and begomovirus can cause up to 100% loss. cover the nursery with 100-mesh net and hang yellow sticky traps. stop the w"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "पीएम-किसान का स्टेटस (किस्त) कैसे चेक करें?",
+    "title_en": "How to check PM-KISAN beneficiary/payment status?",
+    "subtitle_hi": "pmkisan.gov.in खोलें। 'Farmers Corner' में 'Know Your Status' पर क्लिक करें। अपना रजिस्ट्रेशन नंबर और कैप्चा डालें। मोबाइल पर आए OTP से पुष्टि करें। आपका भुगतान",
+    "subtitle_en": "Open pmkisan.gov.in. In 'Farmers Corner', click 'Know Your Status'. Enter your registration number and the captcha. Confirm with the OTP sent to your mobile. Yo",
+    "url": "/sawaal/pm-kisan-status-kaise-dekhein",
+    "keywords": "पीएम-किसान का स्टेटस (किस्त) कैसे चेक करें? how to check pm-kisan beneficiary/payment status? scheme pmkisan.gov.in खोलें। 'farmers corner' में 'know your status' पर क्लिक करें। अपना रजिस्ट्रेशन नंबर और कैप्चा डालें। मोबाइल पर आए otp से पुष्टि करें। आपका भुगतान open pmkisan.gov.in. in 'farmers corner', click 'know your status'. enter your registration number and the captcha. confirm with the otp sent to your mobile. yo"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मसूर में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser for lentil (masoor)?",
+    "subtitle_hi": "प्रति हेक्टेयर 15 टन अच्छी सड़ी गोबर खाद, और बुवाई के समय 20 किलो नत्रजन, 50 किलो स्फुर और 20 किलो पोटाश डालें। मसूर भी जड़ों से नत्रजन बनाती है, इसलिए नत्रजन क",
+    "subtitle_en": "Per hectare apply 15 tonnes of well-rotted farmyard manure, and at sowing 20 kg nitrogen, 50 kg phosphorus and 20 kg potash. Lentil also fixes nitrogen in its r",
+    "url": "/sawaal/masoor-khaad-urvarak-matra-mp",
+    "keywords": "मसूर में खाद (उर्वरक) कितनी डालें? how much fertiliser for lentil (masoor)? lentil nutrient प्रति हेक्टेयर 15 टन अच्छी सड़ी गोबर खाद, और बुवाई के समय 20 किलो नत्रजन, 50 किलो स्फुर और 20 किलो पोटाश डालें। मसूर भी जड़ों से नत्रजन बनाती है, इसलिए नत्रजन क per hectare apply 15 tonnes of well-rotted farmyard manure, and at sowing 20 kg nitrogen, 50 kg phosphorus and 20 kg potash. lentil also fixes nitrogen in its r"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सरसों में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser for mustard?",
+    "subtitle_hi": "सिंचित सरसों में प्रति हेक्टेयर 100-50-25 (नत्रजन-स्फुर-पोटाश) और 40 किलो गंधक डालें। असिंचित में 40-20-10 और 15 किलो गंधक। गंधक से तेल की मात्रा बढ़ती है।",
+    "subtitle_en": "For irrigated mustard apply 100-50-25 (N-P-K) and 40 kg sulphur per hectare. For rainfed, 40-20-10 and 15 kg sulphur. Sulphur raises the oil content.",
+    "url": "/sawaal/sarson-khaad-urvarak-matra-mp",
+    "keywords": "सरसों में खाद (उर्वरक) कितनी डालें? how much fertiliser for mustard? mustard nutrient सिंचित सरसों में प्रति हेक्टेयर 100-50-25 (नत्रजन-स्फुर-पोटाश) और 40 किलो गंधक डालें। असिंचित में 40-20-10 और 15 किलो गंधक। गंधक से तेल की मात्रा बढ़ती है। for irrigated mustard apply 100-50-25 (n-p-k) and 40 kg sulphur per hectare. for rainfed, 40-20-10 and 15 kg sulphur. sulphur raises the oil content."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मूंग की बुवाई का सही समय क्या है?",
+    "title_en": "What is the right time to sow moong (green gram)?",
+    "subtitle_hi": "खरीफ मूंग जून के अंतिम सप्ताह से जुलाई के पहले सप्ताह में बोएं। ग्रीष्मकालीन (गर्मी की) मूंग 15 मार्च तक बो दें। समय पर बुवाई से फली अच्छी बनती है।",
+    "subtitle_en": "Sow kharif moong from the last week of June to the first week of July. Sow summer moong by 15 March. Timely sowing sets good pods.",
+    "url": "/sawaal/moong-buwai-ka-samay-mp",
+    "keywords": "मूंग की बुवाई का सही समय क्या है? what is the right time to sow moong (green gram)? moong sowing खरीफ मूंग जून के अंतिम सप्ताह से जुलाई के पहले सप्ताह में बोएं। ग्रीष्मकालीन (गर्मी की) मूंग 15 मार्च तक बो दें। समय पर बुवाई से फली अच्छी बनती है। sow kharif moong from the last week of june to the first week of july. sow summer moong by 15 march. timely sowing sets good pods."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "लहसुन की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved garlic (lahsun) varieties are recommended?",
+    "subtitle_hi": "लहसुन की सुझाई किस्में हैं — यमुना सफेद 1 (G-1), यमुना सफेद 2 (G-50), यमुना सफेद 3 (G-282) और यमुना सफेद 4 (G-323)। बीज के लिए रोग-मुक्त, मोटी गाँठ चुनें।",
+    "subtitle_en": "Suggested garlic varieties are — Yamuna Safed 1 (G-1), Yamuna Safed 2 (G-50), Yamuna Safed 3 (G-282) and Yamuna Safed 4 (G-323). Choose disease-free, bold bulbs",
+    "url": "/sawaal/lahsun-unnat-kismein-mp",
+    "keywords": "लहसुन की उन्नत किस्में कौन-सी हैं? which improved garlic (lahsun) varieties are recommended? garlic variety लहसुन की सुझाई किस्में हैं — यमुना सफेद 1 (g-1), यमुना सफेद 2 (g-50), यमुना सफेद 3 (g-282) और यमुना सफेद 4 (g-323)। बीज के लिए रोग-मुक्त, मोटी गाँठ चुनें। suggested garlic varieties are — yamuna safed 1 (g-1), yamuna safed 2 (g-50), yamuna safed 3 (g-282) and yamuna safed 4 (g-323). choose disease-free, bold bulbs"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "उड़द का बीज उपचार कैसे करें?",
+    "title_en": "How to treat urad (black gram) seed?",
+    "subtitle_hi": "प्रति किलो बीज को 3 ग्राम थायरम या 2.5 ग्राम डायथेन M-45 से उपचारित करके बोएं। इससे बीज-जनित रोग दबते हैं। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "subtitle_en": "Treat each kg of seed with 3 g thiram or 2.5 g dithane M-45 before sowing. This suppresses seed-borne diseases. Use only the dose on the label.",
+    "url": "/sawaal/urad-beej-upchar-mp",
+    "keywords": "उड़द का बीज उपचार कैसे करें? how to treat urad (black gram) seed? urad disease प्रति किलो बीज को 3 ग्राम थायरम या 2.5 ग्राम डायथेन m-45 से उपचारित करके बोएं। इससे बीज-जनित रोग दबते हैं। लेबल पर लिखी मात्रा ही उपयोग करें। treat each kg of seed with 3 g thiram or 2.5 g dithane m-45 before sowing. this suppresses seed-borne diseases. use only the dose on the label."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मटर की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved pea (matar) varieties are recommended?",
+    "subtitle_hi": "MP कृषि विभाग की सूची में मटर की किस्में हैं — JM-6 (जे.एम.-6), प्रकाश, KPMR 400, IPFD-99-13, IPFD-1-10 और IPFD-99-25। अपने खेत और बाज़ार की माँग के हिसाब से कि",
+    "subtitle_en": "The MP Agriculture list has pea varieties — JM-6, Prakash, KPMR 400, IPFD-99-13, IPFD-1-10 and IPFD-99-25. Pick by your field and market demand.",
+    "url": "/sawaal/matar-unnat-kismein-mp",
+    "keywords": "मटर की उन्नत किस्में कौन-सी हैं? which improved pea (matar) varieties are recommended? pea variety mp कृषि विभाग की सूची में मटर की किस्में हैं — jm-6 (जे.एम.-6), प्रकाश, kpmr 400, ipfd-99-13, ipfd-1-10 और ipfd-99-25। अपने खेत और बाज़ार की माँग के हिसाब से कि the mp agriculture list has pea varieties — jm-6, prakash, kpmr 400, ipfd-99-13, ipfd-1-10 and ipfd-99-25. pick by your field and market demand."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "लहसुन की बुवाई का समय और बीज दर क्या है?",
+    "title_en": "What is the sowing time and seed rate for garlic (lahsun)?",
+    "subtitle_hi": "लहसुन अक्टूबर-नवंबर में बोएं। बीज (कलियाँ) 5-6 क्विंटल प्रति हेक्टेयर लगती हैं। मोटी और स्वस्थ कलियाँ ही बीज के लिए चुनें।",
+    "subtitle_en": "Sow garlic in October-November. Seed (cloves) needed is 5-6 quintals per hectare. Pick only plump, healthy cloves for seed.",
+    "url": "/sawaal/lahsun-buwai-samay-beej-dar-mp",
+    "keywords": "लहसुन की बुवाई का समय और बीज दर क्या है? what is the sowing time and seed rate for garlic (lahsun)? garlic sowing लहसुन अक्टूबर-नवंबर में बोएं। बीज (कलियाँ) 5-6 क्विंटल प्रति हेक्टेयर लगती हैं। मोटी और स्वस्थ कलियाँ ही बीज के लिए चुनें। sow garlic in october-november. seed (cloves) needed is 5-6 quintals per hectare. pick only plump, healthy cloves for seed."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "लहसुन में सिंचाई कब और कितने अंतराल पर करें?",
+    "title_en": "When and how often to irrigate garlic (lahsun)?",
+    "subtitle_hi": "बढ़वार के समय 7-8 दिन के अंतराल पर हल्की सिंचाई करें। फसल पकते समय अंतराल बढ़ाकर 10-15 दिन कर दें। खुदाई से कुछ दिन पहले सिंचाई रोक दें।",
+    "subtitle_en": "During growth, give a light irrigation every 7-8 days. As the crop matures, widen the gap to 10-15 days. Stop irrigation a few days before harvest.",
+    "url": "/sawaal/lahsun-sinchai-kab-karein",
+    "keywords": "लहसुन में सिंचाई कब और कितने अंतराल पर करें? when and how often to irrigate garlic (lahsun)? garlic irrigation बढ़वार के समय 7-8 दिन के अंतराल पर हल्की सिंचाई करें। फसल पकते समय अंतराल बढ़ाकर 10-15 दिन कर दें। खुदाई से कुछ दिन पहले सिंचाई रोक दें। during growth, give a light irrigation every 7-8 days. as the crop matures, widen the gap to 10-15 days. stop irrigation a few days before harvest."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मटर की बुवाई का समय और बीज दर क्या है?",
+    "title_en": "What is the sowing time and seed rate for pea (matar)?",
+    "subtitle_hi": "मटर 15 अक्टूबर से 15 नवंबर के बीच बोएं। ऊँची (लंबी) किस्म में 70-80 किलो और बौनी किस्म में 100 किलो बीज प्रति हेक्टेयर रखें। बीज उपचार करके ही बोएं।",
+    "subtitle_en": "Sow pea between 15 October and 15 November. Keep 70-80 kg of seed per hectare for tall varieties and 100 kg for dwarf varieties. Sow only treated seed.",
+    "url": "/sawaal/matar-buwai-samay-beej-dar-mp",
+    "keywords": "मटर की बुवाई का समय और बीज दर क्या है? what is the sowing time and seed rate for pea (matar)? pea sowing मटर 15 अक्टूबर से 15 नवंबर के बीच बोएं। ऊँची (लंबी) किस्म में 70-80 किलो और बौनी किस्म में 100 किलो बीज प्रति हेक्टेयर रखें। बीज उपचार करके ही बोएं। sow pea between 15 october and 15 november. keep 70-80 kg of seed per hectare for tall varieties and 100 kg for dwarf varieties. sow only treated seed."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मटर का बीज उपचार कैसे करें?",
+    "title_en": "How to treat pea (matar) seed?",
+    "subtitle_hi": "प्रति किलो बीज थायरम और कार्बेन्डाजिम (2:1) का 3 ग्राम मिश्रण लगाएं। साथ ही थायोमिथोक्जाम 3 ग्राम प्रति किलो बीज से उपचार करें। लेबल पर लिखी मात्रा ही उपयोग करे",
+    "subtitle_en": "Treat each kg of seed with 3 g of a thiram and carbendazim (2:1) mix. Also treat with thiomethoxam 3 g per kg of seed. Use only the dose on the label.",
+    "url": "/sawaal/matar-beej-upchar-mp",
+    "keywords": "मटर का बीज उपचार कैसे करें? how to treat pea (matar) seed? pea disease प्रति किलो बीज थायरम और कार्बेन्डाजिम (2:1) का 3 ग्राम मिश्रण लगाएं। साथ ही थायोमिथोक्जाम 3 ग्राम प्रति किलो बीज से उपचार करें। लेबल पर लिखी मात्रा ही उपयोग करे treat each kg of seed with 3 g of a thiram and carbendazim (2:1) mix. also treat with thiomethoxam 3 g per kg of seed. use only the dose on the label."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "लहसुन में खाद (उर्वरक) कितनी डालें?",
+    "title_en": "How much fertiliser for garlic (lahsun)?",
+    "subtitle_hi": "लहसुन में प्रति हेक्टेयर 100 किलो नत्रजन, 50 किलो फास्फोरस और 50 किलो पोटाश डालें। नत्रजन को दो-तीन बार में बाँटकर दें ताकि गाँठ अच्छी बने।",
+    "subtitle_en": "For garlic apply 100 kg nitrogen, 50 kg phosphorus and 50 kg potash per hectare. Split the nitrogen into two or three doses so the bulb forms well.",
+    "url": "/sawaal/lahsun-khaad-urvarak-matra-mp",
+    "keywords": "लहसुन में खाद (उर्वरक) कितनी डालें? how much fertiliser for garlic (lahsun)? garlic nutrient लहसुन में प्रति हेक्टेयर 100 किलो नत्रजन, 50 किलो फास्फोरस और 50 किलो पोटाश डालें। नत्रजन को दो-तीन बार में बाँटकर दें ताकि गाँठ अच्छी बने। for garlic apply 100 kg nitrogen, 50 kg phosphorus and 50 kg potash per hectare. split the nitrogen into two or three doses so the bulb forms well."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं?",
+    "title_en": "What is the PM-KISAN scheme and how much money does a farmer get?",
+    "subtitle_hi": "पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खा",
+    "subtitle_en": "PM-KISAN is a central government scheme. Every eligible farmer family gets 6,000 rupees a year. This money comes in three equal instalments of 2,000 rupees each",
+    "url": "/sawaal/pm-kisan-kya-hai",
+    "keywords": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं? what is the pm-kisan scheme and how much money does a farmer get? scheme पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खा pm-kisan is a central government scheme. every eligible farmer family gets 6,000 rupees a year. this money comes in three equal instalments of 2,000 rupees each"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "लहसुन में बैंगनी धब्बा (पर्पल ब्लॉच) रोग से कैसे बचें?",
+    "title_en": "How to prevent purple blotch in garlic (lahsun)?",
+    "subtitle_hi": "बैंगनी धब्बा में पत्तियों पर बैंगनी-भूरे धब्बे बनते हैं। बचाव के लिए बीज (कलियों) को मैंकोजेब और कार्बेन्डाजिम 2.5 ग्राम प्रति किलो से उपचारित करें। लेबल पर लिख",
+    "subtitle_en": "In purple blotch, purple-brown spots form on the leaves. To prevent it, treat the seed cloves with mancozeb and carbendazim at 2.5 g per kg. Use only the dose o",
+    "url": "/sawaal/lahsun-baingani-dhabba-purple-blotch",
+    "keywords": "लहसुन में बैंगनी धब्बा (पर्पल ब्लॉच) रोग से कैसे बचें? how to prevent purple blotch in garlic (lahsun)? garlic disease बैंगनी धब्बा में पत्तियों पर बैंगनी-भूरे धब्बे बनते हैं। बचाव के लिए बीज (कलियों) को मैंकोजेब और कार्बेन्डाजिम 2.5 ग्राम प्रति किलो से उपचारित करें। लेबल पर लिख in purple blotch, purple-brown spots form on the leaves. to prevent it, treat the seed cloves with mancozeb and carbendazim at 2.5 g per kg. use only the dose o"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "पीएम-किसान की किस्त नहीं आई, क्या करूँ?",
+    "title_en": "My PM-KISAN instalment has not come — what should I do?",
+    "subtitle_hi": "पहले pmkisan.gov.in पर अपना स्टेटस देखें। फिर जाँचें कि ई-केवाईसी पूरी है, बैंक खाता आधार से DBT के लिए जुड़ा है, और जमीन का रिकॉर्ड पोर्टल पर दर्ज है। इनमें से",
+    "subtitle_en": "First check your status on pmkisan.gov.in. Then make sure e-KYC is done, your bank account is Aadhaar-linked for DBT, and your land record is seeded on the port",
+    "url": "/sawaal/pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista",
+    "keywords": "पीएम-किसान की किस्त नहीं आई, क्या करूँ? my pm-kisan instalment has not come — what should i do? scheme पहले pmkisan.gov.in पर अपना स्टेटस देखें। फिर जाँचें कि ई-केवाईसी पूरी है, बैंक खाता आधार से dbt के लिए जुड़ा है, और जमीन का रिकॉर्ड पोर्टल पर दर्ज है। इनमें से first check your status on pmkisan.gov.in. then make sure e-kyc is done, your bank account is aadhaar-linked for dbt, and your land record is seeded on the port"
   },
   {
     "type": "sawaal",
@@ -919,39 +1198,183 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं?",
-    "title_en": "What is the PM-KISAN scheme and how much money does a farmer get?",
-    "subtitle_hi": "पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खा",
-    "subtitle_en": "PM-KISAN is a central government scheme. Every eligible farmer family gets 6,000 rupees a year. This money comes in three equal instalments of 2,000 rupees each",
-    "url": "/sawaal/pm-kisan-kya-hai",
-    "keywords": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं? what is the pm-kisan scheme and how much money does a farmer get? scheme पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खा pm-kisan is a central government scheme. every eligible farmer family gets 6,000 rupees a year. this money comes in three equal instalments of 2,000 rupees each"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "पीएम-किसान का स्टेटस (किस्त) कैसे चेक करें?",
-    "title_en": "How to check PM-KISAN beneficiary/payment status?",
-    "subtitle_hi": "pmkisan.gov.in खोलें। 'Farmers Corner' में 'Know Your Status' पर क्लिक करें। अपना रजिस्ट्रेशन नंबर और कैप्चा डालें। मोबाइल पर आए OTP से पुष्टि करें। आपका भुगतान",
-    "subtitle_en": "Open pmkisan.gov.in. In 'Farmers Corner', click 'Know Your Status'. Enter your registration number and the captcha. Confirm with the OTP sent to your mobile. Yo",
-    "url": "/sawaal/pm-kisan-status-kaise-dekhein",
-    "keywords": "पीएम-किसान का स्टेटस (किस्त) कैसे चेक करें? how to check pm-kisan beneficiary/payment status? scheme pmkisan.gov.in खोलें। 'farmers corner' में 'know your status' पर क्लिक करें। अपना रजिस्ट्रेशन नंबर और कैप्चा डालें। मोबाइल पर आए otp से पुष्टि करें। आपका भुगतान open pmkisan.gov.in. in 'farmers corner', click 'know your status'. enter your registration number and the captcha. confirm with the otp sent to your mobile. yo"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "किसान क्रेडिट कार्ड पर ब्याज दर कितनी है?",
-    "title_en": "What is the interest rate on a Kisan Credit Card?",
-    "subtitle_hi": "समय पर कर्ज चुकाने वाले किसान को 3% का प्रॉम्प्ट रीपेमेंट इंसेंटिव (PRI) मिलता है, जिससे प्रभावी ब्याज दर घटकर सालाना 4% रह जाती है। यह 3 लाख रुपये तक के पात्र ",
-    "subtitle_en": "A farmer who repays on time gets a 3% Prompt Repayment Incentive (PRI), which brings the effective interest rate down to 4% a year. This applies on eligible loa",
-    "url": "/sawaal/kcc-byaj-dar",
-    "keywords": "किसान क्रेडिट कार्ड पर ब्याज दर कितनी है? what is the interest rate on a kisan credit card? scheme समय पर कर्ज चुकाने वाले किसान को 3% का प्रॉम्प्ट रीपेमेंट इंसेंटिव (pri) मिलता है, जिससे प्रभावी ब्याज दर घटकर सालाना 4% रह जाती है। यह 3 लाख रुपये तक के पात्र a farmer who repays on time gets a 3% prompt repayment incentive (pri), which brings the effective interest rate down to 4% a year. this applies on eligible loa"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "मध्य प्रदेश में एमएसपी पर गेहूं/धान कैसे बेचें?",
     "title_en": "How to sell wheat/paddy at MSP in Madhya Pradesh?",
     "subtitle_hi": "मध्य प्रदेश में एमएसपी पर बेचने के लिए e-Uparjan पोर्टल (mpeuparjan.nic.in) पर पंजीकरण कराएं। आधार, जमीन के कागज, बैंक खाता और मोबाइल नंबर देना होता है। फिर स्ल",
     "subtitle_en": "To sell at MSP in Madhya Pradesh, register on the e-Uparjan portal (mpeuparjan.nic.in). You give your Aadhaar, land papers, bank account and mobile number. Then",
     "url": "/sawaal/msp-par-kaise-bechein-mp",
     "keywords": "मध्य प्रदेश में एमएसपी पर गेहूं/धान कैसे बेचें? how to sell wheat/paddy at msp in madhya pradesh? mandi मध्य प्रदेश में एमएसपी पर बेचने के लिए e-uparjan पोर्टल (mpeuparjan.nic.in) पर पंजीकरण कराएं। आधार, जमीन के कागज, बैंक खाता और मोबाइल नंबर देना होता है। फिर स्ल to sell at msp in madhya pradesh, register on the e-uparjan portal (mpeuparjan.nic.in). you give your aadhaar, land papers, bank account and mobile number. then"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मिर्च में थ्रिप्स व रस चूसक कीटों का सुरक्षित (कम-दवा) प्रबंधन कैसे करें?",
+    "title_en": "How to manage chilli thrips and sucking pests with low-pesticide IPM?",
+    "subtitle_hi": "मिर्च में रस चूसक कीट वायरस भी फैलाते हैं। नर्सरी में नीम खली डालें। चारों ओर ज्वार/मक्का की रक्षक फसल और गेंदा-अरंडी की ट्रैप फसल लगाएँ। चिपचिपे व फेरोमोन ट्रै",
+    "subtitle_en": "In chilli, sucking pests also spread viruses. Add neem cake in the nursery. Plant sorghum/maize border crops all around, and marigold-castor trap crops. Install",
+    "url": "/sawaal/chilli-thrips-sucking-pests-ipm",
+    "keywords": "मिर्च में थ्रिप्स व रस चूसक कीटों का सुरक्षित (कम-दवा) प्रबंधन कैसे करें? how to manage chilli thrips and sucking pests with low-pesticide ipm? chilli pest मिर्च में रस चूसक कीट वायरस भी फैलाते हैं। नर्सरी में नीम खली डालें। चारों ओर ज्वार/मक्का की रक्षक फसल और गेंदा-अरंडी की ट्रैप फसल लगाएँ। चिपचिपे व फेरोमोन ट्रै in chilli, sucking pests also spread viruses. add neem cake in the nursery. plant sorghum/maize border crops all around, and marigold-castor trap crops. install"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मूंग में पीला मोज़ेक (YMV) रोग का नियंत्रण कैसे करें?",
+    "title_en": "How to control yellow mosaic virus (YMV) in moong?",
+    "subtitle_hi": "पीला मोज़ेक सफेद मक्खी से फैलता है; पत्तियाँ पीली-हरी चितकबरी हो जाती हैं। रोग-रोधी किस्म लगाएं और सफेद मक्खी रोकने के लिए मेटासिस्टॉक्स 25 EC, 750-1000 मिली, 6",
+    "subtitle_en": "YMV spreads through whitefly; leaves turn yellow-green mottled. Grow a resistant variety and, to check whitefly, spray metasystox 25 EC at 750-1000 ml in 600 li",
+    "url": "/sawaal/moong-pila-mosaic-ymv-control",
+    "keywords": "मूंग में पीला मोज़ेक (ymv) रोग का नियंत्रण कैसे करें? how to control yellow mosaic virus (ymv) in moong? moong disease पीला मोज़ेक सफेद मक्खी से फैलता है; पत्तियाँ पीली-हरी चितकबरी हो जाती हैं। रोग-रोधी किस्म लगाएं और सफेद मक्खी रोकने के लिए मेटासिस्टॉक्स 25 ec, 750-1000 मिली, 6 ymv spreads through whitefly; leaves turn yellow-green mottled. grow a resistant variety and, to check whitefly, spray metasystox 25 ec at 750-1000 ml in 600 li"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "उड़द में पीला मोज़ेक (YMV) रोग का नियंत्रण कैसे करें?",
+    "title_en": "How to control yellow mosaic virus (YMV) in urad?",
+    "subtitle_hi": "पीला मोज़ेक सफेद मक्खी से फैलता है। रोग-रोधी किस्म लगाएं और सफेद मक्खी रोकने के लिए डाइमिथोएट 30 EC, 2 मिली प्रति लीटर पानी का छिड़काव करें। रोगी पौधे उखाड़कर ह",
+    "subtitle_en": "YMV spreads through whitefly. Grow a resistant variety and, to check whitefly, spray dimethoate 30 EC at 2 ml per litre of water. Pull out diseased plants. Use ",
+    "url": "/sawaal/urad-pila-mosaic-ymv-control",
+    "keywords": "उड़द में पीला मोज़ेक (ymv) रोग का नियंत्रण कैसे करें? how to control yellow mosaic virus (ymv) in urad? urad disease पीला मोज़ेक सफेद मक्खी से फैलता है। रोग-रोधी किस्म लगाएं और सफेद मक्खी रोकने के लिए डाइमिथोएट 30 ec, 2 मिली प्रति लीटर पानी का छिड़काव करें। रोगी पौधे उखाड़कर ह ymv spreads through whitefly. grow a resistant variety and, to check whitefly, spray dimethoate 30 ec at 2 ml per litre of water. pull out diseased plants. use"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "उड़द में फली छेदक का नियंत्रण कैसे करें?",
+    "title_en": "How to control pod borer in urad (black gram)?",
+    "subtitle_hi": "फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए क्विनालफॉस 2 मिली प्रति लीटर पानी (30 मिली प्रति 15 लीटर) का छिड़काव करें, 500 लीटर पानी में घोलकर। लेबल प",
+    "subtitle_en": "Pod borers bore into pods and eat the grain. To control them, spray quinalphos 2 ml per litre of water (30 ml per 15 litres), dissolved in 500 litres of water. ",
+    "url": "/sawaal/urad-fali-chhedak-control",
+    "keywords": "उड़द में फली छेदक का नियंत्रण कैसे करें? how to control pod borer in urad (black gram)? urad pest फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए क्विनालफॉस 2 मिली प्रति लीटर पानी (30 मिली प्रति 15 लीटर) का छिड़काव करें, 500 लीटर पानी में घोलकर। लेबल प pod borers bore into pods and eat the grain. to control them, spray quinalphos 2 ml per litre of water (30 ml per 15 litres), dissolved in 500 litres of water."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "गेहूं की बुवाई का सही समय क्या है?",
+    "title_en": "What is the right time to sow wheat?",
+    "subtitle_hi": "सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से ",
+    "subtitle_en": "Sow irrigated wheat in the second fortnight of November. In rainfed fields sow from mid-October to the first week of November, and in semi-irrigated fields in t",
+    "url": "/sawaal/gehun-buwai-ka-sahi-samay-sagar",
+    "keywords": "गेहूं की बुवाई का सही समय क्या है? what is the right time to sow wheat? wheat sowing सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से sow irrigated wheat in the second fortnight of november. in rainfed fields sow from mid-october to the first week of november, and in semi-irrigated fields in t"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मटर में फली छेदक और माहू का नियंत्रण कैसे करें?",
+    "title_en": "How to control pod borer and aphids in pea?",
+    "subtitle_hi": "फली छेदक के लिए प्रोफेनोफॉस 50 EC, 1.5 मिली प्रति लीटर पानी में छिड़कें। माहू के लिए इमिडाक्लोप्रिड 17.8 SL, 0.5 मिली प्रति लीटर पानी। लेबल पर लिखी मात्रा ही उप",
+    "subtitle_en": "For pod borer, spray profenophos 50 EC at 1.5 ml per litre of water. For aphids, imidacloprid 17.8 SL at 0.5 ml per litre. Use only the dose on the label.",
+    "url": "/sawaal/matar-fali-chhedak-mahu-control",
+    "keywords": "मटर में फली छेदक और माहू का नियंत्रण कैसे करें? how to control pod borer and aphids in pea? pea pest फली छेदक के लिए प्रोफेनोफॉस 50 ec, 1.5 मिली प्रति लीटर पानी में छिड़कें। माहू के लिए इमिडाक्लोप्रिड 17.8 sl, 0.5 मिली प्रति लीटर पानी। लेबल पर लिखी मात्रा ही उप for pod borer, spray profenophos 50 ec at 1.5 ml per litre of water. for aphids, imidacloprid 17.8 sl at 0.5 ml per litre. use only the dose on the label."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "प्याज में थ्रिप्स (रस चूसक कीट) का नियंत्रण कैसे करें?",
+    "title_en": "How to control thrips in onion?",
+    "subtitle_hi": "थ्रिप्स प्याज का सबसे बड़ा कीट है। तेज प्रकोप में 50% तक उपज घट सकती है। ये पत्तियों पर चाँदी जैसे धब्बे बनाते हैं। नीम घोल 2-3% छिड़कें। ETL (3-5 थ्रिप्स/पत्ती",
+    "subtitle_en": "Thrips is the biggest onion pest; a severe attack can cut yield by up to 50%. They make silvery spots on leaves. Spray 2-3% neem solution. Above ETL (3-5 thrips",
+    "url": "/sawaal/onion-thrips-control",
+    "keywords": "प्याज में थ्रिप्स (रस चूसक कीट) का नियंत्रण कैसे करें? how to control thrips in onion? onion pest थ्रिप्स प्याज का सबसे बड़ा कीट है। तेज प्रकोप में 50% तक उपज घट सकती है। ये पत्तियों पर चाँदी जैसे धब्बे बनाते हैं। नीम घोल 2-3% छिड़कें। etl (3-5 थ्रिप्स/पत्ती thrips is the biggest onion pest; a severe attack can cut yield by up to 50%. they make silvery spots on leaves. spray 2-3% neem solution. above etl (3-5 thrips"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "एमएसपी (MSP) क्या है और यह कैसे तय होती है?",
+    "title_en": "What is MSP and how is it decided?",
+    "subtitle_hi": "एमएसपी (न्यूनतम समर्थन मूल्य) वह सबसे कम दाम है जो सरकार तय करती है, ताकि बाजार भाव गिरने पर भी किसान को फसल का उचित दाम मिले। इसे CACP सुझाता है और CCEA मंजूरी",
+    "subtitle_en": "MSP (Minimum Support Price) is the lowest price the government fixes, so that a farmer gets a fair price even if the market price falls. CACP recommends it and ",
+    "url": "/sawaal/msp-kya-hai",
+    "keywords": "एमएसपी (msp) क्या है और यह कैसे तय होती है? what is msp and how is it decided? mandi एमएसपी (न्यूनतम समर्थन मूल्य) वह सबसे कम दाम है जो सरकार तय करती है, ताकि बाजार भाव गिरने पर भी किसान को फसल का उचित दाम मिले। इसे cacp सुझाता है और ccea मंजूरी msp (minimum support price) is the lowest price the government fixes, so that a farmer gets a fair price even if the market price falls. cacp recommends it and"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "चने में बीज दर कितनी रखें (देशी और काबुली)?",
+    "title_en": "What seed rate for gram (desi and kabuli)?",
+    "subtitle_hi": "देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर कर",
+    "subtitle_en": "Keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. Always treat the seed before sowing.",
+    "url": "/sawaal/chana-beej-dar-desi-kabuli",
+    "keywords": "चने में बीज दर कितनी रखें (देशी और काबुली)? what seed rate for gram (desi and kabuli)? gram sowing देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर कर keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. always treat the seed before sowing."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मसूर में गेरूई / रतुआ रोग का नियंत्रण कैसे करें?",
+    "title_en": "How to control rust (gerui) in lentil?",
+    "subtitle_hi": "रतुआ में पत्तियों पर भूरे-पीले दाने जैसे धब्बे बनते हैं। रोग दिखते ही 0.3% मेन्कोजेब M-45 का छिड़काव करें और 15 दिन के अंतर पर दो बार दोहराएं। लेबल पर लिखी मात्",
+    "subtitle_en": "In rust, brown-yellow powdery spots form on the leaves. As soon as you see it, spray 0.3% mancozeb M-45 and repeat twice at a 15-day gap. Use only the dose on t",
+    "url": "/sawaal/masoor-gerui-ratua-rust-control",
+    "keywords": "मसूर में गेरूई / रतुआ रोग का नियंत्रण कैसे करें? how to control rust (gerui) in lentil? lentil disease रतुआ में पत्तियों पर भूरे-पीले दाने जैसे धब्बे बनते हैं। रोग दिखते ही 0.3% मेन्कोजेब m-45 का छिड़काव करें और 15 दिन के अंतर पर दो बार दोहराएं। लेबल पर लिखी मात् in rust, brown-yellow powdery spots form on the leaves. as soon as you see it, spray 0.3% mancozeb m-45 and repeat twice at a 15-day gap. use only the dose on t"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मसूर में फली छेदक का नियंत्रण कैसे करें?",
+    "title_en": "How to control pod borer in lentil (masoor)?",
+    "subtitle_hi": "फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए इमामेक्टिन बेन्जोइट 100 ग्राम प्रति हेक्टेयर का छिड़काव करें। खेत की निगरानी करते रहें। लेबल पर लिखी मात्र",
+    "subtitle_en": "Pod borers bore into pods and eat the grain. To control them, spray emamectin benzoate 100 g per hectare. Keep watching the field. Use only the dose on the labe",
+    "url": "/sawaal/masoor-fali-chhedak-control",
+    "keywords": "मसूर में फली छेदक का नियंत्रण कैसे करें? how to control pod borer in lentil (masoor)? lentil pest फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए इमामेक्टिन बेन्जोइट 100 ग्राम प्रति हेक्टेयर का छिड़काव करें। खेत की निगरानी करते रहें। लेबल पर लिखी मात्र pod borers bore into pods and eat the grain. to control them, spray emamectin benzoate 100 g per hectare. keep watching the field. use only the dose on the labe"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें?",
+    "title_en": "My wheat leaves have yellow-orange striped patches — what should I do?",
+    "subtitle_hi": "यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% छिड़कें। रोग-रोधी किस",
+    "subtitle_en": "This is yellow rust. Leaves get yellow-orange striped powdery stripes. As soon as you see it, spray propiconazole (Tilt) 25 EC @ 0.1%. Grow a resistant variety.",
+    "url": "/sawaal/gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan",
+    "keywords": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें? my wheat leaves have yellow-orange striped patches — what should i do? wheat disease यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 ec @ 0.1% छिड़कें। रोग-रोधी किस this is yellow rust. leaves get yellow-orange striped powdery stripes. as soon as you see it, spray propiconazole (tilt) 25 ec @ 0.1%. grow a resistant variety."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें?",
+    "title_en": "How to control girdle beetle in soybean?",
+    "subtitle_hi": "गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाए",
+    "subtitle_en": "The girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. Do deep summer ploughing, sow as the monsoon starts, and follow crop rotati",
+    "url": "/sawaal/soybean-girdle-beetle-control",
+    "keywords": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें? how to control girdle beetle in soybean? soybean pest गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाए the girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. do deep summer ploughing, sow as the monsoon starts, and follow crop rotati"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?",
+    "title_en": "Which maize varieties and hybrids are recommended?",
+    "subtitle_hi": "मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनुशंसित",
+    "subtitle_en": "In maize, medium-duration hybrids like Ganga-5 (95-110 days) are common. Composites like Vijay (100-110 days) and Kisan are also used. Choose a variety recommen",
+    "url": "/sawaal/maize-recommended-varieties",
+    "keywords": "मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं? which maize varieties and hybrids are recommended? maize variety मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनुशंसित in maize, medium-duration hybrids like ganga-5 (95-110 days) are common. composites like vijay (100-110 days) and kisan are also used. choose a variety recommen"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे कहाँ से मिलेगी?",
+    "title_en": "Where can I get government farming advice and weather information?",
+    "subtitle_hi": "भरोसेमंद सलाह के लिए अपने नजदीकी कृषि विज्ञान केंद्र (KVK) या ब्लॉक कृषि कार्यालय से संपर्क करें। एमएसपी पर बिक्री के लिए MP e-Uparjan पोर्टल है। सरकारी पोर्टल ",
+    "subtitle_en": "For reliable advice, contact your nearest Krishi Vigyan Kendra (KVK) or block agriculture office. For MSP sales there is the MP e-Uparjan portal. Government por",
+    "url": "/sawaal/kheti-juda-sarakaari-salaaha-mausama-jaanakaari-mujhe",
+    "keywords": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे कहाँ से मिलेगी? where can i get government farming advice and weather information? general भरोसेमंद सलाह के लिए अपने नजदीकी कृषि विज्ञान केंद्र (kvk) या ब्लॉक कृषि कार्यालय से संपर्क करें। एमएसपी पर बिक्री के लिए mp e-uparjan पोर्टल है। सरकारी पोर्टल for reliable advice, contact your nearest krishi vigyan kendra (kvk) or block agriculture office. for msp sales there is the mp e-uparjan portal. government por"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मध्य प्रदेश में चने की कौन सी किस्में और बुवाई का समय ठीक है?",
+    "title_en": "Which chickpea varieties and sowing time suit Madhya Pradesh?",
+    "subtitle_hi": "चना रबी की फसल है। बुवाई अक्टूबर के पहले पखवाड़े में करें। बीज दर 80-100 किग्रा/हेक्टेयर रखें। कतार-पौध दूरी 30 x 10 सेमी रखें। स्रोत में सुझाई किस्मों में JG 3",
+    "subtitle_en": "Chickpea is a rabi crop. Sow in the first fortnight of October. Keep seed rate at 80-100 kg/ha and row-to-plant spacing at 30 x 10 cm. Varieties suggested by th",
+    "url": "/sawaal/chana-sowing-varieties-mp",
+    "keywords": "मध्य प्रदेश में चने की कौन सी किस्में और बुवाई का समय ठीक है? which chickpea varieties and sowing time suit madhya pradesh? gram variety चना रबी की फसल है। बुवाई अक्टूबर के पहले पखवाड़े में करें। बीज दर 80-100 किग्रा/हेक्टेयर रखें। कतार-पौध दूरी 30 x 10 सेमी रखें। स्रोत में सुझाई किस्मों में jg 3 chickpea is a rabi crop. sow in the first fortnight of october. keep seed rate at 80-100 kg/ha and row-to-plant spacing at 30 x 10 cm. varieties suggested by th"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें?",
+    "title_en": "How to manage tomato fruit borer?",
+    "subtitle_hi": "फल छेदक (Helicoverpa) टमाटर में बहुत नुकसान करता है। गेंदा को ट्रैप फसल के रूप में 16:1 में लगाएँ। फेरोमोन ट्रैप 10-12/हेक्टेयर लगाएँ। Bt @ 500 ग्राम/हेक्टेयर य",
+    "subtitle_en": "Fruit borer (Helicoverpa) does heavy damage to tomato. Plant marigold as a trap crop at 16:1. Install 10-12 pheromone traps per hectare. Spray Bt @ 500 g/ha or ",
+    "url": "/sawaal/tomato-fruit-borer-control",
+    "keywords": "टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें? how to manage tomato fruit borer? tomato pest फल छेदक (helicoverpa) टमाटर में बहुत नुकसान करता है। गेंदा को ट्रैप फसल के रूप में 16:1 में लगाएँ। फेरोमोन ट्रैप 10-12/हेक्टेयर लगाएँ। bt @ 500 ग्राम/हेक्टेयर य fruit borer (helicoverpa) does heavy damage to tomato. plant marigold as a trap crop at 16:1. install 10-12 pheromone traps per hectare. spray bt @ 500 g/ha or"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें?",
+    "title_en": "How to manage purple blotch in onion?",
+    "subtitle_hi": "रबी में थ्रिप्स का प्रकोप बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाता है। उठी क्यारी व अच्छी निकासी रखें। फव्वारा सिंचाई से बचें। रोग दिखते ही मैंकोजेब 0.25% य",
+    "subtitle_en": "In rabi, a thrips attack worsens purple blotch and Stemphylium blight. Use raised beds and good drainage, and avoid sprinkler irrigation. As soon as disease sho",
+    "url": "/sawaal/onion-purple-blotch",
+    "keywords": "प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें? how to manage purple blotch in onion? onion disease रबी में थ्रिप्स का प्रकोप बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाता है। उठी क्यारी व अच्छी निकासी रखें। फव्वारा सिंचाई से बचें। रोग दिखते ही मैंकोजेब 0.25% य in rabi, a thrips attack worsens purple blotch and stemphylium blight. use raised beds and good drainage, and avoid sprinkler irrigation. as soon as disease sho"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "पीएम-किसान का पैसा किस किसान को मिलता है (पात्रता)?",
+    "title_en": "Who is eligible for PM-KISAN?",
+    "subtitle_hi": "जिन किसान परिवारों के नाम पर खेती की जमीन दर्ज है, वे पात्र हैं। आयकर भरने वाले, डॉक्टर-वकील जैसे पेशेवर, और 10,000 रुपये या ज्यादा पेंशन पाने वाले सेवानिवृत्त ",
+    "subtitle_en": "Farmer families with cultivable land recorded in their name are eligible. Income-tax payers, professionals like doctors and lawyers, and retired people drawing ",
+    "url": "/sawaal/pm-kisan-patrata",
+    "keywords": "पीएम-किसान का पैसा किस किसान को मिलता है (पात्रता)? who is eligible for pm-kisan? scheme जिन किसान परिवारों के नाम पर खेती की जमीन दर्ज है, वे पात्र हैं। आयकर भरने वाले, डॉक्टर-वकील जैसे पेशेवर, और 10,000 रुपये या ज्यादा पेंशन पाने वाले सेवानिवृत्त farmer families with cultivable land recorded in their name are eligible. income-tax payers, professionals like doctors and lawyers, and retired people drawing"
   },
   {
     "type": "cold_storage",

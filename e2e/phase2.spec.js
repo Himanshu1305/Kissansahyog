@@ -65,7 +65,8 @@ test('unknown pincode is handled gracefully', async ({ page }) => {
   await page.getByRole('checkbox').check()
   await page.getByRole('button', { name: 'Accept and continue' }).click()
 
-  await expect(page.getByText('was not recognised')).toBeVisible()
+  // Batch 4 item B reworded err_pincode_not_found EN → "We couldn't find this pincode…".
+  await expect(page.getByText(/couldn.t find this pincode/i)).toBeVisible()
   await expect(page).not.toHaveURL(/\/home$/)
 })
 
