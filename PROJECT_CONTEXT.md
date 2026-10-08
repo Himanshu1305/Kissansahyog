@@ -1342,3 +1342,34 @@ Preview: **https://v2-preview.kissansahyog.pages.dev**.
   `build:full` 178/178. E2E **80/82** — `phase17` sawaal-grid updated for the grouped layout (passes); the
   2 failures (`phase18_transport`, `phase20_mela`) are pre-existing data/time dependencies (the mela seed
   event ended 2026-10-06) in features untouched by Batch 2. Screenshots in `docs/review/shots-batch2/`.
+
+## Batch 4 — content + small features (preview only) — 2026-10-08 (no migration)
+
+Launch-prep batch. **No schema change** — all DB writes were new `kisan_sawaal` rows (existing
+pipeline) and this batch's own test listings (removed in teardown by id). Preview-only deploy.
+
+- **B — natural-Hindi UI pass:** new guard `batch4_ui_style.mjs` (avoid-list on UI strings, >15-word
+  report, FAIL on any Hindi sentence >25 words except marked legal, placeholder/tag/key diff vs
+  pre-batch `617f9a6`). Rewrote **18 Hindi + 14 English** strings; fixed 3 run-ons. Most homepage/nav
+  strings were already natural (kept). `UI_STRINGS_REVIEW.md` for the owner.
+- **F — agri_inputs wide visibility:** reused the existing per-listing `wide_visibility` opt-in
+  (migration 0025); default stays 30 km. Concrete "100 किमी…" wording + vendor-stronger variant +
+  "100 किमी तक दिखेगा" badge (listing page + post success). `batch4_wide_visibility.mjs` 8/0.
+- **A — Kisan Sawaal: 58 → 119 published (61 NEW).** All from MP Agriculture Dept
+  (`mpkrishi.mp.gov.in`) crop pages, verbatim quotes `S-QBR-01..11`, every dose with
+  "लेबल पर लिखी मात्रा ही उपयोग करें". New fact-check `batch4_qa_facts.mjs` 61/0.
+  `QA_NEW_FOR_REVIEW.md` lists all 61. Aim of 80 not reached (sources not exhausted; follow-up).
+- **C — Fasal Salah bullets:** crop panel renders `cropadv_<slug>` as 3–5 bullets + "पूरा जवाब पढ़ें →"
+  link. All 4 rabi crops = 3 bullets. (Resolves the Batch-3 deferral.)
+- **E — voice search:** already existed; added Origin allow-list on `/transcribe`, `cleanTranscript`,
+  44 px mic, offline msg, Privacy line (voice not saved; Google/Apple may process). `batch4_voice.mjs`
+  23/0; phase19 denied-path added. Fallback not testable on preview (no `GEMINI_API_KEY` there).
+- **D — `/bazaar/*`:** hub + 6 landing pages (equipment/labor/bhusa/agri-inputs/transport/land),
+  ≥250 words hi+en each, FAQ+Breadcrumb JSON-LD, Browse/Post buttons, footer link, sitemap+prerender.
+  `batch4_bazaar.mjs` 58/0. Hub links the 4 dedicated pages (no duplication).
+- **G — `STRAY_LISTINGS.md`:** no stray/test listings (read-only).
+- **H — e2e stabilised:** `phase18_transport`, `phase20_mela`, `phase6` now self-contained (create own
+  data, tolerant asserts, teardown by id); no seed data touched.
+- **Tests:** backend all green; **E2E 83/83** (was 79/82 — the 3 known failures fixed; `phase2` selector
+  updated for a reworded item-B string). `build:full` **249/249** prerendered; sitemap pages 44 / sawaal 152.
+  Screenshots in `docs/review/shots-batch4/`. Preview `5013e32a` — https://v2-preview.kissansahyog.pages.dev.

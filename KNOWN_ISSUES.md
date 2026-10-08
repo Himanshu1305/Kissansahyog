@@ -1,5 +1,24 @@
 # Known Issues
 
+## Batch 4 updates (2026-10-08)
+
+- **RESOLVED — the 3 carried e2e failures.** `phase18_transport`, `phase20_mela` (merged-away redirect)
+  and `phase6` (land "mark Found") are now **independent of seed data** (item H): each creates exactly
+  what it needs, asserts tolerantly, and cleans up by its own ids. **E2E is now 83/83** (was 79/82). No
+  seed data was deleted or changed.
+- **RESOLVED — Fasal Salah bullets** (Batch-3 deferral): the crop panel now renders `cropadv_<slug>` as
+  3–5 bullets with a "पूरा जवाब पढ़ें →" link (item C), a rendering-only change with no new facts.
+- **Voice fallback not testable on preview:** the Cloudflare **preview** env has no `GEMINI_API_KEY`, so
+  the MediaRecorder→`/transcribe` (Safari) path can't run there. Web Speech (Chrome/Android) works without
+  a key. **Owner action:** add `GEMINI_API_KEY` to the preview environment to test the fallback. No secret
+  was set by this batch.
+- **Kisan Sawaal aim of 80 not reached:** 61 new Q&As published (58→119), gate of 60 cleared. Sources are
+  **not exhausted** (MP crop-capsule series has more pages; ICAR-IIWBR `icar.gov.in` refused connection;
+  a few crop URLs 404'd under the names tried). The remaining ~19 toward 80 are a follow-up continuation.
+- **`phase2` selector updated** (rule 9) after item B reworded `err_pincode_not_found` EN. No assertion weakened.
+
+---
+
 **Test checklists:** No test-checklist item (v1 Phases 1–9, plus v1.1 Phases 1–7,
 positive/negative/edge) was ever deferred or skipped — every one passed before its phase was
 committed. v1.1 backend suites `v11_phase1..7` (82 checks) are green against the live project;

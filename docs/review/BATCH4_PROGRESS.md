@@ -42,8 +42,10 @@
 - [x] **G** STRAY_LISTINGS.md — no stray/test listings found (6 real, 65 sample kept). Read-only.
 - [x] **H** phase18_transport + phase20_mela + phase6 — all self-contained now (create own data,
       assert tolerantly, teardown by id). 11/11 pass. No seed data deleted/changed.
-- [ ] Verification (full e2e + build:full) + screenshots + preview deploy
-- [ ] BATCH4_REPORT.md (finish marker)
+- [x] Verification — audits all green; full e2e **83/83** (was 79/82); build:full **249/249** prerendered;
+      shots-batch4 (26 files); preview deployed **https://v2-preview.kissansahyog.pages.dev** (5013e32a);
+      new routes return 200 with new prerendered text (verified). Production untouched.
+- [x] BATCH4_REPORT.md (finish marker) — written.
 
 ## Deferred items
 _(none yet)_
