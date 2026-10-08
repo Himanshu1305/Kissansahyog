@@ -1,0 +1,701 @@
+// AUTO-GENERATED from docs/research/qa_raw/batch4_pulses.json by scripts/build-qa.mjs.
+// Kisan Sawaal knowledge-base Q&As (Hindi-only pages). Every numeric block carries cites.
+export default [
+  {
+    "slug": "moong-buwai-ka-samay-mp",
+    "crop": "moong",
+    "category": "sowing",
+    "season": "kharif",
+    "question_hi": "मूंग की बुवाई का सही समय क्या है?",
+    "question_en": "What is the right time to sow moong (green gram)?",
+    "short_hi": "खरीफ मूंग जून के अंतिम सप्ताह से जुलाई के पहले सप्ताह में बोएं। ग्रीष्मकालीन (गर्मी की) मूंग 15 मार्च तक बो दें। समय पर बुवाई से फली अच्छी बनती है।",
+    "short_en": "Sow kharif moong from the last week of June to the first week of July. Sow summer moong by 15 March. Timely sowing sets good pods.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "खरीफ: जून के अंतिम सप्ताह से जुलाई के पहले सप्ताह तक।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          },
+          {
+            "text": "ग्रीष्मकालीन (गर्मी): 15 मार्च तक बो दें।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "Kharif: last week of June to the first week of July.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          },
+          {
+            "text": "Summer: sow by 15 March.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-10"
+    ]
+  },
+  {
+    "slug": "moong-beej-dar-kitni-mp",
+    "crop": "moong",
+    "category": "sowing",
+    "season": "kharif",
+    "question_hi": "मूंग में बीज दर कितनी रखें?",
+    "question_en": "How much seed rate for moong?",
+    "short_hi": "खरीफ मूंग कतार विधि से बोने पर 20 किलो बीज प्रति हेक्टेयर रखें। ग्रीष्मकालीन मूंग में 25-30 किलो प्रति हेक्टेयर लगता है। बीज उपचार करके ही बोएं।",
+    "short_en": "For kharif moong sown in rows, keep 20 kg seed per hectare. Summer moong needs 25-30 kg per hectare. Sow only treated seed.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "खरीफ (कतार विधि): 20 किलो प्रति हेक्टेयर।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          },
+          {
+            "text": "ग्रीष्मकालीन: 25-30 किलो प्रति हेक्टेयर।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "Kharif (row method): 20 kg per hectare.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          },
+          {
+            "text": "Summer: 25-30 kg per hectare.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-10"
+    ]
+  },
+  {
+    "slug": "moong-unnat-kismein-mp",
+    "crop": "moong",
+    "category": "variety",
+    "season": "kharif",
+    "question_hi": "मूंग की उन्नत किस्में कौन-सी हैं?",
+    "question_en": "Which improved moong (green gram) varieties are recommended?",
+    "short_hi": "मूंग की सुझाई किस्में हैं — टॉम्बे जवाहर मूंग-3 (TJM-3), जवाहर मूंग-721, K-851, HUM-1, PDM-11 और पूसा विशाल। अपने क्षेत्र और बाज़ार की माँग के हिसाब से चुनें।",
+    "short_en": "Suggested moong varieties are — Tombe Jawahar Moong-3 (TJM-3), Jawahar Moong-721, K-851, HUM-1, PDM-11 and Pusa Vishal. Pick by your area and market demand.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "TJM-3 (टॉम्बे जवाहर मूंग-3), जवाहर मूंग-721, K-851 (के-851), HUM-1, PDM-11, पूसा विशाल।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "TJM-3, Jawahar Moong-721, K-851, HUM-1, PDM-11, Pusa Vishal.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-10"
+    ]
+  },
+  {
+    "slug": "moong-khaad-urvarak-matra-mp",
+    "crop": "moong",
+    "category": "nutrient",
+    "season": "kharif",
+    "question_hi": "मूंग में खाद (उर्वरक) कितनी डालें?",
+    "question_en": "How much fertiliser for moong?",
+    "short_hi": "बुवाई के समय प्रति हेक्टेयर नत्रजन 20, फास्फोरस 40, पोटाश 20, गंधक 25 और जिंक 20 किलो डालें। मूंग जड़ों से नत्रजन बनाती है, इसलिए नत्रजन कम लगती है।",
+    "short_en": "At sowing, apply nitrogen 20, phosphorus 40, potash 20, sulphur 25 and zinc 20 kg per hectare. Moong fixes nitrogen in its roots, so it needs little nitrogen.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "नत्रजन 20, फास्फोरस 40, पोटाश 20, गंधक 25, जिंक 20 किलो प्रति हेक्टेयर।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "Nitrogen 20, phosphorus 40, potash 20, sulphur 25, zinc 20 kg per hectare.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-10"
+    ]
+  },
+  {
+    "slug": "moong-beej-upchar-rhizobium-mp",
+    "crop": "moong",
+    "category": "disease",
+    "season": "kharif",
+    "question_hi": "मूंग का बीज उपचार कैसे करें?",
+    "question_en": "How to treat moong seed before sowing?",
+    "short_hi": "पहले फफूंदनाशक, फिर कल्चर लगाएं। प्रति किलो बीज कार्बेन्डाजिम और कैप्टान (1+2) का 3 ग्राम मिश्रण लगाएं। फिर राइजोबियम कल्चर 5 ग्राम प्रति किलो बीज। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "short_en": "Fungicide first, then culture. Treat each kg of seed with 3 g of a carbendazim and captan (1+2) mix. Then apply rhizobium culture 5 g per kg. Use only the dose on the label.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "कार्बेन्डाजिम + कैप्टान (1+2) — 3 ग्राम प्रति किलो बीज। लेबल पर लिखी मात्रा ही उपयोग करें।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          },
+          {
+            "text": "फिर राइजोबियम कल्चर 5 ग्राम प्रति किलो बीज लगाएं।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Carbendazim + captan (1+2) — 3 g per kg of seed. Use only the dose on the label.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          },
+          {
+            "text": "Then apply rhizobium culture 5 g per kg of seed.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-10"
+    ]
+  },
+  {
+    "slug": "moong-pila-mosaic-ymv-control",
+    "crop": "moong",
+    "category": "disease",
+    "season": "kharif",
+    "question_hi": "मूंग में पीला मोज़ेक (YMV) रोग का नियंत्रण कैसे करें?",
+    "question_en": "How to control yellow mosaic virus (YMV) in moong?",
+    "short_hi": "पीला मोज़ेक सफेद मक्खी से फैलता है; पत्तियाँ पीली-हरी चितकबरी हो जाती हैं। रोग-रोधी किस्म लगाएं और सफेद मक्खी रोकने के लिए मेटासिस्टॉक्स 25 EC, 750-1000 मिली, 600 लीटर पानी में 15 दिन के अंतर पर 2 बार छिड़कें। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "short_en": "YMV spreads through whitefly; leaves turn yellow-green mottled. Grow a resistant variety and, to check whitefly, spray metasystox 25 EC at 750-1000 ml in 600 litres of water, twice at a 15-day gap. Use only the dose on the label.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "पीला मोज़ेक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे चितकबरे धब्बे बनते हैं।",
+        "cites": []
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "रोग-रोधी किस्म लगाएं और रोगी पौधे उखाड़कर हटाएं।",
+            "cites": []
+          },
+          {
+            "text": "सफेद मक्खी के लिए मेटासिस्टॉक्स 25 EC, 750-1000 मिली, 600 लीटर पानी में, 15 दिन के अंतर पर 2 बार छिड़कें। लेबल पर लिखी मात्रा ही उपयोग करें।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "paragraph",
+        "text": "YMV spreads through whitefly. Yellow-green mottled spots form on the leaves.",
+        "cites": []
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Grow a resistant variety and pull out diseased plants.",
+            "cites": []
+          },
+          {
+            "text": "For whitefly, spray metasystox 25 EC, 750-1000 ml in 600 litres of water, twice at a 15-day gap. Use only the dose on the label.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-10"
+    ]
+  },
+  {
+    "slug": "moong-fali-chhedak-control",
+    "crop": "moong",
+    "category": "pest",
+    "season": "kharif",
+    "question_hi": "मूंग में फली छेदक का नियंत्रण कैसे करें?",
+    "question_en": "How to control pod borer in moong?",
+    "short_hi": "फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए क्विनालफॉस 1.5 लीटर या मोनोक्रोटोफॉस 750 मिली प्रति हेक्टेयर का छिड़काव करें। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "short_en": "Pod borers bore into pods and eat the grain. To control them, spray quinalphos 1.5 litres or monocrotophos 750 ml per hectare. Use only the dose on the label.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "क्विनालफॉस 1.5 लीटर या मोनोक्रोटोफॉस 750 मिली प्रति हेक्टेयर। लेबल पर लिखी मात्रा ही उपयोग करें।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Quinalphos 1.5 litres or monocrotophos 750 ml per hectare. Use only the dose on the label.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-10"
+    ]
+  },
+  {
+    "slug": "moong-parndaag-hara-fudka-control",
+    "crop": "moong",
+    "category": "disease",
+    "season": "kharif",
+    "question_hi": "मूंग में पर्णदाग रोग और हरा फुदका/माहू का नियंत्रण कैसे करें?",
+    "question_en": "How to control leaf spot and jassid/aphid in moong?",
+    "short_hi": "पर्णदाग के लिए डायथेन M-45, 2.5 ग्राम प्रति लीटर या कार्बेन्डाजिम के साथ डायथेन M-45, 2.0 ग्राम प्रति लीटर छिड़कें। हरा फुदका और माहू के लिए इमिडाक्लोप्रिड 17.8 SL, 125 मिली प्रति 600 लीटर पानी। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "short_en": "For leaf spot, spray dithane M-45 at 2.5 g per litre, or carbendazim with dithane M-45 at 2.0 g per litre. For jassid and aphid, imidacloprid 17.8 SL at 125 ml per 600 litres of water. Use only the dose on the label.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "पर्णदाग: डायथेन M-45, 2.5 ग्राम/लीटर या कार्बेन्डाजिम + डायथेन M-45, 2.0 ग्राम/लीटर। लेबल पर लिखी मात्रा ही उपयोग करें।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          },
+          {
+            "text": "हरा फुदका/माहू: इमिडाक्लोप्रिड 17.8 SL, 125 मिली प्रति 600 लीटर पानी। लेबल पर लिखी मात्रा ही उपयोग करें।",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Leaf spot: dithane M-45, 2.5 g/litre or carbendazim + dithane M-45, 2.0 g/litre. Use only the dose on the label.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          },
+          {
+            "text": "Jassid/aphid: imidacloprid 17.8 SL, 125 ml per 600 litres of water. Use only the dose on the label.",
+            "cites": [
+              "S-QBR-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-10"
+    ]
+  },
+  {
+    "slug": "urad-buwai-samay-mp",
+    "crop": "urad",
+    "category": "sowing",
+    "season": "kharif",
+    "question_hi": "उड़द की बुवाई कब करें?",
+    "question_en": "When to sow urad (black gram)?",
+    "short_hi": "उड़द की बुवाई मानसून आने पर, आम तौर पर जून के अंतिम सप्ताह में पर्याप्त वर्षा होने पर करें। खेत में पर्याप्त नमी होने पर ही बोएं।",
+    "short_en": "Sow urad when the monsoon arrives, usually in the last week of June after enough rain. Sow only when the field has enough moisture.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "मानसून आने पर, आम तौर पर जून के अंतिम सप्ताह में पर्याप्त वर्षा होने पर बोएं।",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "Sow when the monsoon arrives, usually the last week of June after enough rain.",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-11"
+    ]
+  },
+  {
+    "slug": "urad-beej-dar-prati-acre-mp",
+    "crop": "urad",
+    "category": "sowing",
+    "season": "kharif",
+    "question_hi": "उड़द में बीज दर कितनी रखें?",
+    "question_en": "How much seed rate for urad (black gram)?",
+    "short_hi": "उड़द का बीज 6-8 किलो प्रति एकड़ की दर से बोएं। साफ़, स्वस्थ बीज चुनें और बुवाई से पहले बीज उपचार ज़रूर करें।",
+    "short_en": "Sow urad seed at 6-8 kg per acre. Choose clean, healthy seed and always treat it before sowing.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "बीज दर: 6-8 किलो प्रति एकड़।",
+            "cites": [
+              "S-QBR-11"
+            ]
+          },
+          {
+            "text": "साफ़, स्वस्थ बीज चुनें और बीज उपचार करके बोएं।",
+            "cites": []
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "Seed rate: 6-8 kg per acre.",
+            "cites": [
+              "S-QBR-11"
+            ]
+          },
+          {
+            "text": "Choose clean, healthy seed and sow it treated.",
+            "cites": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-11"
+    ]
+  },
+  {
+    "slug": "urad-unnat-kismein-mp",
+    "crop": "urad",
+    "category": "variety",
+    "season": "kharif",
+    "question_hi": "उड़द की उन्नत किस्में कौन-सी हैं?",
+    "question_en": "Which improved urad (black gram) varieties are recommended?",
+    "short_hi": "उड़द की सुझाई किस्में हैं — T-9 (टी-9), पंत U-30, PDU-1 (बसंत बहार) और जवाहर उड़द-2। ये लगभग 70-80 दिन में पक जाती हैं।",
+    "short_en": "Suggested urad varieties are — T-9, Pant U-30, PDU-1 (Basant Bahar) and Jawahar Urad-2. They mature in about 70-80 days.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "T-9 (70-75 दिन), पंत U-30 (70 दिन), PDU-1 बसंत बहार (70-80 दिन), जवाहर उड़द-2 (70 दिन)।",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "T-9 (70-75 days), Pant U-30 (70 days), PDU-1 Basant Bahar (70-80 days), Jawahar Urad-2 (70 days).",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-11"
+    ]
+  },
+  {
+    "slug": "urad-khaad-urvarak-matra-mp",
+    "crop": "urad",
+    "category": "nutrient",
+    "season": "kharif",
+    "question_hi": "उड़द में खाद (उर्वरक) कितनी डालें?",
+    "question_en": "How much fertiliser for urad (black gram)?",
+    "short_hi": "बुवाई के समय प्रति एकड़ नत्रजन 8-12 किलो, स्फुर 20-24 किलो और पोटाश 10 किलो डालें। उड़द दलहन है, इसलिए नत्रजन कम लगती है।",
+    "short_en": "At sowing, apply nitrogen 8-12 kg, phosphorus 20-24 kg and potash 10 kg per acre. Urad is a pulse, so it needs little nitrogen.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "प्रति एकड़: नत्रजन 8-12 किलो, स्फुर 20-24 किलो, पोटाश 10 किलो।",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "text": "Per acre: nitrogen 8-12 kg, phosphorus 20-24 kg, potash 10 kg.",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-11"
+    ]
+  },
+  {
+    "slug": "urad-beej-upchar-mp",
+    "crop": "urad",
+    "category": "disease",
+    "season": "kharif",
+    "question_hi": "उड़द का बीज उपचार कैसे करें?",
+    "question_en": "How to treat urad (black gram) seed?",
+    "short_hi": "प्रति किलो बीज को 3 ग्राम थायरम या 2.5 ग्राम डायथेन M-45 से उपचारित करके बोएं। इससे बीज-जनित रोग दबते हैं। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "short_en": "Treat each kg of seed with 3 g thiram or 2.5 g dithane M-45 before sowing. This suppresses seed-borne diseases. Use only the dose on the label.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "3 ग्राम थायरम या 2.5 ग्राम डायथेन M-45 प्रति किलो बीज। लेबल पर लिखी मात्रा ही उपयोग करें।",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "3 g thiram or 2.5 g dithane M-45 per kg of seed. Use only the dose on the label.",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-11"
+    ]
+  },
+  {
+    "slug": "urad-pila-mosaic-ymv-control",
+    "crop": "urad",
+    "category": "disease",
+    "season": "kharif",
+    "question_hi": "उड़द में पीला मोज़ेक (YMV) रोग का नियंत्रण कैसे करें?",
+    "question_en": "How to control yellow mosaic virus (YMV) in urad?",
+    "short_hi": "पीला मोज़ेक सफेद मक्खी से फैलता है। रोग-रोधी किस्म लगाएं और सफेद मक्खी रोकने के लिए डाइमिथोएट 30 EC, 2 मिली प्रति लीटर पानी का छिड़काव करें। रोगी पौधे उखाड़कर हटाएं। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "short_en": "YMV spreads through whitefly. Grow a resistant variety and, to check whitefly, spray dimethoate 30 EC at 2 ml per litre of water. Pull out diseased plants. Use only the dose on the label.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "रोग-रोधी किस्म लगाएं और रोगी पौधे उखाड़कर हटाएं।",
+            "cites": []
+          },
+          {
+            "text": "सफेद मक्खी के लिए डाइमिथोएट 30 EC, 2 मिली प्रति लीटर पानी। लेबल पर लिखी मात्रा ही उपयोग करें।",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Grow a resistant variety and pull out diseased plants.",
+            "cites": []
+          },
+          {
+            "text": "For whitefly, dimethoate 30 EC at 2 ml per litre of water. Use only the dose on the label.",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-11"
+    ]
+  },
+  {
+    "slug": "urad-fali-chhedak-control",
+    "crop": "urad",
+    "category": "pest",
+    "season": "kharif",
+    "question_hi": "उड़द में फली छेदक का नियंत्रण कैसे करें?",
+    "question_en": "How to control pod borer in urad (black gram)?",
+    "short_hi": "फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए क्विनालफॉस 2 मिली प्रति लीटर पानी (30 मिली प्रति 15 लीटर) का छिड़काव करें, 500 लीटर पानी में घोलकर। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "short_en": "Pod borers bore into pods and eat the grain. To control them, spray quinalphos 2 ml per litre of water (30 ml per 15 litres), dissolved in 500 litres of water. Use only the dose on the label.",
+    "blocks": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "क्विनालफॉस 2 मिली प्रति लीटर पानी (30 मिली/15 लीटर), 500 लीटर पानी में घोलकर छिड़कें। लेबल पर लिखी मात्रा ही उपयोग करें।",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": "Quinalphos 2 ml per litre of water (30 ml/15 litres), dissolved in 500 litres. Use only the dose on the label.",
+            "cites": [
+              "S-QBR-11"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "S-QBR-11"
+    ]
+  }
+]

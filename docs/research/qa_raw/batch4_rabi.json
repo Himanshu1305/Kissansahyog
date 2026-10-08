@@ -420,6 +420,27 @@
         ] }
       ],
       "sources": ["S-QBR-03"]
+    },
+    {
+      "slug": "masoor-fali-chhedak-control",
+      "crop": "lentil",
+      "category": "pest",
+      "season": "rabi",
+      "question_hi": "मसूर में फली छेदक का नियंत्रण कैसे करें?",
+      "question_en": "How to control pod borer in lentil (masoor)?",
+      "short_hi": "फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए इमामेक्टिन बेन्जोइट 100 ग्राम प्रति हेक्टेयर का छिड़काव करें। खेत की निगरानी करते रहें। लेबल पर लिखी मात्रा ही उपयोग करें।",
+      "short_en": "Pod borers bore into pods and eat the grain. To control them, spray emamectin benzoate 100 g per hectare. Keep watching the field. Use only the dose on the label.",
+      "blocks": [
+        { "type": "list", "ordered": true, "items": [
+          { "text": "इमामेक्टिन बेन्जोइट 100 ग्राम प्रति हेक्टेयर का छिड़काव करें। लेबल पर लिखी मात्रा ही उपयोग करें।", "cites": ["S-QBR-03"] }
+        ] }
+      ],
+      "blocks_en": [
+        { "type": "list", "ordered": true, "items": [
+          { "text": "Spray emamectin benzoate 100 g per hectare. Use only the dose on the label.", "cites": ["S-QBR-03"] }
+        ] }
+      ],
+      "sources": ["S-QBR-03"]
     }
   ]
 }

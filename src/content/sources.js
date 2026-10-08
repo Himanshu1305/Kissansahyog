@@ -1590,6 +1590,20 @@ export const sources = {
     "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_Ganna_New.aspx",
     "date": "2026",
     "type": "Official"
+  },
+  "S-QBR-10": {
+    "title": "मूंग उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, बीज उपचार, रोग-कीट (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_Moong_New.aspx",
+    "date": "2026",
+    "type": "Official"
+  },
+  "S-QBR-11": {
+    "title": "उड़द उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, बीज उपचार, रोग-कीट (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_Urad_New.aspx",
+    "date": "2026",
+    "type": "Official"
   }
 }
 
