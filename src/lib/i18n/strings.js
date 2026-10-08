@@ -8,7 +8,7 @@
 export const strings = {
   // --- app / brand ---
   app_name: { hi: 'किसान सहयोग', en: 'Kissan Sahyog' },
-  tagline: { hi: 'जानकारी साझा करने वाला मंच', en: 'An information-sharing platform' },
+  tagline: { hi: 'जानकारी बाँटने का मंच', en: 'A platform to share information' },
 
   // --- generic actions ---
   continue: { hi: 'आगे बढ़ें', en: 'Continue' },
@@ -17,7 +17,7 @@ export const strings = {
   submit: { hi: 'जमा करें', en: 'Submit' },
   cancel: { hi: 'रद्द करें', en: 'Cancel' },
   save: { hi: 'सेव करें', en: 'Save' },
-  loading: { hi: 'कृपया प्रतीक्षा करें…', en: 'Please wait…' },
+  loading: { hi: 'थोड़ा रुकें…', en: 'Please wait…' },
   required_field: { hi: 'यह ज़रूरी है', en: 'This is required' },
   optional: { hi: '(वैकल्पिक)', en: '(optional)' },
 
@@ -29,8 +29,8 @@ export const strings = {
 
   // --- welcome ---
   welcome_intro: {
-    hi: 'ज़मीन, उपकरण, भूसा, सामग्री और विशेषज्ञ — सीधे आपसे जुड़ें',
-    en: 'Land, equipment, residue, inputs and experts — connect directly with you',
+    hi: 'ज़मीन, उपकरण, भूसा, सामग्री और विशेषज्ञ — सीधे जुड़ें',
+    en: 'Land, equipment, residue, inputs and experts — connect directly',
   },
   new_user: { hi: 'नया खाता बनाएं', en: 'Create new account' },
   returning_user: { hi: 'पहले से खाता है — लॉग इन करें', en: 'I already have an account — Log in' },
@@ -95,7 +95,7 @@ export const strings = {
 
   // --- resources directory ---
   resources_title: { hi: 'उपयोगी संपर्क — किसान सहयोग', en: 'Useful Contacts — Kissan Sahyog' },
-  resources_subtitle: { hi: 'सागर जिले के किसानों के लिए महत्वपूर्ण सरकारी संपर्क', en: 'Important government contacts for farmers of Sagar district' },
+  resources_subtitle: { hi: 'सागर जिले के किसानों के लिए ज़रूरी सरकारी संपर्क', en: 'Important government contacts for Sagar district farmers' },
   resources_disclaimer: {
     hi: 'ये संपर्क सार्वजनिक सरकारी जानकारी के आधार पर दिए गए हैं। कृपया जाने से पहले फ़ोन पर समय की पुष्टि करें।',
     en: 'These contacts are based on publicly available government information. Please confirm timings by phone before visiting.',
@@ -542,7 +542,7 @@ export const strings = {
     en: 'You must agree to the rules to continue.',
   },
   rules_modal_title: { hi: 'संपर्क करने से पहले', en: 'Before you make contact' },
-  rules_agreement_buyer: {
+  rules_agreement_buyer: { /* ks-style-ok: legal agreement wording — kept intact */
     hi: 'मैं सभी लागू नियमों और कानूनों का पालन करने के लिए सहमत हूं। किसी भी लेन-देन की ज़िम्मेदारी मेरी स्वयं की है। मैं समझता/समझती हूं कि किसान सहयोग लेन-देन का हिस्सा नहीं है, किसी लिस्टिंग या व्यक्ति की पुष्टि नहीं करता, और संपर्क करने से पहले मुझे जानकारी स्वयं जांचनी चाहिए।',
     en: 'I agree to follow all applicable rules and laws. Any transaction is my own responsibility. I understand that Kissan Sahyog is not part of the transaction, does not verify any listing or person, and that I should verify details myself before making contact.',
   },
@@ -554,7 +554,7 @@ export const strings = {
   agro_title: { hi: 'एग्रो फॉरेस्ट्री और उद्यानिकी', en: 'Agro Forestry & Horticulture' },
   agro_explain_title: { hi: 'यह पेज किस लिए है', en: 'What this page is for' },
   agro_explain_1: {
-    hi: 'यह पेज सरल भाषा में बताता है कि खेत में पेड़ और फसलें साथ लगाना (एग्रो फॉरेस्ट्री) और फल/औषधीय पौधे लगाना (उद्यानिकी) कैसे किसान की आय बढ़ा सकते हैं और जोखिम घटा सकते हैं।',
+    hi: 'यह पेज आसान भाषा में समझाता है कि एग्रो फॉरेस्ट्री और उद्यानिकी क्या हैं। एग्रो फॉरेस्ट्री यानी खेत में पेड़ और फसल साथ लगाना; उद्यानिकी यानी फल और औषधीय पौधे लगाना। इनसे किसान की आय बढ़ सकती है और जोखिम घट सकता है।',
     en: 'This page explains, in simple terms, how growing trees with crops (agroforestry) and planting fruit/medicinal crops (horticulture) can raise a farmer’s income and reduce risk.',
   },
   agro_explain_2: {
@@ -572,7 +572,7 @@ export const strings = {
     en: 'For Sagar district the local forest agency is the South Sagar Forest Development Agency. Forest Development Agencies (FDAs) generally support afforestation, nurseries, and tree-planting work with farmers and communities.',
   },
   agro_region_body2: {
-    hi: 'FDA वन विभाग के अंतर्गत पंजीकृत संस्थाएँ हैं जो ग्राम स्तर की वन समितियों के ज़रिए योजनाएँ लागू करती हैं — पौधशाला चलाना, पौधे देना, और खेत की मेड़ों व सामुदायिक भूमि पर वृक्षारोपण में मदद करना। कृषि-वानिकी या पौधरोपण में रुचि होने पर स्थानीय वन कार्यालय या कृषि विज्ञान केंद्र (KVK) से संपर्क कर सकते हैं।',
+    hi: 'FDA वन विभाग के तहत पंजीकृत संस्थाएँ हैं। ये ग्राम स्तर की वन समितियों के ज़रिए काम करती हैं। जैसे — पौधशाला चलाना, पौधे देना, और खेत की मेड़ों व सामुदायिक ज़मीन पर पेड़ लगाने में मदद करना। कृषि-वानिकी या पौधरोपण में रुचि हो तो स्थानीय वन कार्यालय या कृषि विज्ञान केंद्र (KVK) से संपर्क करें।',
     en: 'FDAs are registered bodies under the Forest Department that implement schemes through village-level forest committees — running nurseries, supplying saplings, and helping with planting on field bunds and community land. For agroforestry or plantation help, you can contact the local forest office or your Krishi Vigyan Kendra (KVK).',
   },
   agro_excerpt_h: { hi: 'इंटरक्रॉपिंग — एक झलक', en: 'Intercropping — a quick look' },
@@ -632,8 +632,8 @@ export const strings = {
   kisan_land_acres: { hi: 'आपके पास कुल कितनी ज़मीन है? (एकड़)', en: 'How much land do you own? (acres)' },
   kisan_main_crops: { hi: 'मुख्य फसलें', en: 'Main crops grown' },
   kisan_main_crops_ph: { hi: 'जैसे: सोयाबीन, गेहूं, चना', en: 'e.g. Soybean, Wheat, Gram' },
-  kisan_interest_lease: { hi: 'क्या आप कभी ज़मीन बटाई/ठेके पर देने में रुचि रखते हैं?', en: 'Would you ever be interested in giving land on sharecropping/contract?' },
-  kisan_interest_equipment: { hi: 'क्या आप कभी उपकरण किराये पर देने में रुचि रखते हैं?', en: 'Would you ever be interested in renting out equipment?' },
+  kisan_interest_lease: { hi: 'क्या आप कभी ज़मीन बटाई/ठेके पर देना चाहेंगे?', en: 'Would you ever want to give land on sharecropping/contract?' },
+  kisan_interest_equipment: { hi: 'क्या आप कभी उपकरण किराये पर देना चाहेंगे?', en: 'Would you ever want to rent out equipment?' },
   kisan_privacy: { hi: 'यह जानकारी केवल किसान सहयोग के उपयोग के लिए है — हम इसे कभी किसी को नहीं बेचते।', en: 'This information is only for Kissan Sahyog’s use — we never sell it to anyone.' },
   kisan_saved: { hi: 'किसान प्रोफाइल सहेज ली गई।', en: 'Farmer profile saved.' },
   yes: { hi: 'हाँ', en: 'Yes' },
@@ -965,7 +965,7 @@ export const strings = {
 
   // --- my listings ---
   my_listings_title: { hi: 'मेरी लिस्टिंग', en: 'My Listings' },
-  no_my_listings: { hi: 'आपने अभी तक कोई लिस्टिंग नहीं डाली।', en: 'You have not posted any listings yet.' },
+  no_my_listings: { hi: 'अभी तक आपने कोई लिस्टिंग नहीं डाली।', en: "You haven't posted any listings yet." },
   mark_found: { hi: 'मिल गया', en: 'Found' },
   badge_found: { hi: 'मिल गया', en: 'Found' },
   badge_expired: { hi: 'समय समाप्त', en: 'Expired' },
@@ -998,8 +998,8 @@ export const strings = {
     en: 'You must accept the notice to continue.',
   },
   err_pincode_not_found: {
-    hi: 'यह पिन कोड हमारे पास नहीं मिला। कृपया जांच कर दोबारा डालें।',
-    en: 'This pincode was not recognised. Please check and re-enter.',
+    hi: 'यह पिन कोड नहीं मिला। जांच कर दोबारा डालें।',
+    en: "We couldn't find this pincode. Please check and enter it again.",
   },
   err_phone_exists: {
     hi: 'इस नंबर से पहले से खाता है। कृपया लॉग इन करें।',
@@ -1010,8 +1010,8 @@ export const strings = {
     en: 'No account found for this number. Please sign up.',
   },
   err_self_declaration_required: {
-    hi: 'ज़मीन देने के लिए स्व-घोषणा पर टिक करना ज़रूरी है।',
-    en: 'You must tick the self-declaration to offer land.',
+    hi: 'ज़मीन देने के लिए नीचे दिए बॉक्स पर टिक करना ज़रूरी है।',
+    en: 'Tick the declaration box to offer land.',
   },
   err_equipment_type_required: {
     hi: 'कृपया मशीन का प्रकार चुनें।',
@@ -1075,7 +1075,7 @@ export const strings = {
   // --- Kisan Sawaal (Q&A) ---
   sawaal_nav: { hi: 'किसान सवाल', en: 'Q&A' },
   sawaal_title: { hi: 'किसान सवाल — आपके सवाल, हमारे जवाब', en: 'Kisan Sawaal — Your Questions, Our Answers' },
-  sawaal_sub: { hi: 'किसानों के सबसे ज़रूरी सवाल और उनके जवाब', en: "Farmers' most important questions and their answers" },
+  sawaal_sub: { hi: 'किसानों के सबसे ज़रूरी सवाल और उनके जवाब', en: 'The questions farmers ask most — answered' },
   sawaal_empty: { hi: 'अभी कोई सवाल प्रकाशित नहीं हुआ है। पहला सवाल आप पूछें!', en: 'No questions published yet. Be the first to ask!' },
   sawaal_ask_cta: { hi: 'अपना सवाल पूछें', en: 'Ask a question' },
   sawaal_answer_label: { hi: 'जवाब', en: 'Answer' },
@@ -1236,7 +1236,7 @@ export const strings = {
   stat_free_value: { hi: 'मुफ़्त', en: 'Free' },
 
   // --- Trust carousel v2 ---
-  car_welcome_sub: { hi: 'किसान की आय बढ़ाना और रोज़गार के अवसर बनाना — हमारे दो लक्ष्य', en: 'Increasing farmer income and creating employment — our two goals' },
+  car_welcome_sub: { hi: 'किसान की आय बढ़े और रोज़गार मिले — यही हमारे दो लक्ष्य', en: 'Grow farmer income and create jobs — our two goals' },
   car_pm_cap: { hi: 'माननीय प्रधानमंत्री श्री नरेंद्र मोदी जी का किसानों के प्रति समर्पण', en: "Hon'ble PM Shri Narendra Modi's dedication to farmers" },
   car_pm_sub: { hi: 'PM Kisan · PMFBY · Drone Didi · PM KUSUM — किसानों के लिए', en: 'PM Kisan · PMFBY · Drone Didi · PM KUSUM — for farmers' },
   car_pm_src: { hi: 'फोटो: PIB, भारत सरकार', en: 'Photo: PIB, Government of India' },
@@ -1301,7 +1301,7 @@ export const strings = {
   cta_have_sub: { hi: 'बेचें, किराये पर दें, लोगों तक पहुँचें', en: 'Sell, rent out, reach people' },
 
   // --- आपके आसपास (counts) ---
-  near_title: { hi: 'आपके आसपास क्या उपलब्ध है?', en: "What's available near you?" },
+  near_title: { hi: 'आपके आसपास क्या मिल रहा है?', en: "What's available near you?" },
   near_km: { hi: '30 किमी', en: '30 km' },
   pincode_change: { hi: 'पिनकोड बदलें', en: 'Change pincode' },
   pincode_prompt: { hi: '6-अंकों का पिनकोड डालें', en: 'Enter a 6-digit pincode' },
@@ -1393,7 +1393,7 @@ export const strings = {
 
   // --- Drone Didi page (Phase 4) ---
   dd_title: { hi: 'ड्रोन दीदी — महिला उद्यमी, आधुनिक तकनीक', en: 'Drone Didi — women entrepreneurs, modern technology' },
-  dd_intro: { hi: 'नमो ड्रोन दीदी योजना के तहत महिला स्वयं सहायता समूह किसानों को ड्रोन से दवा और खाद के छिड़काव की सेवा देती हैं — कम समय, कम पानी, एक समान छिड़काव।', en: 'Under the Namo Drone Didi scheme, women self-help groups provide farmers drone spraying of pesticide and fertiliser — faster, less water, even coverage.' },
+  dd_intro: { hi: 'नमो ड्रोन दीदी योजना के तहत महिला स्वयं सहायता समूह ड्रोन से दवा और खाद का छिड़काव करती हैं। फ़ायदा — कम समय, कम पानी, और एक जैसा छिड़काव।', en: 'Under the Namo Drone Didi scheme, women self-help groups spray pesticide and fertiliser by drone. The gain — less time, less water, and even coverage.' },
   dd_scheme_h: { hi: 'यह योजना क्या है?', en: 'What is this scheme?' },
   dd_local_h: { hi: 'खुरई/सागर क्षेत्र में उपलब्ध ड्रोन दीदी सेवाएं', en: 'Drone Didi services available in the Khurai/Sagar area' },
   dd_official_h: { hi: 'आधिकारिक जानकारी', en: 'Official information' },
@@ -1443,7 +1443,7 @@ export const strings = {
   cal_title: { hi: 'उपलब्धता कैलेंडर', en: 'Availability calendar' },
   cal_busy: { hi: 'बुक्ड', en: 'Booked' },
   cal_free: { hi: 'उपलब्ध', en: 'Available' },
-  cal_owner_hint: { hi: 'तारीख पर टैप करके बुक्ड/उपलब्ध बदलें', en: 'Tap a date to toggle booked/available' },
+  cal_owner_hint: { hi: 'किसी तारीख पर टैप करके बुक्ड या उपलब्ध करें', en: 'Tap a date to mark it booked or available' },
   cal_prev: { hi: 'पिछला', en: 'Prev' },
   cal_next: { hi: 'अगला', en: 'Next' },
 
@@ -1494,7 +1494,7 @@ export const strings = {
   mausam_explain_1: { hi: 'यह पेज आपके पिनकोड के लिए अगले 48 घंटे और 16 दिन का मौसम दिखाता है।', en: 'This page shows the next 48 hours and 16 days of weather for your pincode.' },
   mausam_explain_2: { hi: 'डेटा Open-Meteo मौसम मॉडल से आता है; IMD की आधिकारिक चेतावनी के लिए नीचे दिया लिंक देखें।', en: 'Data comes from the Open-Meteo weather model; for IMD official warnings use the link below.' },
   mausam_explain_3: { hi: 'उपयोग: सुबह देखें और छिड़काव, सिंचाई व कटाई का फैसला करें।', en: 'How to use: check in the morning and decide on spraying, irrigation and harvest.' },
-  mausam_explain_4: { hi: 'यह IMD की आधिकारिक चेतावनी नहीं है; 7 दिन से आगे का अनुमान कम भरोसेमंद है।', en: 'This is not an official IMD warning; forecasts beyond 7 days are less reliable.' },
+  mausam_explain_4: { hi: 'यह IMD की आधिकारिक चेतावनी नहीं है। 7 दिन से आगे का अनुमान कम भरोसेमंद होता है।', en: 'This is not an official IMD warning. Forecasts beyond 7 days are less reliable.' },
   mausam_actions_h: { hi: 'आज क्या करें', en: 'What to do today' },
   aw_spray: { hi: 'छिड़काव', en: 'Spraying' }, aw_irrigation: { hi: 'सिंचाई', en: 'Irrigation' },
   aw_harvest: { hi: 'कटाई / सुखाई', en: 'Harvest / drying' }, aw_sowing: { hi: 'बुवाई', en: 'Sowing' },
@@ -1742,7 +1742,7 @@ export const strings = {
   mela_filter_month: { hi: 'महीना', en: 'Month' },
   mela_filter_all_states: { hi: 'सभी राज्य', en: 'All states' },
   mela_filter_all_months: { hi: 'सभी महीने', en: 'All months' },
-  mela_none: { hi: 'अभी कोई मेला नहीं मिला। क्या आप किसी मेले के बारे में जानते हैं? नीचे जानकारी दें।', en: 'No Melas found yet. Know of one? Add it below.' },
+  mela_none: { hi: 'अभी कोई मेला नहीं। किसी मेले का पता हो? नीचे जानकारी दें।', en: 'No Melas yet. Know of one? Add it below.' },
   mela_expected_prefix: { hi: 'अपेक्षित', en: 'Expected' },
   mela_source: { hi: 'स्रोत', en: 'Source' },
   // Phase 6a — multi-source corroboration badge (never worded as "verified accurate").
@@ -1879,7 +1879,7 @@ export const strings = {
   report_cancel: { hi: 'रद्द करें', en: 'Cancel' },
   report_success: { hi: 'धन्यवाद — आपकी शिकायत मिल गई। हम 24 घंटे में पावती देंगे।', en: 'Thank you — your complaint was received. We will acknowledge within 24 hours.' },
   err_report_reason_required: { hi: 'कृपया एक कारण चुनें।', en: 'Please choose a reason.' },
-  err_report_rate_limited: { hi: 'बहुत सी शिकायतें — थोड़ी देर बाद फिर कोशिश करें।', en: 'Too many reports — please try again later.' },
+  err_report_rate_limited: { hi: 'आपने बहुत शिकायतें भेज दीं — थोड़ी देर बाद फिर कोशिश करें।', en: 'Too many reports — please try again later.' },
   err_report_failed: { hi: 'शिकायत भेजने में समस्या — फिर कोशिश करें।', en: 'Could not send the complaint — please try again.' },
 
   // --- Phase 4: sponsored (built, no ads live) ---
