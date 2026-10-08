@@ -1576,6 +1576,20 @@ export const sources = {
     "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_garlic_New.aspx",
     "date": "2026",
     "type": "Official"
+  },
+  "S-QBR-08": {
+    "title": "सूरजमुखी उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, रोग (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_surajmukhi_New.aspx",
+    "date": "2026",
+    "type": "Official"
+  },
+  "S-QBR-09": {
+    "title": "गन्ना उत्पादन की उन्नत तकनीक — बुवाई, बीज दर, किस्में, खाद, सिंचाई, कीट-रोग (मध्य प्रदेश)",
+    "publisher": "मध्य प्रदेश कृषि विभाग (MP Agriculture Department)",
+    "url": "http://mpkrishi.mp.gov.in/hindisite_New/krishi_capsules_Ganna_New.aspx",
+    "date": "2026",
+    "type": "Official"
   }
 }
 
