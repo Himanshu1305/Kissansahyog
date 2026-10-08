@@ -1360,6 +1360,23 @@ export const strings = {
   founder_name: { hi: 'श्री ए.के. दीक्षित', en: 'Shri A.K. Dixit' },
   founder_role: { hi: 'कृषि विशेषज्ञ, किसान परिवार से', en: 'Agriculture expert, from a farming family' },
 
+  // --- bazaar (public category landing pages, Batch 4 item D) ---
+  bazaar_nav: { hi: 'बाज़ार', en: 'Bazaar' },
+  bazaar_hub_h1: { hi: 'किसान सहयोग बाज़ार', en: 'Kissan Sahyog Bazaar' },
+  bazaar_hub_intro: { hi: 'अपने आसपास के किसानों से सीधे जुड़ें। मशीन, मज़दूर, भूसा, बीज-खाद, ढुलाई, ज़मीन और गोदाम — सब एक जगह। कोई बिचौलिया नहीं, बिल्कुल मुफ़्त।', en: 'Connect directly with farmers near you. Machines, workers, straw, inputs, haulage, land and storage — all in one place. No middleman, completely free.' },
+  bazaar_hub_title: { hi: 'किसान सहयोग बाज़ार — मशीन, मज़दूर, भूसा, बीज-खाद, ज़मीन', en: 'Kissan Sahyog Bazaar — machines, workers, straw, inputs, land' },
+  bazaar_find_h: { hi: 'यहाँ क्या मिलेगा', en: 'What you’ll find here' },
+  bazaar_how_h: { hi: 'कैसे काम करता है', en: 'How it works' },
+  bazaar_step_list: { hi: 'लिस्ट करें — अपनी चीज़ या सेवा डालें', en: 'List — post your item or service' },
+  bazaar_step_search: { hi: 'खोजें — पास के लोग देखें', en: 'Search — see people nearby' },
+  bazaar_step_call: { hi: 'कॉल करें — सीधे फ़ोन पर बात करें', en: 'Call — talk directly by phone' },
+  bazaar_connect_note: { hi: 'किसान सहयोग सिर्फ़ लोगों को जोड़ता है; दाम बेचने वाला खुद तय करता है।', en: 'Kissan Sahyog only connects people; the seller sets the rate.' },
+  bazaar_btn_search: { hi: 'इस श्रेणी में खोजें', en: 'Search this category' },
+  bazaar_btn_post: { hi: 'अपना सामान/सेवा डालें', en: 'Post your item or service' },
+  bazaar_faq_h: { hi: 'अक्सर पूछे सवाल', en: 'Common questions' },
+  bazaar_more_h: { hi: 'और श्रेणियाँ', en: 'More categories' },
+  bazaar_all_cats: { hi: 'सभी श्रेणियाँ देखें', en: 'See all categories' },
+
   // --- footer / credits ---
   footer_credits: { hi: 'फोटो श्रेय', en: 'Photo credits' },
   credits_title: { hi: 'फोटो श्रेय', en: 'Photo credits' },

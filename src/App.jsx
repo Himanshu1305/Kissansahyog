@@ -20,6 +20,7 @@ const Signup = lazy(() => import('./screens/Signup'))
 const Login = lazy(() => import('./screens/Login'))
 const Home = lazy(() => import('./screens/Home'))
 const Browse = lazy(() => import('./screens/Browse'))
+const Bazaar = lazy(() => import('./screens/Bazaar'))
 const Post = lazy(() => import('./screens/Post'))
 const ListingDetail = lazy(() => import('./screens/ListingDetail'))
 const MyListings = lazy(() => import('./screens/MyListings'))
@@ -119,6 +120,9 @@ function AppRoutes() {
         <Route path="/jugaad/jankari" element={<JugaadJankari />} />
         <Route path="/jugaad" element={<Jugaad />} />
         <Route path="/join" element={<Join />} />
+        {/* Public category landing pages (Batch 4 item D) — indexable, prerendered. */}
+        <Route path="/bazaar" element={<Bazaar />} />
+        <Route path="/bazaar/:slug" element={<Bazaar />} />
         <Route path="/search" element={<Search />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:slug" element={<ArticleDetail />} />

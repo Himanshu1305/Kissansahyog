@@ -28,8 +28,12 @@
   - [ ] ch2 mustard (MP sarson page name not found via WebFetch — try ICAR-DRMR/beez_kism) + more wheat/chana
   - [ ] ch3 soybean harvest/storage/selling; schemes&finance; inputs/soil; water; bhusa/fodder; storage; greenhouse basics
   - fact-check tool: `scripts/test/batch4_qa_facts.mjs` (14/0). Fetch via WebFetch works; IIWBR icar.gov.in refused, mpkrishi sarson/mustard URL 404 (names tried: mustard, Sarson, rai).
-- [ ] **C** Fasal Salah 3–5 bullets per crop
-- [ ] **E** voice search (audit first, build if missing)
+- [x] **C** Fasal Salah 3–5 bullets per crop (rendering change; all 4 rabi crops = 3 bullets; read-full link)
+- [x] **E** voice search — audit: already built (VoiceSearchButton in SearchBar/Search/Sawaal; transcribe.js
+      Gemini fallback + DB rate limit + 18MB cap). Added: Origin allow-list on /transcribe, cleanTranscript
+      +unit test, 44px mic, offline msg, Privacy voice line, e2e denied path. batch4_voice 23/0, phase19 6/6.
+      NOTE for owner: preview env lacks GEMINI_API_KEY → the MediaRecorder/Gemini fallback path cannot be
+      tested on preview; Web Speech (Chrome/Android) works without a key. Owner adds the secret to test fallback.
 - [ ] **D** `/bazaar/*` category landing pages
 - [ ] **G** STRAY_LISTINGS.md (read-only)
 - [ ] **H** stabilise phase18_transport, phase20_mela, phase6 e2e specs

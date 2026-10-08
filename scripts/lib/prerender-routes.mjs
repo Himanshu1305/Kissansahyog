@@ -3,6 +3,7 @@
 // routes are intentionally excluded.
 import { createClient } from '@supabase/supabase-js'
 import { CROPS } from '../../src/content/crops.js'
+import { BAZAAR_CATS } from '../../src/content/pages/bazaar.js'
 
 // Public, non-auth content routes that always exist.
 export const STATIC_ROUTES = [
@@ -18,6 +19,7 @@ export const STATIC_ROUTES = [
   '/carbon-credit',
   '/carbon-credit/niti-sujhav',
   '/jugaad',
+  '/bazaar',
   '/articles',
   '/resources',
   '/info',
@@ -55,6 +57,10 @@ export async function getRoutes({ verbose = false } = {}) {
 
   // MSP per-crop pages (static content list).
   for (const c of CROPS) if (c.slug) routes.add(`/msp/${c.slug}`)
+
+  // Bazaar category landing pages (Batch 4 item D) — one per category without a
+  // dedicated marketplace page; the hub links to the dedicated ones.
+  for (const c of BAZAAR_CATS) routes.add(`/bazaar/${c.slug}`)
 
   const db = await supa()
   if (db) {
