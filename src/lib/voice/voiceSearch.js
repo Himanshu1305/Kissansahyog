@@ -15,7 +15,7 @@
 export function cleanTranscript(raw) {
   let s = String(raw || '').replace(/\s+/g, ' ').trim()
   s = s.replace(/^["'“”‘’`]+/, '').replace(/["'“”‘’`]+$/, '').trim()
-  s = s.replace(/[।.]+$/, '').trim()
+  s = s.replace(/[\u0964.]+$/, '').trim()
   return s
 }
 
