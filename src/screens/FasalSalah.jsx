@@ -22,6 +22,10 @@ const STATUS_LABEL = { ok: 'aw_ok', caution: 'aw_caution', stop: 'aw_stop' }
 const SEASON_LABEL = { kharif: 'season_kharif', rabi: 'season_rabi' }
 // Map a crop (content/crops) to the kisan_sawaal `crop` value (lowercase English name).
 const kbCrop = (c) => String(c.en || '').toLowerCase()
+// Split a crop's existing advice text into 3–5 short bullet points on the Devanagari
+// danda (U+0964) and the clause-break ';'. Facts come only from the existing cropadv
+// string — no invention or padding; the cited specifics live in the linked Q&As.
+const adviceBullets = (text) => String(text || '').split(/[\u0964;]+/).map((s) => s.trim()).filter(Boolean).slice(0, 5)
 
 export default function FasalSalah() {
   const { t, lang } = useLang()
@@ -124,10 +128,18 @@ export default function FasalSalah() {
           )}
         </div>
 
-        {/* 2. This season's work */}
+        {/* 2. This season's work — the crop's existing cropadv text, split into 3–5 short
+            bullet points (Batch 4 item C: a rendering change only; no new facts/padding). */}
         <div className="mt-4">
           <h3 className="mb-1.5 text-[16px] font-bold" style={{ color: 'var(--ks-ink)' }}>🌱 {t('fasal_season_work')}</h3>
-          <p className="text-[14px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>{t(`cropadv_${c.slug}`)}</p>
+          <ul data-testid="fasal-season-bullets" className="list-disc space-y-1.5 pl-5">
+            {adviceBullets(t(`cropadv_${c.slug}`)).map((b, i) => (
+              <li key={i} className="text-[14px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>{b}</li>
+            ))}
+          </ul>
+          {relatedQ[0] && (
+            <Link to={`/sawaal/${relatedQ[0].slug}`} data-testid="fasal-read-full" className="mt-1.5 inline-block text-[14px] font-bold" style={{ color: 'var(--ks-green)' }}>{t('fasal_read_full')} →</Link>
+          )}
         </div>
 
         {/* 3. Common problems — hidden if the crop has no Q&A */}

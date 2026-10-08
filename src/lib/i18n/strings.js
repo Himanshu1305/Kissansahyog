@@ -1618,7 +1618,8 @@ export const strings = {
   // --- Batch 2 item E: crop panel (tap a crop for today's call + work + problems + help) ---
   fasal_tap_hint: { hi: 'किसी फसल पर दबाएँ — आज की सलाह, इस मौसम का काम, समस्याएँ और पास की मदद देखें।', en: 'Tap a crop — see today’s call, this season’s work, common problems and nearby help.' },
   fasal_today_call: { hi: 'आज की सलाह', en: 'Today’s call' },
-  fasal_season_work: { hi: 'इस मौसम का काम', en: 'This season’s work' },
+  fasal_season_work: { hi: 'इस मौसम में क्या करें', en: 'What to do this season' },
+  fasal_read_full: { hi: 'पूरा जवाब पढ़ें', en: 'Read the full answer' },
   fasal_problems_h: { hi: 'आम समस्याएँ', en: 'Common problems' },
   fasal_problems_all: { hi: 'सभी समस्याएँ देखें', en: 'See all problems' },
   fasal_nearby_h: { hi: 'पास में मदद', en: 'Nearby help' },

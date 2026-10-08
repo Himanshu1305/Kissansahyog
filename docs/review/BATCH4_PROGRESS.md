@@ -23,9 +23,11 @@
 ## Checklist
 - [x] **B** full natural-Hindi pass on UI strings + homepage
 - [x] **F** agri_inputs wide-visibility opt-in (keep 30 km default)
-- [ ] **A** Kisan Sawaal Q&As (target 80, gate 60) — chunks of ~10
-  - [ ] ch1 rabi (wheat/chana/masoor/mustard ~38)
-  - [ ] ch2…
+- [ ] **A** Kisan Sawaal Q&As (target 80, gate 60) — chunks of ~10. **Published: 72 (was 58, +14).**
+  - [x] ch1 rabi wheat/chana/masoor — 14 Q&As from MP agri dept (S-QBR-01/02/03). Seeded.
+  - [ ] ch2 mustard (MP sarson page name not found via WebFetch — try ICAR-DRMR/beez_kism) + more wheat/chana
+  - [ ] ch3 soybean harvest/storage/selling; schemes&finance; inputs/soil; water; bhusa/fodder; storage; greenhouse basics
+  - fact-check tool: `scripts/test/batch4_qa_facts.mjs` (14/0). Fetch via WebFetch works; IIWBR icar.gov.in refused, mpkrishi sarson/mustard URL 404 (names tried: mustard, Sarson, rai).
 - [ ] **C** Fasal Salah 3–5 bullets per crop
 - [ ] **E** voice search (audit first, build if missing)
 - [ ] **D** `/bazaar/*` category landing pages
