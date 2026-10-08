@@ -51,12 +51,39 @@ async function underRateLimit(env, requester) {
   }
 }
 
+// Abuse guard (Batch 4 item E): only our own pages may POST audio here. Accept a request
+// whose Origin/Referer host is kissansahyog.com, www.kissansahyog.com, a
+// *.kissansahyog.pages.dev preview host, or localhost/127.0.0.1 (so the preview + local
+// tests still work). A request carrying a DISALLOWED host is rejected; a request with no
+// Origin and no Referer is allowed (same-origin browsers may omit Origin — never break the
+// existing same-origin caller, which is the only legitimate one). No secrets involved.
+function hostAllowed(host) {
+  if (!host) return false
+  const h = host.toLowerCase()
+  return (
+    h === 'kissansahyog.com' ||
+    h === 'www.kissansahyog.com' ||
+    h === 'kissansahyog.pages.dev' || h.endsWith('.kissansahyog.pages.dev') ||
+    h === 'localhost' || h.startsWith('localhost:') ||
+    h === '127.0.0.1' || h.startsWith('127.0.0.1:')
+  )
+}
+function originOk(request) {
+  const pick = (v) => { try { return v ? new URL(v).host : null } catch { return null } }
+  const oHost = pick(request.headers.get('origin'))
+  const rHost = pick(request.headers.get('referer'))
+  if (!oHost && !rHost) return true // no cross-origin signal → same-origin; allow
+  return hostAllowed(oHost) || (!oHost && hostAllowed(rHost))
+}
+
 export async function onRequestGet(context) {
   return json({ configured: !!context.env.GEMINI_API_KEY })
 }
 
 export async function onRequestPost(context) {
   const { request, env } = context
+  // Reject cross-site callers before doing any work (no key, no audio parse, no quota).
+  if (!originOk(request)) return json({ error: 'forbidden_origin' }, 403)
   const key = env.GEMINI_API_KEY
   // Graceful, not broken: no key → the caller hides the mic on unsupported browsers and
   // keeps normal text search. (3d)

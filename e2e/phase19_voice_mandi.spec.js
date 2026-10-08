@@ -47,6 +47,32 @@ test('voice: unsupported browser WITH a key shows the Gemini-fallback mic', asyn
   await ctx.close()
 })
 
+test('voice: permission denied shows the "माइक की अनुमति दें" message, not a stuck mic (Batch 4)', async ({ browser }) => {
+  const ctx = await browser.newContext()
+  // Fake SpeechRecognition that immediately reports a not-allowed (permission denied) error.
+  await ctx.addInitScript(() => {
+    class DeniedSR {
+      start() { setTimeout(() => { this.onerror && this.onerror({ error: 'not-allowed' }); this.onend && this.onend() }, 20) }
+      stop() { this.onend && this.onend() }
+      abort() {}
+    }
+    window.SpeechRecognition = DeniedSR
+    window.webkitSpeechRecognition = DeniedSR
+  })
+  const page = await ctx.newPage()
+  await page.goto('/sawaal')
+  const mic = page.locator('main').getByTestId('voice-search-btn')
+  await expect(mic).toBeVisible()
+  await mic.click()
+  // The aria-live status shows the permission-denied message; the search box stays empty.
+  const status = page.locator('main').getByTestId('voice-status')
+  await expect(status).toContainText('माइक', { timeout: 5000 })
+  await expect(page.locator('main input[type="search"]')).toHaveValue('')
+  // The mic resets (not stuck in the active/recording state).
+  await expect(mic).toHaveAttribute('data-voice-active', '0')
+  await ctx.close()
+})
+
 test('voice: unsupported browser with NO key hides the mic — text search still works', async ({ browser }) => {
   const ctx = await browser.newContext()
   await ctx.addInitScript(() => {

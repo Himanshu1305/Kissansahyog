@@ -7,6 +7,18 @@
 // The Gemini key is NEVER exposed to the browser: the client only ever talks to the
 // same-origin /transcribe function, which holds the key server-side.
 
+// --- Transcript clean-up ---
+// Speech engines and the Gemini fallback sometimes return wrapping quotes, a trailing
+// sentence mark, or stray whitespace. A search query wants none of that. Keep it
+// conservative: collapse whitespace, strip surrounding quotes, drop a single trailing
+// danda/full-stop. Never alter the words themselves.
+export function cleanTranscript(raw) {
+  let s = String(raw || '').replace(/\s+/g, ' ').trim()
+  s = s.replace(/^["'“”‘’`]+/, '').replace(/["'“”‘’`]+$/, '').trim()
+  s = s.replace(/[।.]+$/, '').trim()
+  return s
+}
+
 // --- Web Speech API detection ---
 export function getSpeechRecognition() {
   if (typeof window === 'undefined') return null

@@ -884,6 +884,7 @@ export const strings = {
   voice_listening: { hi: 'सुन रहे हैं…', en: 'Listening…' },
   voice_recording: { hi: 'सुन रहे हैं… (रोकने के लिए दबाएं)', en: 'Listening… (tap to stop)' },
   voice_transcribing: { hi: 'सुन रहे हैं…', en: 'Transcribing…' },
+  voice_err_offline: { hi: 'इंटरनेट नहीं है — बाद में बोलकर खोजें', en: 'No internet — try voice search later' },
   voice_err_denied: { hi: 'माइक की अनुमति नहीं मिली — टाइप करके खोजें', en: 'Microphone permission denied — type to search' },
   voice_err_nomatch: { hi: 'सुन नहीं पाया, दोबारा कोशिश करें', en: "Couldn't hear that — please try again" },
   voice_err_unavailable: { hi: 'अभी आवाज़ से खोज उपलब्ध नहीं — टाइप करके खोजें', en: 'Voice search is unavailable right now — type to search' },

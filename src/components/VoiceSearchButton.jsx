@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import {
-  getSpeechRecognition, speechRecognitionSupported, resolveVoiceMode, recorderMimeType,
+  getSpeechRecognition, speechRecognitionSupported, resolveVoiceMode, recorderMimeType, cleanTranscript,
 } from '../lib/voice/voiceSearch'
 
 // A mic button attached to a search input. On tap it captures speech and calls
@@ -59,7 +59,8 @@ export default function VoiceSearchButton({ onTranscript, lang = 'hi-IN', classN
     rec.onresult = (e) => {
       let txt = ''
       for (let i = 0; i < e.results.length; i += 1) txt += e.results[i][0].transcript
-      if (txt) onTranscript(txt)
+      const cleaned = cleanTranscript(txt)
+      if (cleaned) onTranscript(cleaned)
     }
     rec.onerror = (e) => {
       const err = e?.error
@@ -120,7 +121,7 @@ export default function VoiceSearchButton({ onTranscript, lang = 'hi-IN', classN
         const res = await fetch('/transcribe', { method: 'POST', body: fd })
         if (!res.ok) { flash('voice_err_unavailable'); return }
         const j = await res.json()
-        const text = (j && j.text ? String(j.text) : '').trim()
+        const text = cleanTranscript(j && j.text ? j.text : '')
         if (text) onTranscript(text)
         else flash('voice_err_nomatch')
       } catch {
@@ -147,6 +148,9 @@ export default function VoiceSearchButton({ onTranscript, lang = 'hi-IN', classN
 
   function toggle() {
     if (busy) return
+    // Both paths need the network (Web Speech routes audio to the OS/cloud; the Gemini
+    // fallback POSTs to /transcribe). Fail with a clear message rather than a stuck mic.
+    if (!active && typeof navigator !== 'undefined' && navigator.onLine === false) { flash('voice_err_offline'); return }
     if (mode === 'webspeech') { active ? stopWebSpeech() : startWebSpeech(); return }
     if (mode === 'gemini') { active ? stopRecording() : startRecording() }
   }
@@ -164,7 +168,7 @@ export default function VoiceSearchButton({ onTranscript, lang = 'hi-IN', classN
         data-testid="voice-search-btn"
         data-voice-mode={mode}
         data-voice-active={active ? '1' : '0'}
-        className={`grid h-9 w-9 shrink-0 place-items-center rounded-lg border ${
+        className={`grid h-11 w-11 shrink-0 place-items-center rounded-lg border ${
           active ? 'border-red-500 bg-red-50 text-red-600' : 'border-[var(--ks-border-strong)] bg-white text-[var(--ks-primary)]'
         }`}
       >

@@ -21,6 +21,10 @@ export const privacyPolicy = [
     en: 'What we do NOT do: we do not process any payments, we do not sell your data, and we do not share data for third-party advertising at this time.',
   },
   {
+    hi: 'आवाज़ से खोज: माइक से बोली गई बात केवल खोज चलाने के लिए इस्तेमाल होती है; किसान सहयोग इसे कभी सेव नहीं करता। आवाज़ को लिखाई में बदलने के लिए आपके फ़ोन या ब्राउज़र की अपनी सेवा (जैसे Google या Apple) उसे प्रोसेस कर सकती है।',
+    en: 'Voice search: what you say into the mic is used only to run a search; Kissan Sahyog never saves it. To turn your voice into text, your phone or browser’s own service (for example Google or Apple) may process it.',
+  },
+  {
     hi: 'वैकल्पिक जानकारी: आपकी प्रोफ़ाइल का अतिरिक्त विवरण, और यदि आप सहमति दें तो WhatsApp पर जानकारी पाने की पसंद (डिफ़ॉल्ट रूप से बंद) — जैसे पसंदीदा मंडी और मुख्य फसलें। यह सहमति देना ज़रूरी नहीं है।',
     en: 'Optional information: extra profile details, and — only if you opt in — a preference to receive information on WhatsApp (off by default), such as a preferred mandi and your main crops. This consent is not required.',
   },
