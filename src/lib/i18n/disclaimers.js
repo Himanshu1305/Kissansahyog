@@ -23,4 +23,8 @@ export const disclaimers = {
     hi: 'भूसा/पराली जलाने से पर्यावरण को नुकसान होता है। इसे बेचकर आप आय कमाएं और प्रदूषण भी कम करें।',
     en: 'Burning crop residue harms the environment. By selling it, you earn income and reduce pollution.',
   },
+  building_materials: {
+    hi: 'बेचने वाले की ज़िम्मेदारी है कि वह ज़रूरी अनुमति के साथ बेचे।',
+    en: 'Seller is responsible for selling with the required permissions.',
+  },
 }

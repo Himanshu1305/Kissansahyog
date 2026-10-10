@@ -180,6 +180,10 @@ export const strings = {
     hi: 'अगर आपके पास बचे हुए बीज, खाद (यूरिया, DAP) या कीटनाशक हैं तो यहाँ बेचें। दुकानदार भी अपनी दुकान की जानकारी यहाँ लिस्ट कर सकते हैं।',
     en: 'Sell surplus seeds, fertilizers (Urea, DAP), or pesticides. Agricultural input shops and dealers can also list their products and location here for farmers to find them locally.',
   },
+  help_building_materials: {
+    hi: 'सीमेंट, रेत, सरिया, ईंट या गिट्टी बेचें या खोजें। मात्रा, लेने की जगह और अपनी दर साफ़ लिखें।',
+    en: 'Offer or find cement, sand, iron rod, bricks, or gravel. Clearly state the quantity, pickup location, and your own rate.',
+  },
   help_experts: {
     hi: 'कृषि वैज्ञानिक, सेवानिवृत्त कृषि अधिकारी और विशेषज्ञ जो किसानों को सलाह दे सकते हैं। सीधे फ़ोन पर संपर्क करें।',
     en: 'Agricultural scientists, retired government agriculture officers, and domain experts who can advise farmers. Browse by specialisation and contact them directly by phone.',
@@ -321,6 +325,7 @@ export const strings = {
   learn_more: { hi: 'और जानें', en: 'Learn more' },
   home_cat_bhusa: { hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   home_cat_agri_inputs: { hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
+  home_cat_building_materials: { hi: 'निर्माण सामग्री', en: 'Building materials' },
   home_cat_warehouse: { hi: 'गोदाम / भंडारण', en: 'Warehouse & Storage' },
   home_cat_transport: { hi: 'परिवहन / ढुलाई', en: 'Transport' },
   home_cat_experts: { hi: 'विशेषज्ञ', en: 'Experts' },
@@ -862,6 +867,7 @@ export const strings = {
 
   // --- equipment fields ---
   field_equipment_type: { hi: 'मशीन का प्रकार', en: 'Equipment type' },
+  field_equipment_tags: { hi: 'यंत्र के टैग (चाहें तो चुनें)', en: 'Equipment tags (optional)' },
   field_rental_basis: { hi: 'किराया किस आधार पर', en: 'Rental basis' },
   field_equipment_rate: { hi: 'किराया राशि', en: 'Rental amount' },
   field_availability: { hi: 'उपलब्धता', en: 'Availability' },
@@ -869,6 +875,19 @@ export const strings = {
   avail_dates: { hi: 'तय तारीख़ों में', en: 'Specific dates' },
   field_from_date: { hi: 'तारीख़ से', en: 'From date' },
   field_to_date: { hi: 'तारीख़ तक', en: 'To date' },
+
+  // --- building materials fields ---
+  field_building_material_type: { hi: 'सामग्री का प्रकार', en: 'Material type' },
+  field_building_brand_grade: { hi: 'ब्रांड या ग्रेड (चाहें तो)', en: 'Brand or grade (optional)' },
+  ph_building_brand_grade: { hi: 'जैसे ब्रांड या ग्रेड', en: 'e.g. brand or grade' },
+  field_building_quantity: { hi: 'मात्रा', en: 'Quantity' },
+  ph_building_quantity: { hi: 'जैसे 50', en: 'e.g. 50' },
+  field_building_unit: { hi: 'इकाई', en: 'Unit' },
+  field_building_rate: { hi: 'आपकी दर', en: 'Your rate' },
+  ph_building_rate: { hi: 'जैसे ₹ प्रति बैग या बात करके', en: 'e.g. ₹ per bag or negotiable' },
+  field_building_delivery: { hi: 'डिलीवरी मिलेगी?', en: 'Delivery available?' },
+  field_building_pickup: { hi: 'लेने की जगह', en: 'Pickup location' },
+  ph_building_pickup: { hi: 'गाँव, दुकान या जगह लिखें', en: 'Enter village, shop, or location' },
 
   // --- labor fields ---
   field_worker_count: { hi: 'कितने कृषि सहयोगी', en: 'Number of workers' },
@@ -1030,6 +1049,12 @@ export const strings = {
     hi: 'कृपया किराया राशि भरें।',
     en: 'Please enter the rental amount.',
   },
+  err_building_material_type_required: { hi: 'सामग्री का प्रकार चुनें।', en: 'Select the material type.' },
+  err_building_quantity_required: { hi: 'मात्रा लिखें।', en: 'Enter the quantity.' },
+  err_building_unit_required: { hi: 'इकाई चुनें।', en: 'Select the unit.' },
+  err_building_rate_required: { hi: 'अपनी दर लिखें।', en: 'Enter your rate.' },
+  err_building_delivery_required: { hi: 'बताएँ कि डिलीवरी मिलेगी या नहीं।', en: 'Say whether delivery is available.' },
+  err_building_pickup_required: { hi: 'लेने की जगह लिखें।', en: 'Enter the pickup location.' },
   err_invalid_worker_count: {
     hi: 'कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।',
     en: 'Number of workers must be 1 or more.',
@@ -1310,6 +1335,8 @@ export const strings = {
   near_cat_equipment: { hi: 'मशीनें', en: 'Machines' },
   near_cat_labor: { hi: 'कृषि सहयोगी', en: 'Farm helpers' },
   near_cat_bhusa: { hi: 'भूसा/पराली', en: 'Straw/Stubble' },
+  near_cat_agri_inputs: { hi: 'कृषि सामग्री', en: 'Farm inputs' },
+  near_cat_building_materials: { hi: 'निर्माण सामग्री', en: 'Building materials' },
   near_cat_drone_didi: { hi: 'Drone Didi', en: 'Drone Didi' },
   near_cat_warehouse: { hi: 'गोदाम', en: 'Warehouse' },
   near_cat_transport: { hi: 'परिवहन', en: 'Transport' },
@@ -1326,6 +1353,8 @@ export const strings = {
   cat_straw_label: { hi: 'भूसा/पराली', en: 'Straw/Stubble' },
   cat_straw_sub: { hi: 'चारा, पराली', en: 'Fodder, stubble' },
   cat_inputs_label: { hi: 'बीज, खाद व इनपुट', en: 'Seed, fertiliser & inputs' },
+  cat_building_materials_label: { hi: 'निर्माण सामग्री', en: 'Building materials' },
+  cat_building_materials_sub: { hi: 'सीमेंट, रेत, सरिया और ईंट', en: 'Cement, sand, iron rod, and bricks' },
   cat_inputs_sub: { hi: 'बीज, खाद, दवा', en: 'Seed, fertiliser, pesticide' },
   cat_godown_label: { hi: 'गोदाम/भंडारण', en: 'Warehouse/Storage' },
   cat_godown_sub: { hi: 'भंडारण जगह', en: 'Storage space' },

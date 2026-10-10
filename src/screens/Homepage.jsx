@@ -43,6 +43,7 @@ const CATEGORY_TILES = [
   { img: 'cat-drone.jpg', labelKey: 'cat_drone_label', subKey: 'cat_drone_sub', to: 'drone_didi' },
   { img: 'cat-straw.jpg', labelKey: 'cat_straw_label', subKey: 'cat_straw_sub', to: 'bhusa' },
   { img: 'cat-inputs.jpg', labelKey: 'cat_inputs_label', subKey: 'cat_inputs_sub', to: 'agri_inputs' },
+  { img: 'cat-inputs.jpg', labelKey: 'cat_building_materials_label', subKey: 'cat_building_materials_sub', to: 'building_materials' },
   { img: 'cat-godown.jpg', labelKey: 'cat_godown_label', subKey: 'cat_godown_sub', to: 'warehouse' },
   { img: 'cat-godown.jpg', labelKey: 'cs_tile_label', subKey: 'cs_tile_sub', path: '/cold-storage' },
   { img: 'cat-inputs.jpg', labelKey: 'gh_tile_label', subKey: 'gh_tile_sub', path: '/greenhouse' },
@@ -56,7 +57,7 @@ const CATEGORY_TILES = [
 // Listing category → fallback card photo (used when a listing has none of its own).
 const LIST_IMG = {
   equipment: 'list-tractor.jpg', labor: 'list-workers.jpg', drone_didi: 'list-drone.jpg',
-  bhusa: 'list-straw.jpg', agri_inputs: 'list-shop.jpg', warehouse: 'list-godown.jpg', land: 'list-land.jpg',
+  bhusa: 'list-straw.jpg', agri_inputs: 'list-shop.jpg', building_materials: 'cat-inputs.jpg', warehouse: 'list-godown.jpg', land: 'list-land.jpg',
   transport: 'list-tractor.jpg',
 }
 // Equipment sub-type (equipment_types.id) → a more specific photo, so a harvester

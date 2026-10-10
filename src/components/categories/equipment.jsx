@@ -5,7 +5,7 @@
 //     rate_per_trip, rate_per_1000l, service_radius_km, available_months[] }
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { OptionSelect, LookupSelect, SegmentedChoice, DateField, TextField, NumberField, MultiChips } from './fields'
-import { RENTAL_BASIS, TANKER_VEHICLE, TANKER_WATER_USE, TANKER_WATER_SOURCE, MONTH_OPTIONS, optionLabel } from '../../lib/listings/catalog'
+import { RENTAL_BASIS, TANKER_VEHICLE, TANKER_WATER_USE, TANKER_WATER_SOURCE, MONTH_OPTIONS, EQUIPMENT_TAGS, optionLabel, optionLabels } from '../../lib/listings/catalog'
 
 export function initialDetails() {
   return {
@@ -16,6 +16,7 @@ export function initialDetails() {
     available_now: true,
     available_from: null,
     available_to: null,
+    equipment_tags: [],
   }
 }
 
@@ -67,6 +68,8 @@ export function Fields({ details, setDetails, extras, listingType }) {
         onChange={onType}
         required
       />
+
+      <MultiChips label={t('field_equipment_tags')} list={EQUIPMENT_TAGS} values={details.equipment_tags || []} onChange={set('equipment_tags')} />
 
       {details.is_tanker ? (
         <>
@@ -134,6 +137,7 @@ export function summarize(listing, lang, extras) {
     if (d.rate_amount && String(d.rate_amount).trim()) parts.push(String(d.rate_amount).trim())
     rows.push({ label: LABELS.rate[lang], value: parts.join(' · ') })
   }
+  if (Array.isArray(d.equipment_tags) && d.equipment_tags.length) rows.push({ label: LABELS.tags[lang], value: optionLabels(EQUIPMENT_TAGS, d.equipment_tags, lang) })
   rows.push({
     label: LABELS.availability[lang],
     value: d.available_now
@@ -148,5 +152,6 @@ const LABELS = {
   rate: { hi: 'किराया', en: 'Rental rate' },
   capacity: { hi: 'क्षमता', en: 'Capacity' },
   availability: { hi: 'उपलब्धता', en: 'Availability' },
+  tags: { hi: 'यंत्र के टैग', en: 'Equipment tags' },
 }
 const AVAIL_NOW = { hi: 'अभी उपलब्ध', en: 'Available now' }

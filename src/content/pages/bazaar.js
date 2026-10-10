@@ -162,6 +162,64 @@ export const BAZAAR_CATS = [
     },
   },
   {
+    slug: 'building-materials', cat: 'building_materials', icon: '🧱', type: 'offer',
+    hi: {
+      name: 'निर्माण सामग्री',
+      title: 'निर्माण सामग्री खरीदें या बेचें | किसान सहयोग बाज़ार',
+      intro: 'सीमेंट, रेत, सरिया, ईंट और गिट्टी की जानकारी यहाँ डालें या पास की लिस्टिंग देखें।',
+      find: ['सीमेंट और ब्रांड', 'रेत और गिट्टी', 'सरिया और ईंट', 'मात्रा और इकाई', 'डिलीवरी या लेने की जगह', 'विक्रेता की अपनी दर'],
+      body: 'खेत, घर, दुकान या किसी छोटे काम के लिए सामग्री चाहिए तो पास की लिस्टिंग देखें। सामग्री का नाम, मात्रा और लेने की जगह पढ़ें। जरूरत हो तो सीधे बेचने वाले को फोन करें। बात करने से पहले यह पूछ लें कि सामान कब मिलेगा और कहाँ से लेना है।\n\nबेचने वाले अपनी सामग्री की लिस्टिंग डाल सकते हैं। सीमेंट, रेत, सरिया, ईंट, गिट्टी या दूसरी सामग्री चुनें। ब्रांड या ग्रेड लिखना चाहें तो लिखें। सही मात्रा और इकाई भरें। अपनी दर खुद लिखें। किसान सहयोग कोई दर नहीं बताता और कोई सौदा नहीं करता।\n\nडिलीवरी दे सकते हैं तो यह भी बताएं। नहीं दे सकते तो लेने की साफ़ जगह लिखें। खरीदार और विक्रेता फोन पर समय, सामान और बाकी शर्तें आपस में तय करें। लिस्टिंग में वही लिखें जो आप सच में दे सकते हैं। इससे गलत फोन कम होंगे और सही व्यक्ति तक बात पहुँचेगी।\n\nरेत या गिट्टी बेचने वाले की ज़िम्मेदारी है कि वह ज़रूरी अनुमति के साथ बेचे। खरीदार भी सामान लेने से पहले जानकारी खुद देखे। किसान सहयोग केवल लोगों को जोड़ता है। भुगतान, ढुलाई और सौदा आप दोनों की बात से तय होगा।\n\nअगर सामग्री नहीं मिल रही है तो अपनी जरूरत की लिस्टिंग डालें। सामग्री का नाम, कितनी चाहिए और किस जगह चाहिए, यह साफ़ लिखें। पास का विक्रेता आपसे सीधे बात कर सकता है। फोन या WhatsApp पर बात करते समय अपना पता और शर्तें सोच-समझकर साझा करें।',
+      faqs: [
+        { q: 'निर्माण सामग्री कैसे खोजें?', a: 'इस श्रेणी में पास की लिस्टिंग देखें और बेचने वाले से सीधे बात करें।' },
+        { q: 'अपनी दर कौन लिखता है?', a: 'विक्रेता अपनी दर खुद लिखता है। किसान सहयोग कोई दर तय नहीं करता।' },
+        { q: 'क्या डिलीवरी की जानकारी मिलेगी?', a: 'हर लिस्टिंग में विक्रेता बता सकता है कि डिलीवरी मिलेगी या सामान कहाँ से लेना है।' },
+        { q: 'रेत या गिट्टी बेचते समय क्या ध्यान रखें?', a: 'ज़रूरी अनुमति के साथ ही बेचें।' },
+      ],
+    },
+    en: {
+      name: 'Building materials',
+      title: 'Buy or sell building materials | Kissan Sahyog Bazaar',
+      intro: 'Post or find cement, sand, iron rod, bricks, and gravel near you.',
+      find: ['Cement and brand', 'Sand and gravel', 'Iron rod and bricks', 'Quantity and unit', 'Delivery or pickup location', 'Seller’s own rate'],
+      body: 'Need materials for a farm, home, shop, or a small project? Check nearby listings. Read the material name, quantity, and pickup location. Call the seller when you need more detail. Before you agree, ask when the goods can be collected and where they will be available.\n\nSellers can post their materials here. Choose cement, sand, iron rod, bricks, gravel, or another material. Add a brand or grade if it helps. Enter an accurate quantity and unit. Set your own rate. Kissan Sahyog does not suggest prices or make a deal for either side.\n\nSay whether delivery is available. If it is not, write a clear pickup location. Buyer and seller should agree the timing, material, and other terms by phone. Put only what you can actually provide in the listing. A clear listing helps the right person call you.\n\nA seller of sand or gravel is responsible for selling with the required permissions. Buyers should also check the details before collecting material. Kissan Sahyog only connects people. Payment, transport, and the final deal are settled directly by the two people involved.\n\nIf you cannot find the material, post what you need. State the material, quantity, and location clearly. A nearby seller can contact you directly. Share your address and terms carefully when you speak by phone or WhatsApp.',
+      faqs: [
+        { q: 'How do I find building materials?', a: 'Open this category, view nearby listings, and speak to the seller directly.' },
+        { q: 'Who sets the rate?', a: 'The seller sets their own rate. Kissan Sahyog does not set prices.' },
+        { q: 'Will delivery be shown?', a: 'A seller can say whether delivery is available or where material can be collected.' },
+        { q: 'What should a sand or gravel seller do?', a: 'Sell only with the required permissions.' },
+      ],
+    },
+  },
+  {
+    slug: 'vegetable-equipment', cat: 'equipment', equipmentTag: 'vegetable_farming', icon: '🥬', type: 'offer',
+    hi: {
+      name: 'सब्ज़ी खेती के यंत्र',
+      title: 'सब्ज़ी खेती के यंत्र खोजें या किराये पर दें | किसान सहयोग बाज़ार',
+      intro: 'सब्ज़ी की खेती के काम आने वाले यंत्रों की लिस्टिंग यहाँ देखें या अपना यंत्र डालें।',
+      find: ['सब्ज़ी खेत के यंत्र', 'किराये की दर', 'उपलब्ध रहने का समय', 'पास का यंत्र मालिक', 'एक से अधिक टैग वाले यंत्र', 'सीधा फोन या WhatsApp संपर्क'],
+      body: 'सब्ज़ी की खेती के लिए यंत्र चाहिए तो इस पेज से खोज शुरू करें। यहाँ वही मशीनें दिखती हैं जिन पर सब्ज़ी खेती का टैग लगा है। लिस्टिंग खोलकर मशीन का प्रकार, किराये की दर और उपलब्धता देखें। जरूरत हो तो मालिक को सीधे फोन करें।\n\nयंत्र मालिक अपना उपकरण डालते समय सब्ज़ी खेती का टैग चुन सकते हैं। अगर यंत्र किसी कम मिलने वाले या तुरंत काम आने वाले काम में भी उपयोगी है, तो दूसरा टैग भी चुनें। दोनों टैग लगाने से खोजने वाले को सही यंत्र तक पहुँचना आसान होता है।\n\nलिस्टिंग में मशीन का प्रकार, अपनी दर और कब उपलब्ध है, यह साफ़ रखें। काम की जगह और समय फोन पर तय करें। किसान सहयोग किराया तय नहीं करता। यंत्र मालिक और किसान आपस में बात करके दर, समय और बाकी शर्तें तय करते हैं।\n\nखोजते समय मशीन की हालत, पहुँचने का समय और काम का तरीका सीधे मालिक से पूछें। अपनी जरूरत साफ़ बताएं। अगर कोई यंत्र आपके काम का नहीं है तो दूसरी लिस्टिंग देखें या अपनी जरूरत की लिस्टिंग डालें।\n\nपुरानी मशीनों पर यह टैग न होने पर भी वे पहले की तरह दिखती रहेंगी। टैग सिर्फ़ खोज को आसान बनाने के लिए हैं। फोन या WhatsApp पर बात करते समय कोई भुगतान या पक्का वादा करने से पहले जानकारी खुद जाँचें। किसान सहयोग केवल संपर्क कराता है।',
+      faqs: [
+        { q: 'सब्ज़ी खेती वाले यंत्र कैसे खोजें?', a: 'इस पेज के खोज बटन से टैग लगी मशीनों की लिस्टिंग देखें।' },
+        { q: 'क्या एक यंत्र पर दो टैग लग सकते हैं?', a: 'हाँ, मालिक दोनों टैग चुन सकता है।' },
+        { q: 'किराया कौन तय करता है?', a: 'मालिक और किसान आपस में तय करते हैं।' },
+        { q: 'बिना टैग वाली पुरानी लिस्टिंग का क्या होगा?', a: 'वह पहले की तरह काम करती रहेगी।' },
+      ],
+    },
+    en: {
+      name: 'Vegetable farming equipment',
+      title: 'Find or rent out vegetable farming equipment | Kissan Sahyog Bazaar',
+      intro: 'Find equipment tagged for vegetable farming, or post your own machine for nearby farmers.',
+      find: ['Vegetable-farming equipment', 'Rental rate', 'Availability', 'Nearby owners', 'Equipment with more than one tag', 'Direct phone or WhatsApp contact'],
+      body: 'Use this page to begin a search for equipment used in vegetable farming. It shows machines carrying the vegetable-farming tag. Open a listing to see the equipment type, rental rate, and availability. Call the owner directly when you need more detail.\n\nEquipment owners can select the vegetable-farming tag when posting a machine. If the machine is also hard to find or useful for an urgent job, they can select the second tag too. Using both tags helps a person searching for the right machine find it more easily.\n\nKeep the machine type, your own rate, and availability clear in the listing. Agree the work location and timing by phone. Kissan Sahyog does not set rent. The owner and farmer decide the rate, timing, and other terms directly with each other.\n\nWhen searching, ask the owner about the machine condition, arrival time, and how the work will be done. Explain your need clearly. If a machine does not suit the job, view another listing or post what you need.\n\nOlder equipment listings without a tag continue to work as before. Tags only make search easier. Check details yourself before paying or making a firm commitment over phone or WhatsApp. Kissan Sahyog only helps people connect.',
+      faqs: [
+        { q: 'How do I find vegetable farming equipment?', a: 'Use the search button on this page to see equipment with the vegetable-farming tag.' },
+        { q: 'Can one machine have two tags?', a: 'Yes. An owner can select both tags.' },
+        { q: 'Who sets the rent?', a: 'The owner and farmer agree it directly.' },
+        { q: 'What happens to older untagged listings?', a: 'They continue to work as before.' },
+      ],
+    },
+  },
+  {
     slug: 'land', cat: 'land', icon: '🌍', type: 'offer',
     hi: {
       name: 'ज़मीन — पट्टा और बटाई',

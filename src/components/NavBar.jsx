@@ -19,6 +19,7 @@ const CATEGORIES = [
   { key: 'drone_didi', labelKey: 'home_cat_drone_didi', path: '/drone-didi' },
   { key: 'bhusa', labelKey: 'home_cat_bhusa' },
   { key: 'agri_inputs', labelKey: 'home_cat_agri_inputs' },
+  { key: 'building_materials', labelKey: 'home_cat_building_materials' },
   { key: 'warehouse', labelKey: 'home_cat_warehouse' },
   { key: 'cold_storage', labelKey: 'cs_hub_nav', path: '/cold-storage' },
   { key: 'greenhouse', labelKey: 'home_cat_greenhouse', path: '/greenhouse' },

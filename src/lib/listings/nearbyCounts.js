@@ -7,7 +7,7 @@ import { supabase } from '../supabaseClient'
 export const DEFAULT_PINCODE = '470117' // Khurai, Sagar (MP) — pilot default.
 
 // The six chips, in display order, mapped to the RPC's category values.
-export const NEARBY_CATEGORIES = ['equipment', 'labor', 'bhusa', 'drone_didi', 'warehouse', 'land']
+export const NEARBY_CATEGORIES = ['equipment', 'labor', 'bhusa', 'agri_inputs', 'building_materials', 'drone_didi', 'warehouse', 'land']
 
 export async function fetchNearbyCounts(pincode = DEFAULT_PINCODE, km = 30) {
   const zero = Object.fromEntries(NEARBY_CATEGORIES.map((c) => [c, 0]))

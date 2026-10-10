@@ -1,6 +1,6 @@
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { getCategory } from '../lib/listings/registry'
-import { LISTING_TYPE_META } from '../lib/listings/catalog'
+import { EQUIPMENT_TAGS, LISTING_TYPE_META, optionLabels } from '../lib/listings/catalog'
 import { CatIcon } from './CatIcon'
 import SponsoredBadge from './SponsoredBadge'
 import ContactActions from './ContactActions'
@@ -18,6 +18,7 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
   const rows = getCategory(listing.category).summarize(listing, lang, extras).slice(0, 2)
   const isOffer = listing.listing_type === 'offer'
   const isVendor = listing.listing_source === 'vendor'
+  const equipmentTags = listing.category === 'equipment' ? (listing.details?.equipment_tags || []) : []
 
   return (
     <div data-testid="listing-card" className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-stone-200 bg-white">
@@ -49,6 +50,12 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
             </span>
           ))}
         </div>
+
+        {equipmentTags.length > 0 && (
+          <div className="mt-1 flex flex-wrap gap-1" data-testid="equipment-tag-card">
+            {equipmentTags.map((tag) => <span key={tag} className="rounded-full bg-blue-100 px-1.5 py-0.5 text-[10px] font-bold text-blue-800">{optionLabels(EQUIPMENT_TAGS, [tag], lang)}</span>)}
+          </div>
+        )}
 
         <div className="mt-auto flex items-center justify-between gap-1 pt-1 text-xs text-stone-500">
           <span className="truncate">📍 {listing.village_town || listing.pincode || ''}</span>

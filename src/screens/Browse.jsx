@@ -7,7 +7,7 @@ import { Seo } from '../components/layout'
 import ListingCard from '../components/ListingCard'
 import { LocationControl } from '../components/pages/shared'
 import { CatIcon } from '../components/CatIcon'
-import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
+import { CATEGORY_META, EQUIPMENT_TAGS, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { fetchNearby, fetchTopViewed, fetchPincode } from '../lib/listings/listingsApi'
@@ -30,7 +30,9 @@ export default function Browse() {
   const [category, setCategory] = useState(initialCat)
   // Equipment sub-type deep-link (Phase 5): /browse?cat=equipment&etype=water_tanker.
   const etype = searchParams.get('etype')
+  const initialEquipmentTag = EQUIPMENT_TAGS.some((tag) => tag.value === searchParams.get('etag')) ? searchParams.get('etag') : null
   const [typeFilter, setTypeFilter] = useState(null) // null | 'offer' | 'requirement'
+  const [equipmentTag, setEquipmentTag] = useState(initialEquipmentTag)
   const [sort, setSort] = useState('nearest')
   const [extras, setExtras] = useState({})
   const [listings, setListings] = useState([])
@@ -108,8 +110,9 @@ export default function Browse() {
   // Optional equipment sub-type filter (water tanker): keep only tanker listings.
   const tankerId = (extras.equipmentTypes || []).find((e) => e.name_en === 'Water tanker')?.id ?? null
   const matchesEtype = (l) => etype !== 'water_tanker' ? true : (l.details?.is_tanker === true || l.details?.equipment_type_id === tankerId)
-  const shownListings = listings.filter(matchesEtype)
-  const shownFallback = fallback.filter(matchesEtype)
+  const matchesEquipmentTag = (l) => !equipmentTag || (l.details?.equipment_tags || []).includes(equipmentTag)
+  const shownListings = listings.filter(matchesEtype).filter(matchesEquipmentTag)
+  const shownFallback = fallback.filter(matchesEtype).filter(matchesEquipmentTag)
 
   return (
     <Screen title={t('browse_title')} onBack={() => navigate(user ? '/home' : '/')} width="wide">
@@ -145,6 +148,14 @@ export default function Browse() {
         <button className={chip(sort === 'nearest')} onClick={() => setSort('nearest')}>{t('sort_nearest')}</button>
         <button className={chip(sort === 'newest')} onClick={() => setSort('newest')}>{t('sort_newest')}</button>
       </div>
+
+      {category === 'equipment' && (
+        <div className="mb-3 flex flex-wrap items-center gap-1.5" data-testid="equipment-tag-filters">
+          <span className="text-sm font-semibold text-stone-600">{t('field_equipment_tags')}</span>
+          <button className={chip(equipmentTag === null)} onClick={() => setEquipmentTag(null)}>{t('filter_all')}</button>
+          {EQUIPMENT_TAGS.map((tag) => <button key={tag.value} className={chip(equipmentTag === tag.value)} onClick={() => setEquipmentTag(tag.value)}>{tag[lang]}</button>)}
+        </div>
+      )}
 
       {/* Drone Didi → govt-scheme banner (with the scheme badge + learn-more). */}
       {category === 'drone_didi' && (

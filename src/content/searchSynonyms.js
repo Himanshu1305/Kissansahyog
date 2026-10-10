@@ -6,6 +6,8 @@
 // uses these groups to widen a user's query so "gehu", "गेहूं" and "wheat" all match
 // the same index items.
 export const SYNONYMS = {
+  building_materials: ['construction material', 'cement', 'sand', 'iron rod', 'bricks', 'gravel', 'building materials'],
+  vegetable_equipment: ['vegetable equipment', 'vegetable farming equipment', 'vegetable farming'],
   wheat: ['गेहूं', 'गेहूँ', 'gehu', 'gehun', 'wheat'],
   soybean: ['सोयाबीन', 'soyabean', 'soybean', 'soya'],
   gram: ['चना', 'chana', 'gram', 'chickpea'],

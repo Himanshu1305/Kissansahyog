@@ -4,7 +4,7 @@
 
 // Order matters (nav strip, browse tabs, post selector). Land is intentionally
 // LAST; Drone Didi sits after Labor.
-export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'greenhouse', 'jugaad', 'transport', 'land']
+export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'building_materials', 'warehouse', 'greenhouse', 'jugaad', 'transport', 'land']
 
 // --- Jugaad / Rural Innovations (Phase 9) ---
 export const JUGAAD_OFFER_TYPE = [
@@ -46,6 +46,7 @@ export const CATEGORY_META = {
   drone_didi: { icon: '🛰️', hi: 'ड्रोन दीदी', en: 'Drone Didi' },
   bhusa: { icon: '🌾', hi: 'भूसा / पराली', en: 'Bhoosa / Parali' },
   agri_inputs: { icon: '🧪', hi: 'कृषि सामग्री', en: 'Seeds, Fertilizers & More' },
+  building_materials: { icon: '🧱', hi: 'निर्माण सामग्री', en: 'Building materials' },
   warehouse: { icon: '🏬', hi: 'गोदाम और कोल्ड स्टोरेज', en: 'Warehouse & Cold Storage' },
   greenhouse: { icon: '🏡', hi: 'ग्रीनहाउस / पॉलीहाउस', en: 'Greenhouse / Polyhouse' },
   jugaad: { icon: '🛠️', hi: 'जुगाड़ / ग्रामीण नवाचार', en: 'Jugaad / Rural Innovations' },
@@ -90,6 +91,13 @@ export const RENTAL_BASIS = [
   { value: 'per_hour', hi: 'प्रति घंटा', en: 'Per hour' },
   { value: 'per_acre', hi: 'प्रति एकड़', en: 'Per acre' },
   { value: 'per_day', hi: 'प्रति दिन', en: 'Per day' },
+]
+
+// Equipment tags are optional and filterable. Existing equipment rows have no
+// `equipment_tags` key and continue to render normally.
+export const EQUIPMENT_TAGS = [
+  { value: 'vegetable_farming', hi: 'सब्ज़ी खेती के यंत्र', en: 'Vegetable farming equipment' },
+  { value: 'rare_emergency', hi: 'दुर्लभ या ज़रूरत पर मिलने वाले यंत्र', en: 'Rare or emergency equipment' },
 ]
 
 // --- Water tanker (equipment sub-type, Phase 5) ---
@@ -213,6 +221,23 @@ export const INPUT_CONDITION = [
   { value: 'good', hi: 'अच्छी स्थिति में', en: 'Good condition' },
   { value: 'original_packaging', hi: 'मूल पैकेजिंग में', en: 'Original packaging' },
   { value: 'opened', hi: 'खुली', en: 'Opened' },
+]
+
+// --- Building materials ---
+export const BUILDING_MATERIAL_TYPE = [
+  { value: 'cement', hi: 'सीमेंट', en: 'Cement' },
+  { value: 'sand', hi: 'रेत', en: 'Sand' },
+  { value: 'iron_rod', hi: 'सरिया', en: 'Iron rod' },
+  { value: 'bricks', hi: 'ईंट', en: 'Bricks' },
+  { value: 'gravel', hi: 'गिट्टी', en: 'Gravel' },
+  { value: 'other', hi: 'अन्य', en: 'Other' },
+]
+export const BUILDING_MATERIAL_UNIT = [
+  { value: 'bag', hi: 'बैग', en: 'Bag' },
+  { value: 'ton', hi: 'टन', en: 'Ton' },
+  { value: 'trolley', hi: 'ट्रॉली', en: 'Trolley' },
+  { value: 'piece', hi: 'नग', en: 'Piece' },
+  { value: 'kg', hi: 'किलो', en: 'kg' },
 ]
 
 // --- Transport / logistics (a transporter listing themselves; no route model) ---

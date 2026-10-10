@@ -76,7 +76,7 @@ function Landing({ c }) {
       <p className="mt-2 max-w-3xl text-lg text-stone-700">{d.intro}</p>
 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-        <button type="button" onClick={() => navigate(`/browse?cat=${c.cat}`)} data-testid="bazaar-btn-search" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-2xl bg-green-700 px-6 py-3 text-base font-bold text-white active:bg-green-800">🔍 {t('bazaar_btn_search')}</button>
+        <button type="button" onClick={() => navigate(`/browse?cat=${c.cat}${c.equipmentTag ? `&etag=${c.equipmentTag}` : ''}`)} data-testid="bazaar-btn-search" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-2xl bg-green-700 px-6 py-3 text-base font-bold text-white active:bg-green-800">🔍 {t('bazaar_btn_search')}</button>
         <button type="button" onClick={() => navigate(`/post?cat=${c.cat}&type=${c.type}`)} data-testid="bazaar-btn-post" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-2xl border-2 border-green-700 px-6 py-3 text-base font-bold text-green-800 active:bg-green-50">➕ {t('bazaar_btn_post')}</button>
       </div>
 

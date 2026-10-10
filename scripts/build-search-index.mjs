@@ -229,6 +229,8 @@ items.push(...await safe('msp', async () => {
 
 // --- Hub pages (static) ---
 const HUBS = [
+  { title_hi: 'निर्माण सामग्री', title_en: 'Building materials', url: '/bazaar/building-materials', keywords: 'निर्माण सामग्री cement सीमेंट sand रेत iron rod सरिया bricks ईंट gravel गिट्टी building materials' },
+  { title_hi: 'सब्ज़ी खेती के यंत्र', title_en: 'Vegetable farming equipment', url: '/bazaar/vegetable-equipment', keywords: 'सब्ज़ी खेती के यंत्र vegetable farming equipment machine rental' },
   { title_hi: 'ग्रीनहाउस / पॉलीहाउस — वेंडर व ज़रूरतें', title_en: 'Greenhouse / Polyhouse — vendors & needs', url: '/greenhouse', keywords: 'greenhouse polyhouse vendor ग्रीनहाउस पॉलीहाउस वेंडर' },
   { title_hi: 'ग्रीनहाउस / पॉलीहाउस सब्सिडी गाइड (मध्य प्रदेश)', title_en: 'Greenhouse / Polyhouse Subsidy Guide (MP)', url: '/greenhouse/subsidy', keywords: 'greenhouse polyhouse subsidy MP cost norm ग्रीनहाउस पॉलीहाउस सब्सिडी लागत' },
   { title_hi: 'कार्बन क्रेडिट', title_en: 'Carbon Credit', url: '/carbon-credit', keywords: 'carbon credit कार्बन क्रेडिट' },

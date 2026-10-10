@@ -72,7 +72,7 @@ check('all v1.1 string keys present', missing.length === 0, missing.join(', '))
 
 // 5. Structural parity in category modules: every inline `hi:` has a paired `en:`
 //    (guards the bilingual LABELS maps in the .jsx modules).
-for (const f of ['land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'transport', 'greenhouse', 'jugaad']) {
+for (const f of ['land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'building_materials', 'warehouse', 'transport', 'greenhouse', 'jugaad']) {
   const src = readFileSync(join(ROOT, 'src', 'components', 'categories', `${f}.jsx`), 'utf8')
   const hi = (src.match(/\bhi:/g) || []).length
   const en = (src.match(/\ben:/g) || []).length
@@ -94,7 +94,7 @@ const ALLOWED = new Set([
   'src/components/categories/land.jsx', 'src/components/categories/equipment.jsx',
   'src/components/categories/labor.jsx', 'src/components/categories/bhusa.jsx',
   'src/components/categories/agri_inputs.jsx', 'src/components/categories/drone_didi.jsx',
-  'src/components/categories/warehouse.jsx', 'src/components/categories/transport.jsx', 'src/components/categories/greenhouse.jsx', 'src/components/categories/jugaad.jsx',
+  'src/components/categories/building_materials.jsx', 'src/components/categories/warehouse.jsx', 'src/components/categories/transport.jsx', 'src/components/categories/greenhouse.jsx', 'src/components/categories/jugaad.jsx',
   'src/components/LanguageToggle.jsx', 'src/screens/Welcome.jsx',
   // Admin-only "आज की पोस्ट" builder: draws a Hindi WhatsApp card + caption (post
   // content, like shareMessages.js) — Hindi is intentional, not UI render copy.

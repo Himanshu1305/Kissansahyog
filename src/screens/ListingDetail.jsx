@@ -12,6 +12,7 @@ import AvailabilityCalendar from '../components/AvailabilityCalendar'
 import ReportButton from '../components/ReportButton'
 import SponsoredBadge from '../components/SponsoredBadge'
 import RelatedBoxes from '../components/RelatedBoxes'
+import DisclaimerBanner from '../components/DisclaimerBanner'
 import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
@@ -147,6 +148,8 @@ export default function ListingDetail() {
           </div>
         )}
       </dl>
+
+      {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="mb-4" />}
 
       {/* Equipment offers: owner-maintained availability calendar (Phase 7a). */}
       {listing.category === 'equipment' && listing.listing_type === 'offer' && (
