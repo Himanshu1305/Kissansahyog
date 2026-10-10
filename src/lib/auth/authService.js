@@ -155,6 +155,18 @@ export async function updateProfile(actorId, { full_name, village_town, pincode,
   return storeSession(data)
 }
 
+// Listing consent is stored through an owner-scoped SECURITY DEFINER RPC. The
+// legacy disclaimer timestamp is updated there too, so older app builds remain
+// able to post after a user completes the new checklist.
+export async function acceptListingConsents(actorId, items) {
+  const { data, error } = await supabase.rpc('accept_listing_consents', {
+    p_actor_id: actorId,
+    p_items: items,
+  })
+  if (error) throw toAppError(error)
+  return storeSession(data)
+}
+
 // ---- EMAIL auth (Phase 3, via Supabase Auth on the supabaseAuth client) ----
 
 // Map a Supabase Auth error to one of our stable codes.

@@ -62,9 +62,16 @@ export function AuthProvider({ children }) {
     return next
   }, [user])
 
+  const acceptListingConsents = useCallback(async (items) => {
+    if (!user?.id) throw new Error('not logged in')
+    const next = await authService.acceptListingConsents(user.id, items)
+    setUser(next)
+    return next
+  }, [user])
+
   const value = useMemo(
-    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, updateKisanProfile, deleteAccount }),
-    [user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, updateKisanProfile, deleteAccount],
+    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
+    [user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

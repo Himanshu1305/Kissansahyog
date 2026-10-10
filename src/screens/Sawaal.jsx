@@ -197,7 +197,7 @@ function AskForm({ t, onDone, photoDefault = false }) {
       if (file) {
         // Best-effort upload; a failed upload must not block the question.
         try {
-          const urls = await uploadPhotos([file], user?.id || 'sawaal')
+          const urls = await uploadPhotos([file], user?.id || 'sawaal', 1, 'sawaal')
           photo_url = urls[0]
         } catch { /* submit without photo */ }
       }

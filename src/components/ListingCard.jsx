@@ -1,6 +1,6 @@
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { getCategorySafe } from '../lib/listings/registry'
-import { EQUIPMENT_TAGS, LISTING_TYPE_META, optionLabels } from '../lib/listings/catalog'
+import { CATEGORY_META, EQUIPMENT_TAGS, LISTING_TYPE_META, optionLabels } from '../lib/listings/catalog'
 import { CatIcon } from './CatIcon'
 import SponsoredBadge from './SponsoredBadge'
 import ContactActions from './ContactActions'
@@ -22,6 +22,7 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
   const isOffer = listing.listing_type === 'offer'
   const isVendor = listing.listing_source === 'vendor'
   const equipmentTags = listing.category === 'equipment' ? (listing.details?.equipment_tags || []) : []
+  const coverPhoto = listing.details?.photo_urls?.[0]
 
   return (
     <div data-testid="listing-card" className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-stone-200 bg-white">
@@ -30,6 +31,7 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
         onClick={onClick}
         className="flex flex-1 flex-col p-3 text-left active:bg-stone-50"
       >
+        {coverPhoto && <img src={coverPhoto} alt={`${CATEGORY_META?.[listing.category]?.[lang] || listing.category}`} loading="lazy" className="mb-2 h-28 w-full rounded-lg object-cover" />}
         <div className="mb-1 flex flex-wrap items-center gap-1">
           <CatIcon category={listing.category} className="text-lg leading-none" />
           <span className={`rounded-full px-1.5 py-0.5 text-[11px] font-bold ${isOffer ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>

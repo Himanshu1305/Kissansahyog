@@ -6,6 +6,9 @@
 // LAST; Drone Didi sits after Labor.
 export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'building_materials', 'warehouse', 'greenhouse', 'jugaad', 'transport', 'land']
 
+// One source of truth for seller-photo limits across listing categories.
+export const PHOTO_LIMITS = { default: 3, warehouse: 5, land: 5, greenhouse: 5 }
+
 // --- Jugaad / Rural Innovations (Phase 9) ---
 export const JUGAAD_OFFER_TYPE = [
   { value: 'sell', hi: 'बेचना', en: 'Sell' },
@@ -38,7 +41,7 @@ export const LISTING_TYPES = ['offer', 'requirement']
 
 // Category display metadata (icon + bilingual name).
 export const CATEGORY_META = {
-  land: { icon: '🌱', hi: 'ज़मीन', en: 'Land' },
+  land: { icon: '🌱', hi: 'भूमि / रकबा', en: 'Land (Bhoomi / Rakba)' },
   equipment: { icon: '🚜', hi: 'मशीन', en: 'Equipment' },
   labor: { icon: '👷', hi: 'कृषि सहयोगी (Labor)', en: 'Labor' },
   // icon is a fallback only — Drone Didi renders a quadcopter SVG via <CatIcon>

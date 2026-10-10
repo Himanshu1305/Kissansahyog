@@ -30,7 +30,7 @@ export const SYNONYMS = {
   drone: ['ड्रोन', 'drone', 'didi', 'दीदी', 'drone didi'],
   warehouse: ['वेयरहाउस', 'warehouse', 'godown', 'गोदाम', 'store'],
   labor: ['मजदूर', 'mazdoor', 'majdoor', 'labour', 'labor', 'worker'],
-  land: ['जमीन', 'ज़मीन', 'zameen', 'jameen', 'land', 'khet', 'खेत'],
+  land: ['जमीन', 'ज़मीन', 'रकबा', 'भूमि', 'zameen', 'jameen', 'land', 'khet', 'खेत'],
 }
 
 // Pure helper: given a raw query, return a deduped array of lowercased terms — the

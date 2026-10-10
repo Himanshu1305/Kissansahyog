@@ -71,7 +71,7 @@ export async function createListing({
   villageName = null,
   rulesAgreed = false,
 }) {
-  const { data, error } = await supabase.rpc('create_listing', {
+  const { data, error } = await supabase.rpc('create_listing_with_location', {
     p_actor_id: actorId,
     p_listing_type: listingType,
     p_category: category,

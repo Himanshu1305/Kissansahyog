@@ -33,6 +33,7 @@ export default function ListingDetail() {
   const [extras, setExtras] = useState({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [photoIndex, setPhotoIndex] = useState(0)
 
   useEffect(() => {
     let alive = true
@@ -125,10 +126,9 @@ export default function ListingDetail() {
       )}
 
       {photos.length > 0 && (
-        <div className="mb-4 flex gap-2 overflow-x-auto">
-          {photos.map((url, i) => (
-            <img key={i} src={url} alt="" loading="lazy" className="h-40 w-40 shrink-0 rounded-xl object-cover" />
-          ))}
+        <div className="mb-4">
+          <img src={photos[photoIndex]} alt={`${meta[lang]} ${photoIndex + 1}`} loading="lazy" className="h-64 w-full rounded-2xl object-cover" />
+          {photos.length > 1 && <div className="mt-2 flex gap-2 overflow-x-auto">{photos.map((url, i) => <button type="button" key={url} onClick={() => setPhotoIndex(i)} aria-label={`${meta[lang]} ${i + 1}`} className={`shrink-0 rounded-lg ${i === photoIndex ? 'ring-2 ring-green-700' : ''}`}><img src={url} alt="" loading="lazy" className="h-16 w-16 rounded-lg object-cover" /></button>)}</div>}
         </div>
       )}
 
@@ -148,6 +148,8 @@ export default function ListingDetail() {
           </div>
         )}
       </dl>
+
+      <MapLink listing={listing} t={t} />
 
       {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="mb-4" />}
 
@@ -178,4 +180,14 @@ export default function ListingDetail() {
       <RelatedBoxes page="listing" />
     </Screen>
   )
+}
+
+function MapLink({ listing, t }) {
+  const details = listing.details || {}
+  const query = listing.latitude != null && listing.longitude != null
+    ? `${listing.latitude},${listing.longitude}`
+    : (listing.village_name || listing.village_town || details.from_location || '')
+  const href = details.map_url || (query ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}` : null)
+  if (!href) return null
+  return <a href={href} target="_blank" rel="noopener noreferrer" className="mb-4 inline-flex min-h-[44px] items-center rounded-xl border-2 border-green-700 px-4 py-2 font-bold text-green-800">{t('maps_open')}</a>
 }

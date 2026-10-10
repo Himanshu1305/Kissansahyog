@@ -3,6 +3,14 @@
 // regardless of the selected UI language. Do not edit the wording.
 
 export const disclaimers = {
+  // Listing consent is intentionally itemised. A previous single acknowledgement
+  // is not a substitute for these four choices.
+  listingConsents: [
+    { id: 'connect_only', hi: 'मुझे पता है कि किसान सहयोग सिर्फ़ लोगों को आपस में जोड़ता है। किसान सहयोग किसी सौदे का पक्ष नहीं है।', en: 'I understand Kisan Sahyog only connects people. It is not a party to any deal.' },
+    { id: 'no_verification', hi: 'मुझे पता है कि किसान सहयोग लिस्टिंग या लोगों की जाँच नहीं करता।', en: 'I understand Kisan Sahyog does not verify listings or people.' },
+    { id: 'no_payments', hi: 'पैसे का लेन-देन किसान सहयोग से नहीं होता। भुगतान से पहले सामान या सेवा और सामने वाले को खुद जाँच लेना मेरी ज़िम्मेदारी है।', en: 'Payments do not go through Kisan Sahyog. It is my responsibility to check the goods or service and the other person before paying.' },
+    { id: 'posting_rules', hi: 'मेरी दी हुई जानकारी सही है, और मुझे पोस्टिंग के नियम मंज़ूर हैं।', en: 'The information I give is correct, and I accept the posting rules.', terms: true },
+  ],
   // One-time signup acknowledgment.
   signup: {
     hi: 'किसान सहयोग एक जानकारी साझा करने वाला मंच है। हम किसी भी सौदे, भुगतान या समझौते में शामिल नहीं हैं। कृपया किसी भी लेन-देन से पहले दूसरे व्यक्ति की पहचान और जानकारी स्वयं जांच लें।',

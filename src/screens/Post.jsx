@@ -4,8 +4,11 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, BigButton, Field, Notice, Spinner, TextInput } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
+import ConsentChecklist, { CONSENT_ITEM_IDS } from '../components/ConsentChecklist'
+import PhotoPicker from '../components/PhotoPicker'
+import PromoBento from '../components/PromoBento'
 import HelpModal, { HelpButton } from '../components/HelpModal'
-import { CATEGORIES, CATEGORY_META } from '../lib/listings/catalog'
+import { CATEGORIES, CATEGORY_META, PHOTO_LIMITS } from '../lib/listings/catalog'
 import { CatIcon } from '../components/CatIcon'
 import { getCategory, isEnabled } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
@@ -13,6 +16,7 @@ import { createListing, fetchResolvedVillages } from '../lib/listings/listingsAp
 import { drainGeocodeQueue } from '../lib/location/geocodeQueue'
 import { WIDE_ELIGIBLE_CATEGORIES } from '../lib/distance'
 import WhatsAppJoin from '../components/WhatsAppJoin'
+import { uploadPhotos } from '../lib/listings/photos'
 
 // Post flow in 3 steps (Batch1 item 5), with a 1/3 step indicator. Back keeps all
 // entered data.
@@ -25,7 +29,7 @@ const PROVIDER_CATS = ['equipment', 'warehouse', 'greenhouse', 'jugaad']
 
 export default function Post() {
   const { t, lang } = useLang()
-  const { user } = useAuth()
+  const { user, acceptListingConsents } = useAuth()
   const navigate = useNavigate()
   const [params] = useSearchParams()
 
@@ -38,6 +42,10 @@ export default function Post() {
   const [villages, setVillages] = useState([])
   const [wideVisibility, setWideVisibility] = useState(false)
   const [confirmChecked, setConfirmChecked] = useState(false)
+  const [consents, setConsents] = useState({})
+  const [photoFiles, setPhotoFiles] = useState([])
+  const [coordinates, setCoordinates] = useState(null)
+  const [mapUrl, setMapUrl] = useState('')
   const [extras, setExtras] = useState(null)
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
@@ -58,6 +66,8 @@ export default function Post() {
   const needsSelfDecl = mod ? mod.needsSelfDeclaration(listingType) : false
   const needsProviderDecl = listingType === 'offer' && PROVIDER_CATS.includes(category)
   const canWiden = WIDE_ELIGIBLE_CATEGORIES.includes(category)
+  const photoLimit = PHOTO_LIMITS[category] || PHOTO_LIMITS.default
+  const allConsentsAccepted = CONSENT_ITEM_IDS.every((id) => consents[id])
 
   // When a category is chosen (or changed), (re)initialise its details + load its
   // extras. Re-selecting the SAME category does not fire this, so data survives Back.
@@ -94,21 +104,29 @@ export default function Post() {
 
   async function submit() {
     setError(null)
-    const vname = String(village).trim()
+    const vname = String(category === 'transport' ? details?.from_location : village).trim()
+    if (category === 'transport' && !String(details?.from_location || '').trim()) { setError(t('err_transport_from_required')); return }
+    if (category === 'transport' && !String(details?.to_location || '').trim()) { setError(t('err_transport_to_required')); return }
     if (vname.length < 2) { setError(t('err_asset_village_required')); return }
-    if (!confirmChecked) { setError(t('err_rules_agreement_required')); return }
+    if (!confirmChecked || !allConsentsAccepted) { setError(t('consent_required')); return }
+    if (mapUrl && !isGoogleMapsUrl(mapUrl)) { setError(t('maps_link_invalid')); return }
     setBusy(true)
     try {
       const baseDetails = mod.finalizeDetails
         ? await mod.finalizeDetails(details, { actorId: user.id, user, listingType })
         : details
-      const finalDetails = needsProviderDecl ? { ...baseDetails, provider_declared: true } : baseDetails
+      // Upload completes before the RPC, so no listing can point at a failed photo.
+      const photo_urls = photoFiles.length ? await uploadPhotos(photoFiles, user.id, photoLimit) : (baseDetails.photo_urls || [])
+      const finalDetails = { ...baseDetails, ...(needsProviderDecl ? { provider_declared: true } : {}), ...(photo_urls.length ? { photo_urls } : {}), ...(mapUrl ? { map_url: mapUrl.trim() } : {}) }
+      await acceptListingConsents(consents)
       const listing = await createListing({
         actorId: user.id,
         listingType,
         category,
         details: finalDetails,
         villageName: vname,
+        latitude: coordinates?.latitude ?? null,
+        longitude: coordinates?.longitude ?? null,
         selfDeclared: needsSelfDecl, // folded into the single confirm checkbox
         listingSource: source,
         wideVisibility: canWiden ? wideVisibility : false,
@@ -125,7 +143,16 @@ export default function Post() {
 
   function resetAll() {
     setCreated(null); setStep(1); setListingType(null); setCategory(null)
-    setSource('farmer'); setDetails(null); setVillage(''); setWideVisibility(false); setConfirmChecked(false)
+    setSource('farmer'); setDetails(null); setVillage(''); setWideVisibility(false); setConfirmChecked(false); setConsents({}); setPhotoFiles([]); setCoordinates(null); setMapUrl('')
+  }
+
+  function useCurrentLocation() {
+    if (!navigator.geolocation) { setError(t('location_unavailable')); return }
+    navigator.geolocation.getCurrentPosition(
+      (position) => setCoordinates({ latitude: position.coords.latitude, longitude: position.coords.longitude }),
+      () => setError(t('location_unavailable')),
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 },
+    )
   }
 
   const confirmLabelKey = needsSelfDecl ? 'post_confirm_owner' : needsProviderDecl ? 'post_confirm_provider' : 'post_confirm_simple'
@@ -137,10 +164,12 @@ export default function Post() {
       {error && <Notice tone="error">{error}</Notice>}
 
       {/* ---- Step 1: What? (category + offer/requirement) ---- */}
+      <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-5">
+      <div className="lg:col-span-2">
       {!created && step === 1 && (
         <div>
           <h2 className="mb-3 text-xl font-bold text-stone-800">{t('post_step_what')}</h2>
-          <div className="mb-5 grid grid-cols-2 gap-2">
+          <div className="mb-5 grid grid-cols-2 gap-2 md:grid-cols-3">
             {CATEGORIES.map((c) => {
               const enabled = isEnabled(c)
               const active = category === c
@@ -208,6 +237,8 @@ export default function Post() {
             <>
               <mod.Fields details={details} setDetails={setDetails} extras={extras} listingType={listingType} user={user} />
 
+              <PhotoPicker files={photoFiles} onChange={(files) => { setPhotoFiles(files); if (category === 'jugaad') setDetails((d) => ({ ...d, __photoFiles: files })) }} limit={photoLimit} className="my-3" />
+
               {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="my-4" />}
 
               {/* किसान / व्यापारी toggle (default किसान). */}
@@ -253,7 +284,14 @@ export default function Post() {
 
           {/* Asset village — the primary distance anchor (autocomplete of known villages). */}
           <div className="mb-4 rounded-2xl border-2 border-green-700 bg-green-50 p-4">
-            <Field label={t('field_asset_village')} htmlFor="f_asset_village" required hint={t('asset_village_hint')}>
+            {category === 'transport' ? <div className="grid gap-2 md:grid-cols-2">
+              <Field label={t('transport_from')} htmlFor="f_transport_from" required>
+                <TextInput id="f_transport_from" list="known-villages" placeholder={t('village_ph')} value={details?.from_location || ''} onChange={(e) => setDetails((d) => ({ ...d, from_location: e.target.value }))} />
+              </Field>
+              <Field label={t('transport_to')} htmlFor="f_transport_to" required>
+                <TextInput id="f_transport_to" list="known-villages" placeholder={t('village_ph')} value={details?.to_location || ''} onChange={(e) => setDetails((d) => ({ ...d, to_location: e.target.value }))} />
+              </Field>
+            </div> : <Field label={t('field_asset_village')} htmlFor="f_asset_village" required hint={t('asset_village_hint')}>
               <TextInput
                 id="f_asset_village"
                 list="known-villages"
@@ -261,9 +299,12 @@ export default function Post() {
                 value={village}
                 onChange={(e) => setVillage(e.target.value)}
               />
-              <datalist id="known-villages">
-                {villages.map((v) => <option key={v} value={v} />)}
-              </datalist>
+            </Field>}
+            <datalist id="known-villages">{villages.map((v) => <option key={v} value={v} />)}</datalist>
+            <button type="button" onClick={useCurrentLocation} className="mt-2 min-h-[44px] rounded-xl border-2 border-green-700 px-3 py-2 text-sm font-bold text-green-800">{t('location_current')}</button>
+            {coordinates && <p className="mt-1 text-xs text-green-800">✓ {coordinates.latitude.toFixed(5)}, {coordinates.longitude.toFixed(5)}</p>}
+            <Field label={t('maps_link_label')} htmlFor="f_map_url">
+              <TextInput id="f_map_url" type="url" value={mapUrl} onChange={(e) => setMapUrl(e.target.value)} onBlur={() => mapUrl && !isGoogleMapsUrl(mapUrl) && setError(t('maps_link_invalid'))} placeholder="https://maps.google.com/..." />
             </Field>
           </div>
 
@@ -315,12 +356,12 @@ export default function Post() {
             </span>
           </label>
 
-          <DisclaimerBanner which="listingForm" className="my-4" />
+          <ConsentChecklist value={consents} onChange={setConsents} className="my-4" />
 
           {busy ? (
             <Spinner label={t('posting')} />
           ) : (
-            <BigButton data-testid="post-submit" onClick={submit} disabled={!confirmChecked}>
+            <BigButton data-testid="post-submit" onClick={submit} disabled={!confirmChecked || !allConsentsAccepted}>
               {t('submit')}
             </BigButton>
           )}
@@ -350,6 +391,16 @@ export default function Post() {
           </div>
         </div>
       )}
+      </div>
+      {!created && <div className="mt-5 lg:sticky lg:top-24 lg:mt-0"><PromoBento page="post" /></div>}
+      </div>
     </Screen>
   )
+}
+
+function isGoogleMapsUrl(value) {
+  try {
+    const url = new URL(String(value).trim())
+    return url.protocol === 'https:' && (/^maps\.app\.goo\.gl$/i.test(url.hostname) || /^goo\.gl$/i.test(url.hostname) && url.pathname.startsWith('/maps/') || /^(www\.)?google\.com$/i.test(url.hostname) && url.pathname.startsWith('/maps/') || /^maps\.google\.com$/i.test(url.hostname))
+  } catch { return false }
 }

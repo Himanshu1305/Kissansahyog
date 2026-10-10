@@ -222,7 +222,7 @@ export const BAZAAR_CATS = [
   {
     slug: 'land', cat: 'land', icon: '🌍', type: 'offer',
     hi: {
-      name: 'ज़मीन — पट्टा और बटाई',
+      name: 'भूमि / रकबा — पट्टा और बटाई',
       title: 'खेती की ज़मीन पट्टे या बटाई पर — खोजें या दें | किसान सहयोग बाज़ार',
       intro: 'खाली खेती की ज़मीन यहाँ पट्टे या बटाई पर दें, या किसी की ज़मीन खेती के लिए लें। ठेका, बटाई या कॉन्ट्रैक्ट फार्मिंग — जो भी सही लगे। दोनों पक्ष सीधे बात करें।',
       find: ['पट्टे (किराये) पर ज़मीन', 'बटाई पर ज़मीन', 'कॉन्ट्रैक्ट फार्मिंग की ज़मीन', 'सिंचित और असिंचित खेत', 'बाग़ और बग़ीचे की ज़मीन', 'खाली पड़ी खेती की ज़मीन'],
@@ -235,7 +235,7 @@ export const BAZAAR_CATS = [
       ],
     },
     en: {
-      name: 'Land — lease & sharecrop',
+      name: 'Land (Bhoomi / Rakba) — lease & sharecrop',
       title: 'Farm land on lease or sharecrop — find or offer | Kissan Sahyog Bazaar',
       intro: 'Offer idle farm land on lease or sharecrop here, or take someone’s land to farm. Lease, sharecrop (batai) or contract farming — whatever suits. Both sides talk directly.',
       find: ['Land on lease (rent)', 'Land on sharecropping', 'Contract-farming land', 'Irrigated and rainfed fields', 'Orchard and garden land', 'Idle farm land'],
