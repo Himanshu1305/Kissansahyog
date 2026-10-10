@@ -8,13 +8,261 @@ export default [
     "season": "all",
     "question_hi": "BIS में शिकायत कैसे भेजें?",
     "question_en": "How can I send a BIS complaint?",
-    "short_hi": "शिकायत post, email, mobile app या BIS Standard Promotion Portal से offline या online भेजी जा सकती है।",
-    "short_en": "A complaint can be made offline or online through post, email, the mobile app, or the BIS Standard Promotion Portal.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "BIS के अनुसार शिकायत डाक, ईमेल, मोबाइल ऐप, BIS Standard Promotion Portal या नजदीकी शाखा कार्यालय में जाकर दी जा सकती है।",
+    "short_en": "BIS says complaints can be made by post, email, mobile app, the BIS Standard Promotion Portal, or at a nearby branch office.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "BIS प्रमाणित उत्पाद, BIS मानक-चिह्न के गलत उपयोग, गुणवत्ता नियंत्रण आदेश के उल्लंघन, भ्रामक दावे या BIS की सेवा से जुड़ी शिकायत के लिए आधिकारिक रास्ते बताए गए हैं। यह उत्तर केवल BIS के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-01"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "BIS शिकायत भेजने का तरीका",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-01"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-01"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-01"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-01"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता BIS की आधिकारिक FAQ और नजदीकी BIS शाखा कार्यालय पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-01"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "शिकायत में केवल वही जानकारी और प्रमाण दें जो आपके पास हों। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-01"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/mausam",
+            "text": {
+              "hi": "मौसम की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "BIS lists official channels for complaints about certified-product quality, misuse of a BIS mark, quality-control-order violations, misleading conformity claims, and BIS services. This is a plain-language summary of the official BIS page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-01"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Identify the complaint category on the BIS page."
+            },
+            "cites": [
+              "S-Q5C-01"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Choose post, email, the mobile app, portal, or a branch-office visit."
+            },
+            "cites": [
+              "S-Q5C-01"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Provide only the facts and records you hold."
+            },
+            "cites": [
+              "S-Q5C-01"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Keep a copy of what you submit."
+            },
+            "cites": [
+              "S-Q5C-01"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the BIS FAQ or a nearby BIS branch office. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-01"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Give facts and records you can support. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-01"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/mausam",
+            "text": {
+              "hi": "",
+              "en": "See weather information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-01"
-    ]
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "sabzi-low-cost-postharvest",
@@ -23,13 +271,278 @@ export default [
     "season": "all",
     "question_hi": "छोटे सब्जी काम में महंगी मशीन जरूरी है?",
     "question_en": "Are expensive machines necessary for small vegetable handling?",
-    "short_hi": "छोटे और सीमित साधन वाले काम में सरल, कम-लागत तकनीक ज्यादा सही हो सकती है।",
-    "short_en": "Simple, low-cost technologies can be more appropriate for small, limited-resource operations.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "छोटे स्तर पर सब्जी संभालने के लिए महँगी मशीन हमेशा जरूरी नहीं होती; FAO के अनुसार सरल और कम-लागत तरीके सीमित साधन वाले काम में अधिक उपयुक्त हो सकते हैं।",
+    "short_en": "Expensive machines are not always necessary for small vegetable handling; FAO says simple, low-cost methods can suit limited-resource operations.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "कटाई के बाद संभाल का लक्ष्य सब्जी की गुणवत्ता बनाए रखना, भोजन की सुरक्षा का ध्यान रखना और खेत से उपभोक्ता तक होने वाली हानि घटाना है। FAO कहता है कि छोटी मात्रा और सीमित साधन वाले काम में महँगी मशीन की जगह सही प्रबंधन और सरल तकनीक अधिक काम आ सकती है। यह उत्तर केवल FAO के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "छोटे स्तर पर सब्जी संभालने की योजना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता FAO की पोस्टहार्वेस्ट मार्गदर्शिका और स्थानीय KVK पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "नई मशीन या उपचार खरीदने से पहले अपनी फसल, मात्रा, बिजली, परिवहन और बाजार की स्थिति समझें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/sabzi-packing-chot",
+            "text": {
+              "hi": "पैकिंग से सब्जी की चोट कैसे घटती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/mausam",
+            "text": {
+              "hi": "मौसम की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Postharvest handling aims to maintain quality, protect food safety, and reduce loss. FAO notes that management and simple low-cost methods can be more suitable than costly machinery for small operations. This is a plain-language summary of the official FAO page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "List the crop volume and handling problems you actually face."
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Choose a simple practice that addresses that problem."
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Try it on a small lot and observe handling loss."
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask a local KVK before making a major purchase."
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the FAO guide and your local KVK. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Match any purchase to crop volume, power, transport, and market conditions. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/sabzi-packing-chot",
+            "text": {
+              "hi": "",
+              "en": "How can packing reduce vegetable damage?"
+            }
+          },
+          {
+            "href": "/mausam",
+            "text": {
+              "hi": "",
+              "en": "See weather information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-02"
-    ]
+    ],
+    "related": [
+      "sabzi-packing-chot"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "sabzi-packing-chot",
@@ -38,13 +551,278 @@ export default [
     "season": "all",
     "question_hi": "पैकिंग से सब्जी की चोट कैसे घटती है?",
     "question_en": "How can packing reduce vegetable damage?",
-    "short_hi": "ऐसे packing methods और materials चुनें जो गुणवत्ता बनाए रखें और handling, transport व storage की चोट घटाएँ।",
-    "short_en": "Choose packing methods and materials that maintain quality and reduce mechanical damage during handling, transport, and storage.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "सब्जी की पैकिंग ऐसी होनी चाहिए जो संभालने, ढुलाई और भंडारण के दौरान यांत्रिक चोट कम करे और गुणवत्ता बचाए।",
+    "short_en": "Vegetable packing should reduce mechanical damage during handling, transport, and storage while protecting quality.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "पैकिंग का काम केवल सामान बांधना नहीं है। कटाई के बाद सब्जी को उठाने, रखने, ढोने और रखने के समय दबाव, रगड़ और टकराव से चोट हो सकती है। FAO की मार्गदर्शिका गुणवत्ता बनाए रखने और इन चरणों में होने वाली हानि कम करने पर जोर देती है। यह उत्तर केवल FAO के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "सब्जी की पैकिंग की जाँच",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता FAO की पोस्टहार्वेस्ट मार्गदर्शिका और स्थानीय KVK पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "हर सब्जी के लिए एक ही डिब्बा या भरने का तरीका सही नहीं होता; पहले छोटे स्तर पर देख लें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/sabzi-low-cost-postharvest",
+            "text": {
+              "hi": "छोटे सब्जी काम में महंगी मशीन जरूरी है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/mausam",
+            "text": {
+              "hi": "मौसम की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Packing is part of postharvest handling. Produce can be damaged by pressure, rubbing, and impact during handling, transport, and storage; the FAO guide focuses on protecting quality and reducing those losses. This is a plain-language summary of the official FAO page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Observe where produce is being bruised or crushed."
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Choose packing that reduces rubbing and impact for that crop."
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Avoid overfilling or rough handling."
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Review the result after transport before changing the whole process."
+            },
+            "cites": [
+              "S-Q5C-02"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the FAO guide and your local KVK. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "One container or filling method does not suit every vegetable. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-02"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/sabzi-low-cost-postharvest",
+            "text": {
+              "hi": "",
+              "en": "Are expensive machines necessary for small vegetable handling?"
+            }
+          },
+          {
+            "href": "/mausam",
+            "text": {
+              "hi": "",
+              "en": "See weather information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-02"
-    ]
+    ],
+    "related": [
+      "sabzi-low-cost-postharvest"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "enam-farmer-app-register",
@@ -53,13 +831,308 @@ export default [
     "season": "all",
     "question_hi": "e-NAM app में किसान registration कैसे शुरू करें?",
     "question_en": "How do I start farmer registration in the e-NAM app?",
-    "short_hi": "App download करके Home Page में register चुनें और steps follow करें।",
-    "short_en": "After downloading the app, choose register in the Home Page options and follow the steps.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "e-NAM किसान मॉड्यूल के अनुसार ऐप डाउनलोड करने के बाद Home Page में Register चुनें और स्क्रीन पर दिए गए चरण पूरे करें।",
+    "short_en": "According to the e-NAM Farmers Module, download the app, choose Register on the Home Page, and follow the on-screen steps.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "e-NAM के किसान मॉड्यूल में किसान पंजीकरण शुरू करने का बहुत छोटा आधिकारिक निर्देश दिया गया है: ऐप डाउनलोड करें, Home Page के विकल्पों में Register चुनें और आगे के चरण पूरे करें। पेज उन चरणों के लिए अलग से कोई तय दस्तावेज या मंजूरी नहीं बताता। यह उत्तर केवल e-NAM के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "e-NAM ऐप में किसान पंजीकरण शुरू करना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता e-NAM Farmers Module और संबंधित मंडी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "केवल आधिकारिक e-NAM ऐप या वेबसाइट का उपयोग करें और किसी को OTP न बताएं। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "e-NAM में पुरानी lots की जानकारी कहाँ दिखती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "e-NAM auction के बाद sell price पर क्या कर सकते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-trader-registration-ways",
+            "text": {
+              "hi": "e-NAM में trader registration के तरीके क्या हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "मंडी और समर्थन मूल्य की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "The e-NAM Farmers Module gives a concise official instruction: download the app, choose Register in the Home Page options, and follow the displayed steps. The page does not specify a fixed document list or approval outcome. This is a plain-language summary of the official e-NAM page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Download the official e-NAM app."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Open the Home Page options."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Choose Register."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Follow the steps shown in the app and confirm local questions with the mandi."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the e-NAM Farmers Module and the relevant mandi. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use only an official e-NAM channel and do not share an OTP. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "",
+              "en": "Where can I see previous lot information in e-NAM?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "",
+              "en": "What can I do with the sale price after an e-NAM auction?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-trader-registration-ways",
+            "text": {
+              "hi": "",
+              "en": "What are the ways to register as an e-NAM trader?"
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "",
+              "en": "See mandi and support-price information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-03"
-    ]
+    ],
+    "related": [
+      "enam-my-lots-history",
+      "enam-auction-accept-reject",
+      "enam-trader-registration-ways"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "enam-my-lots-history",
@@ -68,13 +1141,308 @@ export default [
     "season": "all",
     "question_hi": "e-NAM में पुरानी lots की जानकारी कहाँ दिखती है?",
     "question_en": "Where can I see previous lot information in e-NAM?",
-    "short_hi": "My Lots History में पिछले 7 दिनों की lots की जानकारी देख सकते हैं।",
-    "short_en": "In My Lots History, a farmer can view the past 7 days of lot information.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "e-NAM में My Lots टैब में लॉट की जानकारी और My Lots History में पिछले 7 दिनों की लॉट जानकारी देखी जा सकती है।",
+    "short_en": "In e-NAM, the My Lots tab shows lot information and My Lots History shows lot information from the past 7 days.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "e-NAM किसान मॉड्यूल दो अलग जगह बताता है। My Lots टैब में अपने लॉट की जानकारी देखी जा सकती है, जबकि My Lots History में पिछले सात दिनों की जानकारी देखने की बात लिखी है। यह पेज उस जानकारी की उपलब्धता या किसी विशेष लॉट के परिणाम का वचन नहीं देता। यह उत्तर केवल e-NAM के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "e-NAM में लॉट जानकारी देखना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता e-NAM Farmers Module और उस मंडी का सहायता केंद्र पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "लॉट की स्क्रीन देखकर ही बिक्री, भुगतान या निकासी का फैसला न करें; जरूरत हो तो मंडी से मिलान करें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "e-NAM app में किसान registration कैसे शुरू करें?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "e-NAM auction के बाद sell price पर क्या कर सकते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-trader-registration-ways",
+            "text": {
+              "hi": "e-NAM में trader registration के तरीके क्या हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "मंडी और समर्थन मूल्य की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "The Farmers Module identifies two places: My Lots for lot information and My Lots History for the past seven days of lot information. It does not promise that every detail or outcome will always be available. This is a plain-language summary of the official e-NAM page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Open the official e-NAM app."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Go to My Lots for current lot information."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Use My Lots History for the past seven days."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Confirm any transaction question with the mandi."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the e-NAM Farmers Module and the mandi help point. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Do not rely on a screen alone for payment, sale, or exit decisions. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "",
+              "en": "How do I start farmer registration in the e-NAM app?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "",
+              "en": "What can I do with the sale price after an e-NAM auction?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-trader-registration-ways",
+            "text": {
+              "hi": "",
+              "en": "What are the ways to register as an e-NAM trader?"
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "",
+              "en": "See mandi and support-price information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-03"
-    ]
+    ],
+    "related": [
+      "enam-farmer-app-register",
+      "enam-auction-accept-reject",
+      "enam-trader-registration-ways"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "enam-auction-accept-reject",
@@ -83,13 +1451,308 @@ export default [
     "season": "all",
     "question_hi": "e-NAM auction के बाद sell price पर क्या कर सकते हैं?",
     "question_en": "What can I do with the sale price after an e-NAM auction?",
-    "short_hi": "Auction पूरा होने और winner घोषित होने पर किसान offer accept या reject कर सकता है।",
-    "short_en": "Once the auction is completed and the winner is declared, a farmer can accept or reject it.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "e-NAM किसान मॉड्यूल के अनुसार नीलामी पूरी होने और विजेता घोषित होने के बाद किसान प्रस्ताव को स्वीकार या अस्वीकार कर सकता है।",
+    "short_en": "The e-NAM Farmers Module says that after an auction is completed and a winner is declared, a farmer can accept or reject the offer.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "किसान मॉड्यूल के अनुसार नीलामी पूरी होने और विजेता घोषित होने के बाद किसान के पास प्रस्ताव स्वीकार करने या अस्वीकार करने का विकल्प होता है। पेज कीमत सही है या नहीं, भुगतान की स्थिति, या किसी सौदे की दूसरी शर्तों पर अलग निर्देश नहीं देता। यह उत्तर केवल e-NAM के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "नीलामी के बाद प्रस्ताव देखना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता e-NAM Farmers Module और संबंधित मंडी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "स्वीकार या अस्वीकार करने से पहले दिख रही जानकारी और मंडी की प्रक्रिया समझ लें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "e-NAM app में किसान registration कैसे शुरू करें?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "e-NAM में पुरानी lots की जानकारी कहाँ दिखती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-trader-registration-ways",
+            "text": {
+              "hi": "e-NAM में trader registration के तरीके क्या हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "मंडी और समर्थन मूल्य की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "The Farmers Module says a farmer can accept or reject the offer after the auction is completed and the winner is declared. It does not provide separate instructions on price suitability, payment status, or other deal terms. This is a plain-language summary of the official e-NAM page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Wait for the auction to complete."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Check that a winner has been declared."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Review the offer shown in the official channel."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Accept or reject only after confirming any local process question with the mandi."
+            },
+            "cites": [
+              "S-Q5C-03"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the e-NAM Farmers Module and the relevant mandi. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Understand the displayed information and mandi process before acting. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-03"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "",
+              "en": "How do I start farmer registration in the e-NAM app?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "",
+              "en": "Where can I see previous lot information in e-NAM?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-trader-registration-ways",
+            "text": {
+              "hi": "",
+              "en": "What are the ways to register as an e-NAM trader?"
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "",
+              "en": "See mandi and support-price information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-03"
-    ]
+    ],
+    "related": [
+      "enam-farmer-app-register",
+      "enam-my-lots-history",
+      "enam-trader-registration-ways"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "enam-trader-registration-ways",
@@ -98,13 +1761,308 @@ export default [
     "season": "all",
     "question_hi": "e-NAM में trader registration के तरीके क्या हैं?",
     "question_en": "What are the ways to register as an e-NAM trader?",
-    "short_hi": "Registration e-NAM Portal, Mobile Application या mandi जाकर किया जा सकता है।",
-    "short_en": "Buyer or trader registration can be done through the e-NAM Portal, Mobile Application, or by visiting a mandi.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "e-NAM के अनुसार खरीदार या व्यापारी पंजीकरण e-NAM Portal, Mobile Application या मंडी में जाकर कराया जा सकता है।",
+    "short_en": "e-NAM says buyer or trader registration can be done through the e-NAM Portal, Mobile Application, or by visiting a mandi.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "e-NAM के व्यापारी पेज में खरीदार/व्यापारी पंजीकरण के तीन रास्ते लिखे हैं: e-NAM Portal, Mobile Application और मंडी में जाकर पंजीकरण। यह सुविधा किस राज्य, मंडी या लाइसेंस की स्थिति में लागू होगी, उसके लिए स्थानीय मंडी से पुष्टि जरूरी है। यह उत्तर केवल e-NAM के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "e-NAM व्यापारी पंजीकरण का रास्ता चुनना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता e-NAM Trader page, आधिकारिक पोर्टल या संबंधित मंडी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "लाइसेंस या दूसरे दस्तावेजों की जरूरत स्थानीय नियमों पर निर्भर हो सकती है। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "e-NAM app में किसान registration कैसे शुरू करें?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "e-NAM में पुरानी lots की जानकारी कहाँ दिखती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "e-NAM auction के बाद sell price पर क्या कर सकते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "मंडी और समर्थन मूल्य की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "The e-NAM Traders page lists three routes for buyer/trader registration: the e-NAM Portal, Mobile Application, and in-person mandi registration. Confirm local applicability and licence requirements with the mandi. This is a plain-language summary of the official e-NAM page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Choose the official portal, app, or mandi route."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Read the current registration screen or ask the mandi desk."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Prepare only the requested official details and records."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Keep the acknowledgement or reference for your record."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the e-NAM Traders page, official portal, or relevant mandi. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Licence and document requirements may vary locally. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "",
+              "en": "How do I start farmer registration in the e-NAM app?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "",
+              "en": "Where can I see previous lot information in e-NAM?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "",
+              "en": "What can I do with the sale price after an e-NAM auction?"
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "",
+              "en": "See mandi and support-price information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-04"
-    ]
+    ],
+    "related": [
+      "enam-farmer-app-register",
+      "enam-my-lots-history",
+      "enam-auction-accept-reject"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "enam-trader-registration-fee",
@@ -113,13 +2071,308 @@ export default [
     "season": "all",
     "question_hi": "e-NAM trader registration की fee लगती है?",
     "question_en": "Is there a fee for e-NAM trader registration?",
-    "short_hi": "e-NAM registration की fee नहीं है। नाम, पता, mobile और bank details जैसे basic details लगते हैं।",
-    "short_en": "There is no fee for e-NAM registration; basic details include name, address, mobile number, and bank details.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "e-NAM के व्यापारी पेज के अनुसार पंजीकरण शुल्क नहीं है; नाम, पता, जन्म-तिथि, मोबाइल, बैंक विवरण और कुछ दस्तावेज मांगे जा सकते हैं।",
+    "short_en": "The e-NAM Traders page says there is no registration fee; name, address, date of birth, mobile, bank details, and some documents may be requested.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "e-NAM के व्यापारी पेज में पंजीकरण के लिए शुल्क नहीं बताया गया है। उसी पेज में नाम, लिंग, पता, जन्म-तिथि, मोबाइल और बैंक विवरण जैसे मूल विवरण तथा पासबुक या रद्द चेक, सरकारी पहचान-पत्र, ट्रेडिंग लाइसेंस और अन्य संबंधित दस्तावेजों का उल्लेख है। यह उत्तर केवल e-NAM के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "e-NAM व्यापारी पंजीकरण के लिए जानकारी जुटाना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता e-NAM Trader page और संबंधित मंडी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "किसी निजी एजेंट को पंजीकरण शुल्क देने से पहले आधिकारिक मंडी या पोर्टल से पुष्टि करें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "e-NAM app में किसान registration कैसे शुरू करें?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "e-NAM में पुरानी lots की जानकारी कहाँ दिखती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "e-NAM auction के बाद sell price पर क्या कर सकते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "मंडी और समर्थन मूल्य की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "The e-NAM Traders page says there is no registration fee. It lists basic details and mentions a passbook or cancelled cheque, government ID, trading licence, and other concerned documents. This is a plain-language summary of the official e-NAM page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Open the official trader-registration information."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Check the details and documents currently requested."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Use an official portal, app, or mandi route."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Confirm any local document requirement with the mandi."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the e-NAM Traders page and relevant mandi. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Confirm with the official portal or mandi before paying any private agent. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "",
+              "en": "How do I start farmer registration in the e-NAM app?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "",
+              "en": "Where can I see previous lot information in e-NAM?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "",
+              "en": "What can I do with the sale price after an e-NAM auction?"
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "",
+              "en": "See mandi and support-price information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-04"
-    ]
+    ],
+    "related": [
+      "enam-farmer-app-register",
+      "enam-my-lots-history",
+      "enam-auction-accept-reject"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "enam-transparent-bidding",
@@ -128,13 +2381,308 @@ export default [
     "season": "all",
     "question_hi": "e-NAM में trading कैसे होती है?",
     "question_en": "How does trading work in e-NAM?",
-    "short_hi": "e-NAM में trading electronic और transparent bidding process से हो सकती है।",
-    "short_en": "Trading can be done electronically through a transparent bidding process.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "e-NAM के व्यापारी पेज के अनुसार व्यापार इलेक्ट्रॉनिक और पारदर्शी बोली प्रक्रिया से किया जा सकता है।",
+    "short_en": "The e-NAM Traders page says trading can be done electronically through a transparent bidding process.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "e-NAM व्यापारी पेज यह बताता है कि व्यापार इलेक्ट्रॉनिक और पारदर्शी बोली प्रक्रिया से किया जा सकता है। इसका मतलब यह नहीं कि हर वस्तु, हर मंडी या हर उपयोगकर्ता के लिए एक ही अनुभव या परिणाम होगा। वस्तु, गुणवत्ता, मंडी की प्रक्रिया और स्थानीय नियम अलग हो सकते हैं। यह उत्तर केवल e-NAM के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "e-NAM बोली प्रक्रिया को समझना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता e-NAM Trader page और संबंधित मंडी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "बोली लगाने से पहले वस्तु, गुणवत्ता संबंधी उपलब्ध जानकारी और मंडी की शर्तें स्वयं देखें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "e-NAM app में किसान registration कैसे शुरू करें?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "e-NAM में पुरानी lots की जानकारी कहाँ दिखती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "e-NAM auction के बाद sell price पर क्या कर सकते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "मंडी और समर्थन मूल्य की जानकारी देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "The e-NAM Traders page says trading can be done electronically through a transparent bidding process. It does not mean every commodity, mandi, or user will have the same experience or outcome. This is a plain-language summary of the official e-NAM page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Use the official e-NAM channel."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Read the commodity and mandi information available to you."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Understand the bidding screen before submitting a bid."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask the mandi about a local process or quality question."
+            },
+            "cites": [
+              "S-Q5C-04"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the e-NAM Traders page and the relevant mandi. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Review available commodity and mandi information before bidding. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-04"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/enam-farmer-app-register",
+            "text": {
+              "hi": "",
+              "en": "How do I start farmer registration in the e-NAM app?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-my-lots-history",
+            "text": {
+              "hi": "",
+              "en": "Where can I see previous lot information in e-NAM?"
+            }
+          },
+          {
+            "href": "/sawaal/enam-auction-accept-reject",
+            "text": {
+              "hi": "",
+              "en": "What can I do with the sale price after an e-NAM auction?"
+            }
+          },
+          {
+            "href": "/msp",
+            "text": {
+              "hi": "",
+              "en": "See mandi and support-price information"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-04"
-    ]
+    ],
+    "related": [
+      "enam-farmer-app-register",
+      "enam-my-lots-history",
+      "enam-auction-accept-reject"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "kcc-timely-flexible-credit",
@@ -143,13 +2691,308 @@ export default [
     "season": "all",
     "question_hi": "Kisan Credit Card किस काम के लिए है?",
     "question_en": "What is the Kisan Credit Card for?",
-    "short_hi": "KCC किसानों को कृषि inputs और production needs के लिए timely और flexible credit देने के लिए शुरू हुई थी।",
-    "short_en": "KCC was introduced to provide farmers timely and flexible credit for agricultural inputs and production needs.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "NABARD के Modified Interest Subvention Scheme पेज के अनुसार Kisan Credit Card का उद्देश्य कृषि इनपुट और उत्पादन जरूरतों के लिए समय पर और लचीला ऋण उपलब्ध कराना है। बैंक या NABARD कार्यालय से पुष्टि करें।",
+    "short_en": "NABARD’s Modified Interest Subvention Scheme page describes Kisan Credit Card as intended to provide timely and flexible credit for agricultural inputs and production needs. Confirm with the bank or NABARD office.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "इस NABARD स्रोत में Kisan Credit Card का उद्देश्य कृषि इनपुट और उत्पादन जरूरतों के लिए समय पर और लचीला ऋण बताना है। यह पेज किसी व्यक्ति की मंजूरी, सीमा, ब्याज, समय-सीमा या दस्तावेज तय नहीं करता। ऋण का निर्णय और उसकी शर्तें संबंधित बैंक की प्रक्रिया पर निर्भर होती हैं। यह उत्तर केवल NABARD के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "KCC के बारे में बैंक से जानकारी लेना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता संबंधित बैंक शाखा और NABARD की आधिकारिक जानकारी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "बैंक या NABARD कार्यालय से पुष्टि करें; किसी बिचौलिए की ऋण मंजूरी की बात पर भरोसा न करें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-warehouse-receipt-credit",
+            "text": {
+              "hi": "KCC के साथ warehouse receipt पर फसल के बाद credit कब तक मिल सकता है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/nabard-production-credit",
+            "text": {
+              "hi": "उत्पादन credit में बैंक किस बात का हिसाब रखते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/nabard-credit-drawal-period",
+            "text": {
+              "hi": "NABARD refinance में sanctioned credit limit की drawal कब तक लौटाने की बात है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "सरकारी योजनाएँ देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "This NABARD source describes Kisan Credit Card as intended for timely and flexible credit for agricultural inputs and production needs. It does not set an individual approval, limit, interest, deadline, or document list; the bank decides under its process. This is a plain-language summary of the official NABARD page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask your bank whether a KCC facility applies to your case."
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Read the bank’s current official requirements."
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Provide records only through the bank’s official process."
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Keep the bank’s written information and confirm with NABARD or the bank office when needed."
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use your bank branch and NABARD’s official information. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Confirm with the bank or NABARD office; do not rely on an intermediary’s approval claim. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-warehouse-receipt-credit",
+            "text": {
+              "hi": "",
+              "en": "How long can post-harvest credit be available against a warehouse receipt with KCC?"
+            }
+          },
+          {
+            "href": "/sawaal/nabard-production-credit",
+            "text": {
+              "hi": "",
+              "en": "What do banks assess for production credit?"
+            }
+          },
+          {
+            "href": "/sawaal/nabard-credit-drawal-period",
+            "text": {
+              "hi": "",
+              "en": "When is a drawal against a sanctioned NABARD refinance credit limit repayable?"
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "",
+              "en": "See government schemes"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-06"
-    ]
+    ],
+    "related": [
+      "kcc-warehouse-receipt-credit",
+      "nabard-production-credit",
+      "nabard-credit-drawal-period"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "kcc-warehouse-receipt-credit",
@@ -158,13 +3001,308 @@ export default [
     "season": "all",
     "question_hi": "KCC के साथ warehouse receipt पर फसल के बाद credit कब तक मिल सकता है?",
     "question_en": "How long can post-harvest credit be available against a warehouse receipt with KCC?",
-    "short_hi": "Small और marginal farmer को accredited warehouse में stored produce के e-NWR पर फसल के बाद छह महीने तक concessional credit मिल सकता है।",
-    "short_en": "A small or marginal farmer with KCC can be eligible for concessional credit up to six months post-harvest against e-NWRs for produce in accredited warehouses.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "NABARD के पेज में छोटे और सीमांत KCC किसानों के लिए मान्यता-प्राप्त गोदाम में रखी उपज के e-NWR पर फसल बाद रियायती ऋण का उल्लेख है। अवधि और पात्रता बैंक या NABARD कार्यालय से पुष्टि करें।",
+    "short_en": "NABARD’s page mentions post-harvest concessional credit for small and marginal KCC farmers against e-NWRs for produce stored in accredited warehouses. Confirm period and eligibility with the bank or NABARD office.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "NABARD के Modified Interest Subvention Scheme स्रोत में छोटे और सीमांत KCC किसानों के लिए मान्यता-प्राप्त गोदाम में रखी उपज के इलेक्ट्रॉनिक नेगोशिएबल वेयरहाउस रसीद, e-NWR, के विरुद्ध फसल बाद रियायती ऋण का उल्लेख है। स्रोत में छह महीने तक की बात है, लेकिन आपकी पात्रता और लागू शर्त केवल बैंक पुष्टि करेगा। यह उत्तर केवल NABARD के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "गोदाम रसीद पर ऋण के बारे में बैंक से पूछना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता संबंधित बैंक शाखा, मान्यता-प्राप्त गोदाम और NABARD की आधिकारिक जानकारी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "बैंक या NABARD कार्यालय से पुष्टि करें; गोदाम, रसीद और फसल की स्थिति पहले बैंक से मिलाएँ। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-timely-flexible-credit",
+            "text": {
+              "hi": "Kisan Credit Card किस काम के लिए है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/nabard-production-credit",
+            "text": {
+              "hi": "उत्पादन credit में बैंक किस बात का हिसाब रखते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/nabard-credit-drawal-period",
+            "text": {
+              "hi": "NABARD refinance में sanctioned credit limit की drawal कब तक लौटाने की बात है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "सरकारी योजनाएँ देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "NABARD’s Modified Interest Subvention Scheme source mentions post-harvest concessional credit for small and marginal KCC farmers against electronic negotiable warehouse receipts (e-NWRs) for produce in accredited warehouses. It mentions up to six months, but the bank must confirm your eligibility and conditions. This is a plain-language summary of the official NABARD page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask the bank whether this facility applies to your KCC and produce."
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Confirm whether the warehouse and receipt meet the bank’s current requirements."
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Use the bank’s official process for any application."
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Keep written confirmation of the applicable terms."
+            },
+            "cites": [
+              "S-Q5C-06"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use your bank, accredited warehouse, and NABARD official information. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Confirm with the bank or NABARD office before relying on the receipt or period. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-06"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-timely-flexible-credit",
+            "text": {
+              "hi": "",
+              "en": "What is the Kisan Credit Card for?"
+            }
+          },
+          {
+            "href": "/sawaal/nabard-production-credit",
+            "text": {
+              "hi": "",
+              "en": "What do banks assess for production credit?"
+            }
+          },
+          {
+            "href": "/sawaal/nabard-credit-drawal-period",
+            "text": {
+              "hi": "",
+              "en": "When is a drawal against a sanctioned NABARD refinance credit limit repayable?"
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "",
+              "en": "See government schemes"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-06"
-    ]
+    ],
+    "related": [
+      "kcc-timely-flexible-credit",
+      "nabard-production-credit",
+      "nabard-credit-drawal-period"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "nabard-production-credit",
@@ -173,13 +3311,308 @@ export default [
     "season": "all",
     "question_hi": "उत्पादन credit में बैंक किस बात का हिसाब रखते हैं?",
     "question_en": "What do banks assess for production credit?",
-    "short_hi": "Production-oriented lending में credit needs का assessment और fertilizer व pesticide जैसे inputs के लिए credit provision शामिल है।",
-    "short_en": "Production-oriented lending includes assessing credit needs and providing credit for inputs such as fertilisers and pesticides.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "NABARD की कृषि ऋण जानकारी में उत्पादन-उन्मुख ऋण के लिए जरूरत का आकलन और उर्वरक व कीटनाशक जैसे इनपुट के लिए ऋण का उल्लेख है। अपनी स्थिति बैंक या NABARD कार्यालय से पुष्टि करें।",
+    "short_en": "NABARD agricultural-credit information mentions assessment of production credit needs and credit for inputs such as fertilisers and pesticides. Confirm your situation with the bank or NABARD office.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "NABARD की कृषि ऋण जानकारी उत्पादन-उन्मुख ऋण में ऋण जरूरत के आकलन और उर्वरक तथा कीटनाशक जैसे इनपुट के लिए ऋण प्रावधान का संदर्भ देती है। यह सामान्य संस्थागत जानकारी है, न कि किसी किसान की ऋण मंजूरी। बैंक आपकी जरूरत, रिकॉर्ड और अपनी प्रक्रिया के अनुसार फैसला करता है। यह उत्तर केवल NABARD के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "उत्पादन ऋण के बारे में बैंक से जानकारी लेना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता संबंधित बैंक शाखा और NABARD की कृषि ऋण जानकारी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "बैंक या NABARD कार्यालय से पुष्टि करें; उधार की शर्त, ब्याज या मंजूरी के बारे में कोई अनुमान न लगाएँ। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-timely-flexible-credit",
+            "text": {
+              "hi": "Kisan Credit Card किस काम के लिए है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/kcc-warehouse-receipt-credit",
+            "text": {
+              "hi": "KCC के साथ warehouse receipt पर फसल के बाद credit कब तक मिल सकता है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/nabard-credit-drawal-period",
+            "text": {
+              "hi": "NABARD refinance में sanctioned credit limit की drawal कब तक लौटाने की बात है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "सरकारी योजनाएँ देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "NABARD agricultural-credit information refers to assessing production-credit needs and to credit for inputs such as fertilisers and pesticides. This is institutional information, not an approval for any farmer; the bank decides under its process. This is a plain-language summary of the official NABARD page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Speak to the bank about your production-credit requirement."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask for its current official requirements and terms."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Share records only through the bank’s authorised process."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Keep the written response and confirm uncertainties with the bank or NABARD office."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use your bank branch and NABARD agricultural-credit information. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Confirm with the bank or NABARD office; do not assume terms, interest, or approval. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-timely-flexible-credit",
+            "text": {
+              "hi": "",
+              "en": "What is the Kisan Credit Card for?"
+            }
+          },
+          {
+            "href": "/sawaal/kcc-warehouse-receipt-credit",
+            "text": {
+              "hi": "",
+              "en": "How long can post-harvest credit be available against a warehouse receipt with KCC?"
+            }
+          },
+          {
+            "href": "/sawaal/nabard-credit-drawal-period",
+            "text": {
+              "hi": "",
+              "en": "When is a drawal against a sanctioned NABARD refinance credit limit repayable?"
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "",
+              "en": "See government schemes"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-07"
-    ]
+    ],
+    "related": [
+      "kcc-timely-flexible-credit",
+      "kcc-warehouse-receipt-credit",
+      "nabard-credit-drawal-period"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "nabard-credit-drawal-period",
@@ -188,13 +3621,308 @@ export default [
     "season": "all",
     "question_hi": "NABARD refinance में sanctioned credit limit की drawal कब तक लौटाने की बात है?",
     "question_en": "When is a drawal against a sanctioned NABARD refinance credit limit repayable?",
-    "short_hi": "Page में sanctioned credit limit की हर drawal को 12 महीने में repayable बताया गया है।",
-    "short_en": "The page says each drawal against the sanctioned credit limit is repayable within 12 months.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "NABARD की कृषि ऋण जानकारी के संदर्भित पेज में स्वीकृत पुनर्वित्त ऋण सीमा के प्रत्येक drawal को 12 महीने में चुकाने की बात कही गई है। लागू व्यवस्था बैंक या NABARD कार्यालय से पुष्टि करें।",
+    "short_en": "The referenced NABARD agricultural-credit page says each drawal against a sanctioned refinance credit limit is repayable within 12 months. Confirm applicability with the bank or NABARD office.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "संदर्भित NABARD पेज में स्वीकृत पुनर्वित्त ऋण सीमा के प्रत्येक drawal को 12 महीने में चुकाने की बात लिखी है। यह पुनर्वित्त संबंधी संस्थागत विवरण है; इसे अपने व्यक्तिगत KCC, फसल ऋण या किसी दूसरे बैंक उत्पाद की स्वतः शर्त न मानें। आपकी व्यवस्था का उत्तर संबंधित बैंक ही देगा। यह उत्तर केवल NABARD के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "पुनर्वित्त अवधि के बारे में पुष्टि लेना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता संबंधित बैंक शाखा और NABARD की कृषि ऋण जानकारी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "बैंक या NABARD कार्यालय से पुष्टि करें; ऋण समझौते में लिखी अवधि को ही अपना आधार मानें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-timely-flexible-credit",
+            "text": {
+              "hi": "Kisan Credit Card किस काम के लिए है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/kcc-warehouse-receipt-credit",
+            "text": {
+              "hi": "KCC के साथ warehouse receipt पर फसल के बाद credit कब तक मिल सकता है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/nabard-production-credit",
+            "text": {
+              "hi": "उत्पादन credit में बैंक किस बात का हिसाब रखते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "सरकारी योजनाएँ देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "The referenced NABARD page says each drawal against a sanctioned refinance credit limit is repayable within 12 months. This is institutional refinance information, not an automatic condition for an individual KCC, crop loan, or another bank product. This is a plain-language summary of the official NABARD page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask the relevant bank which product and agreement applies to you."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Read the repayment period in your official loan documents."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Request clarification in writing if a term is unclear."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Confirm refinance questions with the bank or NABARD office."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use your bank branch and NABARD agricultural-credit information. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Confirm with the bank or NABARD office; rely on the period written in your loan agreement. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-timely-flexible-credit",
+            "text": {
+              "hi": "",
+              "en": "What is the Kisan Credit Card for?"
+            }
+          },
+          {
+            "href": "/sawaal/kcc-warehouse-receipt-credit",
+            "text": {
+              "hi": "",
+              "en": "How long can post-harvest credit be available against a warehouse receipt with KCC?"
+            }
+          },
+          {
+            "href": "/sawaal/nabard-production-credit",
+            "text": {
+              "hi": "",
+              "en": "What do banks assess for production credit?"
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "",
+              "en": "See government schemes"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-07"
-    ]
+    ],
+    "related": [
+      "kcc-timely-flexible-credit",
+      "kcc-warehouse-receipt-credit",
+      "nabard-production-credit"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "nabard-calamity-conversion",
@@ -203,13 +3931,308 @@ export default [
     "season": "all",
     "question_hi": "प्राकृतिक आपदा में crop loan के लिए refinance की क्या व्यवस्था बताई गई है?",
     "question_en": "What refinance arrangement is described for crop loans after a natural calamity?",
-    "short_hi": "प्राकृतिक आपदा से प्रभावित किसानों के converted, rescheduled या rephased loans के लिए refinance facility बताई गई है।",
-    "short_en": "A refinance facility is described for converted, rescheduled, or rephased loans of farmers affected by natural calamities.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "NABARD की कृषि ऋण जानकारी प्राकृतिक आपदा से प्रभावित किसानों के converted, rescheduled या rephased ऋणों के लिए पुनर्वित्त सुविधा का उल्लेख करती है। अपने मामले की पुष्टि बैंक या NABARD कार्यालय से करें।",
+    "short_en": "NABARD agricultural-credit information mentions a refinance facility for converted, rescheduled, or rephased loans of farmers affected by natural calamities. Confirm your case with the bank or NABARD office.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "NABARD की कृषि ऋण जानकारी प्राकृतिक आपदा से प्रभावित किसानों के converted, rescheduled या rephased ऋणों के लिए पुनर्वित्त सुविधा का उल्लेख करती है। इसका अर्थ यह नहीं कि हर नुकसान या हर ऋण अपने आप बदलेगा। नुकसान, ऋण की स्थिति और स्थानीय सरकारी या बैंक प्रक्रिया की जांच जरूरी है। यह उत्तर केवल NABARD के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "आपदा के बाद ऋण स्थिति के बारे में बैंक से पूछना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता संबंधित बैंक शाखा, स्थानीय प्रशासन और NABARD की कृषि ऋण जानकारी पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "बैंक या NABARD कार्यालय से पुष्टि करें; आपदा, नुकसान और ऋण से जुड़े सभी रिकॉर्ड संभालकर रखें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-timely-flexible-credit",
+            "text": {
+              "hi": "Kisan Credit Card किस काम के लिए है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/kcc-warehouse-receipt-credit",
+            "text": {
+              "hi": "KCC के साथ warehouse receipt पर फसल के बाद credit कब तक मिल सकता है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/nabard-production-credit",
+            "text": {
+              "hi": "उत्पादन credit में बैंक किस बात का हिसाब रखते हैं?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "सरकारी योजनाएँ देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "NABARD agricultural-credit information mentions a refinance facility for converted, rescheduled, or rephased loans of farmers affected by natural calamities. It does not mean every loss or loan changes automatically; the bank and applicable process must assess the case. This is a plain-language summary of the official NABARD page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Contact the relevant bank promptly about the loan situation."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask what official records or local confirmation it requires."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Keep the records relating to loss and the loan."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Confirm the applicable process with the bank or NABARD office."
+            },
+            "cites": [
+              "S-Q5C-07"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use your bank, local administration, and NABARD agricultural-credit information. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Confirm with the bank or NABARD office and keep relevant records. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-07"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/kcc-timely-flexible-credit",
+            "text": {
+              "hi": "",
+              "en": "What is the Kisan Credit Card for?"
+            }
+          },
+          {
+            "href": "/sawaal/kcc-warehouse-receipt-credit",
+            "text": {
+              "hi": "",
+              "en": "How long can post-harvest credit be available against a warehouse receipt with KCC?"
+            }
+          },
+          {
+            "href": "/sawaal/nabard-production-credit",
+            "text": {
+              "hi": "",
+              "en": "What do banks assess for production credit?"
+            }
+          },
+          {
+            "href": "/yojana",
+            "text": {
+              "hi": "",
+              "en": "See government schemes"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-07"
-    ]
+    ],
+    "related": [
+      "kcc-timely-flexible-credit",
+      "kcc-warehouse-receipt-credit",
+      "nabard-production-credit"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "soil-health-card-languages",
@@ -218,13 +4241,293 @@ export default [
     "season": "all",
     "question_hi": "Soil Health Card कितनी भाषाओं में बन सकता है?",
     "question_en": "In how many languages can a Soil Health Card be generated?",
-    "short_hi": "Portal पर Soil Health Card 22 अलग भाषाओं और 5 dialects में, local units के साथ बन सकता है।",
-    "short_en": "The portal facilitates Soil Health Card generation in 22 languages and 5 dialects, with local units.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "NIC के Soil Health Card Portal के अनुसार कार्ड 22 भाषाओं, 5 बोलियों और स्थानीय इकाइयों में बनाया जा सकता है।",
+    "short_en": "According to NIC’s Soil Health Card Portal, a card can be generated in 22 languages, 5 dialects, and local units.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "NIC के अनुसार Soil Health Card Portal कृषि एवं किसान कल्याण मंत्रालय के लिए बना वेब और स्मार्टफोन आधारित अनुप्रयोग है। वह पूरे देश के लिए एक समान रूप में कार्ड बनाने की सुविधा देता है और 22 भाषाओं, 5 बोलियों तथा स्थानीय इकाइयों का उल्लेख करता है। यह उत्तर केवल NIC Soil Health Card Portal के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "स्थानीय भाषा में Soil Health Card के बारे में जानकारी लेना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता Soil Health Card Portal और जिला/ब्लॉक स्तर का कृषि कार्यालय पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "भाषा विकल्प और स्थानीय उपलब्धता स्क्रीन या कार्यालय में देखकर ही मानें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/soil-health-card-recommendations",
+            "text": {
+              "hi": "Soil Health Card में क्या जानकारी मिलती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/soil-health-card-workflow",
+            "text": {
+              "hi": "Soil Health Card portal में recommendation कैसे बनती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/fasal-salah",
+            "text": {
+              "hi": "फसल सलाह देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "NIC describes the Soil Health Card Portal as a web and smartphone application for the Ministry of Agriculture & Farmers Welfare. It says cards can be generated in 22 languages, 5 dialects, and local units in a standardised format. This is a plain-language summary of the official NIC Soil Health Card Portal page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Open the official Soil Health Card portal."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Check the language option shown for your card or service."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask the district or block agriculture office if help is needed."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Keep the card in the language you can understand."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the Soil Health Card Portal and district or block agriculture office. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Check the language option currently available on the screen or at the office. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/soil-health-card-recommendations",
+            "text": {
+              "hi": "",
+              "en": "What information does a Soil Health Card provide?"
+            }
+          },
+          {
+            "href": "/sawaal/soil-health-card-workflow",
+            "text": {
+              "hi": "",
+              "en": "How is a Soil Health Card recommendation generated?"
+            }
+          },
+          {
+            "href": "/fasal-salah",
+            "text": {
+              "hi": "",
+              "en": "See crop advice"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-08"
-    ]
+    ],
+    "related": [
+      "soil-health-card-recommendations",
+      "soil-health-card-workflow"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "soil-health-card-recommendations",
@@ -233,13 +4536,293 @@ export default [
     "season": "all",
     "question_hi": "Soil Health Card में क्या जानकारी मिलती है?",
     "question_en": "What information does a Soil Health Card provide?",
-    "short_hi": "Soil Health Card जमीन की nutrient status और fertilizer, bio-fertilizer, organic fertilizer व soil amendment की dose recommendations देता है।",
-    "short_en": "A Soil Health Card provides nutrient status and recommendations on dosages of fertilisers, bio-fertilisers, organic fertilisers, and soil amendments.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "Soil Health Card भूमि की पोषक-तत्व स्थिति और उर्वरक, जैव-उर्वरक, जैविक उर्वरक व मृदा सुधारक की मात्रा संबंधी सिफारिश देता है।",
+    "short_en": "A Soil Health Card provides nutrient status of land and recommendations on dosages of fertilisers, bio-fertilisers, organic fertilisers, and soil amendments.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "NIC के Soil Health Card Portal के अनुसार कार्ड किसान को उसकी जमीन की पोषक-तत्व स्थिति बताता है। उसी के आधार पर उर्वरक, जैव-उर्वरक, जैविक उर्वरक और मृदा सुधारक की मात्रा संबंधी सिफारिश दी जाती है ताकि लंबे समय में मिट्टी की सेहत बनाए रखने में मदद मिले। यह उत्तर केवल NIC Soil Health Card Portal के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "Soil Health Card की सिफारिश समझना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता Soil Health Card Portal, मिट्टी परीक्षण प्रयोगशाला और कृषि विभाग पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "कार्ड की सिफारिश को पढ़कर ही इनपुट का उपयोग करें; अपने खेत की स्थिति के लिए कृषि अधिकारी या KVK से समझ लें। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/soil-health-card-languages",
+            "text": {
+              "hi": "Soil Health Card कितनी भाषाओं में बन सकता है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/soil-health-card-workflow",
+            "text": {
+              "hi": "Soil Health Card portal में recommendation कैसे बनती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/fasal-salah",
+            "text": {
+              "hi": "फसल सलाह देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "NIC says a Soil Health Card gives the nutrient status of land and recommendations on dosage of fertilisers, bio-fertilisers, organic fertilisers, and soil amendments to maintain soil health over time. This is a plain-language summary of the official NIC Soil Health Card Portal page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Obtain or view the official Soil Health Card."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Read the nutrient-status information on the card."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Read the stated recommendation carefully."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask an agriculture office or KVK to explain the card for your field if needed."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the Soil Health Card Portal, soil-testing laboratory, and agriculture department. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the card’s recommendation carefully and seek local explanation for your field when needed. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/soil-health-card-languages",
+            "text": {
+              "hi": "",
+              "en": "In how many languages can a Soil Health Card be generated?"
+            }
+          },
+          {
+            "href": "/sawaal/soil-health-card-workflow",
+            "text": {
+              "hi": "",
+              "en": "How is a Soil Health Card recommendation generated?"
+            }
+          },
+          {
+            "href": "/fasal-salah",
+            "text": {
+              "hi": "",
+              "en": "See crop advice"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-08"
-    ]
+    ],
+    "related": [
+      "soil-health-card-languages",
+      "soil-health-card-workflow"
+    ],
+    "last_verified": "2026-10-11"
   },
   {
     "slug": "soil-health-card-workflow",
@@ -248,12 +4831,292 @@ export default [
     "season": "all",
     "question_hi": "Soil Health Card portal में recommendation कैसे बनती है?",
     "question_en": "How is a Soil Health Card recommendation generated?",
-    "short_hi": "Portal workflow में sample collection, sample registration, soil testing और automatic fertiliser recommendation शामिल हैं।",
-    "short_en": "The portal workflow includes sample collection, sample registration, soil testing, and automatic fertiliser recommendation.",
-    "blocks": [],
-    "blocks_en": [],
+    "short_hi": "Soil Health Card Portal के workflow में नमूना संग्रह, पंजीकरण, मिट्टी परीक्षण, स्वतः उर्वरक सिफारिश और स्थानीय भाषा में कार्ड बनना शामिल है।",
+    "short_en": "The Soil Health Card Portal workflow includes sample collection, registration, soil testing, automatic fertiliser recommendation, and card generation in a local language.",
+    "blocks": [
+      {
+        "type": "heading",
+        "id": "kya-hai",
+        "text": {
+          "hi": "यह क्या है",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "NIC के Soil Health Card Portal में क्रम साफ बताया गया है: नमूना संग्रह, नमूना पंजीकरण, मिट्टी परीक्षण, स्वतः उर्वरक सिफारिश और स्थानीय भाषा में Soil Health Card बनना। पेज यह भी बताता है कि अलग चरणों में किसान/ग्राम स्तर एजेंसी, ब्लॉक/जिला अधिकारी, CSCS और मिट्टी परीक्षण प्रयोगशाला की भूमिका हो सकती है। यह उत्तर केवल NIC Soil Health Card Portal के आधिकारिक पृष्ठ में दी गई जानकारी का आसान सार है। इसे किसी मंजूरी, भुगतान, गुणवत्ता या परिणाम की पक्की बात न मानें। स्क्रीन, नियम और स्थानीय व्यवस्था बदल सकती है, इसलिए काम शुरू करने से पहले उसी आधिकारिक पेज पर अभी की जानकारी पढ़ें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kaise-karen",
+        "text": {
+          "hi": "कैसे करें",
+          "en": ""
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "howto": true,
+        "howtoName": {
+          "hi": "Soil Health Card workflow को समझना",
+          "en": ""
+        },
+        "items": [
+          {
+            "text": {
+              "hi": "आधिकारिक पेज खोलकर इस विषय की मौजूदा जानकारी पढ़ें और अपनी स्थिति से मिलान करें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "जहाँ ऐप या पोर्टल का विकल्प हो, केवल आधिकारिक ऐप या वेबसाइट में ही आगे बढ़ें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "यदि कोई स्थानीय नियम, दस्तावेज या रिकॉर्ड समझ में न आए तो संबंधित कार्यालय से पूछें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "अगला कदम लेने से पहले स्क्रीन, रसीद या लिखित आधिकारिक जानकारी अपने पास रखें।",
+              "en": ""
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "kahan-jayen",
+        "text": {
+          "hi": "कहाँ जाएँ / किससे मिलें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "आधिकारिक जानकारी और आगे का रास्ता Soil Health Card Portal, स्थानीय कृषि कार्यालय और मिट्टी परीक्षण प्रयोगशाला पर देखें। यदि वेबसाइट खुल न रही हो, जानकारी समझ में न आए, या आपका मामला स्थानीय हो, तो अपने जिले के कृषि विभाग, KVK, संबंधित मंडी या बैंक/कार्यालय से पूछकर ही अगला कदम लें। किसी अनजान व्यक्ति को OTP, बैंक विवरण या दस्तावेज केवल संदेश देखकर न दें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "dhyan-rakhen",
+        "text": {
+          "hi": "ध्यान रखें",
+          "en": ""
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "नमूना देने का तरीका या समय स्थानीय कार्यालय से पूछें; गलत या अधूरा नमूना परिणाम को प्रभावित कर सकता है। इस पेज पर कोई निजी सलाह नहीं दी जा रही है। नाम, तारीख, उपलब्ध सुविधा, दस्तावेज और स्थानीय नियम समय के साथ बदल सकते हैं। अपनी जरूरत के अनुसार लिखित या आधिकारिक पुष्टि रखें, और किसी शुल्क, ऋण, बिक्री या दस्तावेज साझा करने से पहले सही कार्यालय या पोर्टल से मिलान करें।",
+          "en": ""
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "ये भी देखें",
+          "en": ""
+        },
+        "items": [
+          {
+            "href": "/sawaal/soil-health-card-languages",
+            "text": {
+              "hi": "Soil Health Card कितनी भाषाओं में बन सकता है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/sawaal/soil-health-card-recommendations",
+            "text": {
+              "hi": "Soil Health Card में क्या जानकारी मिलती है?",
+              "en": ""
+            }
+          },
+          {
+            "href": "/fasal-salah",
+            "text": {
+              "hi": "फसल सलाह देखें",
+              "en": ""
+            }
+          }
+        ]
+      }
+    ],
+    "blocks_en": [
+      {
+        "type": "heading",
+        "id": "what-is-it",
+        "text": {
+          "hi": "",
+          "en": "What this means"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "NIC sets out a sequence: sample collection, sample registration, testing, automatic fertiliser recommendation, and Soil Health Card generation in a local language. It identifies roles for farmers/village agencies, block or district officers/CSCS, and soil-testing laboratories. This is a plain-language summary of the official NIC Soil Health Card Portal page, not a promise of approval, payment, quality, or outcome. Check the current official page before acting."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "how-to",
+        "text": {
+          "hi": "",
+          "en": "How to proceed"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "text": {
+              "hi": "",
+              "en": "Ask the local office about sample collection."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Ensure the sample is registered through the official process."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Wait for the laboratory testing stage."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          },
+          {
+            "text": {
+              "hi": "",
+              "en": "Read the generated recommendation and card when available."
+            },
+            "cites": [
+              "S-Q5C-08"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "where-to-go",
+        "text": {
+          "hi": "",
+          "en": "Where to confirm"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Use the Soil Health Card Portal, local agriculture office, and soil-testing laboratory. For a local or individual case, confirm with the relevant mandi, agriculture office, KVK, bank, or office before you share documents or take the next step."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "keep-in-mind",
+        "text": {
+          "hi": "",
+          "en": "Keep in mind"
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": {
+          "hi": "",
+          "en": "Ask the local office about collection method and timing; a poor sample can affect the result. Rules, dates, and local arrangements can change. Keep the official confirmation for your own record."
+        },
+        "cites": [
+          "S-Q5C-08"
+        ]
+      },
+      {
+        "type": "related",
+        "title": {
+          "hi": "",
+          "en": "See also"
+        },
+        "items": [
+          {
+            "href": "/sawaal/soil-health-card-languages",
+            "text": {
+              "hi": "",
+              "en": "In how many languages can a Soil Health Card be generated?"
+            }
+          },
+          {
+            "href": "/sawaal/soil-health-card-recommendations",
+            "text": {
+              "hi": "",
+              "en": "What information does a Soil Health Card provide?"
+            }
+          },
+          {
+            "href": "/fasal-salah",
+            "text": {
+              "hi": "",
+              "en": "See crop advice"
+            }
+          }
+        ]
+      }
+    ],
     "sources": [
       "S-Q5C-08"
-    ]
+    ],
+    "related": [
+      "soil-health-card-languages",
+      "soil-health-card-recommendations"
+    ],
+    "last_verified": "2026-10-11"
   }
 ]

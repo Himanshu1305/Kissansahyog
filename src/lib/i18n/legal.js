@@ -7,6 +7,8 @@
 // 404 and set honest expectations. Have it reviewed by counsel before public
 // launch. Contact for data/legal queries: usdvisionai@gmail.com
 
+export { termsOfUse } from './termsContent.js'
+
 export const privacyPolicy = [
   {
     hi: 'हम क्या जानकारी लेते हैं: आपका मोबाइल नंबर, पिन कोड, गाँव/कस्बा और आपकी लिस्टिंग का विवरण (जैसे ज़मीन का आकार, उपकरण का प्रकार, दाम)।',
@@ -38,7 +40,7 @@ export const privacyPolicy = [
   },
 ]
 
-export const termsOfUse = [
+export const legacyTermsOfUse = [
   {
     hi: 'किसान सहयोग केवल एक जानकारी सेवा है। हम उपयोगकर्ताओं के बीच किसी भी लेन-देन, सौदे या समझौते के लिए ज़िम्मेदार नहीं हैं।',
     en: 'Kissan Sahyog is an information service only. We are not liable for any transaction, deal, or agreement between users.',

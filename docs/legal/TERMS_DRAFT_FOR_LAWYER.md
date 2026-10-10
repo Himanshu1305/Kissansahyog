@@ -1,0 +1,108 @@
+# Terms Draft for Lawyer
+
+This is the complete bilingual draft displayed at `/terms`.
+
+## 1. सेवा का स्वरूप / Nature of the service
+
+किसान सहयोग USD Vision AI LLP की निःशुल्क सूचना और नोटिस-बोर्ड सेवा है। यह लोगों को खेती, काम, सामान और स्थानीय सेवाओं की जानकारी साझा करने में मदद करती है। मंच किसी बिक्री, किराये, नौकरी, मजदूरी, परिवहन, जमीन या दूसरे सौदे का पक्षकार नहीं है। सेवा अभी सागर, मध्य प्रदेश में पायलट रूप में है। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Kissan Sahyog is a free information and notice-board service of USD Vision AI LLP. It helps people share information about farming, work, goods, and local services. The platform is not a party to a sale, rental, job, wage, transport, land, or other deal. The service is currently a pilot in Sagar, Madhya Pradesh. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 2. कौन उपयोग कर सकता है / Who may use it
+
+सेवा केवल वैध उद्देश्य के लिए उपयोग करें। किसी दूसरे व्यक्ति, नाबालिग या संस्था की ओर से खाता या सूची बनाने पर आपके पास आवश्यक अनुमति होनी चाहिए। इन शर्तों, लागू कानून या सुरक्षा नियमों के विरुद्ध उपयोग स्वीकार्य नहीं है। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Use the service only for lawful purposes. If you create an account or listing for another person, a minor, or an organisation, you must have the required permission. Use that conflicts with these terms, applicable law, or safety rules is not allowed. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 3. खाता, मोबाइल और OTP / Account, mobile, and OTP
+
+जहाँ फोन सत्यापन दिया गया है, अपना सही मोबाइल नंबर दें। OTP, पासवर्ड और लॉगिन कोड किसी को न बताएं। फोन या खाते की सुरक्षा आपकी जिम्मेदारी है। गलत पहुंच या संदिग्ध संदेश की सूचना शिकायत मार्ग से दें। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Where phone verification is offered, provide your correct mobile number. Do not disclose an OTP, password, or login code. You are responsible for the security of your phone and account. Report unauthorised access or suspicious messages through the grievance route. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 4. सही सूची और कीमत / Accurate listings and prices
+
+केवल वही सूची, फोटो, कीमत, स्थान और संपर्क विवरण डालें जो आपके ज्ञान के अनुसार सही हों और जिन्हें साझा करने का अधिकार आपको हो। कीमत, उपलब्धता, मात्रा या संपर्क बदलने पर सूची ठीक करें या हटाएं। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Post only a listing, photo, price, location, and contact detail you believe is accurate and that you have the right to share. Correct or remove it if price, availability, quantity, or contact information changes. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 5. निषिद्ध सामग्री / Prohibited content
+
+गैरकानूनी वस्तु या सेवा, धोखाधड़ी, चोरी की वस्तु, भ्रामक फोटो या कीमत, झूठी उपलब्धता, धमकी, स्पैम, फर्जी पहचान या किसी की निजी जानकारी उसकी सहमति के बिना पोस्ट न करें। किसी को OTP, अग्रिम शुल्क या असुरक्षित मुलाकात के लिए दबाव न डालें। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Do not post an illegal good or service, fraud, stolen item, misleading photo or price, false availability, threat, spam, fake identity, or another person’s personal data without consent. Do not pressure anyone to disclose an OTP, pay an advance, or meet unsafely. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 6. जांच आपकी जिम्मेदारी / Your responsibility to verify
+
+हम हर सूची, फोटो, नंबर, कीमत, दस्तावेज, मालिकाना हक, लाइसेंस, मजदूरी, उपलब्धता या उपयोगकर्ता की पहचान जांच या प्रमाणित नहीं करते। मिलने, भुगतान करने या फैसला लेने से पहले स्वतंत्र जांच करें। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+We do not verify or certify every listing, photo, number, price, document, ownership, licence, wage, availability, or user identity. Verify independently before meeting, paying, or deciding. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 7. भुगतान मंच पर नहीं / No platform payments
+
+किसान सहयोग भुगतान संसाधित नहीं करता और किसी सौदे का पैसा नहीं रखता। अग्रिम, उधार, डिलीवरी, रिफंड और मजदूरी की जिम्मेदारी पक्षों की है। सही जांच किए बिना पैसा न भेजें। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Kissan Sahyog does not process payments or hold money for a deal. Advances, credit, delivery, refunds, and wages are the parties’ responsibility. Do not send money without appropriate verification. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 8. विशेष श्रेणियों में सावधानी / Special-care categories
+
+रेत, गिट्टी या निर्माण सामग्री वाला विक्रेता अनुमति और नियमों के लिए जिम्मेदार है। उपकरण व परिवहन की सुरक्षा पक्ष जांचें। मजदूरी पक्षों के बीच है। जमीन के मालिकाना हक या रिकॉर्ड हम नहीं जांचते। गोदाम, ग्रीनहाउस और कृषि-इनपुट में सुरक्षा, क्षमता, अनुमति और लागू लाइसेंस जांचें। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+A seller of sand, gravel, or building material is responsible for permissions and rules. Parties must check equipment and transport safety. Wages are between the parties. We do not verify land title or records. Check safety, capacity, permissions, and applicable licences for warehouses, greenhouses, and agri-inputs. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 9. फोटो और सामग्री / Photos and material
+
+फोटो, वीडियो या विवरण अपलोड करके आप पुष्टि करते हैं कि वह आपकी है या आपके पास अनुमति है। किसी दूसरे व्यक्ति, खेत, घर, वाहन या दस्तावेज की सामग्री उसकी सहमति के बिना न डालें। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+By uploading a photo, video, or description, you confirm that it is yours or you have permission. Do not post material about another person, farm, home, vehicle, or document without consent. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 10. सूची हटाना या छिपाना / Removal or hiding
+
+अधूरी, भ्रामक, संदिग्ध, असुरक्षित, गैरकानूनी, रिपोर्ट की गई या इन शर्तों के विरुद्ध सूची को हम रोक, छिपा, बदलने को कह या हटा सकते हैं। यह हर सूची की जांच की जिम्मेदारी नहीं बनाता। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+We may hold, hide, ask to change, or remove a listing that appears incomplete, misleading, suspicious, unsafe, unlawful, reported, or inconsistent with these terms. This does not make us responsible for checking every listing. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 11. रिपोर्ट और शिकायत / Reports and grievances
+
+संदिग्ध सूची, धोखाधड़ी, गलत जानकारी या अनुमति-विहीन फोटो की सूचना /grievance पर दें। तथ्य, लिंक या स्क्रीनशॉट दें, पर OTP, बैंक गोपनीय जानकारी या अनावश्यक निजी जानकारी न भेजें। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Report suspicious listings, fraud, incorrect information, or unauthorised photos at /grievance. Provide facts, links, or screenshots, but do not send an OTP, bank secret, or unnecessary personal information. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 12. गोपनीयता और संपर्क / Privacy and contact details
+
+डेटा-प्रक्रिया की जानकारी /privacy में है। सूची के विवरण दूसरे उपयोगकर्ताओं को समझने और संपर्क करने के लिए दिख सकते हैं। किसी दूसरे व्यक्ति का नंबर या निजी विवरण उसकी सहमति के बिना न डालें। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Data-handling information is at /privacy. Listing details may be shown so other users can understand and contact you. Do not post another person’s number or personal information without consent. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 13. सामान्य जानकारी, सलाह नहीं / General information, not advice
+
+सवाल, योजना, मंडी, मौसम और दूसरी सामग्री सामान्य सूचना है; यह कानूनी, वित्तीय, निवेश, चिकित्सा, बीमा, बैंक या पेशेवर सलाह नहीं है। तारीख, पात्रता, कीमत और नियम बदल सकते हैं। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Sawaal, scheme, mandi, weather, and other material is general information; it is not legal, financial, investment, medical, insurance, banking, or professional advice. Dates, eligibility, prices, and rules can change. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 14. उपलब्धता और बदलाव / Availability and changes
+
+हम सेवा, फीचर, श्रेणी, भाषा, लिंक, सुरक्षा उपाय या इन शर्तों को बदल, रोक या समाप्त कर सकते हैं। इंटरनेट, रखरखाव या तकनीकी समस्या से सेवा हर समय उपलब्ध नहीं हो सकती। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+We may change, pause, or end the service, features, categories, languages, links, safety measures, or these terms. Internet, maintenance, or technical problems can affect availability. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 15. जिम्मेदारी की सीमा / Limit of responsibility
+
+कानून जहां अनुमति देता है, किसान सहयोग और USD Vision AI LLP उपयोगकर्ताओं के बीच हुए व्यवहार, नुकसान, देरी, गलत सूचना, भुगतान, कमाई, फसल परिणाम या तीसरे पक्ष के काम के लिए जिम्मेदार नहीं होंगे। आपके वैधानिक अधिकार बने रहते हैं। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+Where law permits, Kissan Sahyog and USD Vision AI LLP are not responsible for dealings between users, loss, delay, incorrect information, payment, earnings, crop result, or third-party conduct. Your statutory rights remain. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## 16. कानून, संपर्क और संस्करण / Law, contact, and version
+
+ये शर्तें भारत के कानूनों के अनुसार समझी जाएंगी। वकील से पुष्टि आवश्यक: विवाद के लिए सागर, मध्य प्रदेश के न्यायालयों की प्रस्तावित अधिकारिता और जिम्मेदारी-सीमा की भाषा कानूनी समीक्षा के बाद बदली जा सकती है। संपर्क: hello@kissansahyog.com; शिकायत: /grievance। प्रभावी तिथि 11 अक्टूबर 2026, संस्करण Terms Draft 1.0। यह नियम सरल भाषा में सेवा का दायरा बताता है। अपने मामले के तथ्य, स्थानीय नियम और दूसरे पक्ष की जानकारी स्वयं जांचें। मंच पर दिखने वाली बात को अंतिम मंजूरी, कानूनी राय, भुगतान का आश्वासन या परिणाम की गारंटी न मानें। जरूरत पड़ने पर सही सरकारी कार्यालय, बैंक, KVK, मंडी, पुलिस या योग्य सलाहकार से वर्तमान जानकारी लें।
+
+These terms are intended to be interpreted under Indian law. Lawyer confirmation required: proposed jurisdiction of courts at Sagar, Madhya Pradesh and the liability wording may change after legal review. Contact: hello@kissansahyog.com; grievance: /grievance. Effective date 11 October 2026, version Terms Draft 1.0. This clause explains the service in plain language. Check the facts of your case, local rules, and the other party yourself. Do not treat information on the platform as final approval, legal advice, payment assurance, or a promised outcome. Where needed, seek current information from the proper government office, bank, KVK, mandi, police, or qualified adviser.
+
+## Open points for lawyer
+
+- Governing law and proposed Sagar, Madhya Pradesh jurisdiction.
+- Limitation-of-liability wording.
+- Sand/gravel permission wording.
+- Land-listing and title-verification wording.
+- Labour and wage wording.
+- Data-retention language and whether it belongs in Terms or Privacy.

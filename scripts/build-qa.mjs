@@ -39,6 +39,8 @@ for (const file of batches) {
     question_hi: q.question_hi, question_en: q.question_en,
     short_hi: q.short_hi, short_en: q.short_en,
     blocks: q.blocks, blocks_en: q.blocks_en, sources: q.sources,
+    ...(q.related?.length ? { related: q.related } : {}),
+    ...(q.last_verified ? { last_verified: q.last_verified } : {}),
     ...(q.unpublish ? { unpublish: true, unpublish_reason: q.unpublish_reason || '' } : {}),
   }))
   totalQas += recs.length
