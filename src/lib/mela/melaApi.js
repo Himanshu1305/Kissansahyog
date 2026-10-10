@@ -4,6 +4,7 @@
 import { supabase } from '../supabaseClient'
 import { toAppError, AppError } from '../errors'
 import { normalizeState } from '../../content/states.js'
+import { indiaToday, melaStatus, sortMelasForDisplay } from './melaStatus.js'
 
 export const MELA_TAGS = ['seeds', 'machinery', 'livestock', 'horticulture', 'scheme_scientist', 'general']
 
@@ -14,6 +15,7 @@ export async function fetchMelas() {
     .select('id,name_hi,name_en,organizer_name,venue,address,state,district,latitude,longitude,event_date_start,event_date_end,is_date_confirmed,expected_period,category_tags,highlights_hi,highlights_en,contact_name,contact_number,source_url,source_urls,last_checked_date')
     .eq('is_active', true)
     .eq('moderation_status', 'approved')
+    .is('merged_into', null)
     .order('event_date_start', { ascending: true, nullsFirst: false })
   if (error) throw toAppError(error)
   return data || []
@@ -21,17 +23,17 @@ export async function fetchMelas() {
 
 // A few upcoming melas for the homepage teaser (approved + active, soonest first).
 export async function fetchUpcomingMelas(limit = 3) {
-  const todayIso = new Date().toISOString().slice(0, 10)
+  const todayIso = indiaToday()
   const { data, error } = await supabase
     .from('kisan_mela')
     .select('id,name_hi,name_en,venue,state,district,latitude,longitude,event_date_start,event_date_end,is_date_confirmed,expected_period,category_tags,source_url')
     .eq('is_active', true)
     .eq('moderation_status', 'approved')
-    .or(`event_date_start.gte.${todayIso},event_date_start.is.null`)
+    .is('merged_into', null)
     .order('event_date_start', { ascending: true, nullsFirst: false })
-    .limit(limit)
   if (error) throw toAppError(error)
-  return data || []
+  // Homepage is deliberately dated-only: expected-period rows belong in the full calendar.
+  return sortMelasForDisplay((data || []).filter((m) => melaStatus(m, todayIso) !== 'undated' && melaStatus(m, todayIso) !== 'ended'), { today: todayIso }).slice(0, limit)
 }
 
 // Submit a Mela for admin review. Never visible until approved (RLS enforces pending).

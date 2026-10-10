@@ -1,5 +1,5 @@
 import { useLang } from '../lib/i18n/LanguageProvider'
-import { getCategory } from '../lib/listings/registry'
+import { getCategorySafe } from '../lib/listings/registry'
 import { EQUIPMENT_TAGS, LISTING_TYPE_META, optionLabels } from '../lib/listings/catalog'
 import { CatIcon } from './CatIcon'
 import SponsoredBadge from './SponsoredBadge'
@@ -15,7 +15,10 @@ import { timeAgo } from '../lib/timeAgo'
 export default function ListingCard({ listing, extras = {}, onClick, statusBadge }) {
   const { t, lang } = useLang()
   const typeMeta = LISTING_TYPE_META[listing.listing_type]
-  const rows = getCategory(listing.category).summarize(listing, lang, extras).slice(0, 2)
+  const category = getCategorySafe(listing.category)
+  // A legacy category must not turn a list into a blank page.
+  if (!category || !typeMeta) return null
+  const rows = category.summarize(listing, lang, extras).slice(0, 2)
   const isOffer = listing.listing_type === 'offer'
   const isVendor = listing.listing_source === 'vendor'
   const equipmentTags = listing.category === 'equipment' ? (listing.details?.equipment_tags || []) : []

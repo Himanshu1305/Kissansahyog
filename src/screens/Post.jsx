@@ -236,7 +236,6 @@ export default function Post() {
                 {source === 'vendor' && (
                   <div className="mt-2 space-y-1 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">
                     <p>🏪 {t('vendor_note')}</p>
-                    <p>{t('agri_vendor_future_charges')}</p>
                   </div>
                 )}
               </div>

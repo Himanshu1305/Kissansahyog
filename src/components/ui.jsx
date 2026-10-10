@@ -8,7 +8,7 @@ import PageShell from './layout/PageShell.jsx'
 // optional back button. Every Screen-based route therefore gets the same NavBar
 // and (on mobile) the global bottom tab bar. `width` picks the inner measure:
 // 'content' (~70ch readable column, default) for forms/prose, 'wide' for grids.
-export function Screen({ title, onBack, right, children, contentClassName = '', width = 'content' }) {
+export function Screen({ title, onBack, right, children, contentClassName = '', width = 'wide' }) {
   const { t } = useLang()
   return (
     <PageShell width={width} mainClassName={contentClassName}>

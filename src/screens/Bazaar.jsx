@@ -24,7 +24,7 @@ function Hub() {
       <Seo title={t('bazaar_hub_title').slice(0, 60)} description={t('bazaar_hub_intro').slice(0, 155)} path="/bazaar" jsonLd={[breadcrumb]} />
       <h1 className="text-3xl font-bold text-stone-900">{t('bazaar_hub_h1')}</h1>
       {/* ks-allow-width: readable intro line above the full-width grid */}
-      <p className="mt-2 max-w-3xl text-stone-700">{t('bazaar_hub_intro')}</p>
+      <p className="mt-2 text-stone-700">{t('bazaar_hub_intro')}</p>
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {BAZAAR_CATS.map((c) => (
           <Link key={c.slug} to={`/bazaar/${c.slug}`} className={card} data-testid={`bazaar-card-${c.slug}`}>
@@ -73,14 +73,14 @@ function Landing({ c }) {
 
       <h1 className="text-3xl font-bold text-stone-900">{c.icon} {d.name}</h1>
       {/* ks-allow-width: readable intro + body column on the full-width page */}
-      <p className="mt-2 max-w-3xl text-lg text-stone-700">{d.intro}</p>
+      <p className="mt-2 text-lg text-stone-700">{d.intro}</p>
 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <button type="button" onClick={() => navigate(`/browse?cat=${c.cat}${c.equipmentTag ? `&etag=${c.equipmentTag}` : ''}`)} data-testid="bazaar-btn-search" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-2xl bg-green-700 px-6 py-3 text-base font-bold text-white active:bg-green-800">🔍 {t('bazaar_btn_search')}</button>
         <button type="button" onClick={() => navigate(`/post?cat=${c.cat}&type=${c.type}`)} data-testid="bazaar-btn-post" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-2xl border-2 border-green-700 px-6 py-3 text-base font-bold text-green-800 active:bg-green-50">➕ {t('bazaar_btn_post')}</button>
       </div>
 
-      <section className="mt-7 max-w-3xl">
+      <section className="mt-7">
         <h2 className="text-xl font-bold text-stone-900">{t('bazaar_find_h')}</h2>
         <ul className="mt-2 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
           {d.find.map((item, i) => (
@@ -89,7 +89,7 @@ function Landing({ c }) {
         </ul>
       </section>
 
-      <section className="mt-7 max-w-3xl">
+      <section className="mt-7">
         <h2 className="text-xl font-bold text-stone-900">{t('bazaar_how_h')}</h2>
         <ol className="mt-2 space-y-1.5">
           {steps.map((s, i) => (
@@ -99,11 +99,11 @@ function Landing({ c }) {
         <p className="mt-2 text-sm font-semibold text-stone-600">{t('bazaar_connect_note')}</p>
       </section>
 
-      <section className="mt-7 max-w-3xl space-y-3 text-stone-700">
+      <section className="mt-7 space-y-3 text-stone-700">
         {d.body.split('\n').map((p, i) => <p key={i} className="leading-relaxed">{p}</p>)}
       </section>
 
-      <section className="mt-7 max-w-3xl">
+      <section className="mt-7">
         <h2 className="text-xl font-bold text-stone-900">{t('bazaar_faq_h')}</h2>
         <dl className="mt-2 space-y-3">
           {d.faqs.map((f, i) => (
@@ -115,7 +115,7 @@ function Landing({ c }) {
         </dl>
       </section>
 
-      <section className="mt-7 max-w-3xl">
+      <section className="mt-7">
         <h2 className="text-xl font-bold text-stone-900">{t('bazaar_more_h')}</h2>
         <div className="mt-2 flex flex-wrap gap-2">
           {others.map((x) => (

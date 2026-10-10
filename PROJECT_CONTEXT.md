@@ -1373,3 +1373,11 @@ pipeline) and this batch's own test listings (removed in teardown by id). Previe
 - **Tests:** backend all green; **E2E 83/83** (was 79/82 — the 3 known failures fixed; `phase2` selector
   updated for a reworded item-B string). `build:full` **249/249** prerendered; sitemap pages 44 / sawaal 152.
   Screenshots in `docs/review/shots-batch4/`. Preview `5013e32a` — https://v2-preview.kissansahyog.pages.dev.
+
+### Batch 6A (local, pending owner review)
+
+- Added a top-level React error boundary. Stale chunks/category-registry errors get one guarded service-worker and Cache Storage reset, then a bilingual recovery screen.
+- Listing collection cards use `getCategorySafe`, so unknown legacy categories are skipped rather than blanking the page. PWA updates use auto-update plus skip-waiting.
+- Layout tokens now centralize the 72ch content measure, 1200px wide frame, responsive page padding, card/grid values and form/side-panel grid; `Screen` defaults to wide.
+- The homepage has a shared SearchBar hero (including voice), three clamped Q&A cards, individually sourced image tiles, and an ongoing-Mela label. Mela date status/sorting lives in `lib/mela/melaStatus.js` and is reused by the calendar and teaser.
+- Noto Sans Devanagari 400/600/700/800 Latin and Devanagari subsets are served from `public/fonts`; external Google font links/CSP permissions were removed.

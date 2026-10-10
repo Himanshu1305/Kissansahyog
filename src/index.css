@@ -1,6 +1,15 @@
 @import 'tailwindcss';
 @import './styles/tokens.css';
 
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-400-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-600-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-700-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-800-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/noto-sans-devanagari-latin-400-normal.woff2') format('woff2'); unicode-range: U+0000-00FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/noto-sans-devanagari-latin-600-normal.woff2') format('woff2'); unicode-range: U+0000-00FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/noto-sans-devanagari-latin-700-normal.woff2') format('woff2'); unicode-range: U+0000-00FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/noto-sans-devanagari-latin-800-normal.woff2') format('woff2'); unicode-range: U+0000-00FF; }
+
 /* Base tweaks for a low-literacy, low-end-device audience:
    larger default tap targets, comfortable line-height, no tiny text. */
 @layer base {

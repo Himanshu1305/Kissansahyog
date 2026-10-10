@@ -30,6 +30,7 @@ export default function Footer() {
         </div>
         <div className="mt-5 border-t border-white/10 pt-3 text-[12px]" style={{ color: '#8FB29C' }}>
           {t('footer_copyright')}
+          <div className="mt-1">{t('footer_credit_prefix')} <a href="https://usdvisionai.com" target="_blank" rel="noopener noreferrer" className={link}>USD Vision AI LLP</a></div>
         </div>
       </div>
     </footer>

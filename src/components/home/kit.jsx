@@ -22,8 +22,8 @@ export function PhoneIcon({ size = 18, color = '#fff' }) {
 // ---- Layout: full-bleed section, 12px gutter ----
 export function Section({ children, bg, className = '', id }) {
   return (
-    <section id={id} className={`w-full ${className}`} style={{ background: bg, padding: 'var(--ks-gutter)' }}>
-      {children}
+    <section id={id} className={`ks-section ${className}`} style={{ background: bg }}>
+      <div className="ks-section-inner py-[var(--ks-section-space)]">{children}</div>
     </section>
   )
 }

@@ -19,15 +19,19 @@ export default function PageShell({
   ready = true,
   mainClassName = '',
 }) {
-  const Wrap = width === 'wide' ? Section : ContentColumn
   return (
     <div className="flex min-h-screen flex-col bg-stone-50">
       <NavBar />
-      <main className={`flex-1 py-5 ${mainClassName}`}>
-        <Wrap>
+      <main className={`flex-1 py-[var(--ks-section-space)] ${mainClassName}`}>
+        <Section as="div">
+          {width === 'content' ? <ContentColumn>
           {crumbs && crumbs.length > 0 && <Breadcrumbs items={crumbs} className="mb-4" />}
           {children}
-        </Wrap>
+          </ContentColumn> : <>
+            {crumbs && crumbs.length > 0 && <Breadcrumbs items={crumbs} className="mb-4" />}
+            {children}
+          </>}
+        </Section>
       </main>
       <PrerenderReady when={ready} />
     </div>

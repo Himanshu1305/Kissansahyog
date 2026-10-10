@@ -78,7 +78,6 @@ export function Fields({ details, setDetails, listingType, user }) {
           <TextField name="price_range" label={t('field_price_range')} value={details.price_range} onChange={set('price_range')} hint={t('optional')} placeholder={t('ph_agri_price_range')} />
           <TextField name="shop_address" label={t('field_shop_address')} value={details.shop_address} onChange={set('shop_address')} placeholder={t('ph_agri_shop_address')} required />
           <TextField name="contact_phone" label={t('field_contact_phone')} value={details.contact_phone} onChange={set('contact_phone')} />
-          <Notice tone="info">{t('agri_vendor_future_charges')}</Notice>
         </>
       ) : (
         <>

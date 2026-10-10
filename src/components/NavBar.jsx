@@ -172,7 +172,7 @@ export default function NavBar() {
 
         {/* Right cluster */}
         <div className="ml-auto flex items-center gap-2">
-          <SearchBar />
+          {location.pathname !== '/' && <SearchBar />}
           <LanguageToggle />
           {/* Admin quick-link — visible directly in the nav for is_admin users only
               (server still gates /admin). Hidden entirely for everyone else. */}

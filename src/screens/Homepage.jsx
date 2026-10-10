@@ -15,7 +15,7 @@ import { fetchMsp } from '../lib/msp/mspApi'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 import { getTodayForFarmer } from '../lib/today/forFarmer'
 import { strings } from '../lib/i18n/strings'
-import { getCategory } from '../lib/listings/registry'
+import { getCategorySafe } from '../lib/listings/registry'
 import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes, fetchPincode, fetchTopViewed } from '../lib/listings/listingsApi'
 import { fetchNearbyCounts, NEARBY_CATEGORIES } from '../lib/listings/nearbyCounts'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
@@ -32,24 +32,26 @@ import { fetchPestReports } from '../lib/pest/pestApi'
 import { fetchUpcomingEvents, eventTitle, eventWeekdayKey } from '../lib/events/eventsApi'
 import { fetchUpcomingMelas } from '../lib/mela/melaApi'
 import { melaDateLabel } from '../lib/mela/melaFormat'
+import { melaStatus } from '../lib/mela/melaStatus'
+import SearchBar from '../components/SearchBar'
 
 const IMG = (f) => `/images/home/${f}`
 
 // Category tiles (Phase 4 §5) — image + label/sublabel + browse target.
 const CATEGORY_TILES = [
-  { img: 'cat-machines.jpg', labelKey: 'cat_machines_label', subKey: 'cat_machines_sub', to: 'equipment' },
-  { img: 'list-tractor.jpg', labelKey: 'cat_tanker_label', subKey: 'cat_tanker_sub', to: 'equipment', etype: 'water_tanker' },
+  { img: 'cat-rotavator.jpg', labelKey: 'cat_machines_label', subKey: 'cat_machines_sub', to: 'equipment' },
+  { img: 'cat-tanker.jpg', labelKey: 'cat_tanker_label', subKey: 'cat_tanker_sub', to: 'equipment', etype: 'water_tanker' },
   { img: 'cat-labour.jpg', labelKey: 'cat_labour_label', subKey: 'cat_labour_sub', to: 'labor' },
   { img: 'cat-drone.jpg', labelKey: 'cat_drone_label', subKey: 'cat_drone_sub', to: 'drone_didi' },
   { img: 'cat-straw.jpg', labelKey: 'cat_straw_label', subKey: 'cat_straw_sub', to: 'bhusa' },
-  { img: 'cat-inputs.jpg', labelKey: 'cat_inputs_label', subKey: 'cat_inputs_sub', to: 'agri_inputs' },
-  { img: 'cat-inputs.jpg', labelKey: 'cat_building_materials_label', subKey: 'cat_building_materials_sub', to: 'building_materials' },
+  { img: 'cat-seeds.jpg', labelKey: 'cat_inputs_label', subKey: 'cat_inputs_sub', to: 'agri_inputs' },
+  { img: 'cat-building-materials.jpg', labelKey: 'cat_building_materials_label', subKey: 'cat_building_materials_sub', to: 'building_materials' },
   { img: 'cat-godown.jpg', labelKey: 'cat_godown_label', subKey: 'cat_godown_sub', to: 'warehouse' },
-  { img: 'cat-godown.jpg', labelKey: 'cs_tile_label', subKey: 'cs_tile_sub', path: '/cold-storage' },
-  { img: 'cat-inputs.jpg', labelKey: 'gh_tile_label', subKey: 'gh_tile_sub', path: '/greenhouse' },
-  { img: 'cat-straw.jpg', labelKey: 'carbon_tile_label', subKey: 'carbon_tile_sub', path: '/carbon-credit' },
-  { img: 'cat-machines.jpg', labelKey: 'jugaad_tile_label', subKey: 'jugaad_tile_sub', path: '/jugaad' },
-  { img: 'list-tractor.jpg', labelKey: 'cat_transport_label', subKey: 'cat_transport_sub', to: 'transport' },
+  { img: 'cat-cold-storage.jpg', labelKey: 'cs_tile_label', subKey: 'cs_tile_sub', path: '/cold-storage' },
+  { img: 'cat-greenhouse.jpg', labelKey: 'gh_tile_label', subKey: 'gh_tile_sub', path: '/greenhouse' },
+  { img: 'cat-carbon.jpg', labelKey: 'carbon_tile_label', subKey: 'carbon_tile_sub', path: '/carbon-credit' },
+  { img: 'cat-jugaad.jpg', labelKey: 'jugaad_tile_label', subKey: 'jugaad_tile_sub', path: '/jugaad' },
+  { img: 'cat-transport.jpg', labelKey: 'cat_transport_label', subKey: 'cat_transport_sub', to: 'transport' },
   { img: 'cat-expert.jpg', labelKey: 'cat_expert_label', subKey: 'cat_expert_sub', to: 'experts' },
   { img: 'cat-land.jpg', labelKey: 'cat_land_label', subKey: 'cat_land_sub', to: 'land' },
 ]
@@ -57,12 +59,12 @@ const CATEGORY_TILES = [
 // Listing category → fallback card photo (used when a listing has none of its own).
 const LIST_IMG = {
   equipment: 'list-tractor.jpg', labor: 'list-workers.jpg', drone_didi: 'list-drone.jpg',
-  bhusa: 'list-straw.jpg', agri_inputs: 'list-shop.jpg', building_materials: 'cat-inputs.jpg', warehouse: 'list-godown.jpg', land: 'list-land.jpg',
-  transport: 'list-tractor.jpg',
+  bhusa: 'list-straw.jpg', agri_inputs: 'cat-seeds.jpg', building_materials: 'cat-building-materials.jpg', warehouse: 'list-godown.jpg', land: 'list-land.jpg',
+  transport: 'cat-transport.jpg', greenhouse: 'cat-greenhouse.jpg', jugaad: 'cat-jugaad.jpg',
 }
 // Equipment sub-type (equipment_types.id) → a more specific photo, so a harvester
 // or thresher listing does not fall back to the generic tractor photo.
-const EQUIP_TYPE_IMG = { 3: 'list-thresher.jpg', 4: 'list-harvester.jpg' }
+const EQUIP_TYPE_IMG = { 3: 'list-thresher.jpg', 4: 'list-harvester.jpg', water_tanker: 'cat-tanker.jpg' }
 const listingPhoto = (l) => {
   const d = l.details || {}
   const cand = d.photo_urls || d.photos || d.images || d.image_urls
@@ -104,7 +106,7 @@ export default function Homepage() {
         fetchPublishedArticles().catch(() => []),
         fetchCrops().catch(() => []),
         fetchEquipmentTypes().catch(() => []),
-        fetchFeaturedSawaal(2).catch(() => []),
+        fetchFeaturedSawaal(3).catch(() => []),
         fetchFeaturedVideos(3).catch(() => []),
         fetchPestReports(14, 2).catch(() => []),
         fetchUpcomingEvents(30).catch(() => []),
@@ -207,6 +209,15 @@ export default function Homepage() {
         onMsp={() => navigate('/msp')}
       />
 
+      <Section bg="var(--ks-bg-soft)">
+        <h2 className="text-[22px] font-extrabold md:text-[26px]" style={{ color: 'var(--ks-ink)' }}>{t('home_search_title')}</h2>
+        <p className="mt-1 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('home_search_subtitle')}</p>
+        <div className="mt-3"><SearchBar variant="hero" /></div>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {['home_search_chip_mandi', 'home_search_chip_scheme', 'home_search_chip_machine', 'home_search_chip_place'].map((key) => <button key={key} type="button" onClick={() => navigate(`/search?q=${encodeURIComponent(t(key))}`)} className="rounded-full border border-[var(--ks-border-strong)] bg-white px-3 py-1.5 text-sm font-bold text-[var(--ks-green-dark)]">{t(key)}</button>)}
+        </div>
+      </Section>
+
       {/* Pest/disease "recently reported" banner (Phase 6) — only when a group qualifies */}
       {pest && (
         <button type="button" onClick={() => navigate('/sawaal')} className="block w-full text-left" style={{ background: 'var(--ks-saffron-tint)', borderTop: '2px solid var(--ks-saffron)', borderBottom: '2px solid var(--ks-saffron)', padding: '10px var(--ks-gutter)' }}>
@@ -252,8 +263,8 @@ export default function Homepage() {
         <SectionHeader title={t('listings_near_title')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
         {listings.length > 0 ? (
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {listings.map((l) => {
-              const rows = getCategory(l.category).summarize(l, lang, extras).slice(0, 2)
+          {listings.filter((l) => getCategorySafe(l.category)).map((l) => {
+              const rows = getCategorySafe(l.category).summarize(l, lang, extras).slice(0, 2)
               const isOffer = l.listing_type === 'offer'
               const isVendor = l.listing_source === 'vendor'
               const place = [l.village_town || l.district, l.distanceKm != null ? `${Math.round(l.distanceKm)} ${t('unit_km')}` : null].filter(Boolean).join(' · ')
@@ -286,8 +297,8 @@ export default function Homepage() {
         <Section>
           <SectionHeader title={t('most_viewed_heading')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {topViewed.map((l) => {
-              const rows = getCategory(l.category).summarize(l, lang, extras).slice(0, 2)
+          {topViewed.filter((l) => getCategorySafe(l.category)).map((l) => {
+              const rows = getCategorySafe(l.category).summarize(l, lang, extras).slice(0, 2)
               const isOffer = l.listing_type === 'offer'
               const isVendor = l.listing_source === 'vendor'
               const place = [l.village_town || l.district].filter(Boolean).join(' · ')
@@ -338,18 +349,18 @@ export default function Homepage() {
       <Section>
         <SectionHeader title={t('qa_home_title')} linkLabel={t('qa_all_link')} onLink={() => navigate('/sawaal')} />
         {sawaal.length > 0 && (
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid items-stretch gap-3 md:grid-cols-2 lg:grid-cols-3">
             {sawaal.map((q) => {
-              const answered = !!sawaalAnswer(q, lang)
+              const answer = sawaalAnswer(q, lang)
+              const answered = !!answer
               return (
-                <button key={q.id} type="button" onClick={() => navigate('/sawaal')} className="flex items-start gap-3 text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
+                <button key={q.id} type="button" onClick={() => navigate('/sawaal')} className="flex h-full flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
                   {q.photo_url
                     ? <img src={q.photo_url} alt="" loading="lazy" className="h-14 w-14 shrink-0 rounded-lg object-cover" onError={(e) => { e.currentTarget.style.display = 'none' }} />
                     : <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg text-2xl" style={{ background: 'var(--ks-green-tint)' }} aria-hidden="true">❓</span>}
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[16px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>{sawaalQuestion(q, lang)}</span>
-                    <span className="mt-1 block text-[14px] font-semibold" style={{ color: answered ? 'var(--ks-green)' : 'var(--ks-ink-3)' }}>{answered ? 1 : 0} {t('qa_answers_word')}</span>
-                  </span>
+                  <span className="line-clamp-2 block text-[16px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>{sawaalQuestion(q, lang)}</span>
+                  {answer && <span className="mt-2 line-clamp-3 block text-[14px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>{answer}</span>}
+                  <span className="mt-auto pt-3 text-[14px] font-bold" style={{ color: answered ? 'var(--ks-green)' : 'var(--ks-ink-3)' }}>{t('qa_read_answer')}</span>
                 </button>
               )
             })}
@@ -368,6 +379,7 @@ export default function Homepage() {
             {melas.map((m) => (
               <button key={m.id} type="button" data-testid="home-mela-card" onClick={() => navigate('/kisan-mela')} className="flex flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
                 <span className="text-[15px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>🌾 {lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)}</span>
+                {melaStatus(m) === 'ongoing' && <span className="mt-1 w-fit rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ background: 'var(--ks-orange-tint)', color: 'var(--ks-orange-dark)' }}>{t('mela_ongoing')}</span>}
                 <span className="mt-1 text-[13px] font-semibold" style={{ color: m.is_date_confirmed ? 'var(--ks-green)' : 'var(--ks-orange-dark)' }}>
                   📅 {melaDateLabel(m, lang, { expectedLabel: t('mela_expected_prefix'), tbdLabel: '' })}
                 </span>

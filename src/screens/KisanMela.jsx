@@ -8,7 +8,8 @@ import { PageExplainer, LocationControl, ShareWhatsApp } from '../components/pag
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPincode } from '../lib/listings/listingsApi'
 import { fetchMelas, getMyMelaInterests, setMelaInterest, resolveActiveMela, MELA_TAGS } from '../lib/mela/melaApi'
-import { filterMelas, sortByDistance, statesIn, melaDateLabel, isExpectedDate, melaDistanceKm } from '../lib/mela/melaFormat'
+import { filterMelas, statesIn, melaDateLabel, isExpectedDate, melaDistanceKm } from '../lib/mela/melaFormat'
+import { indiaToday, melaStatus, sortMelasForDisplay } from '../lib/mela/melaStatus'
 import { stateLabel } from '../content/states.js'
 import { generateMelaMessage } from '../lib/share/shareMessages'
 import { MONTHS_FULL_HI, MONTHS_FULL_EN } from '../content/months'
@@ -29,6 +30,8 @@ export default function KisanMela() {
   const [monthFilter, setMonthFilter] = useState('')
   const [interested, setInterested] = useState(new Set())
   const [highlightId, setHighlightId] = useState(null)
+  const [dateSort, setDateSort] = useState('soon')
+  const [showEnded, setShowEnded] = useState(false)
   const months = lang === 'hi' ? MONTHS_FULL_HI : MONTHS_FULL_EN
 
   useEffect(() => {
@@ -74,10 +77,11 @@ export default function KisanMela() {
   }, [loc])
 
   const states = useMemo(() => statesIn(melas || []), [melas])
-  const shown = useMemo(
-    () => sortByDistance(filterMelas(melas || [], { state: stateFilter, month: monthFilter }), center),
-    [melas, stateFilter, monthFilter, center],
-  )
+  const today = indiaToday()
+  const shown = useMemo(() => {
+    const filtered = filterMelas(melas || [], { state: stateFilter, month: monthFilter })
+    return sortMelasForDisplay(showEnded ? filtered : filtered.filter((m) => melaStatus(m, today) !== 'ended'), { today, sort: dateSort })
+  }, [melas, stateFilter, monthFilter, dateSort, showEnded, today])
 
   async function toggleInterest(mela) {
     if (!isLoggedIn || !user?.id) { navigate('/login'); return }
@@ -107,6 +111,15 @@ export default function KisanMela() {
               <option value="">{t('mela_filter_all_states')}</option>
               {states.map((s) => <option key={s} value={s}>{stateLabel(s, lang)}</option>)}
             </Select>
+          </label>
+          <label className="flex flex-col text-xs font-semibold" style={{ color: 'var(--ks-ink-3)' }}>
+            {t('mela_sort_label')}
+            <Select value={dateSort} onChange={(e) => setDateSort(e.target.value)} className="mt-1 min-w-[150px]" data-testid="mela-sort">
+              <option value="soon">{t('mela_sort_soon')}</option><option value="late">{t('mela_sort_late')}</option><option value="name">{t('mela_sort_name')}</option>
+            </Select>
+          </label>
+          <label className="flex items-center gap-2 text-xs font-semibold" style={{ color: 'var(--ks-ink-3)' }}>
+            <input type="checkbox" checked={showEnded} onChange={(e) => setShowEnded(e.target.checked)} /> {t('mela_show_ended')}
           </label>
           <label className="flex flex-col text-xs font-semibold" style={{ color: 'var(--ks-ink-3)' }}>
             {t('mela_filter_month')}
@@ -142,6 +155,7 @@ export default function KisanMela() {
             {shown.map((m) => {
               const dateLabel = melaDateLabel(m, lang, { expectedLabel: t('mela_expected_prefix'), tbdLabel: t('mela_none') })
               const expected = isExpectedDate(m)
+              const status = melaStatus(m, today)
               const dist = melaDistanceKm(center, m)
               const nm = lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)
               const highlights = lang === 'hi' ? m.highlights_hi : (m.highlights_en || m.highlights_hi)
@@ -159,6 +173,7 @@ export default function KisanMela() {
                     {(m.category_tags || []).map((tag) => (
                       <span key={tag} className="rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ background: 'var(--ks-primary-muted)', color: 'var(--ks-primary)' }}>{tagLabel(tag)}</span>
                     ))}
+                    {status === 'ongoing' && <span data-testid="mela-ongoing" className="rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ background: 'var(--ks-orange-tint)', color: 'var(--ks-orange-dark)' }}>{t('mela_ongoing')}</span>}
                     {dist != null && <span className="ml-auto text-xs font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{Math.round(dist)} {t('unit_km')}</span>}
                   </div>
                   <h2 className="text-[17px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>{nm}</h2>

@@ -166,5 +166,14 @@
     "author": "omprakash ausar",
     "license": "YouTube thumbnail (video ID O0PMu9lfboY)",
     "page": "https://www.youtube.com/watch?v=O0PMu9lfboY"
-  }
+  },
+  { "file": "cat-rotavator.jpg", "subject": "Tractor with a rotary tiller (rotavator) attached", "source_url": "https://captaintractors.com/implements/rotavator", "author": "Captain Tractors", "license": "Not stated on source page", "needs_licence_review": true },
+  { "file": "cat-seeds.jpg", "subject": "Close-up wheat seeds held in hands", "source_url": "https://fr.euronews.com/2023/09/18/les-agriculteurs-bulgares-font-pression-pour-interdire-les-importations-de-cereales-ukrain", "author": "Not stated on source page", "license": "Not stated on source page", "needs_licence_review": true },
+  { "file": "cat-building-materials.jpg", "subject": "Cement bags, bricks and sand at a building site", "source_url": "https://selvamadera.co/blog/mano-obra-vs-materiales-remodelacion", "author": "Selva Madera", "license": "Not stated on source page", "needs_licence_review": true },
+  { "file": "cat-greenhouse.jpg", "subject": "Crop rows inside a polyhouse", "source_url": "https://www.abplive.com/photo-gallery/agriculture/poly-house-farming-has-big-advantages-it-gives-complete-protection-to-the-crop-from-rain-and-diseases-2458516", "author": "ABP Live", "license": "Not stated on source page", "needs_licence_review": true },
+  { "file": "cat-jugaad.jpg", "subject": "Farmers using a motorcycle-based improvised plough", "source_url": "https://www.downtoearth.org.in/science-technology/india-and-the-power-of-jugaad", "author": "Vikas Choudhary / Down To Earth", "license": "Not stated on source page", "needs_licence_review": true },
+  { "file": "cat-tanker.jpg", "subject": "Tractor towing a water tanker on a rural road", "source_url": "https://timesofindia.indiatimes.com/city/nashik/ahilyanagar-water-shortage-8-tankers-deployed-for-supply-to-villages-in-sangamner/articleshow/119492628.cms", "author": "Times of India", "license": "Not stated on source page", "needs_licence_review": true },
+  { "file": "cat-transport.jpg", "subject": "Loaded sugarcane tractor trolley on a rural road", "source_url": "https://mapandmagnets.com/2-days-on-a-farm-in-punjab/", "author": "Map and Magnets", "license": "Not stated on source page", "needs_licence_review": true },
+  { "file": "cat-carbon.jpg", "subject": "Farm landscape with mature trees beside crops", "source_url": "https://plantnative.today/state/meghalaya/", "author": "PlantNative", "license": "Not stated on source page", "needs_licence_review": true },
+  { "file": "cat-cold-storage.jpg", "subject": "Temperature-controlled produce warehouse", "source_url": "https://www.nwccindia.com/cold-storage.php", "author": "NWCC India", "license": "Not stated on source page", "needs_licence_review": true }
 ]

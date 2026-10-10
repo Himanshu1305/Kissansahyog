@@ -6,7 +6,7 @@ import VoiceSearchButton from './VoiceSearchButton'
 // Phase 10 — NavBar search. Desktop: inline input + mic. Mobile: a 🔍 button that
 // opens a full-screen overlay with a large input + mic. Both submit to /search?q=.
 // No hardcoded Devanagari — all copy via t().
-export default function SearchBar() {
+export default function SearchBar({ variant = 'nav' }) {
   const { t } = useLang()
   const navigate = useNavigate()
   const [q, setQ] = useState('')
@@ -19,6 +19,16 @@ export default function SearchBar() {
     navigate(`/search?q=${encodeURIComponent(query)}`)
   }
   const onSubmit = (e) => { e.preventDefault(); go() }
+
+  if (variant === 'hero') {
+    return (
+      <form onSubmit={onSubmit} className="flex flex-wrap items-center gap-2 rounded-2xl border-2 border-[var(--ks-border-strong)] bg-white p-2 shadow-sm">
+        <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('home_search_placeholder')} aria-label={t('home_search_placeholder')} className="min-w-0 flex-1 bg-transparent px-3 py-3 text-base outline-none" />
+        <VoiceSearchButton onTranscript={(txt) => { setQ(txt); go(txt) }} className="shrink-0" />
+        <button type="submit" className="rounded-xl bg-[var(--ks-primary)] px-5 py-3 font-bold text-white">{t('search_open')}</button>
+      </form>
+    )
+  }
 
   return (
     <>

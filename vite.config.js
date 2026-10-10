@@ -13,7 +13,7 @@ export default defineConfig({
       // or changing content mid-session. The update flow is explicit and visible —
       // src/components/PwaPrompts.jsx surfaces a "new update available" banner via
       // vite-plugin-pwa's onNeedRefresh, and reload calls updateServiceWorker(true).
-      registerType: 'prompt',
+      registerType: 'autoUpdate',
       // We register the SW ourselves through virtual:pwa-register/react (in
       // PwaPrompts), so disable the auto-injected registration to avoid double-reg.
       injectRegister: null,
@@ -40,6 +40,7 @@ export default defineConfig({
         // offline-first works from the first session. NO skipWaiting: a *new* version
         // still waits until the user accepts the update prompt (updateServiceWorker(
         // true)), so a fix never swaps content out from under a farmer mid-session.
+        skipWaiting: true,
         clientsClaim: true,
         // SPA: serve the precached app shell for any navigation, incl. offline —
         // shows the app (not a blank white screen) when the network is down.
@@ -61,11 +62,6 @@ export default defineConfig({
               expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 },
               cacheableResponse: { statuses: [0, 200] },
             },
-          },
-          {
-            urlPattern: ({ url }) => /^https:\/\/fonts\.(googleapis|gstatic)\.com/.test(url.href),
-            handler: 'CacheFirst',
-            options: { cacheName: 'ks-fonts', expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 365 }, cacheableResponse: { statuses: [0, 200] } },
           },
         ],
       },

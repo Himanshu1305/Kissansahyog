@@ -27,7 +27,7 @@ function bumpVisit() {
 
 export default function PwaPrompts() {
   const { t } = useLang()
-  const { needRefresh: [needRefresh], updateServiceWorker } = useRegisterSW({
+  const { needRefresh: [needRefresh] } = useRegisterSW({
     onRegisteredSW() { /* registered */ },
     onRegisterError() { /* ignore — app works without the SW */ },
   })
@@ -91,7 +91,6 @@ export default function PwaPrompts() {
       {needRefresh && (
         <div data-testid="pwa-update-banner" className={`${bar} bottom-0`} style={{ background: 'var(--ks-green-dark)', color: '#fff' }} role="status">
           <span className="font-semibold">🔄 {t('pwa_update_available')}</span>
-          <button type="button" onClick={() => updateServiceWorker(true)} className="ml-auto rounded-lg px-3 py-1 text-[13px] font-bold" style={{ background: '#fff', color: 'var(--ks-green-dark)' }}>{t('pwa_reload')}</button>
         </div>
       )}
 

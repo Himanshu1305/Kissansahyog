@@ -42,7 +42,10 @@
   /* Shape + spacing */
   --ks-radius: 12px;
   --ks-radius-lg: 16px;
-  --ks-gutter: 12px;
+  --ks-card-shadow: 0 1px 3px rgba(23, 51, 35, .08);
+  --ks-grid-gap: 0.75rem;
+  --ks-section-space: 1.25rem;
+  --ks-gutter: 1rem;
 
   /* ---- Aliases: keep older pages (Info/Sawaal/Admin/etc.) intact ---- */
   --ks-primary: var(--ks-green);
@@ -67,18 +70,18 @@
   --ks-vendor-text: #7C2D12;
 
   /* ---- V2 central layout (Phase 2): mobile/desktop defined once ---- */
-  --page-pad: 14px;        /* edge padding on mobile */
-  --content-max: 42rem;    /* ~70ch readable measure for prose + forms */
-  --wide-max: 80rem;       /* grids / directories */
+  --page-pad: 1rem;        /* px-4 */
+  --content-max: 72ch;     /* reading text only */
+  --wide-max: 1200px;      /* grids / directories */
   --section-gap: 1.5rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   :root {
-    --page-pad: 40px;      /* edge padding on desktop */
-    --section-gap: 2.5rem;
+    --page-pad: 1.5rem;    /* sm:px-6 */
   }
 }
+@media (min-width: 1024px) { :root { --page-pad: 2rem; --section-gap: 2.5rem; --ks-section-space: 2rem; } } /* lg:px-8 */
 
 /* Full-bleed section: spans the viewport; inner content is padded + centred. */
 .ks-section { width: 100%; }
@@ -91,10 +94,11 @@
 /* Readable column for long text + forms. */
 .ks-content {
   margin-inline: auto;
-  padding-inline: var(--page-pad);
   width: 100%;
   max-width: var(--content-max);
 }
+.ks-form-side { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ks-grid-gap); }
+@media (min-width: 1024px) { .ks-form-side { grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr); } }
 /* Long-form structured content page defaults. */
 .content-page { font-size: 1.0625rem; line-height: 1.7; }
 .content-page :where(h2, h3, h4) { scroll-margin-top: 5rem; }
