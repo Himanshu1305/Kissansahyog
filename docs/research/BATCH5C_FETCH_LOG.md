@@ -51,3 +51,7 @@
 | 2026-10-10T09:42:23.806Z | https://www.nabard.org/content1.aspx?id=602&catid=23&mid=23 | 200 |  | 70038 | 6010 | usable |
 | 2026-10-10T09:42:24.966Z | https://www.nabard.org/contentsearch.aspx?AID=251&Key=agriculture%2Bcredit | 200 |  | 140222 | 18061 | usable |
 | 2026-10-10T09:42:25.868Z | https://www.nic.gov.in/project/soil-health-card-portal/ | 200 |  | 113894 | 3251 | usable |
+| 2026-10-10T10:35:58.384Z | https://www.bis.gov.in/product-certification/product-certification-process/ | 200 |  | 472041 | 15710 | usable |
+| 2026-10-10T10:36:00.433Z | https://www.bis.gov.in/product-certification/products-under-compulsory-certification/ | 200 |  | 469862 | 15352 | usable |
+| 2026-10-10T10:36:01.419Z | https://icar.org.in/ | 200 |  | 130806 | 13002 | usable |
+| 2026-10-10T10:36:03.012Z | https://apeda.gov.in/ | 200 |  | 167881 | 17563 | usable |

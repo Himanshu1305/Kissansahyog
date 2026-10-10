@@ -18,11 +18,11 @@ node scripts/test/v2_citation_audit.mjs
 node --env-file=.env scripts/db.mjs query "select count(*) as published_batch5b from kisan_sawaal where is_published = true and slug in (select slug from kisan_sawaal where slug like 'bis-%' or slug like 'enam-%' or slug like 'kusum-%' or slug like 'kcc-%' or slug like 'nabard-%' or slug like 'soil-health-card-%' or slug like 'sabzi-%');"
 ```
 
-This repair contains 23 Q&As. To roll back only this batch, use the complete slug list in `docs/research/qa_raw/batch5b.json`:
+This repair contains 17 Q&As. To roll back only this batch, use the complete slug list in `docs/research/qa_raw/batch5b.json`:
 
 ```sql
 update kisan_sawaal set is_published = false
 where slug in ('bis-scheme-one-marks', 'enam-farmer-app-register', 'kusum-three-components');
 ```
 
-The shown slugs are examples: include all 23. Do not rerun the seed after rollback unless those Q&As are marked `unpublish: true`.
+The shown slugs are examples: include all 17. Do not rerun the seed after rollback unless those Q&As are marked `unpublish: true`.

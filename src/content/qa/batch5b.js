@@ -2,36 +2,6 @@
 // Kisan Sawaal knowledge-base Q&As (Hindi-only pages). Every numeric block carries cites.
 export default [
   {
-    "slug": "bis-scheme-one-marks",
-    "crop": "",
-    "category": "materials",
-    "season": "all",
-    "question_hi": "BIS Scheme-I में कौन से Mark आते हैं?",
-    "question_en": "Which marks come under BIS Scheme-I?",
-    "short_hi": "Scheme-I में ISI Mark और Eco Mark आते हैं।",
-    "short_en": "Scheme-I covers the ISI Mark and Eco Mark.",
-    "blocks": [],
-    "blocks_en": [],
-    "sources": [
-      "S-Q5C-01"
-    ]
-  },
-  {
-    "slug": "bis-quality-complaint",
-    "crop": "",
-    "category": "materials",
-    "season": "all",
-    "question_hi": "BIS को किस गुणवत्ता की शिकायत भेज सकते हैं?",
-    "question_en": "Which quality complaint can go to BIS?",
-    "short_hi": "BIS Certified Product की गुणवत्ता पर शिकायत की जा सकती है।",
-    "short_en": "A quality complaint can concern a BIS Certified Product.",
-    "blocks": [],
-    "blocks_en": [],
-    "sources": [
-      "S-Q5C-01"
-    ]
-  },
-  {
     "slug": "bis-complaint-channels",
     "crop": "",
     "category": "materials",
@@ -167,51 +137,6 @@ export default [
     ]
   },
   {
-    "slug": "kusum-three-components",
-    "crop": "",
-    "category": "schemes",
-    "season": "all",
-    "question_hi": "PM-KUSUM के तीन हिस्से क्या हैं?",
-    "question_en": "What are PM-KUSUM’s three components?",
-    "short_hi": "PM-KUSUM में decentralised solar plants, stand-alone solar agriculture pumps और grid-connected pumps का solarisation शामिल है।",
-    "short_en": "PM-KUSUM has decentralised solar plants, stand-alone solar agriculture pumps, and solarisation of grid-connected agriculture pumps.",
-    "blocks": [],
-    "blocks_en": [],
-    "sources": [
-      "S-Q5C-05"
-    ]
-  },
-  {
-    "slug": "kusum-offgrid-pump",
-    "crop": "",
-    "category": "schemes",
-    "season": "all",
-    "question_hi": "PM-KUSUM में off-grid solar pump कितना बड़ा हो सकता है?",
-    "question_en": "How large can an off-grid PM-KUSUM solar pump be?",
-    "short_hi": "जहाँ grid supply नहीं है, वहाँ individual farmer को 7.5 HP तक stand-alone solar agriculture pump के लिए support मिल सकता है।",
-    "short_en": "In off-grid areas, an individual farmer can be supported for a stand-alone solar agriculture pump up to 7.5 HP.",
-    "blocks": [],
-    "blocks_en": [],
-    "sources": [
-      "S-Q5C-05"
-    ]
-  },
-  {
-    "slug": "kusum-component-b-share",
-    "crop": "",
-    "category": "schemes",
-    "season": "all",
-    "question_hi": "PM-KUSUM Component B में लागत का हिस्सा कैसे बताया गया है?",
-    "question_en": "How is the cost share described for PM-KUSUM Component B?",
-    "short_hi": "Page के अनुसार CFA 30%, State subsidy कम-से-कम 30% और किसान का हिस्सा अधिकतम 40% बताया गया है। आवेदन से पहले MP की मौजूदा सूचना देखें।",
-    "short_en": "The page states 30% CFA, at least 30% State subsidy, and at most 40% from the farmer; check current MP information before applying.",
-    "blocks": [],
-    "blocks_en": [],
-    "sources": [
-      "S-Q5C-05"
-    ]
-  },
-  {
     "slug": "kcc-timely-flexible-credit",
     "crop": "",
     "category": "credit",
@@ -220,21 +145,6 @@ export default [
     "question_en": "What is the Kisan Credit Card for?",
     "short_hi": "KCC किसानों को कृषि inputs और production needs के लिए timely और flexible credit देने के लिए शुरू हुई थी।",
     "short_en": "KCC was introduced to provide farmers timely and flexible credit for agricultural inputs and production needs.",
-    "blocks": [],
-    "blocks_en": [],
-    "sources": [
-      "S-Q5C-06"
-    ]
-  },
-  {
-    "slug": "kcc-crop-allied-limit",
-    "crop": "",
-    "category": "credit",
-    "season": "all",
-    "question_hi": "KCC-MISS में crop और allied काम के लिए सीमा क्या बताई गई है?",
-    "question_en": "What limit is stated for crop and allied work under KCC-MISS?",
-    "short_hi": "Page में crop cultivation और allied activities के लिए ₹3 लाख की सीमा, और allied activities के लिए ₹2 लाख की sub-limit बताई गई है।",
-    "short_en": "The page states a ₹3 lakh limit for crop cultivation and allied activities, with a ₹2 lakh sub-limit for allied activities.",
     "blocks": [],
     "blocks_en": [],
     "sources": [

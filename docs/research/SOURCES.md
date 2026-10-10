@@ -242,7 +242,20 @@ This register consolidates every distinct source backing the research dossiers b
 | S-Q5C-02 | Small-Scale Postharvest Handling Practices | Food and Agriculture Organization of the United Nations (FAO) | https://www.fao.org/4/ae075e/ae075e02.htm |  | 2026-10-10 | Official |  |
 | S-Q5C-03 | e-NAM Farmers Module | National Agriculture Market (e-NAM) | https://enam.gov.in/mobile-app/farmers-module |  | 2026-10-10 | Official |  |
 | S-Q5C-04 | e-NAM Traders | National Agriculture Market (e-NAM) | https://enam.gov.in/stakeholders-Involved/traders |  | 2026-10-10 | Official |  |
-| S-Q5C-05 | PM-KUSUM | Ministry of New and Renewable Energy (MNRE) | https://mnre.gov.in/en/pradhan-mantri-kisan-urja-suraksha-evam-utthaan-mahabhiyaan-pm-kusum/ |  | 2026-10-10 | Official |  |
+| S-Q5C-06 | Modified Interest Subvention Scheme | National Bank for Agriculture and Rural Development (NABARD) | https://www.nabard.org/content1.aspx?id=602&catid=23&mid=23 |  | 2026-10-10 | Official |  |
+| S-Q5C-07 | NABARD Department of Refinance | National Bank for Agriculture and Rural Development (NABARD) | https://www.nabard.org/contentsearch.aspx?AID=251&Key=agriculture%2Bcredit |  | 2026-10-10 | Official |  |
+| S-Q5C-08 | Soil Health Card Portal | National Informatics Centre (NIC) | https://www.nic.gov.in/project/soil-health-card-portal/ |  | 2026-10-10 | Official |  |
+| S-Q5C-01 | BIS consumer FAQ | Bureau of Indian Standards (BIS) | https://www.bis.gov.in/consumer-overview/for-consumers-faq/?lang=en |  | 2026-10-10 | Official |  |
+| S-Q5C-02 | Small-Scale Postharvest Handling Practices | Food and Agriculture Organization of the United Nations (FAO) | https://www.fao.org/4/ae075e/ae075e02.htm |  | 2026-10-10 | Official |  |
+| S-Q5C-03 | e-NAM Farmers Module | National Agriculture Market (e-NAM) | https://enam.gov.in/mobile-app/farmers-module |  | 2026-10-10 | Official |  |
+| S-Q5C-04 | e-NAM Traders | National Agriculture Market (e-NAM) | https://enam.gov.in/stakeholders-Involved/traders |  | 2026-10-10 | Official |  |
+| S-Q5C-06 | Modified Interest Subvention Scheme | National Bank for Agriculture and Rural Development (NABARD) | https://www.nabard.org/content1.aspx?id=602&catid=23&mid=23 |  | 2026-10-10 | Official |  |
+| S-Q5C-07 | NABARD Department of Refinance | National Bank for Agriculture and Rural Development (NABARD) | https://www.nabard.org/contentsearch.aspx?AID=251&Key=agriculture%2Bcredit |  | 2026-10-10 | Official |  |
+| S-Q5C-08 | Soil Health Card Portal | National Informatics Centre (NIC) | https://www.nic.gov.in/project/soil-health-card-portal/ |  | 2026-10-10 | Official |  |
+| S-Q5C-01 | BIS consumer FAQ | Bureau of Indian Standards (BIS) | https://www.bis.gov.in/consumer-overview/for-consumers-faq/?lang=en |  | 2026-10-10 | Official |  |
+| S-Q5C-02 | Small-Scale Postharvest Handling Practices | Food and Agriculture Organization of the United Nations (FAO) | https://www.fao.org/4/ae075e/ae075e02.htm |  | 2026-10-10 | Official |  |
+| S-Q5C-03 | e-NAM Farmers Module | National Agriculture Market (e-NAM) | https://enam.gov.in/mobile-app/farmers-module |  | 2026-10-10 | Official |  |
+| S-Q5C-04 | e-NAM Traders | National Agriculture Market (e-NAM) | https://enam.gov.in/stakeholders-Involved/traders |  | 2026-10-10 | Official |  |
 | S-Q5C-06 | Modified Interest Subvention Scheme | National Bank for Agriculture and Rural Development (NABARD) | https://www.nabard.org/content1.aspx?id=602&catid=23&mid=23 |  | 2026-10-10 | Official |  |
 | S-Q5C-07 | NABARD Department of Refinance | National Bank for Agriculture and Rural Development (NABARD) | https://www.nabard.org/contentsearch.aspx?AID=251&Key=agriculture%2Bcredit |  | 2026-10-10 | Official |  |
 | S-Q5C-08 | Soil Health Card Portal | National Informatics Centre (NIC) | https://www.nic.gov.in/project/soil-health-card-portal/ |  | 2026-10-10 | Official |  |
