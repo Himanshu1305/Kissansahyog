@@ -307,12 +307,21 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "सूरजमुखी की उन्नत किस्में कौन-सी हैं?",
-    "title_en": "Which improved sunflower varieties are recommended?",
-    "subtitle_hi": "सूरजमुखी की सुझाई किस्में हैं — मार्डन, BSH-1, MSH-17, MSFS-8, SHFH-1, MSFH-4, ज्वालामुखी, EC 68415 और सूर्या। संकर किस्में उपज में अच्छी रहती हैं।",
-    "subtitle_en": "Suggested sunflower varieties are — Morden, BSH-1, MSH-17, MSFS-8, SHFH-1, MSFH-4, Jwalamukhi, EC 68415 and Surya. Hybrids tend to yield better.",
-    "url": "/sawaal/surajmukhi-unnat-kismein-mp",
-    "keywords": "सूरजमुखी की उन्नत किस्में कौन-सी हैं? which improved sunflower varieties are recommended? sunflower variety सूरजमुखी की सुझाई किस्में हैं — मार्डन, bsh-1, msh-17, msfs-8, shfh-1, msfh-4, ज्वालामुखी, ec 68415 और सूर्या। संकर किस्में उपज में अच्छी रहती हैं। suggested sunflower varieties are — morden, bsh-1, msh-17, msfs-8, shfh-1, msfh-4, jwalamukhi, ec 68415 and surya. hybrids tend to yield better."
+    "title_hi": "उड़द का बीज उपचार कैसे करें?",
+    "title_en": "How to treat urad (black gram) seed?",
+    "subtitle_hi": "प्रति किलो बीज को 3 ग्राम थायरम या 2.5 ग्राम डायथेन M-45 से उपचारित करके बोएं। इससे बीज-जनित रोग दबते हैं। लेबल पर लिखी मात्रा ही उपयोग करें।",
+    "subtitle_en": "Treat each kg of seed with 3 g thiram or 2.5 g dithane M-45 before sowing. This suppresses seed-borne diseases. Use only the dose on the label.",
+    "url": "/sawaal/urad-beej-upchar-mp",
+    "keywords": "उड़द का बीज उपचार कैसे करें? how to treat urad (black gram) seed? urad disease प्रति किलो बीज को 3 ग्राम थायरम या 2.5 ग्राम डायथेन m-45 से उपचारित करके बोएं। इससे बीज-जनित रोग दबते हैं। लेबल पर लिखी मात्रा ही उपयोग करें। treat each kg of seed with 3 g thiram or 2.5 g dithane m-45 before sowing. this suppresses seed-borne diseases. use only the dose on the label."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "गेहूं की बुवाई का सही समय क्या है?",
+    "title_en": "What is the right time to sow wheat?",
+    "subtitle_hi": "सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से ",
+    "subtitle_en": "Sow irrigated wheat in the second fortnight of November. In rainfed fields sow from mid-October to the first week of November, and in semi-irrigated fields in t",
+    "url": "/sawaal/gehun-buwai-ka-sahi-samay-sagar",
+    "keywords": "गेहूं की बुवाई का सही समय क्या है? what is the right time to sow wheat? wheat sowing सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से sow irrigated wheat in the second fortnight of november. in rainfed fields sow from mid-october to the first week of november, and in semi-irrigated fields in t"
   },
   {
     "type": "sawaal",
@@ -334,12 +343,48 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "चने में बीज दर कितनी रखें (देशी और काबुली)?",
+    "title_en": "What seed rate for gram (desi and kabuli)?",
+    "subtitle_hi": "देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर कर",
+    "subtitle_en": "Keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. Always treat the seed before sowing.",
+    "url": "/sawaal/chana-beej-dar-desi-kabuli",
+    "keywords": "चने में बीज दर कितनी रखें (देशी और काबुली)? what seed rate for gram (desi and kabuli)? gram sowing देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर कर keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. always treat the seed before sowing."
+  },
+  {
+    "type": "sawaal",
     "title_hi": "सरसों की बुवाई का सही समय क्या है?",
     "title_en": "What is the right time to sow mustard?",
     "subtitle_hi": "असिंचित सरसों 15 सितंबर से 15 अक्टूबर के बीच बोएं। सिंचित सरसों 10 अक्टूबर से 30 अक्टूबर तक बोएं। तोरिया की बुवाई सितंबर के पहले पखवाड़े में करें।",
     "subtitle_en": "Sow rainfed mustard between 15 September and 15 October. Sow irrigated mustard from 10 to 30 October. Sow toria in the first fortnight of September.",
     "url": "/sawaal/sarson-buwai-ka-sahi-samay-mp",
     "keywords": "सरसों की बुवाई का सही समय क्या है? what is the right time to sow mustard? mustard sowing असिंचित सरसों 15 सितंबर से 15 अक्टूबर के बीच बोएं। सिंचित सरसों 10 अक्टूबर से 30 अक्टूबर तक बोएं। तोरिया की बुवाई सितंबर के पहले पखवाड़े में करें। sow rainfed mustard between 15 september and 15 october. sow irrigated mustard from 10 to 30 october. sow toria in the first fortnight of september."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सूरजमुखी की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved sunflower varieties are recommended?",
+    "subtitle_hi": "सूरजमुखी की सुझाई किस्में हैं — मार्डन, BSH-1, MSH-17, MSFS-8, SHFH-1, MSFH-4, ज्वालामुखी, EC 68415 और सूर्या। संकर किस्में उपज में अच्छी रहती हैं।",
+    "subtitle_en": "Suggested sunflower varieties are — Morden, BSH-1, MSH-17, MSFS-8, SHFH-1, MSFH-4, Jwalamukhi, EC 68415 and Surya. Hybrids tend to yield better.",
+    "url": "/sawaal/surajmukhi-unnat-kismein-mp",
+    "keywords": "सूरजमुखी की उन्नत किस्में कौन-सी हैं? which improved sunflower varieties are recommended? sunflower variety सूरजमुखी की सुझाई किस्में हैं — मार्डन, bsh-1, msh-17, msfs-8, shfh-1, msfh-4, ज्वालामुखी, ec 68415 और सूर्या। संकर किस्में उपज में अच्छी रहती हैं। suggested sunflower varieties are — morden, bsh-1, msh-17, msfs-8, shfh-1, msfh-4, jwalamukhi, ec 68415 and surya. hybrids tend to yield better."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "e-NAM app में किसान registration कैसे शुरू करें?",
+    "title_en": "How do I start farmer registration in the e-NAM app?",
+    "subtitle_hi": "App download करके Home Page में register चुनें और steps follow करें।",
+    "subtitle_en": "After downloading the app, choose register in the Home Page options and follow the steps.",
+    "url": "/sawaal/enam-farmer-app-register",
+    "keywords": "e-nam app में किसान registration कैसे शुरू करें? how do i start farmer registration in the e-nam app? mandi app download करके home page में register चुनें और steps follow करें। after downloading the app, choose register in the home page options and follow the steps."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "e-NAM में पुरानी lots की जानकारी कहाँ दिखती है?",
+    "title_en": "Where can I see previous lot information in e-NAM?",
+    "subtitle_hi": "My Lots History में पिछले 7 दिनों की lots की जानकारी देख सकते हैं।",
+    "subtitle_en": "In My Lots History, a farmer can view the past 7 days of lot information.",
+    "url": "/sawaal/enam-my-lots-history",
+    "keywords": "e-nam में पुरानी lots की जानकारी कहाँ दिखती है? where can i see previous lot information in e-nam? mandi my lots history में पिछले 7 दिनों की lots की जानकारी देख सकते हैं। in my lots history, a farmer can view the past 7 days of lot information."
   },
   {
     "type": "sawaal",
@@ -361,6 +406,33 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "e-NAM auction के बाद sell price पर क्या कर सकते हैं?",
+    "title_en": "What can I do with the sale price after an e-NAM auction?",
+    "subtitle_hi": "Auction पूरा होने और winner घोषित होने पर किसान offer accept या reject कर सकता है।",
+    "subtitle_en": "Once the auction is completed and the winner is declared, a farmer can accept or reject it.",
+    "url": "/sawaal/enam-auction-accept-reject",
+    "keywords": "e-nam auction के बाद sell price पर क्या कर सकते हैं? what can i do with the sale price after an e-nam auction? mandi auction पूरा होने और winner घोषित होने पर किसान offer accept या reject कर सकता है। once the auction is completed and the winner is declared, a farmer can accept or reject it."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "e-NAM में trader registration के तरीके क्या हैं?",
+    "title_en": "What are the ways to register as an e-NAM trader?",
+    "subtitle_hi": "Registration e-NAM Portal, Mobile Application या mandi जाकर किया जा सकता है।",
+    "subtitle_en": "Buyer or trader registration can be done through the e-NAM Portal, Mobile Application, or by visiting a mandi.",
+    "url": "/sawaal/enam-trader-registration-ways",
+    "keywords": "e-nam में trader registration के तरीके क्या हैं? what are the ways to register as an e-nam trader? mandi registration e-nam portal, mobile application या mandi जाकर किया जा सकता है। buyer or trader registration can be done through the e-nam portal, mobile application, or by visiting a mandi."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "e-NAM trader registration की fee लगती है?",
+    "title_en": "Is there a fee for e-NAM trader registration?",
+    "subtitle_hi": "e-NAM registration की fee नहीं है। नाम, पता, mobile और bank details जैसे basic details लगते हैं।",
+    "subtitle_en": "There is no fee for e-NAM registration; basic details include name, address, mobile number, and bank details.",
+    "url": "/sawaal/enam-trader-registration-fee",
+    "keywords": "e-nam trader registration की fee लगती है? is there a fee for e-nam trader registration? mandi e-nam registration की fee नहीं है। नाम, पता, mobile और bank details जैसे basic details लगते हैं। there is no fee for e-nam registration; basic details include name, address, mobile number, and bank details."
+  },
+  {
+    "type": "sawaal",
     "title_hi": "सूरजमुखी की बुवाई का समय और बीज दर क्या है?",
     "title_en": "What is the sowing time and seed rate for sunflower (surajmukhi)?",
     "subtitle_hi": "सिंचित सूरजमुखी खरीफ कटाई के बाद अक्टूबर के मध्य से नवंबर के अंत तक बोएं। असिंचित में सितंबर में बोएं। उन्नत किस्म में 10 किलो और संकर किस्म में 6-7 किलो बीज प्",
@@ -379,6 +451,33 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "e-NAM में trading कैसे होती है?",
+    "title_en": "How does trading work in e-NAM?",
+    "subtitle_hi": "e-NAM में trading electronic और transparent bidding process से हो सकती है।",
+    "subtitle_en": "Trading can be done electronically through a transparent bidding process.",
+    "url": "/sawaal/enam-transparent-bidding",
+    "keywords": "e-nam में trading कैसे होती है? how does trading work in e-nam? mandi e-nam में trading electronic और transparent bidding process से हो सकती है। trading can be done electronically through a transparent bidding process."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "Soil Health Card कितनी भाषाओं में बन सकता है?",
+    "title_en": "In how many languages can a Soil Health Card be generated?",
+    "subtitle_hi": "Portal पर Soil Health Card 22 अलग भाषाओं और 5 dialects में, local units के साथ बन सकता है।",
+    "subtitle_en": "The portal facilitates Soil Health Card generation in 22 languages and 5 dialects, with local units.",
+    "url": "/sawaal/soil-health-card-languages",
+    "keywords": "soil health card कितनी भाषाओं में बन सकता है? in how many languages can a soil health card be generated? soil portal पर soil health card 22 अलग भाषाओं और 5 dialects में, local units के साथ बन सकता है। the portal facilitates soil health card generation in 22 languages and 5 dialects, with local units."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "Soil Health Card में क्या जानकारी मिलती है?",
+    "title_en": "What information does a Soil Health Card provide?",
+    "subtitle_hi": "Soil Health Card जमीन की nutrient status और fertilizer, bio-fertilizer, organic fertilizer व soil amendment की dose recommendations देता है।",
+    "subtitle_en": "A Soil Health Card provides nutrient status and recommendations on dosages of fertilisers, bio-fertilisers, organic fertilisers, and soil amendments.",
+    "url": "/sawaal/soil-health-card-recommendations",
+    "keywords": "soil health card में क्या जानकारी मिलती है? what information does a soil health card provide? soil soil health card जमीन की nutrient status और fertilizer, bio-fertilizer, organic fertilizer व soil amendment की dose recommendations देता है। a soil health card provides nutrient status and recommendations on dosages of fertilisers, bio-fertilisers, organic fertilisers, and soil amendments."
+  },
+  {
+    "type": "sawaal",
     "title_hi": "गन्ने की उन्नत किस्में कौन-सी हैं?",
     "title_en": "Which improved sugarcane varieties are recommended?",
     "subtitle_hi": "शीघ्र पकने वाली किस्में — Co.C.-671, CoJN 86-141, Co. 86-572, Co. 94008 और CoJN 9823। मध्यम/देर से पकने वाली — Co. 86032, Co. 7318, K. 99004, CoJN 86-600 और CoJ",
@@ -388,12 +487,30 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ?",
-    "title_en": "My field has black clay soil — how do I get the soil tested before sowing soybean?",
-    "subtitle_hi": "soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए खाद ",
-    "subtitle_en": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or Krishi Vigyan Kendra. The card gives your soil's status on 12 par",
-    "url": "/sawaal/mere-kheta-mitti-kaali-chikani-soyaabina-bone",
-    "keywords": "मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ? my field has black clay soil — how do i get the soil tested before sowing soybean? soil soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए खाद request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or krishi vigyan kendra. the card gives your soil's status on 12 par"
+    "title_hi": "Soil Health Card portal में recommendation कैसे बनती है?",
+    "title_en": "How is a Soil Health Card recommendation generated?",
+    "subtitle_hi": "Portal workflow में sample collection, sample registration, soil testing और automatic fertiliser recommendation शामिल हैं।",
+    "subtitle_en": "The portal workflow includes sample collection, sample registration, soil testing, and automatic fertiliser recommendation.",
+    "url": "/sawaal/soil-health-card-workflow",
+    "keywords": "soil health card portal में recommendation कैसे बनती है? how is a soil health card recommendation generated? soil portal workflow में sample collection, sample registration, soil testing और automatic fertiliser recommendation शामिल हैं। the portal workflow includes sample collection, sample registration, soil testing, and automatic fertiliser recommendation."
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें?",
+    "title_en": "How to control girdle beetle in soybean?",
+    "subtitle_hi": "गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाए",
+    "subtitle_en": "The girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. Do deep summer ploughing, sow as the monsoon starts, and follow crop rotati",
+    "url": "/sawaal/soybean-girdle-beetle-control",
+    "keywords": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें? how to control girdle beetle in soybean? soybean pest गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाए the girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. do deep summer ploughing, sow as the monsoon starts, and follow crop rotati"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें?",
+    "title_en": "My wheat leaves have yellow-orange striped patches — what should I do?",
+    "subtitle_hi": "यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% छिड़कें। रोग-रोधी किस",
+    "subtitle_en": "This is yellow rust. Leaves get yellow-orange striped powdery stripes. As soon as you see it, spray propiconazole (Tilt) 25 EC @ 0.1%. Grow a resistant variety.",
+    "url": "/sawaal/gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan",
+    "keywords": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें? my wheat leaves have yellow-orange striped patches — what should i do? wheat disease यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 ec @ 0.1% छिड़कें। रोग-रोधी किस this is yellow rust. leaves get yellow-orange striped powdery stripes. as soon as you see it, spray propiconazole (tilt) 25 ec @ 0.1%. grow a resistant variety."
   },
   {
     "type": "sawaal",
@@ -406,12 +523,21 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?",
-    "title_en": "Which soybean varieties are recommended for Madhya Pradesh?",
-    "subtitle_hi": "मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में हैं। जैसे NRC 165, JS 22-12, JS 22-16, NRC 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार 2-3 ",
-    "subtitle_en": "For Madhya Pradesh there are centrally notified high-yield varieties, such as NRC 165, JS 22-12, JS 22-16, NRC 150 and more. Pick 2-3 varieties that suit your a",
-    "url": "/sawaal/soybean-recommended-varieties-mp",
-    "keywords": "मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं? which soybean varieties are recommended for madhya pradesh? soybean variety मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में हैं। जैसे nrc 165, js 22-12, js 22-16, nrc 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार 2-3 for madhya pradesh there are centrally notified high-yield varieties, such as nrc 165, js 22-12, js 22-16, nrc 150 and more. pick 2-3 varieties that suit your a"
+    "title_hi": "सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है?",
+    "title_en": "Which wheat seed variety is best for Sagar district?",
+    "subtitle_hi": "मध्य प्रदेश के लिए लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम में पूसा तेजस (HI-8",
+    "subtitle_en": "For Madhya Pradesh, common wheat varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. In durum, ",
+    "url": "/sawaal/which-wheat-seed-variety-is-best-for-sagar-district",
+    "keywords": "सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है? which wheat seed variety is best for sagar district? wheat variety मध्य प्रदेश के लिए लोक-1, gw-322, gw-366, gw-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती में c-306 और अमृता (hi 1500) अच्छी हैं। डुरम में पूसा तेजस (hi-8 for madhya pradesh, common wheat varieties like lok-1, gw-322, gw-366, gw-273 are popular. among sharbati types, c-306 and amrita (hi 1500) are good. in durum,"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ?",
+    "title_en": "My field has black clay soil — how do I get the soil tested before sowing soybean?",
+    "subtitle_hi": "soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए खाद ",
+    "subtitle_en": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or Krishi Vigyan Kendra. The card gives your soil's status on 12 par",
+    "url": "/sawaal/mere-kheta-mitti-kaali-chikani-soyaabina-bone",
+    "keywords": "मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ? my field has black clay soil — how do i get the soil tested before sowing soybean? soil soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए खाद request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or krishi vigyan kendra. the card gives your soil's status on 12 par"
   },
   {
     "type": "sawaal",
@@ -424,12 +550,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "धान की नर्सरी के पौधे पीले और कमजोर रह गए हैं, क्या करूँ?",
-    "title_en": "My paddy nursery seedlings are yellow and weak — what should I do?",
-    "subtitle_hi": "नर्सरी का पीलापन अक्सर नाइट्रोजन या जिंक की कमी, या पानी की गड़बड़ी से होता है। अगर पुरानी (नीचे की) पत्तियाँ पीली हों तो नाइट्रोजन की कमी हो सकती है। सुधार के ",
-    "subtitle_en": "Nursery yellowing is often from nitrogen or zinc shortage, or a water problem. If the old (lower) leaves are yellow, it can be nitrogen shortage. To correct it,",
-    "url": "/sawaal/dhaana-narsari-paudhe-pile-kamajora-raha-gae",
-    "keywords": "धान की नर्सरी के पौधे पीले और कमजोर रह गए हैं, क्या करूँ? my paddy nursery seedlings are yellow and weak — what should i do? paddy pest नर्सरी का पीलापन अक्सर नाइट्रोजन या जिंक की कमी, या पानी की गड़बड़ी से होता है। अगर पुरानी (नीचे की) पत्तियाँ पीली हों तो नाइट्रोजन की कमी हो सकती है। सुधार के nursery yellowing is often from nitrogen or zinc shortage, or a water problem. if the old (lower) leaves are yellow, it can be nitrogen shortage. to correct it,"
+    "title_hi": "मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?",
+    "title_en": "Which soybean varieties are recommended for Madhya Pradesh?",
+    "subtitle_hi": "मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में हैं। जैसे NRC 165, JS 22-12, JS 22-16, NRC 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार 2-3 ",
+    "subtitle_en": "For Madhya Pradesh there are centrally notified high-yield varieties, such as NRC 165, JS 22-12, JS 22-16, NRC 150 and more. Pick 2-3 varieties that suit your a",
+    "url": "/sawaal/soybean-recommended-varieties-mp",
+    "keywords": "मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं? which soybean varieties are recommended for madhya pradesh? soybean variety मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में हैं। जैसे nrc 165, js 22-12, js 22-16, nrc 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार 2-3 for madhya pradesh there are centrally notified high-yield varieties, such as nrc 165, js 22-12, js 22-16, nrc 150 and more. pick 2-3 varieties that suit your a"
   },
   {
     "type": "sawaal",
@@ -451,12 +577,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें?",
-    "title_en": "How to manage yellow mosaic virus in soybean?",
-    "subtitle_hi": "पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद",
-    "subtitle_en": "Yellow mosaic spreads through whitefly. Leaves get yellow-green patches and pods do not form. The best step is to grow a resistant variety. Remove diseased plan",
-    "url": "/sawaal/soybean-yellow-mosaic-virus",
-    "keywords": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें? how to manage yellow mosaic virus in soybean? soybean disease पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद yellow mosaic spreads through whitefly. leaves get yellow-green patches and pods do not form. the best step is to grow a resistant variety. remove diseased plan"
+    "title_hi": "धान की नर्सरी के पौधे पीले और कमजोर रह गए हैं, क्या करूँ?",
+    "title_en": "My paddy nursery seedlings are yellow and weak — what should I do?",
+    "subtitle_hi": "नर्सरी का पीलापन अक्सर नाइट्रोजन या जिंक की कमी, या पानी की गड़बड़ी से होता है। अगर पुरानी (नीचे की) पत्तियाँ पीली हों तो नाइट्रोजन की कमी हो सकती है। सुधार के ",
+    "subtitle_en": "Nursery yellowing is often from nitrogen or zinc shortage, or a water problem. If the old (lower) leaves are yellow, it can be nitrogen shortage. To correct it,",
+    "url": "/sawaal/dhaana-narsari-paudhe-pile-kamajora-raha-gae",
+    "keywords": "धान की नर्सरी के पौधे पीले और कमजोर रह गए हैं, क्या करूँ? my paddy nursery seedlings are yellow and weak — what should i do? paddy pest नर्सरी का पीलापन अक्सर नाइट्रोजन या जिंक की कमी, या पानी की गड़बड़ी से होता है। अगर पुरानी (नीचे की) पत्तियाँ पीली हों तो नाइट्रोजन की कमी हो सकती है। सुधार के nursery yellowing is often from nitrogen or zinc shortage, or a water problem. if the old (lower) leaves are yellow, it can be nitrogen shortage. to correct it,"
   },
   {
     "type": "sawaal",
@@ -466,6 +592,15 @@
     "subtitle_en": "Protect cut soybean from rain, or the grain can blacken and germination drops. Cover the crop with a tarpaulin on high, dry ground. Thresh only after the grain ",
     "url": "/sawaal/agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri",
     "keywords": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ? rain is likely in the next three-four days — what do i do with my cut soybean? soybean weather कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ही थ्र protect cut soybean from rain, or the grain can blacken and germination drops. cover the crop with a tarpaulin on high, dry ground. thresh only after the grain"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें?",
+    "title_en": "How to manage yellow mosaic virus in soybean?",
+    "subtitle_hi": "पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद",
+    "subtitle_en": "Yellow mosaic spreads through whitefly. Leaves get yellow-green patches and pods do not form. The best step is to grow a resistant variety. Remove diseased plan",
+    "url": "/sawaal/soybean-yellow-mosaic-virus",
+    "keywords": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें? how to manage yellow mosaic virus in soybean? soybean disease पीला मोज़ायक सफेद मक्खी से फैलता है। पत्तियों पर पीले-हरे धब्बे बनते हैं और फली नहीं बनती। सबसे अच्छा उपाय रोग-रोधी किस्म लगाना है। रोगग्रस्त पौधे निकालें। सफेद yellow mosaic spreads through whitefly. leaves get yellow-green patches and pods do not form. the best step is to grow a resistant variety. remove diseased plan"
   },
   {
     "type": "sawaal",
@@ -484,6 +619,15 @@
     "subtitle_en": "A seed drill (line sowing) is better, because the seed goes in at the right depth and spacing and the plant stand stays even. Keep 30 cm between rows and 5 cm b",
     "url": "/sawaal/soyaabina-buvaai-sida-drila-sahi-haatha-chhitakakara",
     "keywords": "सोयाबीन की बुवाई सीड ड्रिल से सही है या हाथ से छिटककर? is seed drill sowing better for soybean, or broadcasting by hand? soybean sowing सीड ड्रिल (कतार में बुवाई) बेहतर है, क्योंकि इससे बीज सही गहराई और दूरी पर पड़ता है और पौधों की संख्या एक-सी रहती है। कतारों में 30 सेमी और पौधों में 5 सेमी की a seed drill (line sowing) is better, because the seed goes in at the right depth and spacing and the plant stand stays even. keep 30 cm between rows and 5 cm b"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "किसान क्रेडिट कार्ड के लिए कौन और कैसे आवेदन कर सकता है?",
+    "title_en": "Who can apply for KCC and how?",
+    "subtitle_hi": "खुद खेती करने वाले मालिक, बंटाईदार (sharecropper), किरायेदार किसान और मौखिक पट्टेदार KCC के लिए आवेदन कर सकते हैं। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना ग",
+    "subtitle_en": "Owner-cultivators, sharecroppers, tenant farmers and oral lessees can apply for KCC. From 1 January 2025, loans up to 2 lakh rupees are collateral-free. Apply b",
+    "url": "/sawaal/kcc-kaise-apply",
+    "keywords": "किसान क्रेडिट कार्ड के लिए कौन और कैसे आवेदन कर सकता है? who can apply for kcc and how? scheme खुद खेती करने वाले मालिक, बंटाईदार (sharecropper), किरायेदार किसान और मौखिक पट्टेदार kcc के लिए आवेदन कर सकते हैं। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना ग owner-cultivators, sharecroppers, tenant farmers and oral lessees can apply for kcc. from 1 january 2025, loans up to 2 lakh rupees are collateral-free. apply b"
   },
   {
     "type": "sawaal",
@@ -550,15 +694,6 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है?",
-    "title_en": "Which wheat seed variety is best for Sagar district?",
-    "subtitle_hi": "मध्य प्रदेश के लिए लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम में पूसा तेजस (HI-8",
-    "subtitle_en": "For Madhya Pradesh, common wheat varieties like Lok-1, GW-322, GW-366, GW-273 are popular. Among Sharbati types, C-306 and Amrita (HI 1500) are good. In durum, ",
-    "url": "/sawaal/which-wheat-seed-variety-is-best-for-sagar-district",
-    "keywords": "सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है? which wheat seed variety is best for sagar district? wheat variety मध्य प्रदेश के लिए लोक-1, gw-322, gw-366, gw-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती में c-306 और अमृता (hi 1500) अच्छी हैं। डुरम में पूसा तेजस (hi-8 for madhya pradesh, common wheat varieties like lok-1, gw-322, gw-366, gw-273 are popular. among sharbati types, c-306 and amrita (hi 1500) are good. in durum,"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "मूंग में खाद (उर्वरक) कितनी डालें?",
     "title_en": "How much fertiliser for moong?",
     "subtitle_hi": "बुवाई के समय प्रति हेक्टेयर नत्रजन 20, फास्फोरस 40, पोटाश 20, गंधक 25 और जिंक 20 किलो डालें। मूंग जड़ों से नत्रजन बनाती है, इसलिए नत्रजन कम लगती है।",
@@ -595,15 +730,6 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "पीएम-किसान में ई-केवाईसी क्यों जरूरी है?",
-    "title_en": "Why is e-KYC mandatory for PM-KISAN?",
-    "subtitle_hi": "ई-केवाईसी (e-KYC) आधार से किसान की पहचान पक्की करती है। यह सभी पंजीकृत किसानों के लिए जरूरी है। इसके बिना अगली किस्त रुक सकती है। यह OTP या बायोमेट्रिक से कराई ",
-    "subtitle_en": "e-KYC confirms a farmer's identity through Aadhaar. It is required for all registered farmers. Without it the next instalment can stop. You can do it by OTP or ",
-    "url": "/sawaal/pm-kisan-ekyc",
-    "keywords": "पीएम-किसान में ई-केवाईसी क्यों जरूरी है? why is e-kyc mandatory for pm-kisan? scheme ई-केवाईसी (e-kyc) आधार से किसान की पहचान पक्की करती है। यह सभी पंजीकृत किसानों के लिए जरूरी है। इसके बिना अगली किस्त रुक सकती है। यह otp या बायोमेट्रिक से कराई e-kyc confirms a farmer's identity through aadhaar. it is required for all registered farmers. without it the next instalment can stop. you can do it by otp or"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "गेहूं में सिंचाई कब और कितनी बार करें?",
     "title_en": "When and how many times to irrigate wheat?",
     "subtitle_hi": "गेहूं में 3 से 4 सिंचाई पर्याप्त हैं। क्रांतिक अवस्थाओं पर पानी दें — किरीट (क्राउन रूट), कल्ले निकलना, फूल आना और दूधिया अवस्था। इन अवस्थाओं पर पानी की कमी से ",
@@ -613,12 +739,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "फसल बीमा में किसान को कितना प्रीमियम देना होता है?",
-    "title_en": "How much premium does a farmer pay under PMFBY?",
-    "subtitle_hi": "किसान को खरीफ फसल पर बीमित राशि का 2%, रबी फसल पर 1.5%, और वार्षिक व्यावसायिक/बागवानी फसल पर 5% प्रीमियम देना होता है। बाकी प्रीमियम सरकार देती है।",
-    "subtitle_en": "A farmer pays premium of 2% of the sum insured for Kharif crops, 1.5% for Rabi crops, and 5% for annual commercial and horticultural crops. The government pays ",
-    "url": "/sawaal/pmfby-premium-kitna",
-    "keywords": "फसल बीमा में किसान को कितना प्रीमियम देना होता है? how much premium does a farmer pay under pmfby? scheme किसान को खरीफ फसल पर बीमित राशि का 2%, रबी फसल पर 1.5%, और वार्षिक व्यावसायिक/बागवानी फसल पर 5% प्रीमियम देना होता है। बाकी प्रीमियम सरकार देती है। a farmer pays premium of 2% of the sum insured for kharif crops, 1.5% for rabi crops, and 5% for annual commercial and horticultural crops. the government pays"
+    "title_hi": "पीएम-किसान में ई-केवाईसी क्यों जरूरी है?",
+    "title_en": "Why is e-KYC mandatory for PM-KISAN?",
+    "subtitle_hi": "ई-केवाईसी (e-KYC) आधार से किसान की पहचान पक्की करती है। यह सभी पंजीकृत किसानों के लिए जरूरी है। इसके बिना अगली किस्त रुक सकती है। यह OTP या बायोमेट्रिक से कराई ",
+    "subtitle_en": "e-KYC confirms a farmer's identity through Aadhaar. It is required for all registered farmers. Without it the next instalment can stop. You can do it by OTP or ",
+    "url": "/sawaal/pm-kisan-ekyc",
+    "keywords": "पीएम-किसान में ई-केवाईसी क्यों जरूरी है? why is e-kyc mandatory for pm-kisan? scheme ई-केवाईसी (e-kyc) आधार से किसान की पहचान पक्की करती है। यह सभी पंजीकृत किसानों के लिए जरूरी है। इसके बिना अगली किस्त रुक सकती है। यह otp या बायोमेट्रिक से कराई e-kyc confirms a farmer's identity through aadhaar. it is required for all registered farmers. without it the next instalment can stop. you can do it by otp or"
   },
   {
     "type": "sawaal",
@@ -640,6 +766,15 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "फसल बीमा में किसान को कितना प्रीमियम देना होता है?",
+    "title_en": "How much premium does a farmer pay under PMFBY?",
+    "subtitle_hi": "किसान को खरीफ फसल पर बीमित राशि का 2%, रबी फसल पर 1.5%, और वार्षिक व्यावसायिक/बागवानी फसल पर 5% प्रीमियम देना होता है। बाकी प्रीमियम सरकार देती है।",
+    "subtitle_en": "A farmer pays premium of 2% of the sum insured for Kharif crops, 1.5% for Rabi crops, and 5% for annual commercial and horticultural crops. The government pays ",
+    "url": "/sawaal/pmfby-premium-kitna",
+    "keywords": "फसल बीमा में किसान को कितना प्रीमियम देना होता है? how much premium does a farmer pay under pmfby? scheme किसान को खरीफ फसल पर बीमित राशि का 2%, रबी फसल पर 1.5%, और वार्षिक व्यावसायिक/बागवानी फसल पर 5% प्रीमियम देना होता है। बाकी प्रीमियम सरकार देती है। a farmer pays premium of 2% of the sum insured for kharif crops, 1.5% for rabi crops, and 5% for annual commercial and horticultural crops. the government pays"
+  },
+  {
+    "type": "sawaal",
     "title_hi": "उड़द की उन्नत किस्में कौन-सी हैं?",
     "title_en": "Which improved urad (black gram) varieties are recommended?",
     "subtitle_hi": "उड़द की सुझाई किस्में हैं — T-9 (टी-9), पंत U-30, PDU-1 (बसंत बहार) और जवाहर उड़द-2। ये लगभग 70-80 दिन में पक जाती हैं।",
@@ -658,30 +793,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "किसान क्रेडिट कार्ड के लिए कौन और कैसे आवेदन कर सकता है?",
-    "title_en": "Who can apply for KCC and how?",
-    "subtitle_hi": "खुद खेती करने वाले मालिक, बंटाईदार (sharecropper), किरायेदार किसान और मौखिक पट्टेदार KCC के लिए आवेदन कर सकते हैं। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना ग",
-    "subtitle_en": "Owner-cultivators, sharecroppers, tenant farmers and oral lessees can apply for KCC. From 1 January 2025, loans up to 2 lakh rupees are collateral-free. Apply b",
-    "url": "/sawaal/kcc-kaise-apply",
-    "keywords": "किसान क्रेडिट कार्ड के लिए कौन और कैसे आवेदन कर सकता है? who can apply for kcc and how? scheme खुद खेती करने वाले मालिक, बंटाईदार (sharecropper), किरायेदार किसान और मौखिक पट्टेदार kcc के लिए आवेदन कर सकते हैं। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना ग owner-cultivators, sharecroppers, tenant farmers and oral lessees can apply for kcc. from 1 january 2025, loans up to 2 lakh rupees are collateral-free. apply b"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "उड़द में खाद (उर्वरक) कितनी डालें?",
     "title_en": "How much fertiliser for urad (black gram)?",
     "subtitle_hi": "बुवाई के समय प्रति एकड़ नत्रजन 8-12 किलो, स्फुर 20-24 किलो और पोटाश 10 किलो डालें। उड़द दलहन है, इसलिए नत्रजन कम लगती है।",
     "subtitle_en": "At sowing, apply nitrogen 8-12 kg, phosphorus 20-24 kg and potash 10 kg per acre. Urad is a pulse, so it needs little nitrogen.",
     "url": "/sawaal/urad-khaad-urvarak-matra-mp",
     "keywords": "उड़द में खाद (उर्वरक) कितनी डालें? how much fertiliser for urad (black gram)? urad nutrient बुवाई के समय प्रति एकड़ नत्रजन 8-12 किलो, स्फुर 20-24 किलो और पोटाश 10 किलो डालें। उड़द दलहन है, इसलिए नत्रजन कम लगती है। at sowing, apply nitrogen 8-12 kg, phosphorus 20-24 kg and potash 10 kg per acre. urad is a pulse, so it needs little nitrogen."
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें?",
-    "title_en": "A borer-like pest is eating my maize leaves — what should I do?",
-    "subtitle_hi": "यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्य",
-    "subtitle_en": "This is often fall armyworm. Its larva eats the soft whorl of the plant and leaves holes and droppings. Early on, destroy eggs and larvae by hand. In a heavy at",
-    "url": "/sawaal/makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon",
-    "keywords": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें? a borer-like pest is eating my maize leaves — what should i do? maize pest यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्य this is often fall armyworm. its larva eats the soft whorl of the plant and leaves holes and droppings. early on, destroy eggs and larvae by hand. in a heavy at"
   },
   {
     "type": "sawaal",
@@ -700,6 +817,15 @@
     "subtitle_en": "Yellowing can have several causes — virus, nutrient shortage, or root rot. If leaves have yellow-green patches and no pods form, it is yellow mosaic virus. To b",
     "url": "/sawaal/meri-soyaabina-patte-upara-pile-pada-rahe",
     "keywords": "मेरी सोयाबीन के पत्ते ऊपर से पीले पड़ रहे हैं, क्या करूँ? my soybean leaves are turning yellow from the top — what should i do? soybean disease पीलेपन के कई कारण हो सकते हैं — वायरस, पोषक तत्व की कमी, या जड़ सड़न। अगर पत्तियों पर पीले-हरे धब्बे हैं और फली नहीं बन रही, तो यह पीला मोज़ायक वायरस है। पक्का yellowing can have several causes — virus, nutrient shortage, or root rot. if leaves have yellow-green patches and no pods form, it is yellow mosaic virus. to b"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें?",
+    "title_en": "A borer-like pest is eating my maize leaves — what should I do?",
+    "subtitle_hi": "यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्य",
+    "subtitle_en": "This is often fall armyworm. Its larva eats the soft whorl of the plant and leaves holes and droppings. Early on, destroy eggs and larvae by hand. In a heavy at",
+    "url": "/sawaal/makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon",
+    "keywords": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें? a borer-like pest is eating my maize leaves — what should i do? maize pest यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्य this is often fall armyworm. its larva eats the soft whorl of the plant and leaves holes and droppings. early on, destroy eggs and larvae by hand. in a heavy at"
   },
   {
     "type": "sawaal",
@@ -784,6 +910,15 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "रबी प्याज का भंडारण कैसे करें ताकि नुकसान कम हो?",
+    "title_en": "How to store rabi onion to reduce losses?",
+    "subtitle_hi": "भंडारण के लिए रबी प्याज ही सही है। बेहतर भंडारण वाली किस्म चुनें। बल्ब तब काटें जब 50-70% से अधिक गर्दनें गिर जाएँ। नीचे से हवादार भंडारण-संरचना में रखें।",
+    "subtitle_en": "Only rabi onion suits storage. Choose a variety with good keeping quality. Harvest bulbs when more than 50-70% of the necks have fallen. Store them in a structu",
+    "url": "/sawaal/onion-rabi-storage",
+    "keywords": "रबी प्याज का भंडारण कैसे करें ताकि नुकसान कम हो? how to store rabi onion to reduce losses? onion storage भंडारण के लिए रबी प्याज ही सही है। बेहतर भंडारण वाली किस्म चुनें। बल्ब तब काटें जब 50-70% से अधिक गर्दनें गिर जाएँ। नीचे से हवादार भंडारण-संरचना में रखें। only rabi onion suits storage. choose a variety with good keeping quality. harvest bulbs when more than 50-70% of the necks have fallen. store them in a structu"
+  },
+  {
+    "type": "sawaal",
     "title_hi": "मसूर में सिंचाई कब करें?",
     "title_en": "When to irrigate lentil (masoor)?",
     "subtitle_hi": "मसूर कम पानी में होने वाली फसल है। पानी उपलब्ध हो तो एक सिंचाई बुवाई के 45 दिन बाद करें, और ज़रूरत हो तो दूसरी फलियां भरते समय। ज़्यादा पानी से उकठा और गिरना बढ",
@@ -802,12 +937,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "रबी प्याज का भंडारण कैसे करें ताकि नुकसान कम हो?",
-    "title_en": "How to store rabi onion to reduce losses?",
-    "subtitle_hi": "भंडारण के लिए रबी प्याज ही सही है। बेहतर भंडारण वाली किस्म चुनें। बल्ब तब काटें जब 50-70% से अधिक गर्दनें गिर जाएँ। नीचे से हवादार भंडारण-संरचना में रखें।",
-    "subtitle_en": "Only rabi onion suits storage. Choose a variety with good keeping quality. Harvest bulbs when more than 50-70% of the necks have fallen. Store them in a structu",
-    "url": "/sawaal/onion-rabi-storage",
-    "keywords": "रबी प्याज का भंडारण कैसे करें ताकि नुकसान कम हो? how to store rabi onion to reduce losses? onion storage भंडारण के लिए रबी प्याज ही सही है। बेहतर भंडारण वाली किस्म चुनें। बल्ब तब काटें जब 50-70% से अधिक गर्दनें गिर जाएँ। नीचे से हवादार भंडारण-संरचना में रखें। only rabi onion suits storage. choose a variety with good keeping quality. harvest bulbs when more than 50-70% of the necks have fallen. store them in a structu"
+    "title_hi": "सॉयल हेल्थ कार्ड (मृदा स्वास्थ्य कार्ड) क्या है?",
+    "title_en": "What is a Soil Health Card?",
+    "subtitle_hi": "सॉयल हेल्थ कार्ड एक रिपोर्ट कार्ड है जो किसानों को हर दो साल में दिया जाता है और मुफ़्त होता है। यह मिट्टी की स्थिति 12 मापदंडों (parameters) पर बताता है और कौन",
+    "subtitle_en": "The Soil Health Card is a report card given to farmers every two years, free of cost. It tells the state of your soil on 12 parameters and advises which fertili",
+    "url": "/sawaal/soil-health-card-kya-hai",
+    "keywords": "सॉयल हेल्थ कार्ड (मृदा स्वास्थ्य कार्ड) क्या है? what is a soil health card? soil सॉयल हेल्थ कार्ड एक रिपोर्ट कार्ड है जो किसानों को हर दो साल में दिया जाता है और मुफ़्त होता है। यह मिट्टी की स्थिति 12 मापदंडों (parameters) पर बताता है और कौन the soil health card is a report card given to farmers every two years, free of cost. it tells the state of your soil on 12 parameters and advises which fertili"
   },
   {
     "type": "sawaal",
@@ -826,15 +961,6 @@
     "subtitle_en": "For irrigated conditions, Jawahar Alsi-23 and Suyog (JLS-27) are good. For rainfed, grow Jawahar Alsi-9, JLS-66, JLS-67 and JLS-73.",
     "url": "/sawaal/alsi-unnat-kismein-mp",
     "keywords": "अलसी की उन्नत किस्में कौन-सी हैं? which improved linseed (alsi) varieties are recommended? linseed variety सिंचित के लिए जवाहर अलसी-23 और सुयोग (jls-27) अच्छी हैं। असिंचित के लिए जवाहर अलसी-9, jls-66, jls-67 और jls-73 लगाएं। for irrigated conditions, jawahar alsi-23 and suyog (jls-27) are good. for rainfed, grow jawahar alsi-9, jls-66, jls-67 and jls-73."
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "सॉयल हेल्थ कार्ड (मृदा स्वास्थ्य कार्ड) क्या है?",
-    "title_en": "What is a Soil Health Card?",
-    "subtitle_hi": "सॉयल हेल्थ कार्ड एक रिपोर्ट कार्ड है जो किसानों को हर दो साल में दिया जाता है और मुफ़्त होता है। यह मिट्टी की स्थिति 12 मापदंडों (parameters) पर बताता है और कौन",
-    "subtitle_en": "The Soil Health Card is a report card given to farmers every two years, free of cost. It tells the state of your soil on 12 parameters and advises which fertili",
-    "url": "/sawaal/soil-health-card-kya-hai",
-    "keywords": "सॉयल हेल्थ कार्ड (मृदा स्वास्थ्य कार्ड) क्या है? what is a soil health card? soil सॉयल हेल्थ कार्ड एक रिपोर्ट कार्ड है जो किसानों को हर दो साल में दिया जाता है और मुफ़्त होता है। यह मिट्टी की स्थिति 12 मापदंडों (parameters) पर बताता है और कौन the soil health card is a report card given to farmers every two years, free of cost. it tells the state of your soil on 12 parameters and advises which fertili"
   },
   {
     "type": "sawaal",
@@ -928,12 +1054,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "सोयाबीन की कटाई कब करें?",
-    "title_en": "When should soybean be harvested?",
-    "subtitle_hi": "जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें।",
-    "subtitle_en": "The crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. Cut the whole plant, dry it, and thresh.",
-    "url": "/sawaal/soybean-harvesting-maturity",
-    "keywords": "सोयाबीन की कटाई कब करें? when should soybean be harvested? soybean harvest जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें। the crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. cut the whole plant, dry it, and thresh."
+    "title_hi": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें?",
+    "title_en": "How to control loose smut in wheat?",
+    "subtitle_hi": "कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक्",
+    "subtitle_en": "In loose smut, the ear heads turn into black powder. It spreads through seed, so seed treatment matters most. Treat the seed with carbendazim (2.5 g/kg) or tebu",
+    "url": "/sawaal/wheat-loose-smut-control",
+    "keywords": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें? how to control loose smut in wheat? wheat disease कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक् in loose smut, the ear heads turn into black powder. it spreads through seed, so seed treatment matters most. treat the seed with carbendazim (2.5 g/kg) or tebu"
   },
   {
     "type": "sawaal",
@@ -946,12 +1072,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें?",
-    "title_en": "How to control loose smut in wheat?",
-    "subtitle_hi": "कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक्",
-    "subtitle_en": "In loose smut, the ear heads turn into black powder. It spreads through seed, so seed treatment matters most. Treat the seed with carbendazim (2.5 g/kg) or tebu",
-    "url": "/sawaal/wheat-loose-smut-control",
-    "keywords": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें? how to control loose smut in wheat? wheat disease कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक् in loose smut, the ear heads turn into black powder. it spreads through seed, so seed treatment matters most. treat the seed with carbendazim (2.5 g/kg) or tebu"
+    "title_hi": "सोयाबीन की कटाई कब करें?",
+    "title_en": "When should soybean be harvested?",
+    "subtitle_hi": "जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें।",
+    "subtitle_en": "The crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. Cut the whole plant, dry it, and thresh.",
+    "url": "/sawaal/soybean-harvesting-maturity",
+    "keywords": "सोयाबीन की कटाई कब करें? when should soybean be harvested? soybean harvest जब ज़्यादातर फलियां पीली पड़कर सूख जाएं और पत्तियाँ पीली होकर गिरने लगें, तब फसल कटाई के लिए तैयार होती है। पूरे पौधे को काटकर सुखाएं और थ्रेशिंग करें। the crop is ready to harvest when most pods turn yellow and dry, and the leaves turn yellow and start to fall. cut the whole plant, dry it, and thresh."
   },
   {
     "type": "sawaal",
@@ -982,15 +1108,6 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "मक्का की बुआई कब करें और बीज दर कितनी रखें?",
-    "title_en": "What is the right sowing time and seed rate for maize?",
-    "subtitle_hi": "खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी क",
-    "subtitle_en": "Sow kharif maize from the last week of June to the first fortnight of July. For grain maize, keep the seed rate at about 20 kg per hectare. Sow in rows at 60x20",
-    "url": "/sawaal/maize-sowing-time-seed-rate",
-    "keywords": "मक्का की बुआई कब करें और बीज दर कितनी रखें? what is the right sowing time and seed rate for maize? maize sowing खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी क sow kharif maize from the last week of june to the first fortnight of july. for grain maize, keep the seed rate at about 20 kg per hectare. sow in rows at 60x20"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "अलसी में फली मक्खी और गेरूआ रोग का नियंत्रण कैसे करें?",
     "title_en": "How to control bud fly and rust (gerua) in linseed?",
     "subtitle_hi": "फली मक्खी के लिए इमिडाक्लोप्रिड 17.8 SL, 100 मिली प्रति हेक्टेयर का छिड़काव करें। गेरूआ रोग के लिए टेबूकोनाजोल 2% का 1 लीटर प्रति हेक्टेयर छिड़काव करें। लेबल पर",
@@ -1006,6 +1123,15 @@
     "subtitle_en": "Treat the seed with a fungicide before sowing. This cuts seed-borne diseases. Treat with carbendazim or thiram @ 2 g/kg seed, 24 hours before sowing — always us",
     "url": "/sawaal/soybean-seed-treatment",
     "keywords": "सोयाबीन में बीज उपचार कैसे करें? how to treat soybean seed before sowing? soybean sowing बुआई से पहले बीज को फफूंदनाशी से उपचारित करें। इससे बीजजनित रोग कम होते हैं। बुआई से 24 घंटे पहले कार्बेंडाज़िम या थायरम @ 2 ग्राम/किग्रा बीज से उपचार करें — हम treat the seed with a fungicide before sowing. this cuts seed-borne diseases. treat with carbendazim or thiram @ 2 g/kg seed, 24 hours before sowing — always us"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "मक्का की बुआई कब करें और बीज दर कितनी रखें?",
+    "title_en": "What is the right sowing time and seed rate for maize?",
+    "subtitle_hi": "खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी क",
+    "subtitle_en": "Sow kharif maize from the last week of June to the first fortnight of July. For grain maize, keep the seed rate at about 20 kg per hectare. Sow in rows at 60x20",
+    "url": "/sawaal/maize-sowing-time-seed-rate",
+    "keywords": "मक्का की बुआई कब करें और बीज दर कितनी रखें? what is the right sowing time and seed rate for maize? maize sowing खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी क sow kharif maize from the last week of june to the first fortnight of july. for grain maize, keep the seed rate at about 20 kg per hectare. sow in rows at 60x20"
   },
   {
     "type": "sawaal",
@@ -1081,24 +1207,6 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "लहसुन की उन्नत किस्में कौन-सी हैं?",
-    "title_en": "Which improved garlic (lahsun) varieties are recommended?",
-    "subtitle_hi": "लहसुन की सुझाई किस्में हैं — यमुना सफेद 1 (G-1), यमुना सफेद 2 (G-50), यमुना सफेद 3 (G-282) और यमुना सफेद 4 (G-323)। बीज के लिए रोग-मुक्त, मोटी गाँठ चुनें।",
-    "subtitle_en": "Suggested garlic varieties are — Yamuna Safed 1 (G-1), Yamuna Safed 2 (G-50), Yamuna Safed 3 (G-282) and Yamuna Safed 4 (G-323). Choose disease-free, bold bulbs",
-    "url": "/sawaal/lahsun-unnat-kismein-mp",
-    "keywords": "लहसुन की उन्नत किस्में कौन-सी हैं? which improved garlic (lahsun) varieties are recommended? garlic variety लहसुन की सुझाई किस्में हैं — यमुना सफेद 1 (g-1), यमुना सफेद 2 (g-50), यमुना सफेद 3 (g-282) और यमुना सफेद 4 (g-323)। बीज के लिए रोग-मुक्त, मोटी गाँठ चुनें। suggested garlic varieties are — yamuna safed 1 (g-1), yamuna safed 2 (g-50), yamuna safed 3 (g-282) and yamuna safed 4 (g-323). choose disease-free, bold bulbs"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "उड़द का बीज उपचार कैसे करें?",
-    "title_en": "How to treat urad (black gram) seed?",
-    "subtitle_hi": "प्रति किलो बीज को 3 ग्राम थायरम या 2.5 ग्राम डायथेन M-45 से उपचारित करके बोएं। इससे बीज-जनित रोग दबते हैं। लेबल पर लिखी मात्रा ही उपयोग करें।",
-    "subtitle_en": "Treat each kg of seed with 3 g thiram or 2.5 g dithane M-45 before sowing. This suppresses seed-borne diseases. Use only the dose on the label.",
-    "url": "/sawaal/urad-beej-upchar-mp",
-    "keywords": "उड़द का बीज उपचार कैसे करें? how to treat urad (black gram) seed? urad disease प्रति किलो बीज को 3 ग्राम थायरम या 2.5 ग्राम डायथेन m-45 से उपचारित करके बोएं। इससे बीज-जनित रोग दबते हैं। लेबल पर लिखी मात्रा ही उपयोग करें। treat each kg of seed with 3 g thiram or 2.5 g dithane m-45 before sowing. this suppresses seed-borne diseases. use only the dose on the label."
-  },
-  {
-    "type": "sawaal",
     "title_hi": "मटर की उन्नत किस्में कौन-सी हैं?",
     "title_en": "Which improved pea (matar) varieties are recommended?",
     "subtitle_hi": "MP कृषि विभाग की सूची में मटर की किस्में हैं — JM-6 (जे.एम.-6), प्रकाश, KPMR 400, IPFD-99-13, IPFD-1-10 और IPFD-99-25। अपने खेत और बाज़ार की माँग के हिसाब से कि",
@@ -1108,12 +1216,12 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "लहसुन की बुवाई का समय और बीज दर क्या है?",
-    "title_en": "What is the sowing time and seed rate for garlic (lahsun)?",
-    "subtitle_hi": "लहसुन अक्टूबर-नवंबर में बोएं। बीज (कलियाँ) 5-6 क्विंटल प्रति हेक्टेयर लगती हैं। मोटी और स्वस्थ कलियाँ ही बीज के लिए चुनें।",
-    "subtitle_en": "Sow garlic in October-November. Seed (cloves) needed is 5-6 quintals per hectare. Pick only plump, healthy cloves for seed.",
-    "url": "/sawaal/lahsun-buwai-samay-beej-dar-mp",
-    "keywords": "लहसुन की बुवाई का समय और बीज दर क्या है? what is the sowing time and seed rate for garlic (lahsun)? garlic sowing लहसुन अक्टूबर-नवंबर में बोएं। बीज (कलियाँ) 5-6 क्विंटल प्रति हेक्टेयर लगती हैं। मोटी और स्वस्थ कलियाँ ही बीज के लिए चुनें। sow garlic in october-november. seed (cloves) needed is 5-6 quintals per hectare. pick only plump, healthy cloves for seed."
+    "title_hi": "लहसुन की उन्नत किस्में कौन-सी हैं?",
+    "title_en": "Which improved garlic (lahsun) varieties are recommended?",
+    "subtitle_hi": "लहसुन की सुझाई किस्में हैं — यमुना सफेद 1 (G-1), यमुना सफेद 2 (G-50), यमुना सफेद 3 (G-282) और यमुना सफेद 4 (G-323)। बीज के लिए रोग-मुक्त, मोटी गाँठ चुनें।",
+    "subtitle_en": "Suggested garlic varieties are — Yamuna Safed 1 (G-1), Yamuna Safed 2 (G-50), Yamuna Safed 3 (G-282) and Yamuna Safed 4 (G-323). Choose disease-free, bold bulbs",
+    "url": "/sawaal/lahsun-unnat-kismein-mp",
+    "keywords": "लहसुन की उन्नत किस्में कौन-सी हैं? which improved garlic (lahsun) varieties are recommended? garlic variety लहसुन की सुझाई किस्में हैं — यमुना सफेद 1 (g-1), यमुना सफेद 2 (g-50), यमुना सफेद 3 (g-282) और यमुना सफेद 4 (g-323)। बीज के लिए रोग-मुक्त, मोटी गाँठ चुनें। suggested garlic varieties are — yamuna safed 1 (g-1), yamuna safed 2 (g-50), yamuna safed 3 (g-282) and yamuna safed 4 (g-323). choose disease-free, bold bulbs"
   },
   {
     "type": "sawaal",
@@ -1144,21 +1252,21 @@
   },
   {
     "type": "sawaal",
+    "title_hi": "लहसुन की बुवाई का समय और बीज दर क्या है?",
+    "title_en": "What is the sowing time and seed rate for garlic (lahsun)?",
+    "subtitle_hi": "लहसुन अक्टूबर-नवंबर में बोएं। बीज (कलियाँ) 5-6 क्विंटल प्रति हेक्टेयर लगती हैं। मोटी और स्वस्थ कलियाँ ही बीज के लिए चुनें।",
+    "subtitle_en": "Sow garlic in October-November. Seed (cloves) needed is 5-6 quintals per hectare. Pick only plump, healthy cloves for seed.",
+    "url": "/sawaal/lahsun-buwai-samay-beej-dar-mp",
+    "keywords": "लहसुन की बुवाई का समय और बीज दर क्या है? what is the sowing time and seed rate for garlic (lahsun)? garlic sowing लहसुन अक्टूबर-नवंबर में बोएं। बीज (कलियाँ) 5-6 क्विंटल प्रति हेक्टेयर लगती हैं। मोटी और स्वस्थ कलियाँ ही बीज के लिए चुनें। sow garlic in october-november. seed (cloves) needed is 5-6 quintals per hectare. pick only plump, healthy cloves for seed."
+  },
+  {
+    "type": "sawaal",
     "title_hi": "लहसुन में खाद (उर्वरक) कितनी डालें?",
     "title_en": "How much fertiliser for garlic (lahsun)?",
     "subtitle_hi": "लहसुन में प्रति हेक्टेयर 100 किलो नत्रजन, 50 किलो फास्फोरस और 50 किलो पोटाश डालें। नत्रजन को दो-तीन बार में बाँटकर दें ताकि गाँठ अच्छी बने।",
     "subtitle_en": "For garlic apply 100 kg nitrogen, 50 kg phosphorus and 50 kg potash per hectare. Split the nitrogen into two or three doses so the bulb forms well.",
     "url": "/sawaal/lahsun-khaad-urvarak-matra-mp",
     "keywords": "लहसुन में खाद (उर्वरक) कितनी डालें? how much fertiliser for garlic (lahsun)? garlic nutrient लहसुन में प्रति हेक्टेयर 100 किलो नत्रजन, 50 किलो फास्फोरस और 50 किलो पोटाश डालें। नत्रजन को दो-तीन बार में बाँटकर दें ताकि गाँठ अच्छी बने। for garlic apply 100 kg nitrogen, 50 kg phosphorus and 50 kg potash per hectare. split the nitrogen into two or three doses so the bulb forms well."
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं?",
-    "title_en": "What is the PM-KISAN scheme and how much money does a farmer get?",
-    "subtitle_hi": "पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खा",
-    "subtitle_en": "PM-KISAN is a central government scheme. Every eligible farmer family gets 6,000 rupees a year. This money comes in three equal instalments of 2,000 rupees each",
-    "url": "/sawaal/pm-kisan-kya-hai",
-    "keywords": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं? what is the pm-kisan scheme and how much money does a farmer get? scheme पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खा pm-kisan is a central government scheme. every eligible farmer family gets 6,000 rupees a year. this money comes in three equal instalments of 2,000 rupees each"
   },
   {
     "type": "sawaal",
@@ -1177,6 +1285,15 @@
     "subtitle_en": "First check your status on pmkisan.gov.in. Then make sure e-KYC is done, your bank account is Aadhaar-linked for DBT, and your land record is seeded on the port",
     "url": "/sawaal/pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista",
     "keywords": "पीएम-किसान की किस्त नहीं आई, क्या करूँ? my pm-kisan instalment has not come — what should i do? scheme पहले pmkisan.gov.in पर अपना स्टेटस देखें। फिर जाँचें कि ई-केवाईसी पूरी है, बैंक खाता आधार से dbt के लिए जुड़ा है, और जमीन का रिकॉर्ड पोर्टल पर दर्ज है। इनमें से first check your status on pmkisan.gov.in. then make sure e-kyc is done, your bank account is aadhaar-linked for dbt, and your land record is seeded on the port"
+  },
+  {
+    "type": "sawaal",
+    "title_hi": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं?",
+    "title_en": "What is the PM-KISAN scheme and how much money does a farmer get?",
+    "subtitle_hi": "पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खा",
+    "subtitle_en": "PM-KISAN is a central government scheme. Every eligible farmer family gets 6,000 rupees a year. This money comes in three equal instalments of 2,000 rupees each",
+    "url": "/sawaal/pm-kisan-kya-hai",
+    "keywords": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं? what is the pm-kisan scheme and how much money does a farmer get? scheme पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खा pm-kisan is a central government scheme. every eligible farmer family gets 6,000 rupees a year. this money comes in three equal instalments of 2,000 rupees each"
   },
   {
     "type": "sawaal",
@@ -1243,15 +1360,6 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "गेहूं की बुवाई का सही समय क्या है?",
-    "title_en": "What is the right time to sow wheat?",
-    "subtitle_hi": "सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से ",
-    "subtitle_en": "Sow irrigated wheat in the second fortnight of November. In rainfed fields sow from mid-October to the first week of November, and in semi-irrigated fields in t",
-    "url": "/sawaal/gehun-buwai-ka-sahi-samay-sagar",
-    "keywords": "गेहूं की बुवाई का सही समय क्या है? what is the right time to sow wheat? wheat sowing सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से sow irrigated wheat in the second fortnight of november. in rainfed fields sow from mid-october to the first week of november, and in semi-irrigated fields in t"
-  },
-  {
-    "type": "sawaal",
     "title_hi": "मटर में फली छेदक और माहू का नियंत्रण कैसे करें?",
     "title_en": "How to control pod borer and aphids in pea?",
     "subtitle_hi": "फली छेदक के लिए प्रोफेनोफॉस 50 EC, 1.5 मिली प्रति लीटर पानी में छिड़कें। माहू के लिए इमिडाक्लोप्रिड 17.8 SL, 0.5 मिली प्रति लीटर पानी। लेबल पर लिखी मात्रा ही उप",
@@ -1279,15 +1387,6 @@
   },
   {
     "type": "sawaal",
-    "title_hi": "चने में बीज दर कितनी रखें (देशी और काबुली)?",
-    "title_en": "What seed rate for gram (desi and kabuli)?",
-    "subtitle_hi": "देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर कर",
-    "subtitle_en": "Keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. Always treat the seed before sowing.",
-    "url": "/sawaal/chana-beej-dar-desi-kabuli",
-    "keywords": "चने में बीज दर कितनी रखें (देशी और काबुली)? what seed rate for gram (desi and kabuli)? gram sowing देशी छोटे दाने वाली किस्मों में 65-75 किलो, मध्यम दाने वाली में 75-80 किलो, और काबुली चने में 100 किलो बीज प्रति हेक्टेयर रखें। बुवाई से पहले बीज उपचार ज़रूर कर keep 65-75 kg for desi small-seeded varieties, 75-80 kg for medium-seeded ones, and 100 kg for kabuli gram, per hectare. always treat the seed before sowing."
-  },
-  {
-    "type": "sawaal",
     "title_hi": "मसूर में गेरूई / रतुआ रोग का नियंत्रण कैसे करें?",
     "title_en": "How to control rust (gerui) in lentil?",
     "subtitle_hi": "रतुआ में पत्तियों पर भूरे-पीले दाने जैसे धब्बे बनते हैं। रोग दिखते ही 0.3% मेन्कोजेब M-45 का छिड़काव करें और 15 दिन के अंतर पर दो बार दोहराएं। लेबल पर लिखी मात्",
@@ -1303,24 +1402,6 @@
     "subtitle_en": "Pod borers bore into pods and eat the grain. To control them, spray emamectin benzoate 100 g per hectare. Keep watching the field. Use only the dose on the labe",
     "url": "/sawaal/masoor-fali-chhedak-control",
     "keywords": "मसूर में फली छेदक का नियंत्रण कैसे करें? how to control pod borer in lentil (masoor)? lentil pest फली छेदक फली में घुसकर दाने खाते हैं। नियंत्रण के लिए इमामेक्टिन बेन्जोइट 100 ग्राम प्रति हेक्टेयर का छिड़काव करें। खेत की निगरानी करते रहें। लेबल पर लिखी मात्र pod borers bore into pods and eat the grain. to control them, spray emamectin benzoate 100 g per hectare. keep watching the field. use only the dose on the labe"
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें?",
-    "title_en": "My wheat leaves have yellow-orange striped patches — what should I do?",
-    "subtitle_hi": "यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% छिड़कें। रोग-रोधी किस",
-    "subtitle_en": "This is yellow rust. Leaves get yellow-orange striped powdery stripes. As soon as you see it, spray propiconazole (Tilt) 25 EC @ 0.1%. Grow a resistant variety.",
-    "url": "/sawaal/gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan",
-    "keywords": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें? my wheat leaves have yellow-orange striped patches — what should i do? wheat disease यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 ec @ 0.1% छिड़कें। रोग-रोधी किस this is yellow rust. leaves get yellow-orange striped powdery stripes. as soon as you see it, spray propiconazole (tilt) 25 ec @ 0.1%. grow a resistant variety."
-  },
-  {
-    "type": "sawaal",
-    "title_hi": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें?",
-    "title_en": "How to control girdle beetle in soybean?",
-    "subtitle_hi": "गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाए",
-    "subtitle_en": "The girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. Do deep summer ploughing, sow as the monsoon starts, and follow crop rotati",
-    "url": "/sawaal/soybean-girdle-beetle-control",
-    "keywords": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें? how to control girdle beetle in soybean? soybean pest गर्डल बीटल की सूंडी तने के अंदर सुरंग बनाती है। इससे पत्तियाँ सूखती हैं और पौधा टूट जाता है। गहरी गर्मी की जुताई करें, मानसून आते ही बुआई करें और फसल चक्र अपनाए the girdle beetle larva tunnels inside the stem, so leaves dry and the plant breaks. do deep summer ploughing, sow as the monsoon starts, and follow crop rotati"
   },
   {
     "type": "sawaal",
@@ -3610,15 +3691,6 @@
   },
   {
     "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 2340",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
-    "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 2340 rajasthan test ground kisan mela"
-  },
-  {
-    "type": "mela",
     "title_hi": "कृषि-तोटगारिके मेला (कृषि-बागवानी मेला), शिवमोग्गा",
     "title_en": "Krishi-Thotagarike Mela (Agriculture-Horticulture Fair), Shivamogga",
     "subtitle_hi": "shivamogga karnataka college of agriculture, navile, shivamogga",
@@ -3634,6 +3706,15 @@
     "subtitle_en": "jalgaon maharashtra jalgaon",
     "url": "/kisan-mela",
     "keywords": "ॲग्रोवर्ल्ड एक्स्पो 2026 (26वी आवृत्ती), जळगाव agroworld expo 2026 (26th edition), jalgaon jalgaon maharashtra jalgaon kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "REJECTED CANDIDATE BACKENDTEST 2340",
+    "title_en": "",
+    "subtitle_hi": "rajasthan test ground",
+    "subtitle_en": "rajasthan test ground",
+    "url": "/kisan-mela",
+    "keywords": "rejected candidate backendtest 2340 rajasthan test ground kisan mela"
   },
   {
     "type": "mela",
@@ -3679,15 +3760,6 @@
     "subtitle_en": "rajkot gujarat rajkot, gujarat (shastri maidan, trikon baug per listings)",
     "url": "/kisan-mela",
     "keywords": "एग्री वर्ल्ड एक्सपो 2026 agri world expo 2026 rajkot gujarat rajkot, gujarat (shastri maidan, trikon baug per listings) kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 5415",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
-    "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 5415 rajasthan test ground kisan mela"
   },
   {
     "type": "mela",
@@ -3742,15 +3814,6 @@
     "subtitle_en": "karnal haryana new grain market, karnal",
     "url": "/kisan-mela",
     "keywords": "इंडिया इंटरनेशनल हॉर्टी एक्सपो, करनाल india international horti expo (iihe) karnal haryana new grain market, karnal kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 72128",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
-    "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 72128 rajasthan test ground kisan mela"
   },
   {
     "type": "mela",
@@ -3904,15 +3967,6 @@
     "subtitle_en": "pune maharashtra pune international exhibition and convention centre (piecc), moshi",
     "url": "/kisan-mela",
     "keywords": "किसान एग्री शो 2026 kisan agri show 2026 pune maharashtra pune international exhibition and convention centre (piecc), moshi kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "REJECTED CANDIDATE BACKENDTEST 26802",
-    "title_en": "",
-    "subtitle_hi": "rajasthan test ground",
-    "subtitle_en": "rajasthan test ground",
-    "url": "/kisan-mela",
-    "keywords": "rejected candidate backendtest 26802 rajasthan test ground kisan mela"
   },
   {
     "type": "resource",
@@ -4147,6 +4201,24 @@
     "subtitle_en": "",
     "url": "/msp/lahsun",
     "keywords": "लहसुन garlic garlic lahsun msp mandi"
+  },
+  {
+    "type": "hub",
+    "title_hi": "निर्माण सामग्री",
+    "title_en": "Building materials",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/bazaar/building-materials",
+    "keywords": "निर्माण सामग्री cement सीमेंट sand रेत iron rod सरिया bricks ईंट gravel गिट्टी building materials"
+  },
+  {
+    "type": "hub",
+    "title_hi": "सब्ज़ी खेती के यंत्र",
+    "title_en": "Vegetable farming equipment",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/bazaar/vegetable-equipment",
+    "keywords": "सब्ज़ी खेती के यंत्र vegetable farming equipment machine rental"
   },
   {
     "type": "hub",
