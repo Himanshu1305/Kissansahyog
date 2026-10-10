@@ -16,8 +16,10 @@ const QADIR = join(ROOT, 'src/content/qa')
 
 const esc = (s) => String(s ?? '').replace(/\|/g, '\\|').replace(/\n+/g, ' ').trim()
 
-const batches = readdirSync(RAW).filter((f) => f.endsWith('.json')).sort()
+const batches = readdirSync(RAW).filter((f) => f.endsWith('.json') && !f.endsWith('.evidence.json')).sort()
 let md = readFileSync(SRCMD, 'utf8')
+// Batch 5C replaces the rejected Batch 5B source ledger rather than preserving stale rows.
+md = md.replace(/^\| S-Q5B-[^\n]*(?:\r?\n|$)/gm, '')
 const existingIds = new Set([...md.matchAll(/^\|\s*(S-[A-Z]+-\d+)\s*\|/gm)].map((m) => m[1]))
 
 let newRows = []
