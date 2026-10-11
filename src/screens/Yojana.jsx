@@ -6,9 +6,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
 import { Notice, Spinner } from '../components/ui'
 import { fetchYojanaByLevel, yojanaName, yojanaDesc, yojanaBenefit } from '../lib/community/communityApi'
+import { PageShell } from '../components/layout'
 
 export default function Yojana({ level = null }) {
   const { t, lang } = useLang()
@@ -55,9 +55,8 @@ export default function Yojana({ level = null }) {
   const title = level === 'central' ? t('scheme_central_group') : level === 'state' ? t('scheme_mp_group') : t('info_yojana_heading')
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
-      <div style={{ padding: '16px var(--ks-gutter) 0' }}>
+    <PageShell width="wide">
+      <div>
         <h1 className="text-[28px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{title}</h1>
       </div>
       {error && <Notice tone="error">{error}</Notice>}
@@ -73,6 +72,6 @@ export default function Yojana({ level = null }) {
           <Group id={level} list={level === 'state' ? state : central} />
         )
       )}
-    </div>
+    </PageShell>
   )
 }

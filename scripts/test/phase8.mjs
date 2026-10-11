@@ -16,15 +16,13 @@ const check = (n, ok, d = '') => { console.log(`${ok ? 'PASS' : 'FAIL'}  ${n}${d
 check('sw.js generated', existsSync(join(DIST, 'sw.js')))
 check('manifest.webmanifest generated', existsSync(join(DIST, 'manifest.webmanifest')))
 // NOTE (0025 PWA redesign): the SW registration is NO LONGER a generated registerSW.js.
-// We moved to registerType:'prompt' + injectRegister:null and register through the
-// virtual:pwa-register/react hook in PwaPrompts.jsx, so the update flow is explicit
-// (a visible "reload" banner) instead of a silent auto-swap. Assert THAT architecture
-// rather than the old registerSW.js artifact.
+// The app registers through virtual:pwa-register/react in PwaPrompts.jsx. With
+// autoUpdate + skipWaiting the next build activates without a manual refresh prompt.
 const viteCfg = readFileSync(join(ROOT, 'vite.config.js'), 'utf8')
 const pwaPrompts = existsSync(join(ROOT, 'src/components/PwaPrompts.jsx')) ? readFileSync(join(ROOT, 'src/components/PwaPrompts.jsx'), 'utf8') : ''
-check("registerType is 'prompt' (explicit update flow, no silent auto-swap)", /registerType:\s*'prompt'/.test(viteCfg))
+check("registerType is 'autoUpdate' (automatic update flow)", /registerType:\s*'autoUpdate'/.test(viteCfg))
 check('SW registered via virtual:pwa-register/react (PwaPrompts)', /virtual:pwa-register\/react/.test(pwaPrompts))
-check('update-available prompt wired (onNeedRefresh → updateServiceWorker)', /needRefresh/.test(pwaPrompts) && /updateServiceWorker/.test(pwaPrompts))
+check('auto-update path is configured with skipWaiting', /skipWaiting:\s*true/.test(viteCfg))
 for (const icon of ['icon-192.png', 'icon-512.png', 'maskable-512.png']) {
   check(`icon ${icon} present`, existsSync(join(DIST, 'icons', icon)))
 }

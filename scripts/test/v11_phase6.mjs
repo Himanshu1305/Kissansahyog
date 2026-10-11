@@ -54,7 +54,7 @@ const REQUIRED_KEYS = [
   'field_agri_subtype', 'agri_subtype_farmer_surplus', 'agri_subtype_vendor',
   'field_input_type', 'field_input_types', 'field_item_name', 'field_material_address',
   'field_condition', 'field_business_name', 'field_items_description', 'field_price_range',
-  'field_shop_address', 'field_contact_phone', 'agri_vendor_future_charges',
+  'field_shop_address', 'field_contact_phone',
   'experts_nav', 'experts_title', 'experts_filter_label', 'experts_filter_ph',
   'experts_none', 'expert_not_found',
   // Phase 3 (dual auth, profile, admin, articles):

@@ -1,0 +1,20 @@
+PASS  D1: no undocumented hard-coded page-width wrappers
+PASS  D1: every screen uses a shared frame primitive
+PASS  D1: inventory covers every screen
+PASS  D2: homepage renders the 3/2/1 equal-height Q&A grid
+PASS  D2: Q&A copy is clamped and answer link is pinned
+PASS  D2: homepage no longer renders the oversized question tile
+PASS  D2: photo-question CTA and all-questions route remain
+PASS  D2: featured helper tops up with answered recent rows
+PASS  D3: events query starts at today in India time
+PASS  D3: homepage has no event-strip query or markup
+PASS  D4: homepage has no most-viewed state, fetch, or heading
+PASS  D4: removed most-viewed string is absent from product source
+PASS  D5: future-charge copy has no product render
+PASS  D5: shared footer credit is mounted globally
+PASS  D6: footer has one linked Open-Meteo attribution
+PASS  D7: PWA comments and config describe auto-update
+PASS  D7: phase8 expects auto-update
+PASS  D7: v11 no longer expects the removed future-charge key
+
+18 passed, 0 failed

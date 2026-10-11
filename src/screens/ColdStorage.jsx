@@ -50,7 +50,7 @@ export default function ColdStorage() {
 
       <h1 className="text-3xl font-bold text-stone-900">{pick(coldStoragePage.h1, lang)}</h1>
       {/* ks-allow-width: readable one-line intro above the full-width finder */}
-      <p className="mt-2 max-w-3xl text-stone-700">{pick(coldStoragePage.blocks[0].text, lang)}</p>
+      <p className="mt-2 text-stone-700">{pick(coldStoragePage.blocks[0].text, lang)}</p>
       {coldStoragePage.updated && <LastUpdated date={coldStoragePage.updated} className="mt-2" />}
 
       <div className="mt-5">

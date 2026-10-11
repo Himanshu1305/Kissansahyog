@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
-import NavBar from '../components/NavBar'
 import BackButton from '../components/BackButton'
 import { Notice, Spinner } from '../components/ui'
 import WhatsAppShareButton from '../components/WhatsAppShareButton'
 import { generateArticleMessage } from '../lib/share/shareMessages'
 import { fetchArticleBySlug, articleTitle, articleContent } from '../lib/articles/articlesApi'
 import Seo from '../components/layout/Seo'
-import { PrerenderReady } from '../components/layout/Seo'
+import { PageShell } from '../components/layout'
 
 // Parse "## heading" / paragraph blocks (blank-line separated) so articles can carry
 // question-shaped H2s (SEO/AEO), while plain articles still render as paragraphs.
@@ -84,10 +83,8 @@ export default function ArticleDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <NavBar />
-      <PrerenderReady when={!loading} />
-      <main className="ks-content py-10">
+    <PageShell width="content" ready={!loading}>
+      <main>
         <div className="mb-4"><BackButton fallback="/articles" /></div>
 
         {loading ? (
@@ -147,6 +144,6 @@ export default function ArticleDetail() {
           </article>
         )}
       </main>
-    </div>
+    </PageShell>
   )
 }

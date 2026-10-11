@@ -16,7 +16,7 @@ import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 import { getTodayForFarmer } from '../lib/today/forFarmer'
 import { strings } from '../lib/i18n/strings'
 import { getCategorySafe } from '../lib/listings/registry'
-import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes, fetchPincode, fetchTopViewed } from '../lib/listings/listingsApi'
+import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes, fetchPincode } from '../lib/listings/listingsApi'
 import { fetchNearbyCounts, NEARBY_CATEGORIES } from '../lib/listings/nearbyCounts'
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { LocationControl } from '../components/pages/shared'
@@ -29,7 +29,6 @@ import AvailabilityNudge from '../components/AvailabilityNudge'
 import PwaInstallBanner from '../components/PwaInstallBanner'
 import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
 import { fetchPestReports } from '../lib/pest/pestApi'
-import { fetchUpcomingEvents, eventTitle, eventWeekdayKey } from '../lib/events/eventsApi'
 import { fetchUpcomingMelas } from '../lib/mela/melaApi'
 import { melaDateLabel } from '../lib/mela/melaFormat'
 import { melaStatus } from '../lib/mela/melaStatus'
@@ -94,31 +93,27 @@ export default function Homepage() {
   const [counts, setCounts] = useState(null)
   const [videos, setVideos] = useState([])
   const [pestReports, setPestReports] = useState([])
-  const [events, setEvents] = useState([])
   const [melas, setMelas] = useState([])
-  const [topViewed, setTopViewed] = useState([])
 
   // Static data (once).
   useEffect(() => {
     let alive = true
     ;(async () => {
-      const [arts, crops, equipmentTypes, saw, vids, pest, evs] = await Promise.all([
+      const [arts, crops, equipmentTypes, saw, vids, pest] = await Promise.all([
         fetchPublishedArticles().catch(() => []),
         fetchCrops().catch(() => []),
         fetchEquipmentTypes().catch(() => []),
         fetchFeaturedSawaal(3).catch(() => []),
         fetchFeaturedVideos(3).catch(() => []),
         fetchPestReports(14, 2).catch(() => []),
-        fetchUpcomingEvents(30).catch(() => []),
       ])
       if (!alive) return
       setArticles(arts.slice(0, 2)); setExtras({ crops, equipmentTypes }); setSawaal(saw)
-      setVideos(vids); setPestReports(pest); setEvents(evs)
+      setVideos(vids); setPestReports(pest)
     })()
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
     fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
     fetchUpcomingMelas(3).then((m) => alive && setMelas(m)).catch(() => alive && setMelas([]))
-    fetchTopViewed({ limit: 4 }).then((v) => alive && setTopViewed(v)).catch(() => {})
     return () => { alive = false }
   }, [])
 
@@ -151,15 +146,6 @@ export default function Homepage() {
 
   const alert = getRainAlert(weather?.forecast)
   const today = getTodayForFarmer({ weather, mandi, msp, alert, t })
-
-  // Hero event line: nearest active event within the next 7 days (or none).
-  const in7 = (() => {
-    const max = new Date(); max.setDate(max.getDate() + 7)
-    const maxStr = max.toISOString().slice(0, 10)
-    const e = (events || []).find((ev) => ev.event_date <= maxStr)
-    if (!e) return null
-    return `📅 ${t(eventWeekdayKey(e.event_date))} — ${eventTitle(e, lang)}${e.location ? ` · ${e.location}` : ''}`
-  })()
 
   // Pest banner: top qualifying crop+symptom group (framed as recently asked).
   const pest = (pestReports && pestReports[0]) || null
@@ -202,7 +188,7 @@ export default function Homepage() {
 
       {/* 3 — Hero: आज किसान के लिए */}
       <HeroContent
-        t={t} today={today} weather={weather} eventLine={in7}
+        t={t} today={today} weather={weather}
         onNeed={() => navigate('/browse')}
         onHave={() => navigate(isLoggedIn ? '/post' : '/signup')}
         onForecast={() => navigate('/mausam')}
@@ -292,35 +278,6 @@ export default function Homepage() {
         )}
       </Section>
 
-      {/* 6b — सबसे ज़्यादा देखा गया (Phase 11 discovery box) */}
-      {topViewed.length > 0 && (
-        <Section>
-          <SectionHeader title={t('most_viewed_heading')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          {topViewed.filter((l) => getCategorySafe(l.category)).map((l) => {
-              const rows = getCategorySafe(l.category).summarize(l, lang, extras).slice(0, 2)
-              const isOffer = l.listing_type === 'offer'
-              const isVendor = l.listing_source === 'vendor'
-              const place = [l.village_town || l.district].filter(Boolean).join(' · ')
-              return (
-                <HomeListingCard
-                  key={l.id}
-                  image={listingPhoto(l)}
-                  badge={isVendor ? t('vendor_badge') : isOffer ? t('home_offer') : t('home_requirement')}
-                  badgeTone={isVendor ? 'vendor' : isOffer ? 'offer' : 'requirement'}
-                  title={rows[0]?.value || t(`home_cat_${l.category}`)}
-                  price={rows[1]?.value}
-                  place={place}
-                  waHref={whatsappListingUrl(l)}
-                  tel={null}
-                  onWhatsApp={() => incrementContactClick(l.id)}
-                />
-              )
-            })}
-          </div>
-        </Section>
-      )}
-
       {/* 7 — आज की 2 मिनट की वीडियो सलाह */}
       <Section bg="var(--ks-bg-soft)">
         <SectionHeader title={t('videos_title')} linkLabel={t('view_all')} onLink={() => navigate('/videos')} />
@@ -352,15 +309,11 @@ export default function Homepage() {
           <div className="grid items-stretch gap-3 md:grid-cols-2 lg:grid-cols-3">
             {sawaal.map((q) => {
               const answer = sawaalAnswer(q, lang)
-              const answered = !!answer
               return (
                 <button key={q.id} type="button" onClick={() => navigate('/sawaal')} className="flex h-full flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
-                  {q.photo_url
-                    ? <img src={q.photo_url} alt="" loading="lazy" className="h-14 w-14 shrink-0 rounded-lg object-cover" onError={(e) => { e.currentTarget.style.display = 'none' }} />
-                    : <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg text-2xl" style={{ background: 'var(--ks-green-tint)' }} aria-hidden="true">❓</span>}
-                  <span className="line-clamp-2 block text-[16px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>{sawaalQuestion(q, lang)}</span>
+                  <span className="line-clamp-2 block text-[16px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}><span className="mr-1 text-sm" aria-hidden="true">💬</span>{sawaalQuestion(q, lang)}</span>
                   {answer && <span className="mt-2 line-clamp-3 block text-[14px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>{answer}</span>}
-                  <span className="mt-auto pt-3 text-[14px] font-bold" style={{ color: answered ? 'var(--ks-green)' : 'var(--ks-ink-3)' }}>{t('qa_read_answer')}</span>
+                  <span className="mt-auto pt-3 text-[14px] font-bold" style={{ color: 'var(--ks-green)' }}>{t('qa_read_answer')}</span>
                 </button>
               )
             })}
@@ -460,7 +413,7 @@ export default function Homepage() {
 
 // Hero content — shared between the desktop background-photo layout and the mobile
 // banner+cream layout.
-function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp, heading = 'h1' }) {
+function HeroInner({ t, today, onNeed, onHave, onForecast, onMsp, heading = 'h1' }) {
   // The hero renders twice (desktop bg layout + mobile banner layout). Only one
   // instance is an <h1> so the DOM has exactly one H1 (SEO); the other is a
   // visually-identical <p>.
@@ -486,12 +439,6 @@ function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp, hea
         <InfoTile caption={t('tf_advice_cap')} value={today.advice} />
       </div>
 
-      {eventLine && (
-        <div className="mt-3 rounded-lg px-3 py-2 text-[15px] font-semibold" style={{ background: 'var(--ks-blue-tint)', color: 'var(--ks-blue)' }}>
-          {eventLine}
-        </div>
-      )}
-
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Button variant="primary" giant icon={<SearchGlyph />} sublabel={t('cta_need_sub')} onClick={onNeed}>{t('cta_need')}</Button>
         <Button variant="secondary" giant icon={<PlusGlyph />} sublabel={t('cta_have_sub')} onClick={onHave}>{t('cta_have')}</Button>
@@ -500,8 +447,8 @@ function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp, hea
   )
 }
 
-function HeroContent({ t, today, onNeed, onHave, eventLine, onForecast, onMsp }) {
-  const common = { t, today, onNeed, onHave, eventLine, onForecast, onMsp }
+function HeroContent({ t, today, onNeed, onHave, onForecast, onMsp }) {
+  const common = { t, today, onNeed, onHave, onForecast, onMsp }
   return (
     <section className="w-full">
       {/* Desktop: farmer photo as background, text on a cream gradient on the left.

@@ -45,7 +45,7 @@ export default function Admin() {
     return (
       <PageShell width="content">
         {/* ks-allow-width: access-denied notice stays narrow/centred, not a full-width page */}
-        <div className="mx-auto max-w-md py-20 text-center">
+        <div className="py-20 text-center">
           <div className="text-5xl">🔒</div>
           <h1 className="mt-4 text-2xl font-bold text-stone-900">{t('access_denied')}</h1>
           <p className="mt-2 text-stone-600">{t('access_denied_body')}</p>

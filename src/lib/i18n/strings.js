@@ -276,7 +276,7 @@ export const strings = {
   // --- Phase 11: interlinking + discovery boxes ---
   related_heading: { hi: 'इससे जुड़ी सेवाएँ', en: 'Related services' },
   new_near_you_heading: { hi: 'आपके आसपास नया', en: 'New near you' },
-  most_viewed_heading: { hi: 'सबसे ज़्यादा देखा गया', en: 'Most viewed' },
+  popular_listings_heading: { hi: 'लोकप्रिय लिस्टिंग', en: 'Popular listings' },
 
   // --- experts directory ---
   experts_title: { hi: 'विशेषज्ञ / Experts', en: 'Experts' },
@@ -527,6 +527,12 @@ export const strings = {
   footer_general_email: { hi: 'hello@kissansahyog.com', en: 'hello@kissansahyog.com' },
   footer_copyright: { hi: '© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित', en: '© 2026 Kissan Sahyog | kissansahyog.com | All rights reserved' },
   footer_company: { hi: 'USD Vision AI LLP · मध्यप्रदेश, भारत', en: 'USD Vision AI LLP · Madhya Pradesh, India' },
+  footer_weather_data_prefix: { hi: 'मौसम डेटा: ', en: 'Weather data: ' },
+  footer_data_sources_suffix: { hi: ' · मंडी भाव: Agmarknet/data.gov.in', en: ' · Mandi prices: Agmarknet / data.gov.in' },
+  reading_related_title: { hi: 'और जानकारी', en: 'More information' },
+  reading_related_sawaal: { hi: 'किसान सवाल', en: 'Farmer questions' },
+  reading_related_yojana: { hi: 'सरकारी योजनाएं', en: 'Government schemes' },
+  reading_related_resources: { hi: 'ज़रूरी संपर्क', en: 'Useful contacts' },
 
   // --- legal pages ---
   privacy_title: { hi: 'गोपनीयता नीति', en: 'Privacy Policy' },
@@ -1324,7 +1330,7 @@ export const strings = {
 
   // --- Q&A strip ---
   qa_home_title: { hi: 'किसान सवाल', en: 'Farmer Q&A' },
-  qa_all_link: { hi: 'सभी सवाल', en: 'All Questions' },
+  qa_all_link: { hi: 'सभी सवाल देखें', en: 'See all questions' },
   qa_ask_btn: { hi: 'अपना सवाल पूछें', en: 'Ask Your Question' },
   qa_empty_msg: { hi: 'कोई सवाल पूछें — हम जवाब देंगे', en: "Ask a question — we'll answer" },
 

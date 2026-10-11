@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { BigButton } from '../components/ui'
+import { PageShell } from '../components/layout'
 
 // First-launch screen: pick language (Hindi default, big obvious choice), then
 // go to signup or login.
@@ -16,9 +17,8 @@ export default function Welcome() {
     }`
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      {/* ks-allow-width: first-launch language chooser is an intentional centred entry screen (no NavBar before the user picks a language) — not a content page. */}
-      <div className="mx-auto flex min-h-screen max-w-xl flex-col px-6 py-10">
+    <PageShell width="content" readingAside={false}>
+      <div className="flex min-h-[70vh] flex-col py-6">
         <button
           type="button"
           onClick={() => navigate('/')}
@@ -31,8 +31,7 @@ export default function Welcome() {
             🌾
           </div>
           <h1 className="mt-3 text-3xl font-extrabold text-green-800">{t('app_name')}</h1>
-          {/* ks-allow-width: readable intro line inside the centred chooser */}
-          <p className="mt-6 max-w-sm text-stone-600">{t('welcome_intro')}</p>
+          <p className="mt-6 text-stone-600">{t('welcome_intro')}</p>
         </div>
 
         <div className="mt-8">
@@ -41,7 +40,7 @@ export default function Welcome() {
           </p>
           <div className="mb-6 flex gap-3">
             <button type="button" className={langBtn('hi')} onClick={() => setLang('hi')}>
-              हिंदी
+              {t('hindi')}
             </button>
             <button type="button" className={langBtn('en')} onClick={() => setLang('en')}>
               English
@@ -56,6 +55,6 @@ export default function Welcome() {
           </div>
         </div>
       </div>
-    </div>
+    </PageShell>
   )
 }

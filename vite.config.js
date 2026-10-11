@@ -8,11 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      // Phase 5 — registerType 'prompt' (NOT autoUpdate): this project deploys
-      // frequently, and a silent auto-swap risks locking a farmer onto a stale build
-      // or changing content mid-session. The update flow is explicit and visible —
-      // src/components/PwaPrompts.jsx surfaces a "new update available" banner via
-      // vite-plugin-pwa's onNeedRefresh, and reload calls updateServiceWorker(true).
+      // Phase 5 — registerType 'autoUpdate': a new service worker activates as soon
+      // as it is available, so farmers receive the current app without a manual
+      // update prompt.
       registerType: 'autoUpdate',
       // We register the SW ourselves through virtual:pwa-register/react (in
       // PwaPrompts), so disable the auto-injected registration to avoid double-reg.
@@ -36,10 +34,8 @@ export default defineConfig({
       },
       workbox: {
         cleanupOutdatedCaches: true,
-        // clientsClaim lets the FIRST-installed SW control the already-open page so
-        // offline-first works from the first session. NO skipWaiting: a *new* version
-        // still waits until the user accepts the update prompt (updateServiceWorker(
-        // true)), so a fix never swaps content out from under a farmer mid-session.
+        // clientsClaim lets the first-installed SW control the already-open page, and
+        // skipWaiting activates each update immediately for the auto-update flow.
         skipWaiting: true,
         clientsClaim: true,
         // SPA: serve the precached app shell for any navigation, incl. offline —

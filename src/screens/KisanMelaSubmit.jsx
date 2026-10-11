@@ -39,7 +39,7 @@ export default function KisanMelaSubmit() {
         <div className="py-6 text-center">
           <div className="text-5xl">✅</div>
           {/* ks-allow-width: submitted confirmation text */}
-          <p className="mx-auto mt-4 max-w-md text-lg font-bold text-green-800">{t('mela_f_submitted')}</p>
+          <p className="mt-4 text-lg font-bold text-green-800">{t('mela_f_submitted')}</p>
           <BigButton className="mt-6" onClick={() => navigate('/kisan-mela')}>{t('mela_home_all')}</BigButton>
         </div>
       ) : (

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
+import { PageShell } from '../components/layout'
 
 export default function Credits() {
   const { t } = useLang()
@@ -26,9 +26,8 @@ export default function Credits() {
   }, [])
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
-      <div style={{ padding: '20px var(--ks-gutter)' }}>
+    <PageShell width="wide">
+      <div>
         <h1 className="text-[28px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{t('credits_title')}</h1>
         <p className="mt-1 text-[15px]" style={{ color: 'var(--ks-ink-2)' }}>{t('credits_intro')}</p>
 
@@ -50,6 +49,6 @@ export default function Credits() {
 
         <button type="button" onClick={() => navigate('/')} className="mt-6 rounded-lg px-4 py-2 text-[15px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>← {t('back')}</button>
       </div>
-    </div>
+    </PageShell>
   )
 }

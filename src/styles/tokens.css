@@ -97,6 +97,11 @@
   width: 100%;
   max-width: var(--content-max);
 }
+.ks-reading-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+@media (min-width: 1024px) {
+  .ks-reading-layout { grid-template-columns: minmax(0, var(--content-max)) minmax(14rem, 18rem); justify-content: space-between; }
+  .ks-reading-layout .ks-content { margin-inline: 0; }
+}
 .ks-form-side { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ks-grid-gap); }
 @media (min-width: 1024px) { .ks-form-side { grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr); } }
 /* Long-form structured content page defaults. */

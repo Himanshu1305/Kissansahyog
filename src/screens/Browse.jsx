@@ -52,7 +52,7 @@ export default function Browse() {
     return base
   })
 
-  // Most-viewed teasers, filtered to the selected category (Batch1 item 3).
+  // Popular teasers, filtered to the selected category (Batch1 item 3).
   useEffect(() => {
     let alive = true
     fetchTopViewed({ limit: 4, category }).then((v) => alive && setTopViewed(v)).catch(() => {})
@@ -182,10 +182,10 @@ export default function Browse() {
         </button>
       )}
 
-      {/* सबसे ज़्यादा देखा गया (Phase 11 discovery box) — current category only, hidden when empty. */}
+      {/* Popular listings — current category only, hidden when empty. */}
       {topViewed.length > 0 && (
-        <section className="mb-3" aria-label={t('most_viewed_heading')}>
-          <h2 className="mb-1.5 text-sm font-bold text-stone-900">{t('most_viewed_heading')}</h2>
+        <section className="mb-3" aria-label={t('popular_listings_heading')}>
+          <h2 className="mb-1.5 text-sm font-bold text-stone-900">{t('popular_listings_heading')}</h2>
           <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
             {topViewed.map((l) => (
               <ListingCard key={l.id} listing={l} extras={extras} onClick={() => navigate(`/listing/${l.id}`)} />

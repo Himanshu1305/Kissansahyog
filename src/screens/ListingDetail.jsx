@@ -168,7 +168,7 @@ export default function ListingDetail() {
       <WhatsAppShareButton
         label={t('contact_share')}
         message={generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)}
-        className="mx-auto mb-3 max-w-xs !bg-white !text-[var(--ks-green)] border-2 border-[var(--ks-green)] !py-1.5 text-sm"
+        className="mb-3 !bg-white !text-[var(--ks-green)] border-2 border-[var(--ks-green)] !py-1.5 text-sm"
         onClick={() => { if (!user || user.id !== listing.user_id) incrementContactClick(listing.id) }}
       />
 

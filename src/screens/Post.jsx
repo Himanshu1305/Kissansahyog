@@ -374,16 +374,16 @@ export default function Post() {
           <div className="text-6xl">✅</div>
           <p className="mt-4 text-xl font-bold text-green-800">{t('post_success')}</p>
           {created?.wide_visibility && (
-            <p className="mx-auto mt-3 inline-block rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-800" data-testid="wide-badge">📍 {t('wide_badge')}</p>
+            <p className="mt-3 inline-block rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-800" data-testid="wide-badge">📍 {t('wide_badge')}</p>
           )}
           {created?.geocoding_status === 'pending' && (
             /* ks-allow-width: success-state note */
-            <p className="mx-auto mt-3 max-w-sm rounded-lg bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-900" data-testid="pending-geocode-note">
+            <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-900" data-testid="pending-geocode-note">
               {t('listing_pending_geocode')}
             </p>
           )}
           {/* ks-allow-width: success-state box */}
-          <div className="mx-auto mt-4 max-w-sm"><WhatsAppJoin variant="box" src="post_listing" /></div>
+          <div className="mt-4"><WhatsAppJoin variant="box" src="post_listing" /></div>
           <div className="mt-8 space-y-3">
             <BigButton onClick={() => navigate(`/listing/${created.id}`)}>{t('view_listing')}</BigButton>
             <BigButton variant="secondary" onClick={resetAll}>{t('post_another')}</BigButton>
