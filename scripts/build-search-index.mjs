@@ -243,6 +243,7 @@ const HUBS = [
   { title_hi: 'ड्रोन दीदी', title_en: 'Drone Didi', url: '/drone-didi', keywords: 'drone didi ड्रोन दीदी spraying' },
   { title_hi: 'किसान सवाल', title_en: 'Kisan Sawaal', url: '/sawaal', keywords: 'sawaal question answer किसान सवाल जवाब' },
   { title_hi: 'किसान मेला', title_en: 'Kisan Mela', url: '/kisan-mela', keywords: 'kisan mela fair किसान मेला' },
+  { title_hi: 'संस्थापक — श्री अभिनन्दन दीक्षित', title_en: 'Founder — Shri Abhinandan Dixit', url: '/founder', keywords: 'संस्थापक अभिनन्दन दीक्षित founder abhinandan dixit about किसान सहयोग परिचय' },
 ]
 items.push(...HUBS.map((h) => ({
   type: 'hub',

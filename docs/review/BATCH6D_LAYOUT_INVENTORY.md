@@ -22,6 +22,7 @@
 | FasalSalah.jsx | PageShell | wide | none |
 | Greenhouse.jsx | PageShell | wide | none |
 | GreenhouseSubsidy.jsx | PageShell | content inside wide + related links | none |
+| Founder.jsx | PageShell | wide | none |
 | Grievance.jsx | PageShell | content inside wide + related links | none |
 | Home.jsx | PageShell | wide | none |
 | Homepage.jsx | home `Section`/`ks-section-inner` | wide | `w-[96px]` thumbnail; `md:max-w-[58%]` hero proportion (both whitelisted in verifier) |

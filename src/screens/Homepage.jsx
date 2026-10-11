@@ -2,7 +2,7 @@
 // entirely from the shared kit (src/components/home/kit.jsx) on the tokens in
 // src/styles/tokens.css. Section order follows HOMEPAGE_V4_BUILD_PROMPT Phase 4.
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
@@ -33,6 +33,7 @@ import { fetchUpcomingMelas } from '../lib/mela/melaApi'
 import { melaDateLabel } from '../lib/mela/melaFormat'
 import { melaStatus } from '../lib/mela/melaStatus'
 import SearchBar from '../components/SearchBar'
+import { founder } from '../content/founder'
 
 const IMG = (f) => `/images/home/${f}`
 
@@ -370,18 +371,26 @@ export default function Homepage() {
       {/* 10 — भरोसेमंद लोग (trust row; official PIB/MP photos omitted — unverifiable) */}
       <Section>
         <SectionHeader title={t('trust_title')} />
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
-          {/* TODO: founder photo — not available; render initials avatar (no stock face). */}
-          <div className="flex flex-col" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
-            <div className="flex items-center gap-3">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-extrabold text-white" style={{ background: 'var(--ks-green)' }} aria-hidden="true">{t('founder_initials')}</span>
-              <span>
-                <span className="block text-[16px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('founder_name')}</span>
-                <span className="block text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('founder_role')}</span>
-              </span>
-            </div>
-            <p className="mt-3 text-[15px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>“{t('founder_quote')}”</p>
+        {/* Founder band: portrait (or initials avatar — never a stock face) → /founder. */}
+        <div data-testid="home-founder-band" className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '16px' }}>
+          {founder.portrait.src ? (
+            <img src={founder.portrait.src} alt={founder.portrait.alt[lang] ?? founder.portrait.alt.hi} width={founder.portrait.width} height={founder.portrait.height} loading="lazy" className="h-24 w-24 shrink-0 rounded-full object-cover" />
+          ) : (
+            <span className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-[24px] font-extrabold text-white md:h-24 md:w-24 md:text-[28px]" style={{ background: 'var(--ks-green-dark)' }} aria-hidden="true">{t('founder_initials')}</span>
+          )}
+          <div className="min-w-0 flex-1">
+            <p className="text-[20px] font-extrabold leading-snug md:text-[22px]" style={{ color: 'var(--ks-ink)' }}>{t('founder_name')}</p>
+            <p className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{t('founder_role')}</p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {['founder_badge_service', 'founder_badge_medal', 'founder_badge_guinness'].map((k) => (
+                <li key={k} className="rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>{t(k)}</li>
+              ))}
+            </ul>
+            <p className="mt-3 text-[20px] font-extrabold tracking-wide md:text-[24px]" style={{ color: 'var(--ks-green)' }}>“{t('founder_quote')}”</p>
           </div>
+          <Link to="/founder" data-testid="home-founder-link" className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-xl px-5 text-[16px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>
+            {t('founder_read_full')} →
+          </Link>
         </div>
       </Section>
 

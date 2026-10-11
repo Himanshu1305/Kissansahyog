@@ -12,6 +12,7 @@ export const STATIC_ROUTES = [
   '/terms',
   '/grievance',
   '/contact',
+  '/founder',
   '/cold-storage',
   '/greenhouse',
   '/greenhouse/subsidy',

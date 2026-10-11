@@ -35,7 +35,7 @@ export const privacyPolicy = [
     en: 'Your consent and withdrawal: you can withdraw your WhatsApp consent or delete your account anytime from the Profile page or by writing to grievance@kissansahyog.com. This follows the spirit of the Digital Personal Data Protection (DPDP) Rules, 2025 (notified 13 November 2025).',
   },
   {
-    hi: 'डेटा से जुड़े सवाल या अपना डेटा हटवाने के लिए संपर्क करें: सामान्य — hello@kissansahyog.com; शिकायत/डेटा अधिकार — grievance@kissansahyog.com (शिकायत अधिकारी: श्री अभिनंदन दीक्षित)।',
+    hi: 'डेटा से जुड़े सवाल या अपना डेटा हटवाने के लिए संपर्क करें: सामान्य — hello@kissansahyog.com; शिकायत/डेटा अधिकार — grievance@kissansahyog.com (शिकायत अधिकारी: श्री अभिनन्दन दीक्षित)।',
     en: 'For data queries or deletion requests, contact: general — hello@kissansahyog.com; grievance/data rights — grievance@kissansahyog.com (Grievance Officer: Shri Abhinandan Dixit).',
   },
 ]
@@ -66,7 +66,7 @@ export const legacyTermsOfUse = [
     en: 'Provider declarations: in some categories (e.g. equipment, warehouse/cold storage) the seller must agree to a declaration about safety and the accuracy of information before posting. Responsibility for these declarations lies with the seller.',
   },
   {
-    hi: 'शिकायत व हटाने की प्रक्रिया: किसी लिस्टिंग या विक्रेता की शिकायत "शिकायत करें" बटन से या grievance@kissansahyog.com पर करें। हमारे शिकायत अधिकारी श्री अभिनंदन दीक्षित 24 घंटे में पावती और आमतौर पर 7 दिन में निपटारा करते हैं (सूचना प्रौद्योगिकी नियम, 2021 — G.S.R. 120(E), 10 फ़रवरी 2026 को संशोधित)।',
+    hi: 'शिकायत व हटाने की प्रक्रिया: किसी लिस्टिंग या विक्रेता की शिकायत "शिकायत करें" बटन से या grievance@kissansahyog.com पर करें। हमारे शिकायत अधिकारी श्री अभिनन्दन दीक्षित 24 घंटे में पावती और आमतौर पर 7 दिन में निपटारा करते हैं (सूचना प्रौद्योगिकी नियम, 2021 — G.S.R. 120(E), 10 फ़रवरी 2026 को संशोधित)।',
     en: 'Report & takedown: report any listing or seller via the "Report" button or grievance@kissansahyog.com. Our Grievance Officer, Shri Abhinandan Dixit, acknowledges within 24 hours and usually resolves within 7 days (Information Technology Rules, 2021 — as amended by G.S.R. 120(E), 10 February 2026).',
   },
   {

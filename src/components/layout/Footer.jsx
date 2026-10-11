@@ -19,6 +19,7 @@ export default function Footer() {
           </div>
           <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" style={{ color: '#B7CFBE' }}>
             <Link to="/bazaar" className={link}>{t('bazaar_nav')}</Link>
+            <Link to="/founder" className={link}>{t('footer_founder')}</Link>
             <Link to="/privacy" className={link}>{t('footer_privacy')}</Link>
             <Link to="/terms" className={link}>{t('footer_terms')}</Link>
             <Link to="/grievance" className={link}>{t('footer_grievance')}</Link>

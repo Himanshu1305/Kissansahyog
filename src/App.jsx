@@ -49,6 +49,7 @@ const KisanMela = lazy(() => import('./screens/KisanMela'))
 const KisanMelaSubmit = lazy(() => import('./screens/KisanMelaSubmit'))
 const Grievance = lazy(() => import('./screens/Grievance'))
 const Contact = lazy(() => import('./screens/Contact'))
+const Founder = lazy(() => import('./screens/Founder'))
 const ColdStorage = lazy(() => import('./screens/ColdStorage'))
 const ColdStorageDistrict = lazy(() => import('./screens/ColdStorageDistrict'))
 const Greenhouse = lazy(() => import('./screens/Greenhouse'))
@@ -107,6 +108,7 @@ function AppRoutes() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/grievance" element={<Grievance />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/founder" element={<Founder />} />
         {/* Static /cold-storage before the dynamic district route. */}
         <Route path="/cold-storage" element={<ColdStorage />} />
         <Route path="/cold-storage/:district" element={<ColdStorageDistrict />} />

@@ -1414,9 +1414,23 @@ export const strings = {
 
   // --- भरोसेमंद लोग (trust row) ---
   trust_title: { hi: 'भरोसेमंद लोग', en: 'People you can trust' },
-  founder_quote: { hi: 'यह मंच खेती को समझने वाले लोगों ने किसानों के लिए बनाया है।', en: 'This platform was built for farmers by people who understand farming.' },
-  founder_name: { hi: 'श्री ए.के. दीक्षित', en: 'Shri A.K. Dixit' },
-  founder_role: { hi: 'कृषि विशेषज्ञ, किसान परिवार से', en: 'Agriculture expert, from a farming family' },
+  founder_quote: { hi: 'WE WILL DO IT', en: 'WE WILL DO IT' },
+  founder_name: { hi: 'श्री अभिनन्दन दीक्षित', en: 'Shri Abhinandan Dixit' },
+  founder_role: { hi: 'संस्थापक · सेवानिवृत्त उप वन संरक्षक (DCF)', en: 'Founder · Retired Deputy Conservator of Forests (DCF)' },
+  founder_badge_service: { hi: '42 वर्ष की सेवा', en: '42 years of service' },
+  founder_badge_medal: { hi: 'स्वर्ण पदक, 2011', en: 'Gold Medal, 2011' },
+  founder_badge_guinness: { hi: 'गिनीज वर्ल्ड रिकॉर्ड, 2014-15', en: 'Guinness World Record, 2014-15' },
+  founder_read_full: { hi: 'पूरा परिचय पढ़ें', en: 'Read the full introduction' },
+
+  // --- /founder page (short UI labels; long copy lives in src/content/founder.js) ---
+  footer_founder: { hi: 'संस्थापक', en: 'Founder' },
+  founder_glance_title: { hi: 'एक नज़र में', en: 'At a glance' },
+  founder_education_title: { hi: 'पढ़ाई का सफ़र', en: 'Education' },
+  founder_awards_title: { hi: 'सम्मान', en: 'Honours' },
+  founder_view_certificate: { hi: 'प्रमाणपत्र देखें', en: 'View certificate' },
+  founder_watch_video: { hi: 'YouTube पर देखें', en: 'Watch on YouTube' },
+  founder_share_page: { hi: 'इस पेज को शेयर करें', en: 'Share this page' },
+  agro_author_role: { hi: 'सेवानिवृत्त वन विभाग अधिकारी', en: 'retired Forest Department officer' },
 
   // --- bazaar (public category landing pages, Batch 4 item D) ---
   bazaar_nav: { hi: 'बाज़ार', en: 'Bazaar' },

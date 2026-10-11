@@ -16,7 +16,7 @@ export const grievancePage = {
     {
       type: 'summary',
       text: {
-        hi: 'किसी लिस्टिंग, विक्रेता या जानकारी से आपको शिकायत है? हमारे शिकायत अधिकारी श्री अभिनंदन दीक्षित से grievance@kissansahyog.com पर संपर्क करें। हम शिकायत मिलने पर 24 घंटे में पावती (रसीद) देते हैं और आमतौर पर 7 दिन के भीतर निपटारा करते हैं।',
+        hi: 'किसी लिस्टिंग, विक्रेता या जानकारी से आपको शिकायत है? हमारे शिकायत अधिकारी श्री अभिनन्दन दीक्षित से grievance@kissansahyog.com पर संपर्क करें। हम शिकायत मिलने पर 24 घंटे में पावती (रसीद) देते हैं और आमतौर पर 7 दिन के भीतर निपटारा करते हैं।',
         en: 'Have a complaint about a listing, seller or information? Contact our Grievance Officer, Shri Abhinandan Dixit, at grievance@kissansahyog.com. We acknowledge every complaint within 24 hours and usually resolve it within 7 days.',
       },
       cites: ['S-JUG-29'],
@@ -28,7 +28,7 @@ export const grievancePage = {
     {
       type: 'paragraph',
       text: {
-        hi: 'शिकायत अधिकारी: श्री अभिनंदन दीक्षित। ईमेल: grievance@kissansahyog.com। किसान सहयोग को USD Vision AI LLP, मध्य प्रदेश, भारत चलाती है। सामान्य संपर्क के लिए hello@kissansahyog.com पर लिखें।',
+        hi: 'शिकायत अधिकारी: श्री अभिनन्दन दीक्षित। ईमेल: grievance@kissansahyog.com। किसान सहयोग को USD Vision AI LLP, मध्य प्रदेश, भारत चलाती है। सामान्य संपर्क के लिए hello@kissansahyog.com पर लिखें।',
         en: 'Grievance Officer: Shri Abhinandan Dixit. Email: grievance@kissansahyog.com. Kissan Sahyog is operated by USD Vision AI LLP, Madhya Pradesh, India. For general contact, write to hello@kissansahyog.com.',
       },
     },
