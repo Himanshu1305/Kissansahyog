@@ -6,7 +6,7 @@
 // and runs the Pages Function in-process with `fetch` replaced by a stub. No network,
 // no database, no .env. Prints PASS/FAIL lines, saves them to
 // docs/review/batch7b/VERIFY_OUTPUT.txt and exits non-zero on any failure.
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
@@ -26,6 +26,7 @@ const stripComments = (s) => s.replace(/\{\/\*[\s\S]*?\*\/\}/g, ' ').replace(/\/
 const text = (html) => html.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<[^>]+>/g, '')
 const load = (relative) => import(pathToFileURL(join(ROOT, relative)).href)
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b)
+const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(`${dir}/${e.name}`) : /\.(jsx?|mjs)$/.test(e.name) ? [`${dir}/${e.name}`] : []))
 
 const { strings } = await load('src/lib/i18n/strings.js')
 const { privacyPolicy } = await load('src/lib/i18n/legal.js')
@@ -34,6 +35,8 @@ const contact = await load('src/lib/feedback/contact.js')
 const fn = await load('functions/api/feedback.js')
 const sqlRaw = read('supabase/migrations/0055_feedback.sql')
 const sql = sqlRaw.replace(/--[^\n]*/g, '')
+const sql56Raw = read('supabase/migrations/0056_feedback_server_only.sql')
+const sql56 = sql56Raw.replace(/--[^\n]*/g, '')
 const fnSrc = read('functions/api/feedback.js')
 const api = read('src/lib/feedback/feedbackApi.js')
 const grievance = read('src/screens/Grievance.jsx')
@@ -47,7 +50,7 @@ const distPrivacy = read('dist/privacy/index.html')
 const table = (sql.match(/create table if not exists public\.feedback_messages \(([\s\S]*?)\n\);/) || ['', ''])[1]
 const cols = [...table.matchAll(/^\s{2}([a-z_]+)\s+(?!check)([a-z]+)/gm)].map((m) => m[1]).filter((c) => c !== 'constraint')
 const WANT = ['id', 'contact_email', 'contact_mobile', 'kind', 'message', 'lang', 'device_id', 'public_ok', 'moderation', 'status', 'notified_at', 'created_at']
-check('1: 0055 is the only feedback migration (rewritten in place, no 0056)', has('supabase/migrations/0055_feedback.sql') && !has('supabase/migrations/0056_feedback.sql'))
+check('1: 0055 holds the feedback table and functions (rewritten in place); 0056 only changes who may call submit_feedback', has('supabase/migrations/0055_feedback.sql') && !has('supabase/migrations/0056_feedback.sql') && has('supabase/migrations/0056_feedback_server_only.sql'))
 check('1: table has exactly the required columns', same(cols, WANT), cols.join(','))
 check('1: no column for who the person is', !/\b(full_)?name\b|phone/i.test(sql))
 check('1: contact columns are nullable; mobile is stored as 10 digits', /contact_email\s+text,/.test(table) && /contact_mobile\s+text check \(contact_mobile is null or contact_mobile ~ '\^\[6-9\]\[0-9\]\{9\}\$'\)/.test(table))
@@ -75,6 +78,14 @@ check('1: public_ok is forced false for a problem', /v_public := coalesce\(p_pub
 check('1: soft rate limit of 5 an hour per device, per e-mail and per mobile', /interval '1 hour'/.test(submit) && /device_id = v_dev/.test(submit) && /contact_email = v_email/.test(submit) && /contact_mobile = v_mobile/.test(submit) && /v_count >= 5/.test(submit))
 check('1: mark_feedback_notified is service-role only', /revoke all on function public\.mark_feedback_notified\(bigint\) from public, anon, authenticated/.test(sql)
   && /grant execute on function public\.mark_feedback_notified\(bigint\) to service_role;/.test(sql) && /set notified_at = now\(\)/.test(fnBody('mark_feedback_notified')))
+
+// Batch 7G — migration 0056: the browser can no longer save directly.
+const SUBMIT_SIG = 'public\\.submit_feedback\\(text, text, text, text, text, text, boolean\\)'
+const statements56 = sql56.split(';').map((x) => x.trim().replace(/\s+/g, ' ')).filter(Boolean)
+check('1: 0056 revokes submit_feedback from public, anon and authenticated', new RegExp(`^revoke execute on function ${SUBMIT_SIG} from public, anon, authenticated$`).test(statements56[0] || ''), statements56[0])
+check('1: 0056 keeps submit_feedback for service_role only', new RegExp(`^grant execute on function ${SUBMIT_SIG} to service_role$`).test(statements56[1] || '') && !/\bto\b[^;]*\b(anon|authenticated|public)\b/i.test(sql56), statements56[1])
+check('1: 0056 does nothing else (get_public_feedback and the admin functions untouched)', statements56.length === 2 && !/get_public_feedback|get_feedback_messages|moderate_feedback|set_feedback_status|mark_feedback_notified|feedback_messages|\b(create|drop|alter|truncate)\b/i.test(sql56), String(statements56.length))
+check('1: 0056 header says what it does, staging first then production, and how to roll back', /apply to staging first, then production/i.test(sql56Raw) && /Rollback note: re-grant to anon, authenticated/.test(sql56Raw) && /--\s+grant execute on function public\.submit_feedback\(text, text, text, text, text, text, boolean\) to anon, authenticated;/.test(sql56Raw))
 
 const pub = fnBody('get_public_feedback')
 const pubReturns = (pub.match(/returns table \(([^)]*)\)/) || ['', ''])[1].split(',').map((c) => c.trim().split(/\s+/)[0])
@@ -181,7 +192,7 @@ check('3: malformed JSON → 400 bad_request', garbage.status === 400 && same(ga
 const limited = await run({ body: good, handlers: { submit_feedback: () => ok({ code: 'P0001', message: 'feedback_too_many' }, 400) } })
 check('3: rate limit from the RPC → 429 feedback_too_many, no e-mail', limited.status === 429 && same(limited.json, { error: 'feedback_too_many' }) && limited.calls.length === 1)
 const noRpc = await run({ body: good, handlers: { submit_feedback: () => ok({ code: 'PGRST202', message: `Could not find the function public.submit_feedback at ${SECRETS.SUPABASE_URL}` }, 404) } })
-check('3: migration not applied → 503 unavailable (browser falls back), never a success', noRpc.status === 503 && same(noRpc.json, { error: 'unavailable' }) && noRpc.calls.length === 1)
+check('3: migration not applied → 503 unavailable (browser offers the e-mail link), never a success', noRpc.status === 503 && same(noRpc.json, { error: 'unavailable' }) && noRpc.calls.length === 1)
 const dbDown = await run({ body: good, handlers: { submit_feedback: () => { throw new Error(`connect ECONNREFUSED ${SECRETS.SUPABASE_URL} key=${SECRETS.SUPABASE_SERVICE_ROLE_KEY}`) } } })
 check('3: database unreachable → 503 unavailable', dbDown.status === 503 && same(dbDown.json, { error: 'unavailable' }))
 const noEnv = await run({ body: good, env: {} })
@@ -206,7 +217,19 @@ const csp = (headers.match(/Content-Security-Policy:[^\n]*/) || [''])[0]
 check('4: function file is functions/api/feedback.js → /api/feedback, same convention as /transcribe', has('functions/api/feedback.js') && has('functions/transcribe.js') && !has('public/_routes.json') && !/^\/api\//m.test(read('public/_redirects')))
 check("4: CSP already allows the same-origin call (connect-src 'self') and was not weakened", /connect-src 'self' /.test(csp) && !/api\.resend\.com/.test(csp) && !/connect-src[^;]*\*(?!\.supabase\.co)/.test(csp) && /default-src 'self'/.test(csp) && /frame-ancestors 'none'/.test(csp))
 check('4: the browser never talks to Resend and never sees a key', !/resend/i.test(api + grievance) && !/SERVICE_ROLE|RESEND/.test(api + grievance))
-check('4: client order is /api/feedback → direct RPC → mailto, and success needs {ok:true}', /if \(await viaServer\(payload\)\) return\s+await viaRpc\(payload\)/.test(api) && /res\.ok && body\?\.ok === true/.test(api) && /err\.canEmail = true/.test(api) && /feedbackMailto/.test(grievance))
+const apiCode = stripComments(api)
+const srcFiles = walk('src')
+const rpcInBrowser = srcFiles.filter((f) => /submit_feedback|viaRpc/.test(stripComments(read(f))))
+check(`4: no direct submit_feedback RPC call anywhere in browser code (${srcFiles.length} files under src/)`, srcFiles.length > 50 && rpcInBrowser.length === 0
+  && [...apiCode.matchAll(/\.rpc\(\s*'([a-z_]+)'/g)].every((m) => m[1] === 'get_public_feedback'), rpcInBrowser.join(', '))
+check('4: the form posts only to /api/feedback, and success needs {ok:true}', /const ENDPOINT = '\/api\/feedback'/.test(apiCode) && (apiCode.match(/\bfetch\(/g) || []).length === 1 && /fetch\(ENDPOINT, \{ method: 'POST'/.test(apiCode)
+  && /await viaServer\(payload\)\s+\}/.test(apiCode) && /if \(res\.ok && body\?\.ok === true\) return\s/.test(apiCode))
+const viaServerSrc = (apiCode.match(/async function viaServer\(payload\) \{[\s\S]*?\n\}/) || [''])[0]
+check('4: 503 or a network failure → "could not send" with the e-mail fallback, never a thank-you', /catch \{\s+throw unavailable\(\)\s+\}/.test(viaServerSrc) && /throw unavailable\(\)\s+\}$/.test(viaServerSrc) && !/return (true|false)/.test(viaServerSrc)
+  && /function unavailable\(\) \{[\s\S]*?err\.i18nKey = 'fb_err_unavailable'\s+err\.canEmail = true/.test(apiCode))
+check('4: 400 and 429 refusals keep their own message and offer no e-mail link', /if \(body\?\.error && CODE_TO_KEY\[body\.error\]\) throw refused\(body\.error\)/.test(viaServerSrc) && /feedback_too_many: 'fb_err_too_many'/.test(apiCode) && /function refused\(code\) \{[\s\S]*?err\.canEmail = false/.test(apiCode))
+check('4: mailto fallback to grievance@kissansahyog.com is still there, worded in Hindi and English', /FEEDBACK_EMAIL = 'grievance@kissansahyog\.com'/.test(apiCode) && /`mailto:\$\{FEEDBACK_EMAIL\}\?subject=/.test(apiCode) && /if \(ex\.canEmail\) setMailto\(feedbackMailto\(/.test(grievance) && /data-testid="feedback-mailto"/.test(grievance)
+  && /ईमेल/.test(strings.fb_err_unavailable.hi) && /email/i.test(strings.fb_err_unavailable.en))
 
 // ---- 5. form -------------------------------------------------------------------------
 const g = stripComments(grievance)

@@ -233,7 +233,8 @@ check('9c: the English slips are fixed in the Q&A content files', leftover.lengt
 const sql = read('docs/review/batch7d/DB_FIXES.sql')
 check('9: DB_FIXES.sql covers the Q&A English, the mela rows, the article byline and the database "free" row', /update public\.kisan_sawaal/.test(sql) && /update public\.kisan_mela set venue = 'Gorakhpur'/.test(sql) && /update public\.articles set author_name = 'USD Vision AI Team'\s+where slug = 'intercropping-madhya-pradesh'/.test(sql) && /update public\.page_faqs/.test(sql))
 check('9: DB_FIXES.sql is review-only: wrapped in a transaction, matches on slug/text, no deletes or schema changes', /^begin;/m.test(sql) && /^commit;/m.test(sql) && !/\b(delete|drop|truncate|alter|insert)\b/i.test(sql.replace(/--[^\n]*/g, '')) && OLD.slice(0, 2).every((o) => sql.includes(o)))
-check('9: nothing in this batch adds a migration', !readdirSync(join(ROOT, 'supabase/migrations')).some((f) => /^00(5[6-9]|[6-9]\d)/.test(f)))
+// 0056_feedback_server_only.sql was added later, by Batch 7G; nothing else may follow 0055.
+check('9: nothing in this batch adds a migration (0056 is Batch 7G)', !readdirSync(join(ROOT, 'supabase/migrations')).some((f) => /^00(5[6-9]|[6-9]\d)/.test(f) && f !== '0056_feedback_server_only.sql'))
 
 // ---- 10. strings ----------------------------------------------------------------------------------------
 const newKeys = ['free_registration', 'home_open_title', 'home_open_mandi', 'home_open_schemes', 'home_open_sawaal', 'home_open_cold', 'home_open_mela', 'terms_updated', 'terms_contents', 'post_declare_provider', 'post_declare_owner']

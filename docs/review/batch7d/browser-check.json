@@ -82,7 +82,7 @@
   {
     "name": "360-hi mela cards: no place line that is just the country (3 cards)",
     "ok": true,
-    "detail": "📍 Gorakhpur, Uttar Pradesh | 📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka"
+    "detail": "📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka | 📍 Lucknow (ICAR-Indian Sugarcane Research Institute campus per organizer materials), Lucknow, Uttar Pradesh"
   },
   {
     "name": "360-en home: no horizontal scroll",
@@ -167,7 +167,7 @@
   {
     "name": "360-en mela cards: no place line that is just the country (3 cards)",
     "ok": true,
-    "detail": "📍 Gorakhpur, Uttar Pradesh | 📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka"
+    "detail": "📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka | 📍 Lucknow (ICAR-Indian Sugarcane Research Institute campus per organizer materials), Lucknow, Uttar Pradesh"
   },
   {
     "name": "360 sign-up: \"✓ निःशुल्क रजिस्ट्रेशन\" sits between the heading and the form",
@@ -217,7 +217,7 @@
   {
     "name": "1280-hi strip: near the top, above the hero, inside the screen",
     "ok": true,
-    "detail": "{\"x\":0,\"y\":212,\"width\":1280,\"height\":61}"
+    "detail": "{\"x\":0,\"y\":159,\"width\":1280,\"height\":61}"
   },
   {
     "name": "1280-hi strip: five open pages + the how-to link",
@@ -282,7 +282,7 @@
   {
     "name": "1280-hi mela cards: no place line that is just the country (3 cards)",
     "ok": true,
-    "detail": "📍 Gorakhpur, Uttar Pradesh | 📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka"
+    "detail": "📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka | 📍 Lucknow (ICAR-Indian Sugarcane Research Institute campus per organizer materials), Lucknow, Uttar Pradesh"
   },
   {
     "name": "1280-en home: no horizontal scroll",
@@ -302,7 +302,7 @@
   {
     "name": "1280-en strip: near the top, above the hero, inside the screen",
     "ok": true,
-    "detail": "{\"x\":0,\"y\":212,\"width\":1280,\"height\":61}"
+    "detail": "{\"x\":0,\"y\":159,\"width\":1280,\"height\":61}"
   },
   {
     "name": "1280-en strip: five open pages + the how-to link",
@@ -367,12 +367,12 @@
   {
     "name": "1280-en mela cards: no place line that is just the country (3 cards)",
     "ok": true,
-    "detail": "📍 Gorakhpur, Uttar Pradesh | 📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka"
+    "detail": "📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka | 📍 Lucknow (ICAR-Indian Sugarcane Research Institute campus per organizer materials), Lucknow, Uttar Pradesh"
   },
   {
     "name": "1280 sign-up: \"✓ निःशुल्क रजिस्ट्रेशन\" sits between the heading and the form",
     "ok": true,
-    "detail": "{\"sBox\":{\"x\":72,\"y\":208,\"width\":140.578125,\"height\":28},\"h1\":160,\"form\":248}"
+    "detail": "{\"sBox\":{\"x\":72,\"y\":149,\"width\":140.578125,\"height\":28},\"h1\":101,\"form\":189}"
   },
   {
     "name": "1280 sign-up: no horizontal scroll",

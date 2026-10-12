@@ -72,7 +72,7 @@
   {
     "name": "360px success: /api/feedback gets the 10-digit mobile, type, message and consent; direct RPC not used",
     "ok": true,
-    "detail": "{\"email\":null,\"mobile\":\"9876543210\",\"kind\":\"suggestion\",\"message\":\"मंडी भाव का पेज बहुत काम का है।\",\"lang\":\"hi\",\"device\":\"bf1af4ab-4883-4b38-a2a1-288ca0daaa01\",\"public_ok\":true}"
+    "detail": "{\"email\":null,\"mobile\":\"9876543210\",\"kind\":\"suggestion\",\"message\":\"मंडी भाव का पेज बहुत काम का है।\",\"lang\":\"hi\",\"device\":\"1ec3a927-2598-4823-9cb0-ac4392a61074\",\"public_ok\":true}"
   },
   {
     "name": "360px success: nothing about who the person is in the request",
@@ -87,25 +87,30 @@
   {
     "name": "360px problem: sent with public_ok false and the e-mail lower-cased",
     "ok": true,
-    "detail": "{\"email\":\"kisan@example.com\",\"mobile\":null,\"kind\":\"problem\",\"message\":\"लिस्टिंग का फ़ोटो नहीं खुल रहा है।\",\"lang\":\"hi\",\"device\":\"bf1af4ab-4883-4b38-a2a1-288ca0daaa01\",\"public_ok\":false}"
+    "detail": "{\"email\":\"kisan@example.com\",\"mobile\":null,\"kind\":\"problem\",\"message\":\"लिस्टिंग का फ़ोटो नहीं खुल रहा है।\",\"lang\":\"hi\",\"device\":\"1ec3a927-2598-4823-9cb0-ac4392a61074\",\"public_ok\":false}"
   },
   {
-    "name": "360px fallback: /api/feedback 404 → submit_feedback RPC called with the same fields → confirmation",
-    "ok": true,
-    "detail": "{\"p_email\":\"kisan@example.com\",\"p_mobile\":null,\"p_kind\":\"other\",\"p_message\":\"कोल्ड स्टोरेज की सूची में मेरा ज़िला जोड़ें।\",\"p_lang\":\"hi\",\"p_device\":\"bf1af4ab-4883-4b38-a2a1-288ca0daaa01\",\"p_public_ok\":false}"
-  },
-  {
-    "name": "360px fallback: API and RPC both missing → e-mail link with the message, no false thank-you",
+    "name": "360px fallback: /api/feedback 503 → e-mail link with the message, no direct RPC, no false thank-you",
     "ok": true,
     "detail": ""
   },
   {
-    "name": "360px fallback: /api/feedback 503 → RPC used → confirmation",
+    "name": "360px fallback: the \"could not send\" line is shown in Hindi",
+    "ok": true,
+    "detail": "अभी यहाँ से संदेश नहीं जा सका। कृपया नीचे के बटन से इसे ईमेल से भेज दें।\n\nईमेल से भेजें"
+  },
+  {
+    "name": "360px fallback: network failure → e-mail link, no direct RPC, no false thank-you",
     "ok": true,
     "detail": ""
   },
   {
-    "name": "360px refusal: rate limit → clear message, no RPC retry, no mailto, no thank-you",
+    "name": "360px fallback: /api/feedback not deployed (404) → e-mail link, no direct RPC",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px refusal: rate limit → clear message, no RPC call, no mailto, no thank-you",
     "ok": true,
     "detail": ""
   },
@@ -222,7 +227,7 @@
   {
     "name": "1280px success: /api/feedback gets the 10-digit mobile, type, message and consent; direct RPC not used",
     "ok": true,
-    "detail": "{\"email\":null,\"mobile\":\"9876543210\",\"kind\":\"suggestion\",\"message\":\"मंडी भाव का पेज बहुत काम का है।\",\"lang\":\"hi\",\"device\":\"8a635e7d-ce79-445b-a265-d5e18d1e7b94\",\"public_ok\":true}"
+    "detail": "{\"email\":null,\"mobile\":\"9876543210\",\"kind\":\"suggestion\",\"message\":\"मंडी भाव का पेज बहुत काम का है।\",\"lang\":\"hi\",\"device\":\"bb7a4a9a-b2f3-4a18-aa6e-ba6d2744664f\",\"public_ok\":true}"
   },
   {
     "name": "1280px success: nothing about who the person is in the request",
@@ -237,25 +242,30 @@
   {
     "name": "1280px problem: sent with public_ok false and the e-mail lower-cased",
     "ok": true,
-    "detail": "{\"email\":\"kisan@example.com\",\"mobile\":null,\"kind\":\"problem\",\"message\":\"लिस्टिंग का फ़ोटो नहीं खुल रहा है।\",\"lang\":\"hi\",\"device\":\"8a635e7d-ce79-445b-a265-d5e18d1e7b94\",\"public_ok\":false}"
+    "detail": "{\"email\":\"kisan@example.com\",\"mobile\":null,\"kind\":\"problem\",\"message\":\"लिस्टिंग का फ़ोटो नहीं खुल रहा है।\",\"lang\":\"hi\",\"device\":\"bb7a4a9a-b2f3-4a18-aa6e-ba6d2744664f\",\"public_ok\":false}"
   },
   {
-    "name": "1280px fallback: /api/feedback 404 → submit_feedback RPC called with the same fields → confirmation",
-    "ok": true,
-    "detail": "{\"p_email\":\"kisan@example.com\",\"p_mobile\":null,\"p_kind\":\"other\",\"p_message\":\"कोल्ड स्टोरेज की सूची में मेरा ज़िला जोड़ें।\",\"p_lang\":\"hi\",\"p_device\":\"8a635e7d-ce79-445b-a265-d5e18d1e7b94\",\"p_public_ok\":false}"
-  },
-  {
-    "name": "1280px fallback: API and RPC both missing → e-mail link with the message, no false thank-you",
+    "name": "1280px fallback: /api/feedback 503 → e-mail link with the message, no direct RPC, no false thank-you",
     "ok": true,
     "detail": ""
   },
   {
-    "name": "1280px fallback: /api/feedback 503 → RPC used → confirmation",
+    "name": "1280px fallback: the \"could not send\" line is shown in Hindi",
+    "ok": true,
+    "detail": "अभी यहाँ से संदेश नहीं जा सका। कृपया नीचे के बटन से इसे ईमेल से भेज दें।\n\nईमेल से भेजें"
+  },
+  {
+    "name": "1280px fallback: network failure → e-mail link, no direct RPC, no false thank-you",
     "ok": true,
     "detail": ""
   },
   {
-    "name": "1280px refusal: rate limit → clear message, no RPC retry, no mailto, no thank-you",
+    "name": "1280px fallback: /api/feedback not deployed (404) → e-mail link, no direct RPC",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px refusal: rate limit → clear message, no RPC call, no mailto, no thank-you",
     "ok": true,
     "detail": ""
   },

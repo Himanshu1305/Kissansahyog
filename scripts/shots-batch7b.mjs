@@ -47,7 +47,7 @@ for (const width of WIDTHS) {
 
   // What each scenario lets the "server" answer; everything is recorded.
   const net = { api: null, rpc: null, pub: null, apiCalls: [], rpcCalls: [], blocked: [] }
-  await page.route('**/api/feedback', (route) => { net.apiCalls.push(route.request().postDataJSON()); return route.fulfill(net.api) })
+  await page.route('**/api/feedback', (route) => { net.apiCalls.push(route.request().postDataJSON()); return net.api === 'network-down' ? route.abort() : route.fulfill(net.api) })
   await page.route(/supabase\.co\//, (route) => {
     const req = route.request()
     const url = req.url()
@@ -58,7 +58,6 @@ for (const width of WIDTHS) {
   })
   const reset = () => { net.apiCalls.length = 0; net.rpcCalls.length = 0 }
   const NOT_DEPLOYED = { status: 404, contentType: 'text/html', body: '<!doctype html><title>Not found</title>' }
-  const RPC_MISSING = { status: 404, ...jsonBody({ code: 'PGRST202', message: 'Could not find the function public.submit_feedback in the schema cache' }) }
   net.pub = { status: 404, ...jsonBody({ code: 'PGRST202', message: 'Could not find the function public.get_public_feedback in the schema cache' }) }
 
   await page.goto(BASE + '/grievance', { waitUntil: 'networkidle' })
@@ -139,40 +138,37 @@ for (const width of WIDTHS) {
   check(`${width}px problem: sent with public_ok false and the e-mail lower-cased`, net.apiCalls[0]?.kind === 'problem' && net.apiCalls[0]?.public_ok === false && net.apiCalls[0]?.email === 'kisan@example.com' && net.apiCalls[0]?.mobile === null, JSON.stringify(net.apiCalls[0]))
   await done.locator('button').click()
 
-  // ---- fallback 1: /api/feedback not deployed → direct RPC ---------------------------------
-  reset()
-  net.api = NOT_DEPLOYED
-  net.rpc = { status: 200, ...jsonBody(7) }
-  await pick('other')
-  await form.locator('#fb-message').fill('कोल्ड स्टोरेज की सूची में मेरा ज़िला जोड़ें।')
-  await submit.click()
-  await done.waitFor()
-  const viaRpc = net.rpcCalls[0] || {}
-  check(`${width}px fallback: /api/feedback 404 → submit_feedback RPC called with the same fields → confirmation`,
-    net.apiCalls.length === 1 && net.rpcCalls.length === 1 && viaRpc.p_email === 'kisan@example.com' && viaRpc.p_mobile === null && viaRpc.p_kind === 'other' && viaRpc.p_public_ok === false && viaRpc.p_message.length > 5, JSON.stringify(viaRpc))
-  await done.locator('button').click()
-
-  // ---- fallback 2: nothing can store it → mailto, never a thank-you ---------------------------
-  reset()
-  net.api = NOT_DEPLOYED
-  net.rpc = RPC_MISSING
-  await form.locator('#fb-message').fill('मौसम का पेज धीमा खुलता है।')
-  await submit.click()
+  // ---- Batch 7G: the browser never saves directly. If the server cannot store the
+  // message, the page offers it as an e-mail and never shows a thank-you. -----------------
+  net.rpc = { status: 200, ...jsonBody(7) } // would "work" if the page still called it
   const mailto = page.locator('[data-testid="feedback-mailto"]')
-  await mailto.waitFor()
-  const href = await mailto.getAttribute('href')
-  check(`${width}px fallback: API and RPC both missing → e-mail link with the message, no false thank-you`,
-    href.startsWith('mailto:grievance@kissansahyog.com?') && decodeURIComponent(href).includes('मौसम का पेज धीमा खुलता है।') && (await done.count()) === 0 && net.apiCalls.length === 1 && net.rpcCalls.length === 1)
-  await page.screenshot({ path: join(OUT, `grievance-fallback-${width}.png`), fullPage: true })
+  const apiAnswered = async () => { while (net.apiCalls.length < 1) await page.waitForTimeout(50) }
+  const offersEmail = async (text) => {
+    await apiAnswered()
+    await mailto.waitFor()
+    const href = await mailto.getAttribute('href')
+    return href.startsWith('mailto:grievance@kissansahyog.com?') && decodeURIComponent(href).includes(text) && (await done.count()) === 0 && net.apiCalls.length === 1 && net.rpcCalls.length === 0
+  }
 
-  // ---- the function says 503 (stored nothing) → still tries the RPC ------------------------------
   reset()
   net.api = { status: 503, ...jsonBody({ error: 'unavailable' }) }
-  net.rpc = { status: 200, ...jsonBody(8) }
+  await pick('other')
+  await form.locator('#fb-message').fill('मौसम का पेज धीमा खुलता है।')
   await submit.click()
-  await done.waitFor()
-  check(`${width}px fallback: /api/feedback 503 → RPC used → confirmation`, net.apiCalls.length === 1 && net.rpcCalls.length === 1)
-  await done.locator('button').click()
+  check(`${width}px fallback: /api/feedback 503 → e-mail link with the message, no direct RPC, no false thank-you`, await offersEmail('मौसम का पेज धीमा खुलता है।'))
+  const alertText = await form.locator('[role="alert"]').last().innerText()
+  check(`${width}px fallback: the "could not send" line is shown in Hindi`, alertText.includes('ईमेल से भेज'), alertText)
+  await page.screenshot({ path: join(OUT, `grievance-fallback-${width}.png`), fullPage: true })
+
+  reset()
+  net.api = 'network-down'
+  await submit.click()
+  check(`${width}px fallback: network failure → e-mail link, no direct RPC, no false thank-you`, await offersEmail('मौसम का पेज धीमा खुलता है।'))
+
+  reset()
+  net.api = NOT_DEPLOYED
+  await submit.click()
+  check(`${width}px fallback: /api/feedback not deployed (404) → e-mail link, no direct RPC`, await offersEmail('मौसम का पेज धीमा खुलता है।'))
 
   // ---- refusals from the server are shown, with no fallback and no thank-you -----------------------
   reset()
@@ -181,7 +177,7 @@ for (const width of WIDTHS) {
   await form.locator('#fb-message').fill('एक और संदेश।')
   await submit.click()
   await form.locator('[role="alert"]').waitFor()
-  check(`${width}px refusal: rate limit → clear message, no RPC retry, no mailto, no thank-you`, (await form.locator('[role="alert"]').innerText()).includes('कुछ देर बाद') && net.rpcCalls.length === 0 && (await mailto.count()) === 0 && (await done.count()) === 0)
+  check(`${width}px refusal: rate limit → clear message, no RPC call, no mailto, no thank-you`, (await form.locator('[role="alert"]').innerText()).includes('कुछ देर बाद') && net.rpcCalls.length === 0 && (await mailto.count()) === 0 && (await done.count()) === 0)
 
   // ---- honeypot: looks like success, sends nothing ---------------------------------------------------
   reset()

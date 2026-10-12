@@ -18,7 +18,7 @@ const CONTACT_ERROR_KEY = {
   unknown: 'fb_err_contact',
 }
 
-// Client-side check; the server function and the RPC repeat it. Returns
+// Client-side check; the server function and the RPC behind it repeat it. Returns
 // { field, key } (field = 'contact' | 'message', key = i18n key) or null.
 export function validateFeedback({ contact, message }) {
   const c = parseContact(contact)
@@ -29,7 +29,7 @@ export function validateFeedback({ contact, message }) {
   return null
 }
 
-// Server / RPC error code → i18n key. Kept here (not in lib/errors.js) because
+// Server error code → i18n key. Kept here (not in lib/errors.js) because
 // these codes are specific to this form.
 const CODE_TO_KEY = {
   feedback_contact_required: 'fb_err_contact_required',
@@ -47,55 +47,36 @@ function refused(code) {
   return err
 }
 
-// 1) The site's own server function: stores the message and e-mails the team.
-// Returns true when stored, false when the function is not there / not usable (local
-// dev, before deploy, not configured) so the caller can try the direct RPC. A refusal
-// the person can fix (bad input, too many messages) throws.
+function unavailable() {
+  const err = new Error('feedback_unavailable')
+  err.i18nKey = 'fb_err_unavailable'
+  err.canEmail = true
+  return err
+}
+
+// The site's own server function is the only way in: it stores the message and
+// e-mails the team. The browser has no direct database path (migration 0056). A
+// refusal the person can fix (bad input, too many messages) throws with its own
+// message; anything else (503, network failure, function not there) means nothing
+// was stored.
 async function viaServer(payload) {
   let res
   try {
     res = await fetch(ENDPOINT, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) })
   } catch {
-    return false
+    throw unavailable()
   }
   let body = null
   try { body = await res.json() } catch { /* not JSON → not our function */ }
-  if (res.ok && body?.ok === true) return true
+  if (res.ok && body?.ok === true) return
   if (body?.error && CODE_TO_KEY[body.error]) throw refused(body.error)
-  return false
+  throw unavailable()
 }
 
-// 2) Straight to the submit_feedback RPC (migration 0055). No notification e-mail on
-// this path; the message is still in the inbox table.
-async function viaRpc(payload) {
-  let error
-  try {
-    ({ error } = await supabase.rpc('submit_feedback', {
-      p_email: payload.email,
-      p_mobile: payload.mobile,
-      p_kind: payload.kind,
-      p_message: payload.message,
-      p_lang: payload.lang,
-      p_device: payload.device,
-      p_public_ok: payload.public_ok,
-    }))
-  } catch (e) {
-    error = e
-  }
-  if (!error) return
-  const raw = String(error?.message || error || '').toLowerCase()
-  const code = Object.keys(CODE_TO_KEY).find((c) => raw.includes(c))
-  if (code) throw refused(code)
-  const err = new Error('feedback_unavailable')
-  err.i18nKey = 'fb_err_unavailable'
-  err.canEmail = true
-  throw err
-}
-
-// Sends the message: server function first, then the direct RPC. Any failure throws
-// an Error carrying `i18nKey`; `canEmail` is true when the message could not be
-// stored at all — the page then offers the same message as a ready-to-send e-mail,
-// so it never shows a thank-you for something that was not saved.
+// Sends the message through /api/feedback. Any failure throws an Error carrying
+// `i18nKey`; `canEmail` is true when the message could not be stored at all — the
+// page then offers the same message as a ready-to-send e-mail, so it never shows a
+// thank-you for something that was not saved.
 export async function submitFeedback({ contact, kind, message, lang, publicOk }) {
   const c = parseContact(contact)
   const safeKind = FEEDBACK_KINDS.includes(kind) ? kind : 'other'
@@ -108,8 +89,7 @@ export async function submitFeedback({ contact, kind, message, lang, publicOk })
     device: getDeviceId(),
     public_ok: !!publicOk && PUBLIC_KINDS.includes(safeKind),
   }
-  if (await viaServer(payload)) return
-  await viaRpc(payload)
+  await viaServer(payload)
 }
 
 // Approved, consented suggestions for /about. Never throws: before the migration is

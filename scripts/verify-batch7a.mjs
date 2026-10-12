@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 // Batch 7A static verifier — footer, logo, About page + menu, Feedback & Grievance.
+// Also asserts Batch 7H (one-row desktop header) and Batch 7I (ownership wording).
 //   node scripts/verify-batch7a.mjs
 // Reads source files and the built dist/ (run the staging build + prerender +
 // sitemaps first). No network, no database, no .env. Prints PASS/FAIL lines, saves
 // them to docs/review/batch7a/VERIFY_OUTPUT.txt and exits non-zero on any failure.
-import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
@@ -84,9 +85,9 @@ check('2: built manifest lists 192, 512 and a maskable icon, and every file exis
 check('2: social share image left alone (default OG path unchanged)', /og\/default\.png/.test(read('src/components/layout/Seo.jsx')) && has('public/og/default.png'))
 let shots = null
 try { shots = JSON.parse(read('docs/review/batch7a/header-check.json')) } catch { /* reported below */ }
-const widths = [320, 360, 390, 768, 1280]
+const widths = [320, 360, 390, 768, 1024, 1280]
 const bad = (shots?.header || []).filter((h) => h.overlaps.length || h.overflowRight.length || h.pageScrollsSideways)
-check('2: browser check found no overlapping header items at 320/360/390/768/1280',
+check('2: browser check found no overlapping header items at 320/360/390/768/1024/1280',
   !!shots && widths.every((w) => shots.header.some((h) => h.width === w)) && bad.length === 0 && shots.behaviour.every((b) => b.ok),
   shots ? bad.map((h) => `${h.width}${h.path}`).join(', ') : 'run node scripts/shots-batch7a.mjs')
 const missingShots = widths.filter((w) => !has(`docs/review/batch7a/header-${w}-home.png`))
@@ -108,10 +109,9 @@ const org = buildAboutJsonLd(about, 'en')[0]
 check('3: Organization JSON-LD uses the facts used elsewhere on the site',
   org['@type'] === 'Organization' && org.name === 'Kissan Sahyog' && org.url === 'https://kissansahyog.com' && org.email === strings.footer_general_email.en
   && org.areaServed === 'IN-MP' && org.founder.name === founder.name.en && org.founder.name === strings.founder_name.en
-  && org.parentOrganization.name === 'USD Vision AI LLP' && org.contactPoint.some((c) => c.email === 'grievance@kissansahyog.com') && !strings.footer_grievance_email
-  && distAbout.includes('"parentOrganization"'))
+  && org.contactPoint.some((c) => c.email === 'grievance@kissansahyog.com') && !strings.footer_grievance_email)
 const sections = ['what', 'why', 'can_do', 'pilot', 'who', 'contact', 'founder_card']
-check('3: About has every required section', sections.every((k) => about[k]?.title?.hi && about[k]?.title?.en) && /सागर/.test(about.pilot.title.hi) && about.who.company === 'USD Vision AI LLP')
+check('3: About has every required section', sections.every((k) => about[k]?.title?.hi && about[k]?.title?.en) && /सागर/.test(about.pilot.title.hi) && about.who.id === 'kaun-chalata-hai')
 const wanted = ['/bazaar', '/sawaal', '/msp', '/cold-storage', '/kisan-mela', '/yojana']
 const got = about.can_do.items.map((i) => i.to)
 check('3: "what you can do" covers listings, Q&A, mandi prices, cold storage, melas, schemes', wanted.every((w) => got.includes(w)) && got.every((to) => app.includes(`path="${to}"`)), got.join(','))
@@ -140,6 +140,71 @@ check('3: prerendered header carries both About links', /href="\/about"/.test(na
 // Outside ABOUT_MENU, the only mention allowed is the active-state helper (inAbout).
 const topLevel = stripComments(nav).replace(aboutMenu, '').replace(/const inAbout = [^\n]*/, '')
 check('3: no separate top-level Founder link in the header; footer keeps it', !/'\/founder'|"\/founder"/.test(topLevel) && /<Link to="\/founder"/.test(footer) && /<Route path="\/founder" element=\{<Founder \/>\} \/>/.test(app))
+
+// ---- 7H. one-row desktop header -------------------------------------------------
+const barSrc = (nav.match(/<div className="flex w-full items-center gap-2 px-3 py-1\.5">[\s\S]*?\{\/\* Mobile collapsible menu/) || [''])[0]
+const deskNavSrc = (nav.match(/<nav data-testid="nav-desktop"[\s\S]*?<\/nav>/) || [''])[0]
+check('7H: the desktop nav sits inside the top bar, between the brand and the right cluster (no second row)',
+  barSrc.indexOf('data-testid="nav-brand"') > 0 && barSrc.indexOf('data-testid="nav-brand"') < barSrc.indexOf('data-testid="nav-desktop"') && barSrc.indexOf('data-testid="nav-desktop"') < barSrc.indexOf('ml-auto flex shrink-0')
+  && /<nav data-testid="nav-desktop" className="[^"]*\bhidden\b[^"]*\bflex-nowrap\b[^"]*\blg:flex\b[^"]*"/.test(nav) && !/<nav data-testid="nav-desktop" className="[^"]*(flex-wrap|border-t)/.test(nav))
+check('7H: header is still sticky and the mobile hamburger is still below lg only', /<header className="sticky top-0 z-30/.test(nav) && /nav-hamburger"[\s\S]{0,120}lg:hidden/.test(nav) && /<nav className="border-t border-stone-100 px-4 py-3 lg:hidden">/.test(nav))
+const order = ["t('nav_bazaar')", "goPath('/msp')", "goPath('/mausam')", "t('nav_schemes')", "goPath('/agro-forestry')", "goPath('/sawaal')", "goPath('/videos')", "t('resources_nav')", 'data-testid="nav-how-to-use"', 'data-testid="nav-about"', 'data-testid="nav-more"']
+const pos = order.map((n) => deskNavSrc.indexOf(n))
+check('7H: the ten nav items keep their order, with और / More last', pos.every((p, i) => p > 0 && (i === 0 || p > pos[i - 1])), pos.join(','))
+const moreMenu = (nav.match(/const MORE_MENU = \[[\s\S]*?\n\]/) || [''])[0]
+check('7H: More holds Agro-forestry, Video, How to use and About us; those four leave the row below 1280px',
+  ['/agro-forestry', '/videos', '/how-to-use'].every((p) => moreMenu.includes(`path: '${p}'`)) && /\.\.\.ABOUT_MENU/.test(moreMenu)
+  && /navBtn\(location\.pathname\.startsWith\('\/agro-forestry'\), true\)/.test(deskNavSrc) && /navBtn\(location\.pathname\.startsWith\('\/videos'\), true\)/.test(deskNavSrc) && /navBtn\(location\.pathname === '\/how-to-use', true\)/.test(deskNavSrc)
+  && /className="relative hidden xl:block" ref=\{abRef\} data-testid="nav-about"/.test(deskNavSrc) && /className="relative xl:hidden" ref=\{moreRef\} data-testid="nav-more"/.test(deskNavSrc) && /'hidden xl:inline-flex'/.test(nav)
+  && strings.nav_more?.hi === 'और' && strings.nav_more?.en === 'More')
+check('7H: More menu is keyboard-friendly (aria-expanded, aria-controls, real links) and closes on outside click, Esc and route change',
+  /aria-expanded=\{more\} aria-controls="nav-more-menu"/.test(deskNavSrc) && /<div id="nav-more-menu" hidden=\{!more\}/.test(deskNavSrc) && count(deskNavSrc, 'MORE_MENU.map') === 1
+  && /more && moreRef\.current && !moreRef\.current\.contains\(e\.target\)/.test(nav) && /e\.key !== 'Escape' \|\| \(!ab && !more\)/.test(nav) && /setAb\(false\); setMore\(false\); setAbM\(false\); setOpen\(false\)/.test(nav))
+const searchBar = read('src/components/SearchBar.jsx')
+check('7H: desktop search is a compact button that expands into the field; mic, tablet and mobile search kept',
+  /data-testid="nav-search" className="relative hidden items-center gap-1 lg:flex"/.test(searchBar) && /<div id="nav-search-field" hidden=\{!wide\}/.test(searchBar) && /aria-expanded=\{wide\}/.test(searchBar) && /aria-controls="nav-search-field"/.test(searchBar)
+  && count(searchBar, '<VoiceSearchButton') === 4 && /hidden md:flex lg:hidden/.test(searchBar) && /fixed inset-0 z-50 flex flex-col bg-white md:hidden/.test(searchBar) && count(searchBar, 'navigate(`/search?q=') === 1 && /e\.key !== 'Escape'/.test(searchBar))
+let h7 = null
+try { h7 = JSON.parse(read('docs/review/batch7h/header-check.json')) } catch { /* reported below */ }
+const deskWidths = [1920, 1440, 1280, 1279, 1100, 1024]
+const desk = (h7?.header || []).filter((h) => h.width >= 1024)
+const notOneRow = desk.filter((h) => h.rows !== 1 || h.visibleHeaderChildren !== 1 || h.bandBelowBar > 1.5 || h.overlaps.length || h.wrapped.length || h.outside.length || h.sideways || h.navOverflow > 0)
+check('7H: browser check — exactly one header row, nothing wraps or overlaps, at 1920/1440/1280/1279/1100/1024 in Hindi and English',
+  !!h7 && deskWidths.every((w) => ['hi', 'en'].every((l) => ['/', '/about'].every((p) => desk.some((h) => h.width === w && h.lang === l && h.path === p)))) && notOneRow.length === 0 && h7.behaviour.length > 100 && h7.behaviour.every((b) => b.ok),
+  h7 ? [...notOneRow.map((h) => `${h.width}${h.path} ${h.lang}`), ...h7.behaviour.filter((b) => !b.ok).map((b) => b.name)].join(', ') : 'run node scripts/shots-batch7h.mjs')
+const mob = (h7?.header || []).filter((h) => h.width < 1024)
+check('7H: browser check — below 1024px the mobile header is unchanged (hamburger, no desktop nav)', mob.length >= 8 && mob.every((h) => !h.navShown && h.items.some((it) => it.label === 'hamburger') && !h.overlaps.length && !h.outside.length))
+const shots7h = [1920, 1440, 1280, 1100, 390].flatMap((w) => ['hi', 'en'].flatMap((l) => ['home', 'about'].map((t) => `docs/review/batch7h/header-${w}-${t}-${l}.png`)))
+const missing7h = shots7h.filter((f) => size(f) < 500)
+check(`7H: screenshots saved in docs/review/batch7h (${shots7h.length} files: 1920, 1440, 1280, 1100, 390 × Hindi, English)`, missing7h.length === 0, missing7h.join(', '))
+const distNav = (distAbout.match(/<nav data-testid="nav-desktop"[\s\S]*?<\/nav>/) || [''])[0]
+const distHeader = (distAbout.match(/<header class="sticky[\s\S]*?<\/header>/) || [''])[0]
+check('7H: prerendered header is one bar with the nav inside it', count(distHeader, '<nav') === 1 && /^<header class="sticky[^"]*"><div class="flex w-full items-center gap-2 px-3 py-1\.5">/.test(distHeader) && /<\/div><\/header>$/.test(distHeader) && /flex-nowrap/.test(distNav) && !/flex-wrap|border-t/.test((distNav.match(/^<nav[^>]*>/) || [''])[0]))
+
+// ---- 7I. ownership wording ------------------------------------------------------
+const OWNER_EN = 'Kissan Sahyog is owned and run by Shri Abhinandan Dixit, Madhya Pradesh, India.'
+const OWNER_HI = 'किसान सहयोग के स्वामी और संचालक श्री अभिनन्दन दीक्षित हैं, मध्य प्रदेश, भारत।'
+const COMPANY_RE = /USD\s*Vision|usdvision|parentOrganization/i
+check('7I: About "who" section states the owner in both languages, with the anchor id unchanged',
+  about.who.text?.en === OWNER_EN && about.who.text?.hi === OWNER_HI && about.who.id === 'kaun-chalata-hai' && about.who.title.hi === 'स्वामित्व और संचालन' && about.who.title.en === 'Ownership and operation')
+check('7I: About content and screen never name USD Vision AI LLP (no text, link or constant)',
+  !COMPANY_RE.test(read('src/content/about.js')) && !COMPANY_RE.test(aboutScreen) && !about.who.company && !about.who.company_url && !about.jsonld.parent && /<Para>\{p\(about\.who\.text\)\}<\/Para>/.test(aboutScreen))
+check('7I: About JSON-LD has no parentOrganization and keeps the founder', !('parentOrganization' in org) && !COMPANY_RE.test(JSON.stringify(buildAboutJsonLd(about, 'hi')) + JSON.stringify(org)) && org.founder.name === 'Shri Abhinandan Dixit' && buildAboutJsonLd(about, 'hi')[0].founder.name === 'श्री अभिनन्दन दीक्षित')
+const distAboutBody = distAbout.replace(/<footer[\s\S]*?<\/footer>/, '')
+check('7I: prerendered /about shows the owner sentence and names the company only in the footer credit',
+  text(distAbout).includes(OWNER_HI) && !COMPANY_RE.test(distAboutBody) && count(distAbout, 'USD Vision AI LLP') === 1 && /id="kaun-chalata-hai"/.test(distAbout))
+check('7I: footer keeps the designer / maintainer credit (not "run by" / "a product of")',
+  strings.footer_credit_prefix.en === 'Designed, developed and maintained by' && strings.footer_credit_prefix.hi === 'डिज़ाइन, विकास और रखरखाव:' && /\{t\('footer_credit_prefix'\)\} <a href="https:\/\/usdvisionai\.com"/.test(footer))
+// The company may be named only in the footer credit and in the legal text (Terms),
+// which is left for the lawyer. Everything else on the public site must not name it.
+const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(`${dir}/${e.name}`) : [`${dir}/${e.name}`]))
+const ALLOWED = ['src/components/layout/Footer.jsx', 'src/lib/i18n/termsContent.js']
+const namers = [...walk('src'), ...walk('functions'), 'index.html', 'public/llms.txt', 'public/robots.txt', 'scripts/build-search-index.mjs', 'scripts/prerender.mjs']
+  .filter((f) => /\.(jsx?|mjs|html|txt|json|css)$/.test(f) && !ALLOWED.includes(f) && /USD\s+Vision\s+AI/i.test(read(f)))
+check('7I: no other public source file names USD Vision AI (only the footer credit and the Terms legal text do)', namers.length === 0, namers.join(', '))
+const distNamers = ['dist/index.html', 'dist/founder/index.html', 'dist/grievance/index.html', 'dist/how-to-use/index.html', 'dist/privacy/index.html', 'dist/llms.txt']
+  .filter((f) => !has(f) || COMPANY_RE.test(read(f).replace(/<footer[\s\S]*?<\/footer>/, '')))
+check('7I: built home, founder, grievance, how-to-use, privacy and llms.txt name the company nowhere outside the footer', distNamers.length === 0, distNamers.join(', '))
 
 // ---- 4. feedback & grievance ---------------------------------------------------
 check('4: footer label is "सुझाव और शिकायत / Feedback & Grievance" and the URL is unchanged',

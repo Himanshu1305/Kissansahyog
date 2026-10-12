@@ -886,7 +886,7 @@
         "navRows": 1,
         "outside": [],
         "sideways": false,
-        "headerHeight": 120
+        "headerHeight": 61
       },
       "diagrams": [
         {
@@ -995,7 +995,7 @@
         "navRows": 1,
         "outside": [],
         "sideways": false,
-        "headerHeight": 120
+        "headerHeight": 61
       },
       "diagrams": [
         {
@@ -1938,9 +1938,9 @@
       "detail": ""
     },
     {
-      "name": "1280-hi: desktop header keeps two rows (brand row + one nav row)",
+      "name": "1280-hi: desktop header is one row (Batch 7H: nav in the top bar, nothing under it)",
       "ok": true,
-      "detail": "nav rows: 1, header 120px"
+      "detail": "nav rows: 1, header 61px"
     },
     {
       "name": "1280-hi: \"How to use\" is a visible header item, marked as the current page",
@@ -2023,9 +2023,9 @@
       "detail": ""
     },
     {
-      "name": "1280-en: desktop header keeps two rows (brand row + one nav row)",
+      "name": "1280-en: desktop header is one row (Batch 7H: nav in the top bar, nothing under it)",
       "ok": true,
-      "detail": "nav rows: 1, header 120px"
+      "detail": "nav rows: 1, header 61px"
     },
     {
       "name": "1280-en: \"How to use\" is a visible header item, marked as the current page",
@@ -2090,7 +2090,7 @@
     {
       "name": "1280 home: prominent \"How to use\" strip links to /how-to-use and fits the screen",
       "ok": true,
-      "detail": "{\"x\":1155.78125,\"y\":222,\"width\":108.21875,\"height\":40}"
+      "detail": "{\"x\":1155.78125,\"y\":169,\"width\":108.21875,\"height\":40}"
     },
     {
       "name": "1280 footer: has the \"कैसे इस्तेमाल करें\" link",

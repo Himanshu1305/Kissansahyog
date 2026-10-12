@@ -51,6 +51,16 @@ const ABOUT_MENU = [
 ]
 const inAbout = (pathname) => pathname.startsWith('/about') || pathname.startsWith('/founder')
 
+// और / More dropdown — shown only from lg up to xl (1024–1279px), where the full
+// row does not fit. It holds the items that are hidden from the row at that width.
+const MORE_MENU = [
+  { labelKey: 'nav_agroforestry', path: '/agro-forestry' },
+  { labelKey: 'nav_videos', path: '/videos' },
+  { labelKey: 'nav_how_to_use', path: '/how-to-use' },
+  ...ABOUT_MENU,
+]
+const inMore = (pathname) => MORE_MENU.some((c) => pathname.startsWith(c.path))
+
 // Direct top-level links. Agro Forestry is its own top-level item (not under बाज़ार).
 const NAV_LINKS = [
   { labelKey: 'nav_mandi', path: '/msp' },
@@ -78,21 +88,25 @@ export default function NavBar() {
   const [abM, setAbM] = useState(false)   // हमारे बारे में section inside the mobile menu
   const resRef = useRef(null)
   const abRef = useRef(null)
+  const [more, setMore] = useState(false) // और / More dropdown (desktop, 1024–1279px)
+  const moreRef = useRef(null)
 
   // Click-outside closes the desktop dropdowns (they are click-to-open, not hover).
   useEffect(() => {
-    if (!bz && !sch && !res && !ab) return
+    if (!bz && !sch && !res && !ab && !more) return
     const onDoc = (e) => {
       if (ab && abRef.current && !abRef.current.contains(e.target)) setAb(false)
+      if (more && moreRef.current && !moreRef.current.contains(e.target)) setMore(false)
       if (bz && bzRef.current && !bzRef.current.contains(e.target)) setBz(false)
       if (sch && schRef.current && !schRef.current.contains(e.target)) setSch(false)
       if (res && resRef.current && !resRef.current.contains(e.target)) setRes(false)
     }
-    // Escape closes the About menu and hands focus back to its button.
+    // Escape closes the About / More menu and hands focus back to its button.
     const onKey = (e) => {
-      if (e.key !== 'Escape' || !ab) return
-      setAb(false)
-      abRef.current?.querySelector('button')?.focus()
+      if (e.key !== 'Escape' || (!ab && !more)) return
+      const ref = ab ? abRef : moreRef
+      setAb(false); setMore(false)
+      ref.current?.querySelector('button')?.focus()
     }
     // pointerdown covers mouse and touch alike.
     document.addEventListener('pointerdown', onDoc)
@@ -101,11 +115,11 @@ export default function NavBar() {
       document.removeEventListener('pointerdown', onDoc)
       document.removeEventListener('keydown', onKey)
     }
-  }, [bz, sch, res, ab])
+  }, [bz, sch, res, ab, more])
 
-  // Any route change (link, back/forward) closes the About menu and the mobile menu.
+  // Any route change (link, back/forward) closes the About / More menus and the mobile menu.
   useEffect(() => {
-    setAb(false); setAbM(false); setOpen(false)
+    setAb(false); setMore(false); setAbM(false); setOpen(false)
   }, [location.pathname])
 
   // Navigate to a marketplace category. Drone Didi → its dedicated page; Experts →
@@ -132,11 +146,19 @@ export default function NavBar() {
       active ? 'bg-[var(--ks-primary)] text-white' : 'text-[var(--ks-text-secondary)] hover:bg-[var(--ks-primary-muted)]'
     }`
 
+  // Desktop row items: tighter than the mobile-menu buttons so the whole nav fits on
+  // the one header row. `wide` items leave the row below xl and move into और / More.
+  const navBtn = (active, wide = false) =>
+    `${wide ? 'hidden xl:inline-flex' : 'inline-flex'} items-center whitespace-nowrap rounded-lg px-1 py-2 text-[12px] font-bold min-[1440px]:px-2 min-[1440px]:text-[13px] min-[1680px]:px-3 ${
+      active ? 'bg-[var(--ks-primary)] text-white' : 'text-[var(--ks-text-secondary)] hover:bg-[var(--ks-primary-muted)]'
+    }`
+  const closeMenus = () => { setBz(false); setSch(false); setRes(false); setAb(false); setMore(false) }
+
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--ks-border-light)] bg-white shadow-sm">
       <div className="flex w-full items-center gap-2 px-3 py-1.5">
         {/* Brand */}
-        <button type="button" onClick={goHome} data-testid="nav-brand" className="flex min-w-0 shrink items-center gap-2 text-left">
+        <button type="button" onClick={goHome} data-testid="nav-brand" className="flex min-w-0 shrink items-center gap-2 text-left lg:shrink-0">
           <Logo decorative />
           <span className="min-w-0 leading-tight" data-testid="nav-site-name">
             <span className="block truncate text-[15px] font-extrabold text-[var(--ks-primary)]">{BRAND_HI}</span>
@@ -144,8 +166,96 @@ export default function NavBar() {
           </span>
         </button>
 
+        {/* Primary nav — from lg up it sits in the same row as the logo and the right
+            cluster (one header row, never wraps): बाज़ार▾ · मंडी भाव · मौसम · योजनाएं▾ · … · हमारे बारे में▾.
+            1024–1279px shows six items + और▾; from 1280px all ten are in the row. */}
+        <nav data-testid="nav-desktop" className="mx-auto hidden min-w-0 max-w-[1040px] flex-1 flex-nowrap items-center justify-evenly gap-0.5 lg:flex">
+          {/* बाज़ार dropdown (click-to-open) */}
+          <div className="relative" ref={bzRef}>
+            <button type="button" aria-haspopup="menu" aria-expanded={bz} className={navBtn(bz)} onClick={() => { const v = !bz; closeMenus(); setBz(v) }}>
+              {t('nav_bazaar')} ▾
+            </button>
+            {bz && (
+              <div role="menu" className="absolute left-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+                {CATEGORIES.map((c) => (
+                  <button key={c.key} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goCategory(c)}>
+                    {t(c.labelKey)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <button type="button" className={navBtn(location.pathname.startsWith('/msp'))} onClick={() => goPath('/msp')}>{t('nav_mandi')}</button>
+          <button type="button" className={navBtn(location.pathname.startsWith('/mausam'))} onClick={() => goPath('/mausam')}>{t('nav_weather')}</button>
+          {/* सरकारी योजनाएं dropdown (click-to-open) */}
+          <div className="relative" ref={schRef}>
+            <button type="button" aria-haspopup="menu" aria-expanded={sch} className={navBtn(location.pathname.startsWith('/yojana'))} onClick={() => { const v = !sch; closeMenus(); setSch(v) }}>
+              {t('nav_schemes')} ▾
+            </button>
+            {sch && (
+              <div role="menu" className="absolute left-0 z-40 mt-1 w-64 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+                {SCHEMES_MENU.map((c) => (
+                  <button key={c.path} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goPath(c.path)}>
+                    {t(c.labelKey)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <button type="button" className={navBtn(location.pathname.startsWith('/agro-forestry'), true)} onClick={() => goPath('/agro-forestry')}>{t('nav_agroforestry')}</button>
+          <button type="button" className={navBtn(location.pathname.startsWith('/sawaal'))} onClick={() => goPath('/sawaal')}>{t('sawaal_nav')}</button>
+          <button type="button" className={navBtn(location.pathname.startsWith('/videos'), true)} onClick={() => goPath('/videos')}>{t('nav_videos')}</button>
+          {/* उपयोगी संपर्क dropdown — contacts directory + Kisan Mela */}
+          <div className="relative" ref={resRef}>
+            <button type="button" aria-haspopup="menu" aria-expanded={res} className={navBtn(location.pathname.startsWith('/resources') || location.pathname.startsWith('/kisan-mela'))} onClick={() => { const v = !res; closeMenus(); setRes(v) }}>
+              {t('resources_nav')} ▾
+            </button>
+            {res && (
+              <div role="menu" className="absolute left-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+                {RESOURCES_MENU.map((c) => (
+                  <button key={c.path} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goPath(c.path)}>
+                    {t(c.labelKey)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          {/* कैसे इस्तेमाल करें — its own visible item, right before the About menu. */}
+          <Link to="/how-to-use" data-testid="nav-how-to-use" aria-current={location.pathname === '/how-to-use' ? 'page' : undefined} className={navBtn(location.pathname === '/how-to-use', true)}>
+            {t('nav_how_to_use')}
+          </Link>
+          {/* हमारे बारे में dropdown — About Us + Founder. Real links, kept in the DOM
+              (hidden when closed) so they are crawlable and reachable by keyboard. */}
+          <div className="relative hidden xl:block" ref={abRef} data-testid="nav-about">
+            <button type="button" aria-haspopup="true" aria-expanded={ab} aria-controls="nav-about-menu" className={navBtn(ab || inAbout(location.pathname))} onClick={() => { const v = !ab; closeMenus(); setAb(v) }}>
+              {t('nav_about')} ▾
+            </button>
+            <div id="nav-about-menu" hidden={!ab} className="absolute right-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+              {ABOUT_MENU.map((c) => (
+                <Link key={c.path} to={c.path} onClick={() => setAb(false)} aria-current={location.pathname === c.path ? 'page' : undefined} className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50 focus-visible:bg-green-50">
+                  {t(c.labelKey)}
+                </Link>
+              ))}
+            </div>
+          </div>
+          {/* और / More — only at 1024–1279px. Real links, kept in the DOM (hidden when
+              closed) so they are reachable by keyboard; closes on outside click and Esc. */}
+          <div className="relative xl:hidden" ref={moreRef} data-testid="nav-more">
+            <button type="button" aria-haspopup="true" aria-expanded={more} aria-controls="nav-more-menu" className={navBtn(more || inMore(location.pathname))} onClick={() => { const v = !more; closeMenus(); setMore(v) }}>
+              {t('nav_more')} ▾
+            </button>
+            <div id="nav-more-menu" hidden={!more} className="absolute right-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
+              {MORE_MENU.map((c) => (
+                <Link key={c.path} to={c.path} onClick={() => setMore(false)} aria-current={location.pathname === c.path ? 'page' : undefined} className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50 focus-visible:bg-green-50">
+                  {t(c.labelKey)}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </nav>
+
         {/* Right cluster */}
-        <div className="ml-auto flex shrink-0 items-center gap-2">
+        <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-0">
           {location.pathname !== '/' && <SearchBar />}
           <LanguageToggle />
           {/* Admin quick-link — visible directly in the nav for is_admin users only
@@ -155,11 +265,12 @@ export default function NavBar() {
               type="button"
               data-testid="nav-admin-link"
               onClick={() => navigate('/admin')}
-              className={`hidden items-center gap-1 rounded-lg border-2 px-3 py-1.5 text-[12px] font-bold sm:inline-flex ${
+              aria-label={t('nav_admin')}
+              className={`hidden items-center gap-1 rounded-lg border-2 px-3 py-1.5 text-[12px] font-bold sm:inline-flex lg:px-2 2xl:px-3 ${
                 location.pathname.startsWith('/admin') ? 'border-[var(--ks-primary)] bg-[var(--ks-primary)] text-white' : 'border-[var(--ks-primary)] text-[var(--ks-primary)] hover:bg-[var(--ks-primary-muted)]'
               }`}
             >
-              ⚙️ {t('nav_admin')}
+              ⚙️ <span className="lg:hidden 2xl:inline">{t('nav_admin')}</span>
             </button>
           )}
           {isLoggedIn ? (
@@ -175,7 +286,7 @@ export default function NavBar() {
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-[var(--ks-primary)] text-sm font-bold text-white">
                   {(user?.full_name || user?.phone || user?.email || '?').trim().charAt(0).toUpperCase()}
                 </span>
-                <span className="hidden max-w-[8rem] truncate text-sm font-bold text-stone-700 sm:block">
+                <span className="hidden max-w-[8rem] truncate text-sm font-bold text-stone-700 sm:block lg:hidden 2xl:block">
                   {user?.full_name}
                 </span>
               </button>
@@ -206,20 +317,20 @@ export default function NavBar() {
               <button
                 type="button"
                 onClick={() => navigate('/login')}
-                className="hidden rounded-lg border-2 border-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-[var(--ks-primary)] md:inline-block"
+                className="hidden whitespace-nowrap rounded-lg border-2 border-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-[var(--ks-primary)] md:inline-block lg:px-2 lg:text-[13px] min-[1440px]:px-3 min-[1440px]:text-sm"
               >
                 {t('nav_login')}
               </button>
               <button
                 type="button"
                 onClick={() => navigate('/signup')}
-                className="hidden rounded-lg bg-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-white md:inline-block"
+                className="hidden whitespace-nowrap rounded-lg bg-[var(--ks-primary)] px-3 py-1.5 text-sm font-bold text-white md:inline-block lg:px-2 lg:text-[13px] min-[1440px]:px-3 min-[1440px]:text-sm"
               >
                 {t('nav_signup')}
               </button>
             </>
           )}
-          {/* Hamburger — below lg, where the nav row is not shown */}
+          {/* Hamburger — below lg, where the desktop nav is not shown */}
           <button
             type="button"
             aria-label={t('nav_menu')}
@@ -233,78 +344,6 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* Primary nav — its own row from lg up, so it can never collide with the logo,
-          the search box or the login buttons: बाज़ार▾ · मंडी भाव · मौसम · योजनाएं▾ · … · हमारे बारे में▾ */}
-      <nav data-testid="nav-desktop" className="hidden flex-wrap items-center justify-center gap-1 border-t border-[var(--ks-border-light)] px-3 py-1 lg:flex">
-        {/* बाज़ार dropdown (click-to-open) */}
-        <div className="relative" ref={bzRef}>
-          <button type="button" aria-haspopup="menu" aria-expanded={bz} className={catBtn(bz)} onClick={() => { setSch(false); setRes(false); setAb(false); setBz((v) => !v) }}>
-            {t('nav_bazaar')} ▾
-          </button>
-          {bz && (
-            <div role="menu" className="absolute left-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
-              {CATEGORIES.map((c) => (
-                <button key={c.key} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goCategory(c)}>
-                  {t(c.labelKey)}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-        <button type="button" className={catBtn(location.pathname.startsWith('/msp'))} onClick={() => goPath('/msp')}>{t('nav_mandi')}</button>
-        <button type="button" className={catBtn(location.pathname.startsWith('/mausam'))} onClick={() => goPath('/mausam')}>{t('nav_weather')}</button>
-        {/* सरकारी योजनाएं dropdown (click-to-open) */}
-        <div className="relative" ref={schRef}>
-          <button type="button" aria-haspopup="menu" aria-expanded={sch} className={catBtn(location.pathname.startsWith('/yojana'))} onClick={() => { setBz(false); setRes(false); setAb(false); setSch((v) => !v) }}>
-            {t('nav_schemes')} ▾
-          </button>
-          {sch && (
-            <div role="menu" className="absolute left-0 z-40 mt-1 w-64 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
-              {SCHEMES_MENU.map((c) => (
-                <button key={c.path} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goPath(c.path)}>
-                  {t(c.labelKey)}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-        <button type="button" className={catBtn(location.pathname.startsWith('/agro-forestry'))} onClick={() => goPath('/agro-forestry')}>{t('nav_agroforestry')}</button>
-        <button type="button" className={catBtn(location.pathname.startsWith('/sawaal'))} onClick={() => goPath('/sawaal')}>{t('sawaal_nav')}</button>
-        <button type="button" className={catBtn(location.pathname.startsWith('/videos'))} onClick={() => goPath('/videos')}>{t('nav_videos')}</button>
-        {/* उपयोगी संपर्क dropdown — contacts directory + Kisan Mela */}
-        <div className="relative" ref={resRef}>
-          <button type="button" aria-haspopup="menu" aria-expanded={res} className={catBtn(location.pathname.startsWith('/resources') || location.pathname.startsWith('/kisan-mela'))} onClick={() => { setBz(false); setSch(false); setAb(false); setRes((v) => !v) }}>
-            {t('resources_nav')} ▾
-          </button>
-          {res && (
-            <div role="menu" className="absolute left-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
-              {RESOURCES_MENU.map((c) => (
-                <button key={c.path} type="button" role="menuitem" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50" onClick={() => goPath(c.path)}>
-                  {t(c.labelKey)}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-        {/* कैसे इस्तेमाल करें — its own visible item, right before the About menu. */}
-        <Link to="/how-to-use" data-testid="nav-how-to-use" aria-current={location.pathname === '/how-to-use' ? 'page' : undefined} className={`${catBtn(location.pathname === '/how-to-use')} inline-flex items-center`}>
-          {t('nav_how_to_use')}
-        </Link>
-        {/* हमारे बारे में dropdown — About Us + Founder. Real links, kept in the DOM
-            (hidden when closed) so they are crawlable and reachable by keyboard. */}
-        <div className="relative" ref={abRef} data-testid="nav-about">
-          <button type="button" aria-haspopup="true" aria-expanded={ab} aria-controls="nav-about-menu" className={catBtn(ab || inAbout(location.pathname))} onClick={() => { setBz(false); setSch(false); setRes(false); setAb((v) => !v) }}>
-            {t('nav_about')} ▾
-          </button>
-          <div id="nav-about-menu" hidden={!ab} className="absolute right-0 z-40 mt-1 w-56 overflow-hidden rounded-xl border-2 border-stone-100 bg-white py-1 shadow-lg">
-            {ABOUT_MENU.map((c) => (
-              <Link key={c.path} to={c.path} onClick={() => setAb(false)} aria-current={location.pathname === c.path ? 'page' : undefined} className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-stone-800 hover:bg-green-50 focus-visible:bg-green-50">
-                {t(c.labelKey)}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </nav>
 
       {/* Mobile collapsible menu — dropdowns expand inline */}
       {open && (

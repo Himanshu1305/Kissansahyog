@@ -13,7 +13,7 @@ PASS  2: favicon, apple-touch-icon and PWA icons exist in public/icons
 PASS  2: index.html links the favicon and apple-touch-icon
 PASS  2: built manifest lists 192, 512 and a maskable icon, and every file exists in dist
 PASS  2: social share image left alone (default OG path unchanged)
-PASS  2: browser check found no overlapping header items at 320/360/390/768/1280
+PASS  2: browser check found no overlapping header items at 320/360/390/768/1024/1280
 PASS  2: header screenshots saved in docs/review/batch7a
 PASS  3: /about route is registered (lazy) in App.jsx
 PASS  3: /about is in the shared prerender + sitemap route list
@@ -27,13 +27,30 @@ PASS  3: "what you can do" covers listings, Q&A, mandi prices, cold storage, mel
 PASS  3: About links to /how-to-use, /founder, /grievance and the contact e-mail
 PASS  3: the /how-to-use link target is a real route (built in Batch 7C)
 PASS  3: About.jsx has one <h1> and no Devanagari literals
-PASS  3: every About field has Hindi and English (34 fields)
+PASS  3: every About field has Hindi and English (33 fields)
 PASS  3: About copy has no numbers or statistics
 PASS  3: About dropdown has both links (/about and /founder)
 PASS  3: desktop dropdown and mobile expandable section both render ABOUT_MENU as links
 PASS  3: dropdown closes on outside click, Escape and route change
 PASS  3: prerendered header carries both About links
 PASS  3: no separate top-level Founder link in the header; footer keeps it
+PASS  7H: the desktop nav sits inside the top bar, between the brand and the right cluster (no second row)
+PASS  7H: header is still sticky and the mobile hamburger is still below lg only
+PASS  7H: the ten nav items keep their order, with और / More last
+PASS  7H: More holds Agro-forestry, Video, How to use and About us; those four leave the row below 1280px
+PASS  7H: More menu is keyboard-friendly (aria-expanded, aria-controls, real links) and closes on outside click, Esc and route change
+PASS  7H: desktop search is a compact button that expands into the field; mic, tablet and mobile search kept
+PASS  7H: browser check — exactly one header row, nothing wraps or overlaps, at 1920/1440/1280/1279/1100/1024 in Hindi and English
+PASS  7H: browser check — below 1024px the mobile header is unchanged (hamburger, no desktop nav)
+PASS  7H: screenshots saved in docs/review/batch7h (20 files: 1920, 1440, 1280, 1100, 390 × Hindi, English)
+PASS  7H: prerendered header is one bar with the nav inside it
+PASS  7I: About "who" section states the owner in both languages, with the anchor id unchanged
+PASS  7I: About content and screen never name USD Vision AI LLP (no text, link or constant)
+PASS  7I: About JSON-LD has no parentOrganization and keeps the founder
+PASS  7I: prerendered /about shows the owner sentence and names the company only in the footer credit
+PASS  7I: footer keeps the designer / maintainer credit (not "run by" / "a product of")
+PASS  7I: no other public source file names USD Vision AI (only the footer credit and the Terms legal text do)
+PASS  7I: built home, founder, grievance, how-to-use, privacy and llms.txt name the company nowhere outside the footer
 PASS  4: footer label is "सुझाव और शिकायत / Feedback & Grievance" and the URL is unchanged
 PASS  4: heading and intro match the brief
 PASS  4: grievance page has a required contact input (e-mail or mobile)
@@ -57,4 +74,4 @@ PASS  5: no "मुफ़्त" / "free" in the content added by this batch (30
 PASS  5: every new string has Hindi and English
 PASS  5: every t() key used by the touched components exists
 
-58 passed, 0 failed
+75 passed, 0 failed

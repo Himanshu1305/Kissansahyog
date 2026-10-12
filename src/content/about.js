@@ -97,13 +97,15 @@ export const about = {
     ],
   },
 
+  // Ownership (Batch 7I). The anchor id is unchanged so existing links keep working.
+  // The website's designer/maintainer credit lives only in the footer, not here.
   who: {
     id: 'kaun-chalata-hai',
-    title: { hi: 'इसे कौन चलाता है', en: 'Who runs it' },
-    before: { hi: 'किसान सहयोग को ', en: 'Kissan Sahyog is run by ' },
-    company: 'USD Vision AI LLP',
-    company_url: 'https://usdvisionai.com',
-    after: { hi: ', मध्य प्रदेश, भारत चलाती है। वेबसाइट का डिज़ाइन, विकास और रखरखाव भी यही करती है।', en: ', Madhya Pradesh, India, which also designs, develops and maintains the website.' },
+    title: { hi: 'स्वामित्व और संचालन', en: 'Ownership and operation' },
+    text: {
+      hi: 'किसान सहयोग के स्वामी और संचालक श्री अभिनन्दन दीक्षित हैं, मध्य प्रदेश, भारत।',
+      en: 'Kissan Sahyog is owned and run by Shri Abhinandan Dixit, Madhya Pradesh, India.',
+    },
   },
 
   contact: {
@@ -126,7 +128,6 @@ export const about = {
     email: 'hello@kissansahyog.com',
     grievance_email: 'grievance@kissansahyog.com',
     area_served: 'IN-MP',
-    parent: { name: 'USD Vision AI LLP', url: 'https://usdvisionai.com' },
     founder: { hi: 'श्री अभिनन्दन दीक्षित', en: 'Shri Abhinandan Dixit' },
   },
 }
@@ -147,7 +148,6 @@ export function buildAboutJsonLd(data = about, lang = 'hi') {
     email: j.email,
     areaServed: j.area_served,
     founder: { '@type': 'Person', name: pick(j.founder, lang), url: `${ORIGIN}/founder` },
-    parentOrganization: { '@type': 'Organization', name: j.parent.name, url: j.parent.url },
     contactPoint: [
       { '@type': 'ContactPoint', contactType: 'customer support', email: j.email, availableLanguage: ['hi', 'en'] },
       { '@type': 'ContactPoint', contactType: 'feedback and complaints', email: j.grievance_email, url: `${ORIGIN}/grievance`, availableLanguage: ['hi', 'en'] },

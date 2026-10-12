@@ -1,4 +1,4 @@
-PASS  1: no unconditional "free" claim left outside the kept list (277 files, 100 kept hits)
+PASS  1: no unconditional "free" claim left outside the kept list (278 files, 100 kept hits)
 PASS  1: the 11 strings that made the claim are reworded (install banner, WhatsApp banner, bazaar intro, sign-up prompts, cold-storage CTA…)
 PASS  1: homepage / search meta description no longer says "free"
 PASS  1: terms, grievance FAQ and llms.txt no longer say "free"
@@ -58,7 +58,7 @@ PASS  8e: every category tile image exists (15), and a tile whose image fails st
 PASS  9c: the English slips are fixed in the Q&A content files
 PASS  9: DB_FIXES.sql covers the Q&A English, the mela rows, the article byline and the database "free" row
 PASS  9: DB_FIXES.sql is review-only: wrapped in a transaction, matches on slug/text, no deletes or schema changes
-PASS  9: nothing in this batch adds a migration
+PASS  9: nothing in this batch adds a migration (0056 is Batch 7G)
 PASS  10: every new string has Hindi and English (11)
 PASS  10: every t() key used by the touched screens exists
 PASS  10: no Devanagari literals added to the touched components

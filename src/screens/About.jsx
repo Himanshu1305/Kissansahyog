@@ -1,7 +1,7 @@
 // /about — About Us (Batch 7A). Public, static, no data fetch. All long copy is
 // bilingual data in src/content/about.js; short labels come from strings.js.
 // Section order: intro → what it is → why → what you can do → Sagar pilot →
-// who runs it → what farmers say (only when there is something approved) →
+// ownership and operation → what farmers say (only when there is something approved) →
 // contact → founder card.
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
@@ -122,11 +122,7 @@ export default function About() {
       </SectionBlock>
 
       <SectionBlock id={about.who.id} title={p(about.who.title)}>
-        <Para>
-          {p(about.who.before)}
-          <a href={about.who.company_url} target="_blank" rel="noopener noreferrer" className={linkClass} style={{ color: 'var(--ks-green-dark)' }}>{about.who.company}</a>
-          {p(about.who.after)}
-        </Para>
+        <Para>{p(about.who.text)}</Para>
       </SectionBlock>
 
       <FarmerVoices />

@@ -139,7 +139,7 @@ for (const width of WIDTHS) {
     check(`${tag}: no overlapping header items (${head.count} items)`, head.overlaps.length === 0, head.overlaps.join(', '))
     check(`${tag}: no header item outside the viewport`, head.outside.length === 0 && !head.sideways, head.outside.join(', '))
     if (width >= DESKTOP) {
-      check(`${tag}: desktop header keeps two rows (brand row + one nav row)`, head.navRows === 1, `nav rows: ${head.navRows}, header ${head.headerHeight}px`)
+      check(`${tag}: desktop header is one row (Batch 7H: nav in the top bar, nothing under it)`, head.navRows === 1 && head.headerHeight <= 72, `nav rows: ${head.navRows}, header ${head.headerHeight}px`)
       const item = page.locator('[data-testid="nav-how-to-use"]')
       check(`${tag}: "How to use" is a visible header item, marked as the current page`, (await item.isVisible()) && (await item.getAttribute('href')) === '/how-to-use' && (await item.getAttribute('aria-current')) === 'page')
     } else {

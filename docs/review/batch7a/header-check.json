@@ -59,7 +59,7 @@
           "b": 43.6
         },
         {
-          "label": "right-1:🔍",
+          "label": "right-2:🔍",
           "x": 141,
           "y": 6,
           "r": 179,
@@ -105,7 +105,7 @@
           "b": 43.6
         },
         {
-          "label": "right-1:🔍",
+          "label": "right-2:🔍",
           "x": 141,
           "y": 6,
           "r": 179,
@@ -190,7 +190,7 @@
           "b": 43.6
         },
         {
-          "label": "right-1:🔍",
+          "label": "right-2:🔍",
           "x": 181,
           "y": 6,
           "r": 219,
@@ -236,7 +236,7 @@
           "b": 43.6
         },
         {
-          "label": "right-1:🔍",
+          "label": "right-2:🔍",
           "x": 181,
           "y": 6,
           "r": 219,
@@ -321,7 +321,7 @@
           "b": 43.6
         },
         {
-          "label": "right-1:🔍",
+          "label": "right-2:🔍",
           "x": 211,
           "y": 6,
           "r": 249,
@@ -367,7 +367,7 @@
           "b": 43.6
         },
         {
-          "label": "right-1:🔍",
+          "label": "right-2:🔍",
           "x": 211,
           "y": 6,
           "r": 249,
@@ -466,7 +466,7 @@
           "b": 48.6
         },
         {
-          "label": "right-0:🎤🔍",
+          "label": "right-1:🎤🔍",
           "x": 260.2,
           "y": 6,
           "r": 504.2,
@@ -480,14 +480,14 @@
           "b": 51
         },
         {
-          "label": "right-3:लॉगिन",
+          "label": "right-4:लॉगिन",
           "x": 597.2,
           "y": 11,
           "r": 661,
           "b": 55
         },
         {
-          "label": "right-4:जुड़ें",
+          "label": "right-5:जुड़ें",
           "x": 669,
           "y": 11,
           "r": 712,
@@ -526,7 +526,7 @@
           "b": 48.6
         },
         {
-          "label": "right-0:🎤🔍",
+          "label": "right-1:🎤🔍",
           "x": 223.3,
           "y": 6,
           "r": 467.2,
@@ -540,14 +540,14 @@
           "b": 51
         },
         {
-          "label": "right-3:Login",
+          "label": "right-4:Login",
           "x": 560.3,
           "y": 11,
           "r": 627,
           "b": 55
         },
         {
-          "label": "right-4:Sign Up",
+          "label": "right-5:Sign Up",
           "x": 635,
           "y": 11,
           "r": 712,
@@ -587,91 +587,70 @@
         },
         {
           "label": "nav-0:बाज़ार ▾",
-          "x": 121.6,
-          "y": 65,
-          "r": 180.9,
-          "b": 109
+          "x": 195.5,
+          "y": 8,
+          "r": 246.9,
+          "b": 52
         },
         {
           "label": "nav-1:मंडी भाव",
-          "x": 184.9,
-          "y": 65,
-          "r": 242.4,
-          "b": 109
+          "x": 274.2,
+          "y": 8,
+          "r": 323.7,
+          "b": 52
         },
         {
           "label": "nav-2:मौसम",
-          "x": 246.4,
-          "y": 65,
-          "r": 290.5,
-          "b": 109
+          "x": 351,
+          "y": 8,
+          "r": 387,
+          "b": 52
         },
         {
           "label": "nav-3:सरकारी योजना",
-          "x": 294.5,
-          "y": 65,
-          "r": 402.9,
-          "b": 109
-        },
-        {
-          "label": "nav-4:एग्रो फॉरेस्",
-          "x": 406.9,
-          "y": 65,
-          "r": 478.2,
-          "b": 109
+          "x": 414.3,
+          "y": 8,
+          "r": 514.8,
+          "b": 52
         },
         {
           "label": "nav-5:किसान सवाल",
-          "x": 482.2,
-          "y": 65,
-          "r": 563,
-          "b": 109
-        },
-        {
-          "label": "nav-6:वीडियो",
-          "x": 567,
-          "y": 65,
-          "r": 615.3,
-          "b": 109
+          "x": 542.1,
+          "y": 8,
+          "r": 615,
+          "b": 52
         },
         {
           "label": "nav-7:उपयोगी संपर्",
-          "x": 619.3,
-          "y": 65,
-          "r": 715.3,
-          "b": 109
+          "x": 642.3,
+          "y": 8,
+          "r": 730.3,
+          "b": 52
         },
         {
-          "label": "nav-8:कैसे इस्तेमा",
-          "x": 719.3,
-          "y": 65,
-          "r": 814.5,
-          "b": 109
-        },
-        {
-          "label": "about-menu",
-          "x": 818.5,
-          "y": 65,
-          "r": 902.4,
-          "b": 109
+          "label": "nav-10:और ▾एग्रो फॉ",
+          "x": 757.6,
+          "y": 8,
+          "r": 798.7,
+          "b": 52
         },
         {
           "label": "language-switch",
-          "x": 812.2,
+          "x": 832,
           "y": 12,
-          "r": 889.2,
+          "r": 909.1,
           "b": 48
         },
         {
           "label": "right-1:लॉगिन",
-          "x": 897.2,
+          "x": 917.1,
           "y": 8,
-          "r": 961,
+          "r": 970.4,
           "b": 52
         },
         {
           "label": "right-2:जुड़ें",
-          "x": 969,
+          "x": 978.4,
           "y": 8,
           "r": 1012,
           "b": 52
@@ -690,114 +669,93 @@
         {
           "label": "logo",
           "x": 12,
-          "y": 9,
+          "y": 6,
           "r": 63.6,
-          "b": 57
+          "b": 54
         },
         {
           "label": "site-name",
           "x": 71.6,
-          "y": 17.4,
+          "y": 14.4,
           "r": 162.1,
-          "b": 48.6
+          "b": 45.6
         },
         {
           "label": "nav-0:बाज़ार ▾",
-          "x": 121.6,
-          "y": 71,
-          "r": 180.9,
-          "b": 115
+          "x": 184.9,
+          "y": 8,
+          "r": 236.3,
+          "b": 52
         },
         {
           "label": "nav-1:मंडी भाव",
-          "x": 184.9,
-          "y": 71,
-          "r": 242.4,
-          "b": 115
+          "x": 253.1,
+          "y": 8,
+          "r": 302.6,
+          "b": 52
         },
         {
           "label": "nav-2:मौसम",
-          "x": 246.4,
-          "y": 71,
-          "r": 290.5,
-          "b": 115
+          "x": 319.4,
+          "y": 8,
+          "r": 355.4,
+          "b": 52
         },
         {
           "label": "nav-3:सरकारी योजना",
-          "x": 294.5,
-          "y": 71,
-          "r": 402.9,
-          "b": 115
-        },
-        {
-          "label": "nav-4:एग्रो फॉरेस्",
-          "x": 406.9,
-          "y": 71,
-          "r": 478.2,
-          "b": 115
+          "x": 372.3,
+          "y": 8,
+          "r": 472.8,
+          "b": 52
         },
         {
           "label": "nav-5:किसान सवाल",
-          "x": 482.2,
-          "y": 71,
-          "r": 563,
-          "b": 115
-        },
-        {
-          "label": "nav-6:वीडियो",
-          "x": 567,
-          "y": 71,
-          "r": 615.3,
-          "b": 115
+          "x": 489.6,
+          "y": 8,
+          "r": 562.5,
+          "b": 52
         },
         {
           "label": "nav-7:उपयोगी संपर्",
-          "x": 619.3,
-          "y": 71,
-          "r": 715.3,
-          "b": 115
+          "x": 579.3,
+          "y": 8,
+          "r": 667.2,
+          "b": 52
         },
         {
-          "label": "nav-8:कैसे इस्तेमा",
-          "x": 719.3,
-          "y": 71,
-          "r": 814.5,
-          "b": 115
-        },
-        {
-          "label": "about-menu",
-          "x": 818.5,
-          "y": 71,
-          "r": 902.4,
-          "b": 115
+          "label": "nav-10:और ▾एग्रो फॉ",
+          "x": 684,
+          "y": 8,
+          "r": 725.2,
+          "b": 52
         },
         {
           "label": "right-0:🎤🔍",
-          "x": 528.2,
-          "y": 6,
-          "r": 804.2,
-          "b": 60
+          "x": 748,
+          "y": 8,
+          "r": 824,
+          "b": 52
         },
         {
           "label": "language-switch",
-          "x": 812.2,
-          "y": 15,
-          "r": 889.2,
-          "b": 51
+          "x": 832,
+          "y": 12,
+          "r": 909.1,
+          "b": 48
         },
         {
-          "label": "right-3:लॉगिन",
-          "x": 897.2,
-          "y": 11,
-          "r": 961,
-          "b": 55
+          "label": "right-4:लॉगिन",
+          "x": 917.1,
+          "y": 8,
+          "r": 970.4,
+          "b": 52
         },
         {
-          "label": "right-4:जुड़ें",
-          "x": 969,
-          "y": 11,
+          "label": "right-5:जुड़ें",
+          "x": 978.4,
+          "y": 8,
           "r": 1012,
-          "b": 55
+          "b": 52
         }
       ],
       "overlaps": [],
@@ -813,114 +771,93 @@
         {
           "label": "logo",
           "x": 12,
-          "y": 9,
+          "y": 6,
           "r": 63.6,
-          "b": 57
+          "b": 54
         },
         {
           "label": "site-name",
           "x": 71.6,
-          "y": 17.4,
+          "y": 14.4,
           "r": 162.1,
-          "b": 48.6
+          "b": 45.6
         },
         {
           "label": "nav-0:Marketplace ",
-          "x": 86.8,
-          "y": 71,
-          "r": 192.1,
-          "b": 115
+          "x": 170.8,
+          "y": 8,
+          "r": 268.1,
+          "b": 52
         },
         {
           "label": "nav-1:Mandi prices",
-          "x": 196.1,
-          "y": 71,
-          "r": 288.6,
-          "b": 115
+          "x": 270.8,
+          "y": 8,
+          "r": 355.3,
+          "b": 52
         },
         {
           "label": "nav-2:Weather",
-          "x": 292.6,
-          "y": 71,
-          "r": 360.1,
-          "b": 115
+          "x": 358,
+          "y": 8,
+          "r": 417.5,
+          "b": 52
         },
         {
           "label": "nav-3:Govt schemes",
-          "x": 364.1,
-          "y": 71,
-          "r": 477.4,
-          "b": 115
-        },
-        {
-          "label": "nav-4:Agro Forestr",
-          "x": 481.4,
-          "y": 71,
-          "r": 578.5,
-          "b": 115
+          "x": 420.2,
+          "y": 8,
+          "r": 525.5,
+          "b": 52
         },
         {
           "label": "nav-5:Q&A",
-          "x": 582.5,
-          "y": 71,
-          "r": 625.5,
-          "b": 115
-        },
-        {
-          "label": "nav-6:Videos",
-          "x": 629.5,
-          "y": 71,
-          "r": 685.3,
-          "b": 115
+          "x": 528.3,
+          "y": 8,
+          "r": 563.3,
+          "b": 52
         },
         {
           "label": "nav-7:Resources ▾",
-          "x": 689.3,
-          "y": 71,
-          "r": 780.3,
-          "b": 115
+          "x": 566.1,
+          "y": 8,
+          "r": 649.1,
+          "b": 52
         },
         {
-          "label": "nav-8:How to use",
-          "x": 784.3,
-          "y": 71,
-          "r": 866.8,
-          "b": 115
-        },
-        {
-          "label": "about-menu",
-          "x": 870.8,
-          "y": 71,
-          "r": 937.1,
-          "b": 115
+          "label": "nav-10:More ▾Agro F",
+          "x": 651.8,
+          "y": 8,
+          "r": 705,
+          "b": 52
         },
         {
           "label": "right-0:🎤🔍",
-          "x": 491.3,
-          "y": 6,
-          "r": 767.2,
-          "b": 60
+          "x": 713.8,
+          "y": 8,
+          "r": 789.8,
+          "b": 52
         },
         {
           "label": "language-switch",
-          "x": 775.2,
-          "y": 15,
-          "r": 852.3,
-          "b": 51
+          "x": 797.8,
+          "y": 12,
+          "r": 874.8,
+          "b": 48
         },
         {
-          "label": "right-3:Login",
-          "x": 860.3,
-          "y": 11,
-          "r": 927,
-          "b": 55
+          "label": "right-4:Login",
+          "x": 882.8,
+          "y": 8,
+          "r": 938.8,
+          "b": 52
         },
         {
-          "label": "right-4:Sign Up",
-          "x": 935,
-          "y": 11,
+          "label": "right-5:Sign Up",
+          "x": 946.8,
+          "y": 8,
           "r": 1012,
-          "b": 55
+          "b": 52
         }
       ],
       "overlaps": [],
@@ -949,91 +886,91 @@
         },
         {
           "label": "nav-0:बाज़ार ▾",
-          "x": 249.6,
-          "y": 65,
-          "r": 308.9,
-          "b": 109
+          "x": 190.9,
+          "y": 8,
+          "r": 242.2,
+          "b": 52
         },
         {
           "label": "nav-1:मंडी भाव",
-          "x": 312.9,
-          "y": 65,
-          "r": 370.4,
-          "b": 109
+          "x": 264.8,
+          "y": 8,
+          "r": 314.3,
+          "b": 52
         },
         {
           "label": "nav-2:मौसम",
-          "x": 374.4,
-          "y": 65,
-          "r": 418.5,
-          "b": 109
+          "x": 336.9,
+          "y": 8,
+          "r": 373,
+          "b": 52
         },
         {
           "label": "nav-3:सरकारी योजना",
-          "x": 422.5,
-          "y": 65,
-          "r": 530.9,
-          "b": 109
+          "x": 395.6,
+          "y": 8,
+          "r": 496.1,
+          "b": 52
         },
         {
           "label": "nav-4:एग्रो फॉरेस्",
-          "x": 534.9,
-          "y": 65,
-          "r": 606.2,
-          "b": 109
+          "x": 518.8,
+          "y": 8,
+          "r": 582,
+          "b": 52
         },
         {
           "label": "nav-5:किसान सवाल",
-          "x": 610.2,
-          "y": 65,
-          "r": 691,
-          "b": 109
+          "x": 604.6,
+          "y": 8,
+          "r": 677.5,
+          "b": 52
         },
         {
           "label": "nav-6:वीडियो",
-          "x": 695,
-          "y": 65,
-          "r": 743.3,
-          "b": 109
+          "x": 700.1,
+          "y": 8,
+          "r": 740.4,
+          "b": 52
         },
         {
           "label": "nav-7:उपयोगी संपर्",
-          "x": 747.3,
-          "y": 65,
-          "r": 843.3,
-          "b": 109
+          "x": 763,
+          "y": 8,
+          "r": 851,
+          "b": 52
         },
         {
           "label": "nav-8:कैसे इस्तेमा",
-          "x": 847.3,
-          "y": 65,
-          "r": 942.5,
-          "b": 109
+          "x": 873.6,
+          "y": 8,
+          "r": 960.9,
+          "b": 52
         },
         {
           "label": "about-menu",
-          "x": 946.5,
-          "y": 65,
-          "r": 1030.4,
-          "b": 109
+          "x": 983.5,
+          "y": 8,
+          "r": 1059.4,
+          "b": 52
         },
         {
           "label": "language-switch",
-          "x": 1068.2,
+          "x": 1088,
           "y": 12,
-          "r": 1145.2,
+          "r": 1165.1,
           "b": 48
         },
         {
           "label": "right-1:लॉगिन",
-          "x": 1153.2,
+          "x": 1173.1,
           "y": 8,
-          "r": 1217,
+          "r": 1226.4,
           "b": 52
         },
         {
           "label": "right-2:जुड़ें",
-          "x": 1225,
+          "x": 1234.4,
           "y": 8,
           "r": 1268,
           "b": 52
@@ -1052,114 +989,114 @@
         {
           "label": "logo",
           "x": 12,
-          "y": 9,
+          "y": 6,
           "r": 63.6,
-          "b": 57
+          "b": 54
         },
         {
           "label": "site-name",
           "x": 71.6,
-          "y": 17.4,
+          "y": 14.4,
           "r": 162.1,
-          "b": 48.6
+          "b": 45.6
         },
         {
           "label": "nav-0:बाज़ार ▾",
-          "x": 249.6,
-          "y": 71,
-          "r": 308.9,
-          "b": 115
+          "x": 183.1,
+          "y": 8,
+          "r": 234.4,
+          "b": 52
         },
         {
           "label": "nav-1:मंडी भाव",
-          "x": 312.9,
-          "y": 71,
-          "r": 370.4,
-          "b": 115
+          "x": 249.5,
+          "y": 8,
+          "r": 298.9,
+          "b": 52
         },
         {
           "label": "nav-2:मौसम",
-          "x": 374.4,
-          "y": 71,
-          "r": 418.5,
-          "b": 115
+          "x": 313.9,
+          "y": 8,
+          "r": 350,
+          "b": 52
         },
         {
           "label": "nav-3:सरकारी योजना",
-          "x": 422.5,
-          "y": 71,
-          "r": 530.9,
-          "b": 115
+          "x": 365,
+          "y": 8,
+          "r": 465.5,
+          "b": 52
         },
         {
           "label": "nav-4:एग्रो फॉरेस्",
-          "x": 534.9,
-          "y": 71,
-          "r": 606.2,
-          "b": 115
+          "x": 480.5,
+          "y": 8,
+          "r": 543.7,
+          "b": 52
         },
         {
           "label": "nav-5:किसान सवाल",
-          "x": 610.2,
-          "y": 71,
-          "r": 691,
-          "b": 115
+          "x": 558.7,
+          "y": 8,
+          "r": 631.6,
+          "b": 52
         },
         {
           "label": "nav-6:वीडियो",
-          "x": 695,
-          "y": 71,
-          "r": 743.3,
-          "b": 115
+          "x": 646.6,
+          "y": 8,
+          "r": 686.9,
+          "b": 52
         },
         {
           "label": "nav-7:उपयोगी संपर्",
-          "x": 747.3,
-          "y": 71,
-          "r": 843.3,
-          "b": 115
+          "x": 701.9,
+          "y": 8,
+          "r": 789.8,
+          "b": 52
         },
         {
           "label": "nav-8:कैसे इस्तेमा",
-          "x": 847.3,
-          "y": 71,
-          "r": 942.5,
-          "b": 115
+          "x": 804.9,
+          "y": 8,
+          "r": 892.1,
+          "b": 52
         },
         {
           "label": "about-menu",
-          "x": 946.5,
-          "y": 71,
-          "r": 1030.4,
-          "b": 115
+          "x": 907.1,
+          "y": 8,
+          "r": 983,
+          "b": 52
         },
         {
           "label": "right-0:🎤🔍",
-          "x": 784.2,
-          "y": 6,
-          "r": 1060.2,
-          "b": 60
+          "x": 1004,
+          "y": 8,
+          "r": 1080,
+          "b": 52
         },
         {
           "label": "language-switch",
-          "x": 1068.2,
-          "y": 15,
-          "r": 1145.2,
-          "b": 51
+          "x": 1088,
+          "y": 12,
+          "r": 1165.1,
+          "b": 48
         },
         {
-          "label": "right-3:लॉगिन",
-          "x": 1153.2,
-          "y": 11,
-          "r": 1217,
-          "b": 55
+          "label": "right-4:लॉगिन",
+          "x": 1173.1,
+          "y": 8,
+          "r": 1226.4,
+          "b": 52
         },
         {
-          "label": "right-4:जुड़ें",
-          "x": 1225,
-          "y": 11,
+          "label": "right-5:जुड़ें",
+          "x": 1234.4,
+          "y": 8,
           "r": 1268,
-          "b": 55
+          "b": 52
         }
       ],
       "overlaps": [],
@@ -1175,114 +1112,114 @@
         {
           "label": "logo",
           "x": 12,
-          "y": 9,
+          "y": 6,
           "r": 63.6,
-          "b": 57
+          "b": 54
         },
         {
           "label": "site-name",
           "x": 71.6,
-          "y": 17.4,
+          "y": 14.4,
           "r": 162.1,
-          "b": 48.6
+          "b": 45.6
         },
         {
           "label": "nav-0:Marketplace ",
-          "x": 214.8,
-          "y": 71,
-          "r": 320.1,
-          "b": 115
+          "x": 173.7,
+          "y": 8,
+          "r": 270.9,
+          "b": 52
         },
         {
           "label": "nav-1:Mandi prices",
-          "x": 324.1,
-          "y": 71,
-          "r": 416.6,
-          "b": 115
+          "x": 276.5,
+          "y": 8,
+          "r": 361,
+          "b": 52
         },
         {
           "label": "nav-2:Weather",
-          "x": 420.6,
-          "y": 71,
-          "r": 488.1,
-          "b": 115
+          "x": 366.6,
+          "y": 8,
+          "r": 426.1,
+          "b": 52
         },
         {
           "label": "nav-3:Govt schemes",
-          "x": 492.1,
-          "y": 71,
-          "r": 605.4,
-          "b": 115
+          "x": 431.7,
+          "y": 8,
+          "r": 537,
+          "b": 52
         },
         {
           "label": "nav-4:Agro Forestr",
-          "x": 609.4,
-          "y": 71,
-          "r": 706.5,
-          "b": 115
+          "x": 542.5,
+          "y": 8,
+          "r": 631.6,
+          "b": 52
         },
         {
           "label": "nav-5:Q&A",
-          "x": 710.5,
-          "y": 71,
-          "r": 753.5,
-          "b": 115
+          "x": 637.2,
+          "y": 8,
+          "r": 672.3,
+          "b": 52
         },
         {
           "label": "nav-6:Videos",
-          "x": 757.5,
-          "y": 71,
-          "r": 813.3,
-          "b": 115
+          "x": 677.9,
+          "y": 8,
+          "r": 725.6,
+          "b": 52
         },
         {
           "label": "nav-7:Resources ▾",
-          "x": 817.3,
-          "y": 71,
-          "r": 908.3,
-          "b": 115
+          "x": 731.2,
+          "y": 8,
+          "r": 814.2,
+          "b": 52
         },
         {
           "label": "nav-8:How to use",
-          "x": 912.3,
-          "y": 71,
-          "r": 994.8,
-          "b": 115
+          "x": 819.8,
+          "y": 8,
+          "r": 894.2,
+          "b": 52
         },
         {
           "label": "about-menu",
-          "x": 998.8,
-          "y": 71,
-          "r": 1065.1,
-          "b": 115
+          "x": 899.8,
+          "y": 8,
+          "r": 958.2,
+          "b": 52
         },
         {
           "label": "right-0:🎤🔍",
-          "x": 747.3,
-          "y": 6,
-          "r": 1023.2,
-          "b": 60
+          "x": 969.8,
+          "y": 8,
+          "r": 1045.8,
+          "b": 52
         },
         {
           "label": "language-switch",
-          "x": 1031.2,
-          "y": 15,
-          "r": 1108.3,
-          "b": 51
+          "x": 1053.8,
+          "y": 12,
+          "r": 1130.8,
+          "b": 48
         },
         {
-          "label": "right-3:Login",
-          "x": 1116.3,
-          "y": 11,
-          "r": 1183,
-          "b": 55
+          "label": "right-4:Login",
+          "x": 1138.8,
+          "y": 8,
+          "r": 1194.8,
+          "b": 52
         },
         {
-          "label": "right-4:Sign Up",
-          "x": 1191,
-          "y": 11,
+          "label": "right-5:Sign Up",
+          "x": 1202.8,
+          "y": 8,
           "r": 1268,
-          "b": 55
+          "b": 52
         }
       ],
       "overlaps": [],
@@ -1513,19 +1450,19 @@
       "detail": ""
     },
     {
-      "name": "grievance 390px: before migration → e-mail fallback, no thank-you",
+      "name": "grievance 390px: server unavailable → e-mail fallback, no thank-you",
       "ok": true,
       "detail": ""
     },
     {
-      "name": "grievance 390px: after migration → confirmation shown",
+      "name": "grievance 390px: stored by the server → confirmation shown",
       "ok": true,
       "detail": ""
     },
     {
       "name": "grievance 390px: request carries e-mail, type, message and no name/phone",
       "ok": true,
-      "detail": "[\"p_email\",\"p_mobile\",\"p_kind\",\"p_message\",\"p_lang\",\"p_device\",\"p_public_ok\"]"
+      "detail": "[\"email\",\"mobile\",\"kind\",\"message\",\"lang\",\"device\",\"public_ok\"]"
     },
     {
       "name": "header 768px / hi: no overlapping items (6 items)",
@@ -1593,7 +1530,7 @@
       "detail": "found 1"
     },
     {
-      "name": "header 1024px / hi: no overlapping items (15 items)",
+      "name": "header 1024px / hi: no overlapping items (12 items)",
       "ok": true,
       "detail": ""
     },
@@ -1608,7 +1545,7 @@
       "detail": ""
     },
     {
-      "name": "header 1024px /about hi: no overlapping items (16 items)",
+      "name": "header 1024px /about hi: no overlapping items (13 items)",
       "ok": true,
       "detail": ""
     },
@@ -1623,7 +1560,7 @@
       "detail": ""
     },
     {
-      "name": "header 1024px /about en: no overlapping items (16 items)",
+      "name": "header 1024px /about en: no overlapping items (13 items)",
       "ok": true,
       "detail": ""
     },
@@ -1638,42 +1575,22 @@
       "detail": ""
     },
     {
-      "name": "about menu 1024px: opens with the keyboard",
+      "name": "more menu 1024px: opens with the keyboard and has /about and /founder",
+      "ok": true,
+      "detail": "/agro-forestry,/videos,/how-to-use,/about,/founder"
+    },
+    {
+      "name": "more menu 1024px: Escape closes it and returns focus",
       "ok": true,
       "detail": ""
     },
     {
-      "name": "about menu 1024px: has /about and /founder",
-      "ok": true,
-      "detail": "/about,/founder"
-    },
-    {
-      "name": "about menu 1024px: stays inside the viewport",
-      "ok": true,
-      "detail": "{\"x\":678.40625,\"y\":119,\"width\":224,\"height\":100}"
-    },
-    {
-      "name": "about menu 1024px: Tab moves to the first link",
+      "name": "more menu 1024px: closes on route change and reaches /founder",
       "ok": true,
       "detail": ""
     },
     {
-      "name": "about menu 1024px: Escape closes it and returns focus",
-      "ok": true,
-      "detail": ""
-    },
-    {
-      "name": "about menu 1024px: outside click closes it",
-      "ok": true,
-      "detail": ""
-    },
-    {
-      "name": "about menu 1024px: closes on route change and reaches /founder",
-      "ok": true,
-      "detail": ""
-    },
-    {
-      "name": "header 1024px: no separate top-level Founder link",
+      "name": "header 1024px: the About dropdown itself is not in the row at this width",
       "ok": true,
       "detail": ""
     },
@@ -1740,7 +1657,7 @@
     {
       "name": "about menu 1280px: stays inside the viewport",
       "ok": true,
-      "detail": "{\"x\":806.40625,\"y\":119,\"width\":224,\"height\":100}"
+      "detail": "{\"x\":759.015625,\"y\":56,\"width\":224,\"height\":100}"
     },
     {
       "name": "about menu 1280px: Tab moves to the first link",
@@ -1793,19 +1710,19 @@
       "detail": ""
     },
     {
-      "name": "grievance 1280px: before migration → e-mail fallback, no thank-you",
+      "name": "grievance 1280px: server unavailable → e-mail fallback, no thank-you",
       "ok": true,
       "detail": ""
     },
     {
-      "name": "grievance 1280px: after migration → confirmation shown",
+      "name": "grievance 1280px: stored by the server → confirmation shown",
       "ok": true,
       "detail": ""
     },
     {
       "name": "grievance 1280px: request carries e-mail, type, message and no name/phone",
       "ok": true,
-      "detail": "[\"p_email\",\"p_mobile\",\"p_kind\",\"p_message\",\"p_lang\",\"p_device\",\"p_public_ok\"]"
+      "detail": "[\"email\",\"mobile\",\"kind\",\"message\",\"lang\",\"device\",\"public_ok\"]"
     }
   ]
 }

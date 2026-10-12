@@ -12,7 +12,8 @@ import {
 // same-origin /transcribe function (Gemini, key server-side) — offered ONLY when that
 // function reports a key is configured. If neither path is usable the mic is not shown,
 // leaving the normal text input untouched. Failures never leave the button stuck.
-export default function VoiceSearchButton({ onTranscript, lang = 'hi-IN', className = '' }) {
+// `compact` is the smaller button used in the one-row desktop header.
+export default function VoiceSearchButton({ onTranscript, lang = 'hi-IN', className = '', compact = false }) {
   const { t } = useLang()
   // 'pending' until we know; 'webspeech' | 'gemini' | 'none'. Web Speech is known sync.
   const [mode, setMode] = useState(() => (speechRecognitionSupported() ? 'webspeech' : 'pending'))
@@ -168,7 +169,7 @@ export default function VoiceSearchButton({ onTranscript, lang = 'hi-IN', classN
         data-testid="voice-search-btn"
         data-voice-mode={mode}
         data-voice-active={active ? '1' : '0'}
-        className={`grid h-11 w-11 shrink-0 place-items-center rounded-lg border ${
+        className={`grid ${compact ? 'h-9 w-9' : 'h-11 w-11'} shrink-0 place-items-center rounded-lg border ${
           active ? 'border-red-500 bg-red-50 text-red-600' : 'border-[var(--ks-border-strong)] bg-white text-[var(--ks-primary)]'
         }`}
       >

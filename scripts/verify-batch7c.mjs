@@ -155,7 +155,8 @@ check('5: label is "कैसे इस्तेमाल करें / How to 
 const deskNav = (nav.match(/<nav data-testid="nav-desktop"[\s\S]*?<\/nav>/) || [''])[0]
 check('5: header — a visible top-level item in the desktop row, right before the About menu', /<Link to="\/how-to-use" data-testid="nav-how-to-use"/.test(deskNav) && deskNav.indexOf('nav-how-to-use') < deskNav.indexOf('data-testid="nav-about"') && deskNav.indexOf('nav-how-to-use') > deskNav.indexOf("t('resources_nav')"))
 check('5: header — also a visible row in the mobile menu (not hidden inside the About section)', /<Link to="\/how-to-use" data-testid="nav-how-to-use-mobile"/.test(nav) && nav.indexOf('nav-how-to-use-mobile') < nav.indexOf('data-testid="nav-about-mobile"') && !/ABOUT_MENU = \[[^\]]*how-to-use/.test(nav))
-check('5: two-row desktop header kept (nav is still its own lg row; hamburger below lg)', /<nav data-testid="nav-desktop" className="hidden flex-wrap[^"]*lg:flex"/.test(nav) && /nav-hamburger"[\s\S]{0,120}lg:hidden/.test(nav))
+// Batch 7H put the nav in the top row: one desktop row that never wraps.
+check('5: one-row desktop header (nav sits in the top bar from lg and never wraps; hamburger below lg)', /<nav data-testid="nav-desktop" className="[^"]*\bhidden\b[^"]*\bflex-nowrap\b[^"]*\blg:flex\b[^"]*"/.test(nav) && !/<nav data-testid="nav-desktop" className="[^"]*flex-wrap/.test(nav) && /nav-hamburger"[\s\S]{0,120}lg:hidden/.test(nav))
 check('5: footer link', /<Link to="\/how-to-use" className=\{link\}>\{t\('nav_how_to_use'\)\}<\/Link>/.test(footer))
 const distFooter = (dist.match(/<footer[\s\S]*?<\/footer>/) || [''])[0]
 check('5: prerendered header and footer both carry the link', /<a[^>]*href="\/how-to-use"/.test(distFooter) && /<header[\s\S]*?<a[^>]*data-testid="nav-how-to-use"[^>]*href="\/how-to-use"|<header[\s\S]*?<a[^>]*href="\/how-to-use"[^>]*data-testid="nav-how-to-use"/.test(dist))

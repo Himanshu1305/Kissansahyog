@@ -2264,6 +2264,7 @@ export const strings = {
 
   // --- Batch 7A: About menu + Feedback & Grievance form ---
   nav_about: { hi: 'हमारे बारे में', en: 'About' },
+  nav_more: { hi: 'और', en: 'More' },
   nav_about_us: { hi: 'हमारे बारे में', en: 'About Us' },
   nav_how_to_use: { hi: 'कैसे इस्तेमाल करें', en: 'How to use' },
   // Batch 7D — the one deliberate promotion. Used ONLY in: the homepage hero badge,
@@ -2275,7 +2276,7 @@ export const strings = {
   home_open_sawaal: { hi: 'किसान सवाल', en: 'Farmer Q&A' },
   home_open_cold: { hi: 'कोल्ड स्टोरेज', en: 'Cold storage' },
   home_open_mela: { hi: 'मेले', en: 'Melas' },
-  terms_updated: { hi: 'आख़िरी बदलाव: 12 अक्टूबर 2026 · Terms Draft 1.1', en: 'Last updated: 12 October 2026 · Terms Draft 1.1' },
+  terms_updated: { hi: 'आख़िरी बदलाव: 12 अक्टूबर 2026 · Terms Draft 1.2', en: 'Last updated: 12 October 2026 · Terms Draft 1.2' },
   terms_contents: { hi: 'विषय सूची', en: 'Contents' },
   post_declare_provider: { hi: 'मैं इसका असली प्रदाता हूँ और इसकी ज़िम्मेदारी मेरी है।', en: 'I am the genuine provider and I take responsibility for it.' },
   post_declare_owner: { hi: 'यह ज़मीन मेरी है या इसे देने का हक़ मुझे है।', en: 'This land is mine or I am authorised to offer it.' },

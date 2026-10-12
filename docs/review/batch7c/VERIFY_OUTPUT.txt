@@ -40,7 +40,7 @@ PASS  4: every diagram label from the data is in the prerendered SVG
 PASS  5: label is "कैसे इस्तेमाल करें / How to use"
 PASS  5: header — a visible top-level item in the desktop row, right before the About menu
 PASS  5: header — also a visible row in the mobile menu (not hidden inside the About section)
-PASS  5: two-row desktop header kept (nav is still its own lg row; hamburger below lg)
+PASS  5: one-row desktop header (nav sits in the top bar from lg and never wraps; hamburger below lg)
 PASS  5: footer link
 PASS  5: prerendered header and footer both carry the link
 PASS  5: homepage — one prominent strip linking to /how-to-use

@@ -243,7 +243,7 @@ const HUBS = [
   { title_hi: 'ड्रोन दीदी', title_en: 'Drone Didi', url: '/drone-didi', keywords: 'drone didi ड्रोन दीदी spraying' },
   { title_hi: 'किसान सवाल', title_en: 'Kisan Sawaal', url: '/sawaal', keywords: 'sawaal question answer किसान सवाल जवाब' },
   { title_hi: 'किसान मेला', title_en: 'Kisan Mela', url: '/kisan-mela', keywords: 'kisan mela fair किसान मेला' },
-  { title_hi: 'हमारे बारे में — किसान सहयोग', title_en: 'About Us — Kissan Sahyog', url: '/about', keywords: 'हमारे बारे में किसान सहयोग क्या है about us kissan sahyog sagar pilot सागर usd vision ai संपर्क' },
+  { title_hi: 'हमारे बारे में — किसान सहयोग', title_en: 'About Us — Kissan Sahyog', url: '/about', keywords: 'हमारे बारे में किसान सहयोग क्या है about us kissan sahyog sagar pilot सागर स्वामी संचालक owner संपर्क' },
   { title_hi: 'वेबसाइट कैसे इस्तेमाल करें', title_en: 'How to use the website', url: '/how-to-use', keywords: 'कैसे इस्तेमाल करें वेबसाइट कैसे चलाएं how to use help guide लिस्टिंग कैसे डालें रजिस्टर लॉगिन फोटो संपर्क होम स्क्रीन इंस्टॉल भाषा बदलें मदद' },
   { title_hi: 'संस्थापक — श्री अभिनन्दन दीक्षित', title_en: 'Founder — Shri Abhinandan Dixit', url: '/founder', keywords: 'संस्थापक अभिनन्दन दीक्षित founder abhinandan dixit about किसान सहयोग परिचय' },
 ]

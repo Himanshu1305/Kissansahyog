@@ -4,7 +4,7 @@
 //   node scripts/shots-batch7a.mjs
 // Screenshots + header-check.json go to docs/review/batch7a/. Exits non-zero if any
 // header items overlap or any behaviour check fails. No database writes: the
-// submit_feedback RPC is intercepted in the browser.
+// form's POST to /api/feedback is answered inside the browser.
 import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
@@ -18,7 +18,8 @@ const OUT = join(ROOT, 'docs/review/batch7a')
 const PORT = 4179
 const BASE = `http://localhost:${PORT}`
 const WIDTHS = [320, 360, 390, 768, 1024, 1280]
-const DESKTOP = 1024 // the full nav row shows from Tailwind lg
+const DESKTOP = 1024 // the desktop nav shows from Tailwind lg
+const FULL = 1280 // all ten items (incl. the About menu) are in the row from Tailwind xl; below it About is inside और / More
 mkdirSync(OUT, { recursive: true })
 
 const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json', '.txt': 'text/plain', '.xml': 'application/xml' }
@@ -92,7 +93,23 @@ for (const width of WIDTHS) {
   await page.evaluate(() => localStorage.setItem('ks_lang_v1', 'hi'))
   await page.reload({ waitUntil: 'networkidle' })
 
-  if (width >= DESKTOP) {
+  if (width >= DESKTOP && width < FULL) {
+    // 1024–1279px (Batch 7H): the About links live in the और / More menu.
+    const btn = page.locator('[data-testid="nav-more"] > button')
+    const menu = page.locator('#nav-more-menu')
+    await btn.focus()
+    await page.keyboard.press('Enter')
+    const hrefs = await menu.locator('a').evaluateAll((as) => as.map((a) => a.getAttribute('href')))
+    check(`more menu ${width}px: opens with the keyboard and has /about and /founder`, await menu.isVisible() && (await btn.getAttribute('aria-expanded')) === 'true' && hrefs.includes('/about') && hrefs.includes('/founder'), hrefs.join(','))
+    await page.screenshot({ path: join(OUT, `about-menu-${width}.png`), clip: { x: 0, y: 0, width, height: 320 } })
+    await page.keyboard.press('Escape')
+    check(`more menu ${width}px: Escape closes it and returns focus`, !(await menu.isVisible()) && await btn.evaluate((el) => el === document.activeElement))
+    await btn.click()
+    await menu.locator('a[href="/founder"]').click()
+    await page.waitForURL('**/founder')
+    check(`more menu ${width}px: closes on route change and reaches /founder`, !(await page.locator('#nav-more-menu').isVisible()))
+    check(`header ${width}px: the About dropdown itself is not in the row at this width`, !(await page.locator('[data-testid="nav-about"]').isVisible()))
+  } else if (width >= FULL) {
     // Desktop dropdown: keyboard open, both links, Escape, outside click, route change.
     const btn = page.locator('[data-testid="nav-about"] > button')
     const menu = page.locator('#nav-about-menu')
@@ -169,30 +186,28 @@ for (const width of WIDTHS) {
     await form.locator('button[type="submit"]').click()
     check(`grievance ${width}px: empty form shows a validation message`, await form.locator('[role="alert"]').isVisible())
 
-    // Before the migration: the RPC does not exist → e-mail fallback, no false "sent".
+    // The server cannot store it (503) → e-mail fallback, no false "sent". Since Batch 7G
+    // the form posts only to /api/feedback; the browser never calls the database itself.
     let sent = null
-    // Batch 7B: the form tries the site's own /api/feedback first. Not deployed here.
-    await page.route('**/api/feedback', (route) => route.fulfill({ status: 404, contentType: 'text/html', body: '<!doctype html>' }))
-    await page.route('**/rest/v1/rpc/submit_feedback', (route) => route.fulfill({ status: 404, contentType: 'application/json', body: JSON.stringify({ code: 'PGRST202', message: 'Could not find the function public.submit_feedback in the schema cache' }) }))
+    await page.route('**/api/feedback', (route) => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'unavailable' }) }))
     await form.locator('#fb-contact').fill('kisan@example.com')
     await form.locator('label:has(input[value="problem"])').click()
     await form.locator('#fb-message').fill('मंडी भाव का पेज नहीं खुल रहा है।')
     await form.locator('button[type="submit"]').click()
     await page.locator('[data-testid="feedback-mailto"]').waitFor()
     const href = await page.locator('[data-testid="feedback-mailto"]').getAttribute('href')
-    check(`grievance ${width}px: before migration → e-mail fallback, no thank-you`, href.startsWith('mailto:grievance@kissansahyog.com?') && !(await page.locator('[data-testid="feedback-done"]').isVisible()))
+    check(`grievance ${width}px: server unavailable → e-mail fallback, no thank-you`, href.startsWith('mailto:grievance@kissansahyog.com?') && !(await page.locator('[data-testid="feedback-done"]').isVisible()))
     await page.screenshot({ path: join(OUT, `grievance-fallback-${width}.png`), fullPage: true })
 
-    // After the migration: the RPC succeeds → warm confirmation; payload has no name.
-    await page.unroute('**/rest/v1/rpc/submit_feedback')
-    await page.route('**/rest/v1/rpc/submit_feedback', (route) => { sent = route.request().postDataJSON(); route.fulfill({ status: 204, body: '' }) })
+    // The server stores it → warm confirmation; payload has no name.
+    await page.unroute('**/api/feedback')
+    await page.route('**/api/feedback', (route) => { sent = route.request().postDataJSON(); route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ok: true }) }) })
     await form.locator('button[type="submit"]').click()
     await page.locator('[data-testid="feedback-done"]').waitFor()
-    check(`grievance ${width}px: after migration → confirmation shown`, (await page.locator('[data-testid="feedback-done"]').innerText()).length > 20)
+    check(`grievance ${width}px: stored by the server → confirmation shown`, (await page.locator('[data-testid="feedback-done"]').innerText()).length > 20)
     check(`grievance ${width}px: request carries e-mail, type, message and no name/phone`,
-      sent && sent.p_email === 'kisan@example.com' && sent.p_kind === 'problem' && sent.p_message.length > 5 && !Object.keys(sent).some((k) => /name|phone/.test(k)), JSON.stringify(sent && Object.keys(sent)))
+      sent && sent.email === 'kisan@example.com' && sent.kind === 'problem' && sent.message.length > 5 && !Object.keys(sent).some((k) => /name|phone/.test(k)), JSON.stringify(sent && Object.keys(sent)))
     await page.screenshot({ path: join(OUT, `grievance-done-${width}.png`) })
-    await page.unroute('**/rest/v1/rpc/submit_feedback')
     await page.unroute('**/api/feedback')
   }
   await ctx.close()
