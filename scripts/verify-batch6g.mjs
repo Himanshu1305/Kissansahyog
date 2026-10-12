@@ -126,7 +126,7 @@ check('5: homepage band links to /founder', /<Link to="\/founder" data-testid="h
 check('5: homepage band shows name, role, three badges and the motto',
   ['founder_name', 'founder_role', 'founder_badge_service', 'founder_badge_medal', 'founder_badge_guinness', 'founder_quote', 'founder_read_full'].every((k) => bandSrc.includes(k))
   && strings.founder_quote.hi === 'WE WILL DO IT' && strings.founder_badge_service.hi === '42 वर्ष की सेवा'
-  && strings.founder_badge_medal.hi === 'स्वर्ण पदक, 2011' && strings.founder_badge_guinness.hi === 'गिनीज वर्ल्ड रिकॉर्ड, 2014-15'
+  && strings.founder_badge_medal.hi === 'स्वर्ण पदक, 2011' && strings.founder_badge_guinness.hi === 'गिनीज वर्ल्ड रिकॉर्ड, 2013'
   && strings.founder_role.hi === 'संस्थापक · सेवानिवृत्त उप वन संरक्षक (DCF)')
 check('5: footer links to /founder', /<Link to="\/founder"[^>]*>\{t\('footer_founder'\)\}<\/Link>/.test(footer) && strings.footer_founder.hi === 'संस्थापक' && strings.footer_founder.en === 'Founder')
 check('5: agro-forestry author line links to /founder with the shared name string', /<Link to="\/founder"[^>]*>\{t\('founder_name'\)\}<\/Link>/.test(authorLine))
@@ -168,7 +168,7 @@ const [person, organization, faq] = buildFounderJsonLd(founder, 'en')
 check('7: Person JSON-LD carries only name, jobTitle, birthPlace, worksFor',
   person['@type'] === 'Person' && person.name === 'Shri Abhinandan Dixit'
   && person.jobTitle === 'Retired Deputy Conservator of Forests, Madhya Pradesh'
-  && person.birthPlace?.name === 'Khurai' && person.worksFor?.name === 'Kissan Sahyog'
+  && person.birthPlace?.name === 'Sagar' && person.worksFor?.name === 'Kissan Sahyog'
   && Object.keys(person).sort().join(',') === ['@context', '@type', 'birthPlace', 'jobTitle', 'name', 'worksFor'].sort().join(','),
   Object.keys(person).join(','))
 check('7: Organization JSON-LD names him as founder', organization['@type'] === 'Organization' && organization.founder?.name === 'Shri Abhinandan Dixit')

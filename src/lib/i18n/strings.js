@@ -1419,7 +1419,7 @@ export const strings = {
   founder_role: { hi: 'संस्थापक · सेवानिवृत्त उप वन संरक्षक (DCF)', en: 'Founder · Retired Deputy Conservator of Forests (DCF)' },
   founder_badge_service: { hi: '42 वर्ष की सेवा', en: '42 years of service' },
   founder_badge_medal: { hi: 'स्वर्ण पदक, 2011', en: 'Gold Medal, 2011' },
-  founder_badge_guinness: { hi: 'गिनीज वर्ल्ड रिकॉर्ड, 2014-15', en: 'Guinness World Record, 2014-15' },
+  founder_badge_guinness: { hi: 'गिनीज वर्ल्ड रिकॉर्ड, 2013', en: 'Guinness World Record, 2013' },
   founder_read_full: { hi: 'पूरा परिचय पढ़ें', en: 'Read the full introduction' },
 
   // --- /founder page (short UI labels; long copy lives in src/content/founder.js) ---

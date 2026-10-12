@@ -50,14 +50,14 @@ export const founder = {
   },
 
   glance: [
-    { hi: 'किसान परिवार से; जन्म खुरई, ज़िला सागर में', en: 'From a farming family; born in Khurai, Sagar district' },
+    { hi: 'किसान परिवार से; जन्म सागर में', en: 'From a farming family; born in Sagar' },
     { hi: '42 वर्ष शासकीय सेवा (1981 से 2023)', en: '42 years of government service (1981 to 2023)' },
     { hi: '1981 में म.प्र. लोक सेवा आयोग से चयन', en: 'Selected through the M.P. Public Service Commission in 1981' },
     { hi: 'वनस्पति विज्ञान की पढ़ाई, सागर विश्वविद्यालय', en: 'Studied Botany at Sagar University' },
     { hi: 'फॉरेस्ट्री डिप्लोमा, नॉर्दर्न फॉरेस्ट रेंजर्स कॉलेज, 1982-83', en: 'Forestry diploma, Northern Forest Rangers College, 1982-83' },
     { hi: 'उप वन संरक्षक (DCF) पद से सेवानिवृत्त, 2023', en: 'Retired as Deputy Conservator of Forests (DCF), 2023' },
     { hi: 'स्वर्ण पदक, म.प्र. शासन, 20 अप्रैल 2011', en: 'Gold Medal, Government of M.P., 20 April 2011' },
-    { hi: 'गिनीज वर्ल्ड रिकॉर्ड, 2014-15 (कृषि क्षेत्र में सफल रोपण)', en: 'Guinness World Record, 2014-15 (successful plantation in the agriculture sector)' },
+    { hi: 'गिनीज वर्ल्ड रिकॉर्ड, 22 जुलाई 2013 (कृषि क्षेत्र में सफल रोपण)', en: 'Guinness World Record, 22 July 2013 (successful plantation in the agriculture sector)' },
     { hi: 'बैहर में सबई घास की रस्सी और बाँस के फर्नीचर के नवाचार, जो उद्योग बने', en: 'Innovations in sabai grass rope and bamboo furniture at Baihar, which became industries' }, // ks-style-ok
     { hi: '"बुंदेली व्यंजन, बिजावर" की शुरुआत; प्रदेश स्तर पर कई पुरस्कार', en: 'Started "Bundeli Vyanjan, Bijawar"; several state-level awards' },
     { hi: '2011 से किसानों को कार्बन क्रेडिट का लाभ दिलाने का प्रयास', en: 'Working since 2011 to bring the benefit of carbon credits to farmers' },
@@ -65,8 +65,8 @@ export const founder = {
 
   roots_heading: { hi: 'मेरी जड़ें किसान परिवार में हैं', en: 'My roots are in a farming family' },
   roots_p1: {
-    hi: 'मेरा जन्म सागर ज़िले के खुरई में, एक ब्राह्मण परिवार में हुआ। पाँच भाइयों और चार बहनों के भरे-पूरे परिवार में मैं सबसे छोटा था, इसलिए बड़े भाई-बहनों का स्नेह और संरक्षण मुझे बचपन से मिला।',
-    en: 'I was born in Khurai, in Sagar district, into a Brahmin family. In a full household of five brothers and four sisters I was the youngest, so I received the affection and care of my elder brothers and sisters from childhood.',
+    hi: 'मेरा जन्म सागर में, एक ब्राह्मण परिवार में हुआ। पाँच भाइयों और चार बहनों के भरे-पूरे परिवार में मैं सबसे छोटा था, इसलिए बड़े भाई-बहनों का स्नेह और संरक्षण मुझे बचपन से मिला।',
+    en: 'I was born in Sagar, into a Brahmin family. In a full household of five brothers and four sisters I was the youngest, so I received the affection and care of my elder brothers and sisters from childhood.',
   },
   roots_p2: {
     hi: 'मेरी माँ, श्रीमती त्रिवेणी बाई दीक्षित, खेती करती थीं। खेत, बीज, बारिश का इंतज़ार और फसल की चिंता मेरे लिए किताबी बातें नहीं, घर की रोज़ की बातें थीं। मेरे पिता, पंडित शालिग राम दीक्षित, प्राचार्य पद से सेवानिवृत्त हुए। शिक्षा और ईमानदारी का महत्व मैंने अपने घर से सीखा।',
@@ -147,8 +147,9 @@ export const founder = {
     },
     {
       title: { hi: 'गिनीज वर्ल्ड रिकॉर्ड', en: 'Guinness World Record' },
-      year: '2014-15',
-      text: { hi: 'वर्ष 2014-15 में कृषि क्षेत्र में सफल रोपण का गिनीज वर्ल्ड रिकॉर्ड दर्ज हुआ।', en: 'In 2014-15 a Guinness World Record was registered for successful plantation in the agriculture sector.' },
+      year: '2013',
+      date_iso: '2013-07-22',
+      text: { hi: '22 जुलाई 2013 को कृषि क्षेत्र में सफल रोपण का गिनीज वर्ल्ड रिकॉर्ड दर्ज हुआ।', en: 'On 22 July 2013 a Guinness World Record was registered for successful plantation in the agriculture sector.' },
       // '/founder/guinness-certificate.jpg' (1600 wide)
       proof_src: null,
       proof_alt: { hi: 'गिनीज वर्ल्ड रिकॉर्ड का प्रमाणपत्र', en: 'Guinness World Record certificate' },
@@ -256,7 +257,7 @@ export const founder = {
   // Fixed values for structured data (see buildFounderJsonLd).
   jsonld: {
     job_title: { hi: 'सेवानिवृत्त उप वन संरक्षक, मध्य प्रदेश', en: 'Retired Deputy Conservator of Forests, Madhya Pradesh' },
-    birth_place: { hi: 'खुरई', en: 'Khurai' },
+    birth_place: { hi: 'सागर', en: 'Sagar' },
     org_name: { hi: 'किसान सहयोग', en: 'Kissan Sahyog' },
   },
 }
@@ -277,7 +278,7 @@ export function buildFounderJsonLd(data = founder, lang = 'hi') {
     jobTitle: pick(data.jsonld.job_title, lang),
     birthPlace: { '@type': 'Place', name: pick(data.jsonld.birth_place, lang) },
     worksFor: org,
-    ...(proven.length ? { award: proven.map((a) => `${pick(a.title, lang)}, ${a.year}`) } : {}),
+    ...(proven.length ? { award: proven.map((a) => `${pick(a.title, lang)}, ${a.date_iso ?? a.year}`) } : {}),
   }
   const organization = {
     '@context': 'https://schema.org',
