@@ -35,10 +35,15 @@ if (process.argv.includes('--dist')) {
   walk(DIST)
   let prodSeen = false
   const bad = []
+  const STAGING_HOST = 'staging.kissansahyog.com'
+  const HEADERS_FILE = join(DIST, '_headers')
   for (const f of files) {
     const text = readFileSync(f, 'utf8')
     if (text.includes(PROD_REF)) prodSeen = true
-    if (text.includes(STAGING_REF) || text.includes('staging.kissansahyog.com')) bad.push(relative(DIST, f))
+    // The one allowed mention of the staging host: the start of a host rule in dist/_headers
+    // (the rule that noindexes staging). Anywhere else — and the staging ref everywhere — refuses.
+    const hostScan = f === HEADERS_FILE ? text.split(/\r?\n/).map((l) => l.startsWith(`https://${STAGING_HOST}/`) ? l.slice(`https://${STAGING_HOST}/`.length) : l).join('\n') : text
+    if (text.includes(STAGING_REF) || hostScan.includes(STAGING_HOST)) bad.push(relative(DIST, f))
   }
   if (bad.length) fail(`dist contains staging references in: ${bad.slice(0, 10).join(', ')}${bad.length > 10 ? ` (+${bad.length - 10} more)` : ''}`)
   if (!prodSeen) fail('dist does not reference the production project anywhere — the client bundle was not built with .env.production')

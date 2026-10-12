@@ -15,6 +15,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "db": "node --env-file=.env scripts/db.mjs",
+    "check:dist:prod": "node --env-file=.env.production scripts/check-prod-env.mjs --dist",
     "db:prod:status": "node --env-file=.env.production scripts/check-prod-env.mjs && node --env-file=.env.production scripts/db.mjs status",
     "db:prod:migrate": "node --env-file=.env.production scripts/check-prod-env.mjs && node --env-file=.env.production scripts/db.mjs migrate",
     "seed": "node --env-file=.env scripts/seed.mjs",
