@@ -30,7 +30,7 @@ import PwaInstallBanner from '../components/PwaInstallBanner'
 import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
 import { fetchPestReports } from '../lib/pest/pestApi'
 import { fetchUpcomingMelas } from '../lib/mela/melaApi'
-import { melaDateLabel } from '../lib/mela/melaFormat'
+import { melaDateLabel, melaPlace } from '../lib/mela/melaFormat'
 import { melaStatus } from '../lib/mela/melaStatus'
 import SearchBar from '../components/SearchBar'
 import { founder } from '../content/founder'
@@ -54,6 +54,15 @@ const CATEGORY_TILES = [
   { img: 'cat-transport.jpg', labelKey: 'cat_transport_label', subKey: 'cat_transport_sub', to: 'transport' },
   { img: 'cat-expert.jpg', labelKey: 'cat_expert_label', subKey: 'cat_expert_sub', to: 'experts' },
   { img: 'cat-land.jpg', labelKey: 'cat_land_label', subKey: 'cat_land_sub', to: 'land' },
+]
+
+// What the open-to-all strip names. Each is a public route in App.jsx (no <Protected>).
+const OPEN_LINKS = [
+  { to: '/msp', labelKey: 'home_open_mandi' },
+  { to: '/yojana', labelKey: 'home_open_schemes' },
+  { to: '/sawaal', labelKey: 'home_open_sawaal' },
+  { to: '/cold-storage', labelKey: 'home_open_cold' },
+  { to: '/kisan-mela', labelKey: 'home_open_mela' },
 ]
 
 // Listing category → fallback card photo (used when a listing has none of its own).
@@ -187,8 +196,25 @@ export default function Homepage() {
         </button>
       )}
 
+      {/* Open-to-all strip (Batch 7D): everything named here is a public route — no login.
+          Carries the link to /how-to-use (this replaces the separate 7C strip). */}
+      <section data-testid="home-open-strip" aria-labelledby="home-open-h" className="w-full" style={{ background: 'var(--ks-green-tint)', borderBottom: '1px solid var(--ks-border)', padding: '10px var(--ks-gutter)' }}>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <h2 id="home-open-h" className="text-[16px] font-extrabold leading-snug md:text-[17px]" style={{ color: 'var(--ks-green-dark)' }}>{t('home_open_title')}</h2>
+          <ul className="flex flex-wrap gap-1.5">
+            {OPEN_LINKS.map((o) => (
+              <li key={o.to}>
+                <Link to={o.to} className="inline-flex min-h-[40px] items-center rounded-full bg-white px-3 text-[14px] font-bold" style={{ color: 'var(--ks-green-dark)', border: '1px solid var(--ks-green)' }}>{t(o.labelKey)}</Link>
+              </li>
+            ))}
+          </ul>
+          <Link to="/how-to-use" data-testid="home-how-to-use" className="inline-flex min-h-[40px] items-center text-[14px] font-bold underline md:ml-auto" style={{ color: 'var(--ks-green-dark)' }}>{t('nav_how_to_use')} →</Link>
+        </div>
+      </section>
+
       {/* 3 — Hero: आज किसान के लिए */}
       <HeroContent
+        showFreeReg={!isLoggedIn}
         t={t} today={today} weather={weather}
         onNeed={() => navigate('/browse')}
         onHave={() => navigate(isLoggedIn ? '/post' : '/signup')}
@@ -238,7 +264,8 @@ export default function Homepage() {
       {/* 5 — कृषि बाज़ार की श्रेणियाँ */}
       <Section>
         <SectionHeader title={t('cats_title')} />
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        {/* No blank cell at any width: 2 columns (an odd last tile spans the row), 3, then 5. */}
+        <div data-testid="home-cat-grid" className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 [&>*:last-child:nth-child(odd)]:col-span-2 md:[&>*:last-child:nth-child(odd)]:col-span-1">
           {CATEGORY_TILES.map((c) => (
             <PhotoTile key={c.labelKey} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} onClick={() => (c.path ? navigate(c.path) : tileClick(c.to, c.etype))} />
           ))}
@@ -337,7 +364,7 @@ export default function Homepage() {
                 <span className="mt-1 text-[13px] font-semibold" style={{ color: m.is_date_confirmed ? 'var(--ks-green)' : 'var(--ks-orange-dark)' }}>
                   📅 {melaDateLabel(m, lang, { expectedLabel: t('mela_expected_prefix'), tbdLabel: '' })}
                 </span>
-                <span className="mt-0.5 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>📍 {[m.venue, m.state].filter(Boolean).join(', ')}</span>
+                <span className="mt-0.5 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>📍 {melaPlace(m)}</span>
               </button>
             ))}
           </div>
@@ -422,7 +449,7 @@ export default function Homepage() {
 
 // Hero content — shared between the desktop background-photo layout and the mobile
 // banner+cream layout.
-function HeroInner({ t, today, onNeed, onHave, onForecast, onMsp, heading = 'h1' }) {
+function HeroInner({ t, today, onNeed, onHave, onForecast, onMsp, heading = 'h1', showFreeReg = false }) {
   // The hero renders twice (desktop bg layout + mobile banner layout). Only one
   // instance is an <h1> so the DOM has exactly one H1 (SEO); the other is a
   // visually-identical <p>.
@@ -433,18 +460,27 @@ function HeroInner({ t, today, onNeed, onHave, onForecast, onMsp, heading = 'h1'
       <span className="inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>
         🌾 {t('tf_eyebrow')}
       </span>
+      {/* The one deliberate promotion (Batch 7D) — shown to visitors who are not logged in. */}
+      {showFreeReg && (
+        <span data-testid="hero-free-registration" className="ml-2 mt-1 inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)', border: '1px solid var(--ks-green)' }}>
+          ✓ {t('free_registration')}
+        </span>
+      )}
       <Heading className="mt-3 text-[32px] font-extrabold leading-[1.1] md:text-[50px]" style={{ color: 'var(--ks-ink)' }}>{t('tf_title')}</Heading>
       <p className="mt-2 text-[15px] md:text-[18px]" style={{ color: 'var(--ks-ink-2)' }}>{t('tf_subline')}</p>
 
       <div className="mt-4 flex flex-col gap-3 sm:flex-row">
         <InfoTile caption={t('tf_weather_cap')} value={today.weatherLine} note={`${today.rainLine} · ${t('home_forecast_link')} →`} noteColor="var(--ks-blue)" onClick={onForecast} />
-        <InfoTile
-          caption={t('tf_price_cap')}
-          value={today.priceLine ? today.priceLine.split(' · ')[0] : '—'}
-          note={`${today.priceLine ? today.priceLine.split(' · ').slice(1).join(' · ') : t('govt_msp_title')} · ${t('home_msp_link')} →`}
-          noteColor={today.priceTone === 'above' ? 'var(--ks-green)' : today.priceTone === 'below' ? 'var(--ks-orange-dark)' : 'var(--ks-ink-3)'}
-          onClick={onMsp}
-        />
+        {/* Price tile only when there is a price to show (it used to render an empty "—"). */}
+        {today.priceLine && (
+          <InfoTile
+            caption={t('tf_price_cap')}
+            value={today.priceLine.split(' · ')[0]}
+            note={`${today.priceLine.split(' · ').slice(1).join(' · ')} · ${t('home_msp_link')} →`}
+            noteColor={today.priceTone === 'above' ? 'var(--ks-green)' : today.priceTone === 'below' ? 'var(--ks-orange-dark)' : 'var(--ks-ink-3)'}
+            onClick={onMsp}
+          />
+        )}
         <InfoTile caption={t('tf_advice_cap')} value={today.advice} />
       </div>
 
@@ -452,12 +488,16 @@ function HeroInner({ t, today, onNeed, onHave, onForecast, onMsp, heading = 'h1'
         <Button variant="primary" giant icon={<SearchGlyph />} sublabel={t('cta_need_sub')} onClick={onNeed}>{t('cta_need')}</Button>
         <Button variant="secondary" giant icon={<PlusGlyph />} sublabel={t('cta_have_sub')} onClick={onHave}>{t('cta_have')}</Button>
       </div>
+      {/* Next to the post-listing button: posting needs an account. */}
+      {showFreeReg && (
+        <p data-testid="post-free-registration" className="mt-2 text-right text-[14px] font-bold" style={{ color: 'var(--ks-orange-dark)' }}>✓ {t('free_registration')}</p>
+      )}
     </div>
   )
 }
 
-function HeroContent({ t, today, onNeed, onHave, onForecast, onMsp }) {
-  const common = { t, today, onNeed, onHave, onForecast, onMsp }
+function HeroContent({ t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }) {
+  const common = { t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }
   return (
     <section className="w-full">
       {/* Desktop: farmer photo as background, text on a cream gradient on the left.

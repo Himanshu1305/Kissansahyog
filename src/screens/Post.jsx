@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, BigButton, Field, Notice, Spinner, TextInput } from '../components/ui'
@@ -22,9 +22,11 @@ import { uploadPhotos } from '../lib/listings/photos'
 // entered data.
 //   1. What?      — category tiles (Land last) + देना/बेचना (offer) · चाहिए (requirement)
 //   2. Details    — the category's fields + a small किसान/व्यापारी toggle
-//   3. Confirm    — asset village (primary distance anchor) + phone check + ONE
-//                   checkbox that covers the rules agreement and, for offer provider
-//                   categories, the provider declaration (and land ownership).
+//   3. Confirm    — asset village (primary distance anchor) + phone check + the
+//                   itemised consent checklist (one box per thing). Rules + "my
+//                   information is correct" is asked ONCE, in the checklist; a separate
+//                   declaration box appears only when there is something extra to
+//                   declare (genuine provider / land ownership) — Batch 7D.
 const PROVIDER_CATS = ['equipment', 'warehouse', 'greenhouse', 'jugaad']
 
 export default function Post() {
@@ -108,7 +110,7 @@ export default function Post() {
     if (category === 'transport' && !String(details?.from_location || '').trim()) { setError(t('err_transport_from_required')); return }
     if (category === 'transport' && !String(details?.to_location || '').trim()) { setError(t('err_transport_to_required')); return }
     if (vname.length < 2) { setError(t('err_asset_village_required')); return }
-    if (!confirmChecked || !allConsentsAccepted) { setError(t('consent_required')); return }
+    if (!declarationOk || !allConsentsAccepted) { setError(t('consent_required')); return }
     if (mapUrl && !isGoogleMapsUrl(mapUrl)) { setError(t('maps_link_invalid')); return }
     setBusy(true)
     try {
@@ -130,7 +132,7 @@ export default function Post() {
         selfDeclared: needsSelfDecl, // folded into the single confirm checkbox
         listingSource: source,
         wideVisibility: canWiden ? wideVisibility : false,
-        rulesAgreed: confirmChecked,
+        rulesAgreed: !!consents.posting_rules, // the checklist's rules + accuracy item
       })
       if (listing?.geocoding_status === 'pending') drainGeocodeQueue().catch(() => {})
       setCreated(listing)
@@ -155,7 +157,9 @@ export default function Post() {
     )
   }
 
-  const confirmLabelKey = needsSelfDecl ? 'post_confirm_owner' : needsProviderDecl ? 'post_confirm_provider' : 'post_confirm_simple'
+  // Extra declaration, only where one applies. The rules + accuracy consent is NOT repeated here.
+  const declarationKey = needsSelfDecl ? 'post_declare_owner' : needsProviderDecl ? 'post_declare_provider' : null
+  const declarationOk = !declarationKey || confirmChecked
 
   const title = created ? t('post_success') : `${t('post_listing')} · ${step}/3`
 
@@ -168,7 +172,9 @@ export default function Post() {
       <div className="lg:col-span-2">
       {!created && step === 1 && (
         <div>
-          <h2 className="mb-3 text-xl font-bold text-stone-800">{t('post_step_what')}</h2>
+          <h2 className="mb-1 text-xl font-bold text-stone-800">{t('post_step_what')}</h2>
+          {/* Small helper link to the posting steps on /how-to-use (Batch 7C). */}
+          <p className="mb-3"><Link to="/how-to-use#listing-kaise-dalein" data-testid="post-how-to-use" className="inline-flex min-h-[44px] items-center text-sm font-semibold text-green-800 underline">{t('post_howto_help')}</Link></p>
           <div className="mb-5 grid grid-cols-2 gap-2 md:grid-cols-3">
             {CATEGORIES.map((c) => {
               const enabled = isEnabled(c)
@@ -335,33 +341,33 @@ export default function Post() {
             </label>
           )}
 
-          {/* ONE checkbox: rules agreement + (offer) provider/ownership declaration. */}
-          <label className="my-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-stone-300 bg-white p-4">
-            <input
-              type="checkbox"
-              checked={confirmChecked}
-              onChange={(e) => setConfirmChecked(e.target.checked)}
-              className="mt-1 h-6 w-6 shrink-0 accent-green-700"
-              data-testid="rules-agree-checkbox"
-            />
-            <span className="text-sm leading-relaxed text-stone-800">
-              {t(confirmLabelKey)}{' '}
-              <a href="/terms" target="_blank" rel="noopener noreferrer" className="font-semibold text-green-800 underline">
-                {t('terms_title')}
-              </a>
-              {/* Jugaad offers: the no-road-vehicle rule is one line inside this declaration (Batch 2 item D). */}
-              {category === 'jugaad' && listingType === 'offer' && (
-                <span className="mt-1 block text-sm text-stone-600">{t('jugaad_not_road_vehicle')}</span>
-              )}
-            </span>
-          </label>
+          {/* Declaration box — only when there is something to declare beyond the checklist
+              (provider / land ownership). Rules + accuracy live in the checklist below. */}
+          {declarationKey && (
+            <label className="my-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-stone-300 bg-white p-4">
+              <input
+                type="checkbox"
+                checked={confirmChecked}
+                onChange={(e) => setConfirmChecked(e.target.checked)}
+                className="mt-1 h-6 w-6 shrink-0 accent-green-700"
+                data-testid="rules-agree-checkbox"
+              />
+              <span className="text-sm leading-relaxed text-stone-800">
+                {t(declarationKey)}
+                {/* Jugaad offers: the no-road-vehicle rule is one line inside this declaration (Batch 2 item D). */}
+                {category === 'jugaad' && listingType === 'offer' && (
+                  <span className="mt-1 block text-sm text-stone-600">{t('jugaad_not_road_vehicle')}</span>
+                )}
+              </span>
+            </label>
+          )}
 
           <ConsentChecklist value={consents} onChange={setConsents} className="my-4" />
 
           {busy ? (
             <Spinner label={t('posting')} />
           ) : (
-            <BigButton data-testid="post-submit" onClick={submit} disabled={!confirmChecked || !allConsentsAccepted}>
+            <BigButton data-testid="post-submit" onClick={submit} disabled={!declarationOk || !allConsentsAccepted}>
               {t('submit')}
             </BigButton>
           )}

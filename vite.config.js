@@ -15,7 +15,7 @@ export default defineConfig({
       // We register the SW ourselves through virtual:pwa-register/react (in
       // PwaPrompts), so disable the auto-injected registration to avoid double-reg.
       injectRegister: null,
-      includeAssets: ['icons/apple-touch-icon.png', 'icons/favicon-32.png'],
+      includeAssets: ['icons/apple-touch-icon.png', 'icons/favicon-32.png', 'icons/favicon-48.png', 'icons/favicon.svg', 'brand/logo-96.webp', 'brand/logo-192.webp'],
       manifest: {
         name: 'किसान सहयोग',
         short_name: 'Kissan Sahyog',
@@ -43,6 +43,8 @@ export default defineConfig({
         navigateFallback: '/index.html',
         // CacheFirst (precache) for the static app shell ONLY.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // The logo is precached as webp (includeAssets); skip its png fallbacks.
+        globIgnores: ['**/brand/*.png'],
         // Live data endpoints are NEVER treated as fresh cache: NetworkFirst so an
         // online farmer always gets live prices/weather/listings, and an offline one
         // gets the last-known values — always accompanied by the offline banner

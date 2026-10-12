@@ -1,0 +1,60 @@
+PASS  1: footer source names "USD Vision AI LLP" once, in the bottom strip
+PASS  1: strings give exactly that text in English and Hindi
+PASS  1: prerendered dist/about footer shows the company line once
+PASS  1: prerendered dist/grievance footer shows the company line once
+PASS  1: one shared Footer component serves mobile and desktop (mounted once in App)
+PASS  2: logo files exist under public/brand (8 files)
+PASS  2: source logo is kept and the generator reads it
+PASS  2: Logo component serves webp with a png fallback and fixed dimensions
+PASS  2: Logo component is used in the header, footer, welcome and about screens
+PASS  2: the old emoji brand mark is gone from header, footer and welcome
+PASS  2: header brand can shrink (min-w-0 + truncate) and the right cluster cannot
+PASS  2: favicon, apple-touch-icon and PWA icons exist in public/icons
+PASS  2: index.html links the favicon and apple-touch-icon
+PASS  2: built manifest lists 192, 512 and a maskable icon, and every file exists in dist
+PASS  2: social share image left alone (default OG path unchanged)
+PASS  2: browser check found no overlapping header items at 320/360/390/768/1280
+PASS  2: header screenshots saved in docs/review/batch7a
+PASS  3: /about route is registered (lazy) in App.jsx
+PASS  3: /about is in the shared prerender + sitemap route list
+PASS  3: /about is prerendered with its heading
+PASS  3: /about is in the built sitemap
+PASS  3: search index has /about (builder + committed file)
+PASS  3: page title, description and canonical
+PASS  3: Organization JSON-LD uses the facts used elsewhere on the site
+PASS  3: About has every required section
+PASS  3: "what you can do" covers listings, Q&A, mandi prices, cold storage, melas, schemes
+PASS  3: About links to /how-to-use, /founder, /grievance and the contact e-mail
+PASS  3: the /how-to-use link target is a real route (built in Batch 7C)
+PASS  3: About.jsx has one <h1> and no Devanagari literals
+PASS  3: every About field has Hindi and English (34 fields)
+PASS  3: About copy has no numbers or statistics
+PASS  3: About dropdown has both links (/about and /founder)
+PASS  3: desktop dropdown and mobile expandable section both render ABOUT_MENU as links
+PASS  3: dropdown closes on outside click, Escape and route change
+PASS  3: prerendered header carries both About links
+PASS  3: no separate top-level Founder link in the header; footer keeps it
+PASS  4: footer label is "सुझाव और शिकायत / Feedback & Grievance" and the URL is unchanged
+PASS  4: heading and intro match the brief
+PASS  4: grievance page has a required contact input (e-mail or mobile)
+PASS  4: no name field and no phone field
+PASS  4: type is suggestion / problem / other
+PASS  4: nothing in the request or the table asks for a name or phone
+PASS  4: migration file written (not applied here) and client works without it
+PASS  4: validation and spam protection (client check, honeypot, server rate limit)
+PASS  4: warm confirmation says we contact them on the e-mail or mobile given
+PASS  4: the extra information is collapsed (a closed <details>) and titled correctly
+PASS  4: the kept sections are on the page, inside the collapsed section
+PASS  7E: no Grievance Officer section (copy, prerendered page, About JSON-LD)
+PASS  7E: no "Further appeal (escalation)" section
+PASS  7E: no promised time to acknowledge or resolve, and no citation left behind
+PASS  7E: "email us directly" uses hello@
+PASS  7E: grievance@ is only the destination of the form's e-mail fallback
+PASS  7E: FAQ still has more than one item
+PASS  4: FAQPage JSON-LD is still emitted
+PASS  4: Grievance.jsx has one <h1> and no Devanagari literals
+PASS  5: no "मुफ़्त" / "free" in the content added by this batch (30 strings + About + grievance intro)
+PASS  5: every new string has Hindi and English
+PASS  5: every t() key used by the touched components exists
+
+58 passed, 0 failed

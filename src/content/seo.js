@@ -10,7 +10,7 @@
 export const ROUTE_SEO = {
   '/': {
     title: { hi: 'किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार', en: 'Kissan Sahyog — Mandi prices, weather, schemes & marketplace' },
-    description: { hi: 'सागर व मध्य प्रदेश के किसानों के लिए मुफ़्त मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और एक मुफ़्त लिस्टिंग बाज़ार।', en: 'A free platform for Sagar & MP farmers: mandi prices, MSP, weather, government schemes, Kisan Sawaal, and a free listings marketplace.' },
+    description: { hi: 'सागर व मध्य प्रदेश के किसानों के लिए जानकारी मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और लिस्टिंग बाज़ार।', en: 'An information platform for Sagar & MP farmers: mandi prices, MSP, weather, government schemes, Kisan Sawaal, and a listings marketplace.' },
   },
   '/privacy': {
     title: { hi: 'गोपनीयता नीति — किसान सहयोग', en: 'Privacy Policy — Kissan Sahyog' },

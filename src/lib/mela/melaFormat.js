@@ -17,6 +17,21 @@ export function melaMonth(mela) {
   return m && MON_LC[m[1]] ? MON_LC[m[1]] : null
 }
 
+// The "📍 where" line for a Mela card: venue, district, state. A part that is only the
+// country ("India" / "भारत") says nothing about where the Mela is, so it is dropped — the
+// discovery job sometimes stores it as the venue or the state. Repeated parts are dropped too.
+const COUNTRY_ONLY = /^(india|bharat|भारत|इंडिया|republic of india)$/i
+const usefulPart = (v) => { const s = String(v ?? '').trim(); return s && !COUNTRY_ONLY.test(s) ? s : '' }
+export function melaPlace(mela) {
+  const seen = new Set()
+  return [mela?.venue, mela?.district, mela?.state].map(usefulPart).filter((part) => {
+    const key = part.toLowerCase()
+    if (!part || seen.has(key)) return false
+    seen.add(key)
+    return true
+  }).join(', ')
+}
+
 // Distance (km) from a center to a Mela's coordinates, or null when either is missing.
 export function melaDistanceKm(center, mela) {
   if (!center || center.latitude == null || mela?.latitude == null || mela?.longitude == null) return null

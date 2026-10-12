@@ -1,0 +1,1811 @@
+{
+  "header": [
+    {
+      "width": 320,
+      "path": "/",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 10,
+          "r": 50.8,
+          "b": 46
+        },
+        {
+          "label": "site-name",
+          "x": 58.8,
+          "y": 12.4,
+          "r": 149.3,
+          "b": 43.6
+        },
+        {
+          "label": "language-switch",
+          "x": 187,
+          "y": 10,
+          "r": 264,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 272,
+          "y": 6,
+          "r": 308,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 36,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 320,
+      "path": "/about",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 10,
+          "r": 50.7,
+          "b": 46
+        },
+        {
+          "label": "site-name",
+          "x": 58.7,
+          "y": 12.4,
+          "r": 133,
+          "b": 43.6
+        },
+        {
+          "label": "right-1:🔍",
+          "x": 141,
+          "y": 6,
+          "r": 179,
+          "b": 50
+        },
+        {
+          "label": "language-switch",
+          "x": 187,
+          "y": 10,
+          "r": 264,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 272,
+          "y": 6,
+          "r": 308,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 36,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 320,
+      "path": "/about",
+      "lang": "en",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 10,
+          "r": 50.7,
+          "b": 46
+        },
+        {
+          "label": "site-name",
+          "x": 58.7,
+          "y": 12.4,
+          "r": 133,
+          "b": 43.6
+        },
+        {
+          "label": "right-1:🔍",
+          "x": 141,
+          "y": 6,
+          "r": 179,
+          "b": 50
+        },
+        {
+          "label": "language-switch",
+          "x": 187,
+          "y": 10,
+          "r": 264,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 272,
+          "y": 6,
+          "r": 308,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 36,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 360,
+      "path": "/",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9.7,
+          "r": 51.5,
+          "b": 46.3
+        },
+        {
+          "label": "site-name",
+          "x": 59.5,
+          "y": 12.4,
+          "r": 150,
+          "b": 43.6
+        },
+        {
+          "label": "language-switch",
+          "x": 227,
+          "y": 10,
+          "r": 304,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 312,
+          "y": 6,
+          "r": 348,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 36.6,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 360,
+      "path": "/about",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9.7,
+          "r": 51.4,
+          "b": 46.3
+        },
+        {
+          "label": "site-name",
+          "x": 59.4,
+          "y": 12.4,
+          "r": 149.9,
+          "b": 43.6
+        },
+        {
+          "label": "right-1:🔍",
+          "x": 181,
+          "y": 6,
+          "r": 219,
+          "b": 50
+        },
+        {
+          "label": "language-switch",
+          "x": 227,
+          "y": 10,
+          "r": 304,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 312,
+          "y": 6,
+          "r": 348,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 36.6,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 360,
+      "path": "/about",
+      "lang": "en",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9.7,
+          "r": 51.4,
+          "b": 46.3
+        },
+        {
+          "label": "site-name",
+          "x": 59.4,
+          "y": 12.4,
+          "r": 149.9,
+          "b": 43.6
+        },
+        {
+          "label": "right-1:🔍",
+          "x": 181,
+          "y": 6,
+          "r": 219,
+          "b": 50
+        },
+        {
+          "label": "language-switch",
+          "x": 227,
+          "y": 10,
+          "r": 304,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 312,
+          "y": 6,
+          "r": 348,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 36.6,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 390,
+      "path": "/",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9.3,
+          "r": 52.3,
+          "b": 46.7
+        },
+        {
+          "label": "site-name",
+          "x": 60.3,
+          "y": 12.4,
+          "r": 150.8,
+          "b": 43.6
+        },
+        {
+          "label": "language-switch",
+          "x": 257,
+          "y": 10,
+          "r": 334,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 342,
+          "y": 6,
+          "r": 378,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 37.4,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 390,
+      "path": "/about",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9.3,
+          "r": 52.2,
+          "b": 46.7
+        },
+        {
+          "label": "site-name",
+          "x": 60.2,
+          "y": 12.4,
+          "r": 150.6,
+          "b": 43.6
+        },
+        {
+          "label": "right-1:🔍",
+          "x": 211,
+          "y": 6,
+          "r": 249,
+          "b": 50
+        },
+        {
+          "label": "language-switch",
+          "x": 257,
+          "y": 10,
+          "r": 334,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 342,
+          "y": 6,
+          "r": 378,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 37.4,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 390,
+      "path": "/about",
+      "lang": "en",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9.3,
+          "r": 52.2,
+          "b": 46.7
+        },
+        {
+          "label": "site-name",
+          "x": 60.2,
+          "y": 12.4,
+          "r": 150.6,
+          "b": 43.6
+        },
+        {
+          "label": "right-1:🔍",
+          "x": 211,
+          "y": 6,
+          "r": 249,
+          "b": 50
+        },
+        {
+          "label": "language-switch",
+          "x": 257,
+          "y": 10,
+          "r": 334,
+          "b": 46
+        },
+        {
+          "label": "hamburger",
+          "x": 342,
+          "y": 6,
+          "r": 378,
+          "b": 50
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 37.4,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 768,
+      "path": "/",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 6,
+          "r": 62.1,
+          "b": 52.4
+        },
+        {
+          "label": "site-name",
+          "x": 70.1,
+          "y": 13.6,
+          "r": 160.5,
+          "b": 44.8
+        },
+        {
+          "label": "language-switch",
+          "x": 512.2,
+          "y": 11.2,
+          "r": 589.2,
+          "b": 47.2
+        },
+        {
+          "label": "right-1:लॉगिन",
+          "x": 597.2,
+          "y": 7.2,
+          "r": 661,
+          "b": 51.2
+        },
+        {
+          "label": "right-2:जुड़ें",
+          "x": 669,
+          "y": 7.2,
+          "r": 712,
+          "b": 51.2
+        },
+        {
+          "label": "hamburger",
+          "x": 720,
+          "y": 7.2,
+          "r": 756,
+          "b": 51.2
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 46.4,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 768,
+      "path": "/about",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9.8,
+          "r": 61.9,
+          "b": 56.2
+        },
+        {
+          "label": "site-name",
+          "x": 69.9,
+          "y": 17.4,
+          "r": 160.4,
+          "b": 48.6
+        },
+        {
+          "label": "right-0:🎤🔍",
+          "x": 260.2,
+          "y": 6,
+          "r": 504.2,
+          "b": 60
+        },
+        {
+          "label": "language-switch",
+          "x": 512.2,
+          "y": 15,
+          "r": 589.2,
+          "b": 51
+        },
+        {
+          "label": "right-3:लॉगिन",
+          "x": 597.2,
+          "y": 11,
+          "r": 661,
+          "b": 55
+        },
+        {
+          "label": "right-4:जुड़ें",
+          "x": 669,
+          "y": 11,
+          "r": 712,
+          "b": 55
+        },
+        {
+          "label": "hamburger",
+          "x": 720,
+          "y": 11,
+          "r": 756,
+          "b": 55
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 46.4,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 768,
+      "path": "/about",
+      "lang": "en",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9.8,
+          "r": 61.9,
+          "b": 56.2
+        },
+        {
+          "label": "site-name",
+          "x": 69.9,
+          "y": 17.4,
+          "r": 160.4,
+          "b": 48.6
+        },
+        {
+          "label": "right-0:🎤🔍",
+          "x": 223.3,
+          "y": 6,
+          "r": 467.2,
+          "b": 60
+        },
+        {
+          "label": "language-switch",
+          "x": 475.2,
+          "y": 15,
+          "r": 552.3,
+          "b": 51
+        },
+        {
+          "label": "right-3:Login",
+          "x": 560.3,
+          "y": 11,
+          "r": 627,
+          "b": 55
+        },
+        {
+          "label": "right-4:Sign Up",
+          "x": 635,
+          "y": 11,
+          "r": 712,
+          "b": 55
+        },
+        {
+          "label": "hamburger",
+          "x": 720,
+          "y": 11,
+          "r": 756,
+          "b": 55
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 46.4,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 1024,
+      "path": "/",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 6,
+          "r": 63.8,
+          "b": 54
+        },
+        {
+          "label": "site-name",
+          "x": 71.8,
+          "y": 14.4,
+          "r": 162.2,
+          "b": 45.6
+        },
+        {
+          "label": "nav-0:बाज़ार ▾",
+          "x": 121.6,
+          "y": 65,
+          "r": 180.9,
+          "b": 109
+        },
+        {
+          "label": "nav-1:मंडी भाव",
+          "x": 184.9,
+          "y": 65,
+          "r": 242.4,
+          "b": 109
+        },
+        {
+          "label": "nav-2:मौसम",
+          "x": 246.4,
+          "y": 65,
+          "r": 290.5,
+          "b": 109
+        },
+        {
+          "label": "nav-3:सरकारी योजना",
+          "x": 294.5,
+          "y": 65,
+          "r": 402.9,
+          "b": 109
+        },
+        {
+          "label": "nav-4:एग्रो फॉरेस्",
+          "x": 406.9,
+          "y": 65,
+          "r": 478.2,
+          "b": 109
+        },
+        {
+          "label": "nav-5:किसान सवाल",
+          "x": 482.2,
+          "y": 65,
+          "r": 563,
+          "b": 109
+        },
+        {
+          "label": "nav-6:वीडियो",
+          "x": 567,
+          "y": 65,
+          "r": 615.3,
+          "b": 109
+        },
+        {
+          "label": "nav-7:उपयोगी संपर्",
+          "x": 619.3,
+          "y": 65,
+          "r": 715.3,
+          "b": 109
+        },
+        {
+          "label": "nav-8:कैसे इस्तेमा",
+          "x": 719.3,
+          "y": 65,
+          "r": 814.5,
+          "b": 109
+        },
+        {
+          "label": "about-menu",
+          "x": 818.5,
+          "y": 65,
+          "r": 902.4,
+          "b": 109
+        },
+        {
+          "label": "language-switch",
+          "x": 812.2,
+          "y": 12,
+          "r": 889.2,
+          "b": 48
+        },
+        {
+          "label": "right-1:लॉगिन",
+          "x": 897.2,
+          "y": 8,
+          "r": 961,
+          "b": 52
+        },
+        {
+          "label": "right-2:जुड़ें",
+          "x": 969,
+          "y": 8,
+          "r": 1012,
+          "b": 52
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 48,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 1024,
+      "path": "/about",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9,
+          "r": 63.6,
+          "b": 57
+        },
+        {
+          "label": "site-name",
+          "x": 71.6,
+          "y": 17.4,
+          "r": 162.1,
+          "b": 48.6
+        },
+        {
+          "label": "nav-0:बाज़ार ▾",
+          "x": 121.6,
+          "y": 71,
+          "r": 180.9,
+          "b": 115
+        },
+        {
+          "label": "nav-1:मंडी भाव",
+          "x": 184.9,
+          "y": 71,
+          "r": 242.4,
+          "b": 115
+        },
+        {
+          "label": "nav-2:मौसम",
+          "x": 246.4,
+          "y": 71,
+          "r": 290.5,
+          "b": 115
+        },
+        {
+          "label": "nav-3:सरकारी योजना",
+          "x": 294.5,
+          "y": 71,
+          "r": 402.9,
+          "b": 115
+        },
+        {
+          "label": "nav-4:एग्रो फॉरेस्",
+          "x": 406.9,
+          "y": 71,
+          "r": 478.2,
+          "b": 115
+        },
+        {
+          "label": "nav-5:किसान सवाल",
+          "x": 482.2,
+          "y": 71,
+          "r": 563,
+          "b": 115
+        },
+        {
+          "label": "nav-6:वीडियो",
+          "x": 567,
+          "y": 71,
+          "r": 615.3,
+          "b": 115
+        },
+        {
+          "label": "nav-7:उपयोगी संपर्",
+          "x": 619.3,
+          "y": 71,
+          "r": 715.3,
+          "b": 115
+        },
+        {
+          "label": "nav-8:कैसे इस्तेमा",
+          "x": 719.3,
+          "y": 71,
+          "r": 814.5,
+          "b": 115
+        },
+        {
+          "label": "about-menu",
+          "x": 818.5,
+          "y": 71,
+          "r": 902.4,
+          "b": 115
+        },
+        {
+          "label": "right-0:🎤🔍",
+          "x": 528.2,
+          "y": 6,
+          "r": 804.2,
+          "b": 60
+        },
+        {
+          "label": "language-switch",
+          "x": 812.2,
+          "y": 15,
+          "r": 889.2,
+          "b": 51
+        },
+        {
+          "label": "right-3:लॉगिन",
+          "x": 897.2,
+          "y": 11,
+          "r": 961,
+          "b": 55
+        },
+        {
+          "label": "right-4:जुड़ें",
+          "x": 969,
+          "y": 11,
+          "r": 1012,
+          "b": 55
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 48,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 1024,
+      "path": "/about",
+      "lang": "en",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9,
+          "r": 63.6,
+          "b": 57
+        },
+        {
+          "label": "site-name",
+          "x": 71.6,
+          "y": 17.4,
+          "r": 162.1,
+          "b": 48.6
+        },
+        {
+          "label": "nav-0:Marketplace ",
+          "x": 86.8,
+          "y": 71,
+          "r": 192.1,
+          "b": 115
+        },
+        {
+          "label": "nav-1:Mandi prices",
+          "x": 196.1,
+          "y": 71,
+          "r": 288.6,
+          "b": 115
+        },
+        {
+          "label": "nav-2:Weather",
+          "x": 292.6,
+          "y": 71,
+          "r": 360.1,
+          "b": 115
+        },
+        {
+          "label": "nav-3:Govt schemes",
+          "x": 364.1,
+          "y": 71,
+          "r": 477.4,
+          "b": 115
+        },
+        {
+          "label": "nav-4:Agro Forestr",
+          "x": 481.4,
+          "y": 71,
+          "r": 578.5,
+          "b": 115
+        },
+        {
+          "label": "nav-5:Q&A",
+          "x": 582.5,
+          "y": 71,
+          "r": 625.5,
+          "b": 115
+        },
+        {
+          "label": "nav-6:Videos",
+          "x": 629.5,
+          "y": 71,
+          "r": 685.3,
+          "b": 115
+        },
+        {
+          "label": "nav-7:Resources ▾",
+          "x": 689.3,
+          "y": 71,
+          "r": 780.3,
+          "b": 115
+        },
+        {
+          "label": "nav-8:How to use",
+          "x": 784.3,
+          "y": 71,
+          "r": 866.8,
+          "b": 115
+        },
+        {
+          "label": "about-menu",
+          "x": 870.8,
+          "y": 71,
+          "r": 937.1,
+          "b": 115
+        },
+        {
+          "label": "right-0:🎤🔍",
+          "x": 491.3,
+          "y": 6,
+          "r": 767.2,
+          "b": 60
+        },
+        {
+          "label": "language-switch",
+          "x": 775.2,
+          "y": 15,
+          "r": 852.3,
+          "b": 51
+        },
+        {
+          "label": "right-3:Login",
+          "x": 860.3,
+          "y": 11,
+          "r": 927,
+          "b": 55
+        },
+        {
+          "label": "right-4:Sign Up",
+          "x": 935,
+          "y": 11,
+          "r": 1012,
+          "b": 55
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 48,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 1280,
+      "path": "/",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 6,
+          "r": 63.8,
+          "b": 54
+        },
+        {
+          "label": "site-name",
+          "x": 71.8,
+          "y": 14.4,
+          "r": 162.2,
+          "b": 45.6
+        },
+        {
+          "label": "nav-0:बाज़ार ▾",
+          "x": 249.6,
+          "y": 65,
+          "r": 308.9,
+          "b": 109
+        },
+        {
+          "label": "nav-1:मंडी भाव",
+          "x": 312.9,
+          "y": 65,
+          "r": 370.4,
+          "b": 109
+        },
+        {
+          "label": "nav-2:मौसम",
+          "x": 374.4,
+          "y": 65,
+          "r": 418.5,
+          "b": 109
+        },
+        {
+          "label": "nav-3:सरकारी योजना",
+          "x": 422.5,
+          "y": 65,
+          "r": 530.9,
+          "b": 109
+        },
+        {
+          "label": "nav-4:एग्रो फॉरेस्",
+          "x": 534.9,
+          "y": 65,
+          "r": 606.2,
+          "b": 109
+        },
+        {
+          "label": "nav-5:किसान सवाल",
+          "x": 610.2,
+          "y": 65,
+          "r": 691,
+          "b": 109
+        },
+        {
+          "label": "nav-6:वीडियो",
+          "x": 695,
+          "y": 65,
+          "r": 743.3,
+          "b": 109
+        },
+        {
+          "label": "nav-7:उपयोगी संपर्",
+          "x": 747.3,
+          "y": 65,
+          "r": 843.3,
+          "b": 109
+        },
+        {
+          "label": "nav-8:कैसे इस्तेमा",
+          "x": 847.3,
+          "y": 65,
+          "r": 942.5,
+          "b": 109
+        },
+        {
+          "label": "about-menu",
+          "x": 946.5,
+          "y": 65,
+          "r": 1030.4,
+          "b": 109
+        },
+        {
+          "label": "language-switch",
+          "x": 1068.2,
+          "y": 12,
+          "r": 1145.2,
+          "b": 48
+        },
+        {
+          "label": "right-1:लॉगिन",
+          "x": 1153.2,
+          "y": 8,
+          "r": 1217,
+          "b": 52
+        },
+        {
+          "label": "right-2:जुड़ें",
+          "x": 1225,
+          "y": 8,
+          "r": 1268,
+          "b": 52
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 48,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 1280,
+      "path": "/about",
+      "lang": "hi",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9,
+          "r": 63.6,
+          "b": 57
+        },
+        {
+          "label": "site-name",
+          "x": 71.6,
+          "y": 17.4,
+          "r": 162.1,
+          "b": 48.6
+        },
+        {
+          "label": "nav-0:बाज़ार ▾",
+          "x": 249.6,
+          "y": 71,
+          "r": 308.9,
+          "b": 115
+        },
+        {
+          "label": "nav-1:मंडी भाव",
+          "x": 312.9,
+          "y": 71,
+          "r": 370.4,
+          "b": 115
+        },
+        {
+          "label": "nav-2:मौसम",
+          "x": 374.4,
+          "y": 71,
+          "r": 418.5,
+          "b": 115
+        },
+        {
+          "label": "nav-3:सरकारी योजना",
+          "x": 422.5,
+          "y": 71,
+          "r": 530.9,
+          "b": 115
+        },
+        {
+          "label": "nav-4:एग्रो फॉरेस्",
+          "x": 534.9,
+          "y": 71,
+          "r": 606.2,
+          "b": 115
+        },
+        {
+          "label": "nav-5:किसान सवाल",
+          "x": 610.2,
+          "y": 71,
+          "r": 691,
+          "b": 115
+        },
+        {
+          "label": "nav-6:वीडियो",
+          "x": 695,
+          "y": 71,
+          "r": 743.3,
+          "b": 115
+        },
+        {
+          "label": "nav-7:उपयोगी संपर्",
+          "x": 747.3,
+          "y": 71,
+          "r": 843.3,
+          "b": 115
+        },
+        {
+          "label": "nav-8:कैसे इस्तेमा",
+          "x": 847.3,
+          "y": 71,
+          "r": 942.5,
+          "b": 115
+        },
+        {
+          "label": "about-menu",
+          "x": 946.5,
+          "y": 71,
+          "r": 1030.4,
+          "b": 115
+        },
+        {
+          "label": "right-0:🎤🔍",
+          "x": 784.2,
+          "y": 6,
+          "r": 1060.2,
+          "b": 60
+        },
+        {
+          "label": "language-switch",
+          "x": 1068.2,
+          "y": 15,
+          "r": 1145.2,
+          "b": 51
+        },
+        {
+          "label": "right-3:लॉगिन",
+          "x": 1153.2,
+          "y": 11,
+          "r": 1217,
+          "b": 55
+        },
+        {
+          "label": "right-4:जुड़ें",
+          "x": 1225,
+          "y": 11,
+          "r": 1268,
+          "b": 55
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 48,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    },
+    {
+      "width": 1280,
+      "path": "/about",
+      "lang": "en",
+      "items": [
+        {
+          "label": "logo",
+          "x": 12,
+          "y": 9,
+          "r": 63.6,
+          "b": 57
+        },
+        {
+          "label": "site-name",
+          "x": 71.6,
+          "y": 17.4,
+          "r": 162.1,
+          "b": 48.6
+        },
+        {
+          "label": "nav-0:Marketplace ",
+          "x": 214.8,
+          "y": 71,
+          "r": 320.1,
+          "b": 115
+        },
+        {
+          "label": "nav-1:Mandi prices",
+          "x": 324.1,
+          "y": 71,
+          "r": 416.6,
+          "b": 115
+        },
+        {
+          "label": "nav-2:Weather",
+          "x": 420.6,
+          "y": 71,
+          "r": 488.1,
+          "b": 115
+        },
+        {
+          "label": "nav-3:Govt schemes",
+          "x": 492.1,
+          "y": 71,
+          "r": 605.4,
+          "b": 115
+        },
+        {
+          "label": "nav-4:Agro Forestr",
+          "x": 609.4,
+          "y": 71,
+          "r": 706.5,
+          "b": 115
+        },
+        {
+          "label": "nav-5:Q&A",
+          "x": 710.5,
+          "y": 71,
+          "r": 753.5,
+          "b": 115
+        },
+        {
+          "label": "nav-6:Videos",
+          "x": 757.5,
+          "y": 71,
+          "r": 813.3,
+          "b": 115
+        },
+        {
+          "label": "nav-7:Resources ▾",
+          "x": 817.3,
+          "y": 71,
+          "r": 908.3,
+          "b": 115
+        },
+        {
+          "label": "nav-8:How to use",
+          "x": 912.3,
+          "y": 71,
+          "r": 994.8,
+          "b": 115
+        },
+        {
+          "label": "about-menu",
+          "x": 998.8,
+          "y": 71,
+          "r": 1065.1,
+          "b": 115
+        },
+        {
+          "label": "right-0:🎤🔍",
+          "x": 747.3,
+          "y": 6,
+          "r": 1023.2,
+          "b": 60
+        },
+        {
+          "label": "language-switch",
+          "x": 1031.2,
+          "y": 15,
+          "r": 1108.3,
+          "b": 51
+        },
+        {
+          "label": "right-3:Login",
+          "x": 1116.3,
+          "y": 11,
+          "r": 1183,
+          "b": 55
+        },
+        {
+          "label": "right-4:Sign Up",
+          "x": 1191,
+          "y": 11,
+          "r": 1268,
+          "b": 55
+        }
+      ],
+      "overlaps": [],
+      "logoHeight": 48,
+      "overflowRight": [],
+      "pageScrollsSideways": false
+    }
+  ],
+  "behaviour": [
+    {
+      "name": "header 320px / hi: no overlapping items (4 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 320px / hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 320px / hi: logo height 36px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 320px /about hi: no overlapping items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 320px /about hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 320px /about hi: logo height 36px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 320px /about en: no overlapping items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 320px /about en: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 320px /about en: logo height 36px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu 320px: About section starts collapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu 320px: About expands to /about and /founder",
+      "ok": true,
+      "detail": "/about,/founder"
+    },
+    {
+      "name": "mobile menu 320px: menu closes on route change and reaches /about",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "footer 320px: \"USD Vision AI LLP\" appears once",
+      "ok": true,
+      "detail": "found 1"
+    },
+    {
+      "name": "header 360px / hi: no overlapping items (4 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 360px / hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 360px / hi: logo height 36.6px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 360px /about hi: no overlapping items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 360px /about hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 360px /about hi: logo height 36.6px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 360px /about en: no overlapping items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 360px /about en: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 360px /about en: logo height 36.6px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu 360px: About section starts collapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu 360px: About expands to /about and /founder",
+      "ok": true,
+      "detail": "/about,/founder"
+    },
+    {
+      "name": "mobile menu 360px: menu closes on route change and reaches /about",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "footer 360px: \"USD Vision AI LLP\" appears once",
+      "ok": true,
+      "detail": "found 1"
+    },
+    {
+      "name": "header 390px / hi: no overlapping items (4 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 390px / hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 390px / hi: logo height 37.4px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 390px /about hi: no overlapping items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 390px /about hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 390px /about hi: logo height 37.4px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 390px /about en: no overlapping items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 390px /about en: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 390px /about en: logo height 37.4px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu 390px: About section starts collapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu 390px: About expands to /about and /founder",
+      "ok": true,
+      "detail": "/about,/founder"
+    },
+    {
+      "name": "mobile menu 390px: menu closes on route change and reaches /about",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "footer 390px: \"USD Vision AI LLP\" appears once",
+      "ok": true,
+      "detail": "found 1"
+    },
+    {
+      "name": "how-to-use link lands on the /how-to-use page",
+      "ok": true,
+      "detail": "http://localhost:4179/how-to-use"
+    },
+    {
+      "name": "grievance 390px: e-mail + type + message only, no name or phone field",
+      "ok": true,
+      "detail": "text:contact radio:kind radio:kind radio:kind textarea:message checkbox:public_ok text:ks_leave_empty"
+    },
+    {
+      "name": "grievance 390px: extra information is collapsed but present, without officer / appeal content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 390px: \"email us directly\" goes to hello@",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 390px: empty form shows a validation message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 390px: before migration → e-mail fallback, no thank-you",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 390px: after migration → confirmation shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 390px: request carries e-mail, type, message and no name/phone",
+      "ok": true,
+      "detail": "[\"p_email\",\"p_mobile\",\"p_kind\",\"p_message\",\"p_lang\",\"p_device\",\"p_public_ok\"]"
+    },
+    {
+      "name": "header 768px / hi: no overlapping items (6 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 768px / hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 768px / hi: logo height 46.4px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 768px /about hi: no overlapping items (7 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 768px /about hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 768px /about hi: logo height 46.4px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 768px /about en: no overlapping items (7 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 768px /about en: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 768px /about en: logo height 46.4px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu 768px: About section starts collapsed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu 768px: About expands to /about and /founder",
+      "ok": true,
+      "detail": "/about,/founder"
+    },
+    {
+      "name": "mobile menu 768px: menu closes on route change and reaches /about",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "footer 768px: \"USD Vision AI LLP\" appears once",
+      "ok": true,
+      "detail": "found 1"
+    },
+    {
+      "name": "header 1024px / hi: no overlapping items (15 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px / hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px / hi: logo height 48px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px /about hi: no overlapping items (16 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px /about hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px /about hi: logo height 48px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px /about en: no overlapping items (16 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px /about en: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px /about en: logo height 48px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1024px: opens with the keyboard",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1024px: has /about and /founder",
+      "ok": true,
+      "detail": "/about,/founder"
+    },
+    {
+      "name": "about menu 1024px: stays inside the viewport",
+      "ok": true,
+      "detail": "{\"x\":678.40625,\"y\":119,\"width\":224,\"height\":100}"
+    },
+    {
+      "name": "about menu 1024px: Tab moves to the first link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1024px: Escape closes it and returns focus",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1024px: outside click closes it",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1024px: closes on route change and reaches /founder",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1024px: no separate top-level Founder link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "footer 1024px: \"USD Vision AI LLP\" appears once",
+      "ok": true,
+      "detail": "found 1"
+    },
+    {
+      "name": "header 1280px / hi: no overlapping items (15 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px / hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px / hi: logo height 48px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px /about hi: no overlapping items (16 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px /about hi: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px /about hi: logo height 48px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px /about en: no overlapping items (16 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px /about en: nothing outside the viewport, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px /about en: logo height 48px is within 35–49px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1280px: opens with the keyboard",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1280px: has /about and /founder",
+      "ok": true,
+      "detail": "/about,/founder"
+    },
+    {
+      "name": "about menu 1280px: stays inside the viewport",
+      "ok": true,
+      "detail": "{\"x\":806.40625,\"y\":119,\"width\":224,\"height\":100}"
+    },
+    {
+      "name": "about menu 1280px: Tab moves to the first link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1280px: Escape closes it and returns focus",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1280px: outside click closes it",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "about menu 1280px: closes on route change and reaches /founder",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "header 1280px: no separate top-level Founder link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "footer 1280px: \"USD Vision AI LLP\" appears once",
+      "ok": true,
+      "detail": "found 1"
+    },
+    {
+      "name": "grievance 1280px: e-mail + type + message only, no name or phone field",
+      "ok": true,
+      "detail": "text:contact radio:kind radio:kind radio:kind textarea:message checkbox:public_ok text:ks_leave_empty"
+    },
+    {
+      "name": "grievance 1280px: extra information is collapsed but present, without officer / appeal content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 1280px: \"email us directly\" goes to hello@",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 1280px: empty form shows a validation message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 1280px: before migration → e-mail fallback, no thank-you",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 1280px: after migration → confirmation shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "grievance 1280px: request carries e-mail, type, message and no name/phone",
+      "ok": true,
+      "detail": "[\"p_email\",\"p_mobile\",\"p_kind\",\"p_message\",\"p_lang\",\"p_device\",\"p_public_ok\"]"
+    }
+  ]
+}

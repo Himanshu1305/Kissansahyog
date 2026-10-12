@@ -1,0 +1,2131 @@
+{
+  "pages": [
+    {
+      "width": 320,
+      "lang": "hi",
+      "scroll": {
+        "doc": 320,
+        "body": 320,
+        "win": 320
+      },
+      "header": {
+        "count": 5,
+        "overlaps": [],
+        "navRows": 0,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 57
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "किसान सहयोग की सेवाओं का नक्शा",
+          "desc": "बीच में किसान सहयोग और उससे जुड़ी आठ सेवाएँ: बाज़ार, किसान सवाल, मंडी भाव और MSP, मौसम, कोल्ड स्टोरेज, किसान मेला, सरकारी योजनाएँ और वीडियो।",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "बिना लॉगिन और लॉगिन के बाद की तुलना",
+          "desc": "दो डिब्बे। पहला: बिना लॉगिन के लिस्टिंग देखना, किसान सवाल पढ़ना और पूछना, मंडी भाव, मौसम, योजनाएँ, कोल्ड स्टोरेज, मेला और वीडियो। दूसरा: लॉगिन के बाद विक्रेता का नंबर देखना, अपनी लिस्टिंग डालना, अपनी लिस्टिंग संभालना और मेले में दिलचस्पी दर्ज करना।",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "लिस्टिंग डालने के चरण",
+          "desc": "छह चरण ऊपर से नीचे: रजिस्टर या लॉगिन करें; \"पोस्ट करें\" दबाएँ; श्रेणी चुनें और बताएँ कि देना है या चाहिए; जानकारी भरें और फोटो जोड़ें; गाँव या जगह लिखें और सहमति दें; \"जमा करें\" दबाएँ, लिस्टिंग जुड़ जाती है।",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "लिस्टिंग खोजने और संपर्क करने के चरण",
+          "desc": "पाँच चरण ऊपर से नीचे: \"खोजें\" खोलें; श्रेणी और अपनी जगह चुनें; लिस्टिंग खोलकर जानकारी पढ़ें; कॉल या WhatsApp दबाएँ, जिसके लिए लॉगिन चाहिए; बात करने से पहले जानकारी खुद जाँच लें।",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "किसान सवाल पढ़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: \"किसान सवाल\" खोलें; विषय चुनें या सवाल खोजें; \"जवाब देखें\" दबाएँ; पहले \"संक्षेप में\" पढ़ें, फिर पूरा जवाब और स्रोत।",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "फ़ोन की होम स्क्रीन पर जोड़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: फ़ोन में होम पेज खोलें; ऊपर की हरी पट्टी में \"इंस्टॉल करें\" दबाएँ; फ़ोन जो पूछे उसमें इंस्टॉल या \"होम स्क्रीन पर जोड़ें\" चुनें; होम स्क्रीन पर बने निशान से वेबसाइट खोलें।",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "lang": "en",
+      "scroll": {
+        "doc": 320,
+        "body": 320,
+        "win": 320
+      },
+      "header": {
+        "count": 5,
+        "overlaps": [],
+        "navRows": 0,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 57
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "Map of Kissan Sahyog services",
+          "desc": "Kissan Sahyog in the middle, linked to eight services: marketplace, farmer Q&A, mandi prices and MSP, weather, cold storage, Kisan Mela, government schemes and videos.",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "Without login compared with after login",
+          "desc": "Two boxes. First: without login you can browse listings, read and ask farmer questions, and see mandi prices, weather, schemes, cold storage, melas and videos. Second: after login you can see a seller’s number, post your own listing, manage your listings and mark interest in a mela.",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "Steps to post a listing",
+          "desc": "Six steps from top to bottom: register or log in; tap “Post”; choose a category and say whether you are offering or looking; fill in details and add photos; enter your village or place and give consent; tap Submit and the listing is added.",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "Steps to find a listing and make contact",
+          "desc": "Five steps from top to bottom: open “Browse”; choose a category and your place; open a listing and read the details; tap Call or WhatsApp, which needs login; check the details yourself before you deal.",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "Steps to read farmer Q&A",
+          "desc": "Four steps from top to bottom: open “Farmer Q&A”; choose a topic or search for a question; tap “Show answer”; read “In brief” first, then the full answer and its sources.",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "Steps to add it to your phone’s home screen",
+          "desc": "Four steps from top to bottom: open the home page on your phone; tap “Install” in the green strip at the top; choose Install or “Add to Home screen” when the phone asks; open the website from the icon on your home screen.",
+          "labelled": true,
+          "images": 0,
+          "width": 288,
+          "fitsViewport": true,
+          "minPx": 14.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "lang": "hi",
+      "scroll": {
+        "doc": 360,
+        "body": 360,
+        "win": 360
+      },
+      "header": {
+        "count": 5,
+        "overlaps": [],
+        "navRows": 0,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 57
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "किसान सहयोग की सेवाओं का नक्शा",
+          "desc": "बीच में किसान सहयोग और उससे जुड़ी आठ सेवाएँ: बाज़ार, किसान सवाल, मंडी भाव और MSP, मौसम, कोल्ड स्टोरेज, किसान मेला, सरकारी योजनाएँ और वीडियो।",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "बिना लॉगिन और लॉगिन के बाद की तुलना",
+          "desc": "दो डिब्बे। पहला: बिना लॉगिन के लिस्टिंग देखना, किसान सवाल पढ़ना और पूछना, मंडी भाव, मौसम, योजनाएँ, कोल्ड स्टोरेज, मेला और वीडियो। दूसरा: लॉगिन के बाद विक्रेता का नंबर देखना, अपनी लिस्टिंग डालना, अपनी लिस्टिंग संभालना और मेले में दिलचस्पी दर्ज करना।",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "लिस्टिंग डालने के चरण",
+          "desc": "छह चरण ऊपर से नीचे: रजिस्टर या लॉगिन करें; \"पोस्ट करें\" दबाएँ; श्रेणी चुनें और बताएँ कि देना है या चाहिए; जानकारी भरें और फोटो जोड़ें; गाँव या जगह लिखें और सहमति दें; \"जमा करें\" दबाएँ, लिस्टिंग जुड़ जाती है।",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "लिस्टिंग खोजने और संपर्क करने के चरण",
+          "desc": "पाँच चरण ऊपर से नीचे: \"खोजें\" खोलें; श्रेणी और अपनी जगह चुनें; लिस्टिंग खोलकर जानकारी पढ़ें; कॉल या WhatsApp दबाएँ, जिसके लिए लॉगिन चाहिए; बात करने से पहले जानकारी खुद जाँच लें।",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "किसान सवाल पढ़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: \"किसान सवाल\" खोलें; विषय चुनें या सवाल खोजें; \"जवाब देखें\" दबाएँ; पहले \"संक्षेप में\" पढ़ें, फिर पूरा जवाब और स्रोत।",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "फ़ोन की होम स्क्रीन पर जोड़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: फ़ोन में होम पेज खोलें; ऊपर की हरी पट्टी में \"इंस्टॉल करें\" दबाएँ; फ़ोन जो पूछे उसमें इंस्टॉल या \"होम स्क्रीन पर जोड़ें\" चुनें; होम स्क्रीन पर बने निशान से वेबसाइट खोलें।",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "lang": "en",
+      "scroll": {
+        "doc": 360,
+        "body": 360,
+        "win": 360
+      },
+      "header": {
+        "count": 5,
+        "overlaps": [],
+        "navRows": 0,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 57
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "Map of Kissan Sahyog services",
+          "desc": "Kissan Sahyog in the middle, linked to eight services: marketplace, farmer Q&A, mandi prices and MSP, weather, cold storage, Kisan Mela, government schemes and videos.",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "Without login compared with after login",
+          "desc": "Two boxes. First: without login you can browse listings, read and ask farmer questions, and see mandi prices, weather, schemes, cold storage, melas and videos. Second: after login you can see a seller’s number, post your own listing, manage your listings and mark interest in a mela.",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "Steps to post a listing",
+          "desc": "Six steps from top to bottom: register or log in; tap “Post”; choose a category and say whether you are offering or looking; fill in details and add photos; enter your village or place and give consent; tap Submit and the listing is added.",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "Steps to find a listing and make contact",
+          "desc": "Five steps from top to bottom: open “Browse”; choose a category and your place; open a listing and read the details; tap Call or WhatsApp, which needs login; check the details yourself before you deal.",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "Steps to read farmer Q&A",
+          "desc": "Four steps from top to bottom: open “Farmer Q&A”; choose a topic or search for a question; tap “Show answer”; read “In brief” first, then the full answer and its sources.",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "Steps to add it to your phone’s home screen",
+          "desc": "Four steps from top to bottom: open the home page on your phone; tap “Install” in the green strip at the top; choose Install or “Add to Home screen” when the phone asks; open the website from the icon on your home screen.",
+          "labelled": true,
+          "images": 0,
+          "width": 328,
+          "fitsViewport": true,
+          "minPx": 16.4,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "lang": "hi",
+      "scroll": {
+        "doc": 390,
+        "body": 390,
+        "win": 390
+      },
+      "header": {
+        "count": 5,
+        "overlaps": [],
+        "navRows": 0,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 57
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "किसान सहयोग की सेवाओं का नक्शा",
+          "desc": "बीच में किसान सहयोग और उससे जुड़ी आठ सेवाएँ: बाज़ार, किसान सवाल, मंडी भाव और MSP, मौसम, कोल्ड स्टोरेज, किसान मेला, सरकारी योजनाएँ और वीडियो।",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "बिना लॉगिन और लॉगिन के बाद की तुलना",
+          "desc": "दो डिब्बे। पहला: बिना लॉगिन के लिस्टिंग देखना, किसान सवाल पढ़ना और पूछना, मंडी भाव, मौसम, योजनाएँ, कोल्ड स्टोरेज, मेला और वीडियो। दूसरा: लॉगिन के बाद विक्रेता का नंबर देखना, अपनी लिस्टिंग डालना, अपनी लिस्टिंग संभालना और मेले में दिलचस्पी दर्ज करना।",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "लिस्टिंग डालने के चरण",
+          "desc": "छह चरण ऊपर से नीचे: रजिस्टर या लॉगिन करें; \"पोस्ट करें\" दबाएँ; श्रेणी चुनें और बताएँ कि देना है या चाहिए; जानकारी भरें और फोटो जोड़ें; गाँव या जगह लिखें और सहमति दें; \"जमा करें\" दबाएँ, लिस्टिंग जुड़ जाती है।",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "लिस्टिंग खोजने और संपर्क करने के चरण",
+          "desc": "पाँच चरण ऊपर से नीचे: \"खोजें\" खोलें; श्रेणी और अपनी जगह चुनें; लिस्टिंग खोलकर जानकारी पढ़ें; कॉल या WhatsApp दबाएँ, जिसके लिए लॉगिन चाहिए; बात करने से पहले जानकारी खुद जाँच लें।",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "किसान सवाल पढ़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: \"किसान सवाल\" खोलें; विषय चुनें या सवाल खोजें; \"जवाब देखें\" दबाएँ; पहले \"संक्षेप में\" पढ़ें, फिर पूरा जवाब और स्रोत।",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "फ़ोन की होम स्क्रीन पर जोड़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: फ़ोन में होम पेज खोलें; ऊपर की हरी पट्टी में \"इंस्टॉल करें\" दबाएँ; फ़ोन जो पूछे उसमें इंस्टॉल या \"होम स्क्रीन पर जोड़ें\" चुनें; होम स्क्रीन पर बने निशान से वेबसाइट खोलें।",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "scroll": {
+        "doc": 390,
+        "body": 390,
+        "win": 390
+      },
+      "header": {
+        "count": 5,
+        "overlaps": [],
+        "navRows": 0,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 57
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "Map of Kissan Sahyog services",
+          "desc": "Kissan Sahyog in the middle, linked to eight services: marketplace, farmer Q&A, mandi prices and MSP, weather, cold storage, Kisan Mela, government schemes and videos.",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "Without login compared with after login",
+          "desc": "Two boxes. First: without login you can browse listings, read and ask farmer questions, and see mandi prices, weather, schemes, cold storage, melas and videos. Second: after login you can see a seller’s number, post your own listing, manage your listings and mark interest in a mela.",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "Steps to post a listing",
+          "desc": "Six steps from top to bottom: register or log in; tap “Post”; choose a category and say whether you are offering or looking; fill in details and add photos; enter your village or place and give consent; tap Submit and the listing is added.",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "Steps to find a listing and make contact",
+          "desc": "Five steps from top to bottom: open “Browse”; choose a category and your place; open a listing and read the details; tap Call or WhatsApp, which needs login; check the details yourself before you deal.",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "Steps to read farmer Q&A",
+          "desc": "Four steps from top to bottom: open “Farmer Q&A”; choose a topic or search for a question; tap “Show answer”; read “In brief” first, then the full answer and its sources.",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "Steps to add it to your phone’s home screen",
+          "desc": "Four steps from top to bottom: open the home page on your phone; tap “Install” in the green strip at the top; choose Install or “Add to Home screen” when the phone asks; open the website from the icon on your home screen.",
+          "labelled": true,
+          "images": 0,
+          "width": 358,
+          "fitsViewport": true,
+          "minPx": 17.9,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "lang": "hi",
+      "scroll": {
+        "doc": 768,
+        "body": 768,
+        "win": 768
+      },
+      "header": {
+        "count": 7,
+        "overlaps": [],
+        "navRows": 0,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 67
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "किसान सहयोग की सेवाओं का नक्शा",
+          "desc": "बीच में किसान सहयोग और उससे जुड़ी आठ सेवाएँ: बाज़ार, किसान सवाल, मंडी भाव और MSP, मौसम, कोल्ड स्टोरेज, किसान मेला, सरकारी योजनाएँ और वीडियो।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "बिना लॉगिन और लॉगिन के बाद की तुलना",
+          "desc": "दो डिब्बे। पहला: बिना लॉगिन के लिस्टिंग देखना, किसान सवाल पढ़ना और पूछना, मंडी भाव, मौसम, योजनाएँ, कोल्ड स्टोरेज, मेला और वीडियो। दूसरा: लॉगिन के बाद विक्रेता का नंबर देखना, अपनी लिस्टिंग डालना, अपनी लिस्टिंग संभालना और मेले में दिलचस्पी दर्ज करना।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "लिस्टिंग डालने के चरण",
+          "desc": "छह चरण ऊपर से नीचे: रजिस्टर या लॉगिन करें; \"पोस्ट करें\" दबाएँ; श्रेणी चुनें और बताएँ कि देना है या चाहिए; जानकारी भरें और फोटो जोड़ें; गाँव या जगह लिखें और सहमति दें; \"जमा करें\" दबाएँ, लिस्टिंग जुड़ जाती है।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "लिस्टिंग खोजने और संपर्क करने के चरण",
+          "desc": "पाँच चरण ऊपर से नीचे: \"खोजें\" खोलें; श्रेणी और अपनी जगह चुनें; लिस्टिंग खोलकर जानकारी पढ़ें; कॉल या WhatsApp दबाएँ, जिसके लिए लॉगिन चाहिए; बात करने से पहले जानकारी खुद जाँच लें।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "किसान सवाल पढ़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: \"किसान सवाल\" खोलें; विषय चुनें या सवाल खोजें; \"जवाब देखें\" दबाएँ; पहले \"संक्षेप में\" पढ़ें, फिर पूरा जवाब और स्रोत।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "फ़ोन की होम स्क्रीन पर जोड़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: फ़ोन में होम पेज खोलें; ऊपर की हरी पट्टी में \"इंस्टॉल करें\" दबाएँ; फ़ोन जो पूछे उसमें इंस्टॉल या \"होम स्क्रीन पर जोड़ें\" चुनें; होम स्क्रीन पर बने निशान से वेबसाइट खोलें।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "scroll": {
+        "doc": 768,
+        "body": 768,
+        "win": 768
+      },
+      "header": {
+        "count": 7,
+        "overlaps": [],
+        "navRows": 0,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 67
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "Map of Kissan Sahyog services",
+          "desc": "Kissan Sahyog in the middle, linked to eight services: marketplace, farmer Q&A, mandi prices and MSP, weather, cold storage, Kisan Mela, government schemes and videos.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "Without login compared with after login",
+          "desc": "Two boxes. First: without login you can browse listings, read and ask farmer questions, and see mandi prices, weather, schemes, cold storage, melas and videos. Second: after login you can see a seller’s number, post your own listing, manage your listings and mark interest in a mela.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "Steps to post a listing",
+          "desc": "Six steps from top to bottom: register or log in; tap “Post”; choose a category and say whether you are offering or looking; fill in details and add photos; enter your village or place and give consent; tap Submit and the listing is added.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "Steps to find a listing and make contact",
+          "desc": "Five steps from top to bottom: open “Browse”; choose a category and your place; open a listing and read the details; tap Call or WhatsApp, which needs login; check the details yourself before you deal.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "Steps to read farmer Q&A",
+          "desc": "Four steps from top to bottom: open “Farmer Q&A”; choose a topic or search for a question; tap “Show answer”; read “In brief” first, then the full answer and its sources.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "Steps to add it to your phone’s home screen",
+          "desc": "Four steps from top to bottom: open the home page on your phone; tap “Install” in the green strip at the top; choose Install or “Add to Home screen” when the phone asks; open the website from the icon on your home screen.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "lang": "hi",
+      "scroll": {
+        "doc": 1280,
+        "body": 1280,
+        "win": 1280
+      },
+      "header": {
+        "count": 16,
+        "overlaps": [],
+        "navRows": 1,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 120
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "किसान सहयोग की सेवाओं का नक्शा",
+          "desc": "बीच में किसान सहयोग और उससे जुड़ी आठ सेवाएँ: बाज़ार, किसान सवाल, मंडी भाव और MSP, मौसम, कोल्ड स्टोरेज, किसान मेला, सरकारी योजनाएँ और वीडियो।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "बिना लॉगिन और लॉगिन के बाद की तुलना",
+          "desc": "दो डिब्बे। पहला: बिना लॉगिन के लिस्टिंग देखना, किसान सवाल पढ़ना और पूछना, मंडी भाव, मौसम, योजनाएँ, कोल्ड स्टोरेज, मेला और वीडियो। दूसरा: लॉगिन के बाद विक्रेता का नंबर देखना, अपनी लिस्टिंग डालना, अपनी लिस्टिंग संभालना और मेले में दिलचस्पी दर्ज करना।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "लिस्टिंग डालने के चरण",
+          "desc": "छह चरण ऊपर से नीचे: रजिस्टर या लॉगिन करें; \"पोस्ट करें\" दबाएँ; श्रेणी चुनें और बताएँ कि देना है या चाहिए; जानकारी भरें और फोटो जोड़ें; गाँव या जगह लिखें और सहमति दें; \"जमा करें\" दबाएँ, लिस्टिंग जुड़ जाती है।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "लिस्टिंग खोजने और संपर्क करने के चरण",
+          "desc": "पाँच चरण ऊपर से नीचे: \"खोजें\" खोलें; श्रेणी और अपनी जगह चुनें; लिस्टिंग खोलकर जानकारी पढ़ें; कॉल या WhatsApp दबाएँ, जिसके लिए लॉगिन चाहिए; बात करने से पहले जानकारी खुद जाँच लें।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "किसान सवाल पढ़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: \"किसान सवाल\" खोलें; विषय चुनें या सवाल खोजें; \"जवाब देखें\" दबाएँ; पहले \"संक्षेप में\" पढ़ें, फिर पूरा जवाब और स्रोत।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "फ़ोन की होम स्क्रीन पर जोड़ने के चरण",
+          "desc": "चार चरण ऊपर से नीचे: फ़ोन में होम पेज खोलें; ऊपर की हरी पट्टी में \"इंस्टॉल करें\" दबाएँ; फ़ोन जो पूछे उसमें इंस्टॉल या \"होम स्क्रीन पर जोड़ें\" चुनें; होम स्क्रीन पर बने निशान से वेबसाइट खोलें।",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "lang": "en",
+      "scroll": {
+        "doc": 1280,
+        "body": 1280,
+        "win": 1280
+      },
+      "header": {
+        "count": 16,
+        "overlaps": [],
+        "navRows": 1,
+        "outside": [],
+        "sideways": false,
+        "headerHeight": 120
+      },
+      "diagrams": [
+        {
+          "name": "services",
+          "role": "img",
+          "title": "Map of Kissan Sahyog services",
+          "desc": "Kissan Sahyog in the middle, linked to eight services: marketplace, farmer Q&A, mandi prices and MSP, weather, cold storage, Kisan Mela, government schemes and videos.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        },
+        {
+          "name": "access",
+          "role": "img",
+          "title": "Without login compared with after login",
+          "desc": "Two boxes. First: without login you can browse listings, read and ask farmer questions, and see mandi prices, weather, schemes, cold storage, melas and videos. Second: after login you can see a seller’s number, post your own listing, manage your listings and mark interest in a mela.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "post",
+          "role": "img",
+          "title": "Steps to post a listing",
+          "desc": "Six steps from top to bottom: register or log in; tap “Post”; choose a category and say whether you are offering or looking; fill in details and add photos; enter your village or place and give consent; tap Submit and the listing is added.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 16
+        },
+        {
+          "name": "find",
+          "role": "img",
+          "title": "Steps to find a listing and make contact",
+          "desc": "Five steps from top to bottom: open “Browse”; choose a category and your place; open a listing and read the details; tap Call or WhatsApp, which needs login; check the details yourself before you deal.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 13
+        },
+        {
+          "name": "sawaal",
+          "role": "img",
+          "title": "Steps to read farmer Q&A",
+          "desc": "Four steps from top to bottom: open “Farmer Q&A”; choose a topic or search for a question; tap “Show answer”; read “In brief” first, then the full answer and its sources.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 10
+        },
+        {
+          "name": "install",
+          "role": "img",
+          "title": "Steps to add it to your phone’s home screen",
+          "desc": "Four steps from top to bottom: open the home page on your phone; tap “Install” in the green strip at the top; choose Install or “Add to Home screen” when the phone asks; open the website from the icon on your home screen.",
+          "labelled": true,
+          "images": 0,
+          "width": 420,
+          "fitsViewport": true,
+          "minPx": 21,
+          "outside": [],
+          "clipped": [],
+          "font": "Noto Sans Devanagari",
+          "labels": 9
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "name": "320-hi: page renders with its heading",
+      "ok": true,
+      "detail": "वेबसाइट कैसे इस्तेमाल करें"
+    },
+    {
+      "name": "320-hi: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":320,\"body\":320,\"win\":320}"
+    },
+    {
+      "name": "320-hi: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: no overlapping header items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: below desktop the nav row is hidden and the hamburger is shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "320-hi: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: smallest diagram label is 14.4px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "320-hi: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "320-hi: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-hi: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: page renders with its heading",
+      "ok": true,
+      "detail": "How to use the website"
+    },
+    {
+      "name": "320-en: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":320,\"body\":320,\"win\":320}"
+    },
+    {
+      "name": "320-en: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: no overlapping header items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: below desktop the nav row is hidden and the hamburger is shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "320-en: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: smallest diagram label is 14.4px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "320-en: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "320-en: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320-en: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320 home: header has no overlap and no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320 home: prominent \"How to use\" strip links to /how-to-use and fits the screen",
+      "ok": true,
+      "detail": "{\"x\":16,\"y\":318,\"width\":108.21875,\"height\":40}"
+    },
+    {
+      "name": "320 footer: has the \"कैसे इस्तेमाल करें\" link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320 mobile menu: \"कैसे इस्तेमाल करें\" is visible without expanding anything, 44px tall, inside the screen",
+      "ok": true,
+      "detail": "{\"x\":16,\"y\":873,\"width\":288,\"height\":44}"
+    },
+    {
+      "name": "320 mobile menu: no sideways scroll while open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320 mobile menu: the item opens /how-to-use and the menu closes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320 about: its link lands on /how-to-use (no redirect back to /about)",
+      "ok": true,
+      "detail": "http://localhost:4181/how-to-use"
+    },
+    {
+      "name": "320 contents list: jumps to the posting section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320 services list: eight links",
+      "ok": true,
+      "detail": "/bazaar,/sawaal,/msp,/mausam,/cold-storage,/kisan-mela,/yojana,/videos"
+    },
+    {
+      "name": "360-hi: page renders with its heading",
+      "ok": true,
+      "detail": "वेबसाइट कैसे इस्तेमाल करें"
+    },
+    {
+      "name": "360-hi: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":360,\"body\":360,\"win\":360}"
+    },
+    {
+      "name": "360-hi: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: no overlapping header items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: below desktop the nav row is hidden and the hamburger is shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "360-hi: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: smallest diagram label is 16.4px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "360-hi: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "360-hi: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-hi: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: page renders with its heading",
+      "ok": true,
+      "detail": "How to use the website"
+    },
+    {
+      "name": "360-en: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":360,\"body\":360,\"win\":360}"
+    },
+    {
+      "name": "360-en: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: no overlapping header items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: below desktop the nav row is hidden and the hamburger is shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "360-en: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: smallest diagram label is 16.4px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "360-en: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "360-en: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360-en: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 home: header has no overlap and no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 home: prominent \"How to use\" strip links to /how-to-use and fits the screen",
+      "ok": true,
+      "detail": "{\"x\":16,\"y\":318,\"width\":108.21875,\"height\":40}"
+    },
+    {
+      "name": "360 footer: has the \"कैसे इस्तेमाल करें\" link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 mobile menu: \"कैसे इस्तेमाल करें\" is visible without expanding anything, 44px tall, inside the screen",
+      "ok": true,
+      "detail": "{\"x\":16,\"y\":873,\"width\":328,\"height\":44}"
+    },
+    {
+      "name": "360 mobile menu: no sideways scroll while open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 mobile menu: the item opens /how-to-use and the menu closes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 about: its link lands on /how-to-use (no redirect back to /about)",
+      "ok": true,
+      "detail": "http://localhost:4181/how-to-use"
+    },
+    {
+      "name": "360 contents list: jumps to the posting section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 services list: eight links",
+      "ok": true,
+      "detail": "/bazaar,/sawaal,/msp,/mausam,/cold-storage,/kisan-mela,/yojana,/videos"
+    },
+    {
+      "name": "390-hi: page renders with its heading",
+      "ok": true,
+      "detail": "वेबसाइट कैसे इस्तेमाल करें"
+    },
+    {
+      "name": "390-hi: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":390,\"body\":390,\"win\":390}"
+    },
+    {
+      "name": "390-hi: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: no overlapping header items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: below desktop the nav row is hidden and the hamburger is shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "390-hi: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: smallest diagram label is 17.9px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "390-hi: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "390-hi: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-hi: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: page renders with its heading",
+      "ok": true,
+      "detail": "How to use the website"
+    },
+    {
+      "name": "390-en: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":390,\"body\":390,\"win\":390}"
+    },
+    {
+      "name": "390-en: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: no overlapping header items (5 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: below desktop the nav row is hidden and the hamburger is shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "390-en: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: smallest diagram label is 17.9px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "390-en: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "390-en: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390-en: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 home: header has no overlap and no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 home: prominent \"How to use\" strip links to /how-to-use and fits the screen",
+      "ok": true,
+      "detail": "{\"x\":16,\"y\":318,\"width\":108.21875,\"height\":40}"
+    },
+    {
+      "name": "390 footer: has the \"कैसे इस्तेमाल करें\" link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 mobile menu: \"कैसे इस्तेमाल करें\" is visible without expanding anything, 44px tall, inside the screen",
+      "ok": true,
+      "detail": "{\"x\":16,\"y\":873,\"width\":358,\"height\":44}"
+    },
+    {
+      "name": "390 mobile menu: no sideways scroll while open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 mobile menu: the item opens /how-to-use and the menu closes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 about: its link lands on /how-to-use (no redirect back to /about)",
+      "ok": true,
+      "detail": "http://localhost:4181/how-to-use"
+    },
+    {
+      "name": "390 contents list: jumps to the posting section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 services list: eight links",
+      "ok": true,
+      "detail": "/bazaar,/sawaal,/msp,/mausam,/cold-storage,/kisan-mela,/yojana,/videos"
+    },
+    {
+      "name": "768-hi: page renders with its heading",
+      "ok": true,
+      "detail": "वेबसाइट कैसे इस्तेमाल करें"
+    },
+    {
+      "name": "768-hi: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":768,\"body\":768,\"win\":768}"
+    },
+    {
+      "name": "768-hi: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: no overlapping header items (7 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: below desktop the nav row is hidden and the hamburger is shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "768-hi: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: smallest diagram label is 21.0px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "768-hi: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "768-hi: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-hi: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: page renders with its heading",
+      "ok": true,
+      "detail": "How to use the website"
+    },
+    {
+      "name": "768-en: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":768,\"body\":768,\"win\":768}"
+    },
+    {
+      "name": "768-en: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: no overlapping header items (7 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: below desktop the nav row is hidden and the hamburger is shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "768-en: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: smallest diagram label is 21.0px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "768-en: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "768-en: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768-en: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 home: header has no overlap and no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 home: prominent \"How to use\" strip links to /how-to-use and fits the screen",
+      "ok": true,
+      "detail": "{\"x\":643.78125,\"y\":215.421875,\"width\":108.21875,\"height\":40}"
+    },
+    {
+      "name": "768 footer: has the \"कैसे इस्तेमाल करें\" link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 mobile menu: \"कैसे इस्तेमाल करें\" is visible without expanding anything, 44px tall, inside the screen",
+      "ok": true,
+      "detail": "{\"x\":16,\"y\":875.421875,\"width\":736,\"height\":44}"
+    },
+    {
+      "name": "768 mobile menu: no sideways scroll while open",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 mobile menu: the item opens /how-to-use and the menu closes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 about: its link lands on /how-to-use (no redirect back to /about)",
+      "ok": true,
+      "detail": "http://localhost:4181/how-to-use"
+    },
+    {
+      "name": "768 contents list: jumps to the posting section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 services list: eight links",
+      "ok": true,
+      "detail": "/bazaar,/sawaal,/msp,/mausam,/cold-storage,/kisan-mela,/yojana,/videos"
+    },
+    {
+      "name": "1280-hi: page renders with its heading",
+      "ok": true,
+      "detail": "वेबसाइट कैसे इस्तेमाल करें"
+    },
+    {
+      "name": "1280-hi: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":1280,\"body\":1280,\"win\":1280}"
+    },
+    {
+      "name": "1280-hi: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: no overlapping header items (16 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: desktop header keeps two rows (brand row + one nav row)",
+      "ok": true,
+      "detail": "nav rows: 1, header 120px"
+    },
+    {
+      "name": "1280-hi: \"How to use\" is a visible header item, marked as the current page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "1280-hi: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: smallest diagram label is 21.0px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "1280-hi: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "1280-hi: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-hi: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: page renders with its heading",
+      "ok": true,
+      "detail": "How to use the website"
+    },
+    {
+      "name": "1280-en: no horizontal scroll",
+      "ok": true,
+      "detail": "{\"doc\":1280,\"body\":1280,\"win\":1280}"
+    },
+    {
+      "name": "1280-en: nothing in the page sticks out of the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: no overlapping header items (16 items)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: no header item outside the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: desktop header keeps two rows (brand row + one nav row)",
+      "ok": true,
+      "detail": "nav rows: 1, header 120px"
+    },
+    {
+      "name": "1280-en: \"How to use\" is a visible header item, marked as the current page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: six diagrams, in order",
+      "ok": true,
+      "detail": "services,access,post,find,sawaal,install"
+    },
+    {
+      "name": "1280-en: every diagram has role=\"img\", a <title> and a <desc>, wired with aria-labelledby",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: diagrams are pure inline SVG with real <text> (no images, no foreignObject)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: every diagram fits the viewport",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: smallest diagram label is 21.0px (minimum 14px)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: every label fits inside its diagram and clears the icons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: diagram text uses the site font",
+      "ok": true,
+      "detail": "Noto Sans Devanagari"
+    },
+    {
+      "name": "1280-en: eight sections; a–g each have a written step list",
+      "ok": true,
+      "detail": "[{\"id\":\"kya-kya-hai\",\"lists\":1,\"items\":8,\"svg\":1},{\"id\":\"bina-login\",\"lists\":2,\"items\":9,\"svg\":1},{\"id\":\"listing-kaise-dalein\",\"lists\":2,\"items\":10,\"svg\":1},{\"id\":\"khojein-aur-sampark\",\"lists\":1,\"items\":7,\"svg\":1},{\"id\":\"kisan-sawaal\",\"lists\":1,\"items\":5,\"svg\":1},{\"id\":\"bhav-storage-mela-yojana\",\"lists\":4,\"items\":8,\"svg\":0},{\"id\":\"phone-aur-bhasha\",\"lists\":2,\"items\":8,\"svg\":1},{\"id\":\"aam-sawaal\",\"lists\":0,\"items\":0,\"svg\":0}]"
+    },
+    {
+      "name": "1280-en: FAQ shows 8 questions with answers, and a link to /grievance",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280-en: no \"free/मुफ़्त\" and no e-mail / password / OTP on the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 home: header has no overlap and no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 home: prominent \"How to use\" strip links to /how-to-use and fits the screen",
+      "ok": true,
+      "detail": "{\"x\":1155.78125,\"y\":222,\"width\":108.21875,\"height\":40}"
+    },
+    {
+      "name": "1280 footer: has the \"कैसे इस्तेमाल करें\" link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 header: the item opens /how-to-use",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 header: the About dropdown next to it still opens",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 about: its link lands on /how-to-use (no redirect back to /about)",
+      "ok": true,
+      "detail": "http://localhost:4181/how-to-use"
+    },
+    {
+      "name": "1280 contents list: jumps to the posting section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 services list: eight links",
+      "ok": true,
+      "detail": "/bazaar,/sawaal,/msp,/mausam,/cold-storage,/kisan-mela,/yojana,/videos"
+    },
+    {
+      "name": "direct load: /how-to-use stays on /how-to-use (no leftover redirect)",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

@@ -7,7 +7,7 @@
 // 404 and set honest expectations. Have it reviewed by counsel before public
 // launch. Contact for data/legal queries: usdvisionai@gmail.com
 
-export { termsOfUse } from './termsContent.js'
+export { termsOfUse, termsNote } from './termsContent.js'
 
 export const privacyPolicy = [
   {
@@ -31,12 +31,16 @@ export const privacyPolicy = [
     en: 'Optional information: extra profile details, and — only if you opt in — a preference to receive information on WhatsApp (off by default), such as a preferred mandi and your main crops. This consent is not required.',
   },
   {
-    hi: 'आपकी सहमति और उसे वापस लेना: आप कभी भी अपनी WhatsApp सहमति या खाता Profile पेज से या grievance@kissansahyog.com पर लिखकर वापस ले/हटवा सकते हैं। यह डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) नियम, 2025 (13 नवंबर 2025 को अधिसूचित) की भावना के अनुरूप है।',
-    en: 'Your consent and withdrawal: you can withdraw your WhatsApp consent or delete your account anytime from the Profile page or by writing to grievance@kissansahyog.com. This follows the spirit of the Digital Personal Data Protection (DPDP) Rules, 2025 (notified 13 November 2025).',
+    hi: 'सुझाव और शिकायत फ़ॉर्म: इस फ़ॉर्म में दिया गया ईमेल या मोबाइल नंबर केवल आपके संदेश का जवाब देने के लिए रखा जाता है और सार्वजनिक रूप से नहीं दिखाया जाता।',
+    en: 'Feedback & Grievance form: the email or mobile number you give in this form is stored only to reply to your message and is not shown publicly.',
   },
   {
-    hi: 'डेटा से जुड़े सवाल या अपना डेटा हटवाने के लिए संपर्क करें: सामान्य — hello@kissansahyog.com; शिकायत/डेटा अधिकार — grievance@kissansahyog.com (शिकायत अधिकारी: श्री अभिनन्दन दीक्षित)।',
-    en: 'For data queries or deletion requests, contact: general — hello@kissansahyog.com; grievance/data rights — grievance@kissansahyog.com (Grievance Officer: Shri Abhinandan Dixit).',
+    hi: 'आपकी सहमति और उसे वापस लेना: आप कभी भी अपनी WhatsApp सहमति या खाता Profile पेज से या hello@kissansahyog.com पर लिखकर वापस ले/हटवा सकते हैं। यह डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) नियम, 2025 (13 नवंबर 2025 को अधिसूचित) की भावना के अनुरूप है।',
+    en: 'Your consent and withdrawal: you can withdraw your WhatsApp consent or delete your account anytime from the Profile page or by writing to hello@kissansahyog.com. This follows the spirit of the Digital Personal Data Protection (DPDP) Rules, 2025 (notified 13 November 2025).',
+  },
+  {
+    hi: 'डेटा से जुड़े सवाल, डेटा अधिकार या अपना डेटा हटवाने के लिए hello@kissansahyog.com पर लिखें। शिकायत के लिए grievance@kissansahyog.com पर लिखें या सुझाव और शिकायत पेज (/grievance) का फ़ॉर्म भरें।',
+    en: 'For data queries, data rights or deletion requests, write to hello@kissansahyog.com. For complaints, write to grievance@kissansahyog.com or use the form on the Feedback & Grievance page (/grievance).',
   },
 ]
 
@@ -66,8 +70,8 @@ export const legacyTermsOfUse = [
     en: 'Provider declarations: in some categories (e.g. equipment, warehouse/cold storage) the seller must agree to a declaration about safety and the accuracy of information before posting. Responsibility for these declarations lies with the seller.',
   },
   {
-    hi: 'शिकायत व हटाने की प्रक्रिया: किसी लिस्टिंग या विक्रेता की शिकायत "शिकायत करें" बटन से या grievance@kissansahyog.com पर करें। हमारे शिकायत अधिकारी श्री अभिनन्दन दीक्षित 24 घंटे में पावती और आमतौर पर 7 दिन में निपटारा करते हैं (सूचना प्रौद्योगिकी नियम, 2021 — G.S.R. 120(E), 10 फ़रवरी 2026 को संशोधित)।',
-    en: 'Report & takedown: report any listing or seller via the "Report" button or grievance@kissansahyog.com. Our Grievance Officer, Shri Abhinandan Dixit, acknowledges within 24 hours and usually resolves within 7 days (Information Technology Rules, 2021 — as amended by G.S.R. 120(E), 10 February 2026).',
+    hi: 'शिकायत व हटाने की प्रक्रिया: किसी लिस्टिंग या विक्रेता की शिकायत "शिकायत करें" बटन से, grievance@kissansahyog.com पर लिखकर या सुझाव और शिकायत पेज (/grievance) के फ़ॉर्म से करें। हम हर शिकायत की जाँच करते हैं और शिकायत सही पाए जाने पर लिस्टिंग/विक्रेता को हटा सकते हैं (सूचना प्रौद्योगिकी नियम, 2021 — G.S.R. 120(E), 10 फ़रवरी 2026 को संशोधित)।',
+    en: 'Report & takedown: report any listing or seller via the "Report" button, by writing to grievance@kissansahyog.com, or by using the form on the Feedback & Grievance page (/grievance). We look into every complaint and may remove the listing or seller if the complaint is found valid (Information Technology Rules, 2021 — as amended by G.S.R. 120(E), 10 February 2026).',
   },
   {
     hi: 'मध्यस्थ की भूमिका: किसान सहयोग एक मध्यवर्ती मंच (intermediary) है और मंच पर कोई लेन-देन नहीं होता। सरकारी FARMS ऐप की तरह, उपयोगकर्ता व सेवा प्रदाता को जानकारी स्वयं स्वतंत्र रूप से जाँचनी चाहिए और मोल-भाव आमने-सामने करना चाहिए।',

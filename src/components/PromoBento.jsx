@@ -7,6 +7,7 @@ import { fetchKbSawaal, sawaalQuestion } from '../lib/community/communityApi'
 import { fetchResources, resAddress, resName } from '../lib/resources/resourcesApi'
 import { fetchUpcomingMelas } from '../lib/mela/melaApi'
 import WhatsAppJoin from './WhatsAppJoin'
+import { useWhatsAppChannel } from '../lib/whatsapp/whatsappApi'
 
 // Stable for the lifetime of this JavaScript visit; deliberately not persisted.
 const visitSeed = Math.random()
@@ -28,12 +29,17 @@ export default function PromoBento({ page = 'post', limit = 6, className = '' })
     fetchUpcomingMelas(1).then((rows) => alive && setMelas(rows)).catch(() => {})
     return () => { alive = false }
   }, [])
-  const tiles = useMemo(() => rotate(PROMO_TILES.filter((tile) => !tile.showOn || tile.showOn.includes(page))).slice(0, limit), [page, limit])
+  const whatsappUrl = useWhatsAppChannel()
   const kvk = useMemo(() => {
     const place = `${user?.village_town || ''} ${user?.pincode || ''}`.toLowerCase()
     return kvks.find((row) => `${row.area || ''} ${row.district || ''}`.toLowerCase().includes(place)) || kvks.find((row) => /sagar/i.test(`${row.area || ''} ${row.district || ''}`)) || kvks[0]
   }, [kvks, user])
   const questions = useMemo(() => rotate(sawaal).slice(0, 2), [sawaal])
+  // A tile with nothing to put in it is left out (Batch 7D): the WhatsApp tile renders
+  // nothing until a channel link is set, and the KVK tile needs a KVK row. Filter BEFORE
+  // the slice so another tile takes the place.
+  const hasContent = (tile) => (tile.type === 'whatsapp' ? !!whatsappUrl : tile.type === 'kvk' ? !!kvk : true)
+  const tiles = useMemo(() => rotate(PROMO_TILES.filter((tile) => !tile.showOn || tile.showOn.includes(page))).filter(hasContent).slice(0, limit), [page, limit, whatsappUrl, kvk]) // eslint-disable-line react-hooks/exhaustive-deps
   return <aside className={`grid grid-cols-2 gap-2 ${className}`} aria-label={t('post_listing')}>
     {tiles.map((tile) => <Tile key={tile.id} tile={tile} t={t} lang={lang} kvk={kvk} questions={questions} mela={melas[0]} />)}
   </aside>

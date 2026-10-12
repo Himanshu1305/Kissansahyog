@@ -91,6 +91,9 @@ export default function Signup() {
       title={t('signup_title')}
       onBack={() => (step === 'disclaimer' ? setStep('form') : navigate('/'))}
     >
+      {/* Batch 7D: one line of text under the heading. No form or auth change. */}
+      <p data-testid="signup-free-registration" className="mb-3 inline-block rounded-full bg-[var(--ks-green-tint)] px-3 py-1 text-sm font-bold text-[var(--ks-green-dark)]">✓ {t('free_registration')}</p>
+
       {error && <Notice tone="error">{error}</Notice>}
 
       {step === 'form' && (

@@ -68,7 +68,7 @@ export function Button({ variant = 'primary', giant = false, icon, sublabel, chi
 // ---- PhotoTile: photo + flat dark overlay + white label ----
 export function PhotoTile({ src, label, sublabel, onClick, height = 150 }) {
   return (
-    <button type="button" onClick={onClick} className="relative w-full overflow-hidden text-left" style={{ height, borderRadius: 'var(--ks-radius)', minHeight: 0 }}>
+    <button type="button" onClick={onClick} className="relative w-full overflow-hidden text-left" style={{ height, borderRadius: 'var(--ks-radius)', minHeight: 0, background: 'var(--ks-green-dark)' }}>
       <img src={src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ background: 'var(--ks-green-dark)' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
       <span className="absolute inset-0" style={{ background: 'rgba(23,51,35,.38)' }} />
       <span className="absolute inset-x-0 bottom-0 p-2.5">

@@ -1384,7 +1384,7 @@ function UsersPanel({ actorId, t }) {
   )
 }
 
-// ---- Phase 4: complaints queue (age vs 24h/7-day targets; remove / dismiss) ----
+// ---- Phase 4: complaints queue (shows age, flags old items; remove / dismiss) ----
 function ReportsPanel({ actorId, t }) {
   const [rows, setRows] = useState(null)
   const [err, setErr] = useState(null)
@@ -1399,7 +1399,7 @@ function ReportsPanel({ actorId, t }) {
     try { await resolveListingReport(actorId, id, action, notes[id] || null); load() }
     catch (e) { setErr(t(e.i18nKey || 'err_unknown')) }
   }
-  // Age in hours; flag overdue against the 24h acknowledgement / 7-day resolution targets.
+  // Age in hours, so old complaints stand out for the admin. Internal aid only; nothing public promises a response time.
   const ageHours = (iso) => Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 3.6e6))
 
   return (
@@ -1409,7 +1409,7 @@ function ReportsPanel({ actorId, t }) {
         <div className="space-y-3">
           {rows.map((r) => {
             const h = ageHours(r.created_at)
-            const overdue = h > 168 // 7 days
+            const overdue = h > 168 // older than a week
             return (
               <div key={r.id} className="rounded-xl border border-stone-200 p-3">
                 <div className="flex flex-wrap items-center gap-2 text-sm">

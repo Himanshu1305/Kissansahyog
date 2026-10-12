@@ -4,6 +4,7 @@
 
 | File | Layout primitive | Final width | Page-width classes |
 |---|---|---|---|
+| About.jsx | PageShell | content inside wide + related links | none |
 | Admin.jsx | PageShell | content inside wide | none |
 | AgroForestry.jsx | PageShell | wide | none |
 | ArticleDetail.jsx | PageShell | content inside wide + related links | none |
@@ -26,6 +27,7 @@
 | Grievance.jsx | PageShell | content inside wide + related links | none |
 | Home.jsx | PageShell | wide | none |
 | Homepage.jsx | home `Section`/`ks-section-inner` | wide | `w-[96px]` thumbnail; `md:max-w-[58%]` hero proportion (both whitelisted in verifier) |
+| HowToUse.jsx | PageShell | content inside wide + related links | none |
 | Info.jsx | PageShell | wide | none |
 | Join.jsx | Screen | wide | none |
 | Jugaad.jsx | PageShell | wide | none |

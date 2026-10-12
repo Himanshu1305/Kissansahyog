@@ -8,7 +8,7 @@ import { PageExplainer, LocationControl, ShareWhatsApp } from '../components/pag
 import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
 import { fetchPincode } from '../lib/listings/listingsApi'
 import { fetchMelas, getMyMelaInterests, setMelaInterest, resolveActiveMela, MELA_TAGS } from '../lib/mela/melaApi'
-import { filterMelas, statesIn, melaDateLabel, isExpectedDate, melaDistanceKm } from '../lib/mela/melaFormat'
+import { filterMelas, statesIn, melaDateLabel, isExpectedDate, melaDistanceKm, melaPlace } from '../lib/mela/melaFormat'
 import { indiaToday, melaStatus, sortMelasForDisplay } from '../lib/mela/melaStatus'
 import { stateLabel } from '../content/states.js'
 import { generateMelaMessage } from '../lib/share/shareMessages'
@@ -159,7 +159,7 @@ export default function KisanMela() {
               const dist = melaDistanceKm(center, m)
               const nm = lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)
               const highlights = lang === 'hi' ? m.highlights_hi : (m.highlights_en || m.highlights_hi)
-              const place = [m.venue, m.district, m.state].filter(Boolean).join(', ')
+              const place = melaPlace(m)
               const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/kisan-mela?mela=${m.id}`
               // Corroboration: all real http(s) sources across source_urls[] + the legacy source_url, deduped.
               // >=2 distinct → "found via multiple sources"; exactly 1 → shown plainly. Never worded as "verified accurate".

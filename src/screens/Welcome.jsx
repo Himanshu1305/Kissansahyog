@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { BigButton } from '../components/ui'
 import { PageShell } from '../components/layout'
+import Logo from '../components/Logo'
 
 // First-launch screen: pick language (Hindi default, big obvious choice), then
 // go to signup or login.
@@ -27,9 +28,7 @@ export default function Welcome() {
           ‹ {t('back_to_home')}
         </button>
         <div className="flex flex-1 flex-col items-center justify-center text-center">
-          <div className="text-6xl" aria-hidden="true">
-            🌾
-          </div>
+          <Logo size="xl" decorative />
           <h1 className="mt-3 text-3xl font-extrabold text-green-800">{t('app_name')}</h1>
           <p className="mt-6 text-stone-600">{t('welcome_intro')}</p>
         </div>

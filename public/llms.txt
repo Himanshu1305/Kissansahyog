@@ -1,13 +1,13 @@
 # Kissan Sahyog (किसान सहयोग)
 
-> A free, bilingual (Hindi-first) marketplace and knowledge hub for farmers in
+> A bilingual (Hindi-first) marketplace and knowledge hub for farmers in
 > Sagar district, Madhya Pradesh, India. We list farm equipment, land, labour,
 > inputs, transport, cold storage, greenhouses and rural innovations; publish
 > cited knowledge (schemes, crop problems, weather, mandi/MSP prices); and never
 > handle payments. Every published fact is sourced and cited. English brand name:
-> Kissan Sahyog. Contact: hello@kissansahyog.com · grievance@kissansahyog.com.
+> Kissan Sahyog. Contact: hello@kissansahyog.com. Complaints: grievance@kissansahyog.com.
 
-## Marketplace (login-gated browse; public hub teasers)
+## Marketplace (public browse; login only to see a seller's number or to post)
 - Equipment, land, labour, agri-inputs, bhusa/parali, transport, water tanker
 - Warehouse & cold storage, greenhouse/polyhouse, jugaad (rural innovations)
 

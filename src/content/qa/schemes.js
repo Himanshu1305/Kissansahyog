@@ -721,7 +721,7 @@ export default [
     "question_hi": "सॉयल हेल्थ कार्ड (मृदा स्वास्थ्य कार्ड) क्या है?",
     "question_en": "What is a Soil Health Card?",
     "short_hi": "सॉयल हेल्थ कार्ड एक रिपोर्ट कार्ड है जो किसानों को हर दो साल में दिया जाता है और मुफ़्त होता है। यह मिट्टी की स्थिति 12 मापदंडों (parameters) पर बताता है और कौन-सी खाद कितनी डालें, इसकी सलाह देता है। यह योजना 19 फरवरी 2015 को शुरू हुई।",
-    "short_en": "The Soil Health Card is a report card given to farmers every two years, free of cost. It tells the state of your soil on 12 parameters and advises which fertiliser to use and how much. The scheme started on 19 February 2015.",
+    "short_en": "A Soil Health Card is a report on your soil, given to farmers every two years free of cost. It shows the condition of your soil on 12 parameters and advises which fertiliser to use and how much. The scheme started on 19 February 2015.",
     "blocks": [
       {
         "type": "paragraph",
@@ -749,7 +749,7 @@ export default [
     "blocks_en": [
       {
         "type": "paragraph",
-        "text": "The Soil Health Card (SHC) is a report card given to farmers free every two years. It tells the state of their soil on 12 parameters. The scheme started on 19 February 2015.",
+        "text": "A Soil Health Card (SHC) is a report on a farmer's soil, given every two years free of cost. It shows the condition of the soil on 12 parameters. The scheme started on 19 February 2015.",
         "cites": [
           "S-QAS-07"
         ]
@@ -781,9 +781,9 @@ export default [
     "category": "soil",
     "season": "all",
     "question_hi": "मिट्टी की जांच कैसे कराएं और कार्ड कैसे पढ़ें?",
-    "question_en": "How to get soil tested and read the Soil Health Card?",
+    "question_en": "How do I get my soil tested and read the Soil Health Card?",
     "short_hi": "soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जांच का अनुरोध करें। कार्ड में हर पोषक तत्व की स्थिति और कितनी खाद डालनी है, यह लिखा होता है—उसी के अनुसार खाद डालें।",
-    "short_en": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or Krishi Vigyan Kendra. The card states the status of each nutrient and how much fertiliser to use. Add fertiliser as per that.",
+    "short_en": "Request a soil test on the soilhealth.dac.gov.in portal or at your nearest agriculture office or Krishi Vigyan Kendra. The card shows the level of each nutrient and how much fertiliser to use. Apply fertiliser as the card advises.",
     "blocks": [
       {
         "type": "heading",
@@ -828,13 +828,13 @@ export default [
         "ordered": true,
         "items": [
           {
-            "text": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby Krishi Vigyan Kendra (KVK) or block agriculture office.",
+            "text": "Request a soil test on the soilhealth.dac.gov.in portal or at your nearest Krishi Vigyan Kendra (KVK) or block agriculture office.",
             "cites": [
               "S-QAS-07"
             ]
           },
           {
-            "text": "Agriculture staff take a soil sample from the field and it is tested in a lab.",
+            "text": "Agriculture staff take a soil sample from your field, and it is tested in a laboratory.",
             "cites": [
               "S-QAS-07"
             ]
@@ -843,7 +843,7 @@ export default [
       },
       {
         "type": "fact",
-        "text": "The card states the status of each nutrient and the fertiliser amount for the crop. Add fertiliser as per that advice.",
+        "text": "The card shows the level of each nutrient and the amount of fertiliser for the crop. Apply fertiliser as the card advises.",
         "cites": [
           "S-QAS-07",
           "S-QAS-08"

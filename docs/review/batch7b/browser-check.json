@@ -1,0 +1,302 @@
+[
+  {
+    "name": "360px form: contact, type, message, public checkbox (+ hidden honeypot); no name field",
+    "ok": true,
+    "detail": "text:contact radio:kind radio:kind radio:kind textarea:message checkbox:public_ok text:ks_leave_empty"
+  },
+  {
+    "name": "360px form: label and helper line as briefed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px form: no horizontal scroll",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px checkbox: shown and unchecked for \"suggestion\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px checkbox: shown for \"other\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px checkbox: gone for \"problem\", replaced by the \"never shown publicly\" note",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px validation: empty contact → inline error at the field",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px validation: short number → \"10 अंकों का सही मोबाइल नंबर\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px validation: mobile starting with 5 is refused",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px validation: broken e-mail → \"सही ईमेल पता\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px validation: neither e-mail nor number → asks for one of the two",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px validation: the error clears as soon as the person types again",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px validation: good contact, empty message → message error",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px validation: nothing was sent while the form was invalid",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px success: /api/feedback gets the 10-digit mobile, type, message and consent; direct RPC not used",
+    "ok": true,
+    "detail": "{\"email\":null,\"mobile\":\"9876543210\",\"kind\":\"suggestion\",\"message\":\"मंडी भाव का पेज बहुत काम का है।\",\"lang\":\"hi\",\"device\":\"bf1af4ab-4883-4b38-a2a1-288ca0daaa01\",\"public_ok\":true}"
+  },
+  {
+    "name": "360px success: nothing about who the person is in the request",
+    "ok": true,
+    "detail": "email,mobile,kind,message,lang,device,public_ok"
+  },
+  {
+    "name": "360px success: warm confirmation, no promised reply time",
+    "ok": true,
+    "detail": "धन्यवाद! आपका संदेश हमें मिल गया।  हम इसे ध्यान से पढ़ेंगे और आपके दिए ईमेल या मोबाइल नंबर पर आपसे संपर्क करेंगे।  एक और संदेश भेजें"
+  },
+  {
+    "name": "360px problem: sent with public_ok false and the e-mail lower-cased",
+    "ok": true,
+    "detail": "{\"email\":\"kisan@example.com\",\"mobile\":null,\"kind\":\"problem\",\"message\":\"लिस्टिंग का फ़ोटो नहीं खुल रहा है।\",\"lang\":\"hi\",\"device\":\"bf1af4ab-4883-4b38-a2a1-288ca0daaa01\",\"public_ok\":false}"
+  },
+  {
+    "name": "360px fallback: /api/feedback 404 → submit_feedback RPC called with the same fields → confirmation",
+    "ok": true,
+    "detail": "{\"p_email\":\"kisan@example.com\",\"p_mobile\":null,\"p_kind\":\"other\",\"p_message\":\"कोल्ड स्टोरेज की सूची में मेरा ज़िला जोड़ें।\",\"p_lang\":\"hi\",\"p_device\":\"bf1af4ab-4883-4b38-a2a1-288ca0daaa01\",\"p_public_ok\":false}"
+  },
+  {
+    "name": "360px fallback: API and RPC both missing → e-mail link with the message, no false thank-you",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px fallback: /api/feedback 503 → RPC used → confirmation",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px refusal: rate limit → clear message, no RPC retry, no mailto, no thank-you",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px honeypot: a filled trap sends nothing",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px form: legal section still collapsed, with the new privacy line inside",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px about: RPC missing (before migration) → no section, page intact",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px about: RPC returns nothing → no section, no heading",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px about: approved rows → heading, message text and type label",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px about: no contact detail, device id or date is rendered; a \"problem\" row is dropped",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px about: no horizontal scroll with the section shown",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360px safety: no other write reached Supabase",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px form: contact, type, message, public checkbox (+ hidden honeypot); no name field",
+    "ok": true,
+    "detail": "text:contact radio:kind radio:kind radio:kind textarea:message checkbox:public_ok text:ks_leave_empty"
+  },
+  {
+    "name": "1280px form: label and helper line as briefed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px form: no horizontal scroll",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px checkbox: shown and unchecked for \"suggestion\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px checkbox: shown for \"other\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px checkbox: gone for \"problem\", replaced by the \"never shown publicly\" note",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px validation: empty contact → inline error at the field",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px validation: short number → \"10 अंकों का सही मोबाइल नंबर\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px validation: mobile starting with 5 is refused",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px validation: broken e-mail → \"सही ईमेल पता\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px validation: neither e-mail nor number → asks for one of the two",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px validation: the error clears as soon as the person types again",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px validation: good contact, empty message → message error",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px validation: nothing was sent while the form was invalid",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px success: /api/feedback gets the 10-digit mobile, type, message and consent; direct RPC not used",
+    "ok": true,
+    "detail": "{\"email\":null,\"mobile\":\"9876543210\",\"kind\":\"suggestion\",\"message\":\"मंडी भाव का पेज बहुत काम का है।\",\"lang\":\"hi\",\"device\":\"8a635e7d-ce79-445b-a265-d5e18d1e7b94\",\"public_ok\":true}"
+  },
+  {
+    "name": "1280px success: nothing about who the person is in the request",
+    "ok": true,
+    "detail": "email,mobile,kind,message,lang,device,public_ok"
+  },
+  {
+    "name": "1280px success: warm confirmation, no promised reply time",
+    "ok": true,
+    "detail": "धन्यवाद! आपका संदेश हमें मिल गया।  हम इसे ध्यान से पढ़ेंगे और आपके दिए ईमेल या मोबाइल नंबर पर आपसे संपर्क करेंगे।  एक और संदेश भेजें"
+  },
+  {
+    "name": "1280px problem: sent with public_ok false and the e-mail lower-cased",
+    "ok": true,
+    "detail": "{\"email\":\"kisan@example.com\",\"mobile\":null,\"kind\":\"problem\",\"message\":\"लिस्टिंग का फ़ोटो नहीं खुल रहा है।\",\"lang\":\"hi\",\"device\":\"8a635e7d-ce79-445b-a265-d5e18d1e7b94\",\"public_ok\":false}"
+  },
+  {
+    "name": "1280px fallback: /api/feedback 404 → submit_feedback RPC called with the same fields → confirmation",
+    "ok": true,
+    "detail": "{\"p_email\":\"kisan@example.com\",\"p_mobile\":null,\"p_kind\":\"other\",\"p_message\":\"कोल्ड स्टोरेज की सूची में मेरा ज़िला जोड़ें।\",\"p_lang\":\"hi\",\"p_device\":\"8a635e7d-ce79-445b-a265-d5e18d1e7b94\",\"p_public_ok\":false}"
+  },
+  {
+    "name": "1280px fallback: API and RPC both missing → e-mail link with the message, no false thank-you",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px fallback: /api/feedback 503 → RPC used → confirmation",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px refusal: rate limit → clear message, no RPC retry, no mailto, no thank-you",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px honeypot: a filled trap sends nothing",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px form: legal section still collapsed, with the new privacy line inside",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px about: RPC missing (before migration) → no section, page intact",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px about: RPC returns nothing → no section, no heading",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px about: approved rows → heading, message text and type label",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px about: no contact detail, device id or date is rendered; a \"problem\" row is dropped",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px about: no horizontal scroll with the section shown",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280px safety: no other write reached Supabase",
+    "ok": true,
+    "detail": ""
+  }
+]
