@@ -10,8 +10,8 @@ import { CatIcon } from '../components/CatIcon'
 import { CATEGORY_META, EQUIPMENT_TAGS, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { fetchNearby, fetchTopViewed, fetchPincode } from '../lib/listings/listingsApi'
-import { initialLocation, DEFAULT_COORDS, DEFAULT_PINCODE } from '../lib/location/locationStore'
+import { fetchNearby, fetchTopViewed } from '../lib/listings/listingsApi'
+import { useUserLocation } from '../lib/location/LocationProvider'
 
 // Browse nearby active listings. Public — no login needed to look (Batch1 item 3A);
 // the phone number stays behind login (reveal flow in ListingCard/ListingDetail).
@@ -40,17 +40,11 @@ export default function Browse() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [topViewed, setTopViewed] = useState([])
-  // Location works without a profile: seed from the profile pincode when logged in,
-  // else the Sagar default; the LocationControl lets anyone pick GPS/pincode/village.
-  // Logged-in users keep their exact profile coordinates (rawCoords), matching the
-  // pre-Batch1 behaviour; logged-out visitors resolve coords from the chosen pincode.
-  const [loc, setLoc] = useState(() => {
-    const base = initialLocation(user?.pincode)
-    if (user?.latitude != null && user?.longitude != null) {
-      return { ...base, rawCoords: { latitude: Number(user.latitude), longitude: Number(user.longitude) } }
-    }
-    return base
-  })
+  // Batch 7L-1 — the search centre is the shared location object (device / saved / typed /
+  // picked). A logged-in user's stored profile coordinates arrive as a 'saved' location. With
+  // no location the prompt card is shown instead of results — never a default place.
+  const { location, center } = useUserLocation()
+  const lat = center?.latitude ?? null, lon = center?.longitude ?? null
 
   // Popular teasers, filtered to the selected category (Batch1 item 3).
   useEffect(() => {
@@ -60,18 +54,10 @@ export default function Browse() {
   }, [category])
 
   const load = useCallback(async () => {
+    if (lat == null || lon == null) { setListings([]); setFallback([]); setLoading(false); return }
     setLoading(true)
     setError(null)
     try {
-      // Resolve the search centre: precise GPS coords when present, else the
-      // selected pincode's coordinates, else the Sagar default.
-      let lat = loc.rawCoords?.latitude
-      let lon = loc.rawCoords?.longitude
-      if (lat == null || lon == null) {
-        const p = await fetchPincode(loc.matchedVillage?.pincode || DEFAULT_PINCODE)
-        lat = p?.latitude ?? DEFAULT_COORDS.latitude
-        lon = p?.longitude ?? DEFAULT_COORDS.longitude
-      }
       const [ex, res] = await Promise.all([
         loadExtras(category),
         fetchNearby({
@@ -89,7 +75,7 @@ export default function Browse() {
     } finally {
       setLoading(false)
     }
-  }, [category, typeFilter, sort, loc, t])
+  }, [category, typeFilter, sort, lat, lon, t])
 
   useEffect(() => {
     load()
@@ -134,9 +120,9 @@ export default function Browse() {
         ))}
       </div>
 
-      {/* Location (GPS / pincode / village) — works without a profile. */}
+      {/* Location (device / saved / typed / picked) — works without a profile. */}
       <div className="mb-3">
-        <LocationControl value={loc} onChange={setLoc} showOutOfArea={false} />
+        <LocationControl />
       </div>
 
       {/* Offer / Requirement filter + sort — one compact row. */}
@@ -196,7 +182,8 @@ export default function Browse() {
 
       {error && <Notice tone="error">{error}</Notice>}
 
-      {loading ? (
+      {/* No location → the prompt card above stands in for results (no default place). */}
+      {!location ? null : loading ? (
         <Spinner />
       ) : shownListings.length === 0 && shownFallback.length === 0 ? (
         <p className="py-12 text-center text-stone-500">{t('no_listings')}</p>

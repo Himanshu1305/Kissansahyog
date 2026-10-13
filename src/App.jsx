@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams } 
 import { isSafePath } from './lib/returnPath'
 import { LanguageProvider } from './lib/i18n/LanguageProvider'
 import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
+import { LocationProvider } from './lib/location/LocationProvider'
 import { Spinner } from './components/ui'
 import PwaPrompts from './components/PwaPrompts'
 import BuyerComplianceGate from './components/BuyerComplianceGate'
@@ -181,6 +182,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <AuthProvider>
+        <LocationProvider>
         <BrowserRouter>
           {/* Per-route SEO for mapped public pages (central; before routes so head is set early). */}
           <RouteSeo />
@@ -193,6 +195,7 @@ export default function App() {
           <PwaPrompts />
           <BuyerComplianceGate />
         </BrowserRouter>
+        </LocationProvider>
       </AuthProvider>
     </LanguageProvider>
   )

@@ -1,5 +1,5 @@
 // Public read of cached mandi prices (RLS: read-only). Tries today's rows first,
-// then yesterday's; Sagar-district rows are preferred. Degrades gracefully to an
+// then yesterday's; Sagar Division rows (the "local mandis") are preferred. Degrades gracefully to an
 // empty result if the table/data is missing (the ticker then shows "coming soon").
 //
 // ─── Phase 3c — DISTANCE IS INFORMATIONAL ONLY HERE, NEVER A FILTER ─────────────
@@ -11,6 +11,20 @@
 // ───────────────────────────────────────────────────────────────────────────────
 import { supabase } from '../supabaseClient'
 
+// "Local mandi" flag (Batch 7L-1): mandi_prices.in_sagar_division — true for the six districts
+// of Sagar Division (migration 0058; the ingestion sets it). Until that migration is applied the
+// column does not exist, so the first query that fails on it switches this session back to the
+// older is_sagar_district column and prices keep showing. Rows always expose it as `is_local`.
+let localCol = 'in_sagar_division'
+async function withLocalFlag(build) {
+  let res = await build(localCol)
+  if (res.error && localCol === 'in_sagar_division' && /in_sagar_division/.test(String(res.error.message || '') + String(res.error.details || ''))) {
+    localCol = 'is_sagar_district'
+    res = await build(localCol)
+  }
+  return res
+}
+
 const isoDay = (offsetDays = 0) => {
   const d = new Date()
   d.setUTCDate(d.getUTCDate() + offsetDays)
@@ -18,12 +32,12 @@ const isoDay = (offsetDays = 0) => {
 }
 
 async function pricesFor(dateStr) {
-  const { data, error } = await supabase
+  const { data, error } = await withLocalFlag((col) => supabase
     .from('mandi_prices')
-    .select('commodity_hi,commodity_en,market,modal_price,price_date,is_sagar_district')
+    .select(`commodity_hi,commodity_en,market,district,modal_price,price_date,is_local:${col}`)
     .eq('price_date', dateStr)
-    .order('is_sagar_district', { ascending: false })
-    .order('modal_price', { ascending: true })
+    .order(col, { ascending: false })
+    .order('modal_price', { ascending: true }))
   if (error) return null // table missing or transient — treated as no data
   return data || []
 }
@@ -82,18 +96,18 @@ export async function fetchMandiPrices() {
 
 // ---- /msp page: per-crop today prices + trend history ----------------------
 
-// Today's (or latest available) modal price at every Sagar mandi for a commodity.
+// Today's (or latest available) modal price at every Sagar Division mandi for a commodity.
 // Returns { rows: [{market, modal_price, min_price, max_price, arrivals_tonnes}], date }.
 export async function fetchMandiForCrop(commodityEn) {
-  const { data, error } = await supabase
+  const { data, error } = await withLocalFlag((col) => supabase
     .from('mandi_prices')
-    .select('market,district,modal_price,min_price,max_price,arrivals_tonnes,price_date,is_sagar_district')
+    .select(`market,district,modal_price,min_price,max_price,arrivals_tonnes,price_date,is_local:${col}`)
     .eq('commodity_en', commodityEn)
     .order('price_date', { ascending: false })
-    .limit(300)
+    .limit(300))
   if (error || !data || !data.length) return { rows: [], date: null }
-  const sagar = data.filter((r) => r.is_sagar_district)
-  const pool = sagar.length ? sagar : data
+  const local = data.filter((r) => r.is_local)
+  const pool = local.length ? local : data
   const date = pool[0].price_date
   const rows = pool.filter((r) => r.price_date === date && r.modal_price != null)
   // de-dup by market (keep first)
@@ -195,14 +209,14 @@ export async function fetchMandiForMarket(commodityEn, market) {
   return data[0]
 }
 
-// /msp landing snapshot: latest modal price per commodity (prefer Sagar on the
-// latest date). Returns a map keyed by commodity_en → {modal_price, price_date, market}.
+// /msp landing snapshot: latest modal price per commodity (prefer a Sagar Division
+// mandi on the latest date). Returns a map keyed by commodity_en → {modal_price, price_date, market}.
 export async function fetchMandiSnapshot() {
-  const { data, error } = await supabase
+  const { data, error } = await withLocalFlag((col) => supabase
     .from('mandi_prices')
-    .select('commodity_en,modal_price,price_date,market,is_sagar_district')
+    .select(`commodity_en,modal_price,price_date,market,is_local:${col}`)
     .order('price_date', { ascending: false })
-    .limit(3000)
+    .limit(3000))
   if (error || !data) return {}
   const by = {}
   for (const r of data) {
@@ -210,7 +224,7 @@ export async function fetchMandiSnapshot() {
     const c = by[r.commodity_en]
     if (!c) { by[r.commodity_en] = r; continue }
     if (r.price_date > c.price_date) by[r.commodity_en] = r
-    else if (r.price_date === c.price_date && r.is_sagar_district && !c.is_sagar_district) by[r.commodity_en] = r
+    else if (r.price_date === c.price_date && r.is_local && !c.is_local) by[r.commodity_en] = r
   }
   return by
 }

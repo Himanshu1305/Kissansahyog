@@ -138,3 +138,36 @@ Still open for the lawyer:
   names USD Vision AI LLP any more; the company appears only in the footer credit.
 - The Privacy page still carries the note "this is an initial draft. Legal review is pending
   before public launch."
+
+## New Privacy section for review: "Your location" (Batch 7L-1 Stage B, 13 October 2026)
+
+A new paragraph, "Your location" / "आपकी लोकेशन", was added to the public `/privacy` page
+(`src/lib/i18n/legal.js`, `privacyPolicy`). The Privacy page had never mentioned device
+location. No version number was changed. The paragraph was written from the code, and says:
+
+- Sharing location is optional; a village or town can be typed or picked instead.
+- It is used only for: offers near you, mandi prices, weather, and distances to melas, cold
+  storages and search results.
+- It is saved in the browser on the device (`localStorage`), not in the account or profile. A
+  logged-in user with no saved place gets the village location already in their profile (read
+  only).
+- The database is asked for offers in the area around the visitor (a bounding box in the query).
+- For weather, the position is sent to our weather tables and to Open-Meteo.
+- BigDataCloud may receive the position (to name it); OpenStreetMap Nominatim receives a typed
+  place name, only when the visitor asks for a map look-up.
+- Change with the "Change" link; remove by clearing the site's data in the browser.
+
+Please check:
+
+- **Weather tables hold the exact position, not a rounded one.** `weather_grid_requests` and
+  `weather_cache_v2` are keyed by a ~10 km grid cell, but the latitude/longitude columns hold
+  the coordinates the visitor's browser sent, and both tables are readable by anyone. The row
+  is not linked to a name, number, account or device, and the next visitor in the same cell
+  overwrites it. The public text says "kept against a map square of about 10 km". Decide
+  whether this needs stronger wording, or whether the code should send the cell centre instead.
+- There is no "clear my location" button on the site; removal is by clearing browser data.
+- Whether naming the three outside services (Open-Meteo, BigDataCloud, OpenStreetMap) is enough
+  disclosure under the DPDP Rules, 2025, and whether location needs its own consent record.
+- The first Privacy paragraph still lists "pincode" as collected. Pincode is now collected only
+  on registration, when posting a listing, and in the profile; not for the visitor's location.
+- "How it is used" still says only "matches within 30km"; the new paragraph covers the rest.

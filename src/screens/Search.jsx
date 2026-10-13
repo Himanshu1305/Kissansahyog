@@ -5,7 +5,7 @@ import { PageShell, Seo } from '../components/layout'
 import { searchAll, logSearchMiss, POPULAR_SEARCHES } from '../lib/search/searchApi'
 import VoiceSearchButton from '../components/VoiceSearchButton'
 import { CATEGORY_META } from '../lib/listings/catalog'
-import { initialLocation } from '../lib/location/locationStore'
+import { useUserLocation } from '../lib/location/LocationProvider'
 import { haversineKm } from '../lib/distance'
 
 // Phase 10 — site-wide search results (route /search, noindex). Reads ?q=, runs
@@ -25,13 +25,8 @@ export default function Search() {
   const [result, setResult] = useState({ groups: {}, total: 0 })
   const [loading, setLoading] = useState(false)
 
-  // Saved location for listing distances (guarded — may have no coords).
-  const [coords] = useState(() => {
-    try {
-      const loc = initialLocation()
-      return loc?.rawCoords || null
-    } catch { return null }
-  })
+  // Listing distances are measured from the shared location (none set → no distance shown).
+  const { center: coords } = useUserLocation()
 
   useEffect(() => { setInput(q) }, [q])
 

@@ -10,16 +10,16 @@ export const about = {
   seo: {
     title: { hi: 'हमारे बारे में — किसान सहयोग', en: 'About Us — Kissan Sahyog' },
     description: {
-      hi: 'किसान सहयोग क्या है, क्यों बना, किसान यहाँ क्या कर सकते हैं, सागर (मध्य प्रदेश) से शुरुआत और हमसे संपर्क कैसे करें।',
-      en: 'What Kissan Sahyog is, why it exists, what a farmer can do here, our start in Sagar, Madhya Pradesh, and how to contact us.',
+      hi: 'किसान सहयोग क्या है, क्यों बना, किसान यहाँ क्या कर सकते हैं, सागर संभाग से शुरुआत और हमसे संपर्क कैसे करें।',
+      en: 'What Kissan Sahyog is, why it exists, what a farmer can do here, our start in Sagar Division (Sagar Sambhag), and how to contact us.',
     },
   },
   h1: { hi: 'हमारे बारे में', en: 'About Us' },
   // The definitional sentence: the first sentence of Terms clause 1 (Batch 7J). Also used
   // by the sitewide JSON-LD and public/llms.txt.
   lead: {
-    hi: 'किसान सहयोग (kissansahyog.com) सागर, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।',
-    en: 'Kissan Sahyog (kissansahyog.com) is a farm marketplace and information website for Sagar, Madhya Pradesh, where farmers, labourers, machine owners and local suppliers meet in one place.',
+    hi: 'किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।',
+    en: 'Kissan Sahyog (kissansahyog.com) is a farm marketplace and information website for Sagar Division (Sagar Sambhag), Madhya Pradesh, where farmers, labourers, machine owners and local suppliers meet in one place.',
   },
 
   what: {
@@ -27,8 +27,8 @@ export const about = {
     title: { hi: 'आपके गाँव का खेती-बाज़ार, अब ऑनलाइन', en: 'Your village’s farm bazaar, now online' },
     paras: [
       {
-        hi: 'बुवाई के लिए ट्रैक्टर चाहिए? कटाई के लिए मज़दूर? किराये पर ज़मीन, या अपनी उपज के लिए खरीदार? किसान सहयोग सागर, मध्य प्रदेश के लिए खेती का बाज़ार है: अपना सामान डालें, और अपने पास के किसानों और सप्लायर्स से ज़रूरत की चीज़ें खोजें। साथ में मंडी भाव, मौसम, सरकारी योजनाएँ और खेती के सवालों के जवाब, सरल हिंदी और अंग्रेज़ी में। हमारी शुरुआत सागर से हुई है, और हम ज़िले-ज़िले आगे बढ़ रहे हैं, हो सकता है अगला नंबर आपके इलाके का हो। हम सिर्फ़ लोगों को जोड़ते हैं। सौदा, दाम और भुगतान आपके और दूसरे व्यक्ति के बीच रहते हैं, इसलिए आगे बढ़ने से पहले उनकी जानकारी खुद जाँच लें।',
-        en: 'Need a tractor for sowing? Labour for harvest? Land on rent, or a buyer for your produce? Kissan Sahyog is a farm marketplace for Sagar, Madhya Pradesh: post what you have, and find what you need from farmers and suppliers near you. You also get mandi bhav, weather, government schemes and answers to farming questions, in simple Hindi and English. We are starting in Sagar and growing district by district, so your area could be next. We only bring people together. The deal, price and payment stay between you and the other person, so check their details before you go ahead.',
+        hi: 'बुवाई के लिए ट्रैक्टर चाहिए? कटाई के लिए मज़दूर? किराये पर ज़मीन, या अपनी उपज के लिए खरीदार? किसान सहयोग सागर संभाग के लिए खेती का बाज़ार है: अपना सामान डालें, और अपने पास के किसानों और सप्लायर्स से ज़रूरत की चीज़ें खोजें। साथ में मंडी भाव, मौसम, सरकारी योजनाएँ और खेती के सवालों के जवाब, सरल हिंदी और अंग्रेज़ी में। हमारी शुरुआत सागर संभाग से हो रही है, और हम यहीं से आगे बढ़ रहे हैं। हम सिर्फ़ लोगों को जोड़ते हैं। सौदा, दाम और भुगतान आपके और दूसरे व्यक्ति के बीच रहते हैं, इसलिए आगे बढ़ने से पहले उनकी जानकारी खुद जाँच लें।',
+        en: 'Need a tractor for sowing? Labour for harvest? Land on rent, or a buyer for your produce? Kissan Sahyog is a farm marketplace for Sagar Division: post what you have, and find what you need from farmers and suppliers near you. You also get mandi bhav, weather, government schemes and answers to farming questions, in simple Hindi and English. We are starting in Sagar Division and growing from here. We only bring people together. The deal, price and payment stay between you and the other person, so check their details before you go ahead.',
       },
     ],
   },
@@ -86,11 +86,11 @@ export const about = {
 
   sagar: {
     id: 'sagar-se-shuruaat',
-    title: { hi: 'सागर, मध्य प्रदेश से शुरुआत', en: 'Starting in Sagar, Madhya Pradesh' },
+    title: { hi: 'हमारा क्षेत्र: सागर संभाग', en: 'Our area: Sagar Division' },
     paras: [
       {
-        hi: 'किसान सहयोग की शुरुआत सागर ज़िले (मध्य प्रदेश) से हो रही है, और समय के साथ इसे दूसरे स्थानों तक बढ़ाया जा सकता है। इसलिए अभी यहाँ सबसे ज़्यादा जानकारी सागर और आस-पास के इलाके की मिलेगी।',
-        en: 'Kissan Sahyog is starting in Sagar district, Madhya Pradesh, and may expand to other places over time. So for now most of the information here is for Sagar and the nearby area.',
+        hi: 'किसान सहयोग की शुरुआत सागर संभाग (मध्य प्रदेश) से हो रही है, और समय के साथ इसे दूसरे स्थानों तक बढ़ाया जा सकता है। सागर संभाग में छह ज़िले आते हैं: सागर, दमोह, पन्ना, टीकमगढ़, छतरपुर और निवाड़ी। इसलिए अभी यहाँ सबसे ज़्यादा जानकारी सागर संभाग की मिलेगी।',
+        en: 'Kissan Sahyog is starting in Sagar Division, Madhya Pradesh, and may expand to other places over time. Sagar Division covers six districts: Sagar, Damoh, Panna, Tikamgarh, Chhatarpur and Niwari. So for now most of the information here is for Sagar Division.',
       },
     ],
   },
@@ -125,7 +125,14 @@ export const about = {
     alternate_name: 'किसान सहयोग',
     email: 'hello@kissansahyog.com',
     grievance_email: 'grievance@kissansahyog.com',
-    area_served: 'IN-MP',
+    // Batch 7L-1 — the service area is Sagar Division (Sagar Sambhag) and its six districts.
+    area_served: {
+      '@type': 'AdministrativeArea',
+      name: 'Sagar Division',
+      alternateName: ['Sagar Sambhag', 'सागर संभाग'],
+      containedInPlace: { '@type': 'State', name: 'Madhya Pradesh', identifier: 'IN-MP' },
+      containsPlace: ['Sagar', 'Damoh', 'Panna', 'Tikamgarh', 'Chhatarpur', 'Niwari'].map((d) => ({ '@type': 'AdministrativeArea', name: `${d} district` })),
+    },
     founder: { hi: 'श्री अभिनन्दन दीक्षित', en: 'Shri Abhinandan Dixit' },
   },
 }

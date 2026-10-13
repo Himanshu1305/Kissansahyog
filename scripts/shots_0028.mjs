@@ -1,15 +1,17 @@
 // Phase 4 (0028) screenshots. Preview must be on :4173.  node scripts/shots_0028.mjs
+// Batch 7L-1: rewritten for the shared location flow (no pincode, no out-of-area gate, no IP
+// guess, no ?debug=1 overlay). SHOTS_BASE / SHOTS_OUT override the server and the output folder.
+// Page visits here do not write visitor rows to the database (blockVisitorWrites).
 import { chromium } from '@playwright/test'
 import sharp from 'sharp'
 import { mkdirSync, readdirSync, rmSync, statSync } from 'node:fs'
+import { blockVisitorWrites } from '../e2e/support.js'
 
-const BASE = 'http://localhost:4173'
-const OUT = 'docs/review/shots-0028'
+const BASE = process.env.SHOTS_BASE || 'http://localhost:4173'
+const OUT = process.env.SHOTS_OUT || 'docs/review/shots-0028'
 mkdirSync(OUT, { recursive: true })
 for (const f of readdirSync(OUT)) rmSync(`${OUT}/${f}`)
 const HYD = { latitude: 17.4665837, longitude: 78.3116609 }
-const IP_INDORE = { city: 'Indore', region: 'MP', country: 'IN', latitude: 22.72, longitude: 75.86 }
-const waitPins = (p) => p.waitForResponse((r) => r.url().includes('/rest/v1/pincodes'), { timeout: 10000 }).catch(() => {})
 
 async function slice(page, name) {
   const buf = await page.screenshot({ fullPage: true })
@@ -27,29 +29,32 @@ async function run() {
     // 1) GPS granted → real place name (Hyderabad), not coordinates
     {
       const ctx = await browser.newContext({ viewport: { width: w, height: h }, permissions: ['geolocation'], geolocation: HYD })
+      await blockVisitorWrites(ctx)
       const p = await ctx.newPage()
-      await p.goto(`${BASE}/mausam`); await waitPins(p)
-      await p.getByTestId('gps-detect').click().catch(() => {})
-      await p.getByTestId('location-label').filter({ hasText: /हैदराबाद|Hyderabad/ }).waitFor({ timeout: 15000 }).catch(() => {})
+      await p.goto(`${BASE}/mausam`)
+      await p.getByTestId('location-banner').filter({ hasText: /हैदराबाद|Hyderabad/ }).waitFor({ timeout: 20000 })
       await p.waitForTimeout(600); await slice(p, `mausam-gps-name-${vp}`); await p.close(); await ctx.close()
     }
-    // 2) Pre-permission ordered prompt: GPS (precise) + IP city suggestion + manual pincode
+    // 2) Pre-permission card (shown before any browser prompt): Share my location / Not now
     {
       const ctx = await browser.newContext({ viewport: { width: w, height: h } })
-      await ctx.route('**/geo', (route) => route.fulfill({ contentType: 'application/json', body: JSON.stringify(IP_INDORE) }))
+      await blockVisitorWrites(ctx)
       const p = await ctx.newPage()
-      await p.goto(`${BASE}/mausam`); await waitPins(p)
-      await p.getByTestId('ip-suggest').waitFor({ timeout: 8000 }).catch(() => {})
+      await p.goto(`${BASE}/mausam`)
+      await p.getByTestId('location-prompt').waitFor({ timeout: 8000 })
       await p.waitForTimeout(400); await slice(p, `prompt-ordered-${vp}`); await p.close(); await ctx.close()
     }
-    // 3) ?debug=1 overlay showing raw coords AND the resolved place name
+    // 3) "Not now" → text box → district → town picker (replaces the removed ?debug=1 overlay shot)
     {
-      const ctx = await browser.newContext({ viewport: { width: w, height: h }, permissions: ['geolocation'], geolocation: HYD })
+      const ctx = await browser.newContext({ viewport: { width: w, height: h } })
+      await blockVisitorWrites(ctx)
       const p = await ctx.newPage()
-      await p.goto(`${BASE}/mausam?debug=1`); await waitPins(p)
-      await p.getByTestId('gps-detect').click().catch(() => {})
-      await p.getByTestId('geo-debug').waitFor({ timeout: 15000 }).catch(() => {})
-      await p.waitForTimeout(500); await slice(p, `debug-${vp}`); await p.close(); await ctx.close()
+      await p.goto(`${BASE}/mausam`)
+      await p.getByTestId('location-not-now').click()
+      await p.getByTestId('location-open-picker').click()
+      await p.getByTestId('location-district-Sagar').click()
+      await p.getByTestId('location-towns').waitFor({ timeout: 8000 })
+      await p.waitForTimeout(400); await slice(p, `picker-${vp}`); await p.close(); await ctx.close()
     }
   }
   await browser.close()

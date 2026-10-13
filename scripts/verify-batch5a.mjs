@@ -78,7 +78,10 @@ for (const slug of ['building-materials', 'vegetable-equipment']) {
 
 const numbers = readdirSync(join(root, 'supabase/migrations')).filter((f) => /^\d{4}_.*\.sql$/.test(f)).map((f) => Number(f.slice(0, 4))).sort((a, b) => a - b)
 const contiguous = numbers.every((n, i) => i === 0 || n === numbers[i - 1] + 1)
-check('migration: 0053 exists and numbering is contiguous', migration.length > 0 && numbers.at(-1) === 53 && contiguous)
+// The newest migration is whatever is highest on disk (0053 when this batch shipped); later
+// batches add files, so only require 0053 to exist and the numbering to have no gaps.
+const newest = numbers.at(-1)
+check(`migration: 0053 exists and numbering is contiguous up to the newest (${String(newest).padStart(4, '0')})`, migration.length > 0 && newest >= 53 && contiguous)
 check('migration: guarded CHECK widening only', /do \$\$[\s\S]*pg_constraint[\s\S]*drop constraint listings_category_check[\s\S]*end \$\$;/i.test(migration))
 check('migration: widened CHECK is a strict superset', migration.includes("'jugaad', 'building_materials'") && migration.includes("'land', 'equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'warehouse', 'transport', 'greenhouse', 'jugaad', 'building_materials'"))
 check('migration: create_listing admits category and 100 km opt-in', migration.includes("'building_materials') then") && migration.includes("'agri_inputs', 'building_materials', 'warehouse'"))

@@ -5,8 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { PageShell } from '../components/layout'
 import { Notice, Spinner, Select } from '../components/ui'
 import { PageExplainer, LocationControl, ShareWhatsApp } from '../components/pages/shared'
-import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
-import { fetchPincode } from '../lib/listings/listingsApi'
+import { useUserLocation } from '../lib/location/LocationProvider'
 import { fetchMelas, getMyMelaInterests, setMelaInterest, resolveActiveMela, MELA_TAGS } from '../lib/mela/melaApi'
 import { filterMelas, statesIn, melaDateLabel, isExpectedDate, melaDistanceKm, melaPlace } from '../lib/mela/melaFormat'
 import { indiaToday, melaStatus, sortMelasForDisplay } from '../lib/mela/melaStatus'
@@ -22,8 +21,8 @@ export default function KisanMela() {
   const { user, isLoggedIn } = useAuth()
   const navigate = useNavigate()
 
-  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
-  const [center, setCenter] = useState(DEFAULT_COORDS)
+  // Batch 7L-1 — distances are from the shared location; with none set no distance is shown.
+  const { center } = useUserLocation()
   const [melas, setMelas] = useState(null)
   const [error, setError] = useState(null)
   const [stateFilter, setStateFilter] = useState('')
@@ -62,20 +61,6 @@ export default function KisanMela() {
     if (isLoggedIn && user?.id) getMyMelaInterests(user.id).then((ids) => setInterested(new Set(ids))).catch(() => {})
   }, [isLoggedIn, user])
 
-  // Distance center: the viewer's real coords (nationwide) → matched-village pincode → default.
-  useEffect(() => {
-    let alive = true
-    ;(async () => {
-      if (loc?.rawCoords?.latitude != null) { if (alive) setCenter({ latitude: loc.rawCoords.latitude, longitude: loc.rawCoords.longitude }); return }
-      if (loc?.matchedVillage?.pincode) {
-        const p = await fetchPincode(loc.matchedVillage.pincode).catch(() => null)
-        if (alive && p?.latitude != null) { setCenter({ latitude: Number(p.latitude), longitude: Number(p.longitude) }); return }
-      }
-      if (alive) setCenter(DEFAULT_COORDS)
-    })()
-    return () => { alive = false }
-  }, [loc])
-
   const states = useMemo(() => statesIn(melas || []), [melas])
   const today = indiaToday()
   const shown = useMemo(() => {
@@ -101,7 +86,7 @@ export default function KisanMela() {
 
         <PageExplainer title={t('page_explainer_title')} lines={[t('mela_explain_1'), t('mela_explain_2'), t('mela_explain_3')]} />
 
-        <div className="my-3"><LocationControl value={loc} onChange={setLoc} showOutOfArea={false} /></div>
+        <div className="my-3"><LocationControl /></div>
 
         {/* Filters + submit CTA */}
         <div className="mb-4 flex flex-wrap items-end gap-2">

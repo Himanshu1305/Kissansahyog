@@ -1,14 +1,32 @@
 // scripts/refresh-data.mjs  (was refresh-mandi-prices.mjs)
-// Refreshes (a) mandi prices for Sagar/MP and (b) location-keyed weather into
+// Refreshes (a) mandi prices for Sagar Division/MP and (b) location-keyed weather into
 // weather_cache_v2 for the pilot cells + any cell requested in the last 30 days.
 // Open-Meteo needs no key. data.gov.in official API is used as a mandi fallback when
 // DATA_GOV_IN_API_KEY is set (limit=1000). Run: npm run refresh-prices
+//
+// Batch 7L-1 — the mandi filter covers the six districts of Sagar Division (Sagar, Damoh,
+// Panna, Tikamgarh, Chhatarpur, Niwari), not Sagar district alone. For each commodity every
+// division mandi that reports is written (one row per market) with in_sagar_division = true;
+// when no division mandi reports, the single best MP record is written as before (flag false).
+//
+//   node scripts/refresh-data.mjs --dry-run
+// reads the price sources and prints the rows it WOULD write. It opens no database connection,
+// needs no secret (the data.gov.in sample key is used when no real key is set) and skips weather.
 
 import { createClient } from '@supabase/supabase-js'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
+const DRY_RUN = process.argv.includes('--dry-run')
+// Lazy: a dry run never touches the database.
+let _supabase = null
+const db = () => (_supabase ||= createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY))
+const supabase = new Proxy({}, { get: (_, k) => db()[k] })
+
+// The six districts of Sagar Division, as the price feeds spell them (lower-case).
+const DIVISION_DISTRICTS = ['Sagar', 'Damoh', 'Panna', 'Tikamgarh', 'Chhatarpur', 'Niwari']
+const DIVISION_ALIASES = { sagar: 'sagar', saugor: 'sagar', damoh: 'damoh', panna: 'panna', tikamgarh: 'tikamgarh', chhatarpur: 'chhatarpur', chatarpur: 'chhatarpur', chattarpur: 'chhatarpur', niwari: 'niwari' }
+const divisionDistrict = (name) => DIVISION_ALIASES[String(name || '').trim().toLowerCase()] || null
 
 const DATA_GOV_DEMO_KEY = '579b464db66ec23bdd000001c1c5e196de4b4c16e60a17fd58b04bc'
 const DATA_GOV_KEY = process.env.DATA_GOV_IN_API_KEY || DATA_GOV_DEMO_KEY
@@ -56,13 +74,14 @@ function matchCommodity(name, api) {
 
 // This resource's filter field names/format have varied (lowercase vs capitalised,
 // plain vs .keyword). Rather than hard-code one, try candidate forms and use the
-// first that returns rows; then narrow to MP + Sagar client-side. Logs the winner.
+// first that returns rows; then narrow to MP + the six division districts client-side.
+// A form containing {D} is run once per division district and the results are merged.
 const RESOURCE_ID = '9ef84268-d588-465a-a308-a864a43d0070'
 const FILTER_FORMS = [
-  'filters[state]=Madhya Pradesh&filters[district]=Sagar',
-  'filters[state.keyword]=Madhya Pradesh&filters[district.keyword]=Sagar',
-  'filters[State.keyword]=Madhya Pradesh&filters[District.keyword]=Sagar',
-  'filters[State]=Madhya Pradesh&filters[District]=Sagar',
+  'filters[state]=Madhya Pradesh&filters[district]={D}',
+  'filters[state.keyword]=Madhya Pradesh&filters[district.keyword]={D}',
+  'filters[State.keyword]=Madhya Pradesh&filters[District.keyword]={D}',
+  'filters[State]=Madhya Pradesh&filters[District]={D}',
   'filters[state]=Madhya Pradesh',
   '', // no filter — last resort, narrowed client-side
 ]
@@ -74,18 +93,24 @@ async function getOfficialPool() {
   if (_officialPool) return _officialPool
   const limit = HAS_REAL_KEY ? 1000 : 50
   let recs = [], winner = 'none'
+  const fetchForm = async (form) => {
+    const url = `https://api.data.gov.in/resource/${RESOURCE_ID}?api-key=${DATA_GOV_KEY}&format=json&limit=${limit}${form ? '&' + form : ''}`
+    const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    return (await res.json()).records || []
+  }
   for (const form of FILTER_FORMS) {
     try {
-      const url = `https://api.data.gov.in/resource/${RESOURCE_ID}?api-key=${DATA_GOV_KEY}&format=json&limit=${limit}${form ? '&' + form : ''}`
-      const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
-      if (!res.ok) { console.error(`official form [${form || 'none'}] HTTP ${res.status}`); continue }
-      const raw = (await res.json()).records || []
+      // A {D} form is asked once per division district; a plain form once.
+      const forms = form.includes('{D}') ? DIVISION_DISTRICTS.map((d) => form.replace('{D}', d)) : [form]
+      const raw = []
+      for (const f of forms) { try { raw.push(...await fetchForm(f)) } catch (e) { console.error(`official form [${f || 'none'}] ${e.message}`) } }
       // The resource's text filter also returns other "*Pradesh" states, so narrow
-      // to true MP client-side. Sagar-district rows are often absent from the daily
-      // feed, so the pool is MP-wide; per-commodity Sagar preference happens later.
+      // to true MP client-side. Division rows are often absent from the daily feed,
+      // so the last forms are MP-wide; per-commodity division preference happens later.
       const mpAny = raw.filter((r) => stateOf(r).includes('madhya'))
-      const sagar = mpAny.filter((r) => districtOf(r).includes('sagar'))
-      console.log(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} sagar=${sagar.length}`)
+      const division = mpAny.filter((r) => divisionDistrict(districtOf(r)))
+      console.log(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} division=${division.length}`)
       if (mpAny.length) { recs = mpAny; winner = form || 'no-filter'; break }
     } catch (e) { console.error(`official form [${form || 'none'}] failed: ${e.message}`) }
   }
@@ -97,14 +122,35 @@ async function fetchFromOfficial(commodity) {
   const pool = await getOfficialPool()
   return pool.filter((r) => matchCommodity(r.commodity || r.Commodity, commodity))
 }
-function pickBestRecord(records) {
-  const sagar = records.filter((r) => (r.district || r.District || '').toLowerCase() === 'sagar')
-  const pool = sagar.length ? sagar : records
-  for (const m of MARKET_PRIORITY) {
-    const hit = pool.find((r) => (r.market || r.Market || '').toLowerCase() === m.toLowerCase())
-    if (hit) return { record: hit, isSagar: sagar.length > 0 }
+// Which records to write for one commodity:
+//   - every Sagar Division mandi that reports it (one per market) → in_sagar_division = true;
+//   - none in the division → the single best MP record, as before (flags false).
+function pickRecords(records) {
+  const division = records.filter((r) => divisionDistrict(r.district || r.District))
+  if (division.length) {
+    const seen = new Set()
+    return division
+      .filter((r) => { const m = (r.market || r.Market || '').toLowerCase(); return m && !seen.has(m) && seen.add(m) })
+      .map((r) => ({ record: r, inDivision: true, isSagar: divisionDistrict(r.district || r.District) === 'sagar' }))
   }
-  return pool.length ? { record: pool[0], isSagar: sagar.length > 0 } : null
+  for (const m of MARKET_PRIORITY) {
+    const hit = records.find((r) => (r.market || r.Market || '').toLowerCase() === m.toLowerCase())
+    if (hit) return [{ record: hit, inDivision: false, isSagar: false }]
+  }
+  return records.length ? [{ record: records[0], inDivision: false, isSagar: false }] : []
+}
+// Write rows; if the database does not have in_sagar_division yet (migration 0058 not
+// applied) write the same rows without that column instead of failing the whole refresh.
+let _hasDivisionCol = true
+async function upsertPrices(rows) {
+  const strip = (r) => { const { in_sagar_division: _drop, ...rest } = r; return rest }
+  let { error } = await supabase.from('mandi_prices').upsert(_hasDivisionCol ? rows : rows.map(strip), { onConflict: 'commodity_en,market,price_date' })
+  if (error && _hasDivisionCol && /in_sagar_division/.test(error.message || '')) {
+    console.error('mandi_prices.in_sagar_division is missing — apply migration 0058. Writing without the flag for now.')
+    _hasDivisionCol = false
+    ;({ error } = await supabase.from('mandi_prices').upsert(rows.map(strip), { onConflict: 'commodity_en,market,price_date' }))
+  }
+  return error
 }
 function normalizeRecord(raw) {
   return {
@@ -122,11 +168,16 @@ async function refreshMandi() {
     let records = [], source = 'wrapper'
     try { records = await fetchFromWrapper(api); if (!records.length) throw new Error('empty') }
     catch { source = 'official'; try { records = await fetchFromOfficial(api) } catch (e) { console.error(`both failed ${api}: ${e.message}`); fail++; continue } }
-    const best = pickBestRecord(records); if (!best) { console.log(`✗ ${hi} (${api}) — no records via ${source}`); fail++; continue }
-    const n = normalizeRecord(best.record); if (!n.modal_price) { console.log(`✗ ${hi} (${api}) — no valid modal price`); fail++; continue }
-    const row = { commodity_en: api, commodity_hi: hi, market: n.market, district: n.district, state: 'Madhya Pradesh', min_price: n.min_price, max_price: n.max_price, modal_price: n.modal_price, arrivals_tonnes: n.arrivals, price_date: today, is_sagar_district: best.isSagar, fetched_at: new Date().toISOString() }
-    const { error } = await supabase.from('mandi_prices').upsert(row, { onConflict: 'commodity_en,market,price_date' })
-    if (error) { console.error(`upsert fail ${api}: ${error.message}`); fail++ } else { console.log(`✓ ${hi} ₹${n.modal_price} ${n.market} [${source}]`); ok++ }
+    const picks = pickRecords(records); if (!picks.length) { console.log(`✗ ${hi} (${api}) — no records via ${source}`); fail++; continue }
+    const rows = []
+    for (const p of picks) {
+      const n = normalizeRecord(p.record); if (!n.modal_price) continue
+      rows.push({ commodity_en: api, commodity_hi: hi, market: n.market, district: n.district, state: 'Madhya Pradesh', min_price: n.min_price, max_price: n.max_price, modal_price: n.modal_price, arrivals_tonnes: n.arrivals, price_date: today, is_sagar_district: p.isSagar, in_sagar_division: p.inDivision, fetched_at: new Date().toISOString() })
+    }
+    if (!rows.length) { console.log(`✗ ${hi} (${api}) — no valid modal price`); fail++; continue }
+    if (DRY_RUN) { for (const r of rows) console.log(`[dry-run] ${hi} ₹${r.modal_price} ${r.market} (${r.district}) division=${r.in_sagar_division} [${source}]`); ok++; continue }
+    const error = await upsertPrices(rows)
+    if (error) { console.error(`upsert fail ${api}: ${error.message}`); fail++ } else { console.log(`✓ ${hi} ${rows.length} mandi(s): ${rows.map((r) => `${r.market} ₹${r.modal_price}`).join(', ')} [${source}]`); ok++ }
   }
   console.log(`mandi: ${ok} ok, ${fail} fail`)
 }
@@ -223,6 +274,7 @@ async function refreshWeather() {
 
 async function main() {
   try { await refreshMandi() } catch (e) { console.error('mandi refresh failed:', e.message) }
+  if (DRY_RUN) { console.log('dry run: nothing written, weather skipped'); return }
   try { await refreshWeather() } catch (e) { console.error('weather refresh failed:', e.message) }
 }
 main().catch((e) => { console.error(e); process.exit(0) })

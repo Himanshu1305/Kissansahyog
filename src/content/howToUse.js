@@ -176,7 +176,7 @@ export const howToUse = {
     },
     steps: [
       { hi: '"खोजें" खोलें: फ़ोन में नीचे की पट्टी में, या ऊपर "बाज़ार" मेन्यू से कोई श्रेणी चुनें।', en: 'Open “Browse”: in the bottom bar on a phone, or choose a category from the “Marketplace” menu at the top.' },
-      { hi: 'ऊपर की पट्टी से श्रेणी चुनें और अपनी जगह बताएँ: लोकेशन, पिनकोड या गाँव से।', en: 'Pick a category from the row at the top and set your place: by location, pincode or village.' },
+      { hi: 'ऊपर की पट्टी से श्रेणी चुनें और अपनी जगह बताएँ: लोकेशन साझा करके, या अपना गाँव या कस्बा लिखकर।', en: 'Pick a category from the row at the top and set your place: share your location, or type your village or town.' },
       { hi: 'छाँटें: "सभी", देने वाली या चाहिए वाली लिस्टिंग; और "नज़दीकी पहले" या "नई पहले"। मशीन की श्रेणी में काम के हिसाब से भी छाँट सकते हैं।', en: 'Filter: “All”, offers or requirements; and “Nearest first” or “Newest first”. In the machines category you can also filter by type of work.' },
       { hi: 'पहले 30 किमी के अंदर की लिस्टिंग दिखती है। वहाँ कुछ न हो तो 30–50 किमी दूर की लिस्टिंग अलग से दिखती है।', en: 'Listings within 30 km are shown first. If there are none, listings 30–50 km away are shown separately.' },
       { hi: 'किसी लिस्टिंग को दबाकर खोलें: पूरी जानकारी, फोटो और "Google Maps में खोलें" का बटन मिलेगा।', en: 'Tap a listing to open it: you get the full details, photos and an “Open in Google Maps” button.' },
@@ -237,7 +237,7 @@ export const howToUse = {
         to: '/cold-storage', icon: 'snow',
         title: { hi: 'कोल्ड स्टोरेज', en: 'Cold storage' },
         where: { hi: '"बाज़ार" मेन्यू में "कोल्ड स्टोरेज"।', en: '“Cold storage” in the “Marketplace” menu.' },
-        see: { hi: 'अपना शहर, गाँव या पिनकोड लिखने पर सबसे पास के कोल्ड स्टोरेज पहले; ज़िला, फसल और प्रकार से छाँटना; और हर एक पर रास्ते का बटन, और जहाँ नंबर दिया है वहाँ कॉल और WhatsApp।', en: 'Type your city, village or pincode to see the nearest cold storages first; filter by district, crop and type; each one has a directions button, and Call and WhatsApp where a number is listed.' },
+        see: { hi: 'अपनी लोकेशन साझा करने या अपना गाँव या कस्बा लिखने पर सबसे पास के कोल्ड स्टोरेज पहले; ज़िला, फसल और प्रकार से छाँटना; और हर एक पर रास्ते का बटन, और जहाँ नंबर दिया है वहाँ कॉल और WhatsApp।', en: 'Share your location or type your village or town to see the nearest cold storages first; filter by district, crop and type; each one has a directions button, and Call and WhatsApp where a number is listed.' },
       },
       {
         to: '/kisan-mela', icon: 'calendar',

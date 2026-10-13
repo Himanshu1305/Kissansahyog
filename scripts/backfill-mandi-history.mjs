@@ -49,6 +49,8 @@ function matchCommodity(name, api) {
 const num = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? n : null }
 const parseDate = (s) => { const m = String(s || '').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m ? `${m[3]}-${m[2]}-${m[1]}` : null }
 const stateOf = (r) => (r.state || r.State || '').toLowerCase()
+// Batch 7L-1 — the six districts of Sagar Division (in_sagar_division, migration 0058).
+const DIVISION = new Set(['sagar', 'saugor', 'damoh', 'panna', 'tikamgarh', 'chhatarpur', 'chatarpur', 'chattarpur', 'niwari'])
 
 // Fetch all MP rows for the current snapshot (lowercase filter; narrow client-side).
 async function fetchMpPool() {
@@ -89,13 +91,17 @@ async function main() {
         district, state: 'Madhya Pradesh',
         min_price: num(r.min_price || r.Min_Price), max_price: num(r.max_price || r.Max_Price),
         modal_price: modal, arrivals_tonnes: num(r.arrivals || r.Arrivals), price_date: date,
-        is_sagar_district: district.toLowerCase() === 'sagar', fetched_at: new Date().toISOString(),
+        is_sagar_district: district.trim().toLowerCase() === 'sagar', in_sagar_division: DIVISION.has(district.trim().toLowerCase()), fetched_at: new Date().toISOString(),
       })
     }
     let written = 0
     for (let i = 0; i < rows.length; i += 500) {
       const chunk = rows.slice(i, i + 500)
-      const { error } = await supabase.from('mandi_prices').upsert(chunk, { onConflict: 'commodity_en,market,price_date' })
+      let { error } = await supabase.from('mandi_prices').upsert(chunk, { onConflict: 'commodity_en,market,price_date' })
+      // Column not there yet (migration 0058 not applied) → write the same rows without it.
+      if (error && /in_sagar_division/.test(error.message || '')) {
+        ;({ error } = await supabase.from('mandi_prices').upsert(chunk.map(({ in_sagar_division: _drop, ...rest }) => rest), { onConflict: 'commodity_en,market,price_date' }))
+      }
       if (error) { console.error(`upsert ${c.api}: ${error.message}`); break }
       written += chunk.length
     }

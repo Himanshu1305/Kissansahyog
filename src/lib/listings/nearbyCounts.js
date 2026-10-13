@@ -1,45 +1,39 @@
-// Phase 3c — live per-category counts of active listings near a pincode, via the
-// nearby_counts(p_pincode, p_km) RPC (migration 0022). Returns a map keyed by the
-// six homepage categories so callers can render every chip (0 included, never
-// hidden). Degrades to all-zero on any error.
+// Live per-category counts of active listings near a POINT (Batch 7L-1: the shared location
+// object, not a pincode). Counted in the browser from a bounding-box read of the public
+// listings table + an exact Haversine pass — the same rule the old nearby_counts RPC used
+// (active, not expired, within `km`). Returns a map keyed by the homepage categories so every
+// chip renders (0 included). Degrades to all-zero on any error.
 import { supabase } from '../supabaseClient'
+import { boundingBox, haversineKm } from '../distance'
 
-export const DEFAULT_PINCODE = '470117' // Khurai, Sagar (MP) — pilot default.
-
-// The six chips, in display order, mapped to the RPC's category values.
+// The chips, in display order.
 export const NEARBY_CATEGORIES = ['equipment', 'labor', 'bhusa', 'agri_inputs', 'building_materials', 'drone_didi', 'warehouse', 'land']
 
-export async function fetchNearbyCounts(pincode = DEFAULT_PINCODE, km = 30) {
+// center = { latitude, longitude } (see toCenter() in lib/location/userLocation.js).
+export async function fetchNearbyCounts(center, km = 30) {
   const zero = Object.fromEntries(NEARBY_CATEGORIES.map((c) => [c, 0]))
-  // A missing/invalid pincode (e.g. an out-of-service-area user with matchedVillage=null)
-  // returns honest zeros — NOT a silent fall back to the Khurai default.
-  const pin = String(pincode || '')
-  if (!/^\d{6}$/.test(pin)) return zero
+  // No location → honest zeros. There is no default place to fall back to.
+  if (!center || center.latitude == null || center.longitude == null) return zero
   try {
-    const { data, error } = await supabase.rpc('nearby_counts', { p_pincode: pin, p_km: km })
+    const box = boundingBox(center.latitude, center.longitude, km)
+    const { data, error } = await supabase
+      .from('listings')
+      .select('category,latitude,longitude')
+      .eq('status', 'active')
+      .eq('is_available', true)
+      .gt('expires_at', new Date().toISOString())
+      .in('category', NEARBY_CATEGORIES)
+      .gte('latitude', box.minLat).lte('latitude', box.maxLat)
+      .gte('longitude', box.minLon).lte('longitude', box.maxLon)
+      .limit(2000)
     if (error) return zero
     const out = { ...zero }
-    for (const row of data || []) {
-      if (row?.category in out) out[row.category] = Number(row.count) || 0
+    for (const r of data || []) {
+      if (r.latitude == null || r.longitude == null || !(r.category in out)) continue
+      if (haversineKm(center.latitude, center.longitude, Number(r.latitude), Number(r.longitude)) <= km) out[r.category] += 1
     }
     return out
   } catch {
     return zero
   }
-}
-
-// Resolve the active pincode: explicit profile pincode → localStorage → default.
-export function resolvePincode(profilePincode) {
-  if (profilePincode && /^\d{6}$/.test(String(profilePincode))) return String(profilePincode)
-  try {
-    const saved = localStorage.getItem('ks_pincode')
-    if (saved && /^\d{6}$/.test(saved)) return saved
-  } catch { /* ignore */ }
-  return DEFAULT_PINCODE
-}
-
-export function savePincode(pincode) {
-  if (!/^\d{6}$/.test(String(pincode))) return false
-  try { localStorage.setItem('ks_pincode', String(pincode)) } catch { /* ignore */ }
-  return true
 }

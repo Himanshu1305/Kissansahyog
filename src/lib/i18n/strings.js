@@ -346,10 +346,8 @@ export const strings = {
   weather_title: { hi: 'मौसम', en: 'Weather' },
   weather_5day: { hi: '5 दिन का पूर्वानुमान', en: '5-day forecast' },
   weather_unavailable: { hi: 'मौसम जानकारी अभी उपलब्ध नहीं', en: 'Weather temporarily unavailable' },
-  weather_location: { hi: 'खुरई / सागर', en: 'Khurai / Sagar' },
   weather_humidity: { hi: 'नमी', en: 'Humidity' },
   weather_source: { hi: 'स्रोत: Open-Meteo (विश्वसनीय मौसम पूर्वानुमान सेवा)', en: 'Source: Open-Meteo (reliable weather forecast service)' },
-  rain_alert: { hi: 'अगले 48 घंटों में बारिश की संभावना — खुरई / सागर', en: 'Rain likely in next 48 hours — Khurai / Sagar' },
   // Rich rain alert (IMD-informed).
   rl_next: { hi: 'अगले', en: 'Next' },
   rl_days: { hi: 'दिन', en: 'days' },
@@ -443,7 +441,7 @@ export const strings = {
   car_cm_caption: { hi: 'मध्यप्रदेश के मुख्यमंत्री जी का किसान कल्याण के प्रति संकल्प', en: "Madhya Pradesh Chief Minister's commitment to farmer welfare" },
   car_drone_caption: { hi: 'ड्रोन दीदी — महिला किसान, आधुनिक तकनीक', en: 'Drone Didi — women farmers, modern technology' },
   car_drone_source: { hi: 'स्रोत: PIB, भारत सरकार', en: 'Source: PIB, Government of India' },
-  car_khurai_caption: { hi: 'सागर जिले के किसान — मध्यप्रदेश की शान', en: 'Farmers of Sagar district — pride of Madhya Pradesh' },
+  car_khurai_caption: { hi: "सागर संभाग के किसान — मध्यप्रदेश की शान", en: "Farmers of Sagar Division — pride of Madhya Pradesh" },
   car_equip_caption: { hi: 'उपकरण साझा करें — खर्च बचाएं, आय बढ़ाएं', en: 'Share equipment — save costs, increase income' },
 
   // --- public homepage: hero ---
@@ -496,8 +494,8 @@ export const strings = {
   vendor_note: { hi: "आपकी लिस्टिंग पर 'व्यापारी' का बैज लगेगा।", en: "Your listing will show a 'Vendor' badge." },
   signup_to_contact: { hi: 'संपर्क देखने के लिए जुड़ें', en: 'Sign up to see contact' },
   listings_empty: {
-    hi: 'अभी Sagar में लिस्टिंग जुड़ रही हैं — पहले बनें!',
-    en: 'Listings are being added in Sagar — be one of the first!',
+    hi: 'अभी सागर संभाग में लिस्टिंग जुड़ रही हैं — पहले बनें!',
+    en: 'Listings are being added in Sagar Division — be one of the first!',
   },
   add_listing_cta: { hi: 'लिस्टिंग जोड़ें', en: 'Add a listing' },
   ago_just_now: { hi: 'अभी', en: 'Just now' },
@@ -1163,7 +1161,7 @@ export const strings = {
   // --- Kisan Safalta (success stories) ---
   safalta_nav: { hi: 'किसान सफलता', en: 'Stories' },
   safalta_title: { hi: 'किसान सफलता — जब किसान जीतता है', en: 'Kisan Safalta — When the Farmer Wins' },
-  safalta_sub: { hi: 'सागर जिले के किसानों की असली कहानियां', en: 'Real stories of farmers from Sagar district' },
+  safalta_sub: { hi: "सागर संभाग के किसानों की असली कहानियां", en: "Real stories of farmers from Sagar Division" },
   safalta_empty: {
     hi: 'सफलता की कहानियां जल्द आ रही हैं। क्या आपके पास एक कहानी है? हमें बताएं: admin@kissansahyog.com',
     en: 'Success stories coming soon. Do you have a story? Tell us: admin@kissansahyog.com',
@@ -1564,7 +1562,7 @@ export const strings = {
   msp_below: { hi: 'MSP से नीचे', en: 'Below MSP' },
   msp_above_short: { hi: 'ऊपर', en: 'above' },
   msp_below_short: { hi: 'नीचे', en: 'below' },
-  msp_sagar: { hi: 'सागर', en: 'Sagar' },
+  msp_sagar: { hi: "सागर संभाग", en: "Sagar Division" },
 
   // consent + signup
   consent_sentence: { hi: 'मैं किसान सहयोग से WhatsApp पर मौसम और भाव के संदेश पाने के लिए सहमत हूँ। कभी भी STOP लिखकर बंद कर सकते हैं।', en: 'I agree to receive weather and price messages from Kissan Sahyog on WhatsApp. I can stop anytime by sending STOP.' },
@@ -1581,7 +1579,7 @@ export const strings = {
 
   // --- mausam ---
   mausam_h1_b: { hi: 'मौसम — आज और 7 दिन का पूर्वानुमान', en: 'weather — today & 7-day forecast' },
-  mausam_explain_1: { hi: 'यह पेज आपके पिनकोड के लिए अगले 48 घंटे और 16 दिन का मौसम दिखाता है।', en: 'This page shows the next 48 hours and 16 days of weather for your pincode.' },
+  mausam_explain_1: { hi: 'यह पेज आपकी जगह के लिए अगले 48 घंटे और 16 दिन का मौसम दिखाता है।', en: 'This page shows the next 48 hours and 16 days of weather for your place.' },
   mausam_explain_2: { hi: 'डेटा Open-Meteo मौसम मॉडल से आता है; IMD की आधिकारिक चेतावनी के लिए नीचे दिया लिंक देखें।', en: 'Data comes from the Open-Meteo weather model; for IMD official warnings use the link below.' },
   mausam_explain_3: { hi: 'उपयोग: सुबह देखें और छिड़काव, सिंचाई व कटाई का फैसला करें।', en: 'How to use: check in the morning and decide on spraying, irrigation and harvest.' },
   mausam_explain_4: { hi: 'यह IMD की आधिकारिक चेतावनी नहीं है। 7 दिन से आगे का अनुमान कम भरोसेमंद होता है।', en: 'This is not an official IMD warning. Forecasts beyond 7 days are less reliable.' },
@@ -1747,31 +1745,34 @@ export const strings = {
   err_wide_visibility_not_allowed: { hi: 'यह विकल्प केवल भूसा/पराली और बीज-खाद के लिए है।', en: 'This option is only for Bhoosa/Parali and Seeds & Inputs.' },
 
   // Phase 2 — unified LocationControl
-  loc_detect_q: { hi: 'अपनी जगह अपने आप पता करें?', en: 'Detect your location automatically?' },
-  loc_yes: { hi: 'हाँ', en: 'Yes' },
-  loc_enter_pincode: { hi: 'पिनकोड डालें', en: 'Enter pincode' },
   loc_detecting: { hi: 'जगह पता की जा रही है…', en: 'Detecting location…' },
-  loc_denied_hint: { hi: 'जगह की अनुमति नहीं मिली — नीचे पिनकोड डालें।', en: 'Location permission denied — enter a pincode below.' },
-  loc_unsupported_hint: { hi: 'यह फ़ोन अपने आप जगह नहीं बता सकता — पिनकोड डालें।', en: 'This device can’t auto-detect — enter a pincode.' },
-  loc_recent: { hi: 'हाल की जगहें:', en: 'Recent places:' },
   loc_current: { hi: 'अभी की जगह', en: 'Current location' },
-  loc_change: { hi: 'जगह बदलें', en: 'Change location' },
-  loc_use_pincode: { hi: 'पिनकोड से चुनें', en: 'Use a pincode' },
-  loc_detected_near: { hi: 'आपके नज़दीक', en: 'Near you' },
-  loc_no_data: { hi: 'इस जगह के लिए डेटा उपलब्ध नहीं', en: 'No data available for this location' },
-  loc_apply: { hi: 'लागू करें', en: 'Apply' },
   // 0026 Phase 1 — out-of-service-area (nearest seeded village > 100 km). Weather still
   // works for the exact location (0027 split); this notice is about village-anchored features.
-  loc_out_of_area: { hi: 'मौसम आपकी जगह का दिख रहा है। आस-पास की लिस्टिंग, गिनती और मंडी किसान सहयोग के सेवा क्षेत्र (सागर) से बाहर हैं', en: 'Weather is shown for your location. Nearby listings, counts and mandi data are outside Kissan Sahyog’s service area (Sagar)' },
-  loc_nearest_available: { hi: 'निकटतम उपलब्ध जगह', en: 'Nearest available place' },
-  loc_use_far_anyway: { hi: '{v} का स्थानीय डेटा फिर भी देखें', en: 'Use {v}’s local data anyway' },
+  // Batch 7L-1 — the one location flow (no pincode): pre-permission card → saved place →
+  // type a village → "Did you mean…?" → district/town picker.
+  loc_card_text: { hi: 'अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे कितनी दूर हैं यह जानने के लिए अपनी लोकेशन साझा करें। हम आपकी लोकेशन सिर्फ़ इसी काम के लिए इस्तेमाल करते हैं।', en: 'Share your location to see offers, mandi prices and weather near you, and how far melas, cold storages and search results are. We use your location only for this.' },
+  loc_share: { hi: 'मेरी लोकेशन साझा करें', en: 'Share my location' },
+  loc_not_now: { hi: 'अभी नहीं', en: 'Not now' },
+  loc_showing: { hi: '{place} के नतीजे दिख रहे हैं।', en: 'Showing results for {place}.' },
+  loc_change_short: { hi: 'बदलें', en: 'Change' },
+  loc_type_label: { hi: 'अपना गाँव या कस्बा लिखें', en: 'Type your village or town' },
+  loc_find: { hi: 'खोजें', en: 'Find' },
+  loc_did_you_mean: { hi: 'क्या आपका मतलब यह था…?', en: 'Did you mean…?' },
+  loc_none_of_these: { hi: 'इनमें से कोई नहीं — सूची से चुनें', en: 'None of these — choose from a list' },
+  loc_type_again: { hi: 'दोबारा लिखें', en: 'Type again' },
+  loc_lookup: { hi: '“{q}” को नक्शे पर खोजें', en: 'Look up “{q}” on the map' },
+  loc_lookup_use: { hi: '{place} चुनें', en: 'Use {place}' },
+  loc_no_match: { hi: '“{q}” नहीं मिला। नीचे से अपना ज़िला और कस्बा चुनें।', en: 'We could not find “{q}”. Choose your district and town below.' },
+  loc_pick_from_list: { hi: 'सूची से चुनें', en: 'Choose from a list' },
+  loc_pick_district: { hi: 'अपना ज़िला चुनें', en: 'Choose your district' },
+  loc_pick_town: { hi: '{district} ज़िले में अपना नज़दीकी कस्बा चुनें', en: 'Choose the nearest town in {district} district' },
+  loc_share_refused: { hi: 'लोकेशन साझा नहीं हुई।', en: 'Location was not shared.' },
+  loc_share_unavailable: { hi: 'इस फ़ोन से लोकेशन नहीं मिल पाई।', en: 'Could not get a location from this device.' },
+  loc_set_for_weather: { hi: 'मौसम देखने के लिए अपनी जगह बताएँ', en: 'Set your place to see the weather' },
+  listings_latest_title: { hi: 'ताज़ा लिस्टिंग', en: 'Latest listings' },
   loc_your_location: { hi: 'आपकी जगह', en: 'Your location' },
   // 0028 Phase 1/2/3 — reverse-geocoded name, IP-city suggestion, ordered choice copy
-  loc_near_approx: { hi: 'लगभग {v} के पास', en: 'Near {v}' },
-  loc_precise: { hi: 'सटीक', en: 'precise' },
-  loc_ip_maybe: { hi: 'आप शायद {city} के आसपास हैं', en: 'You’re probably near {city}' },
-  loc_ip_confirm: { hi: 'हाँ, यही सही है', en: 'Yes, that’s right' },
-  loc_or_pincode: { hi: 'या पिनकोड डालें:', en: 'Or enter a pincode:' },
   // 0027 Part A — village-name asset location on the listing form
   field_asset_village: { hi: 'जगह — गाँव/शहर का नाम', en: 'Location — village/town name' },
   village_ph: { hi: 'जैसे: खुरई, बंडा, रहली', en: 'e.g. Khurai, Banda, Rehli' },
@@ -1941,9 +1942,9 @@ export const strings = {
 
   // MSP page SEO (templated; {crop} is replaced at render — keeps render code free of literals).
   msp_seo_hub_title: { hi: 'मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य', en: "Mandi prices & MSP — today's rate vs support price" },
-  msp_seo_hub_desc: { hi: 'सागर व मध्य प्रदेश की मंडियों का आज का भाव, न्यूनतम समर्थन मूल्य (MSP), रुझान और कब बेचें की सलाह।', en: "Today's Sagar & MP mandi prices, Minimum Support Price (MSP), trends and when-to-sell advice." },
+  msp_seo_hub_desc: { hi: "सागर संभाग व मध्य प्रदेश की मंडियों का आज का भाव, न्यूनतम समर्थन मूल्य (MSP), रुझान और कब बेचें की सलाह।", en: "Today's mandi prices in Sagar Division (Sagar Sambhag) & MP, Minimum Support Price (MSP), trends and when-to-sell advice." },
   msp_seo_crop_title: { hi: '{crop} मंडी भाव व MSP — किसान सहयोग', en: '{crop} mandi price & MSP — Kissan Sahyog' },
-  msp_seo_crop_desc: { hi: '{crop} का आज का मंडी भाव, न्यूनतम समर्थन मूल्य (MSP) और रुझान — सागर व मध्य प्रदेश।', en: "{crop} today's mandi price, Minimum Support Price (MSP) and trend — Sagar & MP." },
+  msp_seo_crop_desc: { hi: "{crop} का आज का मंडी भाव, न्यूनतम समर्थन मूल्य (MSP) और रुझान — सागर संभाग व मध्य प्रदेश।", en: "{crop} today's mandi price, Minimum Support Price (MSP) and trend — Sagar Division (Sagar Sambhag) & MP." },
 
   // --- Phase 4: provider declarations (shown above the rules checkbox for offers) ---
   provider_decl_heading: { hi: 'विक्रेता घोषणा', en: 'Provider declaration' },
@@ -2164,9 +2165,6 @@ export const strings = {
   cs_all_districts_h: { hi: 'ज़िले के अनुसार देखें', en: 'Browse by district' },
 
   // --- Batch 2 item B: finder (distance search + rebuilt cards) ---
-  cs_search_ph: { hi: 'अपना शहर, गाँव या पिनकोड लिखें', en: 'Enter your city, village or pincode' },
-  cs_search_btn: { hi: 'खोजें', en: 'Search' },
-  cs_my_location: { hi: 'मेरी लोकेशन', en: 'My location' },
   cs_filter_crop: { hi: 'फसल', en: 'Crop' },
   cs_filter_all_crops: { hi: 'सभी फसल', en: 'All crops' },
   cs_crop_potato: { hi: 'आलू', en: 'Potato' },
@@ -2183,8 +2181,6 @@ export const strings = {
   cs_report_wrong: { hi: 'गलत जानकारी? बताएँ', en: 'Wrong info? Tell us' },
   cs_post_cta: { hi: 'कोल्ड स्टोरेज मालिक हैं? अपनी लिस्टिंग डालें', en: 'Own a cold storage? Add your listing' },
   cs_how_to_choose_h: { hi: 'कोल्ड स्टोरेज कैसे चुनें', en: 'How to choose a cold storage' },
-  cs_loc_not_found: { hi: 'यह जगह नहीं मिली — पिनकोड आज़माएँ या "मेरी लोकेशन" दबाएँ।', en: 'Could not find that place — try a pincode or tap "My location".' },
-  cs_geo_denied: { hi: 'लोकेशन नहीं मिली — अपना शहर या पिनकोड लिखें।', en: 'Location unavailable — type your city or pincode.' },
 
   // --- Phase 6: claim modal ---
   cs_claim_title: { hi: 'यह लिस्टिंग दावा करें', en: 'Claim this listing' },

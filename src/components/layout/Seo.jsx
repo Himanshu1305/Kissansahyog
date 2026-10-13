@@ -77,7 +77,7 @@ export function SiteJsonLd() {
     url: ORIGIN,
     logo: `${ORIGIN}/icons/icon-512.png`,
     email: 'hello@kissansahyog.com',
-    areaServed: 'IN-MP',
+    areaServed: about.jsonld.area_served,
   }
   const site = {
     '@context': 'https://schema.org',

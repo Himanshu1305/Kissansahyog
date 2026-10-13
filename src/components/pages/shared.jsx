@@ -4,11 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { WhatsAppIcon } from '../home/kit'
 import { faqQ, faqA, subscribeAlert } from '../../lib/pages/pagesApi'
-import {
-  fetchAllPincodes, nearestPincode, savePincode, getRecentLocations, addRecentLocation,
-  isGeoPromptDismissed, dismissGeoPrompt, geolocationSupported, SERVICE_AREA_KM, recentKey,
-  reverseGeocode, fetchIpCity,
-} from '../../lib/location/locationStore'
 // Pure staleness classifier (unit-testable, no JSX) — re-exported so Msp.jsx's existing
 // import site keeps working.
 import { priceStaleness } from '../../lib/mandi/staleness'
@@ -112,229 +107,9 @@ export function PageExplainer({ title, lines }) {
   )
 }
 
-// LocationControl (0027 split) — one shared control used on the homepage, /mausam, /msp
-// and /fasal-salah. It produces a split location so WEATHER works for any coordinate on
-// Earth while VILLAGE-ANCHORED features stay gated to the seeded MP pilot area:
-//   value: {
-//     rawCoords: { latitude, longitude } | null,          // weather — global, ungated
-//     matchedVillage: { pincode, village_town, distanceKm } | null,  // village features; null if >100km
-//     label, source,
-//   }
-//   onChange: (nextValue) => void
-export function LocationControl({ value, onChange, showOutOfArea = true }) {
-  const { t } = useLang()
-  const [pincodes, setPincodes] = useState([])
-  const [manualOpen, setManualOpen] = useState(false)
-  const [pinInput, setPinInput] = useState('')
-  const [detecting, setDetecting] = useState(false)
-  const [error, setError] = useState(null)
-  const [recent, setRecent] = useState([])
-  const [outOfArea, setOutOfArea] = useState(null) // { latitude, longitude, pincode, village_town, distanceKm } | null
-  const [debug, setDebug] = useState(null) // dev-only: raw lat/lng + accuracy + timestamp + resolved name — ?debug=1
-  const [ipSuggest, setIpSuggest] = useState(null) // Phase 2 — { city, latitude, longitude } | null (Cloudflare IP guess)
-  const geoOk = geolocationSupported()
-  const debugOn = typeof window !== 'undefined' && /(?:\?|&)debug=1(?:&|$)/.test(window.location.search)
-  const [showPrompt, setShowPrompt] = useState(!isGeoPromptDismissed())
-
-  useEffect(() => {
-    fetchAllPincodes().then(setPincodes).catch(() => {})
-    setRecent(getRecentLocations())
-    // Phase 2 — before the user has chosen, fetch a silent Cloudflare IP-based city as a
-    // soft, non-committal pre-fill (no permission prompt). Absent/edge → cleanly ignored.
-    if (!isGeoPromptDismissed()) {
-      fetchIpCity().then((g) => { if (g?.city) setIpSuggest(g) }).catch(() => {})
-    }
-  }, [])
-
-  function commit(loc) {
-    // Persist the pincode only for an in-area village match (village-anchored features).
-    if (/^\d{6}$/.test(String(loc.matchedVillage?.pincode || ''))) savePincode(loc.matchedVillage.pincode)
-    setRecent(addRecentLocation(loc))
-    onChange(loc)
-  }
-
-  function detect() {
-    setError(null); setDetecting(true); setOutOfArea(null); setIpSuggest(null)
-    navigator.geolocation.getCurrentPosition(
-      async (pos) => {
-        const { latitude, longitude, accuracy } = pos.coords
-        const near = nearestPincode(latitude, longitude, pincodes)
-        const inArea = !!near && near.distanceKm <= SERVICE_AREA_KM
-        // Resolve a DISPLAY name (never raw coordinates):
-        //  - in-area → matchedVillage's own name (1a-ii: keep one name per place across the app)
-        //  - far     → reverse-geocode the precise coords (works anywhere on Earth)
-        //  - geocode fails → nearest village + "लगभग … के पास" if < 50km, else a generic label
-        let placeName = inArea ? near.village_town : null
-        if (!inArea) {
-          const geo = await reverseGeocode(latitude, longitude)
-          placeName = geo
-            || (near && near.distanceKm < 50 ? t('loc_near_approx').replace('{v}', near.village_town) : t('loc_your_location'))
-        }
-        if (debugOn) {
-          // 1e/4a — surface the RAW fix (real-device verification) AND the resolved place name.
-          setDebug({
-            lat: latitude, lng: longitude, accuracy: Math.round(accuracy),
-            ts: new Date(pos.timestamp || Date.now()).toISOString(),
-            nearest: near ? `${near.village_town} (${Math.round(near.distanceKm)}km)` : 'none',
-            resolved: placeName,
-          })
-        }
-        setDetecting(false); setShowPrompt(false); dismissGeoPrompt()
-        // ALWAYS commit rawCoords — weather works anywhere on Earth. matchedVillage is set
-        // only when the nearest seeded village is within the service area; beyond that it is
-        // null and the informational out-of-area notice appears (weather still updates).
-        commit({
-          rawCoords: { latitude, longitude, placeName: inArea ? null : placeName },
-          matchedVillage: inArea ? { pincode: near.pincode, village_town: near.village_town, distanceKm: near.distanceKm } : null,
-          label: placeName,
-          source: inArea ? 'gps' : 'gps_far',
-        })
-        // Weather-only pages (/mausam, /fasal-salah) pass showOutOfArea=false: they have no
-        // village-anchored features, so a far location just shows its weather with no notice.
-        if (inArea || !showOutOfArea) { setOutOfArea(null); if (inArea) setManualOpen(false) }
-        else { setOutOfArea(near ? { latitude, longitude, ...near } : { latitude, longitude }); setManualOpen(true) }
-      },
-      () => {
-        setError(t('loc_denied_hint')); setDetecting(false); setShowPrompt(false)
-        setManualOpen(true); dismissGeoPrompt()
-      },
-      // Force a FRESH, high-accuracy fix (no stale OS/browser cache — Phase 1b).
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
-    )
-  }
-
-  function applyPincode(pin) {
-    const p = String(pin || '').trim()
-    if (!/^\d{6}$/.test(p)) { setError(t('err_invalid_pincode')); return }
-    const row = pincodes.find((r) => r.pincode === p)
-    // A manual pincode is a deliberate in-area choice: it sets BOTH rawCoords (from the
-    // pincode's coordinates, for weather) and matchedVillage (for village features).
-    commit({
-      rawCoords: row?.latitude != null ? { latitude: Number(row.latitude), longitude: Number(row.longitude), placeName: row?.village_town || null } : null,
-      matchedVillage: { pincode: p, village_town: row?.village_town || p, distanceKm: 0 },
-      label: row?.village_town || p,
-      source: 'pincode',
-    })
-    setPinInput(''); setManualOpen(false); setError(null); setOutOfArea(null); setIpSuggest(null)
-    setShowPrompt(false); dismissGeoPrompt() // a pincode is a deliberate choice → close the first-visit prompt
-  }
-
-  // Phase 2c — the user accepts the Cloudflare IP-based city guess (approximate). It sets
-  // rawCoords (from the IP lat/lng, for weather) + a matchedVillage if that guess happens to
-  // fall inside the pilot service area, and uses the IP city as the display name.
-  function confirmIp() {
-    const s = ipSuggest
-    if (!s?.city) return
-    const lat = s.latitude, lng = s.longitude
-    const near = (lat != null && lng != null) ? nearestPincode(lat, lng, pincodes) : null
-    const inArea = !!near && near.distanceKm <= SERVICE_AREA_KM
-    commit({
-      rawCoords: (lat != null && lng != null) ? { latitude: Number(lat), longitude: Number(lng), placeName: s.city } : null,
-      matchedVillage: inArea ? { pincode: near.pincode, village_town: near.village_town, distanceKm: near.distanceKm } : null,
-      label: s.city,
-      source: 'ip',
-    })
-    setIpSuggest(null); setShowPrompt(false); setManualOpen(false); setOutOfArea(null); dismissGeoPrompt()
-  }
-
-  const chip = 'rounded-full px-3 py-1 text-[13px] font-semibold'
-  return (
-    <div data-testid="location-control" className="space-y-2">
-      {/* Auto-detect prompt — dismissible; not shown once answered/dismissed. Three ordered
-          choices: GPS (precise) → Cloudflare IP city (approximate, if resolved) → pincode. */}
-      {showPrompt && (
-        <div className="space-y-2 rounded-xl p-3" style={{ background: 'var(--ks-green-tint)', border: '1px solid var(--ks-green)' }}>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[15px] font-semibold" style={{ color: 'var(--ks-green-dark)' }}>📍 {t('loc_detect_q')} <span className="font-normal" style={{ color: 'var(--ks-ink-3)' }}>({t('loc_precise')})</span></span>
-            {geoOk && <button type="button" data-testid="gps-detect" onClick={detect} className={`${chip} text-white`} style={{ background: 'var(--ks-green)' }}>{t('loc_yes')}</button>}
-            <button type="button" aria-label="✕" onClick={() => { setShowPrompt(false); dismissGeoPrompt() }} className="ml-auto text-[16px]" style={{ color: 'var(--ks-ink-3)' }}>✕</button>
-          </div>
-          {ipSuggest?.city && (
-            <div className="flex flex-wrap items-center gap-2" data-testid="ip-suggest">
-              <span className="text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('loc_ip_maybe').replace('{city}', ipSuggest.city)}</span>
-              <button type="button" onClick={confirmIp} className={chip} style={{ background: '#fff', border: '1px solid var(--ks-green)', color: 'var(--ks-green-dark)' }}>{t('loc_ip_confirm')}</button>
-            </div>
-          )}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('loc_or_pincode')}</span>
-            <input
-              type="text" inputMode="numeric" maxLength={6} placeholder={t('loc_enter_pincode')}
-              value={pinInput} onChange={(e) => setPinInput(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              onKeyDown={(e) => { if (e.key === 'Enter') applyPincode(pinInput) }}
-              className="rounded-lg px-3 py-2 text-[16px]" style={{ border: '1px solid var(--ks-border-strong)', width: 130 }}
-              data-testid="pincode-input"
-            />
-            <button type="button" onClick={() => applyPincode(pinInput)} className={`${chip} text-white`} style={{ background: 'var(--ks-green)' }}>{t('loc_apply')}</button>
-          </div>
-        </div>
-      )}
-
-      {/* Current place + a "change" toggle that reveals the manual controls. */}
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <span data-testid="location-label" className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>📍 {value.label || t('pincode_label')}{value.matchedVillage?.pincode ? `: ${value.matchedVillage.pincode}` : ''}</span>
-        <button type="button" onClick={() => setManualOpen((o) => !o)} className="rounded-full px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>{t('loc_change')}</button>
-      </div>
-
-      {detecting && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('loc_detecting')}</p>}
-      {error && <p className="text-[14px]" style={{ color: 'var(--ks-orange-dark)' }}>{error}</p>}
-
-      {/* Out-of-service-area notice (Phase 1c): the nearest seeded village is > 100 km away.
-          Weather ALREADY works for the raw location (committed above); this notice is about
-          the VILLAGE-anchored features (listings/counts/mandi ranking) only, with an explicit
-          opt-in to use the nearest far village for those. */}
-      {showOutOfArea && outOfArea && (
-        <div data-testid="out-of-area" className="space-y-2 rounded-xl p-3" style={{ background: 'var(--ks-saffron-tint)', border: '1px solid var(--ks-orange)' }}>
-          <p className="text-[14px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>
-            {t('loc_out_of_area')}{outOfArea.village_town ? ` — ${t('loc_nearest_available')}: ${outOfArea.village_town} (~${Math.round(outOfArea.distanceKm)} ${t('km_short')})` : ''}
-          </p>
-          {outOfArea.village_town && (
-            <button
-              type="button"
-              onClick={() => commit({ rawCoords: { latitude: outOfArea.latitude, longitude: outOfArea.longitude }, matchedVillage: { pincode: outOfArea.pincode, village_town: outOfArea.village_town, distanceKm: outOfArea.distanceKm }, label: outOfArea.village_town, source: 'gps_far_optin' })}
-              className="rounded-lg px-3 py-2 text-[14px] font-bold text-white" style={{ background: 'var(--ks-orange)' }}
-            >
-              {t('loc_use_far_anyway').replace('{v}', outOfArea.village_town)}
-            </button>
-          )}
-        </div>
-      )}
-
-      {debugOn && debug && (
-        <pre data-testid="geo-debug" className="overflow-x-auto rounded-lg p-2 text-[11px]" style={{ background: '#111', color: '#9f9' }}>
-          {`raw lat,lng: ${debug.lat}, ${debug.lng}\naccuracy: ±${debug.accuracy} m\ntimestamp: ${debug.ts}\nnearest seeded village: ${debug.nearest}\nresolved place name: ${debug.resolved}`}
-        </pre>
-      )}
-
-      {/* Manual controls — always reachable, even after a GPS grant (the pincode also lives in
-          the first-visit prompt above; guard against rendering two inputs at once). */}
-      {manualOpen && !showPrompt && (
-        <div className="space-y-2 rounded-xl p-3" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)' }}>
-          <div className="flex flex-wrap items-center gap-2">
-            <input
-              type="text" inputMode="numeric" maxLength={6} placeholder={t('loc_enter_pincode')}
-              value={pinInput} onChange={(e) => setPinInput(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              onKeyDown={(e) => { if (e.key === 'Enter') applyPincode(pinInput) }}
-              className="rounded-lg px-3 py-2 text-[16px]" style={{ border: '1px solid var(--ks-border-strong)', width: 140 }}
-              data-testid="pincode-input"
-            />
-            <button type="button" onClick={() => applyPincode(pinInput)} className="rounded-lg px-3 py-2 text-[14px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>{t('loc_apply')}</button>
-            {geoOk && (
-              <button type="button" onClick={detect} className="rounded-lg px-3 py-2 text-[14px] font-bold" style={{ background: '#fff', border: '1px solid var(--ks-border-strong)', color: 'var(--ks-green)' }}>📍 {t('loc_current')}</button>
-            )}
-          </div>
-          {recent.length > 0 && (
-            <div className="flex flex-wrap items-center gap-1.5">
-              <span className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('loc_recent')}</span>
-              {recent.map((r) => (
-                <button key={recentKey(r)} type="button" onClick={() => { commit({ rawCoords: r.rawCoords || null, matchedVillage: r.matchedVillage || null, label: r.label, source: 'recent' }); setOutOfArea(null); setManualOpen(false) }} className={chip} style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>{r.label}</button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  )
-}
+// LocationControl (Batch 7L-1) lives in components/location and reads the shared location
+// from LocationProvider. Re-exported here so the pages that import it from this file keep working.
+export { default as LocationControl } from '../location/LocationControl'
 
 export function FaqAccordion({ faqs }) {
   const { t, lang } = useLang()
@@ -373,10 +148,9 @@ export function ShareWhatsApp({ text }) {
 
 // DailyUpdateSignup — capture only (writes alert_subscriptions; sends nothing).
 const CROP_CHIPS = ['gehun', 'soyabean', 'chana', 'masoor', 'sarson', 'dhan', 'makka', 'moong', 'urad', 'lahsun']
-export function DailyUpdateSignup({ sourcePage, pincode, heading }) {
+export function DailyUpdateSignup({ sourcePage, heading }) {
   const { t, lang } = useLang()
   const [phone, setPhone] = useState('')
-  const [pin, setPin] = useState(pincode || '')
   const [crops, setCrops] = useState([])
   const [consent, setConsent] = useState(false)
   const [err, setErr] = useState(null)
@@ -390,7 +164,7 @@ export function DailyUpdateSignup({ sourcePage, pincode, heading }) {
     if (!consent) { setErr(t('signup_need_consent')); return }
     setBusy(true)
     try {
-      await subscribeAlert({ phone, pincode: pin, crops, alertTypes: ['weather', 'price'], consentText: t('consent_sentence'), sourcePage })
+      await subscribeAlert({ phone, pincode: '', crops, alertTypes: ['weather', 'price'], consentText: t('consent_sentence'), sourcePage })
       setOk(true)
     } catch (e) { setErr(t(e?.message === 'invalid_phone' ? 'signup_bad_phone' : 'err_unknown')) } finally { setBusy(false) }
   }
@@ -405,10 +179,6 @@ export function DailyUpdateSignup({ sourcePage, pincode, heading }) {
         <label className="block">
           <span className="mb-1 block text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('signup_phone')}</span>
           <input inputMode="numeric" maxLength={10} value={phone} onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))} placeholder="9876543210" className="w-full rounded-lg border px-3 py-2 text-[16px]" style={{ borderColor: 'var(--ks-border-strong)' }} />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('pincode_label')}</span>
-          <input inputMode="numeric" maxLength={6} value={pin} onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))} className="w-full rounded-lg border px-3 py-2 text-[16px]" style={{ borderColor: 'var(--ks-border-strong)' }} />
         </label>
       </div>
       <div className="mt-3">

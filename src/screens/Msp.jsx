@@ -12,10 +12,9 @@ import { MONTHS_HI } from '../content/months'
 import { fetchMandiForCrop, fetchMandiHistory, fetchMandiMonthly, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
 import { marketDistanceKm } from '../content/mandiCoords'
 import { fetchMsp } from '../lib/msp/mspApi'
-import { fetchHomeFeed, fetchPincode } from '../lib/listings/listingsApi'
-import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
+import { fetchHomeFeed } from '../lib/listings/listingsApi'
+import { useUserLocation } from '../lib/location/LocationProvider'
 import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/pagesApi'
-import { useAuth } from '../lib/auth/AuthProvider'
 import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
 import Seo from '../components/layout/Seo'
 import { PageShell } from '../components/layout'
@@ -26,14 +25,13 @@ const firstNum = (s) => { const m = String(s || '').replace(/,/g, '').match(/\d+
 export default function Msp() {
   const { crop: cropParam } = useParams()
   const { t, lang } = useLang()
-  const { user } = useAuth()
   const navigate = useNavigate()
   const slug = cropBySlug(cropParam) ? cropParam : defaultCropSlug()
   const crop = cropBySlug(slug)
 
-  // Phase 2 — shared location (drives the Phase 3a nearby-mandi ranking).
-  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
-  const [center, setCenter] = useState(null) // { latitude, longitude } for ranking
+  // Batch 7L-1 — nearest-mandi ranking uses the shared location object. No location → no
+  // centre → the tables fall back to price order (distance is a label here, never a filter).
+  const { center } = useUserLocation()
   // Phase 3b — free mandi search (deliberately NOT geofenced).
   const [markets, setMarkets] = useState([])
   const [mandiQuery, setMandiQuery] = useState('')
@@ -123,20 +121,6 @@ export default function Msp() {
     })
   }
 
-  // Mandi distance-ranking is VILLAGE-ANCHORED (Phase 1c): the center comes from the
-  // matched village, not raw GPS. When the user is out of the service area (matchedVillage
-  // null), there is no center — the table falls back to price-sort (rankedToday handles a
-  // null center). Distance is only ever a label here, never a filter.
-  useEffect(() => {
-    let alive = true
-    ;(async () => {
-      if (!loc.matchedVillage?.pincode) { if (alive) setCenter(null); return }
-      const p = await fetchPincode(loc.matchedVillage.pincode).catch(() => null)
-      if (alive) setCenter(p?.latitude != null ? { latitude: Number(p.latitude), longitude: Number(p.longitude) } : null)
-    })()
-    return () => { alive = false }
-  }, [loc])
-
   // Clear a previous search result when the crop changes.
   useEffect(() => { setMandiPick(null); setMandiQuery('') }, [slug])
 
@@ -215,7 +199,7 @@ export default function Msp() {
     return `🌾 ${cropName(crop, lang)} ${t('nav_mandi')} — ${d}\n${rows}\n${mspLine}${trend}\n${t('daily_see')}: kissansahyog.com/msp/${slug}`
   }, [medianToday, today, msp, trendSentence, crop, lang, slug, t])
 
-  const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: `${cropName(crop, 'en')} mandi prices — Sagar, MP`, description: `Daily modal mandi price for ${cropName(crop, 'en')} in Sagar district vs MSP.`, temporalCoverage: history.length ? `${history[0].date}/${history[history.length - 1].date}` : undefined, url: 'https://kissansahyog.com/msp/' + slug, creator: { '@type': 'Organization', name: 'Agmarknet / data.gov.in' } }
+  const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: `${cropName(crop, 'en')} mandi prices — Sagar Division, MP`, description: `Daily modal mandi price for ${cropName(crop, 'en')} in Sagar Division (Sagar Sambhag) vs MSP.`, temporalCoverage: history.length ? `${history[0].date}/${history[history.length - 1].date}` : undefined, url: 'https://kissansahyog.com/msp/' + slug, creator: { '@type': 'Organization', name: 'Agmarknet / data.gov.in' } }
   const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${cropName(crop, lang)} ${t('nav_mandi')} — ${t('msp_sagar')}`, ...(today?.date ? { dateModified: today.date } : {}) }
 
   const H2 = ({ children }) => <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{children}</h2>
@@ -238,7 +222,7 @@ export default function Msp() {
         <PageExplainer title={t('page_explainer_title')} lines={[t('msp_explain_1'), t('msp_explain_2'), t('msp_explain_3'), t('msp_explain_4')]} />
 
         {/* Shared location control (drives the nearby-mandi distance ranking below). */}
-        <LocationControl value={loc} onChange={setLoc} />
+        <LocationControl />
 
         {/* 3a. all-crops snapshot table */}
         {snapshotRows && (
@@ -446,7 +430,7 @@ export default function Msp() {
         <section><ShareWhatsApp text={shareText} /></section>
 
         {/* 11. signup */}
-        <DailyUpdateSignup sourcePage="msp" pincode={loc.matchedVillage?.pincode || ''} heading={t('msp_signup_h')} />
+        <DailyUpdateSignup sourcePage="msp" heading={t('msp_signup_h')} />
 
         {/* 9. FAQ */}
         <FaqAccordion faqs={faqs} />

@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import { useAuth } from '../lib/auth/AuthProvider'
 import { PageShell } from '../components/layout'
 import RelatedBoxes from '../components/RelatedBoxes'
 import WhatsAppJoin from '../components/WhatsAppJoin'
@@ -11,8 +10,7 @@ import { Spinner } from '../components/ui'
 import { weatherInfo } from '../lib/weather/weatherApi'
 import { fetchWeatherCell, requestGridCell } from '../lib/weather/weatherApiV2'
 import { actionWindows, imdClass, nextRain, STATUS_COLOR } from '../lib/weather/weatherRules'
-import { fetchPincode } from '../lib/listings/listingsApi'
-import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
+import { useUserLocation } from '../lib/location/LocationProvider'
 import { fetchPageFaqs } from '../lib/pages/pagesApi'
 import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TwoBar, JsonLd, InfoTip } from '../components/pages/shared'
 
@@ -23,10 +21,10 @@ const hourLabel = (iso) => { const d = new Date(iso); return `${d.getHours()}:00
 
 export default function Mausam() {
   const { t } = useLang()
-  const { user } = useAuth()
   const navigate = useNavigate()
-  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
-  const [place, setPlace] = useState('')
+  // Batch 7L-1 — weather is for the shared location only; with none set the prompt card shows instead.
+  const { location } = useUserLocation()
+  const place = location?.label || ''
   const [wx, setWx] = useState(undefined)
   const [faqs, setFaqs] = useState([])
 
@@ -34,27 +32,18 @@ export default function Mausam() {
     fetchPageFaqs('mausam').then(setFaqs).catch(() => {})
   }, [])
 
+  const lat = location?.lat ?? null, lon = location?.lng ?? null
   useEffect(() => {
     let alive = true
+    if (lat == null || lon == null) { setWx(null); return }
     setWx(undefined)
     ;(async () => {
-      // Weather is GLOBAL — it consumes rawCoords directly (any lat/lng on Earth), never
-      // the village match and never the service-area gate. When only a pincode is selected
-      // (default / manual), resolve its coordinates for the fetch.
-      let lat = loc.rawCoords?.latitude, lon = loc.rawCoords?.longitude, label = loc.label
-      if (lat == null || lon == null) {
-        const p = loc.matchedVillage?.pincode ? await fetchPincode(loc.matchedVillage.pincode).catch(() => null) : null
-        lat = p?.latitude ?? DEFAULT_COORDS.latitude
-        lon = p?.longitude ?? DEFAULT_COORDS.longitude
-        if (p?.village_town) label = label || p.village_town
-      }
-      if (alive) setPlace(label || '')
-      requestGridCell(Number(lat), Number(lon))
-      const cell = await fetchWeatherCell(Number(lat), Number(lon)).catch(() => null)
+      requestGridCell(lat, lon)
+      const cell = await fetchWeatherCell(lat, lon).catch(() => null)
       if (alive) setWx(cell)
     })()
     return () => { alive = false }
-  }, [loc])
+  }, [lat, lon])
 
   const windows = useMemo(() => (wx ? actionWindows(wx.hourly, wx.daily) : null), [wx])
 
@@ -68,25 +57,25 @@ export default function Mausam() {
     if (!wx || !windows) return ''
     const d = new Date().toLocaleDateString('hi-IN', { day: 'numeric', month: 'long' })
     const rainLine = rain ? `${t('mausam_rain_in')} ${rain.inHours}${t('hours_short')} ~${rain.mm}${t('mm_unit')}` : t('tf_rain_none')
-    return `📍 ${place || loc.matchedVillage?.pincode || ''} ${t('nav_weather')} — ${d}\n🌤 ${Math.round(wx.current_temp)}°, ${t(info.key)} · ${rainLine}\n✅ ${t('aw_spray')}: ${t(STATUS_LABEL[windows.spray.status])} · ${t('aw_harvest')}: ${t(STATUS_LABEL[windows.harvest.status])}\n${t('daily_see')}: kissansahyog.com/mausam`
-  }, [wx, windows, rain, info, place, loc.matchedVillage?.pincode, t])
+    return `📍 ${place} ${t('nav_weather')} — ${d}\n🌤 ${Math.round(wx.current_temp)}°, ${t(info.key)} · ${rainLine}\n✅ ${t('aw_spray')}: ${t(STATUS_LABEL[windows.spray.status])} · ${t('aw_harvest')}: ${t(STATUS_LABEL[windows.harvest.status])}\n${t('daily_see')}: kissansahyog.com/mausam`
+  }, [wx, windows, rain, info, place, t])
 
   const metaDesc = t('mausam_explain_1') + ' ' + t('mausam_explain_2')
-  const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place || loc.matchedVillage?.pincode || ''} ${t('nav_weather')}`, description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
+  const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place} ${t('nav_weather')}`.trim(), description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
 
   return (
     <PageShell width="wide">
       <JsonLd data={articleLd} />
       <div className="w-full space-y-5">
-        <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{place || loc.matchedVillage?.pincode || t('loc_your_location')} {t('mausam_h1_b')}</h1>
+        <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{place || t('loc_your_location')} {t('mausam_h1_b')}</h1>
 
         {/* 1. PageExplainer */}
         <PageExplainer title={t('page_explainer_title')} lines={[t('mausam_explain_1'), t('mausam_explain_2'), t('mausam_explain_3'), t('mausam_explain_4')]} />
 
         {/* 2. LocationControl */}
-        <LocationControl value={loc} onChange={setLoc} showOutOfArea={false} />
+        <LocationControl />
 
-        {wx === undefined ? <Spinner /> : !wx ? (
+        {!location ? null : wx === undefined ? <Spinner /> : !wx ? (
           <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('weather_unavailable')}</p>
         ) : (<>
           {/* 3. TodayCard */}
@@ -224,7 +213,7 @@ export default function Mausam() {
           <section><ShareWhatsApp text={shareText} /></section>
 
           {/* 13. Signup */}
-          <DailyUpdateSignup sourcePage="mausam" pincode={loc.matchedVillage?.pincode || ''} heading={t('mausam_signup_h')} />
+          <DailyUpdateSignup sourcePage="mausam" heading={t('mausam_signup_h')} />
         </>)}
 
         {/* 11. FAQ */}

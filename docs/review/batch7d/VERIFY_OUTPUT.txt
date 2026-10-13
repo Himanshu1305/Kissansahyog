@@ -1,4 +1,4 @@
-PASS  1: no unconditional "free" claim left outside the kept list (278 files, 100 kept hits)
+PASS  1: no unconditional "free" claim left outside the kept list (284 files, 100 kept hits)
 PASS  1: the 11 strings that made the claim are reworded (install banner, WhatsApp banner, bazaar intro, sign-up prompts, cold-storage CTA…)
 PASS  1: homepage / search meta description no longer says "free"
 PASS  1: terms, grievance FAQ and llms.txt no longer say "free"
@@ -58,7 +58,7 @@ PASS  8e: every category tile image exists (15), and a tile whose image fails st
 PASS  9c: the English slips are fixed in the Q&A content files
 PASS  9: DB_FIXES.sql covers the Q&A English, the mela rows, the article byline and the database "free" row
 PASS  9: DB_FIXES.sql is review-only: wrapped in a transaction, matches on slug/text, no deletes or schema changes
-PASS  9: nothing in this batch adds a migration (0056 is Batch 7G)
+PASS  9: nothing in this batch adds a migration (0056 is Batch 7G; 0057 and 0058 are Batch 7L-1)
 PASS  10: every new string has Hindi and English (11)
 PASS  10: every t() key used by the touched screens exists
 PASS  10: no Devanagari literals added to the touched components
@@ -72,7 +72,7 @@ PASS  7J: the removed lawyer note is kept in docs/legal/TERMS_DRAFT_FOR_LAWYER.m
 PASS  7J: no built page says "pilot" / "पायलट" (263 pages; exception: Government carbon "pilot projects")
 PASS  7J: the carbon pages use "pilot" only for the Government's projects, never for Kissan Sahyog
 PASS  7J: no "pilot" wording left in the About, home, contact, legal, llms.txt or shared-string sources
-PASS  7J: About says "starting in Sagar … may expand", with no district names or dates
+PASS  7J/7L-1: About says "starting in Sagar Division … may expand", with no dates and no future regions
 PASS  7J: "What Kissan Sahyog is" block has the new title and body (Hindi + English)
 PASS  7J: the definition is the About intro, the site JSON-LD description and the llms.txt description
 PASS  7J: the new copy claims neither "free" nor "daily"

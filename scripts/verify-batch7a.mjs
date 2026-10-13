@@ -108,7 +108,7 @@ check('3: page title, description and canonical', /<title>हमारे बा
 const org = buildAboutJsonLd(about, 'en')[0]
 check('3: Organization JSON-LD uses the facts used elsewhere on the site',
   org['@type'] === 'Organization' && org.name === 'Kissan Sahyog' && org.url === 'https://kissansahyog.com' && org.email === strings.footer_general_email.en
-  && org.areaServed === 'IN-MP' && org.founder.name === founder.name.en && org.founder.name === strings.founder_name.en
+  && org.areaServed?.name === 'Sagar Division' && org.areaServed?.containedInPlace?.identifier === 'IN-MP' /* Batch 7L-1: was 'IN-MP' */ && org.founder.name === founder.name.en && org.founder.name === strings.founder_name.en
   && org.contactPoint.some((c) => c.email === 'grievance@kissansahyog.com') && !strings.footer_grievance_email)
 const sections = ['what', 'why', 'can_do', 'sagar', 'who', 'contact', 'founder_card']
 check('3: About has every required section', sections.every((k) => about[k]?.title?.hi && about[k]?.title?.en) && /सागर/.test(about.sagar.title.hi) && about.who.id === 'kaun-chalata-hai')

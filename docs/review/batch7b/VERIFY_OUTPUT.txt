@@ -59,7 +59,7 @@ PASS  3: client and server validators are the same code
 PASS  4: function file is functions/api/feedback.js → /api/feedback, same convention as /transcribe
 PASS  4: CSP already allows the same-origin call (connect-src 'self') and was not weakened
 PASS  4: the browser never talks to Resend and never sees a key
-PASS  4: no direct submit_feedback RPC call anywhere in browser code (208 files under src/)
+PASS  4: no direct submit_feedback RPC call anywhere in browser code (212 files under src/)
 PASS  4: the form posts only to /api/feedback, and success needs {ok:true}
 PASS  4: 503 or a network failure → "could not send" with the e-mail fallback, never a thank-you
 PASS  4: 400 and 429 refusals keep their own message and offer no e-mail link

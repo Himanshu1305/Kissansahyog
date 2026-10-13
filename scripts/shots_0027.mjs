@@ -1,15 +1,18 @@
 // Phase 4 (0027) screenshots. Preview must be on :4173.  node scripts/shots_0027.mjs
+// Batch 7L-1: rewritten for the shared location flow (no pincode, no out-of-area gate, no IP
+// guess, no ?debug=1 overlay). SHOTS_BASE / SHOTS_OUT override the server and the output folder.
+// Page visits here do not write visitor rows to the database (blockVisitorWrites).
 import { chromium } from '@playwright/test'
 import sharp from 'sharp'
 import { mkdirSync, readdirSync, rmSync, statSync } from 'node:fs'
+import { blockVisitorWrites } from '../e2e/support.js'
 
-const BASE = 'http://localhost:4173'
-const OUT = 'docs/review/shots-0027'
+const BASE = process.env.SHOTS_BASE || 'http://localhost:4173'
+const OUT = process.env.SHOTS_OUT || 'docs/review/shots-0027'
 mkdirSync(OUT, { recursive: true })
 for (const f of readdirSync(OUT)) rmSync(`${OUT}/${f}`)
 const HYD = { latitude: 17.385, longitude: 78.487 }
 const LONDON = { latitude: 51.5074, longitude: -0.1278 }
-const waitPins = (p) => p.waitForResponse((r) => r.url().includes('/rest/v1/pincodes'), { timeout: 10000 }).catch(() => {})
 
 async function slice(page, name) {
   const buf = await page.screenshot({ fullPage: true })
@@ -28,30 +31,32 @@ async function run() {
     for (const [geo, path, name, waitSel] of [
       [HYD, '/mausam', `mausam-hyd-${vp}`, 'text=/\\d+°/'],
       [LONDON, '/mausam', `mausam-london-${vp}`, 'text=/\\d+°/'],
-      [HYD, '/msp', `msp-hyd-oos-${vp}`, '[data-testid=out-of-area]'],
+      [HYD, '/msp', `msp-hyd-oos-${vp}`, '[data-testid=location-banner][data-source=device]'],
     ]) {
       const ctx = await browser.newContext({ viewport: { width: w, height: h }, permissions: ['geolocation'], geolocation: geo })
+      await blockVisitorWrites(ctx)
       const p = await ctx.newPage()
-      await p.goto(`${BASE}${path}`); await waitPins(p)
-      await p.getByTestId('gps-detect').click().catch(() => {})
-      await p.locator(waitSel).first().waitFor({ timeout: 15000 }).catch(() => {})
+      await p.goto(`${BASE}${path}`)
+      await p.locator('[data-testid=location-banner][data-source=device]').waitFor({ timeout: 20000 })
+      await p.locator(waitSel).first().waitFor({ timeout: 15000 })
       await p.waitForTimeout(700); await slice(p, name); await p.close(); await ctx.close()
     }
 
-    // --- Homepage आपके आसपास out-of-service (Hyderabad) ---
+    // --- Homepage आपके आसपास for a far location (Hyderabad): no out-of-service message now ---
     {
       const ctx = await browser.newContext({ viewport: { width: w, height: h }, permissions: ['geolocation'], geolocation: HYD })
+      await blockVisitorWrites(ctx)
       const p = await ctx.newPage()
-      await p.goto(`${BASE}/`); await waitPins(p)
-      await p.getByTestId('gps-detect').click().catch(() => {})
-      await p.getByTestId('out-of-area').first().waitFor({ timeout: 10000 }).catch(() => {})
+      await p.goto(`${BASE}/`)
+      await p.locator('[data-testid=location-banner][data-source=device]').first().waitFor({ timeout: 20000 })
       await p.waitForTimeout(600); await slice(p, `home-hyd-oos-${vp}`); await p.close(); await ctx.close()
     }
 
     // --- मंडी तुलना: 5 mandis (none with wheat) → 6th blocked + wheat-row cross-mandi hint ---
     {
       const ctx = await browser.newContext({ viewport: { width: w, height: h } })
-      await ctx.addInitScript(() => localStorage.setItem('ks_pincode', '470117'))
+      await blockVisitorWrites(ctx)
+      await ctx.addInitScript(() => localStorage.setItem('ks_location_v1', JSON.stringify({ lat: 24.0436, lng: 78.3314, label: 'खुरई', from: 'picked' })))
       const p = await ctx.newPage()
       await p.goto(`${BASE}/msp/gehun`); await p.waitForTimeout(1200)
       await p.getByTestId('view-compare').click()

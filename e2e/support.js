@@ -39,3 +39,22 @@ export async function cleanupTestData() {
   const { error } = await admin.from('profiles').delete().like('phone', `${TEST_PHONE_PREFIX}%`)
   if (error) throw new Error(`cleanup failed: ${error.message}`)
 }
+
+// Batch 7L-1 Stage B — a page visit normally writes a few best-effort rows as the visitor
+// (the weather cell request/cache, view counters, search-miss logs). Tests that only LOOK at
+// public pages call this so they leave nothing behind in the shared database. Reads still go
+// to the real database. Returns the list of writes that were answered here instead.
+const WRITE_RPC = /^(cache_weather_cell|increment_|log_|subscribe_|submit_|vote_|set_|update_|delete_|create_|close_|accept_|app_|claim_|resolve_|fail_|next_pending)/
+export async function blockVisitorWrites(context) {
+  const blocked = []
+  await context.route((url) => url.pathname.includes('/rest/v1/'), (route) => {
+    const req = route.request()
+    const name = new URL(req.url()).pathname.split('/rest/v1/')[1] || ''
+    const isRpc = name.startsWith('rpc/')
+    const write = isRpc ? WRITE_RPC.test(name.slice(4)) : !['GET', 'HEAD', 'OPTIONS'].includes(req.method())
+    if (!write) return route.continue()
+    blocked.push(`${req.method()} ${name}`)
+    return route.fulfill({ status: isRpc ? 200 : 201, contentType: 'application/json', body: isRpc ? 'null' : '[]' })
+  })
+  return blocked
+}

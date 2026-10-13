@@ -16,9 +16,9 @@ import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 import { getTodayForFarmer } from '../lib/today/forFarmer'
 import { strings } from '../lib/i18n/strings'
 import { getCategorySafe } from '../lib/listings/registry'
-import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes, fetchPincode } from '../lib/listings/listingsApi'
+import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes } from '../lib/listings/listingsApi'
 import { fetchNearbyCounts, NEARBY_CATEGORIES } from '../lib/listings/nearbyCounts'
-import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
+import { useUserLocation } from '../lib/location/LocationProvider'
 import { LocationControl } from '../components/pages/shared'
 import { fetchPublishedArticles, articleTitle } from '../lib/articles/articlesApi'
 import { fetchFeaturedSawaal, sawaalQuestion, sawaalAnswer } from '../lib/community/communityApi'
@@ -99,7 +99,8 @@ export default function Homepage() {
   const [weather, setWeather] = useState(undefined)
   const [msp, setMsp] = useState([])
   const [mandi, setMandi] = useState({ rows: [], day: 'none' })
-  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
+  // Batch 7L-1 — the one shared location ({ lat, lng, label, source }); null until the visitor sets one.
+  const { location, center } = useUserLocation()
   const [counts, setCounts] = useState(null)
   const [videos, setVideos] = useState([])
   const [pestReports, setPestReports] = useState([])
@@ -128,34 +129,35 @@ export default function Homepage() {
   }, [])
 
   // Location-dependent data (weather cell + counts + nearby feed). Re-runs on change.
+  // With no location there is no weather and no counts — the prompt card is shown instead —
+  // and the listings block shows the newest listings, labelled as such (not "near you").
+  const lat = center?.latitude ?? null, lng = center?.longitude ?? null
   useEffect(() => {
     let alive = true
     ;(async () => {
-      // Split: WEATHER uses rawCoords (global, any lat/lng); VILLAGE-anchored features
-      // (आपके आसपास counts + nearby-listings feed) use the matched village's pincode/coords
-      // and are null when the user is out of the service area.
-      const vpin = loc.matchedVillage?.pincode || null
-      let villageCoords = null
-      if (vpin) {
-        const p = await fetchPincode(vpin).catch(() => null)
-        if (p?.latitude != null) villageCoords = { latitude: Number(p.latitude), longitude: Number(p.longitude) }
+      if (lat == null || lng == null) {
+        setCounts(null); setWeather(null)
+        const feed = await fetchHomeFeed({ center: null, limit: 8 }).catch(() => [])
+        if (alive) setListings(feed)
+        return
       }
-      // Weather coords: precise rawCoords first, else the selected pincode's coords.
-      const weatherCoords = loc.rawCoords || villageCoords
-      if (weatherCoords) requestGridCell(weatherCoords.latitude, weatherCoords.longitude)
+      const c0 = { latitude: lat, longitude: lng }
+      requestGridCell(lat, lng)
       const [c, feed, w] = await Promise.all([
-        fetchNearbyCounts(vpin, 30).catch(() => null),
-        fetchHomeFeed({ center: villageCoords, limit: 8 }).catch(() => []),
-        fetchWeatherCell(weatherCoords?.latitude ?? DEFAULT_COORDS.latitude, weatherCoords?.longitude ?? DEFAULT_COORDS.longitude).catch(() => null),
+        fetchNearbyCounts(c0, 30).catch(() => null),
+        fetchHomeFeed({ center: c0, limit: 8 }).catch(() => []),
+        fetchWeatherCell(lat, lng).catch(() => null),
       ])
       if (!alive) return
       setCounts(c); setListings(feed); setWeather(w)
     })()
     return () => { alive = false }
-  }, [loc])
+  }, [lat, lng])
 
   const alert = getRainAlert(weather?.forecast)
-  const today = getTodayForFarmer({ weather, mandi, msp, alert, t })
+  const todayBase = getTodayForFarmer({ weather, mandi, msp, alert, t })
+  // No location → say so in the weather tile instead of "unavailable" (never a default place's weather).
+  const today = location ? todayBase : { ...todayBase, weatherLine: t('loc_set_for_weather'), rainLine: t('loc_share') }
 
   // Pest banner: top qualifying crop+symptom group (framed as recently asked).
   const pest = (pestReports && pestReports[0]) || null
@@ -218,7 +220,7 @@ export default function Homepage() {
         t={t} today={today} weather={weather}
         onNeed={() => navigate('/browse')}
         onHave={() => navigate(isLoggedIn ? '/post' : '/signup')}
-        onForecast={() => navigate('/mausam')}
+        onForecast={() => (location ? navigate('/mausam') : document.getElementById('home-location')?.scrollIntoView({ behavior: 'smooth', block: 'center' }))}
         onMsp={() => navigate('/msp')}
       />
 
@@ -253,12 +255,15 @@ export default function Homepage() {
         <h2 className="mb-2 text-[24px] font-bold leading-tight md:text-[28px]" style={{ color: 'var(--ks-ink)' }}>
           {t('near_title')} <span className="text-[16px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('near_km')})</span>
         </h2>
-        <div className="mb-3"><LocationControl value={loc} onChange={setLoc} /></div>
-        <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
-          {NEARBY_CATEGORIES.map((c) => (
-            <CountChip key={c} n={counts ? counts[c] ?? 0 : '…'} label={t(`near_cat_${c}`)} onClick={() => tileClick(c === 'bhusa' ? 'bhusa' : c === 'warehouse' ? 'warehouse' : c)} />
-          ))}
-        </div>
+        <div id="home-location" className="mb-3"><LocationControl /></div>
+        {/* Counts only once a location is set — until then the prompt card above stands in for them. */}
+        {location && (
+          <div data-testid="home-nearby-counts" className="grid grid-cols-3 gap-3 md:grid-cols-6">
+            {NEARBY_CATEGORIES.map((c) => (
+              <CountChip key={c} n={counts ? counts[c] ?? 0 : '…'} label={t(`near_cat_${c}`)} onClick={() => tileClick(c === 'bhusa' ? 'bhusa' : c === 'warehouse' ? 'warehouse' : c)} />
+            ))}
+          </div>
+        )}
       </Section>
 
       {/* 5 — कृषि बाज़ार की श्रेणियाँ */}
@@ -274,7 +279,7 @@ export default function Homepage() {
 
       {/* 6 — आपके आसपास की ताज़ा लिस्टिंग */}
       <Section>
-        <SectionHeader title={t('listings_near_title')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
+        <SectionHeader title={t(location ? 'listings_near_title' : 'listings_latest_title')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
         {listings.length > 0 ? (
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {listings.filter((l) => getCategorySafe(l.category)).map((l) => {

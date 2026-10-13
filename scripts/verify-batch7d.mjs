@@ -234,7 +234,7 @@ const sql = read('docs/review/batch7d/DB_FIXES.sql')
 check('9: DB_FIXES.sql covers the Q&A English, the mela rows, the article byline and the database "free" row', /update public\.kisan_sawaal/.test(sql) && /update public\.kisan_mela set venue = 'Gorakhpur'/.test(sql) && /update public\.articles set author_name = 'USD Vision AI Team'\s+where slug = 'intercropping-madhya-pradesh'/.test(sql) && /update public\.page_faqs/.test(sql))
 check('9: DB_FIXES.sql is review-only: wrapped in a transaction, matches on slug/text, no deletes or schema changes', /^begin;/m.test(sql) && /^commit;/m.test(sql) && !/\b(delete|drop|truncate|alter|insert)\b/i.test(sql.replace(/--[^\n]*/g, '')) && OLD.slice(0, 2).every((o) => sql.includes(o)))
 // 0056_feedback_server_only.sql was added later, by Batch 7G; nothing else may follow 0055.
-check('9: nothing in this batch adds a migration (0056 is Batch 7G)', !readdirSync(join(ROOT, 'supabase/migrations')).some((f) => /^00(5[6-9]|[6-9]\d)/.test(f) && f !== '0056_feedback_server_only.sql'))
+check('9: nothing in this batch adds a migration (0056 is Batch 7G; 0057 and 0058 are Batch 7L-1)', !readdirSync(join(ROOT, 'supabase/migrations')).some((f) => /^00(5[6-9]|[6-9]\d)/.test(f) && !['0056_feedback_server_only.sql', '0057_places.sql', '0058_mandi_in_sagar_division.sql'].includes(f)))
 
 // ---- 10. strings ----------------------------------------------------------------------------------------
 const newKeys = ['free_registration', 'home_open_title', 'home_open_mandi', 'home_open_schemes', 'home_open_sawaal', 'home_open_cold', 'home_open_mela', 'terms_updated', 'terms_contents', 'post_declare_provider', 'post_declare_owner']
@@ -245,9 +245,11 @@ const undefinedKeys = used.filter((k) => !strings[k])
 check('10: every t() key used by the touched screens exists', undefinedKeys.length === 0, undefinedKeys.join(','))
 check('10: no Devanagari literals added to the touched components', ![home, signup, post, bento.replace('/krishi vigyan|kvk|कृषि विज्ञान/i', ''), read('src/screens/Terms.jsx')].some((s) => /[ऀ-ॿ]/.test(stripComments(s))))
 
+// (Batch 7L-1 changed the area name in the definition and in About from Sagar / Sagar district to
+// Sagar Division; the expectations below follow that wording.)
 // ---- Batch 7J: Terms v1.2 (no "Draft", no company name), pilot wording gone, definition ----
-const DEF_EN = 'Kissan Sahyog (kissansahyog.com) is a farm marketplace and information website for Sagar, Madhya Pradesh, where farmers, labourers, machine owners and local suppliers meet in one place.'
-const DEF_HI = 'किसान सहयोग (kissansahyog.com) सागर, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।'
+const DEF_EN = 'Kissan Sahyog (kissansahyog.com) is a farm marketplace and information website for Sagar Division (Sagar Sambhag), Madhya Pradesh, where farmers, labourers, machine owners and local suppliers meet in one place.'
+const DEF_HI = 'किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।'
 const { about: about7j } = await load('src/content/about.js')
 const service7j = termsOfUse.find((c) => c.id === 'service')
 const liability7j = termsOfUse.find((c) => c.id === 'liability')
@@ -258,7 +260,7 @@ const noFooter = (html) => html.replace(/<footer[\s\S]*?<\/footer>/, '')
 const DRAFT_7J = /Draft|ड्राफ्ट|ड्राफ़्ट/
 check('7J: Terms clause 1 opens with the definition and names the owner (Hindi + English)', service7j.en.startsWith(DEF_EN) && service7j.hi.startsWith(DEF_HI)
   && service7j.en.includes('Kissan Sahyog is owned and run by Shri Abhinandan Dixit.') && service7j.hi.includes('किसान सहयोग के स्वामी और संचालक श्री अभिनन्दन दीक्षित हैं।')
-  && service7j.en.includes('It is starting in Sagar and may expand to other places over time.') && /is not a party to any sale, rental, job, wage, transport, land or other agreement, and does not handle payments\./.test(service7j.en))
+  && service7j.en.includes('It is starting in Sagar Division and may expand to other places over time.') && /is not a party to any sale, rental, job, wage, transport, land or other agreement, and does not handle payments\./.test(service7j.en))
 check('7J: limit-of-responsibility clause names "its owner, operator and service providers"', liability7j.en.includes('Kissan Sahyog, its owner, operator and service providers are not responsible') && liability7j.hi.includes('किसान सहयोग, इसके स्वामी, संचालक और सेवा प्रदाता'))
 check('7J: #law keeps Indian law, Sagar courts, both e-mails and the effective date; shows Version 1.2; no lawyer note',
   /interpreted under Indian law/.test(law7j.en) && /courts at Sagar, Madhya Pradesh/.test(law7j.en) && /सागर, मध्य प्रदेश के न्यायालयों/.test(law7j.hi)
@@ -282,7 +284,7 @@ check('7J: the carbon pages use "pilot" only for the Government\'s projects, nev
 const pilotSrc7j = ['src/content/about.js', 'src/content/seo.js', 'src/content/howToUse.js', 'src/content/founder.js', 'src/content/pages/grievance.js', 'src/lib/i18n/strings.js', 'src/lib/i18n/termsContent.js', 'src/lib/i18n/legal.js', 'src/screens/About.jsx', 'src/screens/Contact.jsx', 'src/components/layout/Seo.jsx', 'public/llms.txt', 'scripts/build-search-index.mjs']
   .filter((f) => PILOT_7J.test(stripComments(read(f)).replace(/stat_pilot_(value|label)/g, '')))
 check('7J: no "pilot" wording left in the About, home, contact, legal, llms.txt or shared-string sources', pilotSrc7j.length === 0, pilotSrc7j.join(', '))
-check('7J: About says "starting in Sagar … may expand", with no district names or dates', /starting in Sagar district, Madhya Pradesh, and may expand to other places over time/.test(about7j.sagar.paras[0].en) && /सागर ज़िले \(मध्य प्रदेश\) से हो रही है/.test(about7j.sagar.paras[0].hi) && about7j.sagar.id === 'sagar-se-shuruaat')
+check('7J/7L-1: About says "starting in Sagar Division … may expand", with no dates and no future regions', /starting in Sagar Division, Madhya Pradesh, and may expand to other places over time/.test(about7j.sagar.paras[0].en) && /सागर संभाग \(मध्य प्रदेश\) से हो रही है/.test(about7j.sagar.paras[0].hi) && about7j.sagar.id === 'sagar-se-shuruaat' && !/20\d\d/.test(about7j.sagar.paras[0].en))
 check('7J: "What Kissan Sahyog is" block has the new title and body (Hindi + English)', about7j.what.title.hi === 'आपके गाँव का खेती-बाज़ार, अब ऑनलाइन' && /^Your village.s farm bazaar, now online$/.test(about7j.what.title.en) && about7j.what.paras.length === 1
   && about7j.what.paras[0].en.startsWith('Need a tractor for sowing?') && about7j.what.paras[0].en.endsWith('so check their details before you go ahead.') && about7j.what.paras[0].hi.startsWith('बुवाई के लिए ट्रैक्टर चाहिए?')
   && text(read('dist/about/index.html')).includes('आपके गाँव का खेती-बाज़ार, अब ऑनलाइन'))
