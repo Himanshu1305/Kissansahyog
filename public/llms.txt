@@ -1,7 +1,8 @@
 # Kissan Sahyog (किसान सहयोग)
 
-> A bilingual (Hindi-first) marketplace and knowledge hub for farmers in
-> Sagar district, Madhya Pradesh, India. We list farm equipment, land, labour,
+> Kissan Sahyog (kissansahyog.com) is a farm marketplace and information website for Sagar, Madhya Pradesh, where farmers, labourers, machine owners and local suppliers meet in one place.
+> किसान सहयोग (kissansahyog.com) सागर, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।
+> It is owned and run by Shri Abhinandan Dixit. The site is bilingual (Hindi-first). We list farm equipment, land, labour,
 > inputs, transport, cold storage, greenhouses and rural innovations; publish
 > cited knowledge (schemes, crop problems, weather, mandi/MSP prices); and never
 > handle payments. Every published fact is sourced and cited. English brand name:

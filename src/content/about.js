@@ -10,27 +10,25 @@ export const about = {
   seo: {
     title: { hi: 'हमारे बारे में — किसान सहयोग', en: 'About Us — Kissan Sahyog' },
     description: {
-      hi: 'किसान सहयोग क्या है, क्यों बना, किसान यहाँ क्या कर सकते हैं, सागर (मध्य प्रदेश) का पायलट और हमसे संपर्क कैसे करें।',
-      en: 'What Kissan Sahyog is, why it exists, what a farmer can do here, the pilot in Sagar, Madhya Pradesh, and how to contact us.',
+      hi: 'किसान सहयोग क्या है, क्यों बना, किसान यहाँ क्या कर सकते हैं, सागर (मध्य प्रदेश) से शुरुआत और हमसे संपर्क कैसे करें।',
+      en: 'What Kissan Sahyog is, why it exists, what a farmer can do here, our start in Sagar, Madhya Pradesh, and how to contact us.',
     },
   },
   h1: { hi: 'हमारे बारे में', en: 'About Us' },
+  // The definitional sentence: the first sentence of Terms clause 1 (Batch 7J). Also used
+  // by the sitewide JSON-LD and public/llms.txt.
   lead: {
-    hi: 'किसान सहयोग किसानों के लिए बना एक जानकारी मंच है — खेती के काम की बातें, एक जगह, आसान हिंदी में।',
-    en: 'Kissan Sahyog is an information platform made for farmers — useful farming information in one place, in simple language.',
+    hi: 'किसान सहयोग (kissansahyog.com) सागर, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।',
+    en: 'Kissan Sahyog (kissansahyog.com) is a farm marketplace and information website for Sagar, Madhya Pradesh, where farmers, labourers, machine owners and local suppliers meet in one place.',
   },
 
   what: {
     id: 'kya-hai',
-    title: { hi: 'किसान सहयोग क्या है', en: 'What Kissan Sahyog is' },
+    title: { hi: 'आपके गाँव का खेती-बाज़ार, अब ऑनलाइन', en: 'Your village’s farm bazaar, now online' },
     paras: [
       {
-        hi: 'यह एक वेबसाइट है जहाँ किसान अपने आस-पास की ज़मीन, मशीन, मज़दूर और खेती की दूसरी सेवाओं की जानकारी देख सकते हैं और अपनी जानकारी डाल सकते हैं।',
-        en: 'It is a website where farmers can see information about land, machines, labour and other farm services near them, and post their own.',
-      },
-      {
-        hi: 'हम केवल जानकारी देने वाला मंच हैं। किसी सौदे, भुगतान या समझौते में हम शामिल नहीं होते। बात आगे बढ़ाने से पहले सामने वाले की जानकारी खुद जाँच लें।',
-        en: 'We are only an information platform. We are not part of any deal, payment or agreement. Please check the other person’s details yourself before going ahead.',
+        hi: 'बुवाई के लिए ट्रैक्टर चाहिए? कटाई के लिए मज़दूर? किराये पर ज़मीन, या अपनी उपज के लिए खरीदार? किसान सहयोग सागर, मध्य प्रदेश के लिए खेती का बाज़ार है: अपना सामान डालें, और अपने पास के किसानों और सप्लायर्स से ज़रूरत की चीज़ें खोजें। साथ में मंडी भाव, मौसम, सरकारी योजनाएँ और खेती के सवालों के जवाब, सरल हिंदी और अंग्रेज़ी में। हमारी शुरुआत सागर से हुई है, और हम ज़िले-ज़िले आगे बढ़ रहे हैं, हो सकता है अगला नंबर आपके इलाके का हो। हम सिर्फ़ लोगों को जोड़ते हैं। सौदा, दाम और भुगतान आपके और दूसरे व्यक्ति के बीच रहते हैं, इसलिए आगे बढ़ने से पहले उनकी जानकारी खुद जाँच लें।',
+        en: 'Need a tractor for sowing? Labour for harvest? Land on rent, or a buyer for your produce? Kissan Sahyog is a farm marketplace for Sagar, Madhya Pradesh: post what you have, and find what you need from farmers and suppliers near you. You also get mandi bhav, weather, government schemes and answers to farming questions, in simple Hindi and English. We are starting in Sagar and growing district by district, so your area could be next. We only bring people together. The deal, price and payment stay between you and the other person, so check their details before you go ahead.',
       },
     ],
   },
@@ -86,13 +84,13 @@ export const about = {
     how_to_use: { hi: 'वेबसाइट कैसे इस्तेमाल करें', en: 'How to use the website' },
   },
 
-  pilot: {
-    id: 'sagar-pilot',
-    title: { hi: 'सागर, मध्य प्रदेश में पायलट', en: 'The pilot in Sagar, Madhya Pradesh' },
+  sagar: {
+    id: 'sagar-se-shuruaat',
+    title: { hi: 'सागर, मध्य प्रदेश से शुरुआत', en: 'Starting in Sagar, Madhya Pradesh' },
     paras: [
       {
-        hi: 'अभी किसान सहयोग एक पायलट के रूप में सागर ज़िले (मध्य प्रदेश) में चल रहा है। इसलिए यहाँ सबसे ज़्यादा जानकारी सागर और आस-पास के इलाके की मिलेगी।',
-        en: 'Right now Kissan Sahyog is running as a pilot in Sagar district, Madhya Pradesh. So most of the information here is for Sagar and the nearby area.',
+        hi: 'किसान सहयोग की शुरुआत सागर ज़िले (मध्य प्रदेश) से हो रही है, और समय के साथ इसे दूसरे स्थानों तक बढ़ाया जा सकता है। इसलिए अभी यहाँ सबसे ज़्यादा जानकारी सागर और आस-पास के इलाके की मिलेगी।',
+        en: 'Kissan Sahyog is starting in Sagar district, Madhya Pradesh, and may expand to other places over time. So for now most of the information here is for Sagar and the nearby area.',
       },
     ],
   },

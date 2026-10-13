@@ -110,8 +110,8 @@ check('3: Organization JSON-LD uses the facts used elsewhere on the site',
   org['@type'] === 'Organization' && org.name === 'Kissan Sahyog' && org.url === 'https://kissansahyog.com' && org.email === strings.footer_general_email.en
   && org.areaServed === 'IN-MP' && org.founder.name === founder.name.en && org.founder.name === strings.founder_name.en
   && org.contactPoint.some((c) => c.email === 'grievance@kissansahyog.com') && !strings.footer_grievance_email)
-const sections = ['what', 'why', 'can_do', 'pilot', 'who', 'contact', 'founder_card']
-check('3: About has every required section', sections.every((k) => about[k]?.title?.hi && about[k]?.title?.en) && /सागर/.test(about.pilot.title.hi) && about.who.id === 'kaun-chalata-hai')
+const sections = ['what', 'why', 'can_do', 'sagar', 'who', 'contact', 'founder_card']
+check('3: About has every required section', sections.every((k) => about[k]?.title?.hi && about[k]?.title?.en) && /सागर/.test(about.sagar.title.hi) && about.who.id === 'kaun-chalata-hai')
 const wanted = ['/bazaar', '/sawaal', '/msp', '/cold-storage', '/kisan-mela', '/yojana']
 const got = about.can_do.items.map((i) => i.to)
 check('3: "what you can do" covers listings, Q&A, mandi prices, cold storage, melas, schemes', wanted.every((w) => got.includes(w)) && got.every((to) => app.includes(`path="${to}"`)), got.join(','))
@@ -195,16 +195,16 @@ check('7I: prerendered /about shows the owner sentence and names the company onl
   text(distAbout).includes(OWNER_HI) && !COMPANY_RE.test(distAboutBody) && count(distAbout, 'USD Vision AI LLP') === 1 && /id="kaun-chalata-hai"/.test(distAbout))
 check('7I: footer keeps the designer / maintainer credit (not "run by" / "a product of")',
   strings.footer_credit_prefix.en === 'Designed, developed and maintained by' && strings.footer_credit_prefix.hi === 'डिज़ाइन, विकास और रखरखाव:' && /\{t\('footer_credit_prefix'\)\} <a href="https:\/\/usdvisionai\.com"/.test(footer))
-// The company may be named only in the footer credit and in the legal text (Terms),
-// which is left for the lawyer. Everything else on the public site must not name it.
+// The company may be named only in the footer credit (Batch 7J removed it from the Terms
+// too). Everything else on the public site must not name it.
 const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(`${dir}/${e.name}`) : [`${dir}/${e.name}`]))
-const ALLOWED = ['src/components/layout/Footer.jsx', 'src/lib/i18n/termsContent.js']
+const ALLOWED = ['src/components/layout/Footer.jsx']
 const namers = [...walk('src'), ...walk('functions'), 'index.html', 'public/llms.txt', 'public/robots.txt', 'scripts/build-search-index.mjs', 'scripts/prerender.mjs']
   .filter((f) => /\.(jsx?|mjs|html|txt|json|css)$/.test(f) && !ALLOWED.includes(f) && /USD\s+Vision\s+AI/i.test(read(f)))
-check('7I: no other public source file names USD Vision AI (only the footer credit and the Terms legal text do)', namers.length === 0, namers.join(', '))
-const distNamers = ['dist/index.html', 'dist/founder/index.html', 'dist/grievance/index.html', 'dist/how-to-use/index.html', 'dist/privacy/index.html', 'dist/llms.txt']
+check('7I: no other public source file names USD Vision AI (only the footer credit does)', namers.length === 0, namers.join(', '))
+const distNamers = ['dist/index.html', 'dist/founder/index.html', 'dist/grievance/index.html', 'dist/how-to-use/index.html', 'dist/privacy/index.html', 'dist/terms/index.html', 'dist/llms.txt']
   .filter((f) => !has(f) || COMPANY_RE.test(read(f).replace(/<footer[\s\S]*?<\/footer>/, '')))
-check('7I: built home, founder, grievance, how-to-use, privacy and llms.txt name the company nowhere outside the footer', distNamers.length === 0, distNamers.join(', '))
+check('7I: built home, founder, grievance, how-to-use, privacy, terms and llms.txt name the company nowhere outside the footer', distNamers.length === 0, distNamers.join(', '))
 
 // ---- 4. feedback & grievance ---------------------------------------------------
 check('4: footer label is "सुझाव और शिकायत / Feedback & Grievance" and the URL is unchanged',
@@ -243,9 +243,16 @@ const APPEAL = /appeal|escalat|अपील|एस्केलेशन|gac\.gov
 check('7E: no "Further appeal (escalation)" section', !APPEAL.test(pageCopy) && !APPEAL.test(pageText))
 const TIME_PROMISE = /[0-9०-९]+\s*(घंटे|घंटा|दिन|hours?|days?)|acknowledg|पावती|G\.S\.R/i
 check('7E: no promised time to acknowledge or resolve, and no citation left behind', !TIME_PROMISE.test(pageCopy) && !TIME_PROMISE.test(pageText) && !/cites/.test(pageCopy) && !/src-S-JUG/.test(distGrievance), (pageCopy.match(TIME_PROMISE) || pageText.match(TIME_PROMISE) || [''])[0])
-check('7E: "email us directly" uses hello@', /const GENERAL_EMAIL = 'hello@kissansahyog\.com'/.test(grievance) && /\{t\('fb_direct_email'\)\} <a href=\{`mailto:\$\{GENERAL_EMAIL\}`\}/.test(grievance)
+check('7E/7J: the general e-mail line uses hello@', /const GENERAL_EMAIL = 'hello@kissansahyog\.com'/.test(grievance) && /\{t\('fb_email_general'\)\} <a href=\{`mailto:\$\{GENERAL_EMAIL\}`\}/.test(grievance)
   && /<a[^>]*href="mailto:hello@kissansahyog\.com"[^>]*data-testid="feedback-direct-email"|<a[^>]*data-testid="feedback-direct-email"[^>]*href="mailto:hello@kissansahyog\.com"/.test(distGrievance))
-check('7E: grievance@ is only the destination of the form\'s e-mail fallback', !/grievance@/.test(grievance) && !/FEEDBACK_EMAIL/.test(grievance) && !/grievance@/.test(pageCopy) && !/grievance@/.test(distGrievance)
+// Batch 7J: the page now also shows grievance@ on its own line, as the complaints address.
+const mailtoLink = (html, addr, id) => html.includes(`href="mailto:${addr}" data-testid="${id}"`) || html.includes(`data-testid="${id}" href="mailto:${addr}"`)
+check('7J: /grievance shows both e-mail addresses as mailto links, each with its own label (Hindi + English)',
+  /const GRIEVANCE_EMAIL = 'grievance@kissansahyog\.com'/.test(grievance) && /\{t\('fb_email_grievance'\)\} <a href=\{`mailto:\$\{GRIEVANCE_EMAIL\}`\}/.test(grievance) && /<br \/>/.test(grievance)
+  && strings.fb_email_general.en === 'General questions:' && strings.fb_email_general.hi === 'सामान्य प्रश्न:' && strings.fb_email_grievance.en === 'Complaints and grievances:' && strings.fb_email_grievance.hi === 'शिकायतें:' && !strings.fb_direct_email
+  && mailtoLink(distGrievance, 'hello@kissansahyog.com', 'feedback-direct-email') && mailtoLink(distGrievance, 'grievance@kissansahyog.com', 'feedback-grievance-email')
+  && text(distGrievance).includes('सामान्य प्रश्न:') && text(distGrievance).includes('शिकायतें:'))
+check('7E: the form\'s e-mail fallback still goes to grievance@, and the page copy data does not repeat the address', !/FEEDBACK_EMAIL/.test(grievance) && !/grievance@/.test(pageCopy)
   && /export const FEEDBACK_EMAIL = 'grievance@kissansahyog\.com'/.test(api) && count(api, 'FEEDBACK_EMAIL') === 2 && /return `mailto:\$\{FEEDBACK_EMAIL\}\?subject=/.test(api))
 check('7E: FAQ still has more than one item', grievancePage.blocks.find((b) => b.type === 'faq').faqs.length >= 2)
 check('4: FAQPage JSON-LD is still emitted', distGrievance.includes('"FAQPage"'))

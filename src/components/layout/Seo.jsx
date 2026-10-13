@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
+import { about } from '../../content/about'
 
 export const ORIGIN = 'https://kissansahyog.com'
 const DEFAULT_IMAGE = `${ORIGIN}/og/default.png`
@@ -63,12 +64,16 @@ export default function Seo({
 }
 
 // Sitewide Organization + WebSite (with SearchAction) JSON-LD — rendered once by
-// PageShell on every page.
+// PageShell on every page. The description is the site's one definitional sentence
+// (about.lead — the first sentence of Terms clause 1).
 export function SiteJsonLd() {
+  const { lang } = useLang()
+  const description = about.lead[lang] ?? about.lead.hi
   const org = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Kissan Sahyog',
+    description,
     url: ORIGIN,
     logo: `${ORIGIN}/icons/icon-512.png`,
     email: 'hello@kissansahyog.com',
@@ -78,6 +83,7 @@ export function SiteJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Kissan Sahyog',
+    description,
     url: ORIGIN,
     inLanguage: ['hi-IN', 'en-IN'],
     potentialAction: {

@@ -245,6 +245,54 @@ const undefinedKeys = used.filter((k) => !strings[k])
 check('10: every t() key used by the touched screens exists', undefinedKeys.length === 0, undefinedKeys.join(','))
 check('10: no Devanagari literals added to the touched components', ![home, signup, post, bento.replace('/krishi vigyan|kvk|कृषि विज्ञान/i', ''), read('src/screens/Terms.jsx')].some((s) => /[ऀ-ॿ]/.test(stripComments(s))))
 
+// ---- Batch 7J: Terms v1.2 (no "Draft", no company name), pilot wording gone, definition ----
+const DEF_EN = 'Kissan Sahyog (kissansahyog.com) is a farm marketplace and information website for Sagar, Madhya Pradesh, where farmers, labourers, machine owners and local suppliers meet in one place.'
+const DEF_HI = 'किसान सहयोग (kissansahyog.com) सागर, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।'
+const { about: about7j } = await load('src/content/about.js')
+const service7j = termsOfUse.find((c) => c.id === 'service')
+const liability7j = termsOfUse.find((c) => c.id === 'liability')
+const law7j = termsOfUse.find((c) => c.id === 'law')
+const distTermsHtml7j = read('dist/terms/index.html')
+const distPrivacyHtml7j = read('dist/privacy/index.html')
+const noFooter = (html) => html.replace(/<footer[\s\S]*?<\/footer>/, '')
+const DRAFT_7J = /Draft|ड्राफ्ट|ड्राफ़्ट/
+check('7J: Terms clause 1 opens with the definition and names the owner (Hindi + English)', service7j.en.startsWith(DEF_EN) && service7j.hi.startsWith(DEF_HI)
+  && service7j.en.includes('Kissan Sahyog is owned and run by Shri Abhinandan Dixit.') && service7j.hi.includes('किसान सहयोग के स्वामी और संचालक श्री अभिनन्दन दीक्षित हैं।')
+  && service7j.en.includes('It is starting in Sagar and may expand to other places over time.') && /is not a party to any sale, rental, job, wage, transport, land or other agreement, and does not handle payments\./.test(service7j.en))
+check('7J: limit-of-responsibility clause names "its owner, operator and service providers"', liability7j.en.includes('Kissan Sahyog, its owner, operator and service providers are not responsible') && liability7j.hi.includes('किसान सहयोग, इसके स्वामी, संचालक और सेवा प्रदाता'))
+check('7J: #law keeps Indian law, Sagar courts, both e-mails and the effective date; shows Version 1.2; no lawyer note',
+  /interpreted under Indian law/.test(law7j.en) && /courts at Sagar, Madhya Pradesh/.test(law7j.en) && /सागर, मध्य प्रदेश के न्यायालयों/.test(law7j.hi)
+  && /hello@kissansahyog\.com/.test(law7j.en) && /grievance@kissansahyog\.com/.test(law7j.en) && /hello@kissansahyog\.com/.test(law7j.hi) && /grievance@kissansahyog\.com/.test(law7j.hi)
+  && /Effective date 12 October 2026, Version 1\.2\./.test(law7j.en) && /प्रभावी तिथि 12 अक्टूबर 2026, संस्करण 1\.2।/.test(law7j.hi)
+  && !/Lawyer confirmation|वकील से पुष्टि|legal review|कानूनी समीक्षा/i.test(law7j.en + law7j.hi))
+check('7J: Terms header shows "Version 1.2" (Hindi + English)', strings.terms_updated.en === 'Last updated: 12 October 2026 · Version 1.2' && /संस्करण 1\.2$/.test(strings.terms_updated.hi))
+check('7J: Terms text (source and built page) has no "Draft" and no "USD Vision AI"', !DRAFT_7J.test(termsAll + strings.terms_updated.hi + strings.terms_updated.en) && !/USD\s*Vision/i.test(termsAll)
+  && !DRAFT_7J.test(text(distTermsHtml7j)) && !/USD\s*Vision/i.test(noFooter(distTermsHtml7j)) && text(distTermsHtml7j).includes('Version 1.2') && text(distTermsHtml7j).includes('संस्करण 1.2'))
+check('7J: Privacy text (source and built page) has no "Draft" and no "USD Vision AI"', !DRAFT_7J.test(privacyAll7f) && !/USD\s*Vision/i.test(privacyAll7f) && !DRAFT_7J.test(text(distPrivacyHtml7j)) && !/USD\s*Vision/i.test(noFooter(distPrivacyHtml7j)))
+check('7J: the removed lawyer note is kept in docs/legal/TERMS_DRAFT_FOR_LAWYER.md (not public)', /Lawyer confirmation required: proposed jurisdiction of courts at Sagar/.test(read('docs/legal/TERMS_DRAFT_FOR_LAWYER.md')) && /वकील से पुष्टि आवश्यक/.test(read('docs/legal/TERMS_DRAFT_FOR_LAWYER.md')) && !has('dist/docs'))
+// "pilot" no longer describes Kissan Sahyog anywhere. The only uses left are the Government's
+// carbon-market "pilot projects" on the carbon-credit pages, which is a cited fact about
+// something else (and a source title), so those three pages are the stated exception.
+const PILOT_7J = /pilot|पायलट/i
+const PILOT_OK_7J = ['carbon-credit/index.html', 'carbon-credit/niti-sujhav/index.html', 'articles/kisaan-carbon-credit-kya-hai/index.html']
+const builtPages7j = walk('dist', ['.html']).map((f) => f.replace(/^dist\//, ''))
+const pilotPages7j = builtPages7j.filter((f) => !PILOT_OK_7J.includes(f) && PILOT_7J.test(read(`dist/${f}`)))
+check(`7J: no built page says "pilot" / "पायलट" (${builtPages7j.length} pages; exception: Government carbon "pilot projects")`, builtPages7j.length >= 263 && pilotPages7j.length === 0, pilotPages7j.slice(0, 8).join(', '))
+check('7J: the carbon pages use "pilot" only for the Government\'s projects, never for Kissan Sahyog', PILOT_OK_7J.every((f) => !/(Kissan Sahyog|किसान सहयोग)[^.।]{0,80}(pilot|पायलट)|(pilot|पायलट)[^.।]{0,40}(Sagar|सागर)/i.test(text(read(`dist/${f}`)))))
+const pilotSrc7j = ['src/content/about.js', 'src/content/seo.js', 'src/content/howToUse.js', 'src/content/founder.js', 'src/content/pages/grievance.js', 'src/lib/i18n/strings.js', 'src/lib/i18n/termsContent.js', 'src/lib/i18n/legal.js', 'src/screens/About.jsx', 'src/screens/Contact.jsx', 'src/components/layout/Seo.jsx', 'public/llms.txt', 'scripts/build-search-index.mjs']
+  .filter((f) => PILOT_7J.test(stripComments(read(f)).replace(/stat_pilot_(value|label)/g, '')))
+check('7J: no "pilot" wording left in the About, home, contact, legal, llms.txt or shared-string sources', pilotSrc7j.length === 0, pilotSrc7j.join(', '))
+check('7J: About says "starting in Sagar … may expand", with no district names or dates', /starting in Sagar district, Madhya Pradesh, and may expand to other places over time/.test(about7j.sagar.paras[0].en) && /सागर ज़िले \(मध्य प्रदेश\) से हो रही है/.test(about7j.sagar.paras[0].hi) && about7j.sagar.id === 'sagar-se-shuruaat')
+check('7J: "What Kissan Sahyog is" block has the new title and body (Hindi + English)', about7j.what.title.hi === 'आपके गाँव का खेती-बाज़ार, अब ऑनलाइन' && /^Your village.s farm bazaar, now online$/.test(about7j.what.title.en) && about7j.what.paras.length === 1
+  && about7j.what.paras[0].en.startsWith('Need a tractor for sowing?') && about7j.what.paras[0].en.endsWith('so check their details before you go ahead.') && about7j.what.paras[0].hi.startsWith('बुवाई के लिए ट्रैक्टर चाहिए?')
+  && text(read('dist/about/index.html')).includes('आपके गाँव का खेती-बाज़ार, अब ऑनलाइन'))
+// The one definitional sentence: About intro, sitewide JSON-LD (Organization + WebSite), llms.txt.
+const ld7j = [...read('dist/index.html').matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => { try { return [JSON.parse(m[1])].flat() } catch { return [] } })
+check('7J: the definition is the About intro, the site JSON-LD description and the llms.txt description', about7j.lead.en === DEF_EN && about7j.lead.hi === DEF_HI
+  && ld7j.some((o) => o['@type'] === 'Organization' && o.description === DEF_HI) && ld7j.some((o) => o['@type'] === 'WebSite' && o.description === DEF_HI)
+  && llms7f.includes(`> ${DEF_EN}`) && llms7f.includes(`> ${DEF_HI}`) && /owned and run by Shri Abhinandan Dixit/.test(llms7f) && read('dist/llms.txt').includes(DEF_EN))
+check('7J: the new copy claims neither "free" nor "daily"', !FREE.test([service7j.en, service7j.hi, about7j.lead.en, about7j.lead.hi, about7j.what.paras[0].en, about7j.what.paras[0].hi, about7j.sagar.paras[0].en, about7j.sagar.paras[0].hi].join(' ')) && !/\bdaily\b|रोज़ाना|प्रतिदिन/i.test([service7j.en, service7j.hi, about7j.what.paras[0].en, about7j.what.paras[0].hi, llms7f.split('\n').slice(0, 9).join(' ')].join(' ')))
+
 say(`\n${pass} passed, ${fail} failed`)
 mkdirSync(join(ROOT, 'docs/review/batch7d'), { recursive: true })
 writeFileSync(join(ROOT, 'docs/review/batch7d/VERIFY_OUTPUT.txt'), lines.join('\n') + '\n', 'utf8')

@@ -1262,7 +1262,7 @@ export const strings = {
 
   // ===== Homepage v3 =====
   stat_pilot_value: { hi: 'MP', en: 'MP' },
-  stat_pilot_label: { hi: 'पायलट क्षेत्र', en: 'Pilot area' },
+  stat_pilot_label: { hi: 'शुरुआती क्षेत्र', en: 'Starting area' },
   rain_label: { hi: 'बारिश', en: 'Rain' },
   weather_clear: { hi: 'साफ मौसम', en: 'Clear weather' },
   rain_none_5day: { hi: 'अगले 5 दिन बारिश नहीं', en: 'No rain for 5 days' },
@@ -2276,7 +2276,7 @@ export const strings = {
   home_open_sawaal: { hi: 'किसान सवाल', en: 'Farmer Q&A' },
   home_open_cold: { hi: 'कोल्ड स्टोरेज', en: 'Cold storage' },
   home_open_mela: { hi: 'मेले', en: 'Melas' },
-  terms_updated: { hi: 'आख़िरी बदलाव: 12 अक्टूबर 2026 · Terms Draft 1.2', en: 'Last updated: 12 October 2026 · Terms Draft 1.2' },
+  terms_updated: { hi: 'आख़िरी बदलाव: 12 अक्टूबर 2026 · संस्करण 1.2', en: 'Last updated: 12 October 2026 · Version 1.2' },
   terms_contents: { hi: 'विषय सूची', en: 'Contents' },
   post_declare_provider: { hi: 'मैं इसका असली प्रदाता हूँ और इसकी ज़िम्मेदारी मेरी है।', en: 'I am the genuine provider and I take responsibility for it.' },
   post_declare_owner: { hi: 'यह ज़मीन मेरी है या इसे देने का हक़ मुझे है।', en: 'This land is mine or I am authorised to offer it.' },
@@ -2306,6 +2306,7 @@ export const strings = {
   fb_err_too_many: { hi: 'आपने थोड़ी देर में कई संदेश भेजे हैं। कृपया कुछ देर बाद फिर कोशिश करें।', en: 'You have sent several messages in a short time. Please try again a little later.' },
   fb_err_unavailable: { hi: 'अभी यहाँ से संदेश नहीं जा सका। कृपया नीचे के बटन से इसे ईमेल से भेज दें।', en: 'We could not send your message from here just now. Please send it by email using the button below.' },
   fb_send_email: { hi: 'ईमेल से भेजें', en: 'Send by email' },
-  fb_direct_email: { hi: 'चाहें तो सीधे ईमेल भी कर सकते हैं:', en: 'You can also email us directly:' },
+  fb_email_general: { hi: 'सामान्य प्रश्न:', en: 'General questions:' },
+  fb_email_grievance: { hi: 'शिकायतें:', en: 'Complaints and grievances:' },
   fb_legal_summary: { hi: 'और जानकारी', en: 'More information' },
 }

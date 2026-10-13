@@ -106,3 +106,35 @@ These terms are intended to be interpreted under Indian law. Lawyer confirmation
 - Land-listing and title-verification wording.
 - Labour and wage wording.
 - Data-retention language and whether it belongs in Terms or Privacy.
+
+## Note removed from the public Terms page (Batch 7J, 13 October 2026)
+
+The public `/terms` page is now labelled "Version 1.2" (effective date 12 October 2026) and no
+longer shows the word "Draft". The lawyer-review sentence below used to sit in clause 16
+("Law, contact, and version"). It was taken off the public page and is kept here so the open
+point is not lost. The clause text above in this file is the older Draft 1.0 wording; the
+current wording is in `src/lib/i18n/termsContent.js`.
+
+Removed sentence (Hindi):
+
+> वकील से पुष्टि आवश्यक: विवाद के लिए सागर, मध्य प्रदेश के न्यायालयों की प्रस्तावित अधिकारिता और जिम्मेदारी-सीमा की भाषा कानूनी समीक्षा के बाद बदली जा सकती है।
+
+Removed sentence (English):
+
+> Lawyer confirmation required: proposed jurisdiction of courts at Sagar, Madhya Pradesh and the liability wording may change after legal review.
+
+What the public clause 16 says now:
+
+> ये शर्तें भारत के कानूनों के अनुसार समझी जाएंगी। विवाद सागर, मध्य प्रदेश के न्यायालयों की अधिकारिता में होंगे। संपर्क: hello@kissansahyog.com; शिकायत: grievance@kissansahyog.com या /grievance। प्रभावी तिथि 12 अक्टूबर 2026, संस्करण 1.2।
+
+> These terms are intended to be interpreted under Indian law. Disputes are subject to the courts at Sagar, Madhya Pradesh. Contact: hello@kissansahyog.com; grievance: grievance@kissansahyog.com or /grievance. Effective date 12 October 2026, Version 1.2.
+
+Still open for the lawyer:
+
+- Sagar jurisdiction is now stated as fact on the public page, not as "proposed". Confirm it.
+- Clause 15 now reads "Kissan Sahyog, its owner, operator and service providers" in place of
+  "Kissan Sahyog and USD Vision AI LLP". Confirm the limitation-of-liability wording.
+- Clause 1 now names Shri Abhinandan Dixit as owner and operator. No Terms or Privacy text
+  names USD Vision AI LLP any more; the company appears only in the footer credit.
+- The Privacy page still carries the note "this is an initial draft. Legal review is pending
+  before public launch."

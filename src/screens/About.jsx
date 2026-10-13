@@ -1,6 +1,6 @@
 // /about — About Us (Batch 7A). Public, static, no data fetch. All long copy is
 // bilingual data in src/content/about.js; short labels come from strings.js.
-// Section order: intro → what it is → why → what you can do → Sagar pilot →
+// Section order: intro → what it is → why → what you can do → starting in Sagar →
 // ownership and operation → what farmers say (only when there is something approved) →
 // contact → founder card.
 import { useEffect, useState } from 'react'
@@ -117,8 +117,8 @@ export default function About() {
         </p>
       </SectionBlock>
 
-      <SectionBlock id={about.pilot.id} title={p(about.pilot.title)}>
-        {about.pilot.paras.map((para, i) => <Para key={i}>{p(para)}</Para>)}
+      <SectionBlock id={about.sagar.id} title={p(about.sagar.title)}>
+        {about.sagar.paras.map((para, i) => <Para key={i}>{p(para)}</Para>)}
       </SectionBlock>
 
       <SectionBlock id={about.who.id} title={p(about.who.title)}>

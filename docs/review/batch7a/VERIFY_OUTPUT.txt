@@ -27,7 +27,7 @@ PASS  3: "what you can do" covers listings, Q&A, mandi prices, cold storage, mel
 PASS  3: About links to /how-to-use, /founder, /grievance and the contact e-mail
 PASS  3: the /how-to-use link target is a real route (built in Batch 7C)
 PASS  3: About.jsx has one <h1> and no Devanagari literals
-PASS  3: every About field has Hindi and English (33 fields)
+PASS  3: every About field has Hindi and English (32 fields)
 PASS  3: About copy has no numbers or statistics
 PASS  3: About dropdown has both links (/about and /founder)
 PASS  3: desktop dropdown and mobile expandable section both render ABOUT_MENU as links
@@ -49,8 +49,8 @@ PASS  7I: About content and screen never name USD Vision AI LLP (no text, link o
 PASS  7I: About JSON-LD has no parentOrganization and keeps the founder
 PASS  7I: prerendered /about shows the owner sentence and names the company only in the footer credit
 PASS  7I: footer keeps the designer / maintainer credit (not "run by" / "a product of")
-PASS  7I: no other public source file names USD Vision AI (only the footer credit and the Terms legal text do)
-PASS  7I: built home, founder, grievance, how-to-use, privacy and llms.txt name the company nowhere outside the footer
+PASS  7I: no other public source file names USD Vision AI (only the footer credit does)
+PASS  7I: built home, founder, grievance, how-to-use, privacy, terms and llms.txt name the company nowhere outside the footer
 PASS  4: footer label is "सुझाव और शिकायत / Feedback & Grievance" and the URL is unchanged
 PASS  4: heading and intro match the brief
 PASS  4: grievance page has a required contact input (e-mail or mobile)
@@ -65,13 +65,14 @@ PASS  4: the kept sections are on the page, inside the collapsed section
 PASS  7E: no Grievance Officer section (copy, prerendered page, About JSON-LD)
 PASS  7E: no "Further appeal (escalation)" section
 PASS  7E: no promised time to acknowledge or resolve, and no citation left behind
-PASS  7E: "email us directly" uses hello@
-PASS  7E: grievance@ is only the destination of the form's e-mail fallback
+PASS  7E/7J: the general e-mail line uses hello@
+PASS  7J: /grievance shows both e-mail addresses as mailto links, each with its own label (Hindi + English)
+PASS  7E: the form's e-mail fallback still goes to grievance@, and the page copy data does not repeat the address
 PASS  7E: FAQ still has more than one item
 PASS  4: FAQPage JSON-LD is still emitted
 PASS  4: Grievance.jsx has one <h1> and no Devanagari literals
-PASS  5: no "मुफ़्त" / "free" in the content added by this batch (30 strings + About + grievance intro)
+PASS  5: no "मुफ़्त" / "free" in the content added by this batch (31 strings + About + grievance intro)
 PASS  5: every new string has Hindi and English
 PASS  5: every t() key used by the touched components exists
 
-75 passed, 0 failed
+76 passed, 0 failed

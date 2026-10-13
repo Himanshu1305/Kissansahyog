@@ -177,9 +177,9 @@ for (const width of WIDTHS) {
     check(`grievance ${width}px: e-mail + type + message only, no name or phone field`,
       inputs.includes('text:contact') && inputs.includes('textarea:message') && inputs.filter((i) => i.startsWith('radio:kind')).length === 3
       && !inputs.some((i) => /name$|phone|tel:/i.test(i.replace('ks_leave_empty', ''))), inputs.join(' '))
-    // Batch 7E: no officer, appeal route or grievance@ in the page text; hello@ in the direct-email line.
+    // Batch 7E: no officer or appeal route. Batch 7J: both e-mail addresses under the form, each on its own line.
     check(`grievance ${width}px: extra information is collapsed but present, without officer / appeal content`, await page.locator('[data-testid="grievance-legal"]').evaluate((d) => !d.open && d.textContent.includes('शिकायत कैसे करें') && !/grievance@|gac\.gov\.in|शिकायत अधिकारी|24 घंटे/.test(d.textContent)))
-    check(`grievance ${width}px: "email us directly" goes to hello@`, (await page.locator('[data-testid="feedback-direct-email"]').getAttribute('href')) === 'mailto:hello@kissansahyog.com' && !(await page.locator('main').innerText()).includes('grievance@'))
+    check(`grievance ${width}px: both e-mail addresses are mailto links (hello@ general, grievance@ complaints)`, (await page.locator('[data-testid="feedback-direct-email"]').getAttribute('href')) === 'mailto:hello@kissansahyog.com' && (await page.locator('[data-testid="feedback-grievance-email"]').getAttribute('href')) === 'mailto:grievance@kissansahyog.com')
     await page.screenshot({ path: join(OUT, `grievance-${width}.png`), fullPage: true })
 
     // Validation: empty form is refused.

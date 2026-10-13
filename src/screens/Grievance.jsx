@@ -7,11 +7,11 @@ import { submitFeedback, validateFeedback, feedbackMailto, FEEDBACK_KINDS, PUBLI
 
 // /grievance — Feedback & Grievance (Batch 7A, form reworked in 7B). A friendly form
 // on top (one contact box that takes an e-mail address or a mobile number, a type
-// and a message — nothing about who the person is), the general e-mail address, and a
-// short collapsed "More information" section (how complaints work + FAQ; Batch 7E
-// removed the officer, appeal and response-time content). The grievance address is
-// only the destination of the form's e-mail fallback (feedbackMailto).
+// and a message — nothing about who the person is), the two e-mail addresses (general
+// and complaints, Batch 7J), and a short collapsed "More information" section (how
+// complaints work + FAQ; Batch 7E removed the officer, appeal and response-time content).
 const GENERAL_EMAIL = 'hello@kissansahyog.com'
+const GRIEVANCE_EMAIL = 'grievance@kissansahyog.com'
 const field = 'w-full rounded-xl border-2 border-stone-300 bg-white p-3 text-[17px] text-stone-900 focus:border-[var(--ks-green)] focus:outline-none'
 const label = 'mb-1 block text-[16px] font-bold text-stone-900'
 
@@ -150,7 +150,9 @@ export default function Grievance() {
       )}
 
       <p className="mt-4 text-[15px] text-stone-600">
-        {t('fb_direct_email')} <a href={`mailto:${GENERAL_EMAIL}`} data-testid="feedback-direct-email" className="font-semibold text-green-800 underline">{GENERAL_EMAIL}</a>
+        {t('fb_email_general')} <a href={`mailto:${GENERAL_EMAIL}`} data-testid="feedback-direct-email" className="font-semibold text-green-800 underline">{GENERAL_EMAIL}</a>
+        <br />
+        {t('fb_email_grievance')} <a href={`mailto:${GRIEVANCE_EMAIL}`} data-testid="feedback-grievance-email" className="font-semibold text-green-800 underline">{GRIEVANCE_EMAIL}</a>
       </p>
 
       {/* How complaints work + FAQ — folded away by default. */}
