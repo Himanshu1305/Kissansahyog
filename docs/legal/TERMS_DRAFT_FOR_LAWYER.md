@@ -171,3 +171,38 @@ Please check:
 - The first Privacy paragraph still lists "pincode" as collected. Pincode is now collected only
   on registration, when posting a listing, and in the profile; not for the visitor's location.
 - "How it is used" still says only "matches within 30km"; the new paragraph covers the rest.
+
+## Batch 7L-2 (13 October 2026): changes to "Your location", and new points for review
+
+The "Your location" / "आपकी लोकेशन" paragraph on `/privacy` was changed in two places. No
+version number was changed.
+
+1. Weather. Old text: the position "is sent to our weather store and to … Open-Meteo, and is
+   kept against a map square of about 10 km". New text: the position "is first rounded to an
+   area of about 10 km. Only that rounded position is sent to our weather store and to the
+   weather service Open-Meteo, and only that is saved … Your exact position is not saved for
+   weather." The code now rounds to the centre of a 0.1° cell (at most about 7 km from the
+   visitor) before the forecast request and before both saves.
+2. Removal. Old text: "clear this site's data in your browser". New text: press "Clear my
+   location" / "मेरी लोकेशन हटाएँ" next to the place name. The button removes the saved place
+   from the device.
+
+Please check:
+
+- **Rows saved before this change still hold exact positions** in `weather_grid_requests` and
+  `weather_cache_v2` (both publicly readable). The new text describes what the code does from
+  now on. `weather_cache_v2` rows are rewritten as cell centres the next time the refresh job
+  runs with this code; `weather_grid_requests` rows are not rewritten by anything. A one-time
+  clean-up statement is in `docs/review/BATCH7L2_REPORT.md`; it has not been run.
+- **The Privacy page still does not list email** among "What we collect" (mobile number,
+  pincode, village/town, listing details), although registration now always asks for email,
+  password and mobile number. Passwords are held by Supabase Auth, not in our own tables.
+- **New visibility choice at registration** ("Show my details (recommended)" / "Keep hidden"),
+  stored in `profiles.consents.details_visibility`. "Show" is pre-selected. Decide whether a
+  pre-selected choice is acceptable as consent under the DPDP Rules, 2025, or whether neither
+  option should start selected. The Privacy page does not mention this choice yet.
+- **New login record**: `login_attempts` keeps the mobile number or email used in each sign-in
+  attempt, the time, and whether it worked, for 30 days, to slow down guessing. The Privacy
+  page does not mention it.
+- The registration form no longer asks for a pincode; profiles created from now on store the
+  chosen town and that town's coordinates (not the device position).

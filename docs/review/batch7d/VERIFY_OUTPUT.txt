@@ -1,4 +1,4 @@
-PASS  1: no unconditional "free" claim left outside the kept list (284 files, 100 kept hits)
+PASS  1: no unconditional "free" claim left outside the kept list (286 files, 100 kept hits)
 PASS  1: the 11 strings that made the claim are reworded (install banner, WhatsApp banner, bazaar intro, sign-up prompts, cold-storage CTA…)
 PASS  1: homepage / search meta description no longer says "free"
 PASS  1: terms, grievance FAQ and llms.txt no longer say "free"

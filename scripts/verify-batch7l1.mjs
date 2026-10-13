@@ -117,7 +117,8 @@ const signupBox = shared.slice(shared.indexOf('export function DailyUpdateSignup
 check('2: no pincode input or "Pincode:" display on home / weather / browse / cold storage, nor in the daily-update box', pinUi.length === 0 && !/pincode_label|maxLength=\{6\}/.test(signupBox) && !/pincode-input|loc_enter_pincode|loc_or_pincode/.test(shared + control), pinUi.join(', '))
 const pinStrings = ['loc_enter_pincode', 'loc_or_pincode', 'loc_use_pincode', 'loc_denied_hint', 'cs_search_ph'].filter((k) => strings[k])
 check('2: the old "enter a pincode" strings are gone', pinStrings.length === 0, pinStrings.join(', '))
-check('2: the OPTIONAL pincode field on the registration form is still there', /pincode/i.test(read('src/screens/Signup.jsx')))
+// Batch 7L-2 replaced the registration form: it has no pincode field any more.
+check('2: the registration form no longer has a pincode field (removed in Batch 7L-2)', !/pincode/i.test(stripComments(read('src/screens/Signup.jsx'))))
 check('2: pre-permission card text and buttons are the briefed wording (Hindi + English)',
   strings.loc_card_text.en === 'Share your location to see offers, mandi prices and weather near you, and how far melas, cold storages and search results are. We use your location only for this.'
   && strings.loc_card_text.hi === 'अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे कितनी दूर हैं यह जानने के लिए अपनी लोकेशन साझा करें। हम आपकी लोकेशन सिर्फ़ इसी काम के लिए इस्तेमाल करते हैं।'
@@ -159,7 +160,7 @@ check('4: migration 0058 adds in_sagar_division (boolean, not null, default fals
   /add column if not exists in_sagar_division boolean not null default false/.test(m58sql) && D6.every((d) => m58sql.includes(`'${d.toLowerCase()}'`)) && /create index if not exists mandi_prices_division_date_idx/.test(m58sql))
 check('4: migration 0058 leaves is_sagar_district untouched', !/is_sagar_district/.test(m58sql))
 const nextNums = readdirSync(join(ROOT, 'supabase/migrations')).map((f) => f.slice(0, 4)).sort()
-check('4: the new migrations are the next numbers after 0056 (0057, 0058), nothing else added', nextNums.slice(-3).join(',') === '0056,0057,0058')
+check('4: the new migrations are the next numbers after 0056 (0057, 0058), directly, in order', nextNums.slice(nextNums.indexOf('0056'), nextNums.indexOf('0056') + 3).join(',') === '0056,0057,0058') // later batches add higher numbers
 const mandiApi = read('src/lib/mandi/mandiApi.js')
 check('4: the "local mandis" queries use in_sagar_division (falling back to is_sagar_district only if the column is missing)', /let localCol = 'in_sagar_division'/.test(mandiApi) && count(mandiApi, 'withLocalFlag((col)') === 3 && !/\.select\('[^']*is_sagar_district/.test(mandiApi) && !/r\.is_sagar_district|c\.is_sagar_district/.test(mandiApi))
 const refresh = read('scripts/refresh-data.mjs'), backfill = read('scripts/backfill-mandi-history.mjs')

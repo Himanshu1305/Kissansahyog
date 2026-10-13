@@ -46,8 +46,8 @@ export const strings = {
   pincode: { hi: 'पिन कोड', en: 'Pincode' },
   pincode_ph: { hi: '6 अंकों का पिन कोड', en: '6-digit pincode' },
   pincode_help: {
-    hi: 'आपके पिन कोड से आस-पास की लिस्टिंग दिखाई जाएंगी।',
-    en: 'Your pincode is used to show nearby listings.',
+    hi: 'आपके इलाके का 6 अंकों का पिन कोड।',
+    en: 'The 6-digit pincode of your area.',
   },
 
   // --- disclaimer step ---
@@ -68,8 +68,6 @@ export const strings = {
   no_account_yet: { hi: 'खाता नहीं है? नया बनाएं', en: "No account? Create one" },
 
   // --- dual auth (phone | email) ---
-  tab_phone: { hi: '📱 फ़ोन से', en: '📱 By Phone' },
-  tab_email: { hi: '✉️ ईमेल से', en: '✉️ By Email' },
   email_label: { hi: 'ईमेल', en: 'Email' },
   email_ph: { hi: 'जैसे: naam@example.com', en: 'e.g. name@example.com' },
   password_label: { hi: 'पासवर्ड', en: 'Password' },
@@ -1772,6 +1770,26 @@ export const strings = {
   loc_set_for_weather: { hi: 'मौसम देखने के लिए अपनी जगह बताएँ', en: 'Set your place to see the weather' },
   listings_latest_title: { hi: 'ताज़ा लिस्टिंग', en: 'Latest listings' },
   loc_your_location: { hi: 'आपकी जगह', en: 'Your location' },
+  loc_clear: { hi: 'मेरी लोकेशन हटाएँ', en: 'Clear my location' },
+  // Batch 7L-2 — one registration form, one sign-in screen
+  password_show: { hi: 'दिखाएँ', en: 'Show' },
+  password_hide: { hi: 'छिपाएँ', en: 'Hide' },
+  place_field_hint: { hi: 'अपने गाँव या सबसे पास के कस्बे का नाम लिखें और सूची से चुनें।', en: 'Type your village or the nearest town and pick it from the list.' },
+  err_place_required: { hi: 'कृपया अपना गाँव या पास का कस्बा चुनें।', en: 'Please choose your village or nearest town.' },
+  vis_title: { hi: 'आपकी जानकारी कौन देख सकता है?', en: 'Who can see your details?' },
+  vis_explain: { hi: 'जब आप कोई लिस्टिंग डालते हैं, तो खरीदार और विक्रेता आपका नाम और मोबाइल नंबर देखकर आपसे संपर्क करते हैं। अगर आप जानकारी छिपाकर रखेंगे, तो वे इसे नहीं देख पाएँगे, और बेचने या ज़मीन लीज़ पर देने के मौके छूट सकते हैं।', en: 'When you post a listing, buyers and sellers contact you by seeing your name and mobile number. If you keep your details hidden, they will NOT see them, and you may miss chances to sell or lease.' },
+  vis_show: { hi: 'मेरी जानकारी दिखाएँ (सुझाया गया)', en: 'Show my details (recommended)' },
+  vis_hidden: { hi: 'छिपी रहने दें', en: 'Keep hidden' },
+  vis_hidden_warning: { hi: 'ध्यान दें: जानकारी छिपी रहने पर खरीदार और विक्रेता आपसे संपर्क नहीं कर पाएँगे।', en: 'Note: with your details hidden, buyers and sellers will not be able to contact you.' },
+  login_email_heading: { hi: 'ईमेल और पासवर्ड से', en: 'With email and password' },
+  login_phone_heading: { hi: 'मोबाइल नंबर से', en: 'With mobile number' },
+  login_email_button: { hi: 'ईमेल से लॉग इन करें', en: 'Log in with email' },
+  login_phone_button: { hi: 'मोबाइल नंबर से लॉग इन करें', en: 'Log in with mobile number' },
+  login_otp_soon: { hi: 'OTP से जाँच जल्द आ रही है।', en: 'OTP verification is coming soon.' },
+  login_otp_label: { hi: 'OTP कोड', en: 'OTP code' },
+  err_too_many_attempts: { hi: 'बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।', en: 'Too many attempts. Please try again after 15 minutes.' },
+  err_registration_incomplete: { hi: 'आपका खाता पूरा नहीं बना था। कृपया "नया खाता बनाएं" से उसी ईमेल और पासवर्ड के साथ दोबारा भरें।', en: 'Your account was not finished. Please use "Create account" again with the same email and password.' },
+  err_contact_hidden: { hi: 'इस व्यक्ति ने अपनी जानकारी छिपाकर रखी है, इसलिए संपर्क नंबर नहीं दिखाया जा सकता।', en: 'This person has chosen to keep their details hidden, so the contact number cannot be shown.' },
   // 0028 Phase 1/2/3 — reverse-geocoded name, IP-city suggestion, ordered choice copy
   // 0027 Part A — village-name asset location on the listing form
   field_asset_village: { hi: 'जगह — गाँव/शहर का नाम', en: 'Location — village/town name' },

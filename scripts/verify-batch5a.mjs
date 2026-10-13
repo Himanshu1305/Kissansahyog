@@ -114,7 +114,7 @@ const changed = [...new Set([
 const protectedPath = /(^|\/)(\.env(?:\.|$)|.*land.*|.*labor.*|.*carbon.*|.*grievance.*)/i
 const protectedChanges = changed.filter((path) => protectedPath.test(path) && !path.includes('BATCH5A_'))
 check('scope guard: no Land, Labor, carbon, Grievance, .env, or secret changes', protectedChanges.length === 0, protectedChanges.join(', '))
-const deleted = nameStatus.split(/\r?\n/).filter((line) => /^D\s/.test(line))
+const deleted = nameStatus.split(/\r?\n/).filter((line) => /^D\s+(scripts\/test|e2e)\//.test(line)) // only deleted TEST files (Batch 7L-2 removed an app component, AuthTabs.jsx)
 const diff = (() => { try { return git(['diff', '--', 'scripts/test', 'e2e']) } catch { return '' } })()
 check('test integrity: no test deleted, skipped, or loosened', deleted.length === 0 && !/^\+.*\b(?:test|it)\.skip\b/m.test(diff), deleted.join(', '))
 console.log(`INFO  scope files (${changed.length}): ${changed.join(', ')}`)

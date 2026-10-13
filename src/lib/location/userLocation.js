@@ -14,6 +14,7 @@
 
 const KEY = 'ks_location_v1'
 const DECLINED_KEY = 'ks_location_share_declined'
+const CLEARED_KEY = 'ks_location_cleared'
 export const SOURCES = ['device', 'saved', 'typed', 'picked']
 
 const num = (v) => (v === null || v === undefined || v === '' ? NaN : Number(v))
@@ -35,6 +36,7 @@ export function toCenter(loc) {
 export function saveLocation(loc) {
   if (!loc) return false
   try {
+    localStorage.removeItem(CLEARED_KEY)
     localStorage.setItem(KEY, JSON.stringify({ lat: loc.lat, lng: loc.lng, label: loc.label, from: loc.source === 'saved' ? (loc.from || 'saved') : loc.source }))
     return true
   } catch { return false }
@@ -62,6 +64,16 @@ export function isShareDeclined() {
 }
 export function setShareDeclined(v = true) {
   try { v ? localStorage.setItem(DECLINED_KEY, '1') : localStorage.removeItem(DECLINED_KEY) } catch { /* ignore */ }
+}
+
+// "Clear my location" (Batch 7L-2): remove the saved place from this device and remember that
+// the visitor cleared it, so nothing puts a place back on its own (no automatic device fix, no
+// profile coordinates) until they share, type or pick one again.
+export function clearSavedLocation() {
+  try { localStorage.removeItem(KEY); localStorage.removeItem(DECLINED_KEY); localStorage.setItem(CLEARED_KEY, '1') } catch { /* ignore */ }
+}
+export function isLocationCleared() {
+  try { return localStorage.getItem(CLEARED_KEY) === '1' } catch { return false }
 }
 
 export const geolocationSupported = () => typeof navigator !== 'undefined' && !!navigator.geolocation

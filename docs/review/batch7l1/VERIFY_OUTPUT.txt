@@ -19,10 +19,10 @@ PASS  2: home, weather, browse, MSP, crop advice, mela, search and the cold-stor
 PASS  2: none of them uses a pincode, a default place or its own device call any more
 PASS  2: no pincode input or "Pincode:" display on home / weather / browse / cold storage, nor in the daily-update box
 PASS  2: the old "enter a pincode" strings are gone
-PASS  2: the OPTIONAL pincode field on the registration form is still there
+PASS  2: the registration form no longer has a pincode field (removed in Batch 7L-2)
 PASS  2: pre-permission card text and buttons are the briefed wording (Hindi + English)
 PASS  2: banner and text-box wording are the briefed wording (Hindi + English)
-PASS  2: every string the control uses exists in Hindi and English (20 location keys)
+PASS  2: every string the control uses exists in Hindi and English (21 location keys)
 PASS  2: no Devanagari literal in the control or the provider (copy comes from the i18n file)
 PASS  2: the device is asked only from the "Share my location" action; the saved place lives in localStorage; no profile write
 PASS  2: with no location the home counts, browse results and weather are not rendered (prompt card instead)
@@ -37,7 +37,7 @@ PASS  3: migration 0057 loads the same 54 rows as the seed file
 PASS  3: migrations 0057 and 0058 have a header, a "not applied" line and a rollback note
 PASS  4: migration 0058 adds in_sagar_division (boolean, not null, default false), backfills the six districts and indexes it
 PASS  4: migration 0058 leaves is_sagar_district untouched
-PASS  4: the new migrations are the next numbers after 0056 (0057, 0058), nothing else added
+PASS  4: the new migrations are the next numbers after 0056 (0057, 0058), directly, in order
 PASS  4: the "local mandis" queries use in_sagar_division (falling back to is_sagar_district only if the column is missing)
 PASS  4: the ingestion covers the six districts and sets the flag (refresh + backfill), still setting is_sagar_district
 PASS  4: the ingestion has a dry run that opens no database connection

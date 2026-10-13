@@ -1,0 +1,627 @@
+{
+  "at": "2026-10-13T12:19:09.238Z",
+  "passed": 124,
+  "failed": 0,
+  "results": [
+    {
+      "name": "hi-390 signup: ONE form, no tabs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: name, email, password, mobile, village/town, language and the optional farmer fields are all there",
+      "ok": true,
+      "detail": "full_name,email,password,phone,village_town,language,k_land,k_crops,k-interest-lease,k-interest-equipment,k-whatsapp-optin"
+    },
+    {
+      "name": "hi-390 signup: no pincode field or pincode wording",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: both visibility buttons with the plain explanation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: the two buttons are large (≥ 56px) and \"show\" starts selected",
+      "ok": true,
+      "detail": "64/64"
+    },
+    {
+      "name": "hi-390 signup: \"Keep hidden\" can be chosen (not blocked) and warns plainly",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: and back to \"Show my details\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: password show/hide toggle works",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: weak password and invalid mobile get friendly messages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: village/town can be picked district → town",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: \"Keep hidden\" is sent and stored in consents",
+      "ok": true,
+      "detail": "{\"details_visibility\":{\"choice\":\"hidden\",\"chosen_at\":\"2026-10-13T12:17:11.555Z\",\"version\":\"2026-10\"}}"
+    },
+    {
+      "name": "hi-390 signup: the town from the places list is what is saved (name + town coordinates), no pincode",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: the password goes only to Supabase Auth, never to our own function",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: \"Show my details\" is sent and stored in consents",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: email already used → friendly message, no technical wording",
+      "ok": true,
+      "detail": "इस ईमेल से पहले से खाता है। कृपया लॉग इन करें।"
+    },
+    {
+      "name": "hi-390 signup: email already used → nobody is logged in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 signup: mobile already used → friendly message, no technical wording",
+      "ok": true,
+      "detail": "इस नंबर से पहले से खाता है। कृपया लॉग इन करें।"
+    },
+    {
+      "name": "hi-390 signup: mobile already used → nobody is logged in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 login: ONE screen, email+password AND mobile both visible, no tabs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 login: honest \"OTP coming soon\" note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 login: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 login: mobile sign-in refused for an is_admin profile (mock), same message as an unknown number",
+      "ok": true,
+      "detail": "इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।"
+    },
+    {
+      "name": "hi-390 login: after repeated failures the friendly \"try again later\" message appears (mobile)",
+      "ok": true,
+      "detail": "बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।"
+    },
+    {
+      "name": "hi-390 login: wrong password → friendly message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 login: after repeated failures the \"try again later\" message appears (email)",
+      "ok": true,
+      "detail": "बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।"
+    },
+    {
+      "name": "hi-390 login: mobile and email both end in the same stored session",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 location: \"Clear my location\" button is shown next to the place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 location: weather saves and requests only the ~10 km cell centre, never the exact position",
+      "ok": true,
+      "detail": "[[\"weather_grid_requests\",24,78.3,\"24.0_78.3\"],[\"cache_weather_cell\",24,78.3,\"24.0_78.3\"],[\"weather_grid_requests\",24,78.3,\"24.0_78.3\"],[\"open-meteo\",24,78.3,\"\"]]"
+    },
+    {
+      "name": "hi-390 location: Clear removes the place from the device and returns to the prompt card, no dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 location: it stays cleared after a reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: ONE form, no tabs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: name, email, password, mobile, village/town, language and the optional farmer fields are all there",
+      "ok": true,
+      "detail": "full_name,email,password,phone,village_town,language,k_land,k_crops,k-interest-lease,k-interest-equipment,k-whatsapp-optin"
+    },
+    {
+      "name": "en-390 signup: no pincode field or pincode wording",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: both visibility buttons with the plain explanation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: the two buttons are large (≥ 56px) and \"show\" starts selected",
+      "ok": true,
+      "detail": "84/64"
+    },
+    {
+      "name": "en-390 signup: \"Keep hidden\" can be chosen (not blocked) and warns plainly",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: and back to \"Show my details\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: password show/hide toggle works",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: weak password and invalid mobile get friendly messages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: village/town can be picked district → town",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: \"Keep hidden\" is sent and stored in consents",
+      "ok": true,
+      "detail": "{\"details_visibility\":{\"choice\":\"hidden\",\"chosen_at\":\"2026-10-13T12:17:41.603Z\",\"version\":\"2026-10\"}}"
+    },
+    {
+      "name": "en-390 signup: the town from the places list is what is saved (name + town coordinates), no pincode",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: the password goes only to Supabase Auth, never to our own function",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: \"Show my details\" is sent and stored in consents",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: email already used → friendly message, no technical wording",
+      "ok": true,
+      "detail": "An account with this email already exists. Please log in."
+    },
+    {
+      "name": "en-390 signup: email already used → nobody is logged in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 signup: mobile already used → friendly message, no technical wording",
+      "ok": true,
+      "detail": "An account with this number already exists. Please log in."
+    },
+    {
+      "name": "en-390 signup: mobile already used → nobody is logged in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 login: ONE screen, email+password AND mobile both visible, no tabs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 login: honest \"OTP coming soon\" note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 login: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 login: mobile sign-in refused for an is_admin profile (mock), same message as an unknown number",
+      "ok": true,
+      "detail": "No account found for this number. Please sign up."
+    },
+    {
+      "name": "en-390 login: after repeated failures the friendly \"try again later\" message appears (mobile)",
+      "ok": true,
+      "detail": "Too many attempts. Please try again after 15 minutes."
+    },
+    {
+      "name": "en-390 login: wrong password → friendly message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 login: after repeated failures the \"try again later\" message appears (email)",
+      "ok": true,
+      "detail": "Too many attempts. Please try again after 15 minutes."
+    },
+    {
+      "name": "en-390 login: mobile and email both end in the same stored session",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 location: \"Clear my location\" button is shown next to the place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 location: weather saves and requests only the ~10 km cell centre, never the exact position",
+      "ok": true,
+      "detail": "[[\"weather_grid_requests\",24,78.3,\"24.0_78.3\"],[\"cache_weather_cell\",24,78.3,\"24.0_78.3\"],[\"weather_grid_requests\",24,78.3,\"24.0_78.3\"],[\"open-meteo\",24,78.3,\"\"]]"
+    },
+    {
+      "name": "en-390 location: Clear removes the place from the device and returns to the prompt card, no dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 location: it stays cleared after a reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: ONE form, no tabs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: name, email, password, mobile, village/town, language and the optional farmer fields are all there",
+      "ok": true,
+      "detail": "full_name,email,password,phone,village_town,language,k_land,k_crops,k-interest-lease,k-interest-equipment,k-whatsapp-optin"
+    },
+    {
+      "name": "hi-1440 signup: no pincode field or pincode wording",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: both visibility buttons with the plain explanation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: the two buttons are large (≥ 56px) and \"show\" starts selected",
+      "ok": true,
+      "detail": "64/64"
+    },
+    {
+      "name": "hi-1440 signup: \"Keep hidden\" can be chosen (not blocked) and warns plainly",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: and back to \"Show my details\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: password show/hide toggle works",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: weak password and invalid mobile get friendly messages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: village/town can be picked district → town",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: \"Keep hidden\" is sent and stored in consents",
+      "ok": true,
+      "detail": "{\"details_visibility\":{\"choice\":\"hidden\",\"chosen_at\":\"2026-10-13T12:18:11.553Z\",\"version\":\"2026-10\"}}"
+    },
+    {
+      "name": "hi-1440 signup: the town from the places list is what is saved (name + town coordinates), no pincode",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: the password goes only to Supabase Auth, never to our own function",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: \"Show my details\" is sent and stored in consents",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: email already used → friendly message, no technical wording",
+      "ok": true,
+      "detail": "इस ईमेल से पहले से खाता है। कृपया लॉग इन करें।"
+    },
+    {
+      "name": "hi-1440 signup: email already used → nobody is logged in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 signup: mobile already used → friendly message, no technical wording",
+      "ok": true,
+      "detail": "इस नंबर से पहले से खाता है। कृपया लॉग इन करें।"
+    },
+    {
+      "name": "hi-1440 signup: mobile already used → nobody is logged in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 login: ONE screen, email+password AND mobile both visible, no tabs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 login: honest \"OTP coming soon\" note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 login: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 login: mobile sign-in refused for an is_admin profile (mock), same message as an unknown number",
+      "ok": true,
+      "detail": "इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।"
+    },
+    {
+      "name": "hi-1440 login: after repeated failures the friendly \"try again later\" message appears (mobile)",
+      "ok": true,
+      "detail": "बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।"
+    },
+    {
+      "name": "hi-1440 login: wrong password → friendly message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 login: after repeated failures the \"try again later\" message appears (email)",
+      "ok": true,
+      "detail": "बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।"
+    },
+    {
+      "name": "hi-1440 login: mobile and email both end in the same stored session",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 location: \"Clear my location\" button is shown next to the place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 location: weather saves and requests only the ~10 km cell centre, never the exact position",
+      "ok": true,
+      "detail": "[[\"weather_grid_requests\",24,78.3,\"24.0_78.3\"],[\"cache_weather_cell\",24,78.3,\"24.0_78.3\"],[\"weather_grid_requests\",24,78.3,\"24.0_78.3\"],[\"open-meteo\",24,78.3,\"\"]]"
+    },
+    {
+      "name": "hi-1440 location: Clear removes the place from the device and returns to the prompt card, no dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 location: it stays cleared after a reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: ONE form, no tabs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: name, email, password, mobile, village/town, language and the optional farmer fields are all there",
+      "ok": true,
+      "detail": "full_name,email,password,phone,village_town,language,k_land,k_crops,k-interest-lease,k-interest-equipment,k-whatsapp-optin"
+    },
+    {
+      "name": "en-1440 signup: no pincode field or pincode wording",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: both visibility buttons with the plain explanation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: the two buttons are large (≥ 56px) and \"show\" starts selected",
+      "ok": true,
+      "detail": "64/64"
+    },
+    {
+      "name": "en-1440 signup: \"Keep hidden\" can be chosen (not blocked) and warns plainly",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: and back to \"Show my details\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: password show/hide toggle works",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: weak password and invalid mobile get friendly messages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: village/town can be picked district → town",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: \"Keep hidden\" is sent and stored in consents",
+      "ok": true,
+      "detail": "{\"details_visibility\":{\"choice\":\"hidden\",\"chosen_at\":\"2026-10-13T12:18:42.502Z\",\"version\":\"2026-10\"}}"
+    },
+    {
+      "name": "en-1440 signup: the town from the places list is what is saved (name + town coordinates), no pincode",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: the password goes only to Supabase Auth, never to our own function",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: \"Show my details\" is sent and stored in consents",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: email already used → friendly message, no technical wording",
+      "ok": true,
+      "detail": "An account with this email already exists. Please log in."
+    },
+    {
+      "name": "en-1440 signup: email already used → nobody is logged in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 signup: mobile already used → friendly message, no technical wording",
+      "ok": true,
+      "detail": "An account with this number already exists. Please log in."
+    },
+    {
+      "name": "en-1440 signup: mobile already used → nobody is logged in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 login: ONE screen, email+password AND mobile both visible, no tabs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 login: honest \"OTP coming soon\" note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 login: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 login: mobile sign-in refused for an is_admin profile (mock), same message as an unknown number",
+      "ok": true,
+      "detail": "No account found for this number. Please sign up."
+    },
+    {
+      "name": "en-1440 login: after repeated failures the friendly \"try again later\" message appears (mobile)",
+      "ok": true,
+      "detail": "Too many attempts. Please try again after 15 minutes."
+    },
+    {
+      "name": "en-1440 login: wrong password → friendly message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 login: after repeated failures the \"try again later\" message appears (email)",
+      "ok": true,
+      "detail": "Too many attempts. Please try again after 15 minutes."
+    },
+    {
+      "name": "en-1440 login: mobile and email both end in the same stored session",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 location: \"Clear my location\" button is shown next to the place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 location: weather saves and requests only the ~10 km cell centre, never the exact position",
+      "ok": true,
+      "detail": "[[\"weather_grid_requests\",24,78.3,\"24.0_78.3\"],[\"cache_weather_cell\",24,78.3,\"24.0_78.3\"],[\"weather_grid_requests\",24,78.3,\"24.0_78.3\"],[\"open-meteo\",24,78.3,\"\"]]"
+    },
+    {
+      "name": "en-1440 location: Clear removes the place from the device and returns to the prompt card, no dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 location: it stays cleared after a reload",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

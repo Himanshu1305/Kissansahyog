@@ -1,0 +1,181 @@
+{
+  "at": "2026-10-13T12:16:52.386Z",
+  "database": "staging",
+  "passed": 31,
+  "failed": 0,
+  "results": [
+    {
+      "info": "before: {\"profiles\":18,\"listings\":77,\"attempts\":0,\"auth_users\":4}"
+    },
+    {
+      "name": "login_attempts: anon cannot read it",
+      "ok": true,
+      "detail": "HTTP 401 {\"code\":\"42501\",\"details\":null,\"hint\":\"Grant the required privileges to the current role w"
+    },
+    {
+      "name": "login_attempts: anon cannot write to it",
+      "ok": true,
+      "detail": "HTTP 401 {\"code\":\"42501\",\"details\":null,\"hint\":\"Grant the required privileges to the current role w"
+    },
+    {
+      "name": "login_is_locked: anon cannot call the helper",
+      "ok": true,
+      "detail": "HTTP 401 {\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"permission denie"
+    },
+    {
+      "name": "login_record_attempt: anon cannot call the helper",
+      "ok": true,
+      "detail": "HTTP 401 {\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"permission denie"
+    },
+    {
+      "name": "login_attempts: still empty of this run's rows after the refused probes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "info": "app_login(unknown 9000000199) → HTTP 200, exact body: {\"id\":null,\"full_name\":null,\"phone\":null,\"village_town\":null,\"pincode\":null,\"latitude\":null,\"longitude\":null,\"preferred_language\":null,\"disclaimer_accepted_at\":null,\"created_at\":null,\"email\":null,\"auth_uid\":null,\"auth_provider\":null,\"is_admin\":null,\"is_test_data\":null,\"land_acres\":null,\"main_crops\":null,\"interest_lease\":null,\"interest_equipment\":null,\"whatsapp_opt_in\":null,\"whatsapp_opt_in_at\":null,\"preferred_mandi\":null,\"consents\":null}"
+    },
+    {
+      "name": "app_login(unknown): HTTP 200 and \"no profile\" (null, or an object whose every field is null)",
+      "ok": true,
+      "detail": "shape: object with 23 fields, all null = true"
+    },
+    {
+      "name": "app_login(unknown): the failure was counted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "app: answer null → \"not found\", still on the sign-in screen, no session stored",
+      "ok": true,
+      "detail": "No account found for this number. Please sign up."
+    },
+    {
+      "name": "app: null already sitting in storage → not treated as signed in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "app: answer an object with all-null fields → \"not found\", still on the sign-in screen, no session stored",
+      "ok": true,
+      "detail": "No account found for this number. Please sign up."
+    },
+    {
+      "name": "app: an object with all-null fields already sitting in storage → not treated as signed in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "register (form, \"Keep hidden\"): signed in afterwards, app_register was called",
+      "ok": true,
+      "detail": "id 72c1a8db…"
+    },
+    {
+      "name": "register (form, \"Show my details\"): signed in afterwards, app_register was called",
+      "ok": true,
+      "detail": "id 11057355…"
+    },
+    {
+      "name": "app_register stored \"hidden\" in profiles.consents.details_visibility",
+      "ok": true,
+      "detail": "{\"details_visibility\":{\"choice\":\"hidden\",\"version\":\"2026-10\",\"chosen_at\":\"2026-10-13 12:15:04.221798+00\"}}"
+    },
+    {
+      "name": "app_register stored \"show\" in profiles.consents.details_visibility",
+      "ok": true,
+      "detail": "{\"details_visibility\":{\"choice\":\"show\",\"version\":\"2026-10\",\"chosen_at\":\"2026-10-13 12:15:37.452687+00\"}}"
+    },
+    {
+      "name": "app_register stored email, mobile, town + town coordinates, no pincode, linked to Supabase Auth, not admin",
+      "ok": true,
+      "detail": "खुरई 24.04222,78.32963"
+    },
+    {
+      "name": "exactly two profiles were created",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "info": "get_listing_contact(hidden user's listing) → HTTP 400, body: {\"code\":\"P0001\",\"details\":null,\"hint\":null,\"message\":\"contact_hidden\"}"
+    },
+    {
+      "name": "\"Keep hidden\": get_listing_contact refuses with contact_hidden and gives out no name or number",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "\"Show my details\": get_listing_contact still returns that user's name and number",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "accept_listing_consents keeps the visibility choice next to the listing consents",
+      "ok": true,
+      "detail": "[\"items\",\"version\",\"accepted_at\",\"details_visibility\"]"
+    },
+    {
+      "name": "…and the hidden user's listing is still refused afterwards",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile sign-in for a normal (non-admin) profile returns the profile",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "email + password sign-in through the form works for the new user",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "info": "app_login(is_admin throwaway 9000000102) → HTTP 200, exact body: {\"id\":null,\"full_name\":null,\"phone\":null,\"village_town\":null,\"pincode\":null,\"latitude\":null,\"longitude\":null,\"preferred_language\":null,\"disclaimer_accepted_at\":null,\"created_at\":null,\"email\":null,\"auth_uid\":null,\"auth_provider\":null,\"is_admin\":null,\"is_test_data\":null,\"land_acres\":null,\"main_crops\":null,\"interest_lease\":null,\"interest_equipment\":null,\"whatsapp_opt_in\":null,\"whatsapp_opt_in_at\":null,\"preferred_mandi\":null,\"consents\":null}"
+    },
+    {
+      "name": "mobile sign-in for an is_admin profile is refused, byte-for-byte the same answer as an unknown number",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "sign-in screen: the admin number gets the same \"not found\" message and nobody is signed in",
+      "ok": true,
+      "detail": "No account found for this number. Please sign up."
+    },
+    {
+      "name": "mobile: attempts 1–5 say \"not found\", attempt 6 shows the throttle message",
+      "ok": true,
+      "detail": "nf nf nf nf nf LOCK"
+    },
+    {
+      "info": "app_login(locked number) → HTTP 400, body: {\"code\":\"P0001\",\"details\":null,\"hint\":null,\"message\":\"too_many_attempts\"}"
+    },
+    {
+      "name": "mobile: the server itself answers too_many_attempts while locked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile: exactly 5 failures were counted for that number (refused attempts are not added)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "email: wrong password 1–5 say \"wrong email or password\", attempt 6 shows the throttle message",
+      "ok": true,
+      "detail": "wrong wrong wrong wrong wrong LOCK"
+    },
+    {
+      "name": "email: while locked, even the correct password is refused and nobody is signed in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "info": "login_attempts rows written by this run: [{\"identifier\":\"9000000102\",\"success\":false,\"n\":2},{\"identifier\":\"9000000102\",\"success\":true,\"n\":1},{\"identifier\":\"9000000198\",\"success\":false,\"n\":5},{\"identifier\":\"9000000199\",\"success\":false,\"n\":1},{\"identifier\":\"ks-stageb-1791893686494-h@example.com\",\"success\":false,\"n\":5},{\"identifier\":\"ks-stageb-1791893686494-h@example.com\",\"success\":true,\"n\":1}]"
+    },
+    {
+      "name": "cleanup: staging is back to exactly what it was (profiles, listings, login_attempts, Supabase Auth users)",
+      "ok": true,
+      "detail": "before {\"profiles\":18,\"listings\":77,\"attempts\":0,\"auth_users\":4} after {\"profiles\":18,\"listings\":77,\"attempts\":0,\"auth_users\":4}"
+    }
+  ]
+}

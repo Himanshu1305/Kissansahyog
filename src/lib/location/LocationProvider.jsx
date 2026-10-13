@@ -12,6 +12,7 @@ import { fetchPlaces, nearestPlace, placeName } from './places'
 import {
   makeLocation, toCenter, saveLocation, loadSavedLocation, profileLocation,
   isShareDeclined, setShareDeclined, geolocationSupported, geoPermissionState, getDevicePosition,
+  clearSavedLocation, isLocationCleared,
 } from './userLocation'
 
 const Ctx = createContext(null)
@@ -38,7 +39,7 @@ export function LocationProvider({ children }) {
 
   // (b) — nothing saved on this device: use the coordinates the profile already has.
   useEffect(() => {
-    if (location) return
+    if (location || isLocationCleared()) return
     const p = profileLocation(user)
     if (!p) return
     const near = p.label ? null : nearestPlace(p.lat, p.lng, placesRef.current)
@@ -76,6 +77,13 @@ export function LocationProvider({ children }) {
     } finally { setDetecting(false) }
   }, [setLocation])
 
+  // "Clear my location": forget the place on this device and go back to the prompt card.
+  const clearLocation = useCallback(() => {
+    clearSavedLocation()
+    setDeclined(false)
+    setLoc(null)
+  }, [])
+
   const declineShare = useCallback(() => { setShareDeclined(true); setDeclined(true) }, [])
 
   // (a) on load — only when the browser ALREADY has permission (so no prompt can appear) and
@@ -87,7 +95,7 @@ export function LocationProvider({ children }) {
       setPermission(state)
       const saved = loadSavedLocation()
       const deliberate = saved && (saved.from === 'typed' || saved.from === 'picked')
-      if (state === 'granted' && !deliberate && !isShareDeclined()) shareDevice(langRef.current)
+      if (state === 'granted' && !deliberate && !isShareDeclined() && !isLocationCleared()) shareDevice(langRef.current)
     })
     return () => { alive = false }
   }, [shareDevice])
@@ -99,11 +107,12 @@ export function LocationProvider({ children }) {
     setLocation,
     shareDevice,
     declineShare,
+    clearLocation,
     detecting,
     // The pre-permission card is offered only when asking could still work.
     canAskDevice: geolocationSupported() && permission !== 'denied',
     declined,
-  }), [location, places, setLocation, shareDevice, declineShare, detecting, permission, declined])
+  }), [location, places, setLocation, shareDevice, declineShare, clearLocation, detecting, permission, declined])
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>
 }

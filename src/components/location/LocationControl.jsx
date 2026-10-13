@@ -24,7 +24,7 @@ const optionStyle = { background: '#fff', border: '1px solid var(--ks-border-str
 
 export default function LocationControl() {
   const { t, lang } = useLang()
-  const { location, places, setLocation, shareDevice, declineShare, detecting, canAskDevice, declined } = useUserLocation()
+  const { location, places, setLocation, shareDevice, declineShare, clearLocation, detecting, canAskDevice, declined } = useUserLocation()
   const [mode, setMode] = useState(null) // null | 'type' | 'mean' | 'picker'
   const [skipCard, setSkipCard] = useState(false)
   const [query, setQuery] = useState('')
@@ -85,6 +85,10 @@ export default function LocationControl() {
           <span>📍 {t('loc_showing').replace('{place}', location.label || t('loc_your_location'))}</span>
           <button type="button" data-testid="location-change" onClick={() => (mode ? reset() : setMode('type'))} className="min-h-0 font-bold underline" style={{ color: 'var(--ks-green-dark)' }}>
             {t(mode ? 'cancel' : 'loc_change_short')}
+          </button>
+          {/* Batch 7L-2 — removes the saved place from this device; back to the prompt card. */}
+          <button type="button" data-testid="location-clear" onClick={() => { reset(); setSkipCard(false); clearLocation() }} className="min-h-0 font-bold underline" style={{ color: 'var(--ks-ink-3)' }}>
+            {t('loc_clear')}
           </button>
         </p>
       )}

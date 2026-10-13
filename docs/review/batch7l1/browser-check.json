@@ -1,5 +1,5 @@
 {
-  "ran": "2026-10-13T10:14:35.657Z",
+  "ran": "2026-10-13T11:10:31.003Z",
   "failures": 0,
   "results": [
     {
@@ -35,7 +35,7 @@
     {
       "name": "hi-390 1 granted: banner reads \"खुरई के नतीजे दिख रहे हैं। बदलें\"",
       "ok": true,
-      "detail": "📍 खुरई के नतीजे दिख रहे हैं। बदलें"
+      "detail": "📍 खुरई के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
     },
     {
       "name": "hi-390 1 granted: source is device, asked exactly once",
@@ -65,7 +65,7 @@
     {
       "name": "hi-390 2 saved: after the device refuses, results stay on the saved place",
       "ok": true,
-      "detail": "📍 दमोह के नतीजे दिख रहे हैं। बदलें"
+      "detail": "📍 दमोह के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
     },
     {
       "name": "hi-390 2 saved: counts still shown for the saved place",
@@ -210,7 +210,7 @@
     {
       "name": "en-390 1 granted: banner reads \"Showing results for Khurai. Change\"",
       "ok": true,
-      "detail": "📍 Showing results for Khurai. Change"
+      "detail": "📍 Showing results for Khurai. Change Clear my location"
     },
     {
       "name": "en-390 1 granted: source is device, asked exactly once",
@@ -240,7 +240,7 @@
     {
       "name": "en-390 2 saved: after the device refuses, results stay on the saved place",
       "ok": true,
-      "detail": "📍 Showing results for Damoh. Change"
+      "detail": "📍 Showing results for Damoh. Change Clear my location"
     },
     {
       "name": "en-390 2 saved: counts still shown for the saved place",
@@ -385,7 +385,7 @@
     {
       "name": "hi-1440 1 granted: banner reads \"खुरई के नतीजे दिख रहे हैं। बदलें\"",
       "ok": true,
-      "detail": "📍 खुरई के नतीजे दिख रहे हैं। बदलें"
+      "detail": "📍 खुरई के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
     },
     {
       "name": "hi-1440 1 granted: source is device, asked exactly once",
@@ -415,7 +415,7 @@
     {
       "name": "hi-1440 2 saved: after the device refuses, results stay on the saved place",
       "ok": true,
-      "detail": "📍 दमोह के नतीजे दिख रहे हैं। बदलें"
+      "detail": "📍 दमोह के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
     },
     {
       "name": "hi-1440 2 saved: counts still shown for the saved place",
@@ -560,7 +560,7 @@
     {
       "name": "en-1440 1 granted: banner reads \"Showing results for Khurai. Change\"",
       "ok": true,
-      "detail": "📍 Showing results for Khurai. Change"
+      "detail": "📍 Showing results for Khurai. Change Clear my location"
     },
     {
       "name": "en-1440 1 granted: source is device, asked exactly once",
@@ -590,7 +590,7 @@
     {
       "name": "en-1440 2 saved: after the device refuses, results stay on the saved place",
       "ok": true,
-      "detail": "📍 Showing results for Damoh. Change"
+      "detail": "📍 Showing results for Damoh. Change Clear my location"
     },
     {
       "name": "en-1440 2 saved: counts still shown for the saved place",

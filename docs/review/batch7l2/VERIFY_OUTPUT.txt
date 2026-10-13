@@ -1,0 +1,61 @@
+PASS  1: the phone/email tabs are gone (component removed, nothing imports it, no role="tab" on either screen)
+PASS  1: one sign-up form with name, email, password, mobile, village/town and language
+PASS  1: farmer fields kept (land, crops, lease, equipment, preferred mandi, WhatsApp opt-in)
+PASS  1: email, password (min 8) and mobile are all required before continuing
+PASS  1: password has a show/hide toggle
+PASS  1: no pincode field, check or wording in the registration form
+PASS  1: village/town uses the places list of the location flow (same matching functions)
+PASS  1: the existing acknowledgment step is kept
+PASS  1: visibility choice — two buttons, neither disabled, "show" recommended
+PASS  1: visibility wording is the briefed wording (Hindi + English)
+PASS  1: the explanation says plainly that hidden details are NOT seen and opportunities may be missed
+PASS  1: the choice is sent to app_register and nowhere invents a profile column
+PASS  1: the password is given only to Supabase Auth, never to an RPC of ours
+PASS  1: error messages exist in Hindi and English and use no technical wording
+PASS  2: one screen, both ways rendered together (no mode switch)
+PASS  2: honest OTP note (Hindi + English)
+PASS  2: ONE place to plug OTP in (startPhoneLogin / verifyPhoneOtp), and the screen already has the code step
+PASS  2: both ways end in the same session handling (storeSession)
+PASS  2: "no profile" from the server is treated exactly like "not found"
+PASS  2: every string the two screens and the place field use exists in Hindi and English (52 keys)
+PASS  3: 0059_login_rules.sql exists
+PASS  3: login_attempts has identifier, attempted_at, success — and nothing that could hold a password
+PASS  3: RLS on, NO policy, everything revoked from anon / authenticated, no grant on the table
+PASS  3: the two helpers are not callable by anon / authenticated
+PASS  3: every login function is SECURITY DEFINER with a fixed search_path
+PASS  3: existing names and signatures kept via CREATE OR REPLACE (app_login(text), app_login_email())
+PASS  3: ADMINS NEVER VIA MOBILE — an is_admin profile gets the same answer as an unknown number
+PASS  3: failures are RETURNED not raised, so the count survives
+PASS  3: throttle = 5 failures inside 15 minutes → refused for 15 minutes
+PASS  3: the lock is checked before the account is looked up (says nothing about existence)
+PASS  3: rows older than 30 days are cleaned up inside the function
+PASS  3: email sign-in honours the lock and records success
+PASS  3: idempotent and safe on existing data (if not exists / or replace only; no profile row is changed)
+PASS  3: no admin_* function is touched
+PASS  3: rollback note and anon grants restated
+PASS  3b: 0060_one_registration.sql exists; app_register is SECURITY DEFINER with a fixed search_path
+PASS  3b: app_register identifies the caller from the session, requires mobile + acknowledgment, no pincode
+PASS  3b: the visibility choice goes into the EXISTING consents jsonb (no new column)
+PASS  3b: friendly codes for mobile / email already used
+PASS  3b: only schema change is dropping NOT NULL on profiles.pincode; no existing row is changed
+PASS  3b: accept_listing_consents keeps the visibility choice
+PASS  3b: "keep hidden" is enforced where name + number are given out
+PASS  3b: older sign-up functions are left alone; rollback note present
+PASS  3b: migration numbering is contiguous and ends at 0060
+PASS  4a: the weather write paths are exactly the three known ones
+PASS  4a: fetchLiveWeatherCell rounds to the cell centre BEFORE anything is requested or saved
+PASS  4a: requestGridCell rounds to the cell centre before the upsert
+PASS  4a: the refresh job rounds too (so older exact rows are rewritten as cell centres)
+PASS  4a: the saved point is the centre of the SAME cell grid_key names; a visitor is at most 7.4 km from it
+PASS  4c: "Clear my location" wording (Hindi + English)
+PASS  4c: the button sits in the banner that shows the current location, on every page that uses the control
+PASS  4c: it removes the saved place from the device and nothing puts one back on its own
+PASS  4c: no confirm / alert dialog
+PASS  4d: privacy paragraph says the saved weather position is rounded to ~10 km (Hindi + English)
+PASS  4d: it names the Clear button instead of "clear browser data"
+PASS  4d: Terms / Privacy version not bumped; lawyer note added
+PASS  4e: no text anywhere says the pincode is used to show nearby listings
+PASS  5: built /privacy carries the updated paragraph
+PASS  5: Playwright (mocked) — 124/124 checks in Hindi + English at 390 and 1440
+
+59 passed, 0 failed

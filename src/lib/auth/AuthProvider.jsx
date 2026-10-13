@@ -24,6 +24,24 @@ export function AuthProvider({ children }) {
     return profile
   }, [])
 
+  const register = useCallback(async (payload) => {
+    const profile = await authService.register(payload)
+    setUser(profile)
+    return profile
+  }, [])
+
+  // Mobile sign-in. Returns { step: 'done', profile } today; { step: 'otp', … } once OTP exists.
+  const startPhoneLogin = useCallback(async (phone) => {
+    const res = await authService.startPhoneLogin(phone)
+    if (res.step === 'done') setUser(res.profile)
+    return res
+  }, [])
+  const verifyPhoneOtp = useCallback(async (challenge, code) => {
+    const res = await authService.verifyPhoneOtp(challenge, code)
+    if (res.step === 'done') setUser(res.profile)
+    return res
+  }, [])
+
   const loginEmail = useCallback(async (email, password) => {
     const profile = await authService.loginEmail(email, password)
     setUser(profile)
@@ -70,8 +88,8 @@ export function AuthProvider({ children }) {
   }, [user])
 
   const value = useMemo(
-    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
-    [user, signup, login, signupEmail, loginEmail, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
+    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, register, startPhoneLogin, verifyPhoneOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
+    [user, signup, login, signupEmail, loginEmail, register, startPhoneLogin, verifyPhoneOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

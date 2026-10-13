@@ -212,7 +212,10 @@ function computeSeasonRain(dailyTime, dailyPrecip) {
   return { season_start: seasonStart.toISOString().slice(0, 10), to_date_mm, normal_mm, source: 'Open-Meteo archive (2015–)' }
 }
 
-async function refreshCell(lat, lon) {
+async function refreshCell(rawLat, rawLon) {
+  // Batch 7L-2: a requested cell may carry an exact position saved by an older app build.
+  // Always work with (and save) the cell centre, the same point gridKey() names.
+  const lat = Math.round(Number(rawLat) * 10) / 10, lon = Math.round(Number(rawLon) * 10) / 10
   const key = gridKey(lat, lon)
   const fUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
     '&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,precipitation' +
