@@ -12,6 +12,7 @@ import BottomTabBar from './components/BottomTabBar'
 import { SiteJsonLd } from './components/layout/Seo'
 import RouteSeo from './components/layout/RouteSeo'
 import { isNative } from './lib/native'
+import { useRefreshKey } from './lib/offline/useOffline'
 
 // Route-level code splitting (perf budget: keep the initial bundle small).
 const Homepage = lazy(() => import('./screens/Homepage'))
@@ -99,9 +100,11 @@ function AdminOnly({ children }) {
 }
 
 function AppRoutes() {
+  // Batch 8B (app only): "try again" / connection back → remount the page so it fetches again.
+  const refreshKey = useRefreshKey()
   return (
     <Suspense fallback={<Spinner />}>
-      <Routes>
+      <Routes key={refreshKey}>
         {/* Public landing page — viewable by everyone, including logged-in users
             (the logo links here; nav renders the logged-in state). */}
         <Route path="/" element={<Homepage />} />

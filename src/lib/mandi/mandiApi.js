@@ -10,6 +10,20 @@
 // a farmer must be able to compare a mandi's price however far away it is.
 // ───────────────────────────────────────────────────────────────────────────────
 import { supabase } from '../supabaseClient'
+import { isNative } from '../native'
+
+// Batch 8B (app only) — the price date last shown, kept on the phone. Offline on a later day the
+// "today" and "latest date" questions cannot be answered, but this date points at rows the
+// offline cache already holds (same query as when they were shown). No extra network request.
+const LATEST_SHOWN_KEY = 'ks_mandi_latest_date'
+function rememberShownDate(d) {
+  if (!isNative() || !d) return
+  try { localStorage.setItem(LATEST_SHOWN_KEY, d) } catch { /* storage unavailable */ }
+}
+function lastShownDate() {
+  if (!isNative()) return null
+  try { return localStorage.getItem(LATEST_SHOWN_KEY) } catch { return null }
+}
 
 // "Local mandi" flag (Batch 7L-1): mandi_prices.in_sagar_division — true for the six districts
 // of Sagar Division (migration 0058; the ingestion sets it). Until that migration is applied the
@@ -83,13 +97,14 @@ async function latestMandiDate() {
 export async function fetchMandiPrices() {
   const t0 = isoDay(0)
   const today = await pricesFor(t0)
-  if (today && today.length) return { rows: await withTrend(today, t0), day: 'today', date: t0 }
+  if (today && today.length) { rememberShownDate(t0); return { rows: await withTrend(today, t0), day: 'today', date: t0 } }
   // No rows for today — fall back to the most recent available date (yesterday OR older),
   // labeled honestly by how old it actually is, instead of showing "coming soon".
-  const latest = await latestMandiDate()
+  const latest = (await latestMandiDate()) || lastShownDate()
   if (!latest) return { rows: [], day: 'none', date: null }
   const rows = await pricesFor(latest)
   if (!rows || !rows.length) return { rows: [], day: 'none', date: null }
+  rememberShownDate(latest)
   const day = latest === isoDay(-1) ? 'yesterday' : 'older'
   return { rows: await withTrend(rows, latest), day, date: latest }
 }

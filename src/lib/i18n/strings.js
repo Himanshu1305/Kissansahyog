@@ -1826,6 +1826,13 @@ export const strings = {
   // Phase 5 — PWA
   pwa_update_available: { hi: 'नया अपडेट उपलब्ध है', en: 'A new update is available' },
   pwa_reload: { hi: 'रीलोड करें', en: 'Reload' },
+  // Batch 8B — offline data in the Android app.
+  offline_stamp: { hi: 'पिछली बार अपडेट:', en: 'Last updated:' },
+  offline_no_data: { hi: 'जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।', en: 'Could not load — no internet, or it is very slow.' },
+  offline_try_again: { hi: 'फिर से कोशिश करें', en: 'Try again' },
+  offline_too_old: { hi: 'फ़ोन में सहेजी जानकारी पुरानी है ({age}) — इंटरनेट मिलने पर नई जानकारी दिखेगी।', en: 'The information saved on the phone is too old ({age}) — it will update when you are online.' },
+  offline_age_hours: { hi: '{n} घंटे पहले की', en: '{n} hours old' },
+  offline_age_days: { hi: '{n} दिन पहले की', en: '{n} days old' },
   pwa_offline_prefix: { hi: 'आप ऑफ़लाइन हैं — आख़िरी बार अपडेट:', en: 'You are offline — last updated:' },
   pwa_install_prompt: { hi: 'किसान सहयोग को होम स्क्रीन पर जोड़ें', en: 'Add Kissan Sahyog to your home screen' },
   pwa_install: { hi: 'जोड़ें', en: 'Add' },

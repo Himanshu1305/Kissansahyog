@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { isNative } from './native'
 
 const url = import.meta.env.VITE_SUPABASE_URL
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -14,12 +15,21 @@ if (!url || !anonKey) {
 // NOT Supabase Auth. So we disable session persistence / URL detection here — the anon
 // client is used purely as an RLS-scoped data client. All writes rely on RLS policies
 // that permit anon-role reads of active listings and lookups.
+//
+// Batch 8B — in the Android app only, this data client's requests go through the offline layer
+// (src/lib/offline/cachedFetch.js: public reads are kept on the phone and shown when there is no
+// internet). Loaded on demand, so the website's bundle and behaviour are unchanged. The
+// supabaseAuth client below is never wrapped.
+const nativeFetch = isNative()
+  ? (input, init) => import('./offline/cachedFetch.js').then((m) => m.cachedFetch(input, init))
+  : null
 export const supabase = createClient(url, anonKey, {
   auth: {
     persistSession: false,
     autoRefreshToken: false,
     detectSessionInUrl: false,
   },
+  ...(nativeFetch ? { global: { fetch: nativeFetch } } : {}),
 })
 
 // Phase 3: a SECOND client used ONLY for email+password auth (Supabase Auth).

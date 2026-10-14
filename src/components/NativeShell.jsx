@@ -12,8 +12,11 @@ import { useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { PUBLIC_ORIGIN } from '../lib/native'
 import { NATIVE_BACK_EVENT } from '../lib/useNativeBack'
+import { hasStaleData, requestRefresh } from '../lib/offline/status'
 
 const OWN_HOSTS = ['kissansahyog.com', 'www.kissansahyog.com']
+// Batch 8B — pages with a form the person may be filling in: never remounted automatically.
+const FORM_ROUTES = ['/post', '/signup', '/login', '/profile', '/grievance', '/kisan-mela/submit', '/join', '/admin']
 
 export default function NativeShell() {
   const navigate = useNavigate()
@@ -37,6 +40,30 @@ export default function NativeShell() {
     }).catch(() => { /* plugin missing: Android's default back behaviour applies */ })
     return () => { gone = true; handle?.remove?.() }
   }, [navigate])
+
+  // Batch 8B (C5) — connection back: if the page shows saved or missing data, fetch it again
+  // without a manual reload (remount through the refresh key). The first request can still meet
+  // a half-up network, so it is retried a few times while anything on screen is not live.
+  useEffect(() => {
+    let timers = []
+    let networkHandle = null
+    let gone = false
+    function onOnline() {
+      timers.forEach(clearTimeout)
+      timers = [1500, 6000, 12000].map((ms) => setTimeout(() => {
+        if (!navigator.onLine || !hasStaleData()) return
+        if (FORM_ROUTES.some((r) => pathRef.current === r || pathRef.current.startsWith(`${r}/`))) return
+        requestRefresh()
+      }, ms))
+    }
+    window.addEventListener('online', onOnline)
+    import('@capacitor/network').then(async ({ Network }) => {
+      if (gone) return
+      const h = await Network.addListener('networkStatusChange', (s) => { if (s.connected) onOnline() })
+      if (gone) h?.remove?.(); else networkHandle = h
+    }).catch(() => { /* the window event above still works */ })
+    return () => { gone = true; timers.forEach(clearTimeout); window.removeEventListener('online', onOnline); networkHandle?.remove?.() }
+  }, [])
 
   useEffect(() => {
     function onClick(e) {
