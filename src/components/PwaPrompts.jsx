@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { isNative } from '../lib/native'
-import { setOfflineHint } from '../lib/offline/status'
+import { setOfflineHint, setOfflineBannerShown } from '../lib/offline/status'
 
 const DAY = 24 * 60 * 60 * 1000
 const INSTALL_DISMISS_KEY = 'ks_install_dismissed_at'
@@ -87,6 +87,9 @@ function NativePrompts() {
       window.removeEventListener('offline', markOffline)
     }
   }, [])
+
+  // Batch 9 (1B) — tell the Home stamp that the banner (with its own time) is showing.
+  useEffect(() => { setOfflineBannerShown(offline); return () => setOfflineBannerShown(false) }, [offline])
 
   // Batch 8B (D1) — while the banner shows, its height is published as --ks-offline-h so the
   // page and the sticky header move down below it (index.css) instead of being covered.

@@ -1,6 +1,7 @@
 // Batch 8B — shown in place of a data section that could not load and has no usable offline
 // copy (Android app only): a plain message and a "try again" button. `ageMs` turns it into the
 // "saved data is too old" message.
+// Batch 9 (1C): also used on the website by /cold-storage when its list fails to load.
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { requestRefresh } from '../lib/offline/status'
 

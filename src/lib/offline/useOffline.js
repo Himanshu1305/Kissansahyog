@@ -2,7 +2,7 @@
 // website: it returns "nothing cached / not slow / key 0" when isNative() is false.
 import { useEffect, useState, useSyncExternalStore } from 'react'
 import { isNative } from '../native'
-import { subscribe, getRecord, getRefreshKey } from './status'
+import { subscribe, getRecord, getRefreshKey, isOfflineBannerShown } from './status'
 import { SLOW_LOAD_MS } from './policy'
 
 // What the screen shows for these resources: { fromCache, cachedAt, tooOld, ageMs, failed }.
@@ -26,6 +26,11 @@ export function useOfflineInfo(resources) {
 // Changes when "try again" is pressed or the connection comes back (App remounts the page).
 export function useRefreshKey() {
   return useSyncExternalStore(subscribe, getRefreshKey)
+}
+
+// Batch 9 (1B) — true while the app's offline banner is on screen (always false on the website).
+export function useOfflineBannerShown() {
+  return useSyncExternalStore(subscribe, isOfflineBannerShown)
 }
 
 // True once `active` has stayed true for SLOW_LOAD_MS — app only.

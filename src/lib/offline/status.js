@@ -49,4 +49,14 @@ export function isOfflineHintKnown() { return hintKnown }
 
 // Remount the current page so it fetches again ("try again", or the connection came back).
 export function requestRefresh() { refreshKey += 1; emit() }
+
+// Batch 9 (1B) — is the app's orange offline banner (which already shows the last-updated time)
+// on screen? Set by PwaPrompts (NativePrompts); the website never sets it.
+let offlineBannerShown = false
+export function setOfflineBannerShown(v) {
+  if (offlineBannerShown === !!v) return
+  offlineBannerShown = !!v
+  emit()
+}
+export function isOfflineBannerShown() { return offlineBannerShown }
 export function getRefreshKey() { return refreshKey }

@@ -22,9 +22,10 @@ import crypto from 'node:crypto'
 import { pathToFileURL } from 'node:url'
 import { registerStaging, STAGING_ORDER } from './staging-tests.mjs'
 import { chromium } from '@playwright/test'
+import sharp from 'sharp'
 import {
   ROOT, OUT_DIR, LOG_DIR, APK, WIN, SDK, JDK, ADB, sleep, rel, adb, sh, deviceState, appPid, forceStop, launchApp,
-  resumedActivity, waitFor, uiDump, uiFind, tap, key, makeEvidence, Checks, AppSession, handleAnrDialog, anrLog,
+  resumedActivity, waitFor, uiDump, uiFind, tap, key, makeEvidence, Checks, AppSession, handleAnrDialog, anrLog, airplane,
 } from './lib.mjs'
 import {
   PKG, APP_LABEL, VERSION_NAME, VERSION_CODE, MIN_SDK, TARGET_SDK, APP_URL, PERMISSIONS, PROD_REF, STAGING_REF,
@@ -745,26 +746,208 @@ test('T13', 'Location', 'With location permission granted and the emulator posit
   return fromChecks(id, c, { files, notes: `refusal given through ${detail.systemDialog === 'no system dialog appeared' ? 'no dialog (WebView answered directly)' : `Android's permission dialog ("${detail.systemDialog}")`}` })
 })
 
-test('T14', 'Keyboard + search', 'On /search a tap opens the keyboard, the input stays inside the visual viewport, and a query known to have results renders results', true, async (id) => {
+// ---------- Batch 9 (1A) — the on-screen keyboard ----------
+// The emulator only draws the soft keyboard when show_ime_with_hard_keyboard = 1 (adb input
+// counts as a hardware keyboard otherwise). Keyboard "up" = the system says the input is shown
+// AND the window manager reports a visible IME frame; its top edge (screen px) is returned.
+const dbg = (...a) => { if (process.env.KS_DEBUG) console.error(`[dbg ${new Date().toISOString().slice(11, 19)}]`, ...a) }
+function imeState() {
+  const im = sh('dumpsys input_method').out
+  const shown = /mInputShown=true/.test(im) || /mIsInputViewShown=true|isInputViewShown=true/.test(im)
+  const win = sh('dumpsys window').out
+  let top = null, frame = null
+  for (const m of win.matchAll(/type=ime frame=\[(\d+),(\d+)\]\[(\d+),(\d+)\][^\n]*?visible=(true|false)/g)) {
+    const f = m.slice(1, 5).map(Number)
+    if (m[5] === 'true' && f[3] > f[1]) { top = f[1]; frame = f; break }
+  }
+  return { shown, top, frame, imeShowing: /mIsImeShowing=true/.test(win) }
+}
+async function waitKeyboard(timeout = 12000) {
+  return waitFor(() => { const s = imeState(); return s.shown && s.top != null ? s : null }, { timeout, interval: 600 })
+}
+// "Up" for closing purposes = the window manager shows a visible IME frame (mInputShown alone can
+// stay true after the keyboard went away).
+const keyboardUp = () => imeState().top != null
+async function hideKeyboard() {
+  if (!keyboardUp()) return true
+  // 1. the page lets go of the field (the WebView then hides the keyboard); 2. if it is still up,
+  // BACK — pressed ONLY while the keyboard is visibly up, so it closes the keyboard and never leaves
+  // the page. (ESCAPE does not close Gboard.)
+  await app.page?.evaluate(() => document.activeElement?.blur?.()).catch(() => {})
+  let gone = await waitFor(() => !keyboardUp(), { timeout: 4000, interval: 400 })
+  if (!gone && keyboardUp()) { sh('input keyevent 4'); gone = await waitFor(() => !keyboardUp(), { timeout: 4000, interval: 400 }) }
+  return !!gone
+}
+function screencapPng() {
+  const png = adb(['exec-out', 'screencap', '-p'], { buffer: true, timeout: 30000 }).out
+  if (!png || png.length < 1000) throw new Error('screencap returned no image')
+  return png
+}
+// Save a PNG screencap as the usual small JPEG evidence file.
+async function savePng(id, name, png) {
+  const f = path.join(ev.dir(id), `${name}.jpg`)
+  let quality = 62
+  let jpg = await sharp(png).resize({ width: 540 }).jpeg({ quality, mozjpeg: true }).toBuffer()
+  while (jpg.length > 118 * 1024 && quality > 25) { quality -= 8; jpg = await sharp(png).resize({ width: 540 }).jpeg({ quality, mozjpeg: true }).toBuffer() }
+  fs.writeFileSync(f, jpg)
+  return rel(f)
+}
+// Is a keyboard really DRAWN below imeTop? Compares that screen band with the same band before
+// the tap: the keyboard replaces the page there, so the pictures differ strongly.
+async function keyboardDrawn(before, after, imeTop) {
+  const meta = await sharp(after).metadata()
+  const top = Math.min(meta.height - 50, imeTop + 30)
+  const height = Math.max(20, Math.min(meta.height - top - 1, Math.round((meta.height - imeTop) * 0.7)))
+  const band = (png) => sharp(png).extract({ left: 0, top, width: meta.width, height }).resize({ width: 108, height: 40, fit: 'fill' }).greyscale().raw().toBuffer()
+  const [a, b] = await Promise.all([band(before), band(after)])
+  let sum = 0
+  for (let i = 0; i < a.length; i++) sum += Math.abs(a[i] - b[i])
+  const meanDiff = sum / a.length
+  const st = await sharp(after).extract({ left: 0, top, width: meta.width, height }).stats()
+  return { meanAbsDiff: Math.round(meanDiff * 10) / 10, bandStdev: Math.round(Math.max(...st.channels.slice(0, 3).map((c) => c.stdev)) * 10) / 10, drawn: meanDiff > 12, band: [top, top + height] }
+}
+async function webViewBounds() {
+  for (let i = 0; i < 3; i++) {
+    const m = uiDump().match(/class="android\.webkit\.WebView"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/)
+    if (m) return m.slice(1).map(Number)
+    await sleep(800)
+  }
+  return null
+}
+// Geometry of the marked element (data-k1="<tag>") in CSS px, plus what limits the visible area:
+// the sticky header above, and the fixed tab bar / bottom of the WebView below.
+const k1Geometry = (tag) => app.page.evaluate((tag) => {
+  const el = document.querySelector(`[data-k1="${tag}"]`)
+  if (!el) return null
+  const r = el.getBoundingClientRect()
+  const header = document.querySelector('header.ks-safe-sticky')
+  const hs = header ? getComputedStyle(header) : null
+  const headerBottom = header && hs && (hs.position === 'sticky' || hs.position === 'fixed') && hs.display !== 'none' ? Math.max(0, header.getBoundingClientRect().bottom) : 0
+  const banner = document.querySelector('[data-testid="offline-banner"]')
+  const topLimit = Math.max(headerBottom, banner ? banner.getBoundingClientRect().bottom : 0)
+  const bar = document.querySelector('[data-ks-tabbar]')
+  const barRect = bar ? bar.getBoundingClientRect() : null
+  const barShown = !!bar && getComputedStyle(bar).display !== 'none' && getComputedStyle(bar).visibility !== 'hidden' && barRect.height > 0 && barRect.top < window.innerHeight
+  const bottomLimit = Math.min(window.innerHeight, barShown ? barRect.top : window.innerHeight)
+  const pts = [[r.left + 4, r.top + 4], [r.right - 4, r.top + 4], [r.left + 4, r.bottom - 4], [r.right - 4, r.bottom - 4], [r.left + r.width / 2, r.top + r.height / 2]]
+  const covered = pts.filter(([x, y]) => { const h = document.elementFromPoint(x, y); return !(h && (h === el || el.contains(h) || h.contains(el) && h.tagName === 'LABEL')) }).map(([x, y]) => { const h = document.elementFromPoint(x, y); return { x: Math.round(x), y: Math.round(y), hit: h ? `${h.tagName.toLowerCase()}${h.id ? '#' + h.id : ''}${h.closest('[data-ks-tabbar]') ? ' (tab bar)' : h.closest('header') ? ' (header)' : ''}` : 'nothing (off screen)' } })
+  return { top: r.top, bottom: r.bottom, height: r.height, focused: document.activeElement === el, topLimit, bottomLimit, tabBar: barShown ? { top: barRect.top, bottom: barRect.bottom } : null, innerHeight: window.innerHeight, vvHeight: window.visualViewport?.height ?? null, scrollY: window.scrollY, covered }
+}, tag)
+const fullyVisible = (g) => !!g && g.top >= g.topLimit - 0.5 && g.bottom <= g.bottomLimit + 0.5 && g.covered.length === 0
+// Mark the LOWEST editable text field inside `scope` (data-k1="field") and the submit/next button
+// that belongs to it (data-k1="submit"). Returns a description, or null when there is none.
+const markLowestField = (scope, submitSel) => app.page.evaluate(([scope, submitSel]) => {
+  document.querySelectorAll('[data-k1]').forEach((e) => e.removeAttribute('data-k1'))
+  const root = document.querySelector(scope) || document.querySelector('main') || document.body
+  // date / time inputs open a picker, not the keyboard
+  const NO = ['hidden', 'radio', 'checkbox', 'file', 'submit', 'button', 'range', 'color', 'reset', 'image', 'date', 'time', 'month', 'week', 'datetime-local']
+  const ok = (el) => { const cs = getComputedStyle(el); const r = el.getBoundingClientRect(); return !el.disabled && !el.readOnly && el.tabIndex >= 0 && cs.visibility !== 'hidden' && cs.display !== 'none' && r.width > 20 && r.height > 15 && !(el.tagName === 'INPUT' && NO.includes(el.type)) && !el.closest('[aria-hidden="true"]') }
+  const fields = [...root.querySelectorAll('input, textarea')].filter(ok)
+  if (!fields.length) return null
+  const y = (el) => el.getBoundingClientRect().bottom + window.scrollY
+  const field = fields.reduce((a, b) => (y(b) > y(a) ? b : a))
+  field.setAttribute('data-k1', 'field')
+  let submit = submitSel ? document.querySelector(submitSel) : null
+  if (!submit) submit = field.closest('form')?.querySelector('button[type="submit"]') || null
+  if (!submit) { const after = [...root.querySelectorAll('button')].filter((b) => b.getBoundingClientRect().height > 0 && y(b) >= y(field)); submit = after[0] || null }
+  if (submit) submit.setAttribute('data-k1', 'submit')
+  return { field: `${field.tagName.toLowerCase()}${field.id ? '#' + field.id : ''}[type=${field.type || 'textarea'}]`, fields: fields.length, submit: submit ? `${submit.tagName.toLowerCase()}${submit.getAttribute('data-testid') ? `[data-testid=${submit.getAttribute('data-testid')}]` : ''} "${submit.innerText.trim().slice(0, 30)}"` : null }
+}, [scope, submitSel])
+
+// One form: put the lowest field where the keyboard will come up (just above the tab bar), tap
+// it with a real finger tap, wait for the keyboard, and measure.
+async function keyboardCheck(id, c, label, { scope = 'main', submit = null } = {}) {
+  const rec = { form: label }
+  dbg('K1 form', label)
+  await hideKeyboard()
+  const marked = await markLowestField(scope, submit)
+  rec.marked = marked
+  if (!marked) rec.page = await app.page.evaluate((sc) => ({ href: location.href, scope: !!document.querySelector(sc), inputs: [...document.querySelectorAll('input, textarea')].map((e) => [e.id, e.type, Math.round(e.getBoundingClientRect().width), e.tabIndex]) }), scope)
+  if (!c.check(`${label}: a text field to test exists`, !!marked?.field, marked || rec.page)) return rec
+  // Worst case: the field sits at the bottom of the visible page, where the keyboard appears.
+  await app.page.evaluate(() => {
+    const el = document.querySelector('[data-k1="field"]')
+    const bar = document.querySelector('[data-ks-tabbar]')
+    const limit = bar && bar.getBoundingClientRect().height > 0 ? bar.getBoundingClientRect().top : window.innerHeight
+    window.scrollBy(0, el.getBoundingClientRect().bottom - (limit - 12))
+  })
+  await sleep(700)
+  const before = screencapPng()
+  rec.beforeTap = await k1Geometry('field')
+  const web = await webViewBounds()
+  const ratio = await dpr()
+  const g0 = rec.beforeTap
+  const fieldMid = await app.page.evaluate(() => { const r = document.querySelector('[data-k1="field"]').getBoundingClientRect(); return { x: r.left + Math.min(r.width / 2, 120), y: r.top + r.height / 2 } })
+  tap(web[0] + fieldMid.x * ratio, web[1] + fieldMid.y * ratio)
+  const kb = await waitKeyboard()
+  rec.keyboard = kb
+  if (!c.check(`${label}: the on-screen keyboard came up (dumpsys: input shown + visible IME frame)`, !!kb, imeState())) { rec.shot = await savePng(id, `${rec.form.replace(/\W+/g, '-')}-no-keyboard`, screencapPng()); return rec }
+  await sleep(1500) // let the page resize / scroll the field into view
+  const after = screencapPng()
+  const imeTop = imeState().top ?? kb.top
+  rec.imeTopPx = imeTop
+  rec.drawn = await keyboardDrawn(before, after, imeTop)
+  rec.shot = await savePng(id, `${label.replace(/\W+/g, '-')}-keyboard`, after)
+  c.check(`${label}: a keyboard is DRAWN on the screenshot (band below the IME top differs from before the tap)`, rec.drawn.drawn, rec.drawn)
+  const webK = await webViewBounds()
+  rec.webViewWithKeyboard = webK
+  const g = await k1Geometry('field')
+  rec.field = g
+  const px = (css) => Math.round((webK ? webK[1] : 0) + css * ratio)
+  rec.fieldScreenPx = g ? { top: px(g.top), bottom: px(g.bottom) } : null
+  c.check(`${label}: the tapped field has focus`, !!g?.focused, g?.focused)
+  c.check(`${label}: (a) the focused field is fully visible — below the header (${g ? g.topLimit.toFixed(0) : '?'} CSS px), above the tab bar/keyboard (${g ? g.bottomLimit.toFixed(0) : '?'} CSS px), not covered`, fullyVisible(g), g)
+  c.check(`${label}: (a) the field ends (${rec.fieldScreenPx?.bottom}px) above the keyboard top (${imeTop}px) on the real screen`, !!rec.fieldScreenPx && rec.fieldScreenPx.bottom <= imeTop + Math.ceil(ratio), { fieldScreenPx: rec.fieldScreenPx, imeTop })
+  // (b) the submit / next button can be scrolled to while the keyboard is still up.
+  if (marked.submit) {
+    await app.page.evaluate(() => document.querySelector('[data-k1="submit"]').scrollIntoView({ block: 'center' }))
+    await sleep(800)
+    const s = await k1Geometry('submit')
+    rec.submit = s
+    rec.keyboardStillUp = keyboardUp()
+    c.check(`${label}: (b) the submit/next button scrolls fully into view with the keyboard up`, fullyVisible(s) && rec.keyboardStillUp, { submit: s, keyboardStillUp: rec.keyboardStillUp })
+    rec.submitShot = await savePng(id, `${label.replace(/\W+/g, '-')}-submit-reachable`, screencapPng())
+  } else c.check(`${label}: (b) a submit/next button belongs to the field`, false, 'none found')
+  // (c) keyboard closed: the layout comes back, the tab bar is back at the bottom and nothing
+  // stays covered.
+  const hid = await hideKeyboard()
+  const restored = await waitFor(() => app.page.evaluate((h) => Math.abs(window.innerHeight - h) <= 2, g0.innerHeight), { timeout: 6000, interval: 400 })
+  await app.page.evaluate(() => document.querySelector('[data-k1="field"]')?.scrollIntoView({ block: 'center' }))
+  await sleep(600)
+  const g2 = await k1Geometry('field')
+  rec.afterClose = { keyboardHidden: hid, innerHeightRestored: !!restored, field: g2 }
+  c.check(`${label}: (c) after closing the keyboard the page height is restored (${g0.innerHeight} CSS px) and the field is not covered`, hid && !!restored && fullyVisible(g2) && (!g2.tabBar || g2.tabBar.bottom <= g2.innerHeight + 0.5), rec.afterClose)
+  return rec
+}
+
+test('T14', 'Keyboard + search', 'On /search a real tap brings up a DRAWN on-screen keyboard (IME frame visible + screenshot differs), the focused input is fully visible above the keyboard and not covered, and a query known to have results renders results', true, async (id) => {
   await ensureApp()
+  sh('settings put secure show_ime_with_hard_keyboard 1')
   const index = JSON.parse(fs.readFileSync(path.join(ROOT, 'public', 'search-index.json'), 'utf8'))
   const hay = (i) => `${i.title_hi || ''} ${i.title_en || ''} ${i.subtitle_hi || ''} ${i.subtitle_en || ''} ${i.keywords || ''}`.toLowerCase()
   const query = ['wheat', 'soybean', 'tractor'].find((q) => index.some((i) => hay(i).includes(q)))
   const c = new Checks()
   c.check('a query with known results exists in public/search-index.json', !!query, query ? `${query}: ${index.filter((i) => hay(i).includes(query)).length} items` : 'none')
   if (!query) return fromChecks(id, c)
+  dbg('T14 start'); await hideKeyboard(); dbg('hidden')
   await app.goto('/search', { settle: 2000 })
   const sel = 'main input[type="search"]'
-  await tapElement(sel)
-  const shown = await waitFor(() => /mInputShown=true|isInputViewShown=true|mIsInputViewShown=true/.test(sh('dumpsys input_method').out), { timeout: 12000, interval: 800 })
-  const ime = (sh('dumpsys input_method').out.match(/mInputShown=\w+|isInputViewShown=\w+|mIsInputViewShown=\w+/g) || []).join(' ')
-  c.check('keyboard opens (dumpsys input_method)', !!shown, ime)
-  await sleep(1500)
-  const vp = await app.page.evaluate((s) => { const q = document.querySelector(s).getBoundingClientRect(); const v = window.visualViewport; return { focused: document.activeElement === document.querySelector(s), inputTop: q.top, inputBottom: q.bottom, viewportTop: v.offsetTop, viewportHeight: v.height, innerHeight: window.innerHeight, screenHeight: screen.height } }, sel)
-  c.check('the input has focus', vp.focused)
-  c.check('the input is inside the visual viewport (not hidden by the keyboard)', vp.inputTop >= vp.viewportTop - 0.5 && vp.inputBottom <= vp.viewportTop + vp.viewportHeight + 0.5, vp)
-  c.check('the viewport shrank for the keyboard', vp.viewportHeight < vp.screenHeight * 0.8, { viewportHeight: vp.viewportHeight, screenHeight: vp.screenHeight })
-  const files = [(await ev.shot(id, 'keyboard-open')).file]
+  await app.page.evaluate((s) => { document.querySelectorAll('[data-k1]').forEach((e) => e.removeAttribute('data-k1')); document.querySelector(s).setAttribute('data-k1', 'field') }, sel)
+  dbg('goto done'); const before = screencapPng(); dbg('shot')
+  await tapElement(sel); dbg('tapped')
+  const kb = await waitKeyboard()
+  c.check('keyboard opens (dumpsys: input shown + visible IME frame)', !!kb, imeState())
+  dbg('kb', kb); await sleep(1500)
+  const after = screencapPng()
+  const files = [await savePng(id, 'keyboard-open', after)]
+  const drawn = kb ? await keyboardDrawn(before, after, imeState().top ?? kb.top) : null
+  c.check('the keyboard is drawn on the screenshot', !!drawn?.drawn, drawn)
+  const g = await k1Geometry('field')
+  const web = await webViewBounds()
+  const ratio = await dpr()
+  const bottomPx = g && web ? Math.round(web[1] + g.bottom * ratio) : null
+  c.check('the input has focus', !!g?.focused)
+  c.check('the input is fully visible (below the header, above the tab bar and the keyboard, not covered)', fullyVisible(g) && bottomPx != null && kb && bottomPx <= (imeState().top ?? kb.top) + Math.ceil(ratio), { geometry: g, inputBottomPx: bottomPx, imeTopPx: kb?.top })
   sh(`input text ${query}`)
   await sleep(1200)
   const typed = await app.page.evaluate((s) => document.querySelector(s).value, sel)
@@ -772,13 +955,234 @@ test('T14', 'Keyboard + search', 'On /search a tap opens the keyboard, the input
   key(66) // Enter submits the form
   const results = await waitFor(() => app.page.evaluate(() => { const n = document.querySelectorAll('main section ul li').length; return n > 0 ? { items: n, groups: document.querySelectorAll('main section').length, url: location.pathname + location.search } : null }), { timeout: 20000, interval: 700 })
   c.check('results render', !!results && results.items > 0, results || await app.page.evaluate(() => location.href))
-  // The on-screen keyboard may capitalise the first letter (Wheat); search is case-insensitive.
   c.check('URL carries the query', !!results && results.url.toLowerCase().includes(`q=${query}`), results?.url)
   await sleep(800)
   files.push((await ev.shot(id, 'results')).file)
-  key(111) // hide the keyboard
-  files.push(ev.text(id, 'keyboard.json', { query, ime, viewport: vp, results }))
-  return fromChecks(id, c, { files, notes: `query "${query}" → ${results?.items ?? 0} results` })
+  await hideKeyboard()
+  files.push(ev.text(id, 'keyboard.json', { query, keyboard: kb, drawn, geometry: g, inputBottomPx: bottomPx, webViewBounds: web, results }))
+  return fromChecks(id, c, { files, notes: `query "${query}" → ${results?.items ?? 0} results; keyboard top ${kb?.top ?? '?'}px, input bottom ${bottomPx ?? '?'}px` })
+})
+
+// The forms K1 covers. `auth`: public = only logged out (PublicOnly routes), login = needs an
+// account, any = both. /join is NOT a form (it redirects to WhatsApp and logs a click) — the
+// signup form is /signup.
+const SESSION_KEYS = (keys) => keys.filter((k) => k === 'ks_session_v1' || k.startsWith('ks_sb_auth'))
+async function postToStep(step) {
+  await app.goto('/post', { settle: 1500 })
+  await app.page.click('[data-testid="post-cat-bhusa"]')
+  await app.page.click('[data-testid="post-type-offer"]')
+  await app.page.click('[data-testid="post-next"]')
+  await app.page.waitForSelector('#f_residue_type', { timeout: 20000 })
+  if (step === 2) return
+  for (const s of ['#f_residue_type', '#f_pickup_arrangement', '#f_buyer_type_preference']) await app.page.selectOption(s, { index: 1 }).catch(() => {})
+  await app.page.fill('#f_quantity', 'KSTEST keyboard check — not posted')
+  await app.page.fill('#f_asking_price', '500')
+  await app.page.click('[data-testid="post-next"]')
+  await app.page.waitForSelector('#f_asset_village', { timeout: 15000 })
+}
+
+test('K1', 'Keyboard never hides a field', 'For /login, /signup, /search, the feedback form (/grievance), Profile edit and every /post step: the LOWEST text field, tapped with a real on-screen keyboard drawn, is fully visible above the keyboard (a), its submit/next button scrolls into view with the keyboard up (b), and after closing the keyboard nothing stays covered (c). Forms needing an account are NOT-RUN where no login is allowed (prod)', true, async (id) => {
+  await ensureApp()
+  sh('settings put secure show_ime_with_hard_keyboard 1')
+  const c = new Checks()
+  const forms = []
+  const notRunForms = []
+  const files = []
+  await app.goto('/about', { settle: 500 })
+  const stash = await app.page.evaluate(() => Object.fromEntries(Object.keys(localStorage).filter((k) => k === 'ks_session_v1' || k.startsWith('ks_sb_auth')).map((k) => [k, localStorage.getItem(k)])))
+  const loggedIn = !!stash.ks_session_v1
+  const run = async (label, prepare, opts) => {
+    try { await prepare(); forms.push(await keyboardCheck(id, c, label, opts)) } catch (e) { c.check(`${label}: ran without an error`, false, String(e.message || e).split('\n')[0]); forms.push({ form: label, error: String(e.message || e).split('\n')[0] }) }
+  }
+  if (loggedIn) {
+    await run('post step 2 (details)', () => postToStep(2), { scope: 'main', submit: '[data-testid="post-next"]' })
+    await run('post step 3 (location + confirm)', () => postToStep(3), { scope: 'main', submit: '[data-testid="post-submit"]' })
+    await run('profile edit', () => app.goto('/profile', { settle: 2500 }), { scope: 'main' })
+  } else notRunForms.push('/post (steps 2 and 3)', '/profile — need a logged-in account; the prod flavour is read-only (no account may be created or used)')
+  // Public forms: logged out. A logged-in session is set aside and put back afterwards.
+  try {
+    if (loggedIn) await app.page.evaluate((keys) => keys.forEach((k) => localStorage.removeItem(k)), Object.keys(stash))
+    await run('login', () => app.goto('/login', { settle: 1500 }), { scope: 'main', submit: '[data-testid="login-phone-submit"]' })
+    await run('signup', () => app.goto('/signup', { settle: 1500 }), { scope: 'form[data-testid="signup-form"]', submit: 'form[data-testid="signup-form"] button[type="submit"]' })
+    await run('search', () => app.goto('/search', { settle: 1500 }), { scope: 'main form', submit: 'main form button[type="submit"]' })
+    await run('feedback (/grievance)', () => app.goto('/grievance', { settle: 1500 }), { scope: 'form[data-testid="feedback-form"]', submit: 'form[data-testid="feedback-form"] button[type="submit"]' })
+  } finally {
+    await hideKeyboard()
+    if (loggedIn) {
+      await app.goto('/about', { settle: 500 })
+      await app.page.evaluate((s) => Object.entries(s).forEach(([k, v]) => localStorage.setItem(k, v)), stash)
+      await app.goto('/about', { settle: 1000 })
+    }
+  }
+  if (loggedIn) c.check('the logged-in session is back afterwards', await app.page.evaluate(() => !!localStorage.getItem('ks_session_v1')))
+  for (const f of forms) { if (f.shot) files.push(f.shot); if (f.submitShot) files.push(f.submitShot) }
+  files.push(ev.text(id, 'measurements.json', { device: { dpr: await dpr() }, loggedIn, notRun: notRunForms, forms }))
+  return fromChecks(id, c, { files, notes: `${forms.length} forms measured${notRunForms.length ? `; NOT-RUN here: ${notRunForms.join('; ')}` : ''}` })
+})
+
+// ---------- Batch 9 (1B / 1C / 1D) ----------
+const idbClear = () => app.page.evaluate(() => new Promise((resolve) => {
+  const r = indexedDB.open('ks-offline')
+  r.onerror = () => resolve(-1)
+  r.onsuccess = () => {
+    const d = r.result
+    if (!d.objectStoreNames.contains('responses')) { resolve(0); return }
+    const st = d.transaction('responses', 'readwrite').objectStore('responses')
+    const n = st.count()
+    n.onsuccess = () => { st.clear(); resolve(n.result) }
+  }
+}))
+const TIME_RE = /\d{1,2}:\d{2}/
+const homeStamps = () => app.page.evaluate(() => {
+  const banner = document.querySelector('[data-testid="offline-banner"]')
+  const stamps = [...document.querySelectorAll('[data-testid="offline-stamp"]')].filter((e) => e.getBoundingClientRect().height > 0)
+  return {
+    banner: banner ? banner.innerText.trim() : null,
+    stamps: stamps.map((s) => s.innerText.trim()),
+    prices: ((document.querySelector('.ticker-content')?.innerText || '').match(/₹[\d,]+/g) || []).length,
+    tickerOffline: !!document.querySelector('[data-testid="ticker-offline"]'),
+  }
+})
+
+test('H1', 'Home shows one "last updated" time offline', 'Online visit fills the cache; airplane mode + cold launch: Home shows the offline banner with its time and NO second stamp under the ticker (exactly one timestamp). Online-but-saved-data (banner gone, data still from the phone): the stamp is shown', true, async (id) => {
+  await ensureApp()
+  const c = new Checks()
+  const files = []
+  const obs = {}
+  await airplane(false)
+  await app.goto('/about', { settle: 500 })
+  await setLocation()
+  await app.goto('/', { settle: 2000 })
+  obs.online = await waitFor(async () => { const s = await homeStamps(); return s.prices > 0 ? s : null }, { timeout: 30000, interval: 800 }) || await homeStamps()
+  c.check('online: the ticker has prices (so the cache gets them)', obs.online.prices > 0, obs.online)
+  await sleep(2000)
+  await app.close()
+  try {
+    c.check('airplane mode is really on', await airplane(true)); await sleep(2000)
+    forceStop(); launchApp(); await sleep(4000)
+    await app.connect({ launch: false }); await app.waitContent()
+    const off = await waitFor(async () => { const s = await homeStamps(); return s.banner && (s.prices > 0 || s.tickerOffline) ? s : null }, { timeout: 25000, interval: 800 })
+    await sleep(1500)
+    obs.offline = await homeStamps()
+    files.push((await ev.shot(id, 'offline-home-one-timestamp')).file)
+    const times = [obs.offline.banner, ...obs.offline.stamps].filter((t) => t && TIME_RE.test(t))
+    c.check('offline: the banner is shown with a time', !!off && !!obs.offline.banner && TIME_RE.test(obs.offline.banner), obs.offline.banner)
+    c.check('offline: the ticker shows the saved prices (the case where the stamp used to repeat the time)', obs.offline.prices > 0, obs.offline)
+    c.check('offline Home: exactly ONE timestamp on screen (banner only, no "पिछली बार अपडेट" stamp)', times.length === 1 && obs.offline.stamps.length === 0, { times, stamps: obs.offline.stamps })
+    // Online but still showing saved data: the WebView's own "online" event hides the banner
+    // while the data on screen is still the saved copy → the stamp must come back.
+    await app.page.evaluate(() => window.dispatchEvent(new Event('online')))
+    obs.onlineOldData = await waitFor(async () => { const s = await homeStamps(); return !s.banner && s.stamps.length ? s : null }, { timeout: 6000, interval: 300 }) || await homeStamps()
+    files.push((await ev.shot(id, 'banner-gone-saved-data-stamp')).file)
+    c.check('banner gone but data still saved: the stamp under the ticker is shown (one timestamp)', !obs.onlineOldData.banner && obs.onlineOldData.stamps.length === 1 && TIME_RE.test(obs.onlineOldData.stamps[0]), obs.onlineOldData)
+  } finally { await airplane(false) }
+  return fromChecks(id, c, { files: [...files, ev.text(id, 'timestamps.json', obs)] })
+})
+
+test('C1', '/cold-storage failed load (app)', 'Cache emptied, airplane mode, cold launch: /cold-storage shows the "could not load" notice with "try again" (no ErrorBoundary, no uncaught error, no spinner left); back online, "try again" loads the list', true, async (id) => {
+  await ensureApp()
+  const c = new Checks()
+  const files = []
+  const obs = {}
+  await airplane(false)
+  await app.goto('/about', { settle: 500 })
+  obs.cacheEntriesCleared = await idbClear()
+  await app.close()
+  try {
+    c.check('airplane mode is really on', await airplane(true)); await sleep(2000)
+    forceStop(); launchApp(); await sleep(4000)
+    await app.connect({ launch: false })
+    const t = app.mark()
+    await app.page.goto(APP_URL + '/cold-storage', { waitUntil: 'load', timeout: 45000 })
+    const t0 = Date.now()
+    const got = await waitFor(() => app.page.evaluate(() => !!document.querySelector('[data-testid="offline-notice"] [data-testid="offline-retry"]')), { timeout: 20000, interval: 400 })
+    obs.noticeAfterMs = got ? Date.now() - t0 : null
+    await sleep(1200)
+    const st = await app.page.evaluate(() => ({ notice: document.querySelector('[data-testid="offline-notice"]')?.innerText.trim() || null, h1: document.querySelector('h1')?.innerText || null, spinners: document.querySelectorAll('.animate-spin').length, boundary: document.body.innerText.includes('This page could not open'), districtLinks: document.querySelectorAll('a[href^="/cold-storage/"]').length }))
+    obs.offline = { ...st, pageErrors: app.since(t).pageErrors.map((e) => e.text) }
+    files.push((await ev.shot(id, 'offline-cold-storage')).file)
+    c.check('offline, no cache: the "could not load" notice with "try again" is shown', !!got, obs.offline)
+    c.check('no ErrorBoundary, no uncaught page error, page heading still there', !st.boundary && obs.offline.pageErrors.length === 0 && !!st.h1, obs.offline)
+    c.check('no spinner remains', st.spinners === 0, st.spinners)
+    await app.page.click('[data-testid="offline-retry"]')
+    const again = await waitFor(() => app.page.evaluate(() => !!document.querySelector('[data-testid="offline-notice"]') && document.querySelectorAll('.animate-spin').length === 0), { timeout: 15000, interval: 400 })
+    c.check('"try again" while still offline ends in the same clear notice', !!again)
+    await airplane(false)
+    await waitFor(() => /bytes from|1 received/.test(sh('ping -c 1 -W 2 8.8.8.8').out), { timeout: 30000, interval: 2000 })
+    await sleep(2000)
+    await app.page.click('[data-testid="offline-retry"]').catch(() => {})
+    const back = await waitFor(() => app.page.evaluate(() => { const n = document.querySelectorAll('a[href^="/cold-storage/"]').length; return n > 0 && !document.querySelector('[data-testid="offline-notice"]') ? n : null }), { timeout: 30000, interval: 800 })
+    obs.backOnline = { districtLinks: back }
+    files.push((await ev.shot(id, 'online-again-cold-storage')).file)
+    c.check('back online, "try again" loads the list', !!back, obs.backOnline)
+  } finally { await airplane(false) }
+  return fromChecks(id, c, { files: [...files, ev.text(id, 'cold-storage.json', obs)], notes: `notice after ${obs.noticeAfterMs ?? '—'} ms; ${obs.cacheEntriesCleared} cache entries cleared first` })
+})
+
+test('L1', 'Post page location fallback', 'Logged in, /post step 3, "use my current location": GPS on → coordinates near the emulator position (which step: cached ≤ 10 min / fresh ≤ 20 s recorded); GPS off → within ~25 s the clear fallback message (on screen, not covered) with the village field in view, no crash', true, async (id) => {
+  await ensureApp()
+  if (!(await app.page.evaluate(() => !!localStorage.getItem('ks_session_v1')))) return notRun('needs a logged-in account (Post is behind login); the prod flavour is read-only — no account may be created or used there. Run in the staging suite after S4.')
+  const c = new Checks()
+  const files = []
+  const obs = {}
+  const fixOnce = () => adb(['emu', 'geo', 'fix', String(TEST_PLACE.lng), String(TEST_PLACE.lat)])
+  const readLoc = () => app.page.evaluate(() => ({ coords: document.querySelector('[data-testid="post-location-coords"]')?.innerText.trim() || null, step: document.querySelector('[data-testid="post-location-coords"]')?.getAttribute('data-step') || null, fallback: document.querySelector('[data-testid="post-location-fallback"]')?.innerText.trim() || null, busy: document.querySelector('[data-testid="post-location-current"]')?.getAttribute('aria-busy') === 'true', active: document.activeElement?.id || null, fallbackUncovered: (() => { const m = document.querySelector('[data-testid="post-location-fallback"]'); if (!m) return false; const r = m.getBoundingClientRect(); const h = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return r.top >= 0 && r.bottom <= window.innerHeight && !!h && (h === m || m.contains(h)) })(), villageInView: (() => { const v = document.getElementById('f_asset_village'); if (!v) return false; const r = v.getBoundingClientRect(); return r.top >= 0 && r.bottom <= window.innerHeight })(), button: document.querySelector('[data-testid="post-location-current"]')?.innerText.trim() || null }))
+  const near = (txt) => { const m = String(txt || '').match(/(\d+\.\d+), (\d+\.\d+)/); return !!m && Math.abs(Number(m[1]) - TEST_PLACE.lat) < 0.05 && Math.abs(Number(m[2]) - TEST_PLACE.lng) < 0.05 }
+  try {
+    // ---- GPS on
+    sh(`pm grant ${PKG} android.permission.ACCESS_FINE_LOCATION`); sh(`pm grant ${PKG} android.permission.ACCESS_COARSE_LOCATION`)
+    sh('cmd location set-location-enabled true')
+    fixOnce()
+    await ensureApp()
+    await postToStep(3)
+    const geo = setInterval(fixOnce, 1500)
+    try {
+      const t0 = Date.now()
+      await app.page.click('[data-testid="post-location-current"]')
+      await sleep(600)
+      obs.gpsOnWhileLooking = await readLoc()
+      const got = await waitFor(async () => { const r = await readLoc(); return r.coords || r.fallback ? r : null }, { timeout: 30000, interval: 700 })
+      obs.gpsOnFirstTry = { ...(got || await readLoc()), ms: Date.now() - t0 }
+      if (!got?.coords) {
+        // This emulator has no network-location provider: a low-accuracy fix exists only after
+        // some app had a GPS fix (as on a phone that recently knew its position). Take one GPS
+        // reading in the page, then press the button again: the ≤ 10 min cached step must use it.
+        obs.gpsPrime = await app.page.evaluate(() => new Promise((res) => navigator.geolocation.getCurrentPosition((p) => res({ ok: true, lat: p.coords.latitude, lng: p.coords.longitude }), (e) => res({ ok: false, code: e.code }), { enableHighAccuracy: true, timeout: 25000, maximumAge: 0 })))
+        const t1 = Date.now()
+        await app.page.click('[data-testid="post-location-current"]')
+        const got2 = await waitFor(async () => { const r = await readLoc(); return r.coords ? r : null }, { timeout: 30000, interval: 700 })
+        obs.gpsOnAfterPrime = { ...(got2 || await readLoc()), ms: Date.now() - t1 }
+      }
+    } finally { clearInterval(geo) }
+    const on = obs.gpsOnAfterPrime || obs.gpsOnFirstTry
+    files.push((await ev.shot(id, 'gps-on-coordinates')).file)
+    c.check('GPS on: while looking, the button says it is finding the location (busy)', !!obs.gpsOnWhileLooking?.busy || !!obs.gpsOnFirstTry?.coords && obs.gpsOnFirstTry.ms < 1500, obs.gpsOnWhileLooking)
+    c.check(`GPS on: coordinates near the emulator position (${TEST_PLACE.lat}, ${TEST_PLACE.lng}) are shown`, near(on?.coords), on)
+    c.check('GPS on: the step used is recorded (cached ≤ 10 min or fresh ≤ 20 s)', ['cached', 'fresh'].includes(on?.step), on?.step)
+    // ---- GPS off (location switched off in Android settings), fresh app process
+    await app.close()
+    sh('cmd location set-location-enabled false')
+    forceStop(); launchApp(); await sleep(3000)
+    await app.connect({ launch: false })
+    await postToStep(3)
+    const t2 = Date.now()
+    await app.page.click('[data-testid="post-location-current"]')
+    const off = await waitFor(async () => { const r = await readLoc(); return r.coords || r.fallback ? r : null }, { timeout: 35000, interval: 700 })
+    obs.gpsOff = { ...(off || await readLoc()), ms: Date.now() - t2 }
+    files.push((await ev.shot(id, 'gps-off-fallback')).file)
+    c.check('GPS off: the fallback message is shown (no coordinates)', !!obs.gpsOff.fallback && !obs.gpsOff.coords, obs.gpsOff)
+    c.check('GPS off: the message comes within 25 s (10-min cache check + 20 s fresh try at most)', obs.gpsOff.ms <= 25000, obs.gpsOff.ms)
+    await sleep(1000)
+    Object.assign(obs.gpsOff, await readLoc())
+    c.check('GPS off: the message is on screen and not covered, the village field (manual path) is in view, the button is usable again', obs.gpsOff.fallbackUncovered && obs.gpsOff.villageInView && !obs.gpsOff.busy, { fallbackUncovered: obs.gpsOff.fallbackUncovered, villageInView: obs.gpsOff.villageInView, busy: obs.gpsOff.busy })
+    await hideKeyboard()
+    const fatals = fatalsIn(adb(['logcat', '-d'], { timeout: 60000 }).out)
+    c.check('no crash', !!appPid() && fatals.length === 0, { pid: appPid(), fatals: fatals.length })
+  } finally {
+    sh('cmd location set-location-enabled true')
+    sh(`pm grant ${PKG} android.permission.ACCESS_FINE_LOCATION`); sh(`pm grant ${PKG} android.permission.ACCESS_COARSE_LOCATION`)
+  }
+  return fromChecks(id, c, { files: [...files, ev.text(id, 'location.json', obs)], notes: `GPS on → ${(obs.gpsOnAfterPrime || obs.gpsOnFirstTry)?.step || 'no fix'}${obs.gpsPrime ? ' (after one GPS reading in the page; a fresh LOW-accuracy fix was not available on this emulator)' : ''}; GPS off → fallback after ${obs.gpsOff?.ms ?? '?'} ms` })
 })
 
 test('T15', 'Persistence', 'A localStorage value set over CDP survives force-stop + relaunch (then it is deleted)', true, async (id) => {
@@ -996,7 +1400,9 @@ if (IS_STAGING) registerStaging({ test, app, ev, notRun, fromChecks, PASS, FAIL,
 // RUN
 // =====================================================================================
 // prod: T1–T18 (+NEG); staging: S/O tests in STAGING_ORDER (+NEG-S); staging-local: S9.
-const flavourIds = FLAVOR === 'prod' ? TESTS.filter((t) => /^(T\d+|NEG)$/.test(t.id)).map((t) => t.id) : FLAVOR === 'staging-local' ? ['S9'] : STAGING_ORDER
+// Batch 9: K1 / H1 / C1 / L1 run in both flavours (L1 is NOT-RUN on prod: it needs a login). In the
+// staging flavour T9, T10 and T14 (read-only, flavour-neutral) also run when --only names them.
+const flavourIds = FLAVOR === 'prod' ? TESTS.filter((t) => /^(T\d+|NEG|K1|H1|C1|L1)$/.test(t.id)).map((t) => t.id) : FLAVOR === 'staging-local' ? ['S9'] : [...STAGING_ORDER, ...(ONLY ? ['T9', 'T10', 'T14'] : [])]
 const selected = flavourIds.map((fid) => TESTS.find((t) => t.id === fid)).filter(Boolean).filter((t) => !ONLY || ONLY.includes(t.id.toUpperCase()))
 // test-android.sh sets KS_NO_DEVICE_REASON when the emulator could not be started.
 const device = process.env.KS_NO_DEVICE_REASON ? { ok: false, reason: process.env.KS_NO_DEVICE_REASON } : deviceState()
@@ -1036,7 +1442,9 @@ for (const t of selected) {
   let r
   if (t.needsDevice && !device.ok) r = notRun(`no device: ${device.reason}`)
   else {
-    try { r = await t.fn(t.id) } catch (e) {
+    // Batch 9: a test that hangs (a WebView call that never answers) fails after 20 minutes instead
+    // of stopping the whole run.
+    try { r = await Promise.race([t.fn(t.id), new Promise((_, no) => setTimeout(() => no(new Error('test did not finish within 20 minutes (hung)')), 20 * 60 * 1000).unref())]) } catch (e) {
       r = { status: FAIL, notes: `test threw: ${String(e?.message || e).split('\n')[0]}`, evidenceFiles: [ev.text(t.id, 'error.txt', String(e?.stack || e))] }
     }
   }

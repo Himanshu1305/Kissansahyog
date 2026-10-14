@@ -144,6 +144,7 @@ export function registerStaging(ctx) {
       stamp: stamp ? { text: stamp.innerText.trim(), cachedAt: Number(stamp.getAttribute('data-cached-at')) } : null,
       notice: document.querySelector('[data-testid="offline-notice"]') ? { tooOld: document.querySelector('[data-testid="offline-notice"]').getAttribute('data-too-old') === 'true', text: document.querySelector('[data-testid="offline-notice"]').innerText.trim() } : null,
       tickerOffline: !!document.querySelector('[data-testid="ticker-offline"]'),
+      bannerText: banner ? banner.innerText.trim() : null,
       spinners: document.querySelectorAll('.animate-spin').length,
       errorBoundary: (document.body.innerText || '').includes('This page could not open'),
       overlap: banner && header ? { bannerBottom: banner.getBoundingClientRect().bottom, headerTop: header.getBoundingClientRect().top } : null,
@@ -530,7 +531,10 @@ export function registerStaging(ctx) {
             : d.text.includes(MARKER)
       c.check(`${r}: same data as online`, same, { online: r === '/' ? before.prices : r === '/mausam' ? before.temps : r === '/msp' ? before.mspPrices : MARKER, offline: r === '/' ? d.prices : r === '/mausam' ? d.temps : r === '/msp' ? d.mspPrices : d.text.includes(MARKER) })
       const stored = entries.filter((e) => resFor(r).includes(e.resource)).map((e) => e.cachedAt)
-      c.check(`${r}: stamp shown, its time is a stored cachedAt`, !!d.stamp && stored.includes(d.stamp.cachedAt), { stamp: d.stamp, storedCount: stored.length })
+      // Batch 9 (1B): on Home the offline banner carries the time; the stamp under the ticker is no
+      // longer repeated while the banner shows (assertion change, docs/review/batch9/evidence/phase1/assertion-changes.json).
+      if (r === '/') c.check('/: exactly one timestamp — the offline banner shows a time, the stamp under the ticker is hidden while it shows', !!d.bannerText && /\d{1,2}:\d{2}/.test(d.bannerText) && !d.stamp, { banner: d.bannerText, stamp: d.stamp })
+      else c.check(`${r}: stamp shown, its time is a stored cachedAt`, !!d.stamp && stored.includes(d.stamp.cachedAt), { stamp: d.stamp, storedCount: stored.length })
       c.check(`${r}: no ErrorBoundary`, !d.errorBoundary)
       c.check(`${r}: offline banner does not cover the header`, !d.overlap || d.overlap.headerTop >= d.overlap.bannerBottom - 0.5, d.overlap)
     }
@@ -797,5 +801,5 @@ export function registerStaging(ctx) {
   }
 }
 
-export const STAGING_ORDER = ['S1', 'S2', 'S3', 'S10', 'S4', 'S5', 'S6', 'S7', 'S8', 'O2', 'O3', 'O5', 'O6', 'O4', 'O7', 'O1', 'O1b', 'O8', 'S9', 'NEG-S']
+export const STAGING_ORDER = ['S1', 'S2', 'S3', 'S10', 'S4', 'S5', 'S6', 'S7', 'S8', 'L1', 'K1', 'O2', 'O3', 'O5', 'O6', 'O4', 'H1', 'C1', 'O7', 'O1', 'O1b', 'O8', 'S9', 'NEG-S']
 export { FLAVOR }

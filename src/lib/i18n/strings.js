@@ -871,6 +871,9 @@ export const strings = {
   consent_required: { hi: 'पोस्ट करने के लिए सभी बातों पर सहमति दें।', en: 'Accept all items to post.' },
   location_current: { hi: 'मेरी वर्तमान लोकेशन लें', en: 'Use my current location' },
   location_unavailable: { hi: 'लोकेशन नहीं मिल सकी। आप जगह का नाम लिख सकते हैं।', en: 'Location could not be found. You can type the place name.' },
+  // Batch 9 (1D) — Post page: looking for the position, and the fallback to typing the village.
+  post_location_finding: { hi: 'लोकेशन ढूँढ रहे हैं… (20 सेकंड तक)', en: 'Finding your location… (up to 20 seconds)' },
+  post_location_fallback: { hi: 'फ़ोन से लोकेशन नहीं मिल पाई। कोई बात नहीं — ऊपर अपने गाँव या कस्बे का नाम लिखें, लिस्टिंग उसी से दिखेगी।', en: 'Could not get the location from the phone. No problem — type your village or town name above; the listing will be shown by that.' },
   maps_link_label: { hi: 'Google Maps लिंक (चाहें तो)', en: 'Google Maps link (optional)' },
   maps_link_invalid: { hi: 'सिर्फ़ Google Maps का सही लिंक डालें।', en: 'Enter a valid Google Maps link only.' },
   maps_open: { hi: 'Google Maps में खोलें', en: 'Open in Google Maps' },

@@ -112,6 +112,9 @@ done
 "$ADB" -s "$SERIAL" shell input keyevent KEYCODE_WAKEUP >/dev/null 2>&1
 "$ADB" -s "$SERIAL" shell wm dismiss-keyguard >/dev/null 2>&1
 "$ADB" -s "$SERIAL" shell cmd connectivity airplane-mode disable >/dev/null 2>&1
+# Batch 9 (1A): always draw the on-screen keyboard. Without this the emulator treats adb input as a
+# hardware keyboard and never shows the soft keyboard, so a keyboard test proves nothing.
+"$ADB" -s "$SERIAL" shell settings put secure show_ime_with_hard_keyboard 1 >/dev/null 2>&1
 
 # 6. Internet inside the emulator (Batch 8B): right after a boot the emulator's DNS is sometimes
 #    not up yet; a run that starts then fails at the first request. Wait up to 3 minutes.
