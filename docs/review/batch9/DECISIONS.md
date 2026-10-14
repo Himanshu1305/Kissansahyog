@@ -188,3 +188,54 @@ Each entry: what was decided, why, and what the alternative was.
 18. **verify-batch7d improved (77/1 → 78/0) after the rebuild** — the "pilot" word in the built
     `mausam/index.html` comes from data rendered at build time, not from this change; it is not
     counted as a fix.
+
+### Phase 3 — release readiness
+
+1. **Upload keystore created (none existed):** `C:\Users\usdvi\ks-release-keys\kisansahyog-upload.jks`,
+   RSA 4096, 10000 days, alias `kisansahyog`, DN `CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN`,
+   via the new `scripts/android/make-release-keystore.sh` (tested first with dummy inputs in a scratch
+   folder, including the refuse-to-overwrite path). Passwords: 32 chars from `openssl rand`, passed
+   to keytool via `-storepass:env`, never printed; stored only in `KEYSTORE_INFO.txt` and the gitignored
+   `android/keystore.properties`. SHA-256 `55:D3:D1:28:15:13:13:ED:FE:F1:62:9A:45:52:48:07:B7:0E:A0:B2:D7:DF:0C:86:D7:53:AB:2D:50:B7:69:D2`.
+2. **PKCS12 keystore, key password = store password.** keytool's default type; for PKCS12 it ignores
+   a separate `-keypass`. The `.jks` file name is kept as specified (it is PKCS12 inside; Gradle/Play
+   accept it). Alternative: legacy JKS type with two passwords — rejected (keytool deprecates it,
+   Play's PEPK tool and AGP handle PKCS12 fine).
+3. **Signing is optional in `build.gradle`:** the release signingConfig exists only when
+   `android/keystore.properties` exists and has all four keys; otherwise the release build is
+   unsigned. Proved by building once with the file renamed away → `app-release-unsigned.apk`,
+   AAB "jar is unsigned", BUILD SUCCESSFUL. Alternative: fail the build without a key — rejected (CI /
+   other machines must still build).
+4. **"Flavours" are the existing `-PksFlavor` property, not Gradle productFlavors.** Added
+   `--release` to `scripts/build-android.mjs` (npm `android:release`, `android:release:staging`) so the
+   release builds go through the same env guards (staging guard ran and passed for the staging AAB)
+   and are copied to `android/ks-apks/ks-<flavour>-release.{aab,apk}` (gitignored). The script now
+   deletes old release outputs first so an unsigned/other-flavour leftover can never be copied.
+   `--release` is refused together with `--local-api`.
+5. **APK signature schemes left at AGP defaults (v2 only, no v1)** because minSdk is 24. Consequence:
+   `jarsigner -verify` reports the APKs as "jar is unsigned" by design; `apksigner verify` is the
+   authoritative check and passes (v2, signer SHA-256 = upload key). The AABs are JAR-signed and
+   `jarsigner` reports "jar verified" (with the usual self-signed "PKIX path" warning, harmless for an
+   upload key). Alternative: force `enableV1Signing true` — rejected (no device on API ≥ 24 needs it;
+   Play re-signs anyway).
+6. **WebView debugging: no code change.** Capacitor enables it only when the app is debuggable
+   (CapConfig.java:245/286, Bridge.java:624) and our config has no override, so debug builds (which the
+   harness attaches to via `webview_devtools_remote_<pid>`) keep it and release builds do not.
+   On this userdebug emulator WebView exposes a devtools socket for every app, including the release
+   one, so the runtime socket check is not meaningful here; real-phone check added as HUMAN-REVIEW.
+   Alternative: hard-code `webContentsDebuggingEnabled:false` in capacitor.config — rejected (would
+   break the debug-build test harness).
+7. **allowBackup was already `false`** (manifest) and stays false: everything stored on the device is
+   a cache or a Supabase session that is re-created by signing in. No change.
+8. **bundletool:** no standalone install; used `bundletool-1.18.1.jar` from the Gradle cache with its
+   dependencies on the classpath (no download). `validate` and `dump manifest` ran on both AABs.
+9. **Release install test on the emulator:** the debug prod build (same applicationId, debug key)
+   blocked the install (`INSTALL_FAILED_UPDATE_INCOMPATIBLE`), so it was uninstalled (its emulator test
+   data was lost — test data only), the release APK installed and started, then the release build was
+   uninstalled and `android/ks-apks/ks-production.apk` (debug) reinstalled. The staging app was not
+   touched. Alternative: skip the install test — rejected (phase asks for it).
+10. **`.gitignore` (root):** added `android/keystore.properties`, `*.jks`, `*.keystore`,
+    `android/test-accounts*`, `*.aab`, `*.apk` (android/.gitignore already had `*.jks`, `*.keystore`,
+    `*.apk`, `*.aab`, but only for paths under android/).
+11. **Nothing in `public/.well-known/`.** `docs/store/assetlinks.template.json` is a template only; the
+    fingerprint to put there is Play's app-signing certificate, known after the first upload.

@@ -214,3 +214,10 @@ runs before the dist wipe). **RAN-PASSED.** Log: `evidence/p0-s2-guard.txt`.
 Note: `*.log` is gitignored (`.gitignore:29`), so the per-script baseline logs
 (`evidence/baseline/logs/*.log`, `build-full.log`, `lint.log`) stay on disk only; `summary.tsv`
 and the failure lines quoted above are committed. The short Phase 0 logs were saved as `.txt`.
+
+## Phase 3 addendum — release signing
+
+Upload keystore created at `C:\Users\usdvi\ks-release-keys\kisansahyog-upload.jks` (outside the repo,
+alias `kisansahyog`). SHA-256 certificate fingerprint (public):
+`55:D3:D1:28:15:13:13:ED:FE:F1:62:9A:45:52:48:07:B7:0E:A0:B2:D7:DF:0C:86:D7:53:AB:2D:50:B7:69:D2`.
+See `docs/store/KEYSTORE_README.md`.

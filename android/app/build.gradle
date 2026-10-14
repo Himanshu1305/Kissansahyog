@@ -11,6 +11,19 @@ if (!['production', 'staging'].contains(ksFlavor)) throw new GradleException("ks
 def ksStaging = ksFlavor == 'staging'
 def ksCleartext = (project.findProperty('ksCleartext') ?: 'false').toString() == 'true'
 
+// Batch 9 Phase 3 — release signing. The upload key and its passwords live OUTSIDE the repo
+// (C:\Users\usdvi\ks-release-keys\, see docs/store/KEYSTORE_README.md). android/keystore.properties
+// (gitignored) points at it with storeFile, storePassword, keyAlias, keyPassword. If the file is
+// absent (any other machine, CI) the release build still succeeds, just UNSIGNED.
+def ksKeystorePropsFile = rootProject.file('keystore.properties')
+def ksKeystoreProps = new Properties()
+def ksHasReleaseKey = false
+if (ksKeystorePropsFile.exists()) {
+    ksKeystorePropsFile.withInputStream { ksKeystoreProps.load(it) }
+    ksHasReleaseKey = ['storeFile', 'storePassword', 'keyAlias', 'keyPassword'].every { ksKeystoreProps.getProperty(it) }
+    if (!ksHasReleaseKey) logger.warn('keystore.properties is incomplete — release build will be UNSIGNED')
+}
+
 android {
     namespace = "com.kissansahyog.app"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -28,8 +41,21 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        if (ksHasReleaseKey) {
+            release {
+                storeFile file(ksKeystoreProps.getProperty('storeFile'))
+                storePassword ksKeystoreProps.getProperty('storePassword')
+                keyAlias ksKeystoreProps.getProperty('keyAlias')
+                keyPassword ksKeystoreProps.getProperty('keyPassword')
+            }
+        }
+    }
     buildTypes {
         release {
+            if (ksHasReleaseKey) signingConfig signingConfigs.release
+            // debuggable stays false (the release default). WebView remote debugging follows it:
+            // Capacitor enables it only when FLAG_DEBUGGABLE is set and capacitor.config has no override.
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

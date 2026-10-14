@@ -16,6 +16,8 @@
     "android:debug": "node scripts/build-android.mjs --assemble",
     "android:debug:staging": "node scripts/build-android.mjs --target staging --assemble",
     "android:debug:staging-local": "node scripts/build-android.mjs --target staging --local-api --assemble",
+    "android:release": "node scripts/build-android.mjs --release",
+    "android:release:staging": "node scripts/build-android.mjs --target staging --release",
     "test:android": "bash scripts/test-android.sh",
     "preview": "vite preview",
     "lint": "eslint .",

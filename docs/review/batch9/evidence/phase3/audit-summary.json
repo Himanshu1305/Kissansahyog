@@ -1,0 +1,40 @@
+{
+  "generated": "2026-10-14T22:03:33.268Z",
+  "expectedUploadKeySha256": "55:D3:D1:28:15:13:13:ED:FE:F1:62:9A:45:52:48:07:B7:0E:A0:B2:D7:DF:0C:86:D7:53:AB:2D:50:B7:69:D2",
+  "buildTools": "37.0.0",
+  "bundletool": "bundletool-1.18.1.jar",
+  "artifacts": [
+    {
+      "artifact": "android/ks-apks/ks-production-release.aab",
+      "status": "RAN-PASSED",
+      "sizeBytes": 10093854,
+      "versionCode": "1",
+      "versionName": "0.1.0",
+      "failed": []
+    },
+    {
+      "artifact": "android/ks-apks/ks-production-release.apk",
+      "status": "RAN-PASSED",
+      "sizeBytes": 10345947,
+      "versionCode": "1",
+      "versionName": "0.1.0",
+      "failed": []
+    },
+    {
+      "artifact": "android/ks-apks/ks-staging-release.aab",
+      "status": "RAN-PASSED",
+      "sizeBytes": 10093930,
+      "versionCode": "1",
+      "versionName": "0.1.0",
+      "failed": []
+    },
+    {
+      "artifact": "android/ks-apks/ks-staging-release.apk",
+      "status": "RAN-PASSED",
+      "sizeBytes": 10345995,
+      "versionCode": "1",
+      "versionName": "0.1.0",
+      "failed": []
+    }
+  ]
+}

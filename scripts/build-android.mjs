@@ -24,6 +24,9 @@
 //   5. cap sync android
 //   6. (--assemble) gradlew assembleDebug -PksFlavor=… with JDK 21; the APK is copied to
 //      android/ks-apks/ks-<flavour>.apk (gitignored)
+//      (--release, Batch 9 Phase 3) gradlew bundleRelease assembleRelease instead; copies
+//      ks-<flavour>-release.aab / .apk. Signed with the upload key when android/keystore.properties
+//      exists (see docs/store/KEYSTORE_README.md), otherwise unsigned. Not for --local-api.
 // No prerender and no sitemaps: the app is a single bundled shell.
 import { spawnSync } from 'node:child_process'
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
@@ -44,6 +47,8 @@ const TARGETS = {
 }
 const cfg = TARGETS[TARGET]
 if (!cfg) { console.error(`[build-android] FAILED — unknown --target ${TARGET} (production | staging)`); process.exit(1) }
+const RELEASE = argv.includes('--release')
+if (RELEASE && LOCAL_API) { console.error('[build-android] FAILED — --release is not allowed with --local-api'); process.exit(1) }
 if (LOCAL_API && TARGET !== 'staging') { console.error('[build-android] FAILED — --local-api is only for --target staging'); process.exit(1) }
 const FLAVOUR = TARGET === 'staging' ? (LOCAL_API ? 'staging-local' : 'staging') : 'production'
 const API_ORIGIN = LOCAL_API ? 'http://localhost:8788' : cfg.apiOrigin
@@ -77,23 +82,37 @@ if (LOCAL_API) {
   console.log('[build-android] local API: allowMixedContent set in the generated packaged config only')
 }
 
-if (argv.includes('--assemble')) {
+if (argv.includes('--assemble') || RELEASE) {
   const jdk = findJdk21()
   if (!jdk) { console.error('[build-android] FAILED — no JDK 21 found (set KS_JAVA_HOME). See docs/review/batch8a/README.md'); process.exit(1) }
   const sdk = findSdk()
   if (!sdk) { console.error('[build-android] FAILED — Android SDK not found (set ANDROID_HOME)'); process.exit(1) }
   const win = process.platform === 'win32'
-  const gradleArgs = ['assembleDebug', '--console=plain', `-PksFlavor=${TARGET}`, `-PksCleartext=${LOCAL_API ? 'true' : 'false'}`]
+  const tasks = RELEASE ? ['bundleRelease', 'assembleRelease'] : ['assembleDebug']
+  // A release output left from an earlier (e.g. unsigned or other-flavour) build must never be copied.
+  if (RELEASE) for (const d of [['apk', 'release'], ['bundle', 'release']]) rmSync(join(ROOT, 'android', 'app', 'build', 'outputs', ...d), { recursive: true, force: true })
+  const gradleArgs = [...tasks, '--console=plain', `-PksFlavor=${TARGET}`, `-PksCleartext=${LOCAL_API ? 'true' : 'false'}`]
   // cmd.exe needs the full, quoted path (it does not always search the working directory).
-  step(`gradlew assembleDebug (${FLAVOUR}, JDK 21)`, win ? `"${join(ROOT, 'android', 'gradlew.bat')}" ${gradleArgs.join(' ')}` : './gradlew', win ? [] : gradleArgs, {
+  step(`gradlew ${tasks.join(' ')} (${FLAVOUR}, JDK 21)`, win ? `"${join(ROOT, 'android', 'gradlew.bat')}" ${gradleArgs.join(' ')}` : './gradlew', win ? [] : gradleArgs, {
     cwd: join(ROOT, 'android'), shell: win, env: { JAVA_HOME: jdk, ANDROID_HOME: sdk, ANDROID_SDK_ROOT: sdk },
   })
+  const keep = join(ROOT, 'android', 'ks-apks')
+  mkdirSync(keep, { recursive: true })
+  if (RELEASE) {
+    const outs = join(ROOT, 'android', 'app', 'build', 'outputs')
+    const apkDir = join(outs, 'apk', 'release')
+    const relApk = [join(apkDir, 'app-release.apk'), join(apkDir, 'app-release-unsigned.apk')].find(existsSync)
+    const relAab = join(outs, 'bundle', 'release', 'app-release.aab')
+    if (!relApk || !existsSync(relAab)) { console.error('[build-android] FAILED — gradle finished but the release APK/AAB is missing'); process.exit(1) }
+    copyFileSync(relAab, join(keep, `ks-${FLAVOUR}-release.aab`))
+    copyFileSync(relApk, join(keep, `ks-${FLAVOUR}-release.apk`))
+    console.log(`\n[build-android] OK — ${join(keep, `ks-${FLAVOUR}-release.aab`)} and .apk (${relApk.endsWith('unsigned.apk') ? 'UNSIGNED' : 'signed'})`)
+    process.exit(0)
+  }
   const out = join(ROOT, 'android', 'app', 'build', 'outputs', 'apk', 'debug')
   const apk = join(out, 'app-debug.apk')
   if (!existsSync(apk)) { console.error('[build-android] FAILED — gradle finished but the APK is missing'); process.exit(1) }
   // Gradle empties its own output folder on the next build, so the named copies live outside it.
-  const keep = join(ROOT, 'android', 'ks-apks')
-  mkdirSync(keep, { recursive: true })
   const named = join(keep, `ks-${FLAVOUR}.apk`)
   copyFileSync(apk, named)
   console.log(`\n[build-android] OK — ${named}`)
