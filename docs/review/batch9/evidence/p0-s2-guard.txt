@@ -1,0 +1,6 @@
+[build-android] target staging — flavour staging, API origin https://staging.kissansahyog.com
+
+[build-android] 1/5 staging guard
+STAGING GUARD: REFUSED — VITE_SUPABASE_URL in the process environment (start with --env-file=.env) points at the PRODUCTION project
+[build-android] FAILED — 1/5 staging guard (exit 1)
+EXIT=1

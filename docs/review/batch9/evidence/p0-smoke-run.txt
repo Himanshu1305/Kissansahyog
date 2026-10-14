@@ -1,0 +1,6 @@
+T2 APK facts … RAN-PASSED (0.2s)
+T4 Install + cold start … RAN-PASSED (37.6s)
+
+2 tests — 2 RAN-PASSED, 0 RAN-FAILED, 0 NOT-RUN, 0 HUMAN-REVIEW
+results: docs/review/batch9/evidence/p0-smoke/results-smoke.json
+EXIT=0

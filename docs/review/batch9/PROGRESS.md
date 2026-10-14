@@ -1,0 +1,1 @@
+2026-10-15 00:53 | Phase 0 | DONE | Preflight recorded, leftovers committed (e9f7177), tag pre-9-start pushed, baseline 27 passed / 12 pre-existing failures, emulator healthy after 1 reboot, S2 staging guard refuses prod URL.

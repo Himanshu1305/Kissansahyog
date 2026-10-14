@@ -1,0 +1,9 @@
+avd-setup: emulator-5554 already running
+avd-setup: WARNING — the emulator has no working internet after 3 minutes; online tests will fail
+avd-setup: ready (booted in 824s, API 36)
+emulator-5554
+
+real	13m46.961s
+user	0m5.125s
+sys	0m7.664s
+EXIT=0

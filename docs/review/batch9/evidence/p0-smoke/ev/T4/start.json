@@ -1,0 +1,17 @@
+{
+  "amStart": "Starting: Intent { cmp=com.kissansahyog.app/.MainActivity }\nStatus: ok\nLaunchState: COLD\nActivity: com.kissansahyog.app/.MainActivity\nTotalTime: 8380\nWaitTime: 8410\nComplete",
+  "pid": "2414",
+  "state": {
+    "href": "https://localhost/",
+    "path": "/",
+    "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+    "textLength": 2867,
+    "text": "किसान सहयोग Kissan Sahyog हिं EN ☰ 📊 मंडी भाव बिना लॉगिन के सारी जानकारी देखें मंडी भाव योजनाएँ किसान सवाल कोल्ड स्टोरेज मेले कैसे इस्तेमाल करें → 🌾 किसान की आय बढ़ाना · रोज़गार के अवसर✓ निःशुल्क रजिस्ट्रेशन आज किसान के लिए सही जानकारी, सही मौके — आपके आसपास मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन मुझे कुछ च",
+    "h1": "आज किसान के लिए",
+    "hasMain": true,
+    "notFound": false,
+    "nativeClass": true
+  },
+  "userAgent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_x86_64 Build/BE2A.250530.026.F3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.137 Mobile Safari/537.36",
+  "fatalExceptions": []
+}
