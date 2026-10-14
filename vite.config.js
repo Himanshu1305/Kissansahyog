@@ -46,6 +46,12 @@ export default defineConfig({
         // SPA: serve the precached app shell for any navigation, incl. offline —
         // shows the app (not a blank white screen) when the network is down.
         navigateFallback: '/index.html',
+        // Batch 9 Phase 2 — real files that a browser may navigate to directly must
+        // NOT get the app shell: sitemaps, robots.txt, llms.txt, the search index,
+        // the Pages Functions (/api, /geo, /geocode, /transcribe) and /_* paths.
+        // Without this, a browser that already has the SW sees the app 404 page at
+        // /sitemap.xml instead of the XML.
+        navigateFallbackDenylist: [/^\/sitemap.*\.xml$/, /^\/robots\.txt$/, /^\/llms\.txt$/, /^\/search-index\.json$/, /^\/(api|geo|geocode|transcribe)(\/|$)/, /^\/_/],
         // CacheFirst (precache) for the static app shell ONLY.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         // The logo is precached as webp (includeAssets); skip its png fallbacks.

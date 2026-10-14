@@ -36,6 +36,7 @@ not forgotten if the run stops early (check `docs/review/batch9/PROGRESS.md` for
 | B14 | Admin dashboard not visible for 9849993171 (data/identity, not code) | Me | P2 |
 | B15 | Large screenshots already committed (repo ≈ 192 MB packed) | Claude Code (policy) | P3 |
 | B16 | Smaller tidy-ups (ESLint missing, "information platform" wording, founder page confirmations, 18 dead source links, dynamic imports) | mixed | P3 |
+| B17 | Prerendered pages contain `modulepreload` links to `http://localhost:4178/assets/…` (prerender origin baked in; console errors on every prerendered page, live prod too) | Claude Code | P2 |
 | P1–P6 | Tonight's Phase 1–2 items (keyboard, duplicate stamp, cold-storage catch, post-page location, sitemap SW) | Claude Code | tracked in PROGRESS.md |
 | N1 | Push notifications (plan in `PUSH_PLAN.md`) | Me (Firebase) → Claude Code | P2 |
 
@@ -366,6 +367,17 @@ status before relying on them:
 | P4 | Post page low-accuracy 10 s location request | `batch8b/REPORT.md` §9 |
 | P5 | `sitemap.xml` shows the app 404 for visitors with the service worker | brief Phase 2 |
 | P6 | Deploy `functions/_middleware.js` + `public/_routes.json` to staging (prod prepared, not run) — until then feedback/village lookup/voice don't work in the app | `batch8b/REPORT.md` §7 |
+
+## Found in Phase 2
+
+- **B17 — localhost preload links in prerendered HTML.** `scripts/prerender.mjs` serves `dist/` on
+  `http://localhost:4178` and saves the rendered DOM, including the `<link rel="modulepreload">`
+  tags Vite adds at runtime with absolute URLs. Every prerendered page (and live
+  https://kissansahyog.com/about/ today) therefore asks for `http://localhost:4178/assets/*.js`,
+  which fails with console errors (`ERR_CONNECTION_REFUSED`). Harmless to function, noisy, and a
+  private-network request from a public page. Fix: strip or rewrite `http://localhost:4178` to
+  relative paths in the prerender output, then re-run the build tests. Evidence:
+  `evidence/phase2/results-new.json` (`failedRequests`).
 
 ## Planned feature
 

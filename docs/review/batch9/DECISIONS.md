@@ -157,3 +157,34 @@ Each entry: what was decided, why, and what the alternative was.
     in any Phase 1 run. One FATAL EXCEPTION in staging run 2 is the `UiAutomation` test tool
     (`uiautomator dump`, "Bad file descriptor"), not the app; the "has died" lines are system
     processes (bluetooth etc.). Details: `evidence/phase1/logcat-scan.json`.
+
+### Phase 2 — sitemap / service-worker fix
+
+14. **Denylist added exactly as briefed** (`navigateFallbackDenylist` right after
+    `navigateFallback` in `vite.config.js`); nothing else in the workbox block changed. Proof: the
+    generated `sw.js` with the denylist text removed is byte-identical to the OLD `sw.js`
+    (`cmp`), so precache list, skipWaiting, clientsClaim and runtimeCaching are unchanged.
+15. **Where the builds went.** `prerender.mjs`, `gen-sitemaps.mjs` and `check-prod-env.mjs --dist`
+    hardcode `dist/`, so the NEW `npm run build:prod` (documented script, prod guard OK, 263/263)
+    was built into `dist/` and then copied to the scratch folder. The OLD build (negative control)
+    was `vite build --mode production --outDir <scratch>/old-dist` run in the main tree **before**
+    the edit (no stash, no worktree), with the NEW build's sitemap XML files copied in so both
+    servers offer the same real files; OLD has no prerendered pages, which does not matter for the
+    SW test (the SW answers navigations from precache). Afterwards `npm run build:full` (staging)
+    rewrote `dist/` (263/263), so `dist/` is the normal staging build again for later Android
+    builds. Alternative: a git worktree with its own node_modules/.env copies — rejected (copies
+    env files around, slower, no benefit).
+16. **New verifier `scripts/verify-batch9-sw.mjs`** (Node static server + Playwright, no network
+    writes; the app's normal public reads go to the prod Supabase project only because it is a
+    prod build — read-only, as on the live site). Kept in the repo so Phase 4 / later can re-run it
+    against any build. Alternative: a throw-away script in scratch — rejected (not re-runnable).
+17. **Finding, not fixed (out of Phase 2 scope): prerendered HTML contains
+    `<link rel="modulepreload" href="http://localhost:4178/assets/…">`** — the prerender server's
+    origin is baked into every prerendered page (also on live kissansahyog.com today, checked with
+    a read-only `curl`). Effect: on each prerendered page the browser tries a few http://localhost
+    URLs and logs `ERR_CONNECTION_REFUSED` console errors; the app still works (the real chunks
+    load from the site). Recorded as BACKLOG B17. Alternative: fix `prerender.mjs` now — rejected
+    (website behaviour must stay unchanged except for the named change; needs its own test).
+18. **verify-batch7d improved (77/1 → 78/0) after the rebuild** — the "pilot" word in the built
+    `mausam/index.html` comes from data rendered at build time, not from this change; it is not
+    counted as a fix.
