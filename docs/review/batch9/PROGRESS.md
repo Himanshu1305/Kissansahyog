@@ -1,1 +1,2 @@
 2026-10-15 00:53 | Phase 0 | DONE | Preflight recorded, leftovers committed (e9f7177), tag pre-9-start pushed, baseline 27 passed / 12 pre-existing failures, emulator healthy after 1 reboot, S2 staging guard refuses prod URL.
+2026-10-15 03:09 | Phase 1 | DONE | 1A–1D done (no native keyboard fix needed; K1/T14/H1/C1/L1 + exit re-runs T9 T10 T14 K1 H1 C1 on both flavours and S4–S8 O2–O4 L1 on staging all RAN-PASSED twice; L1 NOT-RUN on prod by rule), web cold-storage test 12/12, baseline unchanged (no new failure, build 263/263), 1E recorded in DECISIONS.md.

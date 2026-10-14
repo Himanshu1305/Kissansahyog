@@ -1,0 +1,52 @@
+{
+  "run": {
+    "flavor": "staging",
+    "startedAt": "2026-10-14T21:34:03.991Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "installedAtStart": "android/ks-apks/ks-staging.apk",
+    "finishedAt": "2026-10-14T21:36:18.286Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "S4",
+      "name": "Signup",
+      "status": "RAN-PASSED",
+      "assertion": "A brand-new KSTEST user signs up through the real signup UI of the staging app; lands logged in; the session survives force-stop + relaunch",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-L1-run2/S4/after-signup.jpg",
+        "docs/review/batch9/evidence/phase1/staging-L1-run2/S4/after-relaunch.jpg",
+        "docs/review/batch9/evidence/phase1/staging-L1-run2/S4/signup.json",
+        "docs/review/batch9/evidence/phase1/staging-L1-run2/S4/checks.json"
+      ],
+      "durationMs": 43704,
+      "notes": ""
+    },
+    {
+      "id": "L1",
+      "name": "Post page location fallback",
+      "status": "RAN-PASSED",
+      "assertion": "Logged in, /post step 3, \"use my current location\": GPS on → coordinates near the emulator position (which step: cached ≤ 10 min / fresh ≤ 20 s recorded); GPS off → within ~25 s the clear fallback message (on screen, not covered) with the village field in view, no crash",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-L1-run2/L1/gps-on-coordinates.jpg",
+        "docs/review/batch9/evidence/phase1/staging-L1-run2/L1/gps-off-fallback.jpg",
+        "docs/review/batch9/evidence/phase1/staging-L1-run2/L1/location.json",
+        "docs/review/batch9/evidence/phase1/staging-L1-run2/L1/checks.json"
+      ],
+      "durationMs": 85868,
+      "notes": "GPS on → cached (after one GPS reading in the page; a fresh LOW-accuracy fix was not available on this emulator); GPS off → fallback after 20546 ms"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "gpsOnWhileLooking": {
+    "coords": null,
+    "step": null,
+    "fallback": null,
+    "busy": true,
+    "active": null,
+    "fallbackUncovered": false,
+    "villageInView": true,
+    "button": "लोकेशन ढूँढ रहे हैं… (20 सेकंड तक)"
+  },
+  "gpsOnFirstTry": {
+    "coords": null,
+    "step": null,
+    "fallback": "फ़ोन से लोकेशन नहीं मिल पाई। कोई बात नहीं — ऊपर अपने गाँव या कस्बे का नाम लिखें, लिस्टिंग उसी से दिखेगी।",
+    "busy": false,
+    "active": null,
+    "fallbackUncovered": true,
+    "villageInView": true,
+    "button": "मेरी वर्तमान लोकेशन लें",
+    "ms": 20469
+  },
+  "gpsPrime": {
+    "ok": true,
+    "lat": 23.8387983,
+    "lng": 78.7377983
+  },
+  "gpsOnAfterPrime": {
+    "coords": "✓ 23.83880, 78.73780",
+    "step": "cached",
+    "fallback": null,
+    "busy": false,
+    "active": null,
+    "fallbackUncovered": false,
+    "villageInView": true,
+    "button": "मेरी वर्तमान लोकेशन लें",
+    "ms": 431
+  },
+  "gpsOff": {
+    "coords": null,
+    "step": null,
+    "fallback": "फ़ोन से लोकेशन नहीं मिल पाई। कोई बात नहीं — ऊपर अपने गाँव या कस्बे का नाम लिखें, लिस्टिंग उसी से दिखेगी।",
+    "busy": false,
+    "active": null,
+    "fallbackUncovered": true,
+    "villageInView": true,
+    "button": "मेरी वर्तमान लोकेशन लें",
+    "ms": 20546
+  }
+}

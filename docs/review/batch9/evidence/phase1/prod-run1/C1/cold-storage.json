@@ -1,0 +1,15 @@
+{
+  "cacheEntriesCleared": 30,
+  "noticeAfterMs": 1679,
+  "offline": {
+    "notice": "📴 जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।\n\nफिर से कोशिश करें",
+    "h1": "मध्य प्रदेश कोल्ड स्टोरेज खोजें",
+    "spinners": 0,
+    "boundary": false,
+    "districtLinks": 0,
+    "pageErrors": []
+  },
+  "backOnline": {
+    "districtLinks": 35
+  }
+}

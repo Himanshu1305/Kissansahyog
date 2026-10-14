@@ -1,0 +1,24 @@
+[
+  {
+    "name": "logged out through the UI (session removed)",
+    "pass": true
+  },
+  {
+    "name": "unregistered number 6011078389 is refused with an in-app message",
+    "pass": true,
+    "detail": "इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।"
+  },
+  {
+    "name": "malformed number 12345 is refused with an in-app message",
+    "pass": true,
+    "detail": "कृपया सही 10 अंकों का मोबाइल नंबर भरें।"
+  },
+  {
+    "name": "login with the same number restores the same user",
+    "pass": true,
+    "detail": {
+      "phone": "9011078389",
+      "auth": "email"
+    }
+  }
+]

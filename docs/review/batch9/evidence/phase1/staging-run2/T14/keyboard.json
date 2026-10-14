@@ -1,0 +1,51 @@
+{
+  "query": "wheat",
+  "keyboard": {
+    "shown": true,
+    "top": 1517,
+    "frame": [
+      0,
+      1517,
+      1080,
+      2400
+    ],
+    "imeShowing": true
+  },
+  "drawn": {
+    "meanAbsDiff": 16.8,
+    "bandStdev": 41.8,
+    "drawn": true,
+    "band": [
+      1547,
+      2165
+    ]
+  },
+  "geometry": {
+    "top": 92.76190948486328,
+    "bottom": 136.76190948486328,
+    "height": 44,
+    "focused": true,
+    "topLimit": 56.761905670166016,
+    "bottomLimit": 471.9761962890625,
+    "tabBar": {
+      "top": 471.9761962890625,
+      "bottom": 527.2381019592285
+    },
+    "innerHeight": 527,
+    "vvHeight": 527.2380981445312,
+    "scrollY": 0,
+    "covered": []
+  },
+  "inputBottomPx": 495,
+  "webViewBounds": [
+    0,
+    136,
+    1080,
+    1517
+  ],
+  "results": {
+    "items": 16,
+    "groups": 3,
+    "url": "/search?q=Wheat"
+  }
+}

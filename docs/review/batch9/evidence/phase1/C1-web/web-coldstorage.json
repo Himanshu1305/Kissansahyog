@@ -1,0 +1,97 @@
+{
+  "at": "2026-10-14T21:38:48.242Z",
+  "pass": 12,
+  "fail": 0,
+  "results": [
+    {
+      "name": "desktop A: success path lists the cold storages (district links) and shows no failure notice",
+      "pass": true,
+      "detail": "{\"notice\":false,\"retry\":false,\"noticeText\":null,\"districtLinks\":35,\"h1\":\"मध्य प्रदेश कोल्ड स्टोरेज खोजें\",\"spinners\":0}"
+    },
+    {
+      "name": "desktop B: the directory request was really blocked",
+      "pass": true,
+      "detail": "8 request(s)"
+    },
+    {
+      "name": "desktop B: failed load shows the \"could not load\" notice with \"try again\"",
+      "pass": true,
+      "detail": "{\"notice\":true,\"retry\":true,\"noticeText\":\"📴 जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।\\n\\nफिर से कोशिश करें\",\"districtLinks\":0,\"h1\":\"मध्य प्रदेश कोल्ड स्टोरेज खोजें\",\"spinners\":0}"
+    },
+    {
+      "name": "desktop B: no uncaught page error",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "desktop B: no spinner left, page heading still there",
+      "pass": true,
+      "detail": "{\"spinners\":0,\"h1\":\"मध्य प्रदेश कोल्ड स्टोरेज खोजें\"}"
+    },
+    {
+      "name": "desktop C: \"try again\" with the network back loads the list",
+      "pass": true,
+      "detail": "{\"notice\":false,\"retry\":false,\"noticeText\":null,\"districtLinks\":35,\"h1\":\"मध्य प्रदेश कोल्ड स्टोरेज खोजें\",\"spinners\":0}"
+    },
+    {
+      "viewport": "desktop",
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+        "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+        "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+      ]
+    },
+    {
+      "name": "mobile A: success path lists the cold storages (district links) and shows no failure notice",
+      "pass": true,
+      "detail": "{\"notice\":false,\"retry\":false,\"noticeText\":null,\"districtLinks\":35,\"h1\":\"मध्य प्रदेश कोल्ड स्टोरेज खोजें\",\"spinners\":0}"
+    },
+    {
+      "name": "mobile B: the directory request was really blocked",
+      "pass": true,
+      "detail": "8 request(s)"
+    },
+    {
+      "name": "mobile B: failed load shows the \"could not load\" notice with \"try again\"",
+      "pass": true,
+      "detail": "{\"notice\":true,\"retry\":true,\"noticeText\":\"📴 जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।\\n\\nफिर से कोशिश करें\",\"districtLinks\":0,\"h1\":\"मध्य प्रदेश कोल्ड स्टोरेज खोजें\",\"spinners\":0}"
+    },
+    {
+      "name": "mobile B: no uncaught page error",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "mobile B: no spinner left, page heading still there",
+      "pass": true,
+      "detail": "{\"spinners\":0,\"h1\":\"मध्य प्रदेश कोल्ड स्टोरेज खोजें\"}"
+    },
+    {
+      "name": "mobile C: \"try again\" with the network back loads the list",
+      "pass": true,
+      "detail": "{\"notice\":false,\"retry\":false,\"noticeText\":null,\"districtLinks\":35,\"h1\":\"मध्य प्रदेश कोल्ड स्टोरेज खोजें\",\"spinners\":0}"
+    },
+    {
+      "viewport": "mobile",
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+        "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+        "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+      ]
+    }
+  ]
+}

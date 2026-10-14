@@ -1,0 +1,14 @@
+{
+  "method": "Playwright setInputFiles (buffer)",
+  "gpsPrime": {
+    "ok": true,
+    "lat": 23.8387983,
+    "lng": 78.7377983
+  },
+  "coordinates": "✓ 23.83880, 78.73780",
+  "listingId": "fda511b1-463f-4847-ba13-356a24944986",
+  "photo": {
+    "src": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg",
+    "w": 640
+  }
+}

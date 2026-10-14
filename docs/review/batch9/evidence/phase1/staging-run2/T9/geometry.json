@@ -1,0 +1,278 @@
+{
+  "system": {
+    "screen": [
+      1080,
+      2400
+    ],
+    "statusBarFrame": [
+      0,
+      0,
+      1080,
+      136
+    ],
+    "navigationBarFrame": [
+      0,
+      2337,
+      1080,
+      2400
+    ],
+    "webViewBounds": [
+      0,
+      136,
+      1080,
+      2337
+    ],
+    "devicePixelRatio": 2.625,
+    "sdk": "36",
+    "rotation": "mCurrentRotation=ROTATION_0",
+    "insetMode": "window padded by Capacitor (CSS insets 0)"
+  },
+  "statusBarBottomPx": 136,
+  "navigationBarTopPx": 2337,
+  "pages": {
+    "/": {
+      "top": {
+        "header": {
+          "top": 0,
+          "bottom": 56.761905670166016,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 56.761905670166016
+        },
+        "firstContent": {
+          "top": 0,
+          "bottom": 4872.96435546875,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 4872.96435546875
+        },
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 55.261905670166016
+        },
+        "tabButtons": [
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 772.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          }
+        ],
+        "safeTop": "0px",
+        "safeBottom": "0px",
+        "innerHeight": 839
+      },
+      "offlineBanner": {
+        "top": 0,
+        "bottom": 37,
+        "headerTop": 37
+      },
+      "footerLastLink": {
+        "text": "Open-Meteo.com",
+        "top": 734.9583740234375,
+        "bottom": 750.5774221420288,
+        "tabBarTop": 783.9761962890625,
+        "headerBottom": 56.761905670166016,
+        "reachable": true
+      },
+      "px": {
+        "headerTop": 136,
+        "firstContentTop": 136,
+        "tabButtonsBottom": 2339,
+        "tabBarBottom": 2339,
+        "offlineBannerTop": 136
+      }
+    },
+    "/browse": {
+      "top": {
+        "header": {
+          "top": 0,
+          "bottom": 56.761905670166016,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 56.761905670166016
+        },
+        "firstContent": {
+          "top": 0,
+          "bottom": 1275.5833740234375,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 1275.5833740234375
+        },
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 55.261905670166016
+        },
+        "tabButtons": [
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 772.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          }
+        ],
+        "safeTop": "0px",
+        "safeBottom": "0px",
+        "innerHeight": 839
+      },
+      "offlineBanner": {
+        "top": 0,
+        "bottom": 37,
+        "headerTop": 37
+      },
+      "footerLastLink": {
+        "text": "Open-Meteo.com",
+        "top": 734.9940795898438,
+        "bottom": 750.6131277084351,
+        "tabBarTop": 783.9761962890625,
+        "headerBottom": 56.761905670166016,
+        "reachable": true
+      },
+      "px": {
+        "headerTop": 136,
+        "firstContentTop": 136,
+        "tabButtonsBottom": 2339,
+        "tabBarBottom": 2339,
+        "offlineBannerTop": 136
+      }
+    },
+    "/login": {
+      "top": {
+        "header": {
+          "top": 0,
+          "bottom": 56.761905670166016,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 56.761905670166016
+        },
+        "firstContent": {
+          "top": 0,
+          "bottom": 839.2380981445312,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 839.2380981445312
+        },
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285,
+          "left": 0,
+          "right": 412.19049072265625,
+          "height": 55.261905670166016
+        },
+        "tabButtons": [
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 772.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          },
+          {
+            "top": 784.7380981445312,
+            "bottom": 839.2380981445312,
+            "covered": false
+          }
+        ],
+        "safeTop": "0px",
+        "safeBottom": "0px",
+        "innerHeight": 839
+      },
+      "offlineBanner": {
+        "top": 0,
+        "bottom": 37,
+        "headerTop": 37
+      },
+      "footerLastLink": {
+        "text": "Open-Meteo.com",
+        "top": 734.8392944335938,
+        "bottom": 750.4583425521851,
+        "tabBarTop": 783.9761962890625,
+        "headerBottom": 56.761905670166016,
+        "reachable": true
+      },
+      "px": {
+        "headerTop": 136,
+        "firstContentTop": 136,
+        "tabButtonsBottom": 2339,
+        "tabBarBottom": 2339,
+        "offlineBannerTop": 136
+      }
+    }
+  },
+  "simulatedEdgeToEdge": {
+    "insetsCss": {
+      "top": 52,
+      "bottom": 24
+    },
+    "header": {
+      "top": 89,
+      "bottom": 145.76190567016602
+    },
+    "banner": {
+      "top": 52,
+      "bottom": 89
+    },
+    "statusStrip": 52,
+    "tabButtonsBottom": 815.2380981445312,
+    "innerHeight": 839,
+    "footerLastBottom": 726.3869314193726,
+    "tabBarTop": 759.9761962890625
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "count": 52,
+  "approxBytes": 1232146,
+  "byPage": {
+    "/": [
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012247754,
+        "dataTime": 1791849600000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264323,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012246276,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264386,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264436,
+        "dataTime": null
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264447,
+        "dataTime": null
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264416,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264446,
+        "dataTime": 1791936000000
+      }
+    ],
+    "/mausam": [
+      {
+        "resource": "weather_cache_v2",
+        "cachedAt": 1792012254752,
+        "dataTime": 1792011703393
+      }
+    ],
+    "/msp": [
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012247754,
+        "dataTime": 1791849600000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264323,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012246276,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264386,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264436,
+        "dataTime": null
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264447,
+        "dataTime": null
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264416,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792012264446,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "msp_prices",
+        "cachedAt": 1792012264276,
+        "dataTime": null
+      }
+    ],
+    "/browse?cat=bhusa": [
+      {
+        "resource": "listings",
+        "cachedAt": 1792012276626,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011688579,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792012281498,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011677529,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011704480,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011878838,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011888107,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011952515,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011975238,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792012246325,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792012270555,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011688555,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011677649,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011704491,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011878815,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011888175,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011952522,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792011975327,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792012246354,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792012264284,
+        "dataTime": null
+      }
+    ],
+    "/listing/0edcaf88-835b-48e5-bfb5-c4aa30064a39": [
+      {
+        "resource": "listings",
+        "cachedAt": 1792012281498,
+        "dataTime": null
+      }
+    ]
+  },
+  "resources": [
+    "articles",
+    "cold_storage_public",
+    "crops",
+    "equipment_types",
+    "kisan_mela",
+    "kisan_sawaal",
+    "listings",
+    "mandi_prices",
+    "msp_prices",
+    "page_faqs",
+    "pincodes",
+    "places",
+    "procurement_centres",
+    "resources",
+    "site_settings",
+    "videos",
+    "village_coordinates",
+    "weather_cache_v2",
+    "get_public_feedback",
+    "recent_crop_reports",
+    "search_listings"
+  ]
+}
