@@ -11,6 +11,8 @@ import Footer from './components/layout/Footer'
 import BottomTabBar from './components/BottomTabBar'
 import { SiteJsonLd } from './components/layout/Seo'
 import RouteSeo from './components/layout/RouteSeo'
+import { isNative } from './lib/native'
+import { useRefreshKey } from './lib/offline/useOffline'
 
 // Route-level code splitting (perf budget: keep the initial bundle small).
 const Homepage = lazy(() => import('./screens/Homepage'))
@@ -64,6 +66,8 @@ const JugaadJankari = lazy(() => import('./screens/JugaadJankari'))
 const Join = lazy(() => import('./screens/Join'))
 const Search = lazy(() => import('./screens/Search'))
 const NotFound = lazy(() => import('./screens/NotFound'))
+// Batch 8A — Android app only (back button, link routing); never loaded on the website.
+const NativeShell = lazy(() => import('./components/NativeShell'))
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -96,9 +100,11 @@ function AdminOnly({ children }) {
 }
 
 function AppRoutes() {
+  // Batch 8B (app only): "try again" / connection back → remount the page so it fetches again.
+  const refreshKey = useRefreshKey()
   return (
     <Suspense fallback={<Spinner />}>
-      <Routes>
+      <Routes key={refreshKey}>
         {/* Public landing page — viewable by everyone, including logged-in users
             (the logo links here; nav renders the logged-in state). */}
         <Route path="/" element={<Homepage />} />
@@ -194,6 +200,7 @@ export default function App() {
           <BottomTabBar />
           <PwaPrompts />
           <BuyerComplianceGate />
+          {isNative() && <Suspense fallback={null}><NativeShell /></Suspense>}
         </BrowserRouter>
         </LocationProvider>
       </AuthProvider>

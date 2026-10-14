@@ -1,0 +1,31 @@
+[
+  {
+    "name": "signup finished: a session with a profile id is stored",
+    "pass": true,
+    "detail": {
+      "error": "no session",
+      "authCalls": [
+        "/auth/v1/signup → 200",
+        "/rest/v1/rpc/app_register → 200"
+      ]
+    }
+  },
+  {
+    "name": "the session is the new KSTEST user",
+    "pass": true,
+    "detail": {
+      "phone": "9013643933",
+      "name": "KSTEST Kisan A 643933"
+    }
+  },
+  {
+    "name": "logged-in tab bar (5 tabs incl. Profile)",
+    "pass": true,
+    "detail": 5
+  },
+  {
+    "name": "session survives force-stop + relaunch",
+    "pass": true,
+    "detail": "f4039a07-7c18-4e0d-be6b-b1099844e4bf"
+  }
+]

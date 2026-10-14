@@ -1,0 +1,46 @@
+[
+  {
+    "name": "airplane mode is really on",
+    "pass": true
+  },
+  {
+    "name": "offline, no cache: the \"could not load\" notice with \"try again\" is shown",
+    "pass": true,
+    "detail": {
+      "notice": "📴 जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।\n\nफिर से कोशिश करें",
+      "h1": "मध्य प्रदेश कोल्ड स्टोरेज खोजें",
+      "spinners": 0,
+      "boundary": false,
+      "districtLinks": 0,
+      "pageErrors": []
+    }
+  },
+  {
+    "name": "no ErrorBoundary, no uncaught page error, page heading still there",
+    "pass": true,
+    "detail": {
+      "notice": "📴 जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।\n\nफिर से कोशिश करें",
+      "h1": "मध्य प्रदेश कोल्ड स्टोरेज खोजें",
+      "spinners": 0,
+      "boundary": false,
+      "districtLinks": 0,
+      "pageErrors": []
+    }
+  },
+  {
+    "name": "no spinner remains",
+    "pass": true,
+    "detail": 0
+  },
+  {
+    "name": "\"try again\" while still offline ends in the same clear notice",
+    "pass": true
+  },
+  {
+    "name": "back online, \"try again\" loads the list",
+    "pass": true,
+    "detail": {
+      "districtLinks": 35
+    }
+  }
+]

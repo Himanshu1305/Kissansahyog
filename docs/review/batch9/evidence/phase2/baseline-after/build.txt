@@ -1,0 +1,3 @@
+build:full exit 0
+Prerendered 263/263 (1 via fallback). Failed: 0
+Sitemaps written to C:\Users\usdvi\projects\Kissansahyog\dist: pages 49, sawaal 161, cold-storage 35, schemes 18.

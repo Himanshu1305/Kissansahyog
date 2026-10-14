@@ -14,6 +14,7 @@ import {
   fetchYojanaBySlug, yojanaName, yojanaMinistry, yojanaDesc, yojanaBenefit,
   yojanaEligibility, yojanaHowTo, yojanaDocs, faqQ, faqA,
 } from '../lib/community/communityApi'
+import { publicHref } from '../lib/native'
 
 const lines = (s) => String(s || '').split(/\n|·|;|,(?=\s*[\u0966-\u096F0-9])/).map((x) => x.trim()).filter(Boolean)
 const stripNum = (s) => s.replace(/^\s*\d+[.)]\s*/, '')
@@ -46,7 +47,7 @@ export default function SchemeDetail() {
   const faqs = Array.isArray(row.faqs) ? row.faqs : []
   const howSteps = lines(yojanaHowTo(row, lang)).map(stripNum)
   const docs = lines(yojanaDocs(row, lang))
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const shareUrl = typeof window !== 'undefined' ? publicHref() : ''
   const waHref = `https://wa.me/?text=${encodeURIComponent(`${name}\n${summary}\n${shareUrl}`)}`
 
   // JSON-LD — FAQPage (text matches the rendered accordion exactly) + Article.

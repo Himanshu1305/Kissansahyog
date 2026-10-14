@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { submitListingReport } from '../lib/reports/reportsApi'
+import { useNativeBack } from '../lib/useNativeBack'
 
 const REASONS = ['fraud', 'wrong_info', 'unsafe_equipment', 'wrong_rate', 'illegal_item', 'duplicate', 'harassment', 'other']
 
@@ -15,6 +16,7 @@ export default function ReportButton({ targetType = 'listing', targetId, listing
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState(null)
   const [done, setDone] = useState(false)
+  useNativeBack(open && !busy, () => setOpen(false))
 
   async function submit() {
     setErr(null)
@@ -41,7 +43,7 @@ export default function ReportButton({ targetType = 'listing', targetId, listing
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-4" onClick={() => !busy && setOpen(false)}>
+        <div className="ks-overlay fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-4" onClick={() => !busy && setOpen(false)}>
           <div className="w-full max-w-md rounded-t-2xl bg-white p-5 sm:rounded-2xl" onClick={(e) => e.stopPropagation()}>
             {done ? (
               <div className="py-4 text-center">

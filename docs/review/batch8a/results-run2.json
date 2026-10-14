@@ -1,0 +1,302 @@
+{
+  "run": {
+    "startedAt": "2026-10-14T05:30:11.242Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400",
+      "webview": "133.0.6943.137"
+    },
+    "apk": {
+      "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+      "bytes": 11911033,
+      "megabytes": 11.36,
+      "sha256": "92c7aa0aabf61e6b217d98af3bc6d7705b1e7f3983f0b80b6cad60dedb929b39",
+      "builtAt": "2026-10-14T05:30:43.415Z"
+    },
+    "fatalExceptions": 0,
+    "finishedAt": "2026-10-14T05:42:49.148Z",
+    "cdpReconnects": 0
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "name": "Clean build",
+      "status": "RAN-PASSED",
+      "assertion": "npm run android:debug from a clean tree exits 0 and produces the debug APK (size + sha256 recorded)",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T1/apk.json",
+        "docs/review/batch8a/evidence/T1/build-summary.txt",
+        "docs/review/batch8a/evidence/T1/checks.json"
+      ],
+      "durationMs": 32064,
+      "notes": "11.36 MB, sha256 92c7aa0aabf61e6b217d98af3bc6d7705b1e7f3983f0b80b6cad60dedb929b39"
+    },
+    {
+      "id": "T2",
+      "name": "APK facts",
+      "status": "RAN-PASSED",
+      "assertion": "aapt2: package com.kissansahyog.app, label \"Kisan Sahyog\", minSdk 24, targetSdk 36, versionName 0.1.0, debuggable, permissions exactly the decided set",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T2/apk-facts.json",
+        "docs/review/batch8a/evidence/T2/permission-reasons.json",
+        "docs/review/batch8a/evidence/T2/checks.json"
+      ],
+      "durationMs": 151,
+      "notes": "permissions: ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_NETWORK_STATE, INTERNET, MODIFY_AUDIO_SETTINGS, RECORD_AUDIO, com.kissansahyog.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    },
+    {
+      "id": "T3",
+      "name": "Bundle safety",
+      "status": "RAN-PASSED",
+      "assertion": "APK web assets: production ref present; staging ref/host, service_role, GEMINI_API_KEY, sb_secret all absent; packaged capacitor.config has no server.url (counts only)",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T3/counts.json",
+        "docs/review/batch8a/evidence/T3/checks.json"
+      ],
+      "durationMs": 1720,
+      "notes": "117 text files scanned; prod ref ×1; bare \"sb_secret\" literal ×1 = supabase-js key-type check, not a key"
+    },
+    {
+      "id": "T4",
+      "name": "Install + cold start",
+      "status": "RAN-PASSED",
+      "assertion": "After install and am start -W: process alive at 10 s, no FATAL EXCEPTION, page is https://localhost/, text contains \"किसान\", screenshot is not blank",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T4/cold-start.jpg",
+        "docs/review/batch8a/evidence/T4/start.json",
+        "docs/review/batch8a/evidence/T4/checks.json"
+      ],
+      "durationMs": 29613,
+      "notes": "am start -W: Status: ok, WaitTime 8096 ms (the emulator renders on a software GPU); title \"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार\""
+    },
+    {
+      "id": "T5",
+      "name": "Routes render",
+      "status": "RAN-PASSED",
+      "assertion": "15 routes + 1 invalid path: main content renders, no ErrorBoundary, no uncaught page error, no console.error outside the documented allowlist",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T5/home.jpg",
+        "docs/review/batch8a/evidence/T5/browse.jpg",
+        "docs/review/batch8a/evidence/T5/bazaar.jpg",
+        "docs/review/batch8a/evidence/T5/mausam.jpg",
+        "docs/review/batch8a/evidence/T5/msp.jpg",
+        "docs/review/batch8a/evidence/T5/yojana.jpg",
+        "docs/review/batch8a/evidence/T5/sawaal.jpg",
+        "docs/review/batch8a/evidence/T5/search.jpg",
+        "docs/review/batch8a/evidence/T5/about.jpg",
+        "docs/review/batch8a/evidence/T5/privacy.jpg",
+        "docs/review/batch8a/evidence/T5/terms.jpg",
+        "docs/review/batch8a/evidence/T5/contact.jpg",
+        "docs/review/batch8a/evidence/T5/login.jpg",
+        "docs/review/batch8a/evidence/T5/cold-storage.jpg",
+        "docs/review/batch8a/evidence/T5/kisan-mela.jpg",
+        "docs/review/batch8a/evidence/T5/invalid-path.jpg",
+        "docs/review/batch8a/evidence/T5/routes.json",
+        "docs/review/batch8a/evidence/T5/console-allowlist.json",
+        "docs/review/batch8a/evidence/T5/checks.json"
+      ],
+      "durationMs": 112905,
+      "notes": "16/16 routes ok; 0 allow-listed console errors (CORS to the live site, needs deploy)"
+    },
+    {
+      "id": "T6",
+      "name": "Deep link + reload",
+      "status": "RAN-PASSED",
+      "assertion": "Direct navigation to /yojana/central and a real /sawaal/<slug>, then reload: the same page renders (SPA fallback)",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T6/after-reload.jpg",
+        "docs/review/batch8a/evidence/T6/deep-links.json",
+        "docs/review/batch8a/evidence/T6/checks.json"
+      ],
+      "durationMs": 27190,
+      "notes": ""
+    },
+    {
+      "id": "T7",
+      "name": "Live data (read-only)",
+      "status": "RAN-PASSED",
+      "assertion": "/mausam, /msp, the mandi ticker on / and the listings on /browse load real data: HTTP 200 from the data host AND non-empty values in the DOM",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T7/mausam.jpg",
+        "docs/review/batch8a/evidence/T7/msp.jpg",
+        "docs/review/batch8a/evidence/T7/home.jpg",
+        "docs/review/batch8a/evidence/T7/browse.jpg",
+        "docs/review/batch8a/evidence/T7/live-data.json",
+        "docs/review/batch8a/evidence/T7/checks.json"
+      ],
+      "durationMs": 54544,
+      "notes": "No mandi-api.onrender.com call exists in the client (prices come from Supabase); /browse has no ticker, so its listings are checked instead. /mausam needs a place: Sagar was set as the saved location (the page then upserts its weather-grid request, as it does for any visitor)."
+    },
+    {
+      "id": "T8",
+      "name": "No service worker",
+      "status": "RAN-PASSED",
+      "assertion": "navigator.serviceWorker.getRegistrations() is empty, no update/install banner in the DOM, sw.js is absent from the APK",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T8/service-worker.json",
+        "docs/review/batch8a/evidence/T8/checks.json"
+      ],
+      "durationMs": 9613,
+      "notes": ""
+    },
+    {
+      "id": "T9",
+      "name": "Edge-to-edge / safe areas",
+      "status": "RAN-PASSED",
+      "assertion": "API 36 portrait: NavBar below the status bar, tab bar buttons above the navigation bar and not covered, offline banner below the status bar, last footer link fully visible above the tab bar",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T9/home-top.jpg",
+        "docs/review/batch8a/evidence/T9/home-offline-banner-forced.jpg",
+        "docs/review/batch8a/evidence/T9/home-bottom.jpg",
+        "docs/review/batch8a/evidence/T9/browse-top.jpg",
+        "docs/review/batch8a/evidence/T9/browse-bottom.jpg",
+        "docs/review/batch8a/evidence/T9/login-top.jpg",
+        "docs/review/batch8a/evidence/T9/login-bottom.jpg",
+        "docs/review/batch8a/evidence/T9/geometry.json",
+        "docs/review/batch8a/evidence/T9/checks.json"
+      ],
+      "durationMs": 53633,
+      "notes": "window padded by Capacitor (CSS insets 0); status bar bottom 136px, navigation bar top 2337px, dpr 2.625; the edge-to-edge CSS path was also checked with simulated insets"
+    },
+    {
+      "id": "T10",
+      "name": "Offline",
+      "status": "RAN-PASSED",
+      "assertion": "Airplane mode + cold launch: app shell renders (not a browser error page), offline banner visible, no crash; /, /browse, /mausam, /msp, /about show content or an in-app failure state; back online the banner goes within 15 s and /mausam loads data",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T10/offline-home.jpg",
+        "docs/review/batch8a/evidence/T10/offline-home.jpg",
+        "docs/review/batch8a/evidence/T10/offline-browse.jpg",
+        "docs/review/batch8a/evidence/T10/offline-mausam.jpg",
+        "docs/review/batch8a/evidence/T10/offline-msp.jpg",
+        "docs/review/batch8a/evidence/T10/offline-about.jpg",
+        "docs/review/batch8a/evidence/T10/offline-pages.json",
+        "docs/review/batch8a/evidence/T10/online-again-mausam.jpg",
+        "docs/review/batch8a/evidence/T10/reconnect.json",
+        "docs/review/batch8a/evidence/T10/checks.json"
+      ],
+      "durationMs": 145878,
+      "notes": "offline via cmd connectivity airplane-mode enable. What each page shows offline (input for batch 8B) — /: 2529 chars; temperatures 0, ₹ values 4, listings 0, ticker still loading true, spinners 0 || /browse: 1017 chars; temperatures 0, ₹ values 0, listings 0, ticker still loading false, spinners 0 || /mausam: 1033 chars; temperatures 0, ₹ values 0, listings 0, ticker still loading false, spinners 1 || /msp: 2340 chars; temperatures 0, ₹ values 0, listings 0, ticker still loading false, spinners 0 || /about: 2605 chars; temperatures 0, ₹ values 0, listings 0, ticker still loading false, spinners 0"
+    },
+    {
+      "id": "T11",
+      "name": "Back button",
+      "status": "RAN-PASSED",
+      "assertion": "/ → /browse → /bazaar, back, back lands on /; back on / leaves the app (launcher resumed) — adb keyevent 4 + dumpsys activity",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T11/back-on-home.jpg",
+        "docs/review/batch8a/evidence/T11/after-exit-launcher.jpg",
+        "docs/review/batch8a/evidence/T11/back-trail.json",
+        "docs/review/batch8a/evidence/T11/checks.json"
+      ],
+      "durationMs": 20278,
+      "notes": ""
+    },
+    {
+      "id": "T12",
+      "name": "External intents",
+      "status": "RAN-PASSED",
+      "assertion": "A real external https link leaves the WebView and returning shows the same in-app page; a mailto: and a tel: link dispatch their intents",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T12/https-left-app.jpg",
+        "docs/review/batch8a/evidence/T12/https-back-in-app.jpg",
+        "docs/review/batch8a/evidence/T12/mailto-left-app.jpg",
+        "docs/review/batch8a/evidence/T12/tel-left-app.jpg",
+        "docs/review/batch8a/evidence/T12/intents.json",
+        "docs/review/batch8a/evidence/T12/checks.json"
+      ],
+      "durationMs": 59600,
+      "notes": "https: RAN-PASSED → com.android.chrome/org.chromium.chrome.browser.firstrun.FirstRunActivity | mailto: RAN-PASSED → com.google.android.gm/.welcome.WelcomeTourActivity | tel: RAN-PASSED → com.google.android.dialer/com.android.dialer.main.impl.MainActivity"
+    },
+    {
+      "id": "T13",
+      "name": "Location",
+      "status": "RAN-PASSED",
+      "assertion": "With location permission granted and the emulator position set, \"Share my location\" shows that place; with permission refused the app shows its fallback state without crashing",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T13/location-granted.jpg",
+        "docs/review/batch8a/evidence/T13/location-refused.jpg",
+        "docs/review/batch8a/evidence/T13/location.json",
+        "docs/review/batch8a/evidence/T13/checks.json"
+      ],
+      "durationMs": 62250,
+      "notes": "refusal given through no dialog (WebView answered directly)"
+    },
+    {
+      "id": "T14",
+      "name": "Keyboard + search",
+      "status": "RAN-PASSED",
+      "assertion": "On /search a tap opens the keyboard, the input stays inside the visual viewport, and a query known to have results renders results",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T14/keyboard-open.jpg",
+        "docs/review/batch8a/evidence/T14/results.jpg",
+        "docs/review/batch8a/evidence/T14/keyboard.json",
+        "docs/review/batch8a/evidence/T14/checks.json"
+      ],
+      "durationMs": 25441,
+      "notes": "query \"wheat\" → 16 results"
+    },
+    {
+      "id": "T15",
+      "name": "Persistence",
+      "status": "RAN-PASSED",
+      "assertion": "A localStorage value set over CDP survives force-stop + relaunch (then it is deleted)",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T15/persistence.json",
+        "docs/review/batch8a/evidence/T15/checks.json"
+      ],
+      "durationMs": 39519,
+      "notes": ""
+    },
+    {
+      "id": "T16",
+      "name": "Icon + splash",
+      "status": "HUMAN-REVIEW",
+      "assertion": "Launcher icons at all densities + adaptive-icon XML exist and are packaged; launcher and splash screenshots captured for a person to judge",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T16/splash-frame-1.jpg",
+        "docs/review/batch8a/evidence/T16/splash-frame-2.jpg",
+        "docs/review/batch8a/evidence/T16/splash-frame-3.jpg",
+        "docs/review/batch8a/evidence/T16/after-splash.jpg",
+        "docs/review/batch8a/evidence/T16/launcher-app-list.jpg",
+        "docs/review/batch8a/evidence/T16/icons.json",
+        "docs/review/batch8a/evidence/T16/checks.json"
+      ],
+      "durationMs": 21195,
+      "notes": "File checks passed; whether the icon and splash LOOK right needs a person (see launcher-app-list.jpg and splash-frame-*.jpg)."
+    },
+    {
+      "id": "T17",
+      "name": "Server calls + CORS",
+      "status": "RAN-PASSED",
+      "assertion": "(a) no raw relative fetch() to a server function is left in src/; (b) functions/_middleware.js answers OPTIONS/GET with the exact origin for the two app origins and adds nothing for other origins",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T17/fetch-scan.json",
+        "docs/review/batch8a/evidence/T17/cors-cases.json",
+        "docs/review/batch8a/evidence/T17/checks.json"
+      ],
+      "durationMs": 442,
+      "notes": "Live end-to-end CORS against production is NOT-RUN: functions/_middleware.js only takes effect after a deploy, which this batch does not do."
+    },
+    {
+      "id": "T18",
+      "name": "Web regression",
+      "status": "RAN-PASSED",
+      "assertion": "(a) apiUrl()/isNative() are inert without Capacitor; (b) the web build succeeds; (c) main-chunk size before vs after is reported; (d) vite preview in desktop Chromium loads, registers a service worker, no console errors",
+      "evidenceFiles": [
+        "docs/review/batch8a/evidence/T18/a-native-helpers.json",
+        "docs/review/batch8a/evidence/T18/c-bundle-size.json",
+        "docs/review/batch8a/evidence/T18/d-web-preview.jpg",
+        "docs/review/batch8a/evidence/T18/d-web-preview.json",
+        "docs/review/batch8a/evidence/T18/checks.json"
+      ],
+      "durationMs": 59024,
+      "notes": "main chunk 72.2 KB → 74.2 KB (+2035 B; gzip +465 B), measured in a temporary worktree of staging 206cd86"
+    }
+  ]
+}

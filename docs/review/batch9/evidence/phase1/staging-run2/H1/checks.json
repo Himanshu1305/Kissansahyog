@@ -1,0 +1,53 @@
+[
+  {
+    "name": "online: the ticker has prices (so the cache gets them)",
+    "pass": true,
+    "detail": {
+      "banner": null,
+      "stamps": [],
+      "prices": 10,
+      "tickerOffline": false
+    }
+  },
+  {
+    "name": "airplane mode is really on",
+    "pass": true
+  },
+  {
+    "name": "offline: the banner is shown with a time",
+    "pass": true,
+    "detail": "📴 आप ऑफ़लाइन हैं — आख़िरी बार अपडेट: 15 अक्तू॰, 02:42 am"
+  },
+  {
+    "name": "offline: the ticker shows the saved prices (the case where the stamp used to repeat the time)",
+    "pass": true,
+    "detail": {
+      "banner": "📴 आप ऑफ़लाइन हैं — आख़िरी बार अपडेट: 15 अक्तू॰, 02:42 am",
+      "stamps": [],
+      "prices": 10,
+      "tickerOffline": false
+    }
+  },
+  {
+    "name": "offline Home: exactly ONE timestamp on screen (banner only, no \"पिछली बार अपडेट\" stamp)",
+    "pass": true,
+    "detail": {
+      "times": [
+        "📴 आप ऑफ़लाइन हैं — आख़िरी बार अपडेट: 15 अक्तू॰, 02:42 am"
+      ],
+      "stamps": []
+    }
+  },
+  {
+    "name": "banner gone but data still saved: the stamp under the ticker is shown (one timestamp)",
+    "pass": true,
+    "detail": {
+      "banner": null,
+      "stamps": [
+        "📴 पिछली बार अपडेट: 15 अक्तू॰, 02:43 am"
+      ],
+      "prices": 10,
+      "tickerOffline": false
+    }
+  }
+]

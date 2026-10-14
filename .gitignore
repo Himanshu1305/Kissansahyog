@@ -31,3 +31,14 @@ npm-debug.log*
 
 # Cloudflare wrangler local dev state/cache
 .wrangler/
+
+# Cloudflare local secrets for `wrangler pages dev` (Batch 8B tests) — never committed
+.dev.vars
+
+# Batch 9 Phase 3 — Android release signing: never committed
+android/keystore.properties
+*.jks
+*.keystore
+android/test-accounts*
+*.aab
+*.apk

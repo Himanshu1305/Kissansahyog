@@ -30,6 +30,7 @@ export default function BottomTabBar() {
   return (
     <nav
       aria-label={t('tab_bar_label')}
+      data-ks-tabbar
       className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--ks-border)] bg-white md:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >

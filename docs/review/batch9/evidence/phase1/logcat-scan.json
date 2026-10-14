@@ -1,0 +1,230 @@
+{
+  "scannedAt": "2026-10-14T21:29:37.504Z",
+  "note": "Counts per run logcat. \"mentioningApp\" = lines naming com.kissansahyog.app(.staging); other hits are system processes. Raw logcats are kept on disk, not committed.",
+  "files": {
+    "logcat-results-prod-dev1.txt": {
+      "lines": 2599,
+      "FATAL EXCEPTION": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "ANR in": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "has died": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "StrictMode": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "WebView crash": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      }
+    },
+    "logcat-results-prod-dev2.txt": {
+      "lines": 5733,
+      "FATAL EXCEPTION": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "ANR in": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "has died": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "StrictMode": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "WebView crash": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      }
+    },
+    "logcat-results-prod-dev3.txt": {
+      "lines": 12917,
+      "FATAL EXCEPTION": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "ANR in": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "has died": {
+        "total": 2,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "StrictMode": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "WebView crash": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      }
+    },
+    "logcat-results-prod-run1.txt": {
+      "lines": 27480,
+      "FATAL EXCEPTION": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "ANR in": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "has died": {
+        "total": 3,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "StrictMode": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "WebView crash": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      }
+    },
+    "logcat-results-prod-run2.txt": {
+      "lines": 26742,
+      "FATAL EXCEPTION": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "ANR in": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "has died": {
+        "total": 3,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "StrictMode": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "WebView crash": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      }
+    },
+    "logcat-results-staging-dev4.txt": {
+      "lines": 7111,
+      "FATAL EXCEPTION": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "ANR in": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "has died": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "StrictMode": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "WebView crash": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      }
+    },
+    "logcat-results-staging-run1.txt": {
+      "lines": 47921,
+      "FATAL EXCEPTION": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "ANR in": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "has died": {
+        "total": 4,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "StrictMode": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "WebView crash": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      }
+    },
+    "logcat-results-staging-run2.txt": {
+      "lines": 48381,
+      "FATAL EXCEPTION": {
+        "total": 1,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "ANR in": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "has died": {
+        "total": 4,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "StrictMode": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      },
+      "WebView crash": {
+        "total": 0,
+        "mentioningApp": 0,
+        "appExamples": []
+      }
+    }
+  }
+}

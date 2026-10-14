@@ -12,11 +12,17 @@ import { ENABLED_CATEGORIES } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { fetchNearby, fetchTopViewed } from '../lib/listings/listingsApi'
 import { useUserLocation } from '../lib/location/LocationProvider'
+import OfflineStamp from '../components/OfflineStamp'
+import OfflineNotice from '../components/OfflineNotice'
+import { useOfflineInfo } from '../lib/offline/useOffline'
 
 // Browse nearby active listings. Public — no login needed to look (Batch1 item 3A);
 // the phone number stays behind login (reveal flow in ListingCard/ListingDetail).
 // All 10 category chips wrap (no hidden horizontal scroll). Location comes from the
 // shared LocationControl for logged-out visitors; logged-in users seed from profile.
+// Batch 8B — resource behind the listing grid (app offline stamp / notice).
+const LISTING_RES = ['listings']
+
 export default function Browse() {
   const { t, lang } = useLang()
   const { user } = useAuth()
@@ -38,6 +44,7 @@ export default function Browse() {
   const [listings, setListings] = useState([])
   const [fallback, setFallback] = useState([])
   const [loading, setLoading] = useState(true)
+  const listOffline = useOfflineInfo(LISTING_RES)
   const [error, setError] = useState(null)
   const [topViewed, setTopViewed] = useState([])
   // Batch 7L-1 — the search centre is the shared location object (device / saved / typed /
@@ -183,10 +190,13 @@ export default function Browse() {
       {error && <Notice tone="error">{error}</Notice>}
 
       {/* No location → the prompt card above stands in for results (no default place). */}
+      {location && <OfflineStamp resources={LISTING_RES} className="mb-2" />}
       {!location ? null : loading ? (
         <Spinner />
       ) : shownListings.length === 0 && shownFallback.length === 0 ? (
-        <p className="py-12 text-center text-stone-500">{t('no_listings')}</p>
+        listOffline.failed ? <OfflineNotice ageMs={listOffline.tooOld ? listOffline.ageMs : null} /> : (
+          <p className="py-12 text-center text-stone-500">{t('no_listings')}</p>
+        )
       ) : (
         <>
           <div className={gridClass}>

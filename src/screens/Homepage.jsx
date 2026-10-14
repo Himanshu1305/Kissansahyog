@@ -34,6 +34,7 @@ import { melaDateLabel, melaPlace } from '../lib/mela/melaFormat'
 import { melaStatus } from '../lib/mela/melaStatus'
 import SearchBar from '../components/SearchBar'
 import { founder } from '../content/founder'
+import OfflineStamp from '../components/OfflineStamp'
 
 const IMG = (f) => `/images/home/${f}`
 
@@ -172,6 +173,7 @@ export default function Homepage() {
       {/* Phase 7 — slim install banner below nav, above hero (self-hides in standalone). */}
       <PwaInstallBanner />
       <MandiTicker />
+      <OfflineStamp resources={['mandi_prices']} hideUnderBanner className="px-[var(--ks-gutter)] pt-1" />
 
       {/* Greeting for logged-in users (§0.3): "सीताराम 🙏, {name}". */}
       {isLoggedIn && (

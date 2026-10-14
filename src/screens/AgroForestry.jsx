@@ -10,6 +10,7 @@ import { PageShell } from '../components/layout'
 import { fetchYojanaBySlug, yojanaName, yojanaBenefit, yojanaDesc } from '../lib/community/communityApi'
 import { fetchArticleBySlug } from '../lib/articles/articlesApi'
 import { AGRO_FAQS as FAQS, AGRO_KEYPOINTS } from '../content/agroforestry'
+import { publicHref } from '../lib/native'
 
 const SCHEME_SLUGS = ['fal-podharopan-yojana', 'aushadhi-sugandhit-fasal-vistar']
 const ARTICLE_SLUG = 'intercropping-madhya-pradesh'
@@ -30,7 +31,7 @@ export default function AgroForestry() {
 
   const articleSummary = article ? (lang === 'hi' ? article.summary_hi : article.summary_en) : ''
 
-  const shareText = `${t('agro_share_text')} ${typeof window !== 'undefined' ? window.location.href : ''}`
+  const shareText = `${t('agro_share_text')} ${typeof window !== 'undefined' ? publicHref() : ''}`
 
   return (
     <PageShell width="wide">

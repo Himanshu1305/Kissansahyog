@@ -1,0 +1,846 @@
+[
+  {
+    "name": "post step 2 (details): a text field to test exists",
+    "pass": true,
+    "detail": {
+      "field": "input#f_asking_price[type=text]",
+      "fields": 2,
+      "submit": "button[data-testid=post-next] \"आगे बढ़ें\""
+    }
+  },
+  {
+    "name": "post step 2 (details): the on-screen keyboard came up (dumpsys: input shown + visible IME frame)",
+    "pass": true,
+    "detail": {
+      "shown": true,
+      "top": 1517,
+      "frame": [
+        0,
+        1517,
+        1080,
+        2400
+      ],
+      "imeShowing": true
+    }
+  },
+  {
+    "name": "post step 2 (details): a keyboard is DRAWN on the screenshot (band below the IME top differs from before the tap)",
+    "pass": true,
+    "detail": {
+      "meanAbsDiff": 22.8,
+      "bandStdev": 46.5,
+      "drawn": true,
+      "band": [
+        1547,
+        2165
+      ]
+    }
+  },
+  {
+    "name": "post step 2 (details): the tapped field has focus",
+    "pass": true,
+    "detail": true
+  },
+  {
+    "name": "post step 2 (details): (a) the focused field is fully visible — below the header (57 CSS px), above the tab bar/keyboard (472 CSS px), not covered",
+    "pass": true,
+    "detail": {
+      "top": 235.90476989746094,
+      "bottom": 291.71429443359375,
+      "height": 55.80952453613281,
+      "focused": true,
+      "topLimit": 56.761905670166016,
+      "bottomLimit": 471.9761962890625,
+      "tabBar": {
+        "top": 471.9761962890625,
+        "bottom": 527.2381019592285
+      },
+      "innerHeight": 527,
+      "vvHeight": 527.2380981445312,
+      "scrollY": 328.3809509277344,
+      "covered": []
+    }
+  },
+  {
+    "name": "post step 2 (details): (a) the field ends (902px) above the keyboard top (1517px) on the real screen",
+    "pass": true,
+    "detail": {
+      "fieldScreenPx": {
+        "top": 755,
+        "bottom": 902
+      },
+      "imeTop": 1517
+    }
+  },
+  {
+    "name": "post step 2 (details): (b) the submit/next button scrolls fully into view with the keyboard up",
+    "pass": true,
+    "detail": {
+      "submit": {
+        "top": 237.84524536132812,
+        "bottom": 289.8452453613281,
+        "height": 52,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 826.6666870117188,
+        "covered": []
+      },
+      "keyboardStillUp": true
+    }
+  },
+  {
+    "name": "post step 2 (details): (c) after closing the keyboard the page height is restored (839 CSS px) and the field is not covered",
+    "pass": true,
+    "detail": {
+      "keyboardHidden": true,
+      "innerHeightRestored": true,
+      "field": {
+        "top": 391.71429443359375,
+        "bottom": 447.52381896972656,
+        "height": 55.80952453613281,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 172.57142639160156,
+        "covered": []
+      }
+    }
+  },
+  {
+    "name": "post step 3 (location + confirm): a text field to test exists",
+    "pass": true,
+    "detail": {
+      "field": "input#f_map_url[type=url]",
+      "fields": 2,
+      "submit": "button[data-testid=post-submit] \"जमा करें\""
+    }
+  },
+  {
+    "name": "post step 3 (location + confirm): the on-screen keyboard came up (dumpsys: input shown + visible IME frame)",
+    "pass": true,
+    "detail": {
+      "shown": true,
+      "top": 1517,
+      "frame": [
+        0,
+        1517,
+        1080,
+        2400
+      ],
+      "imeShowing": true
+    }
+  },
+  {
+    "name": "post step 3 (location + confirm): a keyboard is DRAWN on the screenshot (band below the IME top differs from before the tap)",
+    "pass": true,
+    "detail": {
+      "meanAbsDiff": 23.4,
+      "bandStdev": 47.2,
+      "drawn": true,
+      "band": [
+        1547,
+        2165
+      ]
+    }
+  },
+  {
+    "name": "post step 3 (location + confirm): the tapped field has focus",
+    "pass": true,
+    "detail": true
+  },
+  {
+    "name": "post step 3 (location + confirm): (a) the focused field is fully visible — below the header (57 CSS px), above the tab bar/keyboard (472 CSS px), not covered",
+    "pass": true,
+    "detail": {
+      "top": 400.4761962890625,
+      "bottom": 456.2857208251953,
+      "height": 55.80952453613281,
+      "focused": true,
+      "topLimit": 56.761905670166016,
+      "bottomLimit": 471.9761962890625,
+      "tabBar": {
+        "top": 471.9761962890625,
+        "bottom": 527.2381019592285
+      },
+      "innerHeight": 527,
+      "vvHeight": 527.2380981445312,
+      "scrollY": 0,
+      "covered": []
+    }
+  },
+  {
+    "name": "post step 3 (location + confirm): (a) the field ends (1334px) above the keyboard top (1517px) on the real screen",
+    "pass": true,
+    "detail": {
+      "fieldScreenPx": {
+        "top": 1187,
+        "bottom": 1334
+      },
+      "imeTop": 1517
+    }
+  },
+  {
+    "name": "post step 3 (location + confirm): (b) the submit/next button scrolls fully into view with the keyboard up",
+    "pass": true,
+    "detail": {
+      "submit": {
+        "top": 237.7857208251953,
+        "bottom": 289.7857208251953,
+        "height": 52,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 1121.142822265625,
+        "covered": []
+      },
+      "keyboardStillUp": true
+    }
+  },
+  {
+    "name": "post step 3 (location + confirm): (c) after closing the keyboard the page height is restored (839 CSS px) and the field is not covered",
+    "pass": true,
+    "detail": {
+      "keyboardHidden": true,
+      "innerHeightRestored": true,
+      "field": {
+        "top": 391.71429443359375,
+        "bottom": 447.52381896972656,
+        "height": 55.80952453613281,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 8.7619047164917,
+        "covered": []
+      }
+    }
+  },
+  {
+    "name": "profile edit: a text field to test exists",
+    "pass": true,
+    "detail": {
+      "field": "input#pw_confirm[type=password]",
+      "fields": 8,
+      "submit": "button \"पासवर्ड बदलें\""
+    }
+  },
+  {
+    "name": "profile edit: the on-screen keyboard came up (dumpsys: input shown + visible IME frame)",
+    "pass": true,
+    "detail": {
+      "shown": true,
+      "top": 1517,
+      "frame": [
+        0,
+        1517,
+        1080,
+        2400
+      ],
+      "imeShowing": true
+    }
+  },
+  {
+    "name": "profile edit: a keyboard is DRAWN on the screenshot (band below the IME top differs from before the tap)",
+    "pass": true,
+    "detail": {
+      "meanAbsDiff": 18,
+      "bandStdev": 62.1,
+      "drawn": true,
+      "band": [
+        1547,
+        2165
+      ]
+    }
+  },
+  {
+    "name": "profile edit: the tapped field has focus",
+    "pass": true,
+    "detail": true
+  },
+  {
+    "name": "profile edit: (a) the focused field is fully visible — below the header (57 CSS px), above the tab bar/keyboard (472 CSS px), not covered",
+    "pass": true,
+    "detail": {
+      "top": 235.8095245361328,
+      "bottom": 291.6190490722656,
+      "height": 55.80952453613281,
+      "focused": true,
+      "topLimit": 56.761905670166016,
+      "bottomLimit": 471.9761962890625,
+      "tabBar": {
+        "top": 471.9761962890625,
+        "bottom": 527.2381019592285
+      },
+      "innerHeight": 527,
+      "vvHeight": 527.2380981445312,
+      "scrollY": 1636.952392578125,
+      "covered": []
+    }
+  },
+  {
+    "name": "profile edit: (a) the field ends (902px) above the keyboard top (1517px) on the real screen",
+    "pass": true,
+    "detail": {
+      "fieldScreenPx": {
+        "top": 755,
+        "bottom": 902
+      },
+      "imeTop": 1517
+    }
+  },
+  {
+    "name": "profile edit: (b) the submit/next button scrolls fully into view with the keyboard up",
+    "pass": true,
+    "detail": {
+      "submit": {
+        "top": 236,
+        "bottom": 291.8095245361328,
+        "height": 55.80952453613281,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 1700.5714111328125,
+        "covered": []
+      },
+      "keyboardStillUp": true
+    }
+  },
+  {
+    "name": "profile edit: (c) after closing the keyboard the page height is restored (839 CSS px) and the field is not covered",
+    "pass": true,
+    "detail": {
+      "keyboardHidden": true,
+      "innerHeightRestored": true,
+      "field": {
+        "top": 392,
+        "bottom": 447.8095245361328,
+        "height": 55.80952453613281,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 1480.761962890625,
+        "covered": []
+      }
+    }
+  },
+  {
+    "name": "login: a text field to test exists",
+    "pass": true,
+    "detail": {
+      "field": "input#phone[type=tel]",
+      "fields": 3,
+      "submit": "button[data-testid=login-phone-submit] \"मोबाइल नंबर से लॉग इन करें\""
+    }
+  },
+  {
+    "name": "login: the on-screen keyboard came up (dumpsys: input shown + visible IME frame)",
+    "pass": true,
+    "detail": {
+      "shown": true,
+      "top": 1633,
+      "frame": [
+        0,
+        1633,
+        1080,
+        2400
+      ],
+      "imeShowing": true
+    }
+  },
+  {
+    "name": "login: a keyboard is DRAWN on the screenshot (band below the IME top differs from before the tap)",
+    "pass": true,
+    "detail": {
+      "meanAbsDiff": 38.6,
+      "bandStdev": 78.1,
+      "drawn": true,
+      "band": [
+        1663,
+        2200
+      ]
+    }
+  },
+  {
+    "name": "login: the tapped field has focus",
+    "pass": true,
+    "detail": true
+  },
+  {
+    "name": "login: (a) the focused field is fully visible — below the header (57 CSS px), above the tab bar/keyboard (516 CSS px), not covered",
+    "pass": true,
+    "detail": {
+      "top": 257.8095397949219,
+      "bottom": 313.6190643310547,
+      "height": 55.80952453613281,
+      "focused": true,
+      "topLimit": 56.761905670166016,
+      "bottomLimit": 515.7857055664062,
+      "tabBar": {
+        "top": 515.7857055664062,
+        "bottom": 571.0476112365723
+      },
+      "innerHeight": 571,
+      "vvHeight": 571.047607421875,
+      "scrollY": 338.28570556640625,
+      "covered": []
+    }
+  },
+  {
+    "name": "login: (a) the field ends (959px) above the keyboard top (1633px) on the real screen",
+    "pass": true,
+    "detail": {
+      "fieldScreenPx": {
+        "top": 813,
+        "bottom": 959
+      },
+      "imeTop": 1633
+    }
+  },
+  {
+    "name": "login: (b) the submit/next button scrolls fully into view with the keyboard up",
+    "pass": true,
+    "detail": {
+      "submit": {
+        "top": 259.5238037109375,
+        "bottom": 311.5238037109375,
+        "height": 52,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 515.7857055664062,
+        "tabBar": {
+          "top": 515.7857055664062,
+          "bottom": 571.0476112365723
+        },
+        "innerHeight": 571,
+        "vvHeight": 571.047607421875,
+        "scrollY": 400.3809509277344,
+        "covered": []
+      },
+      "keyboardStillUp": true
+    }
+  },
+  {
+    "name": "login: (c) after closing the keyboard the page height is restored (839 CSS px) and the field is not covered",
+    "pass": true,
+    "detail": {
+      "keyboardHidden": true,
+      "innerHeightRestored": true,
+      "field": {
+        "top": 391.9047546386719,
+        "bottom": 447.7142791748047,
+        "height": 55.80952453613281,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 204.1904754638672,
+        "covered": []
+      }
+    }
+  },
+  {
+    "name": "signup: a text field to test exists",
+    "pass": true,
+    "detail": {
+      "field": "input#k_crops[type=text]",
+      "fields": 7,
+      "submit": "button \"आगे बढ़ें\""
+    }
+  },
+  {
+    "name": "signup: the on-screen keyboard came up (dumpsys: input shown + visible IME frame)",
+    "pass": true,
+    "detail": {
+      "shown": true,
+      "top": 1517,
+      "frame": [
+        0,
+        1517,
+        1080,
+        2400
+      ],
+      "imeShowing": true
+    }
+  },
+  {
+    "name": "signup: a keyboard is DRAWN on the screenshot (band below the IME top differs from before the tap)",
+    "pass": true,
+    "detail": {
+      "meanAbsDiff": 21,
+      "bandStdev": 41.9,
+      "drawn": true,
+      "band": [
+        1547,
+        2165
+      ]
+    }
+  },
+  {
+    "name": "signup: the tapped field has focus",
+    "pass": true,
+    "detail": true
+  },
+  {
+    "name": "signup: (a) the focused field is fully visible — below the header (57 CSS px), above the tab bar/keyboard (472 CSS px), not covered",
+    "pass": true,
+    "detail": {
+      "top": 235.88095092773438,
+      "bottom": 291.6904754638672,
+      "height": 55.80952453613281,
+      "focused": true,
+      "topLimit": 56.761905670166016,
+      "bottomLimit": 471.9761962890625,
+      "tabBar": {
+        "top": 471.9761962890625,
+        "bottom": 527.2381019592285
+      },
+      "innerHeight": 527,
+      "vvHeight": 527.2380981445312,
+      "scrollY": 1119.6190185546875,
+      "covered": []
+    }
+  },
+  {
+    "name": "signup: (a) the field ends (902px) above the keyboard top (1517px) on the real screen",
+    "pass": true,
+    "detail": {
+      "fieldScreenPx": {
+        "top": 755,
+        "bottom": 902
+      },
+      "imeTop": 1517
+    }
+  },
+  {
+    "name": "signup: (b) the submit/next button scrolls fully into view with the keyboard up",
+    "pass": true,
+    "detail": {
+      "submit": {
+        "top": 237.9761962890625,
+        "bottom": 289.9761962890625,
+        "height": 52,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 1466.6666259765625,
+        "covered": []
+      },
+      "keyboardStillUp": true
+    }
+  },
+  {
+    "name": "signup: (c) after closing the keyboard the page height is restored (839 CSS px) and the field is not covered",
+    "pass": true,
+    "detail": {
+      "keyboardHidden": true,
+      "innerHeightRestored": true,
+      "field": {
+        "top": 392.0714416503906,
+        "bottom": 447.88096618652344,
+        "height": 55.80952453613281,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 963.4285888671875,
+        "covered": []
+      }
+    }
+  },
+  {
+    "name": "search: a text field to test exists",
+    "pass": true,
+    "detail": {
+      "field": "input[type=search]",
+      "fields": 1,
+      "submit": "button \"🔍\""
+    }
+  },
+  {
+    "name": "search: the on-screen keyboard came up (dumpsys: input shown + visible IME frame)",
+    "pass": true,
+    "detail": {
+      "shown": true,
+      "top": 1517,
+      "frame": [
+        0,
+        1517,
+        1080,
+        2400
+      ],
+      "imeShowing": true
+    }
+  },
+  {
+    "name": "search: a keyboard is DRAWN on the screenshot (band below the IME top differs from before the tap)",
+    "pass": true,
+    "detail": {
+      "meanAbsDiff": 16.8,
+      "bandStdev": 40,
+      "drawn": true,
+      "band": [
+        1547,
+        2165
+      ]
+    }
+  },
+  {
+    "name": "search: the tapped field has focus",
+    "pass": true,
+    "detail": true
+  },
+  {
+    "name": "search: (a) the focused field is fully visible — below the header (57 CSS px), above the tab bar/keyboard (472 CSS px), not covered",
+    "pass": true,
+    "detail": {
+      "top": 92.76190948486328,
+      "bottom": 136.76190948486328,
+      "height": 44,
+      "focused": true,
+      "topLimit": 56.761905670166016,
+      "bottomLimit": 471.9761962890625,
+      "tabBar": {
+        "top": 471.9761962890625,
+        "bottom": 527.2381019592285
+      },
+      "innerHeight": 527,
+      "vvHeight": 527.2380981445312,
+      "scrollY": 0,
+      "covered": []
+    }
+  },
+  {
+    "name": "search: (a) the field ends (495px) above the keyboard top (1517px) on the real screen",
+    "pass": true,
+    "detail": {
+      "fieldScreenPx": {
+        "top": 380,
+        "bottom": 495
+      },
+      "imeTop": 1517
+    }
+  },
+  {
+    "name": "search: (b) the submit/next button scrolls fully into view with the keyboard up",
+    "pass": true,
+    "detail": {
+      "submit": {
+        "top": 92.76190948486328,
+        "bottom": 136.76190948486328,
+        "height": 44,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 0,
+        "covered": []
+      },
+      "keyboardStillUp": true
+    }
+  },
+  {
+    "name": "search: (c) after closing the keyboard the page height is restored (839 CSS px) and the field is not covered",
+    "pass": true,
+    "detail": {
+      "keyboardHidden": true,
+      "innerHeightRestored": true,
+      "field": {
+        "top": 92.76190948486328,
+        "bottom": 136.76190948486328,
+        "height": 44,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 0,
+        "covered": []
+      }
+    }
+  },
+  {
+    "name": "feedback (/grievance): a text field to test exists",
+    "pass": true,
+    "detail": {
+      "field": "textarea#fb-message[type=textarea]",
+      "fields": 2,
+      "submit": "button \"संदेश भेजें\""
+    }
+  },
+  {
+    "name": "feedback (/grievance): the on-screen keyboard came up (dumpsys: input shown + visible IME frame)",
+    "pass": true,
+    "detail": {
+      "shown": true,
+      "top": 1517,
+      "frame": [
+        0,
+        1517,
+        1080,
+        2400
+      ],
+      "imeShowing": true
+    }
+  },
+  {
+    "name": "feedback (/grievance): a keyboard is DRAWN on the screenshot (band below the IME top differs from before the tap)",
+    "pass": true,
+    "detail": {
+      "meanAbsDiff": 19.9,
+      "bandStdev": 42,
+      "drawn": true,
+      "band": [
+        1547,
+        2165
+      ]
+    }
+  },
+  {
+    "name": "feedback (/grievance): the tapped field has focus",
+    "pass": true,
+    "detail": true
+  },
+  {
+    "name": "feedback (/grievance): (a) the focused field is fully visible — below the header (57 CSS px), above the tab bar/keyboard (472 CSS px), not covered",
+    "pass": true,
+    "detail": {
+      "top": 173.38095092773438,
+      "bottom": 354.1904754638672,
+      "height": 180.8095245361328,
+      "focused": true,
+      "topLimit": 56.761905670166016,
+      "bottomLimit": 471.9761962890625,
+      "tabBar": {
+        "top": 471.9761962890625,
+        "bottom": 527.2381019592285
+      },
+      "innerHeight": 527,
+      "vvHeight": 527.2380981445312,
+      "scrollY": 356.952392578125,
+      "covered": []
+    }
+  },
+  {
+    "name": "feedback (/grievance): (a) the field ends (1066px) above the keyboard top (1517px) on the real screen",
+    "pass": true,
+    "detail": {
+      "fieldScreenPx": {
+        "top": 591,
+        "bottom": 1066
+      },
+      "imeTop": 1517
+    }
+  },
+  {
+    "name": "feedback (/grievance): (b) the submit/next button scrolls fully into view with the keyboard up",
+    "pass": true,
+    "detail": {
+      "submit": {
+        "top": 239.952392578125,
+        "bottom": 287.952392578125,
+        "height": 48,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 624.3809814453125,
+        "covered": []
+      },
+      "keyboardStillUp": true
+    }
+  },
+  {
+    "name": "feedback (/grievance): (c) after closing the keyboard the page height is restored (839 CSS px) and the field is not covered",
+    "pass": true,
+    "detail": {
+      "keyboardHidden": true,
+      "innerHeightRestored": true,
+      "field": {
+        "top": 329.5714416503906,
+        "bottom": 510.38096618652344,
+        "height": 180.8095245361328,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 200.76190185546875,
+        "covered": []
+      }
+    }
+  },
+  {
+    "name": "the logged-in session is back afterwards",
+    "pass": true
+  }
+]

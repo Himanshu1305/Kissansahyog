@@ -6,6 +6,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { fetchColdStorageAll, fetchColdStorageDistricts } from '../lib/coldStorage/coldStorageApi'
 import { coldStoragePage } from '../content/pages/cold-storage.js'
 import ColdStorageFinder from '../components/coldStorage/ColdStorageFinder'
+import OfflineNotice from '../components/OfflineNotice'
 
 // /cold-storage finder (Batch 2 item B): listings come FIRST — location search +
 // distance-sorted directory + a "list your unit" CTA — then the short info
@@ -15,6 +16,9 @@ export default function ColdStorage() {
   const [loading, setLoading] = useState(true)
   const [entries, setEntries] = useState([])
   const [districts, setDistricts] = useState([])
+  // Batch 9 (1C) — the list could not load (no internet, server error): say so, with "try again",
+  // instead of an empty list and an unhandled error. The success path is unchanged.
+  const [failed, setFailed] = useState(false)
 
   useEffect(() => {
     let alive = true
@@ -24,6 +28,8 @@ export default function ColdStorage() {
         if (!alive) return
         setEntries(all)
         setDistricts(dists)
+      } catch {
+        if (alive) setFailed(true)
       } finally {
         if (alive) setLoading(false)
       }
@@ -54,7 +60,7 @@ export default function ColdStorage() {
       {coldStoragePage.updated && <LastUpdated date={coldStoragePage.updated} className="mt-2" />}
 
       <div className="mt-5">
-        <ColdStorageFinder entries={entries} districts={districts} />
+        {failed ? <OfflineNotice /> : <ColdStorageFinder entries={entries} districts={districts} />}
       </div>
 
       {/* Short info sections (below the listings). */}

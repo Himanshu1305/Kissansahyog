@@ -1,0 +1,6 @@
+.gitignore:39:android/keystore.properties	android/keystore.properties
+android/.gitignore:5:ks-apks/	android/ks-apks/ks-production-release.aab
+android/.gitignore:5:ks-apks/	android/ks-apks/ks-production-release.apk
+.gitignore:40:*.jks	x.jks
+.gitignore:41:*.keystore	x.keystore
+.gitignore:42:android/test-accounts*	android/test-accounts.md

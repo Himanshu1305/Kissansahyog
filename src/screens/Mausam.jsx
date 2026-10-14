@@ -13,11 +13,16 @@ import { actionWindows, imdClass, nextRain, STATUS_COLOR } from '../lib/weather/
 import { useUserLocation } from '../lib/location/LocationProvider'
 import { fetchPageFaqs } from '../lib/pages/pagesApi'
 import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TwoBar, JsonLd, InfoTip } from '../components/pages/shared'
+import OfflineStamp from '../components/OfflineStamp'
+import OfflineNotice from '../components/OfflineNotice'
+import { useOfflineInfo } from '../lib/offline/useOffline'
 
 const IMD_URL = 'https://mausam.imd.gov.in'
 const STATUS_LABEL = { ok: 'aw_ok', caution: 'aw_caution', stop: 'aw_stop' }
 const dayHi = (dateStr, t) => t(`wday_${new Date(dateStr).getDay()}`)
 const hourLabel = (iso) => { const d = new Date(iso); return `${d.getHours()}:00` }
+// Batch 8B — the resources behind the forecast (for the app's offline stamp / notice).
+const WX_RES = ['weather_cache_v2', 'api.open-meteo.com']
 
 export default function Mausam() {
   const { t } = useLang()
@@ -25,6 +30,7 @@ export default function Mausam() {
   // Batch 7L-1 — weather is for the shared location only; with none set the prompt card shows instead.
   const { location } = useUserLocation()
   const place = location?.label || ''
+  const wxOffline = useOfflineInfo(WX_RES)
   const [wx, setWx] = useState(undefined)
   const [faqs, setFaqs] = useState([])
 
@@ -76,8 +82,13 @@ export default function Mausam() {
         <LocationControl />
 
         {!location ? null : wx === undefined ? <Spinner /> : !wx ? (
-          <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('weather_unavailable')}</p>
+          // App only: offline with no usable saved forecast → say so, with "try again"; a saved
+          // forecast older than the policy allows is not shown, only its age.
+          wxOffline.tooOld ? <OfflineNotice ageMs={wxOffline.ageMs} /> : wxOffline.failed ? <OfflineNotice /> : (
+            <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('weather_unavailable')}</p>
+          )
         ) : (<>
+          <OfflineStamp resources={WX_RES} />
           {/* 3. TodayCard */}
           <section style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '16px' }}>
             <div className="flex items-center gap-4">

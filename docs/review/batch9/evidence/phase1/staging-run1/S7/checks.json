@@ -1,0 +1,22 @@
+[
+  {
+    "name": "second KSTEST user B signed up",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "B sees A's number after the reveal",
+    "pass": true,
+    "detail": "9011078389"
+  },
+  {
+    "name": "logged out: the reveal sends you to /login with the listing as return path",
+    "pass": true,
+    "detail": "/login?next=/listing/fda511b1-463f-4847-ba13-356a24944986"
+  },
+  {
+    "name": "after login you are back on the listing",
+    "pass": true,
+    "detail": "/listing/fda511b1-463f-4847-ba13-356a24944986"
+  }
+]

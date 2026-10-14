@@ -1,7 +1,9 @@
 // Small hand-built Tailwind component kit — no heavy UI library (perf budget).
 // Designed for low digital-literacy users: large tap targets, clear labels,
 // generous spacing, obvious primary actions.
+import { lazy, Suspense } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
+import { useSlowLoad } from '../lib/offline/useOffline'
 import PageShell from './layout/PageShell.jsx'
 
 // Page shell: the global NavBar (via PageShell) + a slim title row with an
@@ -98,8 +100,13 @@ export function Notice({ tone = 'error', children }) {
   )
 }
 
+// Batch 8B — in the Android app a spinner that has run for 10 s becomes the offline notice with a
+// "try again" button (lazy-loaded, so the website's bundle is unchanged; it never fires on the web).
+const OfflineNotice = lazy(() => import('./OfflineNotice.jsx'))
 export function Spinner({ label }) {
   const { t } = useLang()
+  const slow = useSlowLoad(true)
+  if (slow) return <Suspense fallback={null}><OfflineNotice className="my-4" /></Suspense>
   return (
     <div className="flex items-center justify-center gap-2 py-8 text-stone-500">
       <span className="h-5 w-5 animate-spin rounded-full border-2 border-stone-300 border-t-green-700" />

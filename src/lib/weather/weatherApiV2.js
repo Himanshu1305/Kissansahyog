@@ -3,6 +3,7 @@
 // old homepage Today-card shape (current_temp/current_weathercode/forecast) AND
 // exposes the raw hourly/daily/season_rain for the /mausam page.
 import { supabase } from '../supabaseClient'
+import { isNative } from '../native'
 import { haversineKm } from '../distance'
 import { wdayKey } from './weatherApi'
 
@@ -49,7 +50,10 @@ export async function fetchLiveWeatherCell(exactLat, exactLon) {
     '&hourly=temperature_2m,precipitation,precipitation_probability,wind_speed_10m,relative_humidity_2m,soil_moisture_0_to_7cm' +
     '&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,weather_code,wind_speed_10m_max,et0_fao_evapotranspiration' +
     '&timezone=Asia%2FKolkata&forecast_days=16'
-  const res = await fetch(fUrl, { signal: AbortSignal.timeout(15000) })
+  // Batch 8B: in the app this public forecast is kept for offline use (offline/cachedFetch.js).
+  const res = isNative()
+    ? await import('../offline/cachedFetch.js').then((m) => m.cachedFetch(fUrl, { signal: AbortSignal.timeout(15000) }))
+    : await fetch(fUrl, { signal: AbortSignal.timeout(15000) })
   if (!res.ok) throw new Error(`Open-Meteo HTTP ${res.status}`)
   const d = await res.json()
   const cur = d.current || {}

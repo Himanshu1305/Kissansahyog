@@ -3,11 +3,16 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+// Batch 8A — the Capacitor (Android) build sets KS_NATIVE=1 (scripts/build-android.mjs): the
+// bundled app needs no service worker or web manifest. Unset = the normal web build.
+const NATIVE = process.env.KS_NATIVE === '1'
+
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
     VitePWA({
+      disable: NATIVE,
       // Phase 5 — registerType 'autoUpdate': a new service worker activates as soon
       // as it is available, so farmers receive the current app without a manual
       // update prompt.
@@ -41,6 +46,12 @@ export default defineConfig({
         // SPA: serve the precached app shell for any navigation, incl. offline —
         // shows the app (not a blank white screen) when the network is down.
         navigateFallback: '/index.html',
+        // Batch 9 Phase 2 — real files that a browser may navigate to directly must
+        // NOT get the app shell: sitemaps, robots.txt, llms.txt, the search index,
+        // the Pages Functions (/api, /geo, /geocode, /transcribe) and /_* paths.
+        // Without this, a browser that already has the SW sees the app 404 page at
+        // /sitemap.xml instead of the XML.
+        navigateFallbackDenylist: [/^\/sitemap.*\.xml$/, /^\/robots\.txt$/, /^\/llms\.txt$/, /^\/search-index\.json$/, /^\/(api|geo|geocode|transcribe)(\/|$)/, /^\/_/],
         // CacheFirst (precache) for the static app shell ONLY.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         // The logo is precached as webp (includeAssets); skip its png fallbacks.

@@ -14,6 +14,7 @@ import { getCategory, isEnabled } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { createListing, fetchResolvedVillages } from '../lib/listings/listingsApi'
 import { drainGeocodeQueue } from '../lib/location/geocodeQueue'
+import { getPostPosition } from '../lib/location/postPosition'
 import { WIDE_ELIGIBLE_CATEGORIES } from '../lib/distance'
 import WhatsAppJoin from '../components/WhatsAppJoin'
 import { uploadPhotos } from '../lib/listings/photos'
@@ -47,6 +48,9 @@ export default function Post() {
   const [consents, setConsents] = useState({})
   const [photoFiles, setPhotoFiles] = useState([])
   const [coordinates, setCoordinates] = useState(null)
+  const [locating, setLocating] = useState(false)
+  const [locStep, setLocStep] = useState(null)       // 'cached' | 'fresh' (Batch 9, 1D)
+  const [locFallback, setLocFallback] = useState(false)
   const [mapUrl, setMapUrl] = useState('')
   const [extras, setExtras] = useState(null)
   const [error, setError] = useState(null)
@@ -145,16 +149,26 @@ export default function Post() {
 
   function resetAll() {
     setCreated(null); setStep(1); setListingType(null); setCategory(null)
-    setSource('farmer'); setDetails(null); setVillage(''); setWideVisibility(false); setConfirmChecked(false); setConsents({}); setPhotoFiles([]); setCoordinates(null); setMapUrl('')
+    setSource('farmer'); setDetails(null); setVillage(''); setWideVisibility(false); setConfirmChecked(false); setConsents({}); setPhotoFiles([]); setCoordinates(null); setLocStep(null); setLocFallback(false); setMapUrl('')
   }
 
-  function useCurrentLocation() {
-    if (!navigator.geolocation) { setError(t('location_unavailable')); return }
-    navigator.geolocation.getCurrentPosition(
-      (position) => setCoordinates({ latitude: position.coords.latitude, longitude: position.coords.longitude }),
-      () => setError(t('location_unavailable')),
-      { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 },
-    )
+  // Batch 9 (1D) — a position the phone already has (≤ 10 min), else a fresh low-accuracy fix
+  // (≤ 20 s), else a clear message and the cursor in the village field (the manual path).
+  async function useCurrentLocation() {
+    if (locating) return
+    setLocating(true); setLocFallback(false)
+    try {
+      const pos = await getPostPosition(navigator.geolocation)
+      setCoordinates({ latitude: pos.latitude, longitude: pos.longitude })
+      setLocStep(pos.step)
+    } catch {
+      setLocFallback(true)
+      // Bring the village field into view (not focus: focusing opens its suggestion list, which
+      // would cover the message). The message sits right under the button.
+      document.getElementById(category === 'transport' ? 'f_transport_from' : 'f_asset_village')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    } finally {
+      setLocating(false)
+    }
   }
 
   // Extra declaration, only where one applies. The rules + accuracy consent is NOT repeated here.
@@ -307,8 +321,9 @@ export default function Post() {
               />
             </Field>}
             <datalist id="known-villages">{villages.map((v) => <option key={v} value={v} />)}</datalist>
-            <button type="button" onClick={useCurrentLocation} className="mt-2 min-h-[44px] rounded-xl border-2 border-green-700 px-3 py-2 text-sm font-bold text-green-800">{t('location_current')}</button>
-            {coordinates && <p className="mt-1 text-xs text-green-800">✓ {coordinates.latitude.toFixed(5)}, {coordinates.longitude.toFixed(5)}</p>}
+            <button type="button" data-testid="post-location-current" onClick={useCurrentLocation} disabled={locating} aria-busy={locating} className="mt-2 min-h-[44px] rounded-xl border-2 border-green-700 px-3 py-2 text-sm font-bold text-green-800 disabled:opacity-70">{locating ? t('post_location_finding') : t('location_current')}</button>
+            {coordinates && <p data-testid="post-location-coords" data-step={locStep || undefined} className="mt-1 text-xs text-green-800">✓ {coordinates.latitude.toFixed(5)}, {coordinates.longitude.toFixed(5)}</p>}
+            {locFallback && !coordinates && <p role="status" data-testid="post-location-fallback" className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-[15px] font-semibold text-amber-900">{t('post_location_fallback')}</p>}
             <Field label={t('maps_link_label')} htmlFor="f_map_url">
               <TextInput id="f_map_url" type="url" value={mapUrl} onChange={(e) => setMapUrl(e.target.value)} onBlur={() => mapUrl && !isGoogleMapsUrl(mapUrl) && setError(t('maps_link_invalid'))} placeholder="https://maps.google.com/..." />
             </Field>

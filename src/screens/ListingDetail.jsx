@@ -19,6 +19,10 @@ import { loadExtras } from '../lib/listings/extras'
 import { fetchListingById, incrementContactClick, incrementListingView } from '../lib/listings/listingsApi'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { haversineKm } from '../lib/distance'
+import { publicOrigin } from '../lib/native'
+import OfflineStamp from '../components/OfflineStamp'
+import OfflineNotice from '../components/OfflineNotice'
+import { useOfflineInfo } from '../lib/offline/useOffline'
 
 export default function ListingDetail() {
   const { id } = useParams()
@@ -32,6 +36,7 @@ export default function ListingDetail() {
   const [listing, setListing] = useState(null)
   const [extras, setExtras] = useState({})
   const [loading, setLoading] = useState(true)
+  const listOffline = useOfflineInfo(['listings'])
   const [error, setError] = useState(null)
   const [photoIndex, setPhotoIndex] = useState(0)
 
@@ -58,7 +63,7 @@ export default function ListingDetail() {
   if (!listing)
     return (
       <Screen title={t('detail_title')} onBack={onBack}>
-        <p className="py-12 text-center text-stone-500">{t('listing_not_found')}</p>
+        {listOffline.failed ? <OfflineNotice ageMs={listOffline.tooOld ? listOffline.ageMs : null} className="my-6" /> : <p className="py-12 text-center text-stone-500">{t('listing_not_found')}</p>}
       </Screen>
     )
 
@@ -77,6 +82,7 @@ export default function ListingDetail() {
     <Screen title={t('detail_title')} onBack={onBack}>
       {/* Listings are noindex for now (SEO for listings is a later batch). */}
       <Seo noindex path={`/listing/${listing.id}`} />
+      <OfflineStamp resources={['listings']} className="mb-2" />
       <div className="mb-4 flex items-center gap-2">
         <CatIcon category={listing.category} className="text-4xl" />
         <div>
@@ -167,7 +173,7 @@ export default function ListingDetail() {
       {/* ks-allow-width: compact share button width */}
       <WhatsAppShareButton
         label={t('contact_share')}
-        message={generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)}
+        message={generateListingMessage(listing, `${publicOrigin()}/listing/${listing.id}`, lang)}
         className="mb-3 !bg-white !text-[var(--ks-green)] border-2 border-[var(--ks-green)] !py-1.5 text-sm"
         onClick={() => { if (!user || user.id !== listing.user_id) incrementContactClick(listing.id) }}
       />

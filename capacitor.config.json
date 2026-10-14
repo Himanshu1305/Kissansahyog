@@ -1,0 +1,21 @@
+{
+  "appId": "com.kissansahyog.app",
+  "appName": "Kisan Sahyog",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "backgroundColor": "#FBFAF5",
+      "launchAutoHide": true,
+      "launchShowDuration": 600,
+      "showSpinner": false
+    },
+    "SystemBars": {
+      "insetsHandling": "css",
+      "initialViewportFitValueHint": "cover",
+      "style": "LIGHT"
+    }
+  }
+}

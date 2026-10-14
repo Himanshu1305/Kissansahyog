@@ -1,0 +1,108 @@
+$ git status
+On branch android-app
+Your branch is up to date with 'origin/android-app'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs/review/batch7l1/1-granted-result-en-1440.png
+	modified:   docs/review/batch7l1/1-granted-result-en-390.png
+	modified:   docs/review/batch7l1/1-granted-result-hi-1440.png
+	modified:   docs/review/batch7l1/1-granted-result-hi-390.png
+	modified:   docs/review/batch7l1/2-refused-saved-en-1440.png
+	modified:   docs/review/batch7l1/2-refused-saved-en-390.png
+	modified:   docs/review/batch7l1/2-refused-saved-hi-1440.png
+	modified:   docs/review/batch7l1/2-refused-saved-hi-390.png
+	modified:   docs/review/batch7l1/3-typed-result-en-1440.png
+	modified:   docs/review/batch7l1/3-typed-result-en-390.png
+	modified:   docs/review/batch7l1/3-typed-result-hi-1440.png
+	modified:   docs/review/batch7l1/3-typed-result-hi-390.png
+	modified:   docs/review/batch7l1/mandi-nearest-en-1440.png
+	modified:   docs/review/batch7l1/mandi-nearest-en-390.png
+	modified:   docs/review/batch7l1/mandi-nearest-hi-1440.png
+	modified:   docs/review/batch7l1/mandi-nearest-hi-390.png
+	modified:   public/search-index.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	BATCH9_OVERNIGHT_PROMPT.md
+	docs/review/ADMIN_ACCESS_DIAGNOSIS.md
+	docs/review/BATCH7J_REPORT.md
+	docs/review/batch7l2/location-after-clear-en-1440.png
+	docs/review/batch7l2/location-after-clear-en-390.png
+	docs/review/batch7l2/location-after-clear-hi-1440.png
+	docs/review/batch7l2/location-after-clear-hi-390.png
+	docs/review/batch7l2/location-clear-button-en-1440.png
+	docs/review/batch7l2/location-clear-button-en-390.png
+	docs/review/batch7l2/location-clear-button-hi-1440.png
+	docs/review/batch7l2/location-clear-button-hi-390.png
+	docs/review/batch7l2/login-en-390.png
+	docs/review/batch7l2/login-hi-1440.png
+	docs/review/batch7l2/login-hi-390.png
+	docs/review/batch7l2/login-throttled-en-1440.png
+	docs/review/batch7l2/login-throttled-en-390.png
+	docs/review/batch7l2/login-throttled-hi-1440.png
+	docs/review/batch7l2/login-throttled-hi-390.png
+	docs/review/batch7l2/signup-en-390.png
+	docs/review/batch7l2/signup-filled-hidden-en-1440.png
+	docs/review/batch7l2/signup-filled-hidden-en-390.png
+	docs/review/batch7l2/signup-filled-hidden-hi-1440.png
+	docs/review/batch7l2/signup-filled-hidden-hi-390.png
+	docs/review/batch7l2/signup-hi-1440.png
+	docs/review/batch7l2/signup-hi-390.png
+	docs/review/batch7l2/stageb-admin-mobile-refused-en-1440.png
+	docs/review/batch7l2/stageb-preview-login-en-1440.png
+	docs/review/batch7l2/stageb-preview-login-hi-390.png
+	docs/review/batch7l2/stageb-preview-signup-en-1440.png
+	docs/review/batch7l2/stageb-preview-signup-hi-390.png
+	docs/review/batch7l2/stageb-signup-show-en-1440.png
+	docs/review/batch7l2/stageb-throttle-email-hi-390.png
+	docs/review/batch9/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+$ git branch -a
+* android-app
+  codex/batch5a-categories
+  codex/batch5b-qa
+  codex/batch6a-fixes
+  codex/batch6b-post
+  codex/batch6c-content
+  codex/batch6d-sitewide
+  codex/batch6g-founder
+  integration/batch5-test
+  main
+  staging
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/android-app
+  remotes/origin/codex/batch5a-categories
+  remotes/origin/codex/batch5b-qa
+  remotes/origin/codex/batch6a-fixes
+  remotes/origin/codex/batch6b-post
+  remotes/origin/codex/batch6c-content
+  remotes/origin/codex/batch6d-sitewide
+  remotes/origin/codex/batch6g-founder
+  remotes/origin/main
+  remotes/origin/staging
+
+$ git log --oneline -15
+2bf9aef Batch 8B: docs — preflight, README, report, results, staging test data
+f3eac12 Batch 8B: test harness — flavours, staging suite, offline tests
+1139c7f Batch 8B: app fixes — banner no longer covers the header; mic only when it works
+b66525d Batch 8B: offline data for the Android app (native only)
+2c95478 Batch 8B: staging flavour of the Android app + build guards
+d165fbb Batch 8A: docs — preflight, README, report, results
+fa948e4 Batch 8A: Android build pipeline + emulator test harness
+d92bcb0 Batch 8A: native-aware web code (gated by isNative) + CORS middleware
+f29a1f4 Batch 8A: Capacitor 8 Android project (debug, bundled web assets)
+206cd86 Batch 7L-2: login rules, one registration form, privacy fixes
+ebad4be Batch 7L-1: Sagar Division wording, location flow, places list, division mandis
+c11bba4 Batch 7J: platform description rewrite, Terms cleanup, both emails on grievance, article byline
+c4a136f Batches 7A-7I: logo, About, How-to, feedback form (server-only), simplified grievance page, wording fixes, one-row header, ownership wording
+7d1a309 Batches 7A-7F: logo, About, How-to, feedback form, simplified grievance page, wording fixes
+82bce14 Founder page: Guinness record date 22 July 2013, birthplace Sagar
+
+$ git tag --list "pre-*"
+pre-7l1
+pre-7l2
+pre-7l2-ship

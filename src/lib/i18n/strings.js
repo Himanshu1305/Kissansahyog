@@ -871,6 +871,9 @@ export const strings = {
   consent_required: { hi: 'पोस्ट करने के लिए सभी बातों पर सहमति दें।', en: 'Accept all items to post.' },
   location_current: { hi: 'मेरी वर्तमान लोकेशन लें', en: 'Use my current location' },
   location_unavailable: { hi: 'लोकेशन नहीं मिल सकी। आप जगह का नाम लिख सकते हैं।', en: 'Location could not be found. You can type the place name.' },
+  // Batch 9 (1D) — Post page: looking for the position, and the fallback to typing the village.
+  post_location_finding: { hi: 'लोकेशन ढूँढ रहे हैं… (20 सेकंड तक)', en: 'Finding your location… (up to 20 seconds)' },
+  post_location_fallback: { hi: 'फ़ोन से लोकेशन नहीं मिल पाई। कोई बात नहीं — ऊपर अपने गाँव या कस्बे का नाम लिखें, लिस्टिंग उसी से दिखेगी।', en: 'Could not get the location from the phone. No problem — type your village or town name above; the listing will be shown by that.' },
   maps_link_label: { hi: 'Google Maps लिंक (चाहें तो)', en: 'Google Maps link (optional)' },
   maps_link_invalid: { hi: 'सिर्फ़ Google Maps का सही लिंक डालें।', en: 'Enter a valid Google Maps link only.' },
   maps_open: { hi: 'Google Maps में खोलें', en: 'Open in Google Maps' },
@@ -1826,6 +1829,13 @@ export const strings = {
   // Phase 5 — PWA
   pwa_update_available: { hi: 'नया अपडेट उपलब्ध है', en: 'A new update is available' },
   pwa_reload: { hi: 'रीलोड करें', en: 'Reload' },
+  // Batch 8B — offline data in the Android app.
+  offline_stamp: { hi: 'पिछली बार अपडेट:', en: 'Last updated:' },
+  offline_no_data: { hi: 'जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।', en: 'Could not load — no internet, or it is very slow.' },
+  offline_try_again: { hi: 'फिर से कोशिश करें', en: 'Try again' },
+  offline_too_old: { hi: 'फ़ोन में सहेजी जानकारी पुरानी है ({age}) — इंटरनेट मिलने पर नई जानकारी दिखेगी।', en: 'The information saved on the phone is too old ({age}) — it will update when you are online.' },
+  offline_age_hours: { hi: '{n} घंटे पहले की', en: '{n} hours old' },
+  offline_age_days: { hi: '{n} दिन पहले की', en: '{n} days old' },
   pwa_offline_prefix: { hi: 'आप ऑफ़लाइन हैं — आख़िरी बार अपडेट:', en: 'You are offline — last updated:' },
   pwa_install_prompt: { hi: 'किसान सहयोग को होम स्क्रीन पर जोड़ें', en: 'Add Kissan Sahyog to your home screen' },
   pwa_install: { hi: 'जोड़ें', en: 'Add' },

@@ -1,0 +1,19 @@
+{
+  "test": "Phase 3.3 — release-signed prod APK installs and starts on the emulator",
+  "device": "emulator-5554 (ks_test_api36, ro.build.type=userdebug)",
+  "artifact": "android/ks-apks/ks-production-release.apk (not committed)",
+  "steps": [
+    "adb install -r ks-production-release.apk -> INSTALL_FAILED_UPDATE_INCOMPATIBLE (debug prod build with the debug key was installed; same applicationId) — expected",
+    "adb uninstall com.kissansahyog.app (the debug prod build; its app data on the emulator was lost — test data only)",
+    "adb install ks-production-release.apk -> Success",
+    "am start -W -n com.kissansahyog.app/.MainActivity -> Status ok, LaunchState COLD, TotalTime 4794 ms (release-install-amstart.txt)",
+    "process alive after 17 s (pid 7098); focused window com.kissansahyog.app/.MainActivity; Home rendered with live mandi ticker (release-prod-started.png)",
+    "dumpsys package flags = [ HAS_CODE ALLOW_CLEAR_USER_DATA ] — no DEBUGGABLE",
+    "run-as com.kissansahyog.app -> 'package not debuggable' (release-run-as.txt)",
+    "logcat scan (FATAL EXCEPTION, ANR in, has died, StrictMode, WebView crash): 0 hits",
+    "adb uninstall com.kissansahyog.app (release test install) -> Success",
+    "adb install android/ks-apks/ks-production.apk (debug prod build, as before) -> Success; flags DEBUGGABLE again; staging debug app untouched"
+  ],
+  "webviewDebuggingNote": "A webview_devtools_remote_<pid> socket also appeared for the release app. This emulator image is userdebug (ro.debuggable=1), where Android System WebView enables DevTools for every app regardless of the app. App-level proof: the release manifest has no android:debuggable (FLAG_DEBUGGABLE off, confirmed above), the packaged capacitor.config.json has no android.webContentsDebuggingEnabled override, and Capacitor CapConfig.java:245/286 + Bridge.java:624 call WebView.setWebContentsDebuggingEnabled(isDebug) = false. On a real (user-build) phone chrome://inspect must not list the release app — HUMAN-REVIEW item for the real-phone checklist.",
+  "status": "RAN-PASSED"
+}

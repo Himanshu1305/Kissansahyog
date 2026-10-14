@@ -1,0 +1,32 @@
+[
+  {
+    "name": "logged in (user B)",
+    "pass": true
+  },
+  {
+    "name": "My Listings renders",
+    "pass": true
+  },
+  {
+    "name": "Profile renders with the user's data (name + the account's e-mail)",
+    "pass": true,
+    "detail": "email"
+  },
+  {
+    "name": "the edit is saved",
+    "pass": true,
+    "detail": {
+      "identifierShown": "email",
+      "pincodeBefore": "",
+      "firstSave": "कृपया सही 6 अंकों का पिन कोड भरें।",
+      "savedWithoutPincode": false,
+      "savedWithPincode": true,
+      "secondSave": "बदलाव सहेजे गए।"
+    }
+  },
+  {
+    "name": "the edited name persists after relaunch",
+    "pass": true,
+    "detail": "KSTEST Kisan B 842007 edited"
+  }
+]

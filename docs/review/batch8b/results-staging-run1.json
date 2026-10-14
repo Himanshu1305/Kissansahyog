@@ -1,0 +1,330 @@
+{
+  "run": {
+    "flavor": "staging",
+    "startedAt": "2026-10-14T12:08:16.296Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400",
+      "webview": "133.0.6943.137"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "finishedAt": "2026-10-14T12:25:20.782Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [
+      {
+        "at": "2026-10-14T12:09:35.383Z",
+        "who": "com.android.systemui",
+        "answered": "Wait"
+      }
+    ],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "S1",
+      "name": "Staging build",
+      "status": "RAN-PASSED",
+      "assertion": "Clean build of the staging APK (npm run android:debug:staging) exits 0; APK exists; size + sha256 recorded",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S1/apk.json",
+        "docs/review/batch8b/evidence/staging/S1/build-summary.txt",
+        "docs/review/batch8b/evidence/staging/S1/checks.json"
+      ],
+      "durationMs": 64275,
+      "notes": "11.37 MB, sha256 86fd1223ee13faa4517d5543b3de54fa2f276393f503941ffd6b90b82900a3d5"
+    },
+    {
+      "id": "S2",
+      "name": "Identity + guards",
+      "status": "RAN-PASSED",
+      "assertion": "aapt2: staging id/label; staging assets have the staging ref and no prod ref; prod APK the reverse; no default APK allows cleartext; a staging build with a prod VITE_SUPABASE_URL is refused",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S2/identity.json",
+        "docs/review/batch8b/evidence/staging/S2/guard-refusal.txt",
+        "docs/review/batch8b/evidence/staging/S2/checks.json"
+      ],
+      "durationMs": 5078,
+      "notes": "refusal: STAGING GUARD: REFUSED — VITE_SUPABASE_URL in the process environment (start with --env-file=.env) points at the PRODUCTION project"
+    },
+    {
+      "id": "S3",
+      "name": "Coexistence",
+      "status": "RAN-PASSED",
+      "assertion": "Both APKs installed side by side; each app has its own storage (a marker set in one is absent in the other)",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S3/prod-app.jpg",
+        "docs/review/batch8b/evidence/staging/S3/coexistence.json",
+        "docs/review/batch8b/evidence/staging/S3/checks.json"
+      ],
+      "durationMs": 73832,
+      "notes": ""
+    },
+    {
+      "id": "S10",
+      "name": "Staging regression subset",
+      "status": "RAN-PASSED",
+      "assertion": "In the staging app: cold start (T4), the 15 routes + 404 (T5), no service worker (T8), safe areas incl. the D1 banner/header geometry (T9), back button (T11)",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S10-T4/cold-start.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T4/start.json",
+        "docs/review/batch8b/evidence/staging/S10-T4/checks.json",
+        "docs/review/batch8b/evidence/staging/S10-T5/home.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/browse.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/bazaar.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/mausam.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/msp.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/yojana.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/sawaal.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/search.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/about.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/privacy.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/terms.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/contact.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/login.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/cold-storage.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/kisan-mela.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/invalid-path.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T5/routes.json",
+        "docs/review/batch8b/evidence/staging/S10-T5/console-allowlist.json",
+        "docs/review/batch8b/evidence/staging/S10-T5/checks.json",
+        "docs/review/batch8b/evidence/staging/S10-T8/service-worker.json",
+        "docs/review/batch8b/evidence/staging/S10-T8/checks.json",
+        "docs/review/batch8b/evidence/staging/S10-T9/home-top.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T9/home-offline-banner-forced.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T9/home-bottom.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T9/browse-top.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T9/browse-bottom.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T9/login-top.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T9/login-bottom.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T9/geometry.json",
+        "docs/review/batch8b/evidence/staging/S10-T9/checks.json",
+        "docs/review/batch8b/evidence/staging/S10-T11/back-on-home.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T11/after-exit-launcher.jpg",
+        "docs/review/batch8b/evidence/staging/S10-T11/back-trail.json",
+        "docs/review/batch8b/evidence/staging/S10-T11/checks.json",
+        "docs/review/batch8b/evidence/staging/S10/parts.json"
+      ],
+      "durationMs": 272660,
+      "notes": "T4 RAN-PASSED | T5 RAN-PASSED | T8 RAN-PASSED | T9 RAN-PASSED | T11 RAN-PASSED"
+    },
+    {
+      "id": "S4",
+      "name": "Signup",
+      "status": "RAN-PASSED",
+      "assertion": "A brand-new KSTEST user signs up through the real signup UI of the staging app; lands logged in; the session survives force-stop + relaunch",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S4/after-signup.jpg",
+        "docs/review/batch8b/evidence/staging/S4/after-relaunch.jpg",
+        "docs/review/batch8b/evidence/staging/S4/signup.json",
+        "docs/review/batch8b/evidence/staging/S4/checks.json"
+      ],
+      "durationMs": 38659,
+      "notes": ""
+    },
+    {
+      "id": "S5",
+      "name": "Logout / login",
+      "status": "RAN-PASSED",
+      "assertion": "Log out, log in again with the same mobile number (phone login); an unregistered and a malformed number are refused with the in-app message",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S5/unregistered-number.jpg",
+        "docs/review/batch8b/evidence/staging/S5/logged-in-again.jpg",
+        "docs/review/batch8b/evidence/staging/S5/login.json",
+        "docs/review/batch8b/evidence/staging/S5/checks.json"
+      ],
+      "durationMs": 27702,
+      "notes": "unregistered → \"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\"; malformed → \"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\"; phone login is trust-based (no OTP), lands on /home"
+    },
+    {
+      "id": "S6",
+      "name": "Post with photo",
+      "status": "RAN-PASSED",
+      "assertion": "As the KSTEST user, post a listing (marker KSTEST…) with a photo; it appears in My Listings and Browse; the detail page shows the photo (naturalWidth > 0) and the photo URL returns 200 from staging storage",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S6/step2-with-photo.jpg",
+        "docs/review/batch8b/evidence/staging/S6/posted.jpg",
+        "docs/review/batch8b/evidence/staging/S6/detail.jpg",
+        "docs/review/batch8b/evidence/staging/S6/my-listings.jpg",
+        "docs/review/batch8b/evidence/staging/S6/browse.jpg",
+        "docs/review/batch8b/evidence/staging/S6/post.json",
+        "docs/review/batch8b/evidence/staging/S6/checks.json"
+      ],
+      "durationMs": 44452,
+      "notes": "photo via Playwright setInputFiles (buffer); listing c57118e3-d3b3-4fb6-a5e2-7145d376274d"
+    },
+    {
+      "id": "S7",
+      "name": "Contact reveal",
+      "status": "RAN-PASSED",
+      "assertion": "A second KSTEST user reveals the number on user A's listing; logged out, the reveal goes to login with the return path and comes back after login",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S7/revealed.jpg",
+        "docs/review/batch8b/evidence/staging/S7/back-after-login.jpg",
+        "docs/review/batch8b/evidence/staging/S7/reveal.json",
+        "docs/review/batch8b/evidence/staging/S7/checks.json"
+      ],
+      "durationMs": 45045,
+      "notes": ""
+    },
+    {
+      "id": "S8",
+      "name": "Profile and My Listings",
+      "status": "RAN-PASSED",
+      "assertion": "Both render for the logged-in user; an edited profile field persists after relaunch (pincode behaviour recorded)",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S8/my-listings.jpg",
+        "docs/review/batch8b/evidence/staging/S8/profile-saved.jpg",
+        "docs/review/batch8b/evidence/staging/S8/profile.json",
+        "docs/review/batch8b/evidence/staging/S8/checks.json"
+      ],
+      "durationMs": 33612,
+      "notes": "KNOWN ISSUE confirmed: saving needs a pincode (first save: \"कृपया सही 6 अंकों का पिन कोड भरें।\"); saved after entering 470001"
+    },
+    {
+      "id": "O2",
+      "name": "Cache fills online",
+      "status": "RAN-PASSED",
+      "assertion": "Visiting /, /mausam (Sagar), /msp, /browse and a listing detail online stores an IndexedDB entry for each, with a recent cachedAt",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O2/home.jpg",
+        "docs/review/batch8b/evidence/staging/O2/mausam.jpg",
+        "docs/review/batch8b/evidence/staging/O2/msp.jpg",
+        "docs/review/batch8b/evidence/staging/O2/browse_cat_bhusa.jpg",
+        "docs/review/batch8b/evidence/staging/O2/listing_c57118e3-d3b3-4fb6-a5e2-7145d376274d.jpg",
+        "docs/review/batch8b/evidence/staging/O2/idb-entries.json",
+        "docs/review/batch8b/evidence/staging/O2/checks.json"
+      ],
+      "durationMs": 44969,
+      "notes": "67 entries, ~2214 KB"
+    },
+    {
+      "id": "O3",
+      "name": "Offline with cache",
+      "status": "RAN-PASSED",
+      "assertion": "Airplane mode, force-stop, cold launch: /, /mausam, /msp, /browse and the listing detail show the SAME data as online, with the stamp = stored time; no ErrorBoundary; banner does not cover the header",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O3/home.jpg",
+        "docs/review/batch8b/evidence/staging/O3/mausam.jpg",
+        "docs/review/batch8b/evidence/staging/O3/msp.jpg",
+        "docs/review/batch8b/evidence/staging/O3/browse_cat_bhusa.jpg",
+        "docs/review/batch8b/evidence/staging/O3/listing_c57118e3-d3b3-4fb6-a5e2-7145d376274d.jpg",
+        "docs/review/batch8b/evidence/staging/O3/offline-pages.json",
+        "docs/review/batch8b/evidence/staging/O3/checks.json"
+      ],
+      "durationMs": 62456,
+      "notes": ""
+    },
+    {
+      "id": "O5",
+      "name": "Back online",
+      "status": "RAN-PASSED",
+      "assertion": "Airplane mode off: within 20 s fresh data replaces the cached data and the stamp disappears (app time and the emulator's own reconnect time recorded)",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O5/online-again.jpg",
+        "docs/review/batch8b/evidence/staging/O5/reconnect.json",
+        "docs/review/batch8b/evidence/staging/O5/checks.json"
+      ],
+      "durationMs": 11374,
+      "notes": "stamp gone + fresh weather after 9839 ms; Android had a network after 2465 ms"
+    },
+    {
+      "id": "O6",
+      "name": "Freshness policy",
+      "status": "RAN-PASSED",
+      "assertion": "With the stored weather data time set to 30 h ago and mandi data time to 8 days ago, offline: weather numbers hidden with the \"too old\" message; mandi (policy: 7 days) not shown, the \"too old\" state instead",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O6/mausam.jpg",
+        "docs/review/batch8b/evidence/staging/O6/home.jpg",
+        "docs/review/batch8b/evidence/staging/O6/msp.jpg",
+        "docs/review/batch8b/evidence/staging/O6/freshness.json",
+        "docs/review/batch8b/evidence/staging/O6/checks.json"
+      ],
+      "durationMs": 44229,
+      "notes": "policy implemented: weather ≤ 24 h (fetched_at), mandi ≤ 7 days (price_date), listings ≤ 3 days (stored time); older → not shown, \"too old\" message with the age"
+    },
+    {
+      "id": "O4",
+      "name": "Offline without cache",
+      "status": "RAN-PASSED",
+      "assertion": "Cache cleared, offline, a freshly chosen place: /mausam and /msp show a clear offline message with a working \"try again\" within 10–12 s; no spinner remains",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O4/mausam.jpg",
+        "docs/review/batch8b/evidence/staging/O4/msp.jpg",
+        "docs/review/batch8b/evidence/staging/O4/timing.json",
+        "docs/review/batch8b/evidence/staging/O4/checks.json"
+      ],
+      "durationMs": 27275,
+      "notes": "notice after {\"/mausam\":1892,\"/msp\":2172} ms"
+    },
+    {
+      "id": "O7",
+      "name": "Privacy",
+      "status": "RAN-PASSED",
+      "assertion": "Every IndexedDB entry and localStorage value written by the cache layer contains none of: the revealed number, either user's number / e-mail / name, auth tokens",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O7/privacy-scan.json",
+        "docs/review/batch8b/evidence/staging/O7/checks.json"
+      ],
+      "durationMs": 63114,
+      "notes": ""
+    },
+    {
+      "id": "O1",
+      "name": "Cache unit tests",
+      "status": "RAN-PASSED",
+      "assertion": "Node: put/get, expiry by policy, eviction at the cap, quota error swallowed, private URLs never stored, non-200 never stored, key includes Accept/Prefer/Range, key stable",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O1/checks.json"
+      ],
+      "durationMs": 62,
+      "notes": ""
+    },
+    {
+      "id": "O1b",
+      "name": "Day-change fallback",
+      "status": "RAN-PASSED",
+      "assertion": "Node, fake clock + network: cache filled \"yesterday\" through the real fetchMandiPrices()/fetchWeatherCell(); a day later offline, mandi returns the cached rows labelled yesterday/older and weather the cell or the policy state",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O1b/checks.json"
+      ],
+      "durationMs": 6709,
+      "notes": ""
+    },
+    {
+      "id": "O8",
+      "name": "Web unchanged",
+      "status": "RAN-PASSED",
+      "assertion": "Cache layer inert without window.Capacitor; npm run build OK; vite preview: page loads, SW registers, no console errors; main-chunk size before (end of 8A) vs after; no new Devanagari outside sanctioned files",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/O8-web/a-native-helpers.json",
+        "docs/review/batch8b/evidence/staging/O8-web/c-bundle-size.json",
+        "docs/review/batch8b/evidence/staging/O8-web/d-web-preview.jpg",
+        "docs/review/batch8b/evidence/staging/O8-web/d-web-preview.json",
+        "docs/review/batch8b/evidence/staging/O8-web/checks.json",
+        "docs/review/batch8b/evidence/staging/O8/devanagari-check.txt",
+        "docs/review/batch8b/evidence/staging/O8/checks.json"
+      ],
+      "durationMs": 51438,
+      "notes": "main chunk 89.7 KB → 94.5 KB (+4884 B; gzip +1758 B), measured in a temporary worktree of staging d165fbb; v11_phase6.mjs itself exits 1 on Windows (pre-existing: it compares backslash paths to its forward-slash allowlist)"
+    },
+    {
+      "id": "S9",
+      "name": "Feedback + CORS (staging-local)",
+      "status": "NOT-RUN",
+      "assertion": "wrangler pages dev on :8788 (+ adb reverse) and the staging-local APK: /grievance POST carries Origin https://localhost, preflight 204 with that Allow-Origin, the form shows success or its documented failure state; other origins get no CORS headers; mic hidden when /transcribe is not configured",
+      "evidenceFiles": [
+        "docs/review/batch8b/evidence/staging/S9/grievance-after-submit.jpg",
+        "docs/review/batch8b/evidence/staging/S9/feedback-cors.json",
+        "docs/review/batch8b/evidence/staging/S9/checks.json"
+      ],
+      "durationMs": 103090,
+      "notes": "form outcome: failure-with-email-fallback (\"अभी यहाँ से संदेश नहीं जा सका। कृपया नीचे के बटन से इसे ईमेल से भेज दें।\n\nईमेल से भेजें\"). functions/api/feedback.js stores only with SUPABASE_SERVICE_ROLE_KEY, which this batch may not use, so it answers 503 \"unavailable\" and the form shows its e-mail fallback."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import { supabase } from '../supabaseClient'
 import { getDeviceId } from '../device'
 import { parseContact } from './contact'
+import { apiUrl } from '../apiBase'
 
 // Feedback & Grievance form (/grievance). The form asks for one way to reach the
 // person (an e-mail address or a mobile number), a type and a message.
@@ -62,7 +63,7 @@ function unavailable() {
 async function viaServer(payload) {
   let res
   try {
-    res = await fetch(ENDPOINT, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) })
+    res = await fetch(apiUrl(ENDPOINT), { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) })
   } catch {
     throw unavailable()
   }

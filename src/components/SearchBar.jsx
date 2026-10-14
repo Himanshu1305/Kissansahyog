@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import VoiceSearchButton from './VoiceSearchButton'
+import { useNativeBack } from '../lib/useNativeBack'
 
 // Phase 10 — NavBar search. Tablet (md–lg): inline input + mic. Desktop (lg+, Batch 7H):
 // a compact 🔍 button + mic that expands into the search field, so the header stays on
@@ -17,6 +18,7 @@ export default function SearchBar({ variant = 'nav' }) {
   const boxRef = useRef(null)
   const inputRef = useRef(null)
   const toggleRef = useRef(null)
+  useNativeBack(open, () => setOpen(false))
 
   // Desktop compact search: focus the field when it opens; outside click or Esc closes it.
   useEffect(() => {
@@ -116,7 +118,7 @@ export default function SearchBar({ variant = 'nav' }) {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-white md:hidden">
+        <div className="ks-overlay fixed inset-0 z-50 flex flex-col bg-white md:hidden">
           <div className="flex items-center gap-2 border-b border-stone-200 p-3">
             <button
               type="button"

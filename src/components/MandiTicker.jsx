@@ -3,6 +3,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 import { priceStaleness, ddmm } from '../lib/mandi/staleness'
 import { cropByMandi } from '../content/crops'
+import { useOfflineInfo } from '../lib/offline/useOffline'
 
 // Raw market name → i18n key for its Hindi mandi label (fallback: raw name).
 const MARKET_KEY = {
@@ -17,6 +18,7 @@ const fmt = (n) => Math.round(Number(n) || 0).toLocaleString('en-IN')
 export default function MandiTicker() {
   const { t } = useLang()
   const [state, setState] = useState({ loading: true, rows: [], day: 'none', date: null })
+  const offline = useOfflineInfo(['mandi_prices'])
 
   useEffect(() => {
     let alive = true
@@ -76,7 +78,7 @@ export default function MandiTicker() {
         {state.loading ? (
           <div className="ticker-shimmer h-full w-full" />
         ) : state.rows.length === 0 ? (
-          <div className="flex h-full items-center px-4 text-[14px] text-[#c8e6b0]">{t('mandi_soon')}</div>
+          <div className="flex h-full items-center px-4 text-[14px] text-[#c8e6b0]" data-testid={offline.failed ? 'ticker-offline' : undefined}>{t(offline.failed ? 'offline_no_data' : 'mandi_soon')}</div>
         ) : (
           <div className="ticker-content h-full items-center text-[14px]">
             {/* content duplicated once for a seamless -50% loop */}

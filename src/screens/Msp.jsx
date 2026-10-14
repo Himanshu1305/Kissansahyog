@@ -18,7 +18,12 @@ import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/
 import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
 import Seo from '../components/layout/Seo'
 import { PageShell } from '../components/layout'
+import OfflineStamp from '../components/OfflineStamp'
+import OfflineNotice from '../components/OfflineNotice'
+import { useOfflineInfo } from '../lib/offline/useOffline'
 
+// Batch 8B — resources behind the price table (app offline stamp / notice).
+const MANDI_RES = ['mandi_prices', 'msp_prices']
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const firstNum = (s) => { const m = String(s || '').replace(/,/g, '').match(/\d+(\.\d+)?/); return m ? Number(m[0]) : null }
 
@@ -46,6 +51,7 @@ export default function Msp() {
   const [pickWarn, setPickWarn] = useState(false)
 
   const [today, setToday] = useState(undefined) // { rows, date }
+  const mandiOffline = useOfflineInfo(MANDI_RES)
   const [mspRow, setMspRow] = useState(null)
   const [history, setHistory] = useState([])
   const [monthly, setMonthly] = useState([])
@@ -312,8 +318,11 @@ export default function Msp() {
             )}
           </div>
 
+          <OfflineStamp resources={MANDI_RES} className="mb-2" />
           {today === undefined ? <Spinner /> : !today.rows.length ? (
-            <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
+            mandiOffline.failed ? <OfflineNotice ageMs={mandiOffline.tooOld ? mandiOffline.ageMs : null} /> : (
+              <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
+            )
           ) : (
             <div className="overflow-hidden rounded-lg" style={{ border: '1px solid var(--ks-border)' }}>
               <table className="w-full text-[14px]">

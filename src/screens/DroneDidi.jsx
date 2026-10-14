@@ -12,6 +12,7 @@ import { getCategorySafe } from '../lib/listings/registry'
 import { fetchHomeFeed, fetchCrops } from '../lib/listings/listingsApi'
 import { fetchYojanaBySlug, yojanaName, yojanaDesc, yojanaBenefit, yojanaEligibility } from '../lib/community/communityApi'
 import { whatsappListingUrl } from '../lib/share/shareMessages'
+import { publicHref } from '../lib/native'
 
 export default function DroneDidi() {
   const { t, lang } = useLang()
@@ -29,7 +30,7 @@ export default function DroneDidi() {
     return () => { alive = false }
   }, [])
 
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const shareUrl = typeof window !== 'undefined' ? publicHref() : ''
   const waHref = `https://wa.me/?text=${encodeURIComponent(`${t('dd_title')}\n${shareUrl}`)}`
   const H2 = ({ children }) => <h2 className="mt-6 mb-2 text-[22px] font-bold md:text-[26px]" style={{ color: 'var(--ks-ink)' }}>{children}</h2>
 

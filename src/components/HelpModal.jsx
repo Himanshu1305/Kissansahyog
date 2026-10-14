@@ -1,6 +1,7 @@
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { strings } from '../lib/i18n/strings'
 import { CatIcon } from './CatIcon'
+import { useNativeBack } from '../lib/useNativeBack'
 
 // A small circular '?' button that opens a category help modal. Pass the category
 // key ('land' | 'equipment' | ... | 'experts'); content comes from help_<key>.
@@ -24,13 +25,14 @@ export function HelpButton({ categoryKey, onOpen, className = '' }) {
 // following the disclaimer convention). Bottom sheet on mobile, centered on desktop.
 export default function HelpModal({ categoryKey, onClose }) {
   const { t } = useLang()
+  useNativeBack(!!categoryKey, onClose)
   if (!categoryKey) return null
   const label = t(categoryKey === 'experts' ? 'home_cat_experts' : `home_cat_${categoryKey}`)
   const help = strings[`help_${categoryKey}`] || { hi: '', en: '' }
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center"
+      className="ks-overlay fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center"
       role="dialog"
       aria-modal="true"
       onClick={onClose}
