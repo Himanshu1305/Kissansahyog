@@ -28,9 +28,9 @@ const evidencePath = (t) => {
 
 const lines = []
 lines.push(`**Verdict:** ${tests.length} tests — ${count['RAN-PASSED']} RAN-PASSED / ${count['RAN-FAILED']} RAN-FAILED / ${count['NOT-RUN']} NOT-RUN / ${count['HUMAN-REVIEW']} HUMAN-REVIEW` +
-  (data.run?.fatalExceptions ? ` — plus ${data.run.fatalExceptions} FATAL EXCEPTION(s) in logcat` : ''))
+  (data.run?.fatalExceptions ? ` — plus ${data.run.fatalExceptions} FATAL EXCEPTION(s) in logcat` : '') + (data.run?.appAnr?.length ? ` — plus ${data.run.appAnr.length} "app isn't responding" dialog(s)` : ''))
 lines.push('')
-lines.push(`Source: \`${path.relative(ROOT, IN).replaceAll('\\', '/')}\` · run ${data.run?.startedAt || '?'} → ${data.run?.finishedAt || '?'} · device ${data.run?.device?.serial || '—'} (API ${data.run?.device?.sdk || '—'}, WebView ${data.run?.device?.webview || '—'})${data.run?.apk ? ` · APK sha256 ${data.run.apk.sha256.slice(0, 16)}…` : ''}`)
+lines.push(`Source: \`${path.relative(ROOT, IN).replaceAll('\\', '/')}\` · run ${data.run?.startedAt || '?'} → ${data.run?.finishedAt || '?'} · device ${data.run?.device?.serial || '—'} (API ${data.run?.device?.sdk || '—'}, WebView ${data.run?.device?.webview || '—'})${data.run?.apk ? ` · APK sha256 ${data.run.apk.sha256.slice(0, 16)}…` : ''}${data.run?.systemAnrDismissed?.length ? ` · emulator "System UI isn't responding" dialogs answered "Wait": ${data.run.systemAnrDismissed.length}` : ''}${data.run?.cdpReconnects ? ` · WebView re-attaches: ${data.run.cdpReconnects}` : ''}`)
 lines.push('')
 lines.push('| ID | Test | Status | Assertion | Evidence |')
 lines.push('|---|---|---|---|---|')

@@ -20,24 +20,25 @@ import path from 'node:path'
 import zlib from 'node:zlib'
 import crypto from 'node:crypto'
 import { pathToFileURL } from 'node:url'
+import { registerStaging, STAGING_ORDER } from './staging-tests.mjs'
 import { chromium } from '@playwright/test'
 import {
   ROOT, OUT_DIR, LOG_DIR, APK, WIN, SDK, JDK, ADB, sleep, rel, adb, sh, deviceState, appPid, forceStop, launchApp,
-  resumedActivity, waitFor, uiDump, uiFind, tap, key, makeEvidence, Checks, AppSession,
+  resumedActivity, waitFor, uiDump, uiFind, tap, key, makeEvidence, Checks, AppSession, handleAnrDialog, anrLog,
 } from './lib.mjs'
 import {
   PKG, APP_LABEL, VERSION_NAME, VERSION_CODE, MIN_SDK, TARGET_SDK, APP_URL, PERMISSIONS, PROD_REF, STAGING_REF,
   STAGING_HOST, FORBIDDEN, ROUTES, INVALID_ROUTE, ERROR_BOUNDARY_TEXT, CONSOLE_ALLOWLIST,
-  RELATIVE_FETCH_ALLOWLIST, TEST_PLACE, LOCATION_KEYS,
+  RELATIVE_FETCH_ALLOWLIST, TEST_PLACE, LOCATION_KEYS, FLAVOR, IS_STAGING, ACTIVITY,
 } from './expected.mjs'
 
 // ---------- options ----------
 const argv = process.argv.slice(2)
 const arg = (name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : null }
-const OUT = path.resolve(ROOT, arg('--out') || path.join('docs', 'review', 'batch8a', 'results.json'))
+const OUT = path.resolve(ROOT, arg('--out') || path.join('docs', 'review', 'batch8b', `results-${FLAVOR}.json`))
 const ONLY = arg('--only') ? arg('--only').split(',').map((s) => s.trim().toUpperCase()) : null
 const SKIP_BUILD = argv.includes('--skip-build')
-const EVIDENCE_ROOT = path.resolve(ROOT, arg('--evidence') || path.join('docs', 'review', 'batch8a', 'evidence'))
+const EVIDENCE_ROOT = path.resolve(ROOT, arg('--evidence') || path.join('docs', 'review', 'batch8b', 'evidence', FLAVOR))
 const NEGATIVE = process.env.KS_NEGATIVE_CONTROL === '1'
 fs.mkdirSync(LOG_DIR, { recursive: true })
 fs.mkdirSync(EVIDENCE_ROOT, { recursive: true })
@@ -51,7 +52,7 @@ function fromChecks(id, c, { files = [], notes = '', passStatus = PASS } = {}) {
   files.push(ev.text(id, 'checks.json', c.items))
   return { status: c.passed ? passStatus : FAIL, evidenceFiles: files, notes: [c.passed ? '' : `FAILED: ${c.summary()}`, notes].filter(Boolean).join(' | ') }
 }
-const run = { startedAt: new Date().toISOString(), serial: process.env.ANDROID_SERIAL || null, negativeControl: NEGATIVE, device: null, apk: null, fatalExceptions: null }
+const run = { flavor: FLAVOR, startedAt: new Date().toISOString(), serial: process.env.ANDROID_SERIAL || null, negativeControl: NEGATIVE, device: null, apk: null, fatalExceptions: null }
 const shared = { apkFiles: null, dpr: null }
 
 // ---------- small page helpers ----------
@@ -89,6 +90,7 @@ async function webViewOrigin() {
   return m ? { x: Number(m[1]), y: Number(m[2]) } : { x: 0, y: 0 }
 }
 async function tapElement(selector) {
+  handleAnrDialog()
   await app.page.evaluate((s) => document.querySelector(s).scrollIntoView({ block: 'center' }), selector)
   await sleep(600)
   const r = await app.page.evaluate((s) => { const q = document.querySelector(s).getBoundingClientRect(); return { x: q.left + q.width / 2, y: q.top + q.height / 2 } }, selector)
@@ -99,6 +101,7 @@ async function tapElement(selector) {
 }
 
 async function ensureApp() {
+  handleAnrDialog()
   // Reconnect when there is no page, the app restarted (new pid) or it is not in front.
   if (!app.page || app.page.isClosed() || app.pid !== String(appPid()) || resumedActivity().pkg !== PKG) await app.connect()
   return app.page
@@ -127,6 +130,7 @@ test('T1', 'Clean build', 'npm run android:debug from a clean tree exits 0 and p
   if (SKIP_BUILD) return notRun('--skip-build was given; the existing APK was used')
   fs.rmSync(path.join(ROOT, 'dist'), { recursive: true, force: true })
   fs.rmSync(path.join(ROOT, 'android', 'app', 'build'), { recursive: true, force: true })
+  fs.rmSync(APK, { force: true })
   const logFile = path.join(LOG_DIR, 'T1-build.log')
   const fd = fs.openSync(logFile, 'w')
   const res = spawnSync('npm run android:debug', { cwd: ROOT, shell: true, stdio: ['ignore', fd, fd], timeout: 30 * 60 * 1000 })
@@ -299,6 +303,7 @@ test('T7', 'Live data (read-only)', '/mausam, /msp, the mandi ticker on / and th
   const c = new Checks()
   const files = []
   const pages = {}
+  let browseCount = null
   await app.goto('/about', { settle: 500 })
   await setLocation()
   const probe = async (route, grab) => {
@@ -329,11 +334,16 @@ test('T7', 'Live data (read-only)', '/mausam, /msp, the mandi ticker on / and th
   {
     const { dom, ok200 } = await probe('/browse', () => ({ listingLinks: document.querySelectorAll('a[href^="/listing/"]').length, cards: document.querySelectorAll('[data-testid="contact-actions"]').length, text: (document.querySelector('#root')?.innerText || '').replace(/\s+/g, ' ').slice(0, 200) }))
     c.check('/browse: 200 from supabase.co', ok200(/supabase\.co$/) > 0, pages['/browse'].hosts)
-    c.check('/browse: DOM shows listings', dom.listingLinks + dom.cards > 0, dom)
+    // Batch 8B: a project with no listings near Sagar cannot show any — then the display part
+    // is NOT-RUN here (S6 covers it on staging), not a pass.
+    browseCount = dom.listingLinks + dom.cards
+    if (browseCount > 0) c.check('/browse: DOM shows listings', true, dom)
   }
   await clearLocation()
   files.push(ev.text(id, 'live-data.json', pages))
-  return fromChecks(id, c, { files, notes: 'No mandi-api.onrender.com call exists in the client (prices come from Supabase); /browse has no ticker, so its listings are checked instead. /mausam needs a place: Sagar was set as the saved location (the page then upserts its weather-grid request, as it does for any visitor).' })
+  const r7 = fromChecks(id, c, { files, notes: `${browseCount === 0 ? 'LISTING DISPLAY NOT-RUN: /browse returned 0 listings near Sagar on this project (network part checked). ' : ''}No mandi-api.onrender.com call exists in the client (prices come from Supabase); /browse has no ticker, so its listings are checked instead. /mausam needs a place: Sagar was set as the saved location (the page then upserts its weather-grid request, as it does for any visitor).` })
+  if (r7.status === PASS && browseCount === 0) r7.status = NOTRUN
+  return r7
 })
 
 test('T8', 'No service worker', 'navigator.serviceWorker.getRegistrations() is empty, no update/install banner in the DOM, sw.js is absent from the APK', true, async (id) => {
@@ -370,8 +380,13 @@ test('T9', 'Edge-to-edge / safe areas', 'API 36 portrait: NavBar below the statu
   }
   const size = (sh('wm size').out.match(/(\d+)x(\d+)\s*$/m) || []).slice(1).map(Number)
   const status = insetFrame('statusBars'), nav = insetFrame('navigationBars')
-  const xml = uiDump()
-  const web = (xml.match(/class="android\.webkit\.WebView"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/) || []).slice(1).map(Number)
+  // Batch 8B: the UI dump is a snapshot of whatever is in front; on a busy emulator the app can be
+  // momentarily behind (or the dump empty), so bring it forward and read again (max 3 times).
+  let web = []
+  for (let i = 0; i < 3 && web.length !== 4; i++) {
+    if (i > 0) { handleAnrDialog(); if (resumedActivity().pkg !== PKG) launchApp(); await sleep(2000) }
+    web = (uiDump().match(/class="android\.webkit\.WebView"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/) || []).slice(1).map(Number)
+  }
   const ratio = await dpr()
   const sys = { screen: size, statusBarFrame: status, navigationBarFrame: nav, webViewBounds: web, devicePixelRatio: ratio, sdk: sh('getprop ro.build.version.sdk').out.trim(), rotation: (sh('dumpsys window displays').out.match(/mCurrentRotation=(\w+)|rotation=(\d)/) || [])[0] || null }
   c.check('status bar and navigation bar frames were read from dumpsys window', !!status && !!nav && size.length === 2, { status, nav, size })
@@ -405,12 +420,14 @@ test('T9', 'Edge-to-edge / safe areas', 'API 36 portrait: NavBar below the statu
     files.push((await ev.shot(id, `${name}-top`)).file)
     // Offline banner, forced visible without touching the network.
     await app.page.evaluate(() => window.dispatchEvent(new Event('offline')))
-    const banner = await waitFor(() => app.page.evaluate(() => { const b = document.querySelector('[data-testid="offline-banner"]'); if (!b) return null; const q = b.getBoundingClientRect(); return { top: q.top, bottom: q.bottom } }), { timeout: 4000 })
+    const banner = await waitFor(() => app.page.evaluate(() => { const b = document.querySelector('[data-testid="offline-banner"]'); if (!b) return null; const q = b.getBoundingClientRect(); const h = document.querySelector('header.ks-safe-sticky'); return { top: q.top, bottom: q.bottom, headerTop: h ? h.getBoundingClientRect().top : null } }), { timeout: 4000 })
+    await sleep(400)
+    const bannerNow = await app.page.evaluate(() => { const b = document.querySelector('[data-testid="offline-banner"]'); const h = document.querySelector('header.ks-safe-sticky'); if (!b) return null; return { bottom: b.getBoundingClientRect().bottom, headerTop: h ? h.getBoundingClientRect().top : null } })
     if (route === '/') files.push((await ev.shot(id, 'home-offline-banner-forced')).file)
     await app.page.evaluate(() => window.dispatchEvent(new Event('online')))
     await waitFor(() => app.page.evaluate(() => !document.querySelector('[data-testid="offline-banner"]')), { timeout: 4000 })
     // Bottom of the page: the footer's last link must clear the tab bar.
-    await app.page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight)); await sleep(700)
+    await app.page.evaluate(async () => { let h = -1; for (let i = 0; i < 8 && h !== document.documentElement.scrollHeight; i++) { h = document.documentElement.scrollHeight; window.scrollTo(0, h); await new Promise((r) => setTimeout(r, 600)) } })
     const bottom = await app.page.evaluate(() => {
       const links = [...document.querySelectorAll('footer a')]
       const last = links.at(-1)
@@ -430,6 +447,8 @@ test('T9', 'Edge-to-edge / safe areas', 'API 36 portrait: NavBar below the statu
     c.check(`${route}: tab bar buttons end (${g.tabButtonsBottom}px) at or above the navigation bar top (${navTop}px), within ${tol}px (1 CSS px) rounding`, g.tabButtonsBottom != null && g.tabButtonsBottom <= navTop + tol)
     c.check(`${route}: no tab bar button is covered by another element`, top.tabButtons.length > 0 && top.tabButtons.every((b) => !b.covered))
     c.check(`${route}: forced offline banner top (${g.offlineBannerTop}px) is at or below the status bar bottom (${statusBottom}px)`, g.offlineBannerTop != null && g.offlineBannerTop >= statusBottom - tol)
+    // Batch 8B (D1): the banner must not cover the header — the header moves below it.
+    if (bannerNow?.headerTop != null) c.check(`${route}: offline banner does not cover the NavBar (header top ${bannerNow.headerTop.toFixed(1)} ≥ banner bottom ${bannerNow.bottom.toFixed(1)} CSS px)`, bannerNow.headerTop >= bannerNow.bottom - 0.5, bannerNow)
     c.check(`${route}: last footer link is fully visible above the tab bar`, !!bottom && bottom.tabBarTop != null && bottom.bottom <= bottom.tabBarTop + 0.5 && bottom.top >= bottom.headerBottom - 0.5 && bottom.reachable, bottom)
   }
   // The CSS path (WebView >= 140, edge to edge) cannot occur on a device whose WebView is older,
@@ -448,15 +467,23 @@ test('T9', 'Edge-to-edge / safe areas', 'API 36 portrait: NavBar below the statu
     const btnBottom = bar ? Math.max(...[...bar.querySelectorAll('button')].map((b) => b.getBoundingClientRect().bottom)) : null
     const out = { header: rect('header.ks-safe-sticky'), banner: rect('[data-testid="offline-banner"]'), statusStrip: parseFloat(getComputedStyle(document.body, '::before').height), tabButtonsBottom: btnBottom, innerHeight: window.innerHeight }
     window.dispatchEvent(new Event('online'))
-    window.scrollTo(0, document.documentElement.scrollHeight)
-    await new Promise((r) => setTimeout(r, 600))
+    // The page can still grow (data arriving, the banner leaving): scroll to the end until the
+    // page height stops changing (max ~5 s), then measure.
+    let h = -1
+    for (let i = 0; i < 8 && h !== document.documentElement.scrollHeight; i++) {
+      h = document.documentElement.scrollHeight
+      window.scrollTo(0, h)
+      await new Promise((r) => setTimeout(r, 600))
+    }
     const links = [...document.querySelectorAll('footer a')]; const last = links.at(-1).getBoundingClientRect()
     out.footerLastBottom = last.bottom; out.tabBarTop = bar.getBoundingClientRect().top
     root.style.removeProperty('--safe-area-inset-top'); root.style.removeProperty('--safe-area-inset-bottom')
     return out
   }, sim)
   geometry.simulatedEdgeToEdge = { insetsCss: sim, ...simulated }
-  c.check(`simulated edge-to-edge: NavBar top = status-bar inset (${sim.top}px)`, !!simulated.header && Math.abs(simulated.header.top - sim.top) <= 1, simulated.header)
+  // Batch 8B (D1): the offline banner is forced on here, so the header sits directly below it
+  // (status-bar inset + banner height) instead of at the inset under the banner.
+  c.check(`simulated edge-to-edge: NavBar top = status-bar inset (${sim.top}px) + offline banner height, i.e. directly below the banner`, !!simulated.header && !!simulated.banner && Math.abs(simulated.header.top - simulated.banner.bottom) <= 1 && Math.abs(simulated.banner.top - sim.top) <= 1, { header: simulated.header, banner: simulated.banner })
   c.check('simulated edge-to-edge: an opaque strip covers the status bar', Math.abs(simulated.statusStrip - sim.top) <= 1, simulated.statusStrip)
   c.check('simulated edge-to-edge: offline banner below the status bar', !!simulated.banner && simulated.banner.top >= sim.top - 1, simulated.banner)
   c.check(`simulated edge-to-edge: tab bar buttons end above the navigation bar (${sim.bottom}px)`, simulated.tabButtonsBottom != null && simulated.tabButtonsBottom <= simulated.innerHeight - sim.bottom + 1, { tabButtonsBottom: simulated.tabButtonsBottom, limit: simulated.innerHeight - sim.bottom })
@@ -794,7 +821,7 @@ test('T16', 'Icon + splash', 'Launcher icons at all densities + adaptive-icon XM
   const files = []
   // Splash: capture frames right after a cold start.
   await app.close(); forceStop(); await sleep(800)
-  sh(`am start -n ${PKG}/.MainActivity`)
+  sh(`am start -n ${ACTIVITY}`)
   for (const n of [1, 2, 3]) { try { files.push((await ev.shot(id, `splash-frame-${n}`)).file) } catch { /* frame missed */ } }
   await sleep(3000)
   files.push((await ev.shot(id, 'after-splash')).file)
@@ -885,7 +912,7 @@ test('T18', 'Web regression', '(a) apiUrl()/isNative() are inert without Capacit
   // src/, index.html and vite.config.js copied in ("after"). Same folder, same placeholder env.
   const wt = path.join(ROOT, '.ks-baseline')
   const git = (args) => spawnSync('git', args, { cwd: ROOT, encoding: 'utf8' })
-  const base = (git(['rev-parse', '--verify', '--quiet', 'staging']).stdout || git(['merge-base', 'HEAD', 'origin/staging']).stdout || '').trim()
+  const base = (shared.sizeBase ? git(['rev-parse', '--verify', '--quiet', shared.sizeBase]).stdout : (git(['rev-parse', '--verify', '--quiet', 'staging']).stdout || git(['merge-base', 'HEAD', 'origin/staging']).stdout || '')).trim()
   const sizes = { baseCommit: base.slice(0, 7) }
   const env = { ...process.env, KS_NATIVE: '', VITE_SUPABASE_URL: 'https://placeholder.supabase.co', VITE_SUPABASE_ANON_KEY: 'placeholder-anon-key' }
   const measure = (out) => {
@@ -962,10 +989,15 @@ if (NEGATIVE) {
   })
 }
 
+// Batch 8B — the staging flavour suite (S1–S10, O1–O8) reuses the helpers above.
+if (IS_STAGING) registerStaging({ test, app, ev, notRun, fromChecks, PASS, FAIL, NOTRUN, HUMAN, ensureApp, tapElement, setLocation, clearLocation, fatalsIn, aapt2, TESTS, shared, SKIP_BUILD })
+
 // =====================================================================================
 // RUN
 // =====================================================================================
-const selected = TESTS.filter((t) => !ONLY || ONLY.includes(t.id))
+// prod: T1–T18 (+NEG); staging: S/O tests in STAGING_ORDER (+NEG-S); staging-local: S9.
+const flavourIds = FLAVOR === 'prod' ? TESTS.filter((t) => /^(T\d+|NEG)$/.test(t.id)).map((t) => t.id) : FLAVOR === 'staging-local' ? ['S9'] : STAGING_ORDER
+const selected = flavourIds.map((fid) => TESTS.find((t) => t.id === fid)).filter(Boolean).filter((t) => !ONLY || ONLY.includes(t.id.toUpperCase()))
 // test-android.sh sets KS_NO_DEVICE_REASON when the emulator could not be started.
 const device = process.env.KS_NO_DEVICE_REASON ? { ok: false, reason: process.env.KS_NO_DEVICE_REASON } : deviceState()
 if (device.ok) {
@@ -975,16 +1007,31 @@ if (device.ok) {
 // Logcat for the whole run (requirement: fail on any FATAL EXCEPTION of the app).
 const logcatFile = path.join(LOG_DIR, `logcat-${path.basename(OUT, '.json')}.txt`)
 let logcat = null
+let logcatStopping = false
 if (device.ok) {
   adb(['logcat', '-c'])
   const fd = fs.openSync(logcatFile, 'w')
-  logcat = spawn(ADB, ['logcat', '-v', 'threadtime'], { stdio: ['ignore', fd, 'ignore'] })
+  // The stream ends if the adb server restarts; start it again (same file) so no crash goes unseen.
+  const startLogcat = () => {
+    logcat = spawn(ADB, ['logcat', '-v', 'threadtime'], { stdio: ['ignore', fd, 'ignore'] })
+    logcat.on('exit', () => { if (!logcatStopping) { run.logcatRestarts = (run.logcatRestarts || 0) + 1; setTimeout(startLogcat, 1000) } })
+  }
+  startLogcat()
 }
 
 const results = []
 const save = () => fs.writeFileSync(OUT, JSON.stringify({ run, tests: results }, null, 2) + '\n')
 for (const t of selected) {
+  // A staging run without S3 (which installs both APKs) still tests the APK it built: install it
+  // once, right before the first device test (i.e. after S1 has built it).
+  if (t.needsDevice && device.ok && FLAVOR === 'staging' && !run.installedAtStart && !selected.some((x) => x.id === 'S3') && fs.existsSync(APK)) {
+    const r = adb(['install', '-r', APK], { timeout: 180000 })
+    run.installedAtStart = /Success/.test(r.out) ? rel(APK) : `install failed: ${(r.out + r.err).trim().split('\n').pop()}`
+  }
   const started = Date.now()
+  if (t.needsDevice && device.ok) handleAnrDialog()
+  // Evidence of an earlier run of this test is removed first, so the folder only holds this run's files.
+  fs.rmSync(path.join(EVIDENCE_ROOT, t.id), { recursive: true, force: true })
   process.stdout.write(`${t.id} ${t.name} … `)
   let r
   if (t.needsDevice && !device.ok) r = notRun(`no device: ${device.reason}`)
@@ -1005,6 +1052,7 @@ await app.close()
 if (device.ok) { sh('cmd connectivity airplane-mode disable'); key(3) }
 if (logcat) {
   await sleep(1500)
+  logcatStopping = true
   logcat.kill()
   await sleep(500)
   const fatals = fatalsIn(fs.readFileSync(logcatFile, 'utf8'))
@@ -1014,10 +1062,14 @@ if (logcat) {
 run.finishedAt = new Date().toISOString()
 // How often the WebView connection had to be re-attached (see AppSession in lib.mjs).
 run.cdpReconnects = app.reconnects
+// "isn't responding" dialogs seen: other processes' answered "Wait"; this app's fail the run.
+run.systemAnrDismissed = anrLog.dismissed
+run.appAnr = anrLog.app
 save()
 
 const n = (s) => results.filter((r) => r.status === s).length
 console.log(`\n${results.length} tests — ${n(PASS)} RAN-PASSED, ${n(FAIL)} RAN-FAILED, ${n(NOTRUN)} NOT-RUN, ${n(HUMAN)} HUMAN-REVIEW`)
 if (run.fatalExceptions) console.log(`FATAL EXCEPTION in logcat for ${PKG}: ${run.fatalExceptions} — the run fails`)
 console.log(`results: ${rel(OUT)}`)
-process.exit(n(FAIL) > 0 || run.fatalExceptions ? 1 : 0)
+if (anrLog.app.length) console.log(`APP NOT RESPONDING dialogs for ${PKG}: ${anrLog.app.length} — the run fails`)
+process.exit(n(FAIL) > 0 || run.fatalExceptions || anrLog.app.length ? 1 : 0)

@@ -113,5 +113,14 @@ done
 "$ADB" -s "$SERIAL" shell wm dismiss-keyguard >/dev/null 2>&1
 "$ADB" -s "$SERIAL" shell cmd connectivity airplane-mode disable >/dev/null 2>&1
 
+# 6. Internet inside the emulator (Batch 8B): right after a boot the emulator's DNS is sometimes
+#    not up yet; a run that starts then fails at the first request. Wait up to 3 minutes.
+NET_OK=0
+for _ in $(seq 1 60); do
+  if "$ADB" -s "$SERIAL" shell ping -c 1 -W 2 dns.google 2>/dev/null | grep -q "1 received\|1 packets received"; then NET_OK=1; break; fi
+  sleep 3
+done
+[ "$NET_OK" = 1 ] && echo "avd-setup: emulator internet OK (DNS + reachability)" || echo "avd-setup: WARNING — the emulator has no working internet after 3 minutes; online tests will fail"
+
 echo "avd-setup: ready (booted in $(( $(date +%s) - START ))s, API $("$ADB" -s "$SERIAL" shell getprop ro.build.version.sdk | tr -d '\r\n'))"
 echo "$SERIAL"

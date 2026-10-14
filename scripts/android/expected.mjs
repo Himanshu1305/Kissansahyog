@@ -1,9 +1,19 @@
 // Batch 8A — the facts the Android tests assert against. Changing a value here changes what
 // "pass" means, so every entry says why it is what it is.
 
-export const PKG = 'com.kissansahyog.app'
-export const ACTIVITY = `${PKG}/.MainActivity`
-export const APP_LABEL = 'Kisan Sahyog'
+// Batch 8B — which app flavour this run tests (scripts/test-android.sh --flavor sets KS_FLAVOR):
+//   prod           com.kissansahyog.app          "Kisan Sahyog"            ks-production.apk
+//   staging        com.kissansahyog.app.staging  "Kisan Sahyog (Staging)"  ks-staging.apk
+//   staging-local  same app id as staging, API on http://localhost:8788       ks-staging-local.apk
+export const FLAVOR = process.env.KS_FLAVOR || 'prod'
+if (!['prod', 'staging', 'staging-local'].includes(FLAVOR)) throw new Error(`KS_FLAVOR must be prod, staging or staging-local (got ${FLAVOR})`)
+export const IS_STAGING = FLAVOR !== 'prod'
+export const APK_NAME = { prod: 'ks-production.apk', staging: 'ks-staging.apk', 'staging-local': 'ks-staging-local.apk' }[FLAVOR]
+export const PKG = IS_STAGING ? 'com.kissansahyog.app.staging' : 'com.kissansahyog.app'
+export const PROD_PKG = 'com.kissansahyog.app'
+export const STAGING_PKG = 'com.kissansahyog.app.staging'
+export const ACTIVITY = `${PKG}/com.kissansahyog.app.MainActivity`
+export const APP_LABEL = IS_STAGING ? 'Kisan Sahyog (Staging)' : 'Kisan Sahyog'
 export const VERSION_NAME = '0.1.0'
 export const VERSION_CODE = '1'
 export const MIN_SDK = '24'

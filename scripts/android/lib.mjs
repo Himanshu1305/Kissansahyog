@@ -7,12 +7,14 @@ import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 import { _android } from 'playwright-core'
 import { findJdk21, findSdk } from './find-jdk.mjs'
-import { PKG, ACTIVITY, APP_URL } from './expected.mjs'
+import { PKG, ACTIVITY, APP_URL, APK_NAME } from './expected.mjs'
 
 export const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..')
-export const OUT_DIR = path.join(ROOT, 'docs', 'review', 'batch8a')
+// Batch 8B: results / evidence / logs of all flavours live under docs/review/batch8b.
+export const OUT_DIR = path.join(ROOT, 'docs', 'review', process.env.KS_REVIEW_DIR || 'batch8b')
 export const LOG_DIR = path.join(OUT_DIR, 'logs')
-export const APK = path.join(ROOT, 'android', 'app', 'build', 'outputs', 'apk', 'debug', 'app-debug.apk')
+export const APK_DIR = path.join(ROOT, 'android', 'ks-apks') // named copies (build-android.mjs)
+export const APK = path.join(APK_DIR, APK_NAME)
 export const WIN = process.platform === 'win32'
 export const SDK = findSdk()
 export const JDK = findJdk21()
@@ -24,11 +26,41 @@ export const rel = (p) => path.relative(ROOT, p).replaceAll('\\', '/')
 // ---------- adb ----------
 // ANDROID_SERIAL (set by scripts/test-android.sh, or by the person for a real phone) picks the
 // device; adb reads it from the environment by itself.
+// Batch 8B: an adb server restart or a briefly "offline" device is retried (up to 4 times) instead
+// of being read as an empty answer — an empty `pidof` used to look like a dead app. get-state is
+// never retried (it is how an absent device is detected).
+const ADB_TRANSIENT = /daemon not running|daemon started|cannot connect to daemon|device offline|no devices\/emulators found|protocol fault|connection reset/i
 export function adb(args, { timeout = 60000, buffer = false } = {}) {
-  const res = spawnSync(ADB, args, { encoding: buffer ? 'buffer' : 'utf8', timeout, maxBuffer: 256 * 1024 * 1024 })
+  let res
+  for (let attempt = 0; attempt < 4; attempt++) {
+    res = spawnSync(ADB, args, { encoding: buffer ? 'buffer' : 'utf8', timeout, maxBuffer: 256 * 1024 * 1024 })
+    if (args[0] === 'get-state' || !ADB_TRANSIENT.test(String(res.stderr || ''))) break
+    spawnSync(ADB, ['wait-for-device'], { timeout: 30000 })
+  }
   return { ok: res.status === 0, status: res.status, out: buffer ? res.stdout : (res.stdout || '').replace(/\r\n/g, '\n'), err: buffer ? '' : (res.stderr || '').replace(/\r\n/g, '\n') }
 }
 export const sh = (cmd, opts) => adb(['shell', cmd], opts)
+// "… isn't responding" dialogs. On this software-rendered emulator Android's own System UI
+// sometimes stalls and its dialog then swallows taps and the back key. Another process's dialog
+// is answered "Wait" and counted; a dialog about THIS app is never dismissed here — it is
+// returned so the run can record it as an app failure.
+export const anrLog = { dismissed: [], app: [] }
+export function handleAnrDialog() {
+  const focus = (sh('dumpsys window').out.match(/mCurrentFocus=.*$/m) || [''])[0]
+  if (!/Not Responding/i.test(focus)) return null
+  const who = (focus.match(/Not Responding: ([\w.:]+)/i) || [])[1] || 'unknown'
+  if (who.startsWith(PKG)) { anrLog.app.push({ at: new Date().toISOString(), who }); return { app: true, who } }
+  const wait = uiFind(uiDump(), /^Wait$/i)
+  if (wait) tap(wait.x, wait.y)
+  anrLog.dismissed.push({ at: new Date().toISOString(), who, answered: wait ? 'Wait' : 'no button found' })
+  return { app: false, who }
+}
+
+// Airplane mode on/off, verified: the setting must really change.
+export async function airplane(on) {
+  sh(`cmd connectivity airplane-mode ${on ? 'enable' : 'disable'}`)
+  return !!(await waitFor(() => sh('settings get global airplane_mode_on').out.trim() === (on ? '1' : '0'), { timeout: 10000, interval: 500 }))
+}
 
 export function deviceState() {
   const r = adb(['get-state'], { timeout: 15000 })
@@ -71,7 +103,8 @@ export function uiFind(xml, re) {
   return null
 }
 export const tap = (x, y) => sh(`input tap ${Math.round(x)} ${Math.round(y)}`)
-export const key = (code) => sh(`input keyevent ${code}`)
+// A key press first clears a stalled-System-UI dialog, which would otherwise swallow it.
+export const key = (code) => { handleAnrDialog(); return sh(`input keyevent ${code}`) }
 
 // ---------- evidence ----------
 export function makeEvidence(root) {
@@ -125,8 +158,10 @@ export class AppSession {
           const out = self._page[prop](...args)
           if (!out || typeof out.then !== 'function') return out
           return out.catch(async (e) => {
-            const pid = appPid()
-            if (!/has been closed|Target closed|Browser closed/i.test(String(e?.message || e)) || !pid) { if (e && e.message) e.message += ` [no re-attach: app pid '${pid}']`; throw e }
+            if (!/has been closed|Target closed|Browser closed/i.test(String(e?.message || e))) throw e
+            // After an adb hiccup the pid can read empty for a moment: wait for it before giving up.
+            const pid = await waitFor(() => appPid(), { timeout: 15000, interval: 1000 })
+            if (!pid) { if (e && e.message) e.message += ' [no re-attach: the app process is gone]'; throw e }
             self.reconnects++
             await self.connect({ launch: false })
             return self._page[prop](...args)
