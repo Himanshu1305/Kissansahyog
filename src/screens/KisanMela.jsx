@@ -13,6 +13,7 @@ import { stateLabel } from '../content/states.js'
 import { generateMelaMessage } from '../lib/share/shareMessages'
 import { MONTHS_FULL_HI, MONTHS_FULL_EN } from '../content/months'
 import WhatsAppJoin from '../components/WhatsAppJoin'
+import { publicOrigin } from '../lib/native'
 
 // Public Kisan Mela calendar — no login to browse. Self-sourced, honest ("अपेक्षित" dates
 // clearly marked), state + month filters, distance-sorted from the viewer's location.
@@ -145,7 +146,7 @@ export default function KisanMela() {
               const nm = lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)
               const highlights = lang === 'hi' ? m.highlights_hi : (m.highlights_en || m.highlights_hi)
               const place = melaPlace(m)
-              const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/kisan-mela?mela=${m.id}`
+              const shareUrl = `${typeof window !== 'undefined' ? publicOrigin() : ''}/kisan-mela?mela=${m.id}`
               // Corroboration: all real http(s) sources across source_urls[] + the legacy source_url, deduped.
               // >=2 distinct → "found via multiple sources"; exactly 1 → shown plainly. Never worded as "verified accurate".
               const allSources = [...new Set([...(Array.isArray(m.source_urls) ? m.source_urls : []), m.source_url].filter((u) => /^https?:\/\//i.test(u || '')))]

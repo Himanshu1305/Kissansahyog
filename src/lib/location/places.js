@@ -4,6 +4,7 @@
 // and the district → town picker.
 import { supabase } from '../supabaseClient'
 import { haversineKm } from '../distance'
+import { apiUrl } from '../apiBase'
 
 export const DIVISION_DISTRICTS = [
   { en: 'Sagar', hi: 'सागर' },
@@ -145,7 +146,7 @@ export async function geocodeTyped(query) {
   const q = String(query || '').trim()
   if (q.length < 3) return null
   try {
-    const res = await fetch(`/geocode?q=${encodeURIComponent(q)}`, { signal: AbortSignal.timeout(12000) })
+    const res = await fetch(apiUrl(`/geocode?q=${encodeURIComponent(q)}`), { signal: AbortSignal.timeout(12000) })
     if (!res.ok) return null
     const d = await res.json()
     const lat = Number(d?.lat), lng = Number(d?.lng)

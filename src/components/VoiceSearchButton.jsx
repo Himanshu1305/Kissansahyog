@@ -3,6 +3,7 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import {
   getSpeechRecognition, speechRecognitionSupported, resolveVoiceMode, recorderMimeType, cleanTranscript,
 } from '../lib/voice/voiceSearch'
+import { apiUrl } from '../lib/apiBase'
 
 // A mic button attached to a search input. On tap it captures speech and calls
 // onTranscript(text) so the field fills live (primary) or on completion (fallback).
@@ -119,7 +120,7 @@ export default function VoiceSearchButton({ onTranscript, lang = 'hi-IN', classN
       try {
         const fd = new FormData()
         fd.append('audio', blob, 'clip')
-        const res = await fetch('/transcribe', { method: 'POST', body: fd })
+        const res = await fetch(apiUrl('/transcribe'), { method: 'POST', body: fd })
         if (!res.ok) { flash('voice_err_unavailable'); return }
         const j = await res.json()
         const text = cleanTranscript(j && j.text ? j.text : '')

@@ -7,6 +7,8 @@
 // The Gemini key is NEVER exposed to the browser: the client only ever talks to the
 // same-origin /transcribe function, which holds the key server-side.
 
+import { apiUrl } from '../apiBase'
+
 // --- Transcript clean-up ---
 // Speech engines and the Gemini fallback sometimes return wrapping quotes, a trailing
 // sentence mark, or stray whitespace. A search query wants none of that. Keep it
@@ -62,7 +64,7 @@ export async function transcribeConfigured() {
   if (_probe) return _probe
   _probe = (async () => {
     try {
-      const res = await fetch('/transcribe', { method: 'GET' })
+      const res = await fetch(apiUrl('/transcribe'), { method: 'GET' })
       if (!res.ok) return false
       const j = await res.json()
       return !!j.configured

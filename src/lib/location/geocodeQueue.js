@@ -11,6 +11,7 @@
 // homepage) — a listing posted with a new village name is created immediately (Phase 2e);
 // this worker fills its coordinates within seconds so it enters distance-based views.
 import { supabase } from '../supabaseClient'
+import { apiUrl } from '../apiBase'
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 let draining = false
@@ -33,7 +34,7 @@ export async function drainGeocodeQueue({ maxMs = 20000 } = {}) {
       }
       if (!slot) { await supabase.rpc('fail_village', { p_village: row.village_name, p_district: row.district, p_reason: 'slot timeout' }); break }
       try {
-        const res = await fetch(`/geocode?village=${encodeURIComponent(row.village_name)}&district=${encodeURIComponent(row.district)}`)
+        const res = await fetch(apiUrl(`/geocode?village=${encodeURIComponent(row.village_name)}&district=${encodeURIComponent(row.district)}`))
         const d = res.ok ? await res.json() : { found: false, error: `geocode ${res.status}` }
         if (d.found && d.lat != null && d.lng != null) {
           await supabase.rpc('resolve_village', { p_village: row.village_name, p_district: row.district, p_lat: d.lat, p_lng: d.lng, p_display: d.display_name || null })

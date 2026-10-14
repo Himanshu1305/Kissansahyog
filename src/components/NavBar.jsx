@@ -6,6 +6,7 @@ import { strings } from '../lib/i18n/strings'
 import LanguageToggle from './LanguageToggle'
 import SearchBar from './SearchBar'
 import Logo from './Logo'
+import { useNativeBack } from '../lib/useNativeBack'
 
 // Fixed brand wordmark (always the Hindi mark + Latin subtitle), sourced from the
 // strings table so no Devanagari literal lives in a component.
@@ -90,6 +91,7 @@ export default function NavBar() {
   const abRef = useRef(null)
   const [more, setMore] = useState(false) // और / More dropdown (desktop, 1024–1279px)
   const moreRef = useRef(null)
+  useNativeBack(open, () => setOpen(false)) // Android back closes the mobile menu first
 
   // Click-outside closes the desktop dropdowns (they are click-to-open, not hover).
   useEffect(() => {
@@ -155,7 +157,7 @@ export default function NavBar() {
   const closeMenus = () => { setBz(false); setSch(false); setRes(false); setAb(false); setMore(false) }
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[var(--ks-border-light)] bg-white shadow-sm">
+    <header className="ks-safe-sticky sticky top-0 z-30 border-b border-[var(--ks-border-light)] bg-white shadow-sm">
       <div className="flex w-full items-center gap-2 px-3 py-1.5">
         {/* Brand */}
         <button type="button" onClick={goHome} data-testid="nav-brand" className="flex min-w-0 shrink items-center gap-2 text-left lg:shrink-0">

@@ -9,6 +9,7 @@ import { generateArticleMessage } from '../lib/share/shareMessages'
 import { fetchArticleBySlug, articleTitle, articleContent } from '../lib/articles/articlesApi'
 import Seo from '../components/layout/Seo'
 import { PageShell } from '../components/layout'
+import { publicHref } from '../lib/native'
 
 // Parse "## heading" / paragraph blocks (blank-line separated) so articles can carry
 // question-shaped H2s (SEO/AEO), while plain articles still render as paragraphs.
@@ -49,7 +50,7 @@ export default function ArticleDetail() {
 
   async function copyLink() {
     try {
-      await navigator.clipboard.writeText(window.location.href)
+      await navigator.clipboard.writeText(publicHref())
       setCopied(true)
       setTimeout(() => setCopied(false), 2500)
     } catch { /* clipboard unavailable */ }
@@ -133,7 +134,7 @@ export default function ArticleDetail() {
               <p className="mb-2 text-sm font-semibold text-stone-600">{t('share_article')}</p>
               <div className="flex flex-col gap-2 sm:flex-row">
                 <WhatsAppShareButton
-                  message={generateArticleMessage(articleTitle(article, lang), window.location.href, lang)}
+                  message={generateArticleMessage(articleTitle(article, lang), publicHref(), lang)}
                   className="sm:w-auto sm:px-5"
                 />
                 <button type="button" onClick={copyLink} className="rounded-lg border-2 border-green-700 px-4 py-2 text-sm font-bold text-green-800">

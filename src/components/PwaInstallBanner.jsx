@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
+import { isNative } from '../lib/native'
 
 // Phase 7 — slim, dismissible install banner on the homepage (below nav, above hero).
 // Complements (does not replace) the returning-visitor prompt in PwaPrompts.
@@ -53,7 +54,7 @@ export default function PwaInstallBanner() {
   // only fires under Chrome's own install heuristics (and never on iOS/Firefox), so gating
   // on it hid the banner from most real visitors (the Phase-2 root cause). The BUTTON adapts:
   // native prompt when the event was captured, otherwise manual add-to-home-screen steps.
-  if (isStandalone() || dismissed) return null
+  if (isStandalone() || dismissed || isNative()) return null
   // hasPrompt referenced so the listener-driven re-render is not linted as unused.
   void hasPrompt
 

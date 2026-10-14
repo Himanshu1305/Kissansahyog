@@ -6,6 +6,7 @@
 import { useEffect, useState } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 import { useLang } from '../lib/i18n/LanguageProvider'
+import { isNative } from '../lib/native'
 
 const DAY = 24 * 60 * 60 * 1000
 const INSTALL_DISMISS_KEY = 'ks_install_dismissed_at'
@@ -25,7 +26,72 @@ function bumpVisit() {
   return next
 }
 
+// Batch 8A — two components, chosen once (isNative() never changes while the page lives),
+// so no hook is ever called conditionally. The website gets WebPrompts, exactly as before.
 export default function PwaPrompts() {
+  return isNative() ? <NativePrompts /> : <WebPrompts />
+}
+
+function lastOnlineText(lastOnline) {
+  return lastOnline
+    ? new Date(Number(lastOnline)).toLocaleString('hi-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+    : '—'
+}
+
+// The Android app: its files are bundled, so there is no service worker to register, no
+// update banner and no "install" prompt. Only the offline banner remains — placed below the
+// status bar (the app draws edge to edge). A service worker left behind by an older build is
+// removed.
+function NativePrompts() {
+  const { t } = useLang()
+  const [offline, setOffline] = useState(typeof navigator !== 'undefined' && !navigator.onLine)
+  const [lastOnline, setLastOnline] = useState(() => ls(true, LAST_ONLINE_KEY))
+
+  useEffect(() => {
+    navigator.serviceWorker?.getRegistrations?.()
+      .then((regs) => Promise.all((regs || []).map((r) => r.unregister())))
+      .catch(() => { /* nothing to remove */ })
+  }, [])
+
+  // The WebView's own online/offline events, plus @capacitor/network (the system's view of
+  // connectivity), whichever reports first.
+  useEffect(() => {
+    let gone = false
+    let handle = null
+    function apply(connected) {
+      if (gone) return
+      if (connected) { const now = String(Date.now()); lsSet(LAST_ONLINE_KEY, now); setLastOnline(now); setOffline(false) }
+      else setOffline(true)
+    }
+    const markOnline = () => apply(true)
+    const markOffline = () => apply(false)
+    if (navigator.onLine) markOnline()
+    window.addEventListener('online', markOnline)
+    window.addEventListener('offline', markOffline)
+    import('@capacitor/network').then(async ({ Network }) => {
+      if (gone) return
+      const status = await Network.getStatus()
+      apply(!!status.connected)
+      const h = await Network.addListener('networkStatusChange', (s) => apply(!!s.connected))
+      if (gone) h?.remove?.(); else handle = h
+    }).catch(() => { /* plugin unavailable: the window events above still work */ })
+    return () => {
+      gone = true
+      handle?.remove?.()
+      window.removeEventListener('online', markOnline)
+      window.removeEventListener('offline', markOffline)
+    }
+  }, [])
+
+  if (!offline) return null
+  return (
+    <div data-testid="offline-banner" className="fixed inset-x-0 z-[60] flex flex-wrap items-center gap-2 px-4 py-2 text-[14px] shadow-lg" style={{ top: 'var(--ks-safe-top, 0px)', background: 'var(--ks-orange-dark)', color: '#fff' }} role="status">
+      <span className="font-semibold">📴 {t('pwa_offline_prefix')} {lastOnlineText(lastOnline)}</span>
+    </div>
+  )
+}
+
+function WebPrompts() {
   const { t } = useLang()
   const { needRefresh: [needRefresh] } = useRegisterSW({
     onRegisteredSW() { /* registered */ },

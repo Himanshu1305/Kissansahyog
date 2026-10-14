@@ -11,6 +11,7 @@ import Footer from './components/layout/Footer'
 import BottomTabBar from './components/BottomTabBar'
 import { SiteJsonLd } from './components/layout/Seo'
 import RouteSeo from './components/layout/RouteSeo'
+import { isNative } from './lib/native'
 
 // Route-level code splitting (perf budget: keep the initial bundle small).
 const Homepage = lazy(() => import('./screens/Homepage'))
@@ -64,6 +65,8 @@ const JugaadJankari = lazy(() => import('./screens/JugaadJankari'))
 const Join = lazy(() => import('./screens/Join'))
 const Search = lazy(() => import('./screens/Search'))
 const NotFound = lazy(() => import('./screens/NotFound'))
+// Batch 8A — Android app only (back button, link routing); never loaded on the website.
+const NativeShell = lazy(() => import('./components/NativeShell'))
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -194,6 +197,7 @@ export default function App() {
           <BottomTabBar />
           <PwaPrompts />
           <BuyerComplianceGate />
+          {isNative() && <Suspense fallback={null}><NativeShell /></Suspense>}
         </BrowserRouter>
         </LocationProvider>
       </AuthProvider>

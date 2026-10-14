@@ -19,6 +19,7 @@ import { loadExtras } from '../lib/listings/extras'
 import { fetchListingById, incrementContactClick, incrementListingView } from '../lib/listings/listingsApi'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { haversineKm } from '../lib/distance'
+import { publicOrigin } from '../lib/native'
 
 export default function ListingDetail() {
   const { id } = useParams()
@@ -167,7 +168,7 @@ export default function ListingDetail() {
       {/* ks-allow-width: compact share button width */}
       <WhatsAppShareButton
         label={t('contact_share')}
-        message={generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)}
+        message={generateListingMessage(listing, `${publicOrigin()}/listing/${listing.id}`, lang)}
         className="mb-3 !bg-white !text-[var(--ks-green)] border-2 border-[var(--ks-green)] !py-1.5 text-sm"
         onClick={() => { if (!user || user.id !== listing.user_id) incrementContactClick(listing.id) }}
       />

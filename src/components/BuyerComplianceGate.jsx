@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
+import { useNativeBack } from '../lib/useNativeBack'
 
 // Phase 1b — one-time rules-compliance modal shown the FIRST time any user (logged in
 // or anonymous) taps a WhatsApp or Call contact action ANYWHERE on the platform.
@@ -78,10 +79,13 @@ export default function BuyerComplianceGate() {
     setOpen(false)
   }
 
+  // Android back = "not now" (same as tapping outside).
+  useNativeBack(open, cancel)
+
   if (!open) return null
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-end justify-center bg-black/50 p-0 sm:items-center sm:p-4"
+      className="ks-overlay fixed inset-0 z-[100] flex items-end justify-center bg-black/50 p-0 sm:items-center sm:p-4"
       role="dialog"
       aria-modal="true"
       data-testid="buyer-compliance-modal"

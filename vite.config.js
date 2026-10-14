@@ -3,11 +3,16 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+// Batch 8A — the Capacitor (Android) build sets KS_NATIVE=1 (scripts/build-android.mjs): the
+// bundled app needs no service worker or web manifest. Unset = the normal web build.
+const NATIVE = process.env.KS_NATIVE === '1'
+
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
     VitePWA({
+      disable: NATIVE,
       // Phase 5 — registerType 'autoUpdate': a new service worker activates as soon
       // as it is available, so farmers receive the current app without a manual
       // update prompt.
