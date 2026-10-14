@@ -3,10 +3,11 @@
 // install prompt shown only to returning visitors and suppressed 14 days once
 // dismissed, and (b) an offline banner so cached prices/weather are never shown
 // silently as current.
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { isNative } from '../lib/native'
+import { setOfflineHint } from '../lib/offline/status'
 
 const DAY = 24 * 60 * 60 * 1000
 const INSTALL_DISMISS_KEY = 'ks_install_dismissed_at'
@@ -44,6 +45,7 @@ function lastOnlineText(lastOnline) {
 // removed.
 function NativePrompts() {
   const { t } = useLang()
+  const bannerRef = useRef(null)
   const [offline, setOffline] = useState(typeof navigator !== 'undefined' && !navigator.onLine)
   const [lastOnline, setLastOnline] = useState(() => ls(true, LAST_ONLINE_KEY))
 
@@ -58,8 +60,11 @@ function NativePrompts() {
   useEffect(() => {
     let gone = false
     let handle = null
-    function apply(connected) {
+    function apply(connected, fromSystem = false) {
       if (gone) return
+      // Only the system's answer feeds the data layer: at a cold start the WebView's navigator.onLine
+      // says "online" even in airplane mode.
+      if (fromSystem) setOfflineHint(!connected)
       if (connected) { const now = String(Date.now()); lsSet(LAST_ONLINE_KEY, now); setLastOnline(now); setOffline(false) }
       else setOffline(true)
     }
@@ -71,8 +76,8 @@ function NativePrompts() {
     import('@capacitor/network').then(async ({ Network }) => {
       if (gone) return
       const status = await Network.getStatus()
-      apply(!!status.connected)
-      const h = await Network.addListener('networkStatusChange', (s) => apply(!!s.connected))
+      apply(!!status.connected, true)
+      const h = await Network.addListener('networkStatusChange', (s) => apply(!!s.connected, true))
       if (gone) h?.remove?.(); else handle = h
     }).catch(() => { /* plugin unavailable: the window events above still work */ })
     return () => {
@@ -83,9 +88,22 @@ function NativePrompts() {
     }
   }, [])
 
+  // Batch 8B (D1) — while the banner shows, its height is published as --ks-offline-h so the
+  // page and the sticky header move down below it (index.css) instead of being covered.
+  useEffect(() => {
+    const root = document.documentElement
+    const el = bannerRef.current
+    if (!offline || !el) { root.style.removeProperty('--ks-offline-h'); return undefined }
+    const apply = () => root.style.setProperty('--ks-offline-h', `${Math.ceil(el.getBoundingClientRect().height)}px`)
+    apply()
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(apply) : null
+    ro?.observe(el)
+    return () => { ro?.disconnect(); root.style.removeProperty('--ks-offline-h') }
+  }, [offline])
+
   if (!offline) return null
   return (
-    <div data-testid="offline-banner" className="fixed inset-x-0 z-[60] flex flex-wrap items-center gap-2 px-4 py-2 text-[14px] shadow-lg" style={{ top: 'var(--ks-safe-top, 0px)', background: 'var(--ks-orange-dark)', color: '#fff' }} role="status">
+    <div ref={bannerRef} data-testid="offline-banner" className="fixed inset-x-0 z-[60] flex flex-wrap items-center gap-2 px-4 py-2 text-[14px] shadow-lg" style={{ top: 'var(--ks-safe-top, 0px)', background: 'var(--ks-orange-dark)', color: '#fff' }} role="status">
       <span className="font-semibold">📴 {t('pwa_offline_prefix')} {lastOnlineText(lastOnline)}</span>
     </div>
   )

@@ -8,6 +8,7 @@
 // same-origin /transcribe function, which holds the key server-side.
 
 import { apiUrl } from '../apiBase'
+import { isNative } from '../native'
 
 // --- Transcript clean-up ---
 // Speech engines and the Gemini fallback sometimes return wrapping quotes, a trailing
@@ -27,6 +28,10 @@ export function getSpeechRecognition() {
   return window.SpeechRecognition || window.webkitSpeechRecognition || null
 }
 export function speechRecognitionSupported() {
+  // Batch 8B: Android's WebView exposes webkitSpeechRecognition, but it cannot recognise speech
+  // (WebView has no speech service). In the app only the /transcribe fallback is usable, and the
+  // mic is shown only when that reports it is configured. Website unchanged.
+  if (isNative()) return false
   return !!getSpeechRecognition()
 }
 

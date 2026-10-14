@@ -46,11 +46,13 @@
    WebViews, where it pads the window itself); env() is the fallback until that arrives. --- */
 html.native-app {
   --ks-safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  /* Batch 8B (D1): status bar + the offline banner when it shows (PwaPrompts sets --ks-offline-h). */
+  --ks-top-total: calc(var(--ks-safe-top) + var(--ks-offline-h, 0px));
   --ks-safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
 }
 /* Page content starts below the status bar and ends above the navigation bar. */
 html.native-app body {
-  padding-top: var(--ks-safe-top);
+  padding-top: var(--ks-top-total);
   padding-bottom: var(--ks-safe-bottom);
 }
 @media (max-width: 767px) {
@@ -66,7 +68,7 @@ html.native-app body::before {
   z-index: 55;
 }
 /* Sticky header sits under the status bar, not behind it. */
-html.native-app .ks-safe-sticky { top: var(--ks-safe-top); }
+html.native-app .ks-safe-sticky { top: var(--ks-top-total); }
 /* Bottom tab bar: its buttons end above the navigation / gesture bar. */
 html.native-app [data-ks-tabbar] { padding-bottom: var(--ks-safe-bottom) !important; }
 /* Full-screen overlays and bottom sheets keep their content clear of both bars. */
