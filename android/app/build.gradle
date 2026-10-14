@@ -1,10 +1,22 @@
 apply plugin: 'com.android.application'
 
+// Batch 8B — two app flavours from one project, chosen per build without editing files:
+//   ./gradlew assembleDebug                      production: com.kissansahyog.app, "Kisan Sahyog"
+//   ./gradlew assembleDebug -PksFlavor=staging   staging: com.kissansahyog.app.staging,
+//                                                "Kisan Sahyog (Staging)" — installs next to production
+//   -PksCleartext=true                           ONLY for the local-API test build (http://localhost)
+// scripts/build-android.mjs passes these; the web assets must be built for the same target.
+def ksFlavor = (project.findProperty('ksFlavor') ?: 'production').toString()
+if (!['production', 'staging'].contains(ksFlavor)) throw new GradleException("ksFlavor must be production or staging, not " + ksFlavor)
+def ksStaging = ksFlavor == 'staging'
+def ksCleartext = (project.findProperty('ksCleartext') ?: 'false').toString() == 'true'
+
 android {
     namespace = "com.kissansahyog.app"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.kissansahyog.app"
+        applicationId ksStaging ? "com.kissansahyog.app.staging" : "com.kissansahyog.app"
+        manifestPlaceholders = [appLabel: ksStaging ? "Kisan Sahyog (Staging)" : "Kisan Sahyog", usesCleartext: ksCleartext ? "true" : "false"]
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -14,6 +14,8 @@
     "build:prod": "node --env-file=.env.production scripts/check-prod-env.mjs && node --env-file=.env.production scripts/build-search-index.mjs && node --env-file=.env.production node_modules/vite/bin/vite.js build --mode production && node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist",
     "build:android": "node scripts/build-android.mjs",
     "android:debug": "node scripts/build-android.mjs --assemble",
+    "android:debug:staging": "node scripts/build-android.mjs --target staging --assemble",
+    "android:debug:staging-local": "node scripts/build-android.mjs --target staging --local-api --assemble",
     "test:android": "bash scripts/test-android.sh",
     "preview": "vite preview",
     "lint": "eslint .",

@@ -31,3 +31,6 @@ npm-debug.log*
 
 # Cloudflare wrangler local dev state/cache
 .wrangler/
+
+# Cloudflare local secrets for `wrangler pages dev` (Batch 8B tests) — never committed
+.dev.vars

@@ -1,6 +1,8 @@
 # Using Android gitignore template: https://github.com/github/gitignore/blob/HEAD/Android.gitignore
 
 # Built application files
+# Batch 8B: named APK copies made by scripts/build-android.mjs
+ks-apks/
 *.apk
 *.aar
 *.ap_
