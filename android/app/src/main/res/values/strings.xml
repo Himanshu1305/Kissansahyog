@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Kisan Sahyog</string>
+    <string name="title_activity_main">Kisan Sahyog</string>
+    <string name="package_name">com.kissansahyog.app</string>
+    <string name="custom_url_scheme">com.kissansahyog.app</string>
+</resources>
