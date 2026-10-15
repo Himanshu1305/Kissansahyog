@@ -84,7 +84,7 @@ KSTEST-KEEP rows are untouched (`evidence/fix9c/cleanup.json`).
 - `scripts/ship-prod-9.sh` and `scripts/rollback-prod-9.sh` now list `0063` and its rollback, as files only. A real
   ship cannot check whether 0063 was applied (it only changes a function), so the script says to make sure it was
   run. Without 0063 the new site still works; production just would not double-check specs on the server.
-- Dry runs: see `evidence/fix9c/deploy/` (results in PROGRESS_FIX9C.md).
+- Dry runs: `ship-prod-9.sh --dry-run` and `rollback-prod-9.sh --dry-run` both **exit 0** (`evidence/fix9c/deploy/`).
 
 ## What you run next (in order)
 

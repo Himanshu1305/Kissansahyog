@@ -14,3 +14,4 @@ Branch `release-9`, start HEAD `46e2d14`. Decisions: `DECISIONS_FIX9C.md`. Heart
 
 Log:
 - Ship dry run attempt 1 STOPPED by its clean-tree gate (scripts/fix9c/tests.mjs uncommitted); re-run after the commit.
+- Dry runs after push: ship-prod-9.sh --dry-run exit 0 (lists 0063 + rollback), rollback-prod-9.sh --dry-run exit 0. Pushed release-9; android-app fast-forwarded.
