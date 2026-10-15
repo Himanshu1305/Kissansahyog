@@ -329,3 +329,9 @@ Each entry: what was decided, why, and what the alternative was.
 6. **REPORT.md not written by the Phase 5 subagent.** The subagent's file tool refuses to create report files;
    the full Phase 5 report text (honest totals, APK table, live results) was returned to the orchestrator to
    paste into `docs/review/batch9/REPORT.md`. Not worked around.
+
+## Orchestrator (resume session) — low memory, 2026-10-15 ~10:40
+- What: after Claude Code stopped the Phase 5 emulator job (and the orchestrator's watchdog) for critically low system memory, with the instruction not to restart it unless the founder asks, NO emulator job is started again in this session. All emulator-dependent work (rest of Phase 5, the in-app parts of 5B, 5C.2–5C.7, the emulator screenshots of 6.6, the test of morning.sh) is recorded NOT-RUN with this reason and exact rerun commands.
+- Why: free memory was 0.9 GB during the run and only 3.8 GB afterwards; the emulator needs several GB; the founder's own Firefox/ChatGPT (~2.9 GB) are not ours to close; the harness instruction is explicit.
+- Instead: everything that does not need the emulator is done (code reading, documents, short foreground Playwright runs against the STAGING website, which runs the same Signup/Login/Post code as the staging app). The KEEP personas are created through the staging WEBSITE's own sign-up form (same src/screens/Signup.jsx, same staging Supabase project) instead of the app's — a deviation from 5B.1, so the founder has working logins tomorrow; the in-app login gate is NOT-RUN until the emulator can run.
+- Alternative rejected: restart the emulator anyway (risks another kill mid-run, or freezing the PC, and contradicts the harness instruction).
