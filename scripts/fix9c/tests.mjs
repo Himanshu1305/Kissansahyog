@@ -263,7 +263,7 @@ async function C1() {
       // C3b: every C1 post above left output per hour empty and still posted
       const c1 = loadResults().filter((r) => r.id.startsWith(`C1|${name}|`))
       if (!FIELDS) record({ id: `C3b|${name}`, status: c1.length && c1.every((r) => r.detail?.posted_after_fill) ? 'RAN-PASSED' : 'RAN-FAILED', detail: { posts_with_output_empty: c1.filter((r) => r.detail?.posted_after_fill).length, of: c1.length } })
-      if (lastId && !FIELDS) {
+      if (lastId && (!FIELDS || process.argv.includes('--c2'))) {
         await run(`C2|${name}`, async () => {
           const { rows, note } = await readDetail(ph.page, lastId)
           const want = equipmentSpecFields(name).map((f) => ({ key: f.key, label: f.label.hi, value: f.dropdown ? optionLabel(TRACTOR_BRANDS, goodValue(f), 'hi') : f.key === 'power_hp' ? `${goodValue(f)} HP` : goodValue(f) }))

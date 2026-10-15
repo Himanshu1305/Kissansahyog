@@ -1,0 +1,1706 @@
+[
+ {
+  "at": "2026-10-15T11:28:22.255Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Tractor|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.337Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.414Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.480Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.528Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.592Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Pit Digging Tractor|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.655Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Pit Digging Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.704Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Pit Digging Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.761Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Pit Digging Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.799Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Pit Digging Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.845Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Pit Digging Tractor|spec_auger_size",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_auger_size:required",
+   "expected": "equipment_spec_invalid:spec_auger_size:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.896Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Crane Tractor|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.940Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Crane Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:22.977Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Crane Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.026Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Crane Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.075Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Crane Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.121Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Crane Tractor|spec_lifting_capacity",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_lifting_capacity:required",
+   "expected": "equipment_spec_invalid:spec_lifting_capacity:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.176Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Thresher|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.228Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Thresher|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.283Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Thresher|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.336Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Thresher|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.370Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Thresher|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.413Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Thresher|spec_crop",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_crop:required",
+   "expected": "equipment_spec_invalid:spec_crop:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.472Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Harvester|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.523Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Harvester|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.567Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Harvester|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.617Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Harvester|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.678Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Harvester|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.729Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Harvester|spec_cutting_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_cutting_width:required",
+   "expected": "equipment_spec_invalid:spec_cutting_width:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.780Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Harvester|spec_crop",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_crop:required",
+   "expected": "equipment_spec_invalid:spec_crop:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.856Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Rotavator|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:23.906Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Rotavator|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.000Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Rotavator|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.043Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Rotavator|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.091Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Rotavator|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.134Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Rotavator|spec_working_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_working_width:required",
+   "expected": "equipment_spec_invalid:spec_working_width:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.250Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Seed Drill|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.294Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Seed Drill|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.372Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Seed Drill|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.417Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Seed Drill|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.463Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Seed Drill|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.517Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Seed Drill|spec_rows",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_rows:required",
+   "expected": "equipment_spec_invalid:spec_rows:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.565Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Reaper|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.657Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Reaper|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.701Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Reaper|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.737Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Reaper|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.787Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Reaper|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.829Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Reaper|spec_working_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_working_width:required",
+   "expected": "equipment_spec_invalid:spec_working_width:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.880Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Paddy Planting Machine|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.920Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Paddy Planting Machine|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.956Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Paddy Planting Machine|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:24.994Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Paddy Planting Machine|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.044Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Paddy Planting Machine|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.099Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Paddy Planting Machine|spec_rows",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_rows:required",
+   "expected": "equipment_spec_invalid:spec_rows:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.142Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Blower|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.183Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Blower|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.231Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Blower|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.280Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Blower|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.319Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Blower|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.382Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|LCB (Straw Machine)|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.435Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|LCB (Straw Machine)|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.484Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|LCB (Straw Machine)|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.531Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|LCB (Straw Machine)|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.573Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|LCB (Straw Machine)|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.646Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|JCB / Excavator|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.720Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|JCB / Excavator|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.785Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|JCB / Excavator|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.840Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|JCB / Excavator|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.903Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|JCB / Excavator|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:25.957Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|JCB / Excavator|spec_bucket_size",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_bucket_size:required",
+   "expected": "equipment_spec_invalid:spec_bucket_size:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.048Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Drone|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.097Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Drone|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.146Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Drone|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.196Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Drone|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.242Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Drone|spec_tank_litres",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_tank_litres:required",
+   "expected": "equipment_spec_invalid:spec_tank_litres:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.293Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Drone|spec_flight_minutes",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_flight_minutes:required",
+   "expected": "equipment_spec_invalid:spec_flight_minutes:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.346Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Other|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.402Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Other|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.452Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Other|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.495Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Other|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.543Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Other|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.583Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Other|spec_machine_name",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_machine_name:required",
+   "expected": "equipment_spec_invalid:spec_machine_name:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.668Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|blank-values",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blank_model": 400,
+   "blank_crop": 400
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.747Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Tractor|brand_other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "without_text": 400,
+   "with_text": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.845Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Pit Digging Tractor|brand_other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "without_text": 400,
+   "with_text": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:26.936Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|Crane Tractor|brand_other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "without_text": 400,
+   "with_text": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:27.610Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|ranges",
+  "status": "RAN-PASSED",
+  "detail": {
+   "Tractor {\"year\":1985}": "refused",
+   "Tractor {\"year\":3000}": "refused",
+   "Tractor {\"year\":\"abc\"}": "refused",
+   "Tractor {\"year\":2028}": "refused",
+   "Tractor {\"power_hp\":0}": "refused",
+   "Tractor {\"power_hp\":600}": "refused",
+   "Tractor {\"power_hp\":\"4O\"}": "refused",
+   "Seed Drill {\"spec_rows\":0}": "refused",
+   "Seed Drill {\"spec_rows\":2.5}": "refused",
+   "Drone {\"spec_tank_litres\":0}": "refused",
+   "Drone {\"spec_flight_minutes\":\"x\"}": "refused",
+   "Other {\"power_hp\":0}": "accepted",
+   "Tractor {\"year\":1990}": "accepted",
+   "Tractor {\"year\":2027}": "accepted",
+   "Tractor {\"power_hp\":500}": "accepted"
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:27.657Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|older-app-no-spec_version",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:27.789Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C11|trolley-tanker-and-requirement",
+  "status": "RAN-PASSED",
+  "detail": {
+   "trolley": 200,
+   "tanker": 200,
+   "requirement_without_specs": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:28:44.189Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C5|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "dropdown": true,
+   "brands": 13,
+   "other_box_shown": true,
+   "blocked_without_text": true,
+   "message": "ब्रांड का नाम ज़रूरी है।",
+   "posted_with_text": true,
+   "detail_shows": "KSTEST Brand"
+  },
+  "evidence": "evidence/fix9c/deployed/C5-Tractor-other-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:28:50.576Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C5|Pit Digging Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "dropdown": true,
+   "brands": 13,
+   "other_box_shown": true,
+   "blocked_without_text": true,
+   "message": "ब्रांड का नाम ज़रूरी है।",
+   "posted_with_text": true,
+   "detail_shows": "KSTEST Brand"
+  },
+  "evidence": "evidence/fix9c/deployed/C5-Pit-Digging-Tractor-other-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:28:57.160Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C5|Crane Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "dropdown": true,
+   "brands": 13,
+   "other_box_shown": true,
+   "blocked_without_text": true,
+   "message": "ब्रांड का नाम ज़रूरी है।",
+   "posted_with_text": true,
+   "detail_shows": "KSTEST Brand"
+  },
+  "evidence": "evidence/fix9c/deployed/C5-Crane-Tractor-other-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:29:22.015Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C5|free-text-for-other-types",
+  "status": "RAN-PASSED",
+  "detail": {
+   "Thresher": "INPUT:",
+   "Harvester": "INPUT:",
+   "Rotavator": "INPUT:",
+   "Seed Drill": "INPUT:",
+   "Reaper": "INPUT:",
+   "Paddy Planting Machine": "INPUT:",
+   "Blower": "INPUT:",
+   "LCB (Straw Machine)": "INPUT:",
+   "JCB / Excavator": "INPUT:",
+   "Drone": "INPUT:",
+   "Other": "INPUT:"
+  }
+ },
+ {
+  "at": "2026-10-15T11:31:14.255Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C8|older-listings",
+  "status": "RAN-PASSED",
+  "detail": {
+   "checked": 4,
+   "listings": {
+    "6b9d3437-0414-4101-91e5-80ebcd479b5c": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "424248fa-f587-4239-814d-ba2b9ccb8f48": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "3cd24b09-0eac-4840-8776-abb353d3e316": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "518c81b1-3d4c-4612-be6c-4514515b0e32": {
+     "rows": 5,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": true
+    }
+   },
+   "page_errors": []
+  }
+ },
+ {
+  "at": "2026-10-15T11:31:39.254Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Tractor-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:31:41.428Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "a1cf47da-091b-4160-98f9-e033c736986a",
+   "spec_rows": 4,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Tractor-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:31:46.083Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Pit Digging Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Pit-Digging-Tractor-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:31:48.470Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Pit Digging Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "386a7ede-34ae-428d-8dd2-894d47b11bd3",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Pit-Digging-Tractor-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:31:53.893Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Crane Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Crane-Tractor-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:31:57.462Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Crane Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "0a85fda8-94a9-46f6-b341-302ef906decc",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Crane-Tractor-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:02.505Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Thresher|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Thresher-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:05.092Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Thresher",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "cb1c0ce0-5bbb-462f-b0f4-4370598eafa2",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Thresher-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:11.122Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Harvester|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Harvester-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:13.623Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Harvester",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "bd892a4b-bbbd-46f6-8c54-4ece90c815e2",
+   "spec_rows": 6,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Harvester-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:18.874Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Rotavator|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Rotavator-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:21.206Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Rotavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "5df741ca-9bd7-40b5-ab0b-0827e106d382",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Rotavator-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:26.193Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Seed Drill|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Seed-Drill-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:28.664Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Seed Drill",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "bfe76df0-5d6b-4c5c-b3d9-93e75ef1412f",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Seed-Drill-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:33.919Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Reaper|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Reaper-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:36.394Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Reaper",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "c5aa5819-d0b8-4b13-9ec2-f2aa57c9bc23",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Reaper-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:41.506Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Paddy Planting Machine|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Paddy-Planting-Machine-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:44.227Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Paddy Planting Machine",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "83807a32-069c-4f34-8e11-d433bf3a6f07",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Paddy-Planting-Machine-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:49.275Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Blower|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Blower-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:51.710Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Blower",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "25f0c5d7-9bbc-4801-afe0-ea5e6eea023a",
+   "spec_rows": 4,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Blower-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:56.858Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|LCB (Straw Machine)|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-LCB-Straw-Machine-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:32:59.610Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|LCB (Straw Machine)",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "72386c79-e51b-4a16-9fc4-a6a485d1fd05",
+   "spec_rows": 4,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-LCB-Straw-Machine-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:05.003Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|JCB / Excavator|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-JCB-Excavator-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:07.836Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|JCB / Excavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "31fa5680-c05a-4f28-ae02-af30dd0c3a77",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-JCB-Excavator-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:13.194Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Drone|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Drone-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:15.339Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Drone",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "8b7f2bc8-d40d-487d-b932-619297960945",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Drone-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:20.037Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C1|Other|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/deployed/C1-Other-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:22.210Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C2|Other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "f22e1286-5259-42a9-b10c-b6f5be016320",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/deployed/C2-Other-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:33.336Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Tractor-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:39.490Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Pit Digging Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "pits_hour",
+   "expected_unit": "pits_hour",
+   "posted": true,
+   "shown": "1.5 गड्ढे/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Pit-Digging-Tractor-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:46.787Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Crane Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "other",
+   "expected_unit": "other",
+   "posted": true,
+   "shown": "1.5 KSTEST गड्ढे"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Crane-Tractor-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:33:54.195Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Thresher",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "quintal_hour",
+   "expected_unit": "quintal_hour",
+   "posted": true,
+   "shown": "1.5 क्विंटल/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Thresher-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:00.585Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Harvester",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Harvester-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:07.236Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Rotavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Rotavator-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:15.010Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Seed Drill",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Seed-Drill-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:22.638Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Reaper",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Reaper-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:29.743Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Paddy Planting Machine",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Paddy-Planting-Machine-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:37.408Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Blower",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "quintal_hour",
+   "expected_unit": "quintal_hour",
+   "posted": true,
+   "shown": "1.5 क्विंटल/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Blower-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:44.882Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|LCB (Straw Machine)",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "quintal_hour",
+   "expected_unit": "quintal_hour",
+   "posted": true,
+   "shown": "1.5 क्विंटल/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-LCB-Straw-Machine-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:53.059Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|JCB / Excavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "cum_hour",
+   "expected_unit": "cum_hour",
+   "posted": true,
+   "shown": "1.5 घन मीटर/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-JCB-Excavator-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:34:59.815Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Drone",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Drone-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:35:07.850Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "C3|Other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "other",
+   "expected_unit": "other",
+   "posted": true,
+   "shown": "1.5 KSTEST गड्ढे"
+  },
+  "evidence": "evidence/fix9c/deployed/C3-Other-output.jpg"
+ }
+]

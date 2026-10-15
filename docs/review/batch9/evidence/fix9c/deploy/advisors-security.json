@@ -1,0 +1,22 @@
+{
+ "counts": {
+  "rls_enabled_no_policy|INFO": 1,
+  "security_definer_view|ERROR": 1,
+  "function_search_path_mutable|WARN": 1,
+  "rls_disabled_in_public|ERROR": 1,
+  "extension_in_public|WARN": 1,
+  "anon_security_definer_function_executable|WARN": 1,
+  "authenticated_security_definer_function_executable|WARN": 1,
+  "auth_leaked_password_protection|WARN": 1
+ },
+ "mentions_changed_function": [
+  {
+   "name": "anon_security_definer_function_executable",
+   "detail": null
+  },
+  {
+   "name": "authenticated_security_definer_function_executable",
+   "detail": null
+  }
+ ]
+}

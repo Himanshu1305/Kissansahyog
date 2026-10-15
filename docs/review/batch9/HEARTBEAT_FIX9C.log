@@ -42,3 +42,30 @@
 2026-10-15 16:47 | tests(local) suite C10 start
 2026-10-15 16:52 | tests(local) suite C10 done
 2026-10-15 16:53 | Phase 3 DONE | 229/229 local; matrix 68/68; starting staging deploy (free RAM 1.3 GB)
+2026-10-15 16:58 | deployed b88c7c5a; running deployed checks
+2026-10-15 16:58 | tests(deployed) suite C11 start
+2026-10-15 16:58 | tests(deployed) C11 start
+2026-10-15 16:58 | tests(deployed) suite C11 done
+2026-10-15 16:58 | tests(deployed) suite C5 start
+2026-10-15 16:59 | tests(deployed) suite C5 done
+2026-10-15 16:59 | tests(deployed) suite C8 start
+2026-10-15 17:01 | tests(deployed) suite C8 done
+2026-10-15 17:01 | tests(deployed) suite C1 start
+2026-10-15 17:01 | tests(deployed) C1 Tractor
+2026-10-15 17:01 | tests(deployed) C1 Pit Digging Tractor
+2026-10-15 17:01 | tests(deployed) C1 Crane Tractor
+2026-10-15 17:01 | tests(deployed) C1 Thresher
+2026-10-15 17:02 | tests(deployed) C1 Harvester
+2026-10-15 17:02 | tests(deployed) C1 Rotavator
+2026-10-15 17:02 | tests(deployed) C1 Seed Drill
+2026-10-15 17:02 | tests(deployed) C1 Reaper
+2026-10-15 17:02 | tests(deployed) C1 Paddy Planting Machine
+2026-10-15 17:02 | tests(deployed) C1 Blower
+2026-10-15 17:02 | tests(deployed) C1 LCB (Straw Machine)
+2026-10-15 17:02 | tests(deployed) C1 JCB / Excavator
+2026-10-15 17:03 | tests(deployed) C1 Drone
+2026-10-15 17:03 | tests(deployed) C1 Other
+2026-10-15 17:03 | tests(deployed) suite C1 done
+2026-10-15 17:03 | tests(deployed) suite C3 start
+2026-10-15 17:05 | tests(deployed) suite C3 done
+2026-10-15 17:07 | Phase 4 DONE, report written; committing then dry runs

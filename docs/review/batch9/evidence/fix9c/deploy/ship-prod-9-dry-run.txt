@@ -1,0 +1,9 @@
+*** DRY RUN — nothing will be built, deployed, rolled back or written ***
+== 0. preconditions
++ git branch --show-current -> release-9
++ git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: modified tracked files would change what ships:
+scripts/fix9c/tests.mjs
+##################################################################
