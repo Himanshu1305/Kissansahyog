@@ -1,0 +1,15 @@
+# Read-only probe of PRODUCTION server functions from the app origin (2026-10-15T04:49:25Z); GET/OPTIONS only, no POST
+## GET /transcribe (Origin: https://localhost)
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+## GET /geocode?q=Rahatgarh (Origin: https://localhost)
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+## GET /geo (Origin: https://localhost)
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+## OPTIONS /api/feedback (Origin: https://localhost)
+HTTP/1.1 204 No Content

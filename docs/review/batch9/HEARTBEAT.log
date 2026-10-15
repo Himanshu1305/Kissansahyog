@@ -10,3 +10,10 @@
 2026-10-15 10:06 | phase4 | running ship/rollback dry-runs
 2026-10-15 10:10 | phase4 | SHIP.md + PROD_SHIP_STEPS.md + dry-run outputs; final commit + push
 2026-10-15 10:11 | orchestrator | Phase 4 verified DONE; committing; next Phase 5
+2026-10-15 10:12 | orchestrator | Phase 5 subagent launched
+2026-10-15 10:12 | phase5 | start: reading harness and prior evidence
+2026-10-15 10:13 | phase5 | 5.1 building prod, staging, staging-local debug APKs
+2026-10-15 10:16 | phase5 | APKs built; dev run of new S11 (live staging feedback/village/mic)
+2026-10-15 10:19 | phase5 | S11 dev run RAN-PASSED; starting staging full suite run 1 (reboot first)
+2026-10-15 10:24 | phase5 | staging run1 reaped (system low memory, 0.9 GB free); orphans + emulator stopped; NOT restarted; writing report
+2026-10-15 10:25 | phase5 | committing Phase 5 (partial) and pushing release-9

@@ -1,0 +1,15 @@
+{
+  "note": "Everything Batch 8B tests created in the STAGING project, for later cleanup by someone with database access. Names / titles start with KSTEST; mobiles are fake. Passwords are not recorded.",
+  "created": [
+    {
+      "at": "2026-10-15T04:47:32.269Z",
+      "kind": "feedback (live staging site, through the staging app, S11)",
+      "contact": "kstest-1792039596413-s11@example.com",
+      "marker": "KSTEST 596413",
+      "message": "KSTEST 596413 S11 live staging feedback from the staging app (Batch 9 Phase 5, please ignore)",
+      "site": "https://staging.kissansahyog.com",
+      "outcome": "success",
+      "stored": true
+    }
+  ]
+}

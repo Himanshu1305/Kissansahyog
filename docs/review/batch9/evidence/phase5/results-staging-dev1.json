@@ -1,0 +1,40 @@
+{
+  "run": {
+    "flavor": "staging",
+    "startedAt": "2026-10-15T04:46:36.472Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "installedAtStart": "android/ks-apks/ks-staging.apk",
+    "finishedAt": "2026-10-15T04:48:42.912Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "S11",
+      "name": "Live staging: feedback, village lookup, mic",
+      "status": "RAN-PASSED",
+      "assertion": "Staging app against https://staging.kissansahyog.com: (a) a KSTEST feedback from /grievance shows the success state, its POST carries Origin https://localhost and the response has Access-Control-Allow-Origin https://localhost; (b) /post step 3: typing a village gives known-village suggestions, and the typed-village map lookup (LocationControl → live /geocode) returns a place, with the app CORS; (c) the mic on /search is shown if and only if the live /transcribe says configured:true (value recorded)",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase5/staging-dev1/S11/feedback-after-submit.jpg",
+        "docs/review/batch9/evidence/phase5/staging-dev1/S11/post-step3-village-typed.jpg",
+        "docs/review/batch9/evidence/phase5/staging-dev1/S11/village-lookup-result.jpg",
+        "docs/review/batch9/evidence/phase5/staging-dev1/S11/search-mic.jpg",
+        "docs/review/batch9/evidence/phase5/staging-dev1/S11/live-staging.json",
+        "docs/review/batch9/evidence/phase5/staging-dev1/S11/checks.json"
+      ],
+      "durationMs": 115741,
+      "notes": "feedback: success; village: 2 known match(es) for \"Band\", lookup Surkhi चुनें\nदमोह, मध्य प्रदेश, भारत; /transcribe configured: true, mic buttons: 3"
+    }
+  ]
+}

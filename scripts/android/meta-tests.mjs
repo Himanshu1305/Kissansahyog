@@ -23,7 +23,7 @@ const FLAVOR = (() => { const i = argv.indexOf('--flavor'); return i >= 0 ? argv
 if (!['prod', 'staging'].includes(FLAVOR)) { console.error('meta-tests: --flavor prod | staging'); process.exit(2) }
 const PROD = FLAVOR === 'prod'
 const ev = makeEvidence(path.join(OUT_DIR, 'evidence', FLAVOR))
-const R = (f) => `docs/review/batch8b/${f}`
+const R = (f) => path.relative(ROOT, path.join(OUT_DIR, f)).split(path.sep).join('/') // Batch 9: follows KS_REVIEW_DIR (default batch8b)
 // A fresh emulator boot before each full run: over hours of tests the emulator slows down and once
 // stopped answering (load average ~10), so every run starts from the same state. A real phone or
 // another device (ANDROID_SERIAL set to something else) is left alone.
@@ -42,12 +42,23 @@ const load = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'))
 const RUN1 = R(`results-${FLAVOR}-run1.json`), RUN2 = R(`results-${FLAVOR}-run2.json`)
 const ID = PROD ? { neg: 'T19', rep: 'T20' } : { neg: 'P2', rep: 'P3' }
 
-console.log(`\n=== meta (${FLAVOR}): full run #1 ===`)
-restartEmulator()
-const r1 = bash(['--out', RUN1])
-console.log(`\n=== meta (${FLAVOR}): full run #2 ===`)
-restartEmulator()
-const r2 = bash(['--out', RUN2])
+// Batch 9: --skip-full reuses run #1 / run #2 that were already run separately (each one under its
+// own stall timeout, with its own evidence folder); their exit codes are passed as --exit1 / --exit2.
+const SKIP_FULL = argv.includes('--skip-full')
+const argNum = (n) => { const i = argv.indexOf(n); return i >= 0 ? Number(argv[i + 1]) : null }
+let r1, r2
+if (SKIP_FULL) {
+  if (![RUN1, RUN2].every((f) => fs.existsSync(path.join(ROOT, f)))) { console.error(`meta-tests: --skip-full needs ${RUN1} and ${RUN2}`); process.exit(2) }
+  r1 = { status: argNum('--exit1'), ms: 0 }; r2 = { status: argNum('--exit2'), ms: 0 }
+  console.log(`\n=== meta (${FLAVOR}): reusing ${RUN1} and ${RUN2} (run separately) ===`)
+} else {
+  console.log(`\n=== meta (${FLAVOR}): full run #1 ===`)
+  restartEmulator()
+  r1 = bash(['--out', RUN1])
+  console.log(`\n=== meta (${FLAVOR}): full run #2 ===`)
+  restartEmulator()
+  r2 = bash(['--out', RUN2])
+}
 
 // Repeatability
 const a = load(RUN1), b = load(RUN2)

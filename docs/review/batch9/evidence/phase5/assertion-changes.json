@@ -1,0 +1,5 @@
+{
+  "phase": "Batch 9 Phase 5",
+  "changed": [],
+  "note": "No existing assertion was changed or loosened. One NEW test was added (S11, live staging feedback / village lookup / mic) in scripts/android/staging-tests.mjs and placed after L1 in STAGING_ORDER. meta-tests.mjs got path/flow options only (results follow KS_REVIEW_DIR; --skip-full reuses separately-run full runs)."
+}

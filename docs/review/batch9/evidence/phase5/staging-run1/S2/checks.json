@@ -1,0 +1,57 @@
+[
+  {
+    "name": "staging applicationId is com.kissansahyog.app.staging",
+    "pass": true,
+    "detail": "com.kissansahyog.app.staging"
+  },
+  {
+    "name": "staging label is \"Kisan Sahyog (Staging)\"",
+    "pass": true,
+    "detail": "Kisan Sahyog (Staging)"
+  },
+  {
+    "name": "staging assets: staging ref present, prod ref absent",
+    "pass": true,
+    "detail": {
+      "files": 124,
+      "prodRef": 0,
+      "stagingRef": 1
+    }
+  },
+  {
+    "name": "prod applicationId / label unchanged",
+    "pass": true,
+    "detail": {
+      "package": "com.kissansahyog.app",
+      "label": "Kisan Sahyog",
+      "cleartext": false,
+      "assets": {
+        "files": 124,
+        "prodRef": 1,
+        "stagingRef": 0
+      }
+    }
+  },
+  {
+    "name": "prod assets: prod ref present, staging ref absent",
+    "pass": true,
+    "detail": {
+      "files": 124,
+      "prodRef": 1,
+      "stagingRef": 0
+    }
+  },
+  {
+    "name": "neither default APK allows cleartext traffic",
+    "pass": true,
+    "detail": {
+      "staging": false,
+      "prod": false
+    }
+  },
+  {
+    "name": "staging build with a prod VITE_SUPABASE_URL is REFUSED (non-zero exit, guard message)",
+    "pass": true,
+    "detail": "STAGING GUARD: REFUSED — VITE_SUPABASE_URL in the process environment (start with --env-file=.env) points at the PRODUCTION project\n[build-android] FAILED — 1/5 staging guard (exit 1)"
+  }
+]

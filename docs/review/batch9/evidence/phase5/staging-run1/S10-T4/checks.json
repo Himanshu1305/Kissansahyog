@@ -1,0 +1,35 @@
+[
+  {
+    "name": "adb install -r succeeded",
+    "pass": true,
+    "detail": "Success"
+  },
+  {
+    "name": "app process is alive after 10 s",
+    "pass": true,
+    "detail": "4311"
+  },
+  {
+    "name": "no FATAL EXCEPTION for the app in logcat",
+    "pass": true,
+    "detail": 0
+  },
+  {
+    "name": "page URL is https://localhost/",
+    "pass": true,
+    "detail": "https://localhost/"
+  },
+  {
+    "name": "visible text contains Devanagari \"किसान\"",
+    "pass": true
+  },
+  {
+    "name": "<html> has the native-app class",
+    "pass": true
+  },
+  {
+    "name": "screenshot is not blank (pixel std-dev > 10)",
+    "pass": true,
+    "detail": 74
+  }
+]

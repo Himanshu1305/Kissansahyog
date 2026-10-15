@@ -1,0 +1,12 @@
+[
+  {
+    "name": "npm run android:debug:staging exit code is 0",
+    "pass": true,
+    "detail": "exit 0"
+  },
+  {
+    "name": "staging APK exists",
+    "pass": true,
+    "detail": "android/ks-apks/ks-staging.apk"
+  }
+]

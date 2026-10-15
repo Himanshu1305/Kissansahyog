@@ -790,6 +790,129 @@ export function registerStaging(ctx) {
     return r
   })
 
+  // ------------------------------------------------------------------------- S11 (Batch 9 Phase 5)
+  // The staging site now runs the Pages Functions (/api/feedback, /geocode, /transcribe) with the
+  // app CORS, so the staging app is tested against the LIVE site (turns the old local-only S9 into a
+  // real test). Writes: one KSTEST feedback row to the STAGING project (recorded). Nothing is posted.
+  test('S11', 'Live staging: feedback, village lookup, mic', 'Staging app against https://staging.kissansahyog.com: (a) a KSTEST feedback from /grievance shows the success state, its POST carries Origin https://localhost and the response has Access-Control-Allow-Origin https://localhost; (b) /post step 3: typing a village gives known-village suggestions, and the typed-village map lookup (LocationControl → live /geocode) returns a place, with the app CORS; (c) the mic on /search is shown if and only if the live /transcribe says configured:true (value recorded)', true, async (id) => {
+    await ensureApp()
+    const API = 'https://staging.kissansahyog.com'
+    const c = new Checks()
+    const files = []
+    const obs = {}
+    const net = []
+    const onReq = async (r) => { if (r.url().startsWith(API)) net.push({ kind: 'request', method: r.method(), url: r.url().replace(API, ''), origin: (await r.allHeaders().catch(() => r.headers())).origin || null }) }
+    const onResp = async (r) => { if (r.url().startsWith(API)) { const h = await r.allHeaders().catch(() => r.headers()); net.push({ kind: 'response', method: r.request().method(), url: r.url().replace(API, ''), status: r.status(), allowOrigin: h['access-control-allow-origin'] || null }) } }
+    const listen = () => { page().on('request', onReq); page().on('response', onResp) }
+    const unlisten = () => { try { page().off('request', onReq); page().off('response', onResp) } catch { /* page gone */ } }
+    // What the live site says (outside the app), for the record and for (c).
+    try {
+      const tr = await fetch(`${API}/transcribe`, { headers: { Origin: 'https://localhost' } })
+      obs.transcribe = { status: tr.status, body: (await tr.text().catch(() => '')).slice(0, 200), allowOrigin: tr.headers.get('access-control-allow-origin') }
+    } catch (e) { obs.transcribe = { error: String(e?.message || e) } }
+    let configured = null
+    try { configured = JSON.parse(obs.transcribe.body).configured } catch { /* not JSON */ }
+    obs.configured = configured
+    c.check('live /transcribe answers 200 JSON {configured: true|false} with Access-Control-Allow-Origin https://localhost', obs.transcribe.status === 200 && typeof configured === 'boolean' && obs.transcribe.allowOrigin === 'https://localhost', obs.transcribe)
+    // Keep the device's saved place as it was (the village lookup below may set a new one).
+    const savedLoc = await page().evaluate((keys) => Object.fromEntries(keys.map((k) => [k, localStorage.getItem(k)])), LOCATION_KEYS)
+    try {
+      // ---- (a) feedback
+      listen()
+      await app.goto('/grievance', { settle: 2000 })
+      const email = `kstest-${STAMP}-s11@example.com`
+      const message = `${MARKER} S11 live staging feedback from the staging app (Batch 9 Phase 5, please ignore)`
+      await page().fill('#fb-contact', email)
+      await page().fill('#fb-message', message)
+      await page().click('form[data-testid="feedback-form"] button[type="submit"]')
+      const outcome = await waitFor(() => page().evaluate(() => document.querySelector('[data-testid="feedback-done"]') ? 'success' : document.querySelector('[data-testid="feedback-mailto"]') ? 'failure-with-email-fallback' : document.querySelector('form[data-testid="feedback-form"] [role="alert"]') ? 'failure' : null), { timeout: 30000 })
+      await sleep(800)
+      obs.feedback = { outcome, text: await page().evaluate(() => (document.querySelector('[data-testid="feedback-done"]') || document.querySelector('form[data-testid="feedback-form"] [role="alert"]'))?.innerText.trim() || null) }
+      files.push((await ev.shot(id, 'feedback-after-submit')).file)
+      const fbReq = net.find((n) => n.kind === 'request' && n.method === 'POST' && n.url.startsWith('/api/feedback'))
+      const fbResp = net.find((n) => n.kind === 'response' && n.method === 'POST' && n.url.startsWith('/api/feedback'))
+      obs.feedback.request = fbReq || null
+      obs.feedback.response = fbResp || null
+      c.check('(a) the feedback form shows its success state', outcome === 'success', obs.feedback)
+      c.check('(a) the app POSTs to the LIVE staging /api/feedback with Origin https://localhost', fbReq?.origin === 'https://localhost', fbReq)
+      c.check('(a) the response is 200 with Access-Control-Allow-Origin https://localhost', fbResp?.status === 200 && fbResp?.allowOrigin === 'https://localhost', fbResp)
+      record('feedback (live staging site, through the staging app, S11)', { contact: email, marker: MARKER, message, site: API, outcome, stored: outcome === 'success' })
+
+      // ---- (b1) /post step 3: known-village suggestions while typing
+      if (!(await session())) {
+        await loginPhoneViaUi(ACCT.A.phone)
+        await waitFor(async () => !!(await session()), { timeout: 20000, interval: 800 })
+      }
+      obs.loggedIn = !!(await session())
+      c.check('(b) logged in (Post is behind login)', obs.loggedIn)
+      if (obs.loggedIn) {
+        await app.goto('/post', { settle: 1500 })
+        await page().click('[data-testid="post-cat-bhusa"]')
+        await page().click('[data-testid="post-type-offer"]')
+        await page().click('[data-testid="post-next"]')
+        await page().waitForSelector('#f_residue_type', { timeout: 20000 })
+        for (const s of ['#f_residue_type', '#f_pickup_arrangement', '#f_buyer_type_preference']) await page().selectOption(s, { index: 1 }).catch(() => {})
+        await page().fill('#f_quantity', `${MARKER} S11 village check — not posted`)
+        await page().fill('#f_asking_price', '500')
+        await page().click('[data-testid="post-next"]')
+        await page().waitForSelector('#f_asset_village', { timeout: 15000 })
+        const known = await waitFor(() => page().evaluate(() => { const n = document.querySelectorAll('#known-villages option').length; return n > 0 ? n : null }), { timeout: 20000, interval: 700 })
+        const first = known ? await page().evaluate(() => document.querySelector('#known-villages option')?.value || '') : ''
+        const typed = first.slice(0, Math.min(4, first.length))
+        if (typed) { await page().click('#f_asset_village'); await page().fill('#f_asset_village', ''); await page().type('#f_asset_village', typed, { delay: 60 }) }
+        await sleep(800)
+        obs.postVillage = await page().evaluate((q) => {
+          const all = [...document.querySelectorAll('#known-villages option')].map((o) => o.value)
+          const list = document.getElementById('f_asset_village')?.getAttribute('list')
+          return { knownVillages: all.length, typed: q, fieldValue: document.getElementById('f_asset_village')?.value, fieldList: list, matching: all.filter((v) => q && v.toLowerCase().includes(q.toLowerCase())).slice(0, 10) }
+        }, typed)
+        files.push((await ev.shot(id, 'post-step3-village-typed')).file)
+        c.check('(b) /post step 3: the village field offers known villages from staging and the typed text matches at least one', obs.postVillage.knownVillages > 0 && obs.postVillage.fieldList === 'known-villages' && obs.postVillage.matching.length > 0, obs.postVillage)
+        await page().fill('#f_asset_village', '')
+      }
+
+      // ---- (b2) typed-village map lookup → live /geocode (LocationControl on Home)
+      await clearLocation()
+      const candidates = ['Rahatgarh', 'Bilehra', 'Surkhi', 'Shahgarh']
+      obs.lookup = []
+      let found = null
+      for (const q of candidates) {
+        await app.goto('/', { settle: 2000 })
+        const opened = await page().evaluate(() => { const b = document.querySelector('[data-testid="location-not-now"]') || document.querySelector('[data-testid="location-change"]'); if (b) b.click(); return !!b })
+        const input = await waitFor(() => page().evaluate(() => !!document.querySelector('[data-testid="location-input"]')), { timeout: 8000 })
+        if (!input) { obs.lookup.push({ q, opened, step: 'no type box' }); continue }
+        await page().fill('[data-testid="location-input"]', q)
+        await page().click('[data-testid="location-find"]')
+        const state1 = await waitFor(() => page().evaluate(() => document.querySelector('[data-testid="location-lookup"]') ? 'lookup-offered' : document.querySelector('[data-testid="location-banner"]') ? 'local-match' : document.querySelector('[data-testid="location-notice"]') ? 'notice' : null), { timeout: 8000 })
+        if (state1 !== 'lookup-offered') { obs.lookup.push({ q, step: state1 || 'nothing' }); continue }
+        await page().click('[data-testid="location-lookup"]')
+        const res = await waitFor(() => page().evaluate(() => { const u = document.querySelector('[data-testid="location-lookup-use"]'); if (u) return { use: u.innerText.trim() }; const n = document.querySelector('[data-testid="location-notice"]'); return n ? { notice: n.innerText.trim() } : null }), { timeout: 20000 })
+        const g = net.filter((n) => n.url.startsWith(`/geocode?q=${encodeURIComponent(q)}`))
+        obs.lookup.push({ q, step: 'lookup-run', result: res, network: g })
+        if (res?.use) { found = { q, use: res.use, network: g }; break }
+      }
+      if (found) files.push((await ev.shot(id, 'village-lookup-result')).file)
+      const gResp = found?.network.find((n) => n.kind === 'response')
+      const gReq = found?.network.find((n) => n.kind === 'request')
+      c.check('(b) typed-village lookup in the app returns a place from the LIVE staging /geocode', !!found, obs.lookup)
+      c.check('(b) the /geocode call carries Origin https://localhost and gets 200 with Access-Control-Allow-Origin https://localhost', gReq?.origin === 'https://localhost' && gResp?.status === 200 && gResp?.allowOrigin === 'https://localhost', { request: gReq, response: gResp })
+
+      // ---- (c) mic
+      await app.goto('/search', { settle: 1500 })
+      const mic = await waitFor(() => page().evaluate(() => document.querySelectorAll('[data-testid="voice-search-btn"]').length || null), { timeout: 10000 })
+      obs.mic = await page().evaluate(() => ({ buttons: document.querySelectorAll('[data-testid="voice-search-btn"]').length, mediaRecorder: typeof window.MediaRecorder !== 'undefined', getUserMedia: !!navigator.mediaDevices?.getUserMedia }))
+      obs.mic.waitedForButton = !!mic
+      obs.mic.transcribeCallsFromApp = net.filter((n) => n.url.startsWith('/transcribe'))
+      files.push((await ev.shot(id, 'search-mic')).file)
+      c.check(`(c) mic shown if and only if live /transcribe says configured (configured: ${configured}, buttons: ${obs.mic.buttons})`, typeof configured === 'boolean' && (configured ? obs.mic.buttons > 0 : obs.mic.buttons === 0), obs.mic)
+    } finally {
+      unlisten()
+      await page().evaluate((saved) => { for (const [k, v] of Object.entries(saved)) { if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v) } }, savedLoc).catch(() => {})
+    }
+    files.push(ev.text(id, 'live-staging.json', { ...obs, network: net }))
+    return fromChecks(id, c, { files, notes: `feedback: ${obs.feedback?.outcome}; village: ${obs.postVillage ? `${obs.postVillage.matching.length} known match(es) for "${obs.postVillage.typed}"` : 'post not reached'}, lookup ${obs.lookup?.find((l) => l.result?.use)?.result.use || 'no place'}; /transcribe configured: ${configured}, mic buttons: ${obs.mic?.buttons}` })
+  })
+
   // ------------------------------------------------------------------------- negative control
   if (process.env.KS_NEGATIVE_CONTROL === '1') {
     test('NEG-S', 'Negative control (staging) — deliberately false assertion', 'The staging home page contains "ZZZ_NOT_PRESENT" (it does not: MUST be RAN-FAILED)', true, async (id) => {
@@ -801,5 +924,5 @@ export function registerStaging(ctx) {
   }
 }
 
-export const STAGING_ORDER = ['S1', 'S2', 'S3', 'S10', 'S4', 'S5', 'S6', 'S7', 'S8', 'L1', 'K1', 'O2', 'O3', 'O5', 'O6', 'O4', 'H1', 'C1', 'O7', 'O1', 'O1b', 'O8', 'S9', 'NEG-S']
+export const STAGING_ORDER = ['S1', 'S2', 'S3', 'S10', 'S4', 'S5', 'S6', 'S7', 'S8', 'L1', 'S11', 'K1', 'O2', 'O3', 'O5', 'O6', 'O4', 'H1', 'C1', 'O7', 'O1', 'O1b', 'O8', 'S9', 'NEG-S']
 export { FLAVOR }

@@ -1,0 +1,272 @@
+{
+  "transcribe": {
+    "status": 200,
+    "body": "{\"configured\":true}",
+    "allowOrigin": "https://localhost"
+  },
+  "configured": true,
+  "feedback": {
+    "outcome": "success",
+    "text": "धन्यवाद! आपका संदेश हमें मिल गया।\n\nहम इसे ध्यान से पढ़ेंगे और आपके दिए ईमेल या मोबाइल नंबर पर आपसे संपर्क करेंगे।\n\nएक और संदेश भेजें",
+    "request": {
+      "kind": "request",
+      "method": "POST",
+      "url": "/api/feedback",
+      "origin": "https://localhost"
+    },
+    "response": {
+      "kind": "response",
+      "method": "POST",
+      "url": "/api/feedback",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    }
+  },
+  "loggedIn": true,
+  "postVillage": {
+    "knownVillages": 24,
+    "typed": "Band",
+    "fieldValue": "Band",
+    "fieldList": "known-villages",
+    "matching": [
+      "Banda",
+      "Bandri"
+    ]
+  },
+  "lookup": [
+    {
+      "q": "Rahatgarh",
+      "step": "local-match"
+    },
+    {
+      "q": "Bilehra",
+      "step": "local-match"
+    },
+    {
+      "q": "Surkhi",
+      "step": "lookup-run",
+      "result": {
+        "use": "Surkhi चुनें\nदमोह, मध्य प्रदेश, भारत"
+      },
+      "network": [
+        {
+          "kind": "request",
+          "method": "GET",
+          "url": "/geocode?q=Surkhi",
+          "origin": "https://localhost"
+        },
+        {
+          "kind": "response",
+          "method": "GET",
+          "url": "/geocode?q=Surkhi",
+          "status": 200,
+          "allowOrigin": "https://localhost"
+        }
+      ]
+    }
+  ],
+  "mic": {
+    "buttons": 3,
+    "mediaRecorder": true,
+    "getUserMedia": true,
+    "waitedForButton": true,
+    "transcribeCallsFromApp": [
+      {
+        "kind": "request",
+        "method": "GET",
+        "url": "/transcribe",
+        "origin": null
+      },
+      {
+        "kind": "request",
+        "method": "GET",
+        "url": "/transcribe",
+        "origin": "https://localhost"
+      },
+      {
+        "kind": "response",
+        "method": "GET",
+        "url": "/transcribe",
+        "status": 200,
+        "allowOrigin": "https://localhost"
+      },
+      {
+        "kind": "request",
+        "method": "GET",
+        "url": "/transcribe",
+        "origin": "https://localhost"
+      },
+      {
+        "kind": "response",
+        "method": "GET",
+        "url": "/transcribe",
+        "status": 200,
+        "allowOrigin": "https://localhost"
+      },
+      {
+        "kind": "request",
+        "method": "GET",
+        "url": "/transcribe",
+        "origin": "https://localhost"
+      },
+      {
+        "kind": "response",
+        "method": "GET",
+        "url": "/transcribe",
+        "status": 200,
+        "allowOrigin": "https://localhost"
+      },
+      {
+        "kind": "request",
+        "method": "GET",
+        "url": "/transcribe",
+        "origin": "https://localhost"
+      },
+      {
+        "kind": "response",
+        "method": "GET",
+        "url": "/transcribe",
+        "status": 200,
+        "allowOrigin": "https://localhost"
+      },
+      {
+        "kind": "request",
+        "method": "GET",
+        "url": "/transcribe",
+        "origin": "https://localhost"
+      },
+      {
+        "kind": "response",
+        "method": "GET",
+        "url": "/transcribe",
+        "status": 200,
+        "allowOrigin": "https://localhost"
+      },
+      {
+        "kind": "request",
+        "method": "GET",
+        "url": "/transcribe",
+        "origin": "https://localhost"
+      },
+      {
+        "kind": "response",
+        "method": "GET",
+        "url": "/transcribe",
+        "status": 200,
+        "allowOrigin": "https://localhost"
+      }
+    ]
+  },
+  "network": [
+    {
+      "kind": "request",
+      "method": "GET",
+      "url": "/transcribe",
+      "origin": null
+    },
+    {
+      "kind": "request",
+      "method": "GET",
+      "url": "/transcribe",
+      "origin": "https://localhost"
+    },
+    {
+      "kind": "response",
+      "method": "GET",
+      "url": "/transcribe",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    },
+    {
+      "kind": "request",
+      "method": "POST",
+      "url": "/api/feedback",
+      "origin": "https://localhost"
+    },
+    {
+      "kind": "response",
+      "method": "POST",
+      "url": "/api/feedback",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    },
+    {
+      "kind": "request",
+      "method": "GET",
+      "url": "/transcribe",
+      "origin": "https://localhost"
+    },
+    {
+      "kind": "response",
+      "method": "GET",
+      "url": "/transcribe",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    },
+    {
+      "kind": "request",
+      "method": "GET",
+      "url": "/transcribe",
+      "origin": "https://localhost"
+    },
+    {
+      "kind": "response",
+      "method": "GET",
+      "url": "/transcribe",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    },
+    {
+      "kind": "request",
+      "method": "GET",
+      "url": "/transcribe",
+      "origin": "https://localhost"
+    },
+    {
+      "kind": "response",
+      "method": "GET",
+      "url": "/transcribe",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    },
+    {
+      "kind": "request",
+      "method": "GET",
+      "url": "/transcribe",
+      "origin": "https://localhost"
+    },
+    {
+      "kind": "response",
+      "method": "GET",
+      "url": "/transcribe",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    },
+    {
+      "kind": "request",
+      "method": "GET",
+      "url": "/geocode?q=Surkhi",
+      "origin": "https://localhost"
+    },
+    {
+      "kind": "response",
+      "method": "GET",
+      "url": "/geocode?q=Surkhi",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    },
+    {
+      "kind": "request",
+      "method": "GET",
+      "url": "/transcribe",
+      "origin": "https://localhost"
+    },
+    {
+      "kind": "response",
+      "method": "GET",
+      "url": "/transcribe",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    }
+  ]
+}

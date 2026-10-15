@@ -300,3 +300,32 @@ Each entry: what was decided, why, and what the alternative was.
    `https://*.supabase.co`**, so listing photos from Supabase Storage are blocked on the website home
    page (console: "Loading the image …/storage/v1/object/public/listing-photos/… violates … img-src").
    Pre-existing: the same `_headers` is live on prod (206cd86). Goes to the backlog.
+
+### Phase 5 — APK rebuild and full tests (2026-10-15)
+
+1. **New test S11 instead of reusing S9 for the live staging checks.** S9 is built around a local
+   `wrangler pages dev` + the staging-local APK; the live checks need the normal staging APK talking to
+   https://staging.kissansahyog.com. S11 (staging suite, after L1 so a KSTEST login exists) does:
+   (a) KSTEST feedback from /grievance → success state + POST Origin https://localhost + response 200 with
+   Allow-Origin https://localhost; (b) /post step 3 village field suggestions from staging, plus the app's
+   typed-village map lookup (LocationControl → live /geocode) with the app CORS; (c) mic shown iff live
+   /transcribe says configured. S9 is kept unchanged. Alternative: rewrite S9 — rejected (loses the local proof).
+2. **"Village lookup in Post" = two parts.** In the code, Post's village box is a `<datalist>` of resolved
+   villages read from Supabase (no server function); the only village lookup that uses a server function
+   is the typed-village lookup (`geocodeTyped` → /geocode) in LocationControl. Both are tested. Candidate
+   names that matched the local places list exactly (Rahatgarh, Bilehra) do not call /geocode, so the test
+   tries several and records each.
+3. **meta-tests.mjs paths follow `KS_REVIEW_DIR`** (they were hard-coded to docs/review/batch8b and would have
+   overwritten the 8B results), and `--skip-full` lets the two full runs be run separately, each under its own
+   stall timeout. Default behaviour unchanged.
+4. **Memory-pressure interruption: not retried.** Claude Code reaped the staging run-1 job because the PC was
+   critically low on memory, with an explicit instruction not to restart it unasked. Safest option: stop the
+   orphaned test processes and the emulator, record NOT-RUN, commit what is done. Alternative: relaunch the
+   suites — rejected (against the tool instruction; the same memory pressure would likely kill it again and
+   could destabilise the PC). The morning step is in REPORT.md.
+5. **Prod-flavour functions checked read-only with curl only** (GET /transcribe, /geocode, /geo and an OPTIONS
+   preflight to /api/feedback, no POST): all answer without `Access-Control-Allow-Origin` for https://localhost,
+   i.e. the prod app's feedback / village lookup / mic wait for the prod ship (`evidence/phase5/prod-functions-readonly.txt`).
+6. **REPORT.md not written by the Phase 5 subagent.** The subagent's file tool refuses to create report files;
+   the full Phase 5 report text (honest totals, APK table, live results) was returned to the orchestrator to
+   paste into `docs/review/batch9/REPORT.md`. Not worked around.

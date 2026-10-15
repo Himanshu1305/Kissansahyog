@@ -1,0 +1,222 @@
+[
+  {
+    "name": "live /transcribe answers 200 JSON {configured: true|false} with Access-Control-Allow-Origin https://localhost",
+    "pass": true,
+    "detail": {
+      "status": 200,
+      "body": "{\"configured\":true}",
+      "allowOrigin": "https://localhost"
+    }
+  },
+  {
+    "name": "(a) the feedback form shows its success state",
+    "pass": true,
+    "detail": {
+      "outcome": "success",
+      "text": "धन्यवाद! आपका संदेश हमें मिल गया।\n\nहम इसे ध्यान से पढ़ेंगे और आपके दिए ईमेल या मोबाइल नंबर पर आपसे संपर्क करेंगे।\n\nएक और संदेश भेजें",
+      "request": {
+        "kind": "request",
+        "method": "POST",
+        "url": "/api/feedback",
+        "origin": "https://localhost"
+      },
+      "response": {
+        "kind": "response",
+        "method": "POST",
+        "url": "/api/feedback",
+        "status": 200,
+        "allowOrigin": "https://localhost"
+      }
+    }
+  },
+  {
+    "name": "(a) the app POSTs to the LIVE staging /api/feedback with Origin https://localhost",
+    "pass": true,
+    "detail": {
+      "kind": "request",
+      "method": "POST",
+      "url": "/api/feedback",
+      "origin": "https://localhost"
+    }
+  },
+  {
+    "name": "(a) the response is 200 with Access-Control-Allow-Origin https://localhost",
+    "pass": true,
+    "detail": {
+      "kind": "response",
+      "method": "POST",
+      "url": "/api/feedback",
+      "status": 200,
+      "allowOrigin": "https://localhost"
+    }
+  },
+  {
+    "name": "(b) logged in (Post is behind login)",
+    "pass": true
+  },
+  {
+    "name": "(b) /post step 3: the village field offers known villages from staging and the typed text matches at least one",
+    "pass": true,
+    "detail": {
+      "knownVillages": 24,
+      "typed": "Band",
+      "fieldValue": "Band",
+      "fieldList": "known-villages",
+      "matching": [
+        "Banda",
+        "Bandri"
+      ]
+    }
+  },
+  {
+    "name": "(b) typed-village lookup in the app returns a place from the LIVE staging /geocode",
+    "pass": true,
+    "detail": [
+      {
+        "q": "Rahatgarh",
+        "step": "local-match"
+      },
+      {
+        "q": "Bilehra",
+        "step": "local-match"
+      },
+      {
+        "q": "Surkhi",
+        "step": "lookup-run",
+        "result": {
+          "use": "Surkhi चुनें\nदमोह, मध्य प्रदेश, भारत"
+        },
+        "network": [
+          {
+            "kind": "request",
+            "method": "GET",
+            "url": "/geocode?q=Surkhi",
+            "origin": "https://localhost"
+          },
+          {
+            "kind": "response",
+            "method": "GET",
+            "url": "/geocode?q=Surkhi",
+            "status": 200,
+            "allowOrigin": "https://localhost"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "(b) the /geocode call carries Origin https://localhost and gets 200 with Access-Control-Allow-Origin https://localhost",
+    "pass": true,
+    "detail": {
+      "request": {
+        "kind": "request",
+        "method": "GET",
+        "url": "/geocode?q=Surkhi",
+        "origin": "https://localhost"
+      },
+      "response": {
+        "kind": "response",
+        "method": "GET",
+        "url": "/geocode?q=Surkhi",
+        "status": 200,
+        "allowOrigin": "https://localhost"
+      }
+    }
+  },
+  {
+    "name": "(c) mic shown if and only if live /transcribe says configured (configured: true, buttons: 3)",
+    "pass": true,
+    "detail": {
+      "buttons": 3,
+      "mediaRecorder": true,
+      "getUserMedia": true,
+      "waitedForButton": true,
+      "transcribeCallsFromApp": [
+        {
+          "kind": "request",
+          "method": "GET",
+          "url": "/transcribe",
+          "origin": null
+        },
+        {
+          "kind": "request",
+          "method": "GET",
+          "url": "/transcribe",
+          "origin": "https://localhost"
+        },
+        {
+          "kind": "response",
+          "method": "GET",
+          "url": "/transcribe",
+          "status": 200,
+          "allowOrigin": "https://localhost"
+        },
+        {
+          "kind": "request",
+          "method": "GET",
+          "url": "/transcribe",
+          "origin": "https://localhost"
+        },
+        {
+          "kind": "response",
+          "method": "GET",
+          "url": "/transcribe",
+          "status": 200,
+          "allowOrigin": "https://localhost"
+        },
+        {
+          "kind": "request",
+          "method": "GET",
+          "url": "/transcribe",
+          "origin": "https://localhost"
+        },
+        {
+          "kind": "response",
+          "method": "GET",
+          "url": "/transcribe",
+          "status": 200,
+          "allowOrigin": "https://localhost"
+        },
+        {
+          "kind": "request",
+          "method": "GET",
+          "url": "/transcribe",
+          "origin": "https://localhost"
+        },
+        {
+          "kind": "response",
+          "method": "GET",
+          "url": "/transcribe",
+          "status": 200,
+          "allowOrigin": "https://localhost"
+        },
+        {
+          "kind": "request",
+          "method": "GET",
+          "url": "/transcribe",
+          "origin": "https://localhost"
+        },
+        {
+          "kind": "response",
+          "method": "GET",
+          "url": "/transcribe",
+          "status": 200,
+          "allowOrigin": "https://localhost"
+        },
+        {
+          "kind": "request",
+          "method": "GET",
+          "url": "/transcribe",
+          "origin": "https://localhost"
+        },
+        {
+          "kind": "response",
+          "method": "GET",
+          "url": "/transcribe",
+          "status": 200,
+          "allowOrigin": "https://localhost"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "run": {
+    "flavor": "staging",
+    "startedAt": "2026-10-15T04:50:46.067Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400"
+    },
+    "apk": null,
+    "fatalExceptions": null
+  },
+  "tests": [
+    {
+      "id": "S1",
+      "name": "Staging build",
+      "status": "RAN-PASSED",
+      "assertion": "Clean build of the staging APK (npm run android:debug:staging) exits 0; APK exists; size + sha256 recorded",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase5/staging-run1/S1/apk.json",
+        "docs/review/batch9/evidence/phase5/staging-run1/S1/build-summary.txt",
+        "docs/review/batch9/evidence/phase5/staging-run1/S1/checks.json"
+      ],
+      "durationMs": 43897,
+      "notes": "11.37 MB, sha256 70bef5e8d29266e8b7a488c8af1011bbf92d03c277552c1f6546aeef362d14e5"
+    },
+    {
+      "id": "S2",
+      "name": "Identity + guards",
+      "status": "RAN-PASSED",
+      "assertion": "aapt2: staging id/label; staging assets have the staging ref and no prod ref; prod APK the reverse; no default APK allows cleartext; a staging build with a prod VITE_SUPABASE_URL is refused",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase5/staging-run1/S2/identity.json",
+        "docs/review/batch9/evidence/phase5/staging-run1/S2/guard-refusal.txt",
+        "docs/review/batch9/evidence/phase5/staging-run1/S2/checks.json"
+      ],
+      "durationMs": 5432,
+      "notes": "refusal: STAGING GUARD: REFUSED — VITE_SUPABASE_URL in the process environment (start with --env-file=.env) points at the PRODUCTION project"
+    },
+    {
+      "id": "S3",
+      "name": "Coexistence",
+      "status": "RAN-PASSED",
+      "assertion": "Both APKs installed side by side; each app has its own storage (a marker set in one is absent in the other)",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase5/staging-run1/S3/prod-app.jpg",
+        "docs/review/batch9/evidence/phase5/staging-run1/S3/coexistence.json",
+        "docs/review/batch9/evidence/phase5/staging-run1/S3/checks.json"
+      ],
+      "durationMs": 56879,
+      "notes": ""
+    }
+  ]
+}
