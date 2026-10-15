@@ -33,6 +33,11 @@ Want to see first what it would do, without changing anything? Run
   the site is back on yesterday's version. Nothing else to do; send the box text to Claude Code.
 - **`SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION`** — nothing was changed; the line under it
   says why (for example "not on branch release-9").
+  If it says **"modified tracked files would change what ships"** and lists only
+  `android/app/capacitor.build.gradle` and/or `android/capacitor.settings.gradle`: an app build
+  rewrote their line endings (nothing real changed). Run
+  `git checkout -- android/app/capacitor.build.gradle android/capacitor.settings.gradle`
+  and run the ship command again. If it lists any OTHER file, stop and ask Claude Code.
 - **`SHIP FAILED AND THE AUTOMATIC ROLLBACK DID NOT CONFIRM`** — run the rollback command below.
 
 ## If you want the old version back later (at any time)

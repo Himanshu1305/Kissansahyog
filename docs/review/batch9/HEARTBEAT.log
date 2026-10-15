@@ -148,3 +148,12 @@
 2026-10-15 13:25 | phase6.6 | docs written; committing
 2026-10-15 13:25 | phase6.6 | done (commit bc9fbc0 pushed)
 2026-10-15 13:26 | orchestrator | Phase 6.6 verified; launching Phase 8
+2026-10-15 13:26 | phase8 | start: reading inputs
+2026-10-15 13:27 | phase8 | reading inputs (report.mjs, results json)
+2026-10-15 13:29 | phase8 | 8.1 writing scripts/android/morning.sh
+2026-10-15 13:29 | phase8 | 8.1 morning.sh written, bash -n OK, memory probe works; 8.2 guide next
+2026-10-15 13:31 | phase8 | 8.2 MORNING_EMULATOR_GUIDE.md written; 8.3 checklist next
+2026-10-15 13:31 | phase8 | 8.3 PHONE_TEST_CHECKLIST.md written; 8.4 REPORT next
+2026-10-15 13:32 | phase8 | restored 2 gradle files (EOL-only) so ship-prod-9 precondition is clean; DECISIONS updated
+2026-10-15 13:33 | phase8 | 8.4 writing REPORT.md
+2026-10-15 13:35 | phase8 | REPORT.md write refused by tool (subagent rule); report text returned to orchestrator; 8.5 commit next
