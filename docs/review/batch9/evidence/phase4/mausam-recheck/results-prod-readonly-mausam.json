@@ -1,0 +1,59 @@
+{
+  "label": "prod-readonly-mausam",
+  "base": "https://kissansahyog.com",
+  "startedAt": "2026-10-15T04:27:56.857Z",
+  "gates": {
+    "data_ticker_mausam": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "mandi ticker on / shows prices (₹ + number)",
+          "ok": true,
+          "detail": "📊 मंडी भावपिछला भाव (12/10)मक्का ₹1,930/क्विंटल · Sagar APMC|गेहूं ₹2,560/क्विंटल · Shahagarh APMC|सोयाबीन ₹5,700/क्विंटल · Gadakota APMC|सरसों ₹6,700/क्विंटल "
+        },
+        {
+          "desc": "/mausam has a place set (location banner)",
+          "ok": true,
+          "detail": "📍 सागर के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
+        },
+        {
+          "desc": "/mausam shows a temperature (weather data loaded)",
+          "ok": true,
+          "detail": {
+            "temp": "28°",
+            "weatherResponses": [
+              "GET 200 kissansahyog.com/assets/weatherApiV2-BTYZYe_F.js",
+              "GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+              "GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2",
+              "GET 200 kissansahyog.com/assets/weatherApiV2-BTYZYe_F.js",
+              "GET 200 kissansahyog.com/assets/weatherRules-kzLuFq6I.js",
+              "GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js"
+            ]
+          }
+        },
+        {
+          "desc": "/mausam weather read answered 200 (weather_cache_v2 or open-meteo)",
+          "ok": true,
+          "detail": [
+            "GET 200 kissansahyog.com/assets/weatherApiV2-BTYZYe_F.js",
+            "GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+            "GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2",
+            "GET 200 kissansahyog.com/assets/weatherApiV2-BTYZYe_F.js",
+            "GET 200 kissansahyog.com/assets/weatherRules-kzLuFq6I.js",
+            "GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js"
+          ]
+        }
+      ],
+      "notes": [
+        "read-only mode: 3 write request(s) aborted so far: [\"POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/recent_crop_reports\",\"POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_grid_requests?on_conflict=grid_key\",\"POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_grid_requests?on_conflict=grid_key\"]"
+      ]
+    }
+  },
+  "blockedWrites": [
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/recent_crop_reports",
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_grid_requests?on_conflict=grid_key",
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_grid_requests?on_conflict=grid_key"
+  ],
+  "finishedAt": "2026-10-15T04:28:04.356Z",
+  "verdict": "ALL PASSED"
+}

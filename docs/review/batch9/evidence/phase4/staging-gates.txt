@@ -1,0 +1,65 @@
+PASS  [a_pages] / → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आज किसान के लिए","errorBoundary":false,"screenshot":"page-staging-gates-home.png"}
+PASS  [a_pages] / no failed request to our own origin  — []
+PASS  [a_pages] /mausam → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान","errorBoundary":false,"screenshot":"page-staging-gates-mausam.png"}
+PASS  [a_pages] /mausam no failed request to our own origin  — []
+PASS  [a_pages] /msp → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"गेहूं भाव — आज व MSP से तुलना","errorBoundary":false,"screenshot":"page-staging-gates-msp.png"}
+PASS  [a_pages] /msp no failed request to our own origin  — []
+PASS  [a_pages] /browse → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आस-पास खोजें","errorBoundary":false,"screenshot":"page-staging-gates-browse.png"}
+PASS  [a_pages] /browse no failed request to our own origin  — []
+PASS  [a_pages] /sawaal → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"किसान सवाल — आपके सवाल, हमारे जवाब","errorBoundary":false,"screenshot":"page-staging-gates-sawaal.png"}
+PASS  [a_pages] /sawaal no failed request to our own origin  — []
+PASS  [a_pages] /yojana → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"सरकारी योजनाएं","errorBoundary":false,"screenshot":"page-staging-gates-yojana.png"}
+PASS  [a_pages] /yojana no failed request to our own origin  — []
+PASS  [a_pages] /cold-storage → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"मध्य प्रदेश कोल्ड स्टोरेज खोजें","errorBoundary":false,"screenshot":"page-staging-gates-cold_storage.png"}
+PASS  [a_pages] /cold-storage no failed request to our own origin  — []
+PASS  [a_pages] /about → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"हमारे बारे में","errorBoundary":false,"screenshot":"page-staging-gates-about.png"}
+PASS  [a_pages] /about no failed request to our own origin  — []
+PASS  [a_pages] /privacy → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"गोपनीयता नीति","errorBoundary":false,"screenshot":"page-staging-gates-privacy.png"}
+PASS  [a_pages] /privacy no failed request to our own origin  — []
+PASS  [a_pages] /terms → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"उपयोग की शर्तें","errorBoundary":false,"screenshot":"page-staging-gates-terms.png"}
+PASS  [a_pages] /terms no failed request to our own origin  — []
+PASS  [a_pages] /grievance → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"सुझाव और शिकायत","errorBoundary":false,"screenshot":"page-staging-gates-grievance.png"}
+PASS  [a_pages] /grievance no failed request to our own origin  — []
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin https://localhost → 204 + echoed origin  — {"status":204,"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [b_cors_preflight] no '*' for https://localhost  — {"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin capacitor://localhost → 204 + echoed origin  — {"status":204,"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [b_cors_preflight] no '*' for capacitor://localhost  — {"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin https://evil.example → NO allow-origin  — {"status":204,"headers":{}}
+PASS  [b_cors_preflight] no '*' for https://evil.example  — {}
+PASS  [c_feedback_post] POST /api/feedback (Origin https://localhost) → 200 {ok:true} (the function answers ok only after submit_feedback stored the row)  — {"status":200,"body":{"ok":true}}
+PASS  [c_feedback_post] response carries Access-Control-Allow-Origin: https://localhost  — {"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}
+PASS  [d_functions] GET /geo Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["city","region","country","latitude","longitude"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geo Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["city","region","country","latitude","longitude"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geo Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /geo Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["found","lat","lng","display_name"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["found","lat","lng","display_name"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /geocode?village=Rahatgarh&district=Sagar Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [d_functions] GET /transcribe Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["configured"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /transcribe Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["configured"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /transcribe Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /transcribe Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [e_static_no_cors] GET / Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET / Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET / Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [f_service_worker_sitemap] service worker installed and controls the page  — https://staging.kissansahyog.com/sw.js
+PASS  [f_service_worker_sitemap] /sitemap.xml under the SW is the real file (not the app shell)  — {"status":200,"contentType":"application/xml","fromServiceWorker":false,"head":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<sitemapindex xmlns=\"http://www.sitemaps."}
+PASS  [f_service_worker_sitemap] /robots.txt under the SW is the real file (not the app shell)  — {"status":200,"contentType":"text/plain; charset=utf-8","fromServiceWorker":false,"head":"User-agent: *\r\nAllow: /\r\nDisallow: /search\r\nDisallow: /join\r\nDisallow: /admin\r\nD"}
+PASS  [f_service_worker_sitemap] /sitemap-pages.xml under the SW is the real file (not the app shell)  — {"status":200,"contentType":"application/xml","fromServiceWorker":false,"head":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/sc"}
+PASS  [data_ticker_mausam] mandi ticker on / shows prices (₹ + number)  — 📊 मंडी भावमक्का ₹1,849/क्विंटल · Rehli APMC|गेहूं ₹2,655/क्विंटल · Sagar APMC|सोयाबीन ₹6,323/क्विंटल · Rehli APMC|सरसों ₹7,190/क्विंटल · Khurai APMC|लहसुन ₹11,
+PASS  [data_ticker_mausam] /mausam has a place set (location banner)  — 📍 सागर के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ
+PASS  [data_ticker_mausam] /mausam shows a temperature (weather data loaded)  — {"temp":"21°","weatherResponses":["GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js","GET 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_cache_v2","POST 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_grid_requests","GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js"]}
+PASS  [data_ticker_mausam] /mausam weather read answered 200 (weather_cache_v2 or open-meteo)  — ["GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js","GET 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_cache_v2","POST 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_grid_requests","GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js"]
+
+ALL PASSED  (results-staging-gates.json)
+EXIT 0

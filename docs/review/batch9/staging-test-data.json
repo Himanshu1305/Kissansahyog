@@ -1,0 +1,35 @@
+{
+  "rows": [
+    {
+      "phase": "Phase 4",
+      "time": "2026-10-14T22:37:14.519Z",
+      "kind": "feedback",
+      "site": "https://staging.kissansahyog.com",
+      "marker": "KSTEST-B9P4-1792017434519",
+      "email": "kstest-b9p4-1792017434519@example.com",
+      "device": "KSTEST-phase4-gate",
+      "status": 200,
+      "response": {
+        "ok": true
+      },
+      "stored": true,
+      "table": "feedback (via submit_feedback RPC in functions/api/feedback.js)"
+    },
+    {
+      "phase": "Phase 4",
+      "time": "2026-10-15T04:30:19.612Z",
+      "kind": "feedback",
+      "site": "https://staging.kissansahyog.com",
+      "marker": "KSTEST-B9P4-1792038619612",
+      "email": "kstest-b9p4-1792038619612@example.com",
+      "device": "KSTEST-phase4-gate",
+      "status": 200,
+      "response": {
+        "ok": true
+      },
+      "stored": true,
+      "table": "feedback (via submit_feedback RPC in functions/api/feedback.js)"
+    }
+  ],
+  "note": "Batch 9 KSTEST rows written to the STAGING project only (wzxtqbqlahyahsnoqqva). No passwords recorded."
+}

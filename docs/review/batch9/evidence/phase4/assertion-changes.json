@@ -1,0 +1,27 @@
+{
+  "data_ticker_mausam": {
+    "gate": "Phase 4 staging gate 'data' (scripts/verify-batch9-live.mjs, function data())",
+    "failedRun": {
+      "file": "docs/review/batch9/evidence/phase4/staging-after/results-staging-gates.json",
+      "time": "2026-10-14T22:36Z (04:06-04:08 IST)",
+      "result": "/mausam shows a temperature (weather data loaded) -> null"
+    },
+    "rootCause": "TEST problem, not a site problem. /mausam shows weather ONLY for a place the visitor has set (Batch 7L-1, src/screens/Mausam.jsx line 84: `!location ? null : ...`; LocationControl.jsx: 'never a silent default place'). Without a place the page shows the 'share my location' card and no temperature. In the failing run the browser had no location: both screenshots of that run show no place - data-staging-gates-home.png shows the home weather card 'मौसम देखने के लिए अपनी जगह बताएँ' and data-staging-gates-mausam.png shows the share-location card still on screen. The script was edited at 04:09:16 IST by the previous session (file mtime; the file was untracked, so the earlier text is not preserved) to give the browser context geolocation permission + a fixed Sagar position, and the 04:09:39 re-run (results-staging-data.json) passed with 21°. Reproduced independently on 2026-10-15: with geolocation granted, LocationProvider names the place on load and staging /mausam shows 21° within 2 s; weather_cache_v2 GET 200 from the staging Supabase project; no console error other than the known B17 localhost modulepreload CSP noise and the Cloudflare beacon CSP block.",
+    "removed": "(previous, unpreserved version) /mausam visited with no location in the browser",
+    "added": [
+      "browser context gets geolocation permission and a fixed position (Sagar 23.8388, 78.7378 - the same test place as 8B T7, scripts/android/expected.mjs TEST_PLACE)",
+      "wait up to 15 s for [data-testid=location-banner]; only if it is missing press [data-testid=location-share] (retried once, because a click before React hydration is a no-op)",
+      "new check: '/mausam has a place set (location banner)'",
+      "temperature regex now read from <main> first (falls back to body)",
+      "new check: '/mausam weather read answered 200 (weather_cache_v2 or open-meteo)' - proves the data came from the backend, not just any ° sign",
+      "console errors on / and /mausam recorded as notes (allowlist: B17 localhost preload, Cloudflare beacon CSP, aborted writes in read-only mode)"
+    ],
+    "alsoAdded": "read-only mode (automatic for kissansahyog.com / www / kissansahyog-prod.pages.dev, or --read-only): every browser context aborts non-GET/HEAD/OPTIONS requests (e.g. /mausam's weather_grid_requests upsert and the recent_crop_reports RPC POST) and the 'post' gate is refused, so prod gates write nothing to the prod database.",
+    "why": "The assertion 'a temperature is shown' is correct for a visitor who has a place; the test must create that precondition the same way a real visitor does (granted location) instead of failing on the documented 'no place -> no weather' behaviour.",
+    "fixAttempts": 1,
+    "reRuns": {
+      "staging": "docs/review/batch9/evidence/phase4/mausam-recheck/results-staging-mausam-recheck.json - RAN-PASSED (place सागर, 21°, GET 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_cache_v2)",
+      "prodReadOnly": "docs/review/batch9/evidence/phase4/mausam-recheck/results-prod-readonly-mausam.json - RAN-PASSED (place सागर, 28°, GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2); 3 write requests aborted by read-only mode (1x rpc/recent_crop_reports, 2x weather_grid_requests upsert) - nothing written to prod"
+    }
+  }
+}

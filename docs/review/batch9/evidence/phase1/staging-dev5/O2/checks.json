@@ -1,0 +1,96 @@
+[
+  {
+    "name": "/: IndexedDB has an entry (mandi_prices) stored during this visit",
+    "pass": true,
+    "detail": [
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792010674983,
+        "dataTime": 1791849600000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792010690246,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792010671915,
+        "dataTime": 1791936000000
+      }
+    ]
+  },
+  {
+    "name": "/mausam: IndexedDB has an entry (weather_cache_v2 / api.open-meteo.com) stored during this visit",
+    "pass": true,
+    "detail": [
+      {
+        "resource": "weather_cache_v2",
+        "cachedAt": 1792010682252,
+        "dataTime": 1791993722631
+      }
+    ]
+  },
+  {
+    "name": "/msp: IndexedDB has an entry (mandi_prices / msp_prices) stored during this visit",
+    "pass": true,
+    "detail": [
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792010674983,
+        "dataTime": 1791849600000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792010690246,
+        "dataTime": 1791936000000
+      },
+      {
+        "resource": "mandi_prices",
+        "cachedAt": 1792010671915,
+        "dataTime": 1791936000000
+      }
+    ]
+  },
+  {
+    "name": "/browse?cat=bhusa: IndexedDB has an entry (listings) stored during this visit",
+    "pass": true,
+    "detail": [
+      {
+        "resource": "listings",
+        "cachedAt": 1792010701989,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792009822762,
+        "dataTime": null
+      },
+      {
+        "resource": "listings",
+        "cachedAt": 1792010706529,
+        "dataTime": null
+      }
+    ]
+  },
+  {
+    "name": "/listing/0ff5fbd8-f587-4c07-b966-b805b099dff2: IndexedDB has an entry (listings) stored during this visit",
+    "pass": true,
+    "detail": [
+      {
+        "resource": "listings",
+        "cachedAt": 1792010706529,
+        "dataTime": null
+      }
+    ]
+  },
+  {
+    "name": "data on screen before going offline: ticker ₹, temperatures, msp ₹, the KSTEST listing",
+    "pass": true,
+    "detail": {
+      "ticker": 8,
+      "temps": 6,
+      "msp": 8
+    }
+  }
+]

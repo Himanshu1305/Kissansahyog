@@ -1,0 +1,67 @@
+{
+  "label": "staging-swupdate",
+  "base": "https://staging.kissansahyog.com",
+  "startedAt": "2026-10-14T22:35:22.670Z",
+  "gates": {
+    "g_sw_update_existing_client": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "old build installed: SW controls the page, old main chunk loaded",
+          "ok": true,
+          "detail": {
+            "main": "/assets/index-EC2jILHl.js",
+            "controller": "https://staging.kissansahyog.com/sw.js",
+            "caches": [
+              "workbox-precache-v2-https://staging.kissansahyog.com/"
+            ]
+          }
+        },
+        {
+          "desc": "the same client moves to the new main chunk index-B9eiHYmW.js",
+          "ok": true,
+          "detail": {
+            "before": {
+              "main": "/assets/index-EC2jILHl.js",
+              "controller": "https://staging.kissansahyog.com/sw.js",
+              "caches": [
+                "workbox-precache-v2-https://staging.kissansahyog.com/"
+              ]
+            },
+            "waitedForDeploySec": 30,
+            "loads": [
+              {
+                "main": "/assets/index-B9eiHYmW.js",
+                "controller": "https://staging.kissansahyog.com/sw.js"
+              }
+            ]
+          }
+        },
+        {
+          "desc": "no ErrorBoundary after the update",
+          "ok": true,
+          "detail": null
+        }
+      ],
+      "notes": []
+    }
+  },
+  "swUpdate": {
+    "before": {
+      "main": "/assets/index-EC2jILHl.js",
+      "controller": "https://staging.kissansahyog.com/sw.js",
+      "caches": [
+        "workbox-precache-v2-https://staging.kissansahyog.com/"
+      ]
+    },
+    "waitedForDeploySec": 30,
+    "loads": [
+      {
+        "main": "/assets/index-B9eiHYmW.js",
+        "controller": "https://staging.kissansahyog.com/sw.js"
+      }
+    ]
+  },
+  "finishedAt": "2026-10-14T22:36:28.870Z",
+  "verdict": "ALL PASSED"
+}

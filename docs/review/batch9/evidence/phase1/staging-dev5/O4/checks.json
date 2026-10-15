@@ -1,0 +1,50 @@
+[
+  {
+    "name": "cache empty",
+    "pass": true
+  },
+  {
+    "name": "airplane mode is really on",
+    "pass": true
+  },
+  {
+    "name": "/mausam: offline message + \"try again\" within 12 s",
+    "pass": true,
+    "detail": {
+      "ms": 1689,
+      "notice": {
+        "tooOld": false,
+        "text": "📴 जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।\n\nफिर से कोशिश करें"
+      }
+    }
+  },
+  {
+    "name": "/mausam: no spinner remains",
+    "pass": true,
+    "detail": 0
+  },
+  {
+    "name": "/mausam: \"try again\" works (page fetches again, ends in the same clear state, no spinner)",
+    "pass": true
+  },
+  {
+    "name": "/msp: offline message + \"try again\" within 12 s",
+    "pass": true,
+    "detail": {
+      "ms": 1469,
+      "notice": {
+        "tooOld": false,
+        "text": "📴 जानकारी नहीं आ पाई — इंटरनेट नहीं है या बहुत धीमा है।\n\nफिर से कोशिश करें"
+      }
+    }
+  },
+  {
+    "name": "/msp: no spinner remains",
+    "pass": true,
+    "detail": 0
+  },
+  {
+    "name": "/msp: \"try again\" works (page fetches again, ends in the same clear state, no spinner)",
+    "pass": true
+  }
+]

@@ -1,0 +1,186 @@
+{
+  "label": "prod-readonly-now",
+  "base": "https://kissansahyog.com",
+  "startedAt": "2026-10-15T04:32:33.644Z",
+  "gates": {
+    "compare_with_snapshot": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "/: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/mausam: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/msp: 200, title/h1 unchanged, size within -15%/+60% (FAQ block added), no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": true
+          }
+        },
+        {
+          "desc": "/browse: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/sawaal: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/yojana: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/cold-storage: 200, title/h1 unchanged, size within -15%/+60% (FAQ block added), no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": true
+          }
+        },
+        {
+          "desc": "/about: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/privacy: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/terms: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": "not recorded",
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "robots.txt unchanged",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "desc": "sitemap index is valid XML and lists 4 children",
+          "ok": true,
+          "detail": [
+            "https://kissansahyog.com/sitemap-pages.xml",
+            "https://kissansahyog.com/sitemap-sawaal.xml",
+            "https://kissansahyog.com/sitemap-cold-storage.xml",
+            "https://kissansahyog.com/sitemap-schemes.xml"
+          ]
+        },
+        {
+          "desc": "/sitemap-pages.xml valid XML with urls",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "urls": 49,
+            "before": 49
+          }
+        },
+        {
+          "desc": "/sitemap-sawaal.xml valid XML with urls",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "urls": 161,
+            "before": 161
+          }
+        },
+        {
+          "desc": "/sitemap-cold-storage.xml valid XML with urls",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "urls": 35,
+            "before": 35
+          }
+        },
+        {
+          "desc": "/sitemap-schemes.xml valid XML with urls",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "urls": 18,
+            "before": 18
+          }
+        }
+      ],
+      "notes": []
+    }
+  },
+  "finishedAt": "2026-10-15T04:32:34.517Z",
+  "verdict": "ALL PASSED"
+}

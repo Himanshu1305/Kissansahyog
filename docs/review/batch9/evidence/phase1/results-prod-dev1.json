@@ -1,0 +1,37 @@
+{
+  "run": {
+    "flavor": "prod",
+    "startedAt": "2026-10-14T20:06:51.874Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "finishedAt": "2026-10-14T20:07:47.975Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "T14",
+      "name": "Keyboard + search",
+      "status": "RAN-PASSED",
+      "assertion": "On /search a real tap brings up a DRAWN on-screen keyboard (IME frame visible + screenshot differs), the focused input is fully visible above the keyboard and not covered, and a query known to have results renders results",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/prod-dev1/T14/keyboard-open.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev1/T14/results.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev1/T14/keyboard.json",
+        "docs/review/batch9/evidence/phase1/prod-dev1/T14/checks.json"
+      ],
+      "durationMs": 53131,
+      "notes": "query \"wheat\" → 16 results; keyboard top 1517px, input bottom 495px"
+    }
+  ]
+}

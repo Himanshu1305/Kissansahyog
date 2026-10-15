@@ -1,0 +1,452 @@
+{
+  "device": {
+    "dpr": 2.625
+  },
+  "loggedIn": false,
+  "notRun": [
+    "/post (steps 2 and 3)",
+    "/profile — need a logged-in account; the prod flavour is read-only (no account may be created or used)"
+  ],
+  "forms": [
+    {
+      "form": "login",
+      "marked": {
+        "field": "input#phone[type=tel]",
+        "fields": 3,
+        "submit": "button[data-testid=login-phone-submit] \"मोबाइल नंबर से लॉग इन करें\""
+      },
+      "beforeTap": {
+        "top": 596.0952758789062,
+        "bottom": 651.9048004150391,
+        "height": 55.80952453613281,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 0,
+        "covered": []
+      },
+      "keyboard": {
+        "shown": true,
+        "top": 1633,
+        "frame": [
+          0,
+          1633,
+          1080,
+          2400
+        ],
+        "imeShowing": true
+      },
+      "imeTopPx": 1633,
+      "drawn": {
+        "meanAbsDiff": 38.6,
+        "bandStdev": 78,
+        "drawn": true,
+        "band": [
+          1663,
+          2200
+        ]
+      },
+      "shot": "docs/review/batch9/evidence/phase1/prod-dev2/K1/login-keyboard.jpg",
+      "webViewWithKeyboard": [
+        0,
+        136,
+        1080,
+        1633
+      ],
+      "field": {
+        "top": 257.8095397949219,
+        "bottom": 313.6190643310547,
+        "height": 55.80952453613281,
+        "focused": true,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 515.7857055664062,
+        "tabBar": {
+          "top": 515.7857055664062,
+          "bottom": 571.0476112365723
+        },
+        "innerHeight": 571,
+        "vvHeight": 571.047607421875,
+        "scrollY": 338.28570556640625,
+        "covered": []
+      },
+      "fieldScreenPx": {
+        "top": 813,
+        "bottom": 959
+      },
+      "submit": {
+        "top": 259.5238037109375,
+        "bottom": 311.5238037109375,
+        "height": 52,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 515.7857055664062,
+        "tabBar": {
+          "top": 515.7857055664062,
+          "bottom": 571.0476112365723
+        },
+        "innerHeight": 571,
+        "vvHeight": 571.047607421875,
+        "scrollY": 400.3809509277344,
+        "covered": []
+      },
+      "keyboardStillUp": true,
+      "submitShot": "docs/review/batch9/evidence/phase1/prod-dev2/K1/login-submit-reachable.jpg",
+      "afterClose": {
+        "keyboardHidden": true,
+        "innerHeightRestored": true,
+        "field": {
+          "top": 391.9047546386719,
+          "bottom": 447.7142791748047,
+          "height": 55.80952453613281,
+          "focused": false,
+          "topLimit": 56.761905670166016,
+          "bottomLimit": 783.9761962890625,
+          "tabBar": {
+            "top": 783.9761962890625,
+            "bottom": 839.2381019592285
+          },
+          "innerHeight": 839,
+          "vvHeight": 839.2380981445312,
+          "scrollY": 204.1904754638672,
+          "covered": []
+        }
+      }
+    },
+    {
+      "form": "signup",
+      "marked": {
+        "field": "input#k_crops[type=text]",
+        "fields": 7,
+        "submit": "button \"आगे बढ़ें\""
+      },
+      "beforeTap": {
+        "top": 716.2619018554688,
+        "bottom": 772.0714263916016,
+        "height": 55.80952453613281,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 639.2380981445312,
+        "covered": []
+      },
+      "keyboard": {
+        "shown": true,
+        "top": 1517,
+        "frame": [
+          0,
+          1517,
+          1080,
+          2400
+        ],
+        "imeShowing": true
+      },
+      "imeTopPx": 1517,
+      "drawn": {
+        "meanAbsDiff": 21,
+        "bandStdev": 41.8,
+        "drawn": true,
+        "band": [
+          1547,
+          2165
+        ]
+      },
+      "shot": "docs/review/batch9/evidence/phase1/prod-dev2/K1/signup-keyboard.jpg",
+      "webViewWithKeyboard": [
+        0,
+        136,
+        1080,
+        1517
+      ],
+      "field": {
+        "top": 235.88095092773438,
+        "bottom": 291.6904754638672,
+        "height": 55.80952453613281,
+        "focused": true,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 1119.6190185546875,
+        "covered": []
+      },
+      "fieldScreenPx": {
+        "top": 755,
+        "bottom": 902
+      },
+      "submit": {
+        "top": 237.9761962890625,
+        "bottom": 289.9761962890625,
+        "height": 52,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 1466.6666259765625,
+        "covered": []
+      },
+      "keyboardStillUp": true,
+      "submitShot": "docs/review/batch9/evidence/phase1/prod-dev2/K1/signup-submit-reachable.jpg",
+      "afterClose": {
+        "keyboardHidden": true,
+        "innerHeightRestored": true,
+        "field": {
+          "top": 392.0714416503906,
+          "bottom": 447.88096618652344,
+          "height": 55.80952453613281,
+          "focused": false,
+          "topLimit": 56.761905670166016,
+          "bottomLimit": 783.9761962890625,
+          "tabBar": {
+            "top": 783.9761962890625,
+            "bottom": 839.2381019592285
+          },
+          "innerHeight": 839,
+          "vvHeight": 839.2380981445312,
+          "scrollY": 963.4285888671875,
+          "covered": []
+        }
+      }
+    },
+    {
+      "form": "search",
+      "marked": {
+        "field": "input[type=search]",
+        "fields": 1,
+        "submit": "button \"🔍\""
+      },
+      "beforeTap": {
+        "top": 92.76190948486328,
+        "bottom": 136.76190948486328,
+        "height": 44,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 0,
+        "covered": []
+      },
+      "keyboard": {
+        "shown": true,
+        "top": 1517,
+        "frame": [
+          0,
+          1517,
+          1080,
+          2400
+        ],
+        "imeShowing": true
+      },
+      "imeTopPx": 1517,
+      "drawn": {
+        "meanAbsDiff": 16.8,
+        "bandStdev": 40,
+        "drawn": true,
+        "band": [
+          1547,
+          2165
+        ]
+      },
+      "shot": "docs/review/batch9/evidence/phase1/prod-dev2/K1/search-keyboard.jpg",
+      "webViewWithKeyboard": [
+        0,
+        136,
+        1080,
+        1517
+      ],
+      "field": {
+        "top": 92.76190948486328,
+        "bottom": 136.76190948486328,
+        "height": 44,
+        "focused": true,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 0,
+        "covered": []
+      },
+      "fieldScreenPx": {
+        "top": 380,
+        "bottom": 495
+      },
+      "submit": {
+        "top": 92.76190948486328,
+        "bottom": 136.76190948486328,
+        "height": 44,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 0,
+        "covered": []
+      },
+      "keyboardStillUp": true,
+      "submitShot": "docs/review/batch9/evidence/phase1/prod-dev2/K1/search-submit-reachable.jpg",
+      "afterClose": {
+        "keyboardHidden": true,
+        "innerHeightRestored": true,
+        "field": {
+          "top": 92.76190948486328,
+          "bottom": 136.76190948486328,
+          "height": 44,
+          "focused": false,
+          "topLimit": 56.761905670166016,
+          "bottomLimit": 783.9761962890625,
+          "tabBar": {
+            "top": 783.9761962890625,
+            "bottom": 839.2381019592285
+          },
+          "innerHeight": 839,
+          "vvHeight": 839.2380981445312,
+          "scrollY": 0,
+          "covered": []
+        }
+      }
+    },
+    {
+      "form": "feedback (/grievance)",
+      "marked": {
+        "field": "textarea#fb-message[type=textarea]",
+        "fields": 2,
+        "submit": "button \"संदेश भेजें\""
+      },
+      "beforeTap": {
+        "top": 530.3333129882812,
+        "bottom": 711.1428375244141,
+        "height": 180.8095245361328,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 783.9761962890625,
+        "tabBar": {
+          "top": 783.9761962890625,
+          "bottom": 839.2381019592285
+        },
+        "innerHeight": 839,
+        "vvHeight": 839.2380981445312,
+        "scrollY": 0,
+        "covered": []
+      },
+      "keyboard": {
+        "shown": true,
+        "top": 1517,
+        "frame": [
+          0,
+          1517,
+          1080,
+          2400
+        ],
+        "imeShowing": true
+      },
+      "imeTopPx": 1517,
+      "drawn": {
+        "meanAbsDiff": 19.9,
+        "bandStdev": 42.1,
+        "drawn": true,
+        "band": [
+          1547,
+          2165
+        ]
+      },
+      "shot": "docs/review/batch9/evidence/phase1/prod-dev2/K1/feedback-grievance--keyboard.jpg",
+      "webViewWithKeyboard": [
+        0,
+        136,
+        1080,
+        1517
+      ],
+      "field": {
+        "top": 173.38095092773438,
+        "bottom": 354.1904754638672,
+        "height": 180.8095245361328,
+        "focused": true,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 356.952392578125,
+        "covered": []
+      },
+      "fieldScreenPx": {
+        "top": 591,
+        "bottom": 1066
+      },
+      "submit": {
+        "top": 239.952392578125,
+        "bottom": 287.952392578125,
+        "height": 48,
+        "focused": false,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 624.3809814453125,
+        "covered": []
+      },
+      "keyboardStillUp": true,
+      "submitShot": "docs/review/batch9/evidence/phase1/prod-dev2/K1/feedback-grievance--submit-reachable.jpg",
+      "afterClose": {
+        "keyboardHidden": true,
+        "innerHeightRestored": true,
+        "field": {
+          "top": 329.5714416503906,
+          "bottom": 510.38096618652344,
+          "height": 180.8095245361328,
+          "focused": false,
+          "topLimit": 56.761905670166016,
+          "bottomLimit": 783.9761962890625,
+          "tabBar": {
+            "top": 783.9761962890625,
+            "bottom": 839.2381019592285
+          },
+          "innerHeight": 839,
+          "vvHeight": 839.2380981445312,
+          "scrollY": 200.76190185546875,
+          "covered": []
+        }
+      }
+    }
+  ]
+}

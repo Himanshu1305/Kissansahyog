@@ -1,0 +1,12 @@
+== staging dist check ==
+main_chunk index-B9eiHYmW.js raw=80923 gzip=27182
+total_js_bytes 1700778  js_files 110
+index_html_count 263
+files_total 468
+prod_ref_hits 0
+staging_ref_hits 2
+prod_ref_in_js 0  staging_ref_in_js 1
+forbidden_paths: 0
+capacitor_core_in_main: 0
+routes_json: {"version":1,"include":["/api/*","/geo","/geocode","/transcribe"],"exclude":[]}
+functions_dir_in_dist: none

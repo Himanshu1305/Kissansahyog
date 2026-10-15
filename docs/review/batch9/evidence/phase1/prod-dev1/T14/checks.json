@@ -1,0 +1,82 @@
+[
+  {
+    "name": "a query with known results exists in public/search-index.json",
+    "pass": true,
+    "detail": "wheat: 17 items"
+  },
+  {
+    "name": "keyboard opens (dumpsys: input shown + visible IME frame)",
+    "pass": true,
+    "detail": {
+      "shown": true,
+      "top": 1517,
+      "frame": [
+        0,
+        1517,
+        1080,
+        2400
+      ],
+      "imeShowing": true
+    }
+  },
+  {
+    "name": "the keyboard is drawn on the screenshot",
+    "pass": true,
+    "detail": {
+      "meanAbsDiff": 18.4,
+      "bandStdev": 41,
+      "drawn": true,
+      "band": [
+        1547,
+        2165
+      ]
+    }
+  },
+  {
+    "name": "the input has focus",
+    "pass": true
+  },
+  {
+    "name": "the input is fully visible (below the header, above the tab bar and the keyboard, not covered)",
+    "pass": true,
+    "detail": {
+      "geometry": {
+        "top": 92.76190948486328,
+        "bottom": 136.76190948486328,
+        "height": 44,
+        "focused": true,
+        "topLimit": 56.761905670166016,
+        "bottomLimit": 471.9761962890625,
+        "tabBar": {
+          "top": 471.9761962890625,
+          "bottom": 527.2381019592285
+        },
+        "innerHeight": 527,
+        "vvHeight": 527.2380981445312,
+        "scrollY": 0,
+        "covered": []
+      },
+      "inputBottomPx": 495,
+      "imeTopPx": 1517
+    }
+  },
+  {
+    "name": "typed text reaches the input",
+    "pass": true,
+    "detail": "wheat"
+  },
+  {
+    "name": "results render",
+    "pass": true,
+    "detail": {
+      "items": 16,
+      "groups": 3,
+      "url": "/search?q=Wheat"
+    }
+  },
+  {
+    "name": "URL carries the query",
+    "pass": true,
+    "detail": "/search?q=Wheat"
+  }
+]

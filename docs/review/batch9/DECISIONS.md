@@ -239,3 +239,64 @@ Each entry: what was decided, why, and what the alternative was.
     `*.apk`, `*.aab`, but only for paths under android/).
 11. **Nothing in `public/.well-known/`.** `docs/store/assetlinks.template.json` is a template only; the
     fingerprint to put there is Play's app-signing certificate, known after the first upload.
+
+### Phase 4 — staging ship and prod preparation (resumed session, 2026-10-15)
+
+1. **Mausam gate: the TEST was wrong, the site was not.** The first full staging gate run (04:06–04:08)
+   visited /mausam with no place in the browser; /mausam deliberately shows weather only for a place
+   the visitor set (7L-1, no silent default), so it showed the share-location card and no temperature
+   (null). Both screenshots of that run show no place (home weather card "अपनी जगह बताएँ" too). The
+   previous session had already given the browser a granted Sagar position at 04:09 (untracked file,
+   old text not preserved). This session hardened it: wait for the location banner, press Share only
+   if the card is still there after hydration, read the temperature from `<main>`, and add a check
+   that the weather read itself answered 200. Staging and prod (read-only) both RAN-PASSED; full
+   staging gate set re-run: ALL PASSED. Record: `evidence/phase4/assertion-changes.json`; the failed
+   run is kept as `staging-gates-run1-failed.txt` and `staging-after/*run1-failed*`.
+   Alternative: seed `ks_location_v1` in localStorage like 8B T7 — not chosen, the granted-location
+   path is what a real visitor does and also exercises LocationProvider; kept as the fallback idea.
+2. **Read-only prod mode added to `scripts/verify-batch9-live.mjs`** (automatic for kissansahyog.com,
+   www, kissansahyog-prod.pages.dev, or `--read-only`): every browser context aborts any request that
+   is not GET/HEAD/OPTIONS, and the `post` gate is refused. Why: visiting /mausam with a place makes
+   the page upsert `weather_grid_requests`, and the home page calls the `recent_crop_reports` RPC by
+   POST — on prod that would be a write by our test (hard rule 1). The prod check tonight aborted
+   exactly those 3 requests and still showed the ticker and 28° for Sagar. Alternative: skip the prod
+   data check — rejected, 4.5(d) asks for it.
+3. **Compare gate: FAQ-aware upper size bound.** The prerender sometimes captures a page before its
+   FAQ list loads: live prod /mausam is 26.4 KB without FAQs, the 04:14 prod build has it with FAQs
+   (36.2 KB, ratio 1.369, `prod-build-vs-prod-before.json`). With a flat ±15 % the morning ship would
+   roll itself back for a harmless difference. Now: shrinking below 0.85 always fails; growth up to
+   1.60 is allowed only when the live page now carries the FAQPage block and the snapshot did not (or
+   did not record it); otherwise ±15 %. Title and h1 must still be identical. Snapshots now record
+   `faq`. Alternative: keep ±15 % — rejected (false rollback likely); drop the size check — rejected.
+4. **Ship script compares twice.** Before deploying it checks that live prod still matches the night
+   snapshot `prod-before.json` (proves nobody deployed since; read-only — checked tonight: all ratios
+   1.000, `evidence/phase4/prod-readonly-now/`), then takes a fresh snapshot `prod-ship/prod-before-ship.json`
+   and the post-deploy gates compare against that fresh one (no drift between night and morning).
+5. **Clean-tree precondition with a narrow allowlist.** `ship-prod-9.sh` stops on any modified tracked
+   file except `public/search-index.json` (rewritten by every build; `~/ship-prod.sh` excludes it too)
+   and `docs/review/**` (not part of dist). Untracked files are ignored (they are not built). Why: the
+   tree has pre-existing modifications that are not ours (5 batch7 VERIFY_OUTPUT.txt files and the
+   search index); a strict "nothing modified" rule would block the morning ship for files that never
+   ship. It also requires HEAD = origin/release-9 (ship only a pushed commit). Alternative: strict
+   clean tree — rejected for the reason above.
+6. **Rollback method: Cloudflare API, not wrangler.** wrangler 4.151.0 has no Pages rollback command
+   (`pages deployment` = list | create | tail | delete). The scripts call
+   `POST /accounts/9ad1ef46…/pages/projects/kissansahyog-prod/deployments/{id}/rollback` with
+   `$CLOUDFLARE_API_TOKEN` if set, else wrangler's own OAuth token (scope `pages:write`, verified
+   present; read from wrangler's config after a wrangler command refreshes it; never printed). A
+   read-only GET of the deployments with that token worked tonight (current prod = 7aebf863…, source
+   206cd86). The rollback endpoint itself was NOT exercised (that would change prod). Fallback printed
+   by the script: dashboard → Deployments → Rollback. Alternative: rebuild and redeploy tag
+   `pre-9-ship` — slower (4–5 min build) and not a true restore of the same files; kept as last resort.
+7. **Staging Pages secrets verified = STAGING.** No `.dev.vars` exists; `.env` holds the staging URL and
+   a service key whose JWT payload ref is `wzxtqbqlahyahsnoqqva`; `.env.production` holds prod
+   (`eltmcznjcqiahqhjvpjg`). Pages secrets cannot be read back, so the proof is behavioural: the staging
+   gate's KSTEST feedback (stored by `functions/api/feedback.js` with SUPABASE_URL + service key) is in
+   the STAGING project's `feedback_messages` (read-only GET with the staging key, guarded to refuse any
+   non-staging URL; 1 row, 22:37:12Z, plus the re-run's row). A row can only land there if the URL is
+   staging and the key is valid for staging. Prod database not queried. Evidence:
+   `evidence/phase4/staging-secrets-check.txt`. Result: NOT pointing at prod.
+8. **Finding, not fixed (no app code changes in Phase 4): CSP `img-src` does not allow
+   `https://*.supabase.co`**, so listing photos from Supabase Storage are blocked on the website home
+   page (console: "Loading the image …/storage/v1/object/public/listing-photos/… violates … img-src").
+   Pre-existing: the same `_headers` is live on prod (206cd86). Goes to the backlog.

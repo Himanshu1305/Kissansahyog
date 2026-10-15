@@ -1,0 +1,52 @@
+{
+  "/": {
+    "ratio": 0.962,
+    "title": true,
+    "h1": true
+  },
+  "/mausam": {
+    "ratio": 1.369,
+    "title": true,
+    "h1": true
+  },
+  "/msp": {
+    "ratio": 1.003,
+    "title": true,
+    "h1": true
+  },
+  "/browse": {
+    "ratio": 0.962,
+    "title": true,
+    "h1": true
+  },
+  "/sawaal": {
+    "ratio": 0.999,
+    "title": true,
+    "h1": true
+  },
+  "/yojana": {
+    "ratio": 0.998,
+    "title": true,
+    "h1": true
+  },
+  "/cold-storage": {
+    "ratio": 1,
+    "title": true,
+    "h1": true
+  },
+  "/about": {
+    "ratio": 0.995,
+    "title": true,
+    "h1": true
+  },
+  "/privacy": {
+    "ratio": 0.976,
+    "title": true,
+    "h1": true
+  },
+  "/terms": {
+    "ratio": 0.982,
+    "title": true,
+    "h1": true
+  }
+}

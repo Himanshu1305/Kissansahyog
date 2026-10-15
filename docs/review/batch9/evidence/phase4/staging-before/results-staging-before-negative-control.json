@@ -1,0 +1,195 @@
+{
+  "label": "staging-before-negative-control",
+  "base": "https://staging.kissansahyog.com",
+  "startedAt": "2026-10-14T22:34:45.912Z",
+  "gates": {
+    "b_cors_preflight": {
+      "status": "RAN-FAILED",
+      "checks": [
+        {
+          "desc": "OPTIONS /api/feedback Origin https://localhost → 204 + echoed origin",
+          "ok": false,
+          "detail": {
+            "status": 405,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "no '*' for https://localhost",
+          "ok": false,
+          "detail": {
+            "access-control-allow-origin": "*"
+          }
+        },
+        {
+          "desc": "OPTIONS /api/feedback Origin capacitor://localhost → 204 + echoed origin",
+          "ok": false,
+          "detail": {
+            "status": 405,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "no '*' for capacitor://localhost",
+          "ok": false,
+          "detail": {
+            "access-control-allow-origin": "*"
+          }
+        },
+        {
+          "desc": "OPTIONS /api/feedback Origin https://evil.example → NO allow-origin",
+          "ok": false,
+          "detail": {
+            "status": 405,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "no '*' for https://evil.example",
+          "ok": false,
+          "detail": {
+            "access-control-allow-origin": "*"
+          }
+        }
+      ],
+      "notes": []
+    },
+    "e_static_no_cors": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "GET / Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET / Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET / Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam/ Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam/ Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam/ Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 308,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 308,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 308,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /sitemap.xml Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /sitemap.xml Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /sitemap.xml Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        }
+      ],
+      "notes": [
+        "Cloudflare Pages platform default \"Access-Control-Allow-Origin: *\" seen on 12 static responses (pre-existing, not from functions/_middleware.js)"
+      ]
+    }
+  },
+  "platformStar": 12,
+  "finishedAt": "2026-10-14T22:34:46.465Z",
+  "verdict": "FAILED: b_cors_preflight=RAN-FAILED"
+}
