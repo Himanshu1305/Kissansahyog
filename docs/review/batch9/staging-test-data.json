@@ -924,6 +924,46 @@
     },
     {
       "phase": "Phase 5B",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "marker": "KSTEST",
+      "time": "2026-10-15T06:12:44.586Z",
+      "kind": "profile + auth user (throw-away, double-tap test)",
+      "tag": "N4",
+      "profile_id": "e800d9f6-1a8e-46d8-97f1-e02f663b521b"
+    },
+    {
+      "phase": "Phase 5B",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "marker": "KSTEST",
+      "time": "2026-10-15T06:13:14.531Z",
+      "kind": "Supabase Auth user WITHOUT profile (half-finished: duplicate-mobile test)",
+      "tag": "N2",
+      "note": "auth.users row only; e-mail kept outside the repo (noise.json)"
+    },
+    {
+      "phase": "Phase 5B",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "marker": "KSTEST",
+      "time": "2026-10-15T06:13:21.997Z",
+      "kind": "profile completing the half-finished registration (throw-away)",
+      "tag": "N2b",
+      "profile_id": "a626c32d-2cbf-4466-93ca-815db151b151"
+    },
+    {
+      "phase": "Phase 5B",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "marker": "KSTEST",
+      "time": "2026-10-15T06:15:09.726Z",
+      "kind": "profile + auth user (throw-away, lockout test)",
+      "tag": "N5",
+      "profile_id": "1f159c47-b9cf-4314-aee7-1347a8470a7c"
+    },
+    {
+      "phase": "Phase 5B",
       "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
       "kind": "listing report (website Report button)",
       "keep": false,
@@ -931,6 +971,69 @@
       "by": "P4",
       "marker": "KSTEST 5B report test",
       "time": "2026-10-15T06:07:26.101Z"
+    },
+    {
+      "phase": "Phase 5B",
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "keep": false,
+      "marker": "KSTEST-5B-87410",
+      "time": "2026-10-15T06:18:16.956Z",
+      "kind": "feedback (website /grievance → /api/feedback)",
+      "table": "feedback_messages"
+    },
+    {
+      "phase": "Phase 5B",
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "keep": false,
+      "marker": "KSTEST-5B-87410",
+      "time": "2026-10-15T06:18:21.658Z",
+      "kind": "kisan_sawaal question (website /sawaal)",
+      "table": "kisan_sawaal"
+    },
+    {
+      "phase": "Phase 5B",
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "keep": false,
+      "marker": "KSTEST-5B-87410",
+      "time": "2026-10-15T06:18:26.006Z",
+      "kind": "kisan_safalta story (website /safalta, no contact phone)",
+      "table": "kisan_safalta"
+    },
+    {
+      "phase": "Phase 5B",
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "keep": false,
+      "marker": "KSTEST-5B-87410",
+      "time": "2026-10-15T06:18:30.492Z",
+      "kind": "kisan_mela submission (website /kisan-mela/submit, for review)",
+      "table": "kisan_mela"
+    },
+    {
+      "phase": "Phase 5B",
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "keep": false,
+      "marker": "KSTEST-5B-87410",
+      "time": "2026-10-15T06:18:37.989Z",
+      "kind": "carbon suggestion (website /carbon-credit)",
+      "table": "carbon_suggestions (via submit_carbon_suggestion)"
+    },
+    {
+      "phase": "Phase 5B",
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "keep": false,
+      "marker": "KSTEST-5B-201648",
+      "time": "2026-10-15T06:20:12.320Z",
+      "kind": "kisan_safalta story (website /safalta, no contact phone)",
+      "table": "kisan_safalta"
+    },
+    {
+      "phase": "Phase 5B",
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "keep": false,
+      "marker": "KSTEST-5B-270774",
+      "time": "2026-10-15T06:22:27.682Z",
+      "kind": "mela interest (throw-away N1)",
+      "table": "mela interest (set_mela_interest)"
     }
   ],
   "note": "Batch 9 KSTEST rows written to the STAGING project only (wzxtqbqlahyahsnoqqva), through the staging site or the staging app. Nothing deleted. No passwords recorded."

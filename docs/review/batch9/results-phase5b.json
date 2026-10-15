@@ -1,0 +1,1186 @@
+{
+ "phase": "Batch 9 Phase 5B (web only, staging)",
+ "base": "https://staging.kissansahyog.com",
+ "generatedAt": "2026-10-15T06:36:11.385Z",
+ "tests": [
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P1/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/02-signup-disclaimer.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/09-profile-edited.jpg",
+    "docs/review/batch9/evidence/phase5b/P1/10-profile-basic-save-B8.jpg"
+   ],
+   "notes": "{\"signup\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"placeLabel\\\":\\\"📍 मकरोनिया, सागर बदलें\\\"}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"as registered\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"en\\\",\\\"uiAfterSwitch\\\":\\\"en\\\",\\\"profileLangAfterLogin\\\":\\\"en\\\",\\\"uiAfterLogin\\\":\\\"en\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"hi\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"मकरोनिया\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\":true}\"",
+   "id": "5B.1-P1",
+   "name": "P1 Farmer-Seller, details SHOWN, full kisan profile (SHOWN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P1-app",
+   "name": "P1 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P2/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P2/02-signup-disclaimer.jpg",
+    "docs/review/batch9/evidence/phase5b/P2/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P2/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P2/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P2/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P2/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P2/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P2/09-profile-edited.jpg"
+   ],
+   "notes": "{\"signup\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"placeLabel\\\":\\\"📍 सागर, सागर बदलें\\\"}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"as registered\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"en\\\",\\\"uiAfterSwitch\\\":\\\"en\\\",\\\"profileLangAfterLogin\\\":\\\"en\\\",\\\"uiAfterLogin\\\":\\\"en\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"hi\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"सागर\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\":true}\"}",
+   "id": "5B.1-P2",
+   "name": "P2 Farmer-Buyer, details SHOWN, kisan profile (different) (SHOWN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P2-app",
+   "name": "P2 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P3/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P3/02-signup-disclaimer.jpg",
+    "docs/review/batch9/evidence/phase5b/P3/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P3/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P3/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P3/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P3/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P3/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P3/09-profile-edited.jpg"
+   ],
+   "notes": "{\"signup\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"placeLabel\\\":\\\"📍 मकरोनिया, सागर बदलें\\\"}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"as registered\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"en\\\",\\\"uiAfterSwitch\\\":\\\"en\\\",\\\"profileLangAfterLogin\\\":\\\"en\\\",\\\"uiAfterLogin\\\":\\\"en\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"hi\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"मकरोनिया\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\":true}\"",
+   "id": "5B.1-P3",
+   "name": "P3 Farmer-Seller, details HIDDEN, minimal profile (HIDDEN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P3-app",
+   "name": "P3 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P4/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P4/02-signup-disclaimer.jpg",
+    "docs/review/batch9/evidence/phase5b/P4/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P4/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P4/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P4/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P4/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P4/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P4/09-profile-edited.jpg"
+   ],
+   "notes": "{\"signup\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"placeLabel\\\":\\\"📍 Damoh, Damoh Change\\\"}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"as registered\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"hi\\\",\\\"uiAfterSwitch\\\":\\\"hi\\\",\\\"profileLangAfterLogin\\\":\\\"hi\\\",\\\"uiAfterLogin\\\":\\\"hi\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"en\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"Damoh\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\":true}\"}",
+   "id": "5B.1-P4",
+   "name": "P4 Farmer-Buyer, details HIDDEN, English, Damoh (HIDDEN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P4-app",
+   "name": "P4 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P5/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P5/02-signup-disclaimer.jpg",
+    "docs/review/batch9/evidence/phase5b/P5/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P5/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P5/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P5/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P5/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P5/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P5/09-profile-edited.jpg"
+   ],
+   "notes": "{\"signup\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"placeLabel\\\":\\\"📍 Sagar, Sagar Change\\\"}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"as registered\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"hi\\\",\\\"uiAfterSwitch\\\":\\\"hi\\\",\\\"profileLangAfterLogin\\\":\\\"hi\\\",\\\"uiAfterLogin\\\":\\\"hi\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"en\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"Sagar\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\":true}\"}",
+   "id": "5B.1-P5",
+   "name": "P5 Vendor/trader-Seller (source vendor), English, details SHOWN, partial profile (SHOWN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P5-app",
+   "name": "P5 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P6/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P6/02-signup-disclaimer.jpg",
+    "docs/review/batch9/evidence/phase5b/P6/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P6/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P6/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P6/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P6/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P6/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P6/09-profile-edited.jpg"
+   ],
+   "notes": "{\"signup\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"placeLabel\\\":\\\"📍 गढ़ाकोटा, सागर बदलें\\\"}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"as registered\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"en\\\",\\\"uiAfterSwitch\\\":\\\"en\\\",\\\"profileLangAfterLogin\\\":\\\"en\\\",\\\"uiAfterLogin\\\":\\\"en\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"hi\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"गढ़ाकोटा\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\":true}\"",
+   "id": "5B.1-P6",
+   "name": "P6 Vendor/trader-Buyer (source vendor), Hindi, details HIDDEN (HIDDEN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P6-app",
+   "name": "P6 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P7/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P7/02-signup-disclaimer.jpg",
+    "docs/review/batch9/evidence/phase5b/P7/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P7/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P7/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P7/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P7/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P7/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P7/09-profile-edited.jpg"
+   ],
+   "notes": "{\"signup\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"placeLabel\\\":\\\"📍 सागर, सागर बदलें\\\"}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"as registered\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"en\\\",\\\"uiAfterSwitch\\\":\\\"en\\\",\\\"profileLangAfterLogin\\\":\\\"en\\\",\\\"uiAfterLogin\\\":\\\"en\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"hi\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"सागर\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\":true}\"}",
+   "id": "5B.1-P7",
+   "name": "P7 Provider (equipment/warehouse/greenhouse/jugaad offers), Hindi, details SHOWN (SHOWN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P7-app",
+   "name": "P7 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P8/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P8/02-signup-disclaimer.jpg",
+    "docs/review/batch9/evidence/phase5b/P8/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P8/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P8/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P8/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P8/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P8/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P8/09-profile-edited.jpg"
+   ],
+   "notes": "{\"signup\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"placeLabel\\\":\\\"📍 Orchha, Niwari Change\\\"}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"as registered\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"hi\\\",\\\"uiAfterSwitch\\\":\\\"hi\\\",\\\"profileLangAfterLogin\\\":\\\"hi\\\",\\\"uiAfterLogin\\\":\\\"hi\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"en\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"Orchha\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\":true}\"}",
+   "id": "5B.1-P8",
+   "name": "P8 Far-away user (Orchha, Niwari, >100 km), English, details SHOWN (SHOWN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P8-app",
+   "name": "P8 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/P9/01-signup-form.jpg",
+    "docs/review/batch9/evidence/phase5b/P9/03-after-signup.jpg",
+    "docs/review/batch9/evidence/phase5b/P9/04-after-login-email.jpg",
+    "docs/review/batch9/evidence/phase5b/P9/05-after-login-mobile.jpg",
+    "docs/review/batch9/evidence/phase5b/P9/06-after-reload.jpg",
+    "docs/review/batch9/evidence/phase5b/P9/07-lang-after-relogin.jpg",
+    "docs/review/batch9/evidence/phase5b/P9/08-profile.jpg",
+    "docs/review/batch9/evidence/phase5b/P9/09-profile-edited.jpg"
+   ],
+   "notes": "{\"p9-lang-switch-keeps-fields\":\"{\\\"nameKept\\\":true}\",\"signup\":\"{\\\"autoconfirmSession\\\":true,\\\"signupStatus\\\":200,\\\"regStatus\\\":200,\\\"error\\\":null,\\\"storedName\\\":true,\\\"storedEmailLower\\\":true}\",\"logout1\":null,\"loginEmail\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true,\\\"variant\\\":\\\"upper-case + spaces\\\"}\",\"logout2\":null,\"loginPhone\":\"{\\\"url\\\":\\\"https://staging.kissansahyog.com/home\\\",\\\"error\\\":null,\\\"sameProfile\\\":true}\",\"reloadPersists\":\"{\\\"sessionAfterReload\\\":true,\\\"nameOnHome\\\":true}\",\"langPersists\":\"{\\\"switchedTo\\\":\\\"hi\\\",\\\"uiAfterSwitch\\\":\\\"hi\\\",\\\"profileLangAfterLogin\\\":\\\"hi\\\",\\\"uiAfterLogin\\\":\\\"hi\\\"}\",\"langRestored\":\"{\\\"now\\\":\\\"en\\\"}\",\"profileData\":\"{\\\"mismatched\\\":[],\\\"villageShown\\\":\\\"रहली\\\",\\\"mobileShownOnProfile\\\":false}\",\"profileEdit\":\"{\\\"field\\\":\\\"main_crops\\\",\\\"savedNotice\\\":true,\\\"persistsAfterReload\\\":true,\\\"persistsAfterRelogin\\\"",
+   "id": "5B.1-P9",
+   "name": "P9 E-mail edge: mixed-case e-mail, spaces around inputs, long Devanagari+English name, hi/en switch at signup (SHOWN) — sign up → logout → e-mail login → logout → mobile login → reload → language persists → Profile data → edit persists",
+   "status": "RAN-PASSED",
+   "assertion": "all 7 steps passed on the staging website"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.1-P9-app",
+   "name": "P9 same flow in the staging APP (kill/reopen, native WebView)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L01-equipment-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L01-equipment-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L01-equipment-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":1,\"provider_declared\":true,\"village_town\":false}",
+   "id": "5B.3-L01",
+   "name": "equipment × offer × farmer by P7 (+photo via setInputFiles)",
+   "status": "RAN-PASSED",
+   "assertion": "listing 3cd24b09-0eac-4840-8776-abb353d3e316"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L02-equipment-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L02-equipment-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L02-equipment-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L02",
+   "name": "equipment × requirement × farmer by P2",
+   "status": "RAN-PASSED",
+   "assertion": "listing 424248fa-f587-4239-814d-ba2b9ccb8f48"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L03-labor-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L03-labor-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L03-labor-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L03",
+   "name": "labor × offer × farmer by P1",
+   "status": "RAN-PASSED",
+   "assertion": "listing 76e13f41-f2eb-4565-998a-5244640329b7"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L04-labor-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L04-labor-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L04-labor-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L04",
+   "name": "labor × requirement × farmer by P2",
+   "status": "RAN-PASSED",
+   "assertion": "listing 915e5178-331e-4acf-ad1e-9d06888b56c8"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L05-drone_didi-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L05-drone_didi-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L05-drone_didi-offer/step3.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L05-drone_didi-offer/zz-error.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L05",
+   "name": "drone_didi × offer × farmer by P1",
+   "status": "RAN-PASSED",
+   "assertion": "listing 8f5c1fb1-fdc8-4df9-a3e8-da909ac59263"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L06-drone_didi-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L06-drone_didi-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L06-drone_didi-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L06",
+   "name": "drone_didi × requirement × farmer by P2",
+   "status": "RAN-PASSED",
+   "assertion": "listing 0ee85a0d-b623-457f-913a-cbedc7aa7bde"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L07-bhusa-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L07-bhusa-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L07-bhusa-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":true,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":1,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L07",
+   "name": "bhusa × offer × farmer by P1 (wide) (+photo via setInputFiles)",
+   "status": "RAN-PASSED",
+   "assertion": "listing 364cf291-9d74-48dd-97e9-c7c18953921b"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L08-bhusa-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L08-bhusa-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L08-bhusa-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"vendor\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L08",
+   "name": "bhusa × requirement × vendor by P6",
+   "status": "RAN-PASSED",
+   "assertion": "listing 087638e1-c335-458f-a820-516a06f454be"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L09-agri_inputs-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L09-agri_inputs-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L09-agri_inputs-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"vendor\",\"wide_visibility\":true,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L09",
+   "name": "agri_inputs × offer × vendor by P5 (wide)",
+   "status": "RAN-PASSED",
+   "assertion": "listing 3b8071b1-e3a4-412b-8ac3-3fe8530197ad"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L10-agri_inputs-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L10-agri_inputs-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L10-agri_inputs-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L10",
+   "name": "agri_inputs × requirement × farmer by P4",
+   "status": "RAN-PASSED",
+   "assertion": "listing 203a0859-a432-4a2a-ab64-8d954baa13c9"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L11-building_materials-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L11-building_materials-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L11-building_materials-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"vendor\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":1,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L11",
+   "name": "building_materials × offer × vendor by P5 (+photo via setInputFiles)",
+   "status": "RAN-PASSED",
+   "assertion": "listing 3338eb8b-2e71-47e9-a6cd-a30367a205f0"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L12-building_materials-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L12-building_materials-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L12-building_materials-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"vendor\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L12",
+   "name": "building_materials × requirement × vendor by P6",
+   "status": "RAN-PASSED",
+   "assertion": "listing f4ffa4dc-8b72-45c2-96a6-b9fc95ca41f9"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L13-warehouse-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L13-warehouse-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L13-warehouse-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":1,\"provider_declared\":true,\"village_town\":false}",
+   "id": "5B.3-L13",
+   "name": "warehouse × offer × farmer by P7 (+photo via setInputFiles)",
+   "status": "RAN-PASSED",
+   "assertion": "listing d14c4ac6-a1cc-48e3-9656-4dc9a240864c"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L14-warehouse-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L14-warehouse-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L14-warehouse-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L14",
+   "name": "warehouse × requirement × farmer by P4",
+   "status": "RAN-PASSED",
+   "assertion": "listing 6d551014-1d1a-4736-be14-7be86ef40659"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L15-greenhouse-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L15-greenhouse-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L15-greenhouse-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"vendor\",\"wide_visibility\":true,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":true,\"village_town\":false}",
+   "id": "5B.3-L15",
+   "name": "greenhouse × offer × vendor by P7 (wide)",
+   "status": "RAN-PASSED",
+   "assertion": "listing bb28aff9-08b3-4813-a420-772c44649157"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L16-greenhouse-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L16-greenhouse-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L16-greenhouse-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L16",
+   "name": "greenhouse × requirement × farmer by P2",
+   "status": "RAN-PASSED",
+   "assertion": "listing 44442f60-abf9-4519-b8ff-26d297d1c072"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L17-jugaad-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L17-jugaad-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L17-jugaad-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":1,\"provider_declared\":true,\"village_town\":false}",
+   "id": "5B.3-L17",
+   "name": "jugaad × offer × farmer by P7 (+photo via setInputFiles)",
+   "status": "RAN-PASSED",
+   "assertion": "listing f453ce46-82c3-4c35-9ac7-030c046a30df"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L18-jugaad-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L18-jugaad-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L18-jugaad-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L18",
+   "name": "jugaad × requirement × farmer by P3",
+   "status": "RAN-PASSED",
+   "assertion": "listing d1bc23b1-992b-4617-a7d0-ea06d2a9de6d"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L19-transport-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L19-transport-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L19-transport-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L19",
+   "name": "transport × offer × farmer by P3",
+   "status": "RAN-PASSED",
+   "assertion": "listing 97af326f-2838-4e87-9fed-497b723eef28"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L20-transport-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L20-transport-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L20-transport-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L20",
+   "name": "transport × requirement × farmer by P8",
+   "status": "RAN-PASSED",
+   "assertion": "listing 6dd92f00-be98-435b-8709-906e89af9592"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L21-land-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L21-land-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L21-land-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":1,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L21",
+   "name": "land × offer × farmer by P3 (+photo via setInputFiles)",
+   "status": "RAN-PASSED",
+   "assertion": "listing 125b9723-e476-4b38-bd85-f82cbf66b958"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L22-land-requirement/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L22-land-requirement/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L22-land-requirement/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L22",
+   "name": "land × requirement × farmer by P8",
+   "status": "RAN-PASSED",
+   "assertion": "listing 3ac1830c-ad5e-4fac-a333-e6fd63e50096"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L23-agri_inputs-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L23-agri_inputs-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L23-agri_inputs-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"vendor\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L23",
+   "name": "agri_inputs × offer × vendor by P6 — HIDDEN poster + vendor sub-type (contact_phone leak check)",
+   "status": "RAN-PASSED",
+   "assertion": "listing 2286327f-63b1-4101-b666-293f07c17476"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L24-labor-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L24-labor-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L24-labor-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L24",
+   "name": "labor × offer × farmer by P8 — SHOWN far-away poster",
+   "status": "RAN-PASSED",
+   "assertion": "listing 64a21928-58ef-4723-b389-2a547f506b88"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L25-labor-offer/done.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L25-labor-offer/step2.jpg",
+    "docs/review/batch9/evidence/phase5b/listings/L25-labor-offer/step3.jpg"
+   ],
+   "notes": "{\"listing_source\":\"farmer\",\"wide_visibility\":false,\"geocoding_status\":\"resolved\",\"hasCoords\":true,\"photos\":0,\"provider_declared\":null,\"village_town\":false}",
+   "id": "5B.3-L25",
+   "name": "labor × offer × farmer by P1 — KSTEST noise: used for My Listings close/availability tests",
+   "status": "RAN-PASSED",
+   "assertion": "listing 8886a32b-562c-4ca5-b4d7-d94c5e61cc52"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"checked\":22,\"failing\":[],\"sample\":[{\"cell\":\"equipment/offer\",\"error\":\"कृपया मशीन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"equipment/requirement\",\"error\":\"कृपया मशीन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"labor/offer\",\"error\":\"कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।\",\"stayedOnStep2\":true},{\"cell\":\"labor/requirement\",\"error\":\"कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।\",\"stayedOnStep2\":true},{\"cell\":\"drone_didi/offer\",\"error\":\"कृपया ऑपरेटर / समूह का नाम भरें।\",\"stayedOnStep2\":true},{\"cell\":\"drone_didi/requirement\",\"error\":\"कृपया फसल भरें।\",\"stayedOnStep2\":true},{\"cell\":\"bhusa/offer\",\"error\":\"कृपया अवशेष का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"bhusa/requirement\",\"error\":\"कृपया अवशेष का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"agri_inputs/offer\",\"error\":\"कृपया सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"agri_inputs/requirement\",\"error\":\"कृपया सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"building_materials/offer\",\"error\":\"सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"building_materials/requirement\",\"error\":\"सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"warehouse/offer\",\"error\":\"कृपया गोदाम का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"warehouse/requirement\",\"error\":\"कृपया फसल भरें।\",\"stayedOnStep2\":true},{\"cell\":\"greenhouse/offer\",\"error\":\"सेवा का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"greenhouse/requirement\",\"error\":\"ढांचा चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"jugaad/offer\",\"error\":\"कृपया चुनें कि किस रूप में दे रहे हैं।\",\"stayedOnStep2\":true},{\"cell\":\"jugaad/requirement\",\"error\":\"जुगाड़/मशीन का नाम भरें।\",\"stayedOnStep2\":true},{\"cell\":\"transport/offer\",\"error\":\"कृपया वाहन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"transport/requirement\",\"error\":\"कृपया वाहन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"land/offer\",\"error\":\"सही आकार लिखें (कम से कम 0.1 एकड़)।\",\"stayedOnStep2\":true},{\"cell\":\"land/requirement\",\"error\":\"सही आकार लिखें (कम से कम 0.1 एकड़)।\",\"stayedOnStep2\":true}]}",
+   "id": "5B.3-edge-E1",
+   "name": "every category×type shows a required-field error on an empty step 2",
+   "status": "RAN-PASSED",
+   "assertion": "{\"checked\":22,\"failing\":[],\"sample\":[{\"cell\":\"equipment/offer\",\"error\":\"कृपया मशीन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"equipment/requirement\",\"error\":\"कृपया मशीन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"labor/offer\",\"error\":\"कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।\",\""
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"counter\":\"3/3 · ज़्यादा से ज़्यादा 3 फोटो (वैकल्पिक)\",\"message\":\"×\"}",
+   "id": "5B.3-edge-E7",
+   "name": "photo limit: 4 photos into bhusa (limit 3)",
+   "status": "RAN-PASSED",
+   "assertion": "{\"counter\":\"3/3 · ज़्यादा से ज़्यादा 3 फोटो (वैकल्पिक)\",\"message\":\"×\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"step2KeptAfterBack\":true,\"step1KeepsCategory\":true,\"step2KeptAfterForward\":true,\"photosKept\":true,\"step3VillageKeptAfterBackForward\":true}",
+   "id": "5B.3-edge-E2",
+   "name": "3-step form: Back keeps entered data",
+   "status": "RAN-PASSED",
+   "assertion": "{\"step2KeptAfterBack\":true,\"step1KeepsCategory\":true,\"step2KeptAfterForward\":true,\"photosKept\":true,\"step3VillageKeptAfterBackForward\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"onBlur\":\"सिर्फ़ Google Maps का सही लिंक डालें।\",\"onSubmit\":\"सिर्फ़ Google Maps का सही लिंक डालें।\",\"createCalls\":0}",
+   "id": "5B.3-edge-E3a",
+   "name": "maps link invalid → clear message, nothing posted",
+   "status": "RAN-PASSED",
+   "assertion": "{\"onBlur\":\"सिर्फ़ Google Maps का सही लिंक डालें।\",\"onSubmit\":\"सिर्फ़ Google Maps का सही लिंक डालें।\",\"createCalls\":0}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"listing\":\"926651a4-8eb1-4095-b63d-7a20a546c0b4\",\"map_url_stored\":\"https://maps.app.goo.gl/KSTESTabc123\"}",
+   "id": "5B.3-edge-E3b",
+   "name": "valid Google Maps short link accepted and stored",
+   "status": "RAN-PASSED",
+   "assertion": "{\"listing\":\"926651a4-8eb1-4095-b63d-7a20a546c0b4\",\"map_url_stored\":\"https://maps.app.goo.gl/KSTESTabc123\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"createCalls\":1}",
+   "id": "5B.3-edge-E5",
+   "name": "double tap on Submit → exactly one listing",
+   "status": "RAN-PASSED",
+   "assertion": "{\"createCalls\":1}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"missingTo\":\"कहाँ तक जाना है, लिखें।\",\"missingFrom\":\"कहाँ से जाना है, लिखें।\",\"createCalls\":0}",
+   "id": "5B.3-edge-E4",
+   "name": "transport: missing \"to\" and missing \"from\" each blocked with a message",
+   "status": "RAN-PASSED",
+   "assertion": "{\"missingTo\":\"कहाँ तक जाना है, लिखें।\",\"missingFrom\":\"कहाँ से जाना है, लिखें।\",\"createCalls\":0}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"message\":\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"stillOnForm\":true,\"myListingsBefore\":1,\"myListingsAfter\":1,\"createAttempts\":0,\"note\":\"the message is the generic something-went-wrong text; it does not say there is no internet\"}",
+   "id": "5B.3-edge-E6",
+   "name": "posting while offline → clear message, no listing created",
+   "status": "RAN-PASSED",
+   "assertion": "{\"message\":\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"stillOnForm\":true,\"myListingsBefore\":1,\"myListingsAfter\":1,\"createAttempts\":0,\"note\":\"the message is the generic something-went-wrong text; it does not say there is no internet\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"bhusa\":1,\"labor\":0}",
+   "id": "5B.3-edge-E8",
+   "name": "wide-visibility box shown for bhusa, hidden for labor",
+   "status": "RAN-PASSED",
+   "assertion": "{\"bhusa\":1,\"labor\":0}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"views\":25,\"mismatches\":[],\"spot\":{\"P2 sees L03 (P1 labor, ~8 km)\":\"primary\",\"P4 Damoh does NOT see L03 (~73 km, not wide)\":\"not fetched\",\"P4 Damoh sees L07 (P1 bhusa wide, ~73 km)\":\"primary-wide\",\"P8 Orchha does NOT see L07 (wide but >100 km)\":\"not fetched\",\"P8 sees own-area L24? (P8 labor, 0 km)\":\"primary\",\"P2 does NOT see L24 (Orchha)\":\"not fetched\",\"P4 sees L09 (P5 agri wide, Sagar ~70 km)\":\"primary-wide\",\"P6 Garhakota and L03 (~42 km)\":\"hidden\",\"logged-out at Sagar sees L03\":\"primary\"}}",
+   "id": "5B.4-V1",
+   "name": "Browse: UI card counts equal the 30/50/100-km rule recomputed from the fetched rows; spot checks",
+   "status": "RAN-PASSED",
+   "assertion": "{\"views\":25,\"mismatches\":[],\"spot\":{\"P2 sees L03 (P1 labor, ~8 km)\":\"primary\",\"P4 Damoh does NOT see L03 (~73 km, not wide)\":\"not fetched\",\"P4 Damoh sees L07 (P1 bhusa wide, ~73 km)\":\"primary-wide\",\"P8 Orchha does NOT see L07 (wide but >100 km)\":\"not fetched\",\"P8 sees own-area L24? (P8 labor, 0 km)\""
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"failing\":[{\"case\":\"hidden-vendor-agri\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":true,\"net\":[\"/rest/v1/listings\"]}],\"rows\":[{\"case\":\"shown-loggedin\",\"expected\":\"number\",\"seen\":\"number\",\"leak\":false},{\"case\":\"hidden-loggedin\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":false},{\"case\":\"hidden-vendor-agri\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":true},{\"case\":\"shown-vendor\",\"expected\":\"number\",\"seen\":\"number\",\"leak\":false},{\"case\":\"hidden-own\",\"expected\":\"own\",\"seen\":\"own\",\"leak\":false},{\"case\":\"shown-own\",\"expected\":\"own\",\"seen\":\"own\",\"leak\":false},{\"case\":\"loggedout\",\"expected\":\"login then same listing\",\"seen\":\"returned to listing\"}]}",
+   "id": "5B.4-V2",
+   "name": "contact reveal: SHOWN/HIDDEN × logged-in/out/own + leak scan (DOM, network, share text)",
+   "status": "RAN-FAILED",
+   "assertion": "{\"failing\":[{\"case\":\"hidden-vendor-agri\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":true,\"net\":[\"/rest/v1/listings\"]}],\"rows\":[{\"case\":\"shown-loggedin\",\"expected\":\"number\",\"seen\":\"number\",\"leak\":false},{\"case\":\"hidden-loggedin\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":false},{\"case\":\"hidden-vendor"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"view\":\"increment_listing_view:204\"}",
+   "id": "5B.4-V3a",
+   "name": "view counter call on opening a listing",
+   "status": "RAN-PASSED",
+   "assertion": "{\"view\":\"increment_listing_view:204\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"click\":\"increment_contact_click:204\"}",
+   "id": "5B.4-V3b",
+   "name": "contact-click counter on first Call/WhatsApp tap",
+   "status": "RAN-PASSED",
+   "assertion": "{\"click\":\"increment_contact_click:204\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"noReasonMessage\":\"Please choose a reason.\",\"sent\":true}",
+   "id": "5B.4-V3c",
+   "name": "Report: reason required, then success",
+   "status": "RAN-PASSED",
+   "assertion": "{\"noReasonMessage\":\"Please choose a reason.\",\"sent\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"returned\":4,\"cards\":4,\"othersPresent\":[],\"allP1ListingsPresent\":true}",
+   "id": "5B.4-V4a",
+   "name": "My Listings shows only the user's own listings",
+   "status": "RAN-PASSED",
+   "assertion": "{\"returned\":4,\"cards\":4,\"othersPresent\":[],\"allP1ListingsPresent\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"inBrowseAfterSwitchOff\":false}",
+   "id": "5B.4-V4b",
+   "name": "availability switch off → listing gone from Browse for others",
+   "status": "RAN-PASSED",
+   "assertion": "{\"inBrowseAfterSwitchOff\":false}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"notFoundShownToP2\":true}",
+   "id": "5B.4-V4c",
+   "name": "\"Found\" closes the listing; others get \"not found\" on its page",
+   "status": "RAN-PASSED",
+   "assertion": "{\"notFoundShownToP2\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"p1ProfileIdInStorage\":false,\"p1EmailInStorage\":false,\"p1MobileInStorage\":false,\"p1NameInStorage\":false,\"p1ListingsInMy\":0,\"profileName\":\"P3\",\"localStorageKeys\":[\"ks_last_online_at\",\"ks_visit_count\",\"ks_lang_v1\",\"ks_location_v1\",\"ks_session_v1\"]}",
+   "id": "5B.4-V5",
+   "name": "account switch P1 → P3 leaves nothing of P1 (profile, My Listings, storage)",
+   "status": "RAN-PASSED",
+   "assertion": "{\"p1ProfileIdInStorage\":false,\"p1EmailInStorage\":false,\"p1MobileInStorage\":false,\"p1NameInStorage\":false,\"p1ListingsInMy\":0,\"profileName\":\"P3\",\"localStorageKeys\":[\"ks_last_online_at\",\"ks_visit_count\",\"ks_lang_v1\",\"ks_location_v1\",\"ks_session_v1\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"messages\":[\"कृपया अपना पूरा नाम भरें।\",\"कृपया सही ईमेल पता भरें।\",\"पासवर्ड कम से कम 8 अक्षर का होना चाहिए।\",\"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\",\"कृपया अपना गाँव या पास का कस्बा चुनें।\"],\"networkCalls\":0}",
+   "id": "5B.2-N01",
+   "name": "empty name / invalid e-mail / 7-char password / 9-digit mobile / no village → one message per field, no network call",
+   "status": "RAN-PASSED",
+   "assertion": "{\"messages\":[\"कृपया अपना पूरा नाम भरें।\",\"कृपया सही ईमेल पता भरें।\",\"पासवर्ड कम से कम 8 अक्षर का होना चाहिए।\",\"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\",\"कृपया अपना गाँव या पास का कस्बा चुनें।\"],\"networkCalls\":0}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"valueLength\":10}",
+   "id": "5B.2-N02a",
+   "name": "11-digit mobile: box keeps at most 10 digits (maxLength)",
+   "status": "RAN-PASSED",
+   "assertion": "{\"valueLength\":10}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"message\":\"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\"}",
+   "id": "5B.2-N02b",
+   "name": "non-numeric mobile \"98765abcde\" refused",
+   "status": "RAN-PASSED",
+   "assertion": "{\"message\":\"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"startsWith0Refused\":false,\"startsWith1Refused\":false,\"note\":\"isValidPhone accepts any 10 digits (authService.js:30); the screen asks for a \\\"10-digit mobile number\\\"\"}",
+   "id": "5B.2-N02c",
+   "name": "mobile starting with 0 or 1 (not an Indian mobile) — refused?",
+   "status": "RAN-FAILED",
+   "assertion": "{\"startsWith0Refused\":false,\"startsWith1Refused\":false,\"note\":\"isValidPhone accepts any 10 digits (authService.js:30); the screen asks for a \\\"10-digit mobile number\\\"\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"signup\":[\"password\",\"text\",\"password\"],\"login\":[\"password\",\"text\"]}",
+   "id": "5B.2-N03",
+   "name": "password Show/Hide toggle (signup + login)",
+   "status": "RAN-PASSED",
+   "assertion": "{\"signup\":[\"password\",\"text\",\"password\"],\"login\":[\"password\",\"text\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"kept\":true,\"placeKept\":true}",
+   "id": "5B.2-N04a",
+   "name": "language switch mid-form keeps every field",
+   "status": "RAN-PASSED",
+   "assertion": "{\"kept\":true,\"placeKept\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"disabled\":true}",
+   "id": "5B.2-N04b",
+   "name": "disclaimer not ticked → \"Accept and continue\" disabled",
+   "status": "RAN-PASSED",
+   "assertion": "{\"disabled\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"nameKept\":true,\"emailKept\":true,\"mobileKept\":true,\"passwordKept\":true,\"placeKept\":true,\"visibility\":\"show\"}",
+   "id": "5B.2-N04c",
+   "name": "Back from step 2 keeps every field",
+   "status": "RAN-PASSED",
+   "assertion": "{\"nameKept\":true,\"emailKept\":true,\"mobileKept\":true,\"passwordKept\":true,\"placeKept\":true,\"visibility\":\"show\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"signupCalls\":1,\"registerCalls\":1,\"loggedIn\":true}",
+   "id": "5B.2-N05",
+   "name": "double tap on \"Accept and continue\" → one sign-up call, one profile",
+   "status": "RAN-PASSED",
+   "assertion": "{\"signupCalls\":1,\"registerCalls\":1,\"loggedIn\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"message\":\"इस ईमेल से पहले से खाता है। कृपया लॉग इन करें।\",\"session\":false}",
+   "id": "5B.2-N06a",
+   "name": "duplicate e-mail → \"account with this email already exists\", no session",
+   "status": "RAN-PASSED",
+   "assertion": "{\"message\":\"इस ईमेल से पहले से खाता है। कृपया लॉग इन करें।\",\"session\":false}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"message\":\"इस नंबर से पहले से खाता है। कृपया लॉग इन करें।\",\"underMobileBox\":\"इस नंबर से पहले से खाता है। कृपया लॉग इन करें।\",\"session\":false}",
+   "id": "5B.2-N06b",
+   "name": "duplicate mobile → \"account with this number already exists\" next to the mobile box, back on step 1",
+   "status": "RAN-PASSED",
+   "assertion": "{\"message\":\"इस नंबर से पहले से खाता है। कृपया लॉग इन करें।\",\"underMobileBox\":\"इस नंबर से पहले से खाता है। कृपया लॉग इन करें।\",\"session\":false}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"message\":\"आपका खाता पूरा नहीं बना था। कृपया \\\"नया खाता बनाएं\\\" से उसी ईमेल और पासवर्ड के साथ दोबारा भरें।\"}",
+   "id": "5B.2-N06c",
+   "name": "e-mail login of the half-finished registration → \"account was not finished\" message",
+   "status": "RAN-PASSED",
+   "assertion": "{\"message\":\"आपका खाता पूरा नहीं बना था। कृपया \\\"नया खाता बनाएं\\\" से उसी ईमेल और पासवर्ड के साथ दोबारा भरें।\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"profileCreated\":true}",
+   "id": "5B.2-N06d",
+   "name": "same e-mail + password + a new mobile finishes the half-finished registration",
+   "status": "RAN-PASSED",
+   "assertion": "{\"profileCreated\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"message\":\"गलत ईमेल या पासवर्ड।\"}",
+   "id": "5B.2-N07a",
+   "name": "correct e-mail + wrong password → \"Wrong email or password\"",
+   "status": "RAN-PASSED",
+   "assertion": "{\"message\":\"गलत ईमेल या पासवर्ड।\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"message\":\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\"}",
+   "id": "5B.2-N07b",
+   "name": "unregistered mobile → \"No account found for this number\"",
+   "status": "RAN-PASSED",
+   "assertion": "{\"message\":\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "not signed in: the box has maxLength=10, which counts spaces, so a number typed or pasted as \"98765 43210\" is cut to 9 digits and refused (\"enter a valid 10-digit mobile\"). normalizePhone would strip the spaces, but the box never lets the 10th digit in. src/screens/Login.jsx:90, Signup.jsx:115",
+   "id": "5B.2-N07c",
+   "name": "mobile typed with spaces (\" 00000 556NN \") on the sign-in screen",
+   "status": "RAN-FAILED",
+   "assertion": "not signed in: the box has maxLength=10, which counts spaces, so a number typed or pasted as \"98765 43210\" is cut to 9 digits and refused (\"enter a valid 10-digit mobile\"). normalizePhone would strip the spaces, but the box never lets the 10th digit in. src/screens/Login.jsx:90, Signup.jsx:115"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"ok\":true,\"error\":null}",
+   "id": "5B.2-N07d",
+   "name": "upper-case e-mail with spaces signs in",
+   "status": "RAN-PASSED",
+   "assertion": "{\"ok\":true,\"error\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"message\":\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"emailLoginAfter\":\"गलत ईमेल या पासवर्ड।\",\"mobileLoginAfter\":\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"note\":\"message is the generic \\\"something went wrong\\\", it does not say \\\"no internet\\\"\"}",
+   "id": "5B.2-N08",
+   "name": "offline sign-up → message, no account (neither e-mail nor mobile can sign in afterwards)",
+   "status": "RAN-PASSED",
+   "assertion": "{\"message\":\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"emailLoginAfter\":\"गलत ईमेल या पासवर्ड।\",\"mobileLoginAfter\":\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"note\":\"message is the generic \\\"something went wrong\\\", it does not say \\\"no internet\\\"\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"wrongPasswordMessages\":[\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\"],\"sixthWithCorrectPassword\":\"बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।\",\"lockedAt\":\"2026-10-15T06:15:26.648Z\"}",
+   "id": "5B.2-N09a",
+   "name": "e-mail lockout: 5 wrong passwords, then the RIGHT password is refused for 15 min",
+   "status": "RAN-PASSED",
+   "assertion": "{\"wrongPasswordMessages\":[\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\"],\"sixthWithCorrectPassword\":\"बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।\",\"lockedAt\":\"2026-10-15T06:15:26.648Z\"}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"messages\":[\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।\"]}",
+   "id": "5B.2-N09b",
+   "name": "mobile: 6 tries of an unregistered number → the 6th says \"too many attempts\"",
+   "status": "RAN-PASSED",
+   "assertion": "{\"messages\":[\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"बहुत बार को"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"mobileLoginWorks\":true}",
+   "id": "5B.2-N09c",
+   "name": "while N5's e-mail is locked, N5 can still sign in with its mobile (lock is per identifier)",
+   "status": "HUMAN-REVIEW",
+   "assertion": "{\"mobileLoginWorks\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"messages\":[\"कृपया अपना ईमेल या मोबाइल नंबर भरें।\"],\"writes\":[]}",
+   "id": "5B.5-F1a",
+   "name": "Feedback: empty form refused with a message, nothing sent",
+   "status": "RAN-PASSED",
+   "assertion": "{\"messages\":[\"कृपया अपना ईमेल या मोबाइल नंबर भरें।\"],\"writes\":[]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"done\":true,\"writes\":[\"/api/feedback 200\"]}",
+   "id": "5B.5-F1b",
+   "name": "Feedback: valid KSTEST message → thank-you state, POST /api/feedback 200",
+   "status": "RAN-PASSED",
+   "assertion": "{\"done\":true,\"writes\":[\"/api/feedback 200\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"messages\":[\"कृपया अपना सवाल लिखें।\"],\"writes\":[]}",
+   "id": "5B.5-F2a",
+   "name": "Sawaal: empty question refused with a message, nothing stored",
+   "status": "RAN-PASSED",
+   "assertion": "{\"messages\":[\"कृपया अपना सवाल लिखें।\"],\"writes\":[]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_sawaal 201\"]}",
+   "id": "5B.5-F2b",
+   "name": "Sawaal: valid KSTEST question → \"question received\"",
+   "status": "RAN-PASSED",
+   "assertion": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_sawaal 201\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"messages\":[\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"*\",\"*\"],\"writes\":[]}",
+   "id": "5B.5-F4a",
+   "name": "Kisan Mela submit: empty form refused with a message",
+   "status": "RAN-PASSED",
+   "assertion": "{\"messages\":[\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"*\",\"*\"],\"writes\":[]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_mela 201\"],\"errors\":null}",
+   "id": "5B.5-F4b",
+   "name": "Kisan Mela submit: valid KSTEST event → \"sent for review\"",
+   "status": "RAN-PASSED",
+   "assertion": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_mela 201\"],\"errors\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"messages\":[\"कृपया अपना सुझाव लिखें।\"],\"writes\":[\"/rest/v1/rpc/submit_carbon_suggestion 400\"]}",
+   "id": "5B.5-F5a",
+   "name": "Carbon suggestion: empty text refused",
+   "status": "RAN-PASSED",
+   "assertion": "{\"messages\":[\"कृपया अपना सुझाव लिखें।\"],\"writes\":[\"/rest/v1/rpc/submit_carbon_suggestion 400\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"writes\":[\"/rest/v1/rpc/submit_carbon_suggestion 204\"]}",
+   "id": "5B.5-F5b",
+   "name": "Carbon suggestion: valid KSTEST text stored",
+   "status": "RAN-PASSED",
+   "assertion": "{\"writes\":[\"/rest/v1/rpc/submit_carbon_suggestion 204\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "not run: a vote is one per device and counts in the PUBLIC poll results shown on the page; skipped to keep the staging poll clean (no invalid input exists — a vote is one tap)",
+   "id": "5B.5-F5c",
+   "name": "Carbon poll vote",
+   "status": "NOT-RUN",
+   "assertion": "not run: a vote is one per device and counts in the PUBLIC poll results shown on the page; skipped to keep the staging poll clean (no invalid input exists — a vote is one tap)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"refused\":true,\"writes\":[]}",
+   "id": "5B.5-F6a",
+   "name": "Daily-update signup: number not starting 6-9 refused (\"valid 10-digit mobile\")",
+   "status": "RAN-PASSED",
+   "assertion": "{\"refused\":true,\"writes\":[]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "not run on purpose: this form only accepts numbers starting 6-9, i.e. numbers that can belong to a real person; storing one as a test subscription is unsafe. Note: the registration form accepts 0-leading numbers but this one does not (inconsistent rules).",
+   "id": "5B.5-F6b",
+   "name": "Daily-update signup: valid submission",
+   "status": "NOT-RUN",
+   "assertion": "not run on purpose: this form only accepts numbers starting 6-9, i.e. numbers that can belong to a real person; storing one as a test subscription is unsafe. Note: the registration form accepts 0-leading numbers but this one does not (inconsistent rules)."
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"messages\":[\"कृपया अपना पूरा नाम भरें।\"],\"writes\":[]}",
+   "id": "5B.5-F3a",
+   "name": "Safalta: empty story refused with a message, nothing stored",
+   "status": "RAN-PASSED",
+   "assertion": "{\"messages\":[\"कृपया अपना पूरा नाम भरें।\"],\"writes\":[]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_safalta 201\"]}",
+   "id": "5B.5-F3b",
+   "name": "Safalta: valid KSTEST story (no phone) → \"story received\"",
+   "status": "RAN-PASSED",
+   "assertion": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_safalta 201\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"messages\":[\"*\",\"*\",\"दोनों पासवर्ड एक जैसे नहीं हैं।\"]}",
+   "id": "5B.5-F7a",
+   "name": "Change password: new ≠ confirm refused",
+   "status": "RAN-PASSED",
+   "assertion": "{\"messages\":[\"*\",\"*\",\"दोनों पासवर्ड एक जैसे नहीं हैं।\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"changed\":true,\"loginWithNew\":true,\"restored\":true}",
+   "id": "5B.5-F7b",
+   "name": "Change password works (log in with the new one), then restored",
+   "status": "RAN-PASSED",
+   "assertion": "{\"changed\":true,\"loginWithNew\":true,\"restored\":true}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"writes\":[\"/rest/v1/rpc/set_mela_interest 200\"]}",
+   "id": "5B.5-F8",
+   "name": "Kisan Mela \"interested\" button (logged in)",
+   "status": "RAN-PASSED",
+   "assertion": "{\"writes\":[\"/rest/v1/rpc/set_mela_interest 200\"]}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P1",
+   "name": "P1 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P1",
+   "name": "P1 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P2",
+   "name": "P2 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P2",
+   "name": "P2 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P3",
+   "name": "P3 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P3",
+   "name": "P3 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P4",
+   "name": "P4 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P4",
+   "name": "P4 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P5",
+   "name": "P5 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P5",
+   "name": "P5 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P6",
+   "name": "P6 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P6",
+   "name": "P6 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P7",
+   "name": "P7 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P7",
+   "name": "P7 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P8",
+   "name": "P8 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P8",
+   "name": "P8 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}",
+   "id": "5B.7-GATE-P9",
+   "name": "P9 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "assertion": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory)",
+   "id": "5B.7-APPGATE-P9",
+   "name": "P9 in-app login gate",
+   "status": "NOT-RUN",
+   "assertion": "no emulator this session (low memory)"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/visibility/V2-shown-loggedin.jpg"
+   ],
+   "notes": "src/components/ListingCard.jsx:68, src/screens/ListingDetail.jsx:148, supabase/migrations/0053_building_materials_category.sql:199",
+   "id": "5B.3-F-village",
+   "name": "Asset village typed on Post step 3 is shown on the listing card / detail page",
+   "status": "RAN-FAILED",
+   "assertion": "not shown: create_listing stores it in listings.village_name, ListingCard/ListingDetail render village_town || pincode (both empty for new listings)"
+  },
+  {
+   "evidenceFiles": [
+    "docs/review/batch9/evidence/phase5b/listings/L13-warehouse-offer/step2.jpg"
+   ],
+   "notes": "src/lib/i18n/strings.js:869 vs :894",
+   "id": "5B.3-F-photohelp",
+   "name": "Photo help text matches the per-category limit (warehouse/land/greenhouse = 5)",
+   "status": "RAN-FAILED",
+   "assertion": "counter says \"1/5\" but the help says \"ज़्यादा से ज़्यादा 3 फोटो\" — duplicate key photos_help in strings.js (863 and 894, the later one wins)"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "web used Playwright setInputFiles with a generated JPEG; the real picker needs the phone/emulator",
+   "id": "5B.3-camera",
+   "name": "Real camera / gallery photo picker",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "no emulator this session (low memory); on the web the DOM/network/share scan ran (V2)",
+   "id": "5B.4-O7",
+   "name": "HIDDEN poster number absent from the APP offline cache (O7 scan)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "needs the soft keyboard of the app/emulator",
+   "id": "5B.2-K1",
+   "name": "Sign-up with the keyboard open on the lowest field (K1 rules)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "only owners of equipment offers can write it; the only one (L01) is a KEEP listing — left untouched; time",
+   "id": "5B.5-availability-calendar",
+   "name": "Equipment availability calendar (set_listing_unavailable)",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  },
+  {
+   "evidenceFiles": [],
+   "notes": "never delete data (hard rule)",
+   "id": "5B.5-delete-account",
+   "name": "Profile → Delete account",
+   "status": "NOT-RUN",
+   "assertion": "—"
+  }
+ ]
+}
