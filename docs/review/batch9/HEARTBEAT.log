@@ -7,3 +7,5 @@
 2026-10-15 10:02 | phase4 | verifying prod read-only compare mode against prod-before.json
 2026-10-15 10:04 | phase4 | ship/rollback scripts written; writing DECISIONS, then commit+push, dry-runs
 2026-10-15 10:06 | phase4 | commit 1 (evidence, verifier, ship/rollback scripts) + push release-9
+2026-10-15 10:06 | phase4 | running ship/rollback dry-runs
+2026-10-15 10:10 | phase4 | SHIP.md + PROD_SHIP_STEPS.md + dry-run outputs; final commit + push
