@@ -21,3 +21,4 @@ Log:
 - Deployed tests: B2, A1, A2 RAN-PASSED; B1 attempt 1 RAN-FAILED (form click timeout, nothing posted), attempt 2 RAN-PASSED.
 - Advisors on staging: no new warning from 0061/0062. Clean-up: 42 KSTEST 9B listings + 5 photos + 42 village names deleted; 24 KEEP rows intact.
 - Emulator: skipped, low memory (1.77 GB free < 4 GB).
+- Dry runs: ship-prod-9.sh --dry-run exit 0 (shows step 0b), rollback-prod-9.sh --dry-run exit 0 (evidence/fix9b/deploy/). Then pushed release-9 and fast-forwarded android-app.
