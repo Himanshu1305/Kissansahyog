@@ -736,6 +736,12 @@ export const strings = {
   post_confirm_provider: { hi: 'मैं नियम मानता/मानती हूँ, जानकारी सही है, और मैं इसका असली प्रदाता हूँ — इसकी ज़िम्मेदारी मेरी है।', en: 'I accept the rules, the information is correct, and I am the genuine provider — I take responsibility for this.' },
   post_confirm_owner: { hi: 'मैं नियम मानता/मानती हूँ, जानकारी सही है, और यह ज़मीन मेरी है या देने का हक़ मुझे है।', en: 'I accept the rules, the information is correct, and this land is mine or I am authorised to offer it.' },
   posting: { hi: 'लिस्टिंग जोड़ी जा रही है…', en: 'Posting your listing…' },
+  // Batch 9B — duplicate-post protection + vendor-contact consent.
+  post_slow_network: { hi: 'नेटवर्क धीमा है, जाँच रहे हैं…', en: 'The network is slow, checking…' },
+  post_already_saved: { hi: 'आपकी लिस्टिंग पहले ही जुड़ चुकी थी — दोबारा नहीं जोड़ी गई।', en: 'Your listing had already been saved — it was not added twice.' },
+  contact_consent_text: { hi: 'इस विज्ञापन पर आपका मोबाइल नंबर सबको दिखेगा, ताकि ग्राहक सीधे आपसे संपर्क कर सकें।', en: 'Your mobile number will be shown on this listing so customers can contact you directly.' },
+  contact_consent_agree: { hi: 'मैं सहमत हूँ', en: 'I agree' },
+  contact_consent_required: { hi: 'पोस्ट करने के लिए "मैं सहमत हूँ" पर टिक करें।', en: 'Tick "I agree" to post.' },
   post_success: { hi: 'आपकी लिस्टिंग जुड़ गई!', en: 'Your listing has been posted!' },
   view_listing: { hi: 'लिस्टिंग देखें', en: 'View listing' },
   post_another: { hi: 'एक और डालें', en: 'Post another' },

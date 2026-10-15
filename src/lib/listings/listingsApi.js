@@ -70,7 +70,12 @@ export async function createListing({
   wideVisibility = false,
   villageName = null,
   rulesAgreed = false,
+  clientRequestId = null,
+  contactConsent = false,
 }) {
+  // Batch 9B: p_client_request_id makes a retry of the same Post return the same listing (0061);
+  // p_contact_consent records the vendor/provider "show my number" agreement (0062). Both need
+  // those migrations; older databases do not know the parameters.
   const { data, error } = await supabase.rpc('create_listing_with_location', {
     p_actor_id: actorId,
     p_listing_type: listingType,
@@ -84,9 +89,30 @@ export async function createListing({
     p_wide_visibility: wideVisibility,
     p_village_name: villageName,
     p_rules_agreed: rulesAgreed,
+    p_client_request_id: clientRequestId,
+    p_contact_consent: !!contactConsent,
   })
   if (error) throw toAppError(error)
   return data
+}
+
+// Batch 9B: did an earlier, unanswered Post with this request id already create the listing?
+// Checked before any re-send. Returns the listing ({ id, ... }) or null. Never throws: when the check
+// itself cannot run, the retry is still safe because the database returns the existing listing.
+export async function findListingByRequest(actorId, clientRequestId) {
+  if (!actorId || !clientRequestId) return null
+  try {
+    const { data, error } = await supabase
+      .from('listings')
+      .select('id,geocoding_status,wide_visibility')
+      .eq('user_id', actorId)
+      .eq('client_request_id', clientRequestId)
+      .maybeSingle()
+    if (error) return null
+    return data || null
+  } catch {
+    return null
+  }
 }
 
 // --- browse (30 km nearest-first / newest, with a 30–50 km soft fallback) ---

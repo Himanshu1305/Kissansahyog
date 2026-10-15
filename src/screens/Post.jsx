@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
@@ -8,11 +8,11 @@ import ConsentChecklist, { CONSENT_ITEM_IDS } from '../components/ConsentCheckli
 import PhotoPicker from '../components/PhotoPicker'
 import PromoBento from '../components/PromoBento'
 import HelpModal, { HelpButton } from '../components/HelpModal'
-import { CATEGORIES, CATEGORY_META, PHOTO_LIMITS } from '../lib/listings/catalog'
+import { CATEGORIES, CATEGORY_META, PHOTO_LIMITS, PROVIDER_CATS } from '../lib/listings/catalog'
 import { CatIcon } from '../components/CatIcon'
 import { getCategory, isEnabled } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { createListing, fetchResolvedVillages } from '../lib/listings/listingsApi'
+import { createListing, fetchResolvedVillages, findListingByRequest } from '../lib/listings/listingsApi'
 import { drainGeocodeQueue } from '../lib/location/geocodeQueue'
 import { getPostPosition } from '../lib/location/postPosition'
 import { WIDE_ELIGIBLE_CATEGORIES } from '../lib/distance'
@@ -28,7 +28,19 @@ import { uploadPhotos } from '../lib/listings/photos'
 //                   information is correct" is asked ONCE, in the checklist; a separate
 //                   declaration box appears only when there is something extra to
 //                   declare (genuine provider / land ownership) — Batch 7D.
-const PROVIDER_CATS = ['equipment', 'warehouse', 'greenhouse', 'jugaad']
+// Batch 9B: every Post form carries a random request id (re-used by every retry of that form, new
+// after a success or a reset), so a Post whose reply was lost never creates a second listing; and a
+// vendor listing / provider category asks "I agree" before the number may be shown.
+
+const SLOW_MS = 20000
+
+function newRequestId() {
+  if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID()
+  const b = globalThis.crypto.getRandomValues(new Uint8Array(16))
+  b[6] = (b[6] & 0x0f) | 0x40; b[8] = (b[8] & 0x3f) | 0x80
+  const h = Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('')
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`
+}
 
 export default function Post() {
   const { t, lang } = useLang()
@@ -57,6 +69,11 @@ export default function Post() {
   const [busy, setBusy] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
   const [created, setCreated] = useState(null)
+  const [requestId, setRequestId] = useState(newRequestId)
+  const [contactConsent, setContactConsent] = useState(false)
+  const [slow, setSlow] = useState(false)
+  const inFlight = useRef(false)   // set synchronously: a double tap cannot start a second Post
+  const sentOnce = useRef(false)   // a create request with this requestId has been sent before
 
   // Preselect category + offer/requirement from ?cat=&type= (the cold-storage,
   // greenhouse and jugaad CTAs deep-link into the form). Runs once on mount.
@@ -74,6 +91,14 @@ export default function Post() {
   const canWiden = WIDE_ELIGIBLE_CATEGORIES.includes(category)
   const photoLimit = PHOTO_LIMITS[category] || PHOTO_LIMITS.default
   const allConsentsAccepted = CONSENT_ITEM_IDS.every((id) => consents[id])
+  // Vendor listings and provider OFFERS (the same offers that carry the provider declaration). A farmer
+  // asking for a tractor is not a provider: farmer requirements stay exactly as before.
+  const needsContactConsent = source === 'vendor' || needsProviderDecl
+  const contactConsentOk = !needsContactConsent || contactConsent
+
+  // The agreement belongs to this listing's kind: switching back to a farmer listing in a
+  // non-provider category removes the box and its tick.
+  useEffect(() => { if (!needsContactConsent) setContactConsent(false) }, [needsContactConsent])
 
   // When a category is chosen (or changed), (re)initialise its details + load its
   // extras. Re-selecting the SAME category does not fire this, so data survives Back.
@@ -109,22 +134,45 @@ export default function Post() {
   }
 
   async function submit() {
+    if (inFlight.current) return
     setError(null)
     const vname = String(category === 'transport' ? details?.from_location : village).trim()
     if (category === 'transport' && !String(details?.from_location || '').trim()) { setError(t('err_transport_from_required')); return }
     if (category === 'transport' && !String(details?.to_location || '').trim()) { setError(t('err_transport_to_required')); return }
     if (vname.length < 2) { setError(t('err_asset_village_required')); return }
     if (!declarationOk || !allConsentsAccepted) { setError(t('consent_required')); return }
+    if (!contactConsentOk) { setError(t('contact_consent_required')); return }
     if (mapUrl && !isGoogleMapsUrl(mapUrl)) { setError(t('maps_link_invalid')); return }
+    inFlight.current = true
     setBusy(true)
+    setSlow(false)
+    const rid = requestId
+    let settled = false
+    // An earlier Post of this same form may have reached the server although its reply was lost:
+    // look before sending again, and go to that listing instead of creating a second one.
+    const landOn = (found) => {
+      if (settled) return
+      settled = true
+      navigate(`/listing/${found.id}`, { replace: true, state: { alreadySaved: true } })
+    }
+    const timer = setTimeout(() => {
+      setSlow(true)
+      findListingByRequest(user.id, rid).then((found) => found && landOn(found))
+    }, SLOW_MS)
     try {
+      if (sentOnce.current) {
+        const found = await findListingByRequest(user.id, rid)
+        if (found) { landOn(found); return }
+      }
       const baseDetails = mod.finalizeDetails
         ? await mod.finalizeDetails(details, { actorId: user.id, user, listingType })
         : details
-      // Upload completes before the RPC, so no listing can point at a failed photo.
-      const photo_urls = photoFiles.length ? await uploadPhotos(photoFiles, user.id, photoLimit) : (baseDetails.photo_urls || [])
+      // Upload completes before the RPC, so no listing can point at a failed photo. The request id
+      // names the photo folder, so a retry re-uses the same files instead of uploading copies.
+      const photo_urls = photoFiles.length ? await uploadPhotos(photoFiles, user.id, photoLimit, 'listings', rid) : (baseDetails.photo_urls || [])
       const finalDetails = { ...baseDetails, ...(needsProviderDecl ? { provider_declared: true } : {}), ...(photo_urls.length ? { photo_urls } : {}), ...(mapUrl ? { map_url: mapUrl.trim() } : {}) }
       await acceptListingConsents(consents)
+      sentOnce.current = true
       const listing = await createListing({
         actorId: user.id,
         listingType,
@@ -137,19 +185,29 @@ export default function Post() {
         listingSource: source,
         wideVisibility: canWiden ? wideVisibility : false,
         rulesAgreed: !!consents.posting_rules, // the checklist's rules + accuracy item
+        clientRequestId: rid,
+        contactConsent: needsContactConsent && contactConsent,
       })
+      if (settled) return
+      settled = true
       if (listing?.geocoding_status === 'pending') drainGeocodeQueue().catch(() => {})
       setCreated(listing)
+      setRequestId(newRequestId())
+      sentOnce.current = false
     } catch (err) {
-      setError(t(err.i18nKey || 'err_unknown'))
+      if (!settled) setError(t(err.i18nKey || 'err_unknown'))
     } finally {
+      clearTimeout(timer)
+      inFlight.current = false
       setBusy(false)
+      setSlow(false)
     }
   }
 
   function resetAll() {
     setCreated(null); setStep(1); setListingType(null); setCategory(null)
     setSource('farmer'); setDetails(null); setVillage(''); setWideVisibility(false); setConfirmChecked(false); setConsents({}); setPhotoFiles([]); setCoordinates(null); setLocStep(null); setLocFallback(false); setMapUrl('')
+    setContactConsent(false); setRequestId(newRequestId()); sentOnce.current = false
   }
 
   // Batch 9 (1D) — a position the phone already has (≤ 10 min), else a fresh low-accuracy fix
@@ -377,12 +435,33 @@ export default function Post() {
             </label>
           )}
 
+          {/* Batch 9B — vendor listings and provider categories: the number may be shown, but only
+              after the owner agrees on this listing (the same for every owner). */}
+          {needsContactConsent && (
+            <label data-testid="contact-consent-box" className="my-4 flex min-h-[56px] cursor-pointer items-start gap-3 rounded-xl border-2 border-amber-500 bg-amber-50 p-4">
+              <input
+                type="checkbox"
+                checked={contactConsent}
+                onChange={(e) => setContactConsent(e.target.checked)}
+                className="mt-1 h-7 w-7 shrink-0 accent-amber-600"
+                data-testid="contact-consent-checkbox"
+              />
+              <span className="min-w-0 text-base leading-relaxed text-stone-900">
+                <span className="block">📞 {t('contact_consent_text')}</span>
+                <span className="mt-1 block font-bold">{t('contact_consent_agree')}</span>
+              </span>
+            </label>
+          )}
+
           <ConsentChecklist value={consents} onChange={setConsents} className="my-4" />
 
           {busy ? (
-            <Spinner label={t('posting')} />
+            <div data-testid="post-busy">
+              <Spinner label={t('posting')} />
+              {slow && <p role="status" data-testid="post-slow" className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-center text-[15px] font-semibold text-amber-900">{t('post_slow_network')}</p>}
+            </div>
           ) : (
-            <BigButton data-testid="post-submit" onClick={submit} disabled={!declarationOk || !allConsentsAccepted}>
+            <BigButton data-testid="post-submit" onClick={submit} disabled={!declarationOk || !allConsentsAccepted || !contactConsentOk}>
               {t('submit')}
             </BigButton>
           )}

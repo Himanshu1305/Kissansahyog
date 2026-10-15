@@ -1,0 +1,15 @@
+[
+ {
+  "at": "2026-10-15T09:42:00.817Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "B4UI",
+  "title": "old website build posts through the UI against the new database",
+  "status": "RAN-PASSED",
+  "detail": {
+   "old_build_without_consent_box": true,
+   "success_screen": true,
+   "listings_in_db": 1
+  },
+  "evidence": "evidence/fix9b/deployed/B4UI-old-build-posted.jpg"
+ }
+]

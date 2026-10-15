@@ -6,6 +6,10 @@
 // LAST; Drone Didi sits after Labor.
 export const CATEGORIES = ['equipment', 'labor', 'drone_didi', 'bhusa', 'agri_inputs', 'building_materials', 'warehouse', 'greenhouse', 'jugaad', 'transport', 'land']
 
+// Categories where the poster is a provider (machines, storage, structures, innovations). With a
+// vendor source, these are the listings whose number may be shown after the owner agrees (Batch 9B).
+export const PROVIDER_CATS = ['equipment', 'warehouse', 'greenhouse', 'jugaad']
+
 // One source of truth for seller-photo limits across listing categories.
 export const PHOTO_LIMITS = { default: 3, warehouse: 5, land: 5, greenhouse: 5 }
 

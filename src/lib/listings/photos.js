@@ -21,21 +21,38 @@ async function compressPhoto(file) {
 
 // Upload compressed JPEGs before listing creation. A failure throws so callers
 // keep their form intact; paths are isolated under one random listing batch id.
-export async function uploadPhotos(files, actorId, limit = MAX_PHOTOS, pathPrefix = 'listings') {
+// Batch 9B — with a `requestId` (the Post form's client_request_id) the folder is that id and each
+// file name carries the photo's own fingerprint, so a retry of the same Post re-uses the same files:
+// the bucket only allows inserts, and "already exists" counts as success (no duplicates, no orphans).
+export async function uploadPhotos(files, actorId, limit = MAX_PHOTOS, pathPrefix = 'listings', requestId = null) {
   const list = Array.from(files || []).slice(0, limit)
   const urls = []
-  const batchId = crypto.randomUUID()
+  const batchId = requestId || crypto.randomUUID()
   for (let index = 0; index < list.length; index += 1) {
     const file = await compressPhoto(list[index])
-    const path = `${pathPrefix}/${batchId}/${index}.jpg`
+    const path = requestId
+      ? `${pathPrefix}/${batchId}/${index}-${photoFingerprint(list[index])}.jpg`
+      : `${pathPrefix}/${batchId}/${index}.jpg`
     const { error } = await supabase.storage.from(BUCKET).upload(path, file, {
       cacheControl: '3600',
       upsert: false,
       contentType: file.type || 'image/jpeg',
     })
-    if (error) throw error
+    if (error && !(requestId && isAlreadyThere(error))) throw error
     const { data } = supabase.storage.from(BUCKET).getPublicUrl(path)
     urls.push(data.publicUrl)
   }
   return urls
+}
+
+// Same picked file → same name (name, size, last-modified); a different photo → a different name.
+export function photoFingerprint(file) {
+  const text = `${file?.name || ''}|${file?.size || 0}|${file?.lastModified || 0}`
+  let h = 2166136261
+  for (let i = 0; i < text.length; i += 1) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619) }
+  return (h >>> 0).toString(36)
+}
+
+function isAlreadyThere(error) {
+  return String(error?.statusCode || error?.status || '') === '409' || /already exists|duplicate/i.test(String(error?.message || error?.error || ''))
 }

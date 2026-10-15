@@ -83,6 +83,8 @@ export default function ListingDetail() {
       {/* Listings are noindex for now (SEO for listings is a later batch). */}
       <Seo noindex path={`/listing/${listing.id}`} />
       <OfflineStamp resources={['listings']} className="mb-2" />
+      {/* Batch 9B — a Post whose reply was lost: the retry found this listing instead of adding a copy. */}
+      {location.state?.alreadySaved && <Notice tone="success"><span data-testid="already-saved">{t('post_already_saved')}</span></Notice>}
       <div className="mb-4 flex items-center gap-2">
         <CatIcon category={listing.category} className="text-4xl" />
         <div>
