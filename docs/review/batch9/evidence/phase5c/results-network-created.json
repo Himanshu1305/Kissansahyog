@@ -1,0 +1,108 @@
+{
+ "area": "network-created",
+ "results": [
+  {
+   "at": "2026-10-15T07:29:56.414Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "profile + Supabase Auth user (throw-away, signup answer lost)",
+   "tag": "5C-S2",
+   "profile_id": "09ed478e-87ef-48e5-8458-cdee138314a9",
+   "marker": "KSTEST",
+   "full_name": "KSTEST 5C-S2 throwaway"
+  },
+  {
+   "at": "2026-10-15T07:30:34.357Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "profile + Supabase Auth user (throw-away, signup with connection cut, finished by retry)",
+   "tag": "5C-S1",
+   "profile_id": "cdfb9d05-d082-47dc-816c-38d22bfb4dd4",
+   "marker": "KSTEST",
+   "full_name": "KSTEST 5C-S1 throwaway"
+  },
+  {
+   "at": "2026-10-15T07:34:14.146Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "listing (throw-away, posted with connection cut)",
+   "tag": "drop:post:before",
+   "listing_id": "932fb10d-15dd-4617-892c-6c5ca57421dc",
+   "category": "bhusa",
+   "listing_type": "offer",
+   "marker": "KSTEST"
+  },
+  {
+   "at": "2026-10-15T07:34:14.148Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "listing count check",
+   "tag": "drop:post:before",
+   "marker": "KSTEST 5C-before 26165",
+   "my_listings_before": 0,
+   "my_listings_after": 1
+  },
+  {
+   "at": "2026-10-15T07:34:42.058Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "listing (throw-away, posted with connection cut)",
+   "tag": "drop:post:after",
+   "listing_id": "e0b5f22c-f597-4a57-bddb-c5523c858aa3",
+   "category": "bhusa",
+   "listing_type": "offer",
+   "marker": "KSTEST"
+  },
+  {
+   "at": "2026-10-15T07:34:42.060Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "listing (throw-away, posted with connection cut)",
+   "tag": "drop:post:after",
+   "listing_id": "666ff01a-2628-4be6-a167-b6c688504fce",
+   "category": "bhusa",
+   "listing_type": "offer",
+   "marker": "KSTEST"
+  },
+  {
+   "at": "2026-10-15T07:34:42.061Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "listing count check",
+   "tag": "drop:post:after",
+   "marker": "KSTEST 5C-after 54152",
+   "my_listings_before": 1,
+   "my_listings_after": 3
+  },
+  {
+   "at": "2026-10-15T07:35:10.797Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "listing (throw-away, posted with connection cut)",
+   "tag": "drop:post:photo",
+   "listing_id": "70517023-2484-415e-9bc3-dbb6356f3194",
+   "category": "bhusa",
+   "listing_type": "offer",
+   "marker": "KSTEST"
+  },
+  {
+   "at": "2026-10-15T07:35:10.798Z",
+   "phase": "Phase 5C",
+   "keep": false,
+   "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+   "kind": "listing count check",
+   "tag": "drop:post:photo",
+   "marker": "KSTEST 5C-photo 82064",
+   "my_listings_before": 3,
+   "my_listings_after": 4
+  }
+ ]
+}

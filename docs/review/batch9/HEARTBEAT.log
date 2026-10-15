@@ -69,3 +69,51 @@
 2026-10-15 12:05 | phase5b | writing reports, final commit
 2026-10-15 12:06 | phase5b | done (commits abe268a 39cd66c 061368e)
 2026-10-15 12:08 | orchestrator | Phase 5B verified; launching Phase 5C (no emulator)
+2026-10-15 12:08 | phase5c | start: reading inputs
+2026-10-15 12:11 | phase5c | inputs read; writing scripts/phase5c
+2026-10-15 12:13 | phase5c | 5C.1 route sweep part public1
+2026-10-15 12:17 | phase5c | 5C.1 public1 done
+2026-10-15 12:18 | phase5c | 5C.1 route sweep part public1
+2026-10-15 12:18 | phase5c | 5C.1 route sweep part public2
+2026-10-15 12:23 | phase5c | 5C.1 route sweep part public2
+2026-10-15 12:31 | phase5c | 5C.1 route sweep part public1
+2026-10-15 12:32 | phase5c | 5C.1 route sweep part public2
+2026-10-15 12:32 | phase5c | 5C.1 public done; auth+guards
+2026-10-15 12:32 | phase5c | 5C.1 route sweep part auth
+2026-10-15 12:34 | phase5c | 5C.1 route sweep part guards
+2026-10-15 12:35 | phase5c | 5C.1 route sweep part guards
+2026-10-15 12:36 | phase5c | 5C.3 display base
+2026-10-15 12:36 | phase5c | 5C.3 display variant base
+2026-10-15 12:38 | phase5c | 5C.3 display variant f13
+2026-10-15 12:39 | phase5c | 5C.3 display variant f15
+2026-10-15 12:40 | phase5c | 5C.3 display f13 f15 done
+2026-10-15 12:40 | phase5c | 5C.3 display base f15en large done
+2026-10-15 12:40 | phase5c | 5C.3 display variant base
+2026-10-15 12:41 | phase5c | 5C.3 display variant f15en
+2026-10-15 12:42 | phase5c | 5C.3 display variant large
+2026-10-15 12:42 | phase5c | 5C.3 display base f15en large done
+2026-10-15 12:43 | phase5c | 5C.3 display variant large15
+2026-10-15 12:43 | phase5c | 5C.3 display variant dark
+2026-10-15 12:44 | phase5c | 5C.3 display variant en
+2026-10-15 12:45 | phase5c | 5C.3 display all 8 variants done
+2026-10-15 12:48 | phase5c | 5C.4 network slow
+2026-10-15 12:48 | phase5c | 5C.4 network part slow
+2026-10-15 12:50 | phase5c | 5C.4 network part slow
+2026-10-15 12:53 | phase5c | 5C.4 network part slow
+2026-10-15 12:55 | phase5c | 5C.4 slow done; signup drops
+2026-10-15 12:55 | phase5c | 5C.4 network part slow
+2026-10-15 12:58 | phase5c | 5C.4 slow done; signup drops
+2026-10-15 12:58 | phase5c | 5C.4 network part signup
+2026-10-15 13:00 | phase5c | 5C.4 network part signup1retry
+2026-10-15 13:01 | phase5c | 5C.4 login/reveal/post drops
+2026-10-15 13:01 | phase5c | 5C.4 network part login
+2026-10-15 13:02 | phase5c | 5C.4 network part reveal
+2026-10-15 13:03 | phase5c | 5C.4 network part post
+2026-10-15 13:05 | phase5c | 5C.4 done; 5C.7 perf
+2026-10-15 13:06 | phase5c | 5C.7 perf load
+2026-10-15 13:06 | phase5c | 5C.7 load done; heap run
+2026-10-15 13:06 | phase5c | 5C.7 perf heap
+2026-10-15 13:10 | phase5c | perf done; writing avd-matrix.sh monkey-stress.sh
+2026-10-15 13:11 | phase5c | device scripts written (bash -n ok); building ROUTE_COVERAGE/CONDITIONS
+2026-10-15 13:14 | phase5c | writing CONDITIONS.md + DECISIONS
+2026-10-15 13:15 | phase5c | docs written; committing

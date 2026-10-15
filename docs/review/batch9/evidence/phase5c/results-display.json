@@ -1,0 +1,3738 @@
+{
+ "area": "display",
+ "results": [
+  {
+   "at": "2026-10-15T07:08:23.647Z",
+   "id": "f13:/",
+   "variant": "f13",
+   "page": "/",
+   "title": "Homepage (/) — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "28 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "button \"इंटरक्रॉपिंग (अंतरवर्ती खेती): मध्यप्रदे\" 189x257 in 182x257"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 102,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button \"✕\" 27x44",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 312x27",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 298x27",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 333x27",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 323x27",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 345x27",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 312x27",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 298x27",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 333x27",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 323x27",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 345x27",
+     "a \"मंडी भाव\" 89x40",
+     "a \"योजनाएँ\" 85x40",
+     "a \"किसान सवाल\" 124x40",
+     "a \"कोल्ड स्टोरेज\" 117x40",
+     "a \"मेले\" 51x40",
+     "a[home-how-to-use] \"कैसे इस्तेमाल करें →\" 141x40",
+     "button[location-change] \"बदलें\" 37x29",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 139x29",
+     "button \"सभी देखें →\" 84x27",
+     "button \"सभी देखें →\" 84x27",
+     "button \"सभी सवाल देखें →\" 132x27",
+     "button \"सभी मेले देखें →\" 114x27",
+     "button \"सभी देखें →\" 84x27",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आज किसान के लिए",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/_.jpg"
+  },
+  {
+   "at": "2026-10-15T07:08:27.840Z",
+   "id": "f13:/mausam",
+   "variant": "f13",
+   "page": "/mausam",
+   "title": "Mausam — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "8 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 51,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 37x29",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 139x29",
+     "button \"ⓘ\" 20x20",
+     "button \"ⓘ\" 20x20",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "सागर मौसम — आज और 7 दिन का पूर्वानुमान",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/_mausam.jpg"
+  },
+  {
+   "at": "2026-10-15T07:08:32.212Z",
+   "id": "f13:/browse",
+   "variant": "f13",
+   "page": "/browse",
+   "title": "Browse — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) रोटावेटर · प्रति ए\" 197x260 in 184x260",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 197x257 in 184x257",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 197x257 in 184x257",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 197x285 in 184x285",
+     "div[listing-card] \"🚜 चाहिए (Requirement) 0 किमी दूर पानी क\" 197x285 in 184x285",
+     "div[listing-card] \"🚜 चाहिए (Requirement) 2 किमी दूर ट्रैक्\" 197x380 in 184x380",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 2 किमी दूर ट्रैक्ट\" 197x380 in 184x380"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 63,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 37x29",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 139x29",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आस-पास खोजें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/_browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:08:36.443Z",
+   "id": "f13:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "variant": "f13",
+   "page": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "Listing detail — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 27,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"contact-call\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "186x86"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "लिस्टिंग",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/_listing_76e13f41_f2eb_4565_998a_5244640329b7.jpg"
+  },
+  {
+   "at": "2026-10-15T07:08:40.314Z",
+   "id": "f13:/signup",
+   "variant": "f13",
+   "page": "/signup",
+   "title": "Signup (not submitted) — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"signup-form\"] button[type=\"submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x60"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नया खाता बनाएं",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/_signup.jpg"
+  },
+  {
+   "at": "2026-10-15T07:08:44.331Z",
+   "id": "f13:/login",
+   "variant": "f13",
+   "page": "/login",
+   "title": "Login — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"login-phone-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x60"
+     },
+     {
+      "sel": "[data-testid=\"login-email-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x60"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "लॉग इन करें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/_login.jpg"
+  },
+  {
+   "at": "2026-10-15T07:08:51.913Z",
+   "id": "f13:/home",
+   "variant": "f13",
+   "page": "/home",
+   "title": "Home (/home) — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": null,
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/_home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:08:56.462Z",
+   "id": "f13:/profile",
+   "variant": "f13",
+   "page": "/profile",
+   "title": "Profile — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 41,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 2,
+    "h1": "मेरी प्रोफ़ाइल",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/_profile.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:00.008Z",
+   "id": "f13:post-1",
+   "variant": "f13",
+   "page": "post-1",
+   "title": "Post step 1/3 — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 44,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x60"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 1/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/post_1.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:02.317Z",
+   "id": "f13:post-2",
+   "variant": "f13",
+   "page": "post-2",
+   "title": "Post step 2/3 (filled) — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 40,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[help-labor] \"?\" 24x44",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x60"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 2/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/post_2.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:03.468Z",
+   "id": "f13:post-3",
+   "variant": "f13",
+   "page": "post-3",
+   "title": "Post step 3/3 (NOT submitted) — font_scale 1.3 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"हिं\" 36x38",
+     "button \"EN\" 45x38",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 41x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x60"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 3/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f13/post_3.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:21.506Z",
+   "id": "f15:/",
+   "variant": "f15",
+   "page": "/",
+   "title": "Homepage (/) — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "27 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 330894 — \" 197x439 in 182x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 842007 — \" 197x439 in 182x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 078389 — \" 197x439 in 182x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 217833 — \" 197x439 in 182x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 003699 — \" 197x439 in 182x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 131861 — \" 197x439 in 182x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 816161 — \" 197x439 in 182x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 696049 — \" 197x439 in 182x439"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 102,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button \"✕\" 30x44",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 353x32",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 336x32",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 377x32",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 365x32",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 391x32",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 353x32",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 336x32",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 377x32",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 365x32",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 391x32",
+     "a \"मंडी भाव\" 99x40",
+     "a \"योजनाएँ\" 94x40",
+     "a \"किसान सवाल\" 140x40",
+     "a \"कोल्ड स्टोरेज\" 131x40",
+     "a \"मेले\" 55x40",
+     "a[home-how-to-use] \"कैसे इस्तेमाल करें →\" 162x40",
+     "button[location-change] \"बदलें\" 43x34",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 161x34",
+     "button \"सभी देखें →\" 97x32",
+     "button \"सभी देखें →\" 97x32",
+     "button \"सभी सवाल देखें →\" 153x32",
+     "button \"सभी मेले देखें →\" 132x32",
+     "button \"सभी देखें →\" 97x32"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आज किसान के लिए",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/_.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:26.353Z",
+   "id": "f15:/mausam",
+   "variant": "f15",
+   "page": "/mausam",
+   "title": "Mausam — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "7 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 51,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 43x34",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 161x34",
+     "button \"ⓘ\" 20x20",
+     "button \"ⓘ\" 20x20"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "सागर मौसम — आज और 7 दिन का पूर्वानुमान",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/_mausam.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:31.032Z",
+   "id": "f15:/browse",
+   "variant": "f15",
+   "page": "/browse",
+   "title": "Browse — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) रोटावेटर · प्रति ए\" 219x289 in 184x289",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 219x286 in 184x286",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 219x286 in 184x286",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 219x342 in 184x342",
+     "div[listing-card] \"🚜 चाहिए (Requirement) 0 किमी दूर पानी क\" 219x342 in 184x342",
+     "div[listing-card] \"🚜 चाहिए (Requirement) 2 किमी दूर ट्रैक्\" 219x408 in 184x408",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 2 किमी दूर ट्रैक्ट\" 219x408 in 184x408"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 63,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 43x34",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 161x34"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आस-पास खोजें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/_browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:35.609Z",
+   "id": "f15:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "variant": "f15",
+   "page": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "Listing detail — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 27,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"contact-call\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "178x96"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "लिस्टिंग",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/_listing_76e13f41_f2eb_4565_998a_5244640329b7.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:39.666Z",
+   "id": "f15:/signup",
+   "variant": "f15",
+   "page": "/signup",
+   "title": "Signup (not submitted) — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"signup-form\"] button[type=\"submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नया खाता बनाएं",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/_signup.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:43.699Z",
+   "id": "f15:/login",
+   "variant": "f15",
+   "page": "/login",
+   "title": "Login — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"login-phone-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x66"
+     },
+     {
+      "sel": "[data-testid=\"login-email-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "लॉग इन करें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/_login.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:52.216Z",
+   "id": "f15:/home",
+   "variant": "f15",
+   "page": "/home",
+   "title": "Home (/home) — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": null,
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/_home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:56.449Z",
+   "id": "f15:/profile",
+   "variant": "f15",
+   "page": "/profile",
+   "title": "Profile — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 41,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 2,
+    "h1": "मेरी प्रोफ़ाइल",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/_profile.jpg"
+  },
+  {
+   "at": "2026-10-15T07:09:59.973Z",
+   "id": "f15:post-1",
+   "variant": "f15",
+   "page": "post-1",
+   "title": "Post step 1/3 — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 44,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 1/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/post_1.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:02.221Z",
+   "id": "f15:post-2",
+   "variant": "f15",
+   "page": "post-2",
+   "title": "Post step 2/3 (filled) — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 40,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[help-labor] \"?\" 24x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 2/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/post_2.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:03.249Z",
+   "id": "f15:post-3",
+   "variant": "f15",
+   "page": "post-3",
+   "title": "Post step 3/3 (NOT submitted) — font_scale 1.5 (hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 3/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15/post_3.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:27.501Z",
+   "id": "base:/",
+   "variant": "base",
+   "page": "/",
+   "title": "Homepage (/) — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "28 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 102,
+    "small": [
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button \"✕\" 23x44",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 251x21",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 240x21",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 267x21",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 260x21",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 277x21",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 251x21",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 240x21",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 267x21",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 260x21",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 277x21",
+     "a \"मंडी भाव\" 74x40",
+     "a \"योजनाएँ\" 71x40",
+     "a \"किसान सवाल\" 102x40",
+     "a \"कोल्ड स्टोरेज\" 96x40",
+     "a \"मेले\" 45x40",
+     "a[home-how-to-use] \"कैसे इस्तेमाल करें →\" 108x40",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "button \"सभी देखें →\" 65x21",
+     "button \"सभी देखें →\" 65x21",
+     "button \"सभी सवाल देखें →\" 102x21",
+     "button \"सभी मेले देखें →\" 88x21",
+     "button \"सभी देखें →\" 65x21",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आज किसान के लिए",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/_.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:31.863Z",
+   "id": "base:/mausam",
+   "variant": "base",
+   "page": "/mausam",
+   "title": "Mausam — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "10 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 51,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "button \"ⓘ\" 20x20",
+     "button \"ⓘ\" 20x20",
+     "button \"गेहूं\" 43x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "सागर मौसम — आज और 7 दिन का पूर्वानुमान",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/_mausam.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:36.129Z",
+   "id": "base:/browse",
+   "variant": "base",
+   "page": "/browse",
+   "title": "Browse — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "7 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 63,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आस-पास खोजें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/_browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:40.578Z",
+   "id": "base:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "variant": "base",
+   "page": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "Listing detail — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 27,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"contact-call\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "186x48"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "लिस्टिंग",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/_listing_76e13f41_f2eb_4565_998a_5244640329b7.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:44.490Z",
+   "id": "base:/signup",
+   "variant": "base",
+   "page": "/signup",
+   "title": "Signup (not submitted) — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"signup-form\"] button[type=\"submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नया खाता बनाएं",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/_signup.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:48.347Z",
+   "id": "base:/login",
+   "variant": "base",
+   "page": "/login",
+   "title": "Login — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"login-phone-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x52"
+     },
+     {
+      "sel": "[data-testid=\"login-email-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "लॉग इन करें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/_login.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:55.575Z",
+   "id": "base:/home",
+   "variant": "base",
+   "page": "/home",
+   "title": "Home (/home) — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": null,
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/_home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:10:59.760Z",
+   "id": "base:/profile",
+   "variant": "base",
+   "page": "/profile",
+   "title": "Profile — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 41,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "मेरी प्रोफ़ाइल",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/_profile.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:03.130Z",
+   "id": "base:post-1",
+   "variant": "base",
+   "page": "post-1",
+   "title": "Post step 1/3 — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 44,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 1/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/post_1.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:05.361Z",
+   "id": "base:post-2",
+   "variant": "base",
+   "page": "post-2",
+   "title": "Post step 2/3 (filled) — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "7 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 40,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[help-labor] \"?\" 24x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 2/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/post_2.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:06.363Z",
+   "id": "base:post-3",
+   "variant": "base",
+   "page": "post-3",
+   "title": "Post step 3/3 (NOT submitted) — default (font 1.0, 412 CSS px, light, hi)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 3/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/base/post_3.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:24.882Z",
+   "id": "f15en:/",
+   "variant": "f15en",
+   "page": "/",
+   "title": "Homepage (/) — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "27 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "button \"Straw/Stubble Fodder, stubble\" 192x150 in 184x150",
+     "button \"Warehouse/Storage Storage space\" 264x150 in 184x150",
+     "div \"Offer Bhusa (Wheat Straw) KSTEST 330894 \" 197x499 in 182x499",
+     "div \"Offer Bhusa (Wheat Straw) KSTEST 842007 \" 197x499 in 182x499",
+     "div \"Offer Bhusa (Wheat Straw) KSTEST 078389 \" 197x499 in 182x499",
+     "div \"Offer Bhusa (Wheat Straw) KSTEST 217833 \" 197x499 in 182x499",
+     "div \"Offer Bhusa (Wheat Straw) KSTEST 003699 \" 197x499 in 182x499",
+     "div \"Offer Bhusa (Wheat Straw) KSTEST 131861 \" 197x499 in 182x499"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 102,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button \"✕\" 30x44",
+     "a \"मक्का ₹1,849/qtl · Rehli APMC |\" 326x32",
+     "a \"गेहूं ₹2,655/qtl · Sagar APMC |\" 309x32",
+     "a \"सोयाबीन ₹6,323/qtl · Rehli APMC |\" 349x32",
+     "a \"सरसों ₹7,190/qtl · Khurai APMC |\" 338x32",
+     "a \"लहसुन ₹11,000/qtl · Sehore APMC |\" 364x32",
+     "a \"मक्का ₹1,849/qtl · Rehli APMC |\" 326x32",
+     "a \"गेहूं ₹2,655/qtl · Sagar APMC |\" 309x32",
+     "a \"सोयाबीन ₹6,323/qtl · Rehli APMC |\" 349x32",
+     "a \"सरसों ₹7,190/qtl · Khurai APMC |\" 338x32",
+     "a \"लहसुन ₹11,000/qtl · Sehore APMC |\" 364x32",
+     "a \"Mandi prices\" 160x40",
+     "a \"Schemes\" 118x40",
+     "a \"Farmer Q&A\" 154x40",
+     "a \"Cold storage\" 157x40",
+     "a \"Melas\" 88x40",
+     "a[home-how-to-use] \"How to use →\" 140x40",
+     "button[location-change] \"Change\" 85x34",
+     "button[location-clear] \"Clear my location\" 195x34",
+     "button \"View All →\" 106x32",
+     "button \"View All →\" 106x32",
+     "button \"See all questions →\" 199x32",
+     "button \"See all Melas →\" 158x32",
+     "button \"View All →\" 106x32"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "For the farmer, today",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/_.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:29.070Z",
+   "id": "f15en:/mausam",
+   "variant": "f15en",
+   "page": "/mausam",
+   "title": "Mausam — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "7 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 51,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"Change\" 85x34",
+     "button[location-clear] \"Clear my location\" 195x34",
+     "button \"ⓘ\" 20x20",
+     "button \"ⓘ\" 20x20"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Sagar weather — today & 7-day forecast",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/_mausam.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:33.365Z",
+   "id": "f15en:/browse",
+   "variant": "f15en",
+   "page": "/browse",
+   "title": "Browse — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "div[listing-card] \"🚜 Offering Rotavator · Per acre · 88 Ve\" 219x282 in 184x282",
+     "div[listing-card] \"🚜 Offering 0 km away Water tanker · 5,0\" 219x257 in 184x257",
+     "div[listing-card] \"🚜 Offering 0 km away Water tanker · 10,\" 219x257 in 184x257",
+     "div[listing-card] \"🚜 Offering 0 km away Water tanker · 3,0\" 219x257 in 184x257",
+     "div[listing-card] \"🚜 Looking for 0 km away Water tanker · \" 219x257 in 184x257",
+     "div[listing-card] \"🚜 Looking for 2 km away Tractor · Per h\" 219x430 in 184x430",
+     "div[listing-card] \"🚜 Offering 2 km away Tractor · Per hour\" 219x430 in 184x430"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 63,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"Change\" 85x34",
+     "button[location-clear] \"Clear my location\" 195x34"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Browse nearby",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/_browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:37.623Z",
+   "id": "f15en:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "variant": "f15en",
+   "page": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "Listing detail — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 27,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"contact-call\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "178x60"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Listing",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/_listing_76e13f41_f2eb_4565_998a_5244640329b7.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:41.443Z",
+   "id": "f15en:/signup",
+   "variant": "f15en",
+   "page": "/signup",
+   "title": "Signup (not submitted) — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"signup-form\"] button[type=\"submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Create account",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/_signup.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:45.376Z",
+   "id": "f15en:/login",
+   "variant": "f15en",
+   "page": "/login",
+   "title": "Login — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"login-phone-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x108"
+     },
+     {
+      "sel": "[data-testid=\"login-email-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "Log in",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/_login.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:52.637Z",
+   "id": "f15en:/home",
+   "variant": "f15en",
+   "page": "/home",
+   "title": "Home (/home) — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": null,
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/_home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:11:56.841Z",
+   "id": "f15en:/profile",
+   "variant": "f15en",
+   "page": "/profile",
+   "title": "Profile — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 41,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "My Profile",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/_profile.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:00.189Z",
+   "id": "f15en:post-1",
+   "variant": "f15en",
+   "page": "post-1",
+   "title": "Post step 1/3 — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 44,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Post a listing · 1/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/post_1.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:02.456Z",
+   "id": "f15en:post-2",
+   "variant": "f15en",
+   "page": "post-2",
+   "title": "Post step 2/3 (filled) — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 40,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[help-labor] \"?\" 24x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Post a listing · 2/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/post_2.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:03.455Z",
+   "id": "f15en:post-3",
+   "variant": "f15en",
+   "page": "post-3",
+   "title": "Post step 3/3 (NOT submitted) — font_scale 1.5 (en, en-IN)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Post a listing · 3/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/f15en/post_3.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:18.290Z",
+   "id": "large:/",
+   "variant": "large",
+   "page": "/",
+   "title": "Homepage (/) — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "28 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 330894 — \" 159x316 in 156x316",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 842007 — \" 159x316 in 156x316",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 078389 — \" 159x316 in 156x316",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 217833 — \" 159x316 in 156x316",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 003699 — \" 159x316 in 156x316",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 131861 — \" 159x316 in 156x316",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 816161 — \" 159x316 in 156x316",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 696049 — \" 159x316 in 156x316"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 102,
+    "small": [
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button \"✕\" 23x44",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 251x21",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 240x21",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 267x21",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 260x21",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 277x21",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 251x21",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 240x21",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 267x21",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 260x21",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 277x21",
+     "a \"मंडी भाव\" 74x40",
+     "a \"योजनाएँ\" 71x40",
+     "a \"किसान सवाल\" 102x40",
+     "a \"कोल्ड स्टोरेज\" 96x40",
+     "a \"मेले\" 45x40",
+     "a[home-how-to-use] \"कैसे इस्तेमाल करें →\" 108x40",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "button \"सभी देखें →\" 65x21",
+     "button \"सभी देखें →\" 65x21",
+     "button \"सभी सवाल देखें →\" 102x21",
+     "button \"सभी मेले देखें →\" 88x21",
+     "button \"सभी देखें →\" 65x21",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आज किसान के लिए",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/_.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:22.513Z",
+   "id": "large:/mausam",
+   "variant": "large",
+   "page": "/mausam",
+   "title": "Mausam — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "10 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 51,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "button \"ⓘ\" 20x20",
+     "button \"ⓘ\" 20x20",
+     "button \"गेहूं\" 43x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "सागर मौसम — आज और 7 दिन का पूर्वानुमान",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/_mausam.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:26.727Z",
+   "id": "large:/browse",
+   "variant": "large",
+   "page": "/browse",
+   "title": "Browse — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "14 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) रोटावेटर · प्रति ए\" 165x197 in 158x197",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 165x214 in 158x214",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 165x214 in 158x214",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 165x236 in 158x236",
+     "div[listing-card] \"🚜 चाहिए (Requirement) 0 किमी दूर पानी क\" 165x236 in 158x236",
+     "div[listing-card] \"🚜 चाहिए (Requirement) 2 किमी दूर ट्रैक्\" 165x337 in 158x337",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 2 किमी दूर ट्रैक्ट\" 165x337 in 158x337"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 63,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "button[contact-call] \"📞 कॉल करें\" 40x75",
+     "button[contact-call] \"📞 कॉल करें\" 40x75",
+     "button[contact-call] \"📞 कॉल करें\" 40x75",
+     "button[contact-call] \"📞 कॉल करें\" 40x75",
+     "button[contact-call] \"📞 कॉल करें\" 40x75",
+     "button[contact-call] \"📞 कॉल करें\" 40x75",
+     "button[contact-call] \"📞 कॉल करें\" 40x75",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आस-पास खोजें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/_browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:31.008Z",
+   "id": "large:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "variant": "large",
+   "page": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "Listing detail — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 27,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"contact-call\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "160x72"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "लिस्टिंग",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/_listing_76e13f41_f2eb_4565_998a_5244640329b7.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:34.861Z",
+   "id": "large:/signup",
+   "variant": "large",
+   "page": "/signup",
+   "title": "Signup (not submitted) — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"signup-form\"] button[type=\"submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "328x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नया खाता बनाएं",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/_signup.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:38.697Z",
+   "id": "large:/login",
+   "variant": "large",
+   "page": "/login",
+   "title": "Login — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"login-phone-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "292x52"
+     },
+     {
+      "sel": "[data-testid=\"login-email-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "292x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "लॉग इन करें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/_login.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:45.451Z",
+   "id": "large:/home",
+   "variant": "large",
+   "page": "/home",
+   "title": "Home (/home) — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": null,
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/_home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:49.606Z",
+   "id": "large:/profile",
+   "variant": "large",
+   "page": "/profile",
+   "title": "Profile — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 41,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "मेरी प्रोफ़ाइल",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/_profile.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:53.025Z",
+   "id": "large:post-1",
+   "variant": "large",
+   "page": "post-1",
+   "title": "Post step 1/3 — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 44,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "328x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 1/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/post_1.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:55.170Z",
+   "id": "large:post-2",
+   "variant": "large",
+   "page": "post-2",
+   "title": "Post step 2/3 (filled) — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "7 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 40,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[help-labor] \"?\" 24x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "328x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 2/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/post_2.jpg"
+  },
+  {
+   "at": "2026-10-15T07:12:56.155Z",
+   "id": "large:post-3",
+   "variant": "large",
+   "page": "post-3",
+   "title": "Post step 3/3 (NOT submitted) — display size large (360 CSS px)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "328x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 3/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large/post_3.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:10.262Z",
+   "id": "large15:/",
+   "variant": "large15",
+   "page": "/",
+   "title": "Homepage (/) — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "27 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 330894 — \" 197x439 in 156x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 842007 — \" 197x439 in 156x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 078389 — \" 197x439 in 156x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 217833 — \" 197x439 in 156x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 003699 — \" 197x439 in 156x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 131861 — \" 197x439 in 156x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 816161 — \" 197x439 in 156x439",
+     "div \"दे रहे हैं भूसा (गेहूं) KSTEST 696049 — \" 197x439 in 156x439"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 102,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button \"✕\" 30x44",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 353x32",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 336x32",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 377x32",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 365x32",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 391x32",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 353x32",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 336x32",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 377x32",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 365x32",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 391x32",
+     "a \"मंडी भाव\" 99x40",
+     "a \"योजनाएँ\" 94x40",
+     "a \"किसान सवाल\" 140x40",
+     "a \"कोल्ड स्टोरेज\" 131x40",
+     "a \"मेले\" 55x40",
+     "a[home-how-to-use] \"कैसे इस्तेमाल करें →\" 162x40",
+     "button[location-change] \"बदलें\" 43x34",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 161x34",
+     "button \"सभी देखें →\" 97x32",
+     "button \"सभी देखें →\" 97x32",
+     "button \"सभी सवाल देखें →\" 153x32",
+     "button \"सभी मेले देखें →\" 132x32",
+     "button \"सभी देखें →\" 97x32"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आज किसान के लिए",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/_.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:14.471Z",
+   "id": "large15:/mausam",
+   "variant": "large15",
+   "page": "/mausam",
+   "title": "Mausam — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "7 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 51,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 43x34",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 161x34",
+     "button \"ⓘ\" 20x20",
+     "button \"ⓘ\" 20x20"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "सागर मौसम — आज और 7 दिन का पूर्वानुमान",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/_mausam.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:18.819Z",
+   "id": "large15:/browse",
+   "variant": "large15",
+   "page": "/browse",
+   "title": "Browse — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "5 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) रोटावेटर · प्रति ए\" 219x320 in 158x320",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 219x317 in 158x317",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 219x317 in 158x317",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 0 किमी दूर पानी का\" 219x342 in 158x342",
+     "div[listing-card] \"🚜 चाहिए (Requirement) 0 किमी दूर पानी क\" 219x342 in 158x342",
+     "div[listing-card] \"🚜 चाहिए (Requirement) 2 किमी दूर ट्रैक्\" 219x468 in 158x468",
+     "div[listing-card] \"🚜 दे रहे हैं (Offer) 2 किमी दूर ट्रैक्ट\" 219x468 in 158x468"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 63,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 43x34",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 161x34"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आस-पास खोजें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/_browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:23.059Z",
+   "id": "large15:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "variant": "large15",
+   "page": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "Listing detail — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 27,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"contact-call\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "126x96"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "लिस्टिंग",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/_listing_76e13f41_f2eb_4565_998a_5244640329b7.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:26.905Z",
+   "id": "large15:/signup",
+   "variant": "large15",
+   "page": "/signup",
+   "title": "Signup (not submitted) — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"signup-form\"] button[type=\"submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "328x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नया खाता बनाएं",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/_signup.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:30.841Z",
+   "id": "large15:/login",
+   "variant": "large15",
+   "page": "/login",
+   "title": "Login — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "3 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"login-phone-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "292x108"
+     },
+     {
+      "sel": "[data-testid=\"login-email-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "292x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "लॉग इन करें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/_login.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:37.676Z",
+   "id": "large15:/home",
+   "variant": "large15",
+   "page": "/home",
+   "title": "Home (/home) — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": null,
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/_home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:41.788Z",
+   "id": "large15:/profile",
+   "variant": "large15",
+   "page": "/profile",
+   "title": "Profile — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 41,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 2,
+    "h1": "मेरी प्रोफ़ाइल",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/_profile.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:45.175Z",
+   "id": "large15:post-1",
+   "variant": "large15",
+   "page": "post-1",
+   "title": "Post step 1/3 — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 44,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "328x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 1/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/post_1.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:47.495Z",
+   "id": "large15:post-2",
+   "variant": "large15",
+   "page": "post-2",
+   "title": "Post step 2/3 (filled) — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 40,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[help-labor] \"?\" 24x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "328x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 2/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/post_2.jpg"
+  },
+  {
+   "at": "2026-10-15T07:13:48.529Z",
+   "id": "large15:post-3",
+   "variant": "large15",
+   "page": "post-3",
+   "title": "Post step 3/3 (NOT submitted) — display size large + font_scale 1.5 (worst case)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 360,
+    "docW": 360,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"हिं\" 38x42",
+     "button \"EN\" 49x42",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "328x66"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 3/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/large15/post_3.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:03.492Z",
+   "id": "dark:/",
+   "variant": "dark",
+   "page": "/",
+   "title": "Homepage (/) — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "28 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 102,
+    "small": [
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button \"✕\" 23x44",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 251x21",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 240x21",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 267x21",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 260x21",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 277x21",
+     "a \"मक्का ₹1,849/क्विंटल · Rehli APMC |\" 251x21",
+     "a \"गेहूं ₹2,655/क्विंटल · Sagar APMC |\" 240x21",
+     "a \"सोयाबीन ₹6,323/क्विंटल · Rehli APMC |\" 267x21",
+     "a \"सरसों ₹7,190/क्विंटल · Khurai APMC |\" 260x21",
+     "a \"लहसुन ₹11,000/क्विंटल · Sehore APMC |\" 277x21",
+     "a \"मंडी भाव\" 74x40",
+     "a \"योजनाएँ\" 71x40",
+     "a \"किसान सवाल\" 102x40",
+     "a \"कोल्ड स्टोरेज\" 96x40",
+     "a \"मेले\" 45x40",
+     "a[home-how-to-use] \"कैसे इस्तेमाल करें →\" 108x40",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "button \"सभी देखें →\" 65x21",
+     "button \"सभी देखें →\" 65x21",
+     "button \"सभी सवाल देखें →\" 102x21",
+     "button \"सभी मेले देखें →\" 88x21",
+     "button \"सभी देखें →\" 65x21",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आज किसान के लिए",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/_.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:07.705Z",
+   "id": "dark:/mausam",
+   "variant": "dark",
+   "page": "/mausam",
+   "title": "Mausam — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "10 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 51,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "button \"ⓘ\" 20x20",
+     "button \"ⓘ\" 20x20",
+     "button \"गेहूं\" 43x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "सागर मौसम — आज और 7 दिन का पूर्वानुमान",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/_mausam.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:11.939Z",
+   "id": "dark:/browse",
+   "variant": "dark",
+   "page": "/browse",
+   "title": "Browse — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "7 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 63,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"बदलें\" 29x23",
+     "button[location-clear] \"मेरी लोकेशन हटाएँ\" 107x23",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "आस-पास खोजें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/_browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:16.285Z",
+   "id": "dark:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "variant": "dark",
+   "page": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "Listing detail — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 27,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"contact-call\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "186x48"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "लिस्टिंग",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/_listing_76e13f41_f2eb_4565_998a_5244640329b7.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:20.234Z",
+   "id": "dark:/signup",
+   "variant": "dark",
+   "page": "/signup",
+   "title": "Signup (not submitted) — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"signup-form\"] button[type=\"submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नया खाता बनाएं",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/_signup.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:24.135Z",
+   "id": "dark:/login",
+   "variant": "dark",
+   "page": "/login",
+   "title": "Login — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44",
+     "partial dark rendering"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"login-phone-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x52"
+     },
+     {
+      "sel": "[data-testid=\"login-email-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "लॉग इन करें",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/_login.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:31.481Z",
+   "id": "dark:/home",
+   "variant": "dark",
+   "page": "/home",
+   "title": "Home (/home) — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": null,
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/_home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:35.620Z",
+   "id": "dark:/profile",
+   "variant": "dark",
+   "page": "/profile",
+   "title": "Profile — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 41,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "मेरी प्रोफ़ाइल",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/_profile.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:38.937Z",
+   "id": "dark:post-1",
+   "variant": "dark",
+   "page": "post-1",
+   "title": "Post step 1/3 — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 44,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 1/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/post_1.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:41.151Z",
+   "id": "dark:post-2",
+   "variant": "dark",
+   "page": "post-2",
+   "title": "Post step 2/3 (filled) — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "7 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 40,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[help-labor] \"?\" 24x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 2/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/post_2.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:42.132Z",
+   "id": "dark:post-3",
+   "variant": "dark",
+   "page": "post-3",
+   "title": "Post step 3/3 (NOT submitted) — dark mode forced (prefers-color-scheme: dark)",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "a \"बाज़ार\" 31x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "नई लिस्टिंग डालें · 3/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/dark/post_3.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:55.028Z",
+   "id": "en:/",
+   "variant": "en",
+   "page": "/",
+   "title": "Homepage (/) — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "clipped text",
+     "27 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [
+     "button \"Intercropping: A Practical Guide for Mad\" 214x202 in 182x202",
+     "button \"Burning Crop Residue — A Farmer's Compul\" 195x202 in 182x202"
+    ],
+    "navFound": true,
+    "behind": [],
+    "tappables": 102,
+    "small": [
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button \"✕\" 23x44",
+     "a \"मक्का ₹1,849/qtl · Rehli APMC |\" 233x21",
+     "a \"गेहूं ₹2,655/qtl · Sagar APMC |\" 222x21",
+     "a \"सोयाबीन ₹6,323/qtl · Rehli APMC |\" 249x21",
+     "a \"सरसों ₹7,190/qtl · Khurai APMC |\" 241x21",
+     "a \"लहसुन ₹11,000/qtl · Sehore APMC |\" 258x21",
+     "a \"मक्का ₹1,849/qtl · Rehli APMC |\" 233x21",
+     "a \"गेहूं ₹2,655/qtl · Sagar APMC |\" 222x21",
+     "a \"सोयाबीन ₹6,323/qtl · Rehli APMC |\" 249x21",
+     "a \"सरसों ₹7,190/qtl · Khurai APMC |\" 241x21",
+     "a \"लहसुन ₹11,000/qtl · Sehore APMC |\" 258x21",
+     "a \"Mandi prices\" 115x40",
+     "a \"Schemes\" 88x40",
+     "a \"Farmer Q&A\" 112x40",
+     "a \"Cold storage\" 114x40",
+     "a \"Melas\" 67x40",
+     "a[home-how-to-use] \"How to use →\" 93x40",
+     "button[location-change] \"Change\" 57x23",
+     "button[location-clear] \"Clear my location\" 130x23",
+     "button \"View All →\" 71x21",
+     "button \"View All →\" 71x21",
+     "button \"See all questions →\" 133x21",
+     "button \"See all Melas →\" 106x21",
+     "button \"View All →\" 71x21"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "For the farmer, today",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/_.jpg"
+  },
+  {
+   "at": "2026-10-15T07:14:59.203Z",
+   "id": "en:/mausam",
+   "variant": "en",
+   "page": "/mausam",
+   "title": "Mausam — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "8 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 51,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"Change\" 57x23",
+     "button[location-clear] \"Clear my location\" 130x23",
+     "button \"ⓘ\" 20x20",
+     "button \"ⓘ\" 20x20"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Sagar weather — today & 7-day forecast",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/_mausam.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:03.415Z",
+   "id": "en:/browse",
+   "variant": "en",
+   "page": "/browse",
+   "title": "Browse — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "8 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 63,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[location-change] \"Change\" 57x23",
+     "button[location-clear] \"Clear my location\" 130x23",
+     "button \"All\" 43x44",
+     "button \"All\" 43x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Browse nearby",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/_browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:07.714Z",
+   "id": "en:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "variant": "en",
+   "page": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "Listing detail — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 27,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"contact-call\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "186x48"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Listing",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/_listing_76e13f41_f2eb_4565_998a_5244640329b7.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:11.536Z",
+   "id": "en:/signup",
+   "variant": "en",
+   "page": "/signup",
+   "title": "Signup (not submitted) — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"signup-form\"] button[type=\"submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Create account",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/_signup.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:15.353Z",
+   "id": "en:/login",
+   "variant": "en",
+   "page": "/login",
+   "title": "Login — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "4 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"login-phone-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x52"
+     },
+     {
+      "sel": "[data-testid=\"login-email-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "344x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "Log in",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/_login.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:22.144Z",
+   "id": "en:/home",
+   "variant": "en",
+   "page": "/home",
+   "title": "Home (/home) — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 28,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": null,
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/_home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:26.352Z",
+   "id": "en:/profile",
+   "variant": "en",
+   "page": "/profile",
+   "title": "Profile — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 41,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 1,
+    "h1": "My Profile",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/_profile.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:29.669Z",
+   "id": "en:post-1",
+   "variant": "en",
+   "page": "post-1",
+   "title": "Post step 1/3 — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 44,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Post a listing · 1/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/post_1.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:31.871Z",
+   "id": "en:post-2",
+   "variant": "en",
+   "page": "post-2",
+   "title": "Post step 2/3 (filled) — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "6 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 40,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44",
+     "button[help-labor] \"?\" 24x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-next\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Post a listing · 2/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/post_2.jpg"
+  },
+  {
+   "at": "2026-10-15T07:15:32.853Z",
+   "id": "en:post-3",
+   "variant": "en",
+   "page": "post-3",
+   "title": "Post step 3/3 (NOT submitted) — phone language English (en-IN) + app English",
+   "status": "RAN-FAILED",
+   "detail": {
+    "problems": [
+     "5 tap targets < 44x44"
+    ],
+    "W": 412,
+    "docW": 412,
+    "hScroll": false,
+    "wide": [],
+    "clipped": [],
+    "navFound": true,
+    "behind": [],
+    "tappables": 38,
+    "small": [
+     "button \"🔍\" 38x44",
+     "button \"हिं\" 32x32",
+     "button \"EN\" 39x32",
+     "button \"K\" 36x44",
+     "button[nav-hamburger] \"☰\" 36x44"
+    ],
+    "primary": [
+     {
+      "sel": "[data-testid=\"post-submit\"]",
+      "found": true,
+      "onTop": true,
+      "inView": true,
+      "size": "380x52"
+     }
+    ],
+    "bodyBg": "rgb(251, 250, 245)",
+    "darkBlocks": 0,
+    "h1": "Post a listing · 3/3",
+    "console": []
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/display/en/post_3.jpg"
+  }
+ ]
+}

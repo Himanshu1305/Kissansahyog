@@ -1034,6 +1034,94 @@
       "time": "2026-10-15T06:22:27.682Z",
       "kind": "mela interest (throw-away N1)",
       "table": "mela interest (set_mela_interest)"
+    },
+    {
+      "at": "2026-10-15T07:29:56.414Z",
+      "phase": "Phase 5C",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "kind": "profile + Supabase Auth user (throw-away, signup answer lost)",
+      "tag": "5C-S2",
+      "profile_id": "09ed478e-87ef-48e5-8458-cdee138314a9",
+      "marker": "KSTEST",
+      "full_name": "KSTEST 5C-S2 throwaway"
+    },
+    {
+      "at": "2026-10-15T07:30:34.357Z",
+      "phase": "Phase 5C",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "kind": "profile + Supabase Auth user (throw-away, signup with connection cut, finished by retry)",
+      "tag": "5C-S1",
+      "profile_id": "cdfb9d05-d082-47dc-816c-38d22bfb4dd4",
+      "marker": "KSTEST",
+      "full_name": "KSTEST 5C-S1 throwaway"
+    },
+    {
+      "at": "2026-10-15T07:34:14.146Z",
+      "phase": "Phase 5C",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "kind": "listing (throw-away, posted with connection cut)",
+      "tag": "drop:post:before",
+      "listing_id": "932fb10d-15dd-4617-892c-6c5ca57421dc",
+      "category": "bhusa",
+      "listing_type": "offer",
+      "marker": "KSTEST"
+    },
+    {
+      "at": "2026-10-15T07:34:42.058Z",
+      "phase": "Phase 5C",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "kind": "listing (throw-away, posted with connection cut)",
+      "tag": "drop:post:after",
+      "listing_id": "e0b5f22c-f597-4a57-bddb-c5523c858aa3",
+      "category": "bhusa",
+      "listing_type": "offer",
+      "marker": "KSTEST"
+    },
+    {
+      "at": "2026-10-15T07:34:42.060Z",
+      "phase": "Phase 5C",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "kind": "listing (throw-away, posted with connection cut)",
+      "tag": "drop:post:after",
+      "listing_id": "666ff01a-2628-4be6-a167-b6c688504fce",
+      "category": "bhusa",
+      "listing_type": "offer",
+      "marker": "KSTEST"
+    },
+    {
+      "at": "2026-10-15T07:35:10.797Z",
+      "phase": "Phase 5C",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "kind": "listing (throw-away, posted with connection cut)",
+      "tag": "drop:post:photo",
+      "listing_id": "70517023-2484-415e-9bc3-dbb6356f3194",
+      "category": "bhusa",
+      "listing_type": "offer",
+      "marker": "KSTEST"
+    },
+    {
+      "phase": "Phase 5C",
+      "keep": false,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "kind": "join click log (join_clicks, src=ks5c-route-sweep)",
+      "table": "join_clicks",
+      "marker": "src=ks5c-route-sweep",
+      "time": "2026-10-15",
+      "note": "written by visiting /join during the 5C.1 route sweep (Join.jsx logs every visit)"
+    },
+    {
+      "phase": "Phase 5C",
+      "keep": true,
+      "site": "https://staging.kissansahyog.com (website, Playwright phone viewport)",
+      "kind": "contact-click counter +1..2 and view counter on KEEP listing 76e13f41-f2eb-4565-998a-5244640329b7",
+      "listing_id": "76e13f41-f2eb-4565-998a-5244640329b7",
+      "note": "counter side effect of the 5C.4 contact-reveal drop test (viewer = throw-away 5C-S1) and of the 5C.1/5C.3 visits; nothing to clean"
     }
   ],
   "note": "Batch 9 KSTEST rows written to the STAGING project only (wzxtqbqlahyahsnoqqva), through the staging site or the staging app. Nothing deleted. No passwords recorded."
