@@ -157,3 +157,6 @@
 2026-10-15 13:32 | phase8 | restored 2 gradle files (EOL-only) so ship-prod-9 precondition is clean; DECISIONS updated
 2026-10-15 13:33 | phase8 | 8.4 writing REPORT.md
 2026-10-15 13:35 | phase8 | REPORT.md write refused by tool (subagent rule); report text returned to orchestrator; 8.5 commit next
+2026-10-15 13:36 | phase8 | committed 0670551, pushed release-9, android-app fast-forwarded; running ship-prod-9 --dry-run (read-only)
+2026-10-15 13:37 | phase8 | ship-prod-9 --dry-run at 0670551: exit 0, DRY RUN OK; phase 8 subagent done (REPORT.md text handed to orchestrator)
+2026-10-15 13:41 | orchestrator | Phase 8 done; final commit and push
