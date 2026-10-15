@@ -146,3 +146,5 @@
 2026-10-15 13:23 | phase6.6 | shot en/05-yojana
 2026-10-15 13:24 | phase6.6 | en 8/8 viewed OK (yojana re-shot after false-positive regex); writing README/checklist
 2026-10-15 13:25 | phase6.6 | docs written; committing
+2026-10-15 13:25 | phase6.6 | done (commit bc9fbc0 pushed)
+2026-10-15 13:26 | orchestrator | Phase 6.6 verified; launching Phase 8
