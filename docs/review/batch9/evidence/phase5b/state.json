@@ -1,0 +1,712 @@
+{
+ "personas": {
+  "P1": {
+   "id": "P1",
+   "role": "Farmer-Seller, details SHOWN, full kisan profile",
+   "name": "KSTEST-KEEP P1 किसान विक्रेता",
+   "town": "Makronia",
+   "lang": "hi",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 मकरोनिया, सागर बदलें\"}",
+     "at": "2026-10-15T05:06:59.345Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:07:02.128Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:07:29.855Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:07:32.641Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:07:59.937Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:08:02.842Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:08:35.364Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:08:38.309Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"मकरोनिया\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:08:40.976Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:09:18.184Z"
+    },
+    "profileNameSaveB8": {
+     "ok": false,
+     "detail": "{\"saved\":false,\"message\":\"कृपया सही 6 अंकों का पिन कोड भरें।\"}",
+     "at": "2026-10-15T05:09:24.078Z"
+    }
+   },
+   "profileId": "c4be2d7e-a00e-4d92-875d-5e805d780a38",
+   "createdAt": "2026-10-15T05:06:59.343Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  },
+  "P2": {
+   "id": "P2",
+   "role": "Farmer-Buyer, details SHOWN, kisan profile (different)",
+   "name": "KSTEST-KEEP P2 किसान खरीदार",
+   "town": "Sagar",
+   "lang": "hi",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 सागर, सागर बदलें\"}",
+     "at": "2026-10-15T05:18:10.099Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:18:12.840Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:18:40.275Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:18:42.949Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:19:10.251Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:19:13.153Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:19:45.704Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:19:48.456Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"सागर\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:20:16.179Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:20:53.243Z"
+    }
+   },
+   "error": "page.fill: Timeout 25000ms exceeded.",
+   "profileId": "01591891-9742-4012-9a3d-6da1198cea99",
+   "createdAt": "2026-10-15T05:18:10.098Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  },
+  "P3": {
+   "id": "P3",
+   "role": "Farmer-Seller, details HIDDEN, minimal profile",
+   "name": "KSTEST-KEEP P3 Hidden Seller",
+   "town": "Makronia",
+   "lang": "hi",
+   "details": "HIDDEN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 मकरोनिया, सागर बदलें\"}",
+     "at": "2026-10-15T05:11:13.959Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:11:16.747Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:11:44.198Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:11:47.005Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:12:14.166Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:12:17.128Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:12:49.644Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:12:52.544Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"मकरोनिया\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:13:20.190Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:13:57.337Z"
+    }
+   },
+   "profileId": "7b90dd96-deaf-4eaf-92d9-bb9e3801d38f",
+   "createdAt": "2026-10-15T05:11:13.958Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  },
+  "P4": {
+   "id": "P4",
+   "role": "Farmer-Buyer, details HIDDEN, English, Damoh",
+   "name": "KSTEST-KEEP P4 Hidden Buyer Damoh",
+   "town": "Damoh",
+   "lang": "en",
+   "details": "HIDDEN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 Damoh, Damoh Change\"}",
+     "at": "2026-10-15T05:14:30.491Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:14:33.233Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:15:00.585Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:15:03.467Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:15:30.700Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:15:33.709Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"hi\",\"uiAfterSwitch\":\"hi\",\"profileLangAfterLogin\":\"hi\",\"uiAfterLogin\":\"hi\"}",
+     "at": "2026-10-15T05:16:06.305Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"en\"}",
+     "at": "2026-10-15T05:16:09.006Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"Damoh\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:16:36.636Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:17:13.829Z"
+    }
+   },
+   "profileId": "79ec9229-e3d1-4f50-9d8d-6eb4ae7984a1",
+   "createdAt": "2026-10-15T05:14:30.490Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  },
+  "P5": {
+   "id": "P5",
+   "role": "Vendor/trader-Seller (source vendor), English, details SHOWN, partial profile",
+   "name": "KSTEST-KEEP P5 Vendor Seller",
+   "town": "Sagar",
+   "lang": "en",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 Sagar, Sagar Change\"}",
+     "at": "2026-10-15T05:21:26.421Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:21:29.199Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:21:56.632Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:21:59.323Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:22:26.613Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:22:29.488Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"hi\",\"uiAfterSwitch\":\"hi\",\"profileLangAfterLogin\":\"hi\",\"uiAfterLogin\":\"hi\"}",
+     "at": "2026-10-15T05:23:02.061Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"en\"}",
+     "at": "2026-10-15T05:23:04.951Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"Sagar\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:23:07.731Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:23:44.897Z"
+    }
+   },
+   "profileId": "1eb71dfa-07cd-4180-8b21-5c70c0a83f4a",
+   "createdAt": "2026-10-15T05:21:26.420Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  },
+  "P6": {
+   "id": "P6",
+   "role": "Vendor/trader-Buyer (source vendor), Hindi, details HIDDEN",
+   "name": "KSTEST-KEEP P6 व्यापारी खरीदार",
+   "town": "Garhakota",
+   "lang": "hi",
+   "details": "HIDDEN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 गढ़ाकोटा, सागर बदलें\"}",
+     "at": "2026-10-15T05:24:17.727Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:24:20.813Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:24:48.351Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:24:51.115Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:25:18.346Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:25:21.326Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:25:54.119Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:25:56.824Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"गढ़ाकोटा\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:26:24.551Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:27:59.467Z"
+    }
+   },
+   "profileId": "d3386b37-17ec-4ef5-b357-0c67ba068f49",
+   "createdAt": "2026-10-15T05:24:17.727Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  },
+  "P7": {
+   "id": "P7",
+   "role": "Provider (equipment/warehouse/greenhouse/jugaad offers), Hindi, details SHOWN",
+   "name": "KSTEST-KEEP P7 सेवा प्रदाता",
+   "town": "Sagar",
+   "lang": "hi",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 सागर, सागर बदलें\"}",
+     "at": "2026-10-15T05:28:32.512Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:28:35.261Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:29:02.627Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:29:05.520Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:29:32.739Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:29:35.726Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:30:08.375Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:30:11.136Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"सागर\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:30:38.881Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:31:15.587Z"
+    }
+   },
+   "profileId": "5fcb2bf9-dfaa-444d-8e26-8c66bfe5990e",
+   "createdAt": "2026-10-15T05:28:32.512Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  },
+  "P8": {
+   "id": "P8",
+   "role": "Far-away user (Orchha, Niwari, >100 km), English, details SHOWN",
+   "name": "KSTEST-KEEP P8 Far Away Orchha",
+   "town": "Orchha",
+   "lang": "en",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 Orchha, Niwari Change\"}",
+     "at": "2026-10-15T05:31:58.217Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:32:00.885Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:32:28.226Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:32:30.805Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:32:57.935Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:33:00.638Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"hi\",\"uiAfterSwitch\":\"hi\",\"profileLangAfterLogin\":\"hi\",\"uiAfterLogin\":\"hi\"}",
+     "at": "2026-10-15T05:33:32.999Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"en\"}",
+     "at": "2026-10-15T05:33:35.633Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"Orchha\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:34:03.263Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:34:40.072Z"
+    }
+   },
+   "profileId": "ac81d7e4-d540-4fc9-bf94-6eab815b9436",
+   "createdAt": "2026-10-15T05:31:58.216Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  },
+  "P9": {
+   "id": "P9",
+   "role": "E-mail edge: mixed-case e-mail, spaces around inputs, long Devanagari+English name, hi/en switch at signup",
+   "name": "KSTEST-KEEP P9 रामप्रसाद Ramprasad लंबा नाम Long Name Edge केस",
+   "town": "Rehli",
+   "lang": "en",
+   "details": "SHOWN",
+   "steps": {
+    "p9-lang-switch-keeps-fields": {
+     "ok": true,
+     "detail": "{\"nameKept\":true}",
+     "at": "2026-10-15T05:34:47.166Z"
+    },
+    "signup": {
+     "ok": true,
+     "detail": "{\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"storedName\":true,\"storedEmailLower\":true}",
+     "at": "2026-10-15T05:35:13.936Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:35:16.649Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"upper-case + spaces\"}",
+     "at": "2026-10-15T05:35:44.004Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:35:46.595Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:36:13.731Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:36:16.449Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"hi\",\"uiAfterSwitch\":\"hi\",\"profileLangAfterLogin\":\"hi\",\"uiAfterLogin\":\"hi\"}",
+     "at": "2026-10-15T05:36:48.765Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"en\"}",
+     "at": "2026-10-15T05:36:51.567Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"रहली\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:37:19.194Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:37:55.849Z"
+    }
+   },
+   "profileId": "9f4841a0-ea8a-49c1-ae84-1fa9a7e94aa7",
+   "createdAt": "2026-10-15T05:35:13.935Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   }
+  }
+ },
+ "listings": [],
+ "noise": [],
+ "results": [],
+ "rows": []
+}

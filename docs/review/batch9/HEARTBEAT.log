@@ -18,3 +18,23 @@
 2026-10-15 10:24 | phase5 | staging run1 reaped (system low memory, 0.9 GB free); orphans + emulator stopped; NOT restarted; writing report
 2026-10-15 10:25 | phase5 | committing Phase 5 (partial) and pushing release-9
 2026-10-15 10:27 | orchestrator | Phase 5 recorded DONE-WITH-FAILURES; no emulator for rest of session (low memory); next Phase 5B web-based
+2026-10-15 10:27 | phase5b | started: reading prompt, progress, decisions
+2026-10-15 10:29 | phase5b | staging supabase-ref guard check
+2026-10-15 10:32 | phase5b | step 1: writing ACCOUNT_MATRIX.md (expected behaviour from code)
+2026-10-15 10:34 | phase5b | step 2: writing Playwright helpers scripts/phase5b/*.mjs and personas (outside repo)
+2026-10-15 10:36 | phase5b | 5B.1 running personas P1
+2026-10-15 10:36 | phase5b | 5B.1 persona P1
+2026-10-15 10:40 | phase5b | 5B.1 personas P2-P4
+2026-10-15 10:40 | phase5b | 5B.1 persona P2
+2026-10-15 10:40 | phase5b | 5B.1 persona P3
+2026-10-15 10:44 | phase5b | 5B.1 persona P4
+2026-10-15 10:47 | phase5b | 5B.1 personas P2,P5,P6
+2026-10-15 10:47 | phase5b | 5B.1 persona P2
+2026-10-15 10:50 | phase5b | 5B.1 persona P5
+2026-10-15 10:53 | phase5b | 5B.1 persona P6
+2026-10-15 10:56 | phase5b | 5B.1 personas P6,P7
+2026-10-15 10:56 | phase5b | 5B.1 persona P6
+2026-10-15 10:58 | phase5b | 5B.1 persona P7
+2026-10-15 11:01 | phase5b | 5B.1 personas P8,P9
+2026-10-15 11:01 | phase5b | 5B.1 persona P8
+2026-10-15 11:04 | phase5b | 5B.1 persona P9
