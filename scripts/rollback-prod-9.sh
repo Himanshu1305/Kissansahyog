@@ -93,8 +93,12 @@ say "+ GET $API   (read-only: which deployment is live now)"
 CUR="$(api GET "" | jget 'j.result.canonical_deployment.id')"
 say "live production deployment now: ${CUR:-unknown}"
 if [ "$CUR" = "$TARGET" ]; then
-  loud "NOTHING TO DO: $TARGET is already the live production deployment of $PROJECT"
-  exit 0
+  if [ "$DRY" = 1 ]; then
+    say "(note: $TARGET is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)"
+  else
+    loud "NOTHING TO DO: $TARGET is already the live production deployment of $PROJECT"
+    exit 0
+  fi
 fi
 
 # ---------- the rollback ----------
