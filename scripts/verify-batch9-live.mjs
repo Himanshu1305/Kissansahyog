@@ -328,9 +328,15 @@ async function compare() {
     // without, 36.2 KB in the 04:14 prod build with). Growth is allowed up to 1.60 only when the
     // live page now carries the FAQ block and the snapshot did not (or did not record it);
     // shrinking below 0.85 always fails (that is what a broken page looks like).
+    // /sawaal and /yojana are data pages: the old prod snapshot of each was captured before its data
+    // loaded (24 KB and 21 KB, an empty shell), so the live page with its list rendered is up to ~3x
+    // bigger (/sawaal 2.98x showing "सभी (128)" and its questions, /yojana 1.816x) with the same
+    // title and h1. These two pages may grow up to 4.0x; the 0.85 floor, title/h1 and ErrorBoundary
+    // checks still apply to them unchanged. Every other page keeps the 1.15 / 1.60 limits above.
+    const dataPage = p === '/sawaal' || p === '/yojana'
     const faqAdded = n.faq && b.faq !== true
-    const hi = faqAdded ? 1.6 : 1.15
-    c.check(`${p}: 200, title/h1 unchanged, size within -15%/+${Math.round((hi - 1) * 100)}%${faqAdded ? ' (FAQ block added)' : ''}, no ErrorBoundary`, n.status === 200 && n.title === b.title && n.h1 === b.h1 && ratio >= 0.85 && ratio <= hi && !n.errorBoundary, { status: n.status, title: n.title === b.title ? 'same' : [b.title, n.title], h1: n.h1 === b.h1 ? 'same' : [b.h1, n.h1], sizeRatio: Number(ratio.toFixed(3)), faqBefore: b.faq ?? 'not recorded', faqNow: n.faq })
+    const hi = dataPage ? 4.0 : faqAdded ? 1.6 : 1.15
+    c.check(`${p}: 200, title/h1 unchanged, size within -15%/+${Math.round((hi - 1) * 100)}%${dataPage ? ' (data page, snapshot taken before data loaded)' : faqAdded ? ' (FAQ block added)' : ''}, no ErrorBoundary`, n.status === 200 && n.title === b.title && n.h1 === b.h1 && ratio >= 0.85 && ratio <= hi && !n.errorBoundary, { status: n.status, title: n.title === b.title ? 'same' : [b.title, n.title], h1: n.h1 === b.h1 ? 'same' : [b.h1, n.h1], sizeRatio: Number(ratio.toFixed(3)), faqBefore: b.faq ?? 'not recorded', faqNow: n.faq })
   }
   c.check('robots.txt unchanged', now.files['/robots.txt'].sha256 === before.files['/robots.txt'].sha256 && now.files['/robots.txt'].status === 200)
   const parser = new DOMParser({ onError: () => { throw new Error('xml') } })
