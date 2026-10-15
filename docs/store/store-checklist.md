@@ -45,7 +45,7 @@ the APKs can be side-loaded (no store needed).
 | 1.10 | Gemini API key: confirm it is on a **paid** tier (affects the Data-safety "shared" answer for voice) | Me | `permissions-justification.md` §2 |
 | 1.11 | Add a "not a government app" line inside the app (e.g. About / Yojana page). The store description already has it; Play's policy for apps showing government information expects a clear disclaimer and source links. Only an IMD-specific disclaimer exists today (`src/lib/i18n/strings.js:1586`). | Claude Code | — |
 | 1.12 | Phase 3 of tonight's run: release keystore + signed AAB (`C:\Users\usdvi\ks-release-keys\`, never in git). Check `docs/review/batch9/PROGRESS.md` for its status. | Claude Code | — |
-| 1.13 | Phase 6.6 graphics (icon 512×512, feature graphic 1024×500, phone screenshots 1080×2400) — being made by another agent into `docs/store/graphics/` | Claude Code | — |
+| 1.13 | Phase 6.6 graphics — DONE except real app screenshots. Icon and feature graphics are ready; the phone screenshots are **web stand-ins** from kissansahyog.com (no emulator tonight). **Before submission:** replace them with real emulator or phone shots of the PROD app if the app looks different. Exact commands in the README. | Me (morning) | `graphics/README.md` |
 | 1.14 | A **reviewer login** on PRODUCTION (for "App access") — you create it yourself in the morning (tonight's rules forbid test sign-ups on production). Use a real e-mail you control; never put the password in git. | Me | — |
 
 ---------------------------------------------------------------------
@@ -96,9 +96,9 @@ the APKs can be side-loaded (no store needed).
 | 4.5 | Phone (optional) | leave empty unless you want it public | — |
 | 4.6 | Main store listing (hi-IN): name / short / full | paste the FIELD blocks | `listing-hi.md` (counts in `listing-limits.json`) |
 | 4.7 | Add translation: English (en-IN) | paste the FIELD blocks | `listing-en.md` |
-| 4.8 | App icon 512×512 PNG | from Phase 6.6 | `docs/store/graphics/` |
-| 4.9 | Feature graphic 1024×500 | from Phase 6.6 | `docs/store/graphics/` |
-| 4.10 | Phone screenshots (2–8, 1080×2400) | from Phase 6.6 — public screens, no personal/staging data | `docs/store/graphics/` |
+| 4.8 | App icon 512×512 PNG | READY: upload `icon-512.png` (32-bit PNG, 396 KB, same artwork as the launcher icon) | `docs/store/graphics/icon-512.png` |
+| 4.9 | Feature graphic 1024×500 | READY: `feature-graphic-hi.png` for the hi-IN listing, `feature-graphic-en.png` for the en-IN translation (24-bit, no alpha) | `docs/store/graphics/feature-graphic-{hi,en}.png` |
+| 4.10 | Phone screenshots (2–8, 1080×2400) | STAND-IN: 8 per language (hi to the hi-IN listing, en to en-IN), taken from the public website, checked for staging and personal data. HUMAN-REVIEW: replace them with real app shots before final submission if the app looks different (see 1.13). | `docs/store/graphics/screens/{hi,en}/01-home.png … 08-about.png` |
 | 4.11 | Tablet screenshots | Optional — skip for 0.1.0 | — |
 
 ---------------------------------------------------------------------

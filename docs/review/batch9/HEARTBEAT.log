@@ -120,3 +120,29 @@
 2026-10-15 13:16 | phase5c | committed 409ae03; pushing
 2026-10-15 13:16 | phase5c | done (commit 409ae03 pushed)
 2026-10-15 13:17 | orchestrator | Phase 5C verified; launching Phase 6.6 graphics
+2026-10-15 13:17 | phase6.6 | start: reading inputs, locating icon sources
+2026-10-15 13:18 | phase6.6 | step 1: icon-512 from design/kissansahyog-logo-source.jpg
+2026-10-15 13:19 | phase6.6 | step 2: feature graphic hi/en via Chromium
+2026-10-15 13:20 | phase6.6 | step 3: planning web stand-in screenshots (prod, read-only)
+2026-10-15 13:21 | phase6.6 | shot hi/01-home
+2026-10-15 13:21 | phase6.6 | shot hi/02-msp
+2026-10-15 13:21 | phase6.6 | shot hi/03-mausam
+2026-10-15 13:21 | phase6.6 | shot hi/04-browse
+2026-10-15 13:22 | phase6.6 | shot hi/05-yojana
+2026-10-15 13:22 | phase6.6 | shot hi/06-sawaal
+2026-10-15 13:22 | phase6.6 | shot hi/07-cold-storage
+2026-10-15 13:22 | phase6.6 | shot hi/08-about
+2026-10-15 13:22 | phase6.6 | hi shots captured (8); visual check
+2026-10-15 13:22 | phase6.6 | hi 8/8 viewed OK; capturing en
+2026-10-15 13:22 | phase6.6 | shot en/01-home
+2026-10-15 13:22 | phase6.6 | shot en/02-msp
+2026-10-15 13:22 | phase6.6 | shot en/03-mausam
+2026-10-15 13:23 | phase6.6 | shot en/04-browse
+2026-10-15 13:23 | phase6.6 | shot en/05-yojana
+2026-10-15 13:23 | phase6.6 | shot en/06-sawaal
+2026-10-15 13:23 | phase6.6 | shot en/07-cold-storage
+2026-10-15 13:23 | phase6.6 | shot en/08-about
+2026-10-15 13:23 | phase6.6 | shot en/05-yojana
+2026-10-15 13:23 | phase6.6 | shot en/05-yojana
+2026-10-15 13:24 | phase6.6 | en 8/8 viewed OK (yojana re-shot after false-positive regex); writing README/checklist
+2026-10-15 13:25 | phase6.6 | docs written; committing
