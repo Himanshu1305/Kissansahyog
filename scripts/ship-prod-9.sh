@@ -9,6 +9,7 @@
 #   0  preconditions: on release-9, no modified tracked files that ship (see ALLOW_DIRTY), tag pre-9-ship
 #      exists locally and on origin, HEAD is pushed (= origin/release-9), .env.production present,
 #      wrangler logged in, Cloudflare API reachable with pages access (needed for the rollback)
+#   0b Batch 9B: migrations 0061 + 0062 must already be applied by hand (real run checks it, read-only)
 #   1  record the live prod deployment id (read-only `wrangler pages deployment list` + API)
 #   2  read-only: live prod still matches the night snapshot prod-before.json; take a fresh snapshot
 #   3  npm run build:prod (env guard + prerender + sitemaps + dist guard); dist sanity checks
@@ -74,6 +75,32 @@ say "+ HEAD ${HEAD_SHA:0:7}  origin/$BRANCH ${REMOTE_HEAD:0:7}"
 [ -f .env.production ] || stop ".env.production missing (the prod build needs it)"
 [ -s "$NIGHT_SNAP" ] || stop "$NIGHT_SNAP missing"
 command -v node >/dev/null && command -v npx >/dev/null && command -v curl >/dev/null || stop "node / npx / curl not found"
+
+# ---------------------------------------------------------------- 0b. database (Batch 9B)
+# The release-9 code (Batch 9B) sends two new values when a listing is posted, so the PRODUCTION
+# database must have migrations 0061 + 0062 BEFORE this site ships. This script never writes to any
+# database: the founder applies them by hand (Supabase dashboard -> SQL editor -> production project),
+# in this order, after the earlier pending ones (0054-0060, see BATCH7L2_REPORT.md):
+MIGS_9B=(supabase/migrations/0061_listing_client_request_id.sql supabase/migrations/0062_listing_contact_consent.sql)
+ROLLBACKS_9B=(supabase/migrations/rollback/0062_listing_contact_consent_rollback.sql supabase/migrations/rollback/0061_listing_client_request_id_rollback.sql)
+say "== 0b. database migrations this code needs (applied BY HAND in the Supabase SQL editor, production project, before this script)"
+for m in "${MIGS_9B[@]}"; do [ -s "$m" ] || stop "$m missing"; say "+ (founder, by hand) run $m"; done
+for m in "${ROLLBACKS_9B[@]}"; do [ -s "$m" ] || stop "$m missing"; done
+say "  database rollback, only if ever needed, in this order: ${ROLLBACKS_9B[*]}"
+say "  (a SITE rollback does not need it: the previous site posts fine with the new database - staging test B4UI)"
+envval() { grep -E "^[[:space:]]*$1[[:space:]]*=" .env.production | head -1 | sed -E 's/^[^=]*=[[:space:]]*//; s/^["'"'"']//; s/["'"'"'][[:space:]]*$//; s/\r$//'; }
+PROD_SUPA="$(envval VITE_SUPABASE_URL)"
+PROD_ANON="$(envval VITE_SUPABASE_ANON_KEY)"
+[ -n "$PROD_SUPA" ] && [ -n "$PROD_ANON" ] || stop ".env.production has no VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY"
+PROBE="$PROD_SUPA/rest/v1/listings?select=client_request_id,contact_consent_at&limit=1"
+if [ "$DRY" = 1 ]; then
+  say "+ (real run only; a dry run does not touch the database) read-only check: GET $PROBE  (public key, not shown) must answer 200"
+else
+  say "+ read-only check: GET $PROBE  (public key, not shown)"
+  CODE="$(timeout 60 curl -s -o /dev/null -w '%{http_code}' -H "apikey: $PROD_ANON" -H "Authorization: Bearer $PROD_ANON" "$PROBE")"
+  [ "$CODE" = "200" ] || stop "the production database does not have the Batch 9B columns yet (HTTP $CODE). Apply ${MIGS_9B[*]} in the Supabase SQL editor first, then run this script again."
+  say "  production database has client_request_id + contact_consent_at (HTTP 200)"
+fi
 
 say "+ timeout 120 npx wrangler pages deployment list --project-name $PROJECT   (read-only)"
 LIST="$(timeout 120 npx wrangler pages deployment list --project-name "$PROJECT" 2>&1)" || stop "wrangler cannot list deployments (run: npx wrangler login)"

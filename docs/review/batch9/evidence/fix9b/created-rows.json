@@ -220,5 +220,35 @@
   "note": "R-land",
   "base": "local",
   "at": "2026-10-15T09:48:39.526Z"
+ },
+ {
+  "id": "70f2aeda-0a7f-426c-b165-75277634f5f4",
+  "note": "B2",
+  "base": "deployed",
+  "at": "2026-10-15T09:55:19.188Z"
+ },
+ {
+  "id": "442ea17f-b067-4f5c-aff0-5b37fad70823",
+  "note": "A1",
+  "base": "deployed",
+  "at": "2026-10-15T09:55:28.031Z"
+ },
+ {
+  "id": "23577087-fce7-4205-aa69-0cd4482a58b9",
+  "note": "A2-bhusa",
+  "base": "deployed",
+  "at": "2026-10-15T09:55:46.663Z"
+ },
+ {
+  "id": "1da1f316-1df8-48df-b142-3f9424386ee0",
+  "note": "A2-agri_shop_as_farmer",
+  "base": "deployed",
+  "at": "2026-10-15T09:55:51.591Z"
+ },
+ {
+  "id": "86021a86-7272-497e-93a9-7b2f950263c9",
+  "note": "B1",
+  "base": "deployed",
+  "at": "2026-10-15T09:57:02.092Z"
  }
 ]

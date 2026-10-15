@@ -384,3 +384,12 @@ status before relying on them:
 - **N1 — Push notifications:** design and your hand-steps in `docs/review/batch9/PUSH_PLAN.md`
   (two Firebase projects, `google-services.json` locations, FCM service-account secret). **P2**;
   depends on B1 being fixed if any admin-triggered send is wanted.
+
+## Batch 9B additions (2026-10-15, after the two fixes)
+
+- **F1 old rows — Seeds & fertiliser shop number in public data.** Batch 9B stops new posts by hidden owners from putting the number into the public listing data (server side, older app included). Rows that already carry it stay as they are (staging: 1 listing, `2286327f…`). Founder decides; count on prod with part 2 of `PROD_AFFECTED_LISTINGS.sql`; the clean-up would move the number into `listing_private_contact` and leave `contact_phone` as `''` (same as 0062 does for new rows). **P1**
+- **No "change my listing" screen.** An owner of an old vendor listing cannot add the new "I agree" to it; today they post again. **P2**
+- **Consent box on provider REQUIREMENTS?** Batch 9B asks only on vendor listings and provider OFFERS (DECISIONS_FIX9B #17). If the founder wants equipment/warehouse/greenhouse/jugaad requirements included, it is one line in `Post.jsx` and one in 0062. **P3**
+- **Other create forms with the same double-tap / lost-reply risk (not changed in 9B, not tested):** feedback form (`/feedback` function), report a listing (`submit_listing_report`), success story (`kisan_safalta` insert), ask a question (`kisan_sawaal` insert), kisan mela suggestion (`kisan_mela` insert), carbon suggestion (`submit_carbon_suggestion`), daily-update sign-up (`subscribe_alert`). The same request-id pattern could be reused if any of them shows duplicates. **P2**
+- **`get_listing_contact` is callable with the public key** (as is every function here: custom login). A logged-out visitor's screen is sent to login, but a script can ask the function directly and receives the number of every "show" owner and of consented listings. By design today; part of the wider user-function trust problem (#2 / B1). **P1 with B1**
+- **Test photos on staging (earlier runs).** Batch 9B deleted its own test rows and their 5 photo files (`evidence/fix9b/cleanup.json`). 10 photo files from the earlier Batch 9 Phase 5B run (05:41–07:34 UTC, old random-folder names) are still in the `listing-photos` bucket. **P3**

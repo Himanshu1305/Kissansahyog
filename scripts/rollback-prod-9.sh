@@ -12,6 +12,12 @@
 # Auth: $CLOUDFLARE_API_TOKEN if set, otherwise wrangler's own OAuth login token (scope pages:write,
 # read from wrangler's config file after a wrangler command has refreshed it). The token is never printed.
 # No rebuild, no git command that writes, no database access.
+#
+# Database (Batch 9B): a site rollback does NOT need a database rollback - the previous site posts fine
+# with migrations 0061 + 0062 applied (tested on staging, B4UI). Only if the database change itself must
+# be undone, run BY HAND in the Supabase SQL editor (production project), in this order:
+#   supabase/migrations/rollback/0062_listing_contact_consent_rollback.sql
+#   supabase/migrations/rollback/0061_listing_client_request_id_rollback.sql
 set -uo pipefail
 
 PROJECT="kissansahyog-prod"
@@ -27,7 +33,7 @@ DRY=0; TARGET=""
 for a in "$@"; do
   case "$a" in
     --dry-run) DRY=1 ;;
-    -h|--help) sed -n 2,16p "$0"; exit 0 ;;
+    -h|--help) sed -n 2,22p "$0"; exit 0 ;;
     *) TARGET="$a" ;;
   esac
 done
@@ -106,6 +112,11 @@ say "+ POST $API/deployments/$TARGET/rollback   (Authorization: Bearer <token, n
 if [ "$DRY" = 1 ]; then
   say "+ (then) poll GET $API until canonical_deployment.id == $TARGET (max 3 min)"
   say "+ (then) node scripts/verify-batch9-live.mjs --base $SITE --out $EV/after-rollback --label prod-after-rollback --checks pages,compare --snapshot <prod-before-ship.json if present, else docs/review/batch9/evidence/phase4/prod-before.json>"
+  for m in supabase/migrations/rollback/0062_listing_contact_consent_rollback.sql supabase/migrations/rollback/0061_listing_client_request_id_rollback.sql; do
+    [ -s "$m" ] || die "$m missing"
+    say "+ (only if the DATABASE change must be undone; by hand, Supabase SQL editor, production) $m"
+  done
+  say "  (not needed for a site rollback: the previous site works with the new database - staging test B4UI)"
   loud "DRY RUN OK — preconditions valid; rollback target $TARGET (source $SRC); nothing was changed"
   exit 0
 fi
