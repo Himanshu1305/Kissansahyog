@@ -270,7 +270,7 @@ function specRows(d, lang, typeName) {
     : ['brand', 'model', 'year', 'power_hp', ...Object.keys(SPEC_FIELDS).filter((k) => k.startsWith('spec_'))]
   for (const key of keys) {
     if (!has(d[key])) continue
-    const value = key === 'brand' ? brandText(d, lang) : key === 'power_hp' ? `${fmtNum(d[key])} HP` : fmtNum(d[key])
+    const value = key === 'brand' ? brandText(d, lang) : key === 'power_hp' ? `${fmtNum(d[key])} HP` : key === 'year' ? String(d.year) : fmtNum(d[key])
     if (value) rows.push({ label: label(key), value, spec: key })
   }
   const out = outputText(d, lang)

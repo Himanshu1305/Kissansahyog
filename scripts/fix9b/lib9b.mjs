@@ -19,7 +19,8 @@ const argBase = (() => { const i = process.argv.indexOf('--base'); return i > 0 
 export const BASE = argBase.replace(/\/$/, '')
 {
   const h = new URL(BASE).host
-  if (!['localhost:4173', '127.0.0.1:4173', 'staging.kissansahyog.com'].includes(h)) throw new Error(`refusing base ${BASE}`)
+  // 9C: 127.0.0.1:4174 too (another project on this PC also listens on 4173)
+  if (!['localhost:4173', '127.0.0.1:4173', '127.0.0.1:4174', 'staging.kissansahyog.com'].includes(h)) throw new Error(`refusing base ${BASE}`)
 }
 export const LABEL = BASE.includes('staging.kissansahyog.com') ? 'deployed' : 'local'
 

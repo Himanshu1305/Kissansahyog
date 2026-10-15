@@ -8,8 +8,8 @@ Branch `release-9`, start HEAD `46e2d14`. Decisions: `DECISIONS_FIX9C.md`. Heart
 | 1 Design | DONE | DECISIONS_FIX9C.md #5-18 |
 | 2 Implement | DONE | catalog table, generic form, card line, detail rows + note, server rule 0063 (staging, rollback round-trip identical), ship/rollback lists |
 | 2.5 Static gate | DONE | check-equipment-specs.mjs 837/837; build ok; `npm run lint` broken before this batch (no eslint installed) — substitute check clean |
-| 3 Tests | TODO | |
-| 4 Staging deploy | TODO | |
+| 3 Tests | DONE | local build (127.0.0.1:4174) + staging DB: 229/229 RAN-PASSED (C1 68, C2 14, C3 14, C3b 14, C4 1, C5 4, C6 4, C7 2, C8 1, C9 7, C10 10, C11 89, C11UI 1); matrix 68/68 |
+| 4 Staging deploy | IN PROGRESS | |
 | 5 Report + push | TODO | |
 
 Log:
