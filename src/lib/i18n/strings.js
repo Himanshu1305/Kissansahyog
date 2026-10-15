@@ -2258,6 +2258,9 @@ export const strings = {
   field_tanker_radius: { hi: 'सेवा दायरा (किमी)', en: 'Service radius (km)' },
   field_tanker_months: { hi: 'उपलब्ध महीने', en: 'Available months' },
   err_tanker_capacity_required: { hi: 'टैंकर की क्षमता (लीटर) ज़रूरी है।', en: 'Tanker capacity (litres) is required.' },
+  // Batch 9C — equipment spec fields (labels and per-field messages live in catalog.js EQUIPMENT_SPECS).
+  spec_section_title: { hi: 'मशीन की जानकारी (ब्रांड, मॉडल, साल, ताकत)', en: 'Machine details (brand, model, year, power)' },
+  err_equipment_spec_invalid: { hi: 'मशीन की जानकारी अधूरी या गलत है — ब्रांड, मॉडल, साल और अश्वशक्ति जाँचें।', en: 'Machine details are missing or wrong — check brand, model, year and HP.' },
   tanker_season_title: { hi: 'गर्मी में पानी का टैंकर चाहिए या देना है?', en: 'Need or offer a water tanker this summer?' },
   tanker_season_cta: { hi: 'पानी के टैंकर देखें', en: 'See water tankers' },
 

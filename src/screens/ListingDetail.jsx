@@ -72,6 +72,7 @@ export default function ListingDetail() {
   const mod = getCategory(listing.category)
   const rows = mod.summarize(listing, lang, extras)
   const badges = mod.detailBadges ? mod.detailBadges(listing, lang) : []
+  const detailNote = mod.detailNote ? mod.detailNote(listing, lang) : null
   const photos = listing.details?.photo_urls || []
   const distance =
     user?.latitude != null && listing.latitude != null
@@ -140,9 +141,11 @@ export default function ListingDetail() {
         </div>
       )}
 
+      {/* Batch 9C — equipment specs are what the seller typed; nobody checked them. */}
+      {detailNote && <p data-testid="spec-seller-note" className="mb-1 text-sm font-semibold text-stone-600">ℹ️ {detailNote}</p>}
       <dl className="mb-4 divide-y divide-stone-100 rounded-2xl border-2 border-stone-200 bg-white">
         {rows.map((r, i) => (
-          <div key={i} className="flex justify-between gap-4 px-4 py-3">
+          <div key={i} data-spec={r.spec || undefined} className="flex justify-between gap-4 px-4 py-3">
             <dt className="text-stone-500">{r.label}</dt>
             <dd className="text-right font-semibold text-stone-900">{r.value}</dd>
           </div>

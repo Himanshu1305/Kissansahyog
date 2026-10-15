@@ -80,6 +80,7 @@ const CODE_TO_KEY = {
   target_id_required: 'err_report_failed',
   rate_limited: 'err_report_rate_limited',
   invalid_action: 'err_report_failed',
+  equipment_spec_invalid: 'err_equipment_spec_invalid',
 }
 
 export class AppError extends Error {
@@ -95,6 +96,10 @@ export class AppError extends Error {
 export function toAppError(error) {
   if (error instanceof AppError) return error
   const raw = String(error?.message || error || '').toLowerCase()
+  // Batch 9C (migration 0063): "equipment_spec_invalid:<field>:<required|range>" names the field, so the
+  // equipment form can show the same message as its own check.
+  const spec = raw.match(/equipment_spec_invalid:([a-z_]+):([a-z_]+)/)
+  if (spec) return Object.assign(new AppError('equipment_spec_invalid'), { field: spec[1], reason: spec[2] })
   for (const code of Object.keys(CODE_TO_KEY)) {
     if (raw.includes(code)) return new AppError(code)
   }

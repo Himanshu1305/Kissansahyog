@@ -18,7 +18,9 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
   const category = getCategorySafe(listing.category)
   // A legacy category must not turn a list into a blank page.
   if (!category || !typeMeta) return null
-  const rows = category.summarize(listing, lang, extras).slice(0, 2)
+  // Spec rows (Batch 9C) are for the detail page; the card shows them as one line instead.
+  const rows = category.summarize(listing, lang, extras).filter((r) => !r.spec).slice(0, 2)
+  const specLine = category.specLine ? category.specLine(listing, lang) : null
   const isOffer = listing.listing_type === 'offer'
   const isVendor = listing.listing_source === 'vendor'
   const equipmentTags = listing.category === 'equipment' ? (listing.details?.equipment_tags || []) : []
@@ -55,6 +57,8 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
             </span>
           ))}
         </div>
+
+        {specLine && <div data-testid="equipment-spec-line" className="mt-0.5 break-words text-sm font-semibold leading-snug text-stone-900">{specLine}</div>}
 
         {equipmentTags.length > 0 && (
           <div className="mt-1 flex flex-wrap gap-1" data-testid="equipment-tag-card">

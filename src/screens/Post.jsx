@@ -128,7 +128,7 @@ export default function Post() {
 
   function goConfirm() {
     setError(null)
-    const vErr = mod.validate(details, listingType, t)
+    const vErr = mod.validate(details, listingType, t, { lang, extras })
     if (vErr) { setError(vErr); return }
     setStep(3)
   }
@@ -195,7 +195,8 @@ export default function Post() {
       setRequestId(newRequestId())
       sentOnce.current = false
     } catch (err) {
-      if (!settled) setError(t(err.i18nKey || 'err_unknown'))
+      // A category may word a server refusal itself (equipment specs, Batch 9C: same text as its form check).
+      if (!settled) setError(mod.errorText?.(err, { details, listingType, lang, extras }) || t(err.i18nKey || 'err_unknown'))
     } finally {
       clearTimeout(timer)
       inFlight.current = false
@@ -313,7 +314,7 @@ export default function Post() {
             <Spinner />
           ) : (
             <>
-              <mod.Fields details={details} setDetails={setDetails} extras={extras} listingType={listingType} user={user} />
+              <mod.Fields details={details} setDetails={setDetails} extras={extras} listingType={listingType} user={user} error={error} />
 
               <PhotoPicker files={photoFiles} onChange={(files) => { setPhotoFiles(files); if (category === 'jugaad') setDetails((d) => ({ ...d, __photoFiles: files })) }} limit={photoLimit} className="my-3" />
 

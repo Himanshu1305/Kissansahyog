@@ -1,0 +1,4 @@
+2026-10-15 16:16 | Phase 0 preflight start | 9B done (46e2d14 on origin/release-9); dirty files = earlier build outputs
+2026-10-15 16:19 | Phase 0 DONE | no key whitelist on staging; current create_listing_with_location read (has 9B changes)
+2026-10-15 16:19 | Phase 1 DONE | design written (DECISIONS_FIX9C.md); free RAM 1.8 GB
+2026-10-15 16:28 | Phase 2 + 2.5 DONE | 0063 on staging (rollback round-trip identical); gate 837/837; build ok; npm run lint pre-existing broken (no eslint), substitute no-undef/no-dupe-keys clean on new files

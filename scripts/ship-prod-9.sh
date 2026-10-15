@@ -10,6 +10,7 @@
 #      exists locally and on origin, HEAD is pushed (= origin/release-9), .env.production present,
 #      wrangler logged in, Cloudflare API reachable with pages access (needed for the rollback)
 #   0b Batch 9B: migrations 0061 + 0062 must already be applied by hand (real run checks it, read-only)
+#      Batch 9C: then 0063 (equipment specs on the server) by hand; not checkable read-only, so it is listed only
 #   1  record the live prod deployment id (read-only `wrangler pages deployment list` + API)
 #   2  read-only: live prod still matches the night snapshot prod-before.json; take a fresh snapshot
 #   3  npm run build:prod (env guard + prerender + sitemaps + dist guard); dist sanity checks
@@ -81,13 +82,15 @@ command -v node >/dev/null && command -v npx >/dev/null && command -v curl >/dev
 # database must have migrations 0061 + 0062 BEFORE this site ships. This script never writes to any
 # database: the founder applies them by hand (Supabase dashboard -> SQL editor -> production project),
 # in this order, after the earlier pending ones (0054-0060, see BATCH7L2_REPORT.md):
-MIGS_9B=(supabase/migrations/0061_listing_client_request_id.sql supabase/migrations/0062_listing_contact_consent.sql)
-ROLLBACKS_9B=(supabase/migrations/rollback/0062_listing_contact_consent_rollback.sql supabase/migrations/rollback/0061_listing_client_request_id_rollback.sql)
+# Batch 9C adds 0063 (equipment offers from the new app must carry their specs; older apps unaffected).
+MIGS_9B=(supabase/migrations/0061_listing_client_request_id.sql supabase/migrations/0062_listing_contact_consent.sql supabase/migrations/0063_equipment_specs.sql)
+ROLLBACKS_9B=(supabase/migrations/rollback/0063_equipment_specs_rollback.sql supabase/migrations/rollback/0062_listing_contact_consent_rollback.sql supabase/migrations/rollback/0061_listing_client_request_id_rollback.sql)
 say "== 0b. database migrations this code needs (applied BY HAND in the Supabase SQL editor, production project, before this script)"
 for m in "${MIGS_9B[@]}"; do [ -s "$m" ] || stop "$m missing"; say "+ (founder, by hand) run $m"; done
 for m in "${ROLLBACKS_9B[@]}"; do [ -s "$m" ] || stop "$m missing"; done
 say "  database rollback, only if ever needed, in this order: ${ROLLBACKS_9B[*]}"
 say "  (a SITE rollback does not need it: the previous site posts fine with the new database - staging test B4UI)"
+say "  0063 changes a function only; the read-only check below cannot see it - make sure it was run (Batch 9C)"
 envval() { grep -E "^[[:space:]]*$1[[:space:]]*=" .env.production | head -1 | sed -E 's/^[^=]*=[[:space:]]*//; s/^["'"'"']//; s/["'"'"'][[:space:]]*$//; s/\r$//'; }
 PROD_SUPA="$(envval VITE_SUPABASE_URL)"
 PROD_ANON="$(envval VITE_SUPABASE_ANON_KEY)"

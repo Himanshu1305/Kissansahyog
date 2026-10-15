@@ -16,6 +16,7 @@
 # Database (Batch 9B): a site rollback does NOT need a database rollback - the previous site posts fine
 # with migrations 0061 + 0062 applied (tested on staging, B4UI). Only if the database change itself must
 # be undone, run BY HAND in the Supabase SQL editor (production project), in this order:
+#   supabase/migrations/rollback/0063_equipment_specs_rollback.sql   (Batch 9C; the old site never sends spec_version, so a site rollback does not need it either)
 #   supabase/migrations/rollback/0062_listing_contact_consent_rollback.sql
 #   supabase/migrations/rollback/0061_listing_client_request_id_rollback.sql
 set -uo pipefail
@@ -112,7 +113,7 @@ say "+ POST $API/deployments/$TARGET/rollback   (Authorization: Bearer <token, n
 if [ "$DRY" = 1 ]; then
   say "+ (then) poll GET $API until canonical_deployment.id == $TARGET (max 3 min)"
   say "+ (then) node scripts/verify-batch9-live.mjs --base $SITE --out $EV/after-rollback --label prod-after-rollback --checks pages,compare --snapshot <prod-before-ship.json if present, else docs/review/batch9/evidence/phase4/prod-before.json>"
-  for m in supabase/migrations/rollback/0062_listing_contact_consent_rollback.sql supabase/migrations/rollback/0061_listing_client_request_id_rollback.sql; do
+  for m in supabase/migrations/rollback/0063_equipment_specs_rollback.sql supabase/migrations/rollback/0062_listing_contact_consent_rollback.sql supabase/migrations/rollback/0061_listing_client_request_id_rollback.sql; do
     [ -s "$m" ] || die "$m missing"
     say "+ (only if the DATABASE change must be undone; by hand, Supabase SQL editor, production) $m"
   done
