@@ -705,8 +705,1709 @@
    }
   }
  },
- "listings": [],
- "noise": [],
- "results": [],
- "rows": []
+ "listings": [
+  {
+   "lid": "L03",
+   "persona": "P1",
+   "category": "labor",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L03 Makronia",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "76e13f41-f2eb-4565-998a-5244640329b7",
+   "at": "2026-10-15T05:41:07.110Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L03-labor-offer/"
+  },
+  {
+   "lid": "L07",
+   "persona": "P1",
+   "category": "bhusa",
+   "type": "offer",
+   "source": "farmer",
+   "wide": true,
+   "village": "KSTEST-KEEP L07 Makronia",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "364cf291-9d74-48dd-97e9-c7c18953921b",
+   "at": "2026-10-15T05:41:38.359Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": true,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L07-bhusa-offer/"
+  },
+  {
+   "lid": "L25",
+   "persona": "P1",
+   "category": "labor",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST L25 Makronia",
+   "keep": false,
+   "note": "KSTEST noise: used for My Listings close/availability tests",
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "8886a32b-562c-4ca5-b4d7-d94c5e61cc52",
+   "at": "2026-10-15T05:41:44.313Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L25-labor-offer/",
+   "closed": true
+  },
+  {
+   "lid": "L02",
+   "persona": "P2",
+   "category": "equipment",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L02 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "424248fa-f587-4239-814d-ba2b9ccb8f48",
+   "at": "2026-10-15T05:42:41.053Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L02-equipment-requirement/"
+  },
+  {
+   "lid": "L04",
+   "persona": "P2",
+   "category": "labor",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L04 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "915e5178-331e-4acf-ad1e-9d06888b56c8",
+   "at": "2026-10-15T05:42:47.012Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L04-labor-requirement/"
+  },
+  {
+   "lid": "L06",
+   "persona": "P2",
+   "category": "drone_didi",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L06 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "0ee85a0d-b623-457f-913a-cbedc7aa7bde",
+   "at": "2026-10-15T05:42:52.902Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L06-drone_didi-requirement/"
+  },
+  {
+   "lid": "L16",
+   "persona": "P2",
+   "category": "greenhouse",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L16 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "44442f60-abf9-4519-b8ff-26d297d1c072",
+   "at": "2026-10-15T05:42:59.013Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L16-greenhouse-requirement/"
+  },
+  {
+   "lid": "L05",
+   "persona": "P1",
+   "category": "drone_didi",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L05 Makronia",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "8f5c1fb1-fdc8-4df9-a3e8-da909ac59263",
+   "at": "2026-10-15T05:43:36.678Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L05-drone_didi-offer/"
+  },
+  {
+   "lid": "L18",
+   "persona": "P3",
+   "category": "jugaad",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L18 Makronia",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "d1bc23b1-992b-4617-a7d0-ea06d2a9de6d",
+   "at": "2026-10-15T05:44:13.892Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L18-jugaad-requirement/"
+  },
+  {
+   "lid": "L19",
+   "persona": "P3",
+   "category": "transport",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L19 Makronia",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "97af326f-2838-4e87-9fed-497b723eef28",
+   "at": "2026-10-15T05:44:19.840Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L19-transport-offer/"
+  },
+  {
+   "lid": "L21",
+   "persona": "P3",
+   "category": "land",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L21 Makronia",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "125b9723-e476-4b38-bd85-f82cbf66b958",
+   "at": "2026-10-15T05:44:26.830Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L21-land-offer/"
+  },
+  {
+   "lid": "L08",
+   "persona": "P6",
+   "category": "bhusa",
+   "type": "requirement",
+   "source": "vendor",
+   "wide": false,
+   "village": "KSTEST-KEEP L08 Garhakota",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.78365, 79.14949",
+   "status": 200,
+   "id": "087638e1-c335-458f-a820-516a06f454be",
+   "at": "2026-10-15T05:45:14.205Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L08-bhusa-requirement/"
+  },
+  {
+   "lid": "L12",
+   "persona": "P6",
+   "category": "building_materials",
+   "type": "requirement",
+   "source": "vendor",
+   "wide": false,
+   "village": "KSTEST-KEEP L12 Garhakota",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.78365, 79.14949",
+   "status": 200,
+   "id": "f4ffa4dc-8b72-45c2-96a6-b9fc95ca41f9",
+   "at": "2026-10-15T05:45:20.182Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L12-building_materials-requirement/"
+  },
+  {
+   "lid": "L23",
+   "persona": "P6",
+   "category": "agri_inputs",
+   "type": "offer",
+   "source": "vendor",
+   "wide": false,
+   "village": "KSTEST-KEEP L23 Garhakota",
+   "keep": true,
+   "note": "HIDDEN poster + vendor sub-type (contact_phone leak check)",
+   "vendorContactPrefilledFromProfile": true,
+   "coords": "✓ 23.78365, 79.14949",
+   "status": 200,
+   "id": "2286327f-63b1-4101-b666-293f07c17476",
+   "at": "2026-10-15T05:45:26.168Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "vendorPhoneInPublicDetails": true,
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L23-agri_inputs-offer/"
+  },
+  {
+   "lid": "L09",
+   "persona": "P5",
+   "category": "agri_inputs",
+   "type": "offer",
+   "source": "vendor",
+   "wide": true,
+   "village": "KSTEST-KEEP L09 Sagar",
+   "keep": true,
+   "note": null,
+   "vendorContactPrefilledFromProfile": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "3b8071b1-e3a4-412b-8ac3-3fe8530197ad",
+   "at": "2026-10-15T05:46:03.594Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": true,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "vendorPhoneInPublicDetails": true,
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L09-agri_inputs-offer/"
+  },
+  {
+   "lid": "L11",
+   "persona": "P5",
+   "category": "building_materials",
+   "type": "offer",
+   "source": "vendor",
+   "wide": false,
+   "village": "KSTEST-KEEP L11 Sagar",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "3338eb8b-2e71-47e9-a6cd-a30367a205f0",
+   "at": "2026-10-15T05:46:10.643Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L11-building_materials-offer/"
+  },
+  {
+   "lid": "L10",
+   "persona": "P4",
+   "category": "agri_inputs",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L10 Damoh",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84357, 79.44844",
+   "status": 200,
+   "id": "203a0859-a432-4a2a-ab64-8d954baa13c9",
+   "at": "2026-10-15T05:46:47.949Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L10-agri_inputs-requirement/"
+  },
+  {
+   "lid": "L14",
+   "persona": "P4",
+   "category": "warehouse",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L14 Damoh",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84357, 79.44844",
+   "status": 200,
+   "id": "6d551014-1d1a-4736-be14-7be86ef40659",
+   "at": "2026-10-15T05:46:53.931Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L14-warehouse-requirement/"
+  },
+  {
+   "lid": "L01",
+   "persona": "P7",
+   "category": "equipment",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L01 Sagar",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "3cd24b09-0eac-4840-8776-abb353d3e316",
+   "at": "2026-10-15T05:47:42.000Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": true,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L01-equipment-offer/"
+  },
+  {
+   "lid": "L13",
+   "persona": "P7",
+   "category": "warehouse",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L13 Sagar",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "d14c4ac6-a1cc-48e3-9656-4dc9a240864c",
+   "at": "2026-10-15T05:47:49.055Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": true,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L13-warehouse-offer/"
+  },
+  {
+   "lid": "L15",
+   "persona": "P7",
+   "category": "greenhouse",
+   "type": "offer",
+   "source": "vendor",
+   "wide": true,
+   "village": "KSTEST-KEEP L15 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "bb28aff9-08b3-4813-a420-772c44649157",
+   "at": "2026-10-15T05:47:55.172Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": true,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": true,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L15-greenhouse-offer/"
+  },
+  {
+   "lid": "L17",
+   "persona": "P7",
+   "category": "jugaad",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L17 Sagar",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "f453ce46-82c3-4c35-9ac7-030c046a30df",
+   "at": "2026-10-15T05:48:02.158Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": true,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L17-jugaad-offer/"
+  },
+  {
+   "lid": "L20",
+   "persona": "P8",
+   "category": "transport",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L20 Orchha",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 25.35687, 78.64425",
+   "status": 200,
+   "id": "6dd92f00-be98-435b-8709-906e89af9592",
+   "at": "2026-10-15T05:48:39.598Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L20-transport-requirement/"
+  },
+  {
+   "lid": "L22",
+   "persona": "P8",
+   "category": "land",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L22 Orchha",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 25.35687, 78.64425",
+   "status": 200,
+   "id": "3ac1830c-ad5e-4fac-a333-e6fd63e50096",
+   "at": "2026-10-15T05:48:45.669Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L22-land-requirement/"
+  },
+  {
+   "lid": "L24",
+   "persona": "P8",
+   "category": "labor",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L24 Orchha",
+   "keep": true,
+   "note": "SHOWN far-away poster",
+   "coords": "✓ 25.35687, 78.64425",
+   "status": 200,
+   "id": "64a21928-58ef-4723-b389-2a547f506b88",
+   "at": "2026-10-15T05:48:51.606Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L24-labor-offer/"
+  }
+ ],
+ "noise": [
+  {
+   "kind": "profile + auth user (throw-away, website signup)",
+   "keep": false,
+   "tag": "N1",
+   "profile_id": "c40d50ec-e368-4ab9-8ac8-d58e85e78a0a",
+   "marker": "KSTEST",
+   "time": "2026-10-15T05:50:48.708Z"
+  },
+  {
+   "kind": "listing (edge test, website Post form)",
+   "keep": false,
+   "by": "N1",
+   "marker": "KSTEST",
+   "time": "2026-10-15T05:52:08.590Z",
+   "listing_id": "926651a4-8eb1-4095-b63d-7a20a546c0b4",
+   "category": "bhusa",
+   "listing_type": "offer",
+   "note": "E3b/E5 valid maps link + double tap"
+  }
+ ],
+ "results": [
+  {
+   "at": "2026-10-15T05:51:54.125Z",
+   "area": "5B.3-edge",
+   "id": "E1",
+   "title": "every category×type shows a required-field error on an empty step 2",
+   "status": "RAN-PASSED",
+   "detail": "{\"checked\":22,\"failing\":[],\"sample\":[{\"cell\":\"equipment/offer\",\"error\":\"कृपया मशीन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"equipment/requirement\",\"error\":\"कृपया मशीन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"labor/offer\",\"error\":\"कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।\",\"stayedOnStep2\":true},{\"cell\":\"labor/requirement\",\"error\":\"कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।\",\"stayedOnStep2\":true},{\"cell\":\"drone_didi/offer\",\"error\":\"कृपया ऑपरेटर / समूह का नाम भरें।\",\"stayedOnStep2\":true},{\"cell\":\"drone_didi/requirement\",\"error\":\"कृपया फसल भरें।\",\"stayedOnStep2\":true},{\"cell\":\"bhusa/offer\",\"error\":\"कृपया अवशेष का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"bhusa/requirement\",\"error\":\"कृपया अवशेष का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"agri_inputs/offer\",\"error\":\"कृपया सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"agri_inputs/requirement\",\"error\":\"कृपया सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"building_materials/offer\",\"error\":\"सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"building_materials/requirement\",\"error\":\"सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"warehouse/offer\",\"error\":\"कृपया गोदाम का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"warehouse/requirement\",\"error\":\"कृपया फसल भरें।\",\"stayedOnStep2\":true},{\"cell\":\"greenhouse/offer\",\"error\":\"सेवा का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"greenhouse/requirement\",\"error\":\"ढांचा चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"jugaad/offer\",\"error\":\"कृपया चुनें कि किस रूप में दे रहे हैं।\",\"stayedOnStep2\":true},{\"cell\":\"jugaad/requirement\",\"error\":\"जुगाड़/मशीन का नाम भरें।\",\"stayedOnStep2\":true},{\"cell\":\"transport/offer\",\"error\":\"कृपया वाहन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"transport/requirement\",\"error\":\"कृपया वाहन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"land/offer\",\"error\":\"सही आकार लिखें (कम से कम 0.1 एकड़)।\",\"stayedOnStep2\":true},{\"cell\":\"land/requirement\",\"error\":\"सही आकार लिखें (कम से कम 0.1 एकड़)।\",\"stayedOnStep2\":true}]}",
+   "evidence": "evidence/phase5b/listing-edge/"
+  },
+  {
+   "at": "2026-10-15T05:51:58.471Z",
+   "area": "5B.3-edge",
+   "id": "E7",
+   "title": "photo limit: 4 photos into bhusa (limit 3)",
+   "status": "RAN-PASSED",
+   "detail": "{\"counter\":\"3/3 · ज़्यादा से ज़्यादा 3 फोटो (वैकल्पिक)\",\"message\":\"×\"}"
+  },
+  {
+   "at": "2026-10-15T05:52:01.108Z",
+   "area": "5B.3-edge",
+   "id": "E2",
+   "title": "3-step form: Back keeps entered data",
+   "status": "RAN-PASSED",
+   "detail": "{\"step2KeptAfterBack\":true,\"step1KeepsCategory\":true,\"step2KeptAfterForward\":true,\"photosKept\":true,\"step3VillageKeptAfterBackForward\":true}"
+  },
+  {
+   "at": "2026-10-15T05:52:03.491Z",
+   "area": "5B.3-edge",
+   "id": "E3a",
+   "title": "maps link invalid → clear message, nothing posted",
+   "status": "RAN-PASSED",
+   "detail": "{\"onBlur\":\"सिर्फ़ Google Maps का सही लिंक डालें।\",\"onSubmit\":\"सिर्फ़ Google Maps का सही लिंक डालें।\",\"createCalls\":0}"
+  },
+  {
+   "at": "2026-10-15T05:52:08.592Z",
+   "area": "5B.3-edge",
+   "id": "E3b",
+   "title": "valid Google Maps short link accepted and stored",
+   "status": "RAN-PASSED",
+   "detail": "{\"listing\":\"926651a4-8eb1-4095-b63d-7a20a546c0b4\",\"map_url_stored\":\"https://maps.app.goo.gl/KSTESTabc123\"}"
+  },
+  {
+   "at": "2026-10-15T05:52:08.593Z",
+   "area": "5B.3-edge",
+   "id": "E5",
+   "title": "double tap on Submit → exactly one listing",
+   "status": "RAN-PASSED",
+   "detail": "{\"createCalls\":1}"
+  },
+  {
+   "at": "2026-10-15T05:52:13.953Z",
+   "area": "5B.3-edge",
+   "id": "E4",
+   "title": "transport: missing \"to\" and missing \"from\" each blocked with a message",
+   "status": "RAN-PASSED",
+   "detail": "{\"missingTo\":\"कहाँ तक जाना है, लिखें।\",\"missingFrom\":\"कहाँ से जाना है, लिखें।\",\"createCalls\":0}"
+  },
+  {
+   "at": "2026-10-15T05:52:32.610Z",
+   "area": "5B.3-edge",
+   "id": "E6",
+   "title": "posting while offline → clear message, no listing created",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"stillOnForm\":true,\"myListingsBefore\":1,\"myListingsAfter\":1,\"createAttempts\":0}"
+  },
+  {
+   "at": "2026-10-15T05:52:39.884Z",
+   "area": "5B.3-edge",
+   "id": "E8",
+   "title": "wide-visibility box shown for bhusa, hidden for labor",
+   "status": "RAN-PASSED",
+   "detail": "{\"bhusa\":1,\"labor\":0}"
+  },
+  {
+   "at": "2026-10-15T05:58:24.616Z",
+   "area": "5B.4",
+   "id": "V1",
+   "title": "Browse: UI card counts equal the 30/50/100-km rule recomputed from the fetched rows; spot checks",
+   "status": "RAN-PASSED",
+   "detail": "{\"views\":25,\"mismatches\":[],\"spot\":{\"P2 sees L03 (P1 labor, ~8 km)\":\"primary\",\"P4 Damoh does NOT see L03 (~73 km, not wide)\":\"not fetched\",\"P4 Damoh sees L07 (P1 bhusa wide, ~73 km)\":\"primary-wide\",\"P8 Orchha does NOT see L07 (wide but >100 km)\":\"not fetched\",\"P8 sees own-area L24? (P8 labor, 0 km)\":\"primary\",\"P2 does NOT see L24 (Orchha)\":\"not fetched\",\"P4 sees L09 (P5 agri wide, Sagar ~70 km)\":\"primary-wide\",\"P6 Garhakota and L03 (~42 km)\":\"hidden\",\"logged-out at Sagar sees L03\":\"primary\"}}",
+   "evidence": "evidence/phase5b/visibility/V1-*"
+  },
+  {
+   "at": "2026-10-15T06:06:00.762Z",
+   "area": "5B.4",
+   "id": "V2",
+   "title": "contact reveal: SHOWN/HIDDEN × logged-in/out/own + leak scan (DOM, network, share text)",
+   "status": "RAN-FAILED",
+   "detail": "{\"failing\":[{\"case\":\"hidden-vendor-agri\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":true,\"net\":[\"/rest/v1/listings\"]}],\"rows\":[{\"case\":\"shown-loggedin\",\"expected\":\"number\",\"seen\":\"number\",\"leak\":false},{\"case\":\"hidden-loggedin\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":false},{\"case\":\"hidden-vendor-agri\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":true},{\"case\":\"shown-vendor\",\"expected\":\"number\",\"seen\":\"number\",\"leak\":false},{\"case\":\"hidden-own\",\"expected\":\"own\",\"seen\":\"own\",\"leak\":false},{\"case\":\"shown-own\",\"expected\":\"own\",\"seen\":\"own\",\"leak\":false},{\"case\":\"loggedout\",\"expected\":\"login then same listing\",\"seen\":\"returned to listing\"}]}",
+   "evidence": "evidence/phase5b/visibility/V2-*"
+  },
+  {
+   "at": "2026-10-15T06:07:24.266Z",
+   "area": "5B.4",
+   "id": "V3a",
+   "title": "view counter call on opening a listing",
+   "status": "RAN-PASSED",
+   "detail": "{\"view\":\"increment_listing_view:204\"}"
+  },
+  {
+   "at": "2026-10-15T06:07:24.269Z",
+   "area": "5B.4",
+   "id": "V3b",
+   "title": "contact-click counter on first Call/WhatsApp tap",
+   "status": "RAN-PASSED",
+   "detail": "{\"click\":\"increment_contact_click:204\"}"
+  },
+  {
+   "at": "2026-10-15T06:07:26.101Z",
+   "area": "5B.4",
+   "id": "V3c",
+   "title": "Report: reason required, then success",
+   "status": "RAN-PASSED",
+   "detail": "{\"noReasonMessage\":\"Please choose a reason.\",\"sent\":true}"
+  },
+  {
+   "at": "2026-10-15T06:07:59.543Z",
+   "area": "5B.4",
+   "id": "V4a",
+   "title": "My Listings shows only the user's own listings",
+   "status": "RAN-PASSED",
+   "detail": "{\"returned\":4,\"cards\":4,\"othersPresent\":[],\"allP1ListingsPresent\":true}"
+  },
+  {
+   "at": "2026-10-15T06:08:35.744Z",
+   "area": "5B.4",
+   "id": "V4b",
+   "title": "availability switch off → listing gone from Browse for others",
+   "status": "RAN-PASSED",
+   "detail": "{\"inBrowseAfterSwitchOff\":false}"
+  },
+  {
+   "at": "2026-10-15T06:09:15.416Z",
+   "area": "5B.4",
+   "id": "V4c",
+   "title": "\"Found\" closes the listing; others get \"not found\" on its page",
+   "status": "RAN-PASSED",
+   "detail": "{\"notFoundShownToP2\":true}"
+  },
+  {
+   "at": "2026-10-15T06:10:26.964Z",
+   "area": "5B.4",
+   "id": "V5",
+   "title": "account switch P1 → P3 leaves nothing of P1 (profile, My Listings, storage)",
+   "status": "RAN-PASSED",
+   "detail": "{\"p1ProfileIdInStorage\":false,\"p1EmailInStorage\":false,\"p1MobileInStorage\":false,\"p1NameInStorage\":false,\"p1ListingsInMy\":0,\"profileName\":\"P3\",\"localStorageKeys\":[\"ks_last_online_at\",\"ks_visit_count\",\"ks_lang_v1\",\"ks_location_v1\",\"ks_session_v1\"]}"
+  }
+ ],
+ "rows": [
+  {
+   "kind": "listing report (website Report button)",
+   "keep": false,
+   "listing_id": "3b8071b1-e3a4-412b-8ac3-3fe8530197ad",
+   "by": "P4",
+   "marker": "KSTEST 5B report test",
+   "time": "2026-10-15T06:07:26.101Z"
+  }
+ ],
+ "noiseAccounts": {
+  "N1": {
+   "profileId": "c40d50ec-e368-4ab9-8ac8-d58e85e78a0a",
+   "ok": true,
+   "at": "2026-10-15T05:50:48.708Z"
+  }
+ },
+ "v1": [
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "labor",
+   "fetched": 9,
+   "expPrimary": 3,
+   "uiPrimary": 3,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "bhusa",
+   "fetched": 26,
+   "expPrimary": 19,
+   "uiPrimary": 19,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "agri_inputs",
+   "fetched": 10,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": true,
+     "km": 71,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "land",
+   "fetched": 10,
+   "expPrimary": 2,
+   "uiPrimary": 2,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "transport",
+   "fetched": 4,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "labor",
+   "fetched": 4,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 1,
+   "uiFallback": 1,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "bhusa",
+   "fetched": 21,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 2,
+   "uiFallback": 2,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": true,
+     "km": 73,
+     "shownByRule": true,
+     "where": "primary-wide"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": true,
+     "km": 31,
+     "shownByRule": true,
+     "where": "fallback-ring"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "agri_inputs",
+   "fetched": 6,
+   "expPrimary": 2,
+   "uiPrimary": 2,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": true,
+     "km": 31,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": true,
+     "km": 71,
+     "shownByRule": true,
+     "where": "primary-wide"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "land",
+   "fetched": 3,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 1,
+   "uiFallback": 1,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "transport",
+   "fetched": 2,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 1,
+   "uiFallback": 1,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "labor",
+   "fetched": 7,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "bhusa",
+   "fetched": 26,
+   "expPrimary": 4,
+   "uiPrimary": 4,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": true,
+     "where": "primary-wide"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "agri_inputs",
+   "fetched": 10,
+   "expPrimary": 3,
+   "uiPrimary": 3,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": true,
+     "where": "primary-wide"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": true,
+     "km": 32,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "land",
+   "fetched": 5,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "transport",
+   "fetched": 3,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "labor",
+   "fetched": 1,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "bhusa",
+   "fetched": 0,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "agri_inputs",
+   "fetched": 0,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "land",
+   "fetched": 1,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "transport",
+   "fetched": 1,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "labor",
+   "fetched": 9,
+   "expPrimary": 3,
+   "uiPrimary": 3,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "bhusa",
+   "fetched": 26,
+   "expPrimary": 19,
+   "uiPrimary": 19,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "agri_inputs",
+   "fetched": 10,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": true,
+     "km": 71,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "land",
+   "fetched": 10,
+   "expPrimary": 2,
+   "uiPrimary": 2,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "transport",
+   "fetched": 4,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  }
+ ],
+ "v2": [
+  {
+   "case": "shown-loggedin",
+   "listing": "L03",
+   "poster": "P1 SHOWN",
+   "viewer": "P2",
+   "expected": "number",
+   "seen": "number",
+   "telLinks": 1,
+   "numberInDom": true,
+   "numberInNetworkResponses": [
+    "/rest/v1/rpc/get_listing_contact"
+   ],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "hidden-loggedin",
+   "listing": "L21",
+   "poster": "P3 HIDDEN",
+   "viewer": "P2",
+   "expected": "hidden",
+   "seen": "hidden",
+   "telLinks": 0,
+   "numberInDom": false,
+   "numberInNetworkResponses": [],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "hidden-vendor-agri",
+   "listing": "L23",
+   "poster": "P6 HIDDEN",
+   "viewer": "P2",
+   "expected": "hidden",
+   "seen": "hidden",
+   "telLinks": 0,
+   "numberInDom": false,
+   "numberInNetworkResponses": [
+    "/rest/v1/listings"
+   ],
+   "numberInShareText": false,
+   "leak": true
+  },
+  {
+   "case": "shown-vendor",
+   "listing": "L09",
+   "poster": "P5 SHOWN",
+   "viewer": "P4",
+   "expected": "number",
+   "seen": "number",
+   "telLinks": 1,
+   "numberInDom": true,
+   "numberInNetworkResponses": [
+    "/rest/v1/listings",
+    "/rest/v1/rpc/get_listing_contact"
+   ],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "hidden-own",
+   "listing": "L21",
+   "poster": "P3 HIDDEN",
+   "viewer": "P3",
+   "expected": "own",
+   "seen": "own",
+   "telLinks": null,
+   "numberInDom": false,
+   "numberInNetworkResponses": [],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "shown-own",
+   "listing": "L03",
+   "poster": "P1 SHOWN",
+   "viewer": "P1",
+   "expected": "own",
+   "seen": "own",
+   "telLinks": null,
+   "numberInDom": false,
+   "numberInNetworkResponses": [],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "loggedout",
+   "listing": "L03",
+   "viewer": "logged-out",
+   "expected": "login then same listing",
+   "seen": "returned to listing",
+   "loginUrl": "/login?next=/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "after": "/login?next=/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "sameListing": true,
+   "note": "first attempt: phone sign-in spinner still turning after 20 s (screenshot V2-loggedout-return.jpg); re-run twice with scripts/phase5b/loggedout-return.mjs: app_login 200, back on the same listing in ~5 s both times (V2-loggedout-return-retry1/2.jpg)"
+  }
+ ]
 }

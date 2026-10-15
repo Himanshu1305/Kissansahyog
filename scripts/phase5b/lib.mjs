@@ -261,3 +261,18 @@ export async function switchLang(page, to) {
   await btn.click()
   await page.waitForTimeout(1500)
 }
+
+// ---- throw-away KSTEST accounts (never KEEP). Stored outside the repo in noise.json. ----
+export function noiseList() { const f = join(SECRETS_DIR, 'noise.json'); return existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : [] }
+export function saveNoise(list) { writeFileSync(join(SECRETS_DIR, 'noise.json'), JSON.stringify(list, null, 1)) }
+// Allocate (not create) a throw-away identity: KSTEST name, @example.com, mobile 00000556NN.
+export function newNoise(tag, extra = {}) {
+  const list = noiseList()
+  const ex = list.find((n) => n.tag === tag)
+  if (ex) return ex
+  const used = new Set(list.map((n) => n.mobile))
+  let i = 1; while (used.has('00000556' + String(i).padStart(2, '0'))) i++
+  const n = { tag, name: `KSTEST ${tag} throwaway`, email: `kstest-5b-${tag.toLowerCase()}-${Date.now() % 1000000}@example.com`, mobile: '00000556' + String(i).padStart(2, '0'), town: 'Sagar', district: 'Sagar', lang: 'hi', show: true, kisan: null, ...extra }
+  list.push(n); saveNoise(list)
+  return n
+}
