@@ -317,18 +317,18 @@ All other new Guide text (every `guide_` string not already listed above). "Used
 
 | Hindi | English | Key | Used in |
 |---|---|---|---|
-| गाइड | Guide | `guide_nav` | not found in code yet |
+| गाइड | Guide | `guide_nav` | components/layout/Footer.jsx, components/NavBar.jsx |
 | मदद चाहिए? डेमो देखें | Need help? Watch the demo | `guide_help_demo_btn` | screens/Post.jsx, screens/Signup.jsx |
 | पहली बार हैं? रजिस्टर कैसे करें | First time here? How to register | `guide_login_first_time` | screens/Login.jsx |
 | नंबर कैसे मिलेगा? | How do I get the number? | `guide_browse_find_number` | screens/Browse.jsx |
 | बंद करें | Close | `guide_sheet_close` | features/guide/DemoPlayer.jsx, features/guide/GuideSheet.jsx |
 | डेमो | Demo | `guide_sheet_title` | features/guide/GuideSheet.jsx |
-| रजिस्टर कैसे करें? 1 मिनट का डेमो | How to register? A 1-minute demo | `guide_welcome_card_title` | not found in code yet |
-| पहले देखिए, फिर खुद करके देखिए। | Watch first, then try it yourself. | `guide_welcome_card_sub` | not found in code yet |
-| पहली बार? 1 मिनट में सीखें | First time? Learn in 1 minute | `guide_home_card_title` | not found in code yet |
-| रजिस्टर, पोस्ट और नंबर पाना — छोटे डेमो में। | Register, post and get a number — in short demos. | `guide_home_card_sub` | not found in code yet |
-| चलते डेमो में सीखिए | Learn with live demos | `guide_howto_link_title` | not found in code yet |
-| फ़ोन जैसी स्क्रीन पर हर कदम देखिए, फिर खुद आज़माइए। | See every step on a phone-like screen, then try it yourself. | `guide_howto_link_sub` | not found in code yet |
+| रजिस्टर कैसे करें? 1 मिनट का डेमो | How to register? A 1-minute demo | `guide_welcome_card_title` | screens/Welcome.jsx |
+| पहले देखिए, फिर खुद करके देखिए। | Watch first, then try it yourself. | `guide_welcome_card_sub` | screens/Welcome.jsx |
+| पहली बार? 1 मिनट में सीखें | First time? Learn in 1 minute | `guide_home_card_title` | screens/Homepage.jsx |
+| रजिस्टर, पोस्ट और नंबर पाना — छोटे डेमो में। | Register, post and get a number — in short demos. | `guide_home_card_sub` | screens/Homepage.jsx |
+| चलते डेमो में सीखिए | Learn with live demos | `guide_howto_link_title` | screens/HowToUse.jsx |
+| फ़ोन जैसी स्क्रीन पर हर कदम देखिए, फिर खुद आज़माइए। | See every step on a phone-like screen, then try it yourself. | `guide_howto_link_sub` | screens/HowToUse.jsx |
 | गाइड — किसान सहयोग चलाना सीखें, 1 मिनट के डेमो | Guide — learn to use Kissan Sahyog in 1-minute demos | `guide_hub_seo_title` | features/guide/GuideHub.jsx |
 | रजिस्टर करना, लिस्टिंग डालना, बेचने वाले का नंबर पाना और पूरा टूर — चार छोटे डेमो। पहले देखिए, फिर खुद करके सीखिए। | Register, post a listing, get a seller’s number and take the full tour — four short demos. Watch first, then try it yourself. | `guide_hub_seo_desc` | features/guide/GuideHub.jsx |
 | आइए, किसान सहयोग चलाना सीखें | Let’s learn to use Kissan Sahyog | `guide_hub_h1` | features/guide/GuideHub.jsx |
@@ -386,4 +386,4 @@ All other new Guide text (every `guide_` string not already listed above). "Used
 - `guide_` keys in strings.js: **136**; covered in this file: **136**
 - `guide_` keys NOT covered: **none**
 - Keys used by the demos but missing from strings.js: **none**
-- `guide_` keys in strings.js not found in any code file: `guide_nav`, `guide_welcome_card_title`, `guide_welcome_card_sub`, `guide_home_card_title`, `guide_home_card_sub`, `guide_howto_link_title`, `guide_howto_link_sub`
+- `guide_` keys in strings.js not found in any code file: **none**

@@ -216,6 +216,26 @@ export default function Homepage() {
         </div>
       </section>
 
+      {/* Batch 10C: "first time?" card to the live demos at /guide. A plain link (no
+          heading) so the page outline stays exactly as it was. */}
+      <div style={{ padding: '10px var(--ks-gutter) 0' }}>
+        <Link
+          to="/guide"
+          data-testid="entry-home-guide"
+          className="flex min-h-[56px] items-center gap-3 rounded-xl border-2 px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ks-green-dark)] md:max-w-xl"
+          style={{ background: 'var(--ks-saffron-tint)', borderColor: 'var(--ks-saffron)' }}
+        >
+          <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--ks-accent)] text-[var(--ks-ink)]">
+            <svg width="14" height="16" viewBox="0 0 9 10" focusable="false"><path d="M1 0.5L8.5 5L1 9.5Z" fill="currentColor" /></svg>
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[16px] font-extrabold leading-snug" style={{ color: 'var(--ks-ink)' }}>{t('guide_home_card_title')}</span>
+            <span className="block text-[14px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>{t('guide_home_card_sub')}</span>
+          </span>
+          <span aria-hidden="true" className="shrink-0 text-xl font-bold" style={{ color: 'var(--ks-orange-dark)' }}>›</span>
+        </Link>
+      </div>
+
       {/* 3 — Hero: आज किसान के लिए */}
       <HeroContent
         showFreeReg={!isLoggedIn}

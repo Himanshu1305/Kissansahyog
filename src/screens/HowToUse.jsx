@@ -69,6 +69,24 @@ export default function HowToUse() {
         jsonLd={buildHowToUseJsonLd(page, lang)}
       />
 
+      {/* Batch 10C: live demos at /guide — a prominent link card at the very top; the
+          page's own content below is unchanged. */}
+      <Link
+        to="/guide"
+        data-testid="entry-howto-guide"
+        className="mb-4 flex min-h-[64px] items-center gap-3 rounded-xl border-2 px-4 py-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ks-green-dark)]"
+        style={{ background: 'var(--ks-saffron-tint)', borderColor: 'var(--ks-saffron)' }}
+      >
+        <span aria-hidden="true" className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[var(--ks-accent)] text-[var(--ks-ink)]">
+          <svg width="16" height="18" viewBox="0 0 9 10" focusable="false"><path d="M1 0.5L8.5 5L1 9.5Z" fill="currentColor" /></svg>
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[18px] font-extrabold leading-snug" style={{ color: 'var(--ks-ink)' }}>{t('guide_howto_link_title')}</span>
+          <span className="block text-[15px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>{t('guide_howto_link_sub')}</span>
+        </span>
+        <span aria-hidden="true" className="shrink-0 text-xl font-bold" style={{ color: 'var(--ks-orange-dark)' }}>›</span>
+      </Link>
+
       <header style={{ ...card, background: 'var(--ks-bg-soft)', padding: 'clamp(16px, 4vw, 28px)' }}>
         <h1 className="text-[28px] font-extrabold leading-tight md:text-[36px]" style={{ color: 'var(--ks-ink)' }}>{p(page.h1)}</h1>
         <p className="mt-2 text-[17px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>{p(page.lead)}</p>

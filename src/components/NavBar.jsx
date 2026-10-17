@@ -54,9 +54,12 @@ const inAbout = (pathname) => pathname.startsWith('/about') || pathname.startsWi
 
 // और / More dropdown — shown only from lg up to xl (1024–1279px), where the full
 // row does not fit. It holds the items that are hidden from the row at that width.
+// Batch 10C: the उपयोगी संपर्क links moved in here at that width to make room for
+// the always-visible गाइड pill.
 const MORE_MENU = [
   { labelKey: 'nav_agroforestry', path: '/agro-forestry' },
   { labelKey: 'nav_videos', path: '/videos' },
+  ...RESOURCES_MENU,
   { labelKey: 'nav_how_to_use', path: '/how-to-use' },
   ...ABOUT_MENU,
 ]
@@ -151,17 +154,19 @@ export default function NavBar() {
   // Desktop row items: tighter than the mobile-menu buttons so the whole nav fits on
   // the one header row. `wide` items leave the row below xl and move into और / More.
   const navBtn = (active, wide = false) =>
-    `${wide ? 'hidden xl:inline-flex' : 'inline-flex'} items-center whitespace-nowrap rounded-lg px-1 py-2 text-[12px] font-bold min-[1440px]:px-2 min-[1440px]:text-[13px] min-[1680px]:px-3 ${
+    `${wide ? 'hidden xl:inline-flex' : 'inline-flex'} items-center whitespace-nowrap rounded-lg px-1 py-2 text-[12px] font-bold xl:max-[1439px]:px-0.5 min-[1440px]:px-1.5 min-[1440px]:text-[13px] min-[1680px]:px-3 ${
       active ? 'bg-[var(--ks-primary)] text-white' : 'text-[var(--ks-text-secondary)] hover:bg-[var(--ks-primary-muted)]'
     }`
   const closeMenus = () => { setBz(false); setSch(false); setRes(false); setAb(false); setMore(false) }
 
   return (
     <header className="ks-safe-sticky sticky top-0 z-30 border-b border-[var(--ks-border-light)] bg-white shadow-sm">
-      <div className="flex w-full items-center gap-2 px-3 py-1.5">
+      <div className="flex w-full items-center gap-1 px-3 py-1.5 sm:gap-2">
         {/* Brand */}
-        <button type="button" onClick={goHome} data-testid="nav-brand" className="flex min-w-0 shrink items-center gap-2 text-left lg:shrink-0">
-          <Logo decorative />
+        <button type="button" onClick={goHome} data-testid="nav-brand" className="flex min-w-0 shrink items-center gap-1.5 text-left sm:gap-2 lg:shrink-0">
+          {/* Below 360px (412px when the avatar is also in the bar) the logo image steps
+              aside so the name stays whole next to the गाइड pill. */}
+          <Logo decorative className={isLoggedIn ? 'max-[411px]:hidden' : 'max-[359px]:hidden'} />
           <span className="min-w-0 leading-tight" data-testid="nav-site-name">
             <span className="block truncate text-[15px] font-extrabold text-[var(--ks-primary)]">{BRAND_HI}</span>
             <span className="block truncate text-[10px] font-semibold text-[var(--ks-text-muted)]">Kissan Sahyog</span>
@@ -208,7 +213,7 @@ export default function NavBar() {
           <button type="button" className={navBtn(location.pathname.startsWith('/sawaal'))} onClick={() => goPath('/sawaal')}>{t('sawaal_nav')}</button>
           <button type="button" className={navBtn(location.pathname.startsWith('/videos'), true)} onClick={() => goPath('/videos')}>{t('nav_videos')}</button>
           {/* उपयोगी संपर्क dropdown — contacts directory + Kisan Mela */}
-          <div className="relative" ref={resRef}>
+          <div className="relative hidden xl:block" ref={resRef}>
             <button type="button" aria-haspopup="menu" aria-expanded={res} className={navBtn(location.pathname.startsWith('/resources') || location.pathname.startsWith('/kisan-mela'))} onClick={() => { const v = !res; closeMenus(); setRes(v) }}>
               {t('resources_nav')} ▾
             </button>
@@ -256,10 +261,24 @@ export default function NavBar() {
           </div>
         </nav>
 
-        {/* Right cluster */}
-        <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-0">
+        {/* Right cluster. Below sm the gaps are tighter (gap-1) so the गाइड pill fits
+            at 360px without truncating the brand name (Batch 10C task D). */}
+        <div className="ml-auto flex shrink-0 items-center gap-1 sm:gap-2 lg:ml-0 lg:gap-1.5 2xl:gap-2">
           {location.pathname !== '/' && <SearchBar />}
-          <LanguageToggle />
+          {/* गाइड — always visible at every width (founder ask): a turmeric pill with a
+              play icon. The link is the 44px-tall hit area; the pill inside is smaller. */}
+          <Link
+            to="/guide"
+            data-testid="nav-guide"
+            aria-current={location.pathname.startsWith('/guide') ? 'page' : undefined}
+            className="-my-1 inline-flex min-h-[44px] shrink-0 items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[var(--ks-green-dark)]"
+          >
+            <span className={`inline-flex items-center gap-0.5 whitespace-nowrap rounded-full bg-[var(--ks-accent)] px-1.5 py-1 text-[12px] font-extrabold sm:gap-1 sm:px-2 sm:text-[13px] leading-none text-[var(--ks-ink)] ${location.pathname.startsWith('/guide') ? 'ring-2 ring-[var(--ks-green-dark)]' : ''}`}>
+              <svg width="9" height="10" viewBox="0 0 9 10" aria-hidden="true" focusable="false"><path d="M0 0L9 5L0 10Z" fill="currentColor" /></svg>
+              {t('guide_nav')}
+            </span>
+          </Link>
+          <LanguageToggle className="max-sm:[&>button]:px-1.5" />
           {/* Admin quick-link — visible directly in the nav for is_admin users only
               (server still gates /admin). Hidden entirely for everyone else. */}
           {isLoggedIn && user?.is_admin && (
@@ -288,7 +307,7 @@ export default function NavBar() {
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-[var(--ks-primary)] text-sm font-bold text-white">
                   {(user?.full_name || user?.phone || user?.email || '?').trim().charAt(0).toUpperCase()}
                 </span>
-                <span className="hidden max-w-[8rem] truncate text-sm font-bold text-stone-700 sm:block lg:hidden 2xl:block">
+                <span className="hidden max-w-[8rem] truncate text-sm font-bold text-stone-700 sm:block md:hidden 2xl:block">
                   {user?.full_name}
                 </span>
               </button>
@@ -339,7 +358,7 @@ export default function NavBar() {
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             data-testid="nav-hamburger"
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-lg text-2xl text-green-800 lg:hidden"
+            className="grid h-9 w-8 shrink-0 place-items-center rounded-lg text-2xl text-green-800 sm:w-9 lg:hidden"
           >
             {open ? '✕' : '☰'}
           </button>

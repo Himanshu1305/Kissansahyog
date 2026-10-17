@@ -95,7 +95,7 @@ export default function SearchBar({ variant = 'nav' }) {
           onChange={(e) => setQ(e.target.value)}
           placeholder={t('search_placeholder')}
           aria-label={t('search_placeholder')}
-          className="w-36 bg-transparent px-2 text-sm outline-none lg:w-44"
+          className="w-28 bg-transparent px-2 text-sm outline-none lg:w-44"
         />
         <VoiceSearchButton onTranscript={(txt) => setQ(txt)} />
         <button
@@ -112,7 +112,7 @@ export default function SearchBar({ variant = 'nav' }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label={t('search_open')}
-        className="md:hidden rounded-full p-2 text-green-700 hover:bg-green-50"
+        className="md:hidden rounded-full px-1 py-2 text-green-700 hover:bg-green-50"
       >
         🔍
       </button>
