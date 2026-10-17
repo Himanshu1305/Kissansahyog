@@ -107,6 +107,8 @@ export default function Signup() {
             <input type="checkbox" data-testid="visibility-show" checked={showDetails} onChange={(e) => setShowDetails(e.target.checked)} className="h-6 w-6 shrink-0 accent-green-700" />
             <span className="text-base font-medium text-stone-800">{t('vis_show')}</span>
           </label>
+          {/* The explanation text is kept (moved, not removed — consent wording awaits lawyer review). */}
+          <p data-testid="visibility-explain" className="mt-1 text-sm leading-relaxed text-stone-600">{t('vis_explain')}</p>
           {!showDetails && <p data-testid="visibility-warning" className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-[15px] font-semibold text-amber-900">{t('vis_hidden_warning')}</p>}
         </div>
 

@@ -10,3 +10,4 @@
 | 2026-10-17 14:07 | D | DONE | tags under the type, EQUIPMENT_TYPE_DEFAULT_TAGS pre-tick (form-only touched flag, stripped before save), Browse tag chips under category chips (44px, All first, re-tap clears); spec gate 805/805, build OK |
 | 2026-10-17 14:21 | E | DONE | one-page signup (no language dropdown, no kisan block, one visibility checkbox, disclaimer + accept above Register), EmailPasswordFields block, same empty kisan payload; tests/harness updated; verify-7l2/7d/7l1 no new failures, build OK |
 | 2026-10-17 14:22 | F | DONE | step-3 asset village pre-filled from profile village_town when empty (6 lines, no location logic); build OK |
+| 2026-10-17 14:24 | review | DONE | independent review: 0 must-fix; restored vis_explain on signup (rule 3), 1 false alarm rejected |

@@ -144,3 +144,12 @@ Each entry: what, why, the alternative.
    step 3 (or `resetAll`) pre-fills again. Transport (from/to) and coordinates/geocoding are untouched — the name is
    resolved on submit exactly as if typed. Alternative (pre-fill at mount) rejected: it would show before step 3
    and refill after deliberate clearing.
+21. **Independent review (after Task F) — fixes.** The reviewer saw only the diff and tasks A–F; nothing must-fix.
+   Fixed: signup no longer showed `vis_explain` (the plain explanation behind the show-details choice). Rule 3
+   allows moving consent text, not removing it, so it is shown again as small text under the checkbox
+   (`data-testid="visibility-explain"`), and verify-batch7l2's explanation check now also requires it on the screen.
+   Marked HUMAN-REVIEW: founder/lawyer may decide later whether that line can go. Not changed (false alarm):
+   "every equipment listing now saves `equipment_tags: []`" — `initialDetails()` already set `equipment_tags: []`
+   before this batch (`git show pre-10a-start:src/components/categories/equipment.jsx` line 29). Notes accepted
+   as-is: Register uses the existing `accept_and_continue` label (no new string); the step-3 village re-fills if
+   the poster empties it and comes back (harmless). Full review text: `evidence/independent-review.md`.
