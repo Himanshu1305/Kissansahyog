@@ -108,7 +108,7 @@ PROJ="$(api GET "")"
 BEFORE_ID="$(printf '%s' "$PROJ" | jget 'j.result.canonical_deployment.id')"
 BEFORE_SRC="$(printf '%s' "$PROJ" | jget '(j.result.canonical_deployment.deployment_trigger.metadata.commit_hash||"").slice(0,7)')"
 [[ "$BEFORE_ID" =~ ^[0-9a-f-]{36}$ ]] || stop "could not read the live deployment id"
-printf '%s\n' "$LIST" | grep -q "$BEFORE_ID" || stop "API live id $BEFORE_ID is not in the wrangler deployment list"
+grep -q "$BEFORE_ID" <<<"$LIST" || stop "API live id $BEFORE_ID is not in the wrangler deployment list"
 BEFORE_MAIN="$(timeout 60 curl -s "$SITE/?ks_ship=$STAMP" | grep -o '/assets/index-[A-Za-z0-9_-]*\.js' | head -1)"
 say "live now: deployment $BEFORE_ID (source $BEFORE_SRC), main chunk $BEFORE_MAIN"
 if [ "$BEFORE_ID" != "$EXPECT_LIVE_ID" ]; then
@@ -162,10 +162,10 @@ check_routes_10a() {
   for p in "${ROUTES_10A[@]}"; do
     body="$(timeout 60 curl -s -w '\n%{http_code}' "$SITE$p?ks_ship=$STAMP")"
     code="${body##*$'\n'}"
-    if [ "$code" = "200" ] && printf '%s' "$body" | grep -q "$NEW_MAIN"; then
+    if [ "$code" = "200" ] && grep -q "$NEW_MAIN" <<<"$body"; then
       say "PASS  [10a_routes] GET $p -> 200, serves $NEW_MAIN"
     else
-      say "FAIL  [10a_routes] GET $p -> $code (new main chunk $NEW_MAIN present: $(printf '%s' "$body" | grep -q "$NEW_MAIN" && echo yes || echo no))"
+      say "FAIL  [10a_routes] GET $p -> $code (new main chunk $NEW_MAIN present: $(grep -q "$NEW_MAIN" <<<"$body" && echo yes || echo no))"
       ok=1
     fi
   done
