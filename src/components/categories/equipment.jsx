@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { OptionSelect, LookupSelect, SegmentedChoice, DateField, TextField, NumberField, MultiChips, FieldRow } from './fields'
 import {
-  RENTAL_BASIS, TANKER_VEHICLE, TANKER_WATER_USE, TANKER_WATER_SOURCE, MONTH_OPTIONS, EQUIPMENT_TAGS, optionLabel, optionLabels,
+  RENTAL_BASIS, TANKER_VEHICLE, TANKER_WATER_USE, TANKER_WATER_SOURCE, MONTH_OPTIONS, EQUIPMENT_TAGS, EQUIPMENT_TYPE_DEFAULT_TAGS, optionLabel, optionLabels,
   TRACTOR_BRANDS, OUTPUT_UNITS, SPEC_FIELDS, SPEC_KEYS, SPEC_VERSION, SPEC_SELLER_NOTE,
   equipmentSpecFor, equipmentSpecFields, checkEquipmentSpec, equipmentSpecMessage, asciiDigits, specPlaceholder,
 } from '../../lib/listings/catalog'
@@ -76,9 +76,14 @@ export function errorText(err, { details, lang, extras } = {}) {
   return equipmentSpecMessage({ field: err.field, reason: err.reason || 'required' }, typeName, lang || 'hi')
 }
 
+// Batch 10A: form-only flag "the poster has tapped a tag chip" (then a type change never re-ticks tags).
+// Kept in `details` so it survives step 2 -> 3 -> Back (Fields re-mounts); cleanSpecDetails strips it.
+const TAGS_TOUCHED = '__tags_touched'
+
 // Only the keys of the chosen type / listing type are saved; numbers are saved as numbers.
 export function cleanSpecDetails(details, typeName, listingType) {
   const d = { ...details }
+  delete d[TAGS_TOUCHED] // form-only flag (Batch 10A), never saved
   for (const k of SPEC_KEYS) delete d[k]
   const spec = equipmentSpecFor(typeName)
   const num = (v) => Number(asciiDigits(v))
@@ -119,8 +124,11 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
   // branch without re-reading the lookup rows, and pre-selects that type's output unit.
   const onType = (id) => setDetails((d) => {
     const next = { ...d, equipment_type_id: id, is_tanker: id != null && id === tankerId }
-    const sp = equipmentSpecFor(typeNameOf(types, id))
+    const name = typeNameOf(types, id)
+    const sp = equipmentSpecFor(name)
     if (sp) next.output_unit = sp.unit
+    // Batch 10A: pre-tick the type's default tags until the poster touches the chips (unmapped type -> none).
+    if (!d[TAGS_TOUCHED]) next.equipment_tags = [...(EQUIPMENT_TYPE_DEFAULT_TAGS[name] || [])]
     return next
   })
 
@@ -169,6 +177,9 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
         required
       />
 
+      {/* Batch 10A: tags sit directly under the type (optional). Any tap marks them touched. */}
+      <MultiChips label={t('field_equipment_tags')} list={EQUIPMENT_TAGS} values={details.equipment_tags || []} onChange={(v) => setDetails((d) => ({ ...d, equipment_tags: v, [TAGS_TOUCHED]: true }))} />
+
       {spec && listingType === 'offer' && (
         <div data-testid="equipment-specs" className="my-3 rounded-xl border-2 border-stone-200 bg-stone-50 p-3">
           <p className="mb-2 text-sm font-semibold text-stone-600">🔧 {t('spec_section_title')}</p>
@@ -200,8 +211,6 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
       {spec?.power && listingType === 'requirement' && (
         <TextField name="min_hp" label={optional(SPEC_FIELDS.min_hp.label[lang])} value={details.min_hp} onChange={set('min_hp')} error={fe('min_hp')} inputMode="decimal" placeholder={ph('min_hp')} />
       )}
-
-      <MultiChips label={t('field_equipment_tags')} list={EQUIPMENT_TAGS} values={details.equipment_tags || []} onChange={set('equipment_tags')} />
 
       {details.is_tanker ? (
         <>

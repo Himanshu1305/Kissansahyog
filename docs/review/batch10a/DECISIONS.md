@@ -67,3 +67,24 @@ Each entry: what, why, the alternative.
    default unit. If the user switches the unit, the example switches with it (e.g. quintal/hour → "e.g. 20";
    other → no example), so a "1.5" hint never sits next to "quintal/hour". *Alternative:* always the type
    default — rejected as slightly misleading after a unit change; the difference is one argument.
+11. **Task D — how "tags touched" is tracked.** A form-only flag `__tags_touched: true` is set in `details` when the
+   poster taps any tag chip on the Post form. It lives in `details` (not in component state/ref) because
+   `Fields` un-mounts when going to step 3 and re-mounts on Back, which would forget a ref. `cleanSpecDetails`
+   (called by `finalizeDetails`, which Post always runs for equipment before `createListing`) deletes the flag
+   first, so the saved `details` keys are exactly as before (rule 9). Same idea as jugaad's `__photoFiles`.
+   *Alternative:* `useRef`/state in Post passed down as a prop — rejected, touches Post.jsx and adds a prop for
+   one category.
+12. **Task D — pre-fill behaviour.** `EQUIPMENT_TYPE_DEFAULT_TAGS` (catalog.js, keyed by English type name;
+   founder may change): Crane Tractor, Pit Digging Tractor, JCB / Excavator, Drone, Water tanker →
+   `rare_emergency`; nothing → `vegetable_farming`. On a type pick, while untouched, `equipment_tags` is SET to
+   the type's default (an unmapped type resets it to `[]`, so a Drone → Tractor switch does not leave a Drone
+   tag behind). Once any chip is tapped the type never changes the tags again. Changing the category re-runs
+   `initialDetails()` (flag gone, tags `[]`) as before.
+   *Edit path:* there is no edit screen for listings (no `/edit`, `EditListing`, or pre-loaded details in
+   Post; `initialDetails()` is only used by Post's create flow), so pre-fill can only run on new listings.
+13. **Task D — Browse tag filter.** For `cat=equipment` only, the block (`data-testid="equipment-tag-filters"`)
+   now sits directly under `browse-cats`, above LocationControl, the offer/requirement + sort row and results.
+   Chips: `min-h-[44px]`, `text-base`, `whitespace-normal` (long Hindi label wraps), selected = solid green +
+   ✓ + `aria-pressed`; "All / सभी" (`filter_all`) first; tapping the selected chip clears to All. Testids
+   `etag-chip-all`, `etag-chip-<value>`. `etag` is still READ from the URL on load; it is NOT written back on
+   change (minimal, matches today's behaviour; no history entries per tap). Cards keep their tag rows.

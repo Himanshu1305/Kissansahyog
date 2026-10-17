@@ -107,6 +107,17 @@ export const EQUIPMENT_TAGS = [
   { value: 'rare_emergency', hi: 'दुर्लभ या ज़रूरत पर मिलने वाले यंत्र', en: 'Rare or emergency equipment' },
 ]
 
+// Batch 10A: tags pre-ticked on the Post form when this equipment type is picked (keyed by the type's
+// English name, like EQUIPMENT_SPECS). Only while the poster has not touched the tag chips; the poster can
+// untick. Founder may change this list. Nothing maps to 'vegetable_farming' on purpose.
+export const EQUIPMENT_TYPE_DEFAULT_TAGS = {
+  'Crane Tractor': ['rare_emergency'],
+  'Pit Digging Tractor': ['rare_emergency'],
+  'JCB / Excavator': ['rare_emergency'],
+  'Drone': ['rare_emergency'],
+  'Water tanker': ['rare_emergency'],
+}
+
 // --- Water tanker (equipment sub-type, Phase 5) ---
 export const TANKER_VEHICLE = [
   { value: 'tractor_trolley', hi: 'ट्रैक्टर-ट्रॉली', en: 'Tractor-trolley' },

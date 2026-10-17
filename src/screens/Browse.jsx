@@ -96,6 +96,11 @@ export default function Browse() {
     `flex min-h-[44px] items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold ${
       active ? 'border-[var(--ks-green)] bg-[var(--ks-green)] text-white' : 'border-stone-300 bg-white text-stone-700'
     }`
+  // Batch 10A: equipment tag chips — at least 44 px high, long labels wrap, selected = filled + ✓.
+  const tagChip = (active) =>
+    `flex min-h-[44px] max-w-full items-center gap-1.5 whitespace-normal rounded-2xl border-2 px-4 py-2 text-left text-base font-semibold leading-snug ${
+      active ? 'border-green-700 bg-green-700 text-white' : 'border-stone-300 bg-white text-stone-700'
+    }`
   // Land shows full-width single-column cards on mobile (more detail); the rest use a
   // responsive grid: 2 (mobile) · 3 (tablet) · 4 (desktop).
   const gridClass = category === 'land' ? 'grid grid-cols-1 gap-2 md:grid-cols-2' : 'grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4'
@@ -127,6 +132,27 @@ export default function Browse() {
         ))}
       </div>
 
+      {/* Batch 10A: equipment tag filter sits right under the category chips (above location, sort and
+          results). Large chips that wrap to two lines; "All" first; tapping the selected chip clears it. */}
+      {category === 'equipment' && (
+        <div className="mb-3" data-testid="equipment-tag-filters">
+          <p className="mb-1.5 text-sm font-semibold text-stone-600">{t('field_equipment_tags')}</p>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" data-testid="etag-chip-all" aria-pressed={equipmentTag === null} className={tagChip(equipmentTag === null)} onClick={() => setEquipmentTag(null)}>
+              {equipmentTag === null && <span aria-hidden="true">✓</span>}{t('filter_all')}
+            </button>
+            {EQUIPMENT_TAGS.map((tag) => {
+              const on = equipmentTag === tag.value
+              return (
+                <button key={tag.value} type="button" data-testid={`etag-chip-${tag.value}`} aria-pressed={on} className={tagChip(on)} onClick={() => setEquipmentTag(on ? null : tag.value)}>
+                  {on && <span aria-hidden="true">✓</span>}{tag[lang]}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Location (device / saved / typed / picked) — works without a profile. */}
       <div className="mb-3">
         <LocationControl />
@@ -141,14 +167,6 @@ export default function Browse() {
         <button className={chip(sort === 'nearest')} onClick={() => setSort('nearest')}>{t('sort_nearest')}</button>
         <button className={chip(sort === 'newest')} onClick={() => setSort('newest')}>{t('sort_newest')}</button>
       </div>
-
-      {category === 'equipment' && (
-        <div className="mb-3 flex flex-wrap items-center gap-1.5" data-testid="equipment-tag-filters">
-          <span className="text-sm font-semibold text-stone-600">{t('field_equipment_tags')}</span>
-          <button className={chip(equipmentTag === null)} onClick={() => setEquipmentTag(null)}>{t('filter_all')}</button>
-          {EQUIPMENT_TAGS.map((tag) => <button key={tag.value} className={chip(equipmentTag === tag.value)} onClick={() => setEquipmentTag(tag.value)}>{tag[lang]}</button>)}
-        </div>
-      )}
 
       {/* Drone Didi → govt-scheme banner (with the scheme badge + learn-more). */}
       {category === 'drone_didi' && (
