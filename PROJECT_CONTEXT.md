@@ -1494,3 +1494,51 @@ Main sources: `docs/review/batch9/` (SHIP, BACKLOG, FIX9B/FIX9C reports), `docs/
 - `npm run lint` fails: ESLint is not installed.
 - `npm run test:e2e` does not start on Windows; the Playwright CLI is run directly.
 - Static check scripts: 26 pass / 11 known failures, unchanged by 10A. Equipment spec gate 805/805.
+
+## Batch 10C — Guide demos (state as of this ship)
+
+Added 2026-10-18 after the Batch 10C production ship. Sources: `docs/review/batch10c/` (REPORT, DECISIONS, SHIP,
+SHIP_RETRY, CLOSE_REPORT, `evidence/prod-live/RESULT.md`), `src/features/guide/`, the 10C ship and rollback scripts.
+
+### What is live
+
+- **Production**: deployment `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, commit `40ddc4d` (branch `release-10c`, tag
+  `prod-10c`), shipped 2026-10-18. Main chunk `/assets/index-NFbe6Fk2.js`. Website only, **no database change**.
+- Previous production: `0845c733-e8d0-4553-957c-10f3db23ecca` (Batch 10A, `17d77e8`).
+- Shipped with `bash scripts/ship-prod-10c.sh` (same gated pattern as 10A, plus a `10c_routes` check that the five
+  guide pages answer 200 with the new main chunk, following Pages' `/guide` → `/guide/` 308 redirect). The first
+  real run (deployment `1187e82e`) rolled itself back because that check did not follow the redirect; fixed in `9be865c`.
+- Undo: `bash scripts/rollback-prod-10c.sh 0845c733-e8d0-4553-957c-10f3db23ecca`.
+- Live check after the ship (read-only): all page, demo, entry-point, tag-chip, sitemap and robots checks passed;
+  slow-phone targets were missed on production (see KNOWN_ISSUES).
+
+### The guide feature
+
+- Routes: `/guide` (hub) and `/guide/:id` for `register`, `post`, `find`, `tour`; any other id shows NotFound. Both
+  are lazy routes; the five URLs are prerendered and listed in `/sitemap-pages.xml`.
+- Code lives in `src/features/guide/`. Each demo is a **data file** in `src/features/guide/demos/`
+  (`register.js`, `post.js`, `find.js`) played by `DemoPlayer.jsx` (finger, typing, ticks, Watch / Try-it modes,
+  jump to a step, finish card). The tour is `TourExplorer.jsx` (5 tabs: mandi, weather, schemes, questions, market;
+  rotates every 6 s, pauses when hidden or off screen).
+- `GuideSheet.jsx` plays a demo over the current page (help buttons). Opening it adds one history entry with the
+  same URL, so the phone's Back button closes the sheet and the page stays; typed form values are kept. In the
+  Android app it uses the app's own back handling instead.
+- Progress ("n / 4 done") and the badge name are stored only in the browser (`localStorage` keys
+  `ks_guide_done_v1`, `ks_guide_name_v1`). No analytics code in the guide; guide pages make no backend calls of their own.
+- Guide route chunks are about 17 KB gzip (live files measured at close: 16.7 KB).
+- Entry points: Welcome (register-demo card above "नया खाता बनाएं"), Homepage card "पहली बार? 1 मिनट में सीखें",
+  help buttons on Signup, Login, Post (step 1) and Browse, a "▶ गाइड" pill in the top bar, a Guide link in the
+  footer, and a card at the top of How-to-use.
+- **OTP switch:** `GUIDE_OTP_LIVE` in `src/features/guide/config.js` is `false`, so the register demo shows today's
+  signup (no OTP). Flip it to `true` in the same release that makes OTP signup live, and re-test the register demo.
+- **Listen** uses the phone's own voice (`speechSynthesis`). Recorded Hindi audio is a planned later upgrade (needs
+  a text-to-speech service or a recorded voice).
+- All guide text is in `src/lib/i18n/strings.js` (`guide_` keys). The Hindi captions are HUMAN-REVIEW:
+  `docs/review/batch10c/HINDI_CAPTIONS.md`.
+- The design preview the demos were built from is `design/guide-demo-preview.html` (untracked, founder's file).
+
+### Browse tag chips in the web address
+
+- Tapping an equipment tag chip on Browse now writes `etag` into the address (`/browse?cat=equipment&etag=…`),
+  replacing the history entry; tapping it again or "All" removes it; a deep link or refresh keeps it; an unknown
+  value is ignored. This closes the 10A HUMAN-REVIEW item "Browse tag in the URL".

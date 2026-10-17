@@ -473,3 +473,27 @@ Live: deployment `0845c733-e8d0-4553-957c-10f3db23ecca`, commit `17d77e8`. See P
 - **Console noise on every live page (pre-existing, not from 10A):** Cloudflare's analytics beacon
   (`static.cloudflareinsights.com`) is blocked by our CSP, and prerendered pages carry `modulepreload` links to
   `http://localhost:4178/assets/…` (BACKLOG B17). Both are in Batch 9 production results too.
+
+---
+
+## Batch 10C production ship (2026-10-18)
+
+Live: deployment `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, commit `40ddc4d`. See PROJECT_CONTEXT "Batch 10C — Guide demos".
+
+- **Hindi guide captions await founder review.** Every caption and mock-screen label is listed in
+  `docs/review/batch10c/HINDI_CAPTIONS.md`. HUMAN-REVIEW.
+- **Listen quality depends on the phone.** The Listen button uses the phone's built-in voice (`speechSynthesis`); a
+  phone without a Hindi voice reads poorly or not at all. Recorded audio is a later upgrade.
+- **Register demo must change when OTP signup ships.** Set `GUIDE_OTP_LIVE` to `true` in
+  `src/features/guide/config.js` in that release and re-test `/guide/register` and the Signup help sheet.
+- **Slow-phone targets missed on production** (360x640, CPU 4x, ~1.6 Mbps / 150 ms, cold cache): `/guide` first card
+  visible after **4.5 s** (target 4 s; 2.8 s on the local build), demo screens 4.6–5.6 s, longest task during play
+  **345 ms** on `/guide/find` (target 300 ms). Every demo still plays to the end. Details:
+  `docs/review/batch10c/evidence/prod-live/slow-phone-prod.md`.
+- **Prerendered preload links point at `http://localhost:4178/…` (BACKLOG B17, still open).** Seen again on every live
+  page (23 on `/`, 5 on `/guide/`); the CSP blocks them, so the browser cannot preload page chunks early — a likely part
+  of the slower production numbers above. Also on the previous deployment `0845c733`. Fix belongs in `scripts/prerender.mjs`.
+- **Post help button not opened on production.** `/post` needs a login; the live check confirmed the `help-post` button
+  is in the live Post chunk and the staging test opened it with a fake local session.
+- **Browse title cut next to the help pill** in English at 360 px ("Browse nea…"); Hindi is fine at 360/412 px.
+  HUMAN-REVIEW (from the 10C build report).
