@@ -245,6 +245,39 @@ export default function Post() {
       <div className="lg:col-span-2">
       {!created && step === 1 && (
         <div>
+          {/* किसान / व्यापारी toggle (default किसान) — first question on the form (Batch 10A Task A).
+              Same `source` state as before; switching it never resets other fields. */}
+          <div className="mb-5" data-testid="post-source-block">
+            <h2 className="mb-2 text-xl font-bold text-stone-800">{t('post_who_posting')}</h2>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                data-testid="post-source-farmer"
+                aria-pressed={source === 'farmer'}
+                onClick={() => setSource('farmer')}
+                className={`flex min-h-[56px] items-center justify-center gap-1 rounded-xl border-2 px-3 py-2 text-base font-bold ${source === 'farmer' ? 'border-[var(--ks-green)] bg-[var(--ks-green)] text-white' : 'border-stone-300 bg-white text-stone-800'}`}
+              >
+                👨‍🌾 {t('source_farmer')}
+                {source === 'farmer' && <span aria-hidden="true">✓</span>}
+              </button>
+              <button
+                type="button"
+                data-testid="post-source-vendor"
+                aria-pressed={source === 'vendor'}
+                onClick={() => setSource('vendor')}
+                className={`flex min-h-[56px] items-center justify-center gap-1 rounded-xl border-2 px-3 py-2 text-base font-bold ${source === 'vendor' ? 'border-amber-700 bg-amber-700 text-white' : 'border-stone-300 bg-white text-stone-800'}`}
+              >
+                🏪 {t('source_vendor')}
+                {source === 'vendor' && <span aria-hidden="true">✓</span>}
+              </button>
+            </div>
+            {source === 'vendor' && (
+              <div className="mt-2 space-y-1 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">
+                <p>🏪 {t('vendor_note')}</p>
+              </div>
+            )}
+          </div>
+
           <h2 className="mb-1 text-xl font-bold text-stone-800">{t('post_step_what')}</h2>
           {/* Small helper link to the posting steps on /how-to-use (Batch 7C). */}
           <p className="mb-3"><Link to="/how-to-use#listing-kaise-dalein" data-testid="post-how-to-use" className="inline-flex min-h-[44px] items-center text-sm font-semibold text-green-800 underline">{t('post_howto_help')}</Link></p>
@@ -319,36 +352,6 @@ export default function Post() {
               <PhotoPicker files={photoFiles} onChange={(files) => { setPhotoFiles(files); if (category === 'jugaad') setDetails((d) => ({ ...d, __photoFiles: files })) }} limit={photoLimit} className="my-3" />
 
               {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="my-4" />}
-
-              {/* किसान / व्यापारी toggle (default किसान). */}
-              <div className="my-4">
-                <p className="mb-1.5 text-sm font-semibold text-stone-600">{t('post_who_posting')}</p>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    data-testid="post-source-farmer"
-                    aria-pressed={source === 'farmer'}
-                    onClick={() => setSource('farmer')}
-                    className={`min-h-[44px] rounded-lg border-2 px-3 py-2 text-sm font-bold ${source === 'farmer' ? 'border-[var(--ks-green)] bg-[var(--ks-green-tint)] text-[var(--ks-green-dark)]' : 'border-stone-300 bg-white text-stone-700'}`}
-                  >
-                    👨‍🌾 {t('source_farmer')}
-                  </button>
-                  <button
-                    type="button"
-                    data-testid="post-source-vendor"
-                    aria-pressed={source === 'vendor'}
-                    onClick={() => setSource('vendor')}
-                    className={`min-h-[44px] rounded-lg border-2 px-3 py-2 text-sm font-bold ${source === 'vendor' ? 'border-amber-500 bg-amber-100 text-amber-900' : 'border-stone-300 bg-white text-stone-700'}`}
-                  >
-                    🏪 {t('source_vendor')}
-                  </button>
-                </div>
-                {source === 'vendor' && (
-                  <div className="mt-2 space-y-1 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">
-                    <p>🏪 {t('vendor_note')}</p>
-                  </div>
-                )}
-              </div>
 
               <BigButton data-testid="post-next" onClick={goConfirm}>{t('continue')}</BigButton>
             </>

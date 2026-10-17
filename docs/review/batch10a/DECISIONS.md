@@ -29,3 +29,13 @@ Each entry: what, why, the alternative.
    worktree at `pre-10a-start` (`../ks-10a-baseline`, node_modules linked) so code work could start meanwhile.
    Port 4173 is reserved for that run; task work uses other ports. *Alternative:* fix package.json — rejected,
    tooling change outside scope (reported in REPORT).
+7. **Task A — placement and look of "who is posting".** The block is the first thing in step 1, ABOVE the
+   `post_step_what` heading (so it is literally the first question), shown as an `h2` like the other step-1
+   questions. Buttons: two equal columns, `min-h-[56px]` (same as the category tiles), selected = solid fill
+   (green for farmer, amber-700 for vendor, white text) plus a ✓, matching the offer/requirement toggle style.
+   Same `source` state, values, testids and strings; no new strings. A wrapper `data-testid="post-source-block"`
+   was added for tests. *Alternative:* put it below the heading, before the tiles — rejected, the heading asks
+   "what?" and the role question would read as a sub-part of it.
+   *Note for tests:* older scripts (`scripts/fix9b/tests.mjs`, `scripts/fix9c/tests.mjs`, `scripts/phase5b/*`,
+   `scripts/phase5c/*`) wait for `post-source-farmer` as a "step 2 is open" marker and click
+   `post-source-vendor` on step 2; those need updating if they are re-run (Task G).
