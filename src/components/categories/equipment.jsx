@@ -13,7 +13,7 @@ import { OptionSelect, LookupSelect, SegmentedChoice, DateField, TextField, Numb
 import {
   RENTAL_BASIS, TANKER_VEHICLE, TANKER_WATER_USE, TANKER_WATER_SOURCE, MONTH_OPTIONS, EQUIPMENT_TAGS, optionLabel, optionLabels,
   TRACTOR_BRANDS, OUTPUT_UNITS, SPEC_FIELDS, SPEC_KEYS, SPEC_VERSION, SPEC_SELLER_NOTE,
-  equipmentSpecFor, equipmentSpecFields, checkEquipmentSpec, equipmentSpecMessage, asciiDigits,
+  equipmentSpecFor, equipmentSpecFields, checkEquipmentSpec, equipmentSpecMessage, asciiDigits, specPlaceholder,
 } from '../../lib/listings/catalog'
 import { fetchEquipmentTypes } from '../../lib/listings/listingsApi'
 
@@ -134,6 +134,8 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
 
   const numberProps = (kind) => (kind === 'text' ? {} : { inputMode: 'decimal' })
   const optional = (label) => `${label} ${t('optional')}`
+  // Batch 10A: grey example text only (never saved, never counted as a value — checks read `details`).
+  const ph = (key) => specPlaceholder(key, typeName, details.output_unit || spec?.unit)?.[lang]
 
   // One spec field from the type's own definitions (equipmentSpecFields: per-type labels, hints, kinds).
   const specList = spec ? equipmentSpecFields(typeName) : []
@@ -151,6 +153,7 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
       required
       error={fe(f.key)}
       hint={f.hint?.[lang]}
+      placeholder={ph(f.key)}
       {...numberProps(f.kind)}
     />
   ))
@@ -185,7 +188,7 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
           ) : specField(specDefs.year)}
           {specExtras.map((f) => specField(f))}
           <FieldRow>
-            <TextField name="output_per_hour" label={optional(SPEC_FIELDS.output_per_hour.label[lang])} value={details.output_per_hour} onChange={set('output_per_hour')} error={fe('output_per_hour')} inputMode="decimal" />
+            <TextField name="output_per_hour" label={optional(SPEC_FIELDS.output_per_hour.label[lang])} value={details.output_per_hour} onChange={set('output_per_hour')} error={fe('output_per_hour')} inputMode="decimal" placeholder={ph('output_per_hour')} />
             <OptionSelect name="output_unit" label={SPEC_FIELDS.output_unit.label[lang]} list={OUTPUT_UNITS} value={details.output_unit || spec.unit} onChange={(v) => set('output_unit')(v || spec.unit)} includeEmpty={false} />
           </FieldRow>
           {(details.output_unit || spec.unit) === 'other' && (
@@ -195,7 +198,7 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
       )}
 
       {spec?.power && listingType === 'requirement' && (
-        <TextField name="min_hp" label={optional(SPEC_FIELDS.min_hp.label[lang])} value={details.min_hp} onChange={set('min_hp')} error={fe('min_hp')} inputMode="decimal" />
+        <TextField name="min_hp" label={optional(SPEC_FIELDS.min_hp.label[lang])} value={details.min_hp} onChange={set('min_hp')} error={fe('min_hp')} inputMode="decimal" placeholder={ph('min_hp')} />
       )}
 
       <MultiChips label={t('field_equipment_tags')} list={EQUIPMENT_TAGS} values={details.equipment_tags || []} onChange={set('equipment_tags')} />

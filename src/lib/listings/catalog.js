@@ -319,8 +319,8 @@ const POWER_LABELS = {
 export const SPEC_FIELDS = {
   brand: { kind: 'text', label: { hi: 'ब्रांड / कंपनी', en: 'Brand' } },
   brand_other: { kind: 'text', label: { hi: 'ब्रांड का नाम', en: 'Brand name' } },
-  model: { kind: 'text', label: { hi: 'मॉडल', en: 'Model' } },
-  year: { kind: 'year', label: { hi: 'निर्माण वर्ष', en: 'Year of manufacture' } },
+  model: { kind: 'text', label: { hi: 'मॉडल', en: 'Model' }, ph: { hi: 'मॉडल का नाम', en: 'Model name' } },
+  year: { kind: 'year', label: { hi: 'निर्माण वर्ष', en: 'Year of manufacture' }, ph: { hi: 'जैसे 2023', en: 'e.g. 2023' } },
   power_hp: { kind: 'gt', lo: 0, hi: 500, label: POWER_LABELS.power_hp },
   spec_auger_size: { kind: 'text', label: { hi: 'बरमे (ऑगर) का साइज़', en: 'Auger size' } },
   spec_lifting_capacity: { kind: 'text', label: { hi: 'उठाने की क्षमता', en: 'Lifting capacity' } },
@@ -336,8 +336,9 @@ export const SPEC_FIELDS = {
   output_per_hour: { kind: 'gt', lo: 0, hi: 100000, label: { hi: 'प्रति घंटा कार्य क्षमता', en: 'Output per hour' } },
   output_unit: { kind: 'text', label: { hi: 'इकाई', en: 'Unit' } },
   output_unit_other: { kind: 'text', label: { hi: 'इकाई लिखें', en: 'Write the unit' } },
-  min_hp: { kind: 'gt', lo: 0, hi: 500, label: { hi: 'न्यूनतम अश्वशक्ति (HP)', en: 'Minimum HP' } },
+  min_hp: { kind: 'gt', lo: 0, hi: 500, label: { hi: 'न्यूनतम अश्वशक्ति (HP)', en: 'Minimum HP' }, ph: { hi: 'जैसे 40', en: 'e.g. 40' } },
 }
+// Optional `ph` above = grey example text (placeholder) only: never saved, never counted as a value.
 
 // Per type: brandDropdown (tractor-based types), power (POWER_LABELS key, or null = no HP field),
 // hpZero (0 allowed), extra (type-specific mandatory fields, in form order), unit (default output unit).
@@ -363,6 +364,25 @@ export const EQUIPMENT_NO_SPEC_TYPES = ['Trolley', 'Water tanker']
 export const SPEC_KEYS = [...Object.keys(SPEC_FIELDS), 'spec_version']
 
 export const SPEC_HP_ZERO_HINT = { hi: 'इंजन न हो तो 0 लिखें', en: '0 if it has no engine' }
+// Batch 10A: per-type example values (placeholders). Grey hint text only — never saved, never a value.
+const examplePh = (n) => ({ hi: `जैसे ${n}`, en: `e.g. ${n}` })
+const MODEL_PH_TRACTOR = examplePh('575 DI')
+const MODEL_PH_TRACTOR_TYPES = ['Tractor', 'Pit Digging Tractor', 'Crane Tractor']
+const POWER_PH = { tractor_hp: examplePh(45), tractor_hp_needed: examplePh(35), engine_hp: examplePh(90), power_hp: examplePh(7) }
+const OUTPUT_PH = { acre_hour: examplePh('1.5'), quintal_hour: examplePh(20), pits_hour: examplePh(50), cum_hour: examplePh(25) }
+
+// The example text for one spec field of a type: { hi, en } | null. Output per hour follows `unit`
+// (the unit shown in the form), which defaults to the type's own default unit; 'other' has none.
+export function specPlaceholder(key, typeName, unit) {
+  const spec = equipmentSpecFor(typeName)
+  if (!spec) return null
+  if (key === 'model' && MODEL_PH_TRACTOR_TYPES.includes(typeName)) return MODEL_PH_TRACTOR
+  if (key === 'power_hp') return spec.power ? POWER_PH[spec.power] || null : null
+  if (key === 'output_per_hour') return OUTPUT_PH[unit || spec.unit] || null
+  if (key === 'min_hp' && !spec.power) return null
+  return SPEC_FIELDS[key]?.ph || null
+}
+
 export const SPEC_SELLER_NOTE = { hi: 'विक्रेता द्वारा दी गई जानकारी', en: 'Details given by the seller' }
 
 export function equipmentSpecFor(typeName) {

@@ -51,3 +51,19 @@ Each entry: what, why, the alternative.
    (non-tanker branch only); building materials Quantity|Unit (obvious pair). Post step 3 left unchanged:
    transport From/To are village names (long text) and already sit in an `md:grid-cols-2` grid; the asset
    village is a single field.
+9. **Task C — where placeholders live.** Static examples are an optional `ph: { hi, en }` on `SPEC_FIELDS`
+   (`model` = "मॉडल का नाम / Model name", `year` = "जैसे 2023 / e.g. 2023", `min_hp` = "जैसे 40 / e.g. 40").
+   Per-type examples (tractor model "575 DI", HP by power kind, output by unit) come from one exported helper
+   `specPlaceholder(key, typeName, unit?) → { hi, en } | null` in `catalog.js`; `equipment.jsx` passes
+   `placeholder={…[lang]}` to the spec TextFields, `output_per_hour` and `min_hp`. Placeholders are only the
+   input's `placeholder` attribute: `checkEquipmentSpec` / `cleanSpecDetails` read `details` only, so an empty
+   field still fails "required" (checked; table in `evidence/placeholders.md`). `equipmentSpecFields()` and
+   `equipmentServerRules()` are unchanged (no server-rule drift). Brand dropdown, brand_other, the unit
+   "write the unit" field and type-specific extras get no placeholder (not listed in Task C).
+   *Alternative:* put per-type examples inside `EQUIPMENT_SPECS` — rejected, it would spread one feature over
+   14 rows; a helper with 3 small maps is easier to read and test.
+10. **Task C — output-per-hour example follows the unit SHOWN in the form.** The form pre-selects the type's
+   default unit (`onType` unchanged), so the first example is exactly the one Task C lists for the type's
+   default unit. If the user switches the unit, the example switches with it (e.g. quintal/hour → "e.g. 20";
+   other → no example), so a "1.5" hint never sits next to "quintal/hour". *Alternative:* always the type
+   default — rejected as slightly misleading after a unit change; the difference is one argument.
