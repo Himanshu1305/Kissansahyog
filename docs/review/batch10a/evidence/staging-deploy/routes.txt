@@ -1,0 +1,4 @@
+/ -> 200 newbuild=1
+/post -> 200 newbuild=1
+/browse -> 200 newbuild=1
+/signup -> 200 newbuild=1

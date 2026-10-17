@@ -1,0 +1,32 @@
+[
+ {
+  "w": 320,
+  "chips": 3,
+  "overflowBrowse": 0,
+  "rareChipH": 44,
+  "landChips": 0,
+  "signup": {
+   "form": true,
+   "lang": false,
+   "accept": true,
+   "explain": true,
+   "ov": 0
+  },
+  "pageErrors": 0
+ },
+ {
+  "w": 412,
+  "chips": 3,
+  "overflowBrowse": 0,
+  "rareChipH": 44,
+  "landChips": 0,
+  "signup": {
+   "form": true,
+   "lang": false,
+   "accept": true,
+   "explain": true,
+   "ov": 0
+  },
+  "pageErrors": 0
+ }
+]

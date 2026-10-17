@@ -13,3 +13,4 @@
 | 2026-10-17 14:24 | review | DONE | independent review: 0 must-fix; restored vis_explain on signup (rule 3), 1 false alarm rejected |
 | 2026-10-17 14:42 | G1-G2 | DONE | staging: 15/15 new tests + 25/25 fix9c subset RAN-PASSED; saved details identical old vs new build (Tractor, Thresher); 20 screenshots; staging test data cleaned; G5 ship script written (not run) |
 | 2026-10-17 14:54 | G3 | DONE | no new failure vs baseline: e2e 65/23 (was 61/27, all 23 pre-existing), static same after removing max-w-full from Browse chips, build:full + guards OK |
+| 2026-10-17 14:59 | G4 | DONE | staging deploy b151dafd-81e7-49e8-aae0-48fe690448fe from 74413b6; /, /post, /browse, /signup 200 with new build; render check 320/412 OK, 0 page errors |
