@@ -1,0 +1,3 @@
+STAGING GUARD: OK — .env and the process environment point at staging
+STAGING GUARD: OK — dist (389 files) points at staging, no production references
+dist guard exit 0

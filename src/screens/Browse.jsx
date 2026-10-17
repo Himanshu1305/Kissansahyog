@@ -98,7 +98,7 @@ export default function Browse() {
     }`
   // Batch 10A: equipment tag chips — at least 44 px high, long labels wrap, selected = filled + ✓.
   const tagChip = (active) =>
-    `flex min-h-[44px] max-w-full items-center gap-1.5 whitespace-normal rounded-2xl border-2 px-4 py-2 text-left text-base font-semibold leading-snug ${
+    `flex min-h-[44px] items-center gap-1.5 whitespace-normal rounded-2xl border-2 px-4 py-2 text-left text-base font-semibold leading-snug ${
       active ? 'border-green-700 bg-green-700 text-white' : 'border-stone-300 bg-white text-stone-700'
     }`
   // Land shows full-width single-column cards on mobile (more detail); the rest use a
