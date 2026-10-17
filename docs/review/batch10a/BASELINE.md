@@ -26,7 +26,11 @@ Note: several verify scripts rewrite `docs/review/batch7*/VERIFY_OUTPUT.txt`; th
 
 ## E2E (Playwright, against staging, from an untouched worktree at `pre-10a-start`)
 
-PENDING — filled in below when the run ends.
+**61 passed, 27 failed** in 10.1 min (`e2e.txt`; failed list `e2e-failed.txt`). All 27 failures are on untouched
+`ee3ecfd` code — the specs are out of date (7L-2 report note 9: the one-page signup, 3-step post, header changes).
+Failing: batch1 (5: browse chip viewport ×2, logged-out equipment call, land offer, labor requirement), batch5a (3),
+phase11 (1), phase14 (1), phase16 (1), phase18 (1), phase19 (1), phase2 (6, signup/login), phase3 (2), phase4 (1),
+phase5 (1), phase6 (2), phase7 (1), phase9 (1). Gate for later runs: no test that passed here may fail.
 
 ## Specs that touch Signup / Post / Browse
 
