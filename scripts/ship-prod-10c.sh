@@ -172,12 +172,13 @@ fi
 # ---------------------------------------------------------------- 4-7. deploy, gates, rollback
 GATES=(timeout 1500 node scripts/verify-batch9-live.mjs --base "$SITE" --out "$EV/after" --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot "$EV/prod-before-ship.json")
 DEPLOY=(timeout 900 npx wrangler pages deploy dist --project-name "$PROJECT" --branch main --commit-dirty=true)
-# 10C routes: plain read-only GETs; each must answer 200 and serve the new main chunk. Then the guide
+# 10C routes: plain read-only GETs; redirects are followed (Cloudflare Pages 308s /guide -> /guide/), and the
+# final answer must be 200 and serve the new main chunk. Then the guide
 # chunks named in the new dist must be served with the guide code, and / must carry the Guide pill.
 check_routes_10c() {
   local p code body ok=0 a
   for p in "${ROUTES_10C[@]}"; do
-    body="$(timeout 60 curl -s -w '\n%{http_code}' "$SITE$p?ks_ship=$STAMP")"
+    body="$(timeout 60 curl -sL --max-redirs 5 -w '\n%{http_code}' "$SITE$p?ks_ship=$STAMP")"
     code="${body##*$'\n'}"
     if [ "$code" = "200" ] && grep -q "$NEW_MAIN" <<<"$body"; then
       say "PASS  [10c_routes] GET $p -> 200, serves $NEW_MAIN"
