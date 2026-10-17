@@ -39,12 +39,11 @@ async function signupThrowaway(page, tag) {
   const n = C.L5.newNoise(tag)
   await C.goto(page, '/signup')
   await C.L5.fillSignupForm(page, n, pw)
-  await page.locator('[data-testid="signup-form"] button[type="submit"]').click()
-  await page.waitForSelector('[data-testid="disclaimer-accept"]', { timeout: 15000 })
+  // Batch 10A Task E: the acknowledgment is on the same page (no step 2) — tick it; acceptBtn = Register.
   await page.check('[data-testid="disclaimer-accept"]')
   return n
 }
-const acceptBtn = (page) => page.getByRole('button', { name: /स्वीकार करें और आगे बढ़ें|Accept and continue/ })
+const acceptBtn = (page) => page.locator('[data-testid="signup-form"] button[type="submit"]')
 
 async function myCount(page) {
   await C.goto(page, '/my', 2500)

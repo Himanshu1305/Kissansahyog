@@ -165,10 +165,10 @@ async function fillSignup(page, L, { email = USER_EMAIL, password = GOOD_PASSWOR
     await page.getByTestId('place-suggestions').getByRole('button').first().click()
   }
 }
+// Batch 10A Task E: the acknowledgment is on the same page — tick it, then press Register (the form's submit).
 async function acceptAndSubmit(page) {
-  await page.getByTestId('signup-form').locator('button[type=submit]').click()
   await page.getByTestId('disclaimer-accept').check()
-  await page.getByTestId('disclaimer-accept').locator('xpath=ancestor::div[1]').locator('button').last().click()
+  await page.getByTestId('signup-form').locator('button[type=submit]').click()
 }
 
 for (const width of [390, 1440]) for (const lang of ['hi', 'en']) {
@@ -180,17 +180,19 @@ for (const width of [390, 1440]) for (const lang of ['hi', 'en']) {
     await page.getByTestId('signup-form').waitFor({ timeout: 15000 })
     check(`${tag} signup: ONE form, no tabs`, (await page.getByTestId('signup-form').count()) === 1 && (await page.locator('[role=tab], [role=tablist]').count()) === 0)
     const ids = await page.evaluate(() => [...document.querySelectorAll('[data-testid=signup-form] input, [data-testid=signup-form] select')].map((i) => i.id || i.getAttribute('data-testid')))
-    check(`${tag} signup: name, email, password, mobile, village/town, language and the optional farmer fields are all there`, ['full_name', 'email', 'password', 'phone', 'village_town', 'language', 'k_land', 'k_crops', 'k-interest-lease', 'k-interest-equipment', 'k-whatsapp-optin'].every((i) => ids.includes(i)), ids.join(','))
+    // Batch 10A Task E: no language dropdown and no farmer block on signup any more (farmer fields live on Profile).
+    check(`${tag} signup: name, email, password, mobile, village/town, visibility + acknowledgment boxes are there; no language dropdown, no farmer fields`, ['full_name', 'email', 'password', 'phone', 'village_town', 'visibility-show', 'disclaimer-accept'].every((i) => ids.includes(i)) && !['language', 'k_land', 'k_crops', 'k-interest-lease', 'k-interest-equipment', 'k-whatsapp-optin'].some((i) => ids.includes(i)), ids.join(','))
     const formText = await page.getByTestId('signup-form').innerText()
     check(`${tag} signup: no pincode field or pincode wording`, !ids.some((i) => /pin/i.test(i || '')) && !/pincode|पिन कोड|पिनकोड/i.test(formText))
     // visibility choice
     const vis = page.getByTestId('visibility-choice')
-    check(`${tag} signup: both visibility buttons with the plain explanation`, (await page.getByTestId('visibility-show').innerText()).includes(L.show) && (await page.getByTestId('visibility-hidden').innerText()).includes(L.hidden) && (await vis.innerText()).includes(L.explain))
-    const big = await page.evaluate(() => ['visibility-show', 'visibility-hidden'].map((t) => document.querySelector(`[data-testid=${t}]`).getBoundingClientRect().height))
-    check(`${tag} signup: the two buttons are large (≥ 56px) and "show" starts selected`, big.every((h) => h >= 56) && (await vis.getAttribute('data-choice')) === 'show', big.map(Math.round).join('/'))
-    await page.getByTestId('visibility-hidden').click()
-    check(`${tag} signup: "Keep hidden" can be chosen (not blocked) and warns plainly`, (await vis.getAttribute('data-choice')) === 'hidden' && (await page.getByTestId('visibility-warning').count()) === 1)
-    await page.getByTestId('visibility-show').click()
+    // Batch 10A Task E: one line + checkbox ("visibility-show"); unticking it = the old "visibility-hidden" choice.
+    check(`${tag} signup: one visibility line with the "Show my details (recommended)" checkbox`, (await vis.innerText()).includes(L.show) && (await page.getByTestId('visibility-hidden').count()) === 0)
+    const big = await page.evaluate(() => document.querySelector('[data-testid=visibility-show]').closest('label').getBoundingClientRect().height)
+    check(`${tag} signup: the checkbox row is a big tap target (≥ 44px) and starts ticked ("show")`, big >= 44 && (await page.getByTestId('visibility-show').isChecked()) && (await vis.getAttribute('data-choice')) === 'show', String(Math.round(big)))
+    await page.getByTestId('visibility-show').uncheck()
+    check(`${tag} signup: unticking ("keep hidden") is allowed (not blocked) and warns plainly`, (await vis.getAttribute('data-choice')) === 'hidden' && (await page.getByTestId('visibility-warning').count()) === 1)
+    await page.getByTestId('visibility-show').check()
     check(`${tag} signup: and back to "Show my details"`, (await vis.getAttribute('data-choice')) === 'show')
     // password show / hide
     await page.fill('#password', 'abc')
@@ -214,7 +216,7 @@ for (const width of [390, 1440]) for (const lang of ['hi', 'en']) {
 
     // submit with "Keep hidden"
     await fillSignup(page, L)
-    await page.getByTestId('visibility-hidden').click()
+    await page.getByTestId('visibility-show').uncheck() // Batch 10A Task E: was visibility-hidden.click()
     await page.getByTestId('signup-form').scrollIntoViewIfNeeded()
     await shot(page, `signup-filled-hidden-${tag}`, true)
     await acceptAndSubmit(page)

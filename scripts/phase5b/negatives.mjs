@@ -16,10 +16,10 @@ async function fresh(lang = 'hi') { const t = L.town('Sagar'); return L.newPhone
 const fieldErr = async (page) => page.locator('p.text-red-600, [data-testid="place-error"]').allInnerTexts().catch(() => [])
 const topErr = async (page) => page.locator('[data-testid="signup-error"]').innerText().catch(() => null)
 async function submitStep1(page) { await page.locator('[data-testid="signup-form"] button[type="submit"]').click(); await page.waitForTimeout(700) }
+// Batch 10A Task E: one page — tick the acknowledgment, then press Register (the form's submit button).
 async function accept(page) {
-  await page.waitForSelector('[data-testid="disclaimer-accept"]', { timeout: 10000 })
   await page.check('[data-testid="disclaimer-accept"]')
-  await page.getByRole('button', { name: /स्वीकार करें और आगे बढ़ें|Accept and continue/ }).click()
+  await L.registerBtn(page).click()
 }
 
 let ph = await fresh()
@@ -64,50 +64,51 @@ try {
     const lb = await page.getAttribute('[data-testid="login-email-form"] #password', 'type')
     R('N03', 'password Show/Hide toggle (signup + login)', a === 'password' && b === 'text' && c === 'password' && la === 'password' && lb === 'text', { signup: [a, b, c], login: [la, lb] })
   }
-  // N04 — Back from step 2 keeps data + language switch mid-form keeps data; disclaimer not accepted → button disabled
+  // N04 — language switch mid-form keeps data; Register without the acknowledgment ticked is refused with the
+  // existing message and no network call; after that refusal every field is still filled in.
+  // (Batch 10A Task E: one page — there is no step 2 / Back any more, and the header toggle replaces #language.)
   if (want('N04')) {
     const n = L.newNoise('N3')
     await L.goto(page, '/signup')
     await L.fillSignupForm(page, n, pw)
-    await page.selectOption('#language', 'en'); await page.waitForTimeout(400)
+    await L.setAppLang(page, 'en')
     const afterLang = { name: await page.inputValue('#full_name'), email: await page.inputValue('#email'), phone: await page.inputValue('#phone'), place: await page.locator('[data-testid="place-chosen"]').count() }
+    const reqs = []; const onReq = (r) => { if (/auth\/v1|rpc\/app_register/.test(r.url())) reqs.push(r.url()) }; page.on('request', onReq)
     await submitStep1(page)
-    await page.waitForSelector('[data-testid="disclaimer-accept"]')
-    const disabled = await page.getByRole('button', { name: /स्वीकार करें और आगे बढ़ें|Accept and continue/ }).isDisabled()
+    page.off('request', onReq)
+    const refusal = await topErr(page)
     await L.shot(page, A, 'N04-disclaimer-not-accepted')
-    await page.locator('main button.h-11.w-11').first().click(); await page.waitForTimeout(600)
     const back = { name: await page.inputValue('#full_name'), email: await page.inputValue('#email'), phone: await page.inputValue('#phone'), pwLen: (await page.inputValue('#password')).length, place: await page.locator('[data-testid="place-chosen"]').count(), vis: await page.getAttribute('[data-testid="visibility-choice"]', 'data-choice') }
-    await L.shot(page, A, 'N04-back-from-step2', { full: true })
     R('N04a', 'language switch mid-form keeps every field', afterLang.name === n.name && afterLang.email === n.email && afterLang.phone === n.mobile && afterLang.place === 1, { kept: afterLang.name === n.name && afterLang.email === n.email && afterLang.phone === n.mobile, placeKept: afterLang.place === 1 })
-    R('N04b', 'disclaimer not ticked → "Accept and continue" disabled', disabled, { disabled })
-    R('N04c', 'Back from step 2 keeps every field', back.name === n.name && back.email === n.email && back.phone === n.mobile && back.pwLen === pw.length && back.place === 1, { nameKept: back.name === n.name, emailKept: back.email === n.email, mobileKept: back.phone === n.mobile, passwordKept: back.pwLen === pw.length, placeKept: back.place === 1, visibility: back.vis })
+    R('N04b', 'acknowledgment not ticked → Register refused with the acknowledgment message, no network call', !!refusal && /acknowledg|स्वीकार|accept/i.test(refusal) && !reqs.length && (await page.locator('[data-testid="signup-form"]').count()) === 1, { message: refusal, networkCalls: reqs.length })
+    R('N04c', 'after the refused Register every field is kept', back.name === n.name && back.email === n.email && back.phone === n.mobile && back.pwLen === pw.length && back.place === 1, { nameKept: back.name === n.name, emailKept: back.email === n.email, mobileKept: back.phone === n.mobile, passwordKept: back.pwLen === pw.length, placeKept: back.place === 1, visibility: back.vis })
   }
   // N05 — rapid double-tap on the final button → exactly one account (creates throw-away N4)
   if (want('N05') && !state.noiseAccounts?.N4) {
     const n = L.newNoise('N4')
     const calls = { signup: 0, register: 0 }
     page.on('request', (r) => { if (r.url().includes('/auth/v1/signup')) calls.signup++; if (r.url().includes('/rpc/app_register')) calls.register++ })
-    await L.goto(page, '/signup'); await L.fillSignupForm(page, n, pw); await submitStep1(page)
-    await page.waitForSelector('[data-testid="disclaimer-accept"]'); await page.check('[data-testid="disclaimer-accept"]')
-    await page.getByRole('button', { name: /स्वीकार करें और आगे बढ़ें|Accept and continue/ }).dblclick()
+    await L.goto(page, '/signup'); await L.fillSignupForm(page, n, pw)
+    await page.check('[data-testid="disclaimer-accept"]')
+    await L.registerBtn(page).dblclick()
     await page.waitForURL((u) => !/\/signup/.test(u.pathname), { timeout: 30000 }).catch(() => {})
     await page.waitForTimeout(2500)
     const s = await L.session(page)
     state.noiseAccounts = { ...(state.noiseAccounts || {}), N4: { profileId: s?.id || null } }
     noiseRow({ kind: 'profile + auth user (throw-away, double-tap test)', tag: 'N4', profile_id: s?.id || null })
-    R('N05', 'double tap on "Accept and continue" → one sign-up call, one profile', !!s?.id && calls.signup === 1 && calls.register === 1, { signupCalls: calls.signup, registerCalls: calls.register, loggedIn: !!s?.id })
+    R('N05', 'double tap on Register → one sign-up call, one profile', !!s?.id && calls.signup === 1 && calls.register === 1, { signupCalls: calls.signup, registerCalls: calls.register, loggedIn: !!s?.id })
     await L.logout(page)
   }
   // N06 — duplicate e-mail (N1's e-mail, another password) and duplicate mobile (N1's mobile, new e-mail)
   if (want('N06')) {
     const dupEmail = { ...L.newNoise('N2'), email: N1.email }
-    await L.goto(page, '/signup'); await L.fillSignupForm(page, dupEmail, pw + 'x'); await submitStep1(page); await accept(page)
+    await L.goto(page, '/signup'); await L.fillSignupForm(page, dupEmail, pw + 'x'); await accept(page)
     await page.waitForTimeout(5000)
     const e1 = await topErr(page); const s1 = await L.session(page)
     await L.shot(page, A, 'N06a-duplicate-email')
     R('N06a', 'duplicate e-mail → "account with this email already exists", no session', !!e1 && /ईमेल|email/i.test(e1) && !s1, { message: e1, session: !!s1 })
     const dupMobile = { ...L.newNoise('N2'), mobile: N1.mobile }
-    await L.goto(page, '/signup'); await L.fillSignupForm(page, dupMobile, pw); await submitStep1(page); await accept(page)
+    await L.goto(page, '/signup'); await L.fillSignupForm(page, dupMobile, pw); await accept(page)
     await page.waitForTimeout(5000)
     const e2 = await topErr(page); const s2 = await L.session(page)
     const underPhone = (await fieldErr(page)).find((x) => /नंबर|number/i.test(x)) || null
@@ -121,7 +122,7 @@ try {
     // and finish it: same e-mail + password with a NEW mobile → completes the registration
     const finish = { ...dupMobile, mobile: L.newNoise('N2b').mobile }
     const lst = L.noiseList(); const i = lst.findIndex((x) => x.tag === 'N2b'); lst[i].email = dupMobile.email; L.saveNoise(lst)
-    await L.goto(page, '/signup'); await L.fillSignupForm(page, finish, pw); await submitStep1(page); await accept(page)
+    await L.goto(page, '/signup'); await L.fillSignupForm(page, finish, pw); await accept(page)
     await page.waitForURL((u) => !/\/signup/.test(u.pathname), { timeout: 30000 }).catch(() => {}); await page.waitForTimeout(2000)
     const s3 = await L.session(page)
     noiseRow({ kind: 'profile completing the half-finished registration (throw-away)', tag: 'N2b', profile_id: s3?.id || null })
@@ -146,10 +147,10 @@ try {
   // N08 — offline sign-up attempt: clear message, nothing half-created
   if (want('N08')) {
     const n = L.newNoise('N6')
-    await L.goto(page, '/signup'); await L.fillSignupForm(page, n, pw); await submitStep1(page)
-    await page.waitForSelector('[data-testid="disclaimer-accept"]'); await page.check('[data-testid="disclaimer-accept"]')
+    await L.goto(page, '/signup'); await L.fillSignupForm(page, n, pw)
+    await page.check('[data-testid="disclaimer-accept"]')
     await ctx.setOffline(true)
-    await page.getByRole('button', { name: /स्वीकार करें और आगे बढ़ें|Accept and continue/ }).click()
+    await L.registerBtn(page).click()
     await page.waitForTimeout(6000)
     const e = await topErr(page)
     await L.shot(page, A, 'N08-offline-signup', { full: true })

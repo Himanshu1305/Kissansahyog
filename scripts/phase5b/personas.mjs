@@ -24,17 +24,16 @@ for (const p of list) {
         // Edge: spaces around name/e-mail, mixed-case e-mail, language switched hi → en → hi → en at signup.
         await L.goto(page, '/signup')
         await L.fillSignupForm(page, p, pw, { edge: true })
-        await page.selectOption('#language', 'hi'); await page.waitForTimeout(400)
-        await page.selectOption('#language', 'en'); await page.waitForTimeout(400)
+        // Batch 10A Task E: the header हिं / EN toggle replaces the removed #language dropdown.
+        await L.setAppLang(page, 'hi'); await page.waitForTimeout(400)
+        await L.setAppLang(page, 'en'); await page.waitForTimeout(400)
         const kept = await page.inputValue('#full_name')
         step('p9-lang-switch-keeps-fields', kept.trim() === p.name, { nameKept: kept.trim() === p.name })
         await L.shot(page, dir, '01-signup-form', { full: true })
-        await page.locator('[data-testid="signup-form"] button[type="submit"]').click()
-        await page.waitForSelector('[data-testid="disclaimer-accept"]')
-        await page.check('[data-testid="disclaimer-accept"]')
+        await page.check('[data-testid="disclaimer-accept"]') // Batch 10A Task E: same page, no step 2
         const sr = page.waitForResponse((x) => x.url().includes('/auth/v1/signup'), { timeout: 30000 }).catch(() => null)
         const rr = page.waitForResponse((x) => x.url().includes('/rpc/app_register'), { timeout: 40000 }).catch(() => null)
-        await page.getByRole('button', { name: /स्वीकार करें और आगे बढ़ें|Accept and continue/ }).click()
+        await L.registerBtn(page).click()
         const s1 = await sr; const r1 = await rr
         let autoconfirmSession = null; try { const j = await s1.json(); autoconfirmSession = !!(j.access_token || j.session?.access_token) } catch { /* */ }
         let profileId = null; try { profileId = (await r1.json()).id } catch { /* */ }
@@ -102,7 +101,9 @@ for (const p of list) {
       const got = { name: await v('#pf_name'), email: await v('#pf_email'), village: await v('#pf_village'), lang: await v('#pf_lang'), land: await v('#k_land'), crops: await v('#k_crops'), mandi: await v('#k_mandi'),
         lease: await page.isChecked('[data-testid="k-interest-lease"]').catch(() => null), equip: await page.isChecked('[data-testid="k-interest-equipment"]').catch(() => null), wa: await page.isChecked('[data-testid="k-whatsapp-optin"]').catch(() => null),
         mobileShown: (await page.locator('#pf_phone').count()) > 0 }
-      const k = p.kisan || { land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' }
+      // Batch 10A Task E: signup no longer has the किसान block, so a fresh profile always has the empty farmer
+      // profile (p.kisan is not entered at signup any more; it can be filled on Profile).
+      const k = { land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' }
       const checks = {
         name: got.name === p.name, email: got.email === p.email.toLowerCase(), village: !!got.village && (got.village.includes(t.name_en) || got.village.includes(t.name_hi)), lang: got.lang === p.lang,
         land: String(got.land || '') === String(k.land_acres || '') || Number(got.land) === Number(k.land_acres), crops: (got.crops || '') === (k.main_crops || ''), mandi: (got.mandi || '') === (k.preferred_mandi || ''),

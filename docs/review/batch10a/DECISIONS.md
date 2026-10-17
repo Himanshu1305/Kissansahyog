@@ -88,3 +88,53 @@ Each entry: what, why, the alternative.
    ✓ + `aria-pressed`; "All / सभी" (`filter_all`) first; tapping the selected chip clears to All. Testids
    `etag-chip-all`, `etag-chip-<value>`. `etag` is still READ from the URL on load; it is NOT written back on
    change (minimal, matches today's behaviour; no history entries per tap). Cards keep their tag rows.
+14. **Task E — one-page signup, field order and Register button.** Order: Name, Mobile, Email, Password, Village/Town
+   (`PlaceField`), visibility line, `disclaimer_title` + `DisclaimerBanner which="signup"` (unchanged) + the
+   existing `disclaimer-accept` checkbox, Register last. The `step` state, `goToDisclaimer` and the Back-button step
+   branch are gone (Back → `/`). Register label = the EXISTING `accept_and_continue` ("स्वीकार करें और आगे बढ़ें" /
+   "Accept and continue") — no new string; it reads right as the last button after the acknowledgment and keeps
+   every harness that clicks by that name working. Register is the form's `type="submit"` button and is NOT
+   disabled: pressing it validates every field AND, if the box is unticked, shows the existing
+   `err_disclaimer_not_accepted` in `signup-error` and never calls `register` (scrolls to top). Ticking the box clears
+   that one message. *Alternative:* keep the button disabled until ticked (as old step 2) — rejected: a disabled
+   button gives a farmer no reason why nothing happens, and field errors would only appear after ticking.
+15. **Task E — visibility = one checkbox; testid mapping.** Wrapper keeps `data-testid="visibility-choice"` with
+   `data-choice="show|hidden"`; small heading = existing `vis_title`; the checkbox (`data-testid="visibility-show"`)
+   is labelled with the existing `vis_show` verbatim, ticked by default (`useState(true)`); unticked shows the
+   existing `vis_hidden_warning` (`visibility-warning`). Sent exactly as before: `show_details: showDetails` →
+   authService `p_show_details: show_details !== false` (authService.js untouched), same consents key
+   `details_visibility`. `visibility-hidden` no longer exists → tests map "click visibility-hidden" to
+   `uncheck('[data-testid="visibility-show"]')` and "click visibility-show" to `check(...)`. `vis_explain` and
+   `vis_hidden` are no longer shown on signup (strings kept unchanged in strings.js; nothing reworded).
+16. **Task E — language and farmer block.** The `#language` dropdown is removed; `register` gets `language: lang`
+   (the active app language, switched with the header हिं/EN toggle). `KisanFields` is removed from signup (still on
+   Profile.jsx). Signup always sends `kisan: { ...EMPTY_KISAN }` where `EMPTY_KISAN` = `{ land_acres: '', main_crops:
+   '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' }` — byte-for-
+   byte the old initial state, which is what the old form sent when the block was untouched, so `applyKisan`'s
+   `hasKisan` check and `app_register` behave exactly as before.
+17. **Task E — Email + Password block.** New `src/components/auth/EmailPasswordFields.jsx` (props `t, values, errors,
+   onChange, required=true`; owns the show/hide state, keeps `#email`, `#password`, `password-toggle`). A later OTP
+   batch can pass `required={false}` or drop it. Validation stays in Signup (both still required, HARD RULE 4).
+18. **Task E — tests/harness changes (no check loosened).**
+   - `scripts/verify-batch7l2.mjs` (static): 5 checks rewritten to the new structure — form has name/phone/place +
+     `<EmailPasswordFields>` (whose file has `#email`/`#password`) and NO `#language`, sends `language: lang`;
+     KisanFields NOT on signup but on Profile + the exact `EMPTY_KISAN` literal is sent; password toggle checked in
+     screen+block; acknowledgment on the same page (no `step`), gated by `err_disclaimer_not_accepted` before
+     `register`, checkbox before the submit button; visibility = one checkbox, default ticked, `data-choice`
+     mapping, warning on untick. The i18n-key check now also scans EmailPasswordFields.
+   - `scripts/shots-batch7l2.mjs`, `scripts/verify-batch7l2-stageb.mjs`: tick-then-Register; visibility-hidden →
+     uncheck; field-list check now asserts language/k_* are ABSENT and visibility/disclaimer boxes present;
+     big-target check is the checkbox row ≥ 44px (was two ≥ 56px buttons).
+   - `scripts/phase5b/lib.mjs`: `fillSignupForm` uses new `setAppLang` (header toggle) instead of `#language`,
+     `setChecked(visibility-show, p.show)`, no longer fills kisan; `signup()` ticks then presses `registerBtn`.
+     `negatives.mjs`: N04 rewritten (no step 2/Back): N04b = Register unticked → refused with the acknowledgment
+     message and no network call; N04c = fields kept after that refusal; N05/N06/N08 tick-then-Register.
+     `personas.mjs`: P9 language switch via toggle; profileData expects the EMPTY farmer profile (signup no longer
+     collects it). `scripts/phase5c/network.mjs`: `acceptBtn` = the form submit; no step 2.
+     `scripts/android/staging-tests.mjs`: tick then submit.
+   - `e2e/phase2.spec.js`: signup tests rewritten to the one-page form (they were already failing at baseline on
+     the removed pincode field); "unknown pincode" replaced by "Register unticked is refused + visibility untick
+     warns". `e2e/phase9.spec.js` Journey A: signup lines only (post-flow parts left for Task G).
+19. **Task E — double-tap guard.** Register is now the always-enabled submit button, so Signup adds a `useRef`
+   in-flight flag next to `busy` (the button is still replaced by the spinner while registering); a fast double tap
+   calls `register` once (phase5b N05 checks this on staging).

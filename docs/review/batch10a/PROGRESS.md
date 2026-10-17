@@ -8,3 +8,4 @@
 | 2026-10-17 14:02 | B | DONE | FieldRow added; equipment Brand/Model, Year/HP, Output/Unit, Rate basis/amount + building Quantity/Unit paired; spec gate 805/805 (= baseline), build OK, 412px rows / 360px stacked / no overflow at 320px |
 | 2026-10-17 14:04 | C | DONE | placeholders via SPEC_FIELDS.ph + specPlaceholder(); empty fields still fail required; spec gate 805/805, build OK |
 | 2026-10-17 14:07 | D | DONE | tags under the type, EQUIPMENT_TYPE_DEFAULT_TAGS pre-tick (form-only touched flag, stripped before save), Browse tag chips under category chips (44px, All first, re-tap clears); spec gate 805/805, build OK |
+| 2026-10-17 14:21 | E | DONE | one-page signup (no language dropdown, no kisan block, one visibility checkbox, disclaimer + accept above Register), EmailPasswordFields block, same empty kisan payload; tests/harness updated; verify-7l2/7d/7l1 no new failures, build OK |

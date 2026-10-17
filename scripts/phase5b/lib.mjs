@@ -176,32 +176,34 @@ export async function fillSignupForm(page, p, pw, { edge = false } = {}) {
   await page.fill('#password', pw)
   await page.fill('#phone', p.mobile)
   const placeLabel = await pickPlace(page, p)
-  await page.selectOption('#language', p.lang)
-  await page.click(p.show ? '[data-testid="visibility-show"]' : '[data-testid="visibility-hidden"]')
-  if (p.kisan) {
-    const k = p.kisan
-    if (k.land_acres) await page.fill('#k_land', k.land_acres)
-    if (k.main_crops) await page.fill('#k_crops', k.main_crops)
-    if (k.interest_lease) await page.check('[data-testid="k-interest-lease"]')
-    if (k.interest_equipment) await page.check('[data-testid="k-interest-equipment"]')
-    if (k.whatsapp_opt_in) await page.check('[data-testid="k-whatsapp-optin"]')
-    if (k.preferred_mandi) await page.fill('#k_mandi', k.preferred_mandi)
-  }
+  // Batch 10A Task E: no language dropdown on signup — the app's active language is used, so switch it
+  // with the header हिं / EN toggle. Visibility is ONE checkbox (ticked = show; unticked = the old
+  // "visibility-hidden" choice). The किसान block is no longer on signup (it lives on Profile), so p.kisan
+  // is NOT filled here; signup always sends the untouched-block (empty) kisan object.
+  await setAppLang(page, p.lang)
+  await page.setChecked('[data-testid="visibility-show"]', p.show !== false)
   return placeLabel
 }
+
+// Batch 10A Task E — switch the app language with the header toggle (replaces the old #language dropdown).
+export async function setAppLang(page, lang) {
+  await page.getByRole('button', { name: lang === 'hi' ? 'हिं' : 'EN', exact: true }).first().click()
+  await page.waitForTimeout(300)
+}
+
+// Batch 10A Task E — the acknowledgment is on the same page as the form: tick it, then press Register.
+export const registerBtn = (page) => page.locator('[data-testid="signup-form"] button[type="submit"]')
 
 // Full sign-up through the form. Returns { ok, profileId, autoconfirmSession, error, placeLabel }.
 export async function signup(page, p, pw, { edge = false, dir = null } = {}) {
   await goto(page, '/signup')
   const placeLabel = await fillSignupForm(page, p, pw, { edge })
   if (dir) await shot(page, dir, '01-signup-form', { full: true })
-  await page.locator('[data-testid="signup-form"] button[type="submit"]').click()
-  await page.waitForSelector('[data-testid="disclaimer-accept"]', { timeout: 15000 })
   await page.check('[data-testid="disclaimer-accept"]')
   if (dir) await shot(page, dir, '02-signup-disclaimer')
   const signupResp = page.waitForResponse((r) => r.url().includes('/auth/v1/signup'), { timeout: 30000 }).catch(() => null)
   const regResp = page.waitForResponse((r) => r.url().includes('/rpc/app_register'), { timeout: 40000 }).catch(() => null)
-  await page.getByRole('button', { name: /स्वीकार करें और आगे बढ़ें|Accept and continue/ }).click()
+  await registerBtn(page).click()
   const sr = await signupResp
   let autoconfirmSession = null
   if (sr) { try { const j = await sr.json(); autoconfirmSession = !!(j && (j.access_token || j.session?.access_token)) } catch { /* */ } }

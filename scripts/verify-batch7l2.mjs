@@ -27,19 +27,27 @@ const { privacyPolicy } = await load('src/lib/i18n/legal.js')
 
 // ---- 1. One registration form ------------------------------------------------------------------
 const signup = read('src/screens/Signup.jsx'), signupCode = code(signup)
+// Batch 10A Task E: e-mail + password moved into their own block (EmailPasswordFields); checks that
+// look for those inputs read the screen + that block together (signupForm).
+const emailPw = read('src/components/auth/EmailPasswordFields.jsx'), emailPwCode = code(emailPw)
+const signupForm = signupCode + ' ' + emailPwCode
 const login = read('src/screens/Login.jsx'), loginCode = code(login)
 const placeField = read('src/components/location/PlaceField.jsx')
 const auth = read('src/lib/auth/authService.js'), authCode = code(auth)
 const srcFiles = walk('src').filter((f) => /\.(js|jsx)$/.test(f))
 check('1: the phone/email tabs are gone (component removed, nothing imports it, no role="tab" on either screen)', !has('src/components/AuthTabs.jsx') && !srcFiles.some((f) => /AuthTabs/.test(code(read(f)))) && !/role="tab/.test(signupCode + loginCode) && !strings.tab_phone && !strings.tab_email)
-check('1: one sign-up form with name, email, password, mobile, village/town and language', (signupCode.match(/<form /g) || []).length === 1 && ['id="full_name"', 'id="email"', 'id="password"', 'id="phone"', '<PlaceField id="village_town"', 'id="language"'].every((x) => signupCode.includes(x)))
-check('1: farmer fields kept (land, crops, lease, equipment, preferred mandi, WhatsApp opt-in)', /<KisanFields /.test(signupCode) && ['k_land', 'k_crops', 'k-interest-lease', 'k-interest-equipment', 'k-whatsapp-optin', 'k_mandi'].every((x) => read('src/components/KisanFields.jsx').includes(x)))
+// Batch 10A Task E: the language dropdown is REMOVED (signup uses the app's active language).
+check('1: one sign-up form with name, email, password, mobile, village/town; language = the active app language (no dropdown)', (signupCode.match(/<form /g) || []).length === 1 && /<EmailPasswordFields /.test(signupCode) && ['id="full_name"', 'id="phone"', '<PlaceField id="village_town"'].every((x) => signupCode.includes(x)) && ['id="email"', 'id="password"'].every((x) => emailPwCode.includes(x)) && !/id="language"/.test(signupCode) && /language: lang\b/.test(signupCode))
+// Batch 10A Task E: the farmer block moved off signup (stays on Profile); signup sends the same empty kisan object.
+check('1: farmer fields kept on Profile (land, crops, lease, equipment, preferred mandi, WhatsApp opt-in); signup sends the untouched-block kisan object', !/KisanFields/.test(signupCode) && /<KisanFields /.test(code(read('src/screens/Profile.jsx'))) && ['k_land', 'k_crops', 'k-interest-lease', 'k-interest-equipment', 'k-whatsapp-optin', 'k_mandi'].every((x) => read('src/components/KisanFields.jsx').includes(x)) && /EMPTY_KISAN = Object\.freeze\(\{ land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' \}\)/.test(signupCode) && /kisan: \{ \.\.\.EMPTY_KISAN \}/.test(signupCode))
 check('1: email, password (min 8) and mobile are all required before continuing', /isValidEmail\(form\.email\)/.test(signupCode) && /form\.password\.length < MIN_PASSWORD/.test(signupCode) && /isValidPhone\(form\.phone\)/.test(signupCode) && /MIN_PASSWORD = 8/.test(auth))
-check('1: password has a show/hide toggle', /data-testid="password-toggle"/.test(signupCode) && /type=\{showPassword \? 'text' : 'password'\}/.test(signupCode))
+check('1: password has a show/hide toggle', /data-testid="password-toggle"/.test(signupForm) && /type=\{showPassword \? 'text' : 'password'\}/.test(signupForm))
 check('1: no pincode field, check or wording in the registration form', !/pincode|isValidPincode/i.test(signupCode) && !/pincode/i.test(code(placeField)))
 check('1: village/town uses the places list of the location flow (same matching functions)', ['suggestPlaces', 'closestPlaces', 'placesInDistrict', 'exactPlace'].every((f) => placeField.includes(f)) && /useUserLocation\(\)/.test(placeField))
-check('1: the existing acknowledgment step is kept', /step === 'disclaimer'/.test(signupCode) && /DisclaimerBanner which="signup"/.test(signupCode) && /disclaimer_accept_label/.test(signupCode))
-check('1: visibility choice — two buttons, neither disabled, "show" recommended', /data-testid="visibility-show"/.test(signupCode) && /data-testid="visibility-hidden"/.test(signupCode) && !/visibility-(show|hidden)"[^>]*disabled/.test(signupCode) && /useState\(true\)/.test(signupCode))
+// Batch 10A Task E: the acknowledgment is on the SAME page (no step state); Register is refused until ticked.
+check('1: the existing acknowledgment is kept on the same page and gates Register', !/\bstep\b|setStep/.test(signupCode) && /DisclaimerBanner which="signup"/.test(signupCode) && /disclaimer_accept_label/.test(signupCode) && /data-testid="disclaimer-accept"/.test(signupCode) && /if \(!accepted\) setError\(t\('err_disclaimer_not_accepted'\)\)/.test(signupCode) && /if \(!ok \|\| !accepted\) \{/.test(signupCode) && signupCode.indexOf('data-testid="disclaimer-accept"') < signupCode.indexOf('<BigButton type="submit"'))
+// Batch 10A Task E: one checkbox (ticked = show, default), unticked = hidden + the existing warning.
+check('1: visibility choice — one checkbox, not disabled, "show" ticked by default, warning when unticked', /type="checkbox" data-testid="visibility-show" checked=\{showDetails\}/.test(signupCode) && /data-testid="visibility-choice" data-choice=\{showDetails \? 'show' : 'hidden'\}/.test(signupCode) && !/visibility-show"[^>]*disabled/.test(signupCode) && /const \[showDetails, setShowDetails\] = useState\(true\)/.test(signupCode) && /!showDetails && <p data-testid="visibility-warning"[^>]*>\{t\('vis_hidden_warning'\)\}/.test(signupCode))
 check('1: visibility wording is the briefed wording (Hindi + English)', strings.vis_show.en === 'Show my details (recommended)' && strings.vis_show.hi === 'मेरी जानकारी दिखाएँ (सुझाया गया)' && strings.vis_hidden.en === 'Keep hidden' && strings.vis_hidden.hi === 'छिपी रहने दें')
 check('1: the explanation says plainly that hidden details are NOT seen and opportunities may be missed', /will NOT see them/.test(strings.vis_explain.en) && /miss chances to sell or lease/.test(strings.vis_explain.en) && /नहीं देख पाएँगे/.test(strings.vis_explain.hi) && /मौके छूट सकते हैं/.test(strings.vis_explain.hi))
 check('1: the choice is sent to app_register and nowhere invents a profile column', /p_show_details: show_details !== false/.test(authCode) && /show_details: showDetails/.test(signupCode))
@@ -55,7 +63,7 @@ check('2: honest OTP note (Hindi + English)', strings.login_otp_soon.en === 'OTP
 check('2: ONE place to plug OTP in (startPhoneLogin / verifyPhoneOtp), and the screen already has the code step', /export const PHONE_OTP_ENABLED = false/.test(auth) && /export async function startPhoneLogin/.test(auth) && /export async function verifyPhoneOtp/.test(auth) && /res\.step === 'otp'/.test(loginCode) && /phoneStep === 'otp'/.test(loginCode) && (authCode.match(/rpc\('app_login'/g) || []).length === 1)
 check('2: both ways end in the same session handling (storeSession)', /step: 'done', profile: storeSession\(data\)/.test(authCode) && /return storeSession\(profile\)/.test(authCode))
 check('2: "no profile" from the server is treated exactly like "not found"', /if \(!data \|\| !data\.id\) throw new AppError\('not_found'\)/.test(authCode))
-const usedKeys = [...new Set([...(signupCode + loginCode + code(placeField)).matchAll(/(?<![A-Za-z.])t\(\s*(?:[A-Za-z]+ \? )?'([a-z_0-9]+)'(?: : '([a-z_0-9]+)')?/g)].flatMap((m) => [m[1], m[2]]).filter(Boolean))]
+const usedKeys = [...new Set([...(signupForm + loginCode + code(placeField)).matchAll(/(?<![A-Za-z.])t\(\s*(?:[A-Za-z]+ \? )?'([a-z_0-9]+)'(?: : '([a-z_0-9]+)')?/g)].flatMap((m) => [m[1], m[2]]).filter(Boolean))]
 const missing = usedKeys.filter((k) => !strings[k] || !strings[k].hi || !strings[k].en)
 check(`2: every string the two screens and the place field use exists in Hindi and English (${usedKeys.length} keys)`, missing.length === 0, missing.join(', '))
 

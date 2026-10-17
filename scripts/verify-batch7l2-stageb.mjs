@@ -117,11 +117,11 @@ async function registerThroughForm(u, { width, lang, hidden }) {
   await page.fill('#full_name', u.name); await page.fill('#email', u.email); await page.fill('#password', u.password); await page.fill('#phone', u.phone)
   await page.getByTestId('place-input').fill(T[lang].place)
   await page.getByTestId('place-suggestions').getByRole('button').first().click()
-  if (hidden) await page.getByTestId('visibility-hidden').click()
+  if (hidden) await page.getByTestId('visibility-show').uncheck() // Batch 10A Task E: unticked checkbox = "keep hidden"
   await shot(page, `signup-${hidden ? 'hidden' : 'show'}-${lang}-${width}`)
-  await page.getByTestId('signup-form').locator('button[type=submit]').click()
+  // Batch 10A Task E: acknowledgment on the same page — tick it, then Register (the form's submit).
   await page.getByTestId('disclaimer-accept').check()
-  await page.getByTestId('disclaimer-accept').locator('xpath=ancestor::div[1]').locator('button').last().click()
+  await page.getByTestId('signup-form').locator('button[type=submit]').click()
   await page.waitForURL((x) => !x.pathname.startsWith('/signup'), { timeout: 30000 }).catch(() => {})
   const err = await page.getByTestId('signup-error').innerText().catch(() => '')
   const user = await storedUser(page)

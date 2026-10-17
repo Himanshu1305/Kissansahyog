@@ -89,10 +89,9 @@ export function registerStaging(ctx) {
     const picked = await waitFor(() => page().evaluate(() => document.querySelector('[data-testid="place-chosen"]') ? 'chosen' : document.querySelector('[data-testid="place-suggestions"] button, [data-testid="place-did-you-mean"] button') ? 'suggest' : null), { timeout: 15000 })
     if (picked === 'suggest') await page().locator('[data-testid="place-suggestions"] button, [data-testid="place-did-you-mean"] button').first().click()
     await page().waitForSelector('[data-testid="place-chosen"]', { timeout: 10000 })
-    await page().click('form[data-testid="signup-form"] button[type="submit"]')
-    await page().waitForSelector('[data-testid="disclaimer-accept"]', { timeout: 10000 })
+    // Batch 10A Task E: one page — tick the acknowledgment, then Register (the form's submit button).
     await page().check('[data-testid="disclaimer-accept"]')
-    await clickText(strings.accept_and_continue.hi)
+    await page().click('form[data-testid="signup-form"] button[type="submit"]')
     const s = await waitFor(async () => { const v = await session(); return v && v.id ? v : null }, { timeout: 30000, interval: 800 })
     const err = s ? null : await page().evaluate(() => document.querySelector('[data-testid="signup-error"]')?.innerText || null)
     if (s) record('profile (signup through the app)', { who, full_name: a.name, email: a.email, phone: a.phone, profile_id: s.id })
