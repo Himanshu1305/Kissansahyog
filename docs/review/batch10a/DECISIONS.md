@@ -138,3 +138,9 @@ Each entry: what, why, the alternative.
 19. **Task E — double-tap guard.** Register is now the always-enabled submit button, so Signup adds a `useRef`
    in-flight flag next to `busy` (the button is still replaced by the spinner while registering); a fast double tap
    calls `register` once (phase5b N05 checks this on staging).
+20. **Task F — when the village pre-fills.** A `useEffect` on `[step, user?.village_town]` in `Post.jsx` sets
+   `village` from `user.village_town` only when step 3 is shown and the field is empty. `village` is deliberately
+   not a dependency, so a poster who clears the field while on step 3 is not refilled; leaving and re-entering
+   step 3 (or `resetAll`) pre-fills again. Transport (from/to) and coordinates/geocoding are untouched — the name is
+   resolved on submit exactly as if typed. Alternative (pre-fill at mount) rejected: it would show before step 3
+   and refill after deliberate clearing.

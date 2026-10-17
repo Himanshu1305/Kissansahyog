@@ -112,6 +112,12 @@ export default function Post() {
     return () => { alive = false }
   }, [category])
 
+  // Step 3: an empty asset-village field starts with the profile's village (editable; typed
+  // text is never overwritten; coordinates/geocoding untouched — the name is resolved on submit).
+  useEffect(() => {
+    if (step === 3 && !village && user?.village_town) setVillage(user.village_town)
+  }, [step, user?.village_town]) // eslint-disable-line react-hooks/exhaustive-deps
+
   function back() {
     setError(null)
     if (created) return
