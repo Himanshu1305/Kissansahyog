@@ -1,0 +1,18 @@
+PASS  [snapshot] / recorded  — {"status":200,"bytes":77159,"title":"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार","h1":"आज किसान के लिए"}
+PASS  [snapshot] /mausam recorded  — {"status":200,"bytes":36445,"title":"मौसम — सागर संभाग का पूर्वानुमान","h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान"}
+PASS  [snapshot] /msp recorded  — {"status":200,"bytes":70657,"title":"मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य","h1":"गेहूं भाव — आज व MSP से तुलना"}
+PASS  [snapshot] /browse recorded  — {"status":200,"bytes":77159,"title":"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार","h1":"आज किसान के लिए"}
+PASS  [snapshot] /sawaal recorded  — {"status":200,"bytes":24537,"title":"किसान सवाल — खेती के सवालों के जवाब","h1":"किसान सवाल — आपके सवाल, हमारे जवाब"}
+PASS  [snapshot] /yojana recorded  — {"status":200,"bytes":21387,"title":"सरकारी योजनाएं — केंद्र व मध्य प्रदेश","h1":"सरकारी योजनाएं"}
+PASS  [snapshot] /cold-storage recorded  — {"status":200,"bytes":484806,"title":"मध्य प्रदेश कोल्ड स्टोरेज खोजें — गोदाम सूची","h1":"मध्य प्रदेश कोल्ड स्टोरेज खोजें"}
+PASS  [snapshot] /about recorded  — {"status":200,"bytes":36795,"title":"हमारे बारे में — किसान सहयोग","h1":"हमारे बारे में"}
+PASS  [snapshot] /privacy recorded  — {"status":200,"bytes":33902,"title":"गोपनीयता नीति — किसान सहयोग","h1":"गोपनीयता नीति"}
+PASS  [snapshot] /terms recorded  — {"status":200,"bytes":45798,"title":"उपयोग की शर्तें — किसान सहयोग","h1":"उपयोग की शर्तें"}
+PASS  [snapshot] /sitemap.xml recorded  — {"status":200,"bytes":548}
+PASS  [snapshot] /sitemap-pages.xml recorded  — {"status":200,"bytes":6089}
+PASS  [snapshot] /sitemap-sawaal.xml recorded  — {"status":200,"bytes":23193}
+PASS  [snapshot] /sitemap-cold-storage.xml recorded  — {"status":200,"bytes":4656}
+PASS  [snapshot] /sitemap-schemes.xml recorded  — {"status":200,"bytes":2429}
+PASS  [snapshot] /robots.txt recorded  — {"status":200,"bytes":180}
+
+ALL PASSED  (results-prod-snapshot.json)

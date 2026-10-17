@@ -29,5 +29,6 @@ New e2e totals: `e2e/guide-10c.spec.js` 30 tests (+5 etag) — **35 passed, 0 fa
 Not run: Android hardware Back on a device for the sheet (HUMAN-REVIEW, from Task C). No source code was changed in Task F.
 
 Found during F (for task G): untracked `design/reference/` adds ~1.7 KB gz of unused classes to the app CSS when the
-build runs in the working folder (Tailwind v4 scans untracked files). Build the release from a clean checkout. Details
-in `bundle-after.md`.
+build runs in the working folder (Tailwind v4 scans untracked files). Details in `bundle-after.md`.
+**Fixed in task G:** `src/index.css` now has `@source not "../design";` — a working-folder build gives the same CSS as a
+clean checkout (62,993 raw / 12,305 gz). See DECISIONS G1.
