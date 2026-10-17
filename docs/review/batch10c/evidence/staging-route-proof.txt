@@ -1,0 +1,7 @@
+staging main: /assets/index-Berk0UA3.js
+PASS  [10c_routes] GET /guide (no-follow 308) -> 200, serves /assets/index-Berk0UA3.js
+PASS  [10c_routes] GET /guide/register (no-follow 308) -> 200, serves /assets/index-Berk0UA3.js
+PASS  [10c_routes] GET /guide/post (no-follow 308) -> 200, serves /assets/index-Berk0UA3.js
+PASS  [10c_routes] GET /guide/find (no-follow 308) -> 200, serves /assets/index-Berk0UA3.js
+PASS  [10c_routes] GET /guide/tour (no-follow 308) -> 200, serves /assets/index-Berk0UA3.js
+result=0

@@ -115,3 +115,9 @@ Rule: when unsure, the SAFEST option was picked. "Preview" = `design/guide-demo-
 ## Task G (orchestrator)
 
 - **G1 — Tailwind skips `design/`.** Task F found that the untracked `design/reference/` folder (appeared during this run) is scanned by Tailwind v4's automatic source detection, adding ~1.7 KB gz of unused CSS to every page in any build made from the working folder — including the founder's production ship, which builds from the working folder. Fix: `@source not "../design";` in `src/index.css`. The founder's folder is left untouched. After the fix a working-folder build gives the same `index-*.css` as a clean checkout (62,993 raw / 12,305 gz).
+
+## Ship retry (after the first production ship attempt)
+
+- **R1 — Cause.** The first real ship (log kept as `evidence/ship-real-attempt1.log`) deployed correctly (guide chunks live, `nav-guide` on `/`), but the `10c_routes` gate got HTTP 308 for `/guide`, `/guide/register`, `/guide/post`, `/guide/find`, `/guide/tour`. Cloudflare Pages redirects a no-trailing-slash URL to the slash URL when the prerendered page is `guide/index.html` (same behaviour as `/mausam`, which the 10A verifier already accepts). The gate used plain `curl -s` (no redirect follow), so it saw the 308 and an empty body, failed, and the script rolled back. Production is back on 0845c733.
+- **R2 — Fix.** `scripts/ship-prod-10c.sh` `check_routes_10c`: `curl -sL --max-redirs 5`, so the gate checks the FINAL response: status must be 200 and the body must contain the new main chunk. Here-string grep and all other checks unchanged. The guide-chunk asset checks (no redirects on `/assets/*`) and `scripts/rollback-prod-10c.sh` (no route check) needed no change.
+- **R3 — Proof.** Staging (`evidence/staging-route-proof.txt`): all 5 guide routes 308 without follow, 200 + main chunk `index-Berk0UA3.js` with follow. `ship-prod-10c.sh --dry-run` → DRY RUN OK (`evidence/ship-dryrun-retry.log`).
