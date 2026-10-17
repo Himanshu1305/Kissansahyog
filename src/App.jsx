@@ -55,6 +55,9 @@ const Contact = lazy(() => import('./screens/Contact'))
 const Founder = lazy(() => import('./screens/Founder'))
 const About = lazy(() => import('./screens/About'))
 const HowToUse = lazy(() => import('./screens/HowToUse'))
+// Batch 10C — live guide demos (own lazy chunks; public, not auth-gated).
+const GuideHub = lazy(() => import('./features/guide/GuideHub'))
+const GuideDemoPage = lazy(() => import('./features/guide/GuideDemoPage'))
 const ColdStorage = lazy(() => import('./screens/ColdStorage'))
 const ColdStorageDistrict = lazy(() => import('./screens/ColdStorageDistrict'))
 const Greenhouse = lazy(() => import('./screens/Greenhouse'))
@@ -120,6 +123,8 @@ function AppRoutes() {
         <Route path="/founder" element={<Founder />} />
         <Route path="/about" element={<About />} />
         <Route path="/how-to-use" element={<HowToUse />} />
+        <Route path="/guide" element={<GuideHub />} />
+        <Route path="/guide/:id" element={<GuideDemoPage />} />
         {/* Static /cold-storage before the dynamic district route. */}
         <Route path="/cold-storage" element={<ColdStorage />} />
         <Route path="/cold-storage/:district" element={<ColdStorageDistrict />} />
