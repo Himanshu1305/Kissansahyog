@@ -153,3 +153,24 @@ Each entry: what, why, the alternative.
    before this batch (`git show pre-10a-start:src/components/categories/equipment.jsx` line 29). Notes accepted
    as-is: Register uses the existing `accept_and_continue` label (no new string); the step-3 village re-fills if
    the poster empties it and comes back (harmless). Full review text: `evidence/independent-review.md`.
+22. **Task G5 — prod ship script = copies, batch 9 untouched.** `scripts/ship-prod-10a.sh` and
+   `scripts/rollback-prod-10a.sh` are copies of the batch 9 pair with branch `release-10a`, tag `pre-10a-ship`,
+   evidence `docs/review/batch10a/evidence/prod-ship`, fallback rollback id `bf4f9479-…`. Removed: the 0b database
+   section (migration list + the read-only `listings` column probe on prod) and the database-rollback lines — this
+   batch has no migrations, so no prod database request at all. The compare/gate logic is NOT forked: both scripts
+   call `scripts/verify-batch9-live.mjs` unchanged (only `--out`/`--snapshot` paths differ), so the agreed size
+   tolerances (0.85–1.15x; /sawaal and /yojana up to 4.0x; FAQ-added pages 1.6x) are exactly batch 9's.
+   Alternative (a new verify-batch10a-live.mjs) rejected: nothing batch-specific needed changing.
+23. **Task G5 — live id differs from `bf4f9479-…` → STOP (real run), WARN (dry run).** Safest: if prod is not
+   the version this batch was prepared against, the snapshot and the rollback target may be wrong, so the real run
+   stops before any change; override after checking with `KS_EXPECT_LIVE_ID=<id>`. The dry run only warns so it
+   can still validate everything else. Alternative (warn and continue) rejected: the rollback would then return to
+   an unreviewed version. Live id seen 2026-10-17: `bf4f9479-821b-41a0-b20c-60ce22eb6303` (source `ee3ecfd`).
+24. **Task G5 — 10A's own snapshot.** Batch 9's step 2 compares against a "night snapshot". For 10A a read-only
+   snapshot of live prod was taken while preparing (GETs only): `docs/review/batch10a/evidence/prod-before.json`
+   (log `evidence/prod-snapshot/`); an immediate read-only compare against it passed. Rollback `--dry-run` ran
+   read-only (exit 0, `evidence/rollback-prod-10a-dryrun.txt`). Ship `--dry-run` not run here (needs the tag).
+25. **Task G5 — extra 10A checks.** After the gates, plain GETs of `/signup`, `/post`, `/browse` must answer 200
+   and serve the new main chunk (no login, no write). Also added a guard (not in batch 9): the real run stops if
+   the new main chunk name cannot be read from `dist/index.html`, because an empty name would make the
+   "new build is live" checks pass on anything.

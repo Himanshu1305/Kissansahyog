@@ -74,12 +74,19 @@ export async function fillStep2(page, marker, village = null) {
   }
 }
 
+// Batch 10A: "who is posting" (post-source-farmer/vendor) is the FIRST control of step 1, so it is chosen
+// before Continue. Step 2 is detected by the step-1 block going away and a details field (f_*) appearing.
+export async function waitStep2(page) {
+  await page.waitForSelector('[data-testid="post-source-block"]', { state: 'detached', timeout: 20000 })
+  await page.waitForSelector('[id^="f_"]', { timeout: 20000 })
+}
 export async function step1(page, plan) {
   await L.goto(page, '/post', 1200)
+  await page.click(`[data-testid="post-source-${plan.source === 'vendor' ? 'vendor' : 'farmer'}"]`)
   await page.click(`[data-testid="post-cat-${plan.category}"]`)
   await page.click(`[data-testid="post-type-${plan.type}"]`)
   await page.click('[data-testid="post-next"]')
-  await page.waitForSelector('[data-testid="post-source-farmer"]', { timeout: 20000 })
+  await waitStep2(page)
 }
 
 export async function step3(page, plan, village) {
@@ -120,8 +127,7 @@ if (isMain) {
         const dir = `listings/${plan.lid}-${plan.category}-${plan.type}`
         const rec = { lid: plan.lid, persona: pid, category: plan.category, type: plan.type, source: plan.source, wide: !!plan.wide, village, keep: !plan.noise, note: plan.note || null }
         try {
-          await step1(page, plan)
-          if (plan.source === 'vendor') await page.click('[data-testid="post-source-vendor"]')
+          await step1(page, plan) // chooses plan.source on step 1 (Batch 10A)
           if (plan.subtype === 'vendor') await page.getByRole('button', { name: /दुकान \/ विक्रेता|Shop \/ Vendor/ }).click()
           await page.waitForTimeout(400)
           await fillStep2(page, marker, village)

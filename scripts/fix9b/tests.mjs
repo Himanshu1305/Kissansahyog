@@ -6,7 +6,7 @@
 // "KSTEST 9B" and its id is kept in evidence/fix9b/created-rows.json for the clean-up at the end.
 // Results: evidence/fix9b/results-<local|deployed>.json; screenshots: evidence/fix9b/<label>/.
 import * as T from './lib9b.mjs'
-import { fillStep2, testJpeg } from '../phase5b/listings.mjs'
+import { waitStep2, fillStep2, testJpeg } from '../phase5b/listings.mjs'
 
 const ONLY = (() => { const i = process.argv.indexOf('--only'); return i > 0 ? process.argv[i + 1].split(',') : null })()
 const RUN = Date.now().toString(36).slice(-5)
@@ -27,11 +27,12 @@ async function phoneFor(pid, opts = {}) {
 // Category -> step 3, with every checkbox ticked EXCEPT the new consent box (and wide visibility).
 async function toStep3(page, { category, type = 'offer', source = 'farmer', subtype = null, photos = 0, vname, marker }) {
   await T.goto(page, '/post', 1000)
+  // Batch 10A: "who is posting" is chosen first, on step 1
+  await page.click(`[data-testid="post-source-${source === 'vendor' ? 'vendor' : 'farmer'}"]`)
   await page.click(`[data-testid="post-cat-${category}"]`)
   await page.click(`[data-testid="post-type-${type}"]`)
   await page.click('[data-testid="post-next"]')
-  await page.waitForSelector('[data-testid="post-source-farmer"]', { timeout: 20000 })
-  if (source === 'vendor') await page.click('[data-testid="post-source-vendor"]')
+  await waitStep2(page)
   if (subtype === 'vendor') await page.getByRole('button', { name: /दुकान \/ विक्रेता|Shop \/ Vendor/ }).click()
   await page.waitForTimeout(400)
   await fillStep2(page, marker, vname)

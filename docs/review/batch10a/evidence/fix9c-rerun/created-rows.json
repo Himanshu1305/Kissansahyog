@@ -1,0 +1,104 @@
+[
+ {
+  "id": "9110dd68-685c-4ac1-a123-8e5f5d5361e8",
+  "note": "C5 Tractor",
+  "base": "local",
+  "at": "2026-10-17T09:07:38.457Z"
+ },
+ {
+  "id": "f18cbe73-727e-44e5-8de2-7c3cb278cd40",
+  "note": "C1|Tractor|brand",
+  "base": "local",
+  "at": "2026-10-17T09:07:51.192Z"
+ },
+ {
+  "id": "6372e3c9-cefb-4123-b01d-d1fd3eb1e9cf",
+  "note": "C1|Tractor|model",
+  "base": "local",
+  "at": "2026-10-17T09:07:55.588Z"
+ },
+ {
+  "id": "e7c7229d-2a55-4621-afb1-13e73cf4c7ee",
+  "note": "C1|Tractor|year",
+  "base": "local",
+  "at": "2026-10-17T09:07:59.900Z"
+ },
+ {
+  "id": "c76aa395-9b70-4701-aeac-fae62dee4a1c",
+  "note": "C1|Tractor|power_hp",
+  "base": "local",
+  "at": "2026-10-17T09:08:04.250Z"
+ },
+ {
+  "id": "3915aec8-6ff9-4eda-b97d-30db883746ab",
+  "note": "C1|Thresher|brand",
+  "base": "local",
+  "at": "2026-10-17T09:08:10.555Z"
+ },
+ {
+  "id": "c5d6593a-c8ac-4fad-95c3-001eebef2d61",
+  "note": "C1|Thresher|model",
+  "base": "local",
+  "at": "2026-10-17T09:08:15.177Z"
+ },
+ {
+  "id": "a4a6a8b3-deaf-4374-b16d-e49bba2f4646",
+  "note": "C1|Thresher|year",
+  "base": "local",
+  "at": "2026-10-17T09:08:19.466Z"
+ },
+ {
+  "id": "a206d86f-979b-4adf-a3df-c349e81ff984",
+  "note": "C1|Thresher|power_hp",
+  "base": "local",
+  "at": "2026-10-17T09:08:23.816Z"
+ },
+ {
+  "id": "99a5b49b-fb6b-42d1-aefb-39d3cdb04e48",
+  "note": "C1|Thresher|spec_crop",
+  "base": "local",
+  "at": "2026-10-17T09:08:28.278Z"
+ },
+ {
+  "id": "a2705f62-879b-48f3-8f07-381981305cb2",
+  "note": "C1|Drone|brand",
+  "base": "local",
+  "at": "2026-10-17T09:08:34.691Z"
+ },
+ {
+  "id": "940a4e00-2b5a-420a-aa48-2eb0c5c9665d",
+  "note": "C1|Drone|model",
+  "base": "local",
+  "at": "2026-10-17T09:08:39.184Z"
+ },
+ {
+  "id": "37a7ef24-db7a-4ce6-9f6f-767c15894bfb",
+  "note": "C1|Drone|year",
+  "base": "local",
+  "at": "2026-10-17T09:08:43.712Z"
+ },
+ {
+  "id": "4c6b52e5-a8b9-47bb-ae30-7db6f1cb4c7f",
+  "note": "C1|Drone|spec_tank_litres",
+  "base": "local",
+  "at": "2026-10-17T09:08:48.097Z"
+ },
+ {
+  "id": "d2ce71c5-786a-411e-80ac-54437ada2cc4",
+  "note": "C1|Drone|spec_flight_minutes",
+  "base": "local",
+  "at": "2026-10-17T09:08:52.465Z"
+ },
+ {
+  "id": "3164f106-e49a-40ac-a0de-3531405a2fee",
+  "note": "C7 Trolley",
+  "base": "local",
+  "at": "2026-10-17T09:09:00.781Z"
+ },
+ {
+  "id": "f725a393-d772-4e57-885b-baf5a0ae5d5d",
+  "note": "C7 Water tanker",
+  "base": "local",
+  "at": "2026-10-17T09:09:04.469Z"
+ }
+]

@@ -8,7 +8,7 @@
 //              context goes offline — the server did the work, the phone does not know.
 //          Then the connection comes back and the user retries. Throw-away KSTEST accounts only (never KEEP for writes).
 import * as C from './lib5c.mjs'
-import { fillStep2, testJpeg } from '../phase5b/listings.mjs'
+import { fillStep2, testJpeg, waitStep2 } from '../phase5b/listings.mjs'
 
 const part = C.arg('part', 'slow')
 const R = C.loadResults('network')
@@ -207,7 +207,7 @@ try {
     const fillTo3 = async (marker, photo = false) => {
       await C.goto(page, '/post', 1200)
       await page.click('[data-testid="post-cat-bhusa"]'); await page.click('[data-testid="post-type-offer"]'); await page.click('[data-testid="post-next"]')
-      await page.waitForSelector('[data-testid="post-source-farmer"]', { timeout: 20000 })
+      await waitStep2(page) // Batch 10A: source is on step 1 (default farmer)
       await fillStep2(page, marker)
       if (photo) { await page.setInputFiles('input[type="file"]', { name: 'kstest-5c.jpg', mimeType: 'image/jpeg', buffer: await testJpeg('KSTEST 5C') }); await page.waitForTimeout(800) }
       await page.click('[data-testid="post-next"]'); await page.waitForSelector('[data-testid="post-submit"]', { timeout: 20000 })

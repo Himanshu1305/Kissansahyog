@@ -9,7 +9,7 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import * as T from '../fix9b/lib9b.mjs'
-import { fillStep2, testJpeg } from '../phase5b/listings.mjs'
+import { fillStep2, testJpeg, waitStep2 } from '../phase5b/listings.mjs'
 import {
   EQUIPMENT_SPECS, OUTPUT_UNITS, TRACTOR_BRANDS, SPEC_FIELDS,
   equipmentSpecFields, equipmentSpecMessage, optionLabel,
@@ -20,7 +20,8 @@ const ONLY = argv('--only')?.split(',') || null
 const TYPES = argv('--types')?.split(',') || Object.keys(EQUIPMENT_SPECS)
 const FIELDS = argv('--fields')?.split(',') || null
 const RUN = Date.now().toString(36).slice(-5)
-const EV = resolve('docs/review/batch9/evidence/fix9c'); mkdirSync(EV, { recursive: true })
+// --ev <dir>: write results / created rows / screenshots / heartbeat somewhere else (Batch 10A re-run)
+const EV = resolve(argv('--ev') || 'docs/review/batch9/evidence/fix9c'); mkdirSync(EV, { recursive: true })
 const LABEL = T.LABEL
 const SUCCESS = /आपकी लिस्टिंग जुड़ गई|Your listing has been posted/
 const OFFER_PID = 'P7'
@@ -56,11 +57,11 @@ async function shot(page, name, { full = false } = {}) {
     for (const el of document.querySelectorAll('body *')) if (el.children.length === 0 && re.test(el.textContent || '') && !/hello@kissansahyog/i.test(el.textContent)) { el.style.setProperty('background', '#444', 'important'); el.style.setProperty('color', 'transparent', 'important') }
   }).catch(() => {})
   await page.screenshot({ path: join(dir, `${name}.jpg`), type: 'jpeg', quality: 50, fullPage: full }).catch(() => {})
-  return `evidence/fix9c/${LABEL}/${name}.jpg`
+  return `${argv('--ev') ? argv('--ev') : 'evidence/fix9c'}/${LABEL}/${name}.jpg`
 }
 function heartbeat(what) {
   const d = new Date(); const p = (n) => String(n).padStart(2, '0')
-  writeFileSync(resolve('docs/review/batch9/HEARTBEAT_FIX9C.log'), `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())} | tests(${LABEL}) ${what}\n`, { flag: 'a' })
+  writeFileSync(argv('--ev') ? join(EV, 'HEARTBEAT.log') : resolve('docs/review/batch9/HEARTBEAT_FIX9C.log'), `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())} | tests(${LABEL}) ${what}\n`, { flag: 'a' })
 }
 async function run(id, fn) {
   if (loadResults().some((x) => x.id === id && x.status === 'RAN-PASSED') && process.argv.includes('--resume')) return
@@ -555,7 +556,7 @@ async function C10() {
         await page.click(`[data-testid="post-cat-${cat}"]`)
         await page.click(`[data-testid="post-type-${type}"]`)
         await page.click('[data-testid="post-next"]')
-        await page.waitForSelector('[data-testid="post-source-farmer"]', { timeout: 20000 })
+        await waitStep2(page) // Batch 10A: source is on step 1 now (default farmer)
         await page.waitForTimeout(400)
         await fillStep2(page, `KSTEST 9C C10 ${RUN}`, vname)
         if (cat === 'jugaad') { await page.setInputFiles('input[type="file"]', { name: 'kstest-9c.jpg', mimeType: 'image/jpeg', buffer: await testJpeg('KSTEST 9C') }); await page.waitForTimeout(500) }

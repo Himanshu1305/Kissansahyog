@@ -37,8 +37,9 @@ try {
       await page.click('[data-testid="post-next"]')
       await page.waitForTimeout(500)
       const e = await errText()
-      const stayed = await page.locator('[data-testid="post-source-farmer"]').count()
-      rows.push({ cell: `${p.category}/${p.type}`, error: e, stayedOnStep2: stayed > 0 })
+      // Batch 10A: post-source-* now lives on step 1; "still on step 2" = no step-1 block, no step-3 submit.
+      const stayed = (await page.locator('[data-testid="post-source-block"]').count()) === 0 && (await page.locator('[data-testid="post-submit"]').count()) === 0 && (await page.locator('[id^="f_"]').count()) > 0
+      rows.push({ cell: `${p.category}/${p.type}`, error: e, stayedOnStep2: stayed })
     }
     await L.shot(page, A, 'E1-last-required-error')
     const bad = rows.filter((r) => !r.error || !r.stayedOnStep2)

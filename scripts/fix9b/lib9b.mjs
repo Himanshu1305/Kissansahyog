@@ -20,7 +20,8 @@ export const BASE = argBase.replace(/\/$/, '')
 {
   const h = new URL(BASE).host
   // 9C: 127.0.0.1:4174 too (another project on this PC also listens on 4173)
-  if (!['localhost:4173', '127.0.0.1:4173', '127.0.0.1:4174', 'staging.kissansahyog.com'].includes(h)) throw new Error(`refusing base ${BASE}`)
+  // 10A: 127.0.0.1:4185 (new build) / 4186 (pre-10a build) — both use the staging database
+  if (!['localhost:4173', '127.0.0.1:4173', '127.0.0.1:4174', '127.0.0.1:4185', '127.0.0.1:4186', 'staging.kissansahyog.com'].includes(h)) throw new Error(`refusing base ${BASE}`)
 }
 export const LABEL = BASE.includes('staging.kissansahyog.com') ? 'deployed' : 'local'
 

@@ -1,0 +1,42 @@
+{
+ "at": "2026-10-17T09:11:48.821Z",
+ "run1_batch10a": {
+  "listings_deleted": 6,
+  "test_village_names_deleted": 6,
+  "profiles_deleted": 1,
+  "auth_users_deleted": 0,
+  "note": "auth user not matched by profile id (ids differ); fixed and removed in run2"
+ },
+ "run2_batch10a": {
+  "at": "2026-10-17T09:11:38.625Z",
+  "listings_recorded": 6,
+  "listings_deleted": 0,
+  "test_village_names_deleted": 0,
+  "test_users_recorded": 1,
+  "profiles_deleted": 0,
+  "auth_users_deleted": 1,
+  "kstest_10a_listings_left": 0,
+  "kstest_10a_users_left": 0,
+  "kstest_10a_auth_users_left": 0,
+  "kstest_keep_listings_before": 24,
+  "kstest_keep_listings_after": 24
+ },
+ "fix9c_rerun": {
+  "at": "2026-10-17T09:11:07.485Z",
+  "listings_recorded": 17,
+  "listings_deleted": 17,
+  "photo_files_referenced": 0,
+  "photo_files_deleted": 0,
+  "test_village_names_deleted": 17,
+  "kstest_9c_listings_left": 0,
+  "kstest_keep_before": 24,
+  "kstest_keep_after": 24
+ },
+ "final_check": {
+  "kstest_10a_listings": 0,
+  "kstest_9c_listings": 0,
+  "kstest_10a_profiles": 0,
+  "kstest_10a_auth_users": 0,
+  "kstest_keep_listings": 24
+ }
+}

@@ -6,7 +6,10 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { stagingSql } from '../fix9b/stagingSql.mjs'
 
-const FILE = 'docs/review/batch9/evidence/fix9c/created-rows.json'
+// --ev <dir>: the evidence folder of a re-run (Batch 10A); default the batch 9C folder
+const EVI = process.argv.indexOf('--ev')
+const EVD = EVI > 0 ? process.argv[EVI + 1] : 'docs/review/batch9/evidence/fix9c'
+const FILE = `${EVD}/created-rows.json`
 const rows = JSON.parse(readFileSync(FILE, 'utf8'))
 const ids = [...new Set(rows.map((r) => r.id).filter((x) => /^[0-9a-f-]{36}$/.test(x)))]
 const list = ids.map((x) => `'${x}'`).join(',') || "'00000000-0000-0000-0000-000000000000'"
@@ -32,4 +35,4 @@ const left = await stagingSql(`select count(*)::int n from public.listings where
 const keepAfter = await stagingSql(`select count(*)::int n from public.listings where village_name like 'KSTEST-KEEP%' or details::text like '%KSTEST-KEEP%'`)
 const out = { at: new Date().toISOString(), listings_recorded: ids.length, listings_deleted: del[0].n, photo_files_referenced: paths.length, photo_files_deleted: removed, test_village_names_deleted: vc[0].n, kstest_9c_listings_left: left[0].n, kstest_keep_before: keepBefore[0].n, kstest_keep_after: keepAfter[0].n }
 console.log(JSON.stringify(out))
-writeFileSync('docs/review/batch9/evidence/fix9c/cleanup.json', JSON.stringify(out, null, 1))
+writeFileSync(`${EVD}/cleanup.json`, JSON.stringify(out, null, 1))

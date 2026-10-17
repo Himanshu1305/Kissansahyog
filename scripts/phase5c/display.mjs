@@ -13,7 +13,7 @@
 //    without algorithmic darkening, so the expectation is "page stays fully light and readable".
 //  * phone language — browser locale hi-IN / en-IN (+ the app's own language switch ks_lang_v1).
 import * as C from './lib5c.mjs'
-import { fillStep2 } from '../phase5b/listings.mjs'
+import { fillStep2, waitStep2 } from '../phase5b/listings.mjs'
 
 const VARIANTS = {
   base: { label: 'default (font 1.0, 412 CSS px, light, hi)', font: 1, width: 412, dsf: 2.625, lang: 'hi', locale: 'hi-IN' },
@@ -174,12 +174,12 @@ try {
     }
     try {
       await C.goto(page, '/post', 1500)
+      await page.click('[data-testid="post-source-farmer"]').catch(() => {}) // Batch 10A: first control of step 1
       await page.click('[data-testid="post-cat-labor"]'); await page.click('[data-testid="post-type-offer"]')
       await check(page, diag, 'post-1', 'Post step 1/3')
       await applyFont(page, 1)
       await page.click('[data-testid="post-next"]')
-      await page.waitForSelector('[data-testid="post-source-farmer"]', { timeout: 20000 })
-      await page.click('[data-testid="post-source-farmer"]').catch(() => {})
+      await waitStep2(page)
       await fillStep2(page, 'KSTEST-5C display (never submitted)')
       await check(page, diag, 'post-2', 'Post step 2/3 (filled)')
       await applyFont(page, 1)
