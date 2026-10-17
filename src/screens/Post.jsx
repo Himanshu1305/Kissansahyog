@@ -17,6 +17,7 @@ import { drainGeocodeQueue } from '../lib/location/geocodeQueue'
 import { getPostPosition } from '../lib/location/postPosition'
 import { WIDE_ELIGIBLE_CATEGORIES } from '../lib/distance'
 import WhatsAppJoin from '../components/WhatsAppJoin'
+import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 import { uploadPhotos } from '../lib/listings/photos'
 
 // Post flow in 3 steps (Batch1 item 5), with a 1/3 step indicator. Back keeps all
@@ -286,7 +287,8 @@ export default function Post() {
 
           <h2 className="mb-1 text-xl font-bold text-stone-800">{t('post_step_what')}</h2>
           {/* Small helper link to the posting steps on /how-to-use (Batch 7C). */}
-          <p className="mb-3"><Link to="/how-to-use#listing-kaise-dalein" data-testid="post-how-to-use" className="inline-flex min-h-[44px] items-center text-sm font-semibold text-green-800 underline">{t('post_howto_help')}</Link></p>
+          {/* Batch 10C: the small post-demo pill sits on the same line as the how-to link (wraps on narrow screens). */}
+          <p className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1"><Link to="/how-to-use#listing-kaise-dalein" data-testid="post-how-to-use" className="inline-flex min-h-[44px] items-center text-sm font-semibold text-green-800 underline">{t('post_howto_help')}</Link><GuideHelpButton demoId="post" label="guide_help_demo_btn" size="sm" testid="help-post" /></p>
           <div className="mb-5 grid grid-cols-2 gap-2 md:grid-cols-3">
             {CATEGORIES.map((c) => {
               const enabled = isEnabled(c)

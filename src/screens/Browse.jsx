@@ -15,6 +15,7 @@ import { useUserLocation } from '../lib/location/LocationProvider'
 import OfflineStamp from '../components/OfflineStamp'
 import OfflineNotice from '../components/OfflineNotice'
 import { useOfflineInfo } from '../lib/offline/useOffline'
+import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 
 // Browse nearby active listings. Public — no login needed to look (Batch1 item 3A);
 // the phone number stays behind login (reveal flow in ListingCard/ListingDetail).
@@ -121,7 +122,14 @@ export default function Browse() {
   const shownFallback = fallback.filter(matchesEtype).filter(matchesEquipmentTag)
 
   return (
-    <Screen title={t('browse_title')} onBack={() => navigate(user ? '/home' : '/')} width="wide">
+    <Screen
+      title={t('browse_title')}
+      onBack={() => navigate(user ? '/home' : '/')}
+      width="wide"
+      // Batch 10C: "how do I get the number?" sits in the existing title row, right above the filters,
+      // so it adds no height and the results do not move down.
+      right={<GuideHelpButton demoId="find" label="guide_browse_find_number" size="sm" testid="help-browse" />}
+    >
       {/* Browse + listings are noindex for now (SEO for listings is a later batch). */}
       <Seo noindex path="/browse" />
       {/* Category chips — all 10 wrap into rows (no hidden horizontal scroll). */}

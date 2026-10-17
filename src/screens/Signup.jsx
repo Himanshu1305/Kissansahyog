@@ -8,6 +8,7 @@ import { Screen, Field, TextInput, BigButton, Notice, Spinner } from '../compone
 import DisclaimerBanner from '../components/DisclaimerBanner'
 import PlaceField from '../components/location/PlaceField'
 import EmailPasswordFields from '../components/auth/EmailPasswordFields'
+import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 
 // Batch 10A Task E — ONE short page: name, mobile, e-mail + password, village/town, one
 // "show my details" checkbox, the one-time acknowledgment (unchanged text) and Register.
@@ -84,6 +85,9 @@ export default function Signup() {
     <Screen title={t('signup_title')} onBack={() => navigate('/')}>
       {/* Batch 7D: one line of text under the heading. */}
       <p data-testid="signup-free-registration" className="mb-3 inline-block rounded-full bg-[var(--ks-green-tint)] px-3 py-1 text-sm font-bold text-[var(--ks-green-dark)]">✓ {t('free_registration')}</p>
+
+      {/* Batch 10C: watch the register demo in a sheet over this page — the form keeps what was typed. */}
+      <div className="mb-3"><GuideHelpButton demoId="register" label="guide_help_demo_btn" testid="help-signup" /></div>
 
       {error && <div data-testid="signup-error"><Notice tone="error">{error}</Notice></div>}
 
