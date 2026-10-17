@@ -39,3 +39,15 @@ Each entry: what, why, the alternative.
    *Note for tests:* older scripts (`scripts/fix9b/tests.mjs`, `scripts/fix9c/tests.mjs`, `scripts/phase5b/*`,
    `scripts/phase5c/*`) wait for `post-source-farmer` as a "step 2 is open" marker and click
    `post-source-vendor` on step 2; those need updating if they are re-run (Task G).
+8. **Task B — FieldRow layout details.** `FieldRow` (fields.jsx) is `grid-cols-1 min-[400px]:grid-cols-2` with
+   `gap-x-3` and NO vertical gap (`gap-y-0`): each `Field` already has its own bottom margin, so a stacked row
+   (< 400 px) looks exactly like the old one-per-row form. From 400 px each child Field becomes a 3-row subgrid
+   (label / control / hint-or-error), so when one label wraps to two lines (e.g. Hindi "ट्रैक्टर की अश्वशक्ति (HP)")
+   both controls still start on the same line; without subgrid support the fields simply align at the top.
+   Children get `min-w-0` so a long dropdown option cannot widen the page at 320 px.
+   *Alternative:* plain `gap-3 items-start` — rejected, the inputs would sit at different heights whenever only
+   one label wraps, and the stacked layout would get 12 px of extra space between fields.
+   Pairs used: equipment Brand|Model, Year|HP (Drone: Year alone), Output per hour|Unit, Rental basis|Rate
+   (non-tanker branch only); building materials Quantity|Unit (obvious pair). Post step 3 left unchanged:
+   transport From/To are village names (long text) and already sit in an `md:grid-cols-2` grid; the asset
+   village is a single field.

@@ -9,6 +9,21 @@ import { Field, Select, TextInput } from '../ui'
 const slug = (s) => 'f_' + String(s).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')
 const fieldId = (name, label) => (name ? `f_${name}` : slug(label))
 
+// Two short, related fields side by side (Batch 10A). One column on narrow phones (< 400 px),
+// two columns from 400 px. Each child is a <Field> (label / control / hint-or-error); from 400 px
+// the children share the row's tracks via subgrid, so a label that wraps to two lines does not
+// push only its own control down — both controls start on the same line. min-w-0 lets a long
+// dropdown option shrink instead of widening the page. Without subgrid support the fields still
+// align at the top (items-start). Vertical spacing comes from Field's own margin (gap-y-0), so
+// the stacked layout looks exactly like the one-per-row form.
+export function FieldRow({ children }) {
+  return (
+    <div className="grid grid-cols-1 items-start gap-x-3 gap-y-0 min-[400px]:grid-cols-2 *:min-w-0 min-[400px]:*:row-span-3 min-[400px]:*:grid min-[400px]:*:grid-rows-subgrid min-[400px]:*:content-start">
+      {children}
+    </div>
+  )
+}
+
 // Labelled single-select dropdown backed by a catalog option list.
 export function OptionSelect({ name, label, list, value, onChange, required, error, hint, includeEmpty = true, emptyLabel }) {
   const { t, lang } = useLang()

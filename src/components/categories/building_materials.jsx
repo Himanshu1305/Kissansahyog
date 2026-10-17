@@ -2,7 +2,7 @@
 // { material_type, brand_or_grade, quantity, unit, rate_amount,
 //   delivery_available, pickup_location }
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { OptionSelect, TextField } from './fields'
+import { OptionSelect, TextField, FieldRow } from './fields'
 import { BUILDING_MATERIAL_TYPE, BUILDING_MATERIAL_UNIT, YES_NO, optionLabel } from '../../lib/listings/catalog'
 
 export function initialDetails() {
@@ -39,8 +39,10 @@ export function Fields({ details, setDetails, listingType }) {
     <>
       <OptionSelect name="material_type" label={t('field_building_material_type')} list={BUILDING_MATERIAL_TYPE} value={details.material_type} onChange={set('material_type')} required />
       <TextField name="brand_or_grade" label={t('field_building_brand_grade')} value={details.brand_or_grade} onChange={set('brand_or_grade')} placeholder={t('ph_building_brand_grade')} />
-      <TextField name="quantity" label={t('field_building_quantity')} value={details.quantity} onChange={set('quantity')} placeholder={t('ph_building_quantity')} required />
-      <OptionSelect name="unit" label={t('field_building_unit')} list={BUILDING_MATERIAL_UNIT} value={details.unit} onChange={set('unit')} required />
+      <FieldRow>
+        <TextField name="quantity" label={t('field_building_quantity')} value={details.quantity} onChange={set('quantity')} placeholder={t('ph_building_quantity')} required />
+        <OptionSelect name="unit" label={t('field_building_unit')} list={BUILDING_MATERIAL_UNIT} value={details.unit} onChange={set('unit')} required />
+      </FieldRow>
       <TextField name="rate_amount" label={t('field_building_rate')} value={details.rate_amount} onChange={set('rate_amount')} placeholder={t('ph_building_rate')} required={listingType === 'offer'} />
       <OptionSelect name="delivery_available" label={t('field_building_delivery')} list={YES_NO} value={details.delivery_available} onChange={set('delivery_available')} required />
       <TextField name="pickup_location" label={t('field_building_pickup')} value={details.pickup_location} onChange={set('pickup_location')} placeholder={t('ph_building_pickup')} required />

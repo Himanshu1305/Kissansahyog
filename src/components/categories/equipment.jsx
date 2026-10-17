@@ -7,9 +7,9 @@
 //   { spec_version: 1, brand, brand_other?, model, year, power_hp?, spec_*…, output_per_hour?, output_unit?,
 //     output_unit_other? }; requirements may carry an optional { min_hp }. Older rows have none of these
 //   keys and render exactly as before.
-import { Fragment, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { OptionSelect, LookupSelect, SegmentedChoice, DateField, TextField, NumberField, MultiChips } from './fields'
+import { OptionSelect, LookupSelect, SegmentedChoice, DateField, TextField, NumberField, MultiChips, FieldRow } from './fields'
 import {
   RENTAL_BASIS, TANKER_VEHICLE, TANKER_WATER_USE, TANKER_WATER_SOURCE, MONTH_OPTIONS, EQUIPMENT_TAGS, optionLabel, optionLabels,
   TRACTOR_BRANDS, OUTPUT_UNITS, SPEC_FIELDS, SPEC_KEYS, SPEC_VERSION, SPEC_SELLER_NOTE,
@@ -135,6 +135,26 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
   const numberProps = (kind) => (kind === 'text' ? {} : { inputMode: 'decimal' })
   const optional = (label) => `${label} ${t('optional')}`
 
+  // One spec field from the type's own definitions (equipmentSpecFields: per-type labels, hints, kinds).
+  const specList = spec ? equipmentSpecFields(typeName) : []
+  const specDefs = Object.fromEntries(specList.map((f) => [f.key, f]))
+  const specExtras = specList.filter((f) => !['brand', 'model', 'year', 'power_hp'].includes(f.key))
+  const specField = (f) => (f.dropdown ? (
+    <OptionSelect key={f.key} name="brand" label={f.label[lang]} list={TRACTOR_BRANDS} value={details.brand} onChange={set('brand')} required error={fe('brand')} />
+  ) : (
+    <TextField
+      key={f.key}
+      name={f.key}
+      label={f.label[lang]}
+      value={details[f.key]}
+      onChange={set(f.key)}
+      required
+      error={fe(f.key)}
+      hint={f.hint?.[lang]}
+      {...numberProps(f.kind)}
+    />
+  ))
+
   return (
     <>
       <LookupSelect
@@ -149,28 +169,25 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
       {spec && listingType === 'offer' && (
         <div data-testid="equipment-specs" className="my-3 rounded-xl border-2 border-stone-200 bg-stone-50 p-3">
           <p className="mb-2 text-sm font-semibold text-stone-600">🔧 {t('spec_section_title')}</p>
-          {equipmentSpecFields(typeName).map((f) => (f.dropdown ? (
-            <Fragment key={f.key}>
-              <OptionSelect name="brand" label={f.label[lang]} list={TRACTOR_BRANDS} value={details.brand} onChange={set('brand')} required error={fe('brand')} />
-              {details.brand === 'other' && (
-                <TextField name="brand_other" label={SPEC_FIELDS.brand_other.label[lang]} value={details.brand_other} onChange={set('brand_other')} required error={fe('brand_other')} />
-              )}
-            </Fragment>
-          ) : (
-            <TextField
-              key={f.key}
-              name={f.key}
-              label={f.label[lang]}
-              value={details[f.key]}
-              onChange={set(f.key)}
-              required
-              error={fe(f.key)}
-              hint={f.hint?.[lang]}
-              {...numberProps(f.kind)}
-            />
-          )))}
-          <TextField name="output_per_hour" label={optional(SPEC_FIELDS.output_per_hour.label[lang])} value={details.output_per_hour} onChange={set('output_per_hour')} error={fe('output_per_hour')} inputMode="decimal" />
-          <OptionSelect name="output_unit" label={SPEC_FIELDS.output_unit.label[lang]} list={OUTPUT_UNITS} value={details.output_unit || spec.unit} onChange={(v) => set('output_unit')(v || spec.unit)} includeEmpty={false} />
+          {/* Batch 10A: Brand | Model and Year | HP share a row; extras one per row; Output | Unit share a row. */}
+          <FieldRow>
+            {specField(specDefs.brand)}
+            {specField(specDefs.model)}
+          </FieldRow>
+          {specDefs.brand.dropdown && details.brand === 'other' && (
+            <TextField name="brand_other" label={SPEC_FIELDS.brand_other.label[lang]} value={details.brand_other} onChange={set('brand_other')} required error={fe('brand_other')} />
+          )}
+          {specDefs.power_hp ? (
+            <FieldRow>
+              {specField(specDefs.year)}
+              {specField(specDefs.power_hp)}
+            </FieldRow>
+          ) : specField(specDefs.year)}
+          {specExtras.map((f) => specField(f))}
+          <FieldRow>
+            <TextField name="output_per_hour" label={optional(SPEC_FIELDS.output_per_hour.label[lang])} value={details.output_per_hour} onChange={set('output_per_hour')} error={fe('output_per_hour')} inputMode="decimal" />
+            <OptionSelect name="output_unit" label={SPEC_FIELDS.output_unit.label[lang]} list={OUTPUT_UNITS} value={details.output_unit || spec.unit} onChange={(v) => set('output_unit')(v || spec.unit)} includeEmpty={false} />
+          </FieldRow>
           {(details.output_unit || spec.unit) === 'other' && (
             <TextField name="output_unit_other" label={SPEC_FIELDS.output_unit_other.label[lang]} value={details.output_unit_other} onChange={set('output_unit_other')} error={fe('output_unit_other')} />
           )}
@@ -196,21 +213,23 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
         </>
       ) : (
         <>
-          <OptionSelect
-            name="rental_basis"
-            label={t('field_rental_basis')}
-            list={RENTAL_BASIS}
-            value={details.rental_basis}
-            onChange={set('rental_basis')}
-          />
-          <TextField
-            name="rate_amount"
-            label={t('field_equipment_rate')}
-            value={details.rate_amount}
-            onChange={set('rate_amount')}
-            placeholder={t('ph_equipment_rate')}
-            required={listingType === 'offer'}
-          />
+          <FieldRow>
+            <OptionSelect
+              name="rental_basis"
+              label={t('field_rental_basis')}
+              list={RENTAL_BASIS}
+              value={details.rental_basis}
+              onChange={set('rental_basis')}
+            />
+            <TextField
+              name="rate_amount"
+              label={t('field_equipment_rate')}
+              value={details.rate_amount}
+              onChange={set('rate_amount')}
+              placeholder={t('ph_equipment_rate')}
+              required={listingType === 'offer'}
+            />
+          </FieldRow>
         </>
       )}
 
