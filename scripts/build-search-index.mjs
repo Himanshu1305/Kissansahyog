@@ -13,6 +13,7 @@ import { writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { CROPS } from '../src/content/crops.js'
+import { strings } from '../src/lib/i18n/strings.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'search-index.json')
@@ -245,6 +246,11 @@ const HUBS = [
   { title_hi: 'किसान मेला', title_en: 'Kisan Mela', url: '/kisan-mela', keywords: 'kisan mela fair किसान मेला' },
   { title_hi: 'हमारे बारे में — किसान सहयोग', title_en: 'About Us — Kissan Sahyog', url: '/about', keywords: 'हमारे बारे में किसान सहयोग क्या है about us kissan sahyog sagar farm marketplace खेती का बाज़ार सागर स्वामी संचालक owner संपर्क' },
   { title_hi: 'वेबसाइट कैसे इस्तेमाल करें', title_en: 'How to use the website', url: '/how-to-use', keywords: 'कैसे इस्तेमाल करें वेबसाइट कैसे चलाएं how to use help guide लिस्टिंग कैसे डालें रजिस्टर लॉगिन फोटो संपर्क होम स्क्रीन इंस्टॉल भाषा बदलें मदद' },
+  { title_hi: strings.guide_hub_h1.hi, title_en: strings.guide_hub_h1.en, url: '/guide', keywords: 'गाइड डेमो सीखें कैसे चलाएं guide demo learn how to use tutorial मदद help' },
+  { title_hi: strings.guide_register_h1.hi, title_en: strings.guide_register_h1.en, url: '/guide/register', keywords: 'रजिस्टर कैसे करें खाता बनाएं register signup account demo guide डेमो' },
+  { title_hi: strings.guide_post_h1.hi, title_en: strings.guide_post_h1.en, url: '/guide/post', keywords: 'पोस्ट कैसे करें लिस्टिंग डालें मशीन सामान बेचें post listing sell demo guide डेमो' },
+  { title_hi: strings.guide_find_h1.hi, title_en: strings.guide_find_h1.en, url: '/guide/find', keywords: 'नंबर कैसे मिलेगा बेचने वाला कॉल whatsapp seller number contact find demo guide डेमो' },
+  { title_hi: strings.guide_tour_h1.hi, title_en: strings.guide_tour_h1.en, url: '/guide/tour', keywords: 'टूर पूरा किसान सहयोग क्या है tour overview demo guide डेमो' },
   { title_hi: 'संस्थापक — श्री अभिनन्दन दीक्षित', title_en: 'Founder — Shri Abhinandan Dixit', url: '/founder', keywords: 'संस्थापक अभिनन्दन दीक्षित founder abhinandan dixit about किसान सहयोग परिचय' },
 ]
 items.push(...HUBS.map((h) => ({

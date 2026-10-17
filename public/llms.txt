@@ -31,6 +31,7 @@
 - /kisan-mela — agri fairs & events
 
 ## Reference
+- /guide — short tap-through demos: /guide/register, /guide/post, /guide/find (getting a seller's number), /guide/tour
 - /articles, /safalta (success stories), /videos, /drone-didi, /resources (KVK & agri contacts)
 - /grievance, /terms, /privacy, /contact
 - Sources register: every number is cited to an official/news/company/judgment source.

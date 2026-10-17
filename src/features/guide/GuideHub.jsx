@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { PageShell } from '../../components/layout'
+import { PageShell, Seo } from '../../components/layout'
 import { GUIDE_ORDER } from './config.js'
 import { getDone, doneCount, getBadgeName, setBadgeName } from './progress.js'
 import { prefersReducedMotion, saveDataOn } from './timing.js'
@@ -98,6 +98,7 @@ export default function GuideHub() {
 
   return (
     <PageShell width="wide">
+      <Seo title={t('guide_hub_seo_title')} description={t('guide_hub_seo_desc')} path="/guide" />
       <div className="ksg-hub" data-testid="guide-hub">
         <section className="ksg-hero">
           <div className="ksg-hero-in">
