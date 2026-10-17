@@ -28,7 +28,7 @@ export default function Browse() {
   const { user } = useAuth()
   const navigate = useNavigate()
 
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   // Deep-link support: /browse?cat=land selects that tab (from the global nav).
   const initialCat = ENABLED_CATEGORIES.includes(searchParams.get('cat'))
     ? searchParams.get('cat')
@@ -36,9 +36,17 @@ export default function Browse() {
   const [category, setCategory] = useState(initialCat)
   // Equipment sub-type deep-link (Phase 5): /browse?cat=equipment&etype=water_tanker.
   const etype = searchParams.get('etype')
-  const initialEquipmentTag = EQUIPMENT_TAGS.some((tag) => tag.value === searchParams.get('etag')) ? searchParams.get('etag') : null
   const [typeFilter, setTypeFilter] = useState(null) // null | 'offer' | 'requirement'
-  const [equipmentTag, setEquipmentTag] = useState(initialEquipmentTag)
+  // Batch 10C: the equipment tag lives in the web address (?etag=, same values as the Bazaar link) so a
+  // refresh or shared link keeps it. Unknown values are ignored. REPLACE, not push: Back leaves Browse in one step.
+  const urlEtag = searchParams.get('etag')
+  const equipmentTag = EQUIPMENT_TAGS.some((tag) => tag.value === urlEtag) ? urlEtag : null
+  const setEquipmentTag = (value) => setSearchParams((prev) => {
+    const next = new URLSearchParams(prev)
+    if (value) next.set('etag', value)
+    else next.delete('etag')
+    return next
+  }, { replace: true })
   const [sort, setSort] = useState('nearest')
   const [extras, setExtras] = useState({})
   const [listings, setListings] = useState([])
@@ -108,7 +116,7 @@ export default function Browse() {
   // Optional equipment sub-type filter (water tanker): keep only tanker listings.
   const tankerId = (extras.equipmentTypes || []).find((e) => e.name_en === 'Water tanker')?.id ?? null
   const matchesEtype = (l) => etype !== 'water_tanker' ? true : (l.details?.is_tanker === true || l.details?.equipment_type_id === tankerId)
-  const matchesEquipmentTag = (l) => !equipmentTag || (l.details?.equipment_tags || []).includes(equipmentTag)
+  const matchesEquipmentTag = (l) => !equipmentTag || category !== 'equipment' || (l.details?.equipment_tags || []).includes(equipmentTag)
   const shownListings = listings.filter(matchesEtype).filter(matchesEquipmentTag)
   const shownFallback = fallback.filter(matchesEtype).filter(matchesEquipmentTag)
 
