@@ -1,0 +1,384 @@
+{
+  "label": "prod-after-rollback",
+  "base": "https://kissansahyog.com",
+  "startedAt": "2026-10-17T11:14:27.708Z",
+  "gates": {
+    "a_pages": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "/ → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "आज किसान के लिए",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-home.png"
+          }
+        },
+        {
+          "desc": "/ no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/mausam → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-mausam.png"
+          }
+        },
+        {
+          "desc": "/mausam no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/msp → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "गेहूं भाव — आज व MSP से तुलना",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-msp.png"
+          }
+        },
+        {
+          "desc": "/msp no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/browse → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "आस-पास खोजें",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-browse.png"
+          }
+        },
+        {
+          "desc": "/browse no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/sawaal → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "किसान सवाल — आपके सवाल, हमारे जवाब",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-sawaal.png"
+          }
+        },
+        {
+          "desc": "/sawaal no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/yojana → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "सरकारी योजनाएं",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-yojana.png"
+          }
+        },
+        {
+          "desc": "/yojana no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/cold-storage → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "मध्य प्रदेश कोल्ड स्टोरेज खोजें",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-cold_storage.png"
+          }
+        },
+        {
+          "desc": "/cold-storage no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/about → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "हमारे बारे में",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-about.png"
+          }
+        },
+        {
+          "desc": "/about no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/privacy → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "गोपनीयता नीति",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-privacy.png"
+          }
+        },
+        {
+          "desc": "/privacy no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/terms → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "उपयोग की शर्तें",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-terms.png"
+          }
+        },
+        {
+          "desc": "/terms no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/grievance → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "सुझाव और शिकायत",
+            "errorBoundary": false,
+            "screenshot": "page-prod-after-rollback-grievance.png"
+          }
+        },
+        {
+          "desc": "/grievance no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        }
+      ],
+      "notes": [
+        "/ console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \",\"Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector\"]",
+        "/: 23 allowlisted console error(s) (B17 localhost preload)",
+        "/mausam console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/mausam: 11 allowlisted console error(s) (B17 localhost preload)",
+        "/msp console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/msp: 14 allowlisted console error(s) (B17 localhost preload)",
+        "/browse console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/browse: 23 allowlisted console error(s) (B17 localhost preload)",
+        "/sawaal console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/sawaal: 6 allowlisted console error(s) (B17 localhost preload)",
+        "/yojana console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/yojana: 3 allowlisted console error(s) (B17 localhost preload)",
+        "/cold-storage console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/cold-storage: 7 allowlisted console error(s) (B17 localhost preload)",
+        "/about console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \",\"Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector\"]",
+        "/about: 3 allowlisted console error(s) (B17 localhost preload)",
+        "/privacy console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/privacy: 3 allowlisted console error(s) (B17 localhost preload)",
+        "/terms console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/terms: 3 allowlisted console error(s) (B17 localhost preload)",
+        "/grievance console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/grievance: 4 allowlisted console error(s) (B17 localhost preload)"
+      ]
+    },
+    "compare_with_snapshot": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "/: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": false,
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/mausam: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": false,
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/msp: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": true,
+            "faqNow": true
+          }
+        },
+        {
+          "desc": "/browse: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": false,
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/sawaal: 200, title/h1 unchanged, size within -15%/+300% (data page, snapshot taken before data loaded), no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": false,
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/yojana: 200, title/h1 unchanged, size within -15%/+300% (data page, snapshot taken before data loaded), no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": false,
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/cold-storage: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": true,
+            "faqNow": true
+          }
+        },
+        {
+          "desc": "/about: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": false,
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/privacy: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": false,
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "/terms: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "title": "same",
+            "h1": "same",
+            "sizeRatio": 1,
+            "faqBefore": false,
+            "faqNow": false
+          }
+        },
+        {
+          "desc": "robots.txt unchanged",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "desc": "sitemap index is valid XML and lists 4 children",
+          "ok": true,
+          "detail": [
+            "https://kissansahyog.com/sitemap-pages.xml",
+            "https://kissansahyog.com/sitemap-sawaal.xml",
+            "https://kissansahyog.com/sitemap-cold-storage.xml",
+            "https://kissansahyog.com/sitemap-schemes.xml"
+          ]
+        },
+        {
+          "desc": "/sitemap-pages.xml valid XML with urls",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "urls": 49,
+            "before": 49
+          }
+        },
+        {
+          "desc": "/sitemap-sawaal.xml valid XML with urls",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "urls": 161,
+            "before": 161
+          }
+        },
+        {
+          "desc": "/sitemap-cold-storage.xml valid XML with urls",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "urls": 35,
+            "before": 35
+          }
+        },
+        {
+          "desc": "/sitemap-schemes.xml valid XML with urls",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "urls": 18,
+            "before": 18
+          }
+        }
+      ],
+      "notes": []
+    }
+  },
+  "blockedWrites": [
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/recent_crop_reports",
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/get_public_feedback"
+  ],
+  "finishedAt": "2026-10-17T11:15:09.557Z",
+  "verdict": "ALL PASSED"
+}

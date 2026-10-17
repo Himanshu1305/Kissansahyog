@@ -1,0 +1,16 @@
+PASS  crop cards are buttons (tappable)
+PASS  crop panel renders
+PASS  today's call uses actionWindows (spray/irrigate/harvest)
+PASS  season work uses existing cropadv_<slug> only
+PASS  season work renders as bullet list (adviceBullets)
+PASS  read-full Q&A link under bullets
+PASS  common problems: crop Q&A links + samasya hub, hidden when none
+PASS  nearby help: browse + drone + equipment + KVK/resources
+PASS  location control stays at top (public, no login)
+PASS  no new /fasal-salah/:crop route (panel approach)
+PASS  rabi crop gehun yields 3–5 bullets (got 3)
+PASS  rabi crop chana yields 3–5 bullets (got 3)
+PASS  rabi crop masoor yields 3–5 bullets (got 3)
+PASS  rabi crop sarson yields 3–5 bullets (got 3)
+
+14 passed, 0 failed

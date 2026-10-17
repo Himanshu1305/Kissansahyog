@@ -1,0 +1,48 @@
+*** DRY RUN — nothing will be built, deployed, rolled back or written ***
+== 0. preconditions
++ git branch --show-current -> release-10a
++ git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
++ git rev-parse pre-10a-ship -> 020a50a
++ git ls-remote --tags origin pre-10a-ship (peeled) -> 020a50a
++ HEAD 0306039  origin/release-10a 0306039
+  (Batch 10A has no database change: no migration step)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment bf4f9479-821b-41a0-b20c-60ce22eb6303 (source ee3ecfd), main chunk /assets/index-Cy1O2hd0.js
+  = the expected live deployment (bf4f9479-821b-41a0-b20c-60ce22eb6303)
++ (would write) /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/prod-deployment-before.txt  deployment_id=bf4f9479-821b-41a0-b20c-60ce22eb6303
+== 2. read-only: live prod still matches the snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-before.json; fresh snapshot
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/prod-before-ship.json
+== 3. build
++ timeout 1500 npm run build:prod   > /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/build-prod-20261017-163232.log
+main chunk of the dist folder as it is now (a real run rebuilds it first): /assets/index-W1qqV96e.js
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/deploy-20261017-163232.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/prod-before-ship.json
++ GET https://kissansahyog.com{/signup,/post,/browse} -> 200 + new main chunk   (read-only)
+== 7. on any failure: bash scripts/rollback-prod-10a.sh bf4f9479-821b-41a0-b20c-60ce22eb6303
++ (read-only check that the rollback path works)
+    [rollback dry-run] *** DRY RUN — nothing will be changed ***
+    [rollback dry-run] + timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/bf4f9479-821b-41a0-b20c-60ce22eb6303   (read-only)
+    [rollback dry-run] target deployment: env=production status=success source=ee3ecfd created=2026-10-15T13:19:19.901801Z
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+    [rollback dry-run] live production deployment now: bf4f9479-821b-41a0-b20c-60ce22eb6303
+    [rollback dry-run] (note: bf4f9479-821b-41a0-b20c-60ce22eb6303 is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
+    [rollback dry-run] + POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/bf4f9479-821b-41a0-b20c-60ce22eb6303/rollback   (Authorization: Bearer <token, not shown>)
+    [rollback dry-run] + (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == bf4f9479-821b-41a0-b20c-60ce22eb6303 (max 3 min)
+    [rollback dry-run] + (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10a/evidence/prod-before.json
+    [rollback dry-run]   (no database step: Batch 10A changed no database)
+    [rollback dry-run] 
+    [rollback dry-run] ==================================================================
+    [rollback dry-run] DRY RUN OK — preconditions valid; rollback target bf4f9479-821b-41a0-b20c-60ce22eb6303 (source ee3ecfd); nothing was changed
+    [rollback dry-run] ==================================================================
+
+##################################################################
+DRY RUN OK — all preconditions valid. A real run would ship 0306039 to https://kissansahyog.com,
+replacing deployment bf4f9479-821b-41a0-b20c-60ce22eb6303 (source ee3ecfd). Nothing was changed.
+##################################################################

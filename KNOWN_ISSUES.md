@@ -444,3 +444,32 @@ left because acting on it touches working, pre-existing code with no reported is
   the old soft-redirect. If a hard 404 status is wanted, add a `dist/404.html` for Cloudflare Pages.
 - **WhatsApp features are built but hidden** until an admin pastes the channel URL into
   Admin → WhatsApp (`site_settings.whatsapp_channel_url`). Nothing WhatsApp-related shows while empty.
+
+---
+
+## Batch 10A production ship (2026-10-17)
+
+Live: deployment `0845c733-e8d0-4553-957c-10f3db23ecca`, commit `17d77e8`. See PROJECT_CONTEXT "Batches 7L–10A".
+
+- **Mobile-only login is trust-based (P0, open).** `app_login(p_phone)` signs in on the mobile number alone, with no
+  OTP. Anyone who types a non-admin user's number is logged in as that user (admins are refused on this path since
+  0059; the 5-failures throttle does not help when the number is right). Owner actions such as `close_listing`,
+  `get_my_listings` and `set_listing_unavailable` take the acting id from the app (`p_actor_id`), so the server
+  checks ownership against an id the caller chooses; edit/delete by user id is not truly server-enforced.
+  **Fix:** OTP login plus a server-checked session — batch 10B, waiting on the Jio DLT template
+  (`docs/review/batch9/BACKLOG.md` B3/B4).
+- **23 old e2e specs fail, before and after 10A** (65 passed / 23 failed on staging; 61 / 27 before 10A, the 4 fixed
+  were signup tests). They are out-of-date specs, not 10A regressions. **ESLint is not installed**, so `npm run lint`
+  fails, and `npm run test:e2e` does not start on Windows (the Playwright CLI is run directly).
+- **At 360 px the new side-by-side pairs stack.** `FieldRow` pairs fields only from 400 px wide (`min-[400px]`), so on
+  a 360 px phone Brand/Model, Year/HP etc. are one per row. Intentional; revisit if 360 px users need pairs.
+- **Signup "show my details" explanation line kept pending legal review.** The independent review flagged its
+  removal; it was put back under the checkbox (`visibility-explain`). HUMAN-REVIEW: the lawyer/founder decides if it
+  may go.
+- **Browse at 360 px: the 11 category chips push results below the first screen.** Pre-existing (before 10A); with
+  the equipment tag chips the results start even lower on the equipment tab.
+- **Browse equipment tag tap does not change the URL.** It filters the page; only the `?etag=` deep link (from
+  Bazaar) selects a tag on load. Seen in the post-ship check; not a regression. HUMAN-REVIEW.
+- **Console noise on every live page (pre-existing, not from 10A):** Cloudflare's analytics beacon
+  (`static.cloudflareinsights.com`) is blocked by our CSP, and prerendered pages carry `modulepreload` links to
+  `http://localhost:4178/assets/…` (BACKLOG B17). Both are in Batch 9 production results too.

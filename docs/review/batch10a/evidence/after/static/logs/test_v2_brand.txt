@@ -1,0 +1,15 @@
+FAIL  no English "Kisan Sahyog" (single s) in src/public/index/manifest  — C:\Users\usdvi\projects\Kissansahyog\src\lib\i18n\disclaimers.js:9, C:\Users\usdvi\projects\Kissansahyog\src\lib\i18n\disclaimers.js:10, C:\Users\usdvi\projects\Kissansahyog\src\lib\i18n\disclaimers.js:11
+PASS  protected word intact where used: "Kisan Mela"  — present
+PASS  protected word intact where used: "Kisan Sawaal"  — present
+PASS  protected word intact where used: "PM-KISAN"  — present
+PASS  protected word intact where used: "Kisan Credit"  — present
+PASS  protected word intact where used: "Kisan Call"  — present
+PASS  protected word not over-renamed: "Kissan Mela" absent
+PASS  protected word not over-renamed: "Kissan Sawaal" absent
+PASS  protected word not over-renamed: "PM-KISSAN" absent
+PASS  protected word not over-renamed: "Kissan Credit" absent
+PASS  protected word not over-renamed: "Kissan Call" absent
+PASS  greeting_sitaram = सीताराम (hi+en)
+PASS  app_name English = "Kissan Sahyog"
+
+12 passed, 1 failed

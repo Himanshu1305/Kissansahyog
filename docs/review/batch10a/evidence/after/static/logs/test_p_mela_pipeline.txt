@@ -1,0 +1,27 @@
+PASS no source_url → rejected
+PASS non-URL source → rejected
+PASS valid entry → accepted (positive)
+PASS unconfirmed date → is_date_confirmed=false + expected_period kept
+PASS unconfirmed with NO expected period → rejected
+PASS a "confirmed" flag with no real start date is NOT treated as confirmed
+PASS California "Kisan Mela" discarded
+PASS explicit non-India country discarded
+PASS Indian state accepted
+PASS contact from a news mention is dropped
+PASS news-mention contact → contact fields empty
+PASS official-page contact → contact kept
+PASS bogus tags dropped, valid kept
+PASS same venue+state, names differ, dates ~overlap → same event
+PASS findDuplicate locates it
+PASS different venue → NOT same event
+PASS merge fills blanks (name_en) + unions tags
+PASS confirmed past end → deactivate
+PASS confirmed future → keep
+PASS expired expected period → deactivate
+PASS future expected period → keep
+PASS expectedPeriodEnd parses "Feb 2027"
+PASS MAX_SEARCHES is a sane bounded cap
+PASS runner fails fast (exit 1) without ANTHROPIC_API_KEY
+PASS fail-fast message names the missing secret
+
+25 passed, 0 failed

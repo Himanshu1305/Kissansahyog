@@ -1,0 +1,13 @@
+PASS  equipment type "Drone" seeded (hi+en)  — ड्रोन
+PASS  equipment type "Seed Drill" seeded (hi+en)  — सीड ड्रिल
+PASS  equipment type "Reaper" seeded (hi+en)  — रीपर
+PASS  equipment type "Blower" seeded (hi+en)  — ब्लोअर
+PASS  equipment type "LCB (Straw Machine)" seeded (hi+en)  — एल.सी.बी. (भूसा मशीन)
+PASS  crop Masoor/मसूर seeded  — Masoor (Lentil)
+PASS  land PRICE_TYPE has fixed/sharecropping/negotiable  — fixed,negotiable,sharecropping
+PASS  rental basis has per_hour/per_acre/per_day
+PASS  labor category Hindi is कृषि सहयोगी (Labor)  — कृषि सहयोगी (Labor)
+PASS  labor category English unchanged (Labor)
+PASS  Drone Didi work_type present  — ड्रोन ऑपरेटर (ड्रोन दीदी) / Drone Operator (Drone Didi)
+
+11 passed, 0 failed

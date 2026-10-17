@@ -1381,3 +1381,116 @@ pipeline) and this batch's own test listings (removed in teardown by id). Previe
 - Layout tokens now centralize the 72ch content measure, 1200px wide frame, responsive page padding, card/grid values and form/side-panel grid; `Screen` defaults to wide.
 - The homepage has a shared SearchBar hero (including voice), three clamped Q&A cards, individually sourced image tiles, and an ongoing-Mela label. Mela date status/sorting lives in `lib/mela/melaStatus.js` and is reused by the calendar and teaser.
 - Noto Sans Devanagari 400/600/700/800 Latin and Devanagari subsets are served from `public/fonts`; external Google font links/CSP permissions were removed.
+
+## Batches 7L–10A (state as of this ship)
+
+Added 2026-10-17 after the Batch 10A production ship. Only facts checked in files, code or logs.
+Main sources: `docs/review/batch9/` (SHIP, BACKLOG, FIX9B/FIX9C reports), `docs/review/batch10a/`
+(REPORT, DECISIONS, SHIP_REPORT, `evidence/prod-live/RESULT.md`), migrations 0059–0063, the ship scripts.
+
+### What is live
+
+- **Production** (https://kissansahyog.com, Cloudflare Pages project `kissansahyog-prod`): deployment
+  `0845c733-e8d0-4553-957c-10f3db23ecca`, commit `17d77e8` (branch `release-10a`, tag `prod-10a`), shipped
+  2026-10-17. Main chunk `/assets/index-DRo2-cnt.js`.
+- Previous production: `bf4f9479-821b-41a0-b20c-60ce22eb6303` (source `ee3ecfd`, Batch 9 + 9B + 9C), shipped
+  2026-10-15 with `scripts/ship-prod-9.sh`.
+- **Staging** (https://staging.kissansahyog.com, Pages project `kissansahyog`, Supabase `wzxtqbqlahyahsnoqqva`):
+  deployment `b151dafd-81e7-49e8-aae0-48fe690448fe` (source `74413b6`, Batch 10A).
+- Production Supabase is `eltmcznjcqiahqhjvpjg`. `.env` = staging, `.env.production` = production.
+- Nothing from `release-9` / `release-10a` is merged into `main`.
+
+### How prod and staging are deployed and rolled back
+
+- **Staging:** `node --env-file=.env scripts/check-staging-env.mjs && npm run build:full && node --env-file=.env scripts/check-staging-env.mjs --dist && npx wrangler pages deploy dist --project-name kissansahyog --branch main --commit-dirty=true`.
+- **Production** is shipped only with a gated script, run once by the founder:
+  `bash scripts/ship-prod-10a.sh --dry-run`, then `bash scripts/ship-prod-10a.sh`. It checks branch, HEAD = origin,
+  the `pre-10a-ship` tag and the expected live deployment; compares live prod with a snapshot; runs
+  `npm run build:prod`; deploys with `npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true`;
+  waits for the new main chunk; runs the read-only gates; and **rolls back by itself** if any gate fails.
+- `scripts/ship-prod-9.sh` is the Batch 9 version. It also lists DB migrations 0061–0063 (applied by hand in the
+  Supabase SQL editor, never by the script) and, on a real run, stops unless a read-only GET of
+  `listings?select=client_request_id,contact_consent_at` answers 200. `ship-prod-10a.sh` has no database step.
+- **Rollback:** `bash scripts/rollback-prod-10a.sh <deployment-id>` (or `rollback-prod-9.sh`; `--dry-run` prints the
+  plan). Wrangler has no rollback command, so it calls the Cloudflare API endpoint the dashboard "Rollback" button
+  uses (`POST …/pages/projects/kissansahyog-prod/deployments/{id}/rollback`), token never printed, then re-checks pages.
+  Undo for 10A: `bash scripts/rollback-prod-10a.sh bf4f9479-821b-41a0-b20c-60ce22eb6303`.
+- **Gates:** `scripts/verify-batch9-live.mjs --base <url> --checks …` with checks `pages`, `compare`, `cors`,
+  `functions`, `static`, `sw`, `data`, `snapshot` and `post` (staging only). On a production host it is always
+  read-only: the browser aborts every non-GET/HEAD/OPTIONS request and `post` is refused.
+- **Size gate tolerances** (`compare` vs `--snapshot`): page size within −15% / +15%; `/mausam` may grow +60% when its
+  FAQ block is new; `/sawaal` and `/yojana` may grow up to 4.0x (+300%, data pages snapshotted before data loaded).
+  Title and h1 must be unchanged and there must be no ErrorBoundary.
+- The first 10A real ship (16:38, deployment `60bca777`) rolled itself back because of a false failure in the
+  script's own route check (`printf | grep -q` under `pipefail` → SIGPIPE). Fixed in `17d77e8` (here-strings).
+
+### Auth and registration (as built)
+
+- **Signup** (`src/screens/Signup.jsx`, one page since 10A): full name, mobile, email, password, village/town (from
+  the places list), one "show my details" checkbox (ticked by default, with its explanation and a warning when
+  unticked), the unchanged notice + accept box, then the button. No language dropdown (the app language is sent) and
+  no farmer (किसान) block (it stays on Profile).
+- Signup calls `app_register` (migration **0060**): profile for the signed-in Supabase Auth user, mobile required,
+  coordinates of the chosen town, visibility stored in `profiles.consents -> 'details_visibility'`. 0060 also made
+  `profiles.pincode` nullable, and `get_listing_contact` returns `contact_hidden` for "keep hidden" owners.
+  `app_signup` / `app_signup_email` are kept for older app builds.
+- Email + password live in their own block `src/components/auth/EmailPasswordFields.jsx`, so OTP can replace or
+  relax them later without a rewrite.
+- **Login** (`src/screens/Login.jsx`) has two options: email + password, or mobile number. **Mobile login is still
+  trust-based**: `app_login(p_phone)` signs in on the number alone, no OTP. The screen already has an OTP step
+  (`startPhoneLogin` / `verifyPhoneOtp`) waiting for a real SMS sender.
+- **Throttling** (migration **0059**): `login_attempts` table (no anon access); after 5 failed attempts for an
+  identifier within 15 minutes, login is refused for 15 minutes (`too_many_attempts`). Admins are refused on the
+  mobile path. The email throttle depends on the app calling `app_login_email_guard`; Supabase Auth's own rate
+  limit is the real limit on password guessing.
+
+### Listing form architecture
+
+- Categories are modules registered in `src/lib/listings/registry.jsx` (`ENABLED_CATEGORIES`); Post/Browse/detail
+  are category-agnostic.
+- `src/lib/listings/catalog.js` holds the equipment data: `EQUIPMENT_TAGS` (`vegetable_farming`, `rare_emergency`),
+  `EQUIPMENT_TYPE_DEFAULT_TAGS` (tags pre-ticked per type), `SPEC_FIELDS` / `EQUIPMENT_SPECS` (per-type spec
+  fields; `ph` = grey example text such as `जैसे 2023`), and `equipmentServerRules()`.
+- `FieldRow` (`src/components/categories/fields.jsx`) puts two short fields side by side from 400 px wide (one
+  column below 400 px).
+- Posting calls `create_listing_with_location` with `p_client_request_id` (migration **0061**: one random id per Post
+  form, reused on retry; at most one listing per owner + id) and `p_contact_consent` (migration **0062**: stamps
+  `listings.contact_consent_at` for vendor listings and provider offers; a hidden owner's number is shown only on a
+  listing with that stamp).
+- Migration **0063**: equipment offers that carry `details.spec_version = 1` must have every mandatory spec field
+  (else `equipment_spec_invalid:<field>:<required|range>`). Calls without `spec_version` (older apps) are not
+  checked. The rules come from `equipmentServerRules()`; `scripts/check-equipment-specs.mjs` fails if code and SQL differ.
+- On production, 0061 + 0062 are confirmed by the Batch 9 ship script's read-only column check. 0063 changes only a
+  function and cannot be checked read-only; the combined SQL prepared for the founder is
+  `docs/review/batch9/PROD_MIGRATIONS_0061_0063.sql`.
+
+### Batch 10A changes (website only, no database change)
+
+- **A — who is posting first:** Farmer / Business buttons are the first question of the Post form (above the
+  category tiles). Same state, testids (`post-source-farmer`) and consent behaviour.
+- **B — side-by-side fields:** `FieldRow` pairs Brand|Model, Year|HP, Output|Unit, Rental basis|Rate, and
+  building-materials Quantity|Unit. One column under 400 px.
+- **C — example values:** grey examples on Model (`जैसे 575 DI` for tractors), Year (`जैसे 2023`), HP, Output per hour
+  and requirement min HP. Never saved; empty fields still fail "required".
+- **D — equipment tags:** tags sit right under the machine type; Crane Tractor, Pit Digging Tractor, JCB, Drone and
+  Water tanker pre-tick "rare/emergency" until the poster touches the chips. Browse shows large tag chips under the
+  category chips (`equipment-tag-filters`); the `?etag=` deep link works, a tap filters in the page only.
+- **E — one-page signup:** see Auth above. Same data is sent as before.
+- **F — village pre-filled:** the Post form's step-3 village starts with the profile's village when empty.
+
+### Decisions still waiting on others
+
+- **OTP login (batch 10B):** waits on the Jio DLT chain — sender header `KSAHYG`, then the OTP template, then
+  Fast2SMS chain-binding (`docs/review/batch9/BACKLOG.md` B3/B4). The founder sends the approved Template ID.
+- **Lawyer review** of Terms, Privacy and consent text (BACKLOG L1/L2). The signup visibility explanation line is
+  kept and marked HUMAN-REVIEW until then.
+- **Tag auto-tick mapping** (`EQUIPMENT_TYPE_DEFAULT_TAGS`) — founder may change it.
+- **360 px:** side-by-side pairs only start at 400 px, so they stack on 360 px phones.
+- **Browse tag in the URL:** tapping a tag does not write `etag` into the address bar (post-ship HUMAN-REVIEW).
+
+### Test baseline
+
+- E2E (Playwright CLI against staging): 65 passed / 23 failed after 10A (61 / 27 before). All 23 failed before 10A too.
+- `npm run lint` fails: ESLint is not installed.
+- `npm run test:e2e` does not start on Windows; the Playwright CLI is run directly.
+- Static check scripts: 26 pass / 11 known failures, unchanged by 10A. Equipment spec gate 805/805.

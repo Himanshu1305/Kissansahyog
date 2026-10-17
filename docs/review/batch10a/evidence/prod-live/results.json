@@ -1,0 +1,375 @@
+{
+  "startedAt": "2026-10-17T13:28:49.226Z",
+  "checks": {
+    "2.1 routes": {
+      "status": "RAN-PASSED",
+      "detail": [
+        {
+          "path": "/",
+          "httpStatus": 200,
+          "browserStatus": 200,
+          "h1": "आज किसान के लिए",
+          "textLen": 4555,
+          "errorBoundary": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "ownRequestProblems": [],
+          "shot": "route-home.png",
+          "ok": true
+        },
+        {
+          "path": "/browse",
+          "httpStatus": 200,
+          "browserStatus": 200,
+          "h1": "आस-पास खोजें",
+          "textLen": 1124,
+          "errorBoundary": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "ownRequestProblems": [],
+          "shot": "route-browse.png",
+          "ok": true
+        },
+        {
+          "path": "/signup",
+          "httpStatus": 200,
+          "browserStatus": 200,
+          "h1": "नया खाता बनाएं",
+          "textLen": 1417,
+          "errorBoundary": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "ownRequestProblems": [],
+          "shot": "route-signup.png",
+          "ok": true
+        },
+        {
+          "path": "/login",
+          "httpStatus": 200,
+          "browserStatus": 200,
+          "h1": "लॉग इन करें",
+          "textLen": 728,
+          "errorBoundary": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "ownRequestProblems": [],
+          "shot": "route-login.png",
+          "ok": true
+        },
+        {
+          "path": "/how-to-use",
+          "httpStatus": 200,
+          "browserStatus": 200,
+          "h1": "वेबसाइट कैसे इस्तेमाल करें",
+          "textLen": 9527,
+          "errorBoundary": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "ownRequestProblems": [],
+          "shot": "route-how-to-use.png",
+          "ok": true
+        },
+        {
+          "path": "/sawaal",
+          "httpStatus": 200,
+          "browserStatus": 200,
+          "h1": "किसान सवाल — आपके सवाल, हमारे जवाब",
+          "textLen": 10329,
+          "errorBoundary": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "ownRequestProblems": [],
+          "shot": "route-sawaal.png",
+          "ok": true
+        },
+        {
+          "path": "/yojana",
+          "httpStatus": 200,
+          "browserStatus": 200,
+          "h1": "सरकारी योजनाएं",
+          "textLen": 3509,
+          "errorBoundary": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "ownRequestProblems": [],
+          "shot": "route-yojana.png",
+          "ok": true
+        },
+        {
+          "path": "/mausam",
+          "httpStatus": 200,
+          "browserStatus": 200,
+          "h1": "सागर मौसम — आज और 7 दिन का पूर्वानुमान",
+          "textLen": 3214,
+          "errorBoundary": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "ownRequestProblems": [],
+          "shot": "route-mausam.png",
+          "ok": true
+        }
+      ]
+    },
+    "2.2 signup phone": {
+      "status": "RAN-PASSED",
+      "detail": [
+        {
+          "width": 412,
+          "lang": "hi",
+          "ok": true,
+          "form": true,
+          "selects": 0,
+          "kisanBlock": false,
+          "visibilityCheckboxes": 1,
+          "checkboxesTotal": 2,
+          "explain": true,
+          "noticeTop": 922,
+          "acceptTop": 1216,
+          "submitTop": 1294,
+          "submitText": "स्वीकार करें और आगे बढ़ें",
+          "steps": false,
+          "overflowX": false,
+          "pageErrors": [],
+          "shot": "signup-412-hi.png"
+        },
+        {
+          "width": 412,
+          "lang": "en",
+          "ok": true,
+          "form": true,
+          "selects": 0,
+          "kisanBlock": false,
+          "visibilityCheckboxes": 1,
+          "checkboxesTotal": 2,
+          "explain": true,
+          "noticeTop": 942,
+          "acceptTop": 1236,
+          "submitTop": 1314,
+          "submitText": "Accept and continue",
+          "steps": false,
+          "overflowX": false,
+          "pageErrors": [],
+          "shot": "signup-412-en.png"
+        },
+        {
+          "width": 360,
+          "lang": "hi",
+          "ok": true,
+          "form": true,
+          "selects": 0,
+          "kisanBlock": false,
+          "visibilityCheckboxes": 1,
+          "checkboxesTotal": 2,
+          "explain": true,
+          "noticeTop": 922,
+          "acceptTop": 1258,
+          "submitTop": 1336,
+          "submitText": "स्वीकार करें और आगे बढ़ें",
+          "steps": false,
+          "overflowX": false,
+          "pageErrors": [],
+          "shot": "signup-360-hi.png"
+        },
+        {
+          "width": 360,
+          "lang": "en",
+          "ok": true,
+          "form": true,
+          "selects": 0,
+          "kisanBlock": false,
+          "visibilityCheckboxes": 1,
+          "checkboxesTotal": 2,
+          "explain": true,
+          "noticeTop": 965,
+          "acceptTop": 1300,
+          "submitTop": 1378,
+          "submitText": "Accept and continue",
+          "steps": false,
+          "overflowX": false,
+          "pageErrors": [],
+          "shot": "signup-360-en.png"
+        }
+      ]
+    },
+    "2.3 browse tags": {
+      "status": "RAN-PASSED",
+      "detail": {
+        "360": {
+          "pos": {
+            "catsBottom": 489,
+            "tagsTop": 501,
+            "chips": [
+              {
+                "id": "etag-chip-all",
+                "text": "✓सभी",
+                "h": 44,
+                "pressed": "true"
+              },
+              {
+                "id": "etag-chip-vegetable_farming",
+                "text": "सब्ज़ी खेती के यंत्र",
+                "h": 44,
+                "pressed": "false"
+              },
+              {
+                "id": "etag-chip-rare_emergency",
+                "text": "दुर्लभ या ज़रूरत पर मिलने वाले यंत्र",
+                "h": 44,
+                "pressed": "false"
+              }
+            ],
+            "overflowX": false
+          },
+          "urlBefore": "https://kissansahyog.com/browse",
+          "urlAfterTap": "https://kissansahyog.com/browse",
+          "cardsAll": 2,
+          "cardsRare": 1,
+          "pressedRare": "true",
+          "cleared": true,
+          "deepLinkPressed": "true",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "ok": true,
+          "urlGetsEtagOnTap": false
+        },
+        "412": {
+          "pos": {
+            "catsBottom": 385,
+            "tagsTop": 397,
+            "chips": [
+              {
+                "id": "etag-chip-all",
+                "text": "✓सभी",
+                "h": 44,
+                "pressed": "true"
+              },
+              {
+                "id": "etag-chip-vegetable_farming",
+                "text": "सब्ज़ी खेती के यंत्र",
+                "h": 44,
+                "pressed": "false"
+              },
+              {
+                "id": "etag-chip-rare_emergency",
+                "text": "दुर्लभ या ज़रूरत पर मिलने वाले यंत्र",
+                "h": 44,
+                "pressed": "false"
+              }
+            ],
+            "overflowX": false
+          },
+          "urlBefore": "https://kissansahyog.com/browse",
+          "urlAfterTap": "https://kissansahyog.com/browse",
+          "cardsAll": 2,
+          "cardsRare": 1,
+          "pressedRare": "true",
+          "cleared": true,
+          "deepLinkPressed": "true",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "ok": true,
+          "urlGetsEtagOnTap": false
+        }
+      }
+    },
+    "2.4 live JS markers": {
+      "status": "RAN-PASSED",
+      "detail": {
+        "mainChunk": "/assets/index-DRo2-cnt.js",
+        "mainMatchesScript": true,
+        "chunksFetched": 109,
+        "जैसे 2023": [
+          "/assets/catalog-KGaQpWeV.js"
+        ],
+        "जैसे 575 DI (template \"जैसे ${n}\" + \"575 DI\" in the same chunk)": [
+          "/assets/catalog-KGaQpWeV.js"
+        ],
+        "post-source-farmer": [
+          "/assets/Post-dpxp-I3C.js"
+        ],
+        "equipment-tag-filters": [
+          "/assets/Browse-CwftU5zq.js"
+        ],
+        "FieldRow grid-rows-subgrid": [
+          "/assets/registry-P3Jm2R9h.js"
+        ],
+        "FieldRow min-[400px]:grid-cols-2": [
+          "/assets/registry-P3Jm2R9h.js"
+        ]
+      }
+    },
+    "2.5 existing listing": {
+      "status": "RAN-PASSED",
+      "detail": {
+        "href": "/listing/8659a116-bb5f-4251-a3d4-0a1db599b3c7",
+        "status": 200,
+        "h1": "लिस्टिंग",
+        "textLen": 667,
+        "pageErrors": [],
+        "consoleErrors": [],
+        "ownRequestProblems": []
+      }
+    },
+    "2.6 sitemap + robots": {
+      "status": "RAN-PASSED",
+      "detail": {
+        "sitemapStatus": 200,
+        "sitemapContentType": "application/xml",
+        "sitemapXml": true,
+        "robotsBytes": 180,
+        "robotsSameAs": "docs/review/batch10a/evidence/prod-before.json",
+        "robotsSame": true,
+        "robotsBefore": {
+          "status": 200,
+          "bytes": 180,
+          "contentType": "text/plain; charset=utf-8",
+          "sha256": "39148ca3b5fabf621da9fab5fecc71633583af782dd629894a1d0f824eedebcc",
+          "urlCount": 0
+        }
+      }
+    }
+  },
+  "blockedWrites": [
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/recent_crop_reports",
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_grid_requests?on_conflict=grid_key",
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_grid_requests?on_conflict=grid_key",
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/increment_listing_view",
+    "POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/increment_listing_view"
+  ],
+  "allowedConsoleNoise": [
+    "Loading the script 'http://localhost:4178/assets/Homepage-CM2MIfmI.js' violates the following Content Security Policy di",
+    "Loading the script 'http://localhost:4178/assets/melaApi-DOQldGPF.js' violates the following Content Security Policy dir",
+    "Loading the script 'http://localhost:4178/assets/communityApi-CbL19su4.js' violates the following Content Security Polic",
+    "Loading the script 'http://localhost:4178/assets/mandiApi-C3MsWVgL.js' violates the following Content Security Policy di",
+    "Loading the script 'http://localhost:4178/assets/weatherApi-f5eLqPLK.js' violates the following Content Security Policy ",
+    "Loading the script 'http://localhost:4178/assets/weatherApiV2-CdymVlHS.js' violates the following Content Security Polic",
+    "Loading the script 'http://localhost:4178/assets/kit-BcrkxHpG.js' violates the following Content Security Policy directi",
+    "Loading the script 'http://localhost:4178/assets/shared-8c9Cm72j.js' violates the following Content Security Policy dire",
+    "Loading the script 'http://localhost:4178/assets/LocationControl-D_02ipVb.js' violates the following Content Security Po",
+    "Loading the script 'http://localhost:4178/assets/articlesApi-BcGxl3B8.js' violates the following Content Security Policy",
+    "Loading the script 'http://localhost:4178/assets/shareMessages-B2MehjMG.js' violates the following Content Security Poli",
+    "Loading the script 'http://localhost:4178/assets/catalog-KGaQpWeV.js' violates the following Content Security Policy dir",
+    "Loading the script 'http://localhost:4178/assets/registry-P3Jm2R9h.js' violates the following Content Security Policy di",
+    "Loading the script 'http://localhost:4178/assets/listingsApi-DNjuIOSn.js' violates the following Content Security Policy",
+    "Loading the script 'http://localhost:4178/assets/photos-CIXcO5NF.js' violates the following Content Security Policy dire",
+    "Loading the script 'http://localhost:4178/assets/OfflineStamp-0wstlyQa.js' violates the following Content Security Polic",
+    "Loading the script 'http://localhost:4178/assets/crops-Bmyu-kFh.js' violates the following Content Security Policy direc",
+    "Loading the script 'http://localhost:4178/assets/founder-B7YdwJ2e.js' violates the following Content Security Policy dir",
+    "Loading the script 'http://localhost:4178/assets/mspApi-HuPMvIQE.js' violates the following Content Security Policy dire",
+    "Loading the script 'http://localhost:4178/assets/AvailabilityNudge-DG4VLG6V.js' violates the following Content Security ",
+    "Loading the script 'http://localhost:4178/assets/videosApi-ziVR13z0.js' violates the following Content Security Policy d",
+    "Loading the script 'http://localhost:4178/assets/melaFormat-CKDNhJb-.js' violates the following Content Security Policy ",
+    "Loading the script 'http://localhost:4178/assets/months-vZTFnxQH.js' violates the following Content Security Policy dire",
+    "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' ",
+    "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "Loading the script 'http://localhost:4178/assets/HowToUse-C03c8C-Q.js' violates the following Content Security Policy di",
+    "Loading the script 'http://localhost:4178/assets/layout-smZOU7fs.js' violates the following Content Security Policy dire",
+    "Loading the script 'http://localhost:4178/assets/Sawaal-C_kamrT4.js' violates the following Content Security Policy dire",
+    "Loading the script 'http://localhost:4178/assets/RelatedBoxes-B_LEqFO3.js' violates the following Content Security Polic",
+    "Loading the script 'http://localhost:4178/assets/Yojana-DGZg73b7.js' violates the following Content Security Policy dire",
+    "Loading the script 'http://localhost:4178/assets/Mausam-BVVLpnBw.js' violates the following Content Security Policy dire",
+    "Loading the script 'http://localhost:4178/assets/OfflineNotice-B7fUDi21.js' violates the following Content Security Poli",
+    "Loading the script 'http://localhost:4178/assets/weatherRules-kzLuFq6I.js' violates the following Content Security Polic"
+  ],
+  "finishedAt": "2026-10-17T13:30:03.746Z"
+}

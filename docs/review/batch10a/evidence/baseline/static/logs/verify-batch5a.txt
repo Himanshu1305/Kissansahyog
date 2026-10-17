@@ -1,0 +1,57 @@
+PASS  building_materials: catalog
+PASS  building_materials: registry
+PASS  building_materials: Post selector
+PASS  building_materials: Browse filters
+PASS  building_materials: Home tiles and nearby counts
+PASS  building_materials: ListingCard
+PASS  building_materials: ListingDetail
+PASS  building_materials: My listings
+PASS  building_materials: Bazaar hub
+PASS  building_materials: Navigation
+PASS  building_materials: search index
+PASS  building_materials: sitemap source
+PASS  building_materials: prerender routes
+PASS  i18n: home_cat_building_materials has Hindi and English
+PASS  i18n: help_building_materials has Hindi and English
+PASS  i18n: field_equipment_tags has Hindi and English
+PASS  i18n: field_building_material_type has Hindi and English
+PASS  i18n: field_building_brand_grade has Hindi and English
+PASS  i18n: field_building_quantity has Hindi and English
+PASS  i18n: field_building_unit has Hindi and English
+PASS  i18n: field_building_rate has Hindi and English
+PASS  i18n: field_building_delivery has Hindi and English
+PASS  i18n: field_building_pickup has Hindi and English
+PASS  i18n: err_building_material_type_required has Hindi and English
+PASS  i18n: err_building_quantity_required has Hindi and English
+PASS  i18n: err_building_unit_required has Hindi and English
+PASS  i18n: err_building_rate_required has Hindi and English
+PASS  i18n: err_building_delivery_required has Hindi and English
+PASS  i18n: err_building_pickup_required has Hindi and English
+PASS  equipment tags: form fields
+PASS  equipment tags: Browse filter chips
+PASS  equipment tags: card display
+PASS  equipment tags: detail display
+PASS  building materials: form fields
+PASS  building materials: bilingual responsibility notice
+PASS  landing page: building-materials exists
+PASS  landing page: building-materials prerenders
+PASS  landing page: building-materials is searchable
+PASS  landing page: vegetable-equipment exists
+PASS  landing page: vegetable-equipment prerenders
+PASS  landing page: vegetable-equipment is searchable
+PASS  migration: 0053 exists and numbering is contiguous up to the newest (0063)
+PASS  migration: guarded CHECK widening only
+PASS  migration: widened CHECK is a strict superset
+PASS  migration: create_listing admits category and 100 km opt-in
+PASS  migration: no forbidden destructive SQL
+warning: in the working copy of 'docs/review/batch7a/VERIFY_OUTPUT.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/review/batch7b/VERIFY_OUTPUT.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/review/batch7d/VERIFY_OUTPUT.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/review/batch7l1/VERIFY_OUTPUT.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/review/batch7l2/VERIFY_OUTPUT.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'public/search-index.json', LF will be replaced by CRLF the next time Git touches it
+PASS  scope guard: no Land, Labor, carbon, Grievance, .env, or secret changes
+PASS  test integrity: no test deleted, skipped, or loosened
+INFO  scope files (13): docs/review/batch7a/VERIFY_OUTPUT.txt, docs/review/batch7b/VERIFY_OUTPUT.txt, docs/review/batch7d/VERIFY_OUTPUT.txt, docs/review/batch7l1/VERIFY_OUTPUT.txt, docs/review/batch7l2/VERIFY_OUTPUT.txt, public/search-index.json, BATCH10A_FORMS_PROMPT.md, BATCH9B_FIX_PROMPT.md, BATCH9C_EQUIPMENT_SPECS_PROMPT.md, docs/review/batch10a/, docs/review/batch9/PROD_MIGRATIONS_0061_0063.sql, docs/review/batch9/evidence/phase4/prod-ship/, scripts/run-static-checks-10a.sh
+
+48 passed, 0 failed

@@ -1,0 +1,90 @@
+PASS  1: 0055 holds the feedback table and functions (rewritten in place); 0056 only changes who may call submit_feedback
+PASS  1: table has exactly the required columns
+PASS  1: no column for who the person is
+PASS  1: contact columns are nullable; mobile is stored as 10 digits
+PASS  1: CHECK that at least one of e-mail / mobile is present
+PASS  1: kind / moderation / status / public_ok values and defaults
+PASS  1: message length 5 to 4000 enforced in the table and the RPC
+PASS  1: RLS on, no policy, no direct anon/authenticated access
+PASS  1: additive and idempotent (if not exists / create or replace only)
+PASS  1: submit_feedback is SECURITY DEFINER with a pinned search_path and returns bigint
+PASS  1: submit_feedback validates e-mail, mobile (strip spaces, +91, leading 0; 6-9 + 9 digits), kind and message
+PASS  1: public_ok is forced false for a problem
+PASS  1: soft rate limit of 5 an hour per device, per e-mail and per mobile
+PASS  1: mark_feedback_notified is service-role only
+PASS  1: 0056 revokes submit_feedback from public, anon and authenticated
+PASS  1: 0056 keeps submit_feedback for service_role only
+PASS  1: 0056 does nothing else (get_public_feedback and the admin functions untouched)
+PASS  1: 0056 header says what it does, staging first then production, and how to roll back
+PASS  1: get_public_feedback returns only message, kind, lang, created_at
+PASS  1: get_public_feedback never mentions contact details, device id or status
+PASS  1: get_public_feedback shows only approved + consented suggestion/other, and anon may call it
+PASS  1: admin functions all call require_admin
+PASS  1: get_feedback_messages filters on moderation and status
+PASS  1: moderate_feedback approves only consented, non-problem messages
+PASS  1: set_feedback_status accepts open / replied / closed only
+PASS  2: mobile validator, client contact.js (8 good, 13 bad)
+PASS  2: e-mail validator, client contact.js (3 good, 9 bad)
+PASS  2: mobile validator, server function (8 good, 13 bad)
+PASS  2: e-mail validator, server function (3 good, 9 bad)
+PASS  2: the contact box detects which one was typed
+PASS  2: server validate() accepts e-mail only, mobile only, and both
+PASS  2: server validate() refuses missing contact, bad contact, bad kind, short and long messages
+PASS  2: public_ok is honoured for suggestion/other only, and only when literally true
+PASS  3: success path → 200 {ok:true}; stores, then e-mails, then marks notified
+PASS  3: submit_feedback is called with the service role key from the function env
+PASS  3: e-mail goes through the Resend REST API with from / to / reply_to as briefed
+PASS  3: subject is "[Feedback/Grievance] <type> — <first 60 chars>"
+PASS  3: body (text + HTML) carries type, message, contact, language, time and the public-display answer
+PASS  3: mark_feedback_notified gets the id returned by submit_feedback
+PASS  3: all user text is escaped in the HTML part
+PASS  3: mobile-only message has no reply_to; a problem is reported as never public
+PASS  3: a long first line is cut to 60 characters in the subject, newlines flattened
+PASS  3: RESEND_API_KEY missing → still saved, still success, clear server warning, not marked notified
+PASS  3: e-mail send fails → still saved, still success, warning logged, not marked notified
+PASS  3: e-mail request throws → still success
+PASS  3: honeypot filled → looks like success, nothing stored, nothing e-mailed
+PASS  3: invalid input is refused before any upstream call
+PASS  3: malformed JSON → 400 bad_request
+PASS  3: rate limit from the RPC → 429 feedback_too_many, no e-mail
+PASS  3: migration not applied → 503 unavailable (browser offers the e-mail link), never a success
+PASS  3: database unreachable → 503 unavailable
+PASS  3: Supabase env missing → 503 unavailable, nothing called
+PASS  3: a cross-site caller is refused
+PASS  3: GET /api/feedback → 405 JSON (not the page shell)
+PASS  3: no response ever contains an env value or the upstream error text (13 scenarios)
+PASS  3: server warnings never print a key
+PASS  3: function reads only the expected env names and has no hard-coded secret
+PASS  3: client and server validators are the same code
+FAIL  4: function file is functions/api/feedback.js → /api/feedback, same convention as /transcribe
+PASS  4: CSP already allows the same-origin call (connect-src 'self') and was not weakened
+PASS  4: the browser never talks to Resend and never sees a key
+PASS  4: no direct submit_feedback RPC call anywhere in browser code (225 files under src/)
+FAIL  4: the form posts only to /api/feedback, and success needs {ok:true}
+PASS  4: 503 or a network failure → "could not send" with the e-mail fallback, never a thank-you
+PASS  4: 400 and 429 refusals keep their own message and offer no e-mail link
+PASS  4: mailto fallback to grievance@kissansahyog.com is still there, worded in Hindi and English
+PASS  5: form fields are contact, kind, message, public_ok (+ honeypot); no name field
+PASS  5: one "ईमेल या मोबाइल नंबर / Email or mobile number" box with the helper line
+PASS  5: inline contact error next to the field (role=alert, aria-invalid)
+PASS  5: checkbox text and review note as briefed, unchecked by default
+PASS  5: checkbox only for suggestion / other; a problem gets the "never shown publicly" note instead
+PASS  5: honeypot, client validation, collapsed legal section and mailto fallback are kept
+PASS  5: warm confirmation, with no promised reply time
+PASS  5: prerendered /grievance shows the new box, the unchecked checkbox and no e-mail-only field
+PASS  6: privacy line is in the grievance legal content (Hindi + English)
+PASS  6: privacy line is in the privacy policy (Hindi + English)
+PASS  6: prerendered /grievance has the line inside the collapsed legal section
+PASS  6: prerendered /privacy has the line
+PASS  7: /about has a "किसानों की राय / What farmers say" section fed by get_public_feedback
+PASS  7: the whole section is hidden when there are none
+PASS  7: it renders the message text and type label only
+PASS  7: the client keeps only message / kind / lang and never throws
+PASS  7: no placeholder or invented testimonials anywhere in the source
+PASS  7: prerendered /about has no empty "What farmers say" heading (nothing approved yet)
+PASS  8: every new string has Hindi and English (10)
+PASS  8: no "मुफ़्त" / "free" in anything added or rewritten by this batch
+PASS  8: every i18n key used by the form, the API layer and /about exists
+PASS  8: no Devanagari literals in the touched components
+
+86 passed, 2 failed

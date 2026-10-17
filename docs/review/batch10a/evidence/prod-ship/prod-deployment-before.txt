@@ -1,0 +1,5 @@
+deployment_id=bf4f9479-821b-41a0-b20c-60ce22eb6303
+source=ee3ecfd
+main_chunk=/assets/index-Cy1O2hd0.js
+recorded_at=2026-10-17T12:53:28Z
+shipping=17d77e88b9d3b03589cc273893dd4f114b267d2e

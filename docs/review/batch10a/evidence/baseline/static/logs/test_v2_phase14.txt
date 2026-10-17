@@ -1,0 +1,24 @@
+PASS  og/default.png exists
+PASS  og/greenhouse.png exists
+PASS  og/carbon-credit.png exists
+PASS  og/jugaad.png exists
+PASS  og/cold-storage.png exists
+PASS  og/sawaal.png exists
+PASS  hubs pass per-hub OG image
+PASS  Seo resolves relative image to absolute
+PASS  robots allows all + references sitemap
+PASS  robots disallows /search + /join
+PASS  llms.txt names the site + key hubs
+PASS  gen-sitemaps.mjs exists
+PASS  gen-og.mjs exists
+PASS  build:full runs gen-sitemaps
+PASS  sitemaps split into pages/sawaal/cold-storage/schemes + index
+PASS  dist sitemap index references the 4 child sitemaps
+PASS  dist sitemap-pages.xml well-formed urlset
+PASS  dist sitemap-sawaal.xml well-formed urlset
+PASS  dist sitemap-cold-storage.xml well-formed urlset
+PASS  dist sitemap-schemes.xml well-formed urlset
+PASS  docs/seo/KEYWORDS.md exists with primary keywords
+PASS  docs/seo/SEO_CHECKLIST.md exists
+
+22 passed, 0 failed

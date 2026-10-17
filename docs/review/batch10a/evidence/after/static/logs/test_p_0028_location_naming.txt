@@ -1,0 +1,23 @@
+PASS  1a-i: CSP connect-src allows api.bigdatacloud.net
+PASS  1a: reverseGeocode calls BigDataCloud keyless reverse-geocode-client
+PASS  1b: a device fix near a listed place is named from the places list
+PASS  1a-ii: only a fix with no nearby listed place is reverse-geocoded
+PASS  1a-iii: the places list is awaited before naming (no needless outside call on load)
+PASS  1c: naming failure falls back to a generic label, never raw coords
+PASS  1d: reverse-geocode result is session-cached
+PASS  1a positive: Hyderabad coords resolve to a city name
+PASS  2a: no client code calls the /geo IP-city function
+PASS  2b: no IP-city suggestion in the UI (loc_ip_maybe / ip-suggest)
+PASS  2c: the pre-permission card is shown before any device call (Share / Not now)
+PASS  2d: the card is offered only when asking could still work
+PASS  3a: no pincode input in the location control or the shared page parts
+PASS  3a: typed village/town box, "Did you mean…?" and the district → town picker are present
+PASS  no raw-coord display in Mausam.jsx
+PASS  no raw-coord display in Homepage.jsx
+PASS  no raw-coord display in Msp.jsx
+PASS  no raw-coord display in FasalSalah.jsx
+PASS  no raw-coord display in shared.jsx
+PASS  no raw-coord display in LocationControl.jsx
+PASS  the ?debug=1 raw-coordinate overlay is gone
+
+21 passed, 0 failed

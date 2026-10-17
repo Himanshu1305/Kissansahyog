@@ -1,0 +1,4 @@
+FAIL  page-level width clamp(s) found in src/screens — convert to PageShell or mark inner clamps with a ks-allow-width comment:
+      Browse.jsx:101  `flex min-h-[44px] max-w-full items-center gap-1.5 whitespace-normal rounded-2xl border-2 px-4 py-2 text-left text-base font-semibold leading-snug ${
+
+0 passed, 1 failed

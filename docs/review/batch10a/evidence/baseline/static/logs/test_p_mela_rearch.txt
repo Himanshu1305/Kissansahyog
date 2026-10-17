@@ -1,0 +1,66 @@
+PASS TaazaBhav: parses the JSON-LD ItemList (2 leads)
+PASS TaazaBhav: name/date split on the dash
+PASS TaazaBhav: venue from last comma segment, parens stripped
+PASS TaazaBhav: source_name + source_url captured
+PASS TaazaBhav: fails LOUD (ScraperError) when no ItemList
+PASS TaazaBhav: fails LOUD when ItemList is present but empty (not a silent [])
+PASS kisaanhelpline: parses upcoming cards (2 leads)
+PASS kisaanhelpline: reads ONLY upcoming — the Past Events card is NOT parsed
+PASS kisaanhelpline: captures the two real hyper-local events
+PASS kisaanhelpline: best-effort date parsed from card text
+PASS kisaanhelpline: fails LOUD when the events section is missing
+PASS kisaanhelpline: fails LOUD when section present but no cards parse
+PASS robots: empty Disallow → allowed
+PASS robots: matching Disallow path → blocked
+PASS robots: no robots.txt → allowed
+PASS leadChanged: date text change → changed
+PASS leadChanged: identical (whitespace/case only) → unchanged
+PASS dedup: same event across two sources matches (shared matcher, candidate stage)
+PASS dedup: unrelated event does NOT match
+PASS dedup: 3 candidates → 2 clusters (the duplicate pair groups)
+PASS dedup: the merged cluster holds both sources
+PASS verify #1 confirmed-exact → status verified
+PASS verify #1 records the primary source url
+PASS verify #2 confirmed-with-corrections → NOT rejected, still verified
+PASS verify #2 promotion uses the CORRECTED primary-source date, not the stale lead date
+PASS verify #2 promotion uses the CORRECTED venue
+PASS verify #2 drops non-allowlisted tags
+PASS verify #3 contradicted → status rejected
+PASS verify #3 rejected carries a reason
+PASS verify #4 not_found → status unverifiable
+PASS verify #4 confirmed-but-no-primary-source → unverifiable (not verified)
+PASS verify: unparseable verdict → unverifiable (fail safe)
+PASS verify: non-India confirmed → NOT verified
+PASS parseVerdict: strips ```json fences
+PASS parseVerdict: extracts object from surrounding prose
+PASS parseVerdict: garbage → null
+PASS promotion name_hi comes from primary source, NOT the stale aggregator lead
+PASS promotion highlights come from primary source, NOT the aggregator blurb
+PASS promotion source_urls records BOTH corroborating sources + the primary
+PASS badge: >=2 distinct sources → multi-source true
+PASS badge: single source → multi-source false
+PASS badge: dedups a source repeated across source_url + source_urls
+PASS select: pending is always due
+PASS select: verified is never re-verified
+PASS select: rejected is never re-verified
+PASS select: unverifiable w/ no prior attempt → due
+PASS select: unverifiable attempted yesterday → NOT due (within window)
+PASS select: unverifiable last tried >14d ago → due again
+PASS select: unverifiable whose claimed date has passed → given up
+PASS datePassed: past month/year window → true
+PASS datePassed: future window → false
+PASS broad search: keeps the India KVK lead
+PASS broad search: drops the non-India (California) lead
+PASS broad search: drops the lead with no source_url
+PASS broad search: tags leads with source_name=ai_broad_search
+PASS cadence: never run before → due
+PASS cadence: ran today → NOT due (keeps steady-state runs cheap)
+PASS cadence: ran 3 days ago → NOT due (every-3-days pass skips it)
+PASS cadence: ran >=21d ago → due again (periodic full-depth gap-hunt)
+PASS cadence: unreadable asOf → due (never silently skip discovery)
+PASS promotion row shape: is_date_confirmed=true + ISO start (digest prerequisites)
+PASS digest: promotion-pathway row within the 3-day window IS selected
+PASS digest: promotion-pathway row outside the window is NOT selected
+PASS digest: promotion-pathway "अपेक्षित" (unconfirmed) row is excluded
+
+64 passed, 0 failed
