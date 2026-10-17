@@ -1,0 +1,299 @@
+{
+  "when": "2026-10-17T21:04:09.959Z",
+  "base": "http://localhost:4173",
+  "conditions": {
+    "viewport": "360x640",
+    "cpu": "4x",
+    "down": "200,000 B/s (~1.6 Mbps)",
+    "up": "93,750 B/s (~750 Kbps)",
+    "latency": "150 ms",
+    "cache": "cold (new context, cache disabled)",
+    "serviceWorker": "blocked",
+    "lang": "hi",
+    "speed": "normal (no __KS_GUIDE_SPEED)"
+  },
+  "results": [
+    {
+      "page": "/guide",
+      "visibleMs": 2814,
+      "fcpMs": 2328,
+      "wallVisibleMs": 2946,
+      "loadLongTasks": [
+        {
+          "start": 2507,
+          "dur": 307
+        }
+      ],
+      "cardsVisible": 4,
+      "loadAllLongTasks": [
+        {
+          "start": 1666,
+          "dur": 99
+        },
+        {
+          "start": 1768,
+          "dur": 100
+        },
+        {
+          "start": 2359,
+          "dur": 64
+        },
+        {
+          "start": 2507,
+          "dur": 307
+        }
+      ],
+      "transferKB": 306,
+      "errors": []
+    },
+    {
+      "page": "/guide/register",
+      "visibleMs": 3207,
+      "fcpMs": 2276,
+      "wallVisibleMs": 3245,
+      "loadLongTasks": [
+        {
+          "start": 2752,
+          "dur": 456
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "noSkip": true,
+      "finished": true,
+      "playMs": 37911,
+      "playLongTasksOver200": 0,
+      "playMaxLongTask": 141,
+      "playLongTasks": [
+        {
+          "start": 26993,
+          "dur": 141
+        }
+      ],
+      "transferKB": 543,
+      "errors": []
+    },
+    {
+      "page": "/guide/post",
+      "visibleMs": 3252,
+      "fcpMs": 2328,
+      "wallVisibleMs": 3734,
+      "loadLongTasks": [
+        {
+          "start": 2729,
+          "dur": 523
+        },
+        {
+          "start": 3450,
+          "dur": 245
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "noSkip": true,
+      "finished": true,
+      "playMs": 60232,
+      "playLongTasksOver200": 0,
+      "playMaxLongTask": 120,
+      "playLongTasks": [
+        {
+          "start": 14449,
+          "dur": 117
+        },
+        {
+          "start": 41319,
+          "dur": 120
+        }
+      ],
+      "transferKB": 543,
+      "errors": []
+    },
+    {
+      "page": "/guide/find",
+      "visibleMs": 3213,
+      "fcpMs": 2296,
+      "wallVisibleMs": 3259,
+      "loadLongTasks": [
+        {
+          "start": 2753,
+          "dur": 460
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "noSkip": true,
+      "finished": true,
+      "playMs": 28117,
+      "playLongTasksOver200": 0,
+      "playMaxLongTask": 92,
+      "playLongTasks": [
+        {
+          "start": 11862,
+          "dur": 92
+        },
+        {
+          "start": 18754,
+          "dur": 55
+        }
+      ],
+      "transferKB": 543,
+      "errors": []
+    },
+    {
+      "page": "/guide/tour",
+      "visibleMs": 3658,
+      "fcpMs": 2564,
+      "wallVisibleMs": 4106,
+      "loadLongTasks": [
+        {
+          "start": 2833,
+          "dur": 825
+        }
+      ],
+      "sequence": [
+        "mandi",
+        "weather",
+        "schemes",
+        "questions",
+        "market"
+      ],
+      "noSkip": true,
+      "finished": true,
+      "playMs": 24615,
+      "playLongTasksOver200": 0,
+      "playMaxLongTask": 0,
+      "playLongTasks": [],
+      "transferKB": 543,
+      "errors": []
+    }
+  ],
+  "chunks": [
+    {
+      "file": "catalog-KGaQpWeV.js",
+      "raw": 19598,
+      "gz9": 6580
+    },
+    {
+      "file": "DemoPlayer-CGPGNn-k.js",
+      "raw": 25154,
+      "gz9": 7746
+    },
+    {
+      "file": "disclaimers-D37lztIn.js",
+      "raw": 3236,
+      "gz9": 1262
+    },
+    {
+      "file": "guide-BiyxCfv8.js",
+      "raw": 4052,
+      "gz9": 1546
+    },
+    {
+      "file": "guide-CZRgRg7c.css",
+      "raw": 19562,
+      "gz9": 4552
+    },
+    {
+      "file": "GuideDemoPage-BGBxhDbP.js",
+      "raw": 8801,
+      "gz9": 2883
+    },
+    {
+      "file": "GuideHelpButton-D7Yom6p6.js",
+      "raw": 2220,
+      "gz9": 1156
+    },
+    {
+      "file": "GuideHub-vLuvuiNQ.js",
+      "raw": 6339,
+      "gz9": 2143
+    },
+    {
+      "file": "GuideSheet-CZl8V4VR.js",
+      "raw": 3982,
+      "gz9": 1766
+    },
+    {
+      "file": "useLoopActive-Db9yagvT.js",
+      "raw": 665,
+      "gz9": 374
+    }
+  ],
+  "routes": {
+    "/guide/:id (GuideDemoPage + DemoPlayer + useLoopActive + guide js + guide css)": {
+      "raw": 58234,
+      "gz9": 17101
+    },
+    "/guide/:id JS only": {
+      "raw": 38672,
+      "gz9": 12549
+    },
+    "/guide/:id + the shared app chunks it also needs (catalog, disclaimers)": {
+      "raw": 81068,
+      "gz9": 24943
+    },
+    "/guide hub (GuideHub + useLoopActive + guide js + guide css)": {
+      "raw": 30618,
+      "gz9": 8615
+    },
+    "help sheet (GuideSheet + DemoPlayer + guide js + css)": {
+      "raw": 52750,
+      "gz9": 15610
+    },
+    "all guide-only chunks (no catalog / disclaimers)": {
+      "raw": 70775,
+      "gz9": 22166
+    }
+  },
+  "verdict": {
+    "hubUsable": {
+      "value": 2814,
+      "target": 4000,
+      "pass": true
+    },
+    "longTaskDuringPlay": {
+      "value": 141,
+      "target": 300,
+      "pass": true
+    },
+    "allFinishNoSkip": {
+      "pass": true
+    },
+    "chunkGz": {
+      "value": 17101,
+      "target": 40960,
+      "pass": true
+    }
+  }
+}

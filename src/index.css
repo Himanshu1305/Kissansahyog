@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+/* Batch 10C: design/ holds mock-ups and reference files, never app code — keep Tailwind from
+   scanning it (otherwise their class names add unused CSS to every page). */
+@source not "../design";
 @import './styles/tokens.css';
 
 @font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-400-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
