@@ -1,0 +1,28 @@
+
+Running 155 tests using 1 worker
+
+  x    1 [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 375×812 viewport, no h-scroll (13.2s)
+  x    2 [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 1280×800 viewport, no h-scroll (11.7s)
+  x    3 [chromium] › e2e\batch1.spec.js:66:1 › logged out: browse equipment, Call asks for login and returns to the same listing (3.4s)
+  x    4 [chromium] › e2e\batch1.spec.js:109:1 › post flow (3 steps): land OFFER end to end (14.0s)
+  x    5 [chromium] › e2e\batch1.spec.js:130:1 › post flow (3 steps): labor REQUIREMENT end to end (30.1s)
+  x    6 [chromium] › e2e\batch5a.spec.js:23:1 › posts building materials and displays the seller responsibility note (30.1s)
+  x    7 [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Vegetable farming equipment (30.1s)
+  x    8 [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Rare or emergency equipment (30.1s)
+  ok   9 [chromium] › e2e\batch5a.spec.js:62:1 › opens both Batch 5A Bazaar landing pages (3.2s)
+  ok  10 [chromium] › e2e\guide-10c-browse-etag.spec.js:31:3 › Batch 10C — Browse etag in the URL › etag: tap sets URL (1.9s)
+  ok  11 [chromium] › e2e\guide-10c-browse-etag.spec.js:51:3 › Batch 10C — Browse etag in the URL › etag: tap again clears (2.1s)
+  ok  12 [chromium] › e2e\guide-10c-browse-etag.spec.js:69:3 › Batch 10C — Browse etag in the URL › etag: deep link selects (4.1s)
+  ok  13 [chromium] › e2e\guide-10c-browse-etag.spec.js:86:3 › Batch 10C — Browse etag in the URL › etag: refresh keeps (2.6s)
+  ok  14 [chromium] › e2e\guide-10c-browse-etag.spec.js:98:3 › Batch 10C — Browse etag in the URL › etag: unknown ignored (1.9s)
+NOTE F1 hi 360 backend endpoints on /about (control): ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/rpc/get_public_feedback","OPTIONS /rest/v1/site_settings","POST /rest/v1/rpc/get_public_feedback"]
+NOTE F1 hi 360 backend endpoints on the 5 guide pages: ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/site_settings"]
+NOTE F1 hi 360 initiators: ["preflight","supabase"]
+  x   15 [chromium] › e2e\guide-10c.spec.js:71:7 › Guide hi 360px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests (30.0s)
+  x   16 [chromium] › e2e\guide-10c.spec.js:119:7 › Guide hi 360px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge (10.7s)
+  x   17 [chromium] › e2e\guide-10c.spec.js:151:7 › Guide hi 360px › F3 try-it: tapping the highlighted target advances, tapping elsewhere does not (3.7s)
+  x   18 [chromium] › e2e\guide-10c.spec.js:182:7 › Guide hi 360px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag (9.0s)
+  x   19 [chromium] › e2e\guide-10c.spec.js:227:7 › Guide hi 360px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup (6.4s)
+  ok  20 [chromium] › e2e\guide-10c.spec.js:266:7 › Guide hi 360px › F7 every entry point exists and opens the right demo (19.3s)
+  x   21 [chromium] › e2e\guide-10c.spec.js:71:7 › Guide hi 412px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests (15.7m)
+exit KILLED by Claude Code (system low on memory) after test 21 of 155 — run incomplete, global teardown did not run

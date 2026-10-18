@@ -1,0 +1,154 @@
+{
+  "label": "10e-baseline-autoplay",
+  "mode": "autoplay",
+  "baseURL": "http://localhost:4195",
+  "path": "/",
+  "date": "2026-10-18T09:53:17.918Z",
+  "profile": {
+    "viewport": "360x640",
+    "deviceScaleFactor": 2,
+    "cpuThrottlingRate": 4,
+    "network": {
+      "offline": false,
+      "latency": 562.5,
+      "downloadThroughput": 180000,
+      "uploadThroughput": 84375
+    },
+    "language": "hi",
+    "window": "10000 ms from live engine start (data-live=1, data-motion=on), hero phone scrolled into view"
+  },
+  "runs": 3,
+  "median": {
+    "maxLongTaskMs": 87,
+    "longTasks": 6,
+    "liveWaitMs": 1227
+  },
+  "worst": {
+    "maxLongTaskMs": 120,
+    "over300": 0
+  },
+  "all": [
+    {
+      "run": 1,
+      "heroFound": true,
+      "liveWaitMs": 1450,
+      "autoplayStartMs": 25265,
+      "t0": 25265,
+      "tick0": 0,
+      "tickEnd": 175,
+      "rot": 0,
+      "personas": [
+        "rent"
+      ],
+      "motionEnd": "on",
+      "longTasks": [
+        {
+          "start": 2760,
+          "dur": 62
+        },
+        {
+          "start": 2999,
+          "dur": 81
+        },
+        {
+          "start": 3529,
+          "dur": 74
+        },
+        {
+          "start": 3857,
+          "dur": 59
+        },
+        {
+          "start": 4722,
+          "dur": 58
+        },
+        {
+          "start": 6427,
+          "dur": 87
+        },
+        {
+          "start": 9682,
+          "dur": 53
+        }
+      ],
+      "maxLongTaskMs": 87,
+      "over300": 0
+    },
+    {
+      "run": 2,
+      "heroFound": true,
+      "liveWaitMs": 328,
+      "autoplayStartMs": 25539,
+      "t0": 25539,
+      "tick0": 0,
+      "tickEnd": 146,
+      "rot": 0,
+      "personas": [
+        "rent"
+      ],
+      "motionEnd": "on",
+      "longTasks": [
+        {
+          "start": 1767,
+          "dur": 51
+        },
+        {
+          "start": 2118,
+          "dur": 79
+        },
+        {
+          "start": 5421,
+          "dur": 120
+        },
+        {
+          "start": 6029,
+          "dur": 114
+        },
+        {
+          "start": 6686,
+          "dur": 50
+        },
+        {
+          "start": 8293,
+          "dur": 70
+        }
+      ],
+      "maxLongTaskMs": 120,
+      "over300": 0
+    },
+    {
+      "run": 3,
+      "heroFound": true,
+      "liveWaitMs": 1227,
+      "autoplayStartMs": 25590,
+      "t0": 25590,
+      "tick0": 0,
+      "tickEnd": 184,
+      "rot": 0,
+      "personas": [
+        "rent"
+      ],
+      "motionEnd": "on",
+      "longTasks": [
+        {
+          "start": 3346,
+          "dur": 61
+        },
+        {
+          "start": 3732,
+          "dur": 67
+        },
+        {
+          "start": 4767,
+          "dur": 81
+        },
+        {
+          "start": 9676,
+          "dur": 64
+        }
+      ],
+      "maxLongTaskMs": 81,
+      "over300": 0
+    }
+  ]
+}

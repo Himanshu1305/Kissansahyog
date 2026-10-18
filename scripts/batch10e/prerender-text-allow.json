@@ -1,0 +1,32 @@
+{
+  "_comment": "Batch 10E — data-driven text excluded from the prerender text diff (filled from the STAGING DB / live APIs at build time). Regions: lines strictly between `after` (searched from `from`, if given) and `until`; `routes` is a regex on the route ('/', '/msp/gehun', …). Lines: single lines matching `re` (optionally only when the previous line equals `near`). Homepage entries reuse the Batch 10D seo-diff exclusions (scripts/batch10d/seo-diff.mjs).",
+  "regions": [
+    { "id": "home-mandi-ticker", "routes": "^/$", "after": "📊 मंडी भाव", "until": "बिना लॉगिन के सारी जानकारी देखें",
+      "source": "components/MandiTicker.jsx (fetchMandiPrices)", "reason": "crop / price / APMC of the latest mandi day" },
+    { "id": "home-listings", "routes": "^/$", "from": "ताज़ा लिस्टिंग", "after": "सभी देखें →", "until": "आज की 2 मिनट की वीडियो सलाह",
+      "source": "Homepage.jsx fetchHomeFeed", "reason": "newest listings" },
+    { "id": "home-videos", "routes": "^/$", "from": "आज की 2 मिनट की वीडियो सलाह", "after": "सभी देखें →", "until": "किसान सवाल",
+      "source": "Homepage.jsx fetchFeaturedVideos(3)", "reason": "featured videos" },
+    { "id": "home-sawaal", "routes": "^/$", "from": "किसान सवाल", "after": "सभी सवाल देखें →", "until": "📷 फोटो भेजकर सवाल पूछें",
+      "source": "Homepage.jsx fetchFeaturedSawaal(3)", "reason": "featured questions" },
+    { "id": "home-melas", "routes": "^/$", "from": "आस-पास के किसान मेले", "after": "सभी मेले देखें →", "until": "सरकारी मदद",
+      "source": "Homepage.jsx fetchUpcomingMelas(3)", "reason": "next melas; status depends on build date" },
+    { "id": "home-articles", "routes": "^/$", "from": "किसान लेख", "after": "सभी देखें →", "until": "किसान सहयोग",
+      "source": "Homepage.jsx fetchPublishedArticles", "reason": "published articles" }
+  ],
+  "lines": [
+    { "id": "ticker-day", "re": "^(कल|आज) का भाव \\(\\d{1,2}/\\d{1,2}\\)$", "reason": "date of the latest mandi day" },
+    { "id": "home-today-price", "routes": "^/$", "re": "^\\S+ ₹[\\d,]+$", "near": "आज का भाव", "reason": "crop and modal price of the day" },
+    { "id": "home-today-msp", "routes": "^/$", "re": "^MSP ₹[\\d,]+ से ₹[\\d,]+ (ऊपर|नीचे) · ", "reason": "difference vs MSP" },
+    { "id": "msp-ndays", "routes": "^/msp", "re": "^इस अवधि में केवल \\d+ दिन का डेटा उपलब्ध$", "reason": "number of mandi days in the DB" },
+    { "id": "msp-chart-number", "routes": "^/msp", "re": "^\\d+$", "reason": "chart axis / point value from mandi_prices" },
+    { "id": "msp-chart-date", "routes": "^/msp", "re": "^\\d{4}-\\d{2}-\\d{2}$", "reason": "chart date from mandi_prices" },
+    { "id": "relative-age", "re": "^\\d+ (दिन|घंटे|मिनट) पहले$", "reason": "listing age relative to the build time" }
+  ],
+  "head": [
+    { "id": "msp-temporal-coverage", "routes": "^/msp", "re": "\"temporalCoverage\":\"\\d{4}-\\d{2}-\\d{2}/\\d{4}-\\d{2}-\\d{2}\"", "replace": "\"temporalCoverage\":\"<data>\"", "reason": "JSON-LD Dataset date range = mandi_prices min/max date" }
+  ],
+  "_notes": [
+    "Phase 0 probe (same code e81a100, two staging builds a few hours apart): besides the entries above, /msp/* price lines (₹…) and the listing pages also change with the DB, and /articles /kisan-mela /safalta /sawaal /videos /yojana/* /info /agro-forestry were captured in a LOADING state ('थोड़ा रुकें…') in one build and complete in the other — the prerender is not deterministic for these pages. A 'removed' report on those routes must be checked by hand (re-run the build / prerender) before calling it an SEO loss."
+  ]
+}

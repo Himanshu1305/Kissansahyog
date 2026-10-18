@@ -1,0 +1,14 @@
+e2e\batch1.spec.js:109:1 › post flow (3 steps): land OFFER end to end
+e2e\batch1.spec.js:130:1 › post flow (3 steps): labor REQUIREMENT end to end
+e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 1280×800 viewport, no h-scroll
+e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 375×812 viewport, no h-scroll
+e2e\batch1.spec.js:66:1 › logged out: browse equipment, Call asks for login and returns to the same listing
+e2e\batch5a.spec.js:23:1 › posts building materials and displays the seller responsibility note
+e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Rare or emergency equipment
+e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Vegetable farming equipment
+e2e\guide-10c.spec.js:119:7 › Guide hi 360px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+e2e\guide-10c.spec.js:151:7 › Guide hi 360px › F3 try-it: tapping the highlighted target advances, tapping elsewhere does not
+e2e\guide-10c.spec.js:182:7 › Guide hi 360px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+e2e\guide-10c.spec.js:227:7 › Guide hi 360px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+e2e\guide-10c.spec.js:71:7 › Guide hi 360px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+e2e\guide-10c.spec.js:71:7 › Guide hi 412px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests

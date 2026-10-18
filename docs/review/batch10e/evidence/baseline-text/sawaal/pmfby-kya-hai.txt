@@ -1,0 +1,139 @@
+### HEAD
+title: प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या कवर करती है?
+description: PMFBY फसल को प्राकृतिक आपदा से होने वाले नुकसान पर मुआवजा देती है। इसमें आग, बिजली, सूखा, बाढ़, जलभराव, ओलावृष्टि, चक्रवात, तूफान, भूस्खलन और कीट-रोग से हु
+canonical: https://kissansahyog.com/sawaal/pmfby-kya-hai
+robots: 
+lang: hi
+h1: प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या कवर करती है?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"योजनाएं","item":"https://kissansahyog.com/sawaal/vishay/scheme"},{"@type":"ListItem","position":4,"name":"प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"QAPage","mainEntity":{"@type":"Question","name":"प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या कवर करती है?","acceptedAnswer":{"@type":"Answer","text":"PMFBY फसल को प्राकृतिक आपदा से होने वाले नुकसान पर मुआवजा देती है। इसमें आग, बिजली, सूखा, बाढ़, जलभराव, ओलावृष्टि, चक्रवात, तूफान, भूस्खलन और कीट-रोग से हुई हानि शामिल है।"}}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+योजनाएं
+/
+प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या
+योजनाएं
+प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या कवर करती है?
+संक्षेप में
+PMFBY फसल को प्राकृतिक आपदा से होने वाले नुकसान पर मुआवजा देती है। इसमें आग, बिजली, सूखा, बाढ़, जलभराव, ओलावृष्टि, चक्रवात, तूफान, भूस्खलन और कीट-रोग से हुई हानि शामिल है।
+PMFBY फसल बीमा योजना है जो गैर-रोकथाम योग्य (non-preventable) जोखिमों से हुए उपज नुकसान को कवर करती है।
+[1]
+इसमें आग व बिजली, तूफान, आंधी, चक्रवात, सूखा/सूखा दौर, और कीट व रोग जैसी आपदाओं से हुआ नुकसान शामिल है।
+[2]
+,
+[1]
+बुवाई न कर पाने (prevented sowing) पर बीमित राशि का 25% तक, और कटाई के 14 दिन के भीतर कटी-रखी फसल (post-harvest) के नुकसान पर भी कवर मिलता है।
+[1]
+स्रोत
+[1]
+PMFBY premium rates and operational timelines (72-hour intimation, prevented sowing, post-harvest, premium sharing)
+सरकारी स्रोत
+— Press Information Bureau (PIB), Ministry of Agriculture & Farmers Welfare, 2026-03-10
+[2]
+Pradhan Mantri Fasal Bima Yojana (PMFBY) — premium rates and covered risks
+सरकारी स्रोत
+— Department of Agriculture, Government of Himachal Pradesh, n.d.
+KVK सागर या कृषि कार्यालय से कब संपर्क करें
+अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।
+उपयोगी संपर्क →
+WhatsApp पर शेयर करें
+इनसे जुड़े सवाल
+❓
+किसान क्रेडिट कार्ड के लिए कौन और कैसे आवेदन कर सकता है?
+❓
+पीएम-किसान में ई-केवाईसी क्यों जरूरी है?
+❓
+फसल बीमा में किसान को कितना प्रीमियम देना होता है?
+❓
+फसल खराब होने पर बीमा क्लेम कैसे और कब करें?
+❓
+किसान क्रेडिट कार्ड पर ब्याज दर कितनी है?
+❓
+किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए?
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

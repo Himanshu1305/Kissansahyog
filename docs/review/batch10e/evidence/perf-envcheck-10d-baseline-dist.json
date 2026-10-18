@@ -1,0 +1,4138 @@
+{
+  "label": "10d-baseline-envcheck",
+  "mode": "slow-phone",
+  "baseURL": "http://localhost:4190",
+  "path": "/",
+  "date": "2026-10-18T09:51:18.173Z",
+  "profile": {
+    "viewport": "360x640",
+    "deviceScaleFactor": 2,
+    "isMobile": true,
+    "hasTouch": true,
+    "serviceWorkers": "block",
+    "cacheDisabled": true,
+    "cpuThrottlingRate": 4,
+    "network": {
+      "name": "Lighthouse mobile Slow 4G (devtools throttling: 150 ms RTT x 3.75, 1.6 Mbps x 0.9, 750 Kbps x 0.9)",
+      "offline": false,
+      "latency": 562.5,
+      "downloadThroughput": 180000,
+      "uploadThroughput": 84375,
+      "latencyUnit": "ms",
+      "throughputUnit": "bytes/s"
+    },
+    "language": "hi (localStorage ks_lang_v1)",
+    "loggedIn": false,
+    "settle": "read at max(load + 5000 ms, 10000 ms after navigation)",
+    "tbtWindow": "[FCP, 10000 ms]"
+  },
+  "runs": 3,
+  "median": {
+    "lcpMs": 9512,
+    "cls": 0.66094,
+    "cls10s": 0,
+    "tbtMs": 253,
+    "fcpMs": 8600,
+    "maxLongTaskMs": 412,
+    "loadWallMs": 11929,
+    "requests": 117,
+    "transferBytes": 1437219,
+    "heroFarmerJpgRequests": 1,
+    "jsChunksGzip9Total": null
+  },
+  "all": [
+    {
+      "run": 1,
+      "lcpMs": 8196,
+      "lcp": {
+        "startTime": 8196,
+        "renderTime": 8196,
+        "loadTime": 6929,
+        "size": 72000,
+        "url": "http://localhost:4190/images/home/hero-farmer.jpg",
+        "element": {
+          "tag": "IMG",
+          "id": null,
+          "class": "h-[200px] w-full object-cover",
+          "text": null,
+          "src": "http://localhost:4190/images/home/hero-farmer.jpg"
+        }
+      },
+      "cls": 0.66094,
+      "cls10s": 0,
+      "shifts": [
+        {
+          "t": 13301,
+          "v": 0.66094,
+          "nodes": [
+            "FOOTER.ks-section"
+          ]
+        }
+      ],
+      "fcpMs": 6868,
+      "tbtMs": 1208,
+      "longTasks": [
+        {
+          "start": 1008,
+          "dur": 69
+        },
+        {
+          "start": 1197,
+          "dur": 54
+        },
+        {
+          "start": 8318,
+          "dur": 206
+        },
+        {
+          "start": 8540,
+          "dur": 731
+        },
+        {
+          "start": 9459,
+          "dur": 109
+        },
+        {
+          "start": 9599,
+          "dur": 362
+        },
+        {
+          "start": 10059,
+          "dur": 57
+        },
+        {
+          "start": 13352,
+          "dur": 124
+        },
+        {
+          "start": 13533,
+          "dur": 103
+        },
+        {
+          "start": 14444,
+          "dur": 67
+        },
+        {
+          "start": 14558,
+          "dur": 189
+        },
+        {
+          "start": 14907,
+          "dur": 105
+        },
+        {
+          "start": 15057,
+          "dur": 118
+        }
+      ],
+      "maxLongTaskMs": 731,
+      "loadWallMs": 10184,
+      "nav": {
+        "loadEventEnd": 10171,
+        "domContentLoaded": 8522,
+        "responseEnd": 677
+      },
+      "readAtMs": 15334,
+      "heroFarmerJpg": {
+        "requests": 1,
+        "bytes": 145232,
+        "statuses": [
+          200
+        ]
+      },
+      "requests": 117,
+      "transferBytes": 1437232,
+      "failedRequests": [
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        }
+      ],
+      "jsChunks": [
+        {
+          "url": "http://localhost:4190/assets/index-Berk0UA3.js",
+          "transferBytes": 28002,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/rolldown-runtime-hePW80VL.js",
+          "transferBytes": 1037,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/react-vendor-Cg-BX6NK.js",
+          "transferBytes": 72889,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LanguageProvider-DDrhCBhA.js",
+          "transferBytes": 62184,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/useNativeBack-0uN2UQaS.js",
+          "transferBytes": 972,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/supabase-H6RbKBY9.js",
+          "transferBytes": 53766,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/PageShell-t5g9TXZ0.js",
+          "transferBytes": 15655,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/device-D4sZPGnq.js",
+          "transferBytes": 628,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4190/assets/Homepage-CDCNQfXq.js",
+          "transferBytes": 9752,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaApi-DAscXvgJ.js",
+          "transferBytes": 3322,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/communityApi-BRu85UzD.js",
+          "transferBytes": 1876,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mandiApi-Cyg-UtSr.js",
+          "transferBytes": 1920,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApi-f5eLqPLK.js",
+          "transferBytes": 800,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApiV2-DYytxgjv.js",
+          "transferBytes": 2157,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/kit-C8zqDTZV.js",
+          "transferBytes": 2980,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shared-CVwOVOBp.js",
+          "transferBytes": 4423,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LocationControl-Cu1Llzwt.js",
+          "transferBytes": 2715,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/articlesApi-ChsYQpPp.js",
+          "transferBytes": 1015,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shareMessages-Y3v0P0jO.js",
+          "transferBytes": 1344,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/catalog-KGaQpWeV.js",
+          "transferBytes": 6967,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/registry-C-MzvmZO.js",
+          "transferBytes": 13589,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/listingsApi-CNTmJfjD.js",
+          "transferBytes": 2390,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/photos-Ck8NOaOM.js",
+          "transferBytes": 1226,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/OfflineStamp-zG7GcysU.js",
+          "transferBytes": 987,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/crops-Bmyu-kFh.js",
+          "transferBytes": 920,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/founder-B7YdwJ2e.js",
+          "transferBytes": 6720,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mspApi-b880GNPZ.js",
+          "transferBytes": 754,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/AvailabilityNudge-DJnaiE4e.js",
+          "transferBytes": 1420,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/videosApi-BEXH0_Cw.js",
+          "transferBytes": 921,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaFormat-BrAJo1Hn.js",
+          "transferBytes": 1249,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/months-vZTFnxQH.js",
+          "transferBytes": 845,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/workbox-window.prod.es5-Bd17z0YL.js",
+          "transferBytes": 2569,
+          "status": 200,
+          "failed": null
+        }
+      ],
+      "jsChunksGzip9Total": null,
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+      ],
+      "requestLog": [
+        {
+          "url": "http://localhost:4190/",
+          "type": "Document",
+          "status": 200,
+          "bytes": 14376,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/index-Berk0UA3.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 28002,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/rolldown-runtime-hePW80VL.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1037,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/react-vendor-Cg-BX6NK.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 72889,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LanguageProvider-DDrhCBhA.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 62184,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/useNativeBack-0uN2UQaS.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 972,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/supabase-H6RbKBY9.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 53766,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/PageShell-t5g9TXZ0.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 15655,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/device-D4sZPGnq.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 628,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/index-C9S2MTQ5.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 12817,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4190/brand/logo-192.webp",
+          "type": "Image",
+          "status": 200,
+          "bytes": 13682,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/hero-farmer.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 145232,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-800-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54088,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-600-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10988,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-700-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54304,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-700-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10924,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-400-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10832,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-800-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10944,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-600-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54036,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-400-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 50736,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-rotavator.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 112608,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-tanker.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 108050,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-labour.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 52467,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-drone.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 43411,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-straw.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 42875,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-seeds.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 104611,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-building-materials.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-godown.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 57837,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-cold-storage.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 50007,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-greenhouse.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 68826,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-carbon.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-jugaad.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-transport.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-expert.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-land.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1da3e12e-4454-4da2-85a1-4d89abefde54/0.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 7822,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/list-straw.jpg",
+          "type": "Image",
+          "status": null,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/Homepage-CDCNQfXq.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9752,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaApi-DAscXvgJ.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3322,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/communityApi-BRu85UzD.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1876,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mandiApi-Cyg-UtSr.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1920,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApi-f5eLqPLK.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 800,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApiV2-DYytxgjv.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2157,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/kit-C8zqDTZV.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2980,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shared-CVwOVOBp.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4423,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LocationControl-Cu1Llzwt.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2715,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/articlesApi-ChsYQpPp.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1015,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shareMessages-Y3v0P0jO.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1344,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/catalog-KGaQpWeV.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6967,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/registry-C-MzvmZO.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 13589,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/listingsApi-CNTmJfjD.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2390,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/photos-Ck8NOaOM.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1226,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/OfflineStamp-zG7GcysU.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 987,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/crops-Bmyu-kFh.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 920,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/founder-B7YdwJ2e.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6720,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mspApi-b880GNPZ.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 754,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/AvailabilityNudge-DJnaiE4e.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1420,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/videosApi-BEXH0_Cw.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 921,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaFormat-BrAJo1Hn.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1249,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/months-vZTFnxQH.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 845,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/workbox-window.prod.es5-Bd17z0YL.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2569,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/site_settings?select=value&key=eq.whatsapp_channel_url",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/places?select=id%2Cname_en%2Cname_hi%2Cdistrict%2Ckind%2Clat%2Clng%2Cverified&limit=500",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/site_settings?select=value&key=eq.whatsapp_channel_url",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 798,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/places?select=id%2Cname_en%2Cname_hi%2Cdistrict%2Ckind%2Clat%2Clng%2Cverified&limit=500",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2607,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/articles?select=id%2Cslug%2Ctitle_hi%2Ctitle_en%2Csummary_hi%2Csummary_en%2Cauthor_name%2Ccover_image_url%2Cpublished_at&is_published=eq.true&order=published_at.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/crops?select=*&order=name_en.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/equipment_types?select=*&order=id.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&is_featured=eq.true&order=answered_at.desc&limit=3",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/videos?select=*&is_active=eq.true&is_featured=eq.true&order=sort_order.asc&limit=3",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/rpc/recent_crop_reports",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/msp_prices?select=*&is_active=eq.true&order=season.asc%2Ccrop_en.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_mela?select=id%2Cname_hi%2Cname_en%2Cvenue%2Cstate%2Cdistrict%2Clatitude%2Clongitude%2Cevent_date_start%2Cevent_date_end%2Cis_date_confirmed%2Cexpected_period%2Ccategory_tags%2Csource_url&is_active=eq.true&moderation_status=eq.approved&merged_into=is.null&order=event_date_start.asc.nullslast",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/listings?select=id%2Clisting_type%2Ccategory%2Cpincode%2Cvillage_town%3Avillage_name%2Clatitude%2Clongitude%2Cgeocoding_status%2Cdetails%2Ccreated_at%2Clisting_source%2Cis_test_data%2Cwide_visibility%2Cis_sponsored&status=eq.active&is_available=eq.true&expires_at=gt.2026-10-18T09%3A50%3A38.761Z&order=created_at.desc&limit=40",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1224,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/articles?select=id%2Cslug%2Ctitle_hi%2Ctitle_en%2Csummary_hi%2Csummary_en%2Cauthor_name%2Ccover_image_url%2Cpublished_at&is_published=eq.true&order=published_at.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2268,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/crops?select=*&order=name_en.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1111,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/equipment_types?select=*&order=id.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1282,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&is_featured=eq.true&order=answered_at.desc&limit=3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1980,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/videos?select=*&is_active=eq.true&is_featured=eq.true&order=sort_order.asc&limit=3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1535,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/rpc/recent_crop_reports",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 744,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/msp_prices?select=*&is_active=eq.true&order=season.asc%2Ccrop_en.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3068,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1223,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_mela?select=id%2Cname_hi%2Cname_en%2Cvenue%2Cstate%2Cdistrict%2Clatitude%2Clongitude%2Cevent_date_start%2Cevent_date_end%2Cis_date_confirmed%2Cexpected_period%2Ccategory_tags%2Csource_url&is_active=eq.true&moderation_status=eq.approved&merged_into=is.null&order=event_date_start.asc.nullslast",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 8015,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/listings?select=id%2Clisting_type%2Ccategory%2Cpincode%2Cvillage_town%3Avillage_name%2Clatitude%2Clongitude%2Cgeocoding_status%2Cdetails%2Ccreated_at%2Clisting_source%2Cis_test_data%2Cwide_visibility%2Cis_sponsored&status=eq.active&is_available=eq.true&expires_at=gt.2026-10-18T09%3A50%3A38.761Z&order=created_at.desc&limit=40",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 5750,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1393,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&order=answered_at.desc%2Ccreated_at.desc&limit=12",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&order=answered_at.desc%2Ccreated_at.desc&limit=12",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3371,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1396,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68b43577-3479-4e41-b4f3-6f6234dbf8bf/0-1kiiyek.jpg",
+          "type": "Image",
+          "status": null,
+          "bytes": null,
+          "failed": null
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "lcpMs": 9512,
+      "lcp": {
+        "startTime": 9512,
+        "renderTime": 9512,
+        "loadTime": 8660,
+        "size": 72000,
+        "url": "http://localhost:4190/images/home/hero-farmer.jpg",
+        "element": {
+          "tag": "IMG",
+          "id": null,
+          "class": "h-[200px] w-full object-cover",
+          "text": null,
+          "src": "http://localhost:4190/images/home/hero-farmer.jpg"
+        }
+      },
+      "cls": 0.66094,
+      "cls10s": 0,
+      "shifts": [
+        {
+          "t": 15440,
+          "v": 0.66094,
+          "nodes": [
+            "FOOTER.ks-section"
+          ]
+        }
+      ],
+      "fcpMs": 8600,
+      "tbtMs": 253,
+      "longTasks": [
+        {
+          "start": 974,
+          "dur": 95
+        },
+        {
+          "start": 1194,
+          "dur": 109
+        },
+        {
+          "start": 9630,
+          "dur": 301
+        },
+        {
+          "start": 9948,
+          "dur": 412
+        },
+        {
+          "start": 10527,
+          "dur": 93
+        },
+        {
+          "start": 10674,
+          "dur": 356
+        },
+        {
+          "start": 11075,
+          "dur": 59
+        },
+        {
+          "start": 13930,
+          "dur": 82
+        },
+        {
+          "start": 15534,
+          "dur": 231
+        },
+        {
+          "start": 15846,
+          "dur": 85
+        }
+      ],
+      "maxLongTaskMs": 412,
+      "loadWallMs": 11929,
+      "nav": {
+        "loadEventEnd": 11923,
+        "domContentLoaded": 9930,
+        "responseEnd": 672
+      },
+      "readAtMs": 17364,
+      "heroFarmerJpg": {
+        "requests": 1,
+        "bytes": 145232,
+        "statuses": [
+          200
+        ]
+      },
+      "requests": 117,
+      "transferBytes": 1431067,
+      "failedRequests": [
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        }
+      ],
+      "jsChunks": [
+        {
+          "url": "http://localhost:4190/assets/index-Berk0UA3.js",
+          "transferBytes": 28002,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/rolldown-runtime-hePW80VL.js",
+          "transferBytes": 1037,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/react-vendor-Cg-BX6NK.js",
+          "transferBytes": 72889,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LanguageProvider-DDrhCBhA.js",
+          "transferBytes": 62184,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/useNativeBack-0uN2UQaS.js",
+          "transferBytes": 972,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/supabase-H6RbKBY9.js",
+          "transferBytes": 53766,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/PageShell-t5g9TXZ0.js",
+          "transferBytes": 15655,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/device-D4sZPGnq.js",
+          "transferBytes": 628,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4190/assets/Homepage-CDCNQfXq.js",
+          "transferBytes": 9752,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaApi-DAscXvgJ.js",
+          "transferBytes": 3322,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/communityApi-BRu85UzD.js",
+          "transferBytes": 1876,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mandiApi-Cyg-UtSr.js",
+          "transferBytes": 1920,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApi-f5eLqPLK.js",
+          "transferBytes": 800,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApiV2-DYytxgjv.js",
+          "transferBytes": 2157,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/kit-C8zqDTZV.js",
+          "transferBytes": 2980,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shared-CVwOVOBp.js",
+          "transferBytes": 4423,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LocationControl-Cu1Llzwt.js",
+          "transferBytes": 2715,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/articlesApi-ChsYQpPp.js",
+          "transferBytes": 1015,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shareMessages-Y3v0P0jO.js",
+          "transferBytes": 1344,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/catalog-KGaQpWeV.js",
+          "transferBytes": 6967,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/registry-C-MzvmZO.js",
+          "transferBytes": 13589,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/listingsApi-CNTmJfjD.js",
+          "transferBytes": 2390,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/photos-Ck8NOaOM.js",
+          "transferBytes": 1226,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/OfflineStamp-zG7GcysU.js",
+          "transferBytes": 987,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/crops-Bmyu-kFh.js",
+          "transferBytes": 920,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/founder-B7YdwJ2e.js",
+          "transferBytes": 6720,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mspApi-b880GNPZ.js",
+          "transferBytes": 754,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/AvailabilityNudge-DJnaiE4e.js",
+          "transferBytes": 1420,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/videosApi-BEXH0_Cw.js",
+          "transferBytes": 921,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaFormat-BrAJo1Hn.js",
+          "transferBytes": 1249,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/months-vZTFnxQH.js",
+          "transferBytes": 845,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/workbox-window.prod.es5-Bd17z0YL.js",
+          "transferBytes": 2569,
+          "status": 200,
+          "failed": null
+        }
+      ],
+      "jsChunksGzip9Total": null,
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+      ],
+      "requestLog": [
+        {
+          "url": "http://localhost:4190/",
+          "type": "Document",
+          "status": 200,
+          "bytes": 14376,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/index-Berk0UA3.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 28002,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/rolldown-runtime-hePW80VL.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1037,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/react-vendor-Cg-BX6NK.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 72889,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LanguageProvider-DDrhCBhA.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 62184,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/useNativeBack-0uN2UQaS.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 972,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/supabase-H6RbKBY9.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 53766,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/PageShell-t5g9TXZ0.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 15655,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/device-D4sZPGnq.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 628,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/index-C9S2MTQ5.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 12817,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4190/brand/logo-192.webp",
+          "type": "Image",
+          "status": 200,
+          "bytes": 13682,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/hero-farmer.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 145232,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-800-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54088,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-600-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10988,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-700-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54304,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-700-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10924,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-400-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10832,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-800-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10944,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-600-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54036,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-400-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 50736,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-rotavator.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 112608,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-tanker.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 108050,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-labour.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 52467,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-drone.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 43411,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-straw.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 42875,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-seeds.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 104611,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-building-materials.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-godown.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 57837,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-cold-storage.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 50007,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-greenhouse.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 68826,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-carbon.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-jugaad.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-transport.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-expert.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-land.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1da3e12e-4454-4da2-85a1-4d89abefde54/0.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 7822,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/list-straw.jpg",
+          "type": "Image",
+          "status": null,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/Homepage-CDCNQfXq.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9752,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaApi-DAscXvgJ.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3322,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/communityApi-BRu85UzD.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1876,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mandiApi-Cyg-UtSr.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1920,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApi-f5eLqPLK.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 800,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApiV2-DYytxgjv.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2157,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/kit-C8zqDTZV.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2980,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shared-CVwOVOBp.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4423,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LocationControl-Cu1Llzwt.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2715,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/articlesApi-ChsYQpPp.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1015,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shareMessages-Y3v0P0jO.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1344,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/catalog-KGaQpWeV.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6967,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/registry-C-MzvmZO.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 13589,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/listingsApi-CNTmJfjD.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2390,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/photos-Ck8NOaOM.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1226,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/OfflineStamp-zG7GcysU.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 987,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/crops-Bmyu-kFh.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 920,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/founder-B7YdwJ2e.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6720,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mspApi-b880GNPZ.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 754,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/AvailabilityNudge-DJnaiE4e.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1420,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/videosApi-BEXH0_Cw.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 921,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaFormat-BrAJo1Hn.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1249,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/months-vZTFnxQH.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 845,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/workbox-window.prod.es5-Bd17z0YL.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2569,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/site_settings?select=value&key=eq.whatsapp_channel_url",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/places?select=id%2Cname_en%2Cname_hi%2Cdistrict%2Ckind%2Clat%2Clng%2Cverified&limit=500",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/site_settings?select=value&key=eq.whatsapp_channel_url",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 798,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/places?select=id%2Cname_en%2Cname_hi%2Cdistrict%2Ckind%2Clat%2Clng%2Cverified&limit=500",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2606,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/articles?select=id%2Cslug%2Ctitle_hi%2Ctitle_en%2Csummary_hi%2Csummary_en%2Cauthor_name%2Ccover_image_url%2Cpublished_at&is_published=eq.true&order=published_at.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/crops?select=*&order=name_en.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/equipment_types?select=*&order=id.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&is_featured=eq.true&order=answered_at.desc&limit=3",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/videos?select=*&is_active=eq.true&is_featured=eq.true&order=sort_order.asc&limit=3",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/rpc/recent_crop_reports",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/msp_prices?select=*&is_active=eq.true&order=season.asc%2Ccrop_en.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_mela?select=id%2Cname_hi%2Cname_en%2Cvenue%2Cstate%2Cdistrict%2Clatitude%2Clongitude%2Cevent_date_start%2Cevent_date_end%2Cis_date_confirmed%2Cexpected_period%2Ccategory_tags%2Csource_url&is_active=eq.true&moderation_status=eq.approved&merged_into=is.null&order=event_date_start.asc.nullslast",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/listings?select=id%2Clisting_type%2Ccategory%2Cpincode%2Cvillage_town%3Avillage_name%2Clatitude%2Clongitude%2Cgeocoding_status%2Cdetails%2Ccreated_at%2Clisting_source%2Cis_test_data%2Cwide_visibility%2Cis_sponsored&status=eq.active&is_available=eq.true&expires_at=gt.2026-10-18T09%3A50%3A56.665Z&order=created_at.desc&limit=40",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1221,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/articles?select=id%2Cslug%2Ctitle_hi%2Ctitle_en%2Csummary_hi%2Csummary_en%2Cauthor_name%2Ccover_image_url%2Cpublished_at&is_published=eq.true&order=published_at.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2269,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/crops?select=*&order=name_en.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1110,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/equipment_types?select=*&order=id.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1282,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&is_featured=eq.true&order=answered_at.desc&limit=3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1981,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/videos?select=*&is_active=eq.true&is_featured=eq.true&order=sort_order.asc&limit=3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1532,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/rpc/recent_crop_reports",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 744,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/msp_prices?select=*&is_active=eq.true&order=season.asc%2Ccrop_en.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3068,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1224,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_mela?select=id%2Cname_hi%2Cname_en%2Cvenue%2Cstate%2Cdistrict%2Clatitude%2Clongitude%2Cevent_date_start%2Cevent_date_end%2Cis_date_confirmed%2Cexpected_period%2Ccategory_tags%2Csource_url&is_active=eq.true&moderation_status=eq.approved&merged_into=is.null&order=event_date_start.asc.nullslast",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 8013,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/listings?select=id%2Clisting_type%2Ccategory%2Cpincode%2Cvillage_town%3Avillage_name%2Clatitude%2Clongitude%2Cgeocoding_status%2Cdetails%2Ccreated_at%2Clisting_source%2Cis_test_data%2Cwide_visibility%2Cis_sponsored&status=eq.active&is_available=eq.true&expires_at=gt.2026-10-18T09%3A50%3A56.665Z&order=created_at.desc&limit=40",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 5752,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&order=answered_at.desc%2Ccreated_at.desc&limit=12",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&order=answered_at.desc%2Ccreated_at.desc&limit=12",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68b43577-3479-4e41-b4f3-6f6234dbf8bf/0-1kiiyek.jpg",
+          "type": "Image",
+          "status": null,
+          "bytes": null,
+          "failed": null
+        }
+      ]
+    },
+    {
+      "run": 3,
+      "lcpMs": 11264,
+      "lcp": {
+        "startTime": 11264,
+        "renderTime": 11264,
+        "loadTime": 10447,
+        "size": 72000,
+        "url": "http://localhost:4190/images/home/hero-farmer.jpg",
+        "element": {
+          "tag": "IMG",
+          "id": null,
+          "class": "h-[200px] w-full object-cover",
+          "text": null,
+          "src": "http://localhost:4190/images/home/hero-farmer.jpg"
+        }
+      },
+      "cls": 0.66094,
+      "cls10s": 0,
+      "shifts": [
+        {
+          "t": 16352,
+          "v": 0.66094,
+          "nodes": [
+            "FOOTER.ks-section"
+          ]
+        }
+      ],
+      "fcpMs": 10388,
+      "tbtMs": 0,
+      "longTasks": [
+        {
+          "start": 11400,
+          "dur": 197
+        },
+        {
+          "start": 11612,
+          "dur": 252
+        },
+        {
+          "start": 11958,
+          "dur": 115
+        },
+        {
+          "start": 16436,
+          "dur": 128
+        },
+        {
+          "start": 16644,
+          "dur": 132
+        },
+        {
+          "start": 17617,
+          "dur": 109
+        },
+        {
+          "start": 17801,
+          "dur": 196
+        },
+        {
+          "start": 18254,
+          "dur": 107
+        }
+      ],
+      "maxLongTaskMs": 252,
+      "loadWallMs": 13708,
+      "nav": {
+        "loadEventEnd": 13702,
+        "domContentLoaded": 11593,
+        "responseEnd": 683
+      },
+      "readAtMs": 19141,
+      "heroFarmerJpg": {
+        "requests": 1,
+        "bytes": 145232,
+        "statuses": [
+          200
+        ]
+      },
+      "requests": 117,
+      "transferBytes": 1437219,
+      "failedRequests": [
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "error": "net::ERR_CONNECTION_REFUSED"
+        }
+      ],
+      "jsChunks": [
+        {
+          "url": "http://localhost:4190/assets/index-Berk0UA3.js",
+          "transferBytes": 28002,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/rolldown-runtime-hePW80VL.js",
+          "transferBytes": 1037,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/react-vendor-Cg-BX6NK.js",
+          "transferBytes": 72889,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LanguageProvider-DDrhCBhA.js",
+          "transferBytes": 62184,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/useNativeBack-0uN2UQaS.js",
+          "transferBytes": 972,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/supabase-H6RbKBY9.js",
+          "transferBytes": 53766,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/PageShell-t5g9TXZ0.js",
+          "transferBytes": 15655,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/device-D4sZPGnq.js",
+          "transferBytes": 628,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "transferBytes": null,
+          "status": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4190/assets/Homepage-CDCNQfXq.js",
+          "transferBytes": 9752,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaApi-DAscXvgJ.js",
+          "transferBytes": 3322,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/communityApi-BRu85UzD.js",
+          "transferBytes": 1876,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mandiApi-Cyg-UtSr.js",
+          "transferBytes": 1920,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApi-f5eLqPLK.js",
+          "transferBytes": 800,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApiV2-DYytxgjv.js",
+          "transferBytes": 2157,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/kit-C8zqDTZV.js",
+          "transferBytes": 2980,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shared-CVwOVOBp.js",
+          "transferBytes": 4423,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LocationControl-Cu1Llzwt.js",
+          "transferBytes": 2715,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/articlesApi-ChsYQpPp.js",
+          "transferBytes": 1015,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shareMessages-Y3v0P0jO.js",
+          "transferBytes": 1344,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/catalog-KGaQpWeV.js",
+          "transferBytes": 6967,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/registry-C-MzvmZO.js",
+          "transferBytes": 13589,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/listingsApi-CNTmJfjD.js",
+          "transferBytes": 2390,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/photos-Ck8NOaOM.js",
+          "transferBytes": 1226,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/OfflineStamp-zG7GcysU.js",
+          "transferBytes": 987,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/crops-Bmyu-kFh.js",
+          "transferBytes": 920,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/founder-B7YdwJ2e.js",
+          "transferBytes": 6720,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mspApi-b880GNPZ.js",
+          "transferBytes": 754,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/AvailabilityNudge-DJnaiE4e.js",
+          "transferBytes": 1420,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/videosApi-BEXH0_Cw.js",
+          "transferBytes": 921,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaFormat-BrAJo1Hn.js",
+          "transferBytes": 1249,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/months-vZTFnxQH.js",
+          "transferBytes": 845,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/workbox-window.prod.es5-Bd17z0YL.js",
+          "transferBytes": 2569,
+          "status": 200,
+          "failed": null
+        }
+      ],
+      "jsChunksGzip9Total": null,
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+      ],
+      "requestLog": [
+        {
+          "url": "http://localhost:4190/",
+          "type": "Document",
+          "status": 200,
+          "bytes": 14376,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/index-Berk0UA3.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 28002,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/rolldown-runtime-hePW80VL.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1037,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/react-vendor-Cg-BX6NK.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 72889,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LanguageProvider-DDrhCBhA.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 62184,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/useNativeBack-0uN2UQaS.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 972,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/supabase-H6RbKBY9.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 53766,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/PageShell-t5g9TXZ0.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 15655,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/device-D4sZPGnq.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 628,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/index-C9S2MTQ5.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 12817,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/kit-C8zqDTZV.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shared-CVwOVOBp.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/registry-C-MzvmZO.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4178/assets/months-vZTFnxQH.js",
+          "type": "Script",
+          "status": null,
+          "bytes": null,
+          "failed": "net::ERR_CONNECTION_REFUSED"
+        },
+        {
+          "url": "http://localhost:4190/brand/logo-192.webp",
+          "type": "Image",
+          "status": 200,
+          "bytes": 13682,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/hero-farmer.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 145232,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-800-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54088,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-600-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10988,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-700-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54304,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-700-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10924,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-400-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10832,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-latin-800-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10944,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-600-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54036,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/fonts/noto-sans-devanagari-devanagari-400-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 50736,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-rotavator.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 112608,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-tanker.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 108050,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-labour.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 52467,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-drone.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 43411,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-straw.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 42875,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-seeds.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 104611,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-building-materials.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-godown.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 57837,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-cold-storage.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 50007,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-greenhouse.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 68826,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-carbon.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-jugaad.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-transport.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-expert.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/cat-land.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1da3e12e-4454-4da2-85a1-4d89abefde54/0.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 7821,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/images/home/list-straw.jpg",
+          "type": "Image",
+          "status": null,
+          "bytes": null,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/Homepage-CDCNQfXq.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9752,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaApi-DAscXvgJ.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3322,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/communityApi-BRu85UzD.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1876,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mandiApi-Cyg-UtSr.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1920,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApi-f5eLqPLK.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 800,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/weatherApiV2-DYytxgjv.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2157,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/kit-C8zqDTZV.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2980,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shared-CVwOVOBp.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4423,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/LocationControl-Cu1Llzwt.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2715,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/articlesApi-ChsYQpPp.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1015,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/shareMessages-Y3v0P0jO.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1344,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/catalog-KGaQpWeV.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6967,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/registry-C-MzvmZO.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 13589,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/listingsApi-CNTmJfjD.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2390,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/photos-Ck8NOaOM.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1226,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/OfflineStamp-zG7GcysU.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 987,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/crops-Bmyu-kFh.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 920,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/founder-B7YdwJ2e.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6720,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/mspApi-b880GNPZ.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 754,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/AvailabilityNudge-DJnaiE4e.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1420,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/videosApi-BEXH0_Cw.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 921,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/melaFormat-BrAJo1Hn.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1249,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/months-vZTFnxQH.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 845,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4190/assets/workbox-window.prod.es5-Bd17z0YL.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2569,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/site_settings?select=value&key=eq.whatsapp_channel_url",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/places?select=id%2Cname_en%2Cname_hi%2Cdistrict%2Ckind%2Clat%2Clng%2Cverified&limit=500",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/site_settings?select=value&key=eq.whatsapp_channel_url",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 799,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/places?select=id%2Cname_en%2Cname_hi%2Cdistrict%2Ckind%2Clat%2Clng%2Cverified&limit=500",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2602,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/articles?select=id%2Cslug%2Ctitle_hi%2Ctitle_en%2Csummary_hi%2Csummary_en%2Cauthor_name%2Ccover_image_url%2Cpublished_at&is_published=eq.true&order=published_at.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/crops?select=*&order=name_en.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/equipment_types?select=*&order=id.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&is_featured=eq.true&order=answered_at.desc&limit=3",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/videos?select=*&is_active=eq.true&is_featured=eq.true&order=sort_order.asc&limit=3",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/rpc/recent_crop_reports",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/msp_prices?select=*&is_active=eq.true&order=season.asc%2Ccrop_en.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_mela?select=id%2Cname_hi%2Cname_en%2Cvenue%2Cstate%2Cdistrict%2Clatitude%2Clongitude%2Cevent_date_start%2Cevent_date_end%2Cis_date_confirmed%2Cexpected_period%2Ccategory_tags%2Csource_url&is_active=eq.true&moderation_status=eq.approved&merged_into=is.null&order=event_date_start.asc.nullslast",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/listings?select=id%2Clisting_type%2Ccategory%2Cpincode%2Cvillage_town%3Avillage_name%2Clatitude%2Clongitude%2Cgeocoding_status%2Cdetails%2Ccreated_at%2Clisting_source%2Cis_test_data%2Cwide_visibility%2Cis_sponsored&status=eq.active&is_available=eq.true&expires_at=gt.2026-10-18T09%3A51%3A15.471Z&order=created_at.desc&limit=40",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1221,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/articles?select=id%2Cslug%2Ctitle_hi%2Ctitle_en%2Csummary_hi%2Csummary_en%2Cauthor_name%2Ccover_image_url%2Cpublished_at&is_published=eq.true&order=published_at.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2269,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/crops?select=*&order=name_en.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1110,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/equipment_types?select=*&order=id.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1282,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&is_featured=eq.true&order=answered_at.desc&limit=3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1981,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/videos?select=*&is_active=eq.true&is_featured=eq.true&order=sort_order.asc&limit=3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1531,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/rpc/recent_crop_reports",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 746,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/msp_prices?select=*&is_active=eq.true&order=season.asc%2Ccrop_en.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3069,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1221,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_mela?select=id%2Cname_hi%2Cname_en%2Cvenue%2Cstate%2Cdistrict%2Clatitude%2Clongitude%2Cevent_date_start%2Cevent_date_end%2Cis_date_confirmed%2Cexpected_period%2Ccategory_tags%2Csource_url&is_active=eq.true&moderation_status=eq.approved&merged_into=is.null&order=event_date_start.asc.nullslast",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 8011,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/listings?select=id%2Clisting_type%2Ccategory%2Cpincode%2Cvillage_town%3Avillage_name%2Clatitude%2Clongitude%2Cgeocoding_status%2Cdetails%2Ccreated_at%2Clisting_source%2Cis_test_data%2Cwide_visibility%2Cis_sponsored&status=eq.active&is_available=eq.true&expires_at=gt.2026-10-18T09%3A51%3A15.471Z&order=created_at.desc&limit=40",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 5747,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1398,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1396,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&order=answered_at.desc%2Ccreated_at.desc&limit=12",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&order=answered_at.desc%2Ccreated_at.desc&limit=12",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3370,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68b43577-3479-4e41-b4f3-6f6234dbf8bf/0-1kiiyek.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": null,
+          "failed": null
+        }
+      ]
+    }
+  ]
+}

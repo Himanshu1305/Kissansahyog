@@ -1,0 +1,2 @@
+IDENTICAL (static text): routes 268/268 compared, missing 0, added 0; routes with removals 0, with only additions 0; words −0 +0; lines −0 +0; head lines changed 0; data lines excluded (base) 424
+exit 0

@@ -1,0 +1,122 @@
+### HEAD
+title: किसान सहयोग बाज़ार — मशीन, मज़दूर, भूसा, बीज-खाद, ज़मीन
+description: अपने आसपास के किसानों से सीधे जुड़ें। मशीन, मज़दूर, भूसा, बीज-खाद, ढुलाई, ज़मीन और गोदाम — सब एक जगह। कोई बिचौलिया नहीं।
+canonical: https://kissansahyog.com/bazaar
+robots: 
+lang: hi
+h1: किसान सहयोग बाज़ार
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"बाज़ार"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kissansahyog.com"},{"@type":"ListItem","position":2,"name":"Bazaar","item":"https://kissansahyog.com/bazaar"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+बाज़ार
+किसान सहयोग बाज़ार
+अपने आसपास के किसानों से सीधे जुड़ें। मशीन, मज़दूर, भूसा, बीज-खाद, ढुलाई, ज़मीन और गोदाम — सब एक जगह। कोई बिचौलिया नहीं।
+🚜
+कृषि मशीनें और उपकरण
+यहाँ आप खेती की महँगी मशीनें किराये पर दे सकते हैं या ले सकते हैं। ट्रैक्टर, हार्वेस्टर, थ्रेशर, रोटावेटर, सीड ड्रिल और ड्रोन — सब एक जगह। सीधे मालिक से बात करें, कोई बिचौलिया नहीं।
+👷
+कृषि सहयोगी और मज़दूर
+खेत के कामों के लिए मज़दूर या टीम यहाँ खोजें या दें। बुवाई, निराई, कटाई, तुड़ाई और ढुलाई — हर काम के लिए लोग। मज़दूर और किसान सीधे फ़ोन पर बात करें।
+🌾
+भूसा, पराली और चारा
+गेहूं का भूसा, धान की पराली और गन्ना वेस्ट यहाँ बेचें या खरीदें। जलाने की बजाय बेचें — आय भी बढ़े और प्रदूषण भी घटे। पशुपालक और किसान सीधे जुड़ें।
+🧪
+बीज, खाद और दवा
+बचे हुए बीज, खाद और कीटनाशक यहाँ बेचें, या दुकान की जानकारी डालें। किसान और दुकानदार दोनों लिस्ट कर सकते हैं। पास की सामग्री आसानी से मिल जाती है।
+🚚
+परिवहन और ढुलाई
+खेत से मंडी या गोदाम तक फसल पहुँचाने के लिए वाहन यहाँ खोजें या दें। ट्रैक्टर-ट्रॉली, पिकअप, ट्रक और टेम्पो — सब एक जगह। रास्ता और किराया फ़ोन पर तय करें।
+🧱
+निर्माण सामग्री
+सीमेंट, रेत, सरिया, ईंट और गिट्टी की जानकारी यहाँ डालें या पास की लिस्टिंग देखें।
+🥬
+सब्ज़ी खेती के यंत्र
+सब्ज़ी की खेती के काम आने वाले यंत्रों की लिस्टिंग यहाँ देखें या अपना यंत्र डालें।
+🌍
+भूमि / रकबा — पट्टा और बटाई
+खाली खेती की ज़मीन यहाँ पट्टे या बटाई पर दें, या किसी की ज़मीन खेती के लिए लें। ठेका, बटाई या कॉन्ट्रैक्ट फार्मिंग — जो भी सही लगे। दोनों पक्ष सीधे बात करें।
+❄️
+गोदाम और कोल्ड स्टोरेज
+फसल सुरक्षित रखने की जगह खोजें या दें।
+🏡
+ग्रीनहाउस / पॉलीहाउस
+पॉलीहाउस वेंडर और किसानों की ज़रूरतें — एक जगह।
+🛠️
+जुगाड़ और देसी यंत्र
+गाँव के जुगाड़ और नए यंत्र — बेचें, किराये पर दें या बनवाएँ।
+🚁
+ड्रोन दीदी छिड़काव
+ड्रोन से दवा-खाद का छिड़काव — पास की ड्रोन दीदी खोजें।
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

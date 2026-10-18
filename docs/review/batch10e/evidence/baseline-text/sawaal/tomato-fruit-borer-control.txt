@@ -1,0 +1,136 @@
+### HEAD
+title: टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें?
+description: फल छेदक (Helicoverpa) टमाटर में बहुत नुकसान करता है। गेंदा को ट्रैप फसल के रूप में 16:1 में लगाएँ। फेरोमोन ट्रैप 10-12/हेक्टेयर लगाएँ। Bt @ 500 ग्राम/हेक्ट
+canonical: https://kissansahyog.com/sawaal/tomato-fruit-borer-control
+robots: 
+lang: hi
+h1: टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"टमाटर","item":"https://kissansahyog.com/fasal/tomato/samasya"},{"@type":"ListItem","position":4,"name":"टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंध"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"QAPage","mainEntity":{"@type":"Question","name":"टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें?","acceptedAnswer":{"@type":"Answer","text":"फल छेदक (Helicoverpa) टमाटर में बहुत नुकसान करता है। गेंदा को ट्रैप फसल के रूप में 16:1 में लगाएँ। फेरोमोन ट्रैप 10-12/हेक्टेयर लगाएँ। Bt @ 500 ग्राम/हेक्टेयर या NPV छिड़कें। इल्लियाँ हाथ से इकट्ठा कर नष्ट करें।"}}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+टमाटर
+/
+टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंध
+टमाटर
+कीट
+टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें?
+संक्षेप में
+फल छेदक (Helicoverpa) टमाटर में बहुत नुकसान करता है। गेंदा को ट्रैप फसल के रूप में 16:1 में लगाएँ। फेरोमोन ट्रैप 10-12/हेक्टेयर लगाएँ। Bt @ 500 ग्राम/हेक्टेयर या NPV छिड़कें। इल्लियाँ हाथ से इकट्ठा कर नष्ट करें।
+स्रोत के अनुसार "tomato fruit borer (H. armigera) alone causes 85-93.7% loss" — यानी अकेले फल छेदक से 85-93.7% तक नुकसान हो सकता है।
+[1]
+क्या करें
+सांस्कृतिक: गहरी ग्रीष्म जुताई करें। लंबी गेंदा किस्म को ट्रैप फसल के रूप में 16:1 अनुपात में लगाएँ। इल्लियों को हाथ से इकट्ठा कर नष्ट करें।
+[1]
+यांत्रिक: फल छेदक के लिए फेरोमोन ट्रैप 10-12/हेक्टेयर लगाएँ। 'बर्ड पर्चर' (पक्षी बैठने की टी-आकार छड़ी) 15-20/हेक्टेयर लगाएँ।
+[1]
+जैविक: Bacillus thuringiensis var. kurstaki (Bt) @ 500 ग्राम/हेक्टेयर। या Ha/Sl NPV 250 LE में 1% गुड़ मिलाकर रोपाई के 28, 35 व 42 दिन बाद शाम को छिड़कें। नीम तेल (Azadirachtin 5% EC) @ 2 मिली/लीटर।
+[1]
+रासायनिक (CIBRC लेबल दर): क्लोरएन्ट्रानिलिप्रोल 18.5% SC @ 0.25 मिली/लीटर या इंडोक्साकार्ब 14.5% SC @ 0.8 मिली/लीटर। लेबल पर लिखी मात्रा ही उपयोग करें। (टमाटर में घोल 500 लीटर/हेक्टेयर)
+[1]
+रोकथाम
+संक्रमित पत्तियाँ, टहनियाँ व फल इकट्ठा कर नष्ट करें, ताकि रोग व कीट न फैलें।
+[1]
+स्रोत
+[1]
+Integrated pest management approaches against major insect pests and diseases of tomato (Indian Horticulture, Jan-Feb 2023)
+सरकारी स्रोत
+— ICAR (Indian Horticulture journal); authors Raghavendra K V, Rekha Balodi, Subhash Chander, 2023-02-01
+KVK सागर या कृषि कार्यालय से कब संपर्क करें
+अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।
+उपयोगी संपर्क →
+WhatsApp पर शेयर करें
+इनसे जुड़े सवाल
+❓
+टमाटर में अगेती व पछेती झुलसा (early & late blight) का इलाज क्या है?
+❓
+टमाटर में उकठा (फ्यूजेरियम विल्ट) का प्रबंधन कैसे करें?
+❓
+टमाटर में पत्ती मोड़ (लीफ कर्ल) वायरस को कैसे रोकें?
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन
