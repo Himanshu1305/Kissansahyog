@@ -160,6 +160,15 @@ export default function ListingDetail() {
         )}
       </dl>
 
+      {/* Batch 10E (3B) — the owner's optional extra information: plain text (React escapes it; links are
+          NOT made clickable), the owner's line breaks kept. */}
+      {typeof listing.details?.extra_info === 'string' && listing.details.extra_info.trim() && (
+        <section data-testid="listing-extra-info" className="mb-4 rounded-2xl border-2 border-stone-200 bg-white px-4 py-3">
+          <h3 className="mb-1 text-sm font-semibold text-stone-500">{t('extra_info_title')}</h3>
+          <p className="whitespace-pre-line break-words text-base text-stone-900">{listing.details.extra_info}</p>
+        </section>
+      )}
+
       <MapLink listing={listing} t={t} />
 
       {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="mb-4" />}

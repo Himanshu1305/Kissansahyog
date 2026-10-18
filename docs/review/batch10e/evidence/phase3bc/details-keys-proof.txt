@@ -1,0 +1,9 @@
+# Phase 3B/3C staging proof — 2026-10-18T17:31:36Z
+# node --env-file=.env scripts/check-staging-env.mjs && node --env-file=.env scripts/proof-10e-details-keys.mjs
+STAGING GUARD: OK — .env and the process environment point at staging
+land/offer: KEPT · extra_info="KSTEST पहली पंक्ति\nदूसरी पंक्ति <b>not bold</b> https://example.com" · available_from="2026-10-20" · available_to="2027-03-31"
+equipment/requirement: KEPT · extra_info="KSTEST पहली पंक्ति\nदूसरी पंक्ति <b>not bold</b> https://example.com" · available_from="2026-10-19" · available_to=null
+labor/requirement: KEPT · extra_info="KSTEST पहली पंक्ति\nदूसरी पंक्ति <b>not bold</b> https://example.com" · available_from="2026-10-20" · available_to="2026-10-22"
+drone_didi/requirement: KEPT · extra_info="KSTEST पहली पंक्ति\nदूसरी पंक्ति <b>not bold</b> https://example.com" · available_from="2026-10-21" · available_to=null
+cleanup: KSTEST profile + its listings deleted
+RESULT: details keys are kept (no migration needed)

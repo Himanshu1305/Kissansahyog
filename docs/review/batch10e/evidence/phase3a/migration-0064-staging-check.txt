@@ -1,0 +1,11 @@
+# Batch 10E Phase 3A — read-only STAGING check (wzxtqbqlahyahsnoqqva), 2026-10-18: live public.app_register_phone vs supabase/migrations/0064_app_register_phone.sql (pg_get_functiondef). Not re-applied.
+functions named app_register_phone: 1
+definition equal (whitespace-normalised): true
+definition equal (byte-exact): true
+acl: {postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres} security definer: true owner: postgres
+profiles.email nullable: YES
+phone unique constraints: [{"conname":"profiles_auth_uid_key","d":"UNIQUE (auth_uid)"},{"conname":"profiles_email_key","d":"UNIQUE (email)"},{"conname":"profiles_phone_key","d":"UNIQUE (phone)"}]
+is_admin default: [{"column_default":"false","is_nullable":"NO"}]
+phone-only profiles (email null, auth_uid null, provider phone): 14
+of which KSTEST-named: 0
+schema_migrations latest: [{"version":"0063_equipment_specs.sql"},{"version":"0062_listing_contact_consent.sql"},{"version":"0061_listing_client_request_id.sql"},{"version":"0055_feedback.sql"},{"version":"0054_consents.sql"}]

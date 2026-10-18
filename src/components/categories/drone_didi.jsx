@@ -5,10 +5,14 @@
 //   offer:       { operator_name, drone_type, service_type[], rate_per_acre, min_acres,
 //                  available_from|null, available_to|null, coverage_area,
 //                  government_scheme, crops_covered, asset_village }
-//   requirement: { crop_type, acreage, service_needed, preferred_date|null, asset_village }
+//   requirement: { crop_type, acreage, service_needed, available_from, available_to|null, asset_village }
+// Batch 10E (3C): dates come from the shared DateBlock (fields.jsx, rendered by Post.jsx) for both
+// shapes; the requirement's old single `preferred_date` is replaced by available_from (old rows that
+// have only preferred_date are still shown, read as the start date).
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { OptionSelect, MultiChips, TextField, DateField } from './fields'
+import { OptionSelect, MultiChips, TextField } from './fields'
 import { DRONE_TYPE, DRONE_SERVICE, optionLabel, optionLabels } from '../../lib/listings/catalog'
+import { datesRow } from '../../lib/listings/listingDates'
 
 export function initialDetails() {
   return {
@@ -17,7 +21,7 @@ export function initialDetails() {
     available_from: null, available_to: null, coverage_area: '', government_scheme: true,
     crops_covered: '', asset_village: '',
     // requirement
-    crop_type: '', acreage: '', service_needed: '', preferred_date: null,
+    crop_type: '', acreage: '', service_needed: '',
   }
 }
 
@@ -54,7 +58,6 @@ export function Fields({ details, setDetails, listingType }) {
         <TextField name="crop_type" label={t('field_crop_type')} value={details.crop_type} onChange={set('crop_type')} placeholder={t('ph_drone_crop_type')} required />
         <TextField name="acreage" label={t('field_acreage')} value={details.acreage} onChange={set('acreage')} placeholder={t('ph_drone_acreage')} required />
         <OptionSelect name="service_needed" label={t('field_service_needed')} list={DRONE_SERVICE} value={details.service_needed} onChange={set('service_needed')} required />
-        <DateField name="preferred_date" label={t('field_preferred_date')} value={details.preferred_date} onChange={set('preferred_date')} />
         <TextField name="asset_village" label={t('field_asset_village')} value={details.asset_village} onChange={set('asset_village')} required />
       </>
     )
@@ -67,8 +70,6 @@ export function Fields({ details, setDetails, listingType }) {
       <MultiChips label={t('field_service_type')} list={DRONE_SERVICE} values={details.service_type} onChange={set('service_type')} required />
       <TextField name="rate_per_acre" label={t('field_rate_per_acre')} value={details.rate_per_acre} onChange={set('rate_per_acre')} placeholder={t('ph_rate_per_acre')} required />
       <TextField name="min_acres" label={t('field_min_acres')} value={details.min_acres} onChange={set('min_acres')} hint={t('optional')} />
-      <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} />
-      <DateField name="available_to" label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
       <TextField name="coverage_area" label={t('field_coverage_area')} value={details.coverage_area} onChange={set('coverage_area')} hint={t('optional')} placeholder={t('ph_coverage_area')} />
       <TextField name="crops_covered" label={t('field_crops_covered')} value={details.crops_covered} onChange={set('crops_covered')} hint={t('optional')} />
       <TextField name="asset_village" label={t('field_asset_village')} value={details.asset_village} onChange={set('asset_village')} required />
@@ -85,7 +86,8 @@ export function finalizeDetails(details, { listingType } = {}) {
   if (listingType === 'requirement') {
     return {
       crop_type: details.crop_type, acreage: details.acreage,
-      service_needed: details.service_needed, preferred_date: details.preferred_date || null,
+      service_needed: details.service_needed,
+      available_from: details.available_from || null, available_to: details.available_to || null,
       asset_village: details.asset_village,
     }
   }
@@ -123,13 +125,15 @@ export function summarize(listing, lang) {
     if (d.coverage_area) rows.push({ label: L('coverage'), value: String(d.coverage_area) })
     if (d.min_acres) rows.push({ label: L('min'), value: String(d.min_acres) })
     if (d.crops_covered) rows.push({ label: L('crops'), value: String(d.crops_covered) })
-    if (d.available_from || d.available_to) rows.push({ label: L('dates'), value: [d.available_from, d.available_to].filter(Boolean).join(' → ') })
+    const dates = datesRow(listing, lang) // Batch 10E: dates in words
+    if (dates) rows.push(dates)
     if (d.asset_village) rows.push({ label: L('village'), value: String(d.asset_village) })
   } else {
     if (d.crop_type) rows.push({ label: L('crop'), value: String(d.crop_type) })
     if (d.acreage) rows.push({ label: L('acreage'), value: String(d.acreage) })
     if (d.service_needed) rows.push({ label: L('services'), value: optionLabel(DRONE_SERVICE, d.service_needed, lang) })
-    if (d.preferred_date) rows.push({ label: L('preferred'), value: String(d.preferred_date) })
+    const dates = datesRow(listing, lang) // Batch 10E: available_from, or an old row's preferred_date
+    if (dates) rows.push(dates)
     if (d.asset_village) rows.push({ label: L('village'), value: String(d.asset_village) })
   }
   return rows
@@ -143,9 +147,7 @@ const LABELS = {
   coverage: { hi: 'क्षेत्र', en: 'Coverage' },
   min: { hi: 'न्यूनतम एकड़', en: 'Min acres' },
   crops: { hi: 'फसलें', en: 'Crops' },
-  dates: { hi: 'उपलब्धता', en: 'Availability' },
   village: { hi: 'गाँव/कस्बा', en: 'Village/town' },
   crop: { hi: 'फसल', en: 'Crop' },
   acreage: { hi: 'रकबा', en: 'Acreage' },
-  preferred: { hi: 'पसंदीदा तारीख़', en: 'Preferred date' },
 }

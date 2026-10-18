@@ -29,10 +29,9 @@ test('Journey A: signup → post all 3 categories → My Listings → close one'
   await page.getByRole('button', { name: 'English' }).click()
   await page.getByRole('button', { name: 'Create new account' }).click()
   // Batch 10A Task E: one-page signup (no pincode, no Continue step) — acknowledgment + Register on the same page.
+  // Batch 10E Phase 3A: no e-mail / password at sign-up any more (app_register_phone).
   await page.getByPlaceholder('e.g. Ramprasad Patel').fill('Journey A')
   await page.getByPlaceholder('10-digit number').fill(phone)
-  await page.getByPlaceholder('e.g. name@example.com').fill(`kstest-e2e-${phone}@example.com`)
-  await page.locator('#password').fill('Kstest-e2e-2026')
   await page.getByTestId('place-input').fill('Deori')
   await page.getByTestId('place-suggestions').getByRole('button').first().click()
   await page.getByTestId('disclaimer-accept').check()

@@ -23,6 +23,7 @@ test('Land/Equipment form asks for a VILLAGE name with autocomplete, not a pinco
   await page.locator('#f_equipment_type_id').waitFor({ timeout: 8000 })
   await page.locator('#f_equipment_type_id').selectOption({ index: 1 })
   await page.locator('#f_rate_amount').fill('500')
+  await page.getByTestId('date-quick-0').click() // Batch 10E: start date is mandatory ('Today')
   await page.getByTestId('post-next').click()
 
   // Village-name input is present…
@@ -47,6 +48,7 @@ test('Land form (contract) also uses the village input, no pincode', async ({ br
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('2')
   await page.locator('#f_price_type').selectOption('negotiable')
+  await page.getByTestId('date-quick-0').click() // Batch 10E: start date is mandatory ('Today')
   await page.getByTestId('post-next').click()
   await expect(page.locator('#f_asset_village')).toBeVisible({ timeout: 8000 })
   await expect(page.locator('#f_asset_pincode')).toHaveCount(0)

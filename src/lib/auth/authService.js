@@ -286,6 +286,34 @@ export async function register({ full_name, email, password, phone, place, langu
   return storeSession(await applyKisan(profile, kisan))
 }
 
+// Batch 10E Phase 3A — sign-up with name + mobile only (no email, no password). The profile is
+// created by app_register_phone (migration 0064: email null, auth_provider 'phone') and the
+// returned profile becomes the local session exactly as a mobile login's app_login profile does
+// (storeSession). Same parameters as register() minus email/password. Trust-based until OTP.
+export async function registerPhone({ full_name, phone, place, language, disclaimer_accepted, show_details, kisan }) {
+  if (!full_name || !full_name.trim()) throw new AppError('name_required')
+  if (!isValidPhone(phone)) throw new AppError('invalid_phone')
+  if (!place || !place.label) throw new AppError('place_required')
+  if (!disclaimer_accepted) throw new AppError('disclaimer_not_accepted')
+
+  const { data: profile, error } = await supabase.rpc('app_register_phone', {
+    p_full_name: full_name.trim(),
+    p_phone: normalizePhone(phone),
+    p_village_town: place.label,
+    p_latitude: place.lat ?? null,
+    p_longitude: place.lng ?? null,
+    p_language: language || 'hi',
+    p_disclaimer_accepted: true,
+    p_show_details: show_details !== false,
+  })
+  if (error) throw toAppError(error)
+  if (!profile || !profile.id) throw new AppError('unknown')
+  // A leftover email session (another account on this device) must not stay signed in to
+  // Supabase Auth underneath the new phone-only session.
+  supabaseAuth.auth.signOut().catch(() => {})
+  return storeSession(await applyKisan(profile, kisan))
+}
+
 // Throttle hooks around the password check (see migration 0059). Best-effort: if the guard
 // function is not there yet (migration not applied) sign-in simply proceeds as before.
 async function emailGuard(email, failed) {

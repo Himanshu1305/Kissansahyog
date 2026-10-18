@@ -162,7 +162,7 @@ for (const lang of LANGS) {
         const target = page.getByTestId('demo-target')
         await expect(target).toHaveAttribute('data-node', 'name')
         // elsewhere: another field, the screen background, the caption
-        await page.locator('[data-testid="demo-screen"] [data-node="email"]').click()
+        await page.locator('[data-testid="demo-screen"] [data-node="place"]').click() // 10E 3A: the e-mail field left the form and the demo
         await page.locator('[data-testid="demo-screen"] [data-node="mobile"]').click()
         await page.locator('.ksg-say').click()
         await page.waitForTimeout(400)

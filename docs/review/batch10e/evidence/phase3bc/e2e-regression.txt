@@ -1,0 +1,63 @@
+=== e2e/batch1.spec.js
+  x  1 [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 375×812 viewport, no h-scroll
+  x  2 [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 1280×800 viewport, no h-scroll
+  x  3 [chromium] › e2e\batch1.spec.js:66:1 › logged out: browse equipment, Call asks for login and returns to the same listing
+  x  4 [chromium] › e2e\batch1.spec.js:109:1 › post flow (3 steps): land OFFER end to end
+  x  5 [chromium] › e2e\batch1.spec.js:130:1 › post flow (3 steps): labor REQUIREMENT end to end
+  5 failed
+=== e2e/batch5a.spec.js
+  x  1 [chromium] › e2e\batch5a.spec.js:23:1 › posts building materials and displays the seller responsibility note
+  x  2 [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Vegetable farming equipment
+  x  3 [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Rare or emergency equipment
+  ok 4 [chromium] › e2e\batch5a.spec.js:62:1 › opens both Batch 5A Bazaar landing pages
+  3 failed
+  1 passed (1.6m)
+=== e2e/phase3.spec.js
+  x  1 [chromium] › e2e\phase3.spec.js:45:1 › land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals number
+  x  2 [chromium] › e2e\phase3.spec.js:72:1 › land REQUIREMENT: 3-step flow, single confirm checkbox
+  ok 3 [chromium] › e2e\phase3.spec.js:89:1 › browse shows a nearby land listing and opens its detail
+  2 failed
+  1 passed (1.1m)
+=== e2e/phase4.spec.js
+  x  1 [chromium] › e2e\phase4.spec.js:32:1 › equipment OFFER with availability toggle (3-step flow)
+  ok 2 [chromium] › e2e\phase4.spec.js:61:1 › equipment requires an equipment type
+  ok 3 [chromium] › e2e\phase4.spec.js:70:1 › equipment appears in its own browse tab
+  1 failed
+  2 passed
+=== e2e/phase5.spec.js
+  x  1 [chromium] › e2e\phase5.spec.js:32:1 › labor OFFER with blank rate renders cleanly (no undefined)
+  ok 2 [chromium] › e2e\phase5.spec.js:53:1 › labor rejects zero workers
+  ok 3 [chromium] › e2e\phase5.spec.js:66:1 › labor rejects from-date after to-date
+  1 failed
+  2 passed
+=== e2e/phase7.spec.js
+  ok 1 [chromium] › e2e\phase7.spec.js:32:1 › language toggle switches UI chrome on core screens
+  ok 2 [chromium] › e2e\phase7.spec.js:51:1 › crop dropdown labels come from the DB and switch language
+  x  3 [chromium] › e2e\phase7.spec.js:69:1 › posting works in Hindi UI (functional, not just visual)
+  1 failed
+  2 passed
+=== e2e/phase9.spec.js
+  x  1 [chromium] › e2e\phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one
+  ok 2 [chromium] › e2e\phase9.spec.js:105:1 › Journey B: 30km filter consistent across all categories
+  1 failed
+  1 passed
+=== e2e/phase14_village_geocoding.spec.js
+  x  1 [chromium] › e2e\phase14_village_geocoding.spec.js:14:1 › Land/Equipment form asks for a VILLAGE name with autocomplete, not a pincode
+  x  2 [chromium] › e2e\phase14_village_geocoding.spec.js:39:1 › Land form (contract) also uses the village input, no pincode
+  2 failed
+=== e2e/phase15_land_acreage.spec.js
+  ok 1 [chromium] › e2e\phase15_land_acreage.spec.js:25:1 › Land form uses a plain numeric acreage input — no bucket dropdown, no cap
+  ok 2 [chromium] › e2e\phase15_land_acreage.spec.js:40:1 › Land form: fixed/ठेका shows a per-acre rate; optional contact field present
+  2 passed
+=== e2e/phase16_legal_availability.spec.js
+  ok 1 [chromium] › e2e\phase16_legal_availability.spec.js:12:1 › buyer compliance modal shows once per browser, not again after acceptance
+  ok 2 [chromium] › e2e\phase16_legal_availability.spec.js:30:1 › both new scheme pages, the agro-forestry hub, and the article render
+  x  3 [chromium] › e2e\phase16_legal_availability.spec.js:44:1 › seller rules-compliance checkbox is present and gates the submit button
+  ok 4 [chromium] › e2e\phase16_legal_availability.spec.js:68:1 › PWA install banner: hidden in standalone, shown otherwise (Android event)
+  1 failed
+  3 passed
+=== RE-RUN after test updates: e2e/phase5.spec.js → 2 passed / 1 failed (only :32, baseline); e2e/phase14_village_geocoding.spec.js → 1 passed / 1 failed (only :14, baseline)
+=== e2e/home-10d.spec.js
+  32 passed (2.8m)
+=== e2e/post-10e.spec.js
+  5 passed (11.5s)

@@ -5,6 +5,7 @@ import { CatIcon } from './CatIcon'
 import SponsoredBadge from './SponsoredBadge'
 import ContactActions from './ContactActions'
 import { timeAgo } from '../lib/timeAgo'
+import { datesLine } from '../lib/listings/listingDates'
 
 // Compact listing summary used in Browse (grid) and My Listings. Shows the
 // category pill, listing type, a "Vendor" badge for business listings, the key
@@ -19,7 +20,9 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
   // A legacy category must not turn a list into a blank page.
   if (!category || !typeMeta) return null
   // Spec rows (Batch 9C) are for the detail page; the card shows them as one line instead.
-  const rows = category.summarize(listing, lang, extras).filter((r) => !r.spec).slice(0, 2)
+  // Batch 10E: the dates have their own line below (equipment / land / labor / drone didi).
+  const rows = category.summarize(listing, lang, extras).filter((r) => !r.spec && !r.dates).slice(0, 2)
+  const dateLine = datesLine(listing, lang)
   const specLine = category.specLine ? category.specLine(listing, lang) : null
   const isOffer = listing.listing_type === 'offer'
   const isVendor = listing.listing_source === 'vendor'
@@ -57,6 +60,8 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
             </span>
           ))}
         </div>
+
+        {dateLine && <div data-testid="listing-dates-line" className="mt-0.5 text-sm font-semibold leading-snug text-green-800">📅 {dateLine}</div>}
 
         {specLine && <div data-testid="equipment-spec-line" className="mt-0.5 break-words text-sm font-semibold leading-snug text-stone-900">{specLine}</div>}
 

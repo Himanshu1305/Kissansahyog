@@ -27,7 +27,7 @@ export const CACHEABLE_HOSTS = ['api.open-meteo.com']
 export const PRIVATE_TABLES = ['profiles', 'experts', 'weather_grid_requests', 'login_attempts', 'feedback', 'listing_reports']
 export const PRIVATE_RPCS = [
   'get_listing_contact', 'get_my_listings', 'get_my_mela_interests', 'get_availability_nudges',
-  'app_login', 'app_login_email', 'app_login_email_guard', 'app_register', 'app_signup', 'app_signup_email',
+  'app_login', 'app_login_email', 'app_login_email_guard', 'app_register', 'app_register_phone', 'app_signup', 'app_signup_email',
   'update_profile', 'update_kisan_profile', 'delete_account', 'accept_listing_consents',
   'create_listing_with_location', 'close_listing', 'set_listing_availability', 'set_listing_unavailable',
   'increment_contact_click', 'increment_listing_view', 'cache_weather_cell', 'claim_geocode_slot',

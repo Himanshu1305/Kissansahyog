@@ -19,6 +19,9 @@ import { WIDE_ELIGIBLE_CATEGORIES } from '../lib/distance'
 import WhatsAppJoin from '../components/WhatsAppJoin'
 import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 import { uploadPhotos } from '../lib/listings/photos'
+import { DateBlock, ExtraInfoField } from '../components/categories/fields'
+import { needsDates, checkListingDates, withListingDates, todayIst } from '../lib/listings/listingDates'
+import { extraInfoError, withExtraInfo } from '../lib/listings/extraInfo'
 
 // Post flow in 3 steps (Batch1 item 5), with a 1/3 step indicator. Back keeps all
 // entered data.
@@ -32,6 +35,11 @@ import { uploadPhotos } from '../lib/listings/photos'
 // Batch 9B: every Post form carries a random request id (re-used by every retry of that form, new
 // after a success or a reset), so a Post whose reply was lost never creates a second listing; and a
 // vendor listing / provider category asks "I agree" before the number may be shown.
+// Batch 10E: step 2 of EVERY category ends with the one shared optional "अतिरिक्त जानकारी" box
+// (details.extra_info, no phone numbers); equipment / land / labor / drone didi also get the one
+// shared date block (details.available_from mandatory, available_to optional). Both live in
+// `details` while the form is open, so Back keeps them; both are applied after the category's
+// finalizeDetails (which may prune keys) right before the Post.
 
 const SLOW_MS = 20000
 
@@ -67,6 +75,7 @@ export default function Post() {
   const [mapUrl, setMapUrl] = useState('')
   const [extras, setExtras] = useState(null)
   const [error, setError] = useState(null)
+  const [formErrField, setFormErrField] = useState(null) // Batch 10E: 'available_from' | 'available_to' | 'extra_info'
   const [busy, setBusy] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
   const [created, setCreated] = useState(null)
@@ -133,10 +142,29 @@ export default function Post() {
     setStep(2)
   }
 
+  // Batch 10E: the shared date block and extra-information box, checked after the category's own
+  // fields (form order). Returns { field, key } or null.
+  function sharedCheck() {
+    if (needsDates(category)) {
+      const dErr = checkListingDates(details?.available_from, details?.available_to, todayIst())
+      if (dErr) return dErr
+    }
+    const xKey = extraInfoError(details?.extra_info)
+    return xKey ? { field: 'extra_info', key: xKey } : null
+  }
+
   function goConfirm() {
     setError(null)
+    setFormErrField(null)
     const vErr = mod.validate(details, listingType, t, { lang, extras })
     if (vErr) { setError(vErr); return }
+    const sErr = sharedCheck()
+    if (sErr) {
+      setError(t(sErr.key))
+      setFormErrField(sErr.field)
+      document.getElementById(`f_${sErr.field}`)?.scrollIntoView({ block: 'center' })
+      return
+    }
     setStep(3)
   }
 
@@ -150,6 +178,9 @@ export default function Post() {
     if (!declarationOk || !allConsentsAccepted) { setError(t('consent_required')); return }
     if (!contactConsentOk) { setError(t('contact_consent_required')); return }
     if (mapUrl && !isGoogleMapsUrl(mapUrl)) { setError(t('maps_link_invalid')); return }
+    // Batch 10E: the dates may have gone stale while step 3 was open (past midnight) — send back to step 2.
+    const sErr = sharedCheck()
+    if (sErr) { setStep(2); setError(t(sErr.key)); setFormErrField(sErr.field); return }
     inFlight.current = true
     setBusy(true)
     setSlow(false)
@@ -177,7 +208,8 @@ export default function Post() {
       // Upload completes before the RPC, so no listing can point at a failed photo. The request id
       // names the photo folder, so a retry re-uses the same files instead of uploading copies.
       const photo_urls = photoFiles.length ? await uploadPhotos(photoFiles, user.id, photoLimit, 'listings', rid) : (baseDetails.photo_urls || [])
-      const finalDetails = { ...baseDetails, ...(needsProviderDecl ? { provider_declared: true } : {}), ...(photo_urls.length ? { photo_urls } : {}), ...(mapUrl ? { map_url: mapUrl.trim() } : {}) }
+      const sharedDetails = withExtraInfo(withListingDates(baseDetails, category, details), details?.extra_info)
+      const finalDetails = { ...sharedDetails, ...(needsProviderDecl ? { provider_declared: true } : {}), ...(photo_urls.length ? { photo_urls } : {}), ...(mapUrl ? { map_url: mapUrl.trim() } : {}) }
       await acceptListingConsents(consents)
       sentOnce.current = true
       const listing = await createListing({
@@ -213,7 +245,7 @@ export default function Post() {
   }
 
   function resetAll() {
-    setCreated(null); setStep(1); setListingType(null); setCategory(null)
+    setCreated(null); setStep(1); setListingType(null); setCategory(null); setFormErrField(null)
     setSource('farmer'); setDetails(null); setVillage(''); setWideVisibility(false); setConfirmChecked(false); setConsents({}); setPhotoFiles([]); setCoordinates(null); setLocStep(null); setLocFallback(false); setMapUrl('')
     setContactConsent(false); setRequestId(newRequestId()); sentOnce.current = false
   }
@@ -356,6 +388,18 @@ export default function Post() {
           ) : (
             <>
               <mod.Fields details={details} setDetails={setDetails} extras={extras} listingType={listingType} user={user} error={error} />
+
+              {/* Batch 10E (3C) — one shared date block for the time-sensitive categories. */}
+              {needsDates(category) && (
+                <DateBlock details={details} setDetails={setDetails} listingType={listingType} errorField={formErrField} error={formErrField ? error : null} />
+              )}
+
+              {/* Batch 10E (3B) — one shared optional "अतिरिक्त जानकारी" box for every category. */}
+              <ExtraInfoField
+                value={details.extra_info}
+                onChange={(v) => setDetails((d) => ({ ...d, extra_info: v }))}
+                error={formErrField === 'extra_info' ? error : null}
+              />
 
               <PhotoPicker files={photoFiles} onChange={(files) => { setPhotoFiles(files); if (category === 'jugaad') setDetails((d) => ({ ...d, __photoFiles: files })) }} limit={photoLimit} className="my-3" />
 

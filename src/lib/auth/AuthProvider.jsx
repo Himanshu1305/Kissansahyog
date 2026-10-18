@@ -30,6 +30,13 @@ export function AuthProvider({ children }) {
     return profile
   }, [])
 
+  // Batch 10E Phase 3A — name + mobile sign-up (no email); signs in like a mobile login.
+  const registerPhone = useCallback(async (payload) => {
+    const profile = await authService.registerPhone(payload)
+    setUser(profile)
+    return profile
+  }, [])
+
   // Mobile sign-in. Returns { step: 'done', profile } today; { step: 'otp', … } once OTP exists.
   const startPhoneLogin = useCallback(async (phone) => {
     const res = await authService.startPhoneLogin(phone)
@@ -88,8 +95,8 @@ export function AuthProvider({ children }) {
   }, [user])
 
   const value = useMemo(
-    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, register, startPhoneLogin, verifyPhoneOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
-    [user, signup, login, signupEmail, loginEmail, register, startPhoneLogin, verifyPhoneOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
+    () => ({ user, isLoggedIn: !!user, signup, login, signupEmail, loginEmail, register, registerPhone, startPhoneLogin, verifyPhoneOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
+    [user, signup, login, signupEmail, loginEmail, register, registerPhone, startPhoneLogin, verifyPhoneOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

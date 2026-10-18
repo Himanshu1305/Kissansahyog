@@ -60,6 +60,8 @@ export const strings = {
 
   // --- login ---
   login_title: { hi: 'लॉग इन करें', en: 'Log in' },
+  // Batch 10E Phase 3A — one friendly line under the login title (a tap moves to the mobile box).
+  login_no_email: { hi: 'ईमेल नहीं है? मोबाइल नंबर से लॉगिन करें', en: 'No email? Log in with your mobile number' },
   login_help: {
     hi: 'वही मोबाइल नंबर डालें जिससे आपने खाता बनाया था।',
     en: 'Enter the mobile number you signed up with.',
@@ -2520,6 +2522,29 @@ export const strings = {
   home_live_sell_photo: { hi: 'फोटो जुड़ गई', en: 'Photo added' },
   home_live_sell_done: { hi: 'आपका विज्ञापन लग गया ✓', en: 'Your ad is live ✓' },
   home_live_mandi_unit: { hi: 'मॉडल भाव · ₹ / क्विंटल', en: 'Modal price · ₹ / quintal' },
+
+  // --- post form: optional extra information + mandatory dates (Batch 10E 3B/3C) ---
+  extra_info_label: { hi: 'अतिरिक्त जानकारी (वैकल्पिक)', en: 'Additional information (optional)' },
+  extra_info_ph: { hi: 'कोई और बात जो खरीदार या किसान को जाननी चाहिए', en: 'Anything else the buyer or farmer should know' },
+  extra_info_help: { hi: 'फ़ोन नंबर यहाँ न लिखें', en: 'Do not write a phone number here' },
+  extra_info_title: { hi: 'अतिरिक्त जानकारी', en: 'Additional information' },
+  err_extra_info_phone: { hi: 'कृपया फ़ोन नंबर यहाँ न लिखें। खरीदार लॉगिन करके आपका नंबर देख सकेंगे।', en: 'Please do not write a phone number here. Buyers can see your number after they log in.' },
+  err_extra_info_long: { hi: 'अतिरिक्त जानकारी 300 अक्षरों से ज़्यादा नहीं हो सकती।', en: 'Additional information can be at most 300 characters.' },
+  date_from_req: { hi: 'कब चाहिए', en: 'When needed' },
+  date_to_optional: { hi: 'कब तक (वैकल्पिक)', en: 'Until when (optional)' },
+  date_open_ended: { hi: 'जब तक चाहें', en: 'No end date' },
+  date_today: { hi: 'आज', en: 'Today' },
+  date_tomorrow: { hi: 'कल', en: 'Tomorrow' },
+  date_day_after: { hi: 'परसों', en: 'Day after' },
+  date_pick: { hi: 'तारीख़ चुनें', en: 'Pick a date' },
+  err_date_required: { hi: 'कृपया तारीख़ चुनें', en: 'Please choose a date' },
+  err_date_past: { hi: 'तारीख़ आज से पहले की नहीं हो सकती', en: 'The date cannot be before today' },
+  err_date_end_before_start: { hi: 'अंतिम तारीख़ शुरू की तारीख़ से पहले नहीं हो सकती', en: 'The end date cannot be before the start date' },
+  dates_label_offer: { hi: 'उपलब्ध', en: 'Available' },
+  dates_label_req: { hi: 'चाहिए', en: 'Needed' },
+  dates_from_only: { hi: '{d} से', en: 'from {d}' },
+  dates_to_only: { hi: '{d} तक', en: 'until {d}' },
+  dates_range: { hi: '{a} से {b} तक', en: '{a} to {b}' },
 
   // --- homepage "Morning Field" band, crop strip, facts row (Batch 10D C) ---
   // The crop strip always shows the Hindi word with the English word next to it (decorative).

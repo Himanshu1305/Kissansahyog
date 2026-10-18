@@ -1,0 +1,8 @@
+Batch 10E Phase 3B/3C - chunk sizes (Git Bash gzip -9, same tool as Phase 0/2). Baseline main 27,565 B gz (Phase 0 dist).
+index-BCCXMDM_.js                       82030 raw /   27595 gz
+LanguageProvider-BvZE13-m.js           244749 raw /   63086 gz
+Post-DGP-Xkj5.js                        25361 raw /    7801 gz
+ListingDetail-DhpeVFGI.js                9813 raw /    3635 gz
+ListingCard-CDuQgjXM.js                  3131 raw /    1401 gz
+index-aCyv1b4l.css                      79019 raw /   15892 gz
+main: 27,595 B gz (final build) = +30 B vs 27,565 (Phase 2: 27,553). Budget for the whole batch: +1,536 B.

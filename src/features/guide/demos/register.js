@@ -1,5 +1,7 @@
 // Register demo — mirrors src/screens/Signup.jsx (Batch 10A form) field by field, with the
 // app's own labels and placeholders (string keys / disclaimers.js). Format: see ../engine.js.
+// Batch 10E Phase 3A: the form has no e-mail / password any more, so neither has the demo
+// (the old caption guide_reg_3 stays in strings.js, unused).
 // OTP steps (Send OTP → 6-digit code → number verified) exist ONLY when otpLive is true
 // (GUIDE_OTP_LIVE, HARD RULE 6). They are marked otp: true (steps and nodes).
 import { disclaimers } from '../../../lib/i18n/disclaimers.js'
@@ -22,8 +24,6 @@ export function buildRegisterDemo({ otpLive = false } = {}) {
           { type: 'field', id: 'otp_code', label: 'guide_otp_label', ph: raw('_ _ _ _ _ _'), req: true, otp: true, hidden: true },
           { type: 'p', id: 'otp_ok', text: [raw('✓ '), 'guide_otp_ok'], tone: 'ok', otp: true, hidden: true },
         ] : []),
-        { type: 'field', id: 'email', label: 'email_label', ph: 'email_ph', req: true },
-        { type: 'field', id: 'password', label: 'password_label', ph: 'password_ph', req: true, hint: 'password_ph', button: 'password_show', buttonStyle: 'outline' },
         { type: 'field', id: 'place', label: 'village_town', ph: 'village_ph', req: true, button: 'loc_find', hint: 'place_field_hint' },
         { type: 'list', id: 'place_list', hidden: true, items: [{ id: 'place_pick', text: 'guide_s_village', aside: 'guide_s_district' }] },
         { type: 'chosen', id: 'place_chosen', label: 'village_town', hidden: true, text: [raw('📍 '), 'guide_s_village', raw(', '), 'guide_s_district'], action: 'loc_change_short' },
@@ -46,7 +46,6 @@ export function buildRegisterDemo({ otpLive = false } = {}) {
       { do: 'tap', target: 'otp_send', reveal: ['otp_code'], say: 'guide_reg_otp_1', otp: true },
       { do: 'type', target: 'otp_code', text: raw('482159'), reveal: ['otp_ok'], say: 'guide_reg_otp_2', otp: true },
     ] : []),
-    { do: 'type', items: [{ target: 'email', text: raw('ram@example.com') }, { target: 'password', text: raw('••••••••') }], say: 'guide_reg_3' },
     { do: 'type', target: 'place', text: 'guide_s_village', reveal: ['place_list'], say: 'guide_reg_4' },
     { do: 'tap', target: 'place_pick', hide: ['place', 'place_list'], reveal: ['place_chosen'], say: 'guide_reg_5' },
     { do: 'look', target: 'vis', say: 'guide_reg_6' },

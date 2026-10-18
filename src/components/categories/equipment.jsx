@@ -1,5 +1,8 @@
 // Equipment category module. details JSONB shape:
 //   { equipment_type_id, rental_basis, rate_amount, available_now, available_from|null, available_to|null }
+// Batch 10E (3C): the dates come from the shared DateBlock (fields.jsx, rendered by Post.jsx); a new
+// post always has available_from and available_now = false ("available now" = start "आज").
+// Old rows with available_now = true still show "अभी उपलब्ध" (their left-over dates stay ignored).
 // Water-tanker sub-type (Phase 5) adds, when is_tanker:
 //   { is_tanker, capacity_litres, tanker_vehicle, water_use, water_source,
 //     rate_per_trip, rate_per_1000l, service_radius_km, available_months[] }
@@ -9,13 +12,14 @@
 //   keys and render exactly as before.
 import { useEffect } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { OptionSelect, LookupSelect, SegmentedChoice, DateField, TextField, NumberField, MultiChips, FieldRow } from './fields'
+import { OptionSelect, LookupSelect, TextField, NumberField, MultiChips, FieldRow } from './fields'
 import {
   RENTAL_BASIS, TANKER_VEHICLE, TANKER_WATER_USE, TANKER_WATER_SOURCE, MONTH_OPTIONS, EQUIPMENT_TAGS, EQUIPMENT_TYPE_DEFAULT_TAGS, optionLabel, optionLabels,
   TRACTOR_BRANDS, OUTPUT_UNITS, SPEC_FIELDS, SPEC_KEYS, SPEC_VERSION, SPEC_SELLER_NOTE,
   equipmentSpecFor, equipmentSpecFields, checkEquipmentSpec, equipmentSpecMessage, asciiDigits, specPlaceholder,
 } from '../../lib/listings/catalog'
 import { fetchEquipmentTypes } from '../../lib/listings/listingsApi'
+import { datesRow } from '../../lib/listings/listingDates'
 
 export function initialDetails() {
   return {
@@ -23,7 +27,7 @@ export function initialDetails() {
     is_tanker: false,
     rental_basis: '',
     rate_amount: '', // v1.1: required (was absent in v1)
-    available_now: true,
+    available_now: false, // Batch 10E: the start date (DateBlock) replaces the now/dates toggle
     available_from: null,
     available_to: null,
     equipment_tags: [],
@@ -61,9 +65,6 @@ export function validate(details, listingType, t, ctx = {}) {
     // Batch1 item 5 — essentials only: the rate is required for an OFFER (what you
     // charge), optional for a requirement; rental basis is optional either way.
     if (listingType === 'offer' && !String(details.rate_amount || '').trim()) return t('err_equipment_rate_required')
-  }
-  if (!details.available_now && details.available_from && details.available_to) {
-    if (details.available_from > details.available_to) return t('err_invalid_date_range')
   }
   return null
 }
@@ -244,22 +245,6 @@ export function Fields({ details, setDetails, extras, listingType, error }) {
           </FieldRow>
         </>
       )}
-
-      <SegmentedChoice
-        label={t('field_availability')}
-        value={details.available_now ? 'now' : 'dates'}
-        onChange={(v) => setDetails((d) => ({ ...d, available_now: v === 'now' }))}
-        options={[
-          { value: 'now', label: t('avail_now') },
-          { value: 'dates', label: t('avail_dates') },
-        ]}
-      />
-      {!details.available_now && (
-        <>
-          <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} hint={t('ph_equipment_available')} />
-          <DateField name="available_to" label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
-        </>
-      )}
     </>
   )
 }
@@ -336,12 +321,8 @@ export function summarize(listing, lang, extras) {
   }
   if (!d.is_tanker) rows.push(...specRows(d, lang, type?.name_en ?? null))
   if (Array.isArray(d.equipment_tags) && d.equipment_tags.length) rows.push({ label: LABELS.tags[lang], value: optionLabels(EQUIPMENT_TAGS, d.equipment_tags, lang) })
-  rows.push({
-    label: LABELS.availability[lang],
-    value: d.available_now
-      ? AVAIL_NOW[lang]
-      : [d.available_from, d.available_to].filter(Boolean).join(' → ') || AVAIL_NOW[lang],
-  })
+  // Batch 10E: dates in words ("उपलब्ध: 20 अक्टू से"); an old row with nothing keeps "अभी उपलब्ध".
+  rows.push(datesRow(listing, lang) || { label: LABELS.availability[lang], value: AVAIL_NOW[lang], dates: true })
   return rows
 }
 

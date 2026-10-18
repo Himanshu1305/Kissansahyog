@@ -1,12 +1,15 @@
 // Land category module: form fields, validation, detail summary.
 // Shape of details JSONB (see PROJECT_CONTEXT.md):
 //   { size_acres, arrangement[], water_source, crop_id|null, season, price_type,
-//     price_amount, contact_phone?, photo_urls[] }
+//     price_amount, contact_phone?, photo_urls[], available_from, available_to|null }
+// Batch 10E (3C): available_from / available_to are new for land (lease / contract period); they come
+// from the shared DateBlock (fields.jsx, rendered by Post.jsx). Older land rows have no dates.
 // size_acres is a plain positive number of acres (no upper cap) — replaced the old
 // size_range buckets so a farmer can list exactly e.g. 50 acres.
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { OptionSelect, MultiChips, LookupSelect, TextField } from './fields'
 import { ARRANGEMENT, WATER_SOURCE, SEASON, PRICE_TYPE, optionLabel, optionLabels } from '../../lib/listings/catalog'
+import { datesRow } from '../../lib/listings/listingDates'
 
 export const MIN_ACRES = 0.1
 
@@ -21,6 +24,8 @@ export function initialDetails() {
     price_amount: '', // ₹/acre for 'fixed' (ठेका); % split for 'sharecropping' (बटाई)
     contact_phone: '', // optional per-listing override; blank → poster's profile phone
     photo_urls: [],
+    available_from: null, // Batch 10E: mandatory start (DateBlock)
+    available_to: null,
   }
 }
 
@@ -171,6 +176,8 @@ export function summarize(listing, lang, extras) {
     }
     rows.push({ label: L('price'), value: base + amt })
   }
+  const dates = datesRow(listing, lang) // Batch 10E: "उपलब्ध: 20 अक्टू से"
+  if (dates) rows.push(dates)
   return rows
 }
 

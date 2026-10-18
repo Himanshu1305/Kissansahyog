@@ -64,6 +64,13 @@ export default function Login() {
     <Screen title={t('login_title')} onBack={() => navigate('/')}>
       {/* Batch 10C: first-time visitors can watch the register demo (sheet over this page). The
           normal create-account link below is unchanged. */}
+      {/* Batch 10E Phase 3A: no e-mail is needed — say so first; a tap moves to the mobile box (on
+          phones it sits below the e-mail box). The e-mail box stays for existing e-mail accounts. */}
+      <p className="mb-3">
+        <a href="#phone" data-testid="login-no-email" onClick={(e) => { e.preventDefault(); const el = document.getElementById('phone'); el?.scrollIntoView?.({ block: 'center' }); el?.focus?.({ preventScroll: true }) }} className="inline-block rounded-full bg-[var(--ks-green-tint)] px-3 py-1 text-base font-bold text-[var(--ks-green-dark)]">
+          📱 {t('login_no_email')}
+        </a>
+      </p>
       <div className="mb-3"><GuideHelpButton demoId="register" label="guide_login_first_time" testid="help-login" /></div>
       <div data-testid="login-screen" className="grid grid-cols-1 gap-x-4 lg:grid-cols-2">
         {/* A) Email + password */}

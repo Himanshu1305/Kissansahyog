@@ -38,6 +38,22 @@ export async function cleanupTestData() {
   const admin = adminClient()
   const { error } = await admin.from('profiles').delete().like('phone', `${TEST_PHONE_PREFIX}%`)
   if (error) throw new Error(`cleanup failed: ${error.message}`)
+  // (Batch 10E: phone-only profiles from app_register_phone have no auth user and no email; the
+  // phone-prefix delete above removes them like any other test profile.)
+  // Batch 10E Phase 3A: e-mail test accounts (Supabase Auth users) are named
+  // kstest-e2e-<anything>@example.com — remove any left behind (best effort; profiles.auth_uid has no
+  // foreign key, and no real address can match this pattern).
+  try {
+    for (let pageNo = 1; pageNo <= 20; pageNo++) {
+      const { data, error: listErr } = await admin.auth.admin.listUsers({ page: pageNo, perPage: 1000 })
+      if (listErr) break
+      const users = data?.users || []
+      for (const u of users) {
+        if (/^kstest-e2e-[^@\s]*@example\.com$/i.test(u.email || '')) await admin.auth.admin.deleteUser(u.id)
+      }
+      if (users.length < 1000) break
+    }
+  } catch { /* auth sweep is best effort */ }
   // Batch 10E: photos uploaded by e2e/photos-10e.spec.js live in listings/kstest-e2e-<ts>/ —
   // sweep any left behind (best effort; never touches other folders).
   try {

@@ -22,17 +22,16 @@ test('welcome defaults to Hindi and toggles to English', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Create new account' })).toBeVisible()
 })
 
-// Batch 10A Task E: signup is ONE page — name, mobile, e-mail, password, village/town (places list, no
-// pincode), one "show my details" checkbox, the acknowledgment checkbox and Register (label
-// "Accept and continue"). No language dropdown (the active app language is used), no farmer block.
-const PASSWORD = 'Kstest-e2e-2026'
-const testEmail = (phone) => `kstest-e2e-${phone}@example.com`
-
-async function fillSignup(page, { name, phone, email = testEmail(phone) }) {
+// Batch 10A Task E: signup is ONE page — name, mobile, village/town (places list, no pincode), one
+// "show my details" checkbox, the acknowledgment checkbox and Register (label "Accept and continue").
+// No language dropdown (the active app language is used), no farmer block.
+// Batch 10E Phase 3A: NO e-mail and NO password on the sign-up form any more (founder decision);
+// registration goes through app_register_phone. More in e2e/signup-phone-10e.spec.js.
+async function fillSignup(page, { name, phone }) {
+  await expect(page.locator('#email')).toHaveCount(0)
+  await expect(page.locator('#password')).toHaveCount(0)
   await page.getByPlaceholder('e.g. Ramprasad Patel').fill(name)
   await page.getByPlaceholder('10-digit number').fill(phone)
-  await page.getByPlaceholder('e.g. name@example.com').fill(email)
-  await page.locator('#password').fill(PASSWORD)
   await page.getByTestId('place-input').fill('Khur')
   await page.getByTestId('place-suggestions').getByRole('button').first().click()
   await expect(page.getByTestId('place-chosen')).toBeVisible()
@@ -62,7 +61,7 @@ test('signup happy path reaches home', async ({ page }) => {
 
 test('client-side rejects malformed phone before registering', async ({ page }) => {
   await openSignupInEnglish(page)
-  await fillSignup(page, { name: 'Bad Phone', phone: '123', email: 'kstest-e2e-badphone@example.com' })
+  await fillSignup(page, { name: 'Bad Phone', phone: '123' })
   await acceptAndRegister(page)
 
   // Stays on the form, shows a field error.
@@ -109,7 +108,7 @@ test('login with unknown phone shows not-found path', async ({ page }) => {
   await page.getByRole('button', { name: 'English' }).click()
   await page.getByRole('button', { name: 'I already have an account — Log in' }).click()
   await page.getByPlaceholder('10-digit number').fill('9000099998')
-  await page.getByRole('button', { name: 'Log in' }).click()
+  await page.getByTestId('login-phone-submit').click() // 10E 3A: two "Log in" buttons (e-mail + mobile) since 7L-2
   await expect(page.getByText('No account found')).toBeVisible()
   await expect(page).not.toHaveURL(/\/home$/)
 })
@@ -127,7 +126,7 @@ test('language persists across logout/login', async ({ page }) => {
   await page.getByRole('button', { name: 'Log out' }).click()
   await page.goto('/login')
   await page.getByPlaceholder('10-digit number').fill(phone)
-  await page.getByRole('button', { name: 'Log in' }).click()
+  await page.getByTestId('login-phone-submit').click() // 10E 3A: two "Log in" buttons (e-mail + mobile) since 7L-2
   await expect(page).toHaveURL(/\/home$/)
   await expect(page.getByRole('button', { name: 'Log out' })).toBeVisible()
 })

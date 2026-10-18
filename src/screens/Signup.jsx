@@ -3,29 +3,32 @@ import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { resolveNext } from '../lib/returnPath'
-import { isValidPhone, isValidEmail, MIN_PASSWORD } from '../lib/auth/authService'
+import { isValidPhone } from '../lib/auth/authService'
 import { Screen, Field, TextInput, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
 import PlaceField from '../components/location/PlaceField'
-import EmailPasswordFields from '../components/auth/EmailPasswordFields'
 import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 
-// Batch 10A Task E — ONE short page: name, mobile, e-mail + password, village/town, one
-// "show my details" checkbox, the one-time acknowledgment (unchanged text) and Register.
+// Batch 10A Task E — ONE short page: name, mobile, village/town, one "show my details"
+// checkbox, the one-time acknowledgment (unchanged text) and Register.
+// Batch 10E Phase 3A (founder decision): NO e-mail and NO password at sign-up. The e-mail +
+// password block (components/auth/EmailPasswordFields.jsx) is kept for later but not rendered;
+// registration goes through app_register_phone and signs in like a mobile login. Existing
+// e-mail accounts still sign in through the e-mail box on the login page.
 // No language dropdown (the app's active language is used) and no किसान block (it lives on
 // Profile). Signup sends the same "empty" kisan object the old untouched block sent, so
-// applyKisan / app_register behave exactly as before.
+// applyKisan behaves exactly as before (now after app_register_phone).
 const EMPTY_KISAN = Object.freeze({ land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' })
 
 export default function Signup() {
   const { t, lang } = useLang()
-  const { register } = useAuth()
+  const { registerPhone } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [params] = useSearchParams()
   const next = resolveNext(params, location.state)
 
-  const [form, setForm] = useState({ full_name: '', email: '', password: '', phone: '' })
+  const [form, setForm] = useState({ full_name: '', phone: '' })
   const [place, setPlace] = useState(null) // { label, lat, lng, district }
   // "Show my details" is the recommended choice and starts ticked.
   const [showDetails, setShowDetails] = useState(true)
@@ -43,8 +46,6 @@ export default function Signup() {
     const errs = {}
     if (!form.full_name.trim()) errs.full_name = t('err_name_required')
     if (!isValidPhone(form.phone)) errs.phone = t('err_invalid_phone')
-    if (!isValidEmail(form.email)) errs.email = t('err_invalid_email')
-    if (!form.password || form.password.length < MIN_PASSWORD) errs.password = t('err_password_short')
     if (!place) errs.place = t('err_place_required')
     setFieldErrors(errs)
     return Object.keys(errs).length === 0
@@ -63,15 +64,15 @@ export default function Signup() {
     inFlight.current = true
     setBusy(true)
     try {
-      await register({
-        full_name: form.full_name, email: form.email, password: form.password, phone: form.phone,
+      await registerPhone({
+        full_name: form.full_name, phone: form.phone,
         place, language: lang, disclaimer_accepted: true, show_details: showDetails, kisan: { ...EMPTY_KISAN },
       })
       navigate(next, { replace: true })
     } catch (err) {
       const key = err.i18nKey || 'err_unknown'
       // Put the message next to the field it is about, and at the top of the form.
-      const field = { err_email_exists: 'email', err_invalid_email: 'email', err_password_short: 'password', err_phone_exists: 'phone', err_invalid_phone: 'phone' }[key]
+      const field = { err_name_required: 'full_name', err_phone_exists: 'phone', err_invalid_phone: 'phone', err_place_required: 'place' }[key]
       if (field) setFieldErrors({ [field]: t(key) })
       setError(t(key))
       window.scrollTo?.(0, 0)
@@ -99,8 +100,6 @@ export default function Signup() {
         <Field label={t('phone_number')} htmlFor="phone" required error={fieldErrors.phone}>
           <TextInput id="phone" type="tel" inputMode="numeric" maxLength={10} value={form.phone} onChange={set('phone')} placeholder={t('phone_ph')} autoComplete="tel" />
         </Field>
-
-        <EmailPasswordFields t={t} values={form} errors={fieldErrors} onChange={set} />
 
         <PlaceField id="village_town" value={place} onChange={(p) => { setPlace(p); clearErr('place') }} error={fieldErrors.place} />
 
