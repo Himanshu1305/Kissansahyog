@@ -86,3 +86,28 @@ export async function blockVisitorWrites(context) {
   })
   return blocked
 }
+
+// Batch 10E 5.2 — helpers for the old v1 post specs, which pre-date the current Post form.
+// Step 2: equipment / land / labor / drone didi need a start date since 10E 3C — tap "आज"/"Today"
+// (date-quick-0) when the date block is on the page; other categories are left alone.
+export async function pickTodayIfAsked(page) {
+  const today = page.getByTestId('date-quick-0')
+  if (await today.count()) await today.click()
+}
+// Step 3: tick every consent / declaration box (the checklist grew in 6B/9B; not the optional
+// wide-visibility box), as e2e/post-10e.spec.js does.
+export async function tickAllConsents(page) {
+  for (const cb of await page.locator('input[type="checkbox"]:not([data-testid="wide-visibility-checkbox"])').all()) {
+    if (!(await cb.isChecked())) await cb.check()
+  }
+}
+// Batch 9C made brand / model / year / HP mandatory for most equipment OFFERS (tractor, rotavator…);
+// the old specs picked "option index 1", which is now such a type. "Trolley" has no spec fields
+// (as e2e/post-10e.spec.js uses), so the old specs pick it by its visible name.
+export async function selectSpecFreeEquipmentType(page, name = 'Trolley') {
+  const sel = page.locator('#f_equipment_type_id')
+  await sel.waitFor({ timeout: 8000 })
+  const value = await sel.locator('option').evaluateAll((os, n) => (os.find((o) => o.textContent.trim().includes(n)) || {}).value, name)
+  if (!value) throw new Error(`equipment type "${name}" not in the list`)
+  await sel.selectOption(value)
+}

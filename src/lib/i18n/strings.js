@@ -2369,7 +2369,7 @@ export const strings = {
   guide_hub_seo_desc: { hi: 'रजिस्टर करना, लिस्टिंग डालना, बेचने वाले का नंबर पाना और पूरा टूर — चार छोटे डेमो। पहले देखिए, फिर खुद करके सीखिए।', en: 'Register, post a listing, get a seller’s number and take the full tour — four short demos. Watch first, then try it yourself.' },
   guide_hub_h1: { hi: 'आइए, किसान सहयोग चलाना सीखें', en: 'Let’s learn to use Kissan Sahyog' },
   guide_register_seo_title: { hi: 'रजिस्टर कैसे करें — किसान सहयोग गाइड', en: 'How to register — Kissan Sahyog guide' },
-  guide_register_seo_desc: { hi: 'नाम, मोबाइल, ईमेल, पासवर्ड और गाँव भरकर किसान सहयोग पर मुफ़्त खाता कैसे बनाएँ — 1 मिनट का डेमो।', en: 'How to make a free Kissan Sahyog account with name, mobile, email, password and village — a 1-minute demo.' },
+  guide_register_seo_desc: { hi: 'नाम, मोबाइल और गाँव भरकर किसान सहयोग पर मुफ़्त खाता कैसे बनाएँ — 1 मिनट का डेमो।', en: 'How to make a free Kissan Sahyog account with name, mobile and village — a 1-minute demo.' },
   guide_register_h1: { hi: 'रजिस्टर कैसे करें', en: 'How to register' },
   guide_post_seo_title: { hi: 'मशीन या सामान कैसे पोस्ट करें — किसान सहयोग गाइड', en: 'How to post a machine or goods — Kissan Sahyog guide' },
   guide_post_seo_desc: { hi: 'किसान सहयोग पर अपनी मशीन, सामान या ज़रूरत की लिस्टिंग 3 चरणों में कैसे डालें — 1 मिनट का डेमो।', en: 'How to post your machine, goods or need on Kissan Sahyog in 3 steps — a 1-minute demo.' },
@@ -2383,7 +2383,7 @@ export const strings = {
   // Hub.
   guide_lead: { hi: 'चार छोटे डेमो, हर एक करीब 1 मिनट का। पहले देखिए, फिर खुद करके देखिए।', en: 'Four short demos, about a minute each. Watch first, then try it yourself.' },
   guide_progress: { hi: '{n} / 4 पूरे', en: '{n} / 4 done' },
-  guide_register_sub: { hi: 'नाम, मोबाइल, ईमेल, पासवर्ड और गाँव।', en: 'Name, mobile, email, password and village.' },
+  guide_register_sub: { hi: 'नाम, मोबाइल और गाँव।', en: 'Name, mobile and village.' },
   guide_post_sub: { hi: 'लॉग इन के बाद, 3 आसान चरण।', en: 'After you log in, 3 easy steps.' },
   guide_find_sub: { hi: 'खोजिए, लिस्टिंग खोलिए, कॉल कीजिए।', en: 'Search, open a listing, call.' },
   guide_tour_sub: { hi: 'मंडी भाव, मौसम, योजनाएं, सवाल, खरीद-बिक्री।', en: 'Mandi prices, weather, schemes, questions, buy and sell.' },

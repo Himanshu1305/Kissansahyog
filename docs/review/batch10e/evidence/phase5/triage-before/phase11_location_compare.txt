@@ -1,0 +1,36 @@
+
+Running 2 tests using 1 worker
+
+  x  1 [chromium] › e2e\phase11_location_compare.spec.js:7:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › edge: zero selected shows the auto-nearest table, not a blank state (9.2s)
+  ok 2 [chromium] › e2e\phase11_location_compare.spec.js:17:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › positive+edge: up to 5 selections render; a 6th is blocked (never 6 at once) (2.3s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase11_location_compare.spec.js:7:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › edge: zero selected shows the auto-nearest table, not a blank state 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('mandi-compare').locator('table')
+    Expected: visible
+    Timeout: 8000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 8000ms
+      - waiting for getByTestId('mandi-compare').locator('table')
+
+
+      11 |     await expect(compare).toBeVisible()
+      12 |     // A table with at least one commodity row renders immediately (auto-nearest default).
+    > 13 |     await expect(compare.locator('table')).toBeVisible({ timeout: 8000 })
+         |                                            ^
+      14 |     await expect(compare.locator('tbody tr').first()).toBeVisible()
+      15 |   })
+      16 |
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase11_location_compare.spec.js:13:44
+
+    Error Context: test-results\phase11_location_compare-P-6b6d7-est-table-not-a-blank-state-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase11_location_compare.spec.js:7:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › edge: zero selected shows the auto-nearest table, not a blank state 
+  1 passed (13.2s)

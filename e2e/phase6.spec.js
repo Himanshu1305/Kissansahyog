@@ -5,6 +5,10 @@ import { adminClient, testPhone } from './support.js'
 // the seeded land/labor listings need their chip selected before counting; tab testids
 // are now CategoryStrip chips (chip-<cat>). The mark-Found lifecycle itself is unchanged.
 
+// 10E 5.2: Browse also shows a "Popular listings" strip (Batch 6D) that is NOT location-scoped and
+// uses the same listing-card; count only the nearby RESULT cards, not the popular strip.
+const resultCards = (page) => page.locator('[data-testid="listing-card"]:not(section[aria-label="Popular listings"] [data-testid="listing-card"])')
+
 async function loginAs(page, profile) {
   await page.addInitScript(
     ([p]) => {
@@ -43,7 +47,7 @@ test('mark Found closes listing: disappears from browse, stays (Found) in My Lis
   // Present in browse first (select the Land chip — browse defaults to equipment).
   await page.goto('/browse')
   await page.getByTestId('chip-land').click()
-  await expect(page.getByTestId('listing-card')).toHaveCount(1)
+  await expect(resultCards(page)).toHaveCount(1)
 
   // My Listings: mark Found (accept the confirm dialog).
   await page.goto('/my')
@@ -58,7 +62,7 @@ test('mark Found closes listing: disappears from browse, stays (Found) in My Lis
   // Gone from browse.
   await page.goto('/browse')
   await page.getByTestId('chip-land').click()
-  await expect(page.getByTestId('listing-card')).toHaveCount(0)
+  await expect(resultCards(page)).toHaveCount(0)
 })
 
 test('expired listing shows Expired in My Listings and is absent from browse', async ({ page }) => {
@@ -78,5 +82,5 @@ test('expired listing shows Expired in My Listings and is absent from browse', a
 
   await page.goto('/browse')
   await page.getByTestId('chip-labor').click()
-  await expect(page.getByTestId('listing-card')).toHaveCount(0)
+  await expect(resultCards(page)).toHaveCount(0)
 })

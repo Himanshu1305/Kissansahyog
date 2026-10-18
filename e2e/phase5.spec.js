@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone, postStep1 } from './support.js'
+import { adminClient, testPhone, postStep1, pickTodayIfAsked, tickAllConsents } from './support.js'
 
 // REWRITTEN (legacy-cleanup). Adds the source step and the mandatory rules checkbox;
 // validation copy ("must be 1 or more", "cannot be after") is unchanged. The blank-rate
@@ -38,10 +38,11 @@ test('labor OFFER with blank rate renders cleanly (no undefined)', async ({ page
   await page.getByLabel('Number of workers').fill('8')
   await page.getByLabel('Type of work').selectOption({ label: 'Harvesting' })
   // Leave rate basis + rate amount blank (optional).
+  await pickTodayIfAsked(page) // 10E 3C: labor needs a start date
   await page.getByTestId('post-next').click() // → step 3
 
   await page.locator('#f_asset_village').fill('Khurai')
-  await page.getByTestId('rules-agree-checkbox').check()
+  await tickAllConsents(page) // 6B/9B consent checklist
   await page.getByTestId('post-submit').click()
   await page.getByRole('button', { name: 'View listing' }).click()
 

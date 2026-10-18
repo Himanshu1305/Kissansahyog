@@ -36,3 +36,5 @@
 | `guide_post_photo` (new, Phase 4) | "फोटो जोड़ें" दबाकर फ़ोन से मशीन की फोटो चुनिए। साफ़ फोटो वाली लिस्टिंग पर ज़्यादा कॉल आते हैं। (इस डेमो में कुछ अपलोड नहीं होता।) | Tap "Add photos" and choose a photo of the machine from your phone. Listings with clear photos get more calls. (Nothing is uploaded in this demo.) | /guide/post, step 10 caption + step list. "ज़्यादा कॉल" is a general tip, not a measured claim (HUMAN-REVIEW) |
 | `guide_s_today_date` (new, Phase 4) | आज की तारीख़ | Today's date | /guide/post mock phone: the "कब से उपलब्ध" box after tapping "आज" (with the "नमूना" tag) |
 | `guide_example_photo` (new, Phase 4) | उदाहरण फोटो | Example photo | /guide/post mock phone: label under the sample picture (drawn in code) after tapping "फोटो जोड़ें" |
+| guide_register_sub | नाम, मोबाइल और गाँव। | Name, mobile and village. | /guide hub card (was: …ईमेल, पासवर्ड…) |
+| guide_register_seo_desc | नाम, मोबाइल और गाँव भरकर किसान सहयोग पर मुफ़्त खाता कैसे बनाएँ — 1 मिनट का डेमो। | How to make a free Kissan Sahyog account with name, mobile and village — a 1-minute demo. | /guide/register meta description |

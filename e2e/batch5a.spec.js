@@ -1,7 +1,7 @@
 // Batch 5A E2E — run only after the owner applies migration 0053 and deploys.
 // Do not run this in a shared database before that point.
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone, postStep1 } from './support.js'
+import { adminClient, testPhone, postStep1, pickTodayIfAsked, tickAllConsents, selectSpecFreeEquipmentType } from './support.js'
 
 async function loginAs(page, profile) {
   await page.addInitScript(([p]) => {
@@ -33,7 +33,7 @@ test('posts building materials and displays the seller responsibility note', asy
   await expect(page.getByText('Seller is responsible for selling with the required permissions.')).toBeVisible()
   await page.getByTestId('post-next').click()
   await page.locator('#f_asset_village').fill('Khurai')
-  await page.getByTestId('rules-agree-checkbox').check()
+  await tickAllConsents(page) // 10E 5.2: consent checklist (no owner declaration for this category)
   await page.getByTestId('post-submit').click()
   await page.getByRole('button', { name: 'View listing' }).click()
   await expect(page.getByText('Seller is responsible for selling with the required permissions.')).toBeVisible()
@@ -44,12 +44,13 @@ for (const tag of ['Vegetable farming equipment', 'Rare or emergency equipment']
     const user = await makeUser()
     await loginAs(page, user)
     await postStep1(page, 'offer', 'equipment')
-    await page.getByLabel('Equipment type').selectOption({ index: 1 })
+    await selectSpecFreeEquipmentType(page) // 10E 5.2: index 1 now needs 9C spec fields
     await page.getByLabel('Rental amount').fill('500')
     await page.getByRole('button', { name: tag }).click()
+    await pickTodayIfAsked(page) // 10E 3C: equipment needs a start date
     await page.getByTestId('post-next').click()
     await page.locator('#f_asset_village').fill('Khurai')
-    await page.getByTestId('rules-agree-checkbox').check()
+    await tickAllConsents(page)
     await page.getByTestId('post-submit').click()
     await page.getByRole('button', { name: 'View listing' }).click()
     await expect(page.getByText(tag)).toBeVisible()

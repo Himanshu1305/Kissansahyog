@@ -126,7 +126,9 @@ check('2: sign-up change is one line of text — no form field, handler or auth 
 const allHtml = walk('dist', ['index.html'])
 const promoPages = allHtml.filter((f) => PROMO.test(text(read(f)))).map((f) => relative(join(ROOT, 'dist'), join(ROOT, f)).replaceAll('\\', '/'))
 check(`2: across all ${allHtml.length} prerendered pages the phrase appears only on the homepage`, promoPages.join(',') === 'index.html', promoPages.slice(0, 5).join(','))
-check('2: prerendered homepage shows it in the hero badge and by the post button (hero is rendered for desktop and mobile)', count(distHome, 'data-testid="hero-free-registration"') === 2 && count(distHome, 'data-testid="post-free-registration"') === 2 && count(text(distHome), 'निःशुल्क रजिस्ट्रेशन') === 4)
+// Batch 10D (live hero) renders the hero ONCE for every width (it used to be one desktop + one mobile
+// copy), so each placement now appears once: 1 badge, 1 by the post button, 2 phrases (10E 5.3).
+check('2: prerendered homepage shows it in the hero badge and by the post button (hero rendered once since 10D)', count(distHome, 'data-testid="hero-free-registration"') === 1 && count(distHome, 'data-testid="post-free-registration"') === 1 && count(text(distHome), 'निःशुल्क रजिस्ट्रेशन') === 2)
 
 // ---- 3. open-to-all strip ------------------------------------------------------------------
 check('3: strip title is "बिना लॉगिन के सारी जानकारी देखें / See all information without logging in"', strings.home_open_title.hi === 'बिना लॉगिन के सारी जानकारी देखें' && strings.home_open_title.en === 'See all information without logging in')
@@ -223,7 +225,7 @@ check('8e: homepage price tile is rendered only when there is a price (no "—" 
 check('8e: category grid has no blank cell (2 / 3 / 5 columns; an odd last tile spans the row on phones)', /data-testid="home-cat-grid" className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 \[&>\*:last-child:nth-child\(odd\)\]:col-span-2 md:\[&>\*:last-child:nth-child\(odd\)\]:col-span-1"/.test(home) && (home.match(/\{ img: 'cat-[a-z-]+\.jpg'/g) || []).length % 15 === 0)
 const tileImgs = [...home.matchAll(/img: '([a-z-]+\.jpg)'/g)].map((m) => m[1])
 const missingImgs = tileImgs.filter((f) => !has(`public/images/home/${f}`))
-check(`8e: every category tile image exists (${tileImgs.length}), and a tile whose image fails still has a solid background`, missingImgs.length === 0 && /minHeight: 0, background: 'var\(--ks-green-dark\)' \}\}>/.test(read('src/components/home/kit.jsx')), missingImgs.join(','))
+check(`8e: every category tile image exists (${tileImgs.length}), and a tile whose image fails still has a solid background`, missingImgs.length === 0 && /minHeight: 0, background: 'var\(--ks-green-dark\)' \}/.test(read('src/components/home/kit.jsx')) /* 10E 1C: the tile style moved into a const (Link or button) */, missingImgs.join(','))
 
 // ---- 9. Soil Health Card English (4c) and the SQL file --------------------------------------------------
 const qa = read('src/content/qa/schemes.js') + read('src/content/qa/legacy.js')

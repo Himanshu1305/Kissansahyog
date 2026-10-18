@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone, postStep1 } from './support.js'
+import { adminClient, testPhone, postStep1, pickTodayIfAsked, tickAllConsents } from './support.js'
 
 // REWRITTEN (legacy-cleanup). Current post flow: /post → source step (farmer/vendor
 // + Continue) → Offering/Looking-for → category → form. The Land form now uses a
@@ -50,11 +50,17 @@ test('land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals numbe
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('3')
   await page.locator('#f_price_type').selectOption('negotiable')
+  await pickTodayIfAsked(page) // 10E 3C: land needs a start date
   await page.getByTestId('post-next').click() // → step 3
 
   await page.locator('#f_asset_village').fill('Khurai')
   const submit = page.getByTestId('post-submit')
-  const confirm = page.getByTestId('rules-agree-checkbox') // one checkbox covers rules + ownership
+  const confirm = page.getByTestId('rules-agree-checkbox') // the land-ownership declaration
+  // 6B/9B: the consent checklist must be ticked too; tick everything except the declaration so the
+  // declaration alone still gates Submit.
+  for (const box of await page.locator('input[type="checkbox"]:not([data-testid="wide-visibility-checkbox"]):not([data-testid="rules-agree-checkbox"])').all()) {
+    if (!(await box.isChecked())) await box.check()
+  }
   await expect(submit).toBeDisabled()
   await confirm.check()
   await expect(submit).toBeEnabled()
@@ -62,7 +68,8 @@ test('land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals numbe
 
   await page.getByRole('button', { name: 'View listing' }).click()
   await expect(page).toHaveURL(/\/listing\//)
-  await expect(page.getByRole('heading', { name: 'Land', exact: true })).toBeVisible()
+  // 10E 5.2: the category label is now "Land (Bhoomi / Rakba)" (catalog.js CATEGORY_META).
+  await expect(page.getByRole('heading', { name: /^Land/ })).toBeVisible()
 
   // Item 4: contact buttons are HIDDEN on your OWN listing (the reveal flow for a
   // different viewer is covered end-to-end in batch1.spec.js).
@@ -76,12 +83,12 @@ test('land REQUIREMENT: 3-step flow, single confirm checkbox', async ({ page }) 
   await postStep1(page, 'requirement', 'land')
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('2')
+  await pickTodayIfAsked(page) // 10E 3C: land needs a start date
   await page.getByTestId('post-next').click() // price_type optional for requirements → straight on
 
   await page.locator('#f_asset_village').fill('Khurai')
-  // Only ONE checkbox on the confirm step now (rules + ownership combined).
-  await expect(page.getByRole('checkbox')).toHaveCount(1)
-  await page.getByTestId('rules-agree-checkbox').check()
+  // 6B/9B: the confirm step is now the consent checklist (several boxes), not one checkbox.
+  await tickAllConsents(page)
   await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 })

@@ -107,7 +107,8 @@ export default function Homepage() {
   const [counts, setCounts] = useState(null)
   const [videos, setVideos] = useState([])
   const [pestReports, setPestReports] = useState([])
-  const [melas, setMelas] = useState([])
+  // null = still loading; [] = none in MP + neighbouring states → the whole section is hidden (10E 5.1).
+  const [melas, setMelas] = useState(null)
 
   // Static data (once).
   useEffect(() => {
@@ -127,7 +128,7 @@ export default function Homepage() {
     })()
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
     fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
-    fetchUpcomingMelas(3).then((m) => alive && setMelas(m)).catch(() => alive && setMelas([]))
+    fetchUpcomingMelas(3, { region: true }).then((m) => alive && setMelas(m)).catch(() => alive && setMelas([]))
     return () => { alive = false }
   }, [])
 
@@ -387,10 +388,12 @@ export default function Homepage() {
         </div>
       </Section>
 
-      {/* Kisan Mela teaser (upcoming nearby melas, graceful empty state) */}
-      <Section>
-        <SectionHeader title={t('mela_home_title')} linkLabel={t('mela_home_all')} onLink={() => navigate('/kisan-mela')} />
-        {melas.length > 0 ? (
+      {/* Kisan Mela teaser (Batch 10E 5.1): only Madhya Pradesh + neighbouring states (UP, Maharashtra,
+          Chhattisgarh, Gujarat, Rajasthan), MP first. Nothing qualifying (or still loading) → no section;
+          every Mela stays on /kisan-mela. */}
+      {melas?.length > 0 && (
+        <Section>
+          <SectionHeader title={t('mela_home_title')} linkLabel={t('mela_home_all')} onLink={() => navigate('/kisan-mela')} />
           <div className="grid gap-3 md:grid-cols-3">
             {melas.map((m) => (
               <button key={m.id} type="button" data-testid="home-mela-card" onClick={() => navigate('/kisan-mela')} className="flex flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
@@ -403,13 +406,8 @@ export default function Homepage() {
               </button>
             ))}
           </div>
-        ) : (
-          <div data-testid="home-mela-empty" className="rounded-xl border border-dashed p-4 text-center" style={{ borderColor: 'var(--ks-border-strong)' }}>
-            <p className="text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('mela_home_empty')}</p>
-            <div className="mt-2"><Button variant="secondary" onClick={() => navigate('/kisan-mela/submit')}>➕ {t('mela_submit_cta')}</Button></div>
-          </div>
-        )}
-      </Section>
+        </Section>
+      )}
 
       {/* 9 — सरकारी मदद */}
       <Section bg="var(--ks-bg-warm)">

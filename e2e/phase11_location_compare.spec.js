@@ -5,6 +5,9 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Phase 2 — mandi comparison (auto-nearest default, cap 5)', () => {
   test('edge: zero selected shows the auto-nearest table, not a blank state', async ({ page }) => {
+    // 10E 5.2: since 7L-1 there is no default centre — "auto-nearest" needs the visitor's saved
+    // location (no location → honest "no data", no nearest claim). Seed a saved Sagar location.
+    await page.addInitScript(() => localStorage.setItem('ks_location_v1', JSON.stringify({ lat: 23.8388, lng: 78.7378, label: 'Sagar', from: 'picked' })))
     await page.goto('/msp/gehun')
     await page.getByTestId('view-compare').click()
     const compare = page.getByTestId('mandi-compare')

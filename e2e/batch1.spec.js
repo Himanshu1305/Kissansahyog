@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone } from './support.js'
+import { adminClient, testPhone, pickTodayIfAsked, tickAllConsents } from './support.js'
 
 // Batch 1 — the new marketplace basics:
 //  • item 3  : all 10 Browse category chips fit the viewport (no hidden h-scroll) at
@@ -41,17 +41,18 @@ async function makeUser(extra = {}) {
 
 // ---- item 3: category chips fit the viewport, both sizes ----
 for (const vp of [{ w: 375, h: 812 }, { w: 1280, h: 800 }]) {
-  test(`browse: all 10 category chips inside the ${vp.w}×${vp.h} viewport, no h-scroll`, async ({ page }) => {
+  // 10E 5.2: 11 chips since Batch 5A added building materials (registry ENABLED_CATEGORIES).
+  test(`browse: all 11 category chips inside the ${vp.w}×${vp.h} viewport, no h-scroll`, async ({ page }) => {
     await page.setViewportSize({ width: vp.w, height: vp.h })
     await page.goto('/browse') // public — no login
     const chips = page.locator('[data-testid^="chip-"]')
-    await expect(chips).toHaveCount(10)
+    await expect(chips).toHaveCount(11)
     // The chips wrap — their container must not scroll horizontally.
     const cont = page.getByTestId('browse-cats')
     const contScroll = await cont.evaluate((el) => el.scrollWidth - el.clientWidth)
     expect(contScroll).toBeLessThanOrEqual(1)
-    // Every one of the 10 chips is inside the viewport (visible, not off-screen).
-    for (let i = 0; i < 10; i++) {
+    // Every one of the 11 chips is inside the viewport (visible, not off-screen).
+    for (let i = 0; i < 11; i++) {
       await expect(chips.nth(i)).toBeInViewport()
       const box = await chips.nth(i).boundingBox()
       expect(box.x + box.width).toBeLessThanOrEqual(vp.w + 1)
@@ -89,7 +90,8 @@ test('logged out: browse equipment, Call asks for login and returns to the same 
 
   // Log in by phone (trust-based MVP). Returns to the SAME listing.
   await page.getByLabel('Mobile number').fill(viewer.phone)
-  await page.getByRole('button', { name: 'Log in' }).click()
+  // 10A: the login page has an e-mail and a mobile submit button → use the mobile one by test id.
+  await page.getByTestId('login-phone-submit').click()
   await page.waitForURL(new RegExp(`/listing/${listing.id}`))
 
   // Now Call reveals the owner's number in the contact sheet.
@@ -114,12 +116,13 @@ test('post flow (3 steps): land OFFER end to end', async ({ page }) => {
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('3')
   await page.locator('#f_price_type').selectOption('negotiable')
+  await pickTodayIfAsked(page) // 10E 3C: land needs a start date
   await page.getByTestId('post-next').click() // → step 3 (Location + confirm)
 
   await page.locator('#f_asset_village').fill('Khurai')
   const submit = page.getByTestId('post-submit')
-  await expect(submit).toBeDisabled() // the single confirm checkbox gates submit
-  await page.getByTestId('rules-agree-checkbox').check()
+  await expect(submit).toBeDisabled() // the consent checklist gates submit (6B/9B: several boxes now)
+  await tickAllConsents(page)
   await expect(submit).toBeEnabled()
   await submit.click()
 
@@ -134,10 +137,11 @@ test('post flow (3 steps): labor REQUIREMENT end to end', async ({ page }) => {
   await postStep1(page, { type: 'requirement', category: 'labor' })
   await page.locator('#f_worker_count').waitFor({ timeout: 8000 })
   await page.locator('#f_worker_count').fill('3')
+  await pickTodayIfAsked(page) // 10E 3C: labor needs a start date
   await page.getByTestId('post-next').click()
 
   await page.locator('#f_asset_village').fill('Khurai')
-  await page.getByTestId('rules-agree-checkbox').check()
+  await tickAllConsents(page)
   await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 })

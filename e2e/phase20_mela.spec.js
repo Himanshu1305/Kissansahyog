@@ -137,14 +137,40 @@ test('admin: rejected candidate appears in the candidates panel with a publish-a
 
 test('Resources nav dropdown contains किसान मेला; homepage teaser renders', async ({ page }) => {
   await page.goto('/')
-  // Homepage teaser (seeded melas exist → cards; otherwise the empty state).
+  // Homepage teaser (Batch 10E 5.1): only MP + neighbouring states, MP first; the whole section is
+  // hidden when none qualify (staging has MP / UP / Maharashtra / Gujarat Melas → cards).
   const teaserCards = page.getByTestId('home-mela-card')
-  const teaserEmpty = page.getByTestId('home-mela-empty')
-  await expect(teaserCards.first().or(teaserEmpty)).toBeVisible({ timeout: 15000 })
+  await expect(teaserCards.first()).toBeVisible({ timeout: 15000 })
+  const places = await teaserCards.evaluateAll((cs) => cs.map((c) => (c.innerText.match(/📍[^\n]*/) || [''])[0]))
+  const region = /(Madhya Pradesh|Uttar Pradesh|Maharashtra|Chhattisgarh|Gujarat|Rajasthan)\s*$/
+  for (const p of places) expect(p, p).toMatch(region)
+  expect(places.join('|')).not.toMatch(/Karnataka|Telangana|Delhi|Punjab|Haryana/)
+  // MP first: once a non-MP card appears, no MP card may follow.
+  const isMp = places.map((p) => /Madhya Pradesh\s*$/.test(p))
+  expect(isMp.join(',')).toBe([...isMp].sort((a, b) => Number(b) - Number(a)).join(','))
+  await expect(page.getByTestId('home-mela-empty')).toHaveCount(0)
 
   // Desktop Resources dropdown → किसान मेला present.
   await page.setViewportSize({ width: 1280, height: 800 })
   const resBtn = page.getByRole('button', { name: /उपयोगी संपर्क|Resources/ }).first()
   await resBtn.click()
   await expect(page.getByRole('menuitem', { name: /किसान मेला|Kisan Mela/ })).toBeVisible()
+})
+
+// Batch 10E 5.1 — no MP / neighbouring-state Mela → the whole homepage section is hidden (not an
+// empty box). The kisan_mela read is answered with a Karnataka-only list; the database is untouched.
+test('homepage hides the Mela section when no MP / neighbouring-state Mela qualifies', async ({ page }) => {
+  await page.route('**/rest/v1/kisan_mela?*', (route) => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: JSON.stringify([{ id: 'kstest-ka', name_hi: 'KSTEST कर्नाटक मेला', name_en: 'KSTEST Karnataka Mela', venue: 'Bengaluru', state: 'Karnataka', district: 'Bengaluru', event_date_start: '2099-01-01', event_date_end: '2099-01-02', is_date_confirmed: true }]),
+  }))
+  const melaRead = page.waitForRequest((r) => r.url().includes('/rest/v1/kisan_mela?'), { timeout: 20000 })
+  await page.goto('/')
+  await melaRead
+  await expect(page.getByRole('heading', { name: /सरकारी मदद|Government help/ }).first()).toBeVisible({ timeout: 15000 })
+  await page.waitForTimeout(1000)
+  await expect(page.getByTestId('home-mela-card')).toHaveCount(0)
+  await expect(page.getByTestId('home-mela-empty')).toHaveCount(0)
+  await expect(page.getByRole('heading', { name: /आस-पास के किसान मेले|Kisan Melas near you/ })).toHaveCount(0)
 })

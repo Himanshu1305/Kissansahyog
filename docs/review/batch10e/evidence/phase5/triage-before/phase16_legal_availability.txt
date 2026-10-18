@@ -1,0 +1,31 @@
+
+Running 4 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase16_legal_availability.spec.js:12:1 › buyer compliance modal shows once per browser, not again after acceptance (2.7s)
+  ok 2 [chromium] › e2e\phase16_legal_availability.spec.js:30:1 › both new scheme pages, the agro-forestry hub, and the article render (4.2s)
+  x  3 [chromium] › e2e\phase16_legal_availability.spec.js:44:1 › seller rules-compliance checkbox is present and gates the submit button (9.1s)
+  ok 4 [chromium] › e2e\phase16_legal_availability.spec.js:68:1 › PWA install banner: hidden in standalone, shown otherwise (Android event) (1.9s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase16_legal_availability.spec.js:44:1 › seller rules-compliance checkbox is present and gates the submit button 
+
+    TimeoutError: locator.waitFor: Timeout 8000ms exceeded.
+    Call log:
+      - waiting for getByTestId('rules-agree-checkbox') to be visible
+
+
+      57 |   await page.getByTestId('post-next').click()
+      58 |   const cb = page.getByTestId('rules-agree-checkbox')
+    > 59 |   await cb.waitFor({ timeout: 8000 })
+         |            ^
+      60 |   await expect(cb).not.toBeChecked()
+      61 |   const submit = page.getByTestId('post-submit')
+      62 |   await expect(submit).toBeDisabled()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase16_legal_availability.spec.js:59:12
+
+    Error Context: test-results\phase16_legal_availability-8446c-and-gates-the-submit-button-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase16_legal_availability.spec.js:44:1 › seller rules-compliance checkbox is present and gates the submit button 
+  3 passed (19.9s)

@@ -5,6 +5,7 @@ import { supabase } from '../supabaseClient'
 import { toAppError, AppError } from '../errors'
 import { normalizeState } from '../../content/states.js'
 import { indiaToday, melaStatus, sortMelasForDisplay } from './melaStatus.js'
+import { homeRegionMelas } from './melaFormat.js'
 
 export const MELA_TAGS = ['seeds', 'machinery', 'livestock', 'horticulture', 'scheme_scientist', 'general']
 
@@ -22,7 +23,8 @@ export async function fetchMelas() {
 }
 
 // A few upcoming melas for the homepage teaser (approved + active, soonest first).
-export async function fetchUpcomingMelas(limit = 3) {
+// `region: true` (Batch 10E 5.1, homepage teaser only) keeps MP + neighbouring states, MP first.
+export async function fetchUpcomingMelas(limit = 3, { region = false } = {}) {
   const todayIso = indiaToday()
   const { data, error } = await supabase
     .from('kisan_mela')
@@ -33,7 +35,8 @@ export async function fetchUpcomingMelas(limit = 3) {
     .order('event_date_start', { ascending: true, nullsFirst: false })
   if (error) throw toAppError(error)
   // Homepage is deliberately dated-only: expected-period rows belong in the full calendar.
-  return sortMelasForDisplay((data || []).filter((m) => melaStatus(m, todayIso) !== 'undated' && melaStatus(m, todayIso) !== 'ended'), { today: todayIso }).slice(0, limit)
+  const sorted = sortMelasForDisplay((data || []).filter((m) => melaStatus(m, todayIso) !== 'undated' && melaStatus(m, todayIso) !== 'ended'), { today: todayIso })
+  return region ? homeRegionMelas(sorted, limit) : sorted.slice(0, limit)
 }
 
 // Submit a Mela for admin review. Never visible until approved (RLS enforces pending).

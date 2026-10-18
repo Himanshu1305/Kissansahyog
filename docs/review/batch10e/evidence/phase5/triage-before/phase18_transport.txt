@@ -1,0 +1,38 @@
+
+Running 2 tests using 1 worker
+
+  x  1 [chromium] › e2e\phase18_transport.spec.js:25:1 › Transport is a full browse category — chip present, Land still last, no stale count (11.2s)
+  ok 2 [chromium] › e2e\phase18_transport.spec.js:37:1 › Transport listing appears within 30km and is filtered beyond 50km (1.4s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase18_transport.spec.js:25:1 › Transport is a full browse category — chip present, Land still last, no stale count 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('[data-testid^="chip-"]')
+    Expected: 10
+    Received: 11
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 10000ms
+      - waiting for locator('[data-testid^="chip-"]')
+        23 × locator resolved to 11 elements
+           - unexpected value "11"
+
+
+      30 |   // The strip renders exactly the enabled categories, in order, Land LAST.
+      31 |   const chips = page.locator('[data-testid^="chip-"]')
+    > 32 |   await expect(chips).toHaveCount(10) // +greenhouse (P7) +jugaad (P9): equipment,labor,drone_didi,bhusa,agri_inputs,warehouse,greenhouse,jugaad,transport,land
+         |                       ^
+      33 |   await expect(chips.last()).toHaveAttribute('data-testid', 'chip-land')
+      34 |   await expect(chips.nth(8)).toHaveAttribute('data-testid', 'chip-transport')
+      35 | })
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase18_transport.spec.js:32:23
+
+    Error Context: test-results\phase18_transport-Transpor-6ce44-d-still-last-no-stale-count-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase18_transport.spec.js:25:1 › Transport is a full browse category — chip present, Land still last, no stale count 
+  1 passed (14.6s)

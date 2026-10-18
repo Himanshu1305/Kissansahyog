@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone, postStep1 } from './support.js'
+import { adminClient, testPhone, postStep1, pickTodayIfAsked, tickAllConsents } from './support.js'
 
 // Phase 9: whole-system journeys, not isolated units. REWRITTEN (legacy-cleanup):
 // registration moved to /welcome→/signup; the post flow gained a source step; the Land
@@ -43,9 +43,10 @@ test('Journey A: signup → post all 3 categories → My Listings → close one'
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('3')
   await page.locator('#f_price_type').selectOption('negotiable')
+  await pickTodayIfAsked(page) // 10E 3C: start date required
   await page.getByTestId('post-next').click()
   await page.locator('#f_asset_village').fill('Deori')
-  await page.getByTestId('rules-agree-checkbox').check() // single confirm = rules + ownership
+  await tickAllConsents(page) // 6B/9B consent checklist + ownership declaration
   await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 
@@ -53,9 +54,10 @@ test('Journey A: signup → post all 3 categories → My Listings → close one'
   await postStep1(page, 'requirement', 'equipment')
   await page.locator('#f_equipment_type_id').waitFor({ timeout: 8000 })
   await page.getByLabel('Equipment type').selectOption({ label: 'Tractor' })
+  await pickTodayIfAsked(page)
   await page.getByTestId('post-next').click()
   await page.locator('#f_asset_village').fill('Deori')
-  await page.getByTestId('rules-agree-checkbox').check()
+  await tickAllConsents(page)
   await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 
@@ -63,9 +65,10 @@ test('Journey A: signup → post all 3 categories → My Listings → close one'
   await postStep1(page, 'offer', 'labor')
   await page.getByLabel('Number of workers').waitFor({ timeout: 8000 })
   await page.getByLabel('Number of workers').fill('5')
+  await pickTodayIfAsked(page)
   await page.getByTestId('post-next').click()
   await page.locator('#f_asset_village').fill('Deori')
-  await page.getByTestId('rules-agree-checkbox').check()
+  await tickAllConsents(page)
   await page.getByTestId('post-submit').click()
   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
 

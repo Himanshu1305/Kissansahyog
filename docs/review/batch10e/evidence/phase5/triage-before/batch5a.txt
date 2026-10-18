@@ -1,0 +1,75 @@
+
+Running 4 tests using 1 worker
+
+  x  1 [chromium] › e2e\batch5a.spec.js:23:1 › posts building materials and displays the seller responsibility note (30.0s)
+  x  2 [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Vegetable farming equipment (30.0s)
+  x  3 [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Rare or emergency equipment (30.0s)
+  ok 4 [chromium] › e2e\batch5a.spec.js:62:1 › opens both Batch 5A Bazaar landing pages (1.6s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\batch5a.spec.js:23:1 › posts building materials and displays the seller responsibility note 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.check: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByTestId('rules-agree-checkbox')
+
+
+      34 |   await page.getByTestId('post-next').click()
+      35 |   await page.locator('#f_asset_village').fill('Khurai')
+    > 36 |   await page.getByTestId('rules-agree-checkbox').check()
+         |                                                  ^
+      37 |   await page.getByTestId('post-submit').click()
+      38 |   await page.getByRole('button', { name: 'View listing' }).click()
+      39 |   await expect(page.getByText('Seller is responsible for selling with the required permissions.')).toBeVisible()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\batch5a.spec.js:36:50
+
+    Error Context: test-results\batch5a-posts-building-mat-1a2de--seller-responsibility-note-chromium\error-context.md
+
+  2) [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Vegetable farming equipment 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      49 |     await page.getByRole('button', { name: tag }).click()
+      50 |     await page.getByTestId('post-next').click()
+    > 51 |     await page.locator('#f_asset_village').fill('Khurai')
+         |                                            ^
+      52 |     await page.getByTestId('rules-agree-checkbox').check()
+      53 |     await page.getByTestId('post-submit').click()
+      54 |     await page.getByRole('button', { name: 'View listing' }).click()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\batch5a.spec.js:51:44
+
+    Error Context: test-results\batch5a-posts-and-filters--6cba3-Vegetable-farming-equipment-chromium\error-context.md
+
+  3) [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Rare or emergency equipment 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      49 |     await page.getByRole('button', { name: tag }).click()
+      50 |     await page.getByTestId('post-next').click()
+    > 51 |     await page.locator('#f_asset_village').fill('Khurai')
+         |                                            ^
+      52 |     await page.getByTestId('rules-agree-checkbox').check()
+      53 |     await page.getByTestId('post-submit').click()
+      54 |     await page.getByRole('button', { name: 'View listing' }).click()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\batch5a.spec.js:51:44
+
+    Error Context: test-results\batch5a-posts-and-filters--47167-Rare-or-emergency-equipment-chromium\error-context.md
+
+  3 failed
+    [chromium] › e2e\batch5a.spec.js:23:1 › posts building materials and displays the seller responsibility note 
+    [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Vegetable farming equipment 
+    [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Rare or emergency equipment 
+  1 passed (1.6m)

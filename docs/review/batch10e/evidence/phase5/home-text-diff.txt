@@ -1,0 +1,17 @@
+46a47
+> कल का भाव (18/10)
+337,343c338,343
+< 🌾 डेयरी इंडस्ट्री एक्सपो 2026
+< चल रहा है
+< 📅 16–18 अक्टूबर 2026
+< 📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra
+< 🌾 कृषि मेला, कृषि विज्ञान विश्वविद्यालय बेंगलुरु
+< 📅 22–25 अक्टूबर 2026
+< 📍 GKVK Campus, Bengaluru, Karnataka
+---
+> 🌾 भारत एग्री टेक
+> 📅 9–11 जनवरी 2027
+> 📍 BAPS Swaminarayan Akshardham Temple, Nemawar Chouraha, Indore, Madhya Pradesh
+> 🌾 Farm-Tech India 2027
+> 📅 14–16 फ़रवरी 2027
+> 📍 ICAR (CIAE) Ground, Bhopal, Madhya Pradesh

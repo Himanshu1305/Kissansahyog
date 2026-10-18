@@ -1,0 +1,32 @@
+
+Running 3 tests using 1 worker
+
+  ok 1 [chromium] › e2e\zz-head-phase7.spec.js:32:1 › language toggle switches UI chrome on core screens (1.6s)
+  ok 2 [chromium] › e2e\zz-head-phase7.spec.js:51:1 › crop dropdown labels come from the DB and switch language (1.1s)
+  x  3 [chromium] › e2e\zz-head-phase7.spec.js:69:1 › posting works in Hindi UI (functional, not just visual) (30.0s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\zz-head-phase7.spec.js:69:1 › posting works in Hindi UI (functional, not just visual) 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      78 |   await page.locator('#f_price_type').selectOption('negotiable')
+      79 |   await page.getByTestId('post-next').click() // → Location + confirm
+    > 80 |   await page.locator('#f_asset_village').fill('खुरई')
+         |                                          ^
+      81 |   await page.getByTestId('rules-agree-checkbox').check() // single confirm (rules + ownership)
+      82 |   await page.getByTestId('post-submit').click() // Submit
+      83 |   await expect(page.getByRole('button', { name: 'लिस्टिंग देखें' })).toBeVisible() // View listing
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\zz-head-phase7.spec.js:80:42
+
+    Error Context: test-results\zz-head-phase7-posting-wor-b2ed5-functional-not-just-visual--chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\zz-head-phase7.spec.js:69:1 › posting works in Hindi UI (functional, not just visual) 
+  2 passed (34.0s)

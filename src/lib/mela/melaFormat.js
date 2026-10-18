@@ -93,3 +93,22 @@ export function isExpectedDate(mela) {
 export function statesIn(melas) {
   return [...new Set((melas || []).map((m) => normalizeState(m.state) || m.state).filter(Boolean))].sort()
 }
+
+// Batch 10E 5.1 — the homepage "आस-पास के किसान मेले" teaser shows only Madhya Pradesh and its
+// neighbouring states, MP first. Canonical English names (content/states.js); every Mela's state is
+// folded with normalizeState() so "MP", "M.P.", "मध्य प्रदेश" etc. all match. A Mela whose state is
+// unknown/blank/"India" is left out of the teaser (it stays on /kisan-mela). Data is never changed.
+export const HOME_MELA_FIRST_STATE = 'Madhya Pradesh'
+export const HOME_MELA_STATES = ['Madhya Pradesh', 'Uttar Pradesh', 'Maharashtra', 'Chhattisgarh', 'Gujarat', 'Rajasthan']
+
+// Keep the incoming order (the caller passes them soonest-first) within each group; MP group first.
+// Returns at most `limit` Melas; [] when none qualify (the homepage then hides the whole section).
+export function homeRegionMelas(melas, limit = 3) {
+  const allowed = new Set(HOME_MELA_STATES)
+  const inRegion = (melas || [])
+    .map((m) => ({ m, st: normalizeState(m?.state) }))
+    .filter((x) => x.st && allowed.has(x.st))
+  const mp = inRegion.filter((x) => x.st === HOME_MELA_FIRST_STATE)
+  const near = inRegion.filter((x) => x.st !== HOME_MELA_FIRST_STATE)
+  return [...mp, ...near].slice(0, Math.max(0, limit)).map((x) => x.m)
+}
