@@ -1,0 +1,118 @@
+{
+ "tiles": [
+  {
+   "tag": "A",
+   "href": "/browse?cat=equipment",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=equipment&etype=water_tanker",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=labor",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=drone_didi",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=bhusa",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=agri_inputs",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=building_materials",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=warehouse",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/cold-storage",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/greenhouse",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/carbon-credit",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/jugaad",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=transport",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/signup",
+   "cursor": "pointer",
+   "h": 150
+  },
+  {
+   "tag": "A",
+   "href": "/browse?cat=land",
+   "cursor": "pointer",
+   "h": 150
+  }
+ ],
+ "hoverMedia": true,
+ "hover": {
+  "transform": "matrix(1, 0, 0, 1, 0, -2)",
+  "boxShadow": "rgb(230, 154, 45) 0px 0px 0px 2px, rgba(36, 115, 63, 0.45) 0px 8px 22px 0px",
+  "cursor": "pointer"
+ },
+ "focus": {
+  "href": "/browse?cat=drone_didi",
+  "focusVisible": true,
+  "outline": "solid",
+  "boxShadow": "rgb(230, 154, 45) 0px 0px 0px 2px, rgba(36, 115, 63, 0.45) 0px 8px 22px 0px"
+ },
+ "reducedMotionHover": {
+  "transform": "none",
+  "transition": "0s",
+  "glow": true
+ },
+ "mobile": {
+  "hoverMedia": false,
+  "hScroll": false,
+  "links": 15
+ },
+ "finish_hi": "आपने पोस्ट करना सीख लिया।\n\nसीताराम 🙏 अब असली ऐप पर आज़माइए या अगला डेमो देखिए।\n\nअगला डेमो →\nफिर देखें\nअसली ऐप पर आज़माएँ →",
+ "finish_en": "You have learned how to post.\n\nSitaram 🙏 Try the real app, or watch the next demo.\n\nNext demo →\nWatch again\nTry it in the real app →"
+}

@@ -1,0 +1,149 @@
+### HEAD
+title: Anuppur कोल्ड स्टोरेज
+description: Anuppur: 4 प्रविष्टियाँ. इस ज़िले के कोल्ड स्टोरेज और गोदाम — सार्वजनिक स्रोतों से।
+canonical: https://kissansahyog.com/cold-storage/anuppur
+robots: 
+lang: hi
+h1: Anuppur कोल्ड स्टोरेज
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"कोल्ड स्टोरेज","item":"https://kissansahyog.com/cold-storage"},{"@type":"ListItem","position":3,"name":"Anuppur"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Jayanti Cold Storage"},{"@type":"ListItem","position":2,"name":"Krishna Cold Storage"},{"@type":"ListItem","position":3,"name":"Paras Cold Storage"},{"@type":"ListItem","position":4,"name":"S.K. Sheetgriha Cold Storage"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Jayanti Cold Storage","address":"C/o Paras Sale Corporation, Shiv Market, Pansari Bazar, Pushprajgarh, Anuppur","areaServed":"Anuppur"}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Krishna Cold Storage","address":"Chachai Road, Mediyaras","areaServed":"Anuppur"}
+--- end jsonld ---
+--- jsonld 5 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Paras Cold Storage","address":"Keswahi Road, Kotma, Anuppur","areaServed":"Anuppur"}
+--- end jsonld ---
+--- jsonld 6 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"S.K. Sheetgriha Cold Storage","address":"Town Anuppur, Shahdol","areaServed":"Anuppur"}
+--- end jsonld ---
+--- jsonld 7 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 8 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+कोल्ड स्टोरेज
+/
+Anuppur
+Anuppur कोल्ड स्टोरेज
+इस ज़िले के कोल्ड स्टोरेज और गोदाम — सार्वजनिक स्रोतों से।
+📍 अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे कितनी दूर हैं यह जानने के लिए अपनी लोकेशन साझा करें। हम आपकी लोकेशन सिर्फ़ इसी काम के लिए इस्तेमाल करते हैं।
+मेरी लोकेशन साझा करें
+अभी नहीं
+प्रकार
+सभी प्रकार
+Cold Storage
+Cold storage (per Google Maps category)
+4 प्रविष्टियाँ
+Jayanti Cold Storage
+पता:
+C/o Paras Sale Corporation, Shiv Market, Pansari Bazar, Pushprajgarh, Anuppur, Pushprajgarh, Anuppur
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: infoisinfo
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Krishna Cold Storage
+पता:
+Chachai Road, Mediyaras, Mediyaras, Anuppur
+प्रकार:
+Cold storage (per Google Maps category)
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: Google Maps / Google Search business listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Paras Cold Storage
+पता:
+Keswahi Road, Kotma, Anuppur, Kotma, Anuppur
+क्षमता:
+1000
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+S.K. Sheetgriha Cold Storage
+पता:
+Town Anuppur, Shahdol, Anuppur
+क्षमता:
+2210
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+🏬 कोल्ड स्टोरेज मालिक हैं? अपनी लिस्टिंग डालें
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

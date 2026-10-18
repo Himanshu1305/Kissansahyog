@@ -1,0 +1,2 @@
+STAGING GUARD: REFUSED — dist contains production references in: _headers
+exit=1

@@ -33,6 +33,28 @@
   textarea {
     min-height: 44px;
   }
+  /* Batch 10E: Tailwind v4 dropped the hand cursor on buttons — give every clickable control
+     the pointer once, here; disabled controls show "not allowed". In the base layer so a
+     utility class (cursor-default etc.) can still override it on purpose. */
+  a[href],
+  button:not(:disabled),
+  [role="button"],
+  summary,
+  label[for],
+  select,
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="submit"],
+  input[type="button"] {
+    cursor: pointer;
+  }
+  button:disabled,
+  select:disabled,
+  input:disabled,
+  textarea:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
   /* Reserve space at the foot of every page for the fixed mobile bottom tab bar
      (below md); honour the iPhone home-indicator safe area. Desktop has none. */
   @media (max-width: 767px) {
@@ -108,4 +130,34 @@ html.native-app .ks-overlay {
   background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.14) 50%, rgba(255,255,255,0.04) 75%);
   background-size: 400px 100%;
   animation: ticker-shimmer 1.4s linear infinite;
+}
+
+/* --- Batch 10E: homepage category tiles (PhotoTile) — hover glow, keyboard focus, press ---
+   Hover only for a real mouse (fine pointer); phones get the :active press instead. The glow is a
+   box-shadow ring + soft brand-green halo (no border/size change, so no layout shift). */
+.ks-cat-tile {
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ks-cat-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 2px var(--ks-saffron), 0 8px 22px rgba(36, 115, 63, .45);
+  }
+  .ks-cat-tile:hover .ks-cat-tile-shade { background: rgba(23, 51, 35, .26) !important; }
+}
+.ks-cat-tile:focus-visible {
+  outline: 3px solid var(--ks-saffron);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--ks-saffron), 0 8px 22px rgba(36, 115, 63, .45);
+}
+.ks-cat-tile:active {
+  transform: translateY(0) scale(.98);
+  box-shadow: 0 0 0 2px var(--ks-green), 0 2px 8px rgba(36, 115, 63, .35);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ks-cat-tile { transition: none; }
+  .ks-cat-tile:hover,
+  .ks-cat-tile:focus-visible,
+  .ks-cat-tile:active { transform: none; }
 }

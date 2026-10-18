@@ -1,0 +1,341 @@
+### HEAD
+title: Morena कोल्ड स्टोरेज
+description: Morena: 17 प्रविष्टियाँ. इस ज़िले के कोल्ड स्टोरेज और गोदाम — सार्वजनिक स्रोतों से।
+canonical: https://kissansahyog.com/cold-storage/morena
+robots: 
+lang: hi
+h1: Morena कोल्ड स्टोरेज
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"कोल्ड स्टोरेज","item":"https://kissansahyog.com/cold-storage"},{"@type":"ListItem","position":3,"name":"Morena"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Balaji Cold Storage"},{"@type":"ListItem","position":2,"name":"Govind Ice and Cold Storage"},{"@type":"ListItem","position":3,"name":"Kamadgiri Cold Storage Pvt. Ltd."},{"@type":"ListItem","position":4,"name":"Kishori Kripa"},{"@type":"ListItem","position":5,"name":"Modi Cold Storage Pvt. Ltd."},{"@type":"ListItem","position":6,"name":"Neelam Preservation"},{"@type":"ListItem","position":7,"name":"Padeep Cold Storage"},{"@type":"ListItem","position":8,"name":"Parwati Cold Storage"},{"@type":"ListItem","position":9,"name":"Pradeep Cold Storage"},{"@type":"ListItem","position":10,"name":"Prashant Ice and Cold Storage"},{"@type":"ListItem","position":11,"name":"Sahara Frozen Foods"},{"@type":"ListItem","position":12,"name":"Seeta Ice & Cold Storage Pvt Ltd"},{"@type":"ListItem","position":13,"name":"Shivam Cold Storage"},{"@type":"ListItem","position":14,"name":"Sita Ice & Cold Storage"},{"@type":"ListItem","position":15,"name":"Sitadevi Cold Storage"},{"@type":"ListItem","position":16,"name":"Siya Devi Ice Factory & Cold Storage"},{"@type":"ListItem","position":17,"name":"Suresh Cold Storage & Ice Factory"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Balaji Cold Storage","address":"Ambah, Morena","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Govind Ice and Cold Storage","address":"Morena ; AB Road","telephone":"9893439649","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 5 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Kamadgiri Cold Storage Pvt. Ltd.","address":"Chaunda, Morena; also S. No. 276, 277, 279, Mile Stone 2 Km, A.B. Road, Morena","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 6 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Kishori Kripa","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 7 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Modi Cold Storage Pvt. Ltd.","address":"A.B. Road, Near Old Sales Tax Barrier, Morena ; AB Road, Beriyar","telephone":"092000 00268 ; 9755308535","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 8 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Neelam Preservation","address":"Bamore Road, Industrial Area","telephone":"9425116125","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 9 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Padeep Cold Storage","address":"Industrial Area, AB Road, Morena","telephone":"9425126144","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 10 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Parwati Cold Storage","address":"AB Road","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 11 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Pradeep Cold Storage","address":"Industrial Area, AB Road","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 12 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Prashant Ice and Cold Storage","address":"Morena","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 13 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sahara Frozen Foods","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 14 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Seeta Ice & Cold Storage Pvt Ltd","address":"In front of Commissioner office, Morena","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 15 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shivam Cold Storage","address":"Morena","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 16 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sita Ice & Cold Storage","address":"Vill. Jaura Khurd, Morena","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 17 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sitadevi Cold Storage","address":"AB Road","telephone":"9039978766","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 18 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Siya Devi Ice Factory & Cold Storage","telephone":"9425126168","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 19 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Suresh Cold Storage & Ice Factory","address":"A.B. Road, Morena ; Industrial Area 43","telephone":"8103282193","areaServed":"Morena"}
+--- end jsonld ---
+--- jsonld 20 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 21 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+कोल्ड स्टोरेज
+/
+Morena
+Morena कोल्ड स्टोरेज
+इस ज़िले के कोल्ड स्टोरेज और गोदाम — सार्वजनिक स्रोतों से।
+📍 अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे कितनी दूर हैं यह जानने के लिए अपनी लोकेशन साझा करें। हम आपकी लोकेशन सिर्फ़ इसी काम के लिए इस्तेमाल करते हैं।
+मेरी लोकेशन साझा करें
+अभी नहीं
+फसल
+सभी फसल
+फल
+प्रकार
+सभी प्रकार
+Cold Storage
+Cold storage
+Cold storage (per Google Maps category)
+17 प्रविष्टियाँ
+Balaji Cold Storage
+पता:
+Ambah, Morena, Ambah, Morena
+क्षमता:
+5000
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Govind Ice and Cold Storage
+पता:
+Morena ; AB Road, Morena
+क्षमता:
+2500
+प्रकार:
+Cold Storage
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009) ; NaPanta cold storage directory (Morena district page) ; NaPanta Hindi district page (cross-checked via ChatGPT research, Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Kamadgiri Cold Storage Pvt. Ltd.
+पता:
+Chaunda, Morena; also S. No. 276, 277, 279, Mile Stone 2 Km, A.B. Road, Morena, Morena
+क्षमता:
+3234; 1925 (expansion); 1978
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Kishori Kripa
+पता:
+Morena
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Morena district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Modi Cold Storage Pvt. Ltd.
+पता:
+A.B. Road, Near Old Sales Tax Barrier, Morena ; AB Road, Beriyar, Morena
+क्षमता:
+4738 ; 5000
+प्रकार:
+Cold Storage
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009) ; NaPanta cold storage directory (Morena district page) ; Google Maps listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Neelam Preservation
+पता:
+Bamore Road, Industrial Area, Morena
+क्षमता:
+1880
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Morena district page) ; NaPanta Hindi district page (cross-checked via ChatGPT research, Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Padeep Cold Storage
+पता:
+Industrial Area, AB Road, Morena, Morena
+क्षमता:
+2414
+प्रकार:
+Cold storage
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta Hindi district page (cross-checked via ChatGPT research, Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Parwati Cold Storage
+पता:
+AB Road, Morena
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Morena district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Pradeep Cold Storage
+पता:
+Industrial Area, AB Road, Morena
+क्षमता:
+2414
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Morena district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Prashant Ice and Cold Storage
+पता:
+Morena
+क्षमता:
+3538
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Sahara Frozen Foods
+पता:
+Morena
+भंडारण:
+Fruits & vegetables
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: MoFPI consolidated list of approved cold chain projects (as on 11-03-2025)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Seeta Ice & Cold Storage Pvt Ltd
+पता:
+In front of Commissioner office, Morena, Morena
+प्रकार:
+Cold storage (per Google Maps category)
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: Google Maps / Google Search business listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shivam Cold Storage
+पता:
+Morena
+क्षमता:
+2500
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Sita Ice & Cold Storage
+पता:
+Vill. Jaura Khurd, Morena, Jaura Khurd, Morena
+क्षमता:
+4000
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Sitadevi Cold Storage
+पता:
+AB Road, Morena
+क्षमता:
+3200
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Morena district page) ; NaPanta Hindi district page (cross-checked via ChatGPT research, Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Siya Devi Ice Factory & Cold Storage
+पता:
+Morena
+क्षमता:
+4000
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Morena district page) ; NaPanta Hindi district page (cross-checked via ChatGPT research, Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Suresh Cold Storage & Ice Factory
+पता:
+A.B. Road, Morena ; Industrial Area 43, Morena
+क्षमता:
+1871 ; 1347
+प्रकार:
+Cold Storage
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009) ; NaPanta cold storage directory (Morena district page) ; NaPanta Hindi district page (cross-checked via ChatGPT research, Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+🏬 कोल्ड स्टोरेज मालिक हैं? अपनी लिस्टिंग डालें
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

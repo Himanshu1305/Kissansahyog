@@ -38,6 +38,18 @@ export async function cleanupTestData() {
   const admin = adminClient()
   const { error } = await admin.from('profiles').delete().like('phone', `${TEST_PHONE_PREFIX}%`)
   if (error) throw new Error(`cleanup failed: ${error.message}`)
+  // Batch 10E: photos uploaded by e2e/photos-10e.spec.js live in listings/kstest-e2e-<ts>/ —
+  // sweep any left behind (best effort; never touches other folders).
+  try {
+    const bucket = admin.storage.from('listing-photos')
+    const { data: dirs } = await bucket.list('listings', { search: 'kstest-e2e-', limit: 100 })
+    for (const d of dirs || []) {
+      if (!d.name.startsWith('kstest-e2e-')) continue
+      const { data: files } = await bucket.list(`listings/${d.name}`, { limit: 100 })
+      const paths = (files || []).map((f) => `listings/${d.name}/${f.name}`)
+      if (paths.length) await bucket.remove(paths)
+    }
+  } catch { /* storage sweep is best effort */ }
 }
 
 // Batch 7L-1 Stage B — a page visit normally writes a few best-effort rows as the visitor

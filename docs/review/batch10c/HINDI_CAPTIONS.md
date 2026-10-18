@@ -307,7 +307,7 @@ The tour is not a scripted demo: it shows five tabs, one caption per tab (it mov
 | tour | all tabs (side panel, footer, finish box) | एक मिनट में पूरा टूर | The full tour in a minute | `guide_tour_h1` | NEW in Batch 10C — draft |
 | tour | all tabs (side panel, footer, finish box) | यह पेज खोलें | Open this page | `guide_open_page` | NEW in Batch 10C — draft |
 | tour | all tabs (side panel, footer, finish box) | आपने पूरा टूर देख लिया। | You have seen the whole tour. | `guide_tour_fin` | NEW in Batch 10C — draft |
-| tour | all tabs (side panel, footer, finish box) | शाबाश! अब असली ऐप पर आज़माइए या अगला डेमो देखिए। | Well done! Try the real app, or watch the next demo. | `guide_well_done` | NEW in Batch 10C — draft |
+| tour | all tabs (side panel, footer, finish box) | सीताराम 🙏 अब असली ऐप पर आज़माइए या अगला डेमो देखिए। | Sitaram 🙏 Try the real app, or watch the next demo. | `guide_well_done` | NEW in Batch 10C — draft |
 | tour | all tabs (side panel, footer, finish box) | सभी डेमो | All demos | `guide_all_demos` | NEW in Batch 10C — draft |
 | tour | all tabs (side panel, footer, finish box) | असली ऐप पर आज़माएँ | Try it in the real app | `guide_real_app` | NEW in Batch 10C — draft |
 

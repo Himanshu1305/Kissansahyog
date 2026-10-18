@@ -168,6 +168,8 @@ export default function Homepage() {
   // Batch1 item 3A: browsing is public — category tiles open /browse for everyone.
   const goBrowse = (cat, etype) => navigate(cat ? `/browse?cat=${cat}${etype ? `&etype=${etype}` : ''}` : '/browse')
   const tileClick = (to, etype) => (to === 'experts' ? navigate(isLoggedIn ? '/experts' : '/signup') : goBrowse(to, etype))
+  // Batch 10E: category tiles are real links — the same destinations tileClick/goBrowse navigate to.
+  const tileHref = (c) => (c.path ? c.path : c.to === 'experts' ? (isLoggedIn ? '/experts' : '/signup') : `/browse?cat=${c.to}${c.etype ? `&etype=${c.etype}` : ''}`)
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
@@ -300,7 +302,7 @@ export default function Homepage() {
         {/* No blank cell at any width: 2 columns (an odd last tile spans the row), 3, then 5. */}
         <div data-testid="home-cat-grid" className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 [&>*:last-child:nth-child(odd)]:col-span-2 md:[&>*:last-child:nth-child(odd)]:col-span-1">
           {CATEGORY_TILES.map((c) => (
-            <PhotoTile key={c.labelKey} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} onClick={() => (c.path ? navigate(c.path) : tileClick(c.to, c.etype))} />
+            <PhotoTile key={c.labelKey} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} to={tileHref(c)} />
           ))}
         </div>
       </Section>

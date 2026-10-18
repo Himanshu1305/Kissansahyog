@@ -2408,7 +2408,7 @@ export const strings = {
   guide_listen: { hi: 'सुनिए', en: 'Listen' },
   guide_try_hint: { hi: 'चमकते हिस्से को उँगली से दबाइए।', en: 'Tap the glowing part with your finger.' },
   guide_steps: { hi: 'सारे कदम', en: 'All steps' },
-  guide_well_done: { hi: 'शाबाश! अब असली ऐप पर आज़माइए या अगला डेमो देखिए।', en: 'Well done! Try the real app, or watch the next demo.' },
+  guide_well_done: { hi: 'सीताराम 🙏 अब असली ऐप पर आज़माइए या अगला डेमो देखिए।', en: 'Sitaram 🙏 Try the real app, or watch the next demo.' },
   guide_next: { hi: 'अगला डेमो', en: 'Next demo' },
   guide_watch_again: { hi: 'फिर देखें', en: 'Watch again' },
   guide_real_app: { hi: 'असली ऐप पर आज़माएँ', en: 'Try it in the real app' },

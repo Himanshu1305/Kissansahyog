@@ -26,6 +26,13 @@ check(line?.[1].replace(/^(["'])(.*)\1$/, '$2'), '.env.production')
 // Catches a prod script started with the wrong --env-file (or a shell that exports staging values).
 check(process.env.VITE_SUPABASE_URL, 'the process environment (start with --env-file=.env.production)')
 
+// Batch 10E (photos): dist/_headers lists BOTH Supabase storage hosts in the CSP img-src (staging
+// and production share that file), so listing photos can display. Those two exact host tokens on
+// the Content-Security-Policy line are the only project mentions allowed there; they are removed
+// before the scan. Any other mention of either ref, in any file, still refuses.
+const CSP_PROJECT_HOSTS = /https:\/\/(?:eltmcznjcqiahqhjvpjg|wzxtqbqlahyahsnoqqva)\.supabase\.co(?=[\s;]|$)/g
+const stripCspProjectHosts = (text) => text.split(/(\r?\n)/).map((l) => /^\s*Content-Security-Policy:/i.test(l) ? l.replace(CSP_PROJECT_HOSTS, '') : l).join('')
+
 if (process.argv.includes('--dist')) {
   const DIST = join(ROOT, 'dist')
   if (!existsSync(join(DIST, 'index.html'))) fail('dist/index.html not found — build first')
@@ -38,7 +45,8 @@ if (process.argv.includes('--dist')) {
   const STAGING_HOST = 'staging.kissansahyog.com'
   const HEADERS_FILE = join(DIST, '_headers')
   for (const f of files) {
-    const text = readFileSync(f, 'utf8')
+    const raw = readFileSync(f, 'utf8')
+    const text = f === join(DIST, '_headers') ? stripCspProjectHosts(raw) : raw
     if (text.includes(PROD_REF)) prodSeen = true
     // The one allowed mention of the staging host: the start of a host rule in dist/_headers
     // (the rule that noindexes staging). Anywhere else — and the staging ref everywhere — refuses.

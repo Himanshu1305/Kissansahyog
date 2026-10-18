@@ -1,0 +1,3 @@
+{"route":"/yojana/mp-kisan-kalyan","marker":true,"h1":"मुख्यमंत्री किसान कल्याण योजना","loading":false,"entries":null}
+{"route":"/cold-storage/khandwa","marker":true,"h1":"Khandwa कोल्ड स्टोरेज","loading":false,"entries":"2 प्रविष्टियाँ"}
+{"route":"/resources","marker":true,"h1":"उपयोगी संपर्क — किसान सहयोग","loading":false,"entries":null}

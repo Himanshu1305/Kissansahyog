@@ -11,11 +11,14 @@ export function isNative() {
 
 // The origin / address to put in share text, QR codes and copied links. In the app the page
 // runs on https://localhost, which is meaningless to anyone the link is sent to.
+// Batch 10E (B17): the prerender snapshot runs on http://localhost:4178 — it must never bake that
+// origin into share links in the static HTML, so it uses the public origin too.
+const sharePublicOrigin = () => isNative() || window.__KS_PRERENDER === true
 export function publicOrigin() {
-  return isNative() ? PUBLIC_ORIGIN : window.location.origin
+  return sharePublicOrigin() ? PUBLIC_ORIGIN : window.location.origin
 }
 export function publicHref() {
-  if (!isNative()) return window.location.href
+  if (!sharePublicOrigin()) return window.location.href
   const { pathname, search, hash } = window.location
   return `${PUBLIC_ORIGIN}${pathname}${search}${hash}`
 }

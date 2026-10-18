@@ -1,0 +1,10 @@
+run 1: LCP 4012 ms (H1) CLS 0 (10s 0) TBT 402 ms FCP 4012 ms longTasks 7 (max 961) photo 0x/0B
+run 1: LCP 4376 ms (H1) CLS 0 (10s 0) TBT 501 ms FCP 4376 ms longTasks 6 (max 303) photo 0x/0B
+run 1: LCP 3408 ms (H1) CLS 0.00969 (10s 0.00969) TBT 520 ms FCP 3408 ms longTasks 5 (max 300) photo 0x/0B
+run 1: LCP 3668 ms (H1) CLS 0.00969 (10s 0.00969) TBT 312 ms FCP 3668 ms longTasks 5 (max 263) photo 0x/0B
+run 1: LCP 3156 ms (H1) CLS 0.01174 (10s 0.01174) TBT 432 ms FCP 3156 ms longTasks 5 (max 277) photo 0x/0B
+run 1: LCP 3152 ms (H1) CLS 0.01174 (10s 0.01174) TBT 365 ms FCP 3152 ms longTasks 4 (max 276) photo 0x/0B
+Interleaved (base, p1, base, p1, base, p1), scripts/batch10d/perf.mjs slow-phone, 1 run per call, same session.
+base = frozen Phase 0 dist (port 4197); p1 = Phase 1 dist (port 4198). Lines above in order: base1, p1-1, base2, p1-2, base3, p1-3.
+LCP base 4012/3408/3156 -> median 3408 ms; p1 4376/3668/3152 -> median 3668 ms (+260 ms; pairwise +364/+260/-4). Budget +300 ms: within, at the noise level.
+CLS base 0/0.00969/0.01174; p1 0/0.00969/0.01174 (identical per pair). TBT median base 432 ms, p1 365 ms.

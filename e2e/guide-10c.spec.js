@@ -125,6 +125,10 @@ for (const lang of LANGS) {
           await expect(player).toHaveAttribute('data-demo', id)
           await expect(player).toHaveAttribute('data-state', 'finished', { timeout: 30_000 })
           await expect(page.getByTestId('demo-finish')).toBeVisible()
+          // Batch 10E 1B: the finish line greets with सीताराम 🙏 (never शाबाश, never "सीताराम जी").
+          await expect(page.getByTestId('demo-finish')).toContainText(strings.guide_well_done[lang])
+          await expect(page.getByTestId('demo-finish')).toContainText(lang === 'hi' ? 'सीताराम 🙏' : 'Sitaram 🙏')
+          await expect(page.getByTestId('demo-finish')).not.toContainText('शाबाश')
           const n = DEMOS[id].steps.length
           expect(await playedSteps(page), `${id}: every step played in order`).toEqual(Array.from({ length: n }, (_, i) => i))
           const done = await page.evaluate(() => JSON.parse(localStorage.getItem('ks_guide_done_v1') || '{}'))
