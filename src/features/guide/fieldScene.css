@@ -1,0 +1,43 @@
+/* Field scene shared by the /guide hub (10C, variant "hub") and the homepage "Morning Field" band
+   (10D, variant "wide"). Moved out of guide.css so the homepage does not load the whole guide.css.
+   Motion: transform only. .ksg-paused pauses every loop, .ksg-static stops them (reduced motion /
+   save-data). Colours come from the app tokens (--ks-*). */
+
+/* ---------- hub (10C, unchanged) ---------- */
+.ksg-scene { display: block; width: 100%; height: 150px; margin-top: 8px; }
+.ksg-sun { transform-origin: 480px 52px; animation: ksg-spin 40s linear infinite; }
+.ksg-st { transform-box: fill-box; transform-origin: 50% 100%; animation: ksg-sway 3.4s ease-in-out infinite alternate; }
+.ksg-trac { animation: ksg-drive 32s linear infinite; }
+.ksg-wheel { transform-box: fill-box; transform-origin: center; animation: ksg-spin 1.6s linear infinite; }
+.ksg-paused, .ksg-paused * { animation-play-state: paused !important; }
+.ksg-static, .ksg-static * { animation: none !important; }
+.ksg-static .ksg-trac { transform: translateX(300px); }
+
+/* ---------- wide band (10D homepage) ----------
+   Distances are CSS px = viewBox user units (the transforms are in the SVG's user space).
+   --td-* tractor drive, --cd-* cloud drift; the values are set per breakpoint in homeField.css. */
+.ksf-svg { display: block; width: 100%; height: 100%; }
+.ksf-sun { animation: ksg-spin var(--ksf-sun-dur, 40s) linear infinite; }
+.ksf-cloud { animation: ksf-drift var(--cd-dur, 60s) linear infinite; }
+.ksf-cloud.ksf-c2 { animation-duration: var(--cd-dur2, 80s); }
+.ksf-sway { animation: ksf-sway var(--ksf-sway-dur, 3.2s) ease-in-out infinite alternate; }
+.ksf-trac { animation: ksf-drive var(--td-dur, 26s) linear infinite; }
+.ksg-static .ksf-trac { transform: translateX(var(--td-static, 560px)); }
+.ksg-static .ksf-cloud { transform: translateX(var(--cd-static, 560px)); }
+.ksg-static .ksf-cloud.ksf-c2 { transform: translateX(var(--cd-static2, 380px)); }
+
+@keyframes ksg-spin { to { transform: rotate(360deg); } }
+@keyframes ksg-sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+@keyframes ksg-drive { from { transform: translateX(-140px); } to { transform: translateX(940px); } }
+@keyframes ksf-drive { from { transform: translateX(var(--td-from)); } to { transform: translateX(var(--td-to)); } }
+@keyframes ksf-drift { from { transform: translateX(var(--cd-from)); } to { transform: translateX(var(--cd-to)); } }
+/* A wheat group leans about its own ground line (skew keeps every stalk's foot in place). */
+@keyframes ksf-sway { from { transform: skewX(-4deg); } to { transform: skewX(4deg); } }
+
+/* No JS needed for reduced motion: the band is still from the first paint. */
+@media (prefers-reduced-motion: reduce) {
+  .ksf-svg * { animation: none !important; }
+  .ksf-svg .ksf-trac { transform: translateX(var(--td-static, 560px)); }
+  .ksf-svg .ksf-cloud { transform: translateX(var(--cd-static, 560px)); }
+  .ksf-svg .ksf-cloud.ksf-c2 { transform: translateX(var(--cd-static2, 380px)); }
+}

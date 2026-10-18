@@ -35,6 +35,8 @@ import { melaStatus } from '../lib/mela/melaStatus'
 import SearchBar from '../components/SearchBar'
 import { founder } from '../content/founder'
 import OfflineStamp from '../components/OfflineStamp'
+import HomeLiveHero from '../features/home-live/HomeLiveHero'
+import HomeField from '../features/home-live/HomeField'
 
 const IMG = (f) => `/images/home/${f}`
 
@@ -236,15 +238,19 @@ export default function Homepage() {
         </Link>
       </div>
 
-      {/* 3 — Hero: आज किसान के लिए */}
+      {/* 3 — Hero: आज किसान के लिए (Batch 10D: the live "Kisan Studio" hero, see HeroContent) */}
       <HeroContent
-        showFreeReg={!isLoggedIn}
-        t={t} today={today} weather={weather}
+        showFreeReg={!isLoggedIn} isLoggedIn={isLoggedIn}
+        t={t} today={today}
         onNeed={() => navigate('/browse')}
         onHave={() => navigate(isLoggedIn ? '/post' : '/signup')}
         onForecast={() => (location ? navigate('/mausam') : document.getElementById('home-location')?.scrollIntoView({ behavior: 'smooth', block: 'center' }))}
         onMsp={() => navigate('/msp')}
       />
+
+      {/* Batch 10D C: the "Morning Field" band, crop strip and facts row, directly under the hero.
+          It also gives the blocks after it a gentle rise-and-fade when they first scroll in. */}
+      <HomeField />
 
       <Section bg="var(--ks-bg-soft)">
         <h2 className="text-[22px] font-extrabold md:text-[26px]" style={{ color: 'var(--ks-ink)' }}>{t('home_search_title')}</h2>
@@ -474,29 +480,25 @@ export default function Homepage() {
   )
 }
 
-// Hero content — shared between the desktop background-photo layout and the mobile
-// banner+cream layout.
-function HeroInner({ t, today, onNeed, onHave, onForecast, onMsp, heading = 'h1', showFreeReg = false }) {
-  // The hero renders twice (desktop bg layout + mobile banner layout). Only one
-  // instance is an <h1> so the DOM has exactly one H1 (SEO); the other is a
-  // visually-identical <p>.
-  const Heading = heading
-  // ks-allow-width: hero flex column proportion
+// Hero (Batch 10D). Renders ONCE at every size (it used to render twice: a desktop instance with
+// the photo as background and a mobile instance with a 200 px photo banner). HomeLiveHero draws
+// the eyebrow, the free-registration badge, the one <h1>, the lead line, the persona tabs, the two
+// big buttons and the phone example; the existing tiles and "I need / I have" buttons follow
+// inside it, unchanged. The farmer photo is now only the desktop backdrop behind the phone.
+function HeroContent({ t, today, onNeed, onHave, onForecast, onMsp, showFreeReg, isLoggedIn }) {
+  const common = { t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }
   return (
-    <div className="w-full md:max-w-[58%]">
-      <span className="inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>
-        🌾 {t('tf_eyebrow')}
-      </span>
-      {/* The one deliberate promotion (Batch 7D) — shown to visitors who are not logged in. */}
-      {showFreeReg && (
-        <span data-testid="hero-free-registration" className="ml-2 mt-1 inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)', border: '1px solid var(--ks-green)' }}>
-          ✓ {t('free_registration')}
-        </span>
-      )}
-      <Heading className="mt-3 text-[32px] font-extrabold leading-[1.1] md:text-[50px]" style={{ color: 'var(--ks-ink)' }}>{t('tf_title')}</Heading>
-      <p className="mt-2 text-[15px] md:text-[18px]" style={{ color: 'var(--ks-ink-2)' }}>{t('tf_subline')}</p>
+    <HomeLiveHero showFreeReg={showFreeReg} isLoggedIn={isLoggedIn} badge={<HeroBadge t={t} />}>
+      <HeroInner {...common} />
+    </HomeLiveHero>
+  )
+}
 
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+// The existing hero tiles and the two giant "I need / I have" buttons.
+function HeroInner({ t, today, onNeed, onHave, onForecast, onMsp, showFreeReg = false }) {
+  return (
+    <div className="w-full">
+      <div className="flex flex-col gap-3 sm:flex-row">
         <InfoTile caption={t('tf_weather_cap')} value={today.weatherLine} note={`${today.rainLine} · ${t('home_forecast_link')} →`} noteColor="var(--ks-blue)" onClick={onForecast} />
         {/* Price tile only when there is a price to show (it used to render an empty "—"). */}
         {today.priceLine && (
@@ -523,31 +525,12 @@ function HeroInner({ t, today, onNeed, onHave, onForecast, onMsp, heading = 'h1'
   )
 }
 
-function HeroContent({ t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }) {
-  const common = { t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }
+// The one deliberate promotion (Batch 7D) — shown to visitors who are not logged in.
+function HeroBadge({ t }) {
   return (
-    <section className="w-full">
-      {/* Desktop: farmer photo as background, text on a cream gradient on the left.
-          Heading is a <p> here; the single <h1> lives in the mobile instance (always
-          in the DOM, so SEO sees exactly one H1, and it is the visible heading on mobile). */}
-      <div
-        className="hidden w-full items-center md:flex"
-        style={{
-          minHeight: 460,
-          padding: 'var(--ks-gutter)',
-          backgroundImage: 'linear-gradient(90deg, rgba(251,250,245,.96) 0%, rgba(251,250,245,.85) 45%, rgba(251,250,245,.15) 100%), url(/images/home/hero-farmer.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'right center',
-        }}
-      >
-        <HeroInner {...common} heading="p" />
-      </div>
-      {/* Mobile: photo banner on top, content below on cream. This instance carries the <h1>. */}
-      <div className="md:hidden">
-        <img src="/images/home/hero-farmer.jpg" alt="" className="h-[200px] w-full object-cover" style={{ objectPosition: 'right center' }} />
-        <div style={{ background: 'var(--ks-bg)', padding: 'var(--ks-gutter)' }}><HeroInner {...common} heading="h1" /></div>
-      </div>
-    </section>
+    <span data-testid="hero-free-registration" className="ml-2 mt-1 inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)', border: '1px solid var(--ks-green)' }}>
+      ✓ {t('free_registration')}
+    </span>
   )
 }
 

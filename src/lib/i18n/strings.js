@@ -2489,4 +2489,48 @@ export const strings = {
   guide_tour_qa_a: { hi: 'यह नमूना है। असली जवाब किसान सवाल पेज पर हैं।', en: 'This is a sample. Real answers are on the Kisan Q&A page.' },
   guide_tour_market_sub: { hi: 'मशीन, बीज, सामान', en: 'Machines, seed, goods' },
   guide_tour_market_say: { hi: 'पास के लोगों की मशीन और सामान खोजिए, फिर संपर्क कीजिए।', en: 'Find machines and goods near you, then get in touch.' },
+
+  // --- homepage live hero (Batch 10D) --- "Kisan Studio": persona tabs + a phone example.
+  // Everything inside the phone is an example and carries the "उदाहरण" tag. Hindi awaits founder review.
+  home_live_tabs_label: { hi: 'आप क्या करना चाहते हैं?', en: 'What do you want to do?' },
+  home_live_tab_rent: { hi: 'किराये पर यंत्र चाहिए', en: 'I need a machine on rent' },
+  home_live_tab_sell: { hi: 'अपना सामान बेचना है', en: 'I want to sell my goods' },
+  home_live_tab_mandi: { hi: 'मंडी भाव देखना है', en: 'I want mandi prices' },
+  home_live_tab_weather: { hi: 'मौसम देखना है', en: 'I want the weather' },
+  home_live_tab_schemes: { hi: 'सरकारी योजना जाननी है', en: 'I want to know govt schemes' },
+  home_live_cap_rent: { hi: 'ट्रैक्टर खोजिए, नंबर देखिए और सीधे बात कीजिए।', en: 'Find a tractor, see the number and talk directly.' },
+  home_live_cap_sell: { hi: 'नाम, भाव और फोटो डालिए। खरीदार खुद फोन करेंगे।', en: 'Add the name, price and a photo. Buyers will call you.' },
+  home_live_cap_mandi: { hi: 'आज की मंडी का भाव, एक नज़र में।', en: 'Today’s mandi prices at a glance.' },
+  home_live_cap_weather: { hi: 'अगले 7 दिन का मौसम, खेत के हिसाब से।', en: 'The weather for the next 7 days, for your field.' },
+  home_live_cap_schemes: { hi: 'कौन सी योजना आपके लिए है, सरल भाषा में।', en: 'Which scheme is for you, in simple words.' },
+  home_live_example: { hi: 'उदाहरण', en: 'Example' },
+  home_live_cta_register: { hi: 'रजिस्टर करें', en: 'Register' },
+  home_live_cta_demo: { hi: '1 मिनट का डेमो देखें', en: 'Watch a 1-minute demo' },
+  home_live_sr_example: { hi: 'फ़ोन में एक उदाहरण चल रहा है:', en: 'An example is playing in the phone:' },
+  home_live_rent_l1: { hi: 'महिंद्रा ट्रैक्टर', en: 'Mahindra tractor' },
+  home_live_rent_l1_sub: { hi: '₹600 / घंटा · खुरई', en: '₹600 / hour · Khurai' },
+  home_live_rent_l2_sub: { hi: '₹1,200 / घंटा · सागर', en: '₹1,200 / hour · Sagar' },
+  home_live_sell_name: { hi: 'मेरा ट्रैक्टर', en: 'My tractor' },
+  home_live_sell_price: { hi: '₹600 / घंटा', en: '₹600 / hour' },
+  home_live_sell_photo: { hi: 'फोटो जुड़ गई', en: 'Photo added' },
+  home_live_sell_done: { hi: 'आपका विज्ञापन लग गया ✓', en: 'Your ad is live ✓' },
+  home_live_mandi_unit: { hi: 'मॉडल भाव · ₹ / क्विंटल', en: 'Modal price · ₹ / quintal' },
+
+  // --- homepage "Morning Field" band, crop strip, facts row (Batch 10D C) ---
+  // The crop strip always shows the Hindi word with the English word next to it (decorative).
+  home_field_sr: { hi: 'चित्र: सुबह का खेत — उगता सूरज, लहराता गेहूं और धीरे चलता ट्रैक्टर।', en: 'Picture: a field in the morning — the rising sun, swaying wheat and a slow tractor.' },
+  home_crops_wheat: { hi: 'गेहूं', en: 'Wheat' },
+  home_crops_soybean: { hi: 'सोयाबीन', en: 'Soybean' },
+  home_crops_gram: { hi: 'चना', en: 'Gram' },
+  home_crops_maize: { hi: 'मक्का', en: 'Maize' },
+  home_crops_mustard: { hi: 'सरसों', en: 'Mustard' },
+  home_crops_lentil: { hi: 'मसूर', en: 'Lentil' },
+  home_crops_onion: { hi: 'प्याज', en: 'Onion' },
+  home_crops_potato: { hi: 'आलू', en: 'Potato' },
+  // Facts: the number comes from the repo's own data (src/features/home-live/homeFacts.js).
+  home_facts_label: { hi: 'किसान सहयोग पर क्या-क्या है', en: 'What you find on Kissan Sahyog' },
+  home_facts_cats: { hi: 'तरह के सामान और काम बाज़ार में — यंत्र, मज़दूर, भूसा, ज़मीन', en: 'kinds of goods and services in the market — machines, labour, straw, land' },
+  home_facts_crops: { hi: 'फ़सलों के मंडी भाव — गेहूं, सोयाबीन, चना और भी', en: 'crops with mandi prices — wheat, soybean, gram and more' },
+  home_facts_districts: { hi: 'ज़िले सागर संभाग के — अपनी जगह चुनें', en: 'districts of Sagar division — choose your place' },
+  home_facts_demos: { hi: 'छोटे डेमो — साइट चलाना सीखें', en: 'short demos — learn to use the site' },
 }

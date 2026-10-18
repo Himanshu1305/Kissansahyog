@@ -63,6 +63,9 @@ async function main() {
   await new Promise((r) => server.listen(PORT, r))
   const browser = await chromium.launch()
   const page = await browser.newPage()
+  // Batch 10D: tell pages they are being snapshotted, so the homepage live hero keeps its static
+  // poster (persona 1, tick 0) in the HTML instead of whatever frame its timer reached.
+  await page.addInitScript(() => { window.__KS_PRERENDER = true })
 
   let ok = 0, fallback = 0, failed = []
   for (const route of routes) {

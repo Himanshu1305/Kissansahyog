@@ -23,6 +23,7 @@ import { markDone } from './progress.js'
 import { GUIDE_ORDER, GUIDE_REAL } from './config.js'
 import MockScreen, { makeTxt } from './MockScreen.jsx'
 import { Sprout, PlayIcon, PauseIcon, RedoIcon, SpeakerIcon } from './icons.jsx'
+import './phone.css'
 import './guide.css'
 
 const CONFETTI = ['#f0a500', '#24733F', '#e0603a', '#2b8fd1', '#8bc34a']

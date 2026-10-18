@@ -1,0 +1,7 @@
+run 1: LCP 8908 ms (IMG) CLS 0.66108 TBT 655 ms FCP 6996 ms longTasks 7 (max 597) photo 1x/145232B
+run 2: LCP 10672 ms (IMG) CLS 0.67063 TBT 539 ms FCP 4168 ms longTasks 8 (max 284) photo 1x/145232B
+run 3: LCP 10144 ms (IMG) CLS 0.66108 TBT 662 ms FCP 4236 ms longTasks 7 (max 292) photo 1x/145232B
+run 4: LCP 9372 ms (IMG) CLS 0.85854 TBT 334 ms FCP 3424 ms longTasks 5 (max 199) photo 1x/145232B
+run 5: LCP 9880 ms (IMG) CLS 0.66108 TBT 552 ms FCP 3984 ms longTasks 8 (max 261) photo 1x/145232B
+median {"lcpMs":9880,"cls":0.66108,"tbtMs":552,"fcpMs":4168,"maxLongTaskMs":284,"loadWallMs":7197,"requests":116,"transferBytes":1437007,"heroFarmerJpgRequests":1,"jsChunksGzip9Total":293575}
+wrote docs/review/batch10d/evidence/baseline/perf-slow.json

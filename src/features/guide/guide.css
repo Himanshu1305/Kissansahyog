@@ -19,14 +19,7 @@
 .ksg-meter-tr { stroke: var(--ks-border); }
 .ksg-meter-fl { stroke: var(--ks-saffron); }
 .ksg-meter b { font-size: 18px; }
-.ksg-scene { display: block; width: 100%; height: 150px; margin-top: 8px; }
-.ksg-sun { transform-origin: 480px 52px; animation: ksg-spin 40s linear infinite; }
-.ksg-st { transform-box: fill-box; transform-origin: 50% 100%; animation: ksg-sway 3.4s ease-in-out infinite alternate; }
-.ksg-trac { animation: ksg-drive 32s linear infinite; }
-.ksg-wheel { transform-box: fill-box; transform-origin: center; animation: ksg-spin 1.6s linear infinite; }
-.ksg-paused, .ksg-paused * { animation-play-state: paused !important; }
-.ksg-static, .ksg-static * { animation: none !important; }
-.ksg-static .ksg-trac { transform: translateX(300px); }
+/* The hub field scene (.ksg-scene …) lives in fieldScene.css (shared with the homepage band, 10D). */
 
 .ksg-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; margin-top: 16px; }
 .ksg-card { display: flex; gap: 12px; align-items: center; min-width: 0; background: #fff; border: 1.5px solid var(--ks-border); border-radius: 20px; padding: 14px; color: var(--ks-ink); text-decoration: none; transition: transform .2s, box-shadow .2s; }
@@ -71,13 +64,7 @@
 .ksg-pcol { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; }
 .ksg-side { min-width: 0; }
 .ksg-say-row { display: flex; gap: 10px; align-items: flex-start; width: 100%; max-width: 316px; min-height: 76px; }
-.ksg-av { flex: 0 0 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--ks-green); color: #fff; }
-.ksg-av svg { width: 24px; height: 24px; }
 .ksg-say { flex: 1; min-width: 0; margin: 0; padding: 9px 13px; border: 1.5px solid var(--ks-border); border-radius: 6px 18px 18px 18px; background: #fff; font-size: 17px; font-weight: 600; line-height: 1.4; animation: ksg-bub .3s ease; }
-.ksg-phone { position: relative; flex: none; width: 296px; max-width: 100%; height: 560px; padding: 10px; border-radius: 38px; background: #16201a; box-shadow: 0 12px 32px rgba(29, 60, 30, .18); }
-.ksg-phone::before { content: ""; position: absolute; top: 16px; left: 50%; z-index: 6; width: 70px; height: 6px; margin-left: -35px; border-radius: 9px; background: #2d3a31; }
-.ksg-screen { position: relative; width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; border-radius: 28px; background: #fff; color: #1c2a1b; scrollbar-width: none; }
-.ksg-screen::-webkit-scrollbar { display: none; }
 .ksg-fine { max-width: 300px; margin: 0; text-align: center; font-size: 13px; color: var(--ks-ink-3); }
 .ksg-embedded .ksg-phone { height: min(540px, 64vh); }
 .ksg-embedded .ksg-say-row { min-height: 0; }
@@ -242,9 +229,6 @@
 .ksg-tour .ksg-m-chips { margin: 8px 12px; }
 
 /* ---------- motion ---------- */
-@keyframes ksg-spin { to { transform: rotate(360deg); } }
-@keyframes ksg-sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
-@keyframes ksg-drive { from { transform: translateX(-140px); } to { transform: translateX(940px); } }
 @keyframes ksg-pop { 0% { transform: scale(.94); } 60% { transform: scale(1.02); } 100% { transform: scale(1); } }
 @keyframes ksg-bub { from { transform: scale(.97); opacity: .4; } to { transform: none; opacity: 1; } }
 @keyframes ksg-blink { 50% { opacity: 0; } }

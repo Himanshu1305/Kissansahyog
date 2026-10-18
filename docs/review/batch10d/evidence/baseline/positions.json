@@ -1,0 +1,529 @@
+{
+  "baseURL": "http://localhost:4190",
+  "date": "2026-10-17T23:11:31.776Z",
+  "note": "top/bottom in page px at scroll 0; fold = viewport height",
+  "results": [
+    {
+      "lang": "hi",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "docHeight": 8616,
+      "heroInstance": "mobile (md:hidden)",
+      "h1": {
+        "top": 732,
+        "bottom": 767,
+        "left": 16,
+        "width": 328,
+        "height": 35,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "आज किसान के लिए"
+      },
+      "heroHeadingVisible": {
+        "top": 732,
+        "bottom": 767,
+        "left": 16,
+        "width": 328,
+        "height": 35,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "आज किसान के लिए"
+      },
+      "iNeed": {
+        "top": 1184,
+        "bottom": 1248,
+        "left": 16,
+        "width": 328,
+        "height": 64,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "मुझे कुछ चाहिएखोजें, संपर्क करें, किराये पर लें"
+      },
+      "iHave": {
+        "top": 1260,
+        "bottom": 1324,
+        "left": 16,
+        "width": 328,
+        "height": 64,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "मेरे पास कुछ हैबेचें, किराये पर दें, लोगों तक पहुँचें"
+      },
+      "freeRegistrationPill": {
+        "top": 689,
+        "bottom": 720,
+        "left": 24,
+        "width": 143,
+        "height": 31,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "✓ निःशुल्क रजिस्ट्रेशन"
+      },
+      "firstInfoTile": {
+        "top": 814,
+        "bottom": 941,
+        "left": 16,
+        "width": 328,
+        "height": 127,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "मौसममौसम देखने के लिए अपनी जगह बताएँमेरी लोकेशन साझा करें · "
+      },
+      "entryHomeGuide": {
+        "top": 379,
+        "bottom": 440,
+        "left": 16,
+        "width": 328,
+        "height": 61,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "पहली बार? 1 मिनट में सीखेंरजिस्टर, पोस्ट और नंबर पाना — छोटे"
+      },
+      "homeOpenStrip": {
+        "top": 184,
+        "bottom": 369,
+        "left": 0,
+        "width": 360,
+        "height": 185,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "बिना लॉगिन के सारी जानकारी देखेंमंडी भावयोजनाएँकिसान सवालकोल"
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "lang": "hi",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "docHeight": 8236,
+      "heroInstance": "mobile (md:hidden)",
+      "h1": {
+        "top": 732,
+        "bottom": 767,
+        "left": 16,
+        "width": 380,
+        "height": 35,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "आज किसान के लिए"
+      },
+      "heroHeadingVisible": {
+        "top": 732,
+        "bottom": 767,
+        "left": 16,
+        "width": 380,
+        "height": 35,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "आज किसान के लिए"
+      },
+      "iNeed": {
+        "top": 1129,
+        "bottom": 1193,
+        "left": 16,
+        "width": 380,
+        "height": 64,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "मुझे कुछ चाहिएखोजें, संपर्क करें, किराये पर लें"
+      },
+      "iHave": {
+        "top": 1205,
+        "bottom": 1269,
+        "left": 16,
+        "width": 380,
+        "height": 64,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "मेरे पास कुछ हैबेचें, किराये पर दें, लोगों तक पहुँचें"
+      },
+      "freeRegistrationPill": {
+        "top": 689,
+        "bottom": 720,
+        "left": 24,
+        "width": 143,
+        "height": 31,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "✓ निःशुल्क रजिस्ट्रेशन"
+      },
+      "firstInfoTile": {
+        "top": 814,
+        "bottom": 913,
+        "left": 16,
+        "width": 380,
+        "height": 100,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "मौसममौसम देखने के लिए अपनी जगह बताएँमेरी लोकेशन साझा करें · "
+      },
+      "entryHomeGuide": {
+        "top": 379,
+        "bottom": 440,
+        "left": 16,
+        "width": 380,
+        "height": 61,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "पहली बार? 1 मिनट में सीखेंरजिस्टर, पोस्ट और नंबर पाना — छोटे"
+      },
+      "homeOpenStrip": {
+        "top": 184,
+        "bottom": 369,
+        "left": 0,
+        "width": 412,
+        "height": 185,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "बिना लॉगिन के सारी जानकारी देखेंमंडी भावयोजनाएँकिसान सवालकोल"
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "lang": "hi",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "docHeight": 4516,
+      "heroInstance": "desktop (hidden md:flex)",
+      "h1": null,
+      "heroHeadingVisible": {
+        "top": 363,
+        "bottom": 418,
+        "left": 16,
+        "width": 724,
+        "height": 55,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "आज किसान के लिए"
+      },
+      "iNeed": {
+        "top": 633,
+        "bottom": 697,
+        "left": 16,
+        "width": 356,
+        "height": 64,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "मुझे कुछ चाहिएखोजें, संपर्क करें, किराये पर लें"
+      },
+      "iHave": {
+        "top": 633,
+        "bottom": 697,
+        "left": 384,
+        "width": 356,
+        "height": 64,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "मेरे पास कुछ हैबेचें, किराये पर दें, लोगों तक पहुँचें"
+      },
+      "freeRegistrationPill": {
+        "top": 320,
+        "bottom": 351,
+        "left": 302,
+        "width": 143,
+        "height": 31,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "✓ निःशुल्क रजिस्ट्रेशन"
+      },
+      "firstInfoTile": {
+        "top": 469,
+        "bottom": 617,
+        "left": 16,
+        "width": 233,
+        "height": 148,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "मौसममौसम देखने के लिए अपनी जगह बताएँमेरी लोकेशन साझा करें · "
+      },
+      "entryHomeGuide": {
+        "top": 230,
+        "bottom": 291,
+        "left": 16,
+        "width": 576,
+        "height": 61,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "पहली बार? 1 मिनट में सीखेंरजिस्टर, पोस्ट और नंबर पाना — छोटे"
+      },
+      "homeOpenStrip": {
+        "top": 159,
+        "bottom": 220,
+        "left": 0,
+        "width": 1280,
+        "height": 61,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "बिना लॉगिन के सारी जानकारी देखेंमंडी भावयोजनाएँकिसान सवालकोल"
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "lang": "en",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "docHeight": 9029,
+      "heroInstance": "mobile (md:hidden)",
+      "h1": {
+        "top": 795,
+        "bottom": 865,
+        "left": 16,
+        "width": 328,
+        "height": 70,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "For the farmer, today"
+      },
+      "heroHeadingVisible": {
+        "top": 795,
+        "bottom": 865,
+        "left": 16,
+        "width": 328,
+        "height": 70,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "For the farmer, today"
+      },
+      "iNeed": {
+        "top": 1304,
+        "bottom": 1368,
+        "left": 16,
+        "width": 328,
+        "height": 64,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "I need somethingSearch, connect, rent"
+      },
+      "iHave": {
+        "top": 1380,
+        "bottom": 1444,
+        "left": 16,
+        "width": 328,
+        "height": 64,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "I have somethingSell, rent out, reach people"
+      },
+      "freeRegistrationPill": {
+        "top": 752,
+        "bottom": 783,
+        "left": 24,
+        "width": 160,
+        "height": 31,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "✓ Free Registration"
+      },
+      "firstInfoTile": {
+        "top": 934,
+        "bottom": 1061,
+        "left": 16,
+        "width": 328,
+        "height": 127,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "WeatherSet your place to see the weatherShare my location · "
+      },
+      "entryHomeGuide": {
+        "top": 400,
+        "bottom": 503,
+        "left": 16,
+        "width": 328,
+        "height": 103,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "First time? Learn in 1 minuteRegister, post and get a number"
+      },
+      "homeOpenStrip": {
+        "top": 205,
+        "bottom": 390,
+        "left": 0,
+        "width": 360,
+        "height": 185,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "See all information without logging inMandi pricesSchemesFar"
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "lang": "en",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "docHeight": 8563,
+      "heroInstance": "mobile (md:hidden)",
+      "h1": {
+        "top": 752,
+        "bottom": 787,
+        "left": 16,
+        "width": 380,
+        "height": 35,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "For the farmer, today"
+      },
+      "heroHeadingVisible": {
+        "top": 752,
+        "bottom": 787,
+        "left": 16,
+        "width": 380,
+        "height": 35,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "For the farmer, today"
+      },
+      "iNeed": {
+        "top": 1226,
+        "bottom": 1290,
+        "left": 16,
+        "width": 380,
+        "height": 64,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "I need somethingSearch, connect, rent"
+      },
+      "iHave": {
+        "top": 1302,
+        "bottom": 1366,
+        "left": 16,
+        "width": 380,
+        "height": 64,
+        "inFirstViewport": false,
+        "fullyInFirstViewport": false,
+        "text": "I have somethingSell, rent out, reach people"
+      },
+      "freeRegistrationPill": {
+        "top": 709,
+        "bottom": 740,
+        "left": 24,
+        "width": 160,
+        "height": 31,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "✓ Free Registration"
+      },
+      "firstInfoTile": {
+        "top": 856,
+        "bottom": 983,
+        "left": 16,
+        "width": 380,
+        "height": 127,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": false,
+        "text": "WeatherSet your place to see the weatherShare my location · "
+      },
+      "entryHomeGuide": {
+        "top": 379,
+        "bottom": 460,
+        "left": 16,
+        "width": 380,
+        "height": 81,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "First time? Learn in 1 minuteRegister, post and get a number"
+      },
+      "homeOpenStrip": {
+        "top": 184,
+        "bottom": 369,
+        "left": 0,
+        "width": 412,
+        "height": 185,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "See all information without logging inMandi pricesSchemesFar"
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "lang": "en",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "docHeight": 4574,
+      "heroInstance": "desktop (hidden md:flex)",
+      "h1": null,
+      "heroHeadingVisible": {
+        "top": 363,
+        "bottom": 418,
+        "left": 16,
+        "width": 724,
+        "height": 55,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "For the farmer, today"
+      },
+      "iNeed": {
+        "top": 633,
+        "bottom": 697,
+        "left": 16,
+        "width": 356,
+        "height": 64,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "I need somethingSearch, connect, rent"
+      },
+      "iHave": {
+        "top": 633,
+        "bottom": 697,
+        "left": 384,
+        "width": 356,
+        "height": 64,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "I have somethingSell, rent out, reach people"
+      },
+      "freeRegistrationPill": {
+        "top": 320,
+        "bottom": 351,
+        "left": 317,
+        "width": 160,
+        "height": 31,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "✓ Free Registration"
+      },
+      "firstInfoTile": {
+        "top": 469,
+        "bottom": 617,
+        "left": 16,
+        "width": 233,
+        "height": 148,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "WeatherSet your place to see the weatherShare my location · "
+      },
+      "entryHomeGuide": {
+        "top": 230,
+        "bottom": 291,
+        "left": 16,
+        "width": 576,
+        "height": 61,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "First time? Learn in 1 minuteRegister, post and get a number"
+      },
+      "homeOpenStrip": {
+        "top": 159,
+        "bottom": 220,
+        "left": 0,
+        "width": 1280,
+        "height": 61,
+        "inFirstViewport": true,
+        "fullyInFirstViewport": true,
+        "text": "See all information without logging inMandi pricesSchemesFar"
+      },
+      "horizontalOverflow": false
+    }
+  ]
+}

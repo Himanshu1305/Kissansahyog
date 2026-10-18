@@ -1,0 +1,47 @@
+{
+  "label": "baseline",
+  "mode": "photo-check",
+  "baseURL": "http://localhost:4190",
+  "path": "/",
+  "photo": "/images/home/hero-farmer.jpg",
+  "throttling": "none",
+  "date": "2026-10-17T23:09:30.317Z",
+  "results": [
+    {
+      "viewport": "360x640",
+      "mobile": true,
+      "afterLoad": {
+        "requests": 1,
+        "bytes": 145232,
+        "statuses": [
+          200
+        ]
+      },
+      "afterScroll": {
+        "requests": 1,
+        "bytes": 145232,
+        "statuses": [
+          200
+        ]
+      }
+    },
+    {
+      "viewport": "1280x720",
+      "mobile": false,
+      "afterLoad": {
+        "requests": 1,
+        "bytes": 145232,
+        "statuses": [
+          200
+        ]
+      },
+      "afterScroll": {
+        "requests": 1,
+        "bytes": 145232,
+        "statuses": [
+          200
+        ]
+      }
+    }
+  ]
+}

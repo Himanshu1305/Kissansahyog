@@ -10,6 +10,7 @@ import { markDone, getDone } from './progress.js'
 import { dur, prefersReducedMotion, saveDataOn } from './timing.js'
 import { useLoopActive } from './useLoopActive.js'
 import { Sprout } from './icons.jsx'
+import './phone.css'
 import './guide.css'
 
 const TABS = [

@@ -1,56 +1,16 @@
 // /guide — hub: hero field scene, the four demo cards, progress ring n / 4, tips, badge.
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { PageShell, Seo } from '../../components/layout'
 import { GUIDE_ORDER } from './config.js'
 import { getDone, doneCount, getBadgeName, setBadgeName } from './progress.js'
-import { prefersReducedMotion, saveDataOn } from './timing.js'
-import { useLoopActive } from './useLoopActive.js'
+import FieldScene from './FieldScene.jsx'
 import { CardIcon } from './icons.jsx'
 import './guide.css'
 
 const RING = 119.4 // 2πr, r = 19
 const TIPS = ['guide_tip_1', 'guide_tip_2', 'guide_tip_3', 'guide_tip_4']
-
-function FieldScene() {
-  const ref = useRef(null)
-  const active = useLoopActive(ref)
-  const [still] = useState(() => saveDataOn() || prefersReducedMotion())
-  const wheat = useMemo(() => {
-    const out = []
-    for (let x = 4; x < 800; x += 13) out.push({ x, h: 18 + ((x * 7) % 12), d: (x % 9) * 0.4 })
-    return out
-  }, [])
-  const cls = `ksg-scene${still ? ' ksg-static' : active ? '' : ' ksg-paused'}`
-  return (
-    <svg ref={ref} className={cls} viewBox="0 0 800 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false" data-testid="guide-scene" data-motion={still ? 'static' : active ? 'on' : 'paused'}>
-      <g className="ksg-sun">
-        <circle cx="480" cy="52" r="26" fill="var(--ks-saffron)" />
-        {Array.from({ length: 12 }, (_, a) => <rect key={a} x="478" y="14" width="4" height="10" rx="2" fill="var(--ks-saffron)" transform={`rotate(${a * 30} 480 52)`} />)}
-      </g>
-      <path d="M0 110 C120 70 220 90 330 100 C460 112 560 70 800 95 V150 H0Z" fill="var(--ks-green-tint)" />
-      <g>
-        {wheat.map(({ x, h, d }) => (
-          <g key={x} className="ksg-st" style={{ animationDelay: `-${d}s` }}>
-            <line x1={x} y1="150" x2={x} y2={150 - h} stroke="var(--ks-green)" strokeWidth="2" />
-            <ellipse cx={x} cy={150 - h - 4} rx="2.6" ry="6" fill="var(--ks-saffron)" />
-          </g>
-        ))}
-      </g>
-      <g className="ksg-trac">
-        <g transform="translate(0,84)">
-          <rect x="14" y="8" width="44" height="22" rx="4" fill="var(--ks-saffron)" />
-          <rect x="38" y="-10" width="24" height="22" rx="4" fill="var(--ks-green)" />
-          <rect x="52" y="-18" width="4" height="12" fill="var(--ks-ink)" />
-          <rect x="2" y="14" width="14" height="10" rx="2" fill="var(--ks-ink)" />
-          <g transform="translate(46,30)"><g className="ksg-wheel"><circle r="17" fill="var(--ks-ink)" /><rect x="-2" y="-15" width="4" height="13" fill="var(--ks-saffron)" /></g><circle r="5" fill="var(--ks-saffron)" /></g>
-          <g transform="translate(10,36)"><g className="ksg-wheel"><circle r="10" fill="var(--ks-ink)" /><rect x="-1.5" y="-9" width="3" height="8" fill="var(--ks-saffron)" /></g><circle r="3" fill="var(--ks-saffron)" /></g>
-        </g>
-      </g>
-    </svg>
-  )
-}
 
 function Badge({ n }) {
   const { t } = useLang()

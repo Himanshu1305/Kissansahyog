@@ -1,0 +1,170 @@
+/* Batch 10D — homepage live hero ("Kisan Studio"). Imported only by HomeLiveHero (Homepage chunk).
+   Every size comes from heroCssVars() (heroLive.config.js); colours from the app tokens (--ks-*).
+   The mock phone screen is always light (as in the 10C guide). Motion: transform / opacity only.
+   Breakpoints (mirrored in heroLive.config.js): phone < 768, tablet 768–1023, desktop ≥ 1024;
+   a desktop window under 860 px tall folds the tab list into two columns. */
+
+.khl { width: 100%; background: var(--ks-bg); color: var(--ks-ink); }
+.khl-in {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--khl-block-gap-m);
+  max-width: var(--khl-max); margin: 0 auto; padding: var(--khl-pady-m) var(--khl-pad-m);
+}
+.khl :focus-visible { outline: 3px solid var(--ks-saffron); outline-offset: 2px; }
+.khl-text { display: flex; flex-direction: column; gap: var(--khl-gap-m); min-width: 0; }
+.khl-h1 { margin: 0; font-size: var(--khl-h1-m); font-weight: 800; line-height: 1.15; color: var(--ks-ink); }
+.khl-lead { margin: -4px 0 0; font-size: var(--khl-lead-m); line-height: 1.45; color: var(--ks-ink-2); }
+
+/* ---------- persona tabs ---------- */
+.khl-tabs {
+  position: relative; display: flex; gap: var(--khl-tab-gap);
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: none;
+  margin: 0 calc(-1 * var(--khl-pad-m)); padding: 2px var(--khl-pad-m) 4px; scroll-padding-inline: var(--khl-pad-m);
+}
+.khl-tabs::-webkit-scrollbar { display: none; }
+.khl-tab {
+  position: relative; flex: none; overflow: hidden; scroll-snap-align: start;
+  min-height: var(--khl-tab-h); padding: 6px 14px; border-radius: 999px;
+  border: 1.5px solid var(--ks-border-strong); background: var(--ks-card); color: var(--ks-ink);
+  font: inherit; font-size: var(--khl-tab-font); font-weight: 700; line-height: 1.3; text-align: left; white-space: nowrap; cursor: pointer;
+}
+.khl-tab:focus-visible { outline-offset: -4px; }
+.khl-tab[aria-selected="true"] { border-color: var(--ks-green); background: var(--ks-green-tint); color: var(--ks-green-dark); }
+/* Orange bar on the active tab = time left before the next persona (1 → 0). */
+.khl-tab-bar {
+  display: none; position: absolute; left: 0; bottom: 0; width: 100%; height: 3px;
+  background: var(--ks-saffron); transform-origin: left center; transform: scaleX(var(--p, 1));
+}
+.khl-tab[aria-selected="true"] .khl-tab-bar { display: block; }
+.khl[data-auto="off"] .khl-tab-bar { display: none; }
+
+/* ---------- big buttons ---------- */
+.khl-ctas { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.khl-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: var(--khl-cta-h); padding: 6px 14px; border-radius: var(--ks-radius-lg);
+  font-size: var(--khl-cta-font); font-weight: 800; line-height: 1.2; text-align: center; text-decoration: none;
+}
+.khl-cta svg { width: 20px; height: 20px; flex: none; }
+.khl-cta-p { background: var(--ks-saffron); color: var(--ks-ink); border: 2px solid var(--ks-saffron); }
+.khl-cta-s { background: var(--ks-card); color: var(--ks-green-dark); border: 2px solid var(--ks-green); }
+
+/* ---------- stage: phone + guide bubble ---------- */
+.khl-stage { display: flex; flex-direction: column; align-items: center; gap: var(--khl-stage-gap); min-width: 0; border-radius: var(--khl-panel-r); }
+.khl-stage:focus-visible { outline-offset: 4px; }
+.khl-phone {
+  --ksg-phone-w: var(--khl-phone-w); --ksg-phone-h: var(--khl-phone-h); --ksg-phone-pad: var(--khl-phone-pad);
+  --ksg-phone-r: var(--khl-phone-r); --ksg-screen-r: var(--khl-screen-r); --ksg-notch-top: 9px;
+}
+.khl-screen { overflow: hidden; font-size: var(--khl-screen-font); line-height: 1.4; }
+
+.khl-say { display: flex; gap: 10px; align-items: flex-start; width: 100%; max-width: 440px; }
+.khl-ava { flex-basis: var(--khl-ava); height: var(--khl-ava); animation: khl-bob 3s ease-in-out infinite; }
+.khl-bubble {
+  display: grid; flex: 1; min-width: 0; min-height: var(--khl-bubble-h); margin: 0; padding: 7px 12px;
+  border: 1.5px solid var(--ks-border); border-radius: 4px 16px 16px 16px; background: var(--ks-card);
+  font-size: var(--khl-bubble-font); font-weight: 600; line-height: 1.45; color: var(--ks-ink);
+}
+.khl-cap { grid-area: 1 / 1; visibility: hidden; }
+.khl-cap.on { visibility: visible; }
+.khl-cap.khl-anim { animation: khl-fade .5s ease; }
+
+/* ---------- the phone screen (em units: scales with --khl-screen-font) ---------- */
+.khl-scr { display: flex; flex-direction: column; gap: .5em; height: 100%; padding: 1.7em .8em .8em; }
+.khl-hd { display: flex; align-items: center; justify-content: space-between; gap: .4em; min-height: 1.6em; }
+.khl-sh { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 1.1em; font-weight: 800; color: var(--ks-green-dark); }
+.khl-tag { flex: none; padding: 0 .55em; border: 1px solid var(--ks-border-strong); border-radius: 999px; background: #fff; font-size: .8em; font-weight: 700; color: var(--ks-ink-3); }
+.khl-r { opacity: 0; transform: translateY(.6em); transition: opacity .35s ease, transform .35s ease; }
+.khl-r.khl-sx { transform: translateX(2.2em); }
+.khl-r.on { opacity: 1; transform: none; }
+.khl-ico { width: 1.15em; height: 1.15em; flex: none; color: var(--ks-ink-3); }
+.khl-inp { display: flex; align-items: center; gap: .45em; min-height: 2.4em; padding: .3em .6em; border: 1.5px solid var(--ks-border-strong); border-radius: .7em; background: #fff; font-weight: 700; }
+.khl-caret::after { content: ""; display: inline-block; width: 1.5px; height: 1em; margin-left: 1px; vertical-align: -.15em; background: currentColor; animation: khl-blink .7s steps(2) infinite; }
+.khl-chips { display: flex; flex-wrap: wrap; gap: .4em; }
+.khl-chips b { padding: .05em .75em; border-radius: 999px; background: var(--ks-green-tint); color: var(--ks-green-dark); font-size: .92em; }
+.khl-lc { display: flex; align-items: center; gap: .6em; padding: .45em; border: 1px solid var(--ks-border); border-radius: .8em; background: #fff; }
+.khl-lc > div { min-width: 0; }
+.khl-th { flex: none; width: 2.6em; height: 2.6em; border-radius: .6em; background: linear-gradient(135deg, var(--ks-green-tint), var(--ks-green)); }
+.khl-th-b { background: linear-gradient(135deg, var(--ks-saffron-tint), var(--ks-saffron)); }
+.khl-lc strong, .khl-card strong { display: block; font-weight: 800; }
+.khl-lc small, .khl-card small { display: block; font-size: .88em; color: var(--ks-ink-3); }
+.khl-btn { position: relative; padding: .5em; border-radius: .8em; background: var(--ks-saffron); color: var(--ks-ink); text-align: center; font-size: 1.05em; font-weight: 800; }
+.khl-pulse.on::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--ks-saffron); animation: khl-ring 1.2s ease-out infinite; }
+.khl-photo { display: grid; place-items: center; height: 3.6em; border-radius: .7em; background: repeating-linear-gradient(45deg, var(--ks-green-tint) 0 .5em, #d6e8cb .5em 1em); color: var(--ks-green-dark); font-size: .92em; font-weight: 800; }
+.khl-done { padding: .6em; border-radius: .8em; background: var(--ks-green-tint); color: var(--ks-green-dark); text-align: center; font-weight: 800; }
+.khl-sub { margin: 0; font-size: .9em; font-weight: 700; color: var(--ks-ink-3); }
+.khl-bar { display: grid; grid-template-columns: 4.4em minmax(0, 1fr) auto; align-items: center; gap: .45em; }
+.khl-bar b { font-size: .95em; }
+.khl-tr { display: block; height: 1.1em; overflow: hidden; border-radius: .45em; background: var(--ks-green-tint); }
+.khl-tr i { display: block; height: 100%; border-radius: .45em; background: var(--ks-green); transform-origin: left center; transform: scaleX(0); transition: transform 1s cubic-bezier(.2, .8, .2, 1); }
+.khl-bar.on .khl-tr i { transform: scaleX(var(--w)); }
+.khl-bar em { font-style: normal; font-size: .92em; font-weight: 800; font-variant-numeric: tabular-nums; }
+.khl-big { display: flex; align-items: center; gap: .5em; }
+.khl-big svg { width: 2.6em; height: 2.6em; flex: none; }
+.khl-big b { display: block; font-size: 2em; font-weight: 800; line-height: 1; color: var(--ks-green-dark); }
+.khl-big small { display: block; color: var(--ks-ink-3); }
+.khl-wk { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .2em; text-align: center; }
+.khl-wk > div { min-width: 0; padding: .3em 0; border: 1px solid var(--ks-border); border-radius: .6em; background: #fff; font-size: .8em; }
+.khl-wk small { display: block; overflow: hidden; white-space: nowrap; }
+.khl-wk svg { display: block; width: 1.5em; height: 1.5em; margin: .15em auto; }
+.khl-wk b { display: block; }
+.khl-sunr { transform-box: fill-box; transform-origin: center; animation: khl-spin 12s linear infinite; }
+.khl-card { padding: .45em .65em; border: 1px solid var(--ks-border); border-radius: .8em; background: #fff; }
+.khl-note { margin: 0; font-size: .86em; color: var(--ks-ink-3); }
+
+@keyframes khl-bob { 50% { transform: translateY(-3px); } }
+@keyframes khl-fade { from { opacity: 0; transform: translateY(4px); } }
+@keyframes khl-blink { 50% { opacity: 0; } }
+@keyframes khl-spin { to { transform: rotate(360deg); } }
+@keyframes khl-ring { from { opacity: .8; transform: scale(1); } to { opacity: 0; transform: scale(1.12, 1.35); } }
+
+/* Paused (off-screen, tab hidden, engine not loaded yet) and static (reduced motion / save-data). */
+.khl-paused *, .khl-paused *::before, .khl-paused *::after { animation-play-state: paused !important; }
+.khl-static *, .khl-static *::before, .khl-static *::after { animation: none !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .khl *, .khl *::before, .khl *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---------- tablet 768–1023: one column, wrapping tabs, phone and bubble side by side ---------- */
+@media (min-width: 768px) {
+  .khl-in { padding: var(--khl-pady-t) var(--khl-pad-t); gap: var(--khl-block-gap-t); }
+  .khl-h1 { font-size: var(--khl-h1-t); }
+  .khl-lead { font-size: var(--khl-lead-d); }
+  .khl-tabs { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+  .khl-ctas { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; }
+  .khl-stage { flex-direction: row; justify-content: center; align-items: center; gap: 24px; }
+  .khl-say { max-width: var(--khl-bubble-max-t); }
+}
+
+/* ---------- desktop ≥ 1024: two columns; tabs = vertical list of large rows ---------- */
+@media (min-width: 1024px) {
+  .khl-in {
+    grid-template-columns: var(--khl-cols); grid-template-areas: "text stage" "more stage";
+    grid-template-rows: auto 1fr; align-items: start;
+    column-gap: var(--khl-col-gap); row-gap: 20px; padding: var(--khl-pady-d) var(--khl-pad-d);
+  }
+  .khl-text { grid-area: text; gap: var(--khl-gap-d); }
+  .khl-stage { grid-area: stage; }
+  .khl-more { grid-area: more; min-width: 0; }
+  .khl-h1 { font-size: var(--khl-h1-d); }
+  .khl-tabs { flex-direction: column; flex-wrap: nowrap; gap: var(--khl-tab-gap-d); max-width: var(--khl-tab-row-max); }
+  .khl-tab { display: flex; align-items: center; min-height: var(--khl-tab-h-d); padding: 8px 18px; border-radius: var(--ks-radius); font-size: var(--khl-tab-font-d); white-space: normal; }
+  .khl-ctas { max-width: var(--khl-tab-row-max); }
+  .khl-stage {
+    flex-direction: column; gap: 16px; padding: var(--khl-panel-pad);
+    border: 1px solid var(--ks-border);
+    /* The existing farmer photo, faded under the cream gradient. Desktop only: phones and
+       tablets never match this media query, so they never download it. */
+    background: linear-gradient(180deg, rgba(251, 250, 245, .80) 0%, rgba(251, 250, 245, .90) 100%), url(/images/home/hero-farmer.jpg) right center / cover no-repeat, var(--ks-bg-soft);
+  }
+  .khl-phone {
+    --khl-phone-w: var(--khl-phone-w-d); --khl-phone-h: var(--khl-phone-h-d); --khl-phone-pad: var(--khl-phone-pad-d);
+    --khl-phone-r: var(--khl-phone-r-d); --khl-screen-r: var(--khl-screen-r-d); --ksg-notch-top: 10px;
+  }
+  .khl-screen { font-size: var(--khl-screen-font-d); }
+  .khl-say { max-width: 400px; }
+}
+/* Short desktop windows (e.g. 1280×720): the five rows fold into two columns (3 + 2), so the
+   H1, the tabs and both big buttons stay above the fold. Reading / arrow order is unchanged. */
+@media (min-width: 1024px) and (max-height: 860px) {
+  .khl-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); grid-auto-flow: column; max-width: none; }
+}
