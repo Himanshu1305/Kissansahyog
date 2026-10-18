@@ -16,7 +16,7 @@ So you run: brief 1 → 2 → 4 → 5 → 3 → 7. Brief item 6 (undo) is only f
 
 ## Step 1 [brief 1] — staging: upload, then look at it on your phone
 
-STAGING: <filled by orchestrator>
+STAGING: **DONE** — uploaded by the AI run (the permission system allowed it). Deployment **`ca08070a-406f-4061-b56e-518c3512b180`** (built from `aaafc80`, main chunk `/assets/index-BEoquPCU.js`). Open **https://staging.kissansahyog.com** on your phone. Re-tested on staging: photos 3/3, phone sign-up 6/6, post form 5/5, /msp trend 4/4, homepage hero 32/32, guide 34/34 (`evidence/staging-deploy/`).
 
 If the line above says it was NOT uploaded, run this once from the repo folder (Git Bash). It builds with the STAGING settings and uploads to staging only:
 
@@ -254,5 +254,5 @@ A website rollback does not touch the database:
 ## Status
 
 - `bash -n scripts/ship-prod-10e.sh` and `bash -n scripts/rollback-prod-10e.sh`: RAN-PASSED.
-- Dry run: <filled by orchestrator>
+- Dry run: run by the AI on the pushed head with `KS_SKIP_DB_PROBE=1` (the batch rules forbid the AI from contacting the production database, so the read-only 0064 probe was skipped and listed as pending; your real run always probes). Result: see `evidence/ship-dryrun.txt` (not committed, so the `ship-10e` tag stays on the final commit).
 - Real production ship: NOT-RUN (founder runs it).

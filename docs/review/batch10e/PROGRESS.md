@@ -60,3 +60,4 @@
   - **Widths: RAN-PASSED.** 98 combinations (7 widths × hi/en × 7 pages), 0 with horizontal scroll.
   - **Screens:** 8 `screens/phase6-*.png`, all looked at.
   - HUMAN-REVIEW: the test timing fix; the `/post` side widget still shows a Bengaluru Mela (5.1 filter is homepage-only); in the teaser the Nov 2026 Meerut Mela sorts after the 2027 MP Melas (MP first).
+- [x] Phase 6 staging: upload RAN-PASSED (deployment ca08070a-406f-4061-b56e-518c3512b180). On staging: photos-10e 3/3, signup-phone-10e 6/6, post-10e 5/5, msp-trend-10e 4/4, home-10d 32/32, guide-10c 34/34 (after decision 78). Ship/rollback scripts + SHIP.md + BATCH10E_CLOSE_PROMPT.md written; dry run on the pushed head with KS_SKIP_DB_PROBE=1.

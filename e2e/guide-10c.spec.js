@@ -36,7 +36,9 @@ async function open(browser, { lang = 'hi', width = 360, height = 740, speed = S
   const page = await ctx.newPage()
   const errors = []
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`))
-  page.on('console', (m) => { if (m.type() === 'error') errors.push(`console: ${m.text()}`) })
+  // Deployed hosts only (staging/prod): the Cloudflare Web Analytics beacon is injected and refused by the
+  // site CSP (pre-existing, not guide code). Exactly that line is ignored; every other console error counts.
+  page.on('console', (m) => { if (m.type() === 'error' && !/cloudflareinsights/.test(m.text())) errors.push(`console: ${m.text()}`) })
   return { ctx, page, errors }
 }
 
@@ -294,7 +296,7 @@ for (const lang of LANGS) {
         await page.getByTestId('guide-sheet-close').click()
         await expect(sheet).toHaveCount(0)
         expect(await vals()).toEqual(['रामू परीक्षण', '9000012345'])
-        expect(new URL(page.url()).pathname).toBe('/signup')
+        expect(new URL(page.url()).pathname.replace(/(.)\/$/, '$1')).toBe('/signup')
         // open, let it finish, close from the finish card
         await page.getByTestId('help-signup').click()
         await expect(sheet.getByTestId('demo-finish')).toBeVisible({ timeout: 30_000 })
@@ -307,11 +309,11 @@ for (const lang of LANGS) {
         await page.goBack()
         await expect(sheet).toHaveCount(0)
         await page.waitForTimeout(300)
-        expect(new URL(page.url()).pathname).toBe('/signup')
+        expect(new URL(page.url()).pathname.replace(/(.)\/$/, '$1')).toBe('/signup')
         expect(await vals()).toEqual(['रामू परीक्षण', '9000012345'])
         // the sheet's history entry is used up: one more Back leaves /signup
         await page.goBack()
-        await expect(page).toHaveURL(/\/about$/)
+        await expect(page).toHaveURL(/\/about\/?$/)
         expect(errors).toEqual([])
         await ctx.close()
       })
@@ -338,7 +340,7 @@ for (const lang of LANGS) {
         await page.goto('/about')
         await page.getByTestId('footer-guide').scrollIntoViewIfNeeded()
         await page.getByTestId('footer-guide').click()
-        await expect(page).toHaveURL(/\/guide$/)
+        await expect(page).toHaveURL(/\/guide\/?$/)
         await expect(page.getByTestId('guide-hub')).toBeVisible()
         // help pills open the sheet with the right demo, page stays
         const sheetFrom = async (path, testid, demo) => {
@@ -351,7 +353,7 @@ for (const lang of LANGS) {
           // closing pops the sheet's own history entry (async): let it land before navigating on
           await expect.poll(() => page.evaluate(() => !history.state?.ksGuideSheet)).toBe(true)
           await page.waitForTimeout(300)
-          expect(new URL(page.url()).pathname).toBe(path.split('?')[0])
+          expect(new URL(page.url()).pathname.replace(/(.)\/$/, '$1')).toBe(path.split('?')[0])
         }
         await sheetFrom('/signup', 'help-signup', 'register')
         await sheetFrom('/login', 'help-login', 'register')

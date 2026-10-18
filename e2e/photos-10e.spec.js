@@ -70,7 +70,8 @@ async function withCsp(page, csp) {
 
 function watchConsole(page) {
   const csp = []
-  page.on('console', (m) => { if (m.type() === 'error' && /Content Security Policy/i.test(m.text())) csp.push(m.text()) })
+  // The Cloudflare beacon (deployed hosts only) is refused by script-src, unrelated to photos: ignored.
+  page.on('console', (m) => { if (m.type() === 'error' && /Content Security Policy/i.test(m.text()) && !/cloudflareinsights/.test(m.text())) csp.push(m.text()) })
   return csp
 }
 
