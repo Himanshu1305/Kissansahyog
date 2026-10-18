@@ -1,0 +1,134 @@
+### HEAD
+title: मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?
+description: मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में हैं। जैसे NRC 165, JS 22-12, JS 22-16, NRC 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार
+canonical: https://kissansahyog.com/sawaal/soybean-recommended-varieties-mp
+robots: 
+lang: hi
+h1: मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"सोयाबीन","item":"https://kissansahyog.com/fasal/soybean/samasya"},{"@type":"ListItem","position":4,"name":"मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"QAPage","mainEntity":{"@type":"Question","name":"मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?","acceptedAnswer":{"@type":"Answer","text":"मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में हैं। जैसे NRC 165, JS 22-12, JS 22-16, NRC 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार 2-3 किस्में चुनें।"}}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+सोयाबीन
+/
+मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस
+सोयाबीन
+किस्म
+मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?
+संक्षेप में
+मध्य प्रदेश के लिए केंद्रीय रूप से अधिसूचित अधिक उपज वाली किस्में हैं। जैसे NRC 165, JS 22-12, JS 22-16, NRC 150 आदि। अपने क्षेत्र और पकने के समय के अनुसार 2-3 किस्में चुनें।
+अच्छी उपज के लिए अपने खेत और मौसम के अनुसार अधिसूचित (notified) किस्म ही चुनें।
+अनुशंसित किस्में
+केंद्रीय रूप से अधिसूचित किस्में: NRC 165, JS 22-12, JS 22-16, NRC 150, NRC 152, JS 21-72, RVSM 2011-35, NRC 138, EMS 100-39, RVS 76, NRC 142, NRC 130 आदि।
+[1]
+राज्य सरकार की अनुशंसित किस्में: NRC 157, NRC 131 और NRC 136।
+[1]
+स्रोत
+[1]
+High-Yielding Soybean Varieties Recommended for Madhya Pradesh: Optimum Sowing Time and Full Variety List
+समाचार
+— Global Agriculture, 2025-05-25
+KVK सागर या कृषि कार्यालय से कब संपर्क करें
+अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।
+उपयोगी संपर्क →
+WhatsApp पर शेयर करें
+इनसे जुड़े सवाल
+❓
+सोयाबीन के पत्ते पीले क्यों हो रहे हैं और क्या करें?
+❓
+सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें?
+❓
+सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें?
+❓
+अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ?
+❓
+सोयाबीन की बुवाई सीड ड्रिल से सही है या हाथ से छिटककर?
+❓
+पड़ोस के खेतों में सोयाबीन पीली पड़ रही है — यह क्या है?
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

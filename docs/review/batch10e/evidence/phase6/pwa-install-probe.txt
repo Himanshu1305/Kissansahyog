@@ -1,0 +1,16 @@
+Phase 6 — phase10_location_pwa "install prompt … returning visit" failed twice (loop + rerun) on the Phase 6 build.
+Probe (scratchpad pwa-probe.mjs; same steps as the test, 3 runs per frozen dist, 4198 = Phase 0 baseline-dist, 4199 = Phase 6 final-dist):
+{"base":"http://localhost:4198","run":0,"firstVisitBanner":0,"visitsAfterReloadAtLoad":"1","shownImmediate":false,"shownAfter3s":true,"visits":"2","dismissed":null,"sw":true}
+{"base":"http://localhost:4198","run":1,"firstVisitBanner":0,"visitsAfterReloadAtLoad":"1","shownImmediate":true,"shownAfter3s":null,"visits":"2","dismissed":null,"sw":false}
+{"base":"http://localhost:4198","run":2,"firstVisitBanner":0,"visitsAfterReloadAtLoad":"1","shownImmediate":false,"shownAfter3s":true,"visits":"2","dismissed":null,"sw":true}
+{"base":"http://localhost:4199","run":0,"firstVisitBanner":0,"visitsAfterReloadAtLoad":"1","shownImmediate":true,"shownAfter3s":null,"visits":"2","dismissed":null,"sw":false}
+{"base":"http://localhost:4199","run":1,"firstVisitBanner":0,"visitsAfterReloadAtLoad":"1","shownImmediate":true,"shownAfter3s":null,"visits":"2","dismissed":null,"sw":false}
+{"base":"http://localhost:4199","run":2,"firstVisitBanner":0,"visitsAfterReloadAtLoad":"1","shownImmediate":true,"shownAfter3s":null,"visits":"2","dismissed":null,"sw":false}
+Reading: right after page.reload() resolves, ks_visit_count is still "1" — WebPrompts' useEffect (which bumps the
+visit count AND attaches the beforeinstallprompt listener) has not run yet. The test dispatches the synthetic event
+at that moment; whether the listener is already attached is a race (worse when a service worker controls the page).
+The frozen 10D/Phase 0 baseline dist fails the same way (2 of 3). Dispatching again once the app has counted the
+visit always shows the banner on both dists. Class: TEST BUG (timing), not a product regression. PwaPrompts.jsx /
+PwaInstallBanner.jsx / App.jsx install logic is untouched by 10E.
+Fix (test only, e2e/phase10_location_pwa.spec.js): after the reload, wait until the app has counted the returning
+visit (ks_visit_count >= 2) before dispatching beforeinstallprompt.

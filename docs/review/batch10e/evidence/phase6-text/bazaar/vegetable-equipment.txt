@@ -1,0 +1,137 @@
+### HEAD
+title: सब्ज़ी खेती के यंत्र खोजें या किराये पर दें | किसान सहयोग बा
+description: सब्ज़ी की खेती के काम आने वाले यंत्रों की लिस्टिंग यहाँ देखें या अपना यंत्र डालें।
+canonical: https://kissansahyog.com/bazaar/vegetable-equipment
+robots: 
+lang: hi
+h1: 🥬 सब्ज़ी खेती के यंत्र
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"बाज़ार","item":"https://kissansahyog.com/bazaar"},{"@type":"ListItem","position":3,"name":"सब्ज़ी खेती के यंत्र"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kissansahyog.com"},{"@type":"ListItem","position":2,"name":"Bazaar","item":"https://kissansahyog.com/bazaar"},{"@type":"ListItem","position":3,"name":"सब्ज़ी खेती के यंत्र","item":"https://kissansahyog.com/bazaar/vegetable-equipment"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"सब्ज़ी खेती वाले यंत्र कैसे खोजें?","acceptedAnswer":{"@type":"Answer","text":"इस पेज के खोज बटन से टैग लगी मशीनों की लिस्टिंग देखें।"}},{"@type":"Question","name":"क्या एक यंत्र पर दो टैग लग सकते हैं?","acceptedAnswer":{"@type":"Answer","text":"हाँ, मालिक दोनों टैग चुन सकता है।"}},{"@type":"Question","name":"किराया कौन तय करता है?","acceptedAnswer":{"@type":"Answer","text":"मालिक और किसान आपस में तय करते हैं।"}},{"@type":"Question","name":"बिना टैग वाली पुरानी लिस्टिंग का क्या होगा?","acceptedAnswer":{"@type":"Answer","text":"वह पहले की तरह काम करती रहेगी।"}}]}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 5 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+बाज़ार
+/
+सब्ज़ी खेती के यंत्र
+🥬 सब्ज़ी खेती के यंत्र
+सब्ज़ी की खेती के काम आने वाले यंत्रों की लिस्टिंग यहाँ देखें या अपना यंत्र डालें।
+🔍 इस श्रेणी में खोजें
+➕ अपना सामान/सेवा डालें
+यहाँ क्या मिलेगा
+✓
+सब्ज़ी खेत के यंत्र
+✓
+किराये की दर
+✓
+उपलब्ध रहने का समय
+✓
+पास का यंत्र मालिक
+✓
+एक से अधिक टैग वाले यंत्र
+✓
+सीधा फोन या WhatsApp संपर्क
+कैसे काम करता है
+1.
+लिस्ट करें — अपनी चीज़ या सेवा डालें
+2.
+खोजें — पास के लोग देखें
+3.
+कॉल करें — सीधे फ़ोन पर बात करें
+किसान सहयोग सिर्फ़ लोगों को जोड़ता है; दाम बेचने वाला खुद तय करता है।
+सब्ज़ी की खेती के लिए यंत्र चाहिए तो इस पेज से खोज शुरू करें। यहाँ वही मशीनें दिखती हैं जिन पर सब्ज़ी खेती का टैग लगा है। लिस्टिंग खोलकर मशीन का प्रकार, किराये की दर और उपलब्धता देखें। जरूरत हो तो मालिक को सीधे फोन करें।
+यंत्र मालिक अपना उपकरण डालते समय सब्ज़ी खेती का टैग चुन सकते हैं। अगर यंत्र किसी कम मिलने वाले या तुरंत काम आने वाले काम में भी उपयोगी है, तो दूसरा टैग भी चुनें। दोनों टैग लगाने से खोजने वाले को सही यंत्र तक पहुँचना आसान होता है।
+लिस्टिंग में मशीन का प्रकार, अपनी दर और कब उपलब्ध है, यह साफ़ रखें। काम की जगह और समय फोन पर तय करें। किसान सहयोग किराया तय नहीं करता। यंत्र मालिक और किसान आपस में बात करके दर, समय और बाकी शर्तें तय करते हैं।
+खोजते समय मशीन की हालत, पहुँचने का समय और काम का तरीका सीधे मालिक से पूछें। अपनी जरूरत साफ़ बताएं। अगर कोई यंत्र आपके काम का नहीं है तो दूसरी लिस्टिंग देखें या अपनी जरूरत की लिस्टिंग डालें।
+पुरानी मशीनों पर यह टैग न होने पर भी वे पहले की तरह दिखती रहेंगी। टैग सिर्फ़ खोज को आसान बनाने के लिए हैं। फोन या WhatsApp पर बात करते समय कोई भुगतान या पक्का वादा करने से पहले जानकारी खुद जाँचें। किसान सहयोग केवल संपर्क कराता है।
+अक्सर पूछे सवाल
+सब्ज़ी खेती वाले यंत्र कैसे खोजें?
+इस पेज के खोज बटन से टैग लगी मशीनों की लिस्टिंग देखें।
+क्या एक यंत्र पर दो टैग लग सकते हैं?
+हाँ, मालिक दोनों टैग चुन सकता है।
+किराया कौन तय करता है?
+मालिक और किसान आपस में तय करते हैं।
+बिना टैग वाली पुरानी लिस्टिंग का क्या होगा?
+वह पहले की तरह काम करती रहेगी।
+और श्रेणियाँ
+🚜 कृषि मशीनें और उपकरण
+👷 कृषि सहयोगी और मज़दूर
+🌾 भूसा, पराली और चारा
+🧪 बीज, खाद और दवा
+🚚 परिवहन और ढुलाई
+🧱 निर्माण सामग्री
+🌍 भूमि / रकबा — पट्टा और बटाई
+सभी श्रेणियाँ देखें →
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

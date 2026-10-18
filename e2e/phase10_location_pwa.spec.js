@@ -98,6 +98,9 @@ test.describe('Phase 5 — PWA install + offline', () => {
     await expect(page.getByTestId('pwa-install-banner')).toHaveCount(0)
     // Returning visit — reload bumps the visit counter to >=2.
     await page.reload()
+    // 10E Phase 6: wait until the app has counted this returning visit (its effect also attaches the
+    // beforeinstallprompt listener); dispatching earlier raced hydration (failed on the 10D build too).
+    await page.waitForFunction(() => Number(localStorage.getItem('ks_visit_count')) >= 2, null, { timeout: 10_000 })
     await page.evaluate(() => window.dispatchEvent(new Event('beforeinstallprompt')))
     await expect(page.getByTestId('pwa-install-banner')).toBeVisible({ timeout: 5000 })
     await ctx.close()

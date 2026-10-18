@@ -1,0 +1,5 @@
+autoplay run 1: hero true live after 65 ms, ticks 0→223 rot 0 personas rent longTasks 0 max 0 ms >300: 0
+autoplay run 2: hero true live after 65 ms, ticks 0→223 rot 0 personas rent longTasks 0 max 0 ms >300: 0
+autoplay run 3: hero true live after 54 ms, ticks 0→222 rot 0 personas rent longTasks 0 max 0 ms >300: 0
+median {"maxLongTaskMs":0,"longTasks":0,"liveWaitMs":65} worst {"maxLongTaskMs":0,"over300":0}
+wrote docs/review/batch10e/evidence/phase6/perf-p6-autoplay.json

@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase8.spec.js:12:1 › manifest is served and installable (30ms)
+  ok 2 [chromium] › e2e\phase8.spec.js:20:1 › service worker registers and controls the page (1.4s)
+[teardown] test data cleaned
+
+  2 passed (2.4s)

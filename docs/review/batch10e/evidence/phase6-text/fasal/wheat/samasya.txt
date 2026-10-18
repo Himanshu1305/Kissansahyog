@@ -1,0 +1,150 @@
+### HEAD
+title: गेहूं की आम समस्याएँ और समाधान
+description: गेहूं: इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+canonical: https://kissansahyog.com/fasal/wheat/samasya
+robots: 
+lang: hi
+h1: गेहूं की आम समस्याएँ और समाधान
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"गेहूं"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है?","url":"https://kissansahyog.com/sawaal/which-wheat-seed-variety-is-best-for-sagar-district"},{"@type":"ListItem","position":2,"name":"सागर में गेहूं की कौन-सी किस्म अच्छी है और कितनी सिंचाई चाहिए?","url":"https://kissansahyog.com/sawaal/gehun-kauna-kisma-saagara-achchhi-sinchaai-kitani"},{"@type":"ListItem","position":3,"name":"गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें?","url":"https://kissansahyog.com/sawaal/gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan"},{"@type":"ListItem","position":4,"name":"गेहूं में पीला रतुआ (येलो रस्ट) रोग का नियंत्रण कैसे करें?","url":"https://kissansahyog.com/sawaal/wheat-yellow-rust-control"},{"@type":"ListItem","position":5,"name":"गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें?","url":"https://kissansahyog.com/sawaal/wheat-loose-smut-control"},{"@type":"ListItem","position":6,"name":"गेहूं में गेहूंसा (फैलारिस माइनर/मंडूसी) खरपतवार को कैसे रोकें?","url":"https://kissansahyog.com/sawaal/wheat-phalaris-weed-control"},{"@type":"ListItem","position":7,"name":"मध्य प्रदेश के लिए गेहूं की कौन-सी किस्में अच्छी हैं?","url":"https://kissansahyog.com/sawaal/wheat-recommended-varieties-mp"},{"@type":"ListItem","position":8,"name":"गेहूं की बुवाई का सही समय क्या है?","url":"https://kissansahyog.com/sawaal/gehun-buwai-ka-sahi-samay-sagar"},{"@type":"ListItem","position":9,"name":"गेहूं में बीज दर कितनी रखें?","url":"https://kissansahyog.com/sawaal/gehun-beej-dar-kitni-rakhein"},{"@type":"ListItem","position":10,"name":"गेहूं में खाद (उर्वरक) कितनी डालें?","url":"https://kissansahyog.com/sawaal/gehun-khaad-urvarak-matra-mp"},{"@type":"ListItem","position":11,"name":"गेहूं में सिंचाई कब और कितनी बार करें?","url":"https://kissansahyog.com/sawaal/gehun-sinchai-kab-aur-kitni-bar"},{"@type":"ListItem","position":12,"name":"गेहूं का बीज उपचार बुवाई से पहले कैसे करें?","url":"https://kissansahyog.com/sawaal/gehun-beej-upchar-buwai-se-pehle"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+गेहूं
+गेहूं की आम समस्याएँ और समाधान
+इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+12
+किस्म
+❓
+सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है?
+मध्य प्रदेश के लिए लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम में पूसा तेजस (HI-8759) अच्छी है। अपने क्षेत्र और सिंचाई के अनुसार 2-3 किस्में चुनें।
+किस्म
+❓
+सागर में गेहूं की कौन-सी किस्म अच्छी है और कितनी सिंचाई चाहिए?
+सागर जैसे मध्य प्रदेश के इलाके के लिए लोक-1, GW-322, GW-366, GW-273 जैसी किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। सिंचाई फसल की क्रांतिक (नाज़ुक) अवस्थाओं पर करें — सही संख्या के लिए KVK सागर से पुष्टि करें।
+रोग
+❓
+गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्या करें?
+यह पीला रतुआ (येलो रस्ट) है। पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसी धारियाँ बनती हैं। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% छिड़कें। रोग-रोधी किस्म लगाएँ। हमेशा लेबल की मात्रा मानें।
+रोग
+❓
+गेहूं में पीला रतुआ (येलो रस्ट) रोग का नियंत्रण कैसे करें?
+पीला रतुआ पत्तियों पर पीली-नारंगी धारीदार पाउडर जैसा दिखता है। रोग दिखते ही प्रोपिकोनाज़ोल (टिल्ट) 25 EC @ 0.1% का छिड़काव करें। रोग-रोधी किस्म लगाएं। हमेशा लेबल की मात्रा मानें।
+रोग
+❓
+गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें?
+कंडवा में बालियों की जगह काला पाउडर बन जाता है। यह बीज से फैलता है, इसलिए बीज उपचार सबसे जरूरी है। बीज को कार्बेंडाज़िम (2.5 ग्राम/किग्रा) या टेबूकोनाज़ोल (रेक्सिल) से उपचारित करें। लेबल की मात्रा मानें।
+खरपतवार
+❓
+गेहूं में गेहूंसा (फैलारिस माइनर/मंडूसी) खरपतवार को कैसे रोकें?
+गेहूंसा (फैलारिस माइनर) गेहूं जैसा दिखने वाला मुख्य घास खरपतवार है। अगेती बुआई से इसका प्रकोप घटता है। बुआई के 0-3 दिन बाद पेंडीमेथालिन डालें। बाद में क्लोडिनाफॉप जैसे खरपतवारनाशी से नियंत्रण करें। लेबल की मात्रा मानें।
+किस्म
+❓
+मध्य प्रदेश के लिए गेहूं की कौन-सी किस्में अच्छी हैं?
+मध्य प्रदेश में लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती किस्म में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम गेहूं में पूसा तेजस (HI-8759) अच्छी है।
+बुआई
+❓
+गेहूं की बुवाई का सही समय क्या है?
+सिंचित गेहूं नवंबर के दूसरे पखवाड़े में बोएं। असिंचित खेत में मध्य अक्टूबर से नवंबर के पहले हफ़्ते तक, और अर्धसिंचित में नवंबर के पहले पखवाड़े में बोएं। देर से बुवाई दिसंबर के दूसरे हफ़्ते तक करें।
+बुआई
+❓
+गेहूं में बीज दर कितनी रखें?
+सामान्य तौर पर गेहूं में औसतन 100 किलो बीज प्रति हेक्टेयर रखें। अच्छे अंकुरण के लिए बीज उपचार करके ही बोएं।
+पोषक तत्व
+❓
+गेहूं में खाद (उर्वरक) कितनी डालें?
+पानी की सुविधा से मात्रा तय होती है (नत्रजन-स्फुर-पोटाश किलो/हेक्टेयर)। सिंचित खेत में 120-60-30, अर्धसिंचित में 60-30-15, असिंचित में 40-20-0, और देर से बुवाई में 80-40-20 डालें।
+सिंचाई
+❓
+गेहूं में सिंचाई कब और कितनी बार करें?
+गेहूं में 3 से 4 सिंचाई पर्याप्त हैं। क्रांतिक अवस्थाओं पर पानी दें — किरीट (क्राउन रूट), कल्ले निकलना, फूल आना और दूधिया अवस्था। इन अवस्थाओं पर पानी की कमी से पैदावार घटती है।
+रोग
+❓
+गेहूं का बीज उपचार बुवाई से पहले कैसे करें?
+बीज उपचार से कंडवा जैसे बीज-जनित रोग रुकते हैं। कार्बाक्सिन 75% WP या कार्बेन्डाजिम 50% WP को 2.5-3.0 ग्राम प्रति किलो बीज की दर से लगाएं; या टेबूकोनाजोल 1 ग्राम प्रति किलो बीज। लेबल पर लिखी मात्रा ही उपयोग करें।
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

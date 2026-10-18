@@ -1,0 +1,188 @@
+### HEAD
+title: फोटो श्रेय — किसान सहयोग
+description: वेबसाइट पर उपयोग की गई तस्वीरों के स्रोत और श्रेय।
+canonical: https://kissansahyog.com/credits
+robots: 
+lang: hi
+h1: फोटो श्रेय
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+फोटो श्रेय
+इस पेज पर उपयोग की गई तस्वीरें और उनके स्रोत।
+hero-farmer.jpg
+Indian farmer (woman) working in a lush green wheat field, upper body and face visible, warm light
+EqualStock IN · Pexels License (free to use, no attribution required) ·
+source
+cat-machines.jpg
+Indian farmers on a red tractor in a rural field
+EqualStock IN · Pexels License (free to use, no attribution required) ·
+source
+cat-labour.jpg
+Indian workers harvesting by hand in a sunlit field
+anjan ghosh · Pexels License (free to use, no attribution required) ·
+source
+cat-drone.jpg
+Agricultural drone spraying a crop field
+Magda Ehlers · Pexels License (free to use, no attribution required) ·
+source
+cat-straw.jpg
+Straw/hay bales in a harvested wheat field
+Pixabay · Pexels License (free to use, no attribution required) ·
+source
+cat-inputs.jpg
+Stacked burlap sacks of grain in a warehouse
+Eyupcan Timur · Pexels License (free to use, no attribution required) ·
+source
+cat-godown.jpg
+Grain warehouse interior in India with workers
+Dptc India · Pexels License (free to use, no attribution required) ·
+source
+cat-expert.jpg
+Indian farmer standing amid lush green paddy crops, inspecting the field (Bolpur, India)
+Pexels contributor · Pexels License (free to use, no attribution required) ·
+source
+cat-land.jpg
+Expansive flat green rice/paddy farmland plot
+Pexels contributor · Pexels License (free to use, no attribution required) ·
+source
+list-harvester.jpg
+Combine harvester in a golden wheat field
+Wolfgang Weiser · Pexels License (free to use, no attribution required) ·
+source
+list-tractor.jpg
+Indian women farmers beside a blue tractor
+EqualStock IN · Pexels License (free to use, no attribution required) ·
+source
+list-drone.jpg
+Agricultural drone spraying a green crop field
+Magda Ehlers · Pexels License (free to use, no attribution required) ·
+source
+list-straw.jpg
+Baled straw in a golden wheat field
+Christina & Peter · Pexels License (free to use, no attribution required) ·
+source
+list-workers.jpg
+South-Asian farm workers harvesting by hand
+Tamhasip Khan · Pexels License (free to use, no attribution required) ·
+source
+list-godown.jpg
+Worker with a sack in a warehouse of stacked grain sacks
+Jubair Hosen Junet · Pexels License (free to use, no attribution required) ·
+source
+list-land.jpg
+Flat open farmland fields under a blue sky
+Tom Fisk · Pexels License (free to use, no attribution required) ·
+source
+list-shop.jpg
+Traditional Indian provision storefront with grain sacks
+Paolosbg Vattelapesca · Pexels License (free to use, no attribution required) ·
+source
+list-thresher.jpg
+Farmer feeding wheat sheaves into an orange wheat thresher machine in a field
+Pexels contributor · Pexels License (free to use, no attribution required) ·
+source
+video-1.jpg
+Thumbnail — सोयाबीन में पीले मोज़ेक रोग का प्रबंधन (ICAR National Soybean Research Institute, Indore)
+NATIONAL SOYBEAN RESEARCH INSTITUTE, INDORE · YouTube thumbnail (video ID 2fOVTX4mDZ8) ·
+source
+video-2.jpg
+Thumbnail — गेहूं की खेती कैसे करें, बुवाई से कटाई तक (Annadata, News18)
+News18 Bihar Jharkhand · YouTube thumbnail (video ID KI-K1O59mDo) ·
+source
+video-3.jpg
+Thumbnail — किसान ड्रोन की पूरी जानकारी, स्प्रे ड्रोन (Hindi)
+omprakash ausar · YouTube thumbnail (video ID O0PMu9lfboY) ·
+source
+cat-rotavator.jpg
+Captain Tractors · Not stated on source page
+cat-seeds.jpg
+Not stated on source page · Not stated on source page
+cat-building-materials.jpg
+Selva Madera · Not stated on source page
+cat-greenhouse.jpg
+ABP Live · Not stated on source page
+cat-jugaad.jpg
+Vikas Choudhary / Down To Earth · Not stated on source page
+cat-tanker.jpg
+Times of India · Not stated on source page
+cat-transport.jpg
+Map and Magnets · Not stated on source page
+cat-carbon.jpg
+PlantNative · Not stated on source page
+cat-cold-storage.jpg
+NWCC India · Not stated on source page
+agroforestry-turmeric.jpg
+Agroforestry / intercropping — young trees interplanted with turmeric and other crops in a forest plantation (NTFP Division), India
+Arun4202 · CC BY-SA 3.0 ·
+source
+horticulture-orchard.jpg
+Horticulture — rows of young fruit/coconut saplings with tree guards in an established orchard, Bollaram, Secunderabad, India
+Adbh266 · CC BY-SA 3.0 ·
+source
+← पीछे
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

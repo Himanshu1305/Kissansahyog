@@ -1,0 +1,132 @@
+### HEAD
+title: प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करे
+description: रबी में थ्रिप्स का प्रकोप बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाता है। उठी क्यारी व अच्छी निकासी रखें। फव्वारा सिंचाई से बचें। रोग दिखते ही मैंकोजेब 0.
+canonical: https://kissansahyog.com/sawaal/onion-purple-blotch
+robots: 
+lang: hi
+h1: प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"प्याज़","item":"https://kissansahyog.com/fasal/onion/samasya"},{"@type":"ListItem","position":4,"name":"प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"QAPage","mainEntity":{"@type":"Question","name":"प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें?","acceptedAnswer":{"@type":"Answer","text":"रबी में थ्रिप्स का प्रकोप बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाता है। उठी क्यारी व अच्छी निकासी रखें। फव्वारा सिंचाई से बचें। रोग दिखते ही मैंकोजेब 0.25% या हेक्साकोनाजोल 0.1% जैसे फफूंदनाशक 10-15 दिन अंतराल पर छिड़कें।"}}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+प्याज़
+/
+प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग
+प्याज़
+रोग
+प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें?
+संक्षेप में
+रबी में थ्रिप्स का प्रकोप बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाता है। उठी क्यारी व अच्छी निकासी रखें। फव्वारा सिंचाई से बचें। रोग दिखते ही मैंकोजेब 0.25% या हेक्साकोनाजोल 0.1% जैसे फफूंदनाशक 10-15 दिन अंतराल पर छिड़कें।
+स्रोत के अनुसार "in rabi season, a high incidence of thrips aggravates the problem of purple blotch and Stemphylium blight" — रबी में थ्रिप्स बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाते हैं।
+[1]
+क्या करें
+सांस्कृतिक: खेत की सफाई। गैर-पोषक फसलों से फसल-चक्र। अच्छी निकासी वाली उठी क्यारी। फव्वारा सिंचाई से बचें। रोगरहित बीज बोएँ।
+[1]
+जैविक/बीज उपचार: बीज को थायरम/कैप्टान/मैंकोजेब @ 3 ग्राम/किग्रा से उपचारित करें। 250 किग्रा गोबर खाद में Trichoderma spp. @ 5 किग्रा/हेक्टेयर मिलाकर मिट्टी में डालें।
+[1]
+रासायनिक: रोपाई के 30 दिन बाद या रोग दिखते ही मैंकोजेब @ 0.25% / ट्राइसाइक्लाजोल @ 0.1% / हेक्साकोनाजोल @ 0.1% / प्रोपिकोनाजोल @ 0.1% को 10-15 दिन अंतराल पर छिड़कें। लेबल पर लिखी मात्रा ही उपयोग करें।
+[1]
+रोकथाम
+थ्रिप्स को काबू में रखें, क्योंकि थ्रिप्स का घाव इस रोग को तेज़ी से फैलाता है।
+[1]
+स्रोत
+[1]
+Good Agricultural Practices in Onion and Garlic Production
+सरकारी स्रोत
+— ICAR - Directorate of Onion and Garlic Research (DOGR), Pune & National Institute of Agricultural Extension Management (MANAGE), Hyderabad, 2022
+KVK सागर या कृषि कार्यालय से कब संपर्क करें
+अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।
+उपयोगी संपर्क →
+WhatsApp पर शेयर करें
+इनसे जुड़े सवाल
+❓
+रबी प्याज का भंडारण कैसे करें ताकि नुकसान कम हो?
+❓
+प्याज में थ्रिप्स (रस चूसक कीट) का नियंत्रण कैसे करें?
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

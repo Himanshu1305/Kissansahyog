@@ -1,0 +1,101 @@
+== <head> link/script tags, hashes normalised: baseline vs phase6
+15,40c15,40
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/Homepage-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/icons-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/useLoopActive-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/FieldScene-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/melaApi-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/communityApi-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/mandiApi-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/weatherApi-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/weatherApiV2-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/kit-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/shared-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/LocationControl-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/articlesApi-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/shareMessages-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/catalog-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/registry-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/listingsApi-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/photos-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/OfflineStamp-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/crops-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/founder-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/mspApi-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/AvailabilityNudge-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/videosApi-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/melaFormat-HASH.js">
+< <link rel="modulepreload" as="script" crossorigin="" href="http://localhost:4178/assets/months-HASH.js">
+---
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/Homepage-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/icons-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/useLoopActive-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/FieldScene-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/melaApi-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/months-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/communityApi-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/mandiApi-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/weatherApi-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/weatherApiV2-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/kit-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/shared-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/LocationControl-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/articlesApi-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/shareMessages-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/catalog-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/registry-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/mspWindow-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/listingsApi-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/photos-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/OfflineStamp-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/crops-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/founder-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/mspApi-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/AvailabilityNudge-HASH.js">
+> <link rel="modulepreload" as="script" crossorigin="" href="/assets/videosApi-HASH.js">
+
+baseline tags: 44, phase6 tags: 44
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<script type="module" crossorigin="" src="/assets/index-HASH.js">
+<link rel="modulepreload" crossorigin="" href="/assets/rolldown-runtime-HASH.js">
+<link rel="modulepreload" crossorigin="" href="/assets/react-vendor-HASH.js">
+<link rel="modulepreload" crossorigin="" href="/assets/LanguageProvider-HASH.js">
+<link rel="modulepreload" crossorigin="" href="/assets/useNativeBack-HASH.js">
+<link rel="modulepreload" crossorigin="" href="/assets/supabase-HASH.js">
+<link rel="modulepreload" crossorigin="" href="/assets/PageShell-HASH.js">
+<link rel="modulepreload" crossorigin="" href="/assets/device-HASH.js">
+<link rel="stylesheet" crossorigin="" href="/assets/index-HASH.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/Homepage-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/icons-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/useLoopActive-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/FieldScene-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/melaApi-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/months-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/communityApi-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/mandiApi-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/weatherApi-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/weatherApiV2-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/kit-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/shared-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/LocationControl-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/articlesApi-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/shareMessages-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/catalog-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/registry-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/mspWindow-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/listingsApi-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/photos-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/OfflineStamp-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/crops-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/founder-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/mspApi-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/AvailabilityNudge-HASH.js">
+<link rel="modulepreload" as="script" crossorigin="" href="/assets/videosApi-HASH.js">
+<link rel="canonical" href="https://kissansahyog.com">
+<link rel="alternate" hreflang="hi-IN" href="https://kissansahyog.com">
+<link rel="alternate" hreflang="en-IN" href="https://kissansahyog.com">
+<link rel="alternate" hreflang="x-default" href="https://kissansahyog.com">

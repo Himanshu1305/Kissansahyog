@@ -1,0 +1,147 @@
+### HEAD
+title: सरसों की फसल में माहू (चेंपा) टहनियों पर लग गया है, क्या करे
+description: यह माहू (सरसों का एफिड) है। निम्फ और वयस्क पत्तियों, कलियों और फलियों का रस चूसते हैं, जिससे पत्तियाँ मुड़ जाती हैं। पीला चिपचिपा जाल लगाएँ और परभक्षी कीटो
+canonical: https://kissansahyog.com/sawaal/sarason-phasala-maahu-chenpaa-laga-gayaa-tahaniyon
+robots: 
+lang: hi
+h1: सरसों की फसल में माहू (चेंपा) टहनियों पर लग गया है, क्या करें?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"सरसों","item":"https://kissansahyog.com/fasal/mustard/samasya"},{"@type":"ListItem","position":4,"name":"सरसों की फसल में माहू (चेंपा) टहनियों पर"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"QAPage","mainEntity":{"@type":"Question","name":"सरसों की फसल में माहू (चेंपा) टहनियों पर लग गया है, क्या करें?","acceptedAnswer":{"@type":"Answer","text":"यह माहू (सरसों का एफिड) है। निम्फ और वयस्क पत्तियों, कलियों और फलियों का रस चूसते हैं, जिससे पत्तियाँ मुड़ जाती हैं। पीला चिपचिपा जाल लगाएँ और परभक्षी कीटों (लेडीबर्ड) को बचाएँ। फूल अवस्था में ऑक्सीडेमेटन-मिथाइल या डाइमिथोएट लेबल के अनुसार छिड़कें।"}}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+सरसों
+/
+सरसों की फसल में माहू (चेंपा) टहनियों पर
+सरसों
+कीट
+सरसों की फसल में माहू (चेंपा) टहनियों पर लग गया है, क्या करें?
+संक्षेप में
+यह माहू (सरसों का एफिड) है। निम्फ और वयस्क पत्तियों, कलियों और फलियों का रस चूसते हैं, जिससे पत्तियाँ मुड़ जाती हैं। पीला चिपचिपा जाल लगाएँ और परभक्षी कीटों (लेडीबर्ड) को बचाएँ। फूल अवस्था में ऑक्सीडेमेटन-मिथाइल या डाइमिथोएट लेबल के अनुसार छिड़कें।
+सरसों में माहू (चेंपा) एक बड़ा कीट है। स्रोत के अनुसार "Both nymphs and adults suck the sap from leaves, buds and pods" — निम्फ और वयस्क दोनों पत्तियों, कलियों और फलियों का रस चूसते हैं।
+[1]
+पहचान
+ग्रसित पत्तियाँ मुड़ जाती हैं और तेज़ प्रकोप में पौधा मुरझाकर सूख सकता है।
+[1]
+टहनियों और फलियों पर हरे-भूरे छोटे कीटों के झुंड दिखते हैं।
+[1]
+क्या करें
+सांस्कृतिक: सहनशील किस्में (जैसे JM-1, RK-9501) लगाएँ; 20 अक्टूबर से पहले बोई फसल नुकसान से बच जाती है।
+[1]
+यांत्रिक/जैविक: निगरानी के लिए पीला चिपचिपा जाल लगाएँ; लेडीबर्ड भृंग जैसे परभक्षी कीटों को बचाएँ, जो माहू खाते हैं।
+[1]
+रासायनिक: फूल अवस्था में ऑक्सीडेमेटन-मिथाइल या डाइमिथोएट @ 625-1000 मिली प्रति हेक्टेयर छिड़कें — लेबल पर लिखी मात्रा और केवल मंज़ूर कीटनाशक ही उपयोग करें।
+[1]
+रोकथाम
+समय पर (20 अक्टूबर से पहले) बुवाई करें और शुरुआती प्रकोप में ग्रसित भाग हटा दें।
+[1]
+KVK सागर को कब फ़ोन करें
+प्रकोप तेज़ हो या सही दवा-मात्रा में शक हो, तो KVK सागर से पूछें।
+स्रोत
+[1]
+Crop Protection :: Pest :: Mustard (mustard aphid)
+अन्य स्रोत
+— TNAU Agritech Portal, Tamil Nadu Agricultural University
+KVK सागर या कृषि कार्यालय से कब संपर्क करें
+अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।
+उपयोगी संपर्क →
+WhatsApp पर शेयर करें
+इनसे जुड़े सवाल
+❓
+सरसों की बुवाई का सही समय क्या है?
+❓
+मध्य प्रदेश के लिए सरसों की उन्नत किस्में कौन-सी हैं?
+❓
+सरसों में बीज दर कितनी रखें?
+❓
+सरसों का बीज उपचार कैसे करें (सफेद रतुआ, तना गलन)?
+❓
+सरसों में सिंचाई कब करें?
+❓
+सरसों में खाद (उर्वरक) कितनी डालें?
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन
