@@ -1,0 +1,42 @@
+# STAGING (wzxtqbqlahyahsnoqqva) mandi_prices — read-only — 2026-10-18T16:28:49.818Z
+
+## where in_sagar_division
+commodity_en | days | min_date | max_date | rows
+Garlic | 87 | 2026-06-20 | 2026-10-17 | 123
+Gram | 108 | 2026-06-20 | 2026-10-17 | 1304
+Lentil | 98 | 2026-06-20 | 2026-10-17 | 729
+Maize | 64 | 2026-06-20 | 2026-10-17 | 116
+Moong | 96 | 2026-06-20 | 2026-10-17 | 617
+Mustard | 110 | 2026-06-20 | 2026-10-17 | 1130
+Paddy(Dhan)(Common) | 47 | 2026-06-22 | 2026-10-17 | 52
+Soyabean | 108 | 2026-06-20 | 2026-10-17 | 1036
+Urad | 96 | 2026-06-20 | 2026-10-17 | 569
+Wheat | 119 | 2026-06-20 | 2026-10-17 | 2970
+
+## all rows
+commodity_en | days | min_date | max_date | rows
+Garlic | 95 | 2026-06-20 | 2026-10-18 | 150
+Gram | 108 | 2026-06-20 | 2026-10-17 | 1307
+Lentil | 98 | 2026-06-20 | 2026-10-17 | 730
+Maize | 65 | 2026-06-20 | 2026-10-18 | 127
+Moong | 96 | 2026-06-20 | 2026-10-17 | 618
+Mustard | 111 | 2026-06-20 | 2026-10-18 | 1139
+Paddy(Dhan)(Common) | 48 | 2026-06-22 | 2026-10-17 | 54
+Soyabean | 109 | 2026-06-20 | 2026-10-18 | 1043
+Urad | 96 | 2026-06-20 | 2026-10-17 | 570
+Wheat | 120 | 2026-06-20 | 2026-10-18 | 2977
+
+## distinct days in the last 90 / 30 / 7 days (in_sagar_division; current_date on the DB)
+commodity_en | days_90 | days_30 | days_7
+Garlic | 65 | 21 | 5
+Gram | 78 | 26 | 6
+Lentil | 71 | 23 | 6
+Maize | 48 | 26 | 6
+Moong | 70 | 23 | 6
+Mustard | 80 | 28 | 6
+Paddy(Dhan)(Common) | 34 | 9 | 4
+Soyabean | 78 | 28 | 6
+Urad | 71 | 25 | 6
+Wheat | 88 | 29 | 6
+
+TOTAL rows=8715 distinct_days=121

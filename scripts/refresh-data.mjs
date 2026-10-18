@@ -14,6 +14,7 @@
 // needs no secret (the data.gov.in sample key is used when no real key is set) and skips weather.
 
 import { createClient } from '@supabase/supabase-js'
+import { matchCommodity } from './lib/mandi-commodity.mjs'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -60,17 +61,8 @@ async function fetchFromWrapper(commodity) {
 // names (e.g. "Bengal Gram(Gram)(Whole)", "Green Gram (Moong)(Whole)"), and a
 // filters[Commodity]=Gram query returns nothing. So instead of filtering by exact
 // name we fetch the Sagar pool once (real key → limit=1000) and match by token.
-const OFFICIAL_TOKENS = {
-  Wheat: ['wheat'], Soyabean: ['soyabean', 'soybean', 'soya bean'], Gram: ['gram'],
-  Lentil: ['lentil', 'masur'], Moong: ['moong', 'green gram'], Urad: ['urad', 'black gram'],
-  'Paddy(Dhan)(Common)': ['paddy', 'dhan'], Maize: ['maize'], Mustard: ['mustard', 'sarson'],
-  Garlic: ['garlic'],
-}
-function matchCommodity(name, api) {
-  const n = String(name || '').toLowerCase()
-  if (api === 'Gram') return n.includes('gram') && !n.includes('green') && !n.includes('black') // Bengal/Chana only
-  return (OFFICIAL_TOKENS[api] || [api.toLowerCase()]).some((tok) => n.includes(tok))
-}
+// Batch 10E: matchCommodity lives in scripts/lib/mandi-commodity.mjs (unit-tested); Gram no
+// longer matches "Red gram/Arhar/Tur(whole)".
 
 // This resource's filter field names/format have varied (lowercase vs capitalised,
 // plain vs .keyword). Rather than hard-code one, try candidate forms and use the

@@ -206,7 +206,7 @@ export function DailyUpdateSignup({ sourcePage, heading }) {
 // Line chart of a price series with an optional MSP reference line. Renders per-day
 // dot markers (native title tooltip) and shades the band between the price line and
 // the MSP line green (above MSP) / amber (below MSP) via clip rects.
-export function TrendChart({ series, mspValue, ariaLabel }) {
+export function TrendChart({ series, mspValue, ariaLabel, startLabel, endLabel }) {
   const { t } = useLang()
   if (!series?.length) return <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
   const W = 640, H = 200, PL = 44, PR = 14, PT = 14, PB = 24
@@ -250,6 +250,14 @@ export function TrendChart({ series, mspValue, ariaLabel }) {
           </circle>
         ))}
       </svg>
+      {/* Batch 10E — first and last date under the x-axis ends (HTML, so it stays readable when
+          the chart is scaled down on a phone). Insets match the plot area (PL/PR of the viewBox). */}
+      {(startLabel || endLabel) && (
+        <div data-trend-axis className="flex justify-between text-[12px] font-semibold" style={{ color: 'var(--ks-ink-3)', paddingLeft: `${(PL / W) * 100}%`, paddingRight: `${(PR / W) * 100}%` }}>
+          <span>{startLabel}</span>
+          {endLabel && endLabel !== startLabel && <span>{endLabel}</span>}
+        </div>
+      )}
       <table className="sr-only">
         <caption>{ariaLabel}</caption>
         <thead><tr><th>{t('col_date')}</th><th>₹</th></tr></thead>

@@ -1,0 +1,144 @@
+### HEAD
+title: अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्
+description: कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ह
+canonical: https://kissansahyog.com/sawaal/agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri
+robots: 
+lang: hi
+h1: अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"सोयाबीन","item":"https://kissansahyog.com/fasal/soybean/samasya"},{"@type":"ListItem","position":4,"name":"अगले तीन-चार दिन बारिश की संभावना है, मे"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"QAPage","mainEntity":{"@type":"Question","name":"अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ?","acceptedAnswer":{"@type":"Answer","text":"कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ही थ्रेशिंग करें — फलियाँ पीली-सूखी होने पर काटें।"}}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+सोयाबीन
+/
+अगले तीन-चार दिन बारिश की संभावना है, मे
+सोयाबीन
+मौसम
+अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्या करूँ?
+संक्षेप में
+कटी सोयाबीन को बारिश से बचाना ज़रूरी है, वरना दाना काला पड़ सकता है और अंकुरण बिगड़ता है। फसल को तिरपाल से ढककर ऊँची, सूखी जगह रखें। दाना ठीक से सूखने पर ही थ्रेशिंग करें — फलियाँ पीली-सूखी होने पर काटें।
+कटी-रखी सोयाबीन पर बारिश पड़ने से दाना गीला होकर काला पड़ सकता है और गुणवत्ता घट जाती है। इसलिए फसल को सूखी और सुरक्षित जगह रखना ज़रूरी है।
+पहचान — कटाई का सही समय
+जब ज़्यादातर फलियाँ पीली-सूखी हों और पत्तियाँ गिरने लगें, तब फसल कटाई के लिए तैयार है।
+[1]
+क्या करें
+कटी फसल को तिरपाल/पॉलिथीन से ढककर ऊँची, सूखी जगह पर रखें, ताकि बारिश का पानी न लगे।
+दाना ठीक से सूखने पर ही थ्रेशिंग करें; जब ज़्यादातर फलियाँ पीली पड़ जाएँ तब पूरा पौधा काटें, सुखाएँ और थ्रेशिंग करें।
+[2]
+रोकथाम
+मौसम की जानकारी देखकर कटाई का दिन तय करें; बारिश के ठीक पहले बड़ी कटाई से बचें।
+KVK सागर को कब फ़ोन करें
+भंडारण या थ्रेशिंग के लिए सही नमी पर सलाह चाहिए, तो KVK सागर से पूछें।
+स्रोत
+[1]
+Soybean (Pests, Diseases and Sowing)
+कंपनी का दावा
+— Apni Kheti, n.d.
+[2]
+Soybean (Crop Production)
+सरकारी स्रोत
+— TNAU Agritech Portal, Tamil Nadu Agricultural University, n.d.
+KVK सागर या कृषि कार्यालय से कब संपर्क करें
+अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।
+उपयोगी संपर्क →
+WhatsApp पर शेयर करें
+इनसे जुड़े सवाल
+❓
+सोयाबीन के पत्ते पीले क्यों हो रहे हैं और क्या करें?
+❓
+सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण कैसे करें?
+❓
+मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?
+❓
+सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें?
+❓
+सोयाबीन की बुवाई सीड ड्रिल से सही है या हाथ से छिटककर?
+❓
+पड़ोस के खेतों में सोयाबीन पीली पड़ रही है — यह क्या है?
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

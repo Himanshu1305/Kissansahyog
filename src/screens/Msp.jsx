@@ -9,8 +9,9 @@ import BackButton from '../components/BackButton'
 import { Spinner } from '../components/ui'
 import { CROPS, cropBySlug, cropName, defaultCropSlug } from '../content/crops'
 import { MONTHS_HI } from '../content/months'
-import { fetchMandiForCrop, fetchMandiHistory, fetchMandiMonthly, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
+import { fetchMandiForCrop, fetchMandiHistoryScoped, fetchMandiMonthly, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
 import { marketDistanceKm } from '../content/mandiCoords'
+import { windowInfo, formatDay } from '../lib/mandi/mspWindow'
 import { fetchMsp } from '../lib/msp/mspApi'
 import { fetchHomeFeed } from '../lib/listings/listingsApi'
 import { useUserLocation } from '../lib/location/LocationProvider'
@@ -53,7 +54,7 @@ export default function Msp() {
   const [today, setToday] = useState(undefined) // { rows, date }
   const mandiOffline = useOfflineInfo(MANDI_RES)
   const [mspRow, setMspRow] = useState(null)
-  const [history, setHistory] = useState([])
+  const [trend90, setTrend90] = useState(null) // { series (90 days, ascending), scope } — 7/30 are slices of it
   const [monthly, setMonthly] = useState([])
   const [faqs, setFaqs] = useState([])
   const [procurement, setProcurement] = useState([])
@@ -85,11 +86,22 @@ export default function Msp() {
     return () => { alive = false }
   }, [slug])
 
+  // Batch 10E — one 90-day read per crop; the 7- and 30-day tabs are slices of it, so every
+  // tab can show the real date range it covers before it is opened.
   useEffect(() => {
     let alive = true
-    fetchMandiHistory(crop.mandi_en, trendDays).then((r) => alive && setHistory(r)).catch(() => {})
+    setTrend90(null)
+    fetchMandiHistoryScoped(crop.mandi_en, 90).then((r) => alive && setTrend90(r)).catch(() => alive && setTrend90({ series: [], scope: 'division' }))
     return () => { alive = false }
-  }, [slug, trendDays])
+  }, [slug])
+  const trendWins = useMemo(() => {
+    if (!trend90) return null
+    const out = {}
+    for (const d of [7, 30, 90]) out[d] = windowInfo(trend90.series, d, lang)
+    return out
+  }, [trend90, lang])
+  const win = trendWins ? trendWins[trendDays] : null
+  const history = win ? win.series : []
 
   // Mandi-name list for the search box (Phase 3b) — from DISTINCT market.
   useEffect(() => { fetchMandiMarkets().then(setMarkets).catch(() => setMarkets([])) }, [])
@@ -166,8 +178,8 @@ export default function Msp() {
     if (history.length < 2) return null
     const diff = history[history.length - 1].price - history[0].price
     const key = diff >= 0 ? 'msp_trend_up' : 'msp_trend_down'
-    return t(key).replace('{n}', rs(Math.abs(diff))).replace('{d}', trendDays)
-  }, [history, trendDays, t])
+    return t(key).replace('{n}', rs(Math.abs(diff))).replace('{d}', trendDays).replace('{range}', win.range)
+  }, [history, win, trendDays, t])
 
   // wait-vs-sell maths. diff = today's price − MSP (positive = above MSP).
   const diff = msp && medianToday != null ? medianToday - msp : null
@@ -347,20 +359,25 @@ export default function Msp() {
 
         {/* 4. trend chart */}
         {view === 'crop' && crop.msp_en && (
-          <section>
-            <div className="mb-2 flex items-center justify-between gap-2">
-              <H2>{t('msp_trend_h')}</H2>
-              <div className="flex gap-1">{[7, 30, 90].map((d) => <button key={d} type="button" onClick={() => setTrendDays(d)} className="rounded px-2 py-1 text-[13px] font-bold" style={trendDays === d ? { background: 'var(--ks-green)', color: '#fff' } : { background: 'var(--ks-bg-soft)', color: 'var(--ks-ink-2)' }}>{d}{t('days_short')}</button>)}</div>
-            </div>
+          <section data-testid="msp-trend">
+            <H2>{t('msp_trend_h')}</H2>
+            {/* Batch 10E — two-part tabs: "30 दिन" + the real date range of the prices in that window. */}
+            <div className="mb-3 grid grid-cols-3 gap-1.5 sm:max-w-[480px]" role="group" aria-label={t('msp_trend_h')}>{[7, 30, 90].map((d) => { const w = trendWins?.[d]; const on = trendDays === d; return (
+              <button key={d} type="button" data-trend-tab={d} aria-pressed={on} onClick={() => setTrendDays(d)} className="flex min-h-[44px] min-w-0 flex-col items-center justify-center rounded-lg px-1 py-1 text-center leading-tight" style={on ? { background: 'var(--ks-green)', color: '#fff' } : { background: 'var(--ks-bg-soft)', color: 'var(--ks-ink-2)' }}>
+                <span className="text-[14px] font-bold">{t('msp_tab_days').replace('{d}', d)}</span>
+                <span data-trend-range className="text-[12px] font-semibold" style={{ opacity: 0.9 }}>{w ? (w.n ? w.range : t('msp_tab_nodata')) : ' '}</span>
+              </button>) })}</div>
             {/* takeaway ABOVE the chart (3e) */}
             {trendSentence && <p className="mb-2 text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>{trendSentence}</p>}
-            <TrendChart series={history} mspValue={msp} ariaLabel={`${cropName(crop, lang)} ${t('msp_trend_h')}`} />
+            <TrendChart series={history} mspValue={msp} ariaLabel={`${cropName(crop, lang)} ${t('msp_trend_h')}`} startLabel={win?.first ? formatDay(win.first, lang) : null} endLabel={win?.last ? formatDay(win.last, lang) : null} />
             {/* summary block BELOW with clearance so nothing overlaps the axis labels (3b) */}
             <div className="mt-4 space-y-1">
               {trendSentence && <p className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{trendSentence}</p>}
-              {history.length > 0 && history.length < trendDays && (
-                <p className="text-[13px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_only_ndays').replace('{n}', history.length)}</p>
+              {win && win.n > 0 && win.thin && (
+                <p data-trend-note className="text-[13px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_only_ndays').replace('{n}', win.n)}</p>
               )}
+              {win && win.startsLate && <p data-trend-since className="text-[13px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_data_since').replace('{date}', formatDay(win.first, lang))}</p>}
+              {trend90?.scope === 'all' && history.length > 0 && <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_trend_scope_all')}</p>}
               {history.length > 0 && <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('data_from')} {history[0].date}</p>}
             </div>
           </section>

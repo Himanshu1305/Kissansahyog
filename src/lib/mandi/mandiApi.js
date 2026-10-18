@@ -11,6 +11,7 @@
 // ───────────────────────────────────────────────────────────────────────────────
 import { supabase } from '../supabaseClient'
 import { isNative } from '../native'
+import { fetchAllPages, medianByDate } from './history'
 
 // Batch 8B (app only) — the price date last shown, kept on the phone. Offline on a later day the
 // "today" and "latest date" questions cannot be answered, but this date points at rows the
@@ -130,22 +131,34 @@ export async function fetchMandiForCrop(commodityEn) {
   return { rows: rows.filter((r) => (seen.has(r.market) ? false : seen.add(r.market))), date }
 }
 
-// Daily district modal price (median across mandis per date) over the last N days,
-// for the trend chart. Returns [{date, price}] ascending; may be short if history is thin.
-export async function fetchMandiHistory(commodityEn, days = 90) {
+// Daily modal price (median across mandis per date) over the last N days, for the trend chart.
+// Returns { series: [{date, price}] ascending (may be short if history is thin), scope }.
+// Batch 10E: (1) paged newest-first (src/lib/mandi/history.js) — PostgREST returns at most
+// max_rows (1,000) per request, which used to cut the 90-day window to its oldest 1,000 rows;
+// (2) Sagar Division mandis only, like the page says ("सागर संभाग") and like today's table.
+// Only when the window has NO division row at all does it fall back to all stored rows,
+// and then scope = 'all' so the page can say so (the refresh writes MP rows as a fallback).
+export async function fetchMandiHistoryScoped(commodityEn, days = 90) {
   const from = isoDay(-days)
-  const { data, error } = await supabase
-    .from('mandi_prices')
-    .select('modal_price,price_date')
-    .eq('commodity_en', commodityEn)
-    .gte('price_date', from)
-    .order('price_date', { ascending: true })
-    .limit(5000)
-  if (error || !data) return []
-  const byDate = {}
-  for (const r of data) { if (r.modal_price == null) continue; (byDate[r.price_date] ||= []).push(Number(r.modal_price)) }
-  const median = (a) => { const s = [...a].sort((x, y) => x - y); const m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : Math.round((s[m - 1] + s[m]) / 2) }
-  return Object.entries(byDate).map(([date, arr]) => ({ date, price: median(arr) })).sort((a, b) => (a.date < b.date ? -1 : 1))
+  const read = (col) => fetchAllPages((a, b) => {
+    let q = supabase
+      .from('mandi_prices')
+      .select('modal_price,price_date')
+      .eq('commodity_en', commodityEn)
+      .gte('price_date', from)
+    if (col) q = q.eq(col, true)
+    return q.order('price_date', { ascending: false }).order('market', { ascending: true }).range(a, b)
+  })
+  const local = await withLocalFlag((col) => read(col))
+  if (local.error) return { series: [], scope: 'division' }
+  if (local.data.length) return { series: medianByDate(local.data), scope: 'division' }
+  const all = await read(null)
+  if (all.error || !all.data.length) return { series: [], scope: 'division' }
+  return { series: medianByDate(all.data), scope: 'all' }
+}
+
+export async function fetchMandiHistory(commodityEn, days = 90) {
+  return (await fetchMandiHistoryScoped(commodityEn, days)).series
 }
 
 // Full available history for the "past years by month" chart (up to ~3 years).
@@ -156,16 +169,36 @@ export async function fetchMandiMonthly(commodityEn) {
 
 // Phase 3b — the list of valid mandi names, sourced from the DISTINCT markets that
 // actually have price rows (not a gazetteer, not a hardcoded list). Cached per session.
+// Batch 10E: one read shared by both lists below, paged (src/lib/mandi/history.js). A single
+// request stops at PostgREST max_rows (1,000): after the backfill that was 7 of 57 markets,
+// alphabetically. Newest rows first and only the last MARKET_DAYS days, so the page cap can
+// only ever drop old rows, never a market that still reports.
+const MARKET_DAYS = 120
+let marketRowsPromise = null
+function marketRows() {
+  if (!marketRowsPromise) {
+    const from = isoDay(-MARKET_DAYS)
+    marketRowsPromise = fetchAllPages((a, b) => supabase
+      .from('mandi_prices')
+      .select('market,district')
+      .gte('price_date', from)
+      .order('price_date', { ascending: false })
+      .order('market', { ascending: true })
+      .order('commodity_en', { ascending: true })
+      .range(a, b)).then((r) => {
+      if (r.error || !r.data) { marketRowsPromise = null; return [] }
+      return r.data
+    })
+  }
+  return marketRowsPromise
+}
+
 let marketsCache = null
 export async function fetchMandiMarkets() {
   if (marketsCache) return marketsCache
-  const { data, error } = await supabase
-    .from('mandi_prices')
-    .select('market')
-    .order('market', { ascending: true })
-    .limit(5000)
-  if (error || !data) return []
-  marketsCache = [...new Set(data.map((r) => r.market).filter(Boolean))]
+  const data = await marketRows()
+  if (!data.length) return []
+  marketsCache = [...new Set(data.map((r) => r.market).filter(Boolean))].sort((x, y) => (x < y ? -1 : x > y ? 1 : 0))
   return marketsCache
 }
 
@@ -174,15 +207,11 @@ export async function fetchMandiMarkets() {
 let marketsDistCache = null
 export async function fetchMandiMarketsWithDistrict() {
   if (marketsDistCache) return marketsDistCache
-  const { data, error } = await supabase
-    .from('mandi_prices')
-    .select('market,district')
-    .order('market', { ascending: true })
-    .limit(5000)
-  if (error || !data) return []
+  const data = await marketRows()
+  if (!data.length) return []
   const seen = new Map()
   for (const r of data) if (r.market && !seen.has(r.market)) seen.set(r.market, r.district || null)
-  marketsDistCache = [...seen.entries()].map(([market, district]) => ({ market, district }))
+  marketsDistCache = [...seen.entries()].sort((x, y) => (x[0] < y[0] ? -1 : x[0] > y[0] ? 1 : 0)).map(([market, district]) => ({ market, district }))
   return marketsDistCache
 }
 

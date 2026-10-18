@@ -1,0 +1,6 @@
+Batch 10E Phase 2D/2E — chunk sizes. Same tool (Git Bash gzip -9), same session, frozen Phase 0 dist vs final Phase 2D staging build.
+main      index-DfikRbEu.js        81,931 raw / 27,565 gz  ->  index-BJ_tGaGF.js        81,931 raw / 27,553 gz   (-12 B; budget +1,536 B for the batch)
+strings   LanguageProvider-DvUf0OvC 241,785 / 62,351      ->  LanguageProvider-BHAg1RI8 242,367 / 62,507      (+156 B gz; shared, includes the Phase 1 string edit)
+mandiApi  mandiApi-C1EAc9Zt.js       4,695 /  1,580       ->  mandiApi-Dr5tWGYK.js       5,547 /  1,912      (+332 B gz; shared with the home ticker; paging helper + market list fix)
+/msp      Msp-DjvY3DiW.js           26,851 /  7,480       ->  Msp-DrXE8vWJ.js           28,932 /  8,289      (+809 B gz; lazy route chunk; tabs + mspWindow.js + months)
+css       index-1G45bePi.css        77,384 / 15,505       ->  index-q2H8nGrT.css        78,418 / 15,759      (+254 B gz, of which Phase 1 +249)

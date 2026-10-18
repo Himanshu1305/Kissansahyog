@@ -1,0 +1,855 @@
+### HEAD
+title: Indore कोल्ड स्टोरेज
+description: Indore: 63 प्रविष्टियाँ. इस ज़िले के कोल्ड स्टोरेज और गोदाम — सार्वजनिक स्रोतों से।
+canonical: https://kissansahyog.com/cold-storage/indore
+robots: 
+lang: hi
+h1: Indore कोल्ड स्टोरेज
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"कोल्ड स्टोरेज","item":"https://kissansahyog.com/cold-storage"},{"@type":"ListItem","position":3,"name":"Indore"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Aanad Cold Storage Pvt Ltd"},{"@type":"ListItem","position":2,"name":"Adarsh Sheet Grah Pvt Ltd"},{"@type":"ListItem","position":3,"name":"Agarwal Cold Storage"},{"@type":"ListItem","position":4,"name":"Akarshit Ice And Cold Storage"},{"@type":"ListItem","position":5,"name":"Aman Ice And Cold Storage Pvt. Ltd"},{"@type":"ListItem","position":6,"name":"Amar Cold Storage"},{"@type":"ListItem","position":7,"name":"Bagwala Cold Storage"},{"@type":"ListItem","position":8,"name":"BRG Amar Cold Chain"},{"@type":"ListItem","position":9,"name":"Coldrush Logistics Private Limited"},{"@type":"ListItem","position":10,"name":"Devi Shri Ahilya Sahkari Sheet Grih"},{"@type":"ListItem","position":11,"name":"Dhanuka Cold Storage Pvt Ltd"},{"@type":"ListItem","position":12,"name":"Gambhir Cold Storage"},{"@type":"ListItem","position":13,"name":"Gandhi Cold Storage (Unit Gandhi Fertilizer Pvt Ltd)"},{"@type":"ListItem","position":14,"name":"Gangotri Cold Storage"},{"@type":"ListItem","position":15,"name":"Gaurav Ice And Cold Storage Pvt Ltd"},{"@type":"ListItem","position":16,"name":"Girnar Cold Storage & Warehousing Private Limited"},{"@type":"ListItem","position":17,"name":"Golden Cold Storage"},{"@type":"ListItem","position":18,"name":"Golden Cold Storage And Vegetables"},{"@type":"ListItem","position":19,"name":"Gurukripa Cold Storage"},{"@type":"ListItem","position":20,"name":"Hari Om Cold Storage"},{"@type":"ListItem","position":21,"name":"Indore Ice And Cold Storage Pvt Ltd"},{"@type":"ListItem","position":22,"name":"Jagdamba Ice & Cold Storage"},{"@type":"ListItem","position":23,"name":"Jawahar Ice Factory And Cold Storage"},{"@type":"ListItem","position":24,"name":"Jhawar Ice & Cold Storage"},{"@type":"ListItem","position":25,"name":"Kalyan Cold Storage (A unit of M/s Shree Ram & Company)"},{"@type":"ListItem","position":26,"name":"Kishan Sheet Graha"},{"@type":"ListItem","position":27,"name":"Maa Annpurna Agri Hatik"},{"@type":"ListItem","position":28,"name":"Maa Annpurna Ice Cold Storage Pvt. Ltd"},{"@type":"ListItem","position":29,"name":"Maa Umiya Ice & Cold Storage"},{"@type":"ListItem","position":30,"name":"Maa Umiya Sahkari Sheet Grah Sanstha Maryadit Jamli"},{"@type":"ListItem","position":31,"name":"Maa Vaishnav Ice And Cold Storage Limited"},{"@type":"ListItem","position":32,"name":"Mittal Cold Storage Pvt Ltd"},{"@type":"ListItem","position":33,"name":"MP MARKFED Cold Storage, Panda"},{"@type":"ListItem","position":34,"name":"MP MARKFED Cold Storage, Sabzi Mandi"},{"@type":"ListItem","position":35,"name":"Munmji Cold Storage"},{"@type":"ListItem","position":36,"name":"Narang Cold Storage"},{"@type":"ListItem","position":37,"name":"Narayani Cold Storage Pvt. Ltd"},{"@type":"ListItem","position":38,"name":"Nature Fresh Storage"},{"@type":"ListItem","position":39,"name":"Pegasus Inland Container Depot Pvt. Ltd."},{"@type":"ListItem","position":40,"name":"Radhe Gitanjali Ice And Cold Storage"},{"@type":"ListItem","position":41,"name":"Ravraja Chatakaran Cold Storage Pvt Ltd"},{"@type":"ListItem","position":42,"name":"Sagar Sheet Grah Pvt Ltd"},{"@type":"ListItem","position":43,"name":"Sahi Sheet Grah"},{"@type":"ListItem","position":44,"name":"Sahkari Sheetgrah Sanstha"},{"@type":"ListItem","position":45,"name":"Sanjana Cold Storage"},{"@type":"ListItem","position":46,"name":"Satish Ice And Cold Storage Pvt Ltd"},{"@type":"ListItem","position":47,"name":"Shardiya Agritech Pvt Ltd"},{"@type":"ListItem","position":48,"name":"Shiv Shakti Aalu Utpadak"},{"@type":"ListItem","position":49,"name":"Shreeji Cold Storage"},{"@type":"ListItem","position":50,"name":"Shri Ambika Aalu Utpadak Vipanan Evam Prakriya Sahakari"},{"@type":"ListItem","position":51,"name":"Shri Dutt Sheetgrah Pvt. Ltd"},{"@type":"ListItem","position":52,"name":"Shri Ganesh Cold Storage"},{"@type":"ListItem","position":53,"name":"Shri Jankeshwar Cold Storage"},{"@type":"ListItem","position":54,"name":"Shri Krishna Cold Storage"},{"@type":"ListItem","position":55,"name":"Shruti Snacks Pvt Ltd"},{"@type":"ListItem","position":56,"name":"Shubham Freezers Private Ltd."},{"@type":"ListItem","position":57,"name":"Singhal Leasing and Construction Pvt. Ltd."},{"@type":"ListItem","position":58,"name":"Sule Cold Storage"},{"@type":"ListItem","position":59,"name":"Swan Cold Storage"},{"@type":"ListItem","position":60,"name":"Vijaya Cold Storage"},{"@type":"ListItem","position":61,"name":"Virat Cold Storage (India) Pvt. Ltd."},{"@type":"ListItem","position":62,"name":"Virdi Brothers"},{"@type":"ListItem","position":63,"name":"Vrindavan Cold Storage Pvt. Ltd"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Aanad Cold Storage Pvt Ltd","address":"Rao Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Adarsh Sheet Grah Pvt Ltd","address":"Near Station, Rau; Sanitorium Road, Rau","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 5 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Agarwal Cold Storage","address":"Shramik Colony, Rau, Dist. Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 6 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Akarshit Ice And Cold Storage","address":"Village Sonvay, Pithampur Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 7 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Aman Ice And Cold Storage Pvt. Ltd","address":"Rau By Pass","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 8 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Amar Cold Storage","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 9 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Bagwala Cold Storage","address":"Hatod Paliya Road","telephone":"074408 84088","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 10 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"BRG Amar Cold Chain","address":"Khasra 535/1/1 & 539/1, Gram Badeeyakeema, Nemawar Rd","telephone":"088892 22297","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 11 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Coldrush Logistics Private Limited","address":"Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 12 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Devi Shri Ahilya Sahkari Sheet Grih","address":"Tejpur Gadbadi, AB Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 13 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Dhanuka Cold Storage Pvt Ltd","address":"AB Road, Pigdamber","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 14 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gambhir Cold Storage","address":"Hatod, Marimata Choraha","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 15 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gandhi Cold Storage (Unit Gandhi Fertilizer Pvt Ltd)","address":"Village Kapaliya Khedi, 8th Mile, Nemawar Road","telephone":"093021 03513","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 16 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gangotri Cold Storage","address":"Nemawar Road (NH 47), Khudel, Indore District","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 17 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gaurav Ice And Cold Storage Pvt Ltd","address":"Mundi Road, Bijalpur","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 18 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Girnar Cold Storage & Warehousing Private Limited","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 19 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Golden Cold Storage","address":"Near Station Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 20 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Golden Cold Storage And Vegetables","address":"Indore","telephone":"094250 06649","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 21 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gurukripa Cold Storage","address":"Tillare Khurd","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 22 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Hari Om Cold Storage","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 23 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Indore Ice And Cold Storage Pvt Ltd","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 24 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Jagdamba Ice & Cold Storage","address":"Vill. Palda, Indore-Nemawar Road, Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 25 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Jawahar Ice Factory And Cold Storage","address":"103 Polo Ground","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 26 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Jhawar Ice & Cold Storage","address":"Arjun Baroda","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 27 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Kalyan Cold Storage (A unit of M/s Shree Ram & Company)","address":"Village Asrawad Buzurg, Tehsil & Distt. Indore (MP)","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 28 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Kishan Sheet Graha","address":"AB Road, Rau","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 29 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Maa Annpurna Agri Hatik","address":"Betma Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 30 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Maa Annpurna Ice Cold Storage Pvt. Ltd","address":"Mundi Road ; Saptashrungi Nagar, Silicon City, Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 31 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Maa Umiya Ice & Cold Storage","address":"Dhar Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 32 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Maa Umiya Sahkari Sheet Grah Sanstha Maryadit Jamli","address":"AB Road, Jamli","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 33 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Maa Vaishnav Ice And Cold Storage Limited","address":"Rau Rangwasa Road, Rau","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 34 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Mittal Cold Storage Pvt Ltd","address":"AB Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 35 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"MP MARKFED Cold Storage, Panda","address":"Panda, Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 36 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"MP MARKFED Cold Storage, Sabzi Mandi","address":"Sabzi Mandi, Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 37 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Munmji Cold Storage","address":"Vill. Bhorasla, Ujjain Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 38 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Narang Cold Storage","address":"Old AB Road, Bijalpur, Indore (opp. Rajendra Nagar Police Station per infoisinfo)","telephone":"0731 405 8247","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 39 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Narayani Cold Storage Pvt. Ltd","address":"AB Road, Dongargaon, Mhow","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 40 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Nature Fresh Storage","address":"205 Samta Nagar ; Samta Nagar, Palda, Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 41 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Pegasus Inland Container Depot Pvt. Ltd.","address":"Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 42 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Radhe Gitanjali Ice And Cold Storage","address":"Nemawar Road, Dudhiya","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 43 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Ravraja Chatakaran Cold Storage Pvt Ltd","address":"Datoda, Khandwa Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 44 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sagar Sheet Grah Pvt Ltd","address":"Vill. Bilaoly, Khandwa Road; Ganesh Nagar, Bilawali, Opp. Queens College","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 45 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sahi Sheet Grah","address":"Santear, near Mhow","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 46 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sahkari Sheetgrah Sanstha","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 47 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sanjana Cold Storage","address":"Vill. Rau, Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 48 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Satish Ice And Cold Storage Pvt Ltd","address":"Shramik Colony, Rau","telephone":"094250 53331","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 49 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shardiya Agritech Pvt Ltd","address":"Khandwa Road, Simrol","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 50 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shiv Shakti Aalu Utpadak","address":"Tillore Khurd","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 51 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shreeji Cold Storage","address":"Gram Arnya, Nemawar Rd","telephone":"099770 37781","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 52 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shri Ambika Aalu Utpadak Vipanan Evam Prakriya Sahakari","address":"Gavli Palasiya","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 53 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shri Dutt Sheetgrah Pvt. Ltd","address":"Mundi Road, Bijalpur","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 54 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shri Ganesh Cold Storage","address":"Khodariya","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 55 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shri Jankeshwar Cold Storage","address":"Rajpura Kutti, Post Yashwant Nagar","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 56 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shri Krishna Cold Storage","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 57 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shruti Snacks Pvt Ltd","address":"Village Bihardia","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 58 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Shubham Freezers Private Ltd.","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 59 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Singhal Leasing and Construction Pvt. Ltd.","address":"Lasudia Mori, AB Road, Dewas Naka, Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 60 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sule Cold Storage","address":"Rau","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 61 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Swan Cold Storage","address":"Gavali Palasia ; Gavali Palasia, Mhow","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 62 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Vijaya Cold Storage","address":"AB Road, opposite Veterinary College","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 63 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Virat Cold Storage (India) Pvt. Ltd.","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 64 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Virdi Brothers","address":"Indore","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 65 ---
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Vrindavan Cold Storage Pvt. Ltd","address":"Morod Machla Road, near Khandwa Road","areaServed":"Indore"}
+--- end jsonld ---
+--- jsonld 66 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 67 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+कोल्ड स्टोरेज
+/
+Indore
+Indore कोल्ड स्टोरेज
+इस ज़िले के कोल्ड स्टोरेज और गोदाम — सार्वजनिक स्रोतों से।
+📍 अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे कितनी दूर हैं यह जानने के लिए अपनी लोकेशन साझा करें। हम आपकी लोकेशन सिर्फ़ इसी काम के लिए इस्तेमाल करते हैं।
+मेरी लोकेशन साझा करें
+अभी नहीं
+फसल
+सभी फसल
+आलू
+प्रकार
+सभी प्रकार
+Cold Storage
+Cold storage (per Google Maps category)
+Cool chain warehouse
+Potato (cooperative)
+63 प्रविष्टियाँ
+Aanad Cold Storage Pvt Ltd
+पता:
+Rao Road, Rau, Indore
+क्षमता:
+4000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Adarsh Sheet Grah Pvt Ltd
+पता:
+Near Station, Rau; Sanitorium Road, Rau, Rau, Indore
+क्षमता:
+10000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Agarwal Cold Storage
+पता:
+Shramik Colony, Rau, Dist. Indore, Rau, Indore
+क्षमता:
+5000
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Akarshit Ice And Cold Storage
+पता:
+Village Sonvay, Pithampur Road, Sonvay, Indore
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Aman Ice And Cold Storage Pvt. Ltd
+पता:
+Rau By Pass, Rau, Indore
+क्षमता:
+7500
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Amar Cold Storage
+पता:
+Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Bagwala Cold Storage
+पता:
+Hatod Paliya Road, Hatod, Indore
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; Google Maps listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+BRG Amar Cold Chain
+पता:
+Khasra 535/1/1 & 539/1, Gram Badeeyakeema, Nemawar Rd, Nemawar Rd, Indore
+प्रकार:
+Cold storage (per Google Maps category)
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: Google Maps / Google Search business listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Coldrush Logistics Private Limited
+पता:
+Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: IndiaMART
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Devi Shri Ahilya Sahkari Sheet Grih
+पता:
+Tejpur Gadbadi, AB Road, Tejpur Gadbadi, Indore
+क्षमता:
+6500
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Dhanuka Cold Storage Pvt Ltd
+पता:
+AB Road, Pigdamber, Pigdamber, Indore
+क्षमता:
+17000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Gambhir Cold Storage
+पता:
+Hatod, Marimata Choraha, Hatod, Indore
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Gandhi Cold Storage (Unit Gandhi Fertilizer Pvt Ltd)
+पता:
+Village Kapaliya Khedi, 8th Mile, Nemawar Road, Kapaliya Khedi, Indore
+क्षमता:
+6000
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; Google Maps listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Gangotri Cold Storage
+पता:
+Nemawar Road (NH 47), Khudel, Indore District, Khudel, Indore, 452016
+क्षमता:
+5000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; Mappls (MapmyIndia) place listing
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Gaurav Ice And Cold Storage Pvt Ltd
+पता:
+Mundi Road, Bijalpur, Bijalpur, Indore
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Girnar Cold Storage & Warehousing Private Limited
+पता:
+Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NHB cold storage GIS layer (GeoIndiaHandlerGis)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Golden Cold Storage
+पता:
+Near Station Road, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Golden Cold Storage And Vegetables
+पता:
+Indore
+प्रकार:
+Cold storage (per Google Maps category)
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: Google Maps / Google Search business listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Gurukripa Cold Storage
+पता:
+Tillare Khurd, Tillore Khurd, Indore
+क्षमता:
+5000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Hari Om Cold Storage
+पता:
+Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NHB cold storage GIS layer (GeoIndiaHandlerGis)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Indore Ice And Cold Storage Pvt Ltd
+पता:
+Indore
+क्षमता:
+11000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; Google Maps listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Jagdamba Ice & Cold Storage
+पता:
+Vill. Palda, Indore-Nemawar Road, Indore, Palda, Indore
+क्षमता:
+5000
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009) ; NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Jawahar Ice Factory And Cold Storage
+पता:
+103 Polo Ground, Indore
+क्षमता:
+1500
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Jhawar Ice & Cold Storage
+पता:
+Arjun Baroda, Indore
+क्षमता:
+15000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Kalyan Cold Storage (A unit of M/s Shree Ram & Company)
+पता:
+Village Asrawad Buzurg, Tehsil & Distt. Indore (MP), Asrawad Buzurg, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NHB beneficiary list 2021-22 (Capital Investment Subsidy, cold storage)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Kishan Sheet Graha
+पता:
+AB Road, Rau, Rau, Indore
+क्षमता:
+2872
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Maa Annpurna Agri Hatik
+पता:
+Betma Road, Indore
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Maa Annpurna Ice Cold Storage Pvt. Ltd
+पता:
+Mundi Road ; Saptashrungi Nagar, Silicon City, Indore, Indore, 453331
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; Mappls (MapmyIndia) place listing
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Maa Umiya Ice & Cold Storage
+पता:
+Dhar Road, Indore
+भंडारण:
+Potato
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; IndiaMART
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Maa Umiya Sahkari Sheet Grah Sanstha Maryadit Jamli
+पता:
+AB Road, Jamli, Jamli, Indore
+क्षमता:
+10000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Maa Vaishnav Ice And Cold Storage Limited
+पता:
+Rau Rangwasa Road, Rau, Rau, Indore
+क्षमता:
+7000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Mittal Cold Storage Pvt Ltd
+पता:
+AB Road, Indore
+क्षमता:
+13000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+MP MARKFED Cold Storage, Panda
+पता:
+Panda, Indore, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: IndiaMART (MP MARKFED listing)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+MP MARKFED Cold Storage, Sabzi Mandi
+पता:
+Sabzi Mandi, Indore, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: IndiaMART (MP MARKFED listing)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Munmji Cold Storage
+पता:
+Vill. Bhorasla, Ujjain Road, Bhorasla, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Narang Cold Storage
+पता:
+Old AB Road, Bijalpur, Indore (opp. Rajendra Nagar Police Station per infoisinfo), Bijalpur, Indore, 452001
+क्षमता:
+6000
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; Mappls (MapmyIndia) place listing; infoisinfo; IndiaMART ; Google Maps listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Narayani Cold Storage Pvt. Ltd
+पता:
+AB Road, Dongargaon, Mhow, Dongargaon, Mhow, Indore
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Nature Fresh Storage
+पता:
+205 Samta Nagar ; Samta Nagar, Palda, Indore, Indore, 452001
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; Mappls (MapmyIndia) place listing
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Pegasus Inland Container Depot Pvt. Ltd.
+पता:
+Indore
+प्रकार:
+Cool chain warehouse
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: IndiaMART
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Radhe Gitanjali Ice And Cold Storage
+पता:
+Nemawar Road, Dudhiya, Dudhiya, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Ravraja Chatakaran Cold Storage Pvt Ltd
+पता:
+Datoda, Khandwa Road, Datoda, Indore
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Sagar Sheet Grah Pvt Ltd
+पता:
+Vill. Bilaoly, Khandwa Road; Ganesh Nagar, Bilawali, Opp. Queens College, Bilawali, Indore
+क्षमता:
+12000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Sahi Sheet Grah
+पता:
+Santear, near Mhow, Mhow, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Sahkari Sheetgrah Sanstha
+पता:
+Indore
+क्षमता:
+16000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Sanjana Cold Storage
+पता:
+Vill. Rau, Indore, Rau, Indore
+क्षमता:
+12000
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009) ; NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Satish Ice And Cold Storage Pvt Ltd
+पता:
+Shramik Colony, Rau, Rau, Indore
+क्षमता:
+9000
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page) ; Google Maps listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shardiya Agritech Pvt Ltd
+पता:
+Khandwa Road, Simrol, Simrol, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shiv Shakti Aalu Utpadak
+पता:
+Tillore Khurd, Indore
+क्षमता:
+4000
+प्रकार:
+Potato (cooperative)
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shreeji Cold Storage
+पता:
+Gram Arnya, Nemawar Rd, Nemawar Rd, Indore
+प्रकार:
+Cold storage (per Google Maps category)
+📞 कॉल करें
+💬 WhatsApp करें
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: Google Maps / Google Search business listing (accessed 5 Oct 2026)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shri Ambika Aalu Utpadak Vipanan Evam Prakriya Sahakari
+पता:
+Gavli Palasiya, Gawli Palasia, Indore
+क्षमता:
+10000
+प्रकार:
+Potato (cooperative)
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shri Dutt Sheetgrah Pvt. Ltd
+पता:
+Mundi Road, Bijalpur, Bijalpur, Indore
+क्षमता:
+5000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shri Ganesh Cold Storage
+पता:
+Khodariya, Kodariya, Indore
+क्षमता:
+7000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shri Jankeshwar Cold Storage
+पता:
+Rajpura Kutti, Post Yashwant Nagar, Rajpura Kutti, Indore
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shri Krishna Cold Storage
+पता:
+Indore
+क्षमता:
+1063
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shruti Snacks Pvt Ltd
+पता:
+Village Bihardia, Bihardia, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Shubham Freezers Private Ltd.
+पता:
+Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NHB cold storage GIS layer (GeoIndiaHandlerGis)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Singhal Leasing and Construction Pvt. Ltd.
+पता:
+Lasudia Mori, AB Road, Dewas Naka, Indore, Indore
+क्षमता:
+444
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Sule Cold Storage
+पता:
+Rau, Indore, 452001
+क्षमता:
+11600
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Swan Cold Storage
+पता:
+Gavali Palasia ; Gavali Palasia, Mhow, Gawli Palasia, Indore
+क्षमता:
+4800 ; 4500
+प्रकार:
+Cold Storage
+🧭 दिशा देखें
+पुरानी सरकारी सूची (2000–2009) — वर्तमान स्थिति की पुष्टि करें
+सार्वजनिक स्रोत से जानकारी: National Horticulture Board (NHB) - list of NHB-assisted cold storages, Madhya Pradesh (sanctions 2000-2009) ; NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Vijaya Cold Storage
+पता:
+AB Road, opposite Veterinary College, Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Virat Cold Storage (India) Pvt. Ltd.
+पता:
+Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NHB cold storage GIS layer (GeoIndiaHandlerGis)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Virdi Brothers
+पता:
+Indore
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: IndiaMART
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+Vrindavan Cold Storage Pvt. Ltd
+पता:
+Morod Machla Road, near Khandwa Road, Indore
+क्षमता:
+6000
+🧭 दिशा देखें
+सार्वजनिक स्रोत से जानकारी: NaPanta cold storage directory (Indore district page)
+स्रोत देखें
+⚠️ गलत जानकारी? बताएँ
+🏬 कोल्ड स्टोरेज मालिक हैं? अपनी लिस्टिंग डालें
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

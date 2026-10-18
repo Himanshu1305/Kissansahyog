@@ -1,0 +1,40 @@
+# STAGING (wzxtqbqlahyahsnoqqva) mandi_prices — read-only — 2026-10-18T16:25:39.107Z
+
+## where in_sagar_division
+commodity_en | days | min_date | max_date | rows
+Garlic | 2 | 2026-09-22 | 2026-09-23 | 2
+Gram | 1 | 2026-09-22 | 2026-09-22 | 1
+Lentil | 1 | 2026-09-22 | 2026-09-22 | 1
+Maize | 20 | 2026-09-23 | 2026-10-13 | 20
+Moong | 1 | 2026-09-22 | 2026-09-22 | 1
+Mustard | 20 | 2026-09-23 | 2026-10-13 | 21
+Paddy(Dhan)(Common) | 1 | 2026-09-22 | 2026-09-22 | 1
+Soyabean | 21 | 2026-09-22 | 2026-10-13 | 22
+Wheat | 21 | 2026-09-22 | 2026-10-13 | 21
+
+## all rows
+commodity_en | days | min_date | max_date | rows
+Garlic | 26 | 2026-09-22 | 2026-10-18 | 29
+Gram | 3 | 2026-09-22 | 2026-10-16 | 4
+Lentil | 2 | 2026-09-22 | 2026-10-16 | 2
+Maize | 25 | 2026-09-23 | 2026-10-18 | 31
+Moong | 2 | 2026-09-22 | 2026-10-16 | 2
+Mustard | 25 | 2026-09-23 | 2026-10-18 | 30
+Paddy(Dhan)(Common) | 3 | 2026-09-22 | 2026-10-16 | 3
+Soyabean | 26 | 2026-09-22 | 2026-10-18 | 29
+Urad | 1 | 2026-10-16 | 2026-10-16 | 1
+Wheat | 26 | 2026-09-22 | 2026-10-18 | 28
+
+## distinct days in the last 90 / 30 / 7 days (in_sagar_division; current_date on the DB)
+commodity_en | days_90 | days_30 | days_7
+Garlic | 2 | 2 | 0
+Gram | 1 | 1 | 0
+Lentil | 1 | 1 | 0
+Maize | 20 | 20 | 2
+Moong | 1 | 1 | 0
+Mustard | 20 | 20 | 2
+Paddy(Dhan)(Common) | 1 | 1 | 0
+Soyabean | 21 | 21 | 2
+Wheat | 21 | 21 | 2
+
+TOTAL rows=159 distinct_days=26

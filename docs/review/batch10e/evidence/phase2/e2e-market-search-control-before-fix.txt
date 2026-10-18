@@ -1,0 +1,34 @@
+
+Running 1 test using 1 worker
+
+  x  1 [chromium] › e2e\msp-trend-10e.spec.js:70:1 › mandi search lists markets late in the alphabet (list is no longer cut at 1,000 rows) (16.0s)
+[teardown] cleanup warning: Missing Supabase env (run with node --env-file=.env)
+
+
+  1) [chromium] › e2e\msp-trend-10e.spec.js:70:1 › mandi search lists markets late in the alphabet (list is no longer cut at 1,000 rows) 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: /Tikamgarh/ }).first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 15000ms
+      - waiting for getByRole('button', { name: /Tikamgarh/ }).first()
+
+
+      74 |   for (const q of ['Tikamgarh', 'Sagar']) {
+      75 |     await box.fill(q)
+    > 76 |     await expect(page.getByRole('button', { name: new RegExp(q) }).first()).toBeVisible({ timeout: 15_000 })
+         |                                                                             ^
+      77 |   }
+      78 | })
+      79 |
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\msp-trend-10e.spec.js:76:77
+
+    Error Context: test-results\msp-trend-10e-mandi-search-9784c-o-longer-cut-at-1-000-rows--chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\msp-trend-10e.spec.js:70:1 › mandi search lists markets late in the alphabet (list is no longer cut at 1,000 rows) 
