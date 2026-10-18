@@ -194,6 +194,20 @@
 .ksg-m-chosen { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; padding: 8px 10px; border: 2px solid #16a34a; border-radius: 12px; background: #f0fdf4; font-size: 14.5px; font-weight: 600; }
 .ksg-m-chosen u { font-size: 13px; font-weight: 700; color: #166534; }
 .ksg-m-chosen-sm .ksg-m-chosen { padding: 6px 10px; border-width: 1px; font-size: 13px; }
+.ksg-m-multi { min-height: 64px; align-items: flex-start; }
+/* Batch 10E Phase 4 — date block, photo picker, sample photo (post demo) */
+.ksg-m-group { margin: 8px 12px; padding: 2px 0; border: 2px solid #bbf7d0; border-radius: 12px; background: #f0fdf4; }
+.ksg-m-group .ksg-m-chipsw { margin: 6px 10px 0; }
+.ksg-m-group .ksg-m-field { margin: 4px 10px 8px; }
+.ksg-m-photos { margin: 8px 12px; padding: 8px 10px; border: 2px solid #e7e5e4; border-radius: 14px; background: #fff; }
+.ksg-m-photohead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ksg-m-phototxt { min-width: 0; display: flex; flex-direction: column; font-size: 12px; line-height: 1.4; color: #57534e; }
+.ksg-m-phototxt b { font-size: 14px; color: #1c1917; }
+.ksg-m-photos .ksg-m-btn { flex: 0 0 auto; margin: 0; }
+.ksg-m-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+.ksg-m-thumb { display: block; overflow: hidden; border: 1px solid #d6d3d1; border-radius: 10px; }
+.ksg-m-thumb svg { display: block; width: 100%; height: auto; }
+.ksg-m-thumbtag { display: block; padding: 1px 4px; background: #fef3c7; color: #92400e; text-align: center; font-size: 10px; font-weight: 700; line-height: 1.4; }
 .ksg-m-big { margin: 14px 12px 8px; text-align: center; font-size: 17px; font-weight: 700; }
 .ksg-m-done { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 56px 18px 0; text-align: center; }
 .ksg-m-tick { width: 80px; height: 80px; display: grid; place-items: center; border-radius: 50%; background: #15803d; animation: ksg-pop .6s ease; }

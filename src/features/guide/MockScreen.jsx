@@ -61,9 +61,9 @@ export default function MockScreen({ demo, state, txt, t, typing, flashId, targe
         const filled = state.values[n.id] !== undefined || (typing && typing.id === n.id)
         return (
           <div key={key} {...o} className={`ksg-m-field${n.boxed ? ' ksg-m-boxed' : ''}`}>
-            <span className="ksg-m-lbl">{txt(n.label)}{n.req && <span className="ksg-m-req"> *</span>}</span>
+            {n.label && <span className="ksg-m-lbl">{txt(n.label)}{n.req && <span className="ksg-m-req"> *</span>}</span>}
             <div className="ksg-m-inrow">
-              <div {...at(n.id, `ksg-m-in${filled ? ' ksg-m-filled' : ''}${typing && typing.id === n.id ? ' ksg-m-typing' : ''}`)}>
+              <div {...at(n.id, `ksg-m-in${n.multiline ? ' ksg-m-multi' : ''}${filled ? ' ksg-m-filled' : ''}${typing && typing.id === n.id ? ' ksg-m-typing' : ''}`)}>
                 {fieldValue(n)}
                 {n.select && <span className="ksg-m-caret" aria-hidden="true">▾</span>}
               </div>
@@ -79,7 +79,7 @@ export default function MockScreen({ demo, state, txt, t, typing, flashId, targe
       case 'chips':
         return (
           <div key={key} {...o} {...at(n.id, n.type === 'tiles' ? 'ksg-m-tilesw' : 'ksg-m-chipsw')}>
-            {n.label && <span className="ksg-m-lbl">{txt(n.label)}</span>}
+            {n.label && <span className="ksg-m-lbl">{txt(n.label)}{n.req && <span className="ksg-m-req"> *</span>}</span>}
             <div className={n.type === 'tiles' ? 'ksg-m-tiles' : 'ksg-m-chips'}>
               {n.items.map((it) => {
                 const on = !!state.sel[it.id]
@@ -159,6 +159,45 @@ export default function MockScreen({ demo, state, txt, t, typing, flashId, targe
             {n.label && <span className="ksg-m-lbl">{txt(n.label)}<span className="ksg-m-req"> *</span></span>}
             <div className="ksg-m-chosen"><span>{txt(n.text)}</span><u>{txt(n.action)}</u></div>
           </div>
+        )
+      // Batch 10E Phase 4 — the post form's shared date block (green box, like DateBlock).
+      case 'group':
+        return <div key={key} {...o} {...at(n.id, 'ksg-m-group')}>{n.children.map((c, i) => node(c, i))}</div>
+      // The photo picker (like PhotoPicker.jsx): title, "n/limit · help", the add button, thumbnails.
+      case 'photos': {
+        const thumbs = n.children.filter((c) => c.type === 'thumb' && show(c))
+        return (
+          <div key={key} {...o} {...at(n.id, 'ksg-m-photos')}>
+            <div className="ksg-m-photohead">
+              <span className="ksg-m-phototxt">
+                <b>{txt(n.label)}</b>
+                <span>{thumbs.length}/{n.limit} · {txt(n.hint)}</span>
+              </span>
+              {n.children.filter((c) => c.type === 'button').map((c, i) => node(c, i))}
+            </div>
+            {thumbs.length > 0 && <div className="ksg-m-thumbs">{thumbs.map((c, i) => node(c, i))}</div>}
+          </div>
+        )
+      }
+      // A sample picture drawn in code (no image file): a tractor in a field, tagged "उदाहरण".
+      case 'thumb':
+        return (
+          <span key={key} {...o} {...at(n.id, 'ksg-m-thumb')}>
+            <svg viewBox="0 0 120 80" role="img" aria-label={txt(n.text)}>
+              <rect width="120" height="80" fill="#cfe8f7" />
+              <circle cx="98" cy="16" r="8" fill="#f6c343" />
+              <path d="M0 52 Q30 44 60 50 T120 48 V80 H0Z" fill="#8bc34a" />
+              <path d="M0 62 Q40 56 120 60 V80 H0Z" fill="#6a9a35" />
+              <rect x="30" y="38" width="44" height="14" rx="3" fill="#c0392b" />
+              <rect x="56" y="22" width="18" height="18" rx="2" fill="none" stroke="#3d3d3d" strokeWidth="3" />
+              <rect x="34" y="31" width="4" height="8" fill="#3d3d3d" />
+              <circle cx="66" cy="56" r="13" fill="#2f2f2f" />
+              <circle cx="66" cy="56" r="5" fill="#f0a500" />
+              <circle cx="36" cy="60" r="8" fill="#2f2f2f" />
+              <circle cx="36" cy="60" r="3" fill="#f0a500" />
+            </svg>
+            <span className="ksg-m-thumbtag">{txt(n.text)}</span>
+          </span>
         )
       case 'big':
         return <p key={key} {...o} {...at(n.id, 'ksg-m-big')}>{txt(n.text)}{n.sample && sample}</p>

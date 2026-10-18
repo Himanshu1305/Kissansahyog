@@ -39,13 +39,12 @@ Today's signup (no OTP — `GUIDE_OTP_LIVE` is off):
 |---|---|---|---|---|
 | register | 1 | पहले अपना पूरा नाम लिखिए। | First, type your full name. | `guide_reg_1` |
 | register | 2 | अब अपना 10 अंकों का मोबाइल नंबर लिखिए। | Now type your 10-digit mobile number. | `guide_reg_2` |
-| register | 3 | ईमेल और पासवर्ड भरिए। पासवर्ड कम से कम 8 अक्षर का हो। | Fill in email and password. The password needs at least 8 characters. | `guide_reg_3` |
-| register | 4 | अपने गाँव या पास के कस्बे का नाम लिखिए। | Type your village or the nearest town. | `guide_reg_4` |
-| register | 5 | सूची में से अपना गाँव चुनिए। | Pick your village from the list. | `guide_reg_5` |
-| register | 6 | यह बॉक्स टिक रहे तो लोग आपसे संपर्क कर पाएँगे। यही सुझाया गया है। | Keep this box ticked so people can contact you. This is recommended. | `guide_reg_6` |
-| register | 7 | ज़रूरी सूचना ध्यान से पढ़िए। | Read the important notice carefully. | `guide_reg_7` |
-| register | 8 | पढ़ लिया? तो इस बॉक्स पर टिक कीजिए। | Read it? Then tick this box. | `guide_reg_8` |
-| register | 9 | आख़िर में नीचे वाला हरा बटन दबाइए। आपका खाता बन गया! | Finally press the green button below. Your account is ready! | `guide_reg_9` |
+| register | 3 | अपने गाँव या पास के कस्बे का नाम लिखिए। | Type your village or the nearest town. | `guide_reg_4` |
+| register | 4 | सूची में से अपना गाँव चुनिए। | Pick your village from the list. | `guide_reg_5` |
+| register | 5 | यह बॉक्स टिक रहे तो लोग आपसे संपर्क कर पाएँगे। यही सुझाया गया है। | Keep this box ticked so people can contact you. This is recommended. | `guide_reg_6` |
+| register | 6 | ज़रूरी सूचना ध्यान से पढ़िए। | Read the important notice carefully. | `guide_reg_7` |
+| register | 7 | पढ़ लिया? तो इस बॉक्स पर टिक कीजिए। | Read it? Then tick this box. | `guide_reg_8` |
+| register | 8 | आख़िर में नीचे वाला हरा बटन दबाइए। आपका खाता बन गया! | Finally press the green button below. Your account is ready! | `guide_reg_9` |
 
 ### OTP steps (shown only when OTP signup goes live)
 
@@ -72,11 +71,6 @@ Includes the OTP button and labels (marked by their `guide_otp_` keys), which al
 | register | s1 (Create account) | OTP भेजें | Send OTP | `guide_otp_send` | NEW in Batch 10C — draft |
 | register | s1 (Create account) | SMS में आया 6 अंकों का OTP | 6-digit OTP from the SMS | `guide_otp_label` | NEW in Batch 10C — draft |
 | register | s1 (Create account) | मोबाइल नंबर पक्का हो गया | Mobile number verified | `guide_otp_ok` | NEW in Batch 10C — draft |
-| register | s1 (Create account) | ईमेल | Email | `email_label` | app text, already live |
-| register | s1 (Create account) | जैसे: naam@example.com | e.g. name@example.com | `email_ph` | app text, already live |
-| register | s1 (Create account) | पासवर्ड | Password | `password_label` | app text, already live |
-| register | s1 (Create account) | कम से कम 8 अक्षर | At least 8 characters | `password_ph` | app text, already live |
-| register | s1 (Create account) | दिखाएँ | Show | `password_show` | app text, already live |
 | register | s1 (Create account) | गाँव / कस्बा | Village / Town | `village_town` | app text, already live |
 | register | s1 (Create account) | जैसे: खुरई, बंडा, रहली | e.g. Khurai, Banda, Rehli | `village_ph` | app text, already live |
 | register | s1 (Create account) | अपने गाँव या सबसे पास के कस्बे का नाम लिखें और सूची से चुनें। | Type your village or the nearest town and pick it from the list. | `place_field_hint` | app text, already live |
@@ -96,7 +90,6 @@ Includes the OTP button and labels (marked by their `guide_otp_` keys), which al
 | register | s1 (Create account) | राम कुमार | Ram Kumar | `guide_s_name` | NEW in Batch 10C — draft (typed in by the demo) |
 | register | s1 (Create account) | 9876543210 | 9876543210 | (inline, raw) | sample value, shown as-is (not translated) (typed in by the demo) |
 | register | s1 (Create account) | 482159 | 482159 | (inline, raw) | sample value, shown as-is (not translated) (typed in by the demo) |
-| register | s1 (Create account) | ram@example.com | ram@example.com | (inline, raw) | sample value, shown as-is (not translated) (typed in by the demo) |
 
 ## 2. Post — how to put up a listing
 
@@ -112,12 +105,14 @@ Includes the OTP button and labels (marked by their `guide_otp_` keys), which al
 | post | 6 | ब्रांड चुनिए और मॉडल लिखिए। हल्के रंग में लिखा "जैसे 575 DI" सिर्फ़ उदाहरण है। | Pick the brand and type the model. The grey "e.g. 575 DI" is only an example. | `guide_post_6` |
 | post | 7 | निर्माण वर्ष और HP लिखिए। | Type the year of manufacture and the HP. | `guide_post_7` |
 | post | 8 | किराया किस आधार पर है, चुनिए। फिर रकम लिखिए। | Pick how rent is charged. Then type the amount. | `guide_post_8` |
-| post | 9 | "आगे बढ़ें" दबाइए। | Press "Continue". | `guide_post_next` |
-| post | 10 | गाँव पहले से आपकी प्रोफ़ाइल से भरा मिलता है। सामान किसी और गाँव में है तो वह गाँव लिखिए। | The village starts filled from your profile. If the item is in another village, type that village. | `guide_post_10` |
-| post | 11 | खरीदार इसी नंबर पर कॉल करेंगे। एक बार देख लीजिए। | Buyers will call this number. Check it once. | `guide_post_11` |
-| post | 12 | मशीन देने वाले को ये दो बॉक्स टिक करने होते हैं। दूसरे से इस लिस्टिंग पर आपका नंबर दिखेगा। | A machine provider ticks these two boxes. The second lets this listing show your number. | `guide_post_12` |
-| post | 13 | ये चार बातें पढ़कर टिक कीजिए। | Read these four points and tick them. | `guide_post_13` |
-| post | 14 | "जमा करें" दबाइए। आपकी लिस्टिंग जुड़ गई! | Press "Submit". Your listing is posted! | `guide_post_14` |
+| post | 9 | कब से उपलब्ध है, यह भरना ज़रूरी है। "आज", "कल", "परसों" दबाइए या "तारीख़ चुनें"। कब तक का पता न हो तो "जब तक चाहें" रहने दीजिए। तारीख़ देखकर खरीदार पहले से योजना बना पाते हैं। | Say from when it is available; this is required. Tap "Today", "Tomorrow", "Day after" or "Pick a date". If you do not know the end, leave "No end date". With dates, buyers can plan ahead. | `guide_post_dates` |
+| post | 10 | "फोटो जोड़ें" दबाकर फ़ोन से मशीन की फोटो चुनिए। साफ़ फोटो वाली लिस्टिंग पर ज़्यादा कॉल आते हैं। (इस डेमो में कुछ अपलोड नहीं होता।) | Tap "Add photos" and choose a photo of the machine from your phone. Listings with clear photos get more calls. (Nothing is uploaded in this demo.) | `guide_post_photo` |
+| post | 11 | "आगे बढ़ें" दबाइए। | Press "Continue". | `guide_post_next` |
+| post | 12 | गाँव पहले से आपकी प्रोफ़ाइल से भरा मिलता है। सामान किसी और गाँव में है तो वह गाँव लिखिए। | The village starts filled from your profile. If the item is in another village, type that village. | `guide_post_10` |
+| post | 13 | खरीदार इसी नंबर पर कॉल करेंगे। एक बार देख लीजिए। | Buyers will call this number. Check it once. | `guide_post_11` |
+| post | 14 | मशीन देने वाले को ये दो बॉक्स टिक करने होते हैं। दूसरे से इस लिस्टिंग पर आपका नंबर दिखेगा। | A machine provider ticks these two boxes. The second lets this listing show your number. | `guide_post_12` |
+| post | 15 | ये चार बातें पढ़कर टिक कीजिए। | Read these four points and tick them. | `guide_post_13` |
+| post | 16 | "जमा करें" दबाइए। आपकी लिस्टिंग जुड़ गई! | Press "Submit". Your listing is posted! | `guide_post_14` |
 
 ### Screen labels
 
@@ -156,9 +151,20 @@ Includes the OTP button and labels (marked by their `guide_otp_` keys), which al
 | post | s2 (Post a listing · 2/3) | किराया किस आधार पर | Rental basis | `field_rental_basis` | app text, already live |
 | post | s2 (Post a listing · 2/3) | किराया राशि | Rental amount | `field_equipment_rate` | app text, already live |
 | post | s2 (Post a listing · 2/3) | जैसे: ₹800 | e.g. ₹800 | `ph_equipment_rate` | app text, already live |
-| post | s2 (Post a listing · 2/3) | उपलब्धता | Availability | `field_availability` | app text, already live |
-| post | s2 (Post a listing · 2/3) | अभी उपलब्ध | Available now | `avail_now` | app text, already live |
-| post | s2 (Post a listing · 2/3) | तय तारीख़ों में | Specific dates | `avail_dates` | app text, already live |
+| post | s2 (Post a listing · 2/3) | कब से उपलब्ध | Available from | `field_available_from` | app text, already live |
+| post | s2 (Post a listing · 2/3) | आज | Today | `date_today` | app text, already live |
+| post | s2 (Post a listing · 2/3) | कल | Tomorrow | `date_tomorrow` | app text, already live |
+| post | s2 (Post a listing · 2/3) | परसों | Day after | `date_day_after` | app text, already live |
+| post | s2 (Post a listing · 2/3) | तारीख़ चुनें | Pick a date | `date_pick` | app text, already live |
+| post | s2 (Post a listing · 2/3) | कब तक (वैकल्पिक) | Until when (optional) | `date_to_optional` | app text, already live |
+| post | s2 (Post a listing · 2/3) | जब तक चाहें | No end date | `date_open_ended` | app text, already live |
+| post | s2 (Post a listing · 2/3) | अतिरिक्त जानकारी (वैकल्पिक) | Additional information (optional) | `extra_info_label` | app text, already live |
+| post | s2 (Post a listing · 2/3) | कोई और बात जो खरीदार या किसान को जाननी चाहिए | Anything else the buyer or farmer should know | `extra_info_ph` | app text, already live |
+| post | s2 (Post a listing · 2/3) | फ़ोन नंबर यहाँ न लिखें | Do not write a phone number here | `extra_info_help` | app text, already live |
+| post | s2 (Post a listing · 2/3) | फोटो | Photos | `field_photos` | app text, already live |
+| post | s2 (Post a listing · 2/3) | ज़्यादा से ज़्यादा 3 फोटो (वैकल्पिक) | Up to 3 photos (optional) | `photos_help` | app text, already live |
+| post | s2 (Post a listing · 2/3) | फोटो जोड़ें | Add photos | `photo_add` | app text, already live |
+| post | s2 (Post a listing · 2/3) | उदाहरण फोटो | Example photo | `guide_example_photo` | NEW in Batch 10C — draft |
 | post | s3 (Post a listing · 3/3) | जगह और पुष्टि | Location and confirm | `post_step_location` | app text, already live |
 | post | s3 (Post a listing · 3/3) | जगह — गाँव/शहर का नाम | Location — village/town name | `field_asset_village` | app text, already live |
 | post | s3 (Post a listing · 3/3) | जैसे: खुरई, बंडा, रहली | e.g. Khurai, Banda, Rehli | `village_ph` | app text, already live |
@@ -379,11 +385,13 @@ All other new Guide text (every `guide_` string not already listed above). "Used
 | आपने रजिस्टर करना सीख लिया। | You have learned how to register. | `guide_register_fin` | features/guide/DemoPlayer.jsx (built from a pattern) |
 | आपने पोस्ट करना सीख लिया। | You have learned how to post. | `guide_post_fin` | features/guide/DemoPlayer.jsx (built from a pattern) |
 | आपने नंबर पाना सीख लिया। | You have learned how to get a number. | `guide_find_fin` | features/guide/DemoPlayer.jsx (built from a pattern) |
+| ईमेल और पासवर्ड भरिए। पासवर्ड कम से कम 8 अक्षर का हो। | Fill in email and password. The password needs at least 8 characters. | `guide_reg_3` | not found in code yet |
+| आज की तारीख़ | Today's date | `guide_s_today_date` | features/guide/demos/post.js |
 
 ## Counts
 
-- Table rows in this file: **283**
-- `guide_` keys in strings.js: **136**; covered in this file: **136**
+- Table rows in this file: **291**
+- `guide_` keys in strings.js: **140**; covered in this file: **140**
 - `guide_` keys NOT covered: **none**
 - Keys used by the demos but missing from strings.js: **none**
-- `guide_` keys in strings.js not found in any code file: **none**
+- `guide_` keys in strings.js not found in any code file: `guide_reg_3`

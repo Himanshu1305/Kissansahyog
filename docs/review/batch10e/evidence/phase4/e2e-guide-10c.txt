@@ -1,0 +1,76 @@
+
+Running 34 tests using 1 worker
+
+[1/34] [chromium] › e2e\guide-10c.spec.js:71:7 › Guide hi 360px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+[chromium] › e2e\guide-10c.spec.js:71:7 › Guide hi 360px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+NOTE F1 hi 360 backend endpoints on /about (control): ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/rpc/get_public_feedback","OPTIONS /rest/v1/site_settings","POST /rest/v1/rpc/get_public_feedback"]
+
+NOTE F1 hi 360 backend endpoints on the 5 guide pages: ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/site_settings"]
+
+NOTE F1 hi 360 initiators: ["supabase","preflight"]
+
+[2/34] [chromium] › e2e\guide-10c.spec.js:119:7 › Guide hi 360px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+[3/34] [chromium] › e2e\guide-10c.spec.js:155:7 › Guide hi 360px › F3 try-it: tapping the highlighted target advances, tapping elsewhere does not
+[4/34] [chromium] › e2e\guide-10c.spec.js:186:7 › Guide hi 360px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+[5/34] [chromium] › e2e\guide-10c.spec.js:231:7 › Guide hi 360px › F4b post demo: date step (आज + जब तक चाहें) and photo step (sample picture), no OTP node
+[6/34] [chromium] › e2e\guide-10c.spec.js:281:7 › Guide hi 360px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+[7/34] [chromium] › e2e\guide-10c.spec.js:320:7 › Guide hi 360px › F7 every entry point exists and opens the right demo
+[8/34] [chromium] › e2e\guide-10c.spec.js:71:7 › Guide hi 412px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+[chromium] › e2e\guide-10c.spec.js:71:7 › Guide hi 412px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+NOTE F1 hi 412 backend endpoints on /about (control): ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/rpc/get_public_feedback","OPTIONS /rest/v1/site_settings","POST /rest/v1/rpc/get_public_feedback"]
+
+NOTE F1 hi 412 backend endpoints on the 5 guide pages: ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/site_settings"]
+
+NOTE F1 hi 412 initiators: ["supabase","preflight"]
+
+[9/34] [chromium] › e2e\guide-10c.spec.js:119:7 › Guide hi 412px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+[10/34] [chromium] › e2e\guide-10c.spec.js:155:7 › Guide hi 412px › F3 try-it: tapping the highlighted target advances, tapping elsewhere does not
+[11/34] [chromium] › e2e\guide-10c.spec.js:186:7 › Guide hi 412px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+[12/34] [chromium] › e2e\guide-10c.spec.js:231:7 › Guide hi 412px › F4b post demo: date step (आज + जब तक चाहें) and photo step (sample picture), no OTP node
+[13/34] [chromium] › e2e\guide-10c.spec.js:281:7 › Guide hi 412px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+[14/34] [chromium] › e2e\guide-10c.spec.js:320:7 › Guide hi 412px › F7 every entry point exists and opens the right demo
+[15/34] [chromium] › e2e\guide-10c.spec.js:377:3 › F8 hi: no horizontal overflow at 320/360/412/1024 on every guide page; no clipped text
+[chromium] › e2e\guide-10c.spec.js:377:3 › F8 hi: no horizontal overflow at 320/360/412/1024 on every guide page; no clipped text
+NOTE F8 hi overflow: []
+
+[16/34] [chromium] › e2e\guide-10c.spec.js:71:7 › Guide en 360px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+[chromium] › e2e\guide-10c.spec.js:71:7 › Guide en 360px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+NOTE F1 en 360 backend endpoints on /about (control): ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/rpc/get_public_feedback","OPTIONS /rest/v1/site_settings","POST /rest/v1/rpc/get_public_feedback"]
+
+NOTE F1 en 360 backend endpoints on the 5 guide pages: ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/site_settings"]
+
+NOTE F1 en 360 initiators: ["supabase","preflight"]
+
+[17/34] [chromium] › e2e\guide-10c.spec.js:119:7 › Guide en 360px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+[18/34] [chromium] › e2e\guide-10c.spec.js:155:7 › Guide en 360px › F3 try-it: tapping the highlighted target advances, tapping elsewhere does not
+[19/34] [chromium] › e2e\guide-10c.spec.js:186:7 › Guide en 360px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+[20/34] [chromium] › e2e\guide-10c.spec.js:231:7 › Guide en 360px › F4b post demo: date step (आज + जब तक चाहें) and photo step (sample picture), no OTP node
+[21/34] [chromium] › e2e\guide-10c.spec.js:281:7 › Guide en 360px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+[22/34] [chromium] › e2e\guide-10c.spec.js:320:7 › Guide en 360px › F7 every entry point exists and opens the right demo
+[23/34] [chromium] › e2e\guide-10c.spec.js:71:7 › Guide en 412px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+[chromium] › e2e\guide-10c.spec.js:71:7 › Guide en 412px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+NOTE F1 en 412 backend endpoints on /about (control): ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/rpc/get_public_feedback","OPTIONS /rest/v1/site_settings","POST /rest/v1/rpc/get_public_feedback"]
+
+NOTE F1 en 412 backend endpoints on the 5 guide pages: ["GET /rest/v1/places","GET /rest/v1/site_settings","OPTIONS /rest/v1/places","OPTIONS /rest/v1/site_settings"]
+
+NOTE F1 en 412 initiators: ["preflight","supabase"]
+
+[24/34] [chromium] › e2e\guide-10c.spec.js:119:7 › Guide en 412px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+[25/34] [chromium] › e2e\guide-10c.spec.js:155:7 › Guide en 412px › F3 try-it: tapping the highlighted target advances, tapping elsewhere does not
+[26/34] [chromium] › e2e\guide-10c.spec.js:186:7 › Guide en 412px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+[27/34] [chromium] › e2e\guide-10c.spec.js:231:7 › Guide en 412px › F4b post demo: date step (आज + जब तक चाहें) and photo step (sample picture), no OTP node
+[28/34] [chromium] › e2e\guide-10c.spec.js:281:7 › Guide en 412px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+[29/34] [chromium] › e2e\guide-10c.spec.js:320:7 › Guide en 412px › F7 every entry point exists and opens the right demo
+[30/34] [chromium] › e2e\guide-10c.spec.js:377:3 › F8 en: no horizontal overflow at 320/360/412/1024 on every guide page; no clipped text
+[chromium] › e2e\guide-10c.spec.js:377:3 › F8 en: no horizontal overflow at 320/360/412/1024 on every guide page; no clipped text
+NOTE F8 en overflow: []
+
+[31/34] [chromium] › e2e\guide-10c.spec.js:445:3 › F11 battery and data care › hub scene pauses when scrolled away and when the page is hidden; tour rotation too
+[32/34] [chromium] › e2e\guide-10c.spec.js:494:3 › F11 battery and data care › looping / running animations use only transform and opacity (hub, tour, demo mid-play)
+[chromium] › e2e\guide-10c.spec.js:494:3 › F11 battery and data care › looping / running animations use only transform and opacity (hub, tour, demo mid-play)
+NOTE F11 animated properties: {"hub":{"transform":["ksg-spin","ksg-sway","ksg-drive"]},"tour":{"transform":["ksg-bub","ksg-grow","ksg-fill"],"opacity":["ksg-bub"]},"registerMidPlay":{"transform":["ksg-bub","transform"],"opacity":["ksg-bub","opacity","ksg-blink"]}}
+
+[33/34] [chromium] › e2e\guide-10c.spec.js:537:3 › F11 battery and data care › data saver: hero static, tour does not rotate, demos still finish
+[34/34] [chromium] › e2e\guide-10c.spec.js:565:3 › F11 battery and data care › reduced motion: no finger, no confetti, hero static, no tour rotation; steps still reach the end
+[teardown] cleanup warning: Missing Supabase env (run with node --env-file=.env)
+  34 passed (4.6m)

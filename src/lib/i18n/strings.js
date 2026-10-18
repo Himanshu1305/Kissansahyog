@@ -2461,6 +2461,11 @@ export const strings = {
   guide_post_12: { hi: 'मशीन देने वाले को ये दो बॉक्स टिक करने होते हैं। दूसरे से इस लिस्टिंग पर आपका नंबर दिखेगा।', en: 'A machine provider ticks these two boxes. The second lets this listing show your number.' },
   guide_post_13: { hi: 'ये चार बातें पढ़कर टिक कीजिए।', en: 'Read these four points and tick them.' },
   guide_post_14: { hi: '"जमा करें" दबाइए। आपकी लिस्टिंग जुड़ गई!', en: 'Press "Submit". Your listing is posted!' },
+  // Batch 10E Phase 4 — post demo: date block + photo steps (Hindi awaits founder review).
+  guide_post_dates: { hi: 'कब से उपलब्ध है, यह भरना ज़रूरी है। "आज", "कल", "परसों" दबाइए या "तारीख़ चुनें"। कब तक का पता न हो तो "जब तक चाहें" रहने दीजिए। तारीख़ देखकर खरीदार पहले से योजना बना पाते हैं।', en: 'Say from when it is available; this is required. Tap "Today", "Tomorrow", "Day after" or "Pick a date". If you do not know the end, leave "No end date". With dates, buyers can plan ahead.' },
+  guide_post_photo: { hi: '"फोटो जोड़ें" दबाकर फ़ोन से मशीन की फोटो चुनिए। साफ़ फोटो वाली लिस्टिंग पर ज़्यादा कॉल आते हैं। (इस डेमो में कुछ अपलोड नहीं होता।)', en: 'Tap "Add photos" and choose a photo of the machine from your phone. Listings with clear photos get more calls. (Nothing is uploaded in this demo.)' },
+  guide_s_today_date: { hi: 'आज की तारीख़', en: "Today's date" },
+  guide_example_photo: { hi: 'उदाहरण फोटो', en: 'Example photo' },
   // Find demo.
   guide_find_1: { hi: 'ऊपर श्रेणी चुनिए। "मशीन" पहले से चुनी रहती है।', en: 'Pick a category at the top. "Equipment" is already picked.' },
   guide_find_2: { hi: 'टैग चुनिए। सूची अपने आप छोटी हो जाती है।', en: 'Pick a tag. The list gets shorter by itself.' },

@@ -227,6 +227,56 @@ for (const lang of LANGS) {
         await ctx.close()
       })
 
+      // Batch 10E Phase 4: the post demo's new date step and photo step (real form order).
+      test(`F4b post demo: date step (आज + जब तक चाहें) and photo step (sample picture), no OTP node`, async ({ browser }) => {
+        const { ctx, page, errors } = await open(browser, { lang, width })
+        const demo = DEMOS.post
+        const di = demo.steps.findIndex((s) => itemsOf(s)[0].target === 'dq_0')
+        const pi = demo.steps.findIndex((s) => itemsOf(s)[0].target === 'photo_add')
+        expect(di, 'date step exists').toBeGreaterThan(0)
+        expect(pi, 'photo step right after the date step').toBe(di + 1)
+        await page.goto('/guide/post')
+        const player = page.getByTestId('demo-player')
+        await expect(page.locator('[data-testid^="demo-step-"]')).toHaveCount(demo.steps.length)
+        await expect(page.getByTestId(`demo-step-${di}`)).toContainText(strings.guide_post_dates[lang])
+        await expect(page.getByTestId(`demo-step-${pi}`)).toContainText(strings.guide_post_photo[lang])
+        await page.getByTestId('demo-mode-try').click()
+        await page.getByTestId(`demo-step-${di}`).click()
+        await expect(player).toHaveAttribute('data-step', String(di))
+        const scr = page.getByTestId('demo-screen')
+        await expect(scr).toHaveAttribute('data-screen', 's2')
+        // the real DateBlock labels, the old availability chips gone
+        await expect(scr.locator('[data-node="from_q"]')).toContainText(strings.field_available_from[lang])
+        await expect(scr.locator('[data-node="from_q"] .ksg-m-req')).toHaveCount(1)
+        for (const k of ['date_today', 'date_tomorrow', 'date_day_after', 'date_pick']) await expect(scr.locator('[data-node="from_q"]')).toContainText(strings[k][lang])
+        await expect(scr.locator('[data-node="to_q"]')).toContainText(strings.date_to_optional[lang])
+        await expect(scr.locator('[data-node="open_end"]')).toHaveClass(/ksg-m-sel/)
+        await expect(scr.locator('[data-node="avail_g"]')).toHaveCount(0)
+        await expect(scr).toContainText(strings.extra_info_label[lang])
+        await expect(scr.locator('[data-node="photo_thumb"]')).toHaveCount(0)
+        // tap "आज" → chip pressed, start box filled with the labelled sample
+        await expect(page.getByTestId('demo-target')).toHaveAttribute('data-node', 'dq_0')
+        await page.getByTestId('demo-target').click()
+        await expect(scr.locator('[data-node="dq_0"]')).toHaveClass(/ksg-m-sel/)
+        await expect(scr.locator('[data-node="from"]')).toContainText(strings.guide_s_today_date[lang])
+        await expect(scr.locator('[data-node="from"]')).toContainText(strings.guide_sample[lang])
+        // photo step: tap "फोटो जोड़ें" → a sample picture (inline SVG, no file) tagged "उदाहरण फोटो"
+        await expect(player).toHaveAttribute('data-step', String(pi), { timeout: 10_000 })
+        await expect(page.getByTestId('demo-target')).toHaveAttribute('data-node', 'photo_add')
+        await expect(page.getByTestId('demo-target')).toContainText(strings.photo_add[lang])
+        await page.getByTestId('demo-target').click()
+        const thumb = scr.locator('[data-node="photo_thumb"]')
+        await expect(thumb).toBeVisible()
+        await expect(thumb.locator('svg')).toHaveCount(1)
+        await expect(thumb.locator('img')).toHaveCount(0)
+        await expect(thumb).toContainText(strings.guide_example_photo[lang])
+        await expect(scr.locator('[data-node="photos"]')).toContainText('1/3')
+        await expect(player).toHaveAttribute('data-step', String(pi + 1))
+        await expect(page.locator('[data-otp="1"]')).toHaveCount(0)
+        expect(errors).toEqual([])
+        await ctx.close()
+      })
+
       // F.6
       test(`F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup`, async ({ browser }) => {
         const { ctx, page, errors } = await open(browser, { lang, width })

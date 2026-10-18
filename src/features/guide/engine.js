@@ -10,12 +10,14 @@
 //   [Txt, Txt, …]       → joined
 // Node: { type, id?, hidden?, otp?, … } — types are rendered by MockScreen.jsx:
 //   bar · pill · h · p · field · row · chips · tiles · check · checks · banner · button ·
-//   buttons · card · kv · list · chosen · big · done
-//   Containers hold `children` (row, checks, buttons, card); chips / tiles / list hold `items`
+//   buttons · card · kv · list · chosen · big · done · group · photos · thumb
+//   Containers hold `children` (row, checks, buttons, card, group, photos); chips / tiles / list hold `items`
 //   ([{ id, text, sel? }]) — one `items` group = one single choice (multi: true → many).
 // Step: { do: 'type'|'pick'|'check'|'tap'|'look', target, text?, items?, say, reveal?, hide?,
 //         go?, fx?, otp? }
-//   items: [{ target, do?, text? }] runs several actions in one step (do defaults to step.do).
+//   items: [{ target, do?, text?, set? }] runs several actions in one step (do defaults to step.do).
+//   set: { nodeId: Txt } fills those fields together with the action (Batch 10E: tapping the
+//   "आज" quick button also fills the date box, as on the real form).
 //   reveal / hide: node ids · go: screen id · fx: confetti · otp: true marks an OTP-only step.
 
 // Walk every node of a demo (depth-first), calling fn(node, screen).
@@ -55,6 +57,11 @@ export const itemDo = (step, item) => item.do || step.do
 
 // One action of a step, as a NEW state object (inputs are never mutated).
 export function applyItem(state, step, item, index) {
+  const st = applyAction(state, step, item, index)
+  return item.set ? { ...st, values: { ...st.values, ...item.set } } : st
+}
+
+function applyAction(state, step, item, index) {
   const kind = itemDo(step, item)
   const id = item.target
   if (kind === 'type') return { ...state, values: { ...state.values, [id]: item.text } }
@@ -113,7 +120,7 @@ export function demoKeys(demo) {
   })
   for (const st of demo.steps) {
     add(st.say)
-    for (const it of itemsOf(st)) add(it.text)
+    for (const it of itemsOf(st)) { add(it.text); for (const v of Object.values(it.set || {})) add(v) }
   }
   return [...keys]
 }

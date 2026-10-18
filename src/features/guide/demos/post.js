@@ -2,6 +2,11 @@
 // common case, using the app's own labels: strings.js keys, catalog.js options and placeholders
 // (equipmentSpecFields / specPlaceholder for 'Tractor'), disclaimers.js consent items.
 // Format: see ../engine.js. /post needs login; the hub card text says so.
+// Batch 10E Phase 4: step 2 now follows the real form after Phase 3 — category fields, then the
+// shared date block (DateBlock: "कब से उपलब्ध *" with आज / कल / परसों / 📅 तारीख़ चुनें, and
+// "कब तक (वैकल्पिक)" with "जब तक चाहें"), the optional extra-info box (shown, no step of its
+// own), then the photo picker. The old "उपलब्धता: अभी उपलब्ध / तय तारीख़ों में" chips are gone.
+// The sample photo is drawn in code (MockScreen 'thumb'); nothing is picked or uploaded.
 import { CATEGORY_META, EQUIPMENT_TAGS, RENTAL_BASIS, TRACTOR_BRANDS, equipmentSpecFields, specPlaceholder } from '../../../lib/listings/catalog.js'
 import { disclaimers } from '../../../lib/i18n/disclaimers.js'
 
@@ -58,9 +63,23 @@ const screens = [
         { type: 'field', id: 'basis', label: 'field_rental_basis', ph: 'select_placeholder', select: true },
         { type: 'field', id: 'rate', label: 'field_equipment_rate', ph: 'ph_equipment_rate', req: true },
       ] },
-      { type: 'chips', id: 'avail_g', label: 'field_availability', items: [
-        { id: 'avail_now', text: 'avail_now', sel: true },
-        { id: 'avail_dates', text: 'avail_dates' },
+      { type: 'group', id: 'dates', children: [
+        { type: 'chips', id: 'from_q', label: 'field_available_from', req: true, big: true, items: [
+          { id: 'dq_0', text: 'date_today' },
+          { id: 'dq_1', text: 'date_tomorrow' },
+          { id: 'dq_2', text: 'date_day_after' },
+          { id: 'dq_pick', text: [raw('📅 '), 'date_pick'] },
+        ] },
+        { type: 'field', id: 'from', ph: raw('__ / __ / ____'), sample: true },
+        { type: 'chips', id: 'to_q', label: 'date_to_optional', big: true, items: [
+          { id: 'open_end', text: 'date_open_ended', sel: true },
+        ] },
+        { type: 'field', id: 'to', ph: raw('__ / __ / ____') },
+      ] },
+      { type: 'field', id: 'extra', label: 'extra_info_label', ph: 'extra_info_ph', hint: [raw('📵 '), 'extra_info_help'], multiline: true },
+      { type: 'photos', id: 'photos', label: 'field_photos', hint: 'photos_help', limit: 3, children: [
+        { type: 'button', id: 'photo_add', text: 'photo_add', small: true },
+        { type: 'thumb', id: 'photo_thumb', hidden: true, text: 'guide_example_photo' },
       ] },
       { type: 'button', id: 'next2', text: 'continue' },
     ],
@@ -91,6 +110,9 @@ const steps = [
   { do: 'type', items: [{ target: 'brand', text: mahindra }, { target: 'model', text: raw('575 DI') }], say: 'guide_post_6' },
   { do: 'type', items: [{ target: 'year', text: raw('2021') }, { target: 'hp', text: raw('45') }], say: 'guide_post_7' },
   { do: 'type', items: [{ target: 'basis', text: perHour }, { target: 'rate', text: raw('₹600') }], say: 'guide_post_8' },
+  // Batch 10E Phase 4: the two new steps, in the real form's order (date block, then photos).
+  { do: 'pick', items: [{ target: 'dq_0', set: { from: 'guide_s_today_date' } }, { target: 'open_end', do: 'look' }], say: 'guide_post_dates' },
+  { do: 'tap', target: 'photo_add', reveal: ['photo_thumb'], say: 'guide_post_photo' },
   { do: 'tap', target: 'next2', go: 's3', say: 'guide_post_next' },
   { do: 'look', target: 'village', say: 'guide_post_10' },
   { do: 'look', target: 'phone', say: 'guide_post_11' },

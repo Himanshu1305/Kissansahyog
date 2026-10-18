@@ -1,0 +1,8 @@
+Batch 10E Phase 4 - chunk sizes (Git Bash gzip -9, same tool as Phase 2/3), build:full of the Phase 4 tree.
+index-DL_CujK3.js (main)          82030 raw / 27578 gz   (Phase 3: 82030 raw / 27595 gz - raw bytes identical; main chunk not touched)
+LanguageProvider-DLojDknM.js     246062 raw / 63455 gz   (Phase 3: 244749 / 63086 -> +369 B gz: 4 new strings, on-demand chunk, not first paint of /)
+DemoPlayer-CrKdoFRQ.js            27525 raw /  8388 gz   (guide-only chunk: demos + engine + MockScreen)
+GuideDemoPage-BZi0bge5.js          8862 raw /  2922 gz
+index-aCyv1b4l.css                79019 raw / 15892 gz   (same file name and size as Phase 3: unchanged)
+Budget (+1,536 B gz main for the whole batch): Phase 4 adds 0 B to main.
+guide-DMlG0BeF.css            19130 raw /  4371 gz   (guide-only CSS; +14 rules for the date box / photo picker / sample photo)
