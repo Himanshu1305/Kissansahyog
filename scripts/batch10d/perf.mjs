@@ -3,6 +3,7 @@
 // Usage:
 //   node scripts/batch10d/perf.mjs <baseURL> <outJson> [--runs N] [--label X] [--dist DIR] [--path /]
 //   node scripts/batch10d/perf.mjs <baseURL> <outJson> --photo-check [--label X]
+//   node scripts/batch10d/perf.mjs <baseURL> <outJson> --autoplay [--runs N] [--label X] [--window MS (default 10000)]
 //
 // Default mode (slow phone), per run in a FRESH browser context:
 //   360x640, isMobile + hasTouch, deviceScaleFactor 2, service workers blocked, HTTP cache disabled,
@@ -25,13 +26,21 @@
 // --photo-check mode: no throttling; one context at 360x640 (mobile) and one at 1280x720 (desktop);
 //   counts requests for /images/home/hero-farmer.jpg after load + 3 s, and again after scrolling
 //   to the bottom of the page and back (lazy content).
+//
+// --autoplay mode (Batch 10D Task E, gate "no long task > 300 ms in the first 10 s of auto-play"):
+//   same slow-phone profile and fresh context per run. After load the hero's phone panel
+//   ([data-testid="home-live-stage"]) is scrolled into view, then the run waits until the lazy live
+//   engine has started (hero data-live="1" and data-motion="on"); from that moment every long task
+//   for the next AUTOPLAY_MS (10 s) is recorded (start relative to auto-play start, duration), plus
+//   the ticks / personas the hero went through. Pages without the hero (baseline) report
+//   heroFound=false and the long tasks of the same 10 s window after the scroll.
 import { chromium } from '@playwright/test'
 import fs from 'node:fs'
 import path from 'node:path'
 import zlib from 'node:zlib'
 
 const args = process.argv.slice(2)
-const pos = args.filter((a, i) => !a.startsWith('--') && !(i > 0 && ['--runs', '--label', '--dist', '--path'].includes(args[i - 1])))
+const pos = args.filter((a, i) => !a.startsWith('--') && !(i > 0 && ['--runs', '--label', '--dist', '--path', '--window'].includes(args[i - 1])))
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d }
 const BASE = (pos[0] || 'http://localhost:4173').replace(/\/$/, '')
 const OUT = pos[1] || 'perf.json'
@@ -40,6 +49,8 @@ const LABEL = opt('--label', '')
 const DIST = opt('--dist', '')
 const PAGE_PATH = opt('--path', '/')
 const PHOTO_CHECK = args.includes('--photo-check')
+const AUTOPLAY = args.includes('--autoplay')
+const AUTOPLAY_MS = Number(opt('--window', 10000))
 const PHOTO = '/images/home/hero-farmer.jpg'
 
 // Lighthouse mobile "Slow 4G" (simulated: 150 ms RTT, 1.6 Mbps down, 750 Kbps up), devtools-throttling
@@ -176,6 +187,54 @@ async function slowRun(browser, i) {
   }
 }
 
+async function autoplayRun(browser, i) {
+  const ctx = await newCtx(browser, { width: 360, height: 640, mobile: true })
+  await ctx.addInitScript(initScript)
+  const page = await ctx.newPage()
+  const cdp = await ctx.newCDPSession(page)
+  await cdp.send('Network.enable')
+  await cdp.send('Network.setCacheDisabled', { cacheDisabled: true })
+  await cdp.send('Network.emulateNetworkConditions', NET)
+  await cdp.send('Emulation.setCPUThrottlingRate', { rate: CPU_RATE })
+  await page.goto(BASE + PAGE_PATH, { waitUntil: 'load', timeout: 120_000 })
+  const sel = '[data-testid="home-live-stage"]'
+  // The prerendered hero is replaced by the app's first render; wait for the React one.
+  const heroFound = await page.waitForFunction(() => {
+    const h = document.querySelector('[data-testid="home-live"]')
+    return !!h && Object.keys(h).some((k) => k.startsWith('__react'))
+  }, null, { timeout: 30_000, polling: 100 }).then(() => true).catch(() => false)
+  let liveWaitMs = null
+  if (heroFound) {
+    await page.locator(sel).scrollIntoViewIfNeeded()
+    const t = Date.now()
+    await page.waitForFunction(() => {
+      const h = document.querySelector('[data-testid="home-live"]')
+      return h && h.dataset.live === '1' && h.dataset.motion === 'on'
+    }, null, { timeout: 60_000, polling: 50 })
+    liveWaitMs = Date.now() - t
+  }
+  // Auto-play window: record hero states with a MutationObserver, long tasks from the buffer.
+  const r = await page.evaluate(async (ms) => {
+    const h = document.querySelector('[data-testid="home-live"]')
+    const t0 = performance.now()
+    const seen = []
+    let mo = null
+    if (h) {
+      seen.push(h.dataset.persona)
+      mo = new MutationObserver(() => { if (seen.at(-1) !== h.dataset.persona) seen.push(h.dataset.persona) })
+      mo.observe(h, { attributes: true, attributeFilter: ['data-persona'] })
+    }
+    const tick0 = h ? Number(h.dataset.tick) : null
+    await new Promise((res) => setTimeout(res, ms))
+    mo?.disconnect()
+    const lt = window.__perf.lt.filter((x) => x.start + x.dur > t0 && x.start < t0 + ms).map((x) => ({ start: x.start - Math.round(t0), dur: x.dur }))
+    return { t0: Math.round(t0), tick0, tickEnd: h ? Number(h.dataset.tick) : null, rot: h ? Number(h.dataset.rot) : null, personas: seen, motionEnd: h?.dataset.motion ?? null, longTasks: lt }
+  }, AUTOPLAY_MS)
+  await cdp.send('Emulation.setCPUThrottlingRate', { rate: 1 })
+  await ctx.close()
+  return { run: i + 1, heroFound, liveWaitMs, autoplayStartMs: r.t0, ...r, maxLongTaskMs: r.longTasks.reduce((x, t) => Math.max(x, t.dur), 0), over300: r.longTasks.filter((t) => t.dur > 300).length }
+}
+
 async function photoRun(browser, vp) {
   const ctx = await newCtx(browser, vp)
   await ctx.addInitScript(() => { try { localStorage.setItem('ks_lang_v1', 'hi') } catch { /* ignore */ } })
@@ -205,6 +264,22 @@ try {
     const results = []
     for (const vp of [{ width: 360, height: 640, mobile: true }, { width: 1280, height: 720, mobile: false }]) results.push(await photoRun(browser, vp))
     out = { label: LABEL, mode: 'photo-check', baseURL: BASE, path: PAGE_PATH, photo: PHOTO, throttling: 'none', date: new Date().toISOString(), results }
+  } else if (AUTOPLAY) {
+    const runs = []
+    for (let i = 0; i < RUNS; i++) {
+      const r = await autoplayRun(browser, i)
+      runs.push(r)
+      console.log(`autoplay run ${i + 1}: hero ${r.heroFound} live after ${r.liveWaitMs} ms, ticks ${r.tick0}→${r.tickEnd} rot ${r.rot} personas ${r.personas.join(',')} longTasks ${r.longTasks.length} max ${r.maxLongTaskMs} ms >300: ${r.over300}`)
+    }
+    out = {
+      label: LABEL, mode: 'autoplay', baseURL: BASE, path: PAGE_PATH, date: new Date().toISOString(),
+      profile: { viewport: '360x640', deviceScaleFactor: 2, cpuThrottlingRate: CPU_RATE, network: NET, language: 'hi', window: `${AUTOPLAY_MS} ms from live engine start (data-live=1, data-motion=on), hero phone scrolled into view` },
+      runs: RUNS,
+      median: { maxLongTaskMs: median(runs.map((r) => r.maxLongTaskMs)), longTasks: median(runs.map((r) => r.longTasks.length)), liveWaitMs: median(runs.map((r) => r.liveWaitMs)) },
+      worst: { maxLongTaskMs: Math.max(...runs.map((r) => r.maxLongTaskMs)), over300: runs.reduce((s, r) => s + r.over300, 0) },
+      all: runs,
+    }
+    console.log('median', JSON.stringify(out.median), 'worst', JSON.stringify(out.worst))
   } else {
     const runs = []
     for (let i = 0; i < RUNS; i++) {

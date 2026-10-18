@@ -1,0 +1,70 @@
+{
+  "label": "after-25s",
+  "mode": "autoplay",
+  "baseURL": "http://localhost:4194",
+  "path": "/",
+  "date": "2026-10-18T01:00:52.309Z",
+  "profile": {
+    "viewport": "360x640",
+    "deviceScaleFactor": 2,
+    "cpuThrottlingRate": 4,
+    "network": {
+      "offline": false,
+      "latency": 562.5,
+      "downloadThroughput": 180000,
+      "uploadThroughput": 84375
+    },
+    "language": "hi",
+    "window": "25000 ms from live engine start (data-live=1, data-motion=on), hero phone scrolled into view"
+  },
+  "runs": 2,
+  "median": {
+    "maxLongTaskMs": 0,
+    "longTasks": 0,
+    "liveWaitMs": 2068
+  },
+  "worst": {
+    "maxLongTaskMs": 0,
+    "over300": 0
+  },
+  "all": [
+    {
+      "run": 1,
+      "heroFound": true,
+      "liveWaitMs": 2048,
+      "autoplayStartMs": 9429,
+      "t0": 9429,
+      "tick0": 0,
+      "tickEnd": 76,
+      "rot": 2,
+      "personas": [
+        "rent",
+        "sell",
+        "mandi"
+      ],
+      "motionEnd": "on",
+      "longTasks": [],
+      "maxLongTaskMs": 0,
+      "over300": 0
+    },
+    {
+      "run": 2,
+      "heroFound": true,
+      "liveWaitMs": 2088,
+      "autoplayStartMs": 9431,
+      "t0": 9431,
+      "tick0": 0,
+      "tickEnd": 74,
+      "rot": 2,
+      "personas": [
+        "rent",
+        "sell",
+        "mandi"
+      ],
+      "motionEnd": "on",
+      "longTasks": [],
+      "maxLongTaskMs": 0,
+      "over300": 0
+    }
+  ]
+}

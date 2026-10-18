@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams } from 'react-router-dom'
 import { isSafePath } from './lib/returnPath'
 import { LanguageProvider } from './lib/i18n/LanguageProvider'
@@ -15,7 +15,19 @@ import { isNative } from './lib/native'
 import { useRefreshKey } from './lib/offline/useOffline'
 
 // Route-level code splitting (perf budget: keep the initial bundle small).
-const Homepage = lazy(() => import('./screens/Homepage'))
+// Batch 10D E — layout-shift fix: main.jsx preloads the homepage chunk on "/" before the first
+// render; then "/" draws the loaded module directly, so the first commit replaces the prerendered
+// page with the real homepage instead of the Suspense spinner (which made the footer jump).
+// Anywhere else (or if the preload has not finished) it is the usual lazy route. The choice is
+// made once per mount, so a mounted homepage never switches component type.
+const loadHomepage = () => import('./screens/Homepage')
+let homepageModule = null
+export const preloadHomepage = () => loadHomepage().then((m) => { homepageModule = m })
+const HomepageLazy = lazy(loadHomepage)
+function Homepage() {
+  const [Page] = useState(() => homepageModule?.default || HomepageLazy)
+  return <Page />
+}
 const Welcome = lazy(() => import('./screens/Welcome'))
 const Privacy = lazy(() => import('./screens/Privacy'))
 const Terms = lazy(() => import('./screens/Terms'))
