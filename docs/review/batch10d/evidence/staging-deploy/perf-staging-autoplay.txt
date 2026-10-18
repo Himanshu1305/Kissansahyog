@@ -1,0 +1,5 @@
+autoplay run 1: hero true live after 156 ms, ticks 1→187 rot 0 personas rent longTasks 2 max 76 ms >300: 0
+autoplay run 2: hero true live after 662 ms, ticks 0→211 rot 0 personas rent longTasks 3 max 76 ms >300: 0
+autoplay run 3: hero true live after 134 ms, ticks 1→216 rot 0 personas rent longTasks 2 max 64 ms >300: 0
+median {"maxLongTaskMs":76,"longTasks":2,"liveWaitMs":156} worst {"maxLongTaskMs":76,"over300":0}
+wrote docs/review/batch10d/evidence/staging-deploy/perf-staging-autoplay.json

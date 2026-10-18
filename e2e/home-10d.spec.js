@@ -31,15 +31,24 @@ const isBackend = (url) => {
 //  - BACKLOG B17 (pre-existing, deliberately not fixed in 10D): the prerendered `build:full` pages carry
 //    <link rel="modulepreload"> tags with the prerender origin http://localhost:4178; on this local build
 //    they fail with "Failed to load resource: net::ERR_CONNECTION_REFUSED" (production blocks them by CSP).
+//    On a deployed host (staging) the same links are refused by the CSP instead ("violates the following
+//    Content Security Policy directive" naming http://localhost:4178/...).
 //  - The Cloudflare Web Analytics beacon (static.cloudflareinsights.com), if injected, cannot load locally.
+//  - Pre-existing CSP gap (not 10D; also on production): `img-src` in public/_headers does not list the
+//    Supabase storage host, so listing photos (…supabase.co/storage/v1/object/public/…) are refused on
+//    deployed hosts. Seen only when the homepage listings carry uploaded photos (staging data).
 // Only exactly these are filtered; every other console error fails the test.
 const knownNoise = (m) => {
   const text = m.text()
   const url = m.location()?.url || ''
   if (/ERR_CONNECTION_REFUSED/.test(text) && /^http:\/\/localhost:4178\//.test(url)) return true
+  if (/violates the following Content Security Policy/.test(text) && /'http:\/\/localhost:4178\//.test(text)) return true
   if (/cloudflareinsights/.test(text) || /cloudflareinsights/.test(url)) return true
+  if (/violates the following Content Security Policy directive: "img-src/.test(text) && /\.supabase\.co\/storage\/v1\/object\/public\//.test(text)) return true
   return false
 }
+// The same pre-existing CSP gap shows as a failed request ("csp") for those storage images.
+const cspStorageImage = (r) => /\.supabase\.co\/storage\/v1\/object\/public\//.test(r.url()) && /csp/i.test(r.failure()?.errorText || '')
 
 // ── facts: the expected numbers, computed here from the same repo data files ─────────────────
 const read = (p) => fs.readFileSync(new URL(p, import.meta.url), 'utf8')
@@ -70,7 +79,7 @@ async function open(browser, { lang = 'hi', width = 360, height = 740, speed = S
     if (m.type() === 'error' && !knownNoise(m)) errors.push(`console: ${m.text()} @ ${m.location()?.url || ''}`)
   })
   const failedBackend = []
-  page.on('requestfailed', (r) => { if (isBackend(r.url())) failedBackend.push(`${r.method()} ${r.url()} ${r.failure()?.errorText}`) })
+  page.on('requestfailed', (r) => { if (isBackend(r.url()) && !cspStorageImage(r)) failedBackend.push(`${r.method()} ${r.url()} ${r.failure()?.errorText}`) })
   page.on('response', (r) => { if (isBackend(r.url()) && r.status() >= 400) failedBackend.push(`${r.status()} ${r.request().method()} ${r.url()}`) })
   return { ctx, page, errors, consoleAll, failedBackend, blocked }
 }

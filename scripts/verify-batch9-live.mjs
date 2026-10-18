@@ -5,6 +5,7 @@
 //   node scripts/verify-batch9-live.mjs --base <https://host> --out <dir> --label <name>
 //        --checks <comma list> [--snapshot <prod-before.json>] [--wait-min <n>]
 //        [--expect-main <index-xxxx.js>] [--allow-post] [--data <staging-test-data.json>]
+//        [--max-growth <root|page=ratio,…>]   (compare only: per-page upper size limit, opt-in)
 //
 // Checks (each one is a gate; exit code 0 only when every requested gate passed):
 //   pages     (4.4a) / and 10 key pages: HTTP 200, rendered in real Chromium, h1 present, no
@@ -42,6 +43,12 @@ const SNAPSHOT = arg('--snapshot', null)
 const EXPECT_MAIN = arg('--expect-main', null)
 const ALLOW_POST = argv.includes('--allow-post')
 const DATA_FILE = arg('--data', null)
+// --max-growth 'root=1.40,browse=1.40' (page paths without the leading '/', 'root' = '/', so Git Bash on
+// Windows does not rewrite them into file paths): opt-in per-page upper size limit for 'compare', for a ship that
+// deliberately makes a page bigger (Batch 10D: the new homepage hero, band and facts row). Only the
+// upper limit changes; the 0.85 floor, title/h1 and ErrorBoundary checks stay. Without the option
+// every page keeps the limits below.
+const MAX_GROWTH = Object.fromEntries(String(arg('--max-growth', '')).split(',').map((s) => s.trim()).filter(Boolean).map((kv) => { const i = kv.lastIndexOf('='); const k = kv.slice(0, i).replace(/^\/+/, ''); return [k === 'root' || k === '' ? '/' : '/' + k, Number(kv.slice(i + 1))] }).filter(([, v]) => v > 1))
 if (!/^https:\/\//.test(BASE)) { console.error('--base https://… is required'); process.exit(2) }
 const HOST = new URL(BASE).host
 const PROD_HOSTS = ['kissansahyog.com', 'www.kissansahyog.com', 'kissansahyog-prod.pages.dev']
@@ -335,8 +342,9 @@ async function compare() {
     // checks still apply to them unchanged. Every other page keeps the 1.15 / 1.60 limits above.
     const dataPage = p === '/sawaal' || p === '/yojana'
     const faqAdded = n.faq && b.faq !== true
-    const hi = dataPage ? 4.0 : faqAdded ? 1.6 : 1.15
-    c.check(`${p}: 200, title/h1 unchanged, size within -15%/+${Math.round((hi - 1) * 100)}%${dataPage ? ' (data page, snapshot taken before data loaded)' : faqAdded ? ' (FAQ block added)' : ''}, no ErrorBoundary`, n.status === 200 && n.title === b.title && n.h1 === b.h1 && ratio >= 0.85 && ratio <= hi && !n.errorBoundary, { status: n.status, title: n.title === b.title ? 'same' : [b.title, n.title], h1: n.h1 === b.h1 ? 'same' : [b.h1, n.h1], sizeRatio: Number(ratio.toFixed(3)), faqBefore: b.faq ?? 'not recorded', faqNow: n.faq })
+    const shipGrowth = MAX_GROWTH[p]
+    const hi = shipGrowth ? Math.max(shipGrowth, dataPage ? 4.0 : faqAdded ? 1.6 : 1.15) : dataPage ? 4.0 : faqAdded ? 1.6 : 1.15
+    c.check(`${p}: 200, title/h1 unchanged, size within -15%/+${Math.round((hi - 1) * 100)}%${shipGrowth ? ' (--max-growth for this ship)' : dataPage ? ' (data page, snapshot taken before data loaded)' : faqAdded ? ' (FAQ block added)' : ''}, no ErrorBoundary`, n.status === 200 && n.title === b.title && n.h1 === b.h1 && ratio >= 0.85 && ratio <= hi && !n.errorBoundary, { status: n.status, title: n.title === b.title ? 'same' : [b.title, n.title], h1: n.h1 === b.h1 ? 'same' : [b.h1, n.h1], sizeRatio: Number(ratio.toFixed(3)), faqBefore: b.faq ?? 'not recorded', faqNow: n.faq })
   }
   c.check('robots.txt unchanged', now.files['/robots.txt'].sha256 === before.files['/robots.txt'].sha256 && now.files['/robots.txt'].status === 200)
   const parser = new DOMParser({ onError: () => { throw new Error('xml') } })

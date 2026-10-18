@@ -13,7 +13,7 @@ Each task A–E was done by a subagent and then checked by the orchestrator (dif
 | C band / crops / facts / reveal | RAN-PASSED | shared `FieldScene` with /guide; decisions 20–27 |
 | D SEO safety | RAN-PASSED | NOTHING LOST (520 required words, 0 lost; re-run on the final build) |
 | E tests + perf gates | RAN-PASSED (HUMAN-REVIEW notes below) | two fixes: hero CSS into the main stylesheet (dec 28), layout-shift fix (dec 29) |
-| F staging + ship scripts | see `SHIP.md` and the section at the end | |
+| F staging + ship scripts | RAN-PASSED | staging `af949ffd-b49b-4312-97a9-c8df6c49b1a3`; home spec 32/32 on staging; ship dry run `DRY RUN OK`; real ship NOT-RUN (founder) |
 
 ## What farmers will see
 - Under "आज किसान के लिए": five tabs (machine on rent, sell, mandi prices, weather, schemes). A phone plays a short example for the active tab (labelled "उदाहरण"), the guide avatar says one line, and there are two big buttons: "रजिस्टर करें" and "1 मिनट का डेमो देखें". The old weather / price / advice tiles and the "मुझे कुछ चाहिए / मेरे पास कुछ है" buttons are still there, just below.
@@ -76,3 +76,10 @@ Looked at 10 (360 hi first + sell, 360 en weather, 412 en mandi, 768 hi weather,
 11. B17 (prerender writes `localhost:4178` preload links) is still open. It is the reason the 10C guide spec fails on prerendered builds and one cause of the slower live numbers seen at the 10C close. Recommended as its own small fix.
 12. Logged-in visitors see "पोस्ट करें" (→ `/post`) instead of "रजिस्टर करें" as the primary hero button (decision 17).
 13. The preview had no desktop section; desktop and tablet follow the written B2 spec (decision 2).
+
+## Task F — staging and ship preparation
+- Staging build (`build:full`, guard before and after OK, 268/268) and upload: RAN-PASSED, deployment `af949ffd-b49b-4312-97a9-c8df6c49b1a3`, https://staging.kissansahyog.com serves `/assets/index-DfikRbEu.js` with the live hero.
+- `e2e/home-10d.spec.js` against staging: 32/32 RAN-PASSED (after filtering two pre-existing CSP messages, decision 35).
+- Slow phone on staging (real network, 5 runs): LCP 6,372 ms median (H1; FCP = LCP), CLS 0, TBT 551 ms, farmer photo 0 requests; auto-play: longest task 76 ms, none over 300 ms. Deployed numbers are slower than the local ones because of real latency; no deployed baseline exists to compare with (production was not measured, decision 36).
+- `scripts/ship-prod-10d.sh` + `scripts/rollback-prod-10d.sh` created from the 10C versions; dry runs RAN-PASSED (`SHIP.md`).
+- 14. **CSP blocks listing photos from Supabase storage** on staging and production (`img-src` lacks `*.supabase.co`). Pre-existing, outside 10D. HUMAN-REVIEW.

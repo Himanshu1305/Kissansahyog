@@ -1,0 +1,70 @@
+*** DRY RUN — nothing will be built, deployed, rolled back or written ***
+== G. first gate: Batch 10C shipped and closed (tag prod-10c on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin prod-10c -> dd01a2f
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 10C is live and closed
+== 0. preconditions
++ git branch --show-current -> release-10d
++ git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
+WARNING (pending — a real run would STOP here): modified tracked files would change what ships (commit them first):
+e2e/home-10d.spec.js
+scripts/verify-batch9-live.mjs
+WARNING (pending — a real run would STOP here): tag pre-10d-ship missing (to be created on the final HEAD and pushed: git tag pre-10d-ship && git push origin pre-10d-ship)
++ HEAD e267c46  origin/release-10d 
+WARNING (pending — a real run would STOP here): HEAD is not what origin/release-10d has (push it first, or pull) — prod must ship a pushed commit
+  (Batch 10D has no database change: no migration step)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (source 40ddc4d), main chunk /assets/index-NFbe6Fk2.js
+  = the expected live deployment (7f5dc56a-9d1c-4bd2-8bde-a4512a96be20, Batch 10C)
++ (would write) C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/prod-deployment-before.txt  deployment_id=7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+== 2. read-only: live prod still matches the snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-before.json; fresh snapshot
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/prod-before-ship.json
+== 3. build
++ timeout 1500 npm run build:prod   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/build-prod-20261018-075436.log
+main chunk of the dist folder as it is now (a real run rebuilds it first): /assets/index-DfikRbEu.js
+guide chunks in dist: /assets/GuideHub-CN49XEwk.js /assets/GuideDemoPage-Cgq_qS35.js
+LiveStage chunk in dist: /assets/LiveStage-C8ZPx1Tg.js
++ dist markers: data-testid="home-live", data-testid="home-field", nav-guide in dist/index.html; LiveStage-*.js; guide chunks hold 'ksg-'
+  dist/index.html has nav-guide
+  dist/index.html has data-testid="home-live"
+  dist/index.html has data-testid="home-field"
+  (dist as it is now carries every marker; a real run checks the fresh build again)
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/deploy-20261018-075436.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40
++ GET https://kissansahyog.com{/,/signup,/browse,/guide} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'data-testid="home-live"', 'data-testid="home-field"', 'nav-guide'; GET LiveStage chunk -> 200; GET guide chunks -> 200 + 'ksg-'   (read-only)
+== 7. on any failure: bash scripts/rollback-prod-10d.sh 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
++ (read-only check that the rollback path works)
+    [rollback dry-run] *** DRY RUN — nothing will be changed ***
+    [rollback dry-run] + timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/7f5dc56a-9d1c-4bd2-8bde-a4512a96be20   (read-only)
+    [rollback dry-run] target deployment: env=production status=success source=40ddc4d created=2026-10-17T22:32:31.89693Z
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+    [rollback dry-run] live production deployment now: 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+    [rollback dry-run] (note: 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
+    [rollback dry-run] + POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/7f5dc56a-9d1c-4bd2-8bde-a4512a96be20/rollback   (Authorization: Bearer <token, not shown>)
+    [rollback dry-run] + (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (max 3 min)
+    [rollback dry-run] + (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-before.json
+    [rollback dry-run]   (no database step: Batch 10D changed no database)
+    [rollback dry-run] 
+    [rollback dry-run] ==================================================================
+    [rollback dry-run] DRY RUN OK — preconditions valid; rollback target 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (source 40ddc4d); nothing was changed
+    [rollback dry-run] ==================================================================
+
+##################################################################
+A real run would ship e267c46 to https://kissansahyog.com,
+replacing deployment 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (source 40ddc4d). Nothing was changed.
+Pending before the real run (a real run stops until these are done):
+  - modified tracked files would change what ships (commit them first):
+e2e/home-10d.spec.js
+scripts/verify-batch9-live.mjs
+  - tag pre-10d-ship missing (to be created on the final HEAD and pushed: git tag pre-10d-ship && git push origin pre-10d-ship)
+  - HEAD is not what origin/release-10d has (push it first, or pull) — prod must ship a pushed commit
+##################################################################
+DRY RUN OK

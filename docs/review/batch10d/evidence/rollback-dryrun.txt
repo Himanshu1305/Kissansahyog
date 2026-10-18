@@ -1,0 +1,15 @@
+*** DRY RUN — nothing will be changed ***
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/7f5dc56a-9d1c-4bd2-8bde-a4512a96be20   (read-only)
+target deployment: env=production status=success source=40ddc4d created=2026-10-17T22:32:31.89693Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+(note: 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
++ POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/7f5dc56a-9d1c-4bd2-8bde-a4512a96be20/rollback   (Authorization: Bearer <token, not shown>)
++ (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (max 3 min)
++ (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10d/evidence/prod-before.json
+  (no database step: Batch 10D changed no database)
+
+==================================================================
+DRY RUN OK — preconditions valid; rollback target 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (source 40ddc4d); nothing was changed
+==================================================================

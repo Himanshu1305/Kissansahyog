@@ -1,0 +1,114 @@
+{
+  "label": "staging-autoplay",
+  "mode": "autoplay",
+  "baseURL": "https://staging.kissansahyog.com",
+  "path": "/",
+  "date": "2026-10-18T02:30:01.804Z",
+  "profile": {
+    "viewport": "360x640",
+    "deviceScaleFactor": 2,
+    "cpuThrottlingRate": 4,
+    "network": {
+      "offline": false,
+      "latency": 562.5,
+      "downloadThroughput": 180000,
+      "uploadThroughput": 84375
+    },
+    "language": "hi",
+    "window": "10000 ms from live engine start (data-live=1, data-motion=on), hero phone scrolled into view"
+  },
+  "runs": 3,
+  "median": {
+    "maxLongTaskMs": 76,
+    "longTasks": 2,
+    "liveWaitMs": 156
+  },
+  "worst": {
+    "maxLongTaskMs": 76,
+    "over300": 0
+  },
+  "all": [
+    {
+      "run": 1,
+      "heroFound": true,
+      "liveWaitMs": 156,
+      "autoplayStartMs": 16930,
+      "t0": 16930,
+      "tick0": 1,
+      "tickEnd": 187,
+      "rot": 0,
+      "personas": [
+        "rent"
+      ],
+      "motionEnd": "on",
+      "longTasks": [
+        {
+          "start": 5648,
+          "dur": 76
+        },
+        {
+          "start": 6500,
+          "dur": 58
+        }
+      ],
+      "maxLongTaskMs": 76,
+      "over300": 0
+    },
+    {
+      "run": 2,
+      "heroFound": true,
+      "liveWaitMs": 662,
+      "autoplayStartMs": 19160,
+      "t0": 19160,
+      "tick0": 0,
+      "tickEnd": 211,
+      "rot": 0,
+      "personas": [
+        "rent"
+      ],
+      "motionEnd": "on",
+      "longTasks": [
+        {
+          "start": 2431,
+          "dur": 67
+        },
+        {
+          "start": 2664,
+          "dur": 55
+        },
+        {
+          "start": 3441,
+          "dur": 76
+        }
+      ],
+      "maxLongTaskMs": 76,
+      "over300": 0
+    },
+    {
+      "run": 3,
+      "heroFound": true,
+      "liveWaitMs": 134,
+      "autoplayStartMs": 13470,
+      "t0": 13470,
+      "tick0": 1,
+      "tickEnd": 216,
+      "rot": 0,
+      "personas": [
+        "rent"
+      ],
+      "motionEnd": "on",
+      "longTasks": [
+        {
+          "start": 5962,
+          "dur": 50
+        },
+        {
+          "start": 7157,
+          "dur": 64
+        }
+      ],
+      "maxLongTaskMs": 64,
+      "over300": 0
+    }
+  ]
+}
