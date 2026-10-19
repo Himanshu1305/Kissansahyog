@@ -90,6 +90,7 @@ const CODE_TO_KEY = {
   otp_service_busy: 'err_otp_service_busy',
   otp_code_format: 'err_otp_code_format',
   otp_required: 'err_otp_required',
+  phone_not_registered: 'err_phone_not_registered', // 11B: login with a number that has no account
   not_authenticated: 'err_not_authenticated',
 }
 

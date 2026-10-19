@@ -13,6 +13,9 @@ const url = process.env.VITE_SUPABASE_URL
 const svc = createClient(url, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 const anon = createClient(url, process.env.VITE_SUPABASE_ANON_KEY, { auth: { persistSession: false } })
 const ORIGIN = SITE
+let startedAt
+if (!url?.includes('wzxtqbqlahyahsnoqqva') || url.includes('eltmcznjcqiahqhjvpjg')) throw new Error('HTTP tests require staging')
+if (new URL(SITE).hostname !== '127.0.0.1' || new URL(MOCK).hostname !== '127.0.0.1') throw new Error('HTTP tests require local mock stack')
 
 const lines = []
 let pass = 0
@@ -20,7 +23,7 @@ let fail = 0
 const log = (s) => { lines.push(s); console.log(s) }
 const check = (name, ok, detail = '') => { ok ? pass++ : fail++; log(`- ${ok ? 'PASS' : 'FAIL'} — ${name}${detail ? ` (${detail})` : ''}`) }
 const post = async (path, body, headers = {}) => {
-  const res = await fetch(SITE + path, { method: 'POST', headers: { 'content-type': 'application/json', origin: ORIGIN, ...headers }, body: typeof body === 'string' ? body : JSON.stringify(body) })
+  const res = await fetch(SITE + path, { method: 'POST', headers: { 'content-type': 'application/json', origin: ORIGIN, 'cf-connecting-ip': '192.0.2.111', ...headers }, body: typeof body === 'string' ? body : JSON.stringify(body) })
   let j = null
   try { j = await res.json() } catch { j = null }
   return { status: res.status, body: j, headers: res.headers }
@@ -28,17 +31,22 @@ const post = async (path, body, headers = {}) => {
 const mock = async (path, method = 'GET') => (await fetch(MOCK + path, { method })).json()
 const stamp = Date.now() % 100000
 const ph = (i) => `91111${String((stamp + 50 + i) % 100000).padStart(5, '0')}`
-const phones = { user: ph(0), unknown: ph(1), fresh: ph(2), down: ph(3) }
+const phones = { user: ph(0), unknown: ph(1), fresh: ph(2), down: ph(3), admin: ph(4) }
 let prof
 
 async function main() {
+  startedAt = (await runSql('select now() started_at'))[0].started_at
   log(`# Batch 11A — OTP functions over HTTP (wrangler pages dev + mock 2Factor + staging DB, ${new Date().toISOString()})\n`)
   await mock('/__mock/reset', 'POST')
-  prof = (await svc.from('profiles').insert({ full_name: 'KSTEST 11A fn', phone: phones.user, preferred_language: 'hi', disclaimer_accepted_at: new Date().toISOString() }).select().single()).data
+  const inserted = await svc.from('profiles').insert({ full_name: 'KSTEST 11B fn', phone: phones.user, preferred_language: 'hi', disclaimer_accepted_at: new Date().toISOString() }).select().single()
+  if (inserted.error || !inserted.data) throw new Error('HTTP test profile setup failed')
+  prof = inserted.data
 
+  // 11B: compare with the real get_auth_flags() (staging may have otp_required on for a manual retest).
+  const real = (await anon.rpc('get_auth_flags')).data
   let r = await fetch(SITE + '/api/otp/config')
   const cfg = await r.json()
-  check('GET /api/otp/config → both flags false, cache 60 s', r.status === 200 && cfg.otp_required === false && cfg.session_enforced === false && /max-age=60/.test(r.headers.get('cache-control') || ''), JSON.stringify(cfg))
+  check('GET /api/otp/config → the same flags as get_auth_flags(), cache 60 s', r.status === 200 && cfg.otp_required === real?.otp_required && cfg.session_enforced === real?.session_enforced && /max-age=60/.test(r.headers.get('cache-control') || ''), JSON.stringify(cfg))
 
   r = await post('/api/otp/send', { phone: phones.user, purpose: 'login' })
   const ch = r.body?.challenge
@@ -84,14 +92,20 @@ async function main() {
   r = await post('/api/otp/send', { phone: phones.user, purpose: 'login' })
   check('third send within 10 minutes is the limit; the fourth → 429 otp_too_many', r.status === 429 && ['otp_too_many', 'otp_cooldown'].includes(r.body.error), JSON.stringify(r.body))
 
-  // unknown number: same shape, no SMS
+  // unknown number (Batch 11B): honest 409 phone_not_registered, no SMS, no wait; the rate row still counts
   const before = (await mock('/__mock/stats')).sends
   const t0 = Date.now()
   r = await post('/api/otp/send', { phone: phones.unknown, purpose: 'login' })
   const dt = Date.now() - t0
-  check('login for an unknown number → the same 200 shape, no SMS', r.status === 200 && r.body.ok === true && r.body.resendAfter === 30 && (await mock('/__mock/stats')).sends === before, `${dt} ms`)
-  r = await post('/api/otp/verify', { challenge: r.body.challenge, code: '123456', phone: phones.unknown })
-  check('…and its code can never be right → otp_wrong', r.status === 400 && r.body.error === 'otp_wrong')
+  check('login for an unknown number → 409 phone_not_registered, mock provider 0 calls', r.status === 409 && r.body?.error === 'phone_not_registered' && Object.keys(r.body).length === 1 && (await mock('/__mock/stats')).sends === before, `${dt} ms`)
+  r = await post('/api/otp/send', { phone: phones.unknown, purpose: 'login' })
+  check('…asking again at once → 429 otp_cooldown (unknown numbers still count), still no SMS', r.status === 429 && r.body.error === 'otp_cooldown' && (await mock('/__mock/stats')).sends === before)
+  r = await post('/api/otp/send', { phone: phones.unknown, purpose: 'login' })
+  check('third quick unknown-number try remains rate-limited, no SMS', r.status === 429 && r.body.error === 'otp_cooldown' && (await mock('/__mock/stats')).sends === before)
+  const insertedAdmin = await svc.from('profiles').insert({ full_name: 'KSTEST 11B admin', phone: phones.admin, preferred_language: 'hi', is_admin: true, disclaimer_accepted_at: new Date().toISOString() })
+  if (insertedAdmin.error) throw new Error('HTTP admin test setup failed')
+  r = await post('/api/otp/send', { phone: phones.admin, purpose: 'login' })
+  check('login for an ADMIN number → the same 409 phone_not_registered, no SMS', r.status === 409 && r.body?.error === 'phone_not_registered' && (await mock('/__mock/stats')).sends === before)
 
   r = await post('/api/otp/send', { phone: phones.user, purpose: 'register' })
   check('register for a registered number → 409 phone_exists', r.status === 409 && r.body.error === 'phone_exists')
@@ -127,11 +141,13 @@ async function main() {
 }
 
 async function cleanup() {
+  if (!startedAt) return
   const all = Object.values(phones).concat([ph(9)])
-  await runSql(`delete from public.otp_requests where phone_hash in (select public.ks_peppered_hash('phone:' || p) from unnest(array['${all.join("','")}']) p);
-                delete from public.otp_tickets where phone = any(array['${all.join("','")}']);
-                delete from public.profiles where phone like '91111%' and full_name like 'KSTEST%';`)
-  const left = await runSql(`select (select count(*) from public.profiles where phone like '91111%' and full_name like 'KSTEST%') p, (select count(*) from public.otp_tickets where phone like '91111%') t`)
+  await runSql(`delete from public.otp_requests where created_at >= '${startedAt}' and phone_hash in (select public.ks_peppered_hash('phone:' || p) from unnest(array['${all.join("','")}']) p);
+                delete from public.otp_tickets where created_at >= '${startedAt}' and phone = any(array['${all.join("','")}']);
+                delete from public.profiles where created_at >= '${startedAt}' and phone = any(array['${all.join("','")}']) and full_name like 'KSTEST 11B%';`)
+  // only this run's numbers (earlier batches' KSTEST rows are left alone)
+  const left = await runSql(`select (select count(*) from public.profiles where phone = any(array['${all.join("','")}'])) p, (select count(*) from public.otp_tickets where phone = any(array['${all.join("','")}'])) t`)
   check('cleanup: no KSTEST profile or ticket left', Number(left[0].p) === 0 && Number(left[0].t) === 0)
 }
 

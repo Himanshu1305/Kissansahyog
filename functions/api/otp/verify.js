@@ -42,7 +42,8 @@ export async function handleVerify(request, env, deps = {}) {
     return json({ error: 'otp_expired' }, 400)
   }
   const attemptsLeft = Math.max(0, Number(v.attempts_left) || 0)
-  // A decoy (no SMS was sent) can never match.
+  // A decoy (no SMS was sent) can never match. Since 11B the send function no longer hands a decoy's id to the
+  // browser (login answers 409 phone_not_registered), so this is a safety net only.
   if (!v.session) return json({ error: 'otp_wrong', attemptsLeft }, 400)
 
   const pv = await providerVerify(env, v.session, code, fetchImpl)

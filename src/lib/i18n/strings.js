@@ -1820,6 +1820,7 @@ export const strings = {
   err_otp_cooldown: { hi: 'कोड अभी-अभी भेजा गया है। थोड़ा रुककर दोबारा माँगें।', en: 'A code was just sent. Please wait a little before asking again.' },
   err_otp_service_busy: { hi: 'SMS सेवा अभी व्यस्त है। थोड़ी देर बाद फिर कोशिश करें।', en: 'The SMS service is busy right now. Please try again in a little while.' },
   err_otp_code_format: { hi: 'SMS में आया 6 अंकों का कोड लिखें।', en: 'Type the 6-digit code from the SMS.' },
+  err_phone_not_registered: { hi: 'इस नंबर से कोई खाता नहीं मिला। पहले नया खाता बनाएं। अगर आपका खाता ई-मेल से है, तो ई-मेल से लॉगिन करें।', en: 'No account was found for this number. Please create a new account first. If your account uses e-mail, sign in with your e-mail.' },
   err_otp_required: { hi: 'अब मोबाइल नंबर SMS कोड से पक्का होता है। कृपया दोबारा कोशिश करें।', en: 'Mobile numbers are now confirmed with an SMS code. Please try again.' },
   err_not_authenticated: { hi: 'आपका लॉग इन खत्म हो गया है। कृपया फिर से लॉग इन करें।', en: 'You have been logged out. Please log in again.' },
   err_too_many_attempts: { hi: 'बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।', en: 'Too many attempts. Please try again after 15 minutes.' },

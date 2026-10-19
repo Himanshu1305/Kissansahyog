@@ -70,14 +70,49 @@ test('send: success → 200 {ok, challenge, resendAfter:30}; session id stored, 
   assertCleanLogs()
 })
 
-test('send: a number that may not sign in gets the SAME answer and no SMS', async () => {
+// Batch 11B: the login decoy is replaced by an honest 409 phone_not_registered.
+test('send: unknown number on login → 409 phone_not_registered, zero provider calls, no wait, logs last 2 digits only', async () => {
   const w = world({ rate: { ok: true, request_id: CH, send: false } })
   let waited = 0
-  const r = await read(await handleSend(req('/api/otp/send', { phone: '9876543210', purpose: 'login' }), ENV, { fetch: w.fetch, sleep: async (ms) => { waited = ms } }))
-  assert.deepEqual(r, { status: 200, body: { ok: true, challenge: CH, resendAfter: 30 } })
+  const t0 = Date.now()
+  const r = await read(await handleSend(req('/api/otp/send', { phone: '98765' + '43210', purpose: 'login' }), ENV, { fetch: w.fetch, sleep: async (ms) => { waited += ms } }))
+  assert.deepEqual(r, { status: 409, body: { error: 'phone_not_registered' } })
+  assert.equal(w.calls.provider.length, 0, 'no SMS')
+  assert.equal(waited, 0, 'no artificial wait')
+  assert.ok(Date.now() - t0 < 300, 'answered at once')
+  assert.deepEqual(w.calls.rpc.map((c) => c.name), ['otp_rate_check'], 'rate check still runs (its row counts); nothing recorded as sent')
+  assert.ok(!JSON.stringify(r.body).includes(CH), 'no challenge handed out')
+  assertCleanLogs()
+  assert.ok(logged.some((l) => l.includes('login_unknown_phone') && l.includes('**10')))
+})
+
+test('send: an admin number on login gets the SAME 409 phone_not_registered (does not reveal an admin), no SMS', async () => {
+  // otp_rate_check answers send:false for an admin's number exactly as for an unknown one.
+  const w = world({ rate: { ok: true, request_id: CH, send: false } })
+  const r = await read(await handleSend(req('/api/otp/send', { phone: '91234' + '56780', purpose: 'login' }), ENV, { fetch: w.fetch, sleep: noSleep }))
+  assert.deepEqual(r, { status: 409, body: { error: 'phone_not_registered' } })
   assert.equal(w.calls.provider.length, 0)
-  assert.ok(waited >= 400 && waited <= 1000, 'similar wait as a provider call')
-  assert.equal(w.calls.rpc.filter((c) => c.name === 'otp_record_send').length, 0)
+  assertCleanLogs()
+})
+
+test('send: 3 quick tries on one unknown number → 409, then the cooldown / too-many answer (rate rows still count)', async () => {
+  // Small model of otp_rate_check's per-phone rules: every reserved row (decoy rows included) counts.
+  const rows = []
+  const fetch = async (url, init = {}) => {
+    const u = String(url)
+    if (!u.includes('/rpc/otp_rate_check')) throw new Error(`unexpected call ${u.split('/rpc/')[1] || 'provider'}`)
+    const n = rows.length
+    if (n >= 3) return new Response(JSON.stringify({ ok: false, reason: 'too_many', retry_after: 600 }))
+    if (n >= 1) return new Response(JSON.stringify({ ok: false, reason: 'cooldown', retry_after: 30 }))
+    rows.push(JSON.parse(init.body).p_phone)
+    return new Response(JSON.stringify({ ok: true, request_id: CH, send: false }))
+  }
+  const answers = []
+  for (let i = 0; i < 3; i++) answers.push(await read(await handleSend(req('/api/otp/send', { phone: '98765' + '43210', purpose: 'login' }), ENV, { fetch, sleep: noSleep })))
+  assert.deepEqual(answers[0], { status: 409, body: { error: 'phone_not_registered' } })
+  assert.deepEqual(answers[1], { status: 429, body: { error: 'otp_cooldown', retryAfter: 30 } })
+  assert.deepEqual(answers[2], { status: 429, body: { error: 'otp_cooldown', retryAfter: 30 } })
+  assert.equal(rows.length, 1)
 })
 
 test('send: provider down → 503 otp_service_busy, exactly ONE provider call (no credit-burning retry), marked failed', async () => {

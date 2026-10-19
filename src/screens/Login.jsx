@@ -43,7 +43,8 @@ export default function Login() {
     if (profile?.preferred_language) setLang(profile.preferred_language)
     navigate(next, { replace: true })
   }
-  const fail = (where, err) => setError({ where, text: t(err.i18nKey || 'err_unknown') })
+  const fail = (where, err) => setError({ where, code: err.code, text: t(err.i18nKey || 'err_unknown') })
+  const signupHref = next && next !== '/home' ? `/signup?next=${encodeURIComponent(next)}` : '/signup'
 
   async function submitEmail(e) {
     e.preventDefault()
@@ -94,10 +95,18 @@ export default function Login() {
             <form onSubmit={submitPhone} noValidate data-testid="login-phone-form">
               <p className="mb-3 text-stone-600">{t('login_help')}</p>
               {error?.where === 'phone' && <div data-testid="login-phone-error"><Notice tone="error">{error.text}</Notice></div>}
+              {/* Batch 11B: no account for this number → stay on this step and offer sign-up right here. */}
+              {error?.where === 'phone' && error.code === 'phone_not_registered' && (
+                <Link to={signupHref} data-testid="login-create-account" className="mb-4 flex min-h-[48px] w-full items-center justify-center rounded-xl bg-green-700 px-5 py-3 text-center text-lg font-bold text-white">
+                  {t('signup_title')}
+                </Link>
+              )}
               <Field label={t('phone_number')} htmlFor="phone" required error={fieldError.phone}>
                 <TextInput id="phone" type="tel" inputMode="numeric" maxLength={10} value={phone} onChange={(e) => setPhone(e.target.value)} placeholder={t('phone_ph')} autoComplete="tel" />
               </Field>
-              {busy === 'phone' ? <Spinner /> : <BigButton type="submit" data-testid="login-phone-submit" disabled={!!busy}>{t(otpLive ? 'otp_send_code' : 'login_phone_button')}</BigButton>}
+              <BigButton type="submit" data-testid="login-phone-submit" disabled={!!busy} aria-busy={busy === 'phone'}>
+                {busy === 'phone' ? t('loading') : t(otpLive ? 'otp_send_code' : 'login_phone_button')}
+              </BigButton>
               {!otpLive && <p data-testid="login-otp-note" className="mt-3 rounded-lg bg-stone-100 px-3 py-2 text-sm text-stone-700">ℹ️ {t('login_otp_soon')}</p>}
             </form>
           )}
@@ -123,7 +132,7 @@ export default function Login() {
         </form>
       </div>
 
-      <Link to={next && next !== '/home' ? `/signup?next=${encodeURIComponent(next)}` : '/signup'} className="mt-2 block text-center text-base font-semibold text-green-800 underline">
+      <Link to={signupHref} className="mt-2 block text-center text-base font-semibold text-green-800 underline">
         {t('no_account_yet')}
       </Link>
     </Screen>

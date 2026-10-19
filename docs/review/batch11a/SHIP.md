@@ -2,6 +2,7 @@
 
 Branch `release-11a` (from `release-10g` `d14264f`; safety tag `pre-11a-ship`). Ship tag `ship-11a` = the final head.
 **11A already contains 10C + 10D + 10E + 10F + 10G.** Use `ship-prod-11a.sh` INSTEAD of the 10G script.
+Includes 11B: unregistered-number message (staging verification in `docs/review/batch11b/REPORT.md`).
 Production today: still the Batch 10C deployment `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20` (read-only check in the dry run).
 Both new switches (`otp_required`, `session_enforced`) start **OFF** everywhere: until you flip them, the site behaves exactly as before.
 

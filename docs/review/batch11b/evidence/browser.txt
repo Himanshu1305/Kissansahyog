@@ -1,0 +1,23 @@
+
+Running 16 tests using 1 worker
+
+(node:37312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\otp-11a.spec.js:98:3 › 11A: flags OFF = today › login page: mobile box first; the number alone signs in (no code, no SMS) (2.8s)
+  ok  2 [chromium] › e2e\otp-11a.spec.js:116:3 › 11A: flags OFF = today › the old direct RPC works while OTP is off (1.4s)
+  ok  3 [chromium] › e2e\otp-11a.spec.js:127:3 › 11A: OTP ON › login by OTP: send → wrong code → right code → signed in with a session token (58.1s)
+  ok  4 [chromium] › e2e\otp-11a.spec.js:157:3 › 11A: OTP ON › resend after the 30-second countdown sends a new code; the new code works (33.6s)
+  ok  5 [chromium] › e2e\otp-11a.spec.js:179:3 › 11A: OTP ON › expired code → clear message; "change number" goes back to the number (2.7s)
+  ok  6 [chromium] › e2e\otp-11a.spec.js:197:3 › 11A: OTP ON › number not registered → clear message, no code box, no SMS; "Create account" opens sign-up (2.7s)
+  ok  7 [chromium] › e2e\otp-11a.spec.js:221:3 › 11A: OTP ON › number not registered, Hindi at 320 px: message fits, button 48 px, nothing wider than the screen (2.8s)
+  ok  8 [chromium] › e2e\otp-11a.spec.js:241:3 › 11A: OTP ON › the old direct RPCs are blocked (otp_required) (1.5s)
+  ok  9 [chromium] › e2e\otp-11a.spec.js:249:3 › 11A: OTP ON › sign-up by OTP: form → code → account created and signed in with a token (3.1s)
+  ok 10 [chromium] › e2e\otp-11a.spec.js:272:3 › 11A: OTP ON › sign-up by OTP for a registered number → "already registered", no SMS (3.1s)
+  ok 11 [chromium] › e2e\otp-11a.spec.js:290:3 › 11A: session enforcement ON (both flags) › signed in by OTP: own listings load (token attached); logout revokes the token (12.6s)
+  ok 12 [chromium] › e2e\otp-11a.spec.js:309:3 › 11A: session enforcement ON (both flags) › a cloned user id cannot act: close_listing / delete_my_listing as someone else are refused (3.7s)
+  ok 13 [chromium] › e2e\otp-11a.spec.js:333:3 › 11A: session enforcement ON (both flags) › a revoked session on this device → signed out at start-up with a clear message (6.0s)
+  ok 14 [chromium] › e2e\otp-11a.spec.js:344:3 › 11A: session enforcement ON (both flags) › an action refused by the server (not_authenticated) signs out locally and shows the login screen (4.2s)
+  ok 15 [chromium] › e2e\otp-11a.spec.js:356:3 › 11A: session enforcement ON (both flags) › e-mail sign-in still works and gets a session token (actions work under enforcement) (5.1s)
+  ok 16 [chromium] › e2e\otp-11a.spec.js:377:3 › 11A: session enforcement ON (both flags) › 320 px phone: code step fits, no horizontal scroll, touch targets >= 44 px (3.4s)
+
+  16 passed (2.5m)

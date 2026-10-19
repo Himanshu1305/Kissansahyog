@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { createClient } from '@supabase/supabase-js'
-import { testPhone, adminClient, anonClient } from './support.js'
+import { testPhone as nextTestPhone, adminClient, anonClient } from './support.js'
 import { runSql } from '../scripts/lib/mgmt-sql.mjs'
 
 // Batch 11A Phase 3 — real mobile OTP and session tokens, end to end in the browser.
@@ -9,10 +9,14 @@ import { runSql } from '../scripts/lib/mgmt-sql.mjs'
 //   KS_E2E_BASE=http://127.0.0.1:8788 KS_OTP_MOCK=http://127.0.0.1:8799 npx playwright test \
 //     --config scripts/batch10f/playwright.base-url.config.mjs e2e/otp-11a.spec.js
 // Skipped without KS_OTP_MOCK (plain `vite preview` has no functions). No real SMS: the "SMS" is read from the
-// mock. The two flags are switched on staging for some tests and ALWAYS switched back off (afterEach).
-// Test users: KSTEST names, reserved 90000xxxxx numbers (global teardown), kstest-e2e-…@example.com.
+// mock. Flags finish OTP on / enforcement off for the founder's staging retest (11B).
+// Use scripts/batch11b/playwright.config.mjs: it disables the shared global test-data sweep.
 
 const MOCK = process.env.KS_OTP_MOCK
+let startedAt
+const runPhones = new Set()
+const runAuthIds = new Set()
+const testPhone = () => { const phone = nextTestPhone(); runPhones.add(phone); return phone }
 test.skip(!MOCK, 'needs the local OTP stack (KS_OTP_MOCK)')
 test.describe.configure({ mode: 'serial' })
 
@@ -66,15 +70,27 @@ async function otpLogin(page, phone) {
 
 test.beforeAll(async () => {
   test.setTimeout(120_000)
+  startedAt = (await runSql('select now() started_at'))[0].started_at
   await setFlags(false, false)
   await mockPost('/__mock/reset')
-  // The per-IP limit (20 / hour) is shared by every local run: start each run from zero.
-  await runSql(`delete from public.otp_requests where ip_hash in (public.ks_peppered_hash('ip:127.0.0.1'), public.ks_peppered_hash('ip:::1'), public.ks_peppered_hash('ip:unknown'))`)
+  // The dedicated config supplies a test-only IP; never clear requests belonging to earlier runs.
 })
-test.afterEach(async () => { await setFlagsDb(false, false) })
+test.afterEach(async () => { await setFlagsDb(true, false) })
+test.beforeEach(async ({ context }) => {
+  // Set the test IP only on same-origin local OTP calls, never on Supabase browser requests (CORS).
+  await context.route(url => url.origin === process.env.KS_E2E_BASE && url.pathname.startsWith('/api/otp/'), route =>
+    route.continue({ headers: { ...route.request().headers(), 'cf-connecting-ip': '192.0.2.112' } }))
+})
 test.afterAll(async () => {
-  await setFlagsDb(false, false)
-  await runSql(`delete from public.otp_requests where ip_hash in (public.ks_peppered_hash('ip:127.0.0.1'), public.ks_peppered_hash('ip:::1'), public.ks_peppered_hash('ip:unknown')); delete from public.otp_tickets where phone like '90000%';`)
+  try {
+    if (runPhones.size) {
+      const phones = [...runPhones].map((p) => `'${p}'`).join(',')
+      await runSql(`delete from public.otp_requests where created_at >= '${startedAt}' and phone_hash in (select public.ks_peppered_hash('phone:' || p) from unnest(array[${phones}]) p);
+        delete from public.otp_tickets where created_at >= '${startedAt}' and phone = any(array[${phones}]);
+        delete from public.profiles where created_at >= '${startedAt}' and phone = any(array[${phones}]) and full_name like 'KSTEST 11A%';`)
+    }
+    for (const id of runAuthIds) await admin.auth.admin.deleteUser(id)
+  } finally { await setFlagsDb(true, false) }
 })
 
 test.describe('11A: flags OFF = today', () => {
@@ -177,17 +193,51 @@ test.describe('11A: OTP ON', () => {
     expect(await session(page)).toBeNull()
   })
 
-  test('number not registered → same code screen, and the code can never sign in (no SMS sent)', async ({ page }) => {
+  // Batch 11B: the decoy is gone — an honest message, no code box, no SMS, and a way to sign up.
+  test('number not registered → clear message, no code box, no SMS; "Create account" opens sign-up', async ({ page }) => {
     await english(page)
+    const phone = testPhone()
+    const before = (await (await fetch(`${MOCK}/__mock/stats`)).json()).sends
+    await page.goto('/login')
+    await page.locator('#phone').fill(phone)
+    await page.getByTestId('login-phone-submit').click()
+    await expect(page.getByTestId('login-phone-error')).toHaveText('No account was found for this number. Please create a new account first. If your account uses e-mail, sign in with your e-mail.')
+    await expect(page.getByTestId('login-phone-error').getByRole('alert')).toBeVisible()
+    await expect(page.getByTestId('login-otp-step')).toHaveCount(0)
+    await expect(page.locator('#phone')).toHaveValue(phone)
+    expect((await sms(phone)).code).toBeUndefined()
+    expect((await (await fetch(`${MOCK}/__mock/stats`)).json()).sends).toBe(before)
+    const btn = page.getByTestId('login-create-account')
+    await expect(btn).toHaveText('Create account')
+    expect((await btn.boundingBox()).height).toBeGreaterThanOrEqual(48)
+    // the mobile box is still above the e-mail box
+    expect((await page.getByTestId('login-phone-card').boundingBox()).y).toBeLessThan((await page.getByTestId('login-email-form').boundingBox()).y)
+    await btn.click()
+    await expect(page).toHaveURL(/\/signup$/)
+    await expect(page.getByTestId('signup-form')).toBeVisible()
+    expect(await session(page)).toBeNull()
+  })
+
+  test('number not registered, Hindi at 320 px: message fits, button 48 px, nothing wider than the screen', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 720 })
+    await page.addInitScript(() => localStorage.setItem('ks_lang_v1', 'hi'))
     const phone = testPhone()
     await page.goto('/login')
     await page.locator('#phone').fill(phone)
     await page.getByTestId('login-phone-submit').click()
-    await expect(page.getByTestId('login-otp-step')).toBeVisible()
-    expect((await sms(phone)).code).toBeUndefined()
-    await page.getByTestId('login-otp-code').fill('123456')
-    await page.getByTestId('login-otp-submit').click()
-    await expect(page.getByTestId('login-otp-error')).toHaveText('That code is not right. Check the SMS and type it again.')
+    await expect(page.getByTestId('login-phone-error')).toHaveText('इस नंबर से कोई खाता नहीं मिला। पहले नया खाता बनाएं। अगर आपका खाता ई-मेल से है, तो ई-मेल से लॉगिन करें।')
+    const btn = page.getByTestId('login-create-account')
+    await expect(btn).toHaveText('नया खाता बनाएं')
+    const box = await btn.boundingBox()
+    expect(box.height).toBeGreaterThanOrEqual(48)
+    expect(box.x + box.width).toBeLessThanOrEqual(320)
+    const err = await page.getByTestId('login-phone-error').boundingBox()
+    expect(err.x + err.width).toBeLessThanOrEqual(320)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320)
+    await page.getByTestId('login-phone-card').scrollIntoViewIfNeeded()
+    // Clear the synthetic phone after assertions: full-page mask positions can move when the page scrolls.
+    await page.locator('#phone').fill('')
+    await page.screenshot({ path: 'docs/review/batch11b/evidence/screens/login-not-registered-hi-320.png', fullPage: true })
   })
 
   test('the old direct RPCs are blocked (otp_required)', async () => {
@@ -311,6 +361,7 @@ test.describe('11A: session enforcement ON (both flags)', () => {
     const password = `Kstest-${Date.now()}-pw!`
     const cu = await admin.auth.admin.createUser({ email, password, email_confirm: true })
     expect(cu.error).toBeNull()
+    runAuthIds.add(cu.data.user.id)
     const phone = testPhone()
     const { data: prof } = await admin.from('profiles').insert({ full_name: 'KSTEST 11A email', phone, email, auth_uid: cu.data.user.id, auth_provider: 'email', village_town: 'Sagar', preferred_language: 'en', disclaimer_accepted_at: new Date().toISOString() }).select().single()
     await mkListing(prof.id, 'KSTEST 11A email listing')
@@ -342,6 +393,6 @@ test.describe('11A: session enforcement ON (both flags)', () => {
       expect(b.x + b.width, id).toBeLessThanOrEqual(320)
     }
     await expect(page.getByRole('textbox', { name: '6 अंकों का कोड' })).toBeVisible() // labelled for screen readers
-    await page.screenshot({ path: 'docs/review/batch11a/evidence/screens/phase3-otp-login-320-hi.png', fullPage: true })
+    // No screenshot here: the sent-to paragraph includes a full synthetic phone number.
   })
 })

@@ -1,0 +1,13 @@
+# Batch 11B decisions
+
+- Resume on `release-11a`; the interrupted session already implemented the server/client change and unit tests. Preserve all unrelated dirty files and earlier evidence. Commit only reviewed 11B paths.
+- Staging only. No migration is needed: `otp_rate_check` already identifies ineligible login numbers and reserves the rate-limit row before returning `send: false`.
+- Unknown and admin numbers receive the same 409 `phone_not_registered`; this deliberately does not reveal admin membership. Keep the reserved rows, verification safety net, register/resend behavior, and both runtime switches unchanged.
+- The error map is `src/lib/errors.js`; `src/lib/auth/errors.js` does not exist. Reuse `signup_title` for the button. Sign-up has no phone-prefill interface, so pass no phone in its URL.
+- Preserve the return destination in the sign-up link. Use the existing red Notice (role alert), no animation, and a minimum 48 px link. Keep the submit control in place while loading.
+- Existing E2E cleanup broadly deletes reserved-range profiles and local-IP requests. For this batch, use a dedicated config without global teardown and restrict cleanup to this run's phones and creation time. Do not delete earlier KSTEST rows.
+- Initial flags recorded by the interrupted run: OTP true, enforcement false. A fresh read on resume confirmed the same. Always finish OTP true, enforcement false.
+- Supabase changelog was fetched successfully through Node after browsing rejected its Markdown content type. No Supabase feature or schema is added; the existing RPC and local migration are the implementation contract. Installed Wrangler 4.151.2 help confirms the requested deploy options; authenticated account has Pages write access.
+- Cleanup timestamps come from database `now()`, not the host clock: the host was several seconds ahead. The first HTTP run passed all 30 behavior checks but missed one profile in cleanup; its exact owned ID was used to remove it and its related rows, then the focused HTTP run passed 31/31. Earlier profiles remain protected.
+- A first browser attempt stopped at the legacy login test because the test IP header was applied to external Supabase requests. Restricting it to same-origin local OTP calls fixes the CORS problem. Error artifacts from that attempt were removed from the new evidence tree; future browser diagnostics go to the ignored root test-results folder.
+- Production's canonical deployment was read without changes: still Batch 10C, deployment `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, source `40ddc4d` (`evidence/prod-readonly.json`). The unshipped `ship-11a` tag may therefore move to this batch's final pushed head as explicitly authorized. Never move `pre-11a-ship`, never rewrite the branch.
