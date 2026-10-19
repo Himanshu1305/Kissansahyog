@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase11_location_compare.spec.js:7:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › edge: zero selected shows the auto-nearest table, not a blank state (1.8s)
+  ok 2 [chromium] › e2e\phase11_location_compare.spec.js:20:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › positive+edge: up to 5 selections render; a 6th is blocked (never 6 at once) (2.1s)
+[teardown] test data cleaned
+
+  2 passed (4.9s)

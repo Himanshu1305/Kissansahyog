@@ -1,3 +1,4 @@
 CDN re-check of the deleted photo (Batch 10G Phase 2); deleted at 2026-10-19T09:51:06.324Z
 URL: https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/kstest-10g-1792403466324/a.jpg
 2026-10-19T09:51:27Z plain: 200 busted: 400
+2026-10-19T10:31:57Z plain: 400 busted: 400

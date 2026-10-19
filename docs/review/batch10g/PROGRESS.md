@@ -35,3 +35,11 @@
 - **Build: RAN-PASSED** 268/268. Main chunk **27,623 B gz** (Phase 0 27,538: +85); Admin 14,736; AdminListingActions 4,287; ListingDetail 4,190; OwnerListingActions 1,950; MyListings 1,912 (`evidence/phase4/chunk-sizes.txt`). A lazy-import regrouping (+13 KB in main) was found and fixed (DECISIONS 34).
 - **E2E: RAN-PASSED** — `listing-admin-10g` **4/4** (panel: disable needs reason, enable, delete needs reason + DELETE, log rows disable/enable/delete, photo gone; reports-list delete resolves the report; detail-page disable at 412 px; non-admin sees no controls, `/admin` access denied, RPCs `not_admin`) + `listing-owner-10g` 8/8 on the same build.
 - Screens (looked at): `evidence/screens/phase4-admin-panel-*`, `phase4-admin-delete-dialog-*`.
+
+## Phase 5 — verify, staging, ship machinery — DONE
+- **Unit: RAN-PASSED** 81/81. **E2E full suite (final build, local, one file at a time): RAN-PASSED** 202/203 — only the known `phase19` environment failure (Phase 0: 190/191; +12 new tests).
+- **Budgets: RAN-PASSED** — main chunk 27,623 B gz (+85 B); LCP median of 14 interleaved runs each 2,710 → 2,714 ms; CLS 0.01059 → 0.01059 (`evidence/phase5/perf-interleaved*.txt`; the first 5-run set was disturbed by the parallel test run).
+- **SEO text diff: RAN-PASSED** — no intended changes on public pages; `/safalta` (live render checked) and `/videos` differ by load timing only (`evidence/phase5/text-diff.txt`, `safalta-live-recheck.txt`).
+- **Widths: RAN-PASSED** — /my, own listing page, /admin × 320/412/768/1280 × hi/en: no horizontal page scroll. `check-no-localhost-dist` OK in every build.
+- **Staging upload: RAN-PASSED** — deployment `31c03979-fc96-4b58-b426-7690f1a99fa2`. On the deployed site: owner 8/8, admin 4/4, photo proof 16/16 (a first attempt failed only because the local full suite's cleanup ran against the same database at the same time — re-run alone: all green). CDN re-check: the cached copy of a deleted photo was gone after 41 min.
+- **Ship machinery:** `scripts/ship-prod-10g.sh`, `scripts/rollback-prod-10g.sh` (every 10F gate kept; 0065 probes `delete_my_listing` → not_found and `admin_delete_listing` → not_admin; 10G marker; 10C/10D/10E/10F accepted as previous). `SHIP.md`, `BATCH10G_CLOSE_PROMPT.md`, `BACKLOG.md`, `REPORT.md` written. Self-review: REPORT.md.

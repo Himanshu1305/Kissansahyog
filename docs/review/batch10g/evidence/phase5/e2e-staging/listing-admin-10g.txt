@@ -1,0 +1,10 @@
+
+Running 4 tests using 1 worker
+
+  ok 1 [chromium] › e2e\listing-admin-10g.spec.js:58:1 › A1 admin listings panel: disable needs a reason, enable, delete permanently needs reason + DELETE; log rows; photo removed (3.3s)
+  ok 2 [chromium] › e2e\listing-admin-10g.spec.js:105:1 › A2 reports list: "Delete permanently" next to remove / dismiss deletes the listing and resolves the report (2.2s)
+  ok 3 [chromium] › e2e\listing-admin-10g.spec.js:127:1 › A3 listing detail page as admin (412 px): disable with a reason; the public no longer sees it (1.3s)
+  ok 4 [chromium] › e2e\listing-admin-10g.spec.js:145:1 › A4 non-admins never see admin controls, and the admin RPCs refuse them (2.1s)
+[teardown] test data cleaned
+
+  4 passed (10.2s)

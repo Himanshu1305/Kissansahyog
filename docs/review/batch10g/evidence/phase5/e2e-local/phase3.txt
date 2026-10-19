@@ -1,0 +1,9 @@
+
+Running 3 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase3.spec.js:45:1 › land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals number (2.1s)
+  ok 2 [chromium] › e2e\phase3.spec.js:79:1 › land REQUIREMENT: 3-step flow, single confirm checkbox (1.8s)
+  ok 3 [chromium] › e2e\phase3.spec.js:96:1 › browse shows a nearby land listing and opens its detail (1.1s)
+[teardown] test data cleaned
+
+  3 passed (6.1s)
