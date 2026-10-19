@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { isNative } from './native'
+import { withSessionHeader } from './auth/sessionToken'
 
 const url = import.meta.env.VITE_SUPABASE_URL
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -23,13 +24,14 @@ if (!url || !anonKey) {
 const nativeFetch = isNative()
   ? (input, init) => import('./offline/cachedFetch.js').then((m) => m.cachedFetch(input, init))
   : null
+// Batch 11A — every request of this client carries the session token header (src/lib/auth/sessionToken.js).
 export const supabase = createClient(url, anonKey, {
   auth: {
     persistSession: false,
     autoRefreshToken: false,
     detectSessionInUrl: false,
   },
-  ...(nativeFetch ? { global: { fetch: nativeFetch } } : {}),
+  global: { fetch: withSessionHeader(nativeFetch || ((input, init) => fetch(input, init))) },
 })
 
 // Phase 3: a SECOND client used ONLY for email+password auth (Supabase Auth).

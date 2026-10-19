@@ -64,3 +64,41 @@ Rule followed throughout: when a choice was needed, the SAFEST option was taken 
 18. **DB-test numbers use the 91111xxxxx range** (KSTEST names), not the e2e 90000 range, because the e2e
     teardown may delete 90000 profiles while another run is going. The test deletes everything it creates.
 19. Advisors: only expected findings for 0066 objects (`evidence/advisors-security-11a.txt`).
+
+## Phase 3 — client
+20. **Mobile box first on the login screen** (founder: mobile is now primary). On wide screens it is the left
+    column. The 10E "No email? Log in with your mobile number" line and the e-mail box are unchanged; e2e
+    `signup-phone-10e` still passes (the line still sits above both boxes).
+21. **Runtime decision:** `getAuthFlags()` reads `GET /api/otp/config`, falls back to the `get_auth_flags` RPC, and
+    to "off" if both fail. If a cached "off" meets a server that already requires OTP (`otp_required` error), the
+    app re-reads the flags and continues with the OTP way — so a flip never strands a user. `PHONE_OTP_ENABLED`
+    kept as an export (not read).
+22. **One fetch wrapper** (`src/lib/auth/sessionToken.js`) on the `supabase` data client adds `x-ks-session` at call
+    time (works with the Android caching fetch too) and turns a `not_authenticated` answer into a local sign-out
+    (event → AuthProvider → `SessionWatch` opens /login with "आपका लॉग इन खत्म हो गया है…"). The `supabaseAuth`
+    client is not wrapped (it never calls actor functions).
+23. **Token storage:** `localStorage` key `ks_session_token_v1`, written and removed together with the profile
+    session (`ks_session_v1`). Logout revokes it on the server (`app_logout_session`, header set on that call)
+    before clearing it; deleteAccount goes through logout.
+24. **E-mail users** get a token right after sign-in / sign-up (`app_issue_session`, best effort: before 0066 is on a
+    database the session simply has no token). At start-up, while enforcement is on, a device whose token is
+    missing or dead is signed out — unless Supabase Auth still has a session, then a new token is issued silently.
+    If the check cannot reach the server (offline) the user stays signed in (every action is still checked).
+25. **Sign-up:** with OTP on, "Accept and continue" validates the form, sends the code, and hides (keeps) the form
+    while the code step shows; nothing is created before the right code. "नंबर बदलें" returns to the form.
+26. **Guide demo:** `GUIDE_OTP_LIVE` is a build-time constant and the demo is built at module load, so it is NOT
+    tied to the runtime flag; left `false` (unit + e2e tests pin it). SHIP.md says when and how to flip it.
+27. **Android:** OTP calls use `apiUrl('/api/otp/…')` (absolute `VITE_API_ORIGIN` in the app; the middleware already
+    answers CORS for `https://localhost` / `capacitor://localhost`; proven by the integration test). Old APKs: they
+    never send a token and call `app_login` / `app_register_phone` directly — they keep working while both flags are
+    off, stop signing in by phone when `otp_required` is on (they show their generic error), and cannot act at all
+    when enforcement is on. Order: ship a new APK first, then `otp_required`, then (after most phones updated)
+    `session_enforced`.
+28. **Old verifier:** `scripts/verify-batch7l2.mjs` now reports 4 more FAILs. They pin the 7L-2 source text of the
+    pre-OTP code (`phoneStep === 'otp'`, `storeSession(data)`, `await registerPhone(`, no word `step` in Signup) —
+    superseded by design. Left unchanged (historic batch tool); the behaviours are covered by Playwright.
+29. `scripts/android/offline-unit.mjs` O8a pattern updated to the new client wiring (still asserts the caching
+    fetch is only used in the app). O1 23/23, O1b 10/10, O8a 5/5.
+30. **E2E against the functions:** `e2e/otp-11a.spec.js` runs on `local-otp-stack.mjs` and is skipped without
+    `KS_OTP_MOCK` (plain `vite preview` has no functions). It waits for `/api/otp/config` to follow each flag flip
+    (60 s cache by design) and always switches both flags off afterwards.

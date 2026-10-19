@@ -1,0 +1,7 @@
+
+Running 1 test using 1 worker
+
+  ok 1 [chromium] › e2e\otp-11a.spec.js:328:3 › 11A: session enforcement ON (both flags) › 320 px phone: code step fits, no horizontal scroll, touch targets >= 44 px (1.0m)
+[teardown] test data cleaned
+
+  1 passed (1.6m)

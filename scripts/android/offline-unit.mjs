@@ -218,7 +218,7 @@ export async function runO8a() {
   c.check('isNative() is false in a browser without window.Capacitor', (() => { globalThis.window = { location: {} }; const v = native.isNative(); delete globalThis.window; return v === false })())
   const fs = await import('node:fs')
   const sc = fs.readFileSync(path.join(ROOT, 'src/lib/supabaseClient.js'), 'utf8')
-  c.check('supabaseClient installs the caching fetch only when isNative() (website keeps the default fetch)', /const nativeFetch = isNative\(\)/.test(sc) && /\.\.\.\(nativeFetch \? \{ global: \{ fetch: nativeFetch \} \} : \{\}\)/.test(sc))
+  c.check('supabaseClient installs the caching fetch only when isNative() (website keeps the default fetch)', /const nativeFetch = isNative\(\)/.test(sc) && /global: \{ fetch: withSessionHeader\(nativeFetch \|\| \(\(input, init\) => fetch\(input, init\)\)\) \}/.test(sc)) // Batch 11A: both paths get the session-header wrapper; the caching fetch still only when native
   c.check('the caching module is only imported dynamically (not in the website bundle path)', !/^import .*offline\/cachedFetch/m.test(sc))
   const uo = fs.readFileSync(path.join(ROOT, 'src/lib/offline/useOffline.js'), 'utf8')
   c.check('hooks return "nothing cached / not slow" on the website', /if \(!native\) return \{ fromCache: false/.test(uo) && /!active \|\| !isNative\(\)/.test(uo))

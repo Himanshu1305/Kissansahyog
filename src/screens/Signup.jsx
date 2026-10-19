@@ -6,6 +6,7 @@ import { resolveNext } from '../lib/returnPath'
 import { isValidPhone } from '../lib/auth/authService'
 import { Screen, Field, TextInput, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
+import OtpStep from '../components/auth/OtpStep'
 import PlaceField from '../components/location/PlaceField'
 import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 
@@ -16,13 +17,15 @@ import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 // registration goes through app_register_phone and signs in like a mobile login. Existing
 // e-mail accounts still sign in through the e-mail box on the login page.
 // No language dropdown (the app's active language is used) and no किसान block (it lives on
-// Profile). Signup sends the same "empty" kisan object the old untouched block sent, so
+// Profile). Batch 11A: when the database flag otp_required is on, Register first sends an SMS code to the
+// number and the code step (components/auth/OtpStep) creates the account; when it is off nothing changes.
+// Signup sends the same "empty" kisan object the old untouched block sent, so
 // applyKisan behaves exactly as before (now after app_register_phone).
 const EMPTY_KISAN = Object.freeze({ land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' })
 
 export default function Signup() {
   const { t, lang } = useLang()
-  const { registerPhone } = useAuth()
+  const { startPhoneRegister } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [params] = useSearchParams()
@@ -36,6 +39,7 @@ export default function Signup() {
   const [fieldErrors, setFieldErrors] = useState({})
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
+  const [challenge, setChallenge] = useState(null) // set → the SMS code step is shown
   const inFlight = useRef(false) // a fast double tap must not register twice
 
   // Typing in a field clears the message shown under it.
@@ -64,11 +68,11 @@ export default function Signup() {
     inFlight.current = true
     setBusy(true)
     try {
-      await registerPhone({
+      const res = await startPhoneRegister({
         full_name: form.full_name, phone: form.phone,
         place, language: lang, disclaimer_accepted: true, show_details: showDetails, kisan: { ...EMPTY_KISAN },
       })
-      navigate(next, { replace: true })
+      if (res.step === 'otp') { setChallenge(res.challenge); window.scrollTo?.(0, 0) } else navigate(next, { replace: true })
     } catch (err) {
       const key = err.i18nKey || 'err_unknown'
       // Put the message next to the field it is about, and at the top of the form.
@@ -90,9 +94,22 @@ export default function Signup() {
       {/* Batch 10C: watch the register demo in a sheet over this page — the form keeps what was typed. */}
       <div className="mb-3"><GuideHelpButton demoId="register" label="guide_help_demo_btn" testid="help-signup" /></div>
 
-      {error && <div data-testid="signup-error"><Notice tone="error">{error}</Notice></div>}
+      {challenge && (
+        <div data-testid="signup-otp-card" className="mb-4 rounded-2xl border-2 border-stone-200 bg-white p-4">
+          <h2 className="mb-1 text-xl font-bold text-stone-900">📱 {t('otp_signup_title')}</h2>
+          <OtpStep
+            challenge={challenge}
+            testid="signup-otp"
+            onDone={() => navigate(next, { replace: true })}
+            onChallenge={setChallenge}
+            onChangeNumber={() => { setChallenge(null); setError(null); setTimeout(() => document.getElementById('phone')?.focus?.(), 0) }}
+          />
+        </div>
+      )}
 
-      <form onSubmit={submit} noValidate data-testid="signup-form">
+      {error && !challenge && <div data-testid="signup-error"><Notice tone="error">{error}</Notice></div>}
+
+      <form onSubmit={submit} noValidate data-testid="signup-form" hidden={!!challenge}>
         <Field label={t('full_name')} htmlFor="full_name" required error={fieldErrors.full_name}>
           <TextInput id="full_name" value={form.full_name} onChange={set('full_name')} placeholder={t('full_name_ph')} autoComplete="name" />
         </Field>

@@ -1,5 +1,5 @@
-import { lazy, Suspense, useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams } from 'react-router-dom'
+import { lazy, Suspense, useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams, useNavigate } from 'react-router-dom'
 import { isSafePath } from './lib/returnPath'
 import { LanguageProvider } from './lib/i18n/LanguageProvider'
 import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
@@ -83,6 +83,15 @@ const Search = lazy(() => import('./screens/Search'))
 const NotFound = lazy(() => import('./screens/NotFound'))
 // Batch 8A — Android app only (back button, link routing); never loaded on the website.
 const NativeShell = lazy(() => import('./components/NativeShell'))
+
+// Batch 11A — the server refused this device's session (not_authenticated): the user is already signed out
+// locally; show the login screen (it says why).
+function SessionWatch() {
+  const { sessionEnded } = useAuth()
+  const navigate = useNavigate()
+  useEffect(() => { if (sessionEnded) navigate('/login', { replace: true }) }, [sessionEnded, navigate])
+  return null
+}
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -209,6 +218,7 @@ export default function App() {
         <BrowserRouter>
           {/* Per-route SEO for mapped public pages (central; before routes so head is set early). */}
           <RouteSeo />
+          <SessionWatch />
           <AppRoutes />
           {/* Shared site footer + sitewide JSON-LD on every route (central layout). */}
           <Footer />

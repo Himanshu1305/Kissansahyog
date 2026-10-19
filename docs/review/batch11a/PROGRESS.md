@@ -41,3 +41,14 @@
   scan: 0 secret-like strings. Evidence: `evidence/functions-tests.md`, `evidence/functions-integration.md`.
 - `scripts/set-otp-secrets.sh <staging|prod>` (founder runs it): hidden prompts, names-only output, refuses a key of
   the other project. Full unit suite: 99/99.
+
+## Phase 3 — client — DONE
+- `authService.js` (runtime flags, OTP send/verify, tickets, `startPhoneRegister`, `resendOtp`, token storage,
+  logout revoke, e-mail `app_issue_session`, start-up `checkSession`), `sessionToken.js` (fetch wrapper),
+  `supabaseClient.js`, `AuthProvider.jsx` (+ `sessionEnded`), `App.jsx` (`SessionWatch`), `components/auth/OtpStep.jsx`,
+  `Login.jsx` (mobile first), `Signup.jsx` (code step), `errors.js`, 18 strings hi+en (`HINDI_CAPTIONS.md`).
+- **E2E `otp-11a` (local stack: wrangler + mock 2Factor + staging DB): RAN-PASSED 15/15** over three runs (test-side
+  fixes only: listing card has no title text; 60 s config cache; in-app link; exact label) — evidence
+  `phase3-otp-e2e-run1..3.txt`. A clean single full run is repeated in Phase 4 on the final build.
+- Main chunk 27,800 → 27,843 B gz (+43). Unit 99/99. Android offline unit O1/O1b/O8a all pass.
+- Screens: `evidence/screens/phase3-otp-login-320-hi.png` (looked at: fits 320 px, labelled code box).

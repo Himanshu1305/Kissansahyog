@@ -81,6 +81,16 @@ const CODE_TO_KEY = {
   rate_limited: 'err_report_rate_limited',
   invalid_action: 'err_report_failed',
   equipment_spec_invalid: 'err_equipment_spec_invalid',
+  // Batch 11A — OTP and session (our own codes; provider messages never reach the app)
+  otp_wrong: 'err_otp_wrong',
+  otp_expired: 'err_otp_expired',
+  otp_invalid: 'err_otp_expired',
+  otp_too_many: 'err_otp_too_many',
+  otp_cooldown: 'err_otp_cooldown',
+  otp_service_busy: 'err_otp_service_busy',
+  otp_code_format: 'err_otp_code_format',
+  otp_required: 'err_otp_required',
+  not_authenticated: 'err_not_authenticated',
 }
 
 export class AppError extends Error {
