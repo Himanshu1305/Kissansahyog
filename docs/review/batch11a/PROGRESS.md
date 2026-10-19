@@ -52,3 +52,22 @@
   `phase3-otp-e2e-run1..3.txt`. A clean single full run is repeated in Phase 4 on the final build.
 - Main chunk 27,800 → 27,843 B gz (+43). Unit 99/99. Android offline unit O1/O1b/O8a all pass.
 - Screens: `evidence/screens/phase3-otp-login-320-hi.png` (looked at: fits 320 px, labelled code box).
+
+## Resumed after interruption — 2026-10-19
+- On `release-11a` at `45977f1` (= origin), no stash. Phase 3 was already committed and pushed; only the 7 allowed
+  generated files modified (plus the phase3 screenshot, rewritten by the e2e). Phase 0–3 evidence files: all present.
+- Staging flags via `get_auth_flags()` (`scripts/batch11a/flags.mjs`): both FALSE at resume (founder had reset `otp_required`).
+- Leftovers of the interrupted OTP e2e: stale `wrangler pages dev` stopped, `.dev.vars` deleted, 8 rows of this batch
+  removed (`evidence/test-data-after-resume-cleanup.txt`); 58 earlier KSTEST profiles untouched.
+- Quick re-checks: `build:full` 268/268 (`build-resume.txt`), unit **99/99**, catalog **9/9**, main chunk 27,843 B gz (unchanged
+  hash), OTP e2e **15/15 in one clean run on the final build** (`final-otp-e2e.txt`).
+
+## Phase 4 — verify, staging, ship machinery — DONE
+- Reused from the first run (final build, same main chunk): full Playwright 202/203 = baseline (`final-e2e/`), text diff
+  (`text-diff.md`: no intended changes; 5 pages hit the pre-existing loading-state race on both builds).
+- LCP/CLS (homepage, interleaved frozen baseline :4211 vs final :4212, 2×4 runs): LCP −24 ms, CLS ±0 (`perf/summary.txt`).
+- Widths 320/412/768/1280 hi+en for /login and /signup: no horizontal scroll, mobile box first (`widths-final.txt`, `screens/phase4-*`).
+- Staging upload (once): deployment `2c67eb33`; live smoke on staging OK (`staging-smoke.txt`). `TWOFACTOR_API_KEY` still not set on staging.
+- `scripts/ship-prod-11a.sh`, `scripts/rollback-prod-11a.sh`, `scripts/batch11a/prod-probes.mjs` (live mode tested on staging: 2/2 PASS).
+- `PROD_MIGRATION_0066.sql` / `PROD_ROLLBACK_0066.sql`, `SHIP.md`, `REPORT.md`, `BACKLOG.md`, `BATCH11A_CLOSE_PROMPT.md`.
+- Secret scan 0 hits (712 files); scope check clean.

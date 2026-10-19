@@ -1,0 +1,10 @@
+
+Running 4 tests using 1 worker
+
+  ok 1 [chromium] › e2e\batch5a.spec.js:23:1 › posts building materials and displays the seller responsibility note (2.3s)
+  ok 2 [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Vegetable farming equipment (2.4s)
+  ok 3 [chromium] › e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Rare or emergency equipment (2.4s)
+  ok 4 [chromium] › e2e\batch5a.spec.js:63:1 › opens both Batch 5A Bazaar landing pages (1.1s)
+[teardown] test data cleaned
+
+  4 passed (9.3s)

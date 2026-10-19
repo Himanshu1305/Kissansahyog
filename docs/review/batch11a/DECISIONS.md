@@ -102,3 +102,24 @@ Rule followed throughout: when a choice was needed, the SAFEST option was taken 
 30. **E2E against the functions:** `e2e/otp-11a.spec.js` runs on `local-otp-stack.mjs` and is skipped without
     `KS_OTP_MOCK` (plain `vite preview` has no functions). It waits for `/api/otp/config` to follow each flag flip
     (60 s cache by design) and always switches both flags off afterwards.
+
+## Resume + Phase 4
+31. **Reused the first run's Phase 4 work** (final build, full Playwright, text diff) instead of repeating it: the source
+    has not changed since (`git diff` on src/functions empty; the rebuilt main chunk has the same hash). Founder asked
+    for economy.
+32. **Test-data cleanup only for rows provably from this batch** (`KSTEST 11A%` profiles with 90000 numbers, their
+    session, tickets on 90000 numbers, OTP requests with mock provider sessions). A first, broader draft (empty the OTP
+    tables) was refused by the tool's permission guard and replaced by this narrow delete; the OTP tables held only
+    those rows anyway. Earlier KSTEST rows only counted.
+33. **Production probes live in one helper** (`scripts/batch11a/prod-probes.mjs`) used by both scripts. The 0066 probe
+    calls `app_login_otp` with an EMPTY number and a random ticket: its first statement raises `invalid_phone`, so no
+    lockout counter, ticket lookup or insert can happen (a random ticket with a real number would touch the lockout table).
+34. **Dry run with `KS_SKIP_DB_PROBE=1`**, exactly like 10G: the builder never connects to the production database. The
+    dry run still reads the public website and the Cloudflare deployment list (read-only), as 10G's did.
+35. **Tag `ship-11a` created on the final head and pushed** (10G did the same with `ship-10g`), so the dry run checks the
+    real ship point. `pre-11a-ship` untouched.
+36. **After-deploy OTP gate expects both flags OFF** (first ship); `KS_FLAGS_MAY_BE_ON=1` allows ON for a later re-ship.
+    The rollback script only READS the flags and warns; it never changes them (undo order: flags OFF first, by the founder).
+37. **Perf measured with 2×4 interleaved runs** (10G used 14 each) to save time; the result (−24 ms) is far inside the budget.
+38. **Prod-ready copies** `PROD_MIGRATION_0066.sql` / `PROD_ROLLBACK_0066.sql` were missing after Phase 1 and are added
+    (byte-identical to the migration files), like 10G's `PROD_MIGRATION_0065.sql`.
