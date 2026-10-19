@@ -81,7 +81,8 @@ test.describe('Phase 3 — mandi search (distance-unrestricted)', () => {
     // Honesty rule: a shown price is ALWAYS accompanied by a date; otherwise the
     // explicit empty state — never a price with no date, never a crash.
     const text = await result.innerText()
-    const hasDatedPrice = /₹[\d,]+/.test(text) && /\d{4}-\d{2}-\d{2}/.test(text)
+    // Batch 10F: /msp shows readable dates ("17 अक्टू 2026" / "17 Oct 2026") instead of ISO text.
+    const hasDatedPrice = /₹[\d,]+/.test(text) && /(\d{4}-\d{2}-\d{2}|\d{1,2} [^\s\d]+ \d{4})/.test(text)
     const hasEmptyState = /उपलब्ध नहीं|No recent price/.test(text)
     expect(hasDatedPrice || hasEmptyState).toBeTruthy()
   })

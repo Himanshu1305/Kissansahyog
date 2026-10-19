@@ -1,0 +1,33 @@
+
+Running 7 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase10_location_pwa.spec.js:15:3 › Phase 2 — LocationControl › positive: geolocation already granted sets the location from the device (1.0s)
+  ok 2 [chromium] › e2e\phase10_location_pwa.spec.js:32:3 › Phase 2 — LocationControl › negative: geolocation refused falls back to the village/town box, no pincode, no crash (892ms)
+  ok 3 [chromium] › e2e\phase10_location_pwa.spec.js:48:3 › Phase 2 — LocationControl › edge: coordinates far outside MP do not crash the page (903ms)
+  ok 4 [chromium] › e2e\phase10_location_pwa.spec.js:59:3 › Phase 2 — LocationControl › typing a village/town applies a location (877ms)
+  x  5 [chromium] › e2e\phase10_location_pwa.spec.js:72:3 › Phase 3 — mandi search (distance-unrestricted) › search surfaces a mandi result with its date, or an honest empty state (1.8s)
+  ok 6 [chromium] › e2e\phase10_location_pwa.spec.js:91:3 › Phase 5 — PWA install + offline › install prompt: not on first visit, shows on a returning visit (1.1s)
+  ok 7 [chromium] › e2e\phase10_location_pwa.spec.js:109:3 › Phase 5 — PWA install + offline › offline: banner shows and the shell stays (no blank screen) (1.4s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase10_location_pwa.spec.js:72:3 › Phase 3 — mandi search (distance-unrestricted) › search surfaces a mandi result with its date, or an honest empty state 
+
+    Error: expect(received).toBeTruthy()
+
+    Received: false
+
+      84 |     const hasDatedPrice = /₹[\d,]+/.test(text) && /\d{4}-\d{2}-\d{2}/.test(text)
+      85 |     const hasEmptyState = /उपलब्ध नहीं|No recent price/.test(text)
+    > 86 |     expect(hasDatedPrice || hasEmptyState).toBeTruthy()
+         |                                            ^
+      87 |   })
+      88 | })
+      89 |
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase10_location_pwa.spec.js:86:44
+
+    Error Context: test-results\phase10_location_pwa-Phase-9b5cc-te-or-an-honest-empty-state-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase10_location_pwa.spec.js:72:3 › Phase 3 — mandi search (distance-unrestricted) › search surfaces a mandi result with its date, or an honest empty state 
+  6 passed (9.7s)

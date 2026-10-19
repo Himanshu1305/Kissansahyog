@@ -1,0 +1,1 @@
+checked 42 page/width/language combinations (all sections open); horizontal scroll: none

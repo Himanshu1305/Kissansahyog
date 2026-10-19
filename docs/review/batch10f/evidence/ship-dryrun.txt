@@ -1,0 +1,121 @@
+*** DRY RUN — nothing will be built, deployed, rolled back or written (except the read-only snapshot file, if missing) ***
+== G. first gate: Batch 10C shipped and closed (tag prod-10c on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin prod-10c -> dd01a2f
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 10C is live and closed
+  (tag prod-10d is not on origin: Batch 10D has not shipped on its own)
+  (tag prod-10e is not on origin: Batch 10E has not shipped — this ship carries it; migration 0064 must be on production first, step D)
+== 0. preconditions
++ git branch --show-current -> release-10f
++ git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
+WARNING (pending — a real run would STOP here): tag ship-10f missing (to be created on the final HEAD and pushed: git tag ship-10f && git push origin ship-10f)
++ HEAD dd904ef  origin/release-10f dd904ef
+== D. read-only probe: is migration 0064 (app_register_phone) on the PRODUCTION database?
++ POST <VITE_SUPABASE_URL of .env.production>/rest/v1/rpc/app_register_phone  {p_full_name:'', p_phone:'', p_disclaimer_accepted:false, …}  (anon key from .env.production, not shown)
+  expected: HTTP 400 with 'name_required' (validation error raised before any insert)
+  SKIPPED in this dry run (KS_SKIP_DB_PROBE=1). A real run always runs this probe and stops if 0064 is missing.
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 10D close report (docs/review/batch10d/CLOSE_REPORT.md) here or on origin/release-10d: 10D has not shipped on its own
+  no Batch 10E close report (docs/review/batch10e/CLOSE_REPORT.md) here or on origin/release-10e: 10E has not shipped (or not closed)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (source 40ddc4d), main chunk /assets/index-NFbe6Fk2.js
+  = live is the expected deployment: Batch 10C (prod-10c) — rollback target 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
++ (would write) C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/prod-deployment-before.txt  deployment_id=7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+== 2. read-only snapshot of the live deployment: C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-snapshot --label prod-before-10f --checks snapshot --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-before.json
+PASS  [snapshot] / recorded  — {"status":200,"bytes":79827,"title":"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार","h1":"आज किसान के लिए"}
+PASS  [snapshot] /mausam recorded  — {"status":200,"bytes":37959,"title":"मौसम — सागर संभाग का पूर्वानुमान","h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान"}
+PASS  [snapshot] /msp recorded  — {"status":200,"bytes":72171,"title":"मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य","h1":"गेहूं भाव — आज व MSP से तुलना"}
+PASS  [snapshot] /browse recorded  — {"status":200,"bytes":79827,"title":"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार","h1":"आज किसान के लिए"}
+PASS  [snapshot] /sawaal recorded  — {"status":200,"bytes":26051,"title":"किसान सवाल — खेती के सवालों के जवाब","h1":"किसान सवाल — आपके सवाल, हमारे जवाब"}
+PASS  [snapshot] /yojana recorded  — {"status":200,"bytes":39969,"title":"सरकारी योजनाएं — केंद्र व मध्य प्रदेश","h1":"सरकारी योजनाएं"}
+PASS  [snapshot] /cold-storage recorded  — {"status":200,"bytes":486320,"title":"मध्य प्रदेश कोल्ड स्टोरेज खोजें — गोदाम सूची","h1":"मध्य प्रदेश कोल्ड स्टोरेज खोजें"}
+PASS  [snapshot] /about recorded  — {"status":200,"bytes":38309,"title":"हमारे बारे में — किसान सहयोग","h1":"हमारे बारे में"}
+PASS  [snapshot] /privacy recorded  — {"status":200,"bytes":35416,"title":"गोपनीयता नीति — किसान सहयोग","h1":"गोपनीयता नीति"}
+PASS  [snapshot] /terms recorded  — {"status":200,"bytes":47312,"title":"उपयोग की शर्तें — किसान सहयोग","h1":"उपयोग की शर्तें"}
+PASS  [snapshot] /sitemap.xml recorded  — {"status":200,"bytes":548}
+PASS  [snapshot] /sitemap-pages.xml recorded  — {"status":200,"bytes":6688}
+PASS  [snapshot] /sitemap-sawaal.xml recorded  — {"status":200,"bytes":23193}
+PASS  [snapshot] /sitemap-cold-storage.xml recorded  — {"status":200,"bytes":4656}
+PASS  [snapshot] /sitemap-schemes.xml recorded  — {"status":200,"bytes":2429}
+PASS  [snapshot] /robots.txt recorded  — {"status":200,"bytes":180}
+
+ALL PASSED  (results-prod-before-10f.json)
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/prod-before-ship.json
+== 3. build
++ timeout 1500 npm run build:prod   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/build-prod-20261019-115203.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co
+main chunk of the dist folder as it is now (a real run rebuilds it first): /assets/index-ZgT7KPIE.js
+guide chunks in dist: /assets/GuideHub-v00P0itv.js /assets/GuideDemoPage-hQtaDzAX.js
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: /assets/PageShell-S5iQZzCs.js /assets/index-ZgT7KPIE.js
+chunk(s) holding the /msp badge (ks-date-badge) in dist: /assets/Msp-CX6LRxNU.js
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  dist/index.html has nav-guide
+  dist/index.html has data-testid="home-hero"
+  dist/index.html has data-testid="home-hero-demo"
+  dist/index.html has मुझे कुछ चाहिए
+  dist/index.html has मेरे पास कुछ है
+  dist/index.html has no data-testid="home-live" (removed in 10F)
+  dist/index.html has no data-testid="home-field" (removed in 10F)
+  dist/index.html has no data-testid="home-band" (removed in 10F)
+  dist/index.html has no data-testid="home-facts" (removed in 10F)
+  dist/msp/index.html has ks-date-badge
+  (dist as it is now carries every marker; a real run checks the fresh build again)
+  (dist as it is now may be a STAGING build; the prod-only dist checks — prod guard, staging refs, CSP host — run in a real run after build:prod)
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+  (dry run, informational only: dist as it is now may be a STAGING build, compared with C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-before.json)
+    [info] PASS  [predeploy_size] /: 101562 B vs live 79827 B = 1.272 (allowed 0.7–1.4; FAQ live no, new no) <- index.html
+    [info] PASS  [predeploy_size] /mausam: 38528 B vs live 37959 B = 1.015 (allowed 0.85–1.15; FAQ live yes, new yes) <- mausam\index.html
+    [info] PASS  [predeploy_size] /msp: 99279 B vs live 72171 B = 1.376 (allowed 0.85–1.6; FAQ live yes, new yes) <- msp\index.html
+    [info] PASS  [predeploy_size] /browse: 101562 B vs live 79827 B = 1.272 (allowed 0.7–1.4; FAQ live no, new no) <- index.html
+    [info] PASS  [predeploy_size] /sawaal: 25676 B vs live 26051 B = 0.986 (allowed 0.85–4; FAQ live no, new no) <- sawaal\index.html
+    [info] PASS  [predeploy_size] /yojana: 39657 B vs live 39969 B = 0.992 (allowed 0.85–4; FAQ live no, new no) <- yojana\index.html
+    [info] PASS  [predeploy_size] /cold-storage: 485924 B vs live 486320 B = 0.999 (allowed 0.85–1.15; FAQ live yes, new yes) <- cold-storage\index.html
+    [info] PASS  [predeploy_size] /about: 37856 B vs live 38309 B = 0.988 (allowed 0.85–1.15; FAQ live no, new no) <- about\index.html
+    [info] PASS  [predeploy_size] /privacy: 34346 B vs live 35416 B = 0.970 (allowed 0.85–1.15; FAQ live no, new no) <- privacy\index.html
+    [info] PASS  [predeploy_size] /terms: 46234 B vs live 47312 B = 0.977 (allowed 0.85–1.15; FAQ live no, new no) <- terms\index.html
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/deploy-20261019-115203.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co
+== 7. on any failure: bash scripts/rollback-prod-10f.sh 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
++ (read-only check that the rollback path works)
+    [rollback dry-run] *** DRY RUN — nothing will be changed ***
+    [rollback dry-run] + timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/7f5dc56a-9d1c-4bd2-8bde-a4512a96be20   (read-only)
+    [rollback dry-run] target deployment: env=production status=success source=40ddc4d created=2026-10-17T22:32:31.89693Z
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+    [rollback dry-run] live production deployment now: 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+    [rollback dry-run] (note: 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
+    [rollback dry-run] + POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/7f5dc56a-9d1c-4bd2-8bde-a4512a96be20/rollback   (Authorization: Bearer <token, not shown>)
+    [rollback dry-run] + (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (max 3 min)
+    [rollback dry-run] + (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch10f/evidence/prod-before.json
+    [rollback dry-run]   (no database step: a website rollback leaves migration 0064 and the mandi backfill rows in place; both are additive and safe for the older website)
+    [rollback dry-run] 
+    [rollback dry-run] ==================================================================
+    [rollback dry-run] DRY RUN OK — preconditions valid; rollback target 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (source 40ddc4d); nothing was changed
+    [rollback dry-run] ==================================================================
+
+##################################################################
+A real run would ship dd904ef to https://kissansahyog.com,
+replacing deployment 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (source 40ddc4d; Batch 10C (prod-10c)).
+Undo after a ship:  bash scripts/rollback-prod-10f.sh 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+Nothing was changed.
+Pending before the real run (a real run stops until these are done):
+  - tag ship-10f missing (to be created on the final HEAD and pushed: git tag ship-10f && git push origin ship-10f)
+  - migration 0064 probe not run in this dry run (KS_SKIP_DB_PROBE=1); the real run will probe
+##################################################################
+DRY RUN OK (2 pending)

@@ -47,3 +47,12 @@
 - **Perf interleaved: RAN-PASSED** — LCP 2,916 → **2,728 ms**, CLS 0.0117 → **0.0106**, TBT 186 → 179 ms.
 - **Text diff:** `/msp` + crop pages: intended (badge, readable dates, chart labels/ticks, table, corrected sentence/calculator, "बंद करें"); full check in Phase 4.
 - Screens looked at: `evidence/screens/phase3-badge-*`, `phase3-chart-*`, `phase3-tooltip-*`, `phase3-trend-table-*`, `phase3-few-makka-hi-412.png`.
+
+## Phase 4 — verify, staging, ship machinery — DONE
+- **Unit: RAN-PASSED** 81/81. **E2E full suite, final build (local, one file at a time): RAN-PASSED** — 189/191 in the loop; `phase10_location_pwa` mandi-search test expected an ISO date next to the price (point 7 replaced it on purpose) → test accepts the readable date too (test-only) → 7/7; final **190/191**, only the known `phase19` environment failure (also at Phase 0). `evidence/phase4/e2e-local/`, `e2e-local-rerun/`.
+- **Staging upload: RAN-PASSED** (one attempt, the project command): deployment **`f9011c22-5ed5-4e9b-b3ee-6a985613b6b3`** (commit dd904ef), https://staging.kissansahyog.com serves main chunk `index-ZgT7KPIE.js`, `home-hero` on `/`, `ks-date-badge` on `/msp/`. `evidence/staging-deploy/deploy.txt`.
+- **Tests against staging: RAN-PASSED** — home-10f 19/19, collapsible-10f 10/10, msp-10f 16/16, msp-trend-10e 4/4, guide-10c 34/34, phase20_mela 8/8, phase10_location_pwa 7/7, phase19 5/6 (known). `evidence/phase4/e2e-staging/`.
+- **Perf / chunks** (final code = Phase 3 build): LCP 2,916 → 2,728 ms, CLS 0.0117 → 0.0106, main JS 27,569 → 27,538 B gz.
+- **SEO text diff: RAN-PASSED, nothing lost** (`evidence/phase4/text-diff-final.txt`, `agro-forestry-live-recheck.txt`); differences listed in REPORT.md.
+- **Widths: RAN-PASSED** — 42 combinations, no horizontal scroll (`evidence/phase4/widths.txt`).
+- **Ship machinery:** `scripts/ship-prod-10f.sh`, `scripts/rollback-prod-10f.sh` (copies of 10E with every 10E gate; 10F hero/removed-hero/badge gates; live previous = 10C, 10D or 10E; new pre-deploy size check `scripts/batch10f/predeploy-size-check.mjs`; verifier `--min-ratio`). **Dry run: DRY RUN OK** (2 pending: tag `ship-10f`, database probe skipped by rule) — `evidence/ship-dryrun.txt`; live production = 10C `7f5dc56a-…`. `SHIP.md`, `BATCH10F_CLOSE_PROMPT.md`, `BACKLOG.md`, `REPORT.md` written.

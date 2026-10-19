@@ -1,0 +1,18 @@
+
+Running 10 tests using 1 worker
+
+  ok  1 [chromium] › e2e\collapsible-10f.spec.js:39:1 › C1 prerendered HTML: every section open and its text present (msp, mausam, home) (76ms)
+NOTE C2 /msp/gehun: {"explainer":true,"snapshot":true,"today":true,"trend":false,"trend-table":false,"calc":false,"procurement":false,"below":false,"faq":false}
+  ok  2 [chromium] › e2e\collapsible-10f.spec.js:55:3 › C2 /msp/gehun phone 360: defaults after hydration; nothing visible moved (CLS) (2.8s)
+  ok  3 [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 /msp/gehun at 768 and 1280: everything starts open (5.3s)
+NOTE C2 /: {"search":true,"near":true,"listings":true,"videos":false,"qa":false,"mela":false,"govt":false,"trust":false,"articles":false}
+  ok  4 [chromium] › e2e\collapsible-10f.spec.js:55:3 › C2 / phone 360: defaults after hydration; nothing visible moved (CLS) (2.0s)
+  ok  5 [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 / at 768 and 1280: everything starts open (4.3s)
+  ok  6 [chromium] › e2e\collapsible-10f.spec.js:80:1 › C4 toggle with mouse, touch and keyboard (Enter, Space); aria-expanded follows; chevron right after the heading text (8.5s)
+  ok  7 [chromium] › e2e\collapsible-10f.spec.js:139:1 › C5 the choice is remembered per page and section; the page still works with storage unavailable (7.9s)
+  ok  8 [chromium] › e2e\collapsible-10f.spec.js:164:1 › C6 a #hash pointing into a collapsed section opens it and scrolls to it (2.7s)
+  ok  9 [chromium] › e2e\collapsible-10f.spec.js:175:1 › C7 reduced motion: no height animation, no chevron transition (2.8s)
+  ok 10 [chromium] › e2e\collapsible-10f.spec.js:188:1 › C8 /mausam and the homepage: toggles work, nothing scrolls sideways at 320 (4.3s)
+[teardown] test data cleaned
+
+  10 passed (42.2s)

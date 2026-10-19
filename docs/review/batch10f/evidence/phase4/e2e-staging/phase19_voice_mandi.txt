@@ -1,0 +1,40 @@
+
+Running 6 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase19_voice_mandi.spec.js:8:1 › voice: Web Speech API populates the /sawaal search field (mocked recognition) (1.0s)
+  ok 2 [chromium] › e2e\phase19_voice_mandi.spec.js:31:1 › voice: unsupported browser WITH a key shows the Gemini-fallback mic (709ms)
+  ok 3 [chromium] › e2e\phase19_voice_mandi.spec.js:50:1 › voice: permission denied shows the "माइक की अनुमति दें" message, not a stuck mic (Batch 4) (776ms)
+  ok 4 [chromium] › e2e\phase19_voice_mandi.spec.js:76:1 › voice: unsupported browser with NO key hides the mic — text search still works (1.2s)
+  x  5 [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded (11.5s)
+  ok 6 [chromium] › e2e\phase19_voice_mandi.spec.js:115:1 › mandi: the homepage ticker still shows LIVE prices (regression guard) (798ms)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('price-missing').first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByTestId('price-missing').first()
+
+
+      110 |   await expect(tag).toContainText(/कल का भाव|पिछला भाव/)
+      111 |   // A genuinely never-reported commodity renders the honest "—".
+    > 112 |   await expect(page.getByTestId('price-missing').first()).toBeVisible()
+          |                                                           ^
+      113 | })
+      114 |
+      115 | test('mandi: the homepage ticker still shows LIVE prices (regression guard)', async ({ page }) => {
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase19_voice_mandi.spec.js:112:59
+
+    Error Context: test-results\phase19_voice_mandi-mandi--5a706-gs-and-—-for-never-recorded-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded 
+  5 passed (17.5s)

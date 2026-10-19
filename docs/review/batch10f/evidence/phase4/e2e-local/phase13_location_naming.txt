@@ -1,0 +1,11 @@
+
+Running 5 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase13_location_naming.spec.js:14:3 › Phase 1 — naming a device position › 4a: far coords resolve to a real place name (Hyderabad), never raw numbers (985ms)
+  ok 2 [chromium] › e2e\phase13_location_naming.spec.js:25:3 › Phase 1 — naming a device position › 4a-ii: a position near a listed place is named from the places list, with no outside call (758ms)
+  ok 3 [chromium] › e2e\phase13_location_naming.spec.js:37:3 › Phase 1 — naming a device position › 4c: reverse-geocode failure falls back to a generic name, never raw coordinates (945ms)
+  ok 4 [chromium] › e2e\phase13_location_naming.spec.js:55:3 › Phase 2 — a fresh visit asks first, and guesses nothing › 4b: a fresh visit shows the card, with no IP-city guess and no /geo call (2.3s)
+  ok 5 [chromium] › e2e\phase13_location_naming.spec.js:70:3 › Phase 2 — a fresh visit asks first, and guesses nothing › edge: "Not now" leads to the text box and the district → town picker, never a pincode (975ms)
+[teardown] test data cleaned
+
+  5 passed (7.1s)

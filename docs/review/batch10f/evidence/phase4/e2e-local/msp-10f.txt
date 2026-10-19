@@ -1,0 +1,22 @@
+
+Running 16 tests using 1 worker
+
+  ok  1 [chromium] › e2e\msp-10f.spec.js:42:3 › M1 hi 360: last-price badge next to the headings, readable date, colour from the real date, one line (1.7s)
+  ok  2 [chromium] › e2e\msp-10f.spec.js:68:3 › M2 hi: no ISO date ("2026-10-17") anywhere on /msp, every section open (1.7s)
+  ok  3 [chromium] › e2e\msp-10f.spec.js:42:3 › M1 en 360: last-price badge next to the headings, readable date, colour from the real date, one line (1.5s)
+  ok  4 [chromium] › e2e\msp-10f.spec.js:68:3 › M2 en: no ISO date ("2026-10-17") anywhere on /msp, every section open (1.7s)
+  ok  5 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 412px 7d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.7s)
+  ok  6 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 412px 30d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.7s)
+  ok  7 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 412px 90d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.7s)
+  ok  8 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 1280px 7d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.7s)
+  ok  9 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 1280px 30d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.7s)
+  ok 10 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 1280px 90d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.6s)
+  ok 11 [chromium] › e2e\msp-10f.spec.js:122:3 › M4 320px: labels never overlap and stay inside the chart (7 / 30 / 90, wheat and a thin crop) (6.8s)
+  ok 12 [chromium] › e2e\msp-10f.spec.js:122:3 › M4 412px: labels never overlap and stay inside the chart (7 / 30 / 90, wheat and a thin crop) (6.8s)
+  ok 13 [chromium] › e2e\msp-10f.spec.js:122:3 › M4 1280px: labels never overlap and stay inside the chart (7 / 30 / 90, wheat and a thin crop) (6.8s)
+  ok 14 [chromium] › e2e\msp-10f.spec.js:150:1 › M5 keyboard: focus the chart (ring), End / ← / Home move the tooltip between dots (1.6s)
+  ok 15 [chromium] › e2e\msp-10f.spec.js:170:1 › M6 touch (360 px): a tap shows the nearest dot; dragging along the chart moves the guide and tooltip (1.9s)
+  ok 16 [chromium] › e2e\msp-10f.spec.js:190:1 › M7 trend uses the corrected series: calculator and share text use the chart's latest point; few-mandi crops are labelled (2.6s)
+[teardown] test data cleaned
+
+  16 passed (44.3s)
