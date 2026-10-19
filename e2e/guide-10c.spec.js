@@ -110,7 +110,12 @@ for (const lang of LANGS) {
         note(`F1 ${lang} ${width} backend endpoints on /about (control)`, ep('control'))
         note(`F1 ${lang} ${width} backend endpoints on the 5 guide pages`, ep('guide'))
         note(`F1 ${lang} ${width} initiators`, [...new Set(backend.map((r) => r.initiator))])
-        expect(ep('guide').filter((x) => !ep('control').includes(x)), 'guide pages ask the backend for nothing the app shell does not').toEqual([])
+        // Batch 10F: public storage images (listing photos) are not "asks". The local preview answers
+        // /guide (no trailing slash) with the prerendered HOMEPAGE html, whose lazy listing photos may
+        // start loading before the app takes over; how many depends on the homepage height (shorter
+        // since 10F). Guide code itself is still checked below (fromGuide).
+        const asks = (ph) => ep(ph).filter((x) => !/^GET \/storage\/v1\/object\/public\//.test(x))
+        expect(asks('guide').filter((x) => !asks('control').includes(x)), 'guide pages ask the backend for nothing the app shell does not').toEqual([])
         expect(backend.filter((r) => r.fromGuide), 'requests started by guide code').toEqual([])
         expect(failed, 'failed backend requests').toEqual([])
         expect(errors, 'console / page errors').toEqual([])

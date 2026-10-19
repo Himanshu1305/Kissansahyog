@@ -1,0 +1,4 @@
+# Batch 10F Phase 0 — failing e2e tests on the baseline (release-10e dd49223, frozen build:full dist on :4196)
+# Run: scripts/batch10f/e2e-loop.sh, one file at a time, --workers=1. Total 177 passed / 1 failed of 178.
+# home-10d was re-run with the dd49223 strings.js (the first loop read the already-edited working tree; 8 TypeErrors, not product failures) -> 32/32.
+[chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded (11.4s)

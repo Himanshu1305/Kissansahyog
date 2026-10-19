@@ -1,30 +1,14 @@
-// Field scene: turning sun, swaying wheat, a tractor crossing slowly. Inline SVG, CSS motion only.
-// Shared since Batch 10D by:
-//   - the /guide hub (10C)            <FieldScene />                  variant "hub"  (800 x 150)
-//   - the homepage "Morning Field" band <FieldScene variant="wide" …/> (1200 x 190, clouds, 2 hills, 2 wheat rows)
-// Both pause when off-screen or when the tab is hidden (useLoopActive) and are still on
-// prefers-reduced-motion / save-data. data-motion = on | paused | static (tests).
-// The hub keeps its 10C markup and behaviour exactly. The wide variant reads reduced motion /
-// save-data only inside an effect, so its first render is deterministic (prerender = client).
-import { memo, useEffect, useMemo, useRef, useState } from 'react'
+// Field scene of the /guide hub (10C): turning sun, swaying wheat, a tractor crossing slowly.
+// Inline SVG, CSS motion only. Pauses when off-screen or when the tab is hidden (useLoopActive) and is
+// still on prefers-reduced-motion / save-data. data-motion = on | paused | static (tests).
+// Batch 10F: the homepage "wide" variant (10D "Morning Field" band) was removed with the band
+// (founder: no animation on the homepage for now); the hub is unchanged.
+import { memo, useMemo, useRef, useState } from 'react'
 import { prefersReducedMotion, saveDataOn } from './timing.js'
 import { useLoopActive } from './useLoopActive.js'
 import './fieldScene.css'
 
 const isStill = () => saveDataOn() || prefersReducedMotion()
-
-/** Seeded pseudo-random numbers (the LCG of the approved preview): same seed, same field. */
-export function seeded(seed) {
-  let r = seed
-  return () => {
-    r = (r * 9301 + 49297) % 233280
-    return r / 233280
-  }
-}
-
-const r1 = (n) => Math.round(n * 10) / 10
-
-// ── shared pieces ─────────────────────────────────────────────────────────────────────────
 
 function Sun({ cx, cy, className, style }) {
   return (
@@ -50,8 +34,6 @@ function Tractor({ className, transform }) {
   )
 }
 
-// ── hub (10C, unchanged) ──────────────────────────────────────────────────────────────────
-
 const HubBody = memo(function HubBody() {
   const wheat = useMemo(() => {
     const out = []
@@ -75,92 +57,23 @@ const HubBody = memo(function HubBody() {
   )
 })
 
-// ── wide (10D homepage band) ──────────────────────────────────────────────────────────────
-
-/** One wheat row as `groups` interleaved groups; each group = one stem path + one ear path, and
- *  sways as a whole (skew about the row's ground line), so ~200 stalks cost only a few nodes. */
-export function wheatRow({ base, step, x0, hMin, hMax, seed, groups }, width) {
-  const rnd = seeded(seed)
-  const g = Array.from({ length: groups }, () => ({ stems: '', ears: '', n: 0 }))
-  let i = 0
-  for (let x = x0; x < width; x += step, i += 1) {
-    const h = r1(hMin + rnd() * (hMax - hMin))
-    const top = r1(base - h)
-    const o = g[i % groups]
-    o.stems += `M${x} ${base}V${top}`
-    // Ear: an ellipse rx 2.6, ry 6 centred 3 above the stem top, drawn as two arcs.
-    o.ears += `M${x} ${r1(top - 9)}a2.6 6 0 1 0 0 12a2.6 6 0 1 0 0-12z`
-    o.n += 1
-  }
-  return g
-}
-
-/** Total stalks a scene config draws (tests / docs). */
-export const wheatCount = (scene) => scene.wheat.reduce((s, row) => s + wheatRow(row, scene.w).reduce((a, g) => a + g.n, 0), 0)
-
-const WideBody = memo(function WideBody({ scene }) {
-  const { w, h, sun, hills, wheat, tractor, clouds, skyId } = scene
-  const rows = useMemo(() => wheat.map((row) => wheatRow(row, w)), [wheat, w])
-  const sway = (row, gi) => ({ transformOrigin: `0 ${row.base}px`, animationDelay: `${-r1((gi * row.sway) / row.groups)}s` })
-  const renderRow = (ri) => (
-    <g>
-      {rows[ri].map((g, gi) => (
-        <g key={gi} className="ksf-sway" style={sway(wheat[ri], gi)}>
-          <path d={g.stems} stroke={wheat[ri].stem} strokeOpacity={wheat[ri].stemOpacity} strokeWidth="1.8" fill="none" />
-          <path d={g.ears} fill="var(--ks-saffron)" />
-        </g>
-      ))}
-    </g>
-  )
-  return (
-    <>
-      <defs>
-        <linearGradient id={skyId} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="var(--ks-blue-tint)" />
-          <stop offset="1" stopColor="var(--ks-bg-soft)" />
-        </linearGradient>
-      </defs>
-      <rect width={w} height={h} fill={`url(#${skyId})`} />
-      <Sun cx={sun.cx} cy={sun.cy} className="ksf-sun" style={{ transformOrigin: `${sun.cx}px ${sun.cy}px` }} />
-      {clouds.map((c, i) => (
-        <g key={i} className={i ? 'ksf-cloud ksf-c2' : 'ksf-cloud'} style={{ animationDelay: `${c.delay}s` }} fill="var(--ks-card)" fillOpacity=".85">
-          {c.puffs.map(([cx, cy, rx, ry], j) => <ellipse key={j} cx={cx} cy={cy} rx={rx} ry={ry} />)}
-        </g>
-      ))}
-      {hills.map((hl, i) => <path key={i} d={hl.d} fill="var(--ks-green)" fillOpacity={hl.opacity} />)}
-      {renderRow(0)}
-      <Tractor className="ksf-trac" transform={`translate(0,${tractor.y}) scale(${tractor.scale})`} />
-      {renderRow(1)}
-    </>
-  )
-})
-
-// ── the component ─────────────────────────────────────────────────────────────────────────
-
-export default function FieldScene({ variant = 'hub', scene, testId = 'guide-scene', className }) {
-  const wide = variant === 'wide'
+export default function FieldScene({ testId = 'guide-scene' }) {
   const ref = useRef(null)
   const active = useLoopActive(ref)
-  // Hub: read at first render, exactly as in 10C. Wide: false at first render, read in an effect.
-  const [still, setStill] = useState(() => (wide ? false : isStill()))
-  useEffect(() => {
-    if (wide) setStill(isStill())
-  }, [wide])
-
-  const base = wide ? `ksf-svg${className ? ` ${className}` : ''}` : 'ksg-scene'
-  const cls = `${base}${still ? ' ksg-static' : active ? '' : ' ksg-paused'}`
+  const [still] = useState(isStill)
+  const cls = `ksg-scene${still ? ' ksg-static' : active ? '' : ' ksg-paused'}`
   return (
     <svg
       ref={ref}
       className={cls}
-      viewBox={wide ? `0 0 ${scene.w} ${scene.h}` : '0 0 800 150'}
-      preserveAspectRatio={wide ? scene.aspect : 'xMidYMax slice'}
+      viewBox="0 0 800 150"
+      preserveAspectRatio="xMidYMax slice"
       aria-hidden="true"
       focusable="false"
       data-testid={testId}
       data-motion={still ? 'static' : active ? 'on' : 'paused'}
     >
-      {wide ? <WideBody scene={scene} /> : <HubBody />}
+      <HubBody />
     </svg>
   )
 }

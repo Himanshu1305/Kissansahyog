@@ -1,0 +1,118 @@
+### HEAD
+title: मक्का की आम समस्याएँ और समाधान
+description: मक्का: इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+canonical: https://kissansahyog.com/fasal/maize/samasya
+robots: 
+lang: hi
+h1: मक्का की आम समस्याएँ और समाधान
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"मक्का"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"मक्का में फॉल आर्मीवर्म (फॉल सैन्य कीट) का नियंत्रण कैसे करें?","url":"https://kissansahyog.com/sawaal/maize-fall-armyworm-control"},{"@type":"ListItem","position":2,"name":"मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें?","url":"https://kissansahyog.com/sawaal/makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon"},{"@type":"ListItem","position":3,"name":"मक्का की बुआई कब करें और बीज दर कितनी रखें?","url":"https://kissansahyog.com/sawaal/maize-sowing-time-seed-rate"},{"@type":"ListItem","position":4,"name":"मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?","url":"https://kissansahyog.com/sawaal/maize-recommended-varieties"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+मक्का
+मक्का की आम समस्याएँ और समाधान
+इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+4
+कीट
+❓
+मक्का में फॉल आर्मीवर्म (फॉल सैन्य कीट) का नियंत्रण कैसे करें?
+फॉल आर्मीवर्म की सूंडी पत्तियों और पौधे के बीच के भाग (व्होरल) को खाती है। यह छेद और मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्यादा प्रकोप पर क्लोरेंट्रानिलिप्रोल या इमामेक्टिन बेंज़ोएट जैसी दवा लेबल के अनुसार छिड़कें।
+कीट
+❓
+मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें?
+यह अक्सर फॉल आर्मीवर्म होता है। इसकी सूंडी पौधे के बीच के कोमल भाग (व्होरल) को खाती है और छेद व मल छोड़ती है। शुरुआत में अंडे और सूंडियाँ हाथ से नष्ट करें। ज़्यादा प्रकोप पर क्लोरेंट्रानिलिप्रोल या इमामेक्टिन बेंज़ोएट जैसी दवा लेबल के अनुसार छिड़कें।
+बुआई
+❓
+मक्का की बुआई कब करें और बीज दर कितनी रखें?
+खरीफ मक्का की बुआई जून के अंतिम सप्ताह से जुलाई के पहले पखवाड़े तक करें। अनाज वाली मक्का के लिए बीज दर लगभग 20 किग्रा प्रति हेक्टेयर रखें। कतार में 60x20 सेमी की दूरी पर बोएं।
+किस्म
+❓
+मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?
+मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनुशंसित किस्म चुनें।
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

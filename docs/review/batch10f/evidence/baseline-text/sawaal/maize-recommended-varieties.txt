@@ -1,0 +1,128 @@
+### HEAD
+title: मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?
+description: मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनु
+canonical: https://kissansahyog.com/sawaal/maize-recommended-varieties
+robots: 
+lang: hi
+h1: मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"मक्का","item":"https://kissansahyog.com/fasal/maize/samasya"},{"@type":"ListItem","position":4,"name":"मक्का की कौन-सी किस्में/हाइब्रिड अच्छी ह"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"QAPage","mainEntity":{"@type":"Question","name":"मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?","acceptedAnswer":{"@type":"Answer","text":"मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनुशंसित किस्म चुनें।"}}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+मक्का
+/
+मक्का की कौन-सी किस्में/हाइब्रिड अच्छी ह
+मक्का
+किस्म
+मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?
+संक्षेप में
+मक्का में गंगा-5 जैसी मध्यम अवधि (95-110 दिन) की हाइब्रिड प्रचलित है। विजय (100-110 दिन) और किसान जैसी कंपोजिट किस्में भी चलती हैं। अपने क्षेत्र के लिए अनुशंसित किस्म चुनें।
+अच्छी उपज और रोग प्रतिरोध के लिए सही अवधि की किस्म चुनें।
+प्रचलित किस्में
+हाइब्रिड: गंगा-5 — मध्यम अवधि (95-110 दिन), व्यापक रूप से अनुकूलित।
+[1]
+कंपोजिट: विजय — मध्यम अवधि (100-110 दिन); किसान — मध्यम अवधि (105-110 दिन)।
+[1]
+स्रोत
+[1]
+Maize or Makka or Corn Crop Cultivation Guide
+कंपनी का दावा
+— IndiaAgroNet, n.d.
+KVK सागर या कृषि कार्यालय से कब संपर्क करें
+अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।
+उपयोगी संपर्क →
+WhatsApp पर शेयर करें
+इनसे जुड़े सवाल
+❓
+मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें?
+❓
+मक्का में फॉल आर्मीवर्म (फॉल सैन्य कीट) का नियंत्रण कैसे करें?
+❓
+मक्का की बुआई कब करें और बीज दर कितनी रखें?
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

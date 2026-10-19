@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one (12.0s)
+  ok 2 [chromium] › e2e\phase9.spec.js:108:1 › Journey B: 30km filter consistent across all categories (3.3s)
+[teardown] test data cleaned
+
+  2 passed (16.7s)

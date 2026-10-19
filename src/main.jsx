@@ -1,15 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-// Batch 10D E — the homepage hero / field band styles (and the shared 10C phone frame and field
-// scene) ship in the main stylesheet, not with the lazy Homepage chunk: the prerendered homepage
-// poster is then styled at first paint (no unstyled flash, no shift when the chunk arrives), and
-// the prerender no longer bakes the lazy chunks' runtime <link rel="stylesheet"> tags (with the
-// B17 localhost:4178 origin) into "/". The components still import them (deduplicated by Vite).
+// Batch 10D E — the shared 10C phone frame and field scene ship in the main stylesheet, not with
+// the lazy guide chunks (no unstyled flash, no shift when a chunk arrives). The components still
+// import them (deduplicated by Vite). Batch 10F removed the homepage live hero and field band
+// (and their two stylesheets); these two are kept so /guide loads exactly as before.
 import './features/guide/phone.css'
 import './features/guide/fieldScene.css'
-import './features/home-live/homeLive.css'
-import './features/home-live/homeField.css'
 import App, { preloadHomepage } from './App.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
 import { isNative } from './lib/native.js'

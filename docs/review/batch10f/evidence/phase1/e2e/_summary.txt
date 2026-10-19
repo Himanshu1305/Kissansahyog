@@ -1,0 +1,10 @@
+home-10f 19 0
+guide-10c 34 0 (33/34 in the loop; F1 en 412 fixed in the test, see DECISIONS 19 and guide-f1-recheck.txt)
+guide-10c-browse-etag 5 0
+phase20_mela 8 0
+phase12_weather_split 5 0
+phase17_sawaal_pwa_backbutton_ticker 4 0
+batch1 5 0
+phase13_location_naming 5 0
+phase10_location_pwa 7 0
+phase10_downstream 8 0

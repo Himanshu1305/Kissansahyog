@@ -1,0 +1,123 @@
+### HEAD
+title: रजिस्टर कैसे करें — किसान सहयोग गाइड
+description: नाम, मोबाइल और गाँव भरकर किसान सहयोग पर मुफ़्त खाता कैसे बनाएँ — 1 मिनट का डेमो।
+canonical: https://kissansahyog.com/guide/register
+robots: 
+lang: hi
+h1: रजिस्टर कैसे करें
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+← सभी डेमो
+रजिस्टर कैसे करें
+नाम, मोबाइल और गाँव।
+पहले अपना पूरा नाम लिखिए।
+‹
+नया खाता बनाएं
+✓ निःशुल्क रजिस्ट्रेशन
+पूरा नाम
+*
+जैसे: रामप्रसाद पटेल
+मोबाइल नंबर
+*
+10 अंकों का नंबर
+गाँव / कस्बा
+*
+जैसे: खुरई, बंडा, रहली
+खोजें
+अपने गाँव या सबसे पास के कस्बे का नाम लिखें और सूची से चुनें।
+आपकी जानकारी कौन देख सकता है?
+मेरी जानकारी दिखाएँ (सुझाया गया)
+जब आप कोई लिस्टिंग डालते हैं, तो खरीदार और विक्रेता आपका नाम और मोबाइल नंबर देखकर आपसे संपर्क करते हैं। अगर आप जानकारी छिपाकर रखेंगे, तो वे इसे नहीं देख पाएँगे, और बेचने या ज़मीन लीज़ पर देने के मौके छूट सकते हैं।
+ज़रूरी सूचना
+⚠️ किसान सहयोग एक जानकारी साझा करने वाला मंच है। हम किसी भी सौदे, भुगतान या समझौते में शामिल नहीं हैं। कृपया किसी भी लेन-देन से पहले दूसरे व्यक्ति की पहचान और जानकारी स्वयं जांच लें।
+Kissan Sahyog is an information-sharing platform only. We are not involved in any deal, payment, or agreement between users. Please verify the other person’s identity and details yourself before proceeding.
+मैंने ऊपर दी गई सूचना पढ़ ली और समझ ली है।
+स्वीकार करें और आगे बढ़ें
+फ़ोन के अंदर के नाम, नंबर और दाम सिर्फ़ नमूना हैं।
+देखिए
+करके देखिए
+चलाइए
+फिर से
+सुनिए
+1
+पहले अपना पूरा नाम लिखिए।
+2
+अब अपना 10 अंकों का मोबाइल नंबर लिखिए।
+3
+अपने गाँव या पास के कस्बे का नाम लिखिए।
+4
+सूची में से अपना गाँव चुनिए।
+5
+यह बॉक्स टिक रहे तो लोग आपसे संपर्क कर पाएँगे। यही सुझाया गया है।
+6
+ज़रूरी सूचना ध्यान से पढ़िए।
+7
+पढ़ लिया? तो इस बॉक्स पर टिक कीजिए।
+8
+आख़िर में नीचे वाला हरा बटन दबाइए। आपका खाता बन गया!
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

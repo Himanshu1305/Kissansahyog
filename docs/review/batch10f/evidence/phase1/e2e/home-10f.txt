@@ -1,0 +1,32 @@
+
+Running 19 tests using 1 worker
+
+  ok  1 [chromium] › e2e\home-10f.spec.js:78:7 › Home 10F hi 360px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (1.4s)
+  ok  2 [chromium] › e2e\home-10f.spec.js:104:7 › Home 10F hi 360px › H2 the demo button opens the same demos as the 10D button (/guide) (731ms)
+NOTE H3 hi 360 price card: {"hasPrice":true,"text":"मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज का भाव गेहूं ₹2,690 MSP ₹2,585 से ₹105 ऊपर · पूरी सूची → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन"}
+  ok  3 [chromium] › e2e\home-10f.spec.js:120:7 › Home 10F hi 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.8s)
+  ok  4 [chromium] › e2e\home-10f.spec.js:78:7 › Home 10F hi 412px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (1.3s)
+  ok  5 [chromium] › e2e\home-10f.spec.js:104:7 › Home 10F hi 412px › H2 the demo button opens the same demos as the 10D button (/guide) (683ms)
+NOTE H3 hi 412 price card: {"hasPrice":true,"text":"मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज का भाव गेहूं ₹2,690 MSP ₹2,585 से ₹105 ऊपर · पूरी सूची → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन"}
+  ok  6 [chromium] › e2e\home-10f.spec.js:120:7 › Home 10F hi 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.7s)
+  ok  7 [chromium] › e2e\home-10f.spec.js:78:7 › Home 10F en 360px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (1.2s)
+  ok  8 [chromium] › e2e\home-10f.spec.js:104:7 › Home 10F en 360px › H2 the demo button opens the same demos as the 10D button (/guide) (719ms)
+NOTE H3 en 360 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+  ok  9 [chromium] › e2e\home-10f.spec.js:120:7 › Home 10F en 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.7s)
+  ok 10 [chromium] › e2e\home-10f.spec.js:78:7 › Home 10F en 412px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (1.2s)
+  ok 11 [chromium] › e2e\home-10f.spec.js:104:7 › Home 10F en 412px › H2 the demo button opens the same demos as the 10D button (/guide) (678ms)
+NOTE H3 en 412 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+  ok 12 [chromium] › e2e\home-10f.spec.js:120:7 › Home 10F en 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.7s)
+  ok 13 [chromium] › e2e\home-10f.spec.js:160:1 › H4 the prerendered HTML of / has the static hero and none of the removed hero parts (35ms)
+  ok 14 [chromium] › e2e\home-10f.spec.js:170:1 › H5 no lazy hero chunk and no hero timer: no LiveStage request, no hero timers after load (4.2s)
+  ok 15 [chromium] › e2e\home-10f.spec.js:184:3 › H6 hi: no horizontal overflow at 320–1440; hero fits the width (7.9s)
+  ok 16 [chromium] › e2e\home-10f.spec.js:184:3 › H6 en: no horizontal overflow at 320–1440; hero fits the width (8.0s)
+NOTE H7 360x640 bottoms (px from page top): {"heroTop":440,"h1":565,"need":667,"have":743,"demo":828}
+  ok 17 [chromium] › e2e\home-10f.spec.js:206:1 › H7 first screen at 360x640 (hi): heading on screen; positions of the two buttons and the demo button reported (2.1s)
+NOTE H8 1280x720 hi: [{"top":358,"bottom":409,"right":663},{"top":450,"bottom":514,"right":361},{"top":450,"bottom":514,"right":663},{"top":551,"bottom":599,"right":663}]
+NOTE H8 1280x720 en: [{"top":358,"bottom":409,"right":663},{"top":450,"bottom":514,"right":361},{"top":450,"bottom":514,"right":663},{"top":551,"bottom":599,"right":663}]
+  ok 18 [chromium] › e2e\home-10f.spec.js:225:1 › H8 1280x720: the H1, both big buttons and the demo button are visible without scrolling (hi and en) (3.5s)
+  ok 19 [chromium] › e2e\home-10f.spec.js:250:1 › H9 other routes still start as before; in-app navigation / → /guide (demo button) → back works (4.5s)
+[teardown] test data cleaned
+
+  19 passed (1.2m)

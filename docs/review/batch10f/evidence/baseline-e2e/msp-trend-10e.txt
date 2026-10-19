@@ -1,0 +1,13 @@
+
+Running 4 tests using 1 worker
+
+gehun {"7":{"range":"12–17 अक्टू","points":6,"axis":"12 अक्टू 17 अक्टू","note":"इस अवधि में 6 दिन का भाव उपलब्ध"},"30":{"range":"19 सित – 17 अक्टू","points":29,"axis":"19 सित 17 अक्टू","note":"इस अवधि में 29 दिन का भाव उपलब्ध"},"90":{"range":"21 जुल – 17 अक्टू","points":88,"axis":"21 जुल 17 अक्टू","note":"इस अवधि में 88 दिन का भाव उपलब्ध"}}
+  ok 1 [chromium] › e2e\msp-trend-10e.spec.js:27:1 › wheat: 7 / 30 / 90 show different real ranges and more points as the window grows (1.9s)
+dhan 90 {"range":"22 जुल – 17 अक्टू","points":34,"axis":"22 जुल 17 अक्टू","note":"इस अवधि में 34 दिन का भाव उपलब्ध"}
+dhan 30/7 {"r30":{"range":"21 सित – 17 अक्टू","points":9,"axis":"21 सित 17 अक्टू","note":"इस अवधि में 9 दिन का भाव उपलब्ध"},"r7":{"range":"12–17 अक्टू","points":4,"axis":"12 अक्टू 17 अक्टू","note":"इस अवधि में 4 दिन का भाव उपलब्ध"}}
+  ok 2 [chromium] › e2e\msp-trend-10e.spec.js:42:1 › paddy (thin crop): honest "N दिन का भाव" note, never the full period (1.3s)
+  ok 3 [chromium] › e2e\msp-trend-10e.spec.js:56:1 › 320 px: tabs fit, no horizontal overflow, tap targets ≥ 44 px (1.4s)
+  ok 4 [chromium] › e2e\msp-trend-10e.spec.js:70:1 › mandi search lists markets late in the alphabet (list is no longer cut at 1,000 rows) (1.9s)
+[teardown] test data cleaned
+
+  4 passed (7.8s)
