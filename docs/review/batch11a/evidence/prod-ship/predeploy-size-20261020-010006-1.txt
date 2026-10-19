@@ -1,0 +1,10 @@
+PASS  [predeploy_size] /: 101428 B vs live 79827 B = 1.271 (allowed 0.7–1.4; FAQ live no, new no) <- index.html
+PASS  [predeploy_size] /mausam: 38453 B vs live 37959 B = 1.013 (allowed 0.85–1.15; FAQ live yes, new yes) <- mausam\index.html
+PASS  [predeploy_size] /msp: 88281 B vs live 72171 B = 1.223 (allowed 0.85–1.6; FAQ live yes, new yes) <- msp\index.html
+PASS  [predeploy_size] /browse: 101428 B vs live 79827 B = 1.271 (allowed 0.7–1.4; FAQ live no, new no) <- index.html
+PASS  [predeploy_size] /sawaal: 25676 B vs live 26051 B = 0.986 (allowed 0.85–4; FAQ live no, new no) <- sawaal\index.html
+PASS  [predeploy_size] /yojana: 39657 B vs live 39969 B = 0.992 (allowed 0.85–4; FAQ live no, new no) <- yojana\index.html
+PASS  [predeploy_size] /cold-storage: 485924 B vs live 486320 B = 0.999 (allowed 0.85–1.15; FAQ live yes, new yes) <- cold-storage\index.html
+PASS  [predeploy_size] /about: 37856 B vs live 38309 B = 0.988 (allowed 0.85–1.15; FAQ live no, new no) <- about\index.html
+PASS  [predeploy_size] /privacy: 34346 B vs live 35416 B = 0.970 (allowed 0.85–1.15; FAQ live no, new no) <- privacy\index.html
+PASS  [predeploy_size] /terms: 46234 B vs live 47312 B = 0.977 (allowed 0.85–1.15; FAQ live no, new no) <- terms\index.html

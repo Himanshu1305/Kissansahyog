@@ -1542,3 +1542,17 @@ SHIP_RETRY, CLOSE_REPORT, `evidence/prod-live/RESULT.md`), `src/features/guide/`
 - Tapping an equipment tag chip on Browse now writes `etag` into the address (`/browse?cat=equipment&etag=…`),
   replacing the history entry; tapping it again or "All" removes it; a deep link or refresh keeps it; an unknown
   value is ignored. This closes the 10A HUMAN-REVIEW item "Browse tag in the URL".
+
+
+---
+
+## Batch 11A — mobile OTP and session tokens (state as of this ship)
+
+- **Live:** deployment `11f140ef-859d-419a-85ee-7f1309bb0256`, commit `7d9adc5` (branch `release-11a`, tags `ship-11a`, `prod-11a`), shipped 2026-10-20. Main chunk `/assets/index-kXKG8WUQ.js`. Previous: `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20` (10C). The same ship carried 10D, 10E, 10F and 10G.
+- **Two database switches** (read at runtime through `get_auth_flags` / `GET /api/otp/config`, cached about 60 s): `otp_required` (real SMS OTP for phone sign-in and sign-up) and `session_enforced` (actor functions require the session token). At close: `otp_required` ON, `session_enforced` OFF. Do not turn `session_enforced` ON before a new Android APK is published.
+- **Pages Functions:** `/api/otp/send`, `/api/otp/verify`, `/api/otp/config` (provider 2Factor). Secrets (names only): `TWOFACTOR_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, set with `bash scripts/set-otp-secrets.sh prod`. `send` rejects a bad number with 400 `invalid_phone` before any SMS.
+- **Migration 0066:** OTP tables, tickets and sessions; switches seeded OFF; a catalog-driven `require_actor` guard on 100 actor functions (checks header `x-ks-session`, only while both switches are ON) and an `otp_required` gate on 3; one allow-list entry (`app_session_valid`); original function bodies saved in `ks_fn_backup_0066`; a random pepper created once per database in `auth_private` (phone and IP are stored only as hashes). Rollback: `PROD_ROLLBACK_0066.sql`.
+- **Client:** `src/lib/auth/sessionToken.js` (token store, header on every data call, revoke on logout), `src/components/auth/OtpStep.jsx` (code step, resend countdown, change number), `getAuthFlags` in the auth service; login shows the mobile box above the e-mail box; e-mail users get a session token after sign-in; a `not_authenticated` answer signs the user out locally.
+- **Shipped with** `bash scripts/ship-prod-11a.sh` (gated, with 0064/0065/0066 probes and OTP gates); migrations were pasted into the production SQL editor first. **Undo:** both switches OFF, then `bash scripts/rollback-prod-11a.sh 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, then `PROD_ROLLBACK_0066.sql` only if needed.
+- `GUIDE_OTP_LIVE` in `src/features/guide/config.js` is still `false` (flip it in a later release once OTP is on for good).
+- Details: `docs/review/batch11a/` (REPORT, DECISIONS, SHIP, CLOSE_REPORT, evidence).

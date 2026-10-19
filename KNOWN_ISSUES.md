@@ -497,3 +497,17 @@ Live: deployment `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, commit `40ddc4d`. See P
   is in the live Post chunk and the staging test opened it with a fake local session.
 - **Browse title cut next to the help pill** in English at 360 px ("Browse nea…"); Hindi is fine at 360/412 px.
   HUMAN-REVIEW (from the 10C build report).
+
+
+---
+
+## Batch 11A production ship (2026-10-20)
+
+Live: deployment `11f140ef-859d-419a-85ee-7f1309bb0256`, commit `7d9adc5`. See PROJECT_CONTEXT "Batch 11A".
+
+- **Hindi OTP wording awaits founder review:** `docs/review/batch11a/HINDI_CAPTIONS.md`. HUMAN-REVIEW.
+- **Old Android APKs and the flag order:** old APKs do not send the session token. Publish a new APK before turning `session_enforced` ON, or old-app users cannot act.
+- **60-second switch cache:** a changed switch can take up to about 60 seconds to reach every open page.
+- **Prerender loading-state race on 5 pages:** the prerendered text of 5 pages can differ from run to run (also in the baseline build); see `docs/review/batch11a/evidence/text-diff.md`.
+- **Home-page mandi ticker glyphs in narrow screenshots:** in headless screenshots at 320 and 360 px the moving ticker strip showed garbled glyphs mid-scroll; the ship gate read correct text. HUMAN-REVIEW on a real phone.
+- **OTP on production not tested by the builder** (it would send a real SMS). `otp_required` was ON at close; the founder's own test result is HUMAN-REVIEW. The 10E mandi backfill was not verifiable read-only.

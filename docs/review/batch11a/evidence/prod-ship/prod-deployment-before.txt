@@ -1,0 +1,6 @@
+deployment_id=7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+source=40ddc4d
+main_chunk=/assets/index-NFbe6Fk2.js
+live_is=Batch 10C (prod-10c)
+recorded_at=2026-10-19T19:30:23Z
+shipping=7d9adc54ce42fa46f20d330939b0f3e81933dc6d
