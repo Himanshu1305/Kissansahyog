@@ -33,6 +33,8 @@ import { fetchSiteSetting } from '../lib/pages/pagesApi'
 import { sawaalQuestion } from '../lib/community/communityApi'
 import { CATEGORIES } from '../lib/listings/catalog'
 import WhatsAppAdminPanel from '../components/admin/WhatsAppAdminPanel'
+import AdminListingActions, { AdminStatusBadge } from '../components/listing/AdminListingActions'
+import { retryPendingPhotoDeletions } from '../lib/listings/listingsApi'
 
 // Admin dashboard. Route-gated to authenticated users; a non-admin sees Access
 // Denied here (not a 404/crash). All data comes from is_admin-checked RPCs.
@@ -390,10 +392,14 @@ function VendorReportPanel({ actorId, t, lang }) {
 function ListingsPanel({ actorId, t, lang }) {
   const [rows, setRows] = useState(null)
   const [err, setErr] = useState(null)
+  const [done, setDone] = useState(null)
   const load = useCallback(() => {
     getAdminListings(actorId, 20, 0).then(setRows).catch((e) => setErr(t(e.i18nKey || 'err_unknown')))
   }, [actorId, t])
   useEffect(() => { load() }, [load])
+  // Batch 10G: photo files of an earlier admin delete that could not be removed then.
+  useEffect(() => { retryPendingPhotoDeletions(actorId) }, [actorId])
+  const changed = (kind) => { setErr(null); setDone(t({ disabled: 'admin_done_disabled', enabled: 'admin_done_enabled', deleted: 'admin_done_deleted' }[kind])); load() }
 
   async function remove(id) {
     setErr(null)
@@ -403,6 +409,7 @@ function ListingsPanel({ actorId, t, lang }) {
   return (
     <Section title={t('admin_recent_listings')}>
       {err && <Notice tone="error">{err}</Notice>}
+      {done && <p role="status" data-testid="admin-done" className="mb-2 rounded-lg bg-green-50 px-3 py-2 text-sm font-semibold text-green-800">{done}</p>}
       {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500">{t('admin_none')}</p> : (
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
@@ -413,25 +420,31 @@ function ListingsPanel({ actorId, t, lang }) {
                 <th className="py-2 pr-3">{t('col_location')}</th>
                 <th className="py-2 pr-3">{t('col_posted_by')}</th>
                 <th className="py-2 pr-3">{t('col_status')}</th>
+                <th className="py-2 pr-3">{t('admin_photos')}</th>
                 <th className="py-2 pr-3">{t('col_action')}</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((r) => (
-                <tr key={r.id} className="border-b border-stone-100">
+                <tr key={r.id} className="border-b border-stone-100" data-testid="admin-listing-row" data-listing-id={r.id}>
                   <td className="py-2 pr-3">{CATEGORY_META[r.category]?.[lang] || r.category}</td>
                   <td className="py-2 pr-3">{t(r.listing_type === 'offer' ? 'home_offer' : 'home_requirement')}</td>
                   <td className="py-2 pr-3">{[r.village_town, r.pincode].filter(Boolean).join(' · ')}</td>
                   <td className="py-2 pr-3">{r.poster_phone || r.poster_email || '—'}</td>
                   <td className="py-2 pr-3">
-                    {r.status === 'removed' ? t('status_removed') : r.status === 'closed' ? t('badge_found') : t('badge_active')}
+                    <AdminStatusBadge listing={r} />
+                    {r.admin_disabled_reason && <span className="mt-1 block max-w-[220px] text-xs text-red-800" data-testid="admin-reason">{t('listing_admin_reason')}: {r.admin_disabled_reason}</span>}
                   </td>
+                  <td className="py-2 pr-3">{r.photo_count ?? 0}</td>
                   <td className="py-2 pr-3">
-                    {r.status !== 'removed' && (
-                      <button onClick={() => remove(r.id)} className="rounded-lg bg-red-600 px-3 py-1 font-bold text-white active:bg-red-700">
-                        {t('action_remove')}
-                      </button>
-                    )}
+                    <div className="flex min-w-[260px] flex-wrap gap-2">
+                      {r.status !== 'removed' && r.status !== 'disabled' && (
+                        <button onClick={() => remove(r.id)} className="min-h-[44px] rounded-lg bg-red-600 px-3 font-bold text-white active:bg-red-700">
+                          {t('action_remove')}
+                        </button>
+                      )}
+                      <AdminListingActions listing={r} actorId={actorId} compact onChanged={changed} onError={setErr} />
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -1425,9 +1438,13 @@ function ReportsPanel({ actorId, t }) {
                   placeholder={t('admin_report_resolution')}
                   className="mt-2 w-full rounded-lg border border-stone-300 p-2 text-sm"
                 />
-                <div className="mt-2 flex gap-2">
+                <div className="mt-2 flex flex-wrap gap-2">
                   {r.listing_id && (
                     <button type="button" onClick={() => act(r.id, 'removed')} className="rounded-lg bg-red-600 px-3 py-1.5 text-sm font-bold text-white">{t('admin_report_action_remove')}</button>
+                  )}
+                  {/* Batch 10G — permanent delete straight from the complaint (the report is resolved as removed). */}
+                  {r.listing_id && (
+                    <AdminListingActions deleteOnly compact listing={{ id: r.listing_id, category: r.listing_category, status: r.listing_status }} actorId={actorId} onChanged={() => load()} onError={setErr} />
                   )}
                   <button type="button" onClick={() => act(r.id, 'dismissed')} className="rounded-lg border-2 border-stone-300 px-3 py-1.5 text-sm font-bold text-stone-700">{t('admin_report_action_dismiss')}</button>
                 </div>

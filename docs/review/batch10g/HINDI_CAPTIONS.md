@@ -28,3 +28,21 @@ All text in `src/lib/i18n/strings.js` (hi + en).
 | `listing_err_invalid_state` | इस विज्ञापन की अभी की हालत में यह काम नहीं हो सकता। | This cannot be done with the listing as it is now. |
 
 Kept unchanged (existing wording): status badges "चालू" (active), "मिल गया" (closed/found), "समय समाप्त" (expired), and the existing "मिल गया" close button. The brief named them "सक्रिय / बंद / बंद करें" — HUMAN-REVIEW whether to rename (DECISIONS 23).
+
+## Phase 4 — admin
+| Key | Hindi | English |
+|---|---|---|
+| `admin_status_disabled_seller` | विक्रेता ने अक्षम किया | Disabled by seller |
+| `admin_disable_title` | विज्ञापन अक्षम करें | Disable this listing |
+| `admin_disable_body` | यह विज्ञापन सबसे छिप जाएगा। विक्रेता इसे खुद चालू नहीं कर पाएगा। आप बाद में इसे फिर चालू कर सकते हैं। | The listing will be hidden from everyone. The seller cannot enable it. You can enable it again later. |
+| `admin_reason_label` | कारण (ज़रूरी, 300 अक्षर तक) | Reason (required, up to 300 characters) |
+| `admin_reason_seller_note` | यह कारण विक्रेता को दिखेगा। | The seller will see this reason. |
+| `admin_reason_log_note` | यह कारण एडमिन लॉग में रहेगा। | This reason is kept in the admin log. |
+| `admin_reason_required` | कृपया कारण लिखें (300 अक्षर तक)। | Please write a reason (up to 300 characters). |
+| `admin_delete_perm` | हमेशा के लिए हटाएं | Delete permanently |
+| `admin_delete_title` | हमेशा के लिए हटाएं? | Delete permanently? |
+| `admin_delete_body` | “{category}” का यह विज्ञापन, इसकी फोटो और जानकारी हमेशा के लिए हट जाएंगे। यह वापस नहीं आएगा। | This “{category}” listing, its photos and its details will be removed for ever. It cannot be brought back. |
+| `admin_delete_type_label` | पक्का करने के लिए DELETE लिखें | Type DELETE to confirm |
+| `admin_done_disabled` / `admin_done_enabled` / `admin_done_deleted` | विज्ञापन अक्षम किया गया। / विज्ञापन फिर से चालू किया गया। / विज्ञापन हमेशा के लिए हटा दिया गया। | Listing disabled. / Listing enabled again. / Listing deleted permanently. |
+| `admin_photos` | फोटो | Photos |
+| `admin_listing_actions_label` (screen readers) | एडमिन: इस विज्ञापन के काम | Admin: actions for this listing |

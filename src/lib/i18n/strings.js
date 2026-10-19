@@ -2533,6 +2533,24 @@ export const strings = {
   listing_err_disabled_by_admin: { hi: 'एडमिन ने इसे अक्षम किया है, इसलिए आप इसे चालू नहीं कर सकते।', en: 'An admin disabled it, so you cannot enable it.' },
   listing_err_invalid_state: { hi: 'इस विज्ञापन की अभी की हालत में यह काम नहीं हो सकता।', en: 'This cannot be done with the listing as it is now.' },
 
+  // --- admin disable / enable / permanent delete (Batch 10G) ---
+  admin_status_disabled_seller: { hi: 'विक्रेता ने अक्षम किया', en: 'Disabled by seller' },
+  admin_disable_title: { hi: 'विज्ञापन अक्षम करें', en: 'Disable this listing' },
+  admin_disable_body: { hi: 'यह विज्ञापन सबसे छिप जाएगा। विक्रेता इसे खुद चालू नहीं कर पाएगा। आप बाद में इसे फिर चालू कर सकते हैं।', en: 'The listing will be hidden from everyone. The seller cannot enable it. You can enable it again later.' },
+  admin_reason_label: { hi: 'कारण (ज़रूरी, 300 अक्षर तक)', en: 'Reason (required, up to 300 characters)' },
+  admin_reason_seller_note: { hi: 'यह कारण विक्रेता को दिखेगा।', en: 'The seller will see this reason.' },
+  admin_reason_log_note: { hi: 'यह कारण एडमिन लॉग में रहेगा।', en: 'This reason is kept in the admin log.' },
+  admin_reason_required: { hi: 'कृपया कारण लिखें (300 अक्षर तक)।', en: 'Please write a reason (up to 300 characters).' },
+  admin_delete_perm: { hi: 'हमेशा के लिए हटाएं', en: 'Delete permanently' },
+  admin_delete_title: { hi: 'हमेशा के लिए हटाएं?', en: 'Delete permanently?' },
+  admin_delete_body: { hi: '“{category}” का यह विज्ञापन, इसकी फोटो और जानकारी हमेशा के लिए हट जाएंगे। यह वापस नहीं आएगा।', en: 'This “{category}” listing, its photos and its details will be removed for ever. It cannot be brought back.' },
+  admin_delete_type_label: { hi: 'पक्का करने के लिए DELETE लिखें', en: 'Type DELETE to confirm' },
+  admin_done_disabled: { hi: 'विज्ञापन अक्षम किया गया।', en: 'Listing disabled.' },
+  admin_done_enabled: { hi: 'विज्ञापन फिर से चालू किया गया।', en: 'Listing enabled again.' },
+  admin_done_deleted: { hi: 'विज्ञापन हमेशा के लिए हटा दिया गया।', en: 'Listing deleted permanently.' },
+  admin_photos: { hi: 'फोटो', en: 'Photos' },
+  admin_listing_actions_label: { hi: 'एडमिन: इस विज्ञापन के काम', en: 'Admin: actions for this listing' },
+
   // --- /msp last-price badge, chart dates, trend integrity (Batch 10F) --- Hindi awaits founder review.
   msp_badge_last: { hi: 'अंतिम भाव: {date}', en: 'Last price: {date}' },
   msp_badge_today: { hi: 'आज का भाव · {date}', en: 'Today’s price · {date}' },

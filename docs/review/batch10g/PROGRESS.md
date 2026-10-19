@@ -29,3 +29,9 @@
 - **Build: RAN-PASSED** 268/268. Main chunk 27,538 → **27,604 B gz (+66)**.
 - **E2E `listing-owner-10g`: RAN-PASSED 8/8** — disable/enable (hi 412, en 1280; public read hidden then visible; buttons ≥ 44 px; no horizontal scroll), delete with cancel then confirm (row gone, photo file gone, uncached URL 400, deleted listing page shows "यह लिस्टिंग नहीं मिली"), admin-disabled (badge + reason, no enable, delete offered; RPC `disabled_by_admin`), own detail page of a disabled listing (enable, delete → back to My Listings), keyboard + screen-reader (labelled group, alertdialog, focus on "नहीं", Escape returns focus), non-owner refused. No console errors.
 - Screens (looked at): `evidence/screens/phase3-my-listings-*`, `phase3-delete-dialog-*`, `phase3-detail-admin-disabled-*`.
+
+## Phase 4 — admin screens — DONE
+- `AdminListingActions` (disable with reason, enable, delete permanently with reason + "DELETE") in the admin listings panel (status badges incl. seller/admin-disabled + reason, photo count), the reports list (delete shortcut) and the listing detail page for admins; `adminSetListingDisabled`, `adminDeleteListing` (+ photo removal) in `adminApi.js`. DECISIONS 31–35.
+- **Build: RAN-PASSED** 268/268. Main chunk **27,623 B gz** (Phase 0 27,538: +85); Admin 14,736; AdminListingActions 4,287; ListingDetail 4,190; OwnerListingActions 1,950; MyListings 1,912 (`evidence/phase4/chunk-sizes.txt`). A lazy-import regrouping (+13 KB in main) was found and fixed (DECISIONS 34).
+- **E2E: RAN-PASSED** — `listing-admin-10g` **4/4** (panel: disable needs reason, enable, delete needs reason + DELETE, log rows disable/enable/delete, photo gone; reports-list delete resolves the report; detail-page disable at 412 px; non-admin sees no controls, `/admin` access denied, RPCs `not_admin`) + `listing-owner-10g` 8/8 on the same build.
+- Screens (looked at): `evidence/screens/phase4-admin-panel-*`, `phase4-admin-delete-dialog-*`.

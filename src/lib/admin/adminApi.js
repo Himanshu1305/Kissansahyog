@@ -4,6 +4,7 @@
 // itself can never read all users' phones/emails directly.
 import { supabase } from '../supabaseClient'
 import { toAppError } from '../errors'
+import { removeListingPhotos } from '../listings/listingsApi'
 
 async function rpc(name, args) {
   const { data, error } = await supabase.rpc(name, args)
@@ -18,6 +19,25 @@ export const getAdminUsers = (actorId, { limit = 25, offset = 0, search = '' } =
   rpc('get_admin_users', { p_actor_id: actorId, p_limit: limit, p_offset: offset, p_search: search })
 export const removeListing = (actorId, listingId) =>
   rpc('remove_listing', { p_actor_id: actorId, p_listing_id: listingId })
+
+// Batch 10G — admin disable / enable (reason required to disable) and PERMANENT delete (reason required;
+// writes the admin action log; the photo files are removed right after, see listingsApi).
+// Errors keep the RPC's code (not_admin, not_found, invalid_state, reason_required, reason_too_long).
+async function listingAdminRpc(name, args) {
+  const { data, error } = await supabase.rpc(name, args)
+  if (error) {
+    const m = String(error.message || '').match(/not_admin|not_found|invalid_state|reason_required|reason_too_long/)
+    throw Object.assign(new Error(m ? m[0] : 'unknown'), { code: m ? m[0] : 'unknown' })
+  }
+  return data
+}
+export const adminSetListingDisabled = (actorId, listingId, disabled, reason) =>
+  listingAdminRpc('admin_set_listing_disabled', { p_actor_id: actorId, p_listing_id: listingId, p_disabled: !!disabled, p_reason: reason ?? null })
+export async function adminDeleteListing(actorId, listingId, reason) {
+  const paths = await listingAdminRpc('admin_delete_listing', { p_actor_id: actorId, p_listing_id: listingId, p_reason: reason })
+  const photos = await removeListingPhotos(paths)
+  return { paths: paths || [], photosRemoved: photos.removed }
+}
 
 // Phase 4 — complaints queue + sponsored toggle.
 export const getListingReports = (actorId, status = 'open') =>

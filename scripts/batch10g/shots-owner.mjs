@@ -40,6 +40,23 @@ try {
     await page.screenshot({ path: `${out}/${prefix}-detail-admin-disabled-${lang}-${w}.png` })
     await ctx.close()
   }
+  // admin views
+  for (const [w, lang] of [[1280, 'hi'], [412, 'hi']]) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: 900 }, isMobile: w < 768, hasTouch: w < 768, serviceWorkers: 'block', reducedMotion: 'reduce' })
+    await ctx.addInitScript(([p, l]) => { localStorage.setItem('ks_session_v1', JSON.stringify(p)); localStorage.setItem('ks_lang_v1', l) }, [admin, lang])
+    const page = await ctx.newPage()
+    await page.goto(`${base}/admin`, { waitUntil: 'networkidle' })
+    const row = page.locator(`[data-testid="admin-listing-row"][data-listing-id="${ids[0]}"]`)
+    await row.waitFor({ timeout: 30000 })
+    await row.scrollIntoViewIfNeeded()
+    await page.evaluate(() => window.scrollBy(0, -120))
+    await page.screenshot({ path: `${out}/${prefix}-admin-panel-${lang}-${w}.png` })
+    await page.locator(`[data-testid="admin-listing-row"][data-listing-id="${ids[2]}"] [data-testid="admin-delete"]`).click()
+    await page.getByTestId('admin-delete-reason').fill('नकली विज्ञापन')
+    await page.getByTestId('admin-delete-type').fill('DELETE')
+    await page.screenshot({ path: `${out}/${prefix}-admin-delete-dialog-${lang}-${w}.png` })
+    await ctx.close()
+  }
   await browser.close()
 } finally {
   await svc.from('listing_admin_actions').delete().in('listing_id', ids)

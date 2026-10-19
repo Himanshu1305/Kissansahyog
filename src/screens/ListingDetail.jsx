@@ -18,6 +18,9 @@ import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
 import { fetchListingById, incrementContactClick, incrementListingView, getMyListings } from '../lib/listings/listingsApi'
 import OwnerListingActions, { ownerStatus, Toast } from '../components/listing/OwnerListingActions'
+// Batch 10G: admin-only controls (rendered only for user.is_admin). A static import on purpose: a lazy
+// import here made the bundler pull the shared PageShell/auth chunk into the main chunk (+13 KB gzip).
+import AdminListingActions from '../components/listing/AdminListingActions'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { haversineKm } from '../lib/distance'
 import { publicOrigin } from '../lib/native'
@@ -131,6 +134,22 @@ export default function ListingDetail() {
       {/* Call + WhatsApp — the primary action, right under the title (Batch1 item 4).
           Hidden on your own listing; sends logged-out users to login and back. */}
       <ContactActions listing={listing} size="detail" className="mb-4" />
+
+      {/* Batch 10G — admins: disable / enable / delete permanently (server re-checks is_admin). */}
+      {user?.is_admin && (
+        <section data-testid="admin-panel-detail" className="mb-4 rounded-2xl border-2 border-red-200 bg-red-50/40 px-4 py-3">
+            <AdminListingActions
+              listing={listing}
+              actorId={user.id}
+              onError={(m) => { setError(m); setToast(m) }}
+              onChanged={(kind) => {
+                if (kind === 'deleted') { navigate('/admin', { replace: true }); return }
+                setListing((l) => ({ ...l, status: kind === 'disabled' ? 'disabled' : 'active', admin_disabled_at: kind === 'disabled' ? new Date().toISOString() : null }))
+                setToast(t(kind === 'disabled' ? 'admin_done_disabled' : 'admin_done_enabled'))
+              }}
+            />
+        </section>
+      )}
 
       {/* Batch 10G — the seller's own listing: status + disable / enable + permanent delete. */}
       {mine && (

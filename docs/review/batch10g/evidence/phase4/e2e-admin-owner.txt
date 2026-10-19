@@ -1,0 +1,18 @@
+
+Running 12 tests using 1 worker
+
+  ok  1 [chromium] › e2e\listing-admin-10g.spec.js:58:1 › A1 admin listings panel: disable needs a reason, enable, delete permanently needs reason + DELETE; log rows; photo removed (3.5s)
+  ok  2 [chromium] › e2e\listing-admin-10g.spec.js:105:1 › A2 reports list: "Delete permanently" next to remove / dismiss deletes the listing and resolves the report (2.0s)
+  ok  3 [chromium] › e2e\listing-admin-10g.spec.js:127:1 › A3 listing detail page as admin (412 px): disable with a reason; the public no longer sees it (1.4s)
+  ok  4 [chromium] › e2e\listing-admin-10g.spec.js:145:1 › A4 non-admins never see admin controls, and the admin RPCs refuse them (2.4s)
+  ok  5 [chromium] › e2e\listing-owner-10g.spec.js:62:3 › O1 hi 412: disable hides the listing from others, enable brings it back; buttons visible and ≥ 44 px (1.7s)
+  ok  6 [chromium] › e2e\listing-owner-10g.spec.js:94:3 › O2 hi 412: delete asks first (cancel keeps it), then removes row and photo for ever (3.5s)
+  ok  7 [chromium] › e2e\listing-owner-10g.spec.js:62:3 › O1 en 1280: disable hides the listing from others, enable brings it back; buttons visible and ≥ 44 px (1.4s)
+  ok  8 [chromium] › e2e\listing-owner-10g.spec.js:94:3 › O2 en 1280: delete asks first (cancel keeps it), then removes row and photo for ever (3.4s)
+  ok  9 [chromium] › e2e\listing-owner-10g.spec.js:127:1 › O3 admin-disabled: badge + reason, NO enable button, delete still offered; the seller RPC refuses enable (2.2s)
+  ok 10 [chromium] › e2e\listing-owner-10g.spec.js:154:1 › O4 own detail page: a disabled listing is still shown to its seller, with enable; delete from there returns to My Listings (1.9s)
+  ok 11 [chromium] › e2e\listing-owner-10g.spec.js:174:1 › O5 keyboard and screen reader: buttons in a labelled group; Enter opens the dialog, focus on "नहीं", Escape closes and returns focus (1.5s)
+  ok 12 [chromium] › e2e\listing-owner-10g.spec.js:195:1 › O6 a non-owner cannot disable or delete someone else's listing (RPC refuses; nothing changes) (292ms)
+[teardown] test data cleaned
+
+  12 passed (27.6s)
