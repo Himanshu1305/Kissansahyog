@@ -17,6 +17,7 @@ import OfflineStamp from '../components/OfflineStamp'
 import OfflineNotice from '../components/OfflineNotice'
 import { useOfflineInfo } from '../lib/offline/useOffline'
 import CollapsibleSection from '../components/CollapsibleSection'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 const IMD_URL = 'https://mausam.imd.gov.in'
 const STATUS_LABEL = { ok: 'aw_ok', caution: 'aw_caution', stop: 'aw_stop' }
@@ -232,6 +233,7 @@ export default function Mausam() {
         <FaqAccordion faqs={faqs} collapsible={{ page: 'mausam', id: 'faq' }} />
 
         <WhatsAppJoin variant="box" src="mausam" />
+        <WhatsAppChannelCard variant="inline" textKey="wa_ch_line_prices" />
         <RelatedBoxes page="mausam" />
       </div>
     </PageShell>

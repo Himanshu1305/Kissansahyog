@@ -1,0 +1,2372 @@
+{
+ "pages_base": 268,
+ "pages_new": 268,
+ "added": [],
+ "removed": [],
+ "changed_count": 268,
+ "changed": [
+  {
+   "page": "about.txt",
+   "lost": [],
+   "gained": [
+    "मंडी",
+    "सरकारी",
+    "योजनाएं",
+    "और",
+    "जुड़ें",
+    "खेती",
+    "आपके",
+    "से",
+    "की",
+    "भाव,",
+    "मौसम,",
+    "जानकारी",
+    "सीधे",
+    "WhatsApp",
+    "पर।",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "agro-forestry.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "articles.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "articles__intercropping-madhya-pradesh.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "articles__kisaan-carbon-credit-kya-hai.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "articles__parali-pollution-kisaan-ki-majboori.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar__agri-inputs.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar__bhusa.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar__building-materials.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar__equipment.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar__labor.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar__land.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar__transport.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "bazaar__vegetable-equipment.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "carbon-credit.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "carbon-credit__niti-sujhav.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__anuppur.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__balaghat.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__barwani.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__betul.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__bhind.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__bhopal.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__burhanpur.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__chhatarpur.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__chhindwara.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__dewas.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__dhar.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__guna.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__gwalior.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__indore.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__jabalpur.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__jhabua.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__katni.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__khandwa.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__khargone.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__mandsaur.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__morena.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__narmadapuram-hoshangabad.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__neemuch.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__niwari.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__raisen.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__ratlam.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__rewa.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__sagar.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__satna.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__shajapur.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__shivpuri.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__tikamgarh.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__ujjain.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "cold-storage__vidisha.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "contact.txt",
+   "lost": [],
+   "gained": [
+    "मंडी",
+    "सरकारी",
+    "योजनाएं",
+    "और",
+    "जुड़ें",
+    "जानकारी",
+    "की",
+    "भाव,",
+    "मौसम,",
+    "खेती",
+    "सीधे",
+    "आपके",
+    "WhatsApp",
+    "पर।",
+    "चैनल",
+    "से"
+   ]
+  },
+  {
+   "page": "credits.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "drone-didi.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal-salah.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__chilli__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__garlic__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__gram__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__lentil__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__linseed__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__maize__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__moong__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__mustard__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__onion__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__paddy__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__pea__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__soybean__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__sugarcane__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__sunflower__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__tomato__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__urad__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "fasal__wheat__samasya.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "founder.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "greenhouse.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "greenhouse__subsidy.txt",
+   "lost": [],
+   "gained": [
+    "चैनल",
+    "WhatsApp"
+   ]
+  },
+  {
+   "page": "grievance.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "guide.txt",
+   "lost": [],
+   "gained": [
+    "मंडी",
+    "सरकारी",
+    "योजनाएं",
+    "और",
+    "जुड़ें",
+    "भाव,",
+    "मौसम,",
+    "से",
+    "खेती",
+    "की",
+    "जानकारी",
+    "सीधे",
+    "आपके",
+    "WhatsApp",
+    "पर।",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "guide__find.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "guide__post.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "guide__register.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "guide__tour.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "home.txt",
+   "lost": [],
+   "gained": [
+    "किसान",
+    "सहयोग",
+    "मंडी",
+    "भाव,",
+    "मौसम,",
+    "योजनाएं",
+    "सरकारी",
+    "और",
+    "जुड़ें",
+    "की",
+    "जानकारी",
+    "आपके",
+    "से",
+    "WhatsApp",
+    "चैनल",
+    "खेती",
+    "सीधे",
+    "पर।"
+   ]
+  },
+  {
+   "page": "how-to-use.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "info.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "jugaad.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "jugaad__jankari.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "kisan-mela.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "kisan-mela__submit.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "mausam.txt",
+   "lost": [],
+   "gained": [
+    "मौसम",
+    "का",
+    "भाव",
+    "और",
+    "जुड़ें",
+    "से",
+    "WhatsApp",
+    "पर",
+    "हर",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "का",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__chana.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__dhan.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__gehun.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__lahsun.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__makka.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__masoor.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__moong.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__sarson.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__soyabean.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "msp__urad.txt",
+   "lost": [],
+   "gained": [
+    "भाव",
+    "मौसम",
+    "और",
+    "जुड़ें",
+    "से",
+    "का",
+    "पर",
+    "हर",
+    "WhatsApp",
+    "रोज़",
+    "पाएं",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "privacy.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "resources.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "safalta.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__alsi-buwai-samay-beej-dar-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__alsi-fali-makkhi-gerua-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__alsi-khaad-aur-sinchai-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__alsi-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__anaj-bhandaran-basics.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__chana-beej-dar-desi-kabuli.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__chana-beej-upchar-rhizobium-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__chana-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__chana-sowing-varieties-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__chane-phasala-illi-phali-chhedaka-laga-gai.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__chilli-fruit-rot-field-sanitation.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__chilli-thrips-sucking-pests-ipm.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__dhaana-narsari-paudhe-pile-kamajora-raha-gae.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__drona-didi-yojanaa-gaanva-drona-davaa-chhidakaava.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__enam-auction-accept-reject.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__enam-farmer-app-register.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__enam-my-lots-history.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__enam-trader-registration-fee.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__enam-trader-registration-ways.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__enam-transparent-bidding.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__ganna-agratana-chhedak-pyrilla-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__ganna-beej-upchar-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__ganna-buwai-samay-beej-dar-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__ganna-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__ganna-sinchai-garmi-thand-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__ganna-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__garlic-thrips-mite.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__gehun-beej-dar-kitni-rakhein.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__gehun-beej-upchar-buwai-se-pehle.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__gehun-buwai-ka-sahi-samay-sagar.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__gehun-kauna-kisma-saagara-achchhi-sinchaai-kitani.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__gehun-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__gehun-sinchai-kab-aur-kitni-bar.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__gram-pod-borer-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__kcc-byaj-dar.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__kcc-kaise-apply.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__kcc-kya-hai.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__kheti-juda-sarakaari-salaaha-mausama-jaanakaari-mujhe.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__lahsun-baingani-dhabba-purple-blotch.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__lahsun-buwai-samay-beej-dar-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__lahsun-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__lahsun-sinchai-kab-karein.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__lahsun-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__maize-fall-armyworm-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__maize-recommended-varieties.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__maize-sowing-time-seed-rate.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__masoor-fali-chhedak-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__masoor-gerui-ratua-rust-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__masoor-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__masoor-mahu-aphid-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__masoor-sinchai-kab-karein.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__masoor-ukatha-wilt-rokthaam.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__masoor-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__masura-buvaai-sahi-samaya-bija-dara-bija.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__matar-beej-upchar-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__matar-bhabhutiya-powdery-mildew-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__matar-buwai-samay-beej-dar-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__matar-fali-chhedak-mahu-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__matar-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__matar-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__mere-kheta-mitti-kaali-chikani-soyaabina-bone.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__meri-soyaabina-patte-upara-pile-pada-rahe.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__moong-beej-dar-kitni-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__moong-beej-upchar-rhizobium-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__moong-buwai-ka-samay-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__moong-fali-chhedak-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__moong-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__moong-parndaag-hara-fudka-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__moong-pila-mosaic-ymv-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__moong-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__msp-kya-hai.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__msp-par-kaise-bechein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__onion-purple-blotch.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__onion-rabi-storage.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__onion-thrips-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pada-kheton-soyaabina-pili-pada-rahi-yaha.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pm-kisan-ekyc.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pm-kisan-kya-hai.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pm-kisan-patrata.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pm-kisan-status-kaise-dekhein.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pmfby-claim-kaise.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pmfby-kya-hai.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pmfby-premium-kitna.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__sarason-phasala-maahu-chenpaa-laga-gayaa-tahaniyon.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__sarson-beej-dar-kitni-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__sarson-beej-upchar-safed-ratua.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__sarson-buwai-ka-sahi-samay-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__sarson-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__sarson-sinchai-kab-karein.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__sarson-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soil-health-card-kaise.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soil-health-card-kya-hai.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soil-health-card-languages.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soil-health-card-recommendations.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soil-health-card-workflow.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soyaabina-buvaai-sida-drila-sahi-haatha-chhitakakara.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soybean-girdle-beetle-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soybean-harvesting-maturity.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soybean-recommended-varieties-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soybean-seed-treatment.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soybean-sowing-time-seed-rate.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__soybean-yellow-mosaic-virus.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__surajmukhi-buwai-beej-dar-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__surajmukhi-kale-dhabbe-phool-galan-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__surajmukhi-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__surajmukhi-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__tomato-early-late-blight.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__tomato-fruit-borer-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__tomato-fusarium-wilt.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__tomato-leaf-curl-virus.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__urad-beej-dar-prati-acre-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__urad-beej-upchar-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__urad-buwai-samay-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__urad-fali-chhedak-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__urad-khaad-urvarak-matra-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__urad-pila-mosaic-ymv-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__urad-unnat-kismein-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__disease.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__drone_didi.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__general.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__harvest.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__irrigation.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__mandi.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__nutrient.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__pest.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__scheme.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__soil.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__sowing.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__storage.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__variety.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__weather.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__vishay__weed.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__what-documents-are-needed-for-kisan-credit-card.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__wheat-loose-smut-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__wheat-phalaris-weed-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__wheat-recommended-varieties-mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__wheat-yellow-rust-control.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__which-wheat-seed-variety-is-best-for-sagar-district.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "sawaal__why-are-soybean-leaves-turning-yellow-what-should-i-do.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "terms.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "videos.txt",
+   "lost": [
+    "थोड़ा",
+    "रुकें…"
+   ],
+   "gained": [
+    "खेती",
+    "के",
+    "—",
+    "किसान",
+    "बाज़ार",
+    "मंडी",
+    "कैसे",
+    "में",
+    "कीट/रोग",
+    "बुवाई",
+    "सिंचाई",
+    "ड्रोन",
+    "योजना",
+    "सामान्य",
+    "3:07",
+    "सोयाबीन",
+    "पीले",
+    "मोज़ेक",
+    "रोग",
+    "का",
+    "प्रबंधन",
+    "▶",
+    "ICAR",
+    "National",
+    "Soybean",
+    "Research",
+    "Institute,",
+    "Indore",
+    "8:45",
+    "गेहूं",
+    "की",
+    "उन्नत",
+    "तकनीक,",
+    "कर",
+    "कमाएं",
+    "अच्छा",
+    "लाभ",
+    "News18",
+    "MP",
+    "Chhattisgarh"
+   ]
+  },
+  {
+   "page": "yojana.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__aushadhi-sugandhit-fasal-vistar.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__balram-talab.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__bhavantar.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__central.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__drone-didi.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__e-krishi-yantra.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__e-nam.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__fal-podharopan-yojana.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__kcc.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__mp-kisan-kalyan.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__mp-solar-pump-kusum-b.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__mp.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__pm-aasha.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__pm-kisan.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__pm-kusum.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__pmfby.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  },
+  {
+   "page": "yojana__soil-health-card.txt",
+   "lost": [],
+   "gained": [
+    "WhatsApp",
+    "चैनल"
+   ]
+  }
+ ]
+}

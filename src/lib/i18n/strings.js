@@ -220,6 +220,12 @@ export const strings = {
   wa_join_sub: { hi: 'हर सुबह आपके फ़ोन पर आज के भाव और मौसम की जानकारी।', en: "Today's prices and weather on your phone every morning." },
   wa_join_cta: { hi: 'अभी जुड़ें', en: 'Join now' },
   wa_join_box: { hi: 'मंडी भाव + मौसम WhatsApp पर पाएँ', en: 'Get mandi prices + weather on WhatsApp' },
+  // --- Batch 12A: WhatsApp channel (plain link) ---
+  wa_ch_title: { hi: 'किसान सहयोग WhatsApp चैनल से जुड़ें', en: 'Join the Kissansahyog WhatsApp channel' },
+  wa_ch_line: { hi: 'मंडी भाव, मौसम, सरकारी योजनाएं और खेती की जानकारी सीधे आपके WhatsApp पर।', en: 'Mandi prices, weather, government schemes and farming information, right on your WhatsApp.' },
+  wa_ch_btn: { hi: 'WhatsApp चैनल से जुड़ें', en: 'Join on WhatsApp' },
+  wa_ch_line_prices: { hi: 'हर रोज़ का भाव और मौसम WhatsApp पर पाएं', en: 'Get prices and weather on WhatsApp' },
+  wa_ch_link: { hi: 'WhatsApp चैनल', en: 'WhatsApp channel' },
   wa_scan_qr: { hi: 'जुड़ने के लिए QR स्कैन करें', en: 'Scan the QR to join' },
   wa_consent_label: { hi: 'मुझे Kissan Sahyog से WhatsApp पर जानकारी भेजें', en: 'Send me information from Kissan Sahyog on WhatsApp' },
   wa_pref_mandi: { hi: 'पसंदीदा मंडी (वैकल्पिक)', en: 'Preferred mandi (optional)' },

@@ -1,13 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import WhatsAppJoin from '../WhatsAppJoin'
 import Logo from '../Logo'
+import WhatsAppChannelCard from '../WhatsAppChannelCard'
+
+// Batch 12A: no channel link on the sign-in / sign-up forms, admin pages or the offline screen.
+const NO_CHANNEL_LINK = /^\/(login|signup|admin|offline)(\/|$)/
 
 // Shared site footer, mounted once globally (App) so every public page has it.
 // Always links the Feedback & Grievance page (§0.3 / Phase 4) and shows hello@ for
 // general contact.
 export default function Footer() {
   const { t } = useLang()
+  const { pathname } = useLocation()
   const link = 'hover:underline'
   return (
     <footer className="ks-section mt-10" style={{ background: 'var(--ks-strip)' }}>
@@ -32,6 +37,7 @@ export default function Footer() {
             <Link to="/resources" className={link}>{t('resources_nav')}</Link>
             <Link to="/credits" className={link}>{t('footer_credits')}</Link>
             <a href={`mailto:${t('footer_general_email')}`} className={link}>{t('footer_general_email')}</a>
+            {!NO_CHANNEL_LINK.test(pathname) && <WhatsAppChannelCard variant="link" />}
             <WhatsAppJoin variant="link" src="footer" className="!text-green-300" />
           </nav>
         </div>

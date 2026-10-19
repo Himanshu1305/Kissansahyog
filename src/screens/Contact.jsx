@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { PageShell, Seo } from '../components/layout'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 // /contact — general contact (hello@). Grievances go to /grievance.
 export default function Contact() {
@@ -19,6 +20,7 @@ export default function Contact() {
         <Link to="/grievance" className="font-semibold text-green-800 underline">{t('footer_grievance')}</Link>
         {t('contact_grievance_tail')}
       </p>
+      <WhatsAppChannelCard variant="inline" />
     </PageShell>
   )
 }

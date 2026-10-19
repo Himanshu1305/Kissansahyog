@@ -10,6 +10,7 @@ import { PageShell, Seo } from '../components/layout'
 import Logo from '../components/Logo'
 import { about, buildAboutJsonLd } from '../content/about'
 import { fetchPublicFeedback } from '../lib/feedback/feedbackApi'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 const card = { background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)' }
 const bodyClass = 'text-[17px] leading-[1.8]'
@@ -137,6 +138,8 @@ export default function About() {
           <Link to="/grievance" className={linkClass} style={{ color: 'var(--ks-green-dark)' }}>{t('footer_grievance')}</Link>
         </Para>
       </SectionBlock>
+
+      <WhatsAppChannelCard variant="inline" />
 
       <SectionBlock id={about.founder_card.id} title={p(about.founder_card.title)}>
         <Link to="/founder" data-testid="about-founder-card" className="flex items-center gap-4 p-4 hover:shadow-md" style={card}>

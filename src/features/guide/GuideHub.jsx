@@ -8,6 +8,7 @@ import { getDone, doneCount, getBadgeName, setBadgeName } from './progress.js'
 import FieldScene from './FieldScene.jsx'
 import { CardIcon } from './icons.jsx'
 import './guide.css'
+import WhatsAppChannelCard from '../../components/WhatsAppChannelCard'
 
 const RING = 119.4 // 2πr, r = 19
 const TIPS = ['guide_tip_1', 'guide_tip_2', 'guide_tip_3', 'guide_tip_4']
@@ -102,6 +103,7 @@ export default function GuideHub() {
           {t('guide_samples_note')} {t('guide_written_help')} <Link to="/how-to-use">{t('nav_how_to_use')}</Link>
         </p>
       </div>
+      <WhatsAppChannelCard variant="inline" className="mx-auto max-w-3xl px-4" />
     </PageShell>
   )
 }

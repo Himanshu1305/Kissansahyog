@@ -22,6 +22,7 @@ import { uploadPhotos } from '../lib/listings/photos'
 import { DateBlock, ExtraInfoField } from '../components/categories/fields'
 import { needsDates, checkListingDates, withListingDates, todayIst } from '../lib/listings/listingDates'
 import { extraInfoError, withExtraInfo } from '../lib/listings/extraInfo'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 // Post flow in 3 steps (Batch1 item 5), with a 1/3 step indicator. Back keeps all
 // entered data.
@@ -539,7 +540,7 @@ export default function Post() {
             </p>
           )}
           {/* ks-allow-width: success-state box */}
-          <div className="mt-4"><WhatsAppJoin variant="box" src="post_listing" /></div>
+          <div className="mt-4"><WhatsAppJoin variant="box" src="post_listing" /><WhatsAppChannelCard variant="inline" /></div>
           <div className="mt-8 space-y-3">
             <BigButton onClick={() => navigate(`/listing/${created.id}`)}>{t('view_listing')}</BigButton>
             <BigButton variant="secondary" onClick={resetAll}>{t('post_another')}</BigButton>

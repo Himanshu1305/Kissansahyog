@@ -26,6 +26,7 @@ import OfflineStamp from '../components/OfflineStamp'
 import OfflineNotice from '../components/OfflineNotice'
 import CollapsibleSection from '../components/CollapsibleSection'
 import { useOfflineInfo } from '../lib/offline/useOffline'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 // Batch 8B — resources behind the price table (app offline stamp / notice).
 const MANDI_RES = ['mandi_prices', 'msp_prices']
@@ -480,6 +481,7 @@ export default function Msp() {
         <FaqAccordion faqs={faqs} collapsible={{ page: 'msp', id: 'faq' }} />
 
         <WhatsAppJoin variant="box" src="msp" />
+        <WhatsAppChannelCard variant="inline" textKey="wa_ch_line_prices" />
         <RelatedBoxes page="msp" />
       </div>
     </PageShell>

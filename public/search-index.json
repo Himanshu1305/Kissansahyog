@@ -3646,6 +3646,24 @@
   },
   {
     "type": "mela",
+    "title_hi": "राष्ट्रीय डेयरी मेला एवं कृषि एक्सपो, आईसीएआर-एनडीआरआई करनाल",
+    "title_en": "National Dairy Mela and Agri Expo, ICAR-NDRI Karnal",
+    "subtitle_hi": "karnal haryana ndri mela ground, icar-national dairy research institute",
+    "subtitle_en": "karnal haryana ndri mela ground, icar-national dairy research institute",
+    "url": "/kisan-mela",
+    "keywords": "राष्ट्रीय डेयरी मेला एवं कृषि एक्सपो, आईसीएआर-एनडीआरआई करनाल national dairy mela and agri expo, icar-ndri karnal karnal haryana ndri mela ground, icar-national dairy research institute kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "किसान मेला, सरदार वल्लभभाई पटेल कृषि एवं प्रौद्योगिक विश्वविद्यालय, मेरठ",
+    "title_en": "Kisan Mela, SVPUAT Meerut",
+    "subtitle_hi": "meerut uttar pradesh svpuat campus, modipuram",
+    "subtitle_en": "meerut uttar pradesh svpuat campus, modipuram",
+    "url": "/kisan-mela",
+    "keywords": "किसान मेला, सरदार वल्लभभाई पटेल कृषि एवं प्रौद्योगिक विश्वविद्यालय, मेरठ kisan mela, svpuat meerut meerut uttar pradesh svpuat campus, modipuram kisan mela"
+  },
+  {
+    "type": "mela",
     "title_hi": "पीएयू किसान मेला, लुधियाना",
     "title_en": "PAU Kisan Mela, Ludhiana",
     "subtitle_hi": "ludhiana punjab pau campus",
@@ -3664,6 +3682,15 @@
   },
   {
     "type": "mela",
+    "title_hi": "मेगा रायथु मेला",
+    "title_en": "Mega Rythu Mela",
+    "subtitle_hi": "hyderabad telangana pjtau campus, rajendranagar",
+    "subtitle_en": "hyderabad telangana pjtau campus, rajendranagar",
+    "url": "/kisan-mela",
+    "keywords": "मेगा रायथु मेला mega rythu mela hyderabad telangana pjtau campus, rajendranagar kisan mela"
+  },
+  {
+    "type": "mela",
     "title_hi": "पूसा कृषि विज्ञान मेला, आई.ए.आर.आई",
     "title_en": "Pusa Krishi Vigyan Mela, IARI",
     "subtitle_hi": "new delhi delhi iari, pusa",
@@ -3673,21 +3700,30 @@
   },
   {
     "type": "mela",
+    "title_hi": "ग्लोबल एग्रोटेक 2026 – उत्तर प्रदेश राज्य कृषि समिट एवं कृषि तकनीक एक्सपो",
+    "title_en": "AgroTech 2026 (Global AgroTech) – Uttar Pradesh State Agriculture Summit & Agri Technology Expo",
+    "subtitle_hi": "lucknow uttar pradesh icar-indian sugarcane research institute (iisr), isri expo ground",
+    "subtitle_en": "lucknow uttar pradesh icar-indian sugarcane research institute (iisr), isri expo ground",
+    "url": "/kisan-mela",
+    "keywords": "ग्लोबल एग्रोटेक 2026 – उत्तर प्रदेश राज्य कृषि समिट एवं कृषि तकनीक एक्सपो agrotech 2026 (global agrotech) – uttar pradesh state agriculture summit & agri technology expo lucknow uttar pradesh icar-indian sugarcane research institute (iisr), isri expo ground kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "कृषि मेला (खरीफ), सीसीएस एचएयू हिसार",
+    "title_en": "Krishi Mela (Kharif), CCS Haryana Agricultural University, Hisar",
+    "subtitle_hi": "hisar haryana mela ground, near gate no. 3, balsamand road, ccs hau, hisar",
+    "subtitle_en": "hisar haryana mela ground, near gate no. 3, balsamand road, ccs hau, hisar",
+    "url": "/kisan-mela",
+    "keywords": "कृषि मेला (खरीफ), सीसीएस एचएयू हिसार krishi mela (kharif), ccs haryana agricultural university, hisar hisar haryana mela ground, near gate no. 3, balsamand road, ccs hau, hisar kisan mela"
+  },
+  {
+    "type": "mela",
     "title_hi": "किसान मेला (एसवीपीयूएटी, मेरठ)",
     "title_en": "SVPUAT Kisan Mela, Meerut",
     "subtitle_hi": "meerut uttar pradesh svpuat campus, modipuram",
     "subtitle_en": "meerut uttar pradesh svpuat campus, modipuram",
     "url": "/kisan-mela",
     "keywords": "किसान मेला (एसवीपीयूएटी, मेरठ) svpuat kisan mela, meerut meerut uttar pradesh svpuat campus, modipuram kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "डेयरी इंडस्ट्री एक्सपो 2026",
-    "title_en": "Dairy Industry Expo 2026",
-    "subtitle_hi": "kolhapur maharashtra the ramkrishna lawns / ramkrishna multipurpose hall, shri shahu market yard",
-    "subtitle_en": "kolhapur maharashtra the ramkrishna lawns / ramkrishna multipurpose hall, shri shahu market yard",
-    "url": "/kisan-mela",
-    "keywords": "डेयरी इंडस्ट्री एक्सपो 2026 dairy industry expo 2026 kolhapur maharashtra the ramkrishna lawns / ramkrishna multipurpose hall, shri shahu market yard kisan mela"
   },
   {
     "type": "mela",
@@ -3745,21 +3781,21 @@
   },
   {
     "type": "mela",
-    "title_hi": "एग्रोटेक 2026 (ग्लोबल एग्रोटेक 2026), लखनऊ",
-    "title_en": "AgroTech 2026 (Global AgroTech 2026), Lucknow",
-    "subtitle_hi": "lucknow uttar pradesh lucknow (icar-indian sugarcane research institute campus per organizer materials)",
-    "subtitle_en": "lucknow uttar pradesh lucknow (icar-indian sugarcane research institute campus per organizer materials)",
-    "url": "/kisan-mela",
-    "keywords": "एग्रोटेक 2026 (ग्लोबल एग्रोटेक 2026), लखनऊ agrotech 2026 (global agrotech 2026), lucknow lucknow uttar pradesh lucknow (icar-indian sugarcane research institute campus per organizer materials) kisan mela"
-  },
-  {
-    "type": "mela",
     "title_hi": "एग्री वर्ल्ड एक्सपो 2026",
     "title_en": "Agri World Expo 2026",
     "subtitle_hi": "rajkot gujarat rajkot, gujarat (shastri maidan, trikon baug per listings)",
     "subtitle_en": "rajkot gujarat rajkot, gujarat (shastri maidan, trikon baug per listings)",
     "url": "/kisan-mela",
     "keywords": "एग्री वर्ल्ड एक्सपो 2026 agri world expo 2026 rajkot gujarat rajkot, gujarat (shastri maidan, trikon baug per listings) kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "Rashtriya Krishi Mela, Raipur",
+    "title_en": "",
+    "subtitle_hi": "india raipur",
+    "subtitle_en": "india raipur",
+    "url": "/kisan-mela",
+    "keywords": "rashtriya krishi mela, raipur india raipur kisan mela"
   },
   {
     "type": "mela",
@@ -3814,6 +3850,15 @@
     "subtitle_en": "karnal haryana new grain market, karnal",
     "url": "/kisan-mela",
     "keywords": "इंडिया इंटरनेशनल हॉर्टी एक्सपो, करनाल india international horti expo (iihe) karnal haryana new grain market, karnal kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "KSTEST-5B-87410 test mela",
+    "title_en": "",
+    "subtitle_hi": "andaman and nicobar islands kstest venue",
+    "subtitle_en": "andaman and nicobar islands kstest venue",
+    "url": "/kisan-mela",
+    "keywords": "kstest-5b-87410 test mela andaman and nicobar islands kstest venue kisan mela"
   },
   {
     "type": "mela",
@@ -3898,21 +3943,21 @@
   },
   {
     "type": "mela",
-    "title_hi": "वाइब्रेंट कृषिका एक्सपो 2026",
-    "title_en": "Vibrant Krishika Expo 2026",
-    "subtitle_hi": "gorakhpur uttar pradesh india",
-    "subtitle_en": "gorakhpur uttar pradesh india",
-    "url": "/kisan-mela",
-    "keywords": "वाइब्रेंट कृषिका एक्सपो 2026 vibrant krishika expo 2026 gorakhpur uttar pradesh india kisan mela"
-  },
-  {
-    "type": "mela",
     "title_hi": "एग्री एग्रो ग्रैंड एक्सपो 2026",
     "title_en": "Agri Agro Grand Expo 2026",
     "subtitle_hi": "agra uttar pradesh kisan school, baroli ahir, near naveen sabji mandi, shamshabad road",
     "subtitle_en": "agra uttar pradesh kisan school, baroli ahir, near naveen sabji mandi, shamshabad road",
     "url": "/kisan-mela",
     "keywords": "एग्री एग्रो ग्रैंड एक्सपो 2026 agri agro grand expo 2026 agra uttar pradesh kisan school, baroli ahir, near naveen sabji mandi, shamshabad road kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "रबी कृषि महोत्सव",
+    "title_en": "Rabi Krushi Mahotsav",
+    "subtitle_hi": "gujarat statewide — district- and taluka-level locations across gujarat",
+    "subtitle_en": "gujarat statewide — district- and taluka-level locations across gujarat",
+    "url": "/kisan-mela",
+    "keywords": "रबी कृषि महोत्सव rabi krushi mahotsav gujarat statewide — district- and taluka-level locations across gujarat kisan mela"
   },
   {
     "type": "mela",
@@ -3952,6 +3997,15 @@
   },
   {
     "type": "mela",
+    "title_hi": "पीडीएफए इंटरनेशनल डेयरी एंड एग्री एक्सपो",
+    "title_en": "PDFA International Dairy & Agri Expo",
+    "subtitle_hi": "ludhiana punjab cattle fair ground (pashu mandi), jagraon",
+    "subtitle_en": "ludhiana punjab cattle fair ground (pashu mandi), jagraon",
+    "url": "/kisan-mela",
+    "keywords": "पीडीएफए इंटरनेशनल डेयरी एंड एग्री एक्सपो pdfa international dairy & agri expo ludhiana punjab cattle fair ground (pashu mandi), jagraon kisan mela"
+  },
+  {
+    "type": "mela",
     "title_hi": "सीआईआई एग्रोटेक इंडिया 2026",
     "title_en": "CII AgroTech India 2026 – The Premier Agri & Food Technology Fair",
     "subtitle_hi": "chandigarh chandigarh parade ground, sector 17, chandigarh",
@@ -3967,6 +4021,24 @@
     "subtitle_en": "pune maharashtra pune international exhibition and convention centre (piecc), moshi",
     "url": "/kisan-mela",
     "keywords": "किसान एग्री शो 2026 kisan agri show 2026 pune maharashtra pune international exhibition and convention centre (piecc), moshi kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "कृषि मेला, सस्य श्यामला कृषि विज्ञान केंद्र",
+    "title_en": "Krishi Mela, Sasya Shyamala Krishi Vigyan Kendra (RKMVERI)",
+    "subtitle_hi": "south 24 parganas west bengal sasya shyamala krishi vigyan kendra, arapanch",
+    "subtitle_en": "south 24 parganas west bengal sasya shyamala krishi vigyan kendra, arapanch",
+    "url": "/kisan-mela",
+    "keywords": "कृषि मेला, सस्य श्यामला कृषि विज्ञान केंद्र krishi mela, sasya shyamala krishi vigyan kendra (rkmveri) south 24 parganas west bengal sasya shyamala krishi vigyan kendra, arapanch kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "किसान मेला, आईसीएआर-आईएआरआई असम (गोगामुख)",
+    "title_en": "Kisan Mela, ICAR-IARI Assam (Gogamukh)",
+    "subtitle_hi": "dhemaji assam icar-iari assam campus, dirpai chapori, gogamukh",
+    "subtitle_en": "dhemaji assam icar-iari assam campus, dirpai chapori, gogamukh",
+    "url": "/kisan-mela",
+    "keywords": "किसान मेला, आईसीएआर-आईएआरआई असम (गोगामुख) kisan mela, icar-iari assam (gogamukh) dhemaji assam icar-iari assam campus, dirpai chapori, gogamukh kisan mela"
   },
   {
     "type": "resource",
@@ -4327,6 +4399,69 @@
     "subtitle_en": "",
     "url": "/kisan-mela",
     "keywords": "kisan mela fair किसान मेला"
+  },
+  {
+    "type": "hub",
+    "title_hi": "हमारे बारे में — किसान सहयोग",
+    "title_en": "About Us — Kissan Sahyog",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/about",
+    "keywords": "हमारे बारे में किसान सहयोग क्या है about us kissan sahyog sagar farm marketplace खेती का बाज़ार सागर स्वामी संचालक owner संपर्क"
+  },
+  {
+    "type": "hub",
+    "title_hi": "वेबसाइट कैसे इस्तेमाल करें",
+    "title_en": "How to use the website",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/how-to-use",
+    "keywords": "कैसे इस्तेमाल करें वेबसाइट कैसे चलाएं how to use help guide लिस्टिंग कैसे डालें रजिस्टर लॉगिन फोटो संपर्क होम स्क्रीन इंस्टॉल भाषा बदलें मदद"
+  },
+  {
+    "type": "hub",
+    "title_hi": "आइए, किसान सहयोग चलाना सीखें",
+    "title_en": "Let’s learn to use Kissan Sahyog",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/guide",
+    "keywords": "गाइड डेमो सीखें कैसे चलाएं guide demo learn how to use tutorial मदद help"
+  },
+  {
+    "type": "hub",
+    "title_hi": "रजिस्टर कैसे करें",
+    "title_en": "How to register",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/guide/register",
+    "keywords": "रजिस्टर कैसे करें खाता बनाएं register signup account demo guide डेमो"
+  },
+  {
+    "type": "hub",
+    "title_hi": "अपनी मशीन या सामान कैसे पोस्ट करें",
+    "title_en": "How to post your machine or goods",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/guide/post",
+    "keywords": "पोस्ट कैसे करें लिस्टिंग डालें मशीन सामान बेचें post listing sell demo guide डेमो"
+  },
+  {
+    "type": "hub",
+    "title_hi": "बेचने वाले का नंबर कैसे मिलेगा",
+    "title_en": "How to get a seller’s number",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/guide/find",
+    "keywords": "नंबर कैसे मिलेगा बेचने वाला कॉल whatsapp seller number contact find demo guide डेमो"
+  },
+  {
+    "type": "hub",
+    "title_hi": "एक मिनट में पूरा टूर",
+    "title_en": "The full tour in a minute",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/guide/tour",
+    "keywords": "टूर पूरा किसान सहयोग क्या है tour overview demo guide डेमो"
   },
   {
     "type": "hub",

@@ -36,6 +36,7 @@ import SearchBar from '../components/SearchBar'
 import { founder } from '../content/founder'
 import OfflineStamp from '../components/OfflineStamp'
 import CollapsibleSection from '../components/CollapsibleSection'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 const IMG = (f) => `/images/home/${f}`
 
@@ -257,6 +258,9 @@ export default function Homepage() {
         onForecast={() => (location ? navigate('/mausam') : document.getElementById('home-location')?.scrollIntoView({ behavior: 'smooth', block: 'center' }))}
         onMsp={() => navigate('/msp')}
       />
+
+      {/* Batch 12A: WhatsApp channel card — below the first screen, above the collapsible sections. */}
+      <WhatsAppChannelCard variant="hero" />
 
       <Section bg="var(--ks-bg-soft)">
         <CollapsibleSection page="home" id="search" primary h2Class="text-[22px] font-extrabold md:text-[26px]" title={t('home_search_title')}>

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
 import { about } from '../../content/about'
+import { WHATSAPP_CHANNEL_URL } from '../../lib/social'
 
 export const ORIGIN = 'https://kissansahyog.com'
 const DEFAULT_IMAGE = `${ORIGIN}/og/default.png`
@@ -77,6 +78,7 @@ export function SiteJsonLd() {
     url: ORIGIN,
     logo: `${ORIGIN}/icons/icon-512.png`,
     email: 'hello@kissansahyog.com',
+    sameAs: [WHATSAPP_CHANNEL_URL],
     areaServed: about.jsonld.area_served,
   }
   const site = {
