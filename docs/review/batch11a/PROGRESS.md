@@ -30,3 +30,14 @@
   Two fix attempts were used on test-side mistakes only (STABLE functions run read-only in PostgREST; the check
   read the wrong session row). Both flags FALSE at the end; 0 KSTEST rows left.
 - Advisors: only expected findings (`evidence/advisors-security-11a.txt`).
+
+## Phase 2 — Pages Functions — DONE
+- `functions/api/otp/send.js`, `verify.js`, `config.js` + shared `functions/lib/otp-core.js` (no route, no dependency).
+- **Unit (mocked provider + DB): RAN-PASSED 18/18** — success, decoy same shape + no SMS, provider down (one call,
+  no retry, marked failed), cooldown / too-many / phone_exists, malformed input, 413, 415, origin refusal, not
+  configured, DB down, verify matched / wrong / decoy / expired / attempt limit / provider down, config cache,
+  test-only override ignored unless ENVIRONMENT=test, no secret / URL / full number in any log line.
+- **Over HTTP (`wrangler pages dev` + mock 2Factor + staging DB): RAN-PASSED 29/29** (one harness fix). Server log
+  scan: 0 secret-like strings. Evidence: `evidence/functions-tests.md`, `evidence/functions-integration.md`.
+- `scripts/set-otp-secrets.sh <staging|prod>` (founder runs it): hidden prompts, names-only output, refuses a key of
+  the other project. Full unit suite: 99/99.
