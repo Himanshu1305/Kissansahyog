@@ -1,0 +1,138 @@
+### HEAD
+title: योजनाएं — किसान सवाल — जानकारी
+description: योजनाएं: इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+canonical: https://kissansahyog.com/sawaal/vishay/scheme
+robots: 
+lang: hi
+h1: योजनाएं — किसान सवाल — जानकारी
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"योजनाएं"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं?","url":"https://kissansahyog.com/sawaal/pm-kisan-kya-hai"},{"@type":"ListItem","position":2,"name":"पीएम-किसान का पैसा किस किसान को मिलता है (पात्रता)?","url":"https://kissansahyog.com/sawaal/pm-kisan-patrata"},{"@type":"ListItem","position":3,"name":"पीएम-किसान में ई-केवाईसी क्यों जरूरी है?","url":"https://kissansahyog.com/sawaal/pm-kisan-ekyc"},{"@type":"ListItem","position":4,"name":"पीएम-किसान का स्टेटस (किस्त) कैसे चेक करें?","url":"https://kissansahyog.com/sawaal/pm-kisan-status-kaise-dekhein"},{"@type":"ListItem","position":5,"name":"प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या कवर करती है?","url":"https://kissansahyog.com/sawaal/pmfby-kya-hai"},{"@type":"ListItem","position":6,"name":"फसल बीमा में किसान को कितना प्रीमियम देना होता है?","url":"https://kissansahyog.com/sawaal/pmfby-premium-kitna"},{"@type":"ListItem","position":7,"name":"फसल खराब होने पर बीमा क्लेम कैसे और कब करें?","url":"https://kissansahyog.com/sawaal/pmfby-claim-kaise"},{"@type":"ListItem","position":8,"name":"किसान क्रेडिट कार्ड (KCC) क्या है और लोन लिमिट कितनी है?","url":"https://kissansahyog.com/sawaal/kcc-kya-hai"},{"@type":"ListItem","position":9,"name":"किसान क्रेडिट कार्ड पर ब्याज दर कितनी है?","url":"https://kissansahyog.com/sawaal/kcc-byaj-dar"},{"@type":"ListItem","position":10,"name":"किसान क्रेडिट कार्ड के लिए कौन और कैसे आवेदन कर सकता है?","url":"https://kissansahyog.com/sawaal/kcc-kaise-apply"},{"@type":"ListItem","position":11,"name":"किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए?","url":"https://kissansahyog.com/sawaal/what-documents-are-needed-for-kisan-credit-card"},{"@type":"ListItem","position":12,"name":"पीएम-किसान की किस्त नहीं आई, क्या करूँ?","url":"https://kissansahyog.com/sawaal/pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+योजनाएं
+योजनाएं — किसान सवाल — जानकारी
+इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+12
+❓
+पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं?
+पीएम-किसान एक केंद्र सरकार की योजना है। इसमें पात्र किसान परिवार को हर साल 6,000 रुपये मिलते हैं। यह रकम 2,000-2,000 रुपये की तीन बराबर किस्तों में सीधे बैंक खाते में आती है।
+❓
+पीएम-किसान का पैसा किस किसान को मिलता है (पात्रता)?
+जिन किसान परिवारों के नाम पर खेती की जमीन दर्ज है, वे पात्र हैं। आयकर भरने वाले, डॉक्टर-वकील जैसे पेशेवर, और 10,000 रुपये या ज्यादा पेंशन पाने वाले सेवानिवृत्त लोग इसमें शामिल नहीं हैं।
+❓
+पीएम-किसान में ई-केवाईसी क्यों जरूरी है?
+ई-केवाईसी (e-KYC) आधार से किसान की पहचान पक्की करती है। यह सभी पंजीकृत किसानों के लिए जरूरी है। इसके बिना अगली किस्त रुक सकती है। यह OTP या बायोमेट्रिक से कराई जा सकती है।
+❓
+पीएम-किसान का स्टेटस (किस्त) कैसे चेक करें?
+pmkisan.gov.in खोलें। 'Farmers Corner' में 'Know Your Status' पर क्लिक करें। अपना रजिस्ट्रेशन नंबर और कैप्चा डालें। मोबाइल पर आए OTP से पुष्टि करें। आपका भुगतान स्टेटस दिख जाएगा।
+❓
+प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या कवर करती है?
+PMFBY फसल को प्राकृतिक आपदा से होने वाले नुकसान पर मुआवजा देती है। इसमें आग, बिजली, सूखा, बाढ़, जलभराव, ओलावृष्टि, चक्रवात, तूफान, भूस्खलन और कीट-रोग से हुई हानि शामिल है।
+❓
+फसल बीमा में किसान को कितना प्रीमियम देना होता है?
+किसान को खरीफ फसल पर बीमित राशि का 2%, रबी फसल पर 1.5%, और वार्षिक व्यावसायिक/बागवानी फसल पर 5% प्रीमियम देना होता है। बाकी प्रीमियम सरकार देती है।
+❓
+फसल खराब होने पर बीमा क्लेम कैसे और कब करें?
+फसल खराब होने पर 72 घंटे के भीतर सूचना दें। यह टोल-फ्री नंबर 1800-209-5959, फसल बीमा ऐप, या स्थानीय कृषि विभाग के जरिए दी जा सकती है। सर्वे के 15 दिन के भीतर क्लेम दिया जाता है।
+❓
+किसान क्रेडिट कार्ड (KCC) क्या है और लोन लिमिट कितनी है?
+KCC किसानों को कम ब्याज पर खेती के लिए कर्ज देने की योजना है। सरकार 3 लाख रुपये तक के अल्पकालिक कर्ज पर 7% की रियायती दर देती है। संशोधित ब्याज सहायता योजना (MISS) में फसल-कर्ज की सीमा 5 लाख रुपये तक बढ़ाई गई है।
+❓
+किसान क्रेडिट कार्ड पर ब्याज दर कितनी है?
+समय पर कर्ज चुकाने वाले किसान को 3% का प्रॉम्प्ट रीपेमेंट इंसेंटिव (PRI) मिलता है, जिससे प्रभावी ब्याज दर घटकर सालाना 4% रह जाती है। यह 3 लाख रुपये तक के पात्र कर्ज पर लागू है।
+❓
+किसान क्रेडिट कार्ड के लिए कौन और कैसे आवेदन कर सकता है?
+खुद खेती करने वाले मालिक, बंटाईदार (sharecropper), किरायेदार किसान और मौखिक पट्टेदार KCC के लिए आवेदन कर सकते हैं। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना गारंटी (collateral-free) मिलता है। बैंक शाखा में जाकर आवेदन करें।
+❓
+किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए?
+KCC के लिए जमीन के कागज़ और आधार लेकर नजदीकी बैंक शाखा जाएँ। 1 जनवरी 2025 से 2 लाख रुपये तक का कर्ज बिना गारंटी मिलता है। सरकार 3 लाख रुपये तक के कर्ज पर 7% रियायती ब्याज देती है, समय पर चुकाने पर यह प्रभावी रूप से 4% रह जाता है।
+❓
+पीएम-किसान की किस्त नहीं आई, क्या करूँ?
+पहले pmkisan.gov.in पर अपना स्टेटस देखें। फिर जाँचें कि ई-केवाईसी पूरी है, बैंक खाता आधार से DBT के लिए जुड़ा है, और जमीन का रिकॉर्ड पोर्टल पर दर्ज है। इनमें से कोई अधूरा हो तो किस्त रुक जाती है।
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

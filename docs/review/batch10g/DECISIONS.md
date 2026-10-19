@@ -1,0 +1,29 @@
+# Batch 10G — decisions
+
+Each entry: what, why, alternatives. HUMAN-REVIEW marks a choice the founder should look at.
+
+## Precondition / Phase 0 inventory
+
+1. **Start point.** `release-10f` at `c44c418` (= tag `ship-10f`), with `docs/review/batch10f/SHIP.md` and `scripts/ship-prod-10f.sh`. `release-10g` created from it; safety tag `pre-10g-ship` → `c44c418`, pushed. Tracked changes at the start: only the 7 allowed generated files.
+2. **Where things are (code inventory).**
+   - My Listings: route `/my` → `src/screens/MyListings.jsx` (Protected). It lists `get_my_listings` with status badges (सक्रिय / मिल गया / समय समाप्त), the one-tap availability switch and the "मिल गया" (close) button. Profile (`src/screens/Profile.jsx`) only shows a count/link via `get_my_listings`.
+   - Listing detail: `/listing/:id` → `src/screens/ListingDetail.jsx`; it reads the row directly from the `listings` table (`fetchListingById`), so the public RLS rule applies (only `active` and not expired). Not found → "listing_not_found" text.
+   - Admin: `/admin` → `src/screens/Admin.jsx` (lazy route, `AdminOnly` + an in-page `user.is_admin` check). Listings view = `ListingsPanel` (`get_admin_listings`, last 20, "हटाएं" = `remove_listing` → status `removed`). Reports = `ReportsPanel` (`get_listing_reports`, actions removed/dismissed via `resolve_listing_report`).
+   - Admin detection in the UI: `user?.is_admin` from the local session (AuthProvider); the server re-checks every admin RPC with `require_admin(p_actor_id)`.
+3. **Mismatch with the brief: `closeListing` IS used.** `MyListings.jsx` calls it for the "मिल गया" ("found") button (with a `window.confirm`). Kept as is (brief: close stays).
+4. **Mismatch / addition: the seller's own disabled listing is invisible on the detail page.** The detail page reads through the public RLS rule (active only). A seller opening their own disabled listing would see "not found". Handled in Phase 3 (detail page falls back to the owner's `get_my_listings` row).
+5. **Verified on staging (read-only):** status check `active/closed/removed`; public policy `listings_read_active` = `status='active' and expires_at > now()`; `search_listings` filters `status='active'`; child FKs exactly as in the brief (3 × CASCADE, `listing_reports` SET NULL); bucket `listing-photos` public, policies = anon INSERT + public SELECT only; no admin log table. Also found: the storage trigger `protect_objects_delete` (Supabase's guard against deleting `storage.objects` rows in SQL) — relevant for Phase 2. `get_admin_source_stats` counts `status <> 'removed'` (admin-only numbers; disabled listings are counted there — fine, not public). Existing listing RPCs grant EXECUTE to PUBLIC as well; the new 10G functions revoke PUBLIC and grant anon/authenticated/service_role, as the brief asks.
+6. **Migration tracking on staging is out of step** (`db.mjs status` lists 0057–0060 and 0064 as not applied although they are live). `db.mjs migrate` would re-run them → never used. 0065 was applied with one `db.mjs query` call and recorded in `schema_migrations` by hand.
+7. **Listings and prerendered pages.** Listings are not in sitemaps or `public/search-index.json`, and `/listing/:id` is not prerendered. BUT the prerendered homepage and `/jugaad` contain the newest listing cards (title, place, photo URL) captured at build time. A deleted listing therefore stays in that saved HTML until the next build/deploy (its photo URL will 404 and its link shows "not found"). Recorded; see Phase 2 evidence and BACKLOG.
+
+## Phase 1 — database (0065)
+
+8. **Status values:** `disabled` added; constraint widened (`active, closed, removed, disabled`). Rollback moves `disabled` rows to `active` first.
+9. **Seller toggle rules:** disable only from `active`; enable only from `disabled`; enabling an admin-disabled listing → `disabled_by_admin`; `closed`/`removed` → `invalid_state`; repeating the same action is a no-op (no error). `expires_at` is never touched (an expired listing stays expired).
+10. **Admin disable from `active` or `disabled`** (an admin can take over a seller-disabled listing; it then becomes admin-disabled with a reason). Admin enable only from `disabled`; clears both admin marks. Reason required for disable and delete (trimmed, 1–300 chars), optional for enable (stored in the log if given).
+11. **`delete_my_listing` is for the owner only — also for admins.** An admin deleting someone else's listing must use `admin_delete_listing` (reason + audit). Tested.
+12. **Photo paths** come from `details.photo_urls`: only URLs of our bucket (`…/storage/v1/object/public/listing-photos/<path>`) are returned; any other URL is ignored. Helper `listing_photo_paths(jsonb)` (not callable through the API).
+13. **Audit table `listing_admin_actions`:** admin id, listing id, action, category, reason, time — no listing text, no phone, no place. RLS on, no policies, no grants to anon/authenticated (the API cannot read or write it). Rows stay after the listing is gone (that is the point of the log).
+14. **`admin_delete_listing` resolves open reports** on that listing as `removed` with the reason before the row delete (then `listing_id` becomes null by the FK). Closed/dismissed reports are left as they were.
+15. **`get_my_listings` / `get_admin_listings` are dropped and recreated** (PostgreSQL cannot change a function's result columns in place). New columns are appended after the old ones; the default grants (incl. PUBLIC, as before) are kept, plus explicit anon/authenticated/service_role. Existing callers (the app, `scripts/test/*`) read by column name → unaffected.
+16. **Advisors (staging, after 0065):** only the expected findings — the new SECURITY DEFINER functions are executable by anon/authenticated (the same WARN as the 129 existing RPCs; it is the `p_actor_id` model, BACKLOG), and `listing_admin_actions` has RLS with no policy (intended). `evidence/advisors-security-10g.txt`.

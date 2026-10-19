@@ -1,0 +1,30 @@
+[
+  {
+    "proname": "close_listing",
+    "def": "CREATE OR REPLACE FUNCTION public.close_listing(p_actor_id uuid, p_listing_id uuid)\n RETURNS listings\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\ndeclare\n  v_listing public.listings%rowtype;\nbegin\n  select * into v_listing from public.listings where id = p_listing_id;\n  if not found then\n    raise exception 'not_found';\n  end if;\n  if v_listing.user_id <> p_actor_id then\n    raise exception 'not_owner';\n  end if;\n\n  update public.listings set status = 'closed'\n  where id = p_listing_id\n  returning * into v_listing;\n\n  return v_listing;\nend;\n$function$\n"
+  },
+  {
+    "proname": "get_admin_listings",
+    "def": "CREATE OR REPLACE FUNCTION public.get_admin_listings(p_actor_id uuid, p_limit integer DEFAULT 20, p_offset integer DEFAULT 0)\n RETURNS TABLE(id uuid, category text, listing_type text, status text, pincode text, village_town text, poster_phone text, poster_email text, created_at timestamp with time zone)\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\nbegin\n  perform public.require_admin(p_actor_id);\n  return query\n  select l.id, l.category, l.listing_type, l.status,\n         l.pincode, pc.village_town, p.phone, p.email, l.created_at\n  from public.listings l\n  join public.profiles p on p.id = l.user_id\n  left join public.pincodes pc on pc.pincode = l.pincode\n  order by l.created_at desc\n  limit greatest(1, p_limit) offset greatest(0, p_offset);\nend;\n$function$\n"
+  },
+  {
+    "proname": "get_my_listings",
+    "def": "CREATE OR REPLACE FUNCTION public.get_my_listings(p_actor_id uuid)\n RETURNS TABLE(id uuid, listing_type text, category text, status text, latitude numeric, longitude numeric, pincode text, details jsonb, self_declared boolean, created_at timestamp with time zone, expires_at timestamp with time zone, is_expired boolean, is_available boolean, contact_click_count integer)\n LANGUAGE sql\n SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\n  select l.id, l.listing_type, l.category, l.status, l.latitude, l.longitude,\n         l.pincode, l.details, l.self_declared, l.created_at, l.expires_at,\n         (l.expires_at <= now()) as is_expired,\n         l.is_available, l.contact_click_count\n  from public.listings l\n  where l.user_id = p_actor_id\n  order by l.created_at desc;\n$function$\n"
+  },
+  {
+    "proname": "remove_listing",
+    "def": "CREATE OR REPLACE FUNCTION public.remove_listing(p_actor_id uuid, p_listing_id uuid)\n RETURNS listings\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\ndeclare v public.listings%rowtype;\nbegin\n  perform public.require_admin(p_actor_id);\n  update public.listings set status = 'removed' where id = p_listing_id returning * into v;\n  if not found then raise exception 'not_found'; end if;\n  return v;\nend;\n$function$\n"
+  },
+  {
+    "proname": "require_admin",
+    "def": "CREATE OR REPLACE FUNCTION public.require_admin(p_actor_id uuid)\n RETURNS void\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\nbegin\n  if not exists (select 1 from public.profiles where id = p_actor_id and is_admin = true) then\n    raise exception 'not_admin';\n  end if;\nend;\n$function$\n"
+  },
+  {
+    "proname": "resolve_listing_report",
+    "def": "CREATE OR REPLACE FUNCTION public.resolve_listing_report(p_actor_id uuid, p_report_id bigint, p_action text, p_resolution_note text)\n RETURNS listing_reports\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\ndeclare r public.listing_reports%rowtype;\nbegin\n  perform public.require_admin(p_actor_id);\n  if p_action not in ('removed','dismissed') then raise exception 'invalid_action'; end if;\n  select * into r from public.listing_reports where id = p_report_id;\n  if not found then raise exception 'not_found'; end if;\n\n  if p_action = 'removed' and r.listing_id is not null then\n    update public.listings set status = 'removed' where id = r.listing_id;\n  end if;\n\n  update public.listing_reports set\n    status = p_action,\n    resolution_note = nullif(trim(p_resolution_note), ''),\n    resolved_at = now(),\n    resolved_by = p_actor_id\n  where id = p_report_id returning * into r;\n  return r;\nend;\n$function$\n"
+  },
+  {
+    "proname": "search_listings",
+    "def": "CREATE OR REPLACE FUNCTION public.search_listings(p_query text, p_limit integer DEFAULT 24)\n RETURNS TABLE(id uuid, category text, listing_type text, village_name text, latitude numeric, longitude numeric, details jsonb, is_sponsored boolean, sim real)\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\n  with q as (select lower(trim(coalesce(p_query, ''))) as s)\n  select l.id, l.category, l.listing_type, l.village_name, l.latitude, l.longitude,\n         l.details, l.is_sponsored,\n         greatest(\n           similarity(lower(l.category), (select s from q)),\n           similarity(lower(coalesce(l.village_name, '')), (select s from q)),\n           similarity(lower(l.details::text), (select s from q))\n         ) as sim\n  from public.listings l, q\n  where l.status = 'active'\n    and q.s <> ''\n    and (\n      l.category ilike '%' || q.s || '%'\n      or l.village_name ilike '%' || q.s || '%'\n      or l.details::text ilike '%' || q.s || '%'\n    )\n  order by sim desc, l.created_at desc\n  limit greatest(p_limit, 1);\n$function$\n"
+  }
+]

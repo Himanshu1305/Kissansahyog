@@ -1,0 +1,122 @@
+### HEAD
+title: सुझाव और शिकायत — किसान सहयोग
+description: किसान सहयोग को सुझाव दें या समस्या बताएँ। हम आपके दिए ईमेल या मोबाइल नंबर पर संपर्क करेंगे। सामान्य सवाल के लिए hello@kissansahyog.com पर लिखें।
+canonical: https://kissansahyog.com/grievance
+robots: 
+lang: hi
+h1: सुझाव और शिकायत
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"सुझाव और शिकायत"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"शिकायत करने के लिए लॉगिन ज़रूरी है?","acceptedAnswer":{"@type":"Answer","text":"नहीं। \"शिकायत करें\" बटन से बिना लॉगिन भी शिकायत भेजी जा सकती है। आप चाहें तो अपना फ़ोन नंबर दे सकते हैं ताकि ज़रूरत पर संपर्क किया जा सके।"}},{"@type":"Question","name":"क्या किसान सहयोग खुद खरीद-बिक्री करता है?","acceptedAnswer":{"@type":"Answer","text":"नहीं। हम केवल एक सूचना मंच (मध्यस्थ) हैं। सौदा, भाव और भुगतान दोनों पक्षों के बीच होता है; हम उसमें शामिल नहीं होते।"}}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+सुझाव और शिकायत
+सुझाव और शिकायत
+आपकी बात हमारे लिए महत्वपूर्ण है। सुझाव दें या समस्या बताएँ, हम सुधार करेंगे।
+ईमेल या मोबाइल नंबर
+हम आपसे इसी पर संपर्क करेंगे।
+आप क्या बताना चाहते हैं?
+सुझाव
+समस्या
+अन्य
+आपका संदेश
+इस सुझाव को बिना नाम और संपर्क के वेबसाइट पर दिखाने की अनुमति देता/देती हूँ।
+यह हमारी जाँच के बाद ही दिखाया जाएगा।
+Leave this empty
+संदेश भेजें
+सामान्य प्रश्न:
+hello@kissansahyog.com
+शिकायतें:
+grievance@kissansahyog.com
+और जानकारी
+शिकायत के बारे में
+अंतिम अपडेट:
+2026-10-12
+· Team Kissan Sahyog
+शिकायत कैसे करें
+हर लिस्टिंग, विक्रेता और कोल्ड स्टोरेज पेज पर दिए "शिकायत करें" बटन से शिकायत भेजें।
+या इसी पेज का फ़ॉर्म भरें — शिकायत का कारण और लिस्टिंग/विक्रेता का विवरण लिखें।
+शिकायत सही पाए जाने पर
+शिकायत सही पाए जाने पर हम लिस्टिंग/विक्रेता को हटा सकते हैं। किसान सहयोग केवल एक मध्यस्थ (सूचना मंच) है — हम किसी लेन-देन, भुगतान या समझौते में शामिल नहीं होते। कृपया संपर्क से पहले सामने वाले की पहचान और जानकारी स्वयं जाँच लें।
+इस फ़ॉर्म की जानकारी का क्या होता है
+इस फ़ॉर्म में दिया गया ईमेल या मोबाइल नंबर केवल आपके संदेश का जवाब देने के लिए रखा जाता है और सार्वजनिक रूप से नहीं दिखाया जाता।
+अक्सर पूछे जाने वाले सवाल
+शिकायत करने के लिए लॉगिन ज़रूरी है?
+नहीं। "शिकायत करें" बटन से बिना लॉगिन भी शिकायत भेजी जा सकती है। आप चाहें तो अपना फ़ोन नंबर दे सकते हैं ताकि ज़रूरत पर संपर्क किया जा सके।
+क्या किसान सहयोग खुद खरीद-बिक्री करता है?
+नहीं। हम केवल एक सूचना मंच (मध्यस्थ) हैं। सौदा, भाव और भुगतान दोनों पक्षों के बीच होता है; हम उसमें शामिल नहीं होते।
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

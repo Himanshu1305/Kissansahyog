@@ -1,0 +1,95 @@
+### HEAD
+title: पराली जलाना — किसान की मजबूरी या हमारी गलत सोच? — Kissan Sahyog
+description: पराली जलाना — किसान की मजबूरी या हमारी गलत सोच?
+canonical: https://kissansahyog.com/articles/parali-pollution-kisaan-ki-majboori
+robots: 
+lang: hi
+h1: पराली जलाना — किसान की मजबूरी या हमारी गलत सोच?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Article","headline":"पराली जलाना — किसान की मजबूरी या हमारी गलत सोच?","author":{"@type":"Person","name":"Team Kissan Sahyog"},"datePublished":"2026-09-15T12:51:11.649098+00:00"}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+← वापस
+पराली जलाना — किसान की मजबूरी या हमारी गलत सोच?
+लेखक: Team Kissan Sahyog · 15/9/2026
+हर साल अक्टूबर-नवंबर में जब उत्तर भारत में धुंध छाती है, तो सबसे पहले किसानों की तरफ उंगली उठती है। "पराली जला रहे हैं किसान" — यह वाक्य समाचारों में, सोशल मीडिया पर और सरकारी बयानों में बार-बार दोहराया जाता है। लेकिन क्या हम एक बार किसान की नज़र से भी देखने की कोशिश करते हैं?
+एक किसान पराली इसलिए नहीं जलाता क्योंकि वो पर्यावरण का दुश्मन है। वो इसलिए जलाता है क्योंकि उसके पास कोई और रास्ता नहीं है। धान की कटाई के बाद खेत में बचा पैरा हटाने का खर्च उसकी कमाई से ज़्यादा होता है। मशीनें महंगी हैं, मज़दूर मिलते नहीं, और अगली फसल की बुवाई का वक्त आ जाता है।
+अब ज़रा दूसरा पहलू देखिए। यही किसान, जिस पर हम प्रदूषण फैलाने का आरोप लगाते हैं — वो साल भर करोड़ों टन अनाज उगाता है। उसके खेत सूरज की रोशनी को भोजन में बदलते हैं, कार्बन को ज़मीन में दबाते हैं, और वातावरण में ऑक्सीजन छोड़ते हैं। क्या कोई कारखाना यह काम करता है? क्या कोई शहरी उद्योग हवा को शुद्ध करता है? नहीं।
+किसान इस देश का सबसे बड़ा पर्यावरण उत्पादक है। वो अन्नदाता ही नहीं, ऑक्सीजन दाता भी है। फिर भी जब प्रदूषण की बात आती है तो सारा दोष उसी पर?
+असली सवाल यह है: क्या हम उस किसान को पराली न जलाने का विकल्प दे रहे हैं? क्या उसकी पराली को खरीदने वाले उद्योग हैं? क्या उसे उचित दाम मिल रहे हैं? अगर नहीं, तो समाधान कानून से नहीं, बाज़ार से आएगा।
+किसान सहयोग का भूसा-पराली मंच इसी सोच से बना है — ताकि किसान अपनी पराली बेच सके, जला नहीं।
+🌾 भूसा / पराली मंच देखें →
+इस लेख को साझा करें
+WhatsApp पर शेयर करें
+🔗 लिंक कॉपी करें
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन
