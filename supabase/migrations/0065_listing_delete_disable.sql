@@ -232,3 +232,125 @@ begin
 end;
 $$;
 grant execute on function public.get_admin_listings(uuid, integer, integer) to anon, authenticated, service_role;
+
+-- 6. Photo removal (Batch 10G Phase 2) ------------------------------------------------------------------
+-- Deleting storage.objects rows in SQL is refused by Supabase's guard (storage.protect_delete: "Direct
+-- deletion from storage tables is not allowed. Use the Storage API instead."); bypassing it would only drop
+-- the metadata and leave the file bytes behind. So the files are removed through the Storage API by the
+-- app, right after the row delete, and the API may delete ONLY what a delete function queued:
+--   * public.listing_photo_deletions — paths queued by delete_my_listing / admin_delete_listing (path,
+--     who queued it, when). RLS on, no policies (not readable through the API).
+--   * public.listing_photo_deletable(name) — true only if the path is queued (last 30 days) AND no
+--     existing listing still lists it. Used by the storage policy below.
+--   * storage policy listing_photos_queued_delete — DELETE on bucket listing-photos only, only for paths
+--     listing_photo_deletable() accepts. Nothing else in the bucket can be deleted through the API.
+--   * public.get_my_pending_photo_deletions(actor) — paths this actor queued that still exist (the app
+--     retries them, e.g. when the first removal was interrupted). Housekeeping: queue rows whose file is
+--     gone are dropped whenever a delete function runs.
+create table if not exists public.listing_photo_deletions (
+  object_name text primary key,
+  queued_by uuid not null,
+  queued_at timestamptz not null default now()
+);
+alter table public.listing_photo_deletions enable row level security;
+revoke all on table public.listing_photo_deletions from anon, authenticated;
+
+create or replace function public.listing_photo_deletable(p_name text)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select exists (
+           select 1 from public.listing_photo_deletions d
+           where d.object_name = p_name and d.queued_at > now() - interval '30 days')
+     and not exists (
+           select 1 from public.listings l
+           where l.details::text like '%' || p_name || '%'
+             and p_name = any (public.listing_photo_paths(l.details)));
+$$;
+revoke all on function public.listing_photo_deletable(text) from public;
+grant execute on function public.listing_photo_deletable(text) to anon, authenticated, service_role;
+
+drop policy if exists listing_photos_queued_delete on storage.objects;
+create policy listing_photos_queued_delete on storage.objects
+  for delete to anon, authenticated
+  using (bucket_id = 'listing-photos' and public.listing_photo_deletable(name));
+
+create or replace function public.queue_listing_photo_deletions(p_actor_id uuid, p_paths text[])
+returns void
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+begin
+  -- housekeeping first: forget queued paths whose file no longer exists
+  delete from public.listing_photo_deletions d
+   where not exists (select 1 from storage.objects o where o.bucket_id = 'listing-photos' and o.name = d.object_name);
+  insert into public.listing_photo_deletions (object_name, queued_by)
+  select distinct p, p_actor_id from unnest(coalesce(p_paths, '{}'::text[])) as p where p is not null and p <> ''
+  on conflict (object_name) do update set queued_by = excluded.queued_by, queued_at = now();
+end;
+$$;
+revoke all on function public.queue_listing_photo_deletions(uuid, text[]) from public;   -- internal only
+
+create or replace function public.get_my_pending_photo_deletions(p_actor_id uuid)
+returns text[]
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select coalesce(array_agg(d.object_name order by d.queued_at), '{}'::text[])
+  from public.listing_photo_deletions d
+  where d.queued_by = p_actor_id
+    and d.queued_at > now() - interval '30 days'
+    and exists (select 1 from storage.objects o where o.bucket_id = 'listing-photos' and o.name = d.object_name);
+$$;
+revoke all on function public.get_my_pending_photo_deletions(uuid) from public;
+grant execute on function public.get_my_pending_photo_deletions(uuid) to anon, authenticated, service_role;
+
+-- The two delete functions again, now also queueing their photo paths (same checks as section 4).
+create or replace function public.delete_my_listing(p_actor_id uuid, p_listing_id uuid)
+returns text[]
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+declare v public.listings%rowtype; v_paths text[];
+begin
+  select * into v from public.listings where id = p_listing_id for update;
+  if not found then raise exception 'not_found'; end if;
+  if v.user_id is distinct from p_actor_id then raise exception 'not_owner'; end if;
+  v_paths := public.listing_photo_paths(v.details);
+  delete from public.listings where id = p_listing_id;
+  perform public.queue_listing_photo_deletions(p_actor_id, v_paths);
+  return v_paths;
+end;
+$$;
+
+create or replace function public.admin_delete_listing(p_actor_id uuid, p_listing_id uuid, p_reason text)
+returns text[]
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+declare v public.listings%rowtype; v_paths text[]; v_reason text := nullif(trim(coalesce(p_reason, '')), '');
+begin
+  perform public.require_admin(p_actor_id);
+  if v_reason is null then raise exception 'reason_required'; end if;
+  if char_length(v_reason) > 300 then raise exception 'reason_too_long'; end if;
+  select * into v from public.listings where id = p_listing_id for update;
+  if not found then raise exception 'not_found'; end if;
+  v_paths := public.listing_photo_paths(v.details);
+  insert into public.listing_admin_actions (admin_id, listing_id, action, category, reason)
+  values (p_actor_id, p_listing_id, 'delete', v.category, v_reason);
+  update public.listing_reports
+     set status = 'removed', resolution_note = v_reason, resolved_at = now(), resolved_by = p_actor_id
+   where listing_id = p_listing_id and status = 'open';
+  delete from public.listings where id = p_listing_id;
+  perform public.queue_listing_photo_deletions(p_actor_id, v_paths);
+  return v_paths;
+end;
+$$;

@@ -21,7 +21,7 @@ drop function if exists public.admin_set_listing_disabled(uuid, uuid, boolean, t
 drop function if exists public.admin_delete_listing(uuid, uuid, text);
 drop function if exists public.listing_photo_deletable(text);
 drop function if exists public.get_my_pending_photo_deletions(uuid);
-drop function if exists public.forget_photo_deletions(uuid, text[]);
+drop function if exists public.queue_listing_photo_deletions(uuid, text[]);
 
 -- 3. the two readers, exactly as before 0065 ----------------------------------------------------------------
 drop function if exists public.get_my_listings(uuid);
