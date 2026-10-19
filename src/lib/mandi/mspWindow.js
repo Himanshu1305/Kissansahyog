@@ -70,3 +70,18 @@ export function windowInfo(series, days, lang = 'hi', today = new Date()) {
     startsLate: n > 0 && lateBy > 7,
   }
 }
+
+// Batch 10F — one date format for every date on /msp (founder: no ISO "2026-10-17" anywhere).
+// "17 अक्टू 2026" / "17 Oct 2026" — always with the year (the last-price badge, the table of the
+// trend). formatDay above stays the short form ("17 अक्टू", year only when not this year).
+export function formatDateFull(iso, lang = 'hi') {
+  const p = parse(iso)
+  return p ? `${p.d} ${monthName(p.mo, lang)} ${p.y}` : ''
+}
+
+// Today's date in India (IST, UTC+5:30) as YYYY-MM-DD — "is this price from today?" is a question
+// about the farmer's calendar day, not the server's.
+export function todayIst(now = new Date()) {
+  const t = now instanceof Date ? now : new Date(now)
+  return new Date(t.getTime() + 330 * 60000).toISOString().slice(0, 10)
+}

@@ -1,0 +1,41 @@
+
+Running 10 tests using 1 worker
+
+  ok  1 [chromium] › e2e\collapsible-10f.spec.js:39:1 › C1 prerendered HTML: every section open and its text present (msp, mausam, home) (75ms)
+NOTE C2 /msp/gehun: {"explainer":true,"snapshot":true,"today":true,"trend":false,"trend-table":false,"calc":false,"procurement":false,"below":false,"faq":false}
+  ok  2 [chromium] › e2e\collapsible-10f.spec.js:55:3 › C2 /msp/gehun phone 360: defaults after hydration; nothing visible moved (CLS) (2.7s)
+  x   3 [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 /msp/gehun at 768 and 1280: everything starts open (2.6s)
+NOTE C2 /: {"search":true,"near":true,"listings":true,"videos":false,"qa":false,"mela":false,"govt":false,"trust":false,"articles":false}
+  ok  4 [chromium] › e2e\collapsible-10f.spec.js:55:3 › C2 / phone 360: defaults after hydration; nothing visible moved (CLS) (2.1s)
+  ok  5 [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 / at 768 and 1280: everything starts open (3.9s)
+  ok  6 [chromium] › e2e\collapsible-10f.spec.js:79:1 › C4 toggle with mouse, touch and keyboard (Enter, Space); aria-expanded follows; chevron right after the heading text (8.0s)
+  ok  7 [chromium] › e2e\collapsible-10f.spec.js:138:1 › C5 the choice is remembered per page and section; the page still works with storage unavailable (7.7s)
+  ok  8 [chromium] › e2e\collapsible-10f.spec.js:163:1 › C6 a #hash pointing into a collapsed section opens it and scrolls to it (2.6s)
+  ok  9 [chromium] › e2e\collapsible-10f.spec.js:174:1 › C7 reduced motion: no height animation, no chevron transition (2.6s)
+  ok 10 [chromium] › e2e\collapsible-10f.spec.js:187:1 › C8 /mausam and the homepage: toggles work, nothing scrolls sideways at 320 (4.2s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 /msp/gehun at 768 and 1280: everything starts open 
+
+    Error: 768: {"explainer":true,"snapshot":true,"today":true,"trend":true,"trend-table":false,"calc":true,"procurement":true,"below":true,"faq":true}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      71 |       await settle(page)
+      72 |       const got = await state(page)
+    > 73 |       expect(Object.values(got).every(Boolean), `${w}: ${JSON.stringify(got)}`).toBe(true)
+         |                                                                                 ^
+      74 |       await ctx.close()
+      75 |     }
+      76 |   })
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\collapsible-10f.spec.js:73:81
+
+    Error Context: test-results\collapsible-10f-C3-msp-geh-209bf-1280-everything-starts-open-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 /msp/gehun at 768 and 1280: everything starts open 
+  9 passed (38.2s)

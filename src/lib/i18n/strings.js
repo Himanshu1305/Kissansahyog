@@ -2509,6 +2509,19 @@ export const strings = {
   section_expand: { hi: 'खोलें', en: 'Expand' },
   section_collapse: { hi: 'बंद करें', en: 'Collapse' },
 
+  // --- /msp last-price badge, chart dates, trend integrity (Batch 10F) --- Hindi awaits founder review.
+  msp_badge_last: { hi: 'अंतिम भाव: {date}', en: 'Last price: {date}' },
+  msp_badge_today: { hi: 'आज का भाव · {date}', en: 'Today’s price · {date}' },
+  msp_chart_help: { hi: 'किसी बिंदु को छुएँ या चार्ट पर उँगली चलाएँ — उस दिन की तारीख़ और भाव दिखेगा', en: 'Touch a dot or slide your finger along the chart — that day’s date and price appear' },
+  msp_chart_mandis: { hi: '{n} मंडी', en: '{n} mandis' },
+  msp_chart_mandi_one: { hi: '1 मंडी', en: '1 mandi' },
+  msp_chart_few: { hi: 'कम मंडियों का भाव', en: 'Based on few mandis' },
+  msp_chart_table: { hi: 'सारणी देखें', en: 'View table' },
+  msp_chart_col_mandis: { hi: 'मंडियाँ', en: 'Mandis' },
+  msp_chart_aria: { hi: '{crop} चार्ट, {range}: पहला {first}, आख़िरी {last}, सबसे ऊँचा {high}, सबसे नीचा {low}', en: '{crop} chart, {range}: first {first}, last {last}, highest {high}, lowest {low}' },
+  msp_trend_skipped: { hi: '{n} दिन बहुत कम मंडियों के भाव आए — वे दिन चार्ट और हिसाब में नहीं जोड़े गए, ताकि झूठा उतार-चढ़ाव न दिखे।', en: 'On {n} days very few mandis reported — those days are left out of the chart and the maths, so no false rise or fall is shown.' },
+  msp_calc_price_from: { hi: 'हिसाब का भाव: {price} ({date}, {n} मंडियों का बीच का भाव)', en: 'Price used: {price} ({date}, middle price of {n} mandis)' },
+
   // --- post form: optional extra information + mandatory dates (Batch 10E 3B/3C) ---
   extra_info_label: { hi: 'अतिरिक्त जानकारी (वैकल्पिक)', en: 'Additional information (optional)' },
   extra_info_ph: { hi: 'कोई और बात जो खरीदार या किसान को जाननी चाहिए', en: 'Anything else the buyer or farmer should know' },

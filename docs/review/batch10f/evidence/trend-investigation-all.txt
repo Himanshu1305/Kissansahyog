@@ -1,0 +1,120 @@
+
+== Garlic 7d  markets 4, basket 1 (FEW → plain median), priced days 5, skipped 0
+  OLD   2026-10-12 ₹14600 → 2026-10-17 ₹6800 (Δ -7800, 5 pts)
+  NEW   2026-10-12 ₹14600 → 2026-10-17 ₹6800 (Δ -7800, 5 pts)
+
+== Garlic 30d  markets 6, basket 1 (FEW → plain median), priced days 21, skipped 0
+  OLD   2026-09-19 ₹12800 → 2026-10-17 ₹6800 (Δ -6000, 21 pts)
+  NEW   2026-09-19 ₹12800 → 2026-10-17 ₹6800 (Δ -6000, 21 pts)
+
+== Garlic 90d  markets 6, basket 1 (FEW → plain median), priced days 65, skipped 0
+  OLD   2026-07-22 ₹7000 → 2026-10-17 ₹6800 (Δ -200, 65 pts)
+  NEW   2026-07-22 ₹7000 → 2026-10-17 ₹6800 (Δ -200, 65 pts)
+
+== Gram 7d  markets 22, basket 14, priced days 6, skipped 1
+  OLD   2026-10-12 ₹7000 → 2026-10-17 ₹6800 (Δ -200, 6 pts)
+  NEW   2026-10-12 ₹7000 → 2026-10-16 ₹6895 (Δ -105, 5 pts)
+
+== Gram 30d  markets 29, basket 14, priced days 26, skipped 8
+  OLD   2026-09-19 ₹6045 → 2026-10-17 ₹6800 (Δ 755, 26 pts)
+  NEW   2026-09-21 ₹6180 → 2026-10-16 ₹6905 (Δ 725, 18 pts)
+
+== Gram 90d  markets 32, basket 13, priced days 78, skipped 20
+  OLD   2026-07-21 ₹5893 → 2026-10-17 ₹6800 (Δ 907, 78 pts)
+  NEW   2026-07-21 ₹5893 → 2026-10-16 ₹6905 (Δ 1012, 58 pts)
+
+== Lentil 7d  markets 14, basket 10, priced days 6, skipped 1
+  OLD   2026-10-12 ₹6175 → 2026-10-17 ₹6015 (Δ -160, 6 pts)
+  NEW   2026-10-12 ₹6195 → 2026-10-16 ₹6148 (Δ -47, 5 pts)
+
+== Lentil 30d  markets 18, basket 7, priced days 23, skipped 5
+  OLD   2026-09-19 ₹6253 → 2026-10-17 ₹6015 (Δ -238, 23 pts)
+  NEW   2026-09-21 ₹6750 → 2026-10-16 ₹6120 (Δ -630, 18 pts)
+
+== Lentil 90d  markets 22, basket 6, priced days 71, skipped 13
+  OLD   2026-07-21 ₹6400 → 2026-10-17 ₹6015 (Δ -385, 71 pts)
+  NEW   2026-07-21 ₹6453 → 2026-10-16 ₹6110 (Δ -343, 58 pts)
+
+== Maize 7d  markets 13, basket 7, priced days 6, skipped 1
+  OLD   2026-10-12 ₹1850 → 2026-10-17 ₹2028 (Δ 178, 6 pts)
+  NEW   2026-10-12 ₹1850 → 2026-10-17 ₹2005 (Δ 155, 5 pts)
+
+== Maize 30d  markets 13, basket 1 (FEW → plain median), priced days 26, skipped 0
+  OLD   2026-09-21 ₹1405 → 2026-10-17 ₹2028 (Δ 623, 26 pts)
+  NEW   2026-09-21 ₹1405 → 2026-10-17 ₹2028 (Δ 623, 26 pts)
+
+== Maize 90d  markets 15, basket 1 (FEW → plain median), priced days 48, skipped 0
+  OLD   2026-07-27 ₹1525 → 2026-10-17 ₹2028 (Δ 503, 48 pts)
+  NEW   2026-07-27 ₹1525 → 2026-10-17 ₹2028 (Δ 503, 48 pts)
+
+== Moong 7d  markets 9, basket 3, priced days 6, skipped 1
+  OLD   2026-10-12 ₹7200 → 2026-10-17 ₹6150 (Δ -1050, 6 pts)
+  NEW   2026-10-12 ₹7800 → 2026-10-16 ₹7150 (Δ -650, 5 pts)
+
+== Moong 30d  markets 13, basket 2 (FEW → plain median), priced days 23, skipped 0
+  OLD   2026-09-19 ₹6773 → 2026-10-17 ₹6150 (Δ -623, 23 pts)
+  NEW   2026-09-19 ₹6773 → 2026-10-17 ₹6150 (Δ -623, 23 pts)
+
+== Moong 90d  markets 18, basket 5, priced days 70, skipped 24
+  OLD   2026-07-21 ₹6755 → 2026-10-17 ₹6150 (Δ -605, 70 pts)
+  NEW   2026-07-21 ₹6760 → 2026-10-16 ₹7200 (Δ 440, 46 pts)
+
+== Mustard 7d  markets 22, basket 12, priced days 6, skipped 1
+  OLD   2026-10-12 ₹7700 → 2026-10-17 ₹7900 (Δ 200, 6 pts)
+  NEW   2026-10-12 ₹7750 → 2026-10-16 ₹7635 (Δ -115, 5 pts)
+
+== Mustard 30d  markets 24, basket 7, priced days 28, skipped 7
+  OLD   2026-09-19 ₹7130 → 2026-10-17 ₹7900 (Δ 770, 28 pts)
+  NEW   2026-09-21 ₹7265 → 2026-10-17 ₹7800 (Δ 535, 21 pts)
+
+== Mustard 90d  markets 31, basket 7, priced days 80, skipped 22
+  OLD   2026-07-21 ₹7298 → 2026-10-17 ₹7900 (Δ 602, 80 pts)
+  NEW   2026-07-21 ₹7400 → 2026-10-16 ₹7750 (Δ 350, 58 pts)
+
+== Paddy(Dhan)(Common) 7d  markets 3, basket 1 (FEW → plain median), priced days 4, skipped 0
+  OLD   2026-10-12 ₹1770 → 2026-10-17 ₹1700 (Δ -70, 4 pts)
+  NEW   2026-10-12 ₹1770 → 2026-10-17 ₹1700 (Δ -70, 4 pts)
+
+== Paddy(Dhan)(Common) 30d  markets 5, basket 0 (FEW → plain median), priced days 9, skipped 0
+  OLD   2026-09-21 ₹1925 → 2026-10-17 ₹1700 (Δ -225, 9 pts)
+  NEW   2026-09-21 ₹1925 → 2026-10-17 ₹1700 (Δ -225, 9 pts)
+
+== Paddy(Dhan)(Common) 90d  markets 8, basket 1 (FEW → plain median), priced days 34, skipped 0
+  OLD   2026-07-22 ₹1826 → 2026-10-17 ₹1700 (Δ -126, 34 pts)
+  NEW   2026-07-22 ₹1826 → 2026-10-17 ₹1700 (Δ -126, 34 pts)
+
+== Soyabean 7d  markets 18, basket 14, priced days 6, skipped 1
+  OLD   2026-10-12 ₹6300 → 2026-10-17 ₹6500 (Δ 200, 6 pts)
+  NEW   2026-10-12 ₹6300 → 2026-10-16 ₹6500 (Δ 200, 5 pts)
+
+== Soyabean 30d  markets 21, basket 6, priced days 28, skipped 8
+  OLD   2026-09-19 ₹5600 → 2026-10-17 ₹6500 (Δ 900, 28 pts)
+  NEW   2026-09-21 ₹5448 → 2026-10-16 ₹6745 (Δ 1297, 20 pts)
+
+== Soyabean 90d  markets 29, basket 7, priced days 78, skipped 23
+  OLD   2026-07-21 ₹6893 → 2026-10-17 ₹6500 (Δ -393, 78 pts)
+  NEW   2026-07-21 ₹7128 → 2026-10-16 ₹6695 (Δ -433, 55 pts)
+
+== Urad 7d  markets 20, basket 14, priced days 6, skipped 1
+  OLD   2026-10-12 ₹6801 → 2026-10-17 ₹6975 (Δ 174, 6 pts)
+  NEW   2026-10-12 ₹6801 → 2026-10-16 ₹6500 (Δ -301, 5 pts)
+
+== Urad 30d  markets 20, basket 10, priced days 25, skipped 8
+  OLD   2026-09-19 ₹6000 → 2026-10-17 ₹6975 (Δ 975, 25 pts)
+  NEW   2026-09-21 ₹6303 → 2026-10-16 ₹6500 (Δ 197, 17 pts)
+
+== Urad 90d  markets 21, basket 3, priced days 71, skipped 11
+  OLD   2026-07-21 ₹8555 → 2026-10-17 ₹6975 (Δ -1580, 71 pts)
+  NEW   2026-07-21 ₹9305 → 2026-10-17 ₹7500 (Δ -1805, 60 pts)
+
+== Wheat 7d  markets 34, basket 31, priced days 6, skipped 1
+  OLD   2026-10-12 ₹2550 → 2026-10-17 ₹2526 (Δ -24, 6 pts)
+  NEW   2026-10-12 ₹2550 → 2026-10-16 ₹2570 (Δ 20, 5 pts)
+
+== Wheat 30d  markets 35, basket 25, priced days 29, skipped 10
+  OLD   2026-09-19 ₹2570 → 2026-10-17 ₹2526 (Δ -44, 29 pts)
+  NEW   2026-09-21 ₹2559 → 2026-10-16 ₹2560 (Δ 1, 19 pts)
+
+== Wheat 90d  markets 38, basket 27, priced days 88, skipped 29
+  OLD   2026-07-21 ₹2450 → 2026-10-17 ₹2526 (Δ 76, 88 pts)
+  NEW   2026-07-21 ₹2450 → 2026-10-16 ₹2570 (Δ 120, 59 pts)

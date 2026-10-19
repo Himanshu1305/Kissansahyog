@@ -21,8 +21,8 @@ async function readTab(sec, d) {
   await sec.locator(`[data-trend-tab="${d}"]`).click()
   await expect(sec.locator(`[data-trend-tab="${d}"]`)).toHaveAttribute('aria-pressed', 'true')
   const range = (await sec.locator(`[data-trend-tab="${d}"] [data-trend-range]`).innerText()).trim()
-  const points = await sec.locator('svg[role="img"] circle').count()
-  const axis = await textIf(sec.locator('[data-trend-axis]'))
+  const points = await sec.locator('[data-trend-dot]').count() // Batch 10F chart
+  const axis = (await sec.locator('[data-trend-tick]').evaluateAll((es) => es.map((e) => e.textContent).join(' '))).trim() // Batch 10F: SVG date ticks
   const note = await textIf(sec.locator('[data-trend-note]'))
   return { range, points, axis, note }
 }

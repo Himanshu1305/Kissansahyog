@@ -70,6 +70,7 @@ for (const [path, want] of Object.entries(PHONE_DEFAULTS)) {
       await page.goto(path)
       await settle(page)
       const got = await state(page)
+      delete got['trend-table'] // closed at every width by design (Phase 3 "सारणी देखें")
       expect(Object.values(got).every(Boolean), `${w}: ${JSON.stringify(got)}`).toBe(true)
       await ctx.close()
     }

@@ -157,6 +157,28 @@ export async function fetchMandiHistoryScoped(commodityEn, days = 90) {
   return { series: medianByDate(all.data), scope: 'all' }
 }
 
+// Batch 10F — the raw rows behind the /msp trend (one per mandi and day), so the page can build the
+// stable-basket series per window (src/lib/mandi/basket.js) instead of a median of whoever reported.
+// Same scope rule as fetchMandiHistoryScoped: Sagar division first, every row only as a fallback.
+export async function fetchMandiHistoryRows(commodityEn, days = 90) {
+  const from = isoDay(-days)
+  const read = (col) => fetchAllPages((a, b) => {
+    let q = supabase
+      .from('mandi_prices')
+      .select('market,modal_price,price_date')
+      .eq('commodity_en', commodityEn)
+      .gte('price_date', from)
+    if (col) q = q.eq(col, true)
+    return q.order('price_date', { ascending: false }).order('market', { ascending: true }).range(a, b)
+  })
+  const local = await withLocalFlag((col) => read(col))
+  if (local.error) return { rows: [], scope: 'division' }
+  if (local.data.length) return { rows: local.data, scope: 'division' }
+  const all = await read(null)
+  if (all.error || !all.data.length) return { rows: [], scope: 'division' }
+  return { rows: all.data, scope: 'all' }
+}
+
 export async function fetchMandiHistory(commodityEn, days = 90) {
   return (await fetchMandiHistoryScoped(commodityEn, days)).series
 }

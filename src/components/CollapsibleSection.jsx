@@ -34,8 +34,10 @@ function saveChoice(page, id, open) {
 }
 
 /** The default open state after hydration (pure; unit-tested via the e2e spec). */
-export function defaultOpen({ primary, stored, isPhone, belowFold }) {
+export function defaultOpen({ primary, stored, isPhone, belowFold, closedByDefault = false }) {
   if (stored != null) return stored
+  // Closed at every width (e.g. the trend table, Batch 10F 3B) — unless it is on screen already.
+  if (closedByDefault) return !belowFold
   if (primary || !isPhone) return true
   return !belowFold
 }
@@ -56,10 +58,12 @@ export function Chevron() {
  * after     — optional content shown in the summary row after the heading (e.g. a date badge)
  * action    — optional link/button shown at the right of the summary row, outside the summary
  *             (never nested inside it), visible when collapsed too
+ * as        — heading level ('h2' default; 'h3' for a sub-section such as the trend table)
+ * closedByDefault — starts closed at every width (after hydration, when not on screen)
  * h2Class / h2Style — heading look (defaults to the page section heading)
  * className / style — the <details> box (cards keep their own border/background)
  */
-export default function CollapsibleSection({ page, id, title, primary = false, after, action, h2Class = 'text-[22px] font-bold leading-tight md:text-[24px]', h2Style, className = '', style, testId, children }) {
+export default function CollapsibleSection({ page, id, title, primary = false, closedByDefault = false, as: Heading = 'h2', after, action, h2Class = 'text-[22px] font-bold leading-tight md:text-[24px]', h2Style, className = '', style, testId, children }) {
   const { t } = useLang()
   const ref = useRef(null)
   const [open, setOpen] = useState(true)
@@ -73,7 +77,10 @@ export default function CollapsibleSection({ page, id, title, primary = false, a
     if (!el) return undefined
     let isPhone = false
     try { isPhone = window.matchMedia(PHONE).matches } catch { /* old browser: treat as wide */ }
-    const next = defaultOpen({ primary, stored: readChoice(page, id), isPhone, belowFold: el.getBoundingClientRect().top >= window.innerHeight })
+    const r = el.getBoundingClientRect()
+    // Not laid out (inside another closed section) counts as off screen.
+    const belowFold = r.top >= window.innerHeight || (r.width === 0 && r.height === 0)
+    const next = defaultOpen({ primary, stored: readChoice(page, id), isPhone, belowFold, closedByDefault })
     if (!next) setOpen(false)
 
     const fromHash = () => {
@@ -88,7 +95,7 @@ export default function CollapsibleSection({ page, id, title, primary = false, a
     fromHash()
     window.addEventListener('hashchange', fromHash)
     return () => window.removeEventListener('hashchange', fromHash)
-  }, [page, id, primary])
+  }, [page, id, primary, closedByDefault])
 
   // Print / save as PDF: everything open for the print (set on the element too, so it is open
   // before React re-renders), then back. Never saved as the visitor's choice.
@@ -127,10 +134,10 @@ export default function CollapsibleSection({ page, id, title, primary = false, a
     <div className={`ks-cs-wrap${action ? ' ks-cs-has-action' : ''}`}>
       <details ref={ref} id={id} open={open} onToggle={onToggle} className={`ks-cs ${className}`} style={style} data-testid={testId} data-section={id}>
         <summary className="ks-cs-sum" aria-expanded={open}>
-          <h2 className={`ks-cs-h ${h2Class}`} style={{ color: 'var(--ks-ink)', ...h2Style }}>
+          <Heading className={`ks-cs-h ${h2Class}`} style={{ color: 'var(--ks-ink)', ...h2Style }}>
             {title}
             <Chevron />
-          </h2>
+          </Heading>
           {after}
           <span className="sr-only">{t(open ? 'section_collapse' : 'section_expand')}</span>
         </summary>

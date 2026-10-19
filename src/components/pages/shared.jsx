@@ -64,7 +64,8 @@ const rupee = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 
 // Dated staleness tag. `kind` = 'yesterday' (neutral) | 'older' (amber). The date (dd/mm)
 // is always rendered so a farmer sees exactly how old the price is.
-export function StaleTag({ date, kind = 'older' }) {
+// Batch 10F: `fmt` (optional) formats the date, e.g. "17 अक्टू" on /msp; without it dd/mm as before.
+export function StaleTag({ date, kind = 'older', fmt }) {
   const { t } = useLang()
   const [, m, d] = String(date).split('-')
   const older = kind === 'older'
@@ -73,7 +74,7 @@ export function StaleTag({ date, kind = 'older' }) {
     : { background: 'var(--ks-bg-soft)', color: 'var(--ks-ink-2)', border: '1px solid var(--ks-border-strong)' }
   return (
     <span className="ml-1 inline-block whitespace-nowrap rounded px-1 py-0.5 align-middle text-[11px] font-bold" data-testid="stale-tag" style={style}>
-      {t(older ? 'mandi_price_older' : 'mandi_price_yesterday')} ({d}/{m})
+      {t(older ? 'mandi_price_older' : 'mandi_price_yesterday')} ({fmt ? fmt(date) : `${d}/${m}`})
     </span>
   )
 }
@@ -81,7 +82,7 @@ export function StaleTag({ date, kind = 'older' }) {
 // One price cell used by every mandi table: plain (today) / dated "कल का भाव" or "पिछला भाव"
 // tag (non-today) / "—" (never recorded, with a hover/tap tooltip). Keeps the whole site's
 // price labelling identical and always date-visible for non-today prices.
-export function PriceCell({ price, date, bold }) {
+export function PriceCell({ price, date, bold, fmt }) {
   const { t } = useLang()
   if (price == null) {
     return <span title={t('mandi_not_recorded')} data-testid="price-missing" style={{ color: 'var(--ks-ink-3)', cursor: 'help' }}>—</span>
@@ -90,8 +91,8 @@ export function PriceCell({ price, date, bold }) {
   return (
     <span>
       {bold ? <b>{rupee(price)}</b> : rupee(price)}
-      {st === 'yesterday' && <StaleTag date={date} kind="yesterday" />}
-      {st === 'older' && <StaleTag date={date} kind="older" />}
+      {st === 'yesterday' && <StaleTag date={date} kind="yesterday" fmt={fmt} />}
+      {st === 'older' && <StaleTag date={date} kind="older" fmt={fmt} />}
     </span>
   )
 }
@@ -228,69 +229,7 @@ export function DailyUpdateSignup({ sourcePage, heading }) {
 
 // ---- Inline SVG charts (no library) + screen-reader table fallback ----------
 
-// Line chart of a price series with an optional MSP reference line. Renders per-day
-// dot markers (native title tooltip) and shades the band between the price line and
-// the MSP line green (above MSP) / amber (below MSP) via clip rects.
-export function TrendChart({ series, mspValue, ariaLabel, startLabel, endLabel }) {
-  const { t } = useLang()
-  if (!series?.length) return <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
-  const W = 640, H = 200, PL = 44, PR = 14, PT = 14, PB = 24
-  const prices = series.map((d) => d.price)
-  const vals = mspValue ? [...prices, mspValue] : prices
-  const min = Math.min(...vals), max = Math.max(...vals)
-  const span = max - min || 1
-  const x = (i) => PL + (i / Math.max(1, series.length - 1)) * (W - PL - PR)
-  const y = (v) => PT + (1 - (v - min) / span) * (H - PT - PB)
-  const pts = series.map((d, i) => [x(i), y(d.price)])
-  const path = pts.map(([px, py], i) => `${i ? 'L' : 'M'}${px.toFixed(1)},${py.toFixed(1)}`).join(' ')
-  const mspY = mspValue ? y(mspValue) : null
-  const uid = `tc${series.length}_${Math.round(mspValue || 0)}`
-  const band = mspY != null
-    ? `${pts.map(([px, py]) => `${px.toFixed(1)},${py.toFixed(1)}`).join(' ')} ${x(series.length - 1).toFixed(1)},${mspY.toFixed(1)} ${x(0).toFixed(1)},${mspY.toFixed(1)}`
-    : null
-  return (
-    <div>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label={ariaLabel} style={{ maxWidth: '100%' }}>
-        {mspY != null && (
-          <defs>
-            <clipPath id={`${uid}-a`}><rect x={PL} y={PT} width={W - PL - PR} height={Math.max(0, mspY - PT)} /></clipPath>
-            <clipPath id={`${uid}-b`}><rect x={PL} y={mspY} width={W - PL - PR} height={Math.max(0, (H - PB) - mspY)} /></clipPath>
-          </defs>
-        )}
-        {band && (<>
-          <polygon points={band} fill="var(--ks-green-tint)" clipPath={`url(#${uid}-a)`} />
-          <polygon points={band} fill="var(--ks-saffron-tint)" clipPath={`url(#${uid}-b)`} />
-        </>)}
-        <line x1={PL} y1={H - PB} x2={W - PR} y2={H - PB} stroke="var(--ks-border-strong)" />
-        <text x={PL} y={y(max) - 3} fontSize="11" fill="var(--ks-ink-3)">₹{Math.round(max)}</text>
-        <text x={PL} y={y(min) + 11} fontSize="11" fill="var(--ks-ink-3)">₹{Math.round(min)}</text>
-        {mspY != null && (<>
-          <line x1={PL} y1={mspY} x2={W - PR} y2={mspY} stroke="var(--ks-orange)" strokeDasharray="5 4" />
-          <text x={W - PR} y={mspY - 3} fontSize="11" fill="var(--ks-orange-dark)" textAnchor="end">MSP ₹{Math.round(mspValue)}</text>
-        </>)}
-        <path d={path} fill="none" stroke="var(--ks-green)" strokeWidth="2.5" />
-        {pts.map(([px, py], i) => (
-          <circle key={i} cx={px} cy={py} r="3.5" fill="var(--ks-green-dark)">
-            <title>{series[i].date}: ₹{series[i].price}</title>
-          </circle>
-        ))}
-      </svg>
-      {/* Batch 10E — first and last date under the x-axis ends (HTML, so it stays readable when
-          the chart is scaled down on a phone). Insets match the plot area (PL/PR of the viewBox). */}
-      {(startLabel || endLabel) && (
-        <div data-trend-axis className="flex justify-between text-[12px] font-semibold" style={{ color: 'var(--ks-ink-3)', paddingLeft: `${(PL / W) * 100}%`, paddingRight: `${(PR / W) * 100}%` }}>
-          <span>{startLabel}</span>
-          {endLabel && endLabel !== startLabel && <span>{endLabel}</span>}
-        </div>
-      )}
-      <table className="sr-only">
-        <caption>{ariaLabel}</caption>
-        <thead><tr><th>{t('col_date')}</th><th>₹</th></tr></thead>
-        <tbody>{series.map((d) => <tr key={d.date}><td>{d.date}</td><td>{d.price}</td></tr>)}</tbody>
-      </table>
-    </div>
-  )
-}
+// The /msp trend chart moved to ./TrendChart.jsx in Batch 10F (dates on the dots, labels, table).
 
 // Horizontal two-bar comparison (season rainfall to-date vs normal).
 export function TwoBar({ aLabel, aValue, bLabel, bValue, unit }) {
