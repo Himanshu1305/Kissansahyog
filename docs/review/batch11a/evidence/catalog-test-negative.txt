@@ -1,0 +1,8 @@
+Batch 11A — the catalog test fails when an actor function is neither guarded nor allow-listed (staging, 2026-10-19)
+
+1. created throw-away  public.kstest_unguarded_11a(p_actor_id uuid)  SECURITY DEFINER plpgsql, no guard, no grants
+2. node --env-file=.env scripts/batch11a/catalog-test.mjs
+   - FAIL — every actor-based function is guarded or allow-listed (103 actor functions) (kstest_unguarded_11a(uuid))
+   exit with throw-away function: 1
+3. dropped it; catalog test again
+   exit after dropping it: 0

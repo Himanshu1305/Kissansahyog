@@ -1,0 +1,14 @@
+
+Running 8 tests using 1 worker
+
+  ok 1 [chromium] › e2e\listing-owner-10g.spec.js:62:3 › O1 hi 412: disable hides the listing from others, enable brings it back; buttons visible and ≥ 44 px (2.3s)
+  ok 2 [chromium] › e2e\listing-owner-10g.spec.js:94:3 › O2 hi 412: delete asks first (cancel keeps it), then removes row and photo for ever (3.3s)
+  ok 3 [chromium] › e2e\listing-owner-10g.spec.js:62:3 › O1 en 1280: disable hides the listing from others, enable brings it back; buttons visible and ≥ 44 px (1.8s)
+  ok 4 [chromium] › e2e\listing-owner-10g.spec.js:94:3 › O2 en 1280: delete asks first (cancel keeps it), then removes row and photo for ever (3.1s)
+  ok 5 [chromium] › e2e\listing-owner-10g.spec.js:127:1 › O3 admin-disabled: badge + reason, NO enable button, delete still offered; the seller RPC refuses enable (2.0s)
+  ok 6 [chromium] › e2e\listing-owner-10g.spec.js:154:1 › O4 own detail page: a disabled listing is still shown to its seller, with enable; delete from there returns to My Listings (2.0s)
+  ok 7 [chromium] › e2e\listing-owner-10g.spec.js:174:1 › O5 keyboard and screen reader: buttons in a labelled group; Enter opens the dialog, focus on "नहीं", Escape closes and returns focus (1.2s)
+  ok 8 [chromium] › e2e\listing-owner-10g.spec.js:195:1 › O6 a non-owner cannot disable or delete someone else's listing (RPC refuses; nothing changes) (303ms)
+[teardown] test data cleaned
+
+  8 passed (17.3s)

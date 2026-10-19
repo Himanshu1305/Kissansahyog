@@ -1,0 +1,11 @@
+
+Running 5 tests using 1 worker
+
+  ok 1 [chromium] › e2e\guide-10c-browse-etag.spec.js:31:3 › Batch 10C — Browse etag in the URL › etag: tap sets URL (1.1s)
+  ok 2 [chromium] › e2e\guide-10c-browse-etag.spec.js:51:3 › Batch 10C — Browse etag in the URL › etag: tap again clears (1.1s)
+  ok 3 [chromium] › e2e\guide-10c-browse-etag.spec.js:69:3 › Batch 10C — Browse etag in the URL › etag: deep link selects (2.0s)
+  ok 4 [chromium] › e2e\guide-10c-browse-etag.spec.js:86:3 › Batch 10C — Browse etag in the URL › etag: refresh keeps (1.4s)
+  ok 5 [chromium] › e2e\guide-10c-browse-etag.spec.js:98:3 › Batch 10C — Browse etag in the URL › etag: unknown ignored (853ms)
+[teardown] test data cleaned
+
+  5 passed (8.0s)
