@@ -6,6 +6,9 @@ test.setTimeout(60_000)
 const textIf = async (loc) => ((await loc.count()) ? (await loc.first().innerText()).replace(/\s+/g, ' ').trim() : '')
 
 async function openTrend(page, crop) {
+  // Batch 10F: on phone-sized viewports the trend section starts collapsed; open it as a visitor who
+  // opened it before would see it (remembered choice).
+  await page.addInitScript(() => { try { localStorage.setItem('ks_sections_v1', JSON.stringify({ 'msp:trend': 1 })) } catch { /* ignore */ } })
   await page.goto(`/msp/${crop}`)
   const sec = page.locator('[data-testid="msp-trend"]')
   await expect(sec).toBeVisible({ timeout: 20_000 })

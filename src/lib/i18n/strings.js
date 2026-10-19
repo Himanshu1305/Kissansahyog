@@ -2505,6 +2505,10 @@ export const strings = {
   // --- homepage hero (Batch 10F) --- static; the 10D live hero (persona tabs, phone example) was removed.
   home_hero_demo: { hi: '1 मिनट का डेमो देखें', en: 'Watch a 1-minute demo' },
 
+  // --- collapsible sections (Batch 10F) --- screen-reader label of the arrow next to a section heading.
+  section_expand: { hi: 'खोलें', en: 'Expand' },
+  section_collapse: { hi: 'बंद करें', en: 'Collapse' },
+
   // --- post form: optional extra information + mandatory dates (Batch 10E 3B/3C) ---
   extra_info_label: { hi: 'अतिरिक्त जानकारी (वैकल्पिक)', en: 'Additional information (optional)' },
   extra_info_ph: { hi: 'कोई और बात जो खरीदार या किसान को जाननी चाहिए', en: 'Anything else the buyer or farmer should know' },

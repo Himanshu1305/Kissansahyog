@@ -1,0 +1,44 @@
+
+Running 8 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase20_mela.spec.js:7:1 › public page: confirmed vs अपेक्षित clearly distinguished, filters + empty state work (1.7s)
+  ok 2 [chromium] › e2e\phase20_mela.spec.js:40:1 › a shared link to a merged-away Mela redirects to its active survivor (3e, no 404) (1.7s)
+  ok 3 [chromium] › e2e\phase20_mela.spec.js:60:1 › "दिलचस्पी है" requires login (anon → redirected to /login) (1.3s)
+  ok 4 [chromium] › e2e\phase20_mela.spec.js:67:1 › a user submission lands pending and is NOT visible on the public page until approved (1.9s)
+  ok 5 [chromium] › e2e\phase20_mela.spec.js:87:1 › corroboration badge only on multi-source cards; universal disclaimer on every card; action buttons stay usable at 375px (1.3s)
+  ok 6 [chromium] › e2e\phase20_mela.spec.js:116:1 › admin: rejected candidate appears in the candidates panel with a publish-anyway action (1.5s)
+  x  7 [chromium] › e2e\phase20_mela.spec.js:138:1 › Resources nav dropdown contains किसान मेला; homepage teaser renders (15.4s)
+  ok 8 [chromium] › e2e\phase20_mela.spec.js:162:1 › homepage hides the Mela section when no MP / neighbouring-state Mela qualifies (1.8s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase20_mela.spec.js:138:1 › Resources nav dropdown contains किसान मेला; homepage teaser renders 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByTestId('home-mela-card').first()
+    Expected: visible
+    Received: hidden
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 15000ms
+      - waiting for getByTestId('home-mela-card').first()
+        31 × locator resolved to <button type="button" data-testid="home-mela-card" class="flex flex-col text-left">…</button>
+           - unexpected value "hidden"
+
+
+      141 |   // hidden when none qualify (staging has MP / UP / Maharashtra / Gujarat Melas → cards).
+      142 |   const teaserCards = page.getByTestId('home-mela-card')
+    > 143 |   await expect(teaserCards.first()).toBeVisible({ timeout: 15000 })
+          |                                     ^
+      144 |   const places = await teaserCards.evaluateAll((cs) => cs.map((c) => (c.innerText.match(/📍[^\n]*/) || [''])[0]))
+      145 |   const region = /(Madhya Pradesh|Uttar Pradesh|Maharashtra|Chhattisgarh|Gujarat|Rajasthan)\s*$/
+      146 |   for (const p of places) expect(p, p).toMatch(region)
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase20_mela.spec.js:143:37
+
+    Error Context: test-results\phase20_mela-Resources-nav-46b6a-ेला-homepage-teaser-renders-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase20_mela.spec.js:138:1 › Resources nav dropdown contains किसान मेला; homepage teaser renders 
+  7 passed (28.5s)

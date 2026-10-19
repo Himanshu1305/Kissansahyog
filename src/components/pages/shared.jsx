@@ -7,6 +7,7 @@ import { faqQ, faqA, subscribeAlert } from '../../lib/pages/pagesApi'
 // Pure staleness classifier (unit-testable, no JSX) — re-exported so Msp.jsx's existing
 // import site keeps working.
 import { priceStaleness } from '../../lib/mandi/staleness'
+import CollapsibleSection from '../CollapsibleSection'
 export { priceStaleness }
 
 // JSON-LD injector
@@ -96,7 +97,19 @@ export function PriceCell({ price, date, bold }) {
 }
 
 // PageExplainer — soft-green card, Hindi-first (EN via global toggle).
-export function PageExplainer({ title, lines }) {
+// Batch 10F: `collapsible` = { page, id, primary } turns it into a CollapsibleSection (/msp, /mausam);
+// without it (every other page) it renders exactly as before.
+const EXPLAINER_BOX = { background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '14px' }
+export function PageExplainer({ title, lines, collapsible }) {
+  if (collapsible) {
+    return (
+      <CollapsibleSection {...collapsible} title={title} h2Class="text-[18px] font-bold" style={EXPLAINER_BOX}>
+        <div className="space-y-1 text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>
+          {lines.map((l, i) => <p key={i}>{l}</p>)}
+        </div>
+      </CollapsibleSection>
+    )
+  }
   return (
     <section style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '14px' }}>
       <h2 className="text-[18px] font-bold" style={{ color: 'var(--ks-ink)' }}>{title}</h2>
@@ -111,16 +124,14 @@ export function PageExplainer({ title, lines }) {
 // from LocationProvider. Re-exported here so the pages that import it from this file keep working.
 export { default as LocationControl } from '../location/LocationControl'
 
-export function FaqAccordion({ faqs }) {
+// Batch 10F: `collapsible` = { page, id, primary } wraps the whole FAQ in a CollapsibleSection.
+export function FaqAccordion({ faqs, collapsible }) {
   const { t, lang } = useLang()
   const [open, setOpen] = useState(null)
   if (!faqs?.length) return null
   const ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: faqQ(f, lang), acceptedAnswer: { '@type': 'Answer', text: faqA(f, lang) } })) }
-  return (
-    <section>
-      <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{t('scheme_faqs')}</h2>
-      <JsonLd data={ld} />
-      <div className="space-y-2">
+  const list = (
+    <div className="space-y-2">
         {faqs.map((f, i) => (
           <div key={f.id || i} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)' }}>
             <button type="button" onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-2 p-3 text-left">
@@ -130,7 +141,21 @@ export function FaqAccordion({ faqs }) {
             {open === i && <p className="px-3 pb-3 text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>{faqA(f, lang)}</p>}
           </div>
         ))}
-      </div>
+    </div>
+  )
+  if (collapsible) {
+    return (
+      <CollapsibleSection {...collapsible} title={t('scheme_faqs')}>
+        <JsonLd data={ld} />
+        {list}
+      </CollapsibleSection>
+    )
+  }
+  return (
+    <section>
+      <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{t('scheme_faqs')}</h2>
+      <JsonLd data={ld} />
+      {list}
     </section>
   )
 }

@@ -21,6 +21,7 @@ import Seo from '../components/layout/Seo'
 import { PageShell } from '../components/layout'
 import OfflineStamp from '../components/OfflineStamp'
 import OfflineNotice from '../components/OfflineNotice'
+import CollapsibleSection from '../components/CollapsibleSection'
 import { useOfflineInfo } from '../lib/offline/useOffline'
 
 // Batch 8B — resources behind the price table (app offline stamp / notice).
@@ -220,8 +221,6 @@ export default function Msp() {
   const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: `${cropName(crop, 'en')} mandi prices — Sagar Division, MP`, description: `Daily modal mandi price for ${cropName(crop, 'en')} in Sagar Division (Sagar Sambhag) vs MSP.`, temporalCoverage: history.length ? `${history[0].date}/${history[history.length - 1].date}` : undefined, url: 'https://kissansahyog.com/msp/' + slug, creator: { '@type': 'Organization', name: 'Agmarknet / data.gov.in' } }
   const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${cropName(crop, lang)} ${t('nav_mandi')} — ${t('msp_sagar')}`, ...(today?.date ? { dateModified: today.date } : {}) }
 
-  const H2 = ({ children }) => <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{children}</h2>
-
   return (
     <PageShell width="wide" ready={today !== undefined}>
       <Seo
@@ -236,16 +235,17 @@ export default function Msp() {
         <BackButton fallback={cropParam ? '/msp' : '/'} />
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{cropName(crop, lang)} {t('msp_h1')}</h1>
 
-        {/* 1. explainer */}
-        <PageExplainer title={t('page_explainer_title')} lines={[t('msp_explain_1'), t('msp_explain_2'), t('msp_explain_3'), t('msp_explain_4')]} />
+        {/* 1. explainer — Batch 10F: every section below is a CollapsibleSection (page 'msp'). The first
+            three (explainer, all crops, today's prices = the main data table) always start open; the
+            rest start collapsed on phones (docs/review/batch10f/evidence/collapsible-defaults.md). */}
+        <PageExplainer title={t('page_explainer_title')} lines={[t('msp_explain_1'), t('msp_explain_2'), t('msp_explain_3'), t('msp_explain_4')]} collapsible={{ page: 'msp', id: 'explainer', primary: true }} />
 
         {/* Shared location control (drives the nearby-mandi distance ranking below). */}
         <LocationControl />
 
         {/* 3a. all-crops snapshot table */}
         {snapshotRows && (
-          <section>
-            <H2>{t('msp_snapshot_h')}</H2>
+          <CollapsibleSection page="msp" id="snapshot" primary title={t('msp_snapshot_h')}>
             <div className="overflow-hidden rounded-lg" style={{ border: '1px solid var(--ks-border)' }}>
               <table className="w-full text-[14px]">
                 <thead><tr style={{ background: 'var(--ks-bg-soft)' }}><th className="p-2 text-left">{t('col_crop')}</th><th className="p-2 text-right">{t('col_modal')}</th><th className="p-2 text-right">MSP</th><th className="p-2 text-right"> </th></tr></thead>
@@ -260,7 +260,7 @@ export default function Msp() {
                 </tbody>
               </table>
             </div>
-          </section>
+          </CollapsibleSection>
         )}
 
         {/* View toggle (0026 Phase 2): फसल अनुसार / मंडी तुलना */}
@@ -288,18 +288,19 @@ export default function Msp() {
 
         {/* मंडी तुलना — up to 3 mandis compared across all commodities (0026 Phase 2) */}
         {view === 'compare' && (
+          <CollapsibleSection page="msp" id="compare" primary title={t('msp_view_compare')}>
           <MandiCompare
             t={t} lang={lang} rs={rs}
             marketsDist={marketsDist} selectedMandis={selectedMandis} toggleMandi={toggleMandi}
             effectiveMandis={effectiveMandis} compareData={compareData} mspAll={mspAll}
             snapshot={snapshot} pickWarn={pickWarn} usingAuto={!selectedMandis.length}
           />
+          </CollapsibleSection>
         )}
 
         {/* 3. today's prices vs MSP — ranked by real distance (Phase 3a) */}
         {view === 'crop' && (
-        <section>
-          <H2>{t('msp_today_h')} {today?.date && <span className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('msp_last_price')}: {today.date})</span>}</H2>
+        <CollapsibleSection page="msp" id="today" primary title={t('msp_today_h')} after={today?.date && <span className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('msp_last_price')}: {today.date})</span>}>
 
           {/* Phase 3b — free mandi search (distance-unrestricted). */}
           <div className="mb-3">
@@ -354,13 +355,12 @@ export default function Msp() {
           {today && today.rows.length === 1 && <p className="mt-2 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_one_mandi').replace('{m}', today.rows[0].market)}</p>}
           {!crop.msp_en && <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_no_msp_crop')}</p>}
           {crop.msp_en && msp && <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>MSP {new Date().getFullYear()}: {rs(msp)}/{t('qtl')}</p>}
-        </section>
+        </CollapsibleSection>
         )}
 
         {/* 4. trend chart */}
         {view === 'crop' && crop.msp_en && (
-          <section data-testid="msp-trend">
-            <H2>{t('msp_trend_h')}</H2>
+          <CollapsibleSection page="msp" id="trend" testId="msp-trend" title={t('msp_trend_h')}>
             {/* Batch 10E — two-part tabs: "30 दिन" + the real date range of the prices in that window. */}
             <div className="mb-3 grid grid-cols-3 gap-1.5 sm:max-w-[480px]" role="group" aria-label={t('msp_trend_h')}>{[7, 30, 90].map((d) => { const w = trendWins?.[d]; const on = trendDays === d; return (
               <button key={d} type="button" data-trend-tab={d} aria-pressed={on} onClick={() => setTrendDays(d)} className="flex min-h-[44px] min-w-0 flex-col items-center justify-center rounded-lg px-1 py-1 text-center leading-tight" style={on ? { background: 'var(--ks-green)', color: '#fff' } : { background: 'var(--ks-bg-soft)', color: 'var(--ks-ink-2)' }}>
@@ -380,13 +380,12 @@ export default function Msp() {
               {trend90?.scope === 'all' && history.length > 0 && <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_trend_scope_all')}</p>}
               {history.length > 0 && <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('data_from')} {history[0].date}</p>}
             </div>
-          </section>
+          </CollapsibleSection>
         )}
 
         {/* 5. wait-vs-sell calculator */}
         {view === 'crop' && crop.msp_en && (
-          <section style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
-            <H2>{t('msp_calc_h')}</H2>
+          <CollapsibleSection page="msp" id="calc" title={t('msp_calc_h')} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
             <div className="grid gap-3 sm:grid-cols-2">
               <label className="block"><span className="mb-1 block text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_calc_qty')}</span>
                 <input inputMode="numeric" value={qty} onChange={(e) => setQty(Number(e.target.value.replace(/\D/g, '')) || 0)} className="w-full rounded-lg border px-3 py-2 text-[16px]" style={{ borderColor: 'var(--ks-border-strong)' }} /></label>
@@ -407,12 +406,11 @@ export default function Msp() {
             <p className="mt-3 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_calc_trend_note').replace('{d}', trendDays)}</p>
             <p className="mt-1 text-[13px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_calc_disclaimer')}</p>
             <button type="button" onClick={() => navigate('/browse?cat=warehouse')} className="mt-2 rounded-lg px-4 py-2 text-[14px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>{t('msp_calc_godown')} →</button>
-          </section>
+          </CollapsibleSection>
         )}
 
         {/* 6. procurement centres */}
-        <section>
-          <H2>{t('msp_procurement_h')}</H2>
+        <CollapsibleSection page="msp" id="procurement" title={t('msp_procurement_h')}>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {procurement.map((p) => (
               <div key={p.id} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
@@ -424,11 +422,10 @@ export default function Msp() {
             ))}
           </div>
           <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_euparjan_steps')}</p>
-        </section>
+        </CollapsibleSection>
 
         {/* 7. sold below MSP routes */}
-        <section>
-          <H2>{t('msp_below_h')}</H2>
+        <CollapsibleSection page="msp" id="below" title={t('msp_below_h')}>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button type="button" onClick={() => navigate('/yojana/bhavantar')} className="text-left" style={{ background: 'var(--ks-green-tint)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
               <div className="text-[16px] font-bold" style={{ color: 'var(--ks-green-dark)' }}>{t('msp_bhavantar_t')}</div>
@@ -442,14 +439,13 @@ export default function Msp() {
             </button>
           </div>
           <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_complaint')}</p>
-        </section>
+        </CollapsibleSection>
 
         {/* 8. past years */}
         {monthBars && (
-          <section>
-            <H2>{t('msp_pastyears_h')}</H2>
+          <CollapsibleSection page="msp" id="pastyears" title={t('msp_pastyears_h')}>
             <MonthBars months={monthBars} ariaLabel={t('msp_pastyears_h')} />
-          </section>
+          </CollapsibleSection>
         )}
 
         {/* 10. share */}
@@ -459,7 +455,7 @@ export default function Msp() {
         <DailyUpdateSignup sourcePage="msp" heading={t('msp_signup_h')} />
 
         {/* 9. FAQ */}
-        <FaqAccordion faqs={faqs} />
+        <FaqAccordion faqs={faqs} collapsible={{ page: 'msp', id: 'faq' }} />
 
         <WhatsAppJoin variant="box" src="msp" />
         <RelatedBoxes page="msp" />

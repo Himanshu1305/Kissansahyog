@@ -1,0 +1,11 @@
+
+Running 5 tests using 1 worker
+
+  ok 1 [chromium] › e2e\post-10e.spec.js:47:1 › equipment OFFER (hi, 360): date is mandatory, आज fills it; phone number in extra info blocked; text saved and shown with its line breaks; card shows the date line (4.0s)
+  ok 2 [chromium] › e2e\post-10e.spec.js:123:1 › labor REQUIREMENT (hi, 320): कब चाहिए is mandatory; past start and end-before-start refused; कल works; dates shown (2.4s)
+  ok 3 [chromium] › e2e\post-10e.spec.js:166:1 › land OFFER (en, 412): English labels, Day-after + Pick-a-date + No-end-date; saved without an end date; empty extra info not stored (1.8s)
+  ok 4 [chromium] › e2e\post-10e.spec.js:203:1 › bhusa OFFER is out of scope: no date block, no mandatory date; the extra-info box is there (1.1s)
+  ok 5 [chromium] › e2e\post-10e.spec.js:223:1 › drone didi REQUIREMENT (hi, 360): कब चाहिए replaces the old optional preferred date; saved as available_from (2.1s)
+[teardown] test data cleaned
+
+  5 passed (12.8s)

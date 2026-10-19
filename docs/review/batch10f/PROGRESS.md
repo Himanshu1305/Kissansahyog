@@ -26,3 +26,14 @@
 - **Tests: RAN-PASSED** — new `e2e/home-10f.spec.js` 19/19 (replaces the 32 10D hero tests); homepage-related specs on the Phase 1 build: guide-10c 34/34 (after a test-only fix, DECISIONS 19), guide-10c-browse-etag 5/5, phase20_mela 8/8, phase12 5/5, phase17 4/4, batch1 5/5, phase13 5/5, phase10_location_pwa 7/7, phase10_downstream 8/8. Unit 75/75.
 - Screens looked at: `evidence/screens/phase1-hero-hi-360.png`, `phase1-hero-en-1280.png` (+ full pages `phase1-home-*`).
 - HUMAN-REVIEW: first-screen fit at 360 × 640 (DECISIONS 10); desktop farmer photo removed (DECISIONS 9).
+
+## Phase 2 — collapsible sections — DONE
+- One component `src/components/CollapsibleSection.jsx` (native `<details>/<summary>`, chevron right after the `<h2>` text, ≥ 44 px row, hand cursor, 10E glow, focus ring, `aria-expanded`, SR "खोलें/बंद करें", remembered per page+section in `localStorage` with try/catch, `#hash` opens + scrolls, print opens all). CSS in `src/index.css`. Applied to `/msp` (+ crop pages), `/mausam` and the homepage below the hero; `PageExplainer` / `FaqAccordion` got an opt-in prop (other pages unchanged). Defaults: `evidence/collapsible-defaults.md` (HUMAN-REVIEW). DECISIONS 21–31.
+- Also: prerender readiness for `/mausam` (FAQ) and `/yojana` (scheme list) — DECISIONS 32; ship tooling `--min-ratio` + pre-deploy size check prepared (DECISIONS 33, used in Phase 4).
+- **Build: RAN-PASSED** 268/268, localhost gate OK, staging guard OK.
+- **Chunks:** main JS **27,528 B gz** (Phase 0 27,569: −41); main CSS 13,551 gz (−2,376); Homepage 9,400; Msp 7,914; Mausam 3,631; shared 5,196 (`evidence/phase2/chunk-sizes.txt`).
+- **Page height at 412 px (hi):** `/msp/gehun` 6,595 → **4,455 px (−2,140)**; `/` 8,057 (Phase 1) → **5,412 px (−2,645)**.
+- **Perf interleaved 5×5: RAN-PASSED** — LCP 2,912 → **2,732 ms**, CLS 0.0117 → **0.0106**, TBT 186 → 165 ms.
+- **Text diff: RAN-PASSED** — `/`: only the removed hero/band/facts lines (+ "बंद करें" ×9 and listing data); `/msp` + 10 crop pages and `/mausam`: only "बंद करें" added; `/yojana` (+ central, mp): spinner text replaced by the real scheme list (readiness fix). Nothing else lost (`evidence/phase2/text-diff.txt`).
+- **E2E: RAN-PASSED** — full suite on the first Phase 2 build: 170/175 (`evidence/phase2/e2e/`); the failures were msp-trend-10e ×3 and phase20_mela ×1 (sections now collapsed on phone viewports → tests open them as a remembered choice, test-only) and the known phase19. Re-run on the final Phase 2 build: collapsible-10f **10/10**, msp-trend-10e 4/4, phase20_mela 8/8, phase12 5/5, home-10f 19/19, phase19 5/6 (known environment failure). `evidence/phase2/e2e-rerun/`.
+- Screens: `evidence/screens/phase2-*.png` (looked at: collapsed rows on /msp and home, today section).

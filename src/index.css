@@ -161,3 +161,42 @@ html.native-app .ks-overlay {
   .ks-cat-tile:focus-visible,
   .ks-cat-tile:active { transform: none; }
 }
+
+/* --- Batch 10F: CollapsibleSection (src/components/CollapsibleSection.jsx) — native <details>.
+   The chevron sits right after the heading text and turns when open; the whole summary row is the
+   tap target (≥ 44 px), with the 10E hover glow (fine pointer only), a visible focus ring and a press
+   state. No height animation; under reduced motion nothing moves at all. */
+.ks-cs-wrap { position: relative; }
+.ks-cs > summary { list-style: none; }
+.ks-cs > summary::-webkit-details-marker { display: none; }
+.ks-cs > summary::marker { content: ''; }
+.ks-cs-sum {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px;
+  min-height: 44px; cursor: pointer; border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 180ms ease;
+}
+.ks-cs-has-action > .ks-cs > .ks-cs-sum { padding-right: 7.5rem; }
+.ks-cs-h { margin: 0; }
+.ks-cs-chev {
+  display: inline-flex; align-items: center; justify-content: center; vertical-align: middle;
+  width: 30px; height: 30px; margin-left: 8px; border-radius: 999px;
+  background: var(--ks-green-tint); color: var(--ks-green-dark); border: 1.5px solid var(--ks-green);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.ks-cs[open] > .ks-cs-sum .ks-cs-chev { transform: rotate(180deg); }
+.ks-cs-body { margin-top: 8px; }
+.ks-cs-action { position: absolute; top: 0; right: 0; min-height: 44px; display: flex; align-items: center; }
+@media (hover: hover) and (pointer: fine) {
+  .ks-cs-sum:hover { background-color: var(--ks-green-tint); }
+  .ks-cs-sum:hover .ks-cs-chev { box-shadow: 0 0 0 2px var(--ks-saffron), 0 6px 16px rgba(36, 115, 63, .45); }
+}
+.ks-cs-sum:focus-visible { outline: 3px solid var(--ks-saffron); outline-offset: 2px; }
+.ks-cs-sum:focus-visible .ks-cs-chev { box-shadow: 0 0 0 2px var(--ks-saffron), 0 6px 16px rgba(36, 115, 63, .45); }
+.ks-cs-sum:active .ks-cs-chev { box-shadow: 0 0 0 2px var(--ks-green); }
+@media (prefers-reduced-motion: reduce) {
+  .ks-cs-sum, .ks-cs-chev { transition: none; }
+}
+@media print {
+  .ks-cs-chev { display: none; }
+}

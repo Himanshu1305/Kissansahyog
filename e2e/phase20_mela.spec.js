@@ -136,6 +136,9 @@ test('admin: rejected candidate appears in the candidates panel with a publish-a
 })
 
 test('Resources nav dropdown contains किसान मेला; homepage teaser renders', async ({ page }) => {
+  // Batch 10F: on phone-sized viewports the homepage Mela section starts collapsed; open it as a visitor
+  // who opened it before would see it (remembered choice).
+  await page.addInitScript(() => { try { localStorage.setItem('ks_sections_v1', JSON.stringify({ 'home:mela': 1 })) } catch { /* ignore */ } })
   await page.goto('/')
   // Homepage teaser (Batch 10E 5.1): only MP + neighbouring states, MP first; the whole section is
   // hidden when none qualify (staging has MP / UP / Maharashtra / Gujarat Melas → cards).

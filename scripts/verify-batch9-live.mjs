@@ -6,6 +6,7 @@
 //        --checks <comma list> [--snapshot <prod-before.json>] [--wait-min <n>]
 //        [--expect-main <index-xxxx.js>] [--allow-post] [--data <staging-test-data.json>]
 //        [--max-growth <root|page=ratio,…>]   (compare only: per-page upper size limit, opt-in)
+//        [--min-ratio <root|page=ratio,…>]    (compare only: per-page lower size limit, opt-in; Batch 10F)
 //
 // Checks (each one is a gate; exit code 0 only when every requested gate passed):
 //   pages     (4.4a) / and 10 key pages: HTTP 200, rendered in real Chromium, h1 present, no
@@ -49,6 +50,11 @@ const DATA_FILE = arg('--data', null)
 // upper limit changes; the 0.85 floor, title/h1 and ErrorBoundary checks stay. Without the option
 // every page keeps the limits below.
 const MAX_GROWTH = Object.fromEntries(String(arg('--max-growth', '')).split(',').map((s) => s.trim()).filter(Boolean).map((kv) => { const i = kv.lastIndexOf('='); const k = kv.slice(0, i).replace(/^\/+/, ''); return [k === 'root' || k === '' ? '/' : '/' + k, Number(kv.slice(i + 1))] }).filter(([, v]) => v > 1))
+// --min-ratio 'root=0.70,browse=0.70' (Batch 10F): opt-in per-page LOWER size limit for 'compare', for a
+// ship that deliberately makes a page smaller (10F removed the 10D homepage hero: about −17 % of the
+// homepage HTML). Only the 0.85 floor of those pages changes (never below 0.5); title/h1, ErrorBoundary
+// and the upper limit stay. Without the option every page keeps the 0.85 floor.
+const MIN_RATIO = Object.fromEntries(String(arg('--min-ratio', '')).split(',').map((s) => s.trim()).filter(Boolean).map((kv) => { const i = kv.lastIndexOf('='); const k = kv.slice(0, i).replace(/^\/+/, ''); return [k === 'root' || k === '' ? '/' : '/' + k, Number(kv.slice(i + 1))] }).filter(([, v]) => v >= 0.5 && v < 0.85))
 if (!/^https:\/\//.test(BASE)) { console.error('--base https://… is required'); process.exit(2) }
 const HOST = new URL(BASE).host
 const PROD_HOSTS = ['kissansahyog.com', 'www.kissansahyog.com', 'kissansahyog-prod.pages.dev']
@@ -344,7 +350,8 @@ async function compare() {
     const faqAdded = n.faq && b.faq !== true
     const shipGrowth = MAX_GROWTH[p]
     const hi = shipGrowth ? Math.max(shipGrowth, dataPage ? 4.0 : faqAdded ? 1.6 : 1.15) : dataPage ? 4.0 : faqAdded ? 1.6 : 1.15
-    c.check(`${p}: 200, title/h1 unchanged, size within -15%/+${Math.round((hi - 1) * 100)}%${shipGrowth ? ' (--max-growth for this ship)' : dataPage ? ' (data page, snapshot taken before data loaded)' : faqAdded ? ' (FAQ block added)' : ''}, no ErrorBoundary`, n.status === 200 && n.title === b.title && n.h1 === b.h1 && ratio >= 0.85 && ratio <= hi && !n.errorBoundary, { status: n.status, title: n.title === b.title ? 'same' : [b.title, n.title], h1: n.h1 === b.h1 ? 'same' : [b.h1, n.h1], sizeRatio: Number(ratio.toFixed(3)), faqBefore: b.faq ?? 'not recorded', faqNow: n.faq })
+    const lo = MIN_RATIO[p] ?? 0.85
+    c.check(`${p}: 200, title/h1 unchanged, size within -${Math.round((1 - lo) * 100)}%/+${Math.round((hi - 1) * 100)}%${shipGrowth ? ' (--max-growth for this ship)' : dataPage ? ' (data page, snapshot taken before data loaded)' : faqAdded ? ' (FAQ block added)' : ''}${MIN_RATIO[p] ? ' (--min-ratio for this ship)' : ''}, no ErrorBoundary`, n.status === 200 && n.title === b.title && n.h1 === b.h1 && ratio >= lo && ratio <= hi && !n.errorBoundary, { status: n.status, title: n.title === b.title ? 'same' : [b.title, n.title], h1: n.h1 === b.h1 ? 'same' : [b.h1, n.h1], sizeRatio: Number(ratio.toFixed(3)), faqBefore: b.faq ?? 'not recorded', faqNow: n.faq })
   }
   c.check('robots.txt unchanged', now.files['/robots.txt'].sha256 === before.files['/robots.txt'].sha256 && now.files['/robots.txt'].status === 200)
   const parser = new DOMParser({ onError: () => { throw new Error('xml') } })

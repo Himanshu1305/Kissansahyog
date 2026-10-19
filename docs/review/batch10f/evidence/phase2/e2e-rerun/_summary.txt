@@ -1,0 +1,6 @@
+collapsible-10f 10 0
+msp-trend-10e 4 0
+phase20_mela 8 0
+phase19_voice_mandi 5 1
+phase12_weather_split 5 0
+home-10f 19 0

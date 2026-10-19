@@ -1,0 +1,119 @@
+
+Running 4 tests using 1 worker
+
+  x  1 [chromium] › e2e\msp-trend-10e.spec.js:27:1 › wheat: 7 / 30 / 90 show different real ranges and more points as the window grows (1.0m)
+  x  2 [chromium] › e2e\msp-trend-10e.spec.js:42:1 › paddy (thin crop): honest "N दिन का भाव" note, never the full period (1.0m)
+  x  3 [chromium] › e2e\msp-trend-10e.spec.js:56:1 › 320 px: tabs fit, no horizontal overflow, tap targets ≥ 44 px (1.0m)
+  ok 4 [chromium] › e2e\msp-trend-10e.spec.js:70:1 › mandi search lists markets late in the alphabet (list is no longer cut at 1,000 rows) (1.8s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\msp-trend-10e.spec.js:27:1 › wheat: 7 / 30 / 90 show different real ranges and more points as the window grows 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="msp-trend"]').locator('[data-trend-tab="7"]')
+        - locator resolved to <button type="button" data-trend-tab="7" aria-pressed="false" class="flex min-h-[44px] min-w-0 flex-col items-center justify-center rounded-lg px-1 py-1 text-center leading-tight">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        114 × waiting for element to be visible, enabled and stable
+            - element is not visible
+          - retrying click action
+            - waiting 500ms
+
+
+      16 |
+      17 | async function readTab(sec, d) {
+    > 18 |   await sec.locator(`[data-trend-tab="${d}"]`).click()
+         |                                                ^
+      19 |   await expect(sec.locator(`[data-trend-tab="${d}"]`)).toHaveAttribute('aria-pressed', 'true')
+      20 |   const range = (await sec.locator(`[data-trend-tab="${d}"] [data-trend-range]`).innerText()).trim()
+      21 |   const points = await sec.locator('svg[role="img"] circle').count()
+        at readTab (C:\Users\usdvi\projects\Kissansahyog\e2e\msp-trend-10e.spec.js:18:48)
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\msp-trend-10e.spec.js:30:45
+
+    Error Context: test-results\msp-trend-10e-wheat-7-30-9-98e42--points-as-the-window-grows-chromium\error-context.md
+
+  2) [chromium] › e2e\msp-trend-10e.spec.js:42:1 › paddy (thin crop): honest "N दिन का भाव" note, never the full period 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="msp-trend"]').locator('[data-trend-tab="90"]')
+        - locator resolved to <button type="button" data-trend-tab="90" aria-pressed="false" class="flex min-h-[44px] min-w-0 flex-col items-center justify-center rounded-lg px-1 py-1 text-center leading-tight">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        114 × waiting for element to be visible, enabled and stable
+            - element is not visible
+          - retrying click action
+            - waiting 500ms
+
+
+      16 |
+      17 | async function readTab(sec, d) {
+    > 18 |   await sec.locator(`[data-trend-tab="${d}"]`).click()
+         |                                                ^
+      19 |   await expect(sec.locator(`[data-trend-tab="${d}"]`)).toHaveAttribute('aria-pressed', 'true')
+      20 |   const range = (await sec.locator(`[data-trend-tab="${d}"] [data-trend-range]`).innerText()).trim()
+      21 |   const points = await sec.locator('svg[role="img"] circle').count()
+        at readTab (C:\Users\usdvi\projects\Kissansahyog\e2e\msp-trend-10e.spec.js:18:48)
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\msp-trend-10e.spec.js:44:21
+
+    Error Context: test-results\msp-trend-10e-paddy-thin-c-b7391--note-never-the-full-period-chromium\error-context.md
+
+  3) [chromium] › e2e\msp-trend-10e.spec.js:56:1 › 320 px: tabs fit, no horizontal overflow, tap targets ≥ 44 px 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="msp-trend"]').locator('[data-trend-tab="90"]')
+        - locator resolved to <button type="button" data-trend-tab="90" aria-pressed="false" class="flex min-h-[44px] min-w-0 flex-col items-center justify-center rounded-lg px-1 py-1 text-center leading-tight">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        113 × waiting for element to be visible, enabled and stable
+            - element is not visible
+          - retrying click action
+            - waiting 500ms
+
+
+      57 | })
+      58 |
+    > 59 | test('320 px: tabs fit, no horizontal overflow, tap targets ≥ 44 px', async ({ page }) => {
+         |                                              ^
+      60 |   await page.setViewportSize({ width: 320, height: 700 })
+      61 |   const sec = await openTrend(page, 'gehun')
+      62 |   await sec.locator('[data-trend-tab="90"]').click()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\msp-trend-10e.spec.js:59:46
+
+    Error Context: test-results\msp-trend-10e-320-px-tabs--9f823-verflow-tap-targets-≥-44-px-chromium\error-context.md
+
+  3 failed
+    [chromium] › e2e\msp-trend-10e.spec.js:27:1 › wheat: 7 / 30 / 90 show different real ranges and more points as the window grows 
+    [chromium] › e2e\msp-trend-10e.spec.js:42:1 › paddy (thin crop): honest "N दिन का भाव" note, never the full period 
+    [chromium] › e2e\msp-trend-10e.spec.js:56:1 › 320 px: tabs fit, no horizontal overflow, tap targets ≥ 44 px 
+  1 passed (3.1m)

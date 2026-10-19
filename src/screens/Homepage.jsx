@@ -35,8 +35,17 @@ import { melaStatus } from '../lib/mela/melaStatus'
 import SearchBar from '../components/SearchBar'
 import { founder } from '../content/founder'
 import OfflineStamp from '../components/OfflineStamp'
+import CollapsibleSection from '../components/CollapsibleSection'
 
 const IMG = (f) => `/images/home/${f}`
+
+// Batch 10F — the homepage sections below the hero are CollapsibleSections (page 'home'). The first
+// three (search, near you, listings) always start open; the category tiles, the hero and the ticker are
+// never collapsible; the rest start collapsed on phones (docs/review/batch10f/evidence/collapsible-defaults.md).
+const H2_HOME = 'text-[24px] font-bold leading-tight md:text-[28px]'
+function ViewAll({ label, onClick }) {
+  return <button type="button" onClick={onClick} className="min-h-[44px] shrink-0 px-1 text-[14px] font-bold" style={{ color: 'var(--ks-green)' }}>{label} →</button>
+}
 
 // Category tiles (Phase 4 §5) — image + label/sublabel + browse target.
 const CATEGORY_TILES = [
@@ -250,12 +259,13 @@ export default function Homepage() {
       />
 
       <Section bg="var(--ks-bg-soft)">
-        <h2 className="text-[22px] font-extrabold md:text-[26px]" style={{ color: 'var(--ks-ink)' }}>{t('home_search_title')}</h2>
-        <p className="mt-1 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('home_search_subtitle')}</p>
+        <CollapsibleSection page="home" id="search" primary h2Class="text-[22px] font-extrabold md:text-[26px]" title={t('home_search_title')}>
+        <p className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('home_search_subtitle')}</p>
         <div className="mt-3"><SearchBar variant="hero" /></div>
         <div className="mt-3 flex flex-wrap gap-2">
           {['home_search_chip_mandi', 'home_search_chip_scheme', 'home_search_chip_machine', 'home_search_chip_place'].map((key) => <button key={key} type="button" onClick={() => navigate(`/search?q=${encodeURIComponent(t(key))}`)} className="rounded-full border border-[var(--ks-border-strong)] bg-white px-3 py-1.5 text-sm font-bold text-[var(--ks-green-dark)]">{t(key)}</button>)}
         </div>
+        </CollapsibleSection>
       </Section>
 
       {/* Pest/disease "recently reported" banner (Phase 6) — only when a group qualifies */}
@@ -277,9 +287,7 @@ export default function Homepage() {
 
       {/* 4 — आपके आसपास (counts, 30km) */}
       <Section bg="var(--ks-bg-soft)">
-        <h2 className="mb-2 text-[24px] font-bold leading-tight md:text-[28px]" style={{ color: 'var(--ks-ink)' }}>
-          {t('near_title')} <span className="text-[16px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('near_km')})</span>
-        </h2>
+        <CollapsibleSection page="home" id="near" primary h2Class={H2_HOME} title={<>{t('near_title')} <span className="text-[16px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('near_km')})</span></>}>
         <div id="home-location" className="mb-3"><LocationControl /></div>
         {/* Counts only once a location is set — until then the prompt card above stands in for them. */}
         {location && (
@@ -289,9 +297,10 @@ export default function Homepage() {
             ))}
           </div>
         )}
+        </CollapsibleSection>
       </Section>
 
-      {/* 5 — कृषि बाज़ार की श्रेणियाँ */}
+      {/* 5 — कृषि बाज़ार की श्रेणियाँ (never collapsible) */}
       <Section>
         <SectionHeader title={t('cats_title')} />
         {/* No blank cell at any width: 2 columns (an odd last tile spans the row), 3, then 5. */}
@@ -304,7 +313,7 @@ export default function Homepage() {
 
       {/* 6 — आपके आसपास की ताज़ा लिस्टिंग */}
       <Section>
-        <SectionHeader title={t(location ? 'listings_near_title' : 'listings_latest_title')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
+        <CollapsibleSection page="home" id="listings" primary h2Class={H2_HOME} title={t(location ? 'listings_near_title' : 'listings_latest_title')} action={<ViewAll label={t('view_all')} onClick={() => goBrowse()} />}>
         {listings.length > 0 ? (
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {listings.filter((l) => getCategorySafe(l.category)).map((l) => {
@@ -334,11 +343,12 @@ export default function Homepage() {
             <button type="button" onClick={() => navigate(isLoggedIn ? '/post' : '/signup')} className="mt-3 rounded-lg px-4 py-2 text-[15px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>{t('add_listing_cta')}</button>
           </div>
         )}
+        </CollapsibleSection>
       </Section>
 
       {/* 7 — आज की 2 मिनट की वीडियो सलाह */}
       <Section bg="var(--ks-bg-soft)">
-        <SectionHeader title={t('videos_title')} linkLabel={t('view_all')} onLink={() => navigate('/videos')} />
+        <CollapsibleSection page="home" id="videos" h2Class={H2_HOME} title={t('videos_title')} action={<ViewAll label={t('view_all')} onClick={() => navigate('/videos')} />}>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {videos.map((v) => (
             <a key={v.id} href={videoWatchUrl(v)} target="_blank" rel="noopener noreferrer" className="flex flex-col overflow-hidden" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)' }}>
@@ -358,11 +368,12 @@ export default function Homepage() {
             </a>
           ))}
         </div>
+        </CollapsibleSection>
       </Section>
 
       {/* 8 — किसान सवाल */}
       <Section>
-        <SectionHeader title={t('qa_home_title')} linkLabel={t('qa_all_link')} onLink={() => navigate('/sawaal')} />
+        <CollapsibleSection page="home" id="qa" h2Class={H2_HOME} title={t('qa_home_title')} action={<ViewAll label={t('qa_all_link')} onClick={() => navigate('/sawaal')} />}>
         {sawaal.length > 0 && (
           <div className="grid items-stretch gap-3 md:grid-cols-2 lg:grid-cols-3">
             {sawaal.map((q) => {
@@ -380,6 +391,7 @@ export default function Homepage() {
         <div className="mt-3">
           <Button variant="primary" onClick={() => navigate('/sawaal?ask=1&photo=1')}>📷 {t('qa_photo_ask')}</Button>
         </div>
+        </CollapsibleSection>
       </Section>
 
       {/* Kisan Mela teaser (Batch 10E 5.1): only Madhya Pradesh + neighbouring states (UP, Maharashtra,
@@ -387,7 +399,7 @@ export default function Homepage() {
           every Mela stays on /kisan-mela. */}
       {melas?.length > 0 && (
         <Section>
-          <SectionHeader title={t('mela_home_title')} linkLabel={t('mela_home_all')} onLink={() => navigate('/kisan-mela')} />
+          <CollapsibleSection page="home" id="mela" h2Class={H2_HOME} title={t('mela_home_title')} action={<ViewAll label={t('mela_home_all')} onClick={() => navigate('/kisan-mela')} />}>
           <div className="grid gap-3 md:grid-cols-3">
             {melas.map((m) => (
               <button key={m.id} type="button" data-testid="home-mela-card" onClick={() => navigate('/kisan-mela')} className="flex flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
@@ -400,12 +412,13 @@ export default function Homepage() {
               </button>
             ))}
           </div>
+          </CollapsibleSection>
         </Section>
       )}
 
       {/* 9 — सरकारी मदद */}
       <Section bg="var(--ks-bg-warm)">
-        <SectionHeader title={t('govt_title')} />
+        <CollapsibleSection page="home" id="govt" h2Class={H2_HOME} title={t('govt_title')}>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {[
             { titleKey: 'govt_yojana_title', subKey: 'govt_yojana_sub', to: '/yojana', icon: '🌾' },
@@ -420,11 +433,12 @@ export default function Homepage() {
             </button>
           ))}
         </div>
+        </CollapsibleSection>
       </Section>
 
       {/* 10 — भरोसेमंद लोग (trust row; official PIB/MP photos omitted — unverifiable) */}
       <Section>
-        <SectionHeader title={t('trust_title')} />
+        <CollapsibleSection page="home" id="trust" h2Class={H2_HOME} title={t('trust_title')}>
         {/* Founder band: portrait (or initials avatar — never a stock face) → /founder. */}
         <div data-testid="home-founder-band" className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '16px' }}>
           {founder.portrait.src ? (
@@ -446,12 +460,13 @@ export default function Homepage() {
             {t('founder_read_full')} →
           </Link>
         </div>
+        </CollapsibleSection>
       </Section>
 
       {/* 11 — लेख */}
       {articles.length > 0 && (
         <Section bg="var(--ks-bg-soft)">
-          <SectionHeader title={t('articles_home_title')} linkLabel={t('view_all')} onLink={() => navigate('/articles')} />
+          <CollapsibleSection page="home" id="articles" h2Class={H2_HOME} title={t('articles_home_title')} action={<ViewAll label={t('view_all')} onClick={() => navigate('/articles')} />}>
           <div className="grid grid-cols-2 gap-3">
             {articles.map((a) => (
               <button key={a.id} type="button" onClick={() => navigate(`/articles/${a.slug}`)} className="flex items-center gap-3 overflow-hidden text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)' }}>
@@ -466,6 +481,7 @@ export default function Homepage() {
               </button>
             ))}
           </div>
+          </CollapsibleSection>
         </Section>
       )}
 
