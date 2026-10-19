@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
@@ -16,7 +16,8 @@ import DisclaimerBanner from '../components/DisclaimerBanner'
 import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { fetchListingById, incrementContactClick, incrementListingView } from '../lib/listings/listingsApi'
+import { fetchListingById, incrementContactClick, incrementListingView, getMyListings } from '../lib/listings/listingsApi'
+import OwnerListingActions, { ownerStatus, Toast } from '../components/listing/OwnerListingActions'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { haversineKm } from '../lib/distance'
 import { publicOrigin } from '../lib/native'
@@ -39,15 +40,28 @@ export default function ListingDetail() {
   const listOffline = useOfflineInfo(['listings'])
   const [error, setError] = useState(null)
   const [photoIndex, setPhotoIndex] = useState(0)
+  // Batch 10G: the seller's own view (status, admin-disable reason) and the toast after an action.
+  const [mine, setMine] = useState(null)
+  const [toast, setToast] = useState(null)
+  const clearToast = useCallback(() => setToast(null), [])
 
   useEffect(() => {
     let alive = true
     ;(async () => {
       try {
-        const row = await fetchListingById(id)
+        let row = await fetchListingById(id)
         if (!alive) return
+        // Batch 10G: the public read shows only active listings. The seller's own disabled (or
+        // otherwise hidden) listing comes from get_my_listings, so the seller can still see and manage it.
+        let own = null
+        if (user?.id && (!row || row.user_id === user.id)) {
+          own = (await getMyListings(user.id).catch(() => [])).find((x) => x.id === id) || null
+          if (!alive) return
+          if (own && !row) row = { ...own, user_id: user.id }
+        }
+        setMine(own)
         setListing(row)
-        if (row) { setExtras(await loadExtras(row.category)); incrementListingView(row.id) }
+        if (row) { setExtras(await loadExtras(row.category)); if (!own) incrementListingView(row.id) }
       } catch (err) {
         if (alive) setError(t(err.i18nKey || 'err_unknown'))
       } finally {
@@ -57,7 +71,7 @@ export default function ListingDetail() {
     return () => {
       alive = false
     }
-  }, [id, t])
+  }, [id, t, user?.id])
 
   if (loading) return <Screen title={t('detail_title')} onBack={onBack}><Spinner /></Screen>
   if (!listing)
@@ -117,6 +131,29 @@ export default function ListingDetail() {
       {/* Call + WhatsApp — the primary action, right under the title (Batch1 item 4).
           Hidden on your own listing; sends logged-out users to login and back. */}
       <ContactActions listing={listing} size="detail" className="mb-4" />
+
+      {/* Batch 10G — the seller's own listing: status + disable / enable + permanent delete. */}
+      {mine && (
+        <section data-testid="owner-panel" className="mb-4 rounded-2xl border-2 border-stone-200 bg-white px-4 py-3">
+          {(() => {
+            const st = ownerStatus({ ...mine, status: listing.status })
+            const key = { active: 'badge_active', disabled: 'badge_disabled', admin_disabled: 'badge_admin_disabled', closed: 'badge_found', expired: 'badge_expired', removed: 'status_removed' }[st]
+            const tone = st === 'active' ? 'bg-blue-100 text-blue-800' : st === 'admin_disabled' ? 'bg-red-100 text-red-800' : 'bg-stone-200 text-stone-700'
+            return <span data-testid="owner-status" data-status={st} className={`inline-block rounded-full px-2 py-0.5 text-xs font-bold ${tone}`}>{t(key)}</span>
+          })()}
+          <OwnerListingActions
+            listing={{ ...mine, status: listing.status }}
+            actorId={user.id}
+            onError={(m) => { setError(m); setToast(m) }}
+            onChanged={(kind, row) => {
+              if (kind === 'deleted') { navigate('/my', { replace: true, state: { toast: 'listing_deleted_toast' } }); return }
+              setListing((l) => ({ ...l, status: row?.status ?? l.status }))
+              setMine((m) => ({ ...m, status: row?.status ?? m.status }))
+              setToast(t(kind === 'disabled' ? 'listing_disabled_toast' : 'listing_enabled_toast'))
+            }}
+          />
+        </section>
+      )}
 
       {/* Category-specific prominent badges (e.g. Drone Didi govt scheme + services). */}
       {badges.length > 0 && (
@@ -198,6 +235,7 @@ export default function ListingDetail() {
       </div>
 
       <RelatedBoxes page="listing" />
+      <Toast message={toast} onDone={clearToast} />
     </Screen>
   )
 }

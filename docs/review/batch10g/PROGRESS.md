@@ -20,3 +20,12 @@
 - Option 1 (delete storage rows in SQL): **RAN-FAILED as expected** — refused by Supabase's `storage.protect_delete` guard; the URL kept answering 200. Not used (DECISIONS 17).
 - Option 2 (queue-gated storage DELETE policy + Storage API remove by the app): **RAN-PASSED 15/15** (`scripts/batch10g/photo-proof.mjs`, `evidence/photo-proof.md`): seller and admin deletes remove the photo files (storage rows gone, every uncached request 400); unrelated photos and photos of existing listings cannot be deleted through the API; the queue is not readable; pending list empty after removal. KSTEST files and rows cleaned (0 left). CDN copy of a recently viewed photo for up to 1 h (HUMAN-REVIEW, DECISIONS 20).
 - No orphan photos (`evidence/orphan-photos.md`). Other copies checked (DECISIONS 21). Production copy of the migration: `PROD_MIGRATION_0065.sql` + `PROD_ROLLBACK_0065.sql`.
+
+## Phase 0 — E2E baseline (finished during Phase 3)
+- Full Playwright on the frozen baseline: **190/191**; the only failure is the known `phase19` "price-missing" environment test (`evidence/baseline-e2e/`, `evidence/baseline-failing.txt`).
+
+## Phase 3 — seller screens — DONE
+- `OwnerListingActions` (disable / enable / permanent delete with confirmation, toast, plain errors) on My Listings and the own listing detail page; API `setMyListingDisabled`, `deleteMyListing` (+ photo removal), `retryPendingPhotoDeletions`, `listingErrorKey` in `listingsApi.js`; strings hi+en (HINDI_CAPTIONS.md). DECISIONS 23–30.
+- **Build: RAN-PASSED** 268/268. Main chunk 27,538 → **27,604 B gz (+66)**.
+- **E2E `listing-owner-10g`: RAN-PASSED 8/8** — disable/enable (hi 412, en 1280; public read hidden then visible; buttons ≥ 44 px; no horizontal scroll), delete with cancel then confirm (row gone, photo file gone, uncached URL 400, deleted listing page shows "यह लिस्टिंग नहीं मिली"), admin-disabled (badge + reason, no enable, delete offered; RPC `disabled_by_admin`), own detail page of a disabled listing (enable, delete → back to My Listings), keyboard + screen-reader (labelled group, alertdialog, focus on "नहीं", Escape returns focus), non-owner refused. No console errors.
+- Screens (looked at): `evidence/screens/phase3-my-listings-*`, `phase3-delete-dialog-*`, `phase3-detail-admin-disabled-*`.

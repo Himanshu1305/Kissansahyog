@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase6.spec.js:37:1 › mark Found closes listing: disappears from browse, stays (Found) in My Listings (3.2s)
+  ok 2 [chromium] › e2e\phase6.spec.js:68:1 › expired listing shows Expired in My Listings and is absent from browse (2.4s)
+[teardown] test data cleaned
+
+  2 passed (7.4s)

@@ -34,6 +34,9 @@ export const PRIVATE_RPCS = [
   'next_pending_village', 'resolve_village', 'fail_village', 'log_search_miss', 'log_join_click',
   'set_language', 'set_mela_interest', 'submit_carbon_suggestion', 'vote_carbon_poll',
   'submit_listing_report', 'subscribe_alert',
+  // Batch 10G — seller / admin disable and permanent delete (writes and private reads).
+  'set_my_listing_disabled', 'delete_my_listing', 'get_my_pending_photo_deletions',
+  'admin_set_listing_disabled', 'admin_delete_listing', 'get_admin_listings',
 ]
 export const PRIVATE_PATH_PREFIXES = ['/auth/v1/', '/storage/v1/', '/functions/v1/']
 

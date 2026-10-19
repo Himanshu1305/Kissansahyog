@@ -1,0 +1,13 @@
+
+Running 7 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase10_location_pwa.spec.js:15:3 › Phase 2 — LocationControl › positive: geolocation already granted sets the location from the device (1.0s)
+  ok 2 [chromium] › e2e\phase10_location_pwa.spec.js:32:3 › Phase 2 — LocationControl › negative: geolocation refused falls back to the village/town box, no pincode, no crash (828ms)
+  ok 3 [chromium] › e2e\phase10_location_pwa.spec.js:48:3 › Phase 2 — LocationControl › edge: coordinates far outside MP do not crash the page (749ms)
+  ok 4 [chromium] › e2e\phase10_location_pwa.spec.js:59:3 › Phase 2 — LocationControl › typing a village/town applies a location (938ms)
+  ok 5 [chromium] › e2e\phase10_location_pwa.spec.js:72:3 › Phase 3 — mandi search (distance-unrestricted) › search surfaces a mandi result with its date, or an honest empty state (1.7s)
+  ok 6 [chromium] › e2e\phase10_location_pwa.spec.js:92:3 › Phase 5 — PWA install + offline › install prompt: not on first visit, shows on a returning visit (935ms)
+  ok 7 [chromium] › e2e\phase10_location_pwa.spec.js:110:3 › Phase 5 — PWA install + offline › offline: banner shows and the shell stays (no blank screen) (1.5s)
+[teardown] test data cleaned
+
+  7 passed (8.7s)

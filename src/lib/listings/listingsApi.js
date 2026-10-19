@@ -303,6 +303,62 @@ export async function closeListing({ actorId, listingId }) {
   return data
 }
 
+// --- Batch 10G: seller disable / enable and PERMANENT delete (photos included) ---
+// The RPC errors keep their code on the thrown AppError (`code`): not_found, not_owner,
+// disabled_by_admin, invalid_state. Screens map them with listingErrorKey().
+export function listingErrorKey(err) {
+  const code = err?.code || ''
+  if (code === 'not_found') return 'listing_err_not_found'
+  if (code === 'not_owner') return 'listing_err_not_owner'
+  if (code === 'disabled_by_admin') return 'listing_err_disabled_by_admin'
+  if (code === 'invalid_state') return 'listing_err_invalid_state'
+  if (code === 'not_admin') return 'err_not_admin'
+  return 'listing_err_generic'
+}
+function listingRpcError(error) {
+  const raw = String(error?.message || '')
+  const m = raw.match(/(not_found|not_owner|disabled_by_admin|invalid_state|not_admin|reason_required|reason_too_long)/)
+  const e = new Error(m ? m[1] : 'unknown')
+  e.code = m ? m[1] : 'unknown'
+  return e
+}
+
+export async function setMyListingDisabled({ actorId, listingId, disabled }) {
+  const { data, error } = await supabase.rpc('set_my_listing_disabled', { p_actor_id: actorId, p_listing_id: listingId, p_disabled: !!disabled })
+  if (error) throw listingRpcError(error)
+  return data
+}
+
+// Removes photo files of a listing that was already deleted (bucket listing-photos). The storage
+// policy only allows paths a delete RPC queued, so this can never touch another listing's photos.
+// Best effort: a failure leaves the paths queued and retryPendingPhotoDeletions() tries again later.
+export async function removeListingPhotos(paths) {
+  const list = (paths || []).filter(Boolean)
+  if (!list.length) return { removed: 0 }
+  try {
+    const { data, error } = await supabase.storage.from('listing-photos').remove(list)
+    if (error) return { removed: 0, error }
+    return { removed: (data || []).length }
+  } catch (error) { return { removed: 0, error } }
+}
+
+export async function retryPendingPhotoDeletions(actorId) {
+  if (!actorId) return { removed: 0 }
+  try {
+    const { data, error } = await supabase.rpc('get_my_pending_photo_deletions', { p_actor_id: actorId })
+    if (error || !data?.length) return { removed: 0 }
+    return removeListingPhotos(data)
+  } catch { return { removed: 0 } }
+}
+
+// Permanent: the row and its child rows are gone when the RPC returns; then the photo files.
+export async function deleteMyListing({ actorId, listingId }) {
+  const { data, error } = await supabase.rpc('delete_my_listing', { p_actor_id: actorId, p_listing_id: listingId })
+  if (error) throw listingRpcError(error)
+  const photos = await removeListingPhotos(data)
+  return { paths: data || [], photosRemoved: photos.removed }
+}
+
 // --- Phase 3: owner availability toggle + engagement counter + nudge ---
 export async function setListingAvailability({ actorId, listingId, isAvailable }) {
   const { data, error } = await supabase.rpc('set_listing_availability', {
