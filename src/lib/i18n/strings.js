@@ -220,6 +220,13 @@ export const strings = {
   wa_join_sub: { hi: 'हर सुबह आपके फ़ोन पर आज के भाव और मौसम की जानकारी।', en: "Today's prices and weather on your phone every morning." },
   wa_join_cta: { hi: 'अभी जुड़ें', en: 'Join now' },
   wa_join_box: { hi: 'मंडी भाव + मौसम WhatsApp पर पाएँ', en: 'Get mandi prices + weather on WhatsApp' },
+  // --- Batch 12B: Dussehra greeting (one day, 20 Oct 2026, India time) ---
+  fest_dussehra_title: { hi: 'विजयादशमी (दशहरा) की हार्दिक शुभकामनाएं', en: 'Warm wishes on Vijayadashami (Dussehra)' },
+  fest_dussehra_line: { hi: 'आज के दिन नीलकंठ पक्षी के दर्शन को शुभ माना जाता है।', en: 'Seeing the Neelkanth bird (Indian Roller) is considered auspicious today.' },
+  fest_dussehra_from: { hi: '— किसान सहयोग परिवार की ओर से', en: '— from the Kissan Sahyog family' },
+  fest_dussehra_alt: { hi: 'नीलकंठ पक्षी (इंडियन रोलर)', en: 'Neelkanth bird (Indian Roller)' },
+  fest_close: { hi: 'शुभकामना संदेश बंद करें', en: 'Close the greeting' },
+  fest_greeting_region: { hi: 'त्योहार की शुभकामना', en: 'Festival greeting' },
   // --- Batch 12A: WhatsApp channel (plain link) ---
   wa_ch_title: { hi: 'किसान सहयोग WhatsApp चैनल से जुड़ें', en: 'Join the Kissansahyog WhatsApp channel' },
   wa_ch_line: { hi: 'मंडी भाव, मौसम, सरकारी योजनाएं और खेती की जानकारी सीधे आपके WhatsApp पर।', en: 'Mandi prices, weather, government schemes and farming information, right on your WhatsApp.' },

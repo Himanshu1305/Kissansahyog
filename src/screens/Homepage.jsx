@@ -37,6 +37,7 @@ import { founder } from '../content/founder'
 import OfflineStamp from '../components/OfflineStamp'
 import CollapsibleSection from '../components/CollapsibleSection'
 import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
+import FestivalCard from '../components/FestivalCard'
 
 const IMG = (f) => `/images/home/${f}`
 
@@ -187,6 +188,8 @@ export default function Homepage() {
       <PwaInstallBanner />
       <MandiTicker />
       <OfflineStamp resources={['mandi_prices']} hideUnderBanner className="px-[var(--ks-gutter)] pt-1" />
+      {/* Batch 12B: one-day festival greeting (20 Oct 2026, India time); renders nothing on any other day. */}
+      <FestivalCard />
 
       {/* Greeting for logged-in users (§0.3): "सीताराम 🙏, {name}". */}
       {isLoggedIn && (
@@ -231,7 +234,7 @@ export default function Homepage() {
 
       {/* Batch 10C: "first time?" card to the live demos at /guide. A plain link (no
           heading) so the page outline stays exactly as it was. */}
-      <div style={{ padding: '10px var(--ks-gutter) 0' }}>
+      <div className="ks-section-inner" style={{ paddingTop: 10 }}>
         <Link
           to="/guide"
           data-testid="entry-home-guide"

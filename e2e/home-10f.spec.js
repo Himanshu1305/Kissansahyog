@@ -40,6 +40,7 @@ async function open(browser, { lang = 'hi', width = 360, height = 740, ctxOpts =
   const isMobile = width < 768
   const ctx = await browser.newContext({ viewport: { width, height }, isMobile, hasTouch: isMobile, serviceWorkers: 'block', ...ctxOpts })
   await blockVisitorWrites(ctx)
+  await ctx.addInitScript(() => { try { localStorage.setItem('ks_festival_closed_v1', 'dussehra-2026') } catch { /* ignore */ } }) // 12B: keep position checks independent of the one-day card
   await ctx.addInitScript((l) => { try { localStorage.setItem('ks_lang_v1', l) } catch { /* ignore */ } }, lang)
   // Layout shifts, recorded from the very start (buffered), with the nodes that moved.
   await ctx.addInitScript(() => {

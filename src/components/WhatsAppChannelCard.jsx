@@ -33,7 +33,7 @@ export default function WhatsAppChannelCard({ variant = 'inline', textKey = 'wa_
 
   if (variant === 'hero') {
     return (
-      <section data-testid="wa-channel-card" data-variant="hero" aria-labelledby="wa-ch-h" className={className} style={{ padding: '10px var(--ks-gutter) 0' }}>
+      <section data-testid="wa-channel-card" data-variant="hero" aria-labelledby="wa-ch-h" className={`ks-section-inner ${className}`} style={{ paddingTop: 10 }}>
         <div className="rounded-xl border-2 p-3 md:max-w-xl" style={{ background: 'var(--ks-green-tint)', borderColor: GREEN }}>
           <p id="wa-ch-h" className="text-[17px] font-extrabold leading-snug" style={{ color: 'var(--ks-green-dark)' }}>{t('wa_ch_title')}</p>
           <p className="mt-1 text-[14px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>{t(textKey)}</p>

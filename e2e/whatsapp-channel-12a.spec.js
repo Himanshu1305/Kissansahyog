@@ -7,6 +7,7 @@ import { WHATSAPP_CHANNEL_URL } from '../src/lib/social.js'
 async function open(browser, { lang = 'hi', width = 360, height = 640 } = {}) {
   const ctx = await browser.newContext({ viewport: { width, height }, isMobile: width < 768, hasTouch: width < 768, serviceWorkers: 'block' })
   await blockVisitorWrites(ctx)
+  await ctx.addInitScript(() => { try { localStorage.setItem('ks_festival_closed_v1', 'dussehra-2026') } catch { /* ignore */ } }) // 12B: keep position checks independent of the one-day card
   await ctx.route(/whatsapp.com/, (r) => r.abort()) // never reach the real channel from a test
   await ctx.addInitScript((l) => { try { localStorage.setItem('ks_lang_v1', l) } catch { /* ignore */ } }, lang)
   return { ctx, page: await ctx.newPage() }
