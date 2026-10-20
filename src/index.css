@@ -110,7 +110,11 @@ html.native-app .ks-overlay {
 .ticker-content {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 80s linear infinite;
+}
+/* Batch 12C: scroll only when the list is wider than the strip; MandiTicker measures the width and
+   sets --ticker-duration (about 35 px per second, at least 40 s). */
+.ticker-content.is-scrolling {
+  animation: ticker-scroll var(--ticker-duration, 60s) linear infinite;
 }
 /* Pause on hover / tap-focus so a farmer can read a price. */
 .ticker-content:hover,
@@ -118,7 +122,11 @@ html.native-app .ks-overlay {
   animation-play-state: paused;
 }
 @media (prefers-reduced-motion: reduce) {
-  .ticker-content { animation: none; }
+  .ticker-content.is-scrolling { animation: none; }
+  /* no motion: the strip is swiped by touch instead, and the repeat copy is hidden */
+  .ticker-view { overflow-x: auto !important; scrollbar-width: none; }
+  .ticker-view::-webkit-scrollbar { display: none; }
+  .ticker-dup { display: none !important; }
 }
 
 /* Shimmer placeholder while prices load (keeps the 38px height reserved). */

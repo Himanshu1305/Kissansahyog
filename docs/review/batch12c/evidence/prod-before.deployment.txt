@@ -1,0 +1,4 @@
+deployment_id=11f140ef-859d-419a-85ee-7f1309bb0256
+source=7d9adc5
+main_chunk=/assets/index-kXKG8WUQ.js
+taken_at=2026-10-19T21:05:18Z
