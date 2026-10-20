@@ -511,3 +511,17 @@ Live: deployment `11f140ef-859d-419a-85ee-7f1309bb0256`, commit `7d9adc5`. See P
 - **Prerender loading-state race on 5 pages:** the prerendered text of 5 pages can differ from run to run (also in the baseline build); see `docs/review/batch11a/evidence/text-diff.md`.
 - **Home-page mandi ticker glyphs in narrow screenshots:** in headless screenshots at 320 and 360 px the moving ticker strip showed garbled glyphs mid-scroll; the ship gate read correct text. HUMAN-REVIEW on a real phone.
 - **OTP on production not tested by the builder** (it would send a real SMS). `otp_required` was ON at close; the founder's own test result is HUMAN-REVIEW. The 10E mandi backfill was not verifiable read-only.
+
+
+---
+
+## Batch 12B production ship (2026-10-20)
+
+Live: deployment `8c6a66f2-ad48-444c-8730-67a072c49e0c`, commit `e7432c8`. See PROJECT_CONTEXT "Batch 12B".
+
+- **Hindi greeting wording awaits founder review:** `docs/review/batch12b/HINDI_CAPTIONS.md`. HUMAN-REVIEW.
+- **The festival card is Dussehra-only text:** a new festival needs its own text and picture, not just a new date entry.
+- **Old home e2e specs pre-dismiss the card** (set the close key) so they keep passing on 20 Oct 2026.
+- **Mandi ticker crop names are garbled (data problem, HUMAN-REVIEW):** production `mandi_prices.commodity_hi` holds mis-encoded Hindi (shows as "αñùαÑçαñ╣αÑéαñé" instead of "गेहूं"); the same on the deployments before this ship. This is the real cause of the "garbled glyphs" noted under Batch 11A, not a screenshot artefact. Needs a database fix (not done: closes ran read-only).
+- **Cloudflare analytics beacon is blocked by the site's own CSP** (`script-src 'self'`): one harmless console error on every page; unchanged by this ship.
+- 12A and 12C close prompts were never run; both are live via this ship and verified by the 12B live checks.

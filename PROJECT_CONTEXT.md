@@ -1556,3 +1556,14 @@ SHIP_RETRY, CLOSE_REPORT, `evidence/prod-live/RESULT.md`), `src/features/guide/`
 - **Shipped with** `bash scripts/ship-prod-11a.sh` (gated, with 0064/0065/0066 probes and OTP gates); migrations were pasted into the production SQL editor first. **Undo:** both switches OFF, then `bash scripts/rollback-prod-11a.sh 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, then `PROD_ROLLBACK_0066.sql` only if needed.
 - `GUIDE_OTP_LIVE` in `src/features/guide/config.js` is still `false` (flip it in a later release once OTP is on for good).
 - Details: `docs/review/batch11a/` (REPORT, DECISIONS, SHIP, CLOSE_REPORT, evidence).
+
+
+---
+
+## Batch 12B — state as of this ship
+
+- **Live:** deployment `8c6a66f2-ad48-444c-8730-67a072c49e0c`, commit `e7432c8` (branch `release-12b`, tags `ship-12b`, `prod-12b`), 2026-10-20. It also carried release-12c: 12A (WhatsApp channel card) and 12C (home mandi ticker); their own close prompts were never run, so 12A and 12C are live via this ship.
+- **Festival card:** `src/lib/festivals.js` holds the list and the India-date gate (Asia/Kolkata, inclusive dates); to add a festival add one entry (the card text is currently Dussehra-only). `src/components/FestivalCard.jsx` is client-side only: it is skipped when `window.__KS_PRERENDER` is set (prerendered HTML has no card) and remembers a close in localStorage key `ks_festival_closed_v1`.
+- **Picture:** `public/festival/neelkanth.webp` and `neelkanth-112.webp` (CC0), licence note `docs/review/batch12b/IMAGE_LICENSE.md`.
+- **Home desktop layout:** the "पहली बार?" banner and the WhatsApp card sit inside the centered hero column via `.ks-section-inner`.
+- Undo: `bash scripts/rollback-prod-12b.sh e85e91a0-1674-4726-91e6-1051ebdb47a5`. Details: `docs/review/batch12b/` (REPORT, DECISIONS, SHIP, CLOSE_REPORT, evidence).

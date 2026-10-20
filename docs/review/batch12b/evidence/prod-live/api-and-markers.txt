@@ -1,0 +1,28 @@
+--- 1.6
+{"otp_required":true,"session_enforced":false}
+{"error":"forbidden_origin"} HTTP 403
+--- 1.7
+index-7VBaGaTl.js delete_my_listing lines=1
+index-7VBaGaTl.js app_register_phone lines=1
+PageShell-Ps7ZOmz8.js app_login_otp lines=1
+PageShell-Ps7ZOmz8.js app_register_phone lines=1
+Msp-B8cJs70r.js ks-date-badge lines=1
+GuideHub-DWzTix1W.js ksg- lines=1
+listingsApi-BOOl2ziC.js delete_my_listing lines=1
+localhost / 0
+localhost /browse 0
+localhost /signup 0
+localhost /login 0
+localhost /msp 0
+localhost /msp/gehun 0
+localhost /mausam 0
+localhost /guide 0
+localhost /about 0
+localhost /contact 0
+--- headers
+HTTP/1.1 200 OK
+Date: Tue, 20 Oct 2026 04:01:12 GMT
+Content-Type: image/webp
+Content-Length: 31708
+Connection: keep-alive
+{"error":"invalid_phone"} HTTP 400
