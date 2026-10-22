@@ -69,7 +69,7 @@ FOOT_NEW_EN=' · India'                  # 13A: footer line (strings chunk, Engl
 FOOT_NEW_HI='</a> · भारत'               # 13A: footer line in the prerendered HTML (Hindi default)
 FOOT_OLD_EN='· Madhya Pradesh, India'    # 13A: must be gone from the footer string
 FOOT_OLD_HI='मध्यप्रदेश, भारत'            # 13A: must be gone from the prerendered footer
-BROWSE_MARKERS=('browse-sections' 'section-empty-' 'popular-toggle' 'etag-block' 'applied-chips')  # 13A: Browse chunk
+BROWSE_MARKERS=('browse-sections' 'section-empty-' 'popular-section' 'etag-block' 'applied-chips')  # 13A: Browse chunk
 ROUTES_10F=(/ /signup /browse /guide /msp /post /guide/post /mausam)
 # Bundle markers. 10C: nav Guide pill on /, lazy guide chunks holding the guide code. 10E: the phone-only
 # sign-up RPC name inside the built JS (authService). 10F: the static hero (and NOT the removed 10D live
@@ -298,7 +298,7 @@ BROWSE_CHUNKS=(); STR_CHUNKS=(); FEST_CHUNKS=(); MKT_CHUNKS=(); TICKER_CHUNKS=()
 if [ -d dist/assets ]; then
   for a in dist/assets/GuideHub-*.js dist/assets/GuideDemoPage-*.js; do [ -f "$a" ] && GUIDE_CHUNKS+=("/${a#dist/}"); done
   while IFS= read -r a; do [ -n "$a" ] && BROWSE_CHUNKS+=("/${a#dist/}"); done < <(grep -l 'browse-sections' dist/assets/*.js 2>/dev/null | head -3)
-  while IFS= read -r a; do [ -n "$a" ] && STR_CHUNKS+=("/${a#dist/}"); done < <(grep -l 'footer_company_place' dist/assets/*.js 2>/dev/null | head -3)
+  while IFS= read -r a; do [ -n "$a" ] && STR_CHUNKS+=("/${a#dist/}"); done < <(grep -l 'footer_company_place:{hi' dist/assets/*.js 2>/dev/null | head -3)
   while IFS= read -r a; do [ -n "$a" ] && FEST_CHUNKS+=("/${a#dist/}"); done < <(grep -l "$FEST_MARKER" dist/assets/*.js 2>/dev/null | head -3)
   while IFS= read -r a; do [ -n "$a" ] && MKT_CHUNKS+=("/${a#dist/}"); done < <(grep -l "$MKT_MARKER" dist/assets/*.js 2>/dev/null | head -3)
   while IFS= read -r a; do [ -n "$a" ] && TICKER_CHUNKS+=("/${a#dist/}"); done < <(grep -l -- "$TICKER_MARKER" dist/assets/*.css dist/assets/*.js 2>/dev/null | head -4)
