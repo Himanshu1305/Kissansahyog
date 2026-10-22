@@ -40,11 +40,11 @@ export function shortDetails(details, max = 90) {
   return s.length > max ? `${s.slice(0, max - 3)}...` : s
 }
 
-// Which database this page talks to, from the project address only (never a key).
-export function envBadge(url) {
-  const u = String(url || '')
-  if (u.includes('eltmcznjcqiahqhjvpjg')) return 'PRODUCTION'
-  if (u.includes('wzxtqbqlahyahsnoqqva')) return 'STAGING'
+// Which environment this build is (from the build mode, which also picks the database; no project address is
+// written into the bundle because the staging / production guards forbid the other environment's address).
+export function envBadge(mode) {
+  if (mode === 'production') return 'PRODUCTION'
+  if (mode === 'staging') return 'STAGING'
   return 'LOCAL'
 }
 

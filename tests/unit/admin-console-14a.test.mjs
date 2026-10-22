@@ -147,10 +147,10 @@ test('every panel belongs to a real tab; search finds panels by Hindi and Englis
   assert.equal(PANELS.length, 31)
 })
 
-test('environment badge comes from the project address only', () => {
-  assert.equal(envBadge('https://eltmcznjcqiahqhjvpjg.supabase.co'), 'PRODUCTION')
-  assert.equal(envBadge('https://wzxtqbqlahyahsnoqqva.supabase.co'), 'STAGING')
-  assert.equal(envBadge('http://localhost:54321'), 'LOCAL')
+test('environment badge comes from the build mode (no project address in the bundle)', () => {
+  assert.equal(envBadge('production'), 'PRODUCTION')
+  assert.equal(envBadge('staging'), 'STAGING')
+  assert.equal(envBadge('development'), 'LOCAL')
   assert.equal(envBadge(undefined), 'LOCAL')
 })
 

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../lib/auth/AuthProvider'
 import { Notice } from '../../components/ui'
 
 // Batch 14A - small pieces shared by the console panels: who the admin is, a dialog, and the error line.
@@ -17,13 +18,17 @@ export function istText(iso, lang) {
 
 // An error line. A session_required error also offers the way to the login screen.
 export function AdminError({ error, t }) {
+  const navigate = useNavigate()
+  const { logout } = useAuth()
   if (!error) return null
   const code = error.code
+  // Signed in with an old / missing session: sign out here (the login screen refuses signed-in users), then go to login.
+  const relogin = async () => { try { await logout() } catch { /* already signed out */ } navigate('/login', { replace: true }) }
   return (
     <div data-testid="admin-error" data-code={code || ''}>
       <Notice tone="error">{t(error.i18nKey || 'err_unknown')}</Notice>
       {code === 'session_required' && (
-        <p className="mb-3"><Link to="/login" data-testid="admin-relogin" className="inline-flex min-h-[48px] items-center rounded-xl bg-green-700 px-4 font-bold text-white">{t('adm_relogin')}</Link></p>
+        <p className="mb-3"><button type="button" onClick={relogin} data-testid="admin-relogin" className="inline-flex min-h-[48px] items-center rounded-xl bg-green-700 px-4 font-bold text-white">{t('adm_relogin')}</button></p>
       )}
     </div>
   )

@@ -125,7 +125,7 @@ test('admin: rejected candidate appears in the candidates panel with a publish-a
   await ctx.addInitScript((s) => localStorage.setItem('ks_session_v1', JSON.stringify(s)), session)
   const page = await ctx.newPage()
   try {
-    await page.goto('/admin')
+    await page.goto('/admin?tab=moderation')
     const row = page.getByTestId('admin-mela-candidate-row').filter({ hasText: 'E2E Rejected Candidate' })
     await expect(row).toBeVisible({ timeout: 15000 })
     await expect(row.getByTestId('admin-mela-candidate-publish')).toBeVisible()

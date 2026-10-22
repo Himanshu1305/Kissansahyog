@@ -16,7 +16,7 @@ export default function AnnouncementCard({ a, onClose, preview = false }) {
   const external = link && !link.startsWith('/')
   const linkClass = 'mt-1 inline-flex min-h-[48px] items-center text-[15px] font-bold underline'
   return (
-    <div data-testid="announcement-card" data-announcement={a.id || 'preview'} className="mx-auto flex max-w-[720px] items-start gap-3 rounded-xl border-2 py-2 pl-2 pr-0 md:gap-4 md:py-3 md:pl-3" style={{ background: c.bg, borderColor: c.border }}>
+    <div data-testid="announcement-card" data-announcement={a.id || 'preview'} className="mx-auto flex w-full max-w-[720px] items-start gap-3 rounded-xl border-2 py-2 pl-2 pr-0 md:gap-4 md:py-3 md:pl-3" style={{ background: c.bg, borderColor: c.border }}>
       {img && (
         <img src={img} width="56" height="56" alt={textOf(a, 'image_alt', lang)} className="h-14 w-14 shrink-0 rounded-xl object-cover md:h-[88px] md:w-[88px]" />
       )}

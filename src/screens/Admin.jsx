@@ -55,7 +55,7 @@ export default function Admin() {
   }, [])
 
   const results = useMemo(() => searchPanels(query, panelNames), [query])
-  const env = envBadge(import.meta.env.VITE_SUPABASE_URL)
+  const env = envBadge(import.meta.env.MODE)
 
   // After a search hit opens a tab, wait for the lazy tab to render the panel, then open it and scroll to it.
   useEffect(() => {

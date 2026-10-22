@@ -204,7 +204,7 @@ test('verify: code matched → 200 {ok, ticket}; attempt counted before the prov
   const w = world({ verify: { ok: true, session: 'PROVIDER-SESSION-1', attempts_left: 4 }, check: { body: { Status: 'Success', Details: 'OTP Matched' } }, ticket: { ok: true, ticket: 'kst1_abc' } })
   const r = await read(await handleVerify(req('/api/otp/verify', vbody()), ENV, { fetch: w.fetch }))
   assert.deepEqual(r, { status: 200, body: { ok: true, ticket: 'kst1_abc' } })
-  assert.deepEqual(w.calls.rpc.map((c) => c.name), ['otp_record_verify', 'otp_issue_ticket'])
+  assert.deepEqual(w.calls.rpc.map((c) => c.name), ['otp_record_verify', 'ks_phone_is_blocked', 'otp_issue_ticket']) // 14A: blocked check before the ticket
   assert.ok(w.calls.provider[0].endsWith('/SMS/VERIFY/PROVIDER-SESSION-1/123456'))
   assertCleanLogs()
 })

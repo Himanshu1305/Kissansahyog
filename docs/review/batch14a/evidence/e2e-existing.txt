@@ -1,0 +1,4 @@
+  ok 19 [chromium] › e2e\home-10f.spec.js:251:1 › H9 other routes still start as before; in-app navigation / → /guide (demo button) → back works (5.3s)
+[teardown] test data cleaned
+
+  19 passed (1.3m)
