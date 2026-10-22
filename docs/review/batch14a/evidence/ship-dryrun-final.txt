@@ -1,0 +1,22 @@
+*** DRY RUN — nothing will be built, deployed, rolled back or written (except the read-only snapshot file, if missing) ***
+== G. first gate: Batch 12B shipped (tag ship-12b on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-12b -> e7432c8
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 12B is shipped
+== 0. preconditions
++ git branch --show-current -> release-14a
++ git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
++ git rev-parse ship-14a -> 2c7a17e
++ git ls-remote --tags origin ship-14a (peeled) -> 2c7a17e
++ HEAD 2c7a17e  origin/release-14a 2c7a17e
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== P. read-only: is migration 0067 applied on production? (anon RPC get_active_announcements; the key is not printed)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/get_active_announcements   (apikey: <not shown>)
+  answer: HTTP 404
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: migration 0067 is NOT applied on production yet (get_active_announcements answered HTTP 404). Apply docs/review/batch14a/PROD_MIGRATION_0067.sql in the PRODUCTION Supabase SQL editor first. Nothing was changed.
+##################################################################
