@@ -106,7 +106,7 @@ export async function getAuthFlags({ fresh = false } = {}) {
 }
 
 // Our own error codes from the OTP functions → AppError (provider details never reach the app).
-const OTP_CODES = ['invalid_phone', 'phone_exists', 'phone_not_registered', 'otp_cooldown', 'otp_too_many', 'otp_wrong', 'otp_expired', 'otp_code_format']
+const OTP_CODES = ['invalid_phone', 'phone_exists', 'phone_not_registered', 'otp_cooldown', 'otp_too_many', 'otp_wrong', 'otp_expired', 'otp_code_format', 'account_blocked']
 async function otpPost(path, body) {
   let res
   try {

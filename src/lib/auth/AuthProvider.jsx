@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, useMemo, useEffect } from 'react'
 import * as authService from './authService'
-import { NOT_AUTH_EVENT } from './sessionToken'
+import { NOT_AUTH_EVENT, BLOCKED_EVENT } from './sessionToken'
 
 const AuthContext = createContext(null)
 
@@ -9,6 +9,8 @@ export function AuthProvider({ children }) {
   // Batch 11A: true after the server refused this device's session (not_authenticated) — the user was signed
   // out locally; SessionWatch (App.jsx) sends them to the login screen, which says why.
   const [sessionEnded, setSessionEnded] = useState(false)
+  // Batch 14A: the account was blocked by an admin; the login screen shows the suspended message.
+  const [accountBlocked, setAccountBlocked] = useState(false)
   const endSession = useCallback(() => {
     if (!authService.getCurrentUser()) return
     authService.clearSession()
@@ -16,8 +18,10 @@ export function AuthProvider({ children }) {
     setSessionEnded(true)
   }, [])
   useEffect(() => {
+    const onBlocked = () => { setAccountBlocked(true); endSession() }
     window.addEventListener(NOT_AUTH_EVENT, endSession)
-    return () => window.removeEventListener(NOT_AUTH_EVENT, endSession)
+    window.addEventListener(BLOCKED_EVENT, onBlocked)
+    return () => { window.removeEventListener(NOT_AUTH_EVENT, endSession); window.removeEventListener(BLOCKED_EVENT, onBlocked) }
   }, [endSession])
   // Start-up: while enforcement is on, a device without a valid token is signed out (e-mail users get a new
   // token silently). Nothing is asked for a visitor who is not signed in.
@@ -124,8 +128,8 @@ export function AuthProvider({ children }) {
   }, [user])
 
   const value = useMemo(
-    () => ({ user, isLoggedIn: !!user, sessionEnded, signup, login, signupEmail, loginEmail, register, registerPhone, startPhoneRegister, startPhoneLogin, verifyPhoneOtp, resendOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
-    [user, sessionEnded, signup, login, signupEmail, loginEmail, register, registerPhone, startPhoneRegister, startPhoneLogin, verifyPhoneOtp, resendOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
+    () => ({ user, isLoggedIn: !!user, sessionEnded, accountBlocked, signup, login, signupEmail, loginEmail, register, registerPhone, startPhoneRegister, startPhoneLogin, verifyPhoneOtp, resendOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
+    [user, sessionEnded, accountBlocked, signup, login, signupEmail, loginEmail, register, registerPhone, startPhoneRegister, startPhoneLogin, verifyPhoneOtp, resendOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

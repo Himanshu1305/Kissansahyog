@@ -37,7 +37,7 @@ import { founder } from '../content/founder'
 import OfflineStamp from '../components/OfflineStamp'
 import CollapsibleSection from '../components/CollapsibleSection'
 import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
-import FestivalCard from '../components/FestivalCard'
+import AnnouncementCards from '../components/AnnouncementCards'
 
 const IMG = (f) => `/images/home/${f}`
 
@@ -188,8 +188,8 @@ export default function Homepage() {
       <PwaInstallBanner />
       <MandiTicker />
       <OfflineStamp resources={['mandi_prices']} hideUnderBanner className="px-[var(--ks-gutter)] pt-1" />
-      {/* Batch 12B: one-day festival greeting (20 Oct 2026, India time); renders nothing on any other day. */}
-      <FestivalCard />
+      {/* Batch 14A: admin-managed announcement cards (client-only, max 2); renders nothing when there are none. Replaces the 12B Dussehra card. */}
+      <AnnouncementCards />
 
       {/* Greeting for logged-in users (§0.3): "सीताराम 🙏, {name}". */}
       {isLoggedIn && (

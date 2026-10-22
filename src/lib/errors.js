@@ -92,6 +92,17 @@ const CODE_TO_KEY = {
   otp_required: 'err_otp_required',
   phone_not_registered: 'err_phone_not_registered', // 11B: login with a number that has no account
   not_authenticated: 'err_not_authenticated',
+  // Batch 14A - admin console and blocked accounts
+  account_blocked: 'err_account_blocked',
+  session_required: 'err_admin_session',
+  super_required: 'err_admin_super',
+  cannot_block_self: 'err_admin_self',
+  cannot_change_self: 'err_admin_self',
+  cannot_block_admin: 'err_admin_block_admin',
+  last_super_admin: 'err_admin_last_super',
+  confirm_required: 'err_admin_confirm',
+  reason_required: 'err_admin_reason',
+  invalid_key: 'err_admin_invalid',
 }
 
 export class AppError extends Error {

@@ -6,6 +6,8 @@
 export const TOKEN_KEY = 'ks_session_token_v1'
 export const SESSION_HEADER = 'x-ks-session'
 export const NOT_AUTH_EVENT = 'ks:not-authenticated'
+// Batch 14A: the server said this account is blocked (any call that answers account_blocked).
+export const BLOCKED_EVENT = 'ks:account-blocked'
 
 export function getSessionToken() {
   try { return localStorage.getItem(TOKEN_KEY) || null } catch { return null }
@@ -30,7 +32,9 @@ export function withSessionHeader(baseFetch) {
     const res = await baseFetch(input, next)
     if (res.status >= 400 && res.status < 500 && typeof window !== 'undefined') {
       try {
-        if ((await res.clone().text()).includes('not_authenticated')) window.dispatchEvent(new Event(NOT_AUTH_EVENT))
+        const body = await res.clone().text()
+        if (body.includes('not_authenticated')) window.dispatchEvent(new Event(NOT_AUTH_EVENT))
+        else if (body.includes('account_blocked')) window.dispatchEvent(new Event(BLOCKED_EVENT))
       } catch { /* body not readable: nothing to report */ }
     }
     return res

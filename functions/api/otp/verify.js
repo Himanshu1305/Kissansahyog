@@ -3,7 +3,7 @@
 //   POST /api/otp/verify  { challenge: '<id from /api/otp/send>', code: '123456', phone: '9xxxxxxxxx' }
 //     → 200 { ok: true, ticket: '<single-use, 10 minutes>' }   then app_login_otp / app_register_phone_otp
 //     → 400 { error: 'otp_wrong', attemptsLeft } | { error: 'otp_expired' } | { error: 'otp_code_format' | 'invalid_phone' | 'bad_request' }
-//     → 403 { error: 'forbidden_origin' }      415 / 413 bad content type / body too large
+//     → 403 { error: 'forbidden_origin' } | { error: 'account_blocked' }      415 / 413 bad content type / body too large
 //     → 429 { error: 'otp_too_many' }          (5 attempts per code)
 //     → 503 { error: 'otp_service_busy' | 'otp_unavailable' }
 //
@@ -53,6 +53,10 @@ export async function handleVerify(request, env, deps = {}) {
     log(FN, 'provider_failed', { status: pv.status, cls: pv.cls, phone2: last2(phone) })
     return json({ error: 'otp_service_busy' }, 503)
   }
+
+  // Batch 14A: a blocked profile gets no ticket (and therefore no session). The check is repo code, not a database function body.
+  const bl = await rpc(creds, 'ks_phone_is_blocked', { p_phone: phone }, fetchImpl)
+  if (bl.ok && bl.data === true) return json({ error: 'account_blocked' }, 403)
 
   const it = await rpc(creds, 'otp_issue_ticket', { p_request_id: challenge, p_phone: phone }, fetchImpl)
   if (!it.ok || !it.data) {

@@ -16,7 +16,7 @@ import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 // Both ways end in the same session handling (AuthProvider → authService.storeSession).
 export default function Login() {
   const { t, setLang } = useLang()
-  const { loginEmail, startPhoneLogin, sessionEnded } = useAuth()
+  const { loginEmail, startPhoneLogin, sessionEnded, accountBlocked } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [params] = useSearchParams()
@@ -69,7 +69,8 @@ export default function Login() {
 
   return (
     <Screen title={t('login_title')} onBack={() => navigate('/')}>
-      {sessionEnded && <div data-testid="login-session-ended"><Notice tone="info">{t('err_not_authenticated')}</Notice></div>}
+      {sessionEnded && !accountBlocked && <div data-testid="login-session-ended"><Notice tone="info">{t('err_not_authenticated')}</Notice></div>}
+      {accountBlocked && <div data-testid="login-account-blocked"><Notice tone="error">{t('err_account_blocked')}</Notice></div>}
       {/* Batch 10C: first-time visitors can watch the register demo (sheet over this page). The
           normal create-account link below is unchanged. */}
       {/* Batch 10E Phase 3A: no e-mail is needed — say so first; a tap moves to the mobile box. */}
