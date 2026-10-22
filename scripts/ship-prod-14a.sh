@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Batch 14A - ADMIN CONSOLE (tabs + panel search, announcement cards, security switches + SMS usage, block users + roles,
 # admin action log). Copy of scripts/ship-prod-13a.sh. release-14a = release-13a + 14A, so this ship also carries Batch 13A
-# (Browse page, footer) and every earlier unshipped batch; the rollback target is whatever is live (12B unless
+# (Browse page, footer) and every earlier unshipped batch; the rollback target is whatever is live (Batch 13A unless
 # KS_EXPECT_LIVE_ID says otherwise).
 # THIS BATCH CHANGES THE DATABASE (migration 0067, additive). The founder pastes docs/review/batch14a/PROD_MIGRATION_0067.sql
 # into the PRODUCTION Supabase SQL editor BEFORE this script. The script never writes to any database: it only PROBES
@@ -227,9 +227,9 @@ if [ -n "$REPORT_11A" ]; then
 else
   say "  no Batch 11A close report ($CLOSE_11A) here or on origin/release-11a"
 fi
-# 13A: the deployment this ship replaces is the Batch 12B one (docs/review/batch12b/evidence/ship-real.log: "SHIP OK ... deployment <id>").
-ID_11A="8c6a66f2-ad48-444c-8730-67a072c49e0c"; SRC_11A="docs/review/batch12b/evidence/ship-real.log (Batch 12B ship)"
-say "  expected live deployment (Batch 12B): $ID_11A"
+# 14A: the deployment this ship replaces is the Batch 13A one (source ee03dd9).
+ID_11A="871f224c-af45-4ed9-a2e4-219aec7f71cc"; SRC_11A="Batch 13A production deployment (source ee03dd9)"
+say "  expected live deployment (Batch 13A): $ID_11A"
 say "+ GET $API   (Authorization: Bearer <token, not shown>)"
 PROJ="$(api GET "")"
 [ "$(printf '%s' "$PROJ" | jget 'j.success')" = "true" ] || stop "Cloudflare API refused the project read — the automatic rollback would not work: $(printf '%s' "$PROJ" | jget 'j.errors')"
@@ -241,14 +241,14 @@ BEFORE_MAIN="$(timeout 60 curl -s "$SITE/?ks_ship=$STAMP" | grep -o '/assets/ind
 say "live now: deployment $BEFORE_ID (source $BEFORE_SRC), main chunk $BEFORE_MAIN"
 LIVE_IS=""
 if [ -n "${KS_EXPECT_LIVE_ID:-}" ] && [ "$BEFORE_ID" = "$KS_EXPECT_LIVE_ID" ]; then LIVE_IS="KS_EXPECT_LIVE_ID override"
-elif [ -n "$ID_11A" ] && [ "$BEFORE_ID" = "$ID_11A" ]; then LIVE_IS="Batch 12B (from $SRC_11A; read from Cloudflare just now)"
+elif [ -n "$ID_11A" ] && [ "$BEFORE_ID" = "$ID_11A" ]; then LIVE_IS="Batch 13A (from $SRC_11A; read from Cloudflare just now)"
 fi
 if [ -n "$LIVE_IS" ]; then
   say "  = live is the expected deployment: $LIVE_IS — rollback target $BEFORE_ID"
 else
-  MSG="the live deployment is $BEFORE_ID (source $BEFORE_SRC): it is not the Batch 12B deployment ($ID_11A) — someone deployed or rolled back since Batch 13A was prepared.
+  MSG="the live deployment is $BEFORE_ID (source $BEFORE_SRC): it is not the Batch 13A deployment ($ID_11A) — someone deployed or rolled back since Batch 14A was prepared.
 Check the Cloudflare dashboard; if this live version is the right one to replace, run again with:  KS_EXPECT_LIVE_ID=$BEFORE_ID bash scripts/ship-prod-14a.sh"
-  if [ "$DRY" = 1 ]; then say "WARNING (a real run would STOP here): $MSG"; PENDING+=("live deployment $BEFORE_ID is not the expected 12B one (or KS_EXPECT_LIVE_ID)"); else stop "$MSG"; fi
+  if [ "$DRY" = 1 ]; then say "WARNING (a real run would STOP here): $MSG"; PENDING+=("live deployment $BEFORE_ID is not the expected 13A one (or KS_EXPECT_LIVE_ID)"); else stop "$MSG"; fi
 fi
 if [ "$DRY" = 0 ]; then
   mkdir -p "$EV"
