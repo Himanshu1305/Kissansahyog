@@ -30,10 +30,10 @@ const chip = (page, value) => page.getByTestId(`etag-chip-${value}`)
 test.describe('Batch 10C — Browse etag in the URL', () => {
   test('etag: tap sets URL', async ({ browser }) => {
     const { ctx, page, errors } = await openPage(browser)
-    await page.goto('/browse?cat=equipment')
+    await gotoEquip(page, '/browse?cat=equipment')
     await expect(page.getByTestId('equipment-tag-filters')).toBeVisible()
     // Result cards only (the "Popular listings" teaser section above the results is not tag-filtered).
-    const cards = page.locator('xpath=//*[@data-testid="listing-card"][not(ancestor::section)]')
+    const cards = page.locator(`xpath=//*[@data-testid="listing-card"][not(ancestor::*[@data-testid="popular-section"])]`)
     await expect(page.locator('.animate-spin')).toHaveCount(0)
     const before = await cards.count()
     await chip(page, TAG_A).click()
@@ -50,7 +50,7 @@ test.describe('Batch 10C — Browse etag in the URL', () => {
 
   test('etag: tap again clears', async ({ browser }) => {
     const { ctx, page, errors } = await openPage(browser)
-    await page.goto('/browse?cat=equipment')
+    await gotoEquip(page, '/browse?cat=equipment')
     await chip(page, TAG_A).click()
     await expect.poll(() => etagOf(page)).toBe(TAG_A)
     await chip(page, TAG_A).click() // same chip again
@@ -68,12 +68,12 @@ test.describe('Batch 10C — Browse etag in the URL', () => {
 
   test('etag: deep link selects', async ({ browser }) => {
     const { ctx, page, errors } = await openPage(browser)
-    await page.goto(`/browse?cat=equipment&etag=${TAG_B}`)
+    await gotoEquip(page, `/browse?cat=equipment&etag=${TAG_B}`)
     await expect(chip(page, TAG_B)).toHaveAttribute('aria-pressed', 'true')
     await expect(chip(page, 'all')).toHaveAttribute('aria-pressed', 'false')
     // Chip taps replace the history entry: from another page, three taps, one Back leaves Browse.
     await page.goto('/about')
-    await page.goto('/browse?cat=equipment')
+    await gotoEquip(page, '/browse?cat=equipment')
     await chip(page, TAG_A).click(); await expect.poll(() => etagOf(page)).toBe(TAG_A)
     await chip(page, TAG_B).click(); await expect.poll(() => etagOf(page)).toBe(TAG_B)
     await chip(page, 'all').click(); await expect.poll(() => etagOf(page)).toBe(null)
@@ -85,7 +85,7 @@ test.describe('Batch 10C — Browse etag in the URL', () => {
 
   test('etag: refresh keeps', async ({ browser }) => {
     const { ctx, page, errors } = await openPage(browser)
-    await page.goto('/browse?cat=equipment')
+    await gotoEquip(page, '/browse?cat=equipment')
     await chip(page, TAG_A).click()
     await expect.poll(() => etagOf(page)).toBe(TAG_A)
     await page.reload()
@@ -97,7 +97,7 @@ test.describe('Batch 10C — Browse etag in the URL', () => {
 
   test('etag: unknown ignored', async ({ browser }) => {
     const { ctx, page, errors } = await openPage(browser)
-    await page.goto('/browse?cat=equipment&etag=bogus')
+    await gotoEquip(page, '/browse?cat=equipment&etag=bogus')
     await expect(page.getByTestId('equipment-tag-filters')).toBeVisible()
     await expect(chip(page, 'all')).toHaveAttribute('aria-pressed', 'true')
     for (const t of EQUIPMENT_TAGS) await expect(chip(page, t.value)).toHaveAttribute('aria-pressed', 'false')
@@ -105,3 +105,10 @@ test.describe('Batch 10C — Browse etag in the URL', () => {
     await ctx.close()
   })
 })
+
+// Batch 13A: on a phone the tag block starts collapsed when no tag is chosen — open it with its arrow.
+async function gotoEquip(page, url) {
+  await page.goto(url)
+  const tog = page.getByTestId('etag-block-toggle')
+  if ((await tog.getAttribute('aria-expanded')) === 'false') await tog.click()
+}

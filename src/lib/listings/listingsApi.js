@@ -163,6 +163,28 @@ export async function fetchNearby({ category, listingType = null, center, sort =
   return { primary: primary.sort(byDistanceOrNewest), fallback: fallback.sort(byDistanceOrNewest) }
 }
 
+// Batch 13A — Browse loads BOTH types in one request (same bounding box, same filters as fetchNearby)
+// and splits them in the browser (browseSplit.js). Each row carries its Haversine distanceKm.
+export async function fetchNearbyRows({ category, center }) {
+  const maxKm = WIDE_ELIGIBLE_CATEGORIES.includes(category) ? WIDE_RADIUS_KM : FALLBACK_RADIUS_KM
+  const box = boundingBox(center.latitude, center.longitude, maxKm)
+  const { data, error } = await supabase
+    .from('listings')
+    .select('*')
+    .eq('category', category)
+    .eq('status', 'active')
+    .eq('is_available', true)
+    .gte('latitude', box.minLat)
+    .lte('latitude', box.maxLat)
+    .gte('longitude', box.minLon)
+    .lte('longitude', box.maxLon)
+  if (error) throw toAppError(error)
+  return (data || []).map((row) => ({
+    ...row,
+    distanceKm: haversineKm(center.latitude, center.longitude, row.latitude, row.longitude),
+  }))
+}
+
 // --- public homepage feed (anonymised, no auth required) ---
 // Recent active listings across ALL categories, newest first. The listings table
 // carries NO name/phone (those live in `profiles`, which anon cannot read, and are
