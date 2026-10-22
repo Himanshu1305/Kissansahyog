@@ -525,3 +525,9 @@ Live: deployment `8c6a66f2-ad48-444c-8730-67a072c49e0c`, commit `e7432c8`. See P
 - **Mandi ticker crop names are garbled (data problem, HUMAN-REVIEW):** production `mandi_prices.commodity_hi` holds mis-encoded Hindi (shows as "αñùαÑçαñ╣αÑéαñé" instead of "गेहूं"); the same on the deployments before this ship. This is the real cause of the "garbled glyphs" noted under Batch 11A, not a screenshot artefact. Needs a database fix (not done: closes ran read-only).
 - **Cloudflare analytics beacon is blocked by the site's own CSP** (`script-src 'self'`): one harmless console error on every page; unchanged by this ship.
 - 12A and 12C close prompts were never run; both are live via this ship and verified by the 12B live checks.
+
+## Batch 14A
+- **Hindi wording awaits review** (HUMAN-REVIEW, `docs/review/batch14a/HINDI_CAPTIONS.md`).
+- **The block does not reach anonymous inserts** (Sawaal, reports, feedback).
+- **Rate-limited OTP refusals are not counted** in the SMS usage numbers.
+- **Signed-out `/admin` redirects to `/login`** rather than showing the access-denied screen.

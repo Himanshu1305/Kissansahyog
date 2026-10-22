@@ -1567,3 +1567,14 @@ SHIP_RETRY, CLOSE_REPORT, `evidence/prod-live/RESULT.md`), `src/features/guide/`
 - **Picture:** `public/festival/neelkanth.webp` and `neelkanth-112.webp` (CC0), licence note `docs/review/batch12b/IMAGE_LICENSE.md`.
 - **Home desktop layout:** the "पहली बार?" banner and the WhatsApp card sit inside the centered hero column via `.ks-section-inner`.
 - Undo: `bash scripts/rollback-prod-12b.sh e85e91a0-1674-4726-91e6-1051ebdb47a5`. Details: `docs/review/batch12b/` (REPORT, DECISIONS, SHIP, CLOSE_REPORT, evidence).
+
+## Batch 14A — state as of this ship
+- Live since 2026-10-23: deployment 3c5b9bbf (commit 6702137, tag `prod-14a`), previous 871f224c (Batch 13A).
+- Admin page = shell + six lazy tabs (`src/screens/admin/`); panel search is built from `registry.js`.
+- Announcement cards replace the Dussehra card (`get_active_announcements`, `AnnouncementCards`, India time). None exists yet; see `docs/review/batch14a/EXAMPLE_ANNOUNCEMENT.md`.
+- New admin RPCs take `p_actor` and need a live session even when `session_enforced` is false (`require_admin_session`).
+- Roles `super` / `editor` (`profiles.admin_role`).
+- Blocking = `profiles.is_blocked` + BEFORE INSERT triggers on listings and kisan_mela_interest + the OTP verify check.
+- Console log = `admin_actions`; old admin writes are logged by the console `withLog` (see `docs/review/batch14a/BACKLOG.md`).
+- `functions/lib/admin-auth.js` is reused by 14B.
+- Switches at ship: otp_required=true, session_enforced=false.
