@@ -355,7 +355,7 @@ begin
   foreach k in array array['otp_required', 'session_enforced'] loop
     select x.created_at, p.full_name into a
       from public.admin_actions x left join public.profiles p on p.id = x.actor_id
-     where x.action = 'security_flag' and x.details ->> 'key' = k
+     where x.action = 'security_flag' and x.details ->> 'flag' = k
      order by x.created_at desc limit 1;
     v_out := v_out || jsonb_build_object(k, jsonb_build_object(
       'value', public.auth_flag(k), 'changed_at', a.created_at, 'changed_by', a.full_name));
@@ -387,7 +387,7 @@ begin
   insert into public.site_settings (key, value, updated_at) values (p_key, to_jsonb(p_value), now())
   on conflict (key) do update set value = excluded.value, updated_at = now();
   perform public.log_admin_action(p_actor, 'security_flag', 'setting', p_key,
-    jsonb_build_object('key', p_key, 'from', v_old, 'to', p_value, 'reason', left(btrim(p_reason), 200)));
+    jsonb_build_object('flag', p_key, 'from', v_old, 'to', p_value, 'reason', left(btrim(p_reason), 200)));
   return jsonb_build_object('key', p_key, 'value', p_value);
 end;
 $$;
