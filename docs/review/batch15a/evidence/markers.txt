@@ -1,0 +1,4 @@
+Markers used by scripts/ship-prod-15a.sh, checked against the staging build (dist/assets) on 2026-10-23:
+mandi_monthly_history -> dist/assets/Msp-CaEptoK5.js 
+msp-avg5-body -> dist/assets/Msp-CaEptoK5.js 
+अनुमान नहीं -> dist/assets/LanguageProvider-DAGG5gG7.js 

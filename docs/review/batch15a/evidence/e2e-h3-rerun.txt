@@ -1,0 +1,20 @@
+[WebServer] [PLUGIN_TIMINGS] Your build spent 100% of 3.6s inside plugin hooks (7.0s).
+[WebServer] Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+[WebServer]   - vite-plugin-pwa:build closeBundle (100%, 3.7s, 1 call)
+[WebServer]   - @tailwindcss/vite:generate:build transform (80%, 2.9s, 4 calls)
+[WebServer] See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+[WebServer] 
+
+Running 4 tests using 1 worker
+
+NOTE H3 hi 360 price card: {"hasPrice":true,"text":"मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज का भाव गेहूं ₹2,690 MSP ₹2,585 से ₹105 ऊपर · पूरी सूची → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन"}
+  ok 1 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.9s)
+NOTE H3 hi 412 price card: {"hasPrice":true,"text":"मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज का भाव गेहूं ₹2,690 MSP ₹2,585 से ₹105 ऊपर · पूरी सूची → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन"}
+  ok 2 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.9s)
+NOTE H3 en 360 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+  ok 3 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.8s)
+NOTE H3 en 412 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+  ok 4 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.8s)
+[teardown] test data cleaned
+
+  4 passed (47.1s)

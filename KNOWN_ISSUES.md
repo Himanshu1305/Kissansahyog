@@ -254,11 +254,17 @@ left because acting on it touches working, pre-existing code with no reported is
   helpline verified); source URLs recorded instead.
 
 ## मौसम/MSP build (2026-09-25)
-- **DATA_GOV_IN_API_KEY secret not set → 3-year mandi history not backfilled.** Trend
-  and "पिछले सालों में" sections show only the short history the 3-hourly refresh has
-  gathered; the past-years bar chart stays hidden until ≥12 months exist. Owner action:
-  register at data.gov.in, add the `DATA_GOV_IN_API_KEY` repo secret, run the "Backfill
-  mandi history" GitHub workflow.
+- **Mandi history (updated Batch 15A, 2026-10-23).** The daily table `mandi_prices` only holds days from 2026-06-20 on (the planned
+  data.gov.in 3-year backfill never worked: that resource is a daily snapshot, and `backfill-mandi-history.mjs` stays unused). The
+  ten-year history now lives in its own table, **`mandi_monthly_history`** (migration 0069): monthly Modal prices, **2016-01 to
+  2025-10**, scope `sagar_division` (plain mean of the five CEDA districts Tikamgarh, Chhatarpur, Panna, Sagar, Damoh that reported
+  that month) and `mp` (state level), 12 crops. Source: Agmarknet / DMI data republished by the CEDA portal (Ashoka University); files in
+  `data/mandi-history/`, fetched once by `scripts/fetch-mandi-history.mjs`. **Known gaps:** nothing between 2025-11 and 2026-06 (the
+  daily table starts 2026-06-20); some crops have months missing in the division series (Moong, Paddy, Maize, Garlic, Linseed, Urad)
+  and those months are left out, never filled in. **Refresh is manual** (re-run the fetch and build scripts; see
+  `docs/review/batch15a/BACKLOG.md`). /msp shows "पिछले 5 सालों में महीने के हिसाब से औसत Modal भाव" and "5 साल का औसत बनाम आज"
+  from it; both sections hide by themselves when the table is missing or empty. The CEDA site states no licence (underlying data is
+  government open data); the attribution line is shown wherever the history is shown.
 - **ActionWindows / per-crop advice / procurement steps are pending expert review** —
   they carry a "समीक्षाधीन" tag until Shri A.K. Dixit reviews docs/content/
   MAUSAM_MSP_CONTENT_REVIEW.md and an admin flips the review flag.
@@ -271,7 +277,7 @@ left because acting on it touches working, pre-existing code with no reported is
   - Filter field names must be **lowercase** (`filters[state]=Madhya Pradesh`); the capitalised `filters[State]`/`.keyword` forms return 0. The text filter also returns other "*Pradesh" states, so we narrow to true MP client-side (~85 rows/day).
   - **The daily feed currently carries NO Sagar-district rows.** So `refresh-data.mjs` pools MP-wide and picks the best available MP mandi for a commodity (marked `is_sagar_district=false`) when Sagar has none. गेहूं/सोयाबीन/मक्का/सरसों/लहसुन come from the wrapper (Sagar); चना and धान now populate from MP mandis via the official API.
   - **मसूर/मूंग/उड़द** still don't populate on some days: they are simply absent from the MP daily feed (off-season / not reported that day) — a data-availability reality, not a code bug. They fill in automatically on days the feed has them.
-- **Note for the history backfill:** resource `9ef84268-…` is a *daily-snapshot* resource (today's rows only), and its filters are lowercase; `backfill-mandi-history.mjs` should be revisited (lowercase filters + a genuinely historical Agmarknet source) before relying on it for multi-year history.
+- **Note for the history backfill (superseded by Batch 15A):** resource `9ef84268-…` is a *daily-snapshot* resource (today's rows only); the ten-year history now comes from `mandi_monthly_history` (CEDA), see the Batch 15A entry above. `backfill-mandi-history.mjs` is not used.
 
 ## Geofencing / Location / Mandi / PWA / Inputs build (2026-09-25, migration 0025)
 - **Failing backend suites — CORRECTED (2026-09-25).** The baseline was 21 pass / 5 fail. This

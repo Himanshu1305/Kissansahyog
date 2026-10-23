@@ -1,0 +1,156 @@
+[WebServer] [PLUGIN_TIMINGS] Your build spent 100% of 3.9s inside plugin hooks (8.4s).
+[WebServer] Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+[WebServer]   - vite-plugin-pwa:build closeBundle (100%, 4.9s, 1 call)
+[WebServer]   - vite-plugin-pwa load (71%, 2.8s, 1 call)
+[WebServer] Those rows are 100% of the build; the rest of the 100% is below.
+[WebServer] Not measurable — 2 hooks whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
+[WebServer]   - vite:css transform (4 calls)
+[WebServer]   - @tailwindcss/vite:generate:build transform (4 calls)
+[WebServer] See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+[WebServer] 
+
+Running 35 tests using 1 worker
+
+  x   1 [chromium] › e2e\collapsible-10f.spec.js:39:1 › C1 prerendered HTML: every section open and its text present (msp, mausam, home) (55ms)
+NOTE C2 /msp/gehun: {"explainer":true,"snapshot":true,"today":true,"trend":false,"trend-table":false,"calc":false,"procurement":false,"below":false,"faq":false}
+  ok  2 [chromium] › e2e\collapsible-10f.spec.js:55:3 › C2 /msp/gehun phone 360: defaults after hydration; nothing visible moved (CLS) (3.6s)
+  ok  3 [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 /msp/gehun at 768 and 1280: everything starts open (5.2s)
+NOTE C2 /: {"search":true,"near":true,"listings":true,"videos":false,"qa":false,"mela":false,"govt":false,"trust":false,"articles":false}
+  ok  4 [chromium] › e2e\collapsible-10f.spec.js:55:3 › C2 / phone 360: defaults after hydration; nothing visible moved (CLS) (2.6s)
+  ok  5 [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 / at 768 and 1280: everything starts open (5.0s)
+  ok  6 [chromium] › e2e\collapsible-10f.spec.js:80:1 › C4 toggle with mouse, touch and keyboard (Enter, Space); aria-expanded follows; chevron right after the heading text (10.0s)
+  ok  7 [chromium] › e2e\collapsible-10f.spec.js:139:1 › C5 the choice is remembered per page and section; the page still works with storage unavailable (8.9s)
+  ok  8 [chromium] › e2e\collapsible-10f.spec.js:164:1 › C6 a #hash pointing into a collapsed section opens it and scrolls to it (3.3s)
+  ok  9 [chromium] › e2e\collapsible-10f.spec.js:175:1 › C7 reduced motion: no height animation, no chevron transition (3.4s)
+  ok 10 [chromium] › e2e\collapsible-10f.spec.js:188:1 › C8 /mausam and the homepage: toggles work, nothing scrolls sideways at 320 (5.2s)
+  ok 11 [chromium] › e2e\home-10f.spec.js:79:7 › Home 10F hi 360px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (1.8s)
+  ok 12 [chromium] › e2e\home-10f.spec.js:105:7 › Home 10F hi 360px › H2 the demo button opens the same demos as the 10D button (/guide) (1.2s)
+NOTE H3 hi 360 price card: {"hasPrice":true,"text":"मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज का भाव गेहूं ₹2,690 MSP ₹2,585 से ₹105 ऊपर · पूरी सूची → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन"}
+  ok 13 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.9s)
+  ok 14 [chromium] › e2e\home-10f.spec.js:79:7 › Home 10F hi 412px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (1.9s)
+  ok 15 [chromium] › e2e\home-10f.spec.js:105:7 › Home 10F hi 412px › H2 the demo button opens the same demos as the 10D button (/guide) (884ms)
+NOTE H3 hi 412 price card: {"hasPrice":true,"text":"मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज का भाव गेहूं ₹2,690 MSP ₹2,585 से ₹105 ऊपर · पूरी सूची → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन"}
+  ok 16 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.8s)
+  ok 17 [chromium] › e2e\home-10f.spec.js:79:7 › Home 10F en 360px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (1.5s)
+  ok 18 [chromium] › e2e\home-10f.spec.js:105:7 › Home 10F en 360px › H2 the demo button opens the same demos as the 10D button (/guide) (813ms)
+NOTE H3 en 360 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+  ok 19 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.9s)
+  ok 20 [chromium] › e2e\home-10f.spec.js:79:7 › Home 10F en 412px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (1.4s)
+  ok 21 [chromium] › e2e\home-10f.spec.js:105:7 › Home 10F en 412px › H2 the demo button opens the same demos as the 10D button (/guide) (848ms)
+NOTE H3 en 412 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+  ok 22 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (8.9s)
+  x  23 [chromium] › e2e\home-10f.spec.js:161:1 › H4 the prerendered HTML of / has the static hero and none of the removed hero parts (56ms)
+  ok 24 [chromium] › e2e\home-10f.spec.js:171:1 › H5 no lazy hero chunk and no hero timer: no LiveStage request, no hero timers after load (4.5s)
+  ok 25 [chromium] › e2e\home-10f.spec.js:185:3 › H6 hi: no horizontal overflow at 320–1440; hero fits the width (9.9s)
+  ok 26 [chromium] › e2e\home-10f.spec.js:185:3 › H6 en: no horizontal overflow at 320–1440; hero fits the width (8.7s)
+NOTE H7 360x640 bottoms (px from page top): {"heroTop":440,"h1":565,"need":667,"have":743,"demo":828}
+  ok 27 [chromium] › e2e\home-10f.spec.js:207:1 › H7 first screen at 360x640 (hi): heading on screen; positions of the two buttons and the demo button reported (1.8s)
+NOTE H8 1280x720 hi: [{"top":358,"bottom":409,"right":663},{"top":450,"bottom":514,"right":361},{"top":450,"bottom":514,"right":663},{"top":551,"bottom":599,"right":663}]
+NOTE H8 1280x720 en: [{"top":358,"bottom":409,"right":663},{"top":450,"bottom":514,"right":361},{"top":450,"bottom":514,"right":663},{"top":551,"bottom":599,"right":663}]
+  ok 28 [chromium] › e2e\home-10f.spec.js:226:1 › H8 1280x720: the H1, both big buttons and the demo button are visible without scrolling (hi and en) (2.6s)
+  ok 29 [chromium] › e2e\home-10f.spec.js:251:1 › H9 other routes still start as before; in-app navigation / → /guide (demo button) → back works (4.6s)
+  ok 30 [chromium] › e2e\phase19_voice_mandi.spec.js:8:1 › voice: Web Speech API populates the /sawaal search field (mocked recognition) (659ms)
+  ok 31 [chromium] › e2e\phase19_voice_mandi.spec.js:31:1 › voice: unsupported browser WITH a key shows the Gemini-fallback mic (700ms)
+  ok 32 [chromium] › e2e\phase19_voice_mandi.spec.js:50:1 › voice: permission denied shows the "माइक की अनुमति दें" message, not a stuck mic (Batch 4) (714ms)
+  ok 33 [chromium] › e2e\phase19_voice_mandi.spec.js:76:1 › voice: unsupported browser with NO key hides the mic — text search still works (1.0s)
+  x  34 [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded (10.8s)
+  ok 35 [chromium] › e2e\phase19_voice_mandi.spec.js:115:1 › mandi: the homepage ticker still shows LIVE prices (regression guard) (924ms)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\collapsible-10f.spec.js:39:1 › C1 prerendered HTML: every section open and its text present (msp, mausam, home) 
+
+    Error: /msp/gehun/
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      42 |     const html = await (await request.get(path)).text()
+      43 |     const details = html.match(/<details[^>]*class="ks-cs[^"]*"[^>]*>/g) || []
+    > 44 |     expect(details.length, path).toBeGreaterThan(0)
+         |                                  ^
+      45 |     for (const d of details) expect(d, `${path}: ${d}`).toMatch(/\sopen(=""|\s|>)/)
+      46 |   }
+      47 |   const msp = await (await request.get('/msp/gehun/')).text()
+        at C:\Users\usdvi\AppData\Local\Temp\claude\C--Users-usdvi-projects-Kissansahyog\181997af-8cff-4bef-a0b5-4ae495d7269f\scratchpad\ks-base-14a\e2e\collapsible-10f.spec.js:44:34
+
+    Error Context: test-results\collapsible-10f-C1-prerend-5a880-xt-present-msp-mausam-home--chromium\error-context.md
+
+  2) [chromium] › e2e\home-10f.spec.js:161:1 › H4 the prerendered HTML of / has the static hero and none of the removed hero parts 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "data-testid=\"home-hero\""
+    Received string:    "<!doctype html>·
+    <html lang=\"hi\">·
+      <head>·
+        <meta charset=\"UTF-8\" />·
+        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />·
+        <meta name=\"theme-color\" content=\"#24733F\" />·
+        <!-- Per-page <title> and <meta name=\"description\"> are injected by React 19·
+             document metadata (<Seo/> / <RouteSeo/>) and captured at prerender, so no·
+             static duplicates live here. -->·
+        <link rel=\"icon\" type=\"image/svg+xml\" href=\"/icons/favicon.svg\" />·
+        <link rel=\"icon\" type=\"image/png\" sizes=\"48x48\" href=\"/icons/favicon-48.png\" />·
+        <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/icons/favicon-32.png\" />·
+        <link rel=\"apple-touch-icon\" href=\"/icons/apple-touch-icon.png\" />·
+        <script type=\"module\" crossorigin src=\"/assets/index-DuZAGyI3.js\"></script>
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/rolldown-runtime-hePW80VL.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/react-vendor-Cg-BX6NK.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/LanguageProvider-BP-pv_bP.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/useNativeBack-DSHu5POZ.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/supabase-H6RbKBY9.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/PageShell-CM6reUPf.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/WhatsAppQR-kdE-DQSk.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/device-D4sZPGnq.js\">
+        <link rel=\"stylesheet\" crossorigin href=\"/assets/index-CZnulipy.css\">
+      <link rel=\"manifest\" href=\"/manifest.webmanifest\"></head>·
+      <body>·
+        <div id=\"root\"></div>··
+      </body>·
+    </html>·
+    "
+
+      161 | test('H4 the prerendered HTML of / has the static hero and none of the removed hero parts', async ({ request }) => {
+      162 |   const html = await (await request.get('/')).text()
+    > 163 |   expect(html).toContain('data-testid="home-hero"')
+          |                ^
+      164 |   expect(html).toContain('data-testid="home-hero-demo"')
+      165 |   expect(html).toContain(strings.cta_need.hi)
+      166 |   expect(html).toContain(strings.cta_have.hi)
+        at C:\Users\usdvi\AppData\Local\Temp\claude\C--Users-usdvi-projects-Kissansahyog\181997af-8cff-4bef-a0b5-4ae495d7269f\scratchpad\ks-base-14a\e2e\home-10f.spec.js:163:16
+
+    Error Context: test-results\home-10f-H4-the-prerendere-69709-e-of-the-removed-hero-parts-chromium\error-context.md
+
+  3) [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('price-missing').first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByTestId('price-missing').first()
+
+
+      110 |   await expect(tag).toContainText(/कल का भाव|पिछला भाव/)
+      111 |   // A genuinely never-reported commodity renders the honest "—".
+    > 112 |   await expect(page.getByTestId('price-missing').first()).toBeVisible()
+          |                                                           ^
+      113 | })
+      114 |
+      115 | test('mandi: the homepage ticker still shows LIVE prices (regression guard)', async ({ page }) => {
+        at C:\Users\usdvi\AppData\Local\Temp\claude\C--Users-usdvi-projects-Kissansahyog\181997af-8cff-4bef-a0b5-4ae495d7269f\scratchpad\ks-base-14a\e2e\phase19_voice_mandi.spec.js:112:59
+
+    Error Context: test-results\phase19_voice_mandi-mandi--5a706-gs-and-—-for-never-recorded-chromium\error-context.md
+
+  3 failed
+    [chromium] › e2e\collapsible-10f.spec.js:39:1 › C1 prerendered HTML: every section open and its text present (msp, mausam, home) 
+    [chromium] › e2e\home-10f.spec.js:161:1 › H4 the prerendered HTML of / has the static hero and none of the removed hero parts 
+    [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded 
+  32 passed (2.6m)

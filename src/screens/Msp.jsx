@@ -8,11 +8,12 @@ import WhatsAppJoin from '../components/WhatsAppJoin'
 import BackButton from '../components/BackButton'
 import { Spinner } from '../components/ui'
 import { CROPS, cropBySlug, cropName, defaultCropSlug } from '../content/crops'
-import { MONTHS_HI } from '../content/months'
-import { fetchMandiForCrop, fetchMandiHistoryRows, fetchMandiMonthly, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
+import { MONTHS_HI, MONTHS_SHORT_EN, MONTHS_FULL_HI, MONTHS_FULL_EN } from '../content/months'
+import { fetchMandiForCrop, fetchMandiHistoryRows, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
 import { marketDistanceKm } from '../content/mandiCoords'
 import { windowInfo, windowStart, formatDay, formatDateFull } from '../lib/mandi/mspWindow'
 import { basketSeries } from '../lib/mandi/basket'
+import { fetchMonthlyHistory, monthOfYearAverages, harvestAverage, harvestByYear, gapVsAverage, latestMonth } from '../lib/mandi/history10y'
 import { fetchMsp } from '../lib/msp/mspApi'
 import { fetchHomeFeed } from '../lib/listings/listingsApi'
 import { useUserLocation } from '../lib/location/LocationProvider'
@@ -60,7 +61,7 @@ export default function Msp() {
   const mandiOffline = useOfflineInfo(MANDI_RES)
   const [mspRow, setMspRow] = useState(null)
   const [trend90, setTrend90] = useState(null) // { rows (90 days, one per mandi and day), scope } — 7/30 are slices of it
-  const [monthly, setMonthly] = useState([])
+  const [hist, setHist] = useState({ rows: [], scope: null }) // Batch 15A: 10 years of monthly Modal prices (mandi_monthly_history)
   const [faqs, setFaqs] = useState([])
   const [procurement, setProcurement] = useState([])
   const [storageRate, setStorageRate] = useState({ rate: 15, fromListings: false })
@@ -87,7 +88,8 @@ export default function Msp() {
     setToday(undefined)
     fetchMandiForCrop(crop.mandi_en).then((r) => alive && setToday(r)).catch(() => alive && setToday({ rows: [], date: null }))
     fetchMsp().then((rows) => { if (alive) setMspRow((rows || []).find((m) => m.crop_en === crop.msp_en) || null) }).catch(() => {})
-    fetchMandiMonthly(crop.mandi_en).then((r) => alive && setMonthly(r)).catch(() => {})
+    setHist({ rows: [], scope: null })
+    fetchMonthlyHistory(crop.mandi_en).then((r) => alive && setHist(r)).catch(() => {})
     return () => { alive = false }
   }, [slug])
 
@@ -205,15 +207,38 @@ export default function Msp() {
   const storageCost = storageRate.rate * months
   const totalShortfall = diff != null ? Math.abs(diff) * qty : null
 
-  // past years by month (only if >= 12 distinct months)
+  // Batch 15A: past years by month = the average Modal price of each calendar month over the last 5 years (a month
+  // with data in fewer than 3 of the 5 years is left out). Hidden when the history table has nothing (e.g. production
+  // before its data is loaded): the page then looks exactly as it did before.
   const monthBars = useMemo(() => {
-    if (!monthly.length) return null
-    const byMonth = {}
-    for (const r of monthly) { const m = new Date(r.date).getMonth(); (byMonth[m] ||= []).push(r.price) }
-    const distinct = Object.keys(byMonth).length
-    if (distinct < 12) return null
-    return Array.from({ length: 12 }, (_, m) => ({ label: MONTHS_HI[m], avg: byMonth[m] ? Math.round(byMonth[m].reduce((a, b) => a + b, 0) / byMonth[m].length) : 0 }))
-  }, [monthly])
+    if (!hist.rows.length) return null
+    const avgs = monthOfYearAverages(hist.rows)
+    if (!avgs.some((v) => v != null)) return null
+    const names = lang === 'hi' ? MONTHS_HI : MONTHS_SHORT_EN
+    const full = lang === 'hi' ? MONTHS_FULL_HI : MONTHS_FULL_EN
+    const have = avgs.map((v, i) => ({ v, i })).filter((x) => x.v != null).sort((x, y) => x.v - y.v)
+    const lo = have[0], hi = have[have.length - 1]
+    return {
+      bars: avgs.map((v, i) => ({ label: names[i], avg: v ?? 0 })),
+      high: { m: full[hi.i], p: rs(hi.v) }, low: { m: full[lo.i], p: rs(lo.v) },
+      until: latestMonth(hist.rows),
+    }
+  }, [hist, lang])
+  const untilLabel = (ym) => (ym ? `${(lang === 'hi' ? MONTHS_FULL_HI : MONTHS_FULL_EN)[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}` : '')
+
+  // Batch 15A: "5-year average vs today" = the average Modal price of the crop's harvest months over the last 5 years,
+  // the yearly values, and today's price (the same corrected price the calculator uses) against that average.
+  const harvest = useMemo(() => {
+    const hm = crop.harvest_months
+    if (!hist.rows.length || !hm) return null
+    const avg = harvestAverage(hist.rows, hm)
+    if (!avg) return null
+    const full = lang === 'hi' ? MONTHS_FULL_HI : MONTHS_FULL_EN
+    const monthsLabel = hm.length > 1 ? `${full[hm[0] - 1]}–${full[hm[hm.length - 1] - 1]}` : full[hm[0] - 1]
+    return { ...avg, byYear: harvestByYear(hist.rows, hm), monthsLabel }
+  }, [hist, crop, lang])
+  const harvestGap = harvest ? gapVsAverage(calcPrice, harvest.avg) : null
+  const scopeLabel = hist.scope === 'mp' ? t('msp_py_scope_mp') : t('msp_py_scope_division')
 
   // Newest price date among the compared mandis (badge of the mandi-compare view).
   const compareLatest = useMemo(() => { const ds = Object.values(compareData || {}).map((r) => r.price_date).filter(Boolean); return ds.length ? ds.sort().slice(-1)[0] : null }, [compareData])
@@ -405,6 +430,44 @@ export default function Msp() {
           </CollapsibleSection>
         )}
 
+        {/* 4b. Batch 15A: 5-year average vs today (past prices only; never a forecast) */}
+        {view === 'crop' && harvest && (
+          <CollapsibleSection page="msp" id="avg5" testId="msp-avg5" title={t('msp_avg_h')}>
+            <div data-testid="msp-avg5-body" className="space-y-3">
+              <p className="text-[15px]" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_avg_harvest_line').replace('{months}', harvest.monthsLabel)}</p>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded-lg p-3" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}>
+                  <div className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_avg_label')}</div>
+                  <div data-testid="msp-avg5-avg" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{rs(harvest.avg)}</div>
+                </div>
+                <div className="rounded-lg p-3" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}>
+                  <div className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{latestPoint ? t('msp_avg_today_on').replace('{date}', formatDay(latestPoint.date, lang)) : t('msp_avg_today')}</div>
+                  <div data-testid="msp-avg5-today" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{calcPrice != null ? rs(calcPrice) : '—'}</div>
+                </div>
+              </div>
+              {calcPrice == null && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_avg_today_none')}</p>}
+              {harvestGap != null && (
+                <p data-testid="msp-avg5-gap" className="text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>
+                  {harvestGap > 0 ? t('msp_avg_gap_up').replace('{p}', harvestGap) : harvestGap < 0 ? t('msp_avg_gap_down').replace('{p}', Math.abs(harvestGap)) : t('msp_avg_gap_same')}
+                </p>
+              )}
+              <div>
+                <div className="mb-1 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_avg_by_year')}</div>
+                <ul data-testid="msp-avg5-years" className="flex flex-wrap gap-1.5">
+                  {harvest.byYear.map((y) => (
+                    <li key={y.year} className="rounded-lg px-2.5 py-1.5 text-[14px]" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', color: 'var(--ks-ink)' }}>
+                      <span style={{ color: 'var(--ks-ink-3)' }}>{y.year}</span> <b>{rs(y.price)}</b>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p data-testid="msp-avg5-note" className="text-[14px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_avg_note')}</p>
+              <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_modal_def')}</p>
+              <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{scopeLabel} · {t('msp_py_until').replace('{month}', untilLabel(latestMonth(hist.rows)))}. {t('msp_py_source')}</p>
+            </div>
+          </CollapsibleSection>
+        )}
+
         {/* 5. wait-vs-sell calculator */}
         {view === 'crop' && crop.msp_en && (
           <CollapsibleSection page="msp" id="calc" title={t('msp_calc_h')} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
@@ -467,7 +530,15 @@ export default function Msp() {
         {/* 8. past years */}
         {monthBars && (
           <CollapsibleSection page="msp" id="pastyears" title={t('msp_pastyears_h')}>
-            <MonthBars months={monthBars} ariaLabel={t('msp_pastyears_h')} />
+            <div data-testid="msp-pastyears-body">
+              <MonthBars months={monthBars.bars} ariaLabel={t('msp_pastyears_h')} />
+              <p className="mt-3 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>
+                {t('msp_py_high_low').replace('{hi_m}', monthBars.high.m).replace('{hi_p}', monthBars.high.p).replace('{lo_m}', monthBars.low.m).replace('{lo_p}', monthBars.low.p)}
+              </p>
+              <p className="mt-1 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_modal_def')}</p>
+              <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{scopeLabel} · {t('msp_py_until').replace('{month}', untilLabel(monthBars.until))}. {t('msp_py_source')}</p>
+              {hist.scope === 'mp' && <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_py_scope_mp_note')}</p>}
+            </div>
           </CollapsibleSection>
         )}
 
