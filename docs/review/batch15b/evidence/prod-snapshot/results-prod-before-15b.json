@@ -1,7 +1,7 @@
 {
   "label": "prod-before-15b",
   "base": "https://kissansahyog.com",
-  "startedAt": "2026-10-23T17:16:25.628Z",
+  "startedAt": "2026-10-23T20:27:57.821Z",
   "gates": {
     "snapshot": {
       "status": "RAN-PASSED",
@@ -11,7 +11,7 @@
           "ok": true,
           "detail": {
             "status": 200,
-            "bytes": 109637,
+            "bytes": 109729,
             "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
             "h1": "आज किसान के लिए"
           }
@@ -31,7 +31,7 @@
           "ok": true,
           "detail": {
             "status": 200,
-            "bytes": 112979,
+            "bytes": 113355,
             "title": "मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य",
             "h1": "गेहूं भाव — आज व MSP से तुलना"
           }
@@ -41,7 +41,7 @@
           "ok": true,
           "detail": {
             "status": 200,
-            "bytes": 109637,
+            "bytes": 109729,
             "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
             "h1": "आज किसान के लिए"
           }
@@ -119,7 +119,7 @@
           "ok": true,
           "detail": {
             "status": 200,
-            "bytes": 6688
+            "bytes": 6818
           }
         },
         {
@@ -158,6 +158,6 @@
       "notes": []
     }
   },
-  "finishedAt": "2026-10-23T17:16:26.395Z",
+  "finishedAt": "2026-10-23T20:27:58.936Z",
   "verdict": "ALL PASSED"
 }

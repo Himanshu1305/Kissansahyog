@@ -1,4 +1,4 @@
-deployment_id=3b8ce6d9-f29c-4741-8783-e6fe36ad9f16
-source=ad391e0
-main_chunk=/assets/index-4jqfUsIW.js
-taken_at=2026-10-23T17:16:26Z
+deployment_id=f60784fb-7bbf-404b-9ecd-9f773d6246d2
+source=275a932
+main_chunk=/assets/index-lxHTN3-R.js
+taken_at=2026-10-23T20:27:58Z

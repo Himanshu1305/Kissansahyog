@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// DO NOT RE-RUN: ship scripts were edited by hand after generation (TAG variable, expected live id); this would overwrite them.
 // One-off generator: builds scripts/ship-prod-15b.sh and scripts/rollback-prod-15b.sh from the 15A scripts.
 //   node scripts/batch15b/make-ship-scripts.mjs
 import { readFileSync, writeFileSync } from 'node:fs'

@@ -1,11 +1,11 @@
 {
   "base": "https://kissansahyog.com",
-  "takenAt": "2026-10-23T17:16:25.630Z",
+  "takenAt": "2026-10-23T20:27:57.823Z",
   "pages": {
     "/": {
       "status": 200,
       "finalPath": "/",
-      "bytes": 109637,
+      "bytes": 109729,
       "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
       "h1": "आज किसान के लिए",
       "errorBoundary": false,
@@ -23,7 +23,7 @@
     "/msp": {
       "status": 200,
       "finalPath": "/msp/",
-      "bytes": 112979,
+      "bytes": 113355,
       "title": "मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य",
       "h1": "गेहूं भाव — आज व MSP से तुलना",
       "errorBoundary": false,
@@ -32,7 +32,7 @@
     "/browse": {
       "status": 200,
       "finalPath": "/browse",
-      "bytes": 109637,
+      "bytes": 109729,
       "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
       "h1": "आज किसान के लिए",
       "errorBoundary": false,
@@ -103,10 +103,10 @@
     },
     "/sitemap-pages.xml": {
       "status": 200,
-      "bytes": 6688,
+      "bytes": 6818,
       "contentType": "application/xml",
-      "sha256": "b1ff48d477a747092c011ffe16862f4fe47745c8a88e1e580d8961d47e393d3f",
-      "urlCount": 54
+      "sha256": "a1b9e82f64e41aa4209e48cd7553f7053711aba1c5dd7b2618cd93107d818fa3",
+      "urlCount": 55
     },
     "/sitemap-sawaal.xml": {
       "status": 200,

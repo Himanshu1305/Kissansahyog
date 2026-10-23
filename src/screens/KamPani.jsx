@@ -24,11 +24,6 @@ const SCROLL_MARGIN = { scrollMarginTop: '84px' }
 
 const useL = () => { const { lang } = useLang(); return (o) => (o && (o[lang] || o.hi)) || '' }
 
-function ReviewTag({ reviewed }) {
-  const { t } = useLang()
-  if (reviewed) return null
-  return <span data-testid="kp-under-review" className="ml-1 inline-block rounded px-2 py-0.5 text-[12px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)', border: '1px solid var(--ks-saffron)' }}>{t('under_review')}</span>
-}
 function Src({ ids }) {
   const L = useL()
   return (
@@ -61,7 +56,7 @@ function Card({ card }) {
   return (
     <details id={card.anchor} open={open} onToggle={(e) => setOpen(e.currentTarget.open)} data-testid={`kp-card-${card.id}`} className="mb-2.5 rounded-xl" style={{ ...SCROLL_MARGIN, background: 'var(--ks-card)', border: '1px solid var(--ks-border)' }}>
       <summary className="flex min-h-[48px] cursor-pointer items-center gap-2 px-3 py-2.5 text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>
-        <span>{L(card.title)}<ReviewTag reviewed={card.reviewed} /></span>
+        <span>{L(card.title)}</span>
       </summary>
       <div className="px-3.5 pb-3 text-[15px]" style={{ color: 'var(--ks-ink-2)' }}>
         <ul className="my-1.5 list-disc space-y-1 pl-5">{card.lines.map((ln, i) => <li key={i}>{L(ln)}</li>)}</ul>
@@ -101,12 +96,12 @@ function CropCard({ c, data, loading }) {
   return (
     <article id={`kp-crop-${c.id}`} data-testid={`kp-crop-${c.id}`} className="mb-2.5 rounded-xl p-3" style={{ ...SCROLL_MARGIN, background: c.id === 'gram' ? 'var(--ks-green-tint)' : 'var(--ks-card)', border: c.id === 'gram' ? '2px solid var(--ks-green)' : '1px solid var(--ks-border)' }}>
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-[17px] font-bold" style={{ color: 'var(--ks-ink)' }}>{L(c.name)}<ReviewTag reviewed={c.reviewed} /></h3>
+        <h3 className="text-[17px] font-bold" style={{ color: 'var(--ks-ink)' }}>{L(c.name)}</h3>
         <span className="whitespace-nowrap rounded-full px-2.5 py-0.5 text-[12.5px] font-bold text-white" style={{ background: TONE[c.tone] }}>{L(c.verdict)}</span>
       </div>
       <div className="my-2 flex flex-wrap gap-1.5 text-[13px]">
-        <span className="rounded-lg px-2 py-0.5" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)' }}>{L(LABELS.water)}: {L(c.water)}<ReviewTag reviewed={c.water.reviewed !== false} /></span>
-        <span className="rounded-lg px-2 py-0.5" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)' }}>{L(LABELS.days)}: {L(c.days)}{c.days.star ? ' *' : ''}<ReviewTag reviewed={c.days.reviewed} /></span>
+        <span className="rounded-lg px-2 py-0.5" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)' }}>{L(LABELS.water)}: {L(c.water)}</span>
+        <span className="rounded-lg px-2 py-0.5" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)' }}>{L(LABELS.days)}: {L(c.days)}{c.days.star ? ' *' : ''}</span>
       </div>
       <p className="text-[14px]"><b>{L(LABELS.sowing)}:</b> {L(c.sowing)}</p>
 
@@ -134,7 +129,7 @@ function CropCard({ c, data, loading }) {
         <div className="my-2 rounded-lg px-2.5 py-1.5 text-[13.5px]" style={{ background: 'var(--ks-card)', border: '1px dashed var(--ks-green)' }}>
           <b>{L(LABELS.money)}</b><br />
           {L(LABELS.yieldIs)} {inc.yieldQ} {L(LABELS.quintal)} (CRIDA 2013)
-          {inc.atAvg != null && <><br />• {L(LABELS.atAvg)}: <b>{rs(inc.atAvg)}</b> ({L(LABELS.atAvgSafe)})</>}
+          {inc.atAvg != null && <><br />• {L(LABELS.atAvg)}: <b>{rs(inc.atAvg)}</b></>}
           {inc.atToday != null && <><br />• {L(LABELS.atToday)}: <b>{rs(inc.atToday)}</b></>}
           {inc.upside && <><br />• {L(LABELS.upside)} ({GRAM_UPSIDE_Q.min} {L(LABELS.to)} {GRAM_UPSIDE_Q.max} {L(LABELS.quintal)}, {L(LABELS.upsideNote)}): <b>{rs(inc.upside.lo)} {L(LABELS.to)} {rs(inc.upside.hi)}</b></>}
           <br /><span className="text-[12.5px]" style={{ color: 'var(--ks-ink-3)' }}>{L(PAGE.estimate)}</span>
@@ -143,7 +138,7 @@ function CropCard({ c, data, loading }) {
         <p className="my-2 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{L(LABELS.noYield)}</p>
       )}
 
-      {c.vars && <p className="my-2 rounded-lg px-2.5 py-1.5 text-[13px]" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}><b>{L(LABELS.vars)}:</b> {L(c.vars)}<ReviewTag reviewed={c.vars.reviewed} /></p>}
+      {c.vars && <p className="my-2 rounded-lg px-2.5 py-1.5 text-[13px]" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}><b>{L(LABELS.vars)}:</b> {L(c.vars)}</p>}
       <p className="text-[14px]">{L(c.why)}</p>
       <p className="mt-1 text-[13.5px]" style={{ color: 'var(--ks-ink-3)' }}>{L(c.note)}</p>
       <Src ids={c.sources} />
@@ -233,7 +228,7 @@ export default function KamPani() {
             <p className="rounded-lg px-3 py-2 text-[14.5px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)', border: '1px solid var(--ks-green)' }}>{L(waterTitle(water))}</p>
             {recommendForWater(water).map((r, i) => (
               <div key={`${water}-${i}`} data-testid={r.keep ? 'kp-rec-keep' : 'kp-rec-avoid'} className="my-1.5 rounded-r-lg px-3 py-2 text-[14.5px]" style={{ borderLeft: `4px solid ${r.keep ? 'var(--ks-green)' : '#991b1b'}`, border: '1px solid var(--ks-border)', borderLeftWidth: 4, borderLeftColor: r.keep ? 'var(--ks-green)' : '#991b1b', background: 'var(--ks-card)' }}>
-                <b>{r.keep ? (lang === 'en' ? 'Sow: ' : 'बोएँ: ') : (lang === 'en' ? 'Avoid: ' : 'न बोएँ / सावधान: ')}{L(r.crop)}</b> — {L(r.text)}<ReviewTag reviewed={r.reviewed} />
+                <b>{r.keep ? (lang === 'en' ? 'Sow: ' : 'बोएँ: ') : (lang === 'en' ? 'Avoid: ' : 'न बोएँ / सावधान: ')}{L(r.crop)}</b> — {L(r.text)}
               </div>
             ))}
             <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{L(WATER_NOTE)}</p>

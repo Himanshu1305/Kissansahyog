@@ -1,0 +1,6 @@
+deployment_id=3b8ce6d9-f29c-4741-8783-e6fe36ad9f16
+source=ad391e0
+main_chunk=/assets/index-4jqfUsIW.js
+live_is=Batch 15A (from Batch 15A production deployment (source ad391e0); read from Cloudflare just now)
+recorded_at=2026-10-23T20:09:01Z
+shipping=275a932bb5b30aac813b258b03eb654bc051a17d

@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Batch 15B - the page /fasal-salah/kam-pani ("कम पानी में कौन-सी फसल"): static, sourced content plus today's Sagar-mandi price, the
 # 5-year harvest-time average (Batch 15A table) and the MSP of 2027-28. Copy of scripts/ship-prod-15a.sh.
-# release-15b = release-15a + 15B; the rollback target is whatever is live (Batch 15A, deployment 3b8ce6d9-f29c-4741-8783-e6fe36ad9f16,
-# unless KS_EXPECT_LIVE_ID says otherwise).
+# release-15b = release-15a + 15B. FOLLOW-UP SHIP (wording and label changes on the page): tag ship-15b is already live on 275a932
+# (deployment f60784fb-7bbf-404b-9ecd-9f773d6246d2) and must not be moved, so this ship uses the tag in $TAG (default ship-15b2, override:
+# TAG=<name> bash scripts/ship-prod-15b.sh). The rollback target after the ship is that same live deployment id
+# (unless KS_EXPECT_LIVE_ID says otherwise).
 # NO DATABASE STEP in this batch (no migration, no write). The only database contact of a REAL run is one read-only anonymous
 # probe that mandi_monthly_history answers; if it does not, the script only PRINTS A WARNING (the page then hides its 5-year
 # parts by itself) and carries on. In --dry-run the probe is NOT sent: the builder never reads the production database.
@@ -20,7 +22,7 @@
 #   bash scripts/ship-prod-15b.sh --dry-run   # validate preconditions + print every command; changes nothing
 #   bash scripts/ship-prod-15b.sh             # the real ship (founder runs this)
 #
-# Ship tag: "ship-15b" (on the final HEAD of release-15b, pushed). "pre-15b-ship" is the safety tag on the
+# Ship tag: "$TAG" (default ship-15b2; ship-15b is live and never moved) (on the final HEAD of release-15b, pushed). "pre-15b-ship" is the safety tag on the
 # release-11a head and must never be moved.
 #
 # Auth switches: production runs with otp_required = TRUE and session_enforced = FALSE ON PURPOSE. The 11A gate
@@ -31,7 +33,7 @@
 #
 # Steps (real run):
 #   G   first gate: Batch 11A shipped and closed (tag prod-11a on origin, $SITE/guide -> 200).
-#   0   preconditions: on release-15b, no modified tracked files that ship, tag ship-15b exists locally and on
+#   0   preconditions: on release-15b, no modified tracked files that ship, tag $TAG exists locally and on
 #       origin and is HEAD, HEAD pushed, .env.production present, wrangler logged in, Cloudflare API reachable.
 #       Dry run: a missing tag / unpushed HEAD / dirty file is a WARNING ("pending"); a real run STOPS.
 #   D12 read-only: GET /api/otp/config answers JSON; record both switches; require true / false.
@@ -49,8 +51,8 @@ set -uo pipefail
 PROJECT="kissansahyog-prod"
 SITE="https://kissansahyog.com"
 BRANCH="release-15b"
-TAG="ship-15b"        # ship point of Batch 12A (pre-11a-ship is the 10G-head safety tag; never reuse it)
-GATE_TAG="ship-15a"   # Batch 15A ship tag; must be on origin (15A is live)
+TAG="${TAG:-ship-15b2}"   # ship point of this follow-up; ship-15b is live on 275a932 and must never be moved
+GATE_TAG="ship-15b"   # Batch 15B first-ship tag; must be on origin (15B is live)
 ID_11A_FALLBACK=""
 CLOSE_11A="docs/review/batch11a/CLOSE_REPORT.md" # row "| New production deployment | `<id>` |"
 PROD_REF="eltmcznjcqiahqhjvpjg"
@@ -126,7 +128,7 @@ cd "$ROOT" || exit 1
 [ "$DRY" = 1 ] && say "*** DRY RUN — nothing will be built, deployed, rolled back or written (except the read-only snapshot file, if missing) ***"
 
 # ---------------------------------------------------------------- G. Batch 10C must be live and closed
-say "== G. first gate: Batch 15A shipped (tag $GATE_TAG on origin, $SITE/guide -> 200)"
+say "== G. first gate: Batch 15B first ship is live (tag $GATE_TAG on origin, $SITE/guide -> 200)"
 GATE_OK=1
 GATE_REMOTE="$(timeout 120 git ls-remote --tags origin "refs/tags/$GATE_TAG" 2>/dev/null | awk '{print $1}' | head -1)"
 say "+ git ls-remote --tags origin $GATE_TAG -> ${GATE_REMOTE:0:7}"
@@ -135,9 +137,9 @@ GUIDE_CODE="$(timeout 60 curl -sL --max-redirs 5 -o /dev/null -w '%{http_code}' 
 say "+ curl -sL $SITE/guide -> $GUIDE_CODE"
 [ "$GUIDE_CODE" = "200" ] || { GATE_OK=0; say "  $SITE/guide does not answer 200"; }
 if [ "$GATE_OK" = 1 ]; then
-  say "  = satisfied: Batch 15A is shipped"
+  say "  = satisfied: the Batch 15B first ship ($GATE_TAG) is on origin"
 else
-  pending "Batch 15A must be shipped first (tag $GATE_TAG on origin, $SITE/guide must answer 200)"
+  pending "the Batch 15B first ship must be live first (tag $GATE_TAG on origin, $SITE/guide must answer 200)"
 fi
 
 # ---------------------------------------------------------------- 0. preconditions (read-only)
@@ -238,9 +240,9 @@ if [ -n "$REPORT_11A" ]; then
 else
   say "  no Batch 11A close report ($CLOSE_11A) here or on origin/release-11a"
 fi
-# 15B: the deployment this ship replaces is the Batch 15A one (recorded when 15A shipped: source ad391e0).
-ID_11A="3b8ce6d9-f29c-4741-8783-e6fe36ad9f16"; SRC_11A="Batch 15A production deployment (source ad391e0)"
-say "  expected live deployment (Batch 15A): $ID_11A"
+# 15B follow-up: the deployment this ship replaces is the Batch 15B first ship (tag ship-15b, source 275a932).
+ID_11A="f60784fb-7bbf-404b-9ecd-9f773d6246d2"; SRC_11A="Batch 15B first-ship production deployment (source 275a932)"
+say "  expected live deployment (Batch 15B, ship-15b): $ID_11A"
 say "+ GET $API   (Authorization: Bearer <token, not shown>)"
 PROJ="$(api GET "")"
 [ "$(printf '%s' "$PROJ" | jget 'j.success')" = "true" ] || stop "Cloudflare API refused the project read — the automatic rollback would not work: $(printf '%s' "$PROJ" | jget 'j.errors')"
@@ -252,14 +254,14 @@ BEFORE_MAIN="$(timeout 60 curl -s "$SITE/?ks_ship=$STAMP" | grep -o '/assets/ind
 say "live now: deployment $BEFORE_ID (source $BEFORE_SRC), main chunk $BEFORE_MAIN"
 LIVE_IS=""
 if [ -n "${KS_EXPECT_LIVE_ID:-}" ] && [ "$BEFORE_ID" = "$KS_EXPECT_LIVE_ID" ]; then LIVE_IS="KS_EXPECT_LIVE_ID override"
-elif [ -n "$ID_11A" ] && [ "$BEFORE_ID" = "$ID_11A" ]; then LIVE_IS="Batch 15A (from $SRC_11A; read from Cloudflare just now)"
+elif [ -n "$ID_11A" ] && [ "$BEFORE_ID" = "$ID_11A" ]; then LIVE_IS="Batch 15B first ship (from $SRC_11A; read from Cloudflare just now)"
 fi
 if [ -n "$LIVE_IS" ]; then
   say "  = live is the expected deployment: $LIVE_IS — rollback target $BEFORE_ID"
 else
-  MSG="the live deployment is $BEFORE_ID (source $BEFORE_SRC): it is not the Batch 15A deployment ($ID_11A) — someone deployed or rolled back since Batch 15B was prepared.
+  MSG="the live deployment is $BEFORE_ID (source $BEFORE_SRC): it is not the Batch 15B first-ship deployment ($ID_11A) — someone deployed or rolled back since this follow-up was prepared.
 Check the Cloudflare dashboard; if this live version is the right one to replace, run again with:  KS_EXPECT_LIVE_ID=$BEFORE_ID bash scripts/ship-prod-15b.sh"
-  if [ "$DRY" = 1 ]; then say "WARNING (a real run would STOP here): $MSG"; PENDING+=("live deployment $BEFORE_ID is not the expected 15A one (or KS_EXPECT_LIVE_ID)"); else stop "$MSG"; fi
+  if [ "$DRY" = 1 ]; then say "WARNING (a real run would STOP here): $MSG"; PENDING+=("live deployment $BEFORE_ID is not the expected 15B first-ship one (or KS_EXPECT_LIVE_ID)"); else stop "$MSG"; fi
 fi
 if [ "$DRY" = 0 ]; then
   mkdir -p "$EV"

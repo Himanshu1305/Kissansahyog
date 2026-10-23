@@ -20,6 +20,7 @@
 # read from wrangler's config file after a wrangler command has refreshed it). The token is never printed.
 # No rebuild, no git command that writes, no database access.
 #
+# Tags: the rollback takes a deployment id, not a tag, so it works unchanged for the follow-up ship (tag ship-15b2); the live id before it is f60784fb-7bbf-404b-9ecd-9f773d6246d2.
 # Database: this script changes NO database (Batch 12A has no migration).
 set -uo pipefail
 

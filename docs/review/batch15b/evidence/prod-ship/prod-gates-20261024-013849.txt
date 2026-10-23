@@ -1,0 +1,131 @@
+PASS  [a_pages] / → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आज किसान के लिए","errorBoundary":false,"screenshot":"page-prod-after-home.png"}
+PASS  [a_pages] / no failed request to our own origin  — []
+PASS  [a_pages] /mausam → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान","errorBoundary":false,"screenshot":"page-prod-after-mausam.png"}
+PASS  [a_pages] /mausam no failed request to our own origin  — []
+PASS  [a_pages] /msp → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"गेहूं भाव — आज व MSP से तुलना","errorBoundary":false,"screenshot":"page-prod-after-msp.png"}
+PASS  [a_pages] /msp no failed request to our own origin  — []
+PASS  [a_pages] /browse → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आस-पास खोजें","errorBoundary":false,"screenshot":"page-prod-after-browse.png"}
+PASS  [a_pages] /browse no failed request to our own origin  — []
+PASS  [a_pages] /sawaal → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"किसान सवाल — आपके सवाल, हमारे जवाब","errorBoundary":false,"screenshot":"page-prod-after-sawaal.png"}
+PASS  [a_pages] /sawaal no failed request to our own origin  — []
+PASS  [a_pages] /yojana → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"सरकारी योजनाएं","errorBoundary":false,"screenshot":"page-prod-after-yojana.png"}
+PASS  [a_pages] /yojana no failed request to our own origin  — []
+PASS  [a_pages] /cold-storage → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"मध्य प्रदेश कोल्ड स्टोरेज खोजें","errorBoundary":false,"screenshot":"page-prod-after-cold_storage.png"}
+PASS  [a_pages] /cold-storage no failed request to our own origin  — []
+PASS  [a_pages] /about → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"हमारे बारे में","errorBoundary":false,"screenshot":"page-prod-after-about.png"}
+PASS  [a_pages] /about no failed request to our own origin  — []
+PASS  [a_pages] /privacy → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"गोपनीयता नीति","errorBoundary":false,"screenshot":"page-prod-after-privacy.png"}
+PASS  [a_pages] /privacy no failed request to our own origin  — []
+PASS  [a_pages] /terms → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"उपयोग की शर्तें","errorBoundary":false,"screenshot":"page-prod-after-terms.png"}
+PASS  [a_pages] /terms no failed request to our own origin  — []
+PASS  [a_pages] /grievance → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"सुझाव और शिकायत","errorBoundary":false,"screenshot":"page-prod-after-grievance.png"}
+PASS  [a_pages] /grievance no failed request to our own origin  — []
+PASS  [compare_with_snapshot] /: 200, title/h1 unchanged, size within -30%/+40% (--max-growth for this ship) (--min-ratio for this ship), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1.001,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /mausam: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /msp: 200, title/h1 unchanged, size within -15%/+60% (--max-growth for this ship), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1.003,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /browse: 200, title/h1 unchanged, size within -30%/+40% (--max-growth for this ship) (--min-ratio for this ship), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1.001,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /sawaal: 200, title/h1 unchanged, size within -15%/+300% (data page, snapshot taken before data loaded), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /yojana: 200, title/h1 unchanged, size within -15%/+300% (data page, snapshot taken before data loaded), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /cold-storage: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /about: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /privacy: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /terms: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] robots.txt unchanged
+PASS  [compare_with_snapshot] sitemap index is valid XML and lists 4 children  — ["https://kissansahyog.com/sitemap-pages.xml","https://kissansahyog.com/sitemap-sawaal.xml","https://kissansahyog.com/sitemap-cold-storage.xml","https://kissansahyog.com/sitemap-schemes.xml"]
+PASS  [compare_with_snapshot] /sitemap-pages.xml valid XML with urls  — {"status":200,"urls":55,"before":54}
+PASS  [compare_with_snapshot] /sitemap-sawaal.xml valid XML with urls  — {"status":200,"urls":161,"before":161}
+PASS  [compare_with_snapshot] /sitemap-cold-storage.xml valid XML with urls  — {"status":200,"urls":35,"before":35}
+PASS  [compare_with_snapshot] /sitemap-schemes.xml valid XML with urls  — {"status":200,"urls":18,"before":18}
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin https://localhost → 204 + echoed origin  — {"status":204,"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [b_cors_preflight] no '*' for https://localhost  — {"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin capacitor://localhost → 204 + echoed origin  — {"status":204,"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [b_cors_preflight] no '*' for capacitor://localhost  — {"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin https://evil.example → NO allow-origin  — {"status":204,"headers":{}}
+PASS  [b_cors_preflight] no '*' for https://evil.example  — {}
+PASS  [d_functions] GET /geo Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["city","region","country","latitude","longitude"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geo Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["city","region","country","latitude","longitude"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geo Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /geo Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["found","lat","lng","display_name"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["found","lat","lng","display_name"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /geocode?village=Rahatgarh&district=Sagar Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [d_functions] GET /transcribe Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["configured"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /transcribe Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["configured"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /transcribe Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /transcribe Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [e_static_no_cors] GET / Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET / Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET / Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [f_service_worker_sitemap] service worker installed and controls the page  — https://kissansahyog.com/sw.js
+PASS  [f_service_worker_sitemap] /sitemap.xml under the SW is the real file (not the app shell)  — {"status":200,"contentType":"application/xml","fromServiceWorker":false,"head":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<sitemapindex xmlns=\"http://www.sitemaps."}
+PASS  [f_service_worker_sitemap] /robots.txt under the SW is the real file (not the app shell)  — {"status":200,"contentType":"text/plain; charset=utf-8","fromServiceWorker":false,"head":"User-agent: *\r\nAllow: /\r\nDisallow: /search\r\nDisallow: /join\r\nDisallow: /admin\r\nD"}
+PASS  [f_service_worker_sitemap] /sitemap-pages.xml under the SW is the real file (not the app shell)  — {"status":200,"contentType":"application/xml","fromServiceWorker":false,"head":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/sc"}
+PASS  [data_ticker_mausam] mandi ticker on / shows prices (₹ + number)  — 📊 मंडी भावपिछला भाव (17/10)गेहूं ₹2,680/क्विंटल ↓20 · सागर मंडी|सोयाबीन ₹6,700/क्विंटल ↑200 · सागर मंडी|चना ₹6,800/क्विंटल ↓105 · सागर मंडी|सरसों ₹7,500/क्विंट
+PASS  [data_ticker_mausam] /mausam has a place set (location banner)  — 📍 सागर के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ
+PASS  [data_ticker_mausam] /mausam shows a temperature (weather data loaded)  — {"temp":"28°","weatherResponses":["GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 kissansahyog.com/assets/weatherApiV2-pmlIdQL4.js","GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2","GET 200 kissansahyog.com/assets/weatherApiV2-pmlIdQL4.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 kissansahyog.com/assets/weatherRules-kzLuFq6I.js"]}
+PASS  [data_ticker_mausam] /mausam weather read answered 200 (weather_cache_v2 or open-meteo)  — ["GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 kissansahyog.com/assets/weatherApiV2-pmlIdQL4.js","GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2","GET 200 kissansahyog.com/assets/weatherApiV2-pmlIdQL4.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 kissansahyog.com/assets/weatherRules-kzLuFq6I.js"]
+
+ALL PASSED  (results-prod-after.json)
+PASS  [10f_routes] GET / -> 200, serves /assets/index-lxHTN3-R.js
+PASS  [10f_routes] GET /signup -> 200, serves /assets/index-lxHTN3-R.js
+PASS  [10f_routes] GET /browse -> 200, serves /assets/index-lxHTN3-R.js
+PASS  [10f_routes] GET /guide -> 200, serves /assets/index-lxHTN3-R.js
+PASS  [10f_routes] GET /msp -> 200, serves /assets/index-lxHTN3-R.js
+PASS  [10f_routes] GET /post -> 200, serves /assets/index-lxHTN3-R.js
+PASS  [10f_routes] GET /guide/post -> 200, serves /assets/index-lxHTN3-R.js
+PASS  [10f_routes] GET /mausam -> 200, serves /assets/index-lxHTN3-R.js
+PASS  [10f_home] / has nav-guide
+PASS  [10f_home] / has data-testid="home-hero"
+PASS  [10f_home] / has data-testid="home-hero-demo"
+PASS  [10f_home] / has मुझे कुछ चाहिए
+PASS  [10f_home] / has मेरे पास कुछ है
+PASS  [10f_home] / has no data-testid="home-live" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-field" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-band" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-facts" (removed in 10F)
+PASS  [10f_msp] GET /msp -> 200, new main chunk, has ks-date-badge
+PASS  [12b_ticker] GET /assets/LanguageProvider-CloTavP_.js -> 200, holds the Hindi mandi names
+PASS  [12b_ticker] GET /assets/index-D5amg_LU.css -> 200, holds --ticker-duration
+PASS  [12b_ticker] GET /assets/Homepage-0yaANoTE.js -> 200, holds --ticker-duration
+PASS  [14a_chunks] GET /assets/Homepage-0yaANoTE.js -> 200, holds get_active_announcements
+PASS  [14a_chunks] GET /assets/adminApi-hmuopvPG.js -> 200, holds admin_get_security_status
+PASS  [14a_chunks] GET /assets/Admin-C55C-vzo.js -> 200, holds panel-search
+PASS  [14a_chunks] GET /assets/adminApi-hmuopvPG.js -> 200, holds admin_log_console_action
+PASS  [14a_admin_fn] GET /api/admin/sms-balance without a session -> 401
+PASS  [14a_db] get_active_announcements() answers 200 on production
+PASS  [15b_page] GET /fasal-salah/kam-pani -> 200, the Hindi H1 is in the prerendered HTML
+PASS  [15b_sitemap] sitemap-pages.xml lists /fasal-salah/kam-pani
+PASS  [15b_chunks] GET /assets/KamPani-Dr9_14QZ.js -> 200, holds the page markers
+PASS  [15a_chunks] GET /assets/history10y-B_m3UqCY.js -> 200, holds mandi_monthly_history
+PASS  [15a_chunks] GET /assets/Msp-Ch_Y9oWy.js -> 200, holds msp-avg5-body
+PASS  [15a_chunks] GET /assets/KamPani-Dr9_14QZ.js -> 200, holds अनुमान नहीं
+PASS  [15a_chunks] GET /assets/LanguageProvider-CloTavP_.js -> 200, holds अनुमान नहीं
+PASS  [15a_db] mandi_monthly_history answers 200 on production (anonymous select, one row)
+PASS  [13a_browse] GET /assets/Browse-DSTJsvOx.js holds the new Browse test ids
+PASS  [13a_footer] GET /assets/LanguageProvider-CloTavP_.js has '· India' and not '· Madhya Pradesh, India'
+PASS  [13a_footer] GET / footer says '· भारत'
+PASS  [10g_listing] GET /assets/index-lxHTN3-R.js -> 200, holds delete_my_listing
+PASS  [10g_listing] GET /assets/listingsApi-zV-dH7hI.js -> 200, holds delete_my_listing
+PASS  [11a_otp] GET /assets/PageShell-BcBIZdiK.js -> 200, holds app_login_otp
+PASS  [11a_otp] GET /api/otp/config -> 200 otp_required=true session_enforced=false
+PASS  [11a_otp] POST /api/otp/send {phone:'123'} -> 400 error=invalid_phone (expected 400 invalid_phone; no SMS sent)
+PASS  [12a_switches] /api/otp/config after the deploy: otp_required=true session_enforced=false (same as before: otp_required=true session_enforced=false)
+PASS  [12a_whatsapp] GET / has the channel link with rel="noopener noreferrer"
+PASS  [12a_whatsapp] GET /about has the channel link with rel="noopener noreferrer"
+PASS  [12a_whatsapp] GET /about has the footer link
+PASS  [10f_msp] GET /assets/Msp-Ch_Y9oWy.js -> 200, holds ks-date-badge
+PASS  [10c_markers] GET /assets/GuideHub-CBHzIcez.js -> 200, holds ksg-
+PASS  [10c_markers] GET /assets/GuideDemoPage-DlZUicoq.js -> 200, holds ksg-
+PASS  [10e_markers] GET /assets/PageShell-BcBIZdiK.js -> 200, holds app_register_phone
+PASS  [10e_markers] GET /assets/index-lxHTN3-R.js -> 200, holds app_register_phone
+PASS  [10e_csp] GET / Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co

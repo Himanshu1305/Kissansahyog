@@ -168,3 +168,26 @@ test('rain banner no longer carries the stale October forecast', () => {
   assert.ok(!/October rain/i.test(C.BANNERS.rain.more.en))
   assert.match(C.BANNERS.rain.more.hi, /जलाशय/); assert.match(C.BANNERS.rain.more.hi, /अपने कुएँ/)
 })
+
+test('no visible string says "under review", unconfirmed or pending, and the old labels are gone', () => {
+  const all = JSON.stringify(C)
+  for (const w of ['समीक्षाधीन', 'पुष्टि बाकी', 'पुष्टि नहीं', 'Under review', 'under review', 'not yet confirmed', 'ऊँची मंडियाँ', 'Higher mandis', 'सुरक्षित अंदाज़ा', 'safer estimate']) assert.ok(!all.includes(w), w)
+  assert.equal(C.LABELS.atAvgSafe, undefined)
+  assert.equal(C.LABELS.topMandis.hi, 'सागर संभाग में सबसे ज़्यादा भाव वाली मंडियाँ')
+  assert.equal(C.LABELS.topMandis.en, 'Mandis with the highest prices in Sagar division')
+})
+test('the page source renders no review tag', async () => {
+  const { readFileSync } = await import('node:fs')
+  const src = readFileSync(new URL('../../src/screens/KamPani.jsx', import.meta.url), 'utf8')
+  assert.ok(!/ReviewTag|under_review|kp-under-review/.test(src))
+})
+test('second wording pass: neutral lines, one source for the last-checked date', () => {
+  const all = JSON.stringify(C)
+  for (const w of ['हमेशा सुरक्षित विकल्प', 'Always a safe option', 'वादा किया', 'promised', 'ज़्यादा सुरक्षित है', 'average is safer', 'Run the bakhar']) assert.ok(!all.includes(w), w)
+  assert.ok(C.PAGE.howRead.hi.includes('5 साल का औसत कई सालों के भाव दिखाता है; आज का भाव सिर्फ़ एक दिन का है।'))
+  assert.ok(C.PAGE.howRead.en.includes("The 5-year average covers many years of prices; today's price is just one day."))
+  assert.equal(C.WATER[3].recs.find((r) => r.crop.en === 'Gram').text.en, 'Gram can also be sown when water is plentiful')
+  assert.equal(C.LABELS.lastChecked.hi, 'आख़िरी जाँच: 23 अक्तूबर 2026')
+  assert.equal(C.LABELS.lastChecked.en, 'Last checked: 23 October 2026')
+  assert.ok(JSON.stringify(C.LATE_CARDS).includes('Plough the field (bakhar)'))
+})

@@ -74,9 +74,10 @@ test('K1 375 hi: opens, chips scroll to their sections, water levels change the 
   await page.getByTestId('kp-table').screenshot({ path: `${SHOTS}/kam-pani-375-table.png` })
   await page.getByTestId('kp-years').screenshot({ path: `${SHOTS}/kam-pani-375-years.png` })
 
-  // the unreviewed tag is shown (government cards and the barley card)
-  expect(await page.getByTestId('kp-under-review').count()).toBeGreaterThan(5)
-  await expect(page.getByTestId('kp-card-gov_khet_talab').getByTestId('kp-under-review')).toBeVisible()
+  // no "under review" tag anywhere, and no sentence saying a fact is unconfirmed
+  expect(await page.getByTestId('kp-under-review').count()).toBe(0)
+  const bodyText = await page.locator('body').innerText()
+  for (const w of ['समीक्षाधीन', 'पुष्टि बाकी', 'Under review', 'not yet confirmed']) expect(bodyText).not.toContain(w)
 
   // farm pond link from "पानी बचाने के तरीके" lands on the farm-pond card and opens it
   const pond = page.getByTestId('kp-card-gov_khet_talab')

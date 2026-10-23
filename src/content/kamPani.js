@@ -2,12 +2,18 @@
 // Carried over from the approved mockup (docs/review/batch15b/mockup-v4.html). Nothing here predicts a price or
 // gives a yield promise, a dose or a seed rate (hard rule 4). To refresh the dated claims see PROJECT_CONTEXT.md.
 //
-// Every block has: id, reviewed (boolean) and sources (ids of SOURCES). reviewed:false shows the existing
-// "समीक्षाधीन" tag (strings key `under_review`) until KVK Sagar or Shri A.K. Dixit has confirmed it. The repo's tag is only a
-// string (no database flow to reuse), so the flag lives here. Flip a block to true once it is confirmed.
+// Every block has: id, reviewed (boolean) and sources (ids of SOURCES). The page shows no "under review" tag (removed in the
+// 15B follow-up); the flag is kept for future use. Set it to true once KVK Sagar or Shri A.K. Dixit has confirmed a block.
 // Text is { hi, en }: Devanagari here is page content, not hardcoded render copy.
 
 export const LAST_CHECKED = '2026-10-23' // "आख़िरी जाँच": bump when the dated claims below are re-checked
+
+const MONTHS = {
+  hi: ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्तूबर', 'नवंबर', 'दिसंबर'],
+  en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+}
+// LAST_CHECKED ('YYYY-MM-DD') as "23 अक्तूबर 2026" / "23 October 2026": the one source of truth for the footer date.
+export const lastCheckedText = (lang) => { const [y, m, d] = LAST_CHECKED.split('-').map(Number); return `${d} ${MONTHS[lang][m - 1]} ${y}` }
 
 // ---- sources (urls are the publisher's site; the exact article address is a BACKLOG item) ----------------------
 export const SOURCES = {
@@ -58,7 +64,7 @@ export const KP_CROPS = [
     days: { hi: 'लगभग 110 से 125 दिन', en: 'about 110 to 125 days', star: true, reviewed: false, sources: ['general'] },
     sowing: { hi: 'बारानी: अक्तूबर का तीसरा से चौथा हफ़्ता (यानी अब जल्दी)', en: 'Rain-fed: third to fourth week of October (so early now)', sources: ['crida'] },
     vars: { hi: 'JL-3, नूरी / Noorie (CRIDA सागर योजना 2013)', en: 'JL-3, Noorie (CRIDA Sagar plan 2013)', reviewed: false, sources: ['crida'] },
-    why: { hi: 'कम पानी की सूची में है और MSP सबसे ऊँचा है। केंद्र ने मसूर की 2028-29 तक 100% खरीद का वादा किया है, पर राज्य में यह कैसे लागू होगा, पक्का करें।', en: 'It is on the low-water list and has the highest MSP. The Centre has promised to buy all lentil up to 2028-29, but check how this will work in the state.' },
+    why: { hi: 'कम पानी की सूची में है और MSP सबसे ऊँचा है। केंद्र ने मसूर की 2028-29 तक 100% खरीद की बात कही है, पर राज्य में यह कैसे लागू होगा, पक्का करें।', en: 'It is on the low-water list and has the highest MSP. The Centre has said it will buy all lentil up to 2028-29, but check how this will work in the state.' },
     note: { hi: 'सागर में मसूर की औसत उपज बहुत कम (लगभग 4 क्विंटल/हेक्टेयर) रही है, इसलिए अच्छे बीज और समय पर बुवाई पर ध्यान दें।', en: 'Average lentil yield in Sagar has been very low (about 4 quintal per hectare), so pay attention to good seed and timely sowing.' },
   },
   {
@@ -159,8 +165,8 @@ export const WATER = {
   3: {
     title: { hi: '3 या ज़्यादा सिंचाई', en: '3 or more irrigations' },
     recs: [
-      { crop: { hi: 'सरसों', en: 'Mustard' }, keep: 1, reviewed: false, text: { hi: 'सोच सकते हैं। मंडी भाव और 5 साल का औसत ऊपर कार्ड में देखें; ऊँची मंडियाँ भी वहीं हैं।', en: 'You can think of it. See the mandi price and 5-year average in the card above; the higher mandis are there too.' } },
-      { crop: { hi: 'चना', en: 'Gram' }, keep: 1, reviewed: true, text: { hi: 'हमेशा सुरक्षित विकल्प, कुछ ज़मीन में ज़रूर बोएँ।', en: 'Always a safe option, sow some land with it.' } },
+      { crop: { hi: 'सरसों', en: 'Mustard' }, keep: 1, reviewed: false, text: { hi: 'सोच सकते हैं। मंडी भाव और 5 साल का औसत ऊपर कार्ड में देखें; सबसे ज़्यादा भाव वाली मंडियाँ भी वहीं हैं।', en: 'You can think of it. See the mandi price and 5-year average in the card above; the mandis with the highest prices are there too.' } },
+      { crop: { hi: 'चना', en: 'Gram' }, keep: 1, reviewed: true, text: { hi: 'ज़्यादा पानी हो तब भी चना बोया जा सकता है', en: 'Gram can also be sown when water is plentiful' } },
       { crop: { hi: 'गेहूं', en: 'Wheat' }, keep: 1, reviewed: false, text: { hi: 'सिर्फ़ उतनी ज़मीन में जितनी में 5 से 6 सिंचाई पक्की है।', en: 'Only on as much land as has 5 to 6 irrigations for sure.' } },
       { crop: { hi: 'मसूर', en: 'Lentil' }, keep: 0, reviewed: true, text: { hi: 'सोच-समझकर। ऊपर कार्ड में मंडी भाव और MSP का फ़र्क देखें।', en: 'Think carefully. See the mandi price against MSP in the card above.' } },
     ],
@@ -179,7 +185,7 @@ export const GOV_CARDS = [
       { hi: 'मार्च 2025 में केंद्र ने राजस्थान, मध्य प्रदेश और गुजरात में चना, सरसों और मसूर की MSP पर सीधी खरीद की मंज़ूरी दी थी (उस रबी सीज़न के लिए)।', en: 'In March 2025 the Centre approved direct purchase of gram, mustard and lentil at MSP in Rajasthan, Madhya Pradesh and Gujarat (for that rabi season).' },
       { hi: 'केंद्र ने कहा है कि तुअर, उड़द और मसूर की 100% खरीद 2028-29 तक की जाएगी, जब भाव MSP से नीचे जाएँ।', en: 'The Centre has said that tur, urad and lentil will be bought in full up to 2028-29, when prices fall below MSP.' },
     ],
-    pending: { hi: 'इस साल (2026-27 रबी) चना और सरसों की खरीद होगी या नहीं, और पंजीकरण की तारीख़ें: पुष्टि बाकी।', en: 'Whether gram and mustard will be bought this year (2026-27 rabi), and the registration dates: not yet confirmed.' },
+    pending: { hi: 'इस साल (2026-27 रबी) की खरीद और पंजीकरण की तारीख़ें कृषि विभाग या KVK सागर से पूछें।', en: 'Ask the agriculture department or KVK Sagar for this year\'s (2026-27 rabi) purchase and registration dates.' },
   },
   {
     id: 'gov_pmfby', reviewed: false, sources: ['pmfby'], open: false,
@@ -189,7 +195,7 @@ export const GOV_CARDS = [
       { hi: 'सूखा बीमा में आता है।', en: 'Drought is covered.' },
       { hi: 'अगर खराब मौसम की वजह से बुवाई ही न हो पाए, तो बीमित राशि का 25% तक दावा मिल सकता है।', en: 'If sowing itself fails because of bad weather, a claim of up to 25% of the sum insured may be paid.' },
     ],
-    pending: { hi: 'रबी 2026-27 में नाम लिखवाने की आख़िरी तारीख़: पुष्टि बाकी (पिछले सालों में दिसंबर के आख़िर में)।', en: 'Last date to enrol for rabi 2026-27: not yet confirmed (in past years it was the end of December).' },
+    pending: { hi: 'रबी 2026-27 में नाम लिखवाने की आख़िरी तारीख़ कृषि विभाग या KVK सागर से पूछें (पिछले सालों में यह दिसंबर के आख़िर में थी)।', en: 'Ask the agriculture department or KVK Sagar for the last date to enrol for rabi 2026-27 (in past years it was the end of December).' },
   },
   {
     id: 'gov_khet_talab', reviewed: false, sources: ['tj'], open: false, anchor: 'sarkari-sahara-khet-talab',
@@ -199,7 +205,7 @@ export const GOV_CARDS = [
       { hi: 'आवेदन ज़िला मत्स्य विभाग के कार्यालय में, ऑफ़लाइन।', en: 'Apply offline at the district fisheries department office.' },
       { hi: 'काग़ज़ात: आधार, पैन, बैंक पासबुक, समग्र आईडी, ज़मीन के काग़ज़।', en: 'Papers: Aadhaar, PAN, bank passbook, Samagra ID, land papers.' },
     ],
-    pending: { hi: 'रकम, आख़िरी तारीख़ और असली शर्तें: पुष्टि बाकी। "बलराम तालाब" नाम की पुष्टि नहीं हुई।', en: 'Amount, last date and the actual conditions: not yet confirmed. The name "Balram Talab" is not confirmed.' },
+    pending: { hi: 'रकम, आख़िरी तारीख़ और शर्तें ज़िला मत्स्य विभाग या KVK सागर से पूछें।', en: 'Ask the district fisheries department or KVK Sagar for the amount, last date and conditions.' },
   },
 ]
 export const GOV_NOTE = { hi: 'ये जानकारी खबरों और सरकारी बयानों से ली गई है। योजना की शर्तें और तारीख़ें कृषि विभाग से पक्की करें।', en: 'This information is taken from news and government statements. Confirm scheme conditions and dates with the agriculture department.' }
@@ -209,7 +215,7 @@ export const LATE_CARDS = [
     id: 'late_delay', reviewed: false, sources: ['crida'], open: true,
     title: { hi: 'बारिश कितनी देर से आई?', en: 'How late did the rain come?' },
     lines: [
-      { hi: '2 हफ़्ते देर: गहरी काली मिट्टी में फसल न बदलें। बखर चलाएँ, बीज उपचार करें, मेड़ पर बुवाई करें।', en: '2 weeks late: do not change the crop in deep black soil. Run the bakhar, treat the seed, sow on ridges.' },
+      { hi: '2 हफ़्ते देर: गहरी काली मिट्टी में फसल न बदलें। बखर चलाएँ, बीज उपचार करें, मेड़ पर बुवाई करें।', en: '2 weeks late: do not change the crop in deep black soil. Plough the field (bakhar), treat the seed, sow on ridges.' },
       { hi: '4 हफ़्ते देर (जुलाई का दूसरा हफ़्ता): कम दिन वाली अरहर, मूंग, उड़द, तिल। मेड़-नाली पर बोएँ। बीज की मात्रा KVK से पूछें।', en: '4 weeks late (second week of July): short-duration tur, moong, urad, sesame. Sow on ridge and furrow. Ask KVK for the seed amount.' },
       { hi: '6 से 8 हफ़्ते देर: तिल, रामतिल, कोदो-कुटकी।', en: '6 to 8 weeks late: sesame, ramtil, kodo-kutki.' },
     ],
@@ -334,7 +340,7 @@ export const PAGE = {
   cropsSub: { hi: 'अभी बोई गई रबी फसल मार्च-अप्रैल 2027 में कटेगी, इसलिए 2027-28 का MSP दिया है। भाव सागर मंडी के पिछले 14 दिन के हैं।', en: 'The rabi crop sown now will be harvested in March-April 2027, so the MSP of 2027-28 is given. Prices are from the Sagar mandi, last 14 days.' },
   tableH: { hi: 'आज का भाव बनाम 5 साल का औसत', en: 'Today\'s price against the 5-year average' },
   tableSub: { hi: 'Modal भाव = जिस भाव पर मंडी में सबसे ज़्यादा माल बिका। नीचे 5 साल (2021 से 2025) में कटाई के समय, मार्च से मई, का औसत Modal भाव है। सागर संभाग की मंडियाँ।', en: 'Modal rate = the rate at which most of the produce sold in the mandi. Below is the average Modal rate at harvest time, March to May, over 5 years (2021 to 2025). Sagar division mandis.' },
-  howRead: { hi: 'कैसे पढ़ें: आज का भाव 5 साल के कटाई-समय औसत से ऊपर या नीचे हो सकता है। पर कटाई (मार्च-अप्रैल) पर भाव आज जितने ही रहेंगे, यह मानकर न चलें। योजना बनाने के लिए 5 साल का औसत ज़्यादा सुरक्षित है। कोई अनुमान नहीं दिया जा रहा।', en: 'How to read: today\'s price can be above or below the 5-year harvest-time average. Do not assume prices at harvest (March-April) will be the same as today. For planning, the 5-year average is safer. No forecast is given.' },
+  howRead: { hi: 'कैसे पढ़ें: आज का भाव 5 साल के कटाई-समय औसत से ऊपर या नीचे हो सकता है। पर कटाई (मार्च-अप्रैल) पर भाव आज जितने ही रहेंगे, यह मानकर न चलें। 5 साल का औसत कई सालों के भाव दिखाता है; आज का भाव सिर्फ़ एक दिन का है। कोई अनुमान नहीं दिया जा रहा।', en: 'How to read: today\'s price can be above or below the 5-year harvest-time average. Do not assume prices at harvest (March-April) will be the same as today. The 5-year average covers many years of prices; today\'s price is just one day. No forecast is given.' },
   yearH: { hi: 'साल-दर-साल कटाई के समय का भाव (मार्च-मई)', en: 'Harvest-time price year by year (March-May)' },
   yearNote: { hi: 'जौ के आँकड़े कम मंडियों से हैं।', en: 'Barley figures come from fewer mandis.' },
   attribution: { hi: 'स्रोत: Agmarknet (कृषि मंत्रालय, DMI), CEDA अशोका विश्वविद्यालय के माध्यम से; आँकड़े अक्तूबर 2025 तक', en: 'Source: Agmarknet (Ministry of Agriculture, DMI), via CEDA, Ashoka University; data up to October 2025' },
@@ -354,7 +360,7 @@ export const LABELS = {
   avgNote: { hi: '5 साल औसत = 2021 से 2025 में मार्च-मई (कटाई के समय) का Modal भाव, सागर संभाग की मंडियाँ।', en: '5-year average = Modal rate of March-May (harvest time) in 2021 to 2025, Sagar division mandis.' },
   gap: { hi: 'भाव और MSP का फ़र्क', en: 'Price against MSP' },
   perQ: { hi: 'प्रति क्विंटल', en: 'per quintal' },
-  topMandis: { hi: 'सागर संभाग की ऊँची मंडियाँ', en: 'Higher mandis in Sagar division' },
+  topMandis: { hi: 'सागर संभाग में सबसे ज़्यादा भाव वाली मंडियाँ', en: 'Mandis with the highest prices in Sagar division' },
   water: { hi: 'पानी', en: 'Water' },
   days: { hi: 'समय', en: 'Time' },
   sowing: { hi: 'बुवाई', en: 'Sowing' },
@@ -363,7 +369,6 @@ export const LABELS = {
   yieldIs: { hi: 'सागर की औसत उपज', en: 'Average yield in Sagar' },
   quintal: { hi: 'क्विंटल', en: 'quintal' },
   atAvg: { hi: '5 साल के औसत भाव पर', en: 'At the 5-year average price' },
-  atAvgSafe: { hi: 'ज़्यादा सुरक्षित अंदाज़ा', en: 'the safer estimate' },
   atToday: { hi: 'आज के भाव पर', en: 'At today\'s price' },
   upside: { hi: 'अच्छे बीज और नमी के साथ', en: 'With good seed and moisture' },
   upsideNote: { hi: 'ICAR किस्म, 5 साल के औसत भाव पर', en: 'ICAR variety, at the 5-year average price' },
@@ -373,7 +378,7 @@ export const LABELS = {
   colToday: { hi: 'आज (सागर)', en: 'Today (Sagar)' },
   colGap: { hi: 'फ़र्क', en: 'Gap' },
   sourcesH: { hi: 'स्रोत', en: 'Sources' },
-  lastChecked: { hi: 'आख़िरी जाँच: 23 अक्तूबर 2026', en: 'Last checked: 23 October 2026' },
+  lastChecked: { hi: `आख़िरी जाँच: ${lastCheckedText('hi')}`, en: `Last checked: ${lastCheckedText('en')}` },
   mspNote: { hi: 'MSP: केंद्रीय मंत्रिमंडल का फैसला, 1 अक्तूबर 2026 (2027-28 के लिए)।', en: 'MSP: Cabinet decision of 1 October 2026 (for 2027-28).' },
   seeToday: { hi: 'आज का मंडी भाव देखें', en: 'See today\'s mandi price' },
   seeBazaar: { hi: 'बीज / पंप / ट्रैक्टर ढूँढें', en: 'Find seed / pump / tractor' },
