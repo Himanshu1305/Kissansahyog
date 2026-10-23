@@ -21,6 +21,7 @@ For each file `docs/review/batch15a/history-prod/part-01.sql`, `part-02.sql`, ..
 Run `verify.sql` again. The counts per crop and scope must match `docs/review/batch15a/DATA_CHECK.md` (and `history-prod/expected-counts.json`), and `total_rows` must match the total in `DATA_CHECK.md`. If a number differs, stop and tell the builder.
 
 ## 5. Ship the website
+0. The builder has committed the work on branch `release-15a` but has NOT pushed it or tagged it. The ship script refuses to run for real until both are done. Run (or ask the architect to run): `git push origin release-15a`, then `git tag ship-15a`, then `git push origin ship-15a`.
 1. `bash scripts/ship-prod-15a.sh --dry-run` - must end with `DRY RUN OK`. (A dry run does not touch the database; it lists one thing as pending: the table check, which a real run does.)
 2. `bash scripts/ship-prod-15a.sh 2>&1 | tee docs/review/batch15a/evidence/ship-real.log` - ends with `SHIP OK`. If any check fails it puts the old version back by itself and says so. If it stops with "migration 0069 is NOT applied", do step 1 first.
 
