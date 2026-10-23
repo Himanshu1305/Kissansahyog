@@ -155,3 +155,16 @@ test('the farm-pond card has its anchor and the water-saving card links to it', 
   assert.equal(pond.anchor, 'sarkari-sahara-khet-talab')
   assert.equal(C.SAVE_CARDS[0].link.to, '/fasal-salah/kam-pani#sarkari-sahara-khet-talab')
 })
+test('crop-card badges are about water only, never price (rule 4a)', () => {
+  assert.equal(C.KP_CROPS.length, 5)
+  for (const c of C.KP_CROPS) for (const lang of ['hi', 'en']) {
+    const s = c.verdict[lang]
+    assert.ok(s, `${c.id} badge ${lang}`)
+    assert.ok(!/MSP|भाव|₹/i.test(s), `${c.id} badge mentions price: ${s}`)
+  }
+})
+test('rain banner no longer carries the stale October forecast', () => {
+  assert.ok(!C.BANNERS.rain.more.hi.includes('अक्तूबर की बारिश'))
+  assert.ok(!/October rain/i.test(C.BANNERS.rain.more.en))
+  assert.match(C.BANNERS.rain.more.hi, /जलाशय/); assert.match(C.BANNERS.rain.more.hi, /अपने कुएँ/)
+})

@@ -42,7 +42,7 @@ export const KP_CROPS = [
   {
     id: 'gram', mandi: 'Gram', slug: 'chana', months: [3, 4, 5], tone: 'g', reviewed: true, sources: ['crida', 'iari', 'msp', 'ownmandi', 'ceda'],
     name: { hi: 'चना', en: 'Gram' },
-    verdict: { hi: 'सबसे सुरक्षित', en: 'Safest' },
+    verdict: { hi: 'कम पानी', en: 'Low water' },
     water: { hi: 'कम पानी (बारानी या 1 सिंचाई)', en: 'Low water (rain-fed or 1 irrigation)' },
     days: { hi: '110 दिन', en: '110 days', star: false, reviewed: true, sources: ['iari'] },
     sowing: { hi: 'बारानी: अक्तूबर का तीसरा हफ़्ता से नवंबर का पहला हफ़्ता', en: 'Rain-fed: third week of October to first week of November', sources: ['crida'] },
@@ -53,7 +53,7 @@ export const KP_CROPS = [
   {
     id: 'lentil', mandi: 'Lentil', slug: 'masoor', months: [3, 4, 5], tone: 'a', reviewed: true, sources: ['crida', 'bs', 'msp', 'ownmandi', 'ceda'],
     name: { hi: 'मसूर', en: 'Lentil' },
-    verdict: { hi: 'कम पानी, MSP ऊँचा', en: 'Low water, high MSP' },
+    verdict: { hi: 'कम पानी', en: 'Low water' },
     water: { hi: 'कम पानी', en: 'Low water' },
     days: { hi: 'लगभग 110 से 125 दिन', en: 'about 110 to 125 days', star: true, reviewed: false, sources: ['general'] },
     sowing: { hi: 'बारानी: अक्तूबर का तीसरा से चौथा हफ़्ता (यानी अब जल्दी)', en: 'Rain-fed: third to fourth week of October (so early now)', sources: ['crida'] },
@@ -107,7 +107,7 @@ export const BANNERS = {
     id: 'banner_rain', reviewed: true, sources: ['dte', 'navbharat'], validUntil: '2026-12-31',
     title: { hi: 'इस साल की बारिश:', en: 'This year\'s rain:' },
     text: { hi: 'देश में मानसून सामान्य से 12.6% कम रहा (2015 के बाद सबसे कमज़ोर)। मध्य प्रदेश में कुल बारिश सामान्य का 95.4% (लगभग 4.6% कम)। पर सागर संभाग सहित पूर्वी मध्य प्रदेश में सामान्य से लगभग 4% ज़्यादा बारिश हुई (3 अक्तूबर 2026 की खबर)। सागर ज़िले का अलग आँकड़ा हमारे पास नहीं है।', en: 'The monsoon in India was 12.6% below normal (weakest since 2015). Madhya Pradesh got 95.4% of normal (about 4.6% less). But eastern Madhya Pradesh, including Sagar division, got about 4% more than normal (news of 3 October 2026). We do not have a separate figure for Sagar district.' },
-    more: { hi: 'इसलिए बात सिर्फ़ बारिश की नहीं है: देश के बड़े जलाशय कम भरे हैं और अक्तूबर की बारिश कमज़ोर रहने का अनुमान है। कुओं का पानी कितना टिकेगा, यह अपने कुएँ से देखें।', en: 'So it is not only about rain: the country\'s big reservoirs are less full and October rain is expected to be weak. Check how long your own well will last.' },
+    more: { hi: 'इसलिए बात सिर्फ़ बारिश की नहीं है: देश के बड़े जलाशय कम भरे हैं। कुओं का पानी कितना टिकेगा, यह अपने कुएँ से देखें।', en: 'So it is not only about rain: the country\'s big reservoirs are less full. Check how long your own well will last.' },
     stats: [
       { v: '−12.6%', tone: 'r', label: { hi: 'पूरे भारत की बारिश', en: 'Rain, all India' } },
       { v: '+4%', tone: 'g', label: { hi: 'सागर संभाग / पूर्वी म.प्र. की बारिश', en: 'Rain, Sagar division / east MP' } },
