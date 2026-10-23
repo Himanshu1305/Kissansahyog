@@ -1,7 +1,7 @@
 // /msp and /msp/:crop — today's mandi price vs MSP, trend, wait-vs-sell calculator,
 // e-Uparjan/Bhavantar routes, per-crop pages. Never predicts prices.
 import { useEffect, useMemo, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import RelatedBoxes from '../components/RelatedBoxes'
 import WhatsAppJoin from '../components/WhatsAppJoin'
@@ -31,6 +31,8 @@ import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 // Batch 8B — resources behind the price table (app offline stamp / notice).
 const MANDI_RES = ['mandi_prices', 'msp_prices']
+// Batch 15B: the rabi crops that /fasal-salah/kam-pani covers (gram, lentil, mustard, wheat; barley has no /msp page).
+const KAM_PANI_CROPS = ['chana', 'masoor', 'sarson', 'gehun']
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const firstNum = (s) => { const m = String(s || '').replace(/,/g, '').match(/\d+(\.\d+)?/); return m ? Number(m[0]) : null }
 
@@ -401,6 +403,7 @@ export default function Msp() {
           {today && today.rows.length === 1 && <p className="mt-2 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_one_mandi').replace('{m}', today.rows[0].market)}</p>}
           {!crop.msp_en && <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_no_msp_crop')}</p>}
           {crop.msp_en && msp && <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>MSP {new Date().getFullYear()}: {rs(msp)}/{t('qtl')}</p>}
+          {KAM_PANI_CROPS.includes(slug) && <Link to="/fasal-salah/kam-pani" data-testid="msp-kam-pani-link" className="mt-1 inline-flex min-h-[44px] items-center text-[15px] font-bold underline" style={{ color: 'var(--ks-green)' }}>{t('kp_msp_link')} →</Link>}
         </CollapsibleSection>
         )}
 

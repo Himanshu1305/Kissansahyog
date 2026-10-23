@@ -40,6 +40,7 @@ export const STATIC_ROUTES = [
   '/drone-didi',
   '/mausam',
   '/fasal-salah',
+  '/fasal-salah/kam-pani',
   '/agro-forestry',
   '/msp',
   '/credits',

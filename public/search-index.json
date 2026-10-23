@@ -3646,21 +3646,30 @@
   },
   {
     "type": "mela",
+    "title_hi": "श्री रामदेव पशु मेला, नागौर",
+    "title_en": "Shri Ramdev Cattle Fair, Nagaur",
+    "subtitle_hi": "nagaur rajasthan manasar fairground, nagaur (near nagaur district headquarters)",
+    "subtitle_en": "nagaur rajasthan manasar fairground, nagaur (near nagaur district headquarters)",
+    "url": "/kisan-mela",
+    "keywords": "श्री रामदेव पशु मेला, नागौर shri ramdev cattle fair, nagaur nagaur rajasthan manasar fairground, nagaur (near nagaur district headquarters) kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "एग्री वर्ल्ड एक्सपो 2026",
+    "title_en": "Agri World Expo 2026",
+    "subtitle_hi": "rajkot gujarat rajkot",
+    "subtitle_en": "rajkot gujarat rajkot",
+    "url": "/kisan-mela",
+    "keywords": "एग्री वर्ल्ड एक्सपो 2026 agri world expo 2026 rajkot gujarat rajkot kisan mela"
+  },
+  {
+    "type": "mela",
     "title_hi": "राष्ट्रीय डेयरी मेला एवं कृषि एक्सपो, आईसीएआर-एनडीआरआई करनाल",
     "title_en": "National Dairy Mela and Agri Expo, ICAR-NDRI Karnal",
     "subtitle_hi": "karnal haryana ndri mela ground, icar-national dairy research institute",
     "subtitle_en": "karnal haryana ndri mela ground, icar-national dairy research institute",
     "url": "/kisan-mela",
     "keywords": "राष्ट्रीय डेयरी मेला एवं कृषि एक्सपो, आईसीएआर-एनडीआरआई करनाल national dairy mela and agri expo, icar-ndri karnal karnal haryana ndri mela ground, icar-national dairy research institute kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "किसान मेला, सरदार वल्लभभाई पटेल कृषि एवं प्रौद्योगिक विश्वविद्यालय, मेरठ",
-    "title_en": "Kisan Mela, SVPUAT Meerut",
-    "subtitle_hi": "meerut uttar pradesh svpuat campus, modipuram",
-    "subtitle_en": "meerut uttar pradesh svpuat campus, modipuram",
-    "url": "/kisan-mela",
-    "keywords": "किसान मेला, सरदार वल्लभभाई पटेल कृषि एवं प्रौद्योगिक विश्वविद्यालय, मेरठ kisan mela, svpuat meerut meerut uttar pradesh svpuat campus, modipuram kisan mela"
   },
   {
     "type": "mela",
@@ -3727,15 +3736,6 @@
   },
   {
     "type": "mela",
-    "title_hi": "कृषि-तोटगारिके मेला (कृषि-बागवानी मेला), शिवमोग्गा",
-    "title_en": "Krishi-Thotagarike Mela (Agriculture-Horticulture Fair), Shivamogga",
-    "subtitle_hi": "shivamogga karnataka college of agriculture, navile, shivamogga",
-    "subtitle_en": "shivamogga karnataka college of agriculture, navile, shivamogga",
-    "url": "/kisan-mela",
-    "keywords": "कृषि-तोटगारिके मेला (कृषि-बागवानी मेला), शिवमोग्गा krishi-thotagarike mela (agriculture-horticulture fair), shivamogga shivamogga karnataka college of agriculture, navile, shivamogga kisan mela"
-  },
-  {
-    "type": "mela",
     "title_hi": "ॲग्रोवर्ल्ड एक्स्पो 2026 (26वी आवृत्ती), जळगाव",
     "title_en": "Agroworld Expo 2026 (26th Edition), Jalgaon",
     "subtitle_hi": "jalgaon maharashtra jalgaon",
@@ -3781,12 +3781,12 @@
   },
   {
     "type": "mela",
-    "title_hi": "एग्री वर्ल्ड एक्सपो 2026",
-    "title_en": "Agri World Expo 2026",
-    "subtitle_hi": "rajkot gujarat rajkot, gujarat (shastri maidan, trikon baug per listings)",
-    "subtitle_en": "rajkot gujarat rajkot, gujarat (shastri maidan, trikon baug per listings)",
+    "title_hi": "हरिहर क्षेत्र सोनपुर मेला",
+    "title_en": "Harihar Kshetra Sonepur Mela (Sonepur Cattle Fair)",
+    "subtitle_hi": "saran bihar sonepur, confluence of ganga and gandak rivers",
+    "subtitle_en": "saran bihar sonepur, confluence of ganga and gandak rivers",
     "url": "/kisan-mela",
-    "keywords": "एग्री वर्ल्ड एक्सपो 2026 agri world expo 2026 rajkot gujarat rajkot, gujarat (shastri maidan, trikon baug per listings) kisan mela"
+    "keywords": "हरिहर क्षेत्र सोनपुर मेला harihar kshetra sonepur mela (sonepur cattle fair) saran bihar sonepur, confluence of ganga and gandak rivers kisan mela"
   },
   {
     "type": "mela",
@@ -3814,15 +3814,6 @@
     "subtitle_en": "gandhinagar gujarat mahatma mandir convention & exhibition centre",
     "url": "/kisan-mela",
     "keywords": "ग्लोबल पोटैटो समिट 2026 global potato summit 2026 gandhinagar gujarat mahatma mandir convention & exhibition centre kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "भारत एग्री टेक",
-    "title_en": "Bharat Agri Tech",
-    "subtitle_hi": "indore madhya pradesh baps swaminarayan akshardham temple, nemawar chouraha",
-    "subtitle_en": "indore madhya pradesh baps swaminarayan akshardham temple, nemawar chouraha",
-    "url": "/kisan-mela",
-    "keywords": "भारत एग्री टेक bharat agri tech indore madhya pradesh baps swaminarayan akshardham temple, nemawar chouraha kisan mela"
   },
   {
     "type": "mela",
@@ -3943,15 +3934,6 @@
   },
   {
     "type": "mela",
-    "title_hi": "एग्री एग्रो ग्रैंड एक्सपो 2026",
-    "title_en": "Agri Agro Grand Expo 2026",
-    "subtitle_hi": "agra uttar pradesh kisan school, baroli ahir, near naveen sabji mandi, shamshabad road",
-    "subtitle_en": "agra uttar pradesh kisan school, baroli ahir, near naveen sabji mandi, shamshabad road",
-    "url": "/kisan-mela",
-    "keywords": "एग्री एग्रो ग्रैंड एक्सपो 2026 agri agro grand expo 2026 agra uttar pradesh kisan school, baroli ahir, near naveen sabji mandi, shamshabad road kisan mela"
-  },
-  {
-    "type": "mela",
     "title_hi": "रबी कृषि महोत्सव",
     "title_en": "Rabi Krushi Mahotsav",
     "subtitle_hi": "gujarat statewide — district- and taluka-level locations across gujarat",
@@ -3967,24 +3949,6 @@
     "subtitle_en": "new delhi delhi yashobhoomi (iicc), dwarka",
     "url": "/kisan-mela",
     "keywords": "इंडिया इंटरनेशनल फार्मिंग एक्सपो 2027 india international farming expo 2027 (iife 2027) new delhi delhi yashobhoomi (iicc), dwarka kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "इंडिया एग्री एक्सपो 2027",
-    "title_en": "India Agri Expo 2027",
-    "subtitle_hi": "ludhiana punjab ludhiana exhibition & convention centre (lecc)",
-    "subtitle_en": "ludhiana punjab ludhiana exhibition & convention centre (lecc)",
-    "url": "/kisan-mela",
-    "keywords": "इंडिया एग्री एक्सपो 2027 india agri expo 2027 ludhiana punjab ludhiana exhibition & convention centre (lecc) kisan mela"
-  },
-  {
-    "type": "mela",
-    "title_hi": "Farm-Tech India 2027",
-    "title_en": "Farm-Tech India – International Exhibition & Conference on Agriculture, Horticulture & Dairy Technology",
-    "subtitle_hi": "bhopal madhya pradesh icar (ciae) ground",
-    "subtitle_en": "bhopal madhya pradesh icar (ciae) ground",
-    "url": "/kisan-mela",
-    "keywords": "farm-tech india 2027 farm-tech india – international exhibition & conference on agriculture, horticulture & dairy technology bhopal madhya pradesh icar (ciae) ground kisan mela"
   },
   {
     "type": "mela",
@@ -4039,6 +4003,87 @@
     "subtitle_en": "dhemaji assam icar-iari assam campus, dirpai chapori, gogamukh",
     "url": "/kisan-mela",
     "keywords": "किसान मेला, आईसीएआर-आईएआरआई असम (गोगामुख) kisan mela, icar-iari assam (gogamukh) dhemaji assam icar-iari assam campus, dirpai chapori, gogamukh kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "कृषि मेला, यूएएस रायचूर",
+    "title_en": "Krishi Mela, UAS Raichur",
+    "subtitle_hi": "raichur karnataka uas main campus, raichur",
+    "subtitle_en": "raichur karnataka uas main campus, raichur",
+    "url": "/kisan-mela",
+    "keywords": "कृषि मेला, यूएएस रायचूर krishi mela, uas raichur raichur karnataka uas main campus, raichur kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "कृषि-तोटगारिके मेला (कृषि-बागवानी मेला), शिवमोग्गा",
+    "title_en": "Krishi-Thotagarike Mela (Agriculture-Horticulture Fair), Shivamogga",
+    "subtitle_hi": "shivamogga karnataka college of agriculture, navile, shivamogga",
+    "subtitle_en": "shivamogga karnataka college of agriculture, navile, shivamogga",
+    "url": "/kisan-mela",
+    "keywords": "कृषि-तोटगारिके मेला (कृषि-बागवानी मेला), शिवमोग्गा krishi-thotagarike mela (agriculture-horticulture fair), shivamogga shivamogga karnataka college of agriculture, navile, shivamogga kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "किसान मेला, बिहार कृषि विश्वविद्यालय, सबौर",
+    "title_en": "Kisan Mela, Bihar Agricultural University, Sabour",
+    "subtitle_hi": "bhagalpur bihar bihar agricultural university, sabour",
+    "subtitle_en": "bhagalpur bihar bihar agricultural university, sabour",
+    "url": "/kisan-mela",
+    "keywords": "किसान मेला, बिहार कृषि विश्वविद्यालय, सबौर kisan mela, bihar agricultural university, sabour bhagalpur bihar bihar agricultural university, sabour kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "ओयूएटी किसान मेला (ओडिशा कृषि एवं प्रौद्योगिकी विश्वविद्यालय)",
+    "title_en": "OUAT Farmers' Fair",
+    "subtitle_hi": "khordha odisha ouat campus (krushi shiksha sadan & krushak bhavan)",
+    "subtitle_en": "khordha odisha ouat campus (krushi shiksha sadan & krushak bhavan)",
+    "url": "/kisan-mela",
+    "keywords": "ओयूएटी किसान मेला (ओडिशा कृषि एवं प्रौद्योगिकी विश्वविद्यालय) ouat farmers' fair khordha odisha ouat campus (krushi shiksha sadan & krushak bhavan) kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "भारत एग्री टेक",
+    "title_en": "Bharat Agri Tech",
+    "subtitle_hi": "indore madhya pradesh baps swaminarayan akshardham temple, nemawar chouraha",
+    "subtitle_en": "indore madhya pradesh baps swaminarayan akshardham temple, nemawar chouraha",
+    "url": "/kisan-mela",
+    "keywords": "भारत एग्री टेक bharat agri tech indore madhya pradesh baps swaminarayan akshardham temple, nemawar chouraha kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "किसान मेला, सरदार वल्लभभाई पटेल कृषि एवं प्रौद्योगिक विश्वविद्यालय, मेरठ",
+    "title_en": "Kisan Mela, SVPUAT Meerut",
+    "subtitle_hi": "meerut uttar pradesh svpuat campus, modipuram",
+    "subtitle_en": "meerut uttar pradesh svpuat campus, modipuram",
+    "url": "/kisan-mela",
+    "keywords": "किसान मेला, सरदार वल्लभभाई पटेल कृषि एवं प्रौद्योगिक विश्वविद्यालय, मेरठ kisan mela, svpuat meerut meerut uttar pradesh svpuat campus, modipuram kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "एग्री एग्रो ग्रैंड एक्सपो 2026",
+    "title_en": "Agri Agro Grand Expo 2026",
+    "subtitle_hi": "agra uttar pradesh kisan school, baroli ahir",
+    "subtitle_en": "agra uttar pradesh kisan school, baroli ahir",
+    "url": "/kisan-mela",
+    "keywords": "एग्री एग्रो ग्रैंड एक्सपो 2026 agri agro grand expo 2026 agra uttar pradesh kisan school, baroli ahir kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "इंडिया एग्री एक्सपो 2027",
+    "title_en": "India Agri Expo 2027",
+    "subtitle_hi": "ludhiana punjab ludhiana exhibition & convention centre (lecc)",
+    "subtitle_en": "ludhiana punjab ludhiana exhibition & convention centre (lecc)",
+    "url": "/kisan-mela",
+    "keywords": "इंडिया एग्री एक्सपो 2027 india agri expo 2027 ludhiana punjab ludhiana exhibition & convention centre (lecc) kisan mela"
+  },
+  {
+    "type": "mela",
+    "title_hi": "फार्म-टेक इंडिया",
+    "title_en": "Farm-Tech India – International Exhibition & Conference on Agriculture, Horticulture & Dairy Technology",
+    "subtitle_hi": "bhopal madhya pradesh icar (ciae) ground, nabi bagh",
+    "subtitle_en": "bhopal madhya pradesh icar (ciae) ground, nabi bagh",
+    "url": "/kisan-mela",
+    "keywords": "फार्म-टेक इंडिया farm-tech india – international exhibition & conference on agriculture, horticulture & dairy technology bhopal madhya pradesh icar (ciae) ground, nabi bagh kisan mela"
   },
   {
     "type": "resource",
@@ -4363,6 +4408,51 @@
     "subtitle_en": "",
     "url": "/mausam",
     "keywords": "mausam weather rain मौसम बारिश"
+  },
+  {
+    "type": "hub",
+    "title_hi": "कम पानी में कौन-सी फसल",
+    "title_en": "Which crop with little water",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/fasal-salah/kam-pani",
+    "keywords": "कम पानी सूखा बारानी सिंचाई फसल बीमा खेत तालाब चना मसूर जौ सरसों गेहूं रबी kam pani sukha baarani irrigation drought crop insurance farm pond fasal salah"
+  },
+  {
+    "type": "hub",
+    "title_hi": "सरकारी सहारा — फसल बीमा, MSP खरीद, खेत तालाब",
+    "title_en": "Government support — crop insurance, MSP purchase, farm pond",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/fasal-salah/kam-pani#sarkari-sahara",
+    "keywords": "फसल बीमा pmfby msp खरीद खेत तालाब सब्सिडी सरकारी सहारा crop insurance farm pond subsidy"
+  },
+  {
+    "type": "hub",
+    "title_hi": "बारिश देर से / सूखा — क्या बोएँ",
+    "title_en": "Late rain / drought — what to sow",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/fasal-salah/kam-pani#barish-der-se",
+    "keywords": "बारिश देर सूखा तिल उड़द अरहर late monsoon drought"
+  },
+  {
+    "type": "hub",
+    "title_hi": "बारिश ज़्यादा, पानी भरा",
+    "title_en": "Heavy rain, waterlogging",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/fasal-salah/kam-pani#barish-zyada",
+    "keywords": "ज़्यादा बारिश पानी भराव सोयाबीन heavy rain waterlogging"
+  },
+  {
+    "type": "hub",
+    "title_hi": "पानी बचाने के तरीके",
+    "title_en": "Ways to save water",
+    "subtitle_hi": "",
+    "subtitle_en": "",
+    "url": "/fasal-salah/kam-pani#pani-bachana",
+    "keywords": "पानी बचाना खेत तालाब मेड़बंदी नमी water saving farm pond moisture"
   },
   {
     "type": "hub",

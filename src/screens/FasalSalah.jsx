@@ -170,6 +170,11 @@ export default function FasalSalah() {
         <PageExplainer title={t('page_explainer_title')} lines={[t('fasal_intro_1'), t('fasal_intro_2')]} />
         <LocationControl />
 
+        <Link to="/fasal-salah/kam-pani" data-testid="fasal-kam-pani-card" className="block rounded-xl p-3" style={{ background: 'var(--ks-green-tint)', border: '2px solid var(--ks-green)' }}>
+          <span className="block text-[18px] font-extrabold" style={{ color: 'var(--ks-green-dark)' }}>{t('kp_fasal_card_h')} →</span>
+          <span className="mt-0.5 block text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('kp_fasal_card_sub')}</span>
+        </Link>
+
         <button type="button" onClick={() => navigate('/mausam')} className="inline-block text-[15px] font-bold" style={{ color: 'var(--ks-green)' }}>🌤 {t('fasal_see_mausam')} →</button>
 
         {selectedCrop ? <CropPanel /> : (

@@ -30,6 +30,9 @@ export const SYNONYMS = {
   drone: ['ड्रोन', 'drone', 'didi', 'दीदी', 'drone didi'],
   warehouse: ['वेयरहाउस', 'warehouse', 'godown', 'गोदाम', 'store'],
   labor: ['मजदूर', 'mazdoor', 'majdoor', 'labour', 'labor', 'worker'],
+  low_water: ['कम पानी', 'kam pani', 'low water', 'सूखा', 'sukha', 'drought', 'बारानी', 'baarani', 'barani', 'rainfed', 'rain-fed', 'सिंचाई', 'sinchai', 'irrigation'],
+  crop_insurance: ['फसल बीमा', 'fasal bima', 'crop insurance', 'pmfby', 'बीमा'],
+  farm_pond: ['खेत तालाब', 'khet talab', 'farm pond', 'तालाब', 'talab'],
   land: ['जमीन', 'ज़मीन', 'रकबा', 'भूमि', 'zameen', 'jameen', 'land', 'khet', 'खेत'],
 }
 

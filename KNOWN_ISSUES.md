@@ -537,3 +537,9 @@ Live: deployment `8c6a66f2-ad48-444c-8730-67a072c49e0c`, commit `e7432c8`. See P
 - **The block does not reach anonymous inserts** (Sawaal, reports, feedback).
 - **Rate-limited OTP refusals are not counted** in the SMS usage numbers.
 - **Signed-out `/admin` redirects to `/login`** rather than showing the access-denied screen.
+
+## Batch 15B
+- **Content awaits KVK Sagar / A.K. Dixit review:** government-support, late-monsoon, heavy-rain and water-saving cards, every variety list, the days-to-harvest figures, the barley card and the irrigation counts show "समीक्षाधीन". HUMAN-REVIEW.
+- **KVK Sagar phone (07582-288228)** is the existing string res_card_offices_1; the owner should confirm it is current.
+- **MSP table problems** (3 identical rows per crop on staging, mustard 5950 vs 6200, 2027-28 not loaded): see docs/review/batch15b/BACKLOG.md.
+- **Source links** on the page point to the publisher site, not the exact article.

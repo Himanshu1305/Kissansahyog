@@ -58,6 +58,7 @@ const DroneDidi = lazy(() => import('./screens/DroneDidi'))
 const Mausam = lazy(() => import('./screens/Mausam'))
 const Msp = lazy(() => import('./screens/Msp'))
 const FasalSalah = lazy(() => import('./screens/FasalSalah'))
+const KamPani = lazy(() => import('./screens/KamPani'))
 const AgroForestry = lazy(() => import('./screens/AgroForestry'))
 const Credits = lazy(() => import('./screens/Credits'))
 const KisanMela = lazy(() => import('./screens/KisanMela'))
@@ -182,6 +183,7 @@ function AppRoutes() {
         <Route path="/drone-didi" element={<DroneDidi />} />
         <Route path="/mausam" element={<Mausam />} />
         <Route path="/fasal-salah" element={<FasalSalah />} />
+        <Route path="/fasal-salah/kam-pani" element={<KamPani />} />
         <Route path="/agro-forestry" element={<AgroForestry />} />
         {/* Static /msp before the dynamic /msp/:crop */}
         <Route path="/msp" element={<Msp />} />

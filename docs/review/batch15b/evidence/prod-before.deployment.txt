@@ -1,0 +1,4 @@
+deployment_id=3b8ce6d9-f29c-4741-8783-e6fe36ad9f16
+source=ad391e0
+main_chunk=/assets/index-4jqfUsIW.js
+taken_at=2026-10-23T17:16:26Z

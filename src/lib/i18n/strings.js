@@ -1816,6 +1816,9 @@ export const strings = {
   fasal_intro_2: { hi: 'सलाह वही नियम इस्तेमाल करती है जो मौसम पेज के "आज क्या करें" में हैं। रोज़ का मौसम मौसम पेज पर देखें।', en: 'It uses the same rules as the weather page’s “what to do today”. See daily weather on the weather page.' },
   fasal_season_h: { hi: 'इस सीज़न की फसलें', en: 'This season’s crops' },
   fasal_all_h: { hi: 'अन्य फसलें', en: 'Other crops' },
+  kp_msp_link: { hi: 'पानी कम हो तो कौन-सी फसल: देखें', en: 'If water is short, which crop: see' },
+  kp_fasal_card_h: { hi: 'कम पानी में कौन-सी फसल', en: 'Which crop with little water' },
+  kp_fasal_card_sub: { hi: 'सिंचाई कितनी है, उसके हिसाब से फसल, MSP, मंडी भाव और सरकारी सहारा।', en: 'The crop to sow by how much irrigation you have, with MSP, mandi price and government support.' },
   fasal_see_mausam: { hi: 'मौसम अनुसार सलाह देखें', en: 'See weather-based advice' },
 
   // --- Batch 2 item E: crop panel (tap a crop for today's call + work + problems + help) ---
