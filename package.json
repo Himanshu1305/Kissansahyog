@@ -30,7 +30,9 @@
     "test:e2e": "node --env-file=.env node_modules/.bin/playwright test",
     "test:phase1": "node --env-file=.env scripts/test/phase1.mjs",
     "test:phase2": "node --env-file=.env scripts/test/phase2.mjs",
-    "icons": "node scripts/gen-icons.mjs"
+    "icons": "node scripts/gen-icons.mjs",
+    "morning": "node --env-file-if-exists=.env scripts/morning/run.mjs",
+    "morning:poll": "node scripts/morning/poll-result.mjs"
   },
   "repository": {
     "type": "git",
@@ -61,9 +63,11 @@
     "@anthropic-ai/sdk": "^0.131.0",
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^8.5.3",
+    "@fontsource/noto-sans-devanagari": "^5.3.0",
     "@playwright/test": "^1.62.1",
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.0",
+    "astronomy-engine": "^2.1.19",
     "sharp": "^0.35.3",
     "tailwindcss": "^4.3.3",
     "vite": "^8.2.2",
