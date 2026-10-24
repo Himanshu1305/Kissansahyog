@@ -6,6 +6,7 @@
 // all times (see src/lib/i18n/disclaimers.js) regardless of selected language.
 
 import { adminStrings } from './adminStrings.js'
+import { morningStrings } from './morningStrings.js'
 
 export const strings = {
   // --- app / brand ---
@@ -2712,4 +2713,6 @@ export const strings = {
   dates_range: { hi: '{a} से {b} तक', en: '{a} to {b}' },
   // --- Batch 14A: admin console, announcement cards, blocked account ---
   ...adminStrings,
+  // --- Batch 16B: /admin/morning ---
+  ...morningStrings,
 }

@@ -43,6 +43,7 @@ const Experts = lazy(() => import('./screens/Experts'))
 const ExpertDetail = lazy(() => import('./screens/ExpertDetail'))
 const Profile = lazy(() => import('./screens/Profile'))
 const Admin = lazy(() => import('./screens/Admin'))
+const AdminMorning = lazy(() => import('./screens/AdminMorning'))
 const Articles = lazy(() => import('./screens/Articles'))
 const ArticleDetail = lazy(() => import('./screens/ArticleDetail'))
 const Resources = lazy(() => import('./screens/Resources'))
@@ -204,6 +205,7 @@ function AppRoutes() {
         <Route path="/experts/:id" element={<Protected><ExpertDetail /></Protected>} />
         <Route path="/profile" element={<Protected><Profile /></Protected>} />
         <Route path="/admin" element={<AdminOnly><Admin /></AdminOnly>} />
+        <Route path="/admin/morning" element={<AdminOnly><AdminMorning /></AdminOnly>} />
 
         {/* Real 404 (noindex) — replaces the old soft-404 <Navigate to="/">. */}
         <Route path="*" element={<NotFound />} />
