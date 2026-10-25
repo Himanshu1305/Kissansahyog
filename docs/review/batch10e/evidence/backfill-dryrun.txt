@@ -1,0 +1,194 @@
+fetching 10 crops × 6 districts, window 2026-06-20 … 2026-10-17
+  Wheat                Sagar       rows≥from= 1480 pages=2 total=46678
+  Wheat                Damoh       rows≥from=  584 pages=1 total=16264
+  Wheat                Panna       rows≥from=  594 pages=1 total=13678
+  Wheat                Tikamgarh   rows≥from=  655 pages=1 total=20568
+  Wheat                Chhatarpur  rows≥from=  961 pages=1 total=24055
+  Wheat                Niwari      rows≥from=    0 pages=1 total=0
+  Soyabean             Sagar       rows≥from=  857 pages=1 total=34668
+  Soyabean             Damoh       rows≥from=  248 pages=1 total=12354
+  Soyabean             Panna       rows≥from=    2 pages=1 total=2879
+  Soyabean             Tikamgarh   rows≥from=  129 pages=1 total=7340
+  Soyabean             Chhatarpur  rows≥from=  170 pages=1 total=8056
+  Soyabean             Niwari      rows≥from=    0 pages=1 total=0
+  Gram                 Sagar       rows≥from=  798 pages=1 total=13687
+  Gram                 Damoh       rows≥from=  389 pages=1 total=7315
+  Gram                 Panna       rows≥from=  262 pages=1 total=4745
+  Gram                 Tikamgarh   rows≥from=    3 pages=1 total=740
+  Gram                 Chhatarpur  rows≥from=  275 pages=1 total=2464
+  Gram                 Niwari      rows≥from=    0 pages=1 total=0
+  Lentil               Sagar       rows≥from=  560 pages=1 total=1817
+  Lentil               Damoh       rows≥from=  208 pages=1 total=666
+  Lentil               Panna       rows≥from=  111 pages=1 total=408
+  Lentil               Tikamgarh   rows≥from=    0 pages=1 total=1
+  Lentil               Chhatarpur  rows≥from=   26 pages=1 total=61
+  Lentil               Niwari      rows≥from=    0 pages=1 total=0
+  Moong                Sagar       rows≥from=  458 pages=1 total=700
+  Moong                Damoh       rows≥from=  228 pages=1 total=427
+  Moong                Panna       rows≥from=   36 pages=1 total=45
+  Moong                Tikamgarh   rows≥from=   39 pages=1 total=67
+  Moong                Chhatarpur  rows≥from=    4 pages=1 total=5
+  Moong                Niwari      rows≥from=    0 pages=1 total=0
+  Urad                 Sagar       rows≥from=  316 pages=1 total=656
+  Urad                 Damoh       rows≥from=  224 pages=1 total=594
+  Urad                 Panna       rows≥from=   36 pages=1 total=122
+  Urad                 Tikamgarh   rows≥from=  106 pages=1 total=331
+  Urad                 Chhatarpur  rows≥from=   44 pages=1 total=129
+  Urad                 Niwari      rows≥from=    0 pages=1 total=0
+  Paddy(Dhan)(Common)  Sagar       rows≥from=    9 pages=1 total=165
+  Paddy(Dhan)(Common)  Damoh       rows≥from=   39 pages=1 total=95
+  Paddy(Dhan)(Common)  Panna       rows≥from=    5 pages=1 total=72
+  Paddy(Dhan)(Common)  Tikamgarh   rows≥from=    0 pages=1 total=3
+  Paddy(Dhan)(Common)  Chhatarpur  rows≥from=    0 pages=1 total=17
+  Paddy(Dhan)(Common)  Niwari      rows≥from=    0 pages=1 total=0
+  Maize                Sagar       rows≥from=  109 pages=1 total=6062
+  Maize                Damoh       rows≥from=   24 pages=1 total=1747
+  Maize                Panna       rows≥from=    0 pages=1 total=130
+  Maize                Tikamgarh   rows≥from=    0 pages=1 total=89
+  Maize                Chhatarpur  rows≥from=    1 pages=1 total=583
+  Maize                Niwari      rows≥from=    0 pages=1 total=0
+  Mustard              Sagar       rows≥from=  458 pages=1 total=20759
+  Mustard              Damoh       rows≥from=  175 pages=1 total=8096
+  Mustard              Panna       rows≥from=  159 pages=1 total=6088
+  Mustard              Tikamgarh   rows≥from=   98 pages=1 total=5305
+  Mustard              Chhatarpur  rows≥from=  441 pages=1 total=12548
+  Mustard              Niwari      rows≥from=    0 pages=1 total=0
+  Garlic               Sagar       rows≥from=   35 pages=1 total=1451
+  Garlic               Damoh       rows≥from=  127 pages=1 total=568
+  Garlic               Panna       rows≥from=    0 pages=1 total=0
+  Garlic               Tikamgarh   rows≥from=    0 pages=1 total=0
+  Garlic               Chhatarpur  rows≥from=    1 pages=1 total=19
+  Garlic               Niwari      rows≥from=    0 pages=1 total=0
+cache written: C:\Users\usdvi\AppData\Local\Temp\claude\C--Users-usdvi-projects-Kissansahyog\96adcb5e-cc7a-42fe-b6ff-2a5d315c4140\scratchpad\p2b\mandi-35985678-2026-06-20_2026-10-17.json (11484 source rows, 61 requests)
+# Mandi history backfill — DRY RUN (nothing written)
+generated 2026-10-18T16:27:56.281Z · source data.gov.in 35985678-0d79-46b4-9ed6-6f13308a1d24 (Variety-wise Daily Market Prices Data of Commodity) · Government Open Data License – India (GODL)
+window 2026-06-20 … 2026-10-17 (120 days) · fetched 2026-10-18T16:25:50Z · 61 API requests
+districts (places.js DIVISION_DISTRICTS): Sagar, Damoh, Panna, Tikamgarh, Chhatarpur, Niwari
+crops (crops.js CROPS → exact source name): Wheat→"Wheat"; Soyabean→"Soyabean"; Gram→"Bengal Gram(Gram)(Whole)"; Lentil→"Lentil(Masur)(Whole)"; Moong→"Green Gram(Moong)(Whole)"; Urad→"Black Gram(Urd Beans)(Whole)"; Paddy(Dhan)(Common)→"Paddy(Common)"; Maize→"Maize"; Mustard→"Mustard"; Garlic→"Garlic"
+
+source rows fetched (Arrival_Date ≥ from): 11484
+passed row checks: 11484
+rejected by row checks: 0 {}
+duplicate (commodity, market, date) keys: 2336 keys, 2859 extra source rows not used (rule: Grade FAQ first, then smallest Variety, then lowest modal/min/max)
+one row per key: 8625
+outliers (modal > 5× or < 1/5 of the crop median in this batch), NOT loaded: 0
+rows to load: 8625
+
+## per crop (rows to load / distinct days / markets / min … max date / batch median modal)
+Wheat                rows= 2967 days=119 markets= 37 2026-06-20 … 2026-10-17 median=2515
+Soyabean             rows= 1032 days=105 markets= 29 2026-06-20 … 2026-10-17 median=6500
+Gram                 rows= 1304 days=108 markets= 31 2026-06-20 … 2026-10-17 median=5950
+Lentil               rows=  729 days= 98 markets= 21 2026-06-20 … 2026-10-17 median=6255
+Moong                rows=  616 days= 96 markets= 19 2026-06-20 … 2026-10-17 median=6800
+Urad                 rows=  570 days= 96 markets= 23 2026-06-20 … 2026-10-17 median=7000
+Paddy(Dhan)(Common)  rows=   51 days= 46 markets=  9 2026-06-22 … 2026-10-17 median=1911
+Maize                rows=  107 days= 53 markets= 15 2026-06-20 … 2026-10-17 median=1865
+Mustard              rows= 1127 days=108 markets= 32 2026-06-20 … 2026-10-17 median=7210
+Garlic               rows=  122 days= 87 markets=  5 2026-06-20 … 2026-10-17 median=8450
+
+## per crop per month (rows to load)
+crop                  2026-06  2026-07  2026-08  2026-09  2026-10
+Wheat                     269      881      720      684      413
+Soyabean                   88      357      248      169      170
+Gram                       91      359      314      332      208
+Lentil                     61      238      160      156      114
+Moong                      66      255      140      101       54
+Urad                       38      134       95      124      179
+Paddy(Dhan)(Common)         4       15       12       12        8
+Maize                       5       15       13       17       57
+Mustard                    87      335      267      258      180
+Garlic                      9       29       30       31       23
+
+## per district (rows to load)
+Sagar        3949
+Damoh        1541
+Panna        865
+Tikamgarh    815
+Chhatarpur   1455
+Niwari       0
+
+## fetch per (crop, district): rows ≥ from / pages / source total for the filter
+Wheat                Sagar        1480 / 2 / 46678
+Wheat                Damoh         584 / 1 / 16264
+Wheat                Panna         594 / 1 / 13678
+Wheat                Tikamgarh     655 / 1 / 20568
+Wheat                Chhatarpur    961 / 1 / 24055
+Wheat                Niwari          0 / 1 / 0
+Soyabean             Sagar         857 / 1 / 34668
+Soyabean             Damoh         248 / 1 / 12354
+Soyabean             Panna           2 / 1 / 2879
+Soyabean             Tikamgarh     129 / 1 / 7340
+Soyabean             Chhatarpur    170 / 1 / 8056
+Soyabean             Niwari          0 / 1 / 0
+Gram                 Sagar         798 / 1 / 13687
+Gram                 Damoh         389 / 1 / 7315
+Gram                 Panna         262 / 1 / 4745
+Gram                 Tikamgarh       3 / 1 / 740
+Gram                 Chhatarpur    275 / 1 / 2464
+Gram                 Niwari          0 / 1 / 0
+Lentil               Sagar         560 / 1 / 1817
+Lentil               Damoh         208 / 1 / 666
+Lentil               Panna         111 / 1 / 408
+Lentil               Tikamgarh       0 / 1 / 1
+Lentil               Chhatarpur     26 / 1 / 61
+Lentil               Niwari          0 / 1 / 0
+Moong                Sagar         458 / 1 / 700
+Moong                Damoh         228 / 1 / 427
+Moong                Panna          36 / 1 / 45
+Moong                Tikamgarh      39 / 1 / 67
+Moong                Chhatarpur      4 / 1 / 5
+Moong                Niwari          0 / 1 / 0
+Urad                 Sagar         316 / 1 / 656
+Urad                 Damoh         224 / 1 / 594
+Urad                 Panna          36 / 1 / 122
+Urad                 Tikamgarh     106 / 1 / 331
+Urad                 Chhatarpur     44 / 1 / 129
+Urad                 Niwari          0 / 1 / 0
+Paddy(Dhan)(Common)  Sagar           9 / 1 / 165
+Paddy(Dhan)(Common)  Damoh          39 / 1 / 95
+Paddy(Dhan)(Common)  Panna           5 / 1 / 72
+Paddy(Dhan)(Common)  Tikamgarh       0 / 1 / 3
+Paddy(Dhan)(Common)  Chhatarpur      0 / 1 / 17
+Paddy(Dhan)(Common)  Niwari          0 / 1 / 0
+Maize                Sagar         109 / 1 / 6062
+Maize                Damoh          24 / 1 / 1747
+Maize                Panna           0 / 1 / 130
+Maize                Tikamgarh       0 / 1 / 89
+Maize                Chhatarpur      1 / 1 / 583
+Maize                Niwari          0 / 1 / 0
+Mustard              Sagar         458 / 1 / 20759
+Mustard              Damoh         175 / 1 / 8096
+Mustard              Panna         159 / 1 / 6088
+Mustard              Tikamgarh      98 / 1 / 5305
+Mustard              Chhatarpur    441 / 1 / 12548
+Mustard              Niwari          0 / 1 / 0
+Garlic               Sagar          35 / 1 / 1451
+Garlic               Damoh         127 / 1 / 568
+Garlic               Panna           0 / 1 / 0
+Garlic               Tikamgarh       0 / 1 / 0
+Garlic               Chhatarpur      1 / 1 / 19
+Garlic               Niwari          0 / 1 / 0
+
+## duplicate-key picks (first 12 examples)
+Wheat | Rahatgarh APMC | 2026-10-17: kept [FAQ / Lokwan / modal 2711] dropped [FAQ / Mill Quality / modal 2780] [Non-FAQ / Lokwan / modal 2701] [Non-FAQ / Mill Quality / modal 2700] [Non-FAQ / Sharbati / modal 3200] [Non-FAQ / Wheat / modal 2715]
+Wheat | Shahagarh APMC | 2026-10-17: kept [FAQ / Wheat / modal 2495] dropped [Non-FAQ / Mill Quality / modal 2625]
+Wheat | Sagar APMC | 2026-10-17: kept [FAQ / Wheat / modal 2680] dropped [FAQ / Wheat Mix / modal 2680]
+Wheat | Khurai APMC | 2026-10-16: kept [FAQ / Wheat / modal 2600] dropped [FAQ / Wheat / modal 2700]
+Wheat | Rahatgarh APMC | 2026-10-16: kept [FAQ / Mill Quality / modal 2690] dropped [Non-FAQ / Mill Quality / modal 2686]
+Wheat | Banda APMC | 2026-10-16: kept [FAQ / Wheat / modal 2601] dropped [Non-FAQ / Wheat / modal 2610]
+Wheat | Bamora APMC | 2026-10-16: kept [FAQ / Mill Quality / modal 3000] dropped [FAQ / Mill Quality / modal 3000]
+Wheat | Deori APMC | 2026-10-16: kept [Non-FAQ / Mill Quality / modal 2540] dropped [Non-FAQ / Mill Quality / modal 2560] [Non-FAQ / Wheat / modal 2455]
+Wheat | Rehli APMC | 2026-10-16: kept [Non-FAQ / Wheat / modal 2605] dropped [Non-FAQ / Wheat / modal 2655]
+Wheat | Bamora APMC | 2026-10-15: kept [FAQ / Mill Quality / modal 2551] dropped [FAQ / Mill Quality / modal 2675]
+Wheat | Gadakota APMC | 2026-10-15: kept [FAQ / Wheat / modal 2675] dropped [FAQ / Wheat / modal 2675]
+Wheat | Banda APMC | 2026-10-15: kept [FAQ / Wheat / modal 2555] dropped [FAQ / Wheat / modal 2621]
+
+## outliers (not loaded)
+none
+
+## rejected rows (examples, outside_window not listed)
+none
+
+cache: C:\Users\usdvi\AppData\Local\Temp\claude\C--Users-usdvi-projects-Kissansahyog\96adcb5e-cc7a-42fe-b6ff-2a5d315c4140\scratchpad\p2b\mandi-35985678-2026-06-20_2026-10-17.json
+
+DRY RUN: nothing written. Add --apply (staging) or use --project prod (SQL files).

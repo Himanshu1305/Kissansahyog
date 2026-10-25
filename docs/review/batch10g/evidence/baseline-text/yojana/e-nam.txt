@@ -1,0 +1,120 @@
+### HEAD
+title: e-NAM (राष्ट्रीय कृषि बाज़ार) — Kissan Sahyog
+description: अपनी फसल ऑनलाइन बेचें — पूरे देश के खरीदारों को। मंडी के बाहर भी दाम मिलेगा, बिचौलिया नहीं होगा, सीधे पैसा खाते में।
+canonical: https://kissansahyog.com/yojana/e-nam
+robots: 
+lang: hi
+h1: e-NAM (राष्ट्रीय कृषि बाज़ार)
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Article","headline":"e-NAM (राष्ट्रीय कृषि बाज़ार)","datePublished":"2026-09-23T17:11:52.800341+00:00","dateModified":"2026-09-24T17:37:18.776239+00:00","description":"अपनी फसल ऑनलाइन बेचें — पूरे देश के खरीदारों को। मंडी के बाहर भी दाम मिलेगा, बिचौलिया नहीं होगा, सीधे पैसा खाते में।"}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"e-NAM से मुझे क्या फायदा होगा?","acceptedAnswer":{"@type":"Answer","text":"e-NAM एक ऑनलाइन कृषि बाज़ार है जहाँ आपकी उपज की ऑनलाइन नीलामी होती है। कई खरीदार बोली लगाते हैं और आपको बेहतर दाम मिल सकता है। भुगतान सीधे आपके बैंक खाते में आता है, जिससे बिचौलियों की गुंजाइश कम होती है। इसके लिए e-NAM से जुड़ी मंडी में रजिस्टर होना ज़रूरी है।"}},{"@type":"Question","name":"e-NAM पर बेचने के लिए कौन पात्र है?","acceptedAnswer":{"@type":"Answer","text":"वे सभी किसान e-NAM पर बेच सकते हैं जो e-NAM से जुड़ी मंडी में रजिस्टर्ड हैं। सबसे पहले जानें कि आपके पास की कौन सी मंडी e-NAM से जुड़ी है। सागर ज़िले में नज़दीकी e-NAM मंडी की जानकारी के लिए enam.gov.in देखें या मंडी कार्यालय से संपर्क करें।"}},{"@type":"Question","name":"e-NAM पर रजिस्ट्रेशन कैसे करें?","acceptedAnswer":{"@type":"Answer","text":"enam.gov.in पर Farmer Registration करें और जानकारी भरें। फिर अपनी उपज लेकर नज़दीकी e-NAM मंडी में जाकर ऑनलाइन नीलामी में भाग लें। रजिस्ट्रेशन नज़दीकी e-NAM मंडी में जाकर भी करवाया जा सकता है और इसके लिए कोई फीस नहीं लगती।"}},{"@type":"Question","name":"e-NAM रजिस्ट्रेशन के लिए कौन से कागज़ चाहिए?","acceptedAnswer":{"@type":"Answer","text":"आमतौर पर आधार कार्ड, बैंक खाता पासबुक या रद्द चेक, एक पहचान पत्र (वोटर ID/पैन) और ज़मीन के कागज़ (खसरा-खतौनी) या किसान ID चाहिए। मोबाइल नंबर और पासपोर्ट साइज़ फोटो भी रखें। सटीक ज़रूरतें मंडी के अनुसार बदल सकती हैं।"}},{"@type":"Question","name":"e-NAM पर बेचने के बाद पैसा कब और कैसे मिलता है?","acceptedAnswer":{"@type":"Answer","text":"e-NAM पर उपज बिकने के बाद भुगतान सीधे आपके बैंक खाते में आता है, इसलिए बैंक खाता सही और चालू होना ज़रूरी है। पैसा मिलने का समय मंडी और भुगतान प्रक्रिया पर निर्भर करता है। देरी या समस्या हो तो हेल्पलाइन 1800-270-0224 पर संपर्क करें।"}}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+← वापस
+केंद्र सरकार की योजनाएं
+e-NAM (राष्ट्रीय कृषि बाज़ार)
+e-NAM (National Agriculture Market) · कृषि एवं किसान कल्याण मंत्रालय
+अपनी फसल ऑनलाइन बेचें — पूरे देश के खरीदारों को। मंडी के बाहर भी दाम मिलेगा, बिचौलिया नहीं होगा, सीधे पैसा खाते में।
+लाभ
+ऑनलाइन नीलामी से बेहतर दाम। सीधे खाते में भुगतान।
+कौन आवेदन कर सकता है?
+सभी किसान जो e-NAM से जुड़ी मंडी में रजिस्टर्ड हैं।
+आवेदन कैसे करें?
+enam.gov.in पर जाएं
+Farmer Registration करें
+नज़दीकी e-NAM मंडी में जाकर उपज लाएं
+ऑनलाइन नीलामी में भाग लें
+ज़रूरी दस्तावेज़
+आधार कार्ड, बैंक खाता पासबुक या रद्द चेक, पहचान पत्र (वोटर ID या पैन कार्ड), ज़मीन के कागज़ (खसरा-खतौनी) या किसान ID, मोबाइल नंबर, पासपोर्ट साइज़ फोटो।
+अक्सर पूछे जाने वाले सवाल
+e-NAM से मुझे क्या फायदा होगा?
++
+e-NAM पर बेचने के लिए कौन पात्र है?
++
+e-NAM पर रजिस्ट्रेशन कैसे करें?
++
+e-NAM रजिस्ट्रेशन के लिए कौन से कागज़ चाहिए?
++
+e-NAM पर बेचने के बाद पैसा कब और कैसे मिलता है?
++
+स्रोत
+https://enam.gov.in
+आधिकारिक वेबसाइट:
+https://enam.gov.in
+हेल्पलाइन:
+1800-270-0224
+अंतिम सत्यापन: 2026-09-24
+व्हाट्सएप पर साझा करें
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

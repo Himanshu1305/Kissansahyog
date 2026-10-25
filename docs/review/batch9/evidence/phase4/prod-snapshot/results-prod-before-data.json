@@ -1,0 +1,25 @@
+{
+  "label": "prod-before-data",
+  "base": "https://kissansahyog.com",
+  "startedAt": "2026-10-14T22:39:18.480Z",
+  "gates": {
+    "data_ticker_mausam": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "mandi ticker on / shows prices (₹ + number)",
+          "ok": true,
+          "detail": "📊 मंडी भावपिछला भाव (12/10)मक्का ₹1,930/क्विंटल · Sagar APMC|गेहूं ₹2,560/क्विंटल · Shahagarh APMC|सोयाबीन ₹5,700/क्विंटल · Gadakota APMC|सरसों ₹6,700/क्विंटल "
+        },
+        {
+          "desc": "/mausam shows a temperature (weather data loaded)",
+          "ok": true,
+          "detail": "28°"
+        }
+      ],
+      "notes": []
+    }
+  },
+  "finishedAt": "2026-10-14T22:39:27.668Z",
+  "verdict": "ALL PASSED"
+}

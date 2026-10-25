@@ -1,0 +1,9 @@
+CHANGED: routes 268/268 compared, missing 0, added 0; routes with removals 2, with only additions 0; words −24 +210; lines −4 +72; head lines changed 0; data lines excluded (base) 253
+
+/safalta
+  lines removed: "🌱", "सफलता की कहानियां जल्द आ रही हैं। क्या आपके पास एक कहानी है? हमें बताएं: admin@kissansahyog.com", "अपनी कहानी शेयर करें →"
+  lines added:   "थोड़ा रुकें…"
+
+/videos
+  lines removed: "थोड़ा रुकें…"
+  lines added:   "कीट/रोग" ×4, "बुवाई" ×3, "सिंचाई" ×3, "ड्रोन" ×4, "योजना" ×3, "बाज़ार" ×3, "सामान्य" ×3, "3:07", … (+40)

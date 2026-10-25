@@ -1,0 +1,115 @@
+[
+ {
+  "at": "2026-10-15T09:42:00.817Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "B4UI",
+  "title": "old website build posts through the UI against the new database",
+  "status": "RAN-PASSED",
+  "detail": {
+   "old_build_without_consent_box": true,
+   "success_screen": true,
+   "listings_in_db": 1
+  },
+  "evidence": "evidence/fix9b/deployed/B4UI-old-build-posted.jpg"
+ },
+ {
+  "at": "2026-10-15T09:55:19.229Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "B2",
+  "title": "lost reply: server saved, client saw a failure; Post again -> 1 listing, user lands on it",
+  "status": "RAN-PASSED",
+  "detail": {
+   "server_saved_first": true,
+   "error_shown_first": true,
+   "listings_after_first": 1,
+   "listings_after_retry": 1,
+   "landed_on_that_listing": true,
+   "already_saved_notice": true,
+   "extra_create_calls_on_retry": 0
+  },
+  "evidence": "evidence/fix9b/deployed/B2-2-landed-on-listing.jpg"
+ },
+ {
+  "at": "2026-10-15T09:55:37.600Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "A1",
+  "title": "hidden farmer posts Shop/Vendor in agri_inputs: box shown, Post blocked until ticked, number then shown",
+  "status": "RAN-PASSED",
+  "detail": {
+   "box_shown": true,
+   "post_blocked_before_tick": true,
+   "post_enabled_after_tick": true,
+   "success": true,
+   "api": {
+    "consent": true,
+    "raw_json_has_number": true,
+    "lookup_gives_number": true,
+    "lookup_says_hidden": false
+   },
+   "other_user": {
+    "number_shown": true,
+    "hidden_message": false,
+    "sent_to_login": false,
+    "evidence": "evidence/fix9b/deployed/A1-3-other-user-sees-number.jpg"
+   },
+   "listing": "442ea17f-b067-4f5c-aff0-5b37fad70823"
+  },
+  "evidence": "evidence/fix9b/deployed/A1-3-other-user-sees-number.jpg"
+ },
+ {
+  "at": "2026-10-15T09:56:33.542Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "A2",
+  "title": "same hidden account as farmer (non-provider): no box; number hidden in UI and network, other user + logged out",
+  "status": "RAN-PASSED",
+  "detail": {
+   "bhusa_box_shown": false,
+   "bhusa_post_enabled": true,
+   "bhusa_success": true,
+   "agri_shop_as_farmer_box_shown": false,
+   "agri_shop_as_farmer_post_enabled": true,
+   "agri_shop_as_farmer_success": true,
+   "bhusa_api": {
+    "consent": false,
+    "raw_json_has_number": false,
+    "lookup_gives_number": false,
+    "lookup_says_hidden": true
+   },
+   "agri_shop_as_farmer_api": {
+    "consent": false,
+    "raw_json_has_number": false,
+    "lookup_gives_number": false,
+    "lookup_says_hidden": true
+   },
+   "other_user": {
+    "number_shown": false,
+    "hidden_message": true,
+    "sent_to_login": false,
+    "evidence": "evidence/fix9b/deployed/A2-other-user-hidden.jpg"
+   },
+   "logged_out": {
+    "number_shown": false,
+    "hidden_message": false,
+    "sent_to_login": true,
+    "evidence": "evidence/fix9b/deployed/A2-logged-out.jpg"
+   },
+   "listings": {
+    "bhusa": "23577087-fce7-4205-aa69-0cd4482a58b9",
+    "agri_shop_as_farmer": "1da1f316-1df8-48df-b142-3f9424386ee0"
+   }
+  },
+  "evidence": "evidence/fix9b/deployed/A2-other-user-hidden.jpg"
+ },
+ {
+  "at": "2026-10-15T09:57:02.156Z",
+  "base": "https://staging.kissansahyog.com",
+  "id": "B1",
+  "title": "double-click on Post -> exactly 1 listing",
+  "status": "RAN-PASSED",
+  "detail": {
+   "success_screen": true,
+   "listings_in_db": 1
+  },
+  "evidence": "evidence/fix9b/deployed/B1-after-double-click.jpg"
+ }
+]

@@ -1,0 +1,41 @@
+
+Running 7 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase10_location_pwa.spec.js:15:3 › Phase 2 — LocationControl › positive: geolocation already granted sets the location from the device (991ms)
+  ok 2 [chromium] › e2e\phase10_location_pwa.spec.js:32:3 › Phase 2 — LocationControl › negative: geolocation refused falls back to the village/town box, no pincode, no crash (801ms)
+  ok 3 [chromium] › e2e\phase10_location_pwa.spec.js:48:3 › Phase 2 — LocationControl › edge: coordinates far outside MP do not crash the page (835ms)
+  ok 4 [chromium] › e2e\phase10_location_pwa.spec.js:59:3 › Phase 2 — LocationControl › typing a village/town applies a location (952ms)
+  ok 5 [chromium] › e2e\phase10_location_pwa.spec.js:72:3 › Phase 3 — mandi search (distance-unrestricted) › search surfaces a mandi result with its date, or an honest empty state (1.7s)
+  x  6 [chromium] › e2e\phase10_location_pwa.spec.js:91:3 › Phase 5 — PWA install + offline › install prompt: not on first visit, shows on a returning visit (5.9s)
+  ok 7 [chromium] › e2e\phase10_location_pwa.spec.js:106:3 › Phase 5 — PWA install + offline › offline: banner shows and the shell stays (no blank screen) (1.4s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase10_location_pwa.spec.js:91:3 › Phase 5 — PWA install + offline › install prompt: not on first visit, shows on a returning visit 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('pwa-install-banner')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByTestId('pwa-install-banner')
+
+
+      100 |     await page.reload()
+      101 |     await page.evaluate(() => window.dispatchEvent(new Event('beforeinstallprompt')))
+    > 102 |     await expect(page.getByTestId('pwa-install-banner')).toBeVisible({ timeout: 5000 })
+          |                                                          ^
+      103 |     await ctx.close()
+      104 |   })
+      105 |
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase10_location_pwa.spec.js:102:58
+
+    Error Context: test-results\phase10_location_pwa-Phase-970ed--shows-on-a-returning-visit-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase10_location_pwa.spec.js:91:3 › Phase 5 — PWA install + offline › install prompt: not on first visit, shows on a returning visit 
+  6 passed (14.8s)

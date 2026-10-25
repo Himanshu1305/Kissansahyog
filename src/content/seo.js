@@ -10,7 +10,7 @@
 export const ROUTE_SEO = {
   '/': {
     title: { hi: 'किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार', en: 'Kissan Sahyog — Mandi prices, weather, schemes & marketplace' },
-    description: { hi: 'सागर व मध्य प्रदेश के किसानों के लिए मुफ़्त मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और एक मुफ़्त लिस्टिंग बाज़ार।', en: 'A free platform for Sagar & MP farmers: mandi prices, MSP, weather, government schemes, Kisan Sawaal, and a free listings marketplace.' },
+    description: { hi: 'सागर संभाग (मध्य प्रदेश) के किसानों के लिए जानकारी मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और लिस्टिंग बाज़ार।', en: 'For farmers of Sagar Division (Sagar Sambhag), MP: mandi prices, MSP, weather, government schemes, Kisan Sawaal and a listings marketplace.' },
   },
   '/privacy': {
     title: { hi: 'गोपनीयता नीति — किसान सहयोग', en: 'Privacy Policy — Kissan Sahyog' },
@@ -61,12 +61,12 @@ export const ROUTE_SEO = {
     description: { hi: 'नमो ड्रोन दीदी योजना और खेत में दवा/खाद के ड्रोन छिड़काव की सेवा व जानकारी।', en: 'The Namo Drone Didi scheme and drone spraying service for pesticide/fertiliser in fields.' },
   },
   '/mausam': {
-    title: { hi: 'मौसम — सागर व मध्य प्रदेश का पूर्वानुमान', en: 'Weather — Sagar & MP forecast' },
-    description: { hi: 'सागर और आस-पास का मौसम पूर्वानुमान, बारिश की चेतावनी और खेती के लिए सलाह।', en: 'Weather forecast for Sagar and nearby, rain alerts and farming advice.' },
+    title: { hi: 'मौसम — सागर संभाग का पूर्वानुमान', en: 'Weather — Sagar Division forecast' },
+    description: { hi: 'सागर संभाग में आपकी जगह का मौसम पूर्वानुमान, बारिश की चेतावनी और खेती के लिए सलाह।', en: 'Weather forecast for your place in Sagar Division (Sagar Sambhag), rain alerts and farming advice.' },
   },
   '/fasal-salah': {
     title: { hi: 'फसल सलाह — बुवाई से कटाई तक', en: 'Crop advice — sowing to harvest' },
-    description: { hi: 'सागर व मध्य प्रदेश की मुख्य फसलों के लिए बुवाई, सिंचाई, रोग-कीट और कटाई की सलाह।', en: 'Sowing, irrigation, pest-disease and harvest advice for Sagar & MP major crops.' },
+    description: { hi: 'सागर संभाग (मध्य प्रदेश) की मुख्य फसलों के लिए बुवाई, सिंचाई, रोग-कीट और कटाई की सलाह।', en: 'Sowing, irrigation, pest-disease and harvest advice for the main crops of Sagar Division (Sagar Sambhag), MP.' },
   },
   '/agro-forestry': {
     title: { hi: 'कृषि वानिकी व बागवानी — किसान सहयोग', en: 'Agro-forestry & horticulture — Kissan Sahyog' },

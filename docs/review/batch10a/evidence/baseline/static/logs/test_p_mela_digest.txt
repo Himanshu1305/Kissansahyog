@@ -1,0 +1,14 @@
+PASS selects exactly the 3 in-window confirmed melas
+PASS today is included (positive)
+PASS +3 day start is included (edge)
+PASS +4 day start is excluded (negative)
+PASS unconfirmed date is excluded (negative)
+PASS already-ended mela is excluded (negative)
+PASS ongoing (started before, ends within) is included (edge)
+PASS daysUntil(+3) === 3
+PASS daysUntil(today) === 0
+PASS invalid asOf → empty selection
+PASS grouped by user → u1 + u3 only
+PASS u1 has 2 in-window melas
+
+12 passed, 0 failed

@@ -1,0 +1,3 @@
+# Backlog
+- Desktop home "clipped left edge" (seen ~1725 px) could not be reproduced logged-out at 1366/1536/1725/1920. The greeting line only shows when logged in and could not be tested without a login. Note: the green strip and greeting use the page gutter (16 px) while the hero column is centred, so they do not line up with it. Needs a screenshot from the phone/desktop where it was seen.
+- `e2e/collapsible-10f.spec.js` C5 (/msp/gehun, procurement section) failed twice on the fresh build and passed once on an older stale build; Browse/msp code is untouched, so likely live-data/height dependent. Look at it separately.

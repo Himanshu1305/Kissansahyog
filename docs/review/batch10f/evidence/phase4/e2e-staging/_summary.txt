@@ -1,0 +1,8 @@
+collapsible-10f 10 0
+guide-10c 34 0
+home-10f 19 0
+msp-10f 16 0
+msp-trend-10e 4 0
+phase10_location_pwa 7 0
+phase19_voice_mandi 5 1
+phase20_mela 8 0

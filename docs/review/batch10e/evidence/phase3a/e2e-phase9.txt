@@ -1,0 +1,45 @@
+
+Running 2 tests using 1 worker
+
+  x  1 [chromium] › e2e\phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one (30.0s)
+  ok 2 [chromium] › e2e\phase9.spec.js:105:1 › Journey B: 30km filter consistent across all categories (4.0s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByTestId('post-submit')
+        - locator resolved to <button disabled data-testid="post-submit" class="w-full rounded-xl px-5 py-3 text-lg font-bold transition select-none disabled:opacity-50 disabled:cursor-not-allowed bg-green-700 text-white active:bg-green-800 hover:bg-green-600 ">Submit</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+          - waiting 100ms
+        54 × waiting for element to be visible, enabled and stable
+           - element is not enabled
+         - retrying click action
+           - waiting 500ms
+
+
+      47 |   await page.locator('#f_asset_village').fill('Deori')
+      48 |   await page.getByTestId('rules-agree-checkbox').check() // single confirm = rules + ownership
+    > 49 |   await page.getByTestId('post-submit').click()
+         |                                         ^
+      50 |   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
+      51 |
+      52 |   // Post Equipment Requirement (3-step flow)
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase9.spec.js:49:41
+
+    Error Context: test-results\phase9-Journey-A-signup-→--ee3b3-s-→-My-Listings-→-close-one-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one 
+  1 passed (35.8s)

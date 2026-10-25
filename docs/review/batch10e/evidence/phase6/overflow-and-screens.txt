@@ -1,0 +1,10 @@
+
+Running 2 tests using 1 worker
+
+overflow rows 98, with h-scroll 0
+  ok 1 [chromium] › e2e\zz-phase6-verify.spec.js:68:1 › overflow at 320–1440 hi+en on the changed pages (3.2m)
+{"tileHover":{"tag":"A","href":"/browse?cat=equipment&etype=water_tanker","cursor":"pointer","transform":"none","boxShadow":"none"},"mspTabs":["7 दिन\n11–17 अक्टू","30 दिन\n18 सित – 17 अक्टू","90 दिन\n20 जुल – 17 अक्टू"],"signupHasEmail":0,"listingPhoto":{"naturalWidth":320,"cspErrors":0},"demo":{"di":8,"pi":9,"steps":16},"melaPlaces":["📍 BAPS Swaminarayan Akshardham Temple, Nemawar Chouraha, Indore, Madhya Pradesh","📍 ICAR (CIAE) Ground, Bhopal, Madhya Pradesh","📍 SVPUAT Campus, Modipuram, Meerut, Uttar Pradesh"]}
+  ok 2 [chromium] › e2e\zz-phase6-verify.spec.js:97:1 › screenshots of the changed screens (13.8s)
+[teardown] test data cleaned
+
+  2 passed (3.4m)

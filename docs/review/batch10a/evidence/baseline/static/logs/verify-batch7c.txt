@@ -1,0 +1,60 @@
+PASS  1: /how-to-use is a real lazy route
+PASS  1: no leftover redirect from Batch 7A
+PASS  1: in the shared prerender + sitemap route list (no exclusion left)
+PASS  1: prerendered to dist/how-to-use/index.html with its heading
+PASS  1: in the built sitemap
+PASS  1: in the committed search index and in the index builder
+PASS  1: title is "वेबसाइट कैसे इस्तेमाल करें / How to use the website"
+PASS  1: <title> and meta description are set from the page data
+PASS  1: canonical is https://kissansahyog.com/how-to-use
+PASS  1: page is indexable (no noindex)
+PASS  2: FAQ has 6 to 8 questions (8), each in Hindi and English
+PASS  2: builder returns a valid FAQPage from the same FAQ data
+PASS  2: English JSON-LD uses the English FAQ
+PASS  2: every JSON-LD block on the prerendered page parses
+PASS  2: exactly one FAQPage JSON-LD on the prerendered page
+PASS  2: FAQ JSON-LD matches the visible FAQ, question by question and answer by answer
+PASS  2: FAQ is visible without a click (not collapsed)
+PASS  2: "सुझाव और शिकायत" link to /grievance after the FAQ
+PASS  3: sections a–g carry the headings from the brief, in Hindi and English
+PASS  3: eight sections on the prerendered page, in order a → h
+PASS  3: each section shows its heading
+PASS  3: sections a–g each have a written step list (an <ol> with at least two items)
+PASS  3: section f has one compact block each for prices/MSP, cold storage, mela and schemes
+PASS  3: section a links every service
+PASS  3: section d carries the safety note (check details yourself; not part of the deal)
+PASS  3: section c covers photos and what happens after posting
+PASS  3: section g covers both install and the language switch
+PASS  4: six inline SVG diagrams, one each for a, b, c, d, e, g
+PASS  4: each diagram sits in its own section (a, b, c, d, e, g)
+PASS  4: every SVG has role="img", a <title> and a <desc>, referenced by aria-labelledby
+PASS  4: every SVG scales (viewBox, width 100%, no fixed pixel width)
+PASS  4: labels are real SVG <text>; no external images, no foreignObject, no <img>
+PASS  4: smallest label is 16 canvas units on a 320-unit canvas (≥ 14px at 288px wide)
+PASS  4: diagrams use the brand colour variables, not hard-coded hex (white text aside)
+PASS  4: no dark-mode styling added (the site has none)
+PASS  4: diagram labels come from the page data (no Devanagari literals in the components)
+PASS  4: every diagram title and description exists in Hindi and English
+PASS  4: flow diagrams have one numbered circle per step
+PASS  4: every diagram label from the data is in the prerendered SVG
+PASS  5: label is "कैसे इस्तेमाल करें / How to use"
+PASS  5: header — a visible top-level item in the desktop row, right before the About menu
+PASS  5: header — also a visible row in the mobile menu (not hidden inside the About section)
+PASS  5: one-row desktop header (nav sits in the top bar from lg and never wraps; hamburger below lg)
+PASS  5: footer link
+PASS  5: prerendered header and footer both carry the link
+PASS  5: homepage — one prominent strip linking to /how-to-use
+PASS  5: prerendered homepage shows the strip
+PASS  5: post screen — small helper link in step 1, to the posting section
+PASS  5: About page link still points at /how-to-use
+PASS  6: no "free / मुफ़्त" in the page data or the new strings (393 strings)
+PASS  6: no "free / मुफ़्त" in the prerendered page body
+PASS  6: no e-mail, password, OTP or any other sign-in method in the page data
+PASS  6: no e-mail, password or OTP in the prerendered page body
+PASS  6: registration and login are named only generally
+PASS  6: every piece of copy has both Hindi and English
+PASS  6: new i18n strings exist in both languages
+PASS  6: every t() key used by the touched components exists
+PASS  6: 36 button and menu names quoted on the page match the site's real labels (Hindi and English)
+
+58 passed, 0 failed

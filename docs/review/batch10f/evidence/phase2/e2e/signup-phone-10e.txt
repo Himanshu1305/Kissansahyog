@@ -1,0 +1,12 @@
+
+Running 6 tests using 1 worker
+
+  ok 1 [chromium] › e2e\signup-phone-10e.spec.js:24:3 › 10E 3A: sign-up and sign-in with no e-mail › sign-up form has name + mobile + town and NO e-mail / password (Hindi, default language) (915ms)
+  ok 2 [chromium] › e2e\signup-phone-10e.spec.js:39:3 › 10E 3A: sign-up and sign-in with no e-mail › phone-only sign-up → logged in → profile → log out → mobile login works (3.0s)
+  ok 3 [chromium] › e2e\signup-phone-10e.spec.js:95:3 › 10E 3A: sign-up and sign-in with no e-mail › duplicate mobile is refused with the existing "already registered" message (1.1s)
+  ok 4 [chromium] › e2e\signup-phone-10e.spec.js:112:3 › 10E 3A: sign-up and sign-in with no e-mail › garbage input is refused in the form (nothing is sent) and by the server (1.1s)
+  ok 5 [chromium] › e2e\signup-phone-10e.spec.js:164:5 › 10E 3A: sign-up and sign-in with no e-mail › existing e-mail accounts › the e-mail + password box on the login page still signs them in (2.1s)
+  ok 6 [chromium] › e2e\signup-phone-10e.spec.js:181:3 › 10E 3A: sign-up and sign-in with no e-mail › login page (Hindi): the friendly line sits under the title; both boxes still there (797ms)
+[teardown] test data cleaned
+
+  6 passed (11.1s)

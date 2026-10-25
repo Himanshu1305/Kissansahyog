@@ -1,0 +1,48 @@
+
+Running 9 tests using 1 worker
+
+NOTE 1.1 hi 360 pages: [{"p":"/","status":200,"h1":"आज किसान के लिए","bodyLen":4704},{"p":"/browse","status":200,"h1":"आस-पास खोजें","bodyLen":1213},{"p":"/signup","status":200,"h1":"नया खाता बनाएं","bodyLen":1449},{"p":"/login","status":200,"h1":"लॉग इन करें","bodyLen":770},{"p":"/how-to-use","status":200,"h1":"वेबसाइट कैसे इस्तेमाल करें","bodyLen":9611},{"p":"/guide","status":200,"h1":"आइए, किसान सहयोग चलाना सीखें","bodyLen":1105},{"p":"/guide/register","status":200,"h1":"रजिस्टर कैसे करें","bodyLen":1241},{"p":"/guide/post","status":200,"h1":"अपनी मशीन या सामान कैसे पोस्ट करें","bodyLen":1571},{"p":"/guide/find","status":200,"h1":"बेचने वाले का नंबर कैसे मिलेगा","bodyLen":1378},{"p":"/guide/tour","status":200,"h1":"एक मिनट में पूरा टूर","bodyLen":1000},{"p":"/mausam","status":200,"h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुम","bodyLen":1450},{"p":"/sawaal","status":200,"h1":"किसान सवाल — आपके सवाल, हमारे जवाब","bodyLen":10339},{"p":"/yojana","status":200,"h1":"सरकारी योजनाएं","bodyLen":3519}]
+NOTE 1.1 hi 360 blocked writes (never sent): []
+NOTE 1.1 hi 360 failed own requests: []
+NOTE 1.1 hi 360 console errors: []
+NOTE 1.1 hi 360 pre-existing CSP-blocked localhost/beacon preloads (count): 192
+  ok 1 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:64:5 › 1.1 pages hi 360 (26.3s)
+NOTE 1.1 hi 412 pages: [{"p":"/","status":200,"h1":"आज किसान के लिए","bodyLen":4704},{"p":"/browse","status":200,"h1":"आस-पास खोजें","bodyLen":1213},{"p":"/signup","status":200,"h1":"नया खाता बनाएं","bodyLen":1449},{"p":"/login","status":200,"h1":"लॉग इन करें","bodyLen":770},{"p":"/how-to-use","status":200,"h1":"वेबसाइट कैसे इस्तेमाल करें","bodyLen":9611},{"p":"/guide","status":200,"h1":"आइए, किसान सहयोग चलाना सीखें","bodyLen":1105},{"p":"/guide/register","status":200,"h1":"रजिस्टर कैसे करें","bodyLen":1241},{"p":"/guide/post","status":200,"h1":"अपनी मशीन या सामान कैसे पोस्ट करें","bodyLen":1571},{"p":"/guide/find","status":200,"h1":"बेचने वाले का नंबर कैसे मिलेगा","bodyLen":1378},{"p":"/guide/tour","status":200,"h1":"एक मिनट में पूरा टूर","bodyLen":1000},{"p":"/mausam","status":200,"h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुम","bodyLen":1450},{"p":"/sawaal","status":200,"h1":"किसान सवाल — आपके सवाल, हमारे जवाब","bodyLen":10339},{"p":"/yojana","status":200,"h1":"सरकारी योजनाएं","bodyLen":3519}]
+NOTE 1.1 hi 412 blocked writes (never sent): []
+NOTE 1.1 hi 412 failed own requests: []
+NOTE 1.1 hi 412 console errors: []
+NOTE 1.1 hi 412 pre-existing CSP-blocked localhost/beacon preloads (count): 192
+  ok 2 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:64:5 › 1.1 pages hi 412 (26.7s)
+NOTE 1.1 en 360 pages: [{"p":"/","status":200,"h1":"For the farmer, today","bodyLen":4822},{"p":"/browse","status":200,"h1":"Browse nearby","bodyLen":1193},{"p":"/signup","status":200,"h1":"Create account","bodyLen":1464},{"p":"/login","status":200,"h1":"Log in","bodyLen":801},{"p":"/how-to-use","status":200,"h1":"How to use the website","bodyLen":10459},{"p":"/guide","status":200,"h1":"Let’s learn to use Kissan Sahyog","bodyLen":1158},{"p":"/guide/register","status":200,"h1":"How to register","bodyLen":1328},{"p":"/guide/post","status":200,"h1":"How to post your machine or goods","bodyLen":1690},{"p":"/guide/find","status":200,"h1":"How to get a seller’s number","bodyLen":1447},{"p":"/guide/tour","status":200,"h1":"The full tour in a minute","bodyLen":1061},{"p":"/mausam","status":200,"h1":"Your location weather — today & 7-day fo","bodyLen":1502},{"p":"/sawaal","status":200,"h1":"Kisan Sawaal — Your Questions, Our Answe","bodyLen":10540},{"p":"/yojana","status":200,"h1":"Government Schemes","bodyLen":3506}]
+NOTE 1.1 en 360 blocked writes (never sent): []
+NOTE 1.1 en 360 failed own requests: []
+NOTE 1.1 en 360 console errors: []
+NOTE 1.1 en 360 pre-existing CSP-blocked localhost/beacon preloads (count): 192
+  ok 3 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:64:5 › 1.1 pages en 360 (31.6s)
+NOTE 1.1 en 412 pages: [{"p":"/","status":200,"h1":"For the farmer, today","bodyLen":4822},{"p":"/browse","status":200,"h1":"Browse nearby","bodyLen":1193},{"p":"/signup","status":200,"h1":"Create account","bodyLen":1464},{"p":"/login","status":200,"h1":"Log in","bodyLen":801},{"p":"/how-to-use","status":200,"h1":"How to use the website","bodyLen":10459},{"p":"/guide","status":200,"h1":"Let’s learn to use Kissan Sahyog","bodyLen":1158},{"p":"/guide/register","status":200,"h1":"How to register","bodyLen":1328},{"p":"/guide/post","status":200,"h1":"How to post your machine or goods","bodyLen":1690},{"p":"/guide/find","status":200,"h1":"How to get a seller’s number","bodyLen":1447},{"p":"/guide/tour","status":200,"h1":"The full tour in a minute","bodyLen":1061},{"p":"/mausam","status":200,"h1":"Your location weather — today & 7-day fo","bodyLen":1502},{"p":"/sawaal","status":200,"h1":"Kisan Sawaal — Your Questions, Our Answe","bodyLen":10540},{"p":"/yojana","status":200,"h1":"Government Schemes","bodyLen":3506}]
+NOTE 1.1 en 412 blocked writes (never sent): []
+NOTE 1.1 en 412 failed own requests: []
+NOTE 1.1 en 412 console errors: []
+NOTE 1.1 en 412 pre-existing CSP-blocked localhost/beacon preloads (count): 192
+  ok 4 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:64:5 › 1.1 pages en 412 (30.4s)
+NOTE 1.2 hi hub: {"cards":4,"tipElems":1}
+NOTE 1.3 hi register steps: ["name","mobile","email+password","place","place_pick","vis","notice_box","accept","register"]
+  ok 5 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:101:3 › 1.2 hub + demos hi (21.9s)
+NOTE 1.2 en hub: {"cards":4,"tipElems":1}
+NOTE 1.3 en register steps: ["name","mobile","email+password","place","place_pick","vis","notice_box","accept","register"]
+  ok 6 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:101:3 › 1.2 hub + demos en (20.7s)
+NOTE 1.4 hi welcome card box: {"x":16,"y":401,"width":328,"height":86}
+NOTE 1.4 hi home card text: "पहली बार? 1 मिनट में सीखें\nरजिस्टर, पोस्ट और नंबर पाना — छोटे डेमो में।\n›"
+NOTE 1.4 hi signup typed-data: "kept after close and after Back; stayed on /signup"
+NOTE 1.4 hi /post logged out lands on: "/"
+  ok 7 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:147:3 › 1.4 entry points hi (8.7s)
+NOTE 1.4 en welcome card box: {"x":16,"y":425,"width":328,"height":86}
+NOTE 1.4 en home card text: "First time? Learn in 1 minute\nRegister, post and get a number — in short demos.\n"
+NOTE 1.4 en signup typed-data: "kept after close and after Back; stayed on /signup"
+NOTE 1.4 en /post logged out lands on: "/"
+  ok 8 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:147:3 › 1.4 entry points en (8.6s)
+NOTE 1.7 listing picked: "/listing/8659a116-bb5f-4251-a3d4-0a1db599b3c7"
+NOTE 1.7 listing h1: "Listing"
+  ok 9 [chromium] › docs\review\batch10c\evidence\prod-live\prod-live.spec.mjs:206:1 › 1.5 browse etag chips (5.4s)
+
+  9 passed (3.0m)

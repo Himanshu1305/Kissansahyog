@@ -1,0 +1,1040 @@
+[
+ {
+  "lang": "hi",
+  "width": 320,
+  "path": "/",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2872",
+   "a.flex min-h-0 items-center whitespace-now right=388",
+   "span. right=349"
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 320,
+  "path": "/msp/gehun",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": [
+   "table.w-full text-[14px] right=345",
+   "thead. right=345",
+   "tr. right=345"
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 320,
+  "path": "/signup",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 320,
+  "path": "/login",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 320,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 320,
+  "path": "/guide/post",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 320,
+  "path": "/listing/<KSTEST id>",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 360,
+  "path": "/",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2872",
+   "a.flex min-h-0 items-center whitespace-now right=388",
+   "span.px-2 text-[var(--ks-primary-light)] right=372"
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 360,
+  "path": "/msp/gehun",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 360,
+  "path": "/signup",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 360,
+  "path": "/login",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 360,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 360,
+  "path": "/guide/post",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 360,
+  "path": "/listing/<KSTEST id>",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 412,
+  "path": "/",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2872",
+   "a.flex min-h-0 items-center whitespace-now right=659",
+   "span.font-bold text-white right=421"
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 412,
+  "path": "/msp/gehun",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 412,
+  "path": "/signup",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 412,
+  "path": "/login",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 412,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 412,
+  "path": "/guide/post",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 412,
+  "path": "/listing/<KSTEST id>",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 768,
+  "path": "/",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2872",
+   "a.flex min-h-0 items-center whitespace-now right=946",
+   "span. right=808"
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 768,
+  "path": "/msp/gehun",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 768,
+  "path": "/signup",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 768,
+  "path": "/login",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 768,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 768,
+  "path": "/guide/post",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 768,
+  "path": "/listing/<KSTEST id>",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 1024,
+  "path": "/",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2872",
+   "a.flex min-h-0 items-center whitespace-now right=1192",
+   "span. right=1077"
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 1024,
+  "path": "/msp/gehun",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1024,
+  "path": "/signup",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1024,
+  "path": "/login",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1024,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1024,
+  "path": "/guide/post",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1024,
+  "path": "/listing/<KSTEST id>",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 1280,
+  "path": "/",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2872",
+   "a.flex min-h-0 items-center whitespace-now right=1506",
+   "span. right=1329"
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 1280,
+  "path": "/msp/gehun",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1280,
+  "path": "/signup",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1280,
+  "path": "/login",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1280,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1280,
+  "path": "/guide/post",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1280,
+  "path": "/listing/<KSTEST id>",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 1440,
+  "path": "/",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2872",
+   "a.flex min-h-0 items-center whitespace-now right=1506",
+   "span. right=1466"
+  ]
+ },
+ {
+  "lang": "hi",
+  "width": 1440,
+  "path": "/msp/gehun",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1440,
+  "path": "/signup",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1440,
+  "path": "/login",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1440,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1440,
+  "path": "/guide/post",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "hi",
+  "width": 1440,
+  "path": "/listing/<KSTEST id>",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 320,
+  "path": "/",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2689",
+   "a.flex min-h-0 items-center whitespace-now right=370",
+   "span. right=330"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 320,
+  "path": "/msp/gehun",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": [
+   "table.w-full text-[14px] right=379",
+   "thead. right=379",
+   "tr. right=379"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 320,
+  "path": "/signup",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 320,
+  "path": "/login",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 320,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 320,
+  "path": "/guide/post",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 320,
+  "path": "/listing/<KSTEST id>",
+  "sw": 320,
+  "cw": 320,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 360,
+  "path": "/",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2689",
+   "a.flex min-h-0 items-center whitespace-now right=370",
+   "a.flex min-h-0 items-center whitespace-now right=623"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 360,
+  "path": "/msp/gehun",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": [
+   "table.w-full text-[14px] right=379",
+   "thead. right=379",
+   "tr. right=379"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 360,
+  "path": "/signup",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 360,
+  "path": "/login",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 360,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 360,
+  "path": "/guide/post",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 360,
+  "path": "/listing/<KSTEST id>",
+  "sw": 360,
+  "cw": 360,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 412,
+  "path": "/",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2689",
+   "a.flex min-h-0 items-center whitespace-now right=623",
+   "span. right=468"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 412,
+  "path": "/msp/gehun",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": [
+   "table.w-full text-[14px] right=420",
+   "thead. right=420",
+   "tr. right=420"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 412,
+  "path": "/signup",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 412,
+  "path": "/login",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 412,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 412,
+  "path": "/guide/post",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 412,
+  "path": "/listing/<KSTEST id>",
+  "sw": 412,
+  "cw": 412,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 768,
+  "path": "/",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2689",
+   "a.flex min-h-0 items-center whitespace-now right=891",
+   "span. right=851"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 768,
+  "path": "/msp/gehun",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 768,
+  "path": "/signup",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 768,
+  "path": "/login",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 768,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 768,
+  "path": "/guide/post",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 768,
+  "path": "/listing/<KSTEST id>",
+  "sw": 768,
+  "cw": 768,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 1024,
+  "path": "/",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2689",
+   "a.flex min-h-0 items-center whitespace-now right=1118",
+   "span. right=1079"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 1024,
+  "path": "/msp/gehun",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1024,
+  "path": "/signup",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1024,
+  "path": "/login",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1024,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1024,
+  "path": "/guide/post",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1024,
+  "path": "/listing/<KSTEST id>",
+  "sw": 1024,
+  "cw": 1024,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 1280,
+  "path": "/",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2689",
+   "a.flex min-h-0 items-center whitespace-now right=1414",
+   "span. right=1375"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 1280,
+  "path": "/msp/gehun",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1280,
+  "path": "/signup",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1280,
+  "path": "/login",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1280,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1280,
+  "path": "/guide/post",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1280,
+  "path": "/listing/<KSTEST id>",
+  "sw": 1280,
+  "cw": 1280,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 1440,
+  "path": "/",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": [
+   "div.ticker-content h-full items-center text- right=2689",
+   "a.flex min-h-0 items-center whitespace-now right=1644",
+   "span.font-bold text-white right=1464"
+  ]
+ },
+ {
+  "lang": "en",
+  "width": 1440,
+  "path": "/msp/gehun",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1440,
+  "path": "/signup",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1440,
+  "path": "/login",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1440,
+  "path": "/post (step 2 equipment, dates + extra info)",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1440,
+  "path": "/guide/post",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": []
+ },
+ {
+  "lang": "en",
+  "width": 1440,
+  "path": "/listing/<KSTEST id>",
+  "sw": 1440,
+  "cw": 1440,
+  "hscroll": false,
+  "wide": [],
+  "photos": [
+   {
+    "complete": true,
+    "nw": 320
+   }
+  ]
+ }
+]

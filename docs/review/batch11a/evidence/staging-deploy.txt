@@ -1,0 +1,18 @@
+STAGING GUARD: OK — .env and the process environment point at staging
+STAGING GUARD: OK — dist (406 files) points at staging, no production references
+
+ ⛅️ wrangler 4.151.2
+────────────────────
+✨ Compiled Worker successfully
+Uploading... (118/481)
+Uploading... (239/481)
+Uploading... (360/481)
+Uploading... (481/481)
+✨ Success! Uploaded 363 files (118 already uploaded) (2.60 sec)
+
+✨ Uploading _headers
+✨ Uploading _redirects
+✨ Uploading Functions bundle
+✨ Uploading _routes.json
+🌎 Deploying...
+✨ Deployment complete! Take a peek over at https://2c67eb33.kissansahyog.pages.dev

@@ -1,0 +1,338 @@
+[WebServer] [PLUGIN_TIMINGS] Your build spent 100% of 4.2s inside plugin hooks (8.7s).
+[WebServer] Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+[WebServer]   - vite-plugin-pwa:build closeBundle (100%, 5.0s, 1 call)
+[WebServer] Those rows are 100% of the build; the rest of the 100% is below.
+[WebServer] Not measurable — 1 hook whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
+[WebServer]   - @tailwindcss/vite:generate:build transform (4 calls)
+[WebServer] See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+[WebServer] 
+
+Running 105 tests using 1 worker
+
+  ok   1 [chromium] › e2e\admin-console-14a.spec.js:58:1 › 1 tabs: six tabs, ARIA tablist, ?tab= in the URL, remembered tab, environment badge, no secrets (2.7s)
+  ok   2 [chromium] › e2e\admin-console-14a.spec.js:83:1 › 2 lazy loading: inactive tabs make no requests; opening a tab fetches its panels (1.5s)
+  ok   3 [chromium] › e2e\admin-console-14a.spec.js:99:1 › 3 panel search finds panels (Hindi and English), opens the tab and the panel (1.8s)
+  ok   4 [chromium] › e2e\admin-console-14a.spec.js:118:1 › 4 announcement: create (India time) -> home shows it -> dismiss remembered -> outside window hidden -> not in prerendered HTML (8.5s)
+  ok   5 [chromium] › e2e\admin-console-14a.spec.js:197:1 › 5 security panel: both flags and last-changed; a flip needs a reason and the typed phrase (dialog only, nothing is flipped) (1.2s)
+  ok   6 [chromium] › e2e\admin-console-14a.spec.js:226:1 › 6 editor vs super: the editor sees notes instead of super controls (2.5s)
+  ok   7 [chromium] › e2e\admin-console-14a.spec.js:247:1 › 7 block / unblock with a required reason; blocked user signed out with the humane message; login refused (3.1s)
+  ok   8 [chromium] › e2e\admin-console-14a.spec.js:297:1 › 8 action log lists what was just done (India time, plain words, no phone numbers or secrets) (1.3s)
+  ok   9 [chromium] › e2e\admin-console-14a.spec.js:315:1 › 9 session_required: an admin without a session token is told to sign in again, with a button (739ms)
+  ok  10 [chromium] › e2e\admin-console-14a.spec.js:327:1 › 10 admin looks right: tabs at 360x640 and 1366x768 in Hindi, no sideways scroll (1.7s)
+  x   11 [chromium] › e2e\collapsible-10f.spec.js:39:1 › C1 prerendered HTML: every section open and its text present (msp, mausam, home) (24ms)
+NOTE C2 /msp/gehun: {"explainer":true,"snapshot":true,"today":true,"trend":false,"trend-table":false,"avg5":false,"calc":false,"procurement":false,"below":false,"pastyears":false,"faq":false}
+  ok  12 [chromium] › e2e\collapsible-10f.spec.js:55:3 › C2 /msp/gehun phone 360: defaults after hydration; nothing visible moved (CLS) (2.6s)
+  ok  13 [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 /msp/gehun at 768 and 1280: everything starts open (5.2s)
+NOTE C2 /: {"search":true,"near":true,"listings":true,"videos":false,"qa":false,"mela":false,"govt":false,"trust":false,"articles":false}
+  ok  14 [chromium] › e2e\collapsible-10f.spec.js:55:3 › C2 / phone 360: defaults after hydration; nothing visible moved (CLS) (3.0s)
+  ok  15 [chromium] › e2e\collapsible-10f.spec.js:67:3 › C3 / at 768 and 1280: everything starts open (5.4s)
+  ok  16 [chromium] › e2e\collapsible-10f.spec.js:80:1 › C4 toggle with mouse, touch and keyboard (Enter, Space); aria-expanded follows; chevron right after the heading text (9.4s)
+  ok  17 [chromium] › e2e\collapsible-10f.spec.js:139:1 › C5 the choice is remembered per page and section; the page still works with storage unavailable (8.8s)
+  ok  18 [chromium] › e2e\collapsible-10f.spec.js:164:1 › C6 a #hash pointing into a collapsed section opens it and scrolls to it (3.2s)
+  ok  19 [chromium] › e2e\collapsible-10f.spec.js:175:1 › C7 reduced motion: no height animation, no chevron transition (3.1s)
+  ok  20 [chromium] › e2e\collapsible-10f.spec.js:188:1 › C8 /mausam and the homepage: toggles work, nothing scrolls sideways at 320 (6.9s)
+  ok  21 [chromium] › e2e\home-10f.spec.js:79:7 › Home 10F hi 360px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (2.4s)
+  ok  22 [chromium] › e2e\home-10f.spec.js:105:7 › Home 10F hi 360px › H2 the demo button opens the same demos as the 10D button (/guide) (1.4s)
+NOTE H3 hi 360 price card: {"hasPrice":true,"text":"मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज का भाव गेहूं ₹2,690 MSP ₹2,585 से ₹105 ऊपर · पूरी सूची → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन"}
+  x   23 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (9.2s)
+  ok  24 [chromium] › e2e\home-10f.spec.js:79:7 › Home 10F hi 412px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (2.5s)
+  ok  25 [chromium] › e2e\home-10f.spec.js:105:7 › Home 10F hi 412px › H2 the demo button opens the same demos as the 10D button (/guide) (1.8s)
+NOTE H3 hi 412 price card: {"hasPrice":true,"text":"मौसम मौसम देखने के लिए अपनी जगह बताएँ मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान → आज का भाव गेहूं ₹2,690 MSP ₹2,585 से ₹105 ऊपर · पूरी सूची → आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन"}
+  x   26 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (9.4s)
+  ok  27 [chromium] › e2e\home-10f.spec.js:79:7 › Home 10F en 360px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (3.7s)
+  ok  28 [chromium] › e2e\home-10f.spec.js:105:7 › Home 10F en 360px › H2 the demo button opens the same demos as the 10D button (/guide) (3.0s)
+NOTE H3 en 360 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+  x   29 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (10.3s)
+  ok  30 [chromium] › e2e\home-10f.spec.js:79:7 › Home 10F en 412px › H1 removed parts are gone; kept parts are there; no console errors, no failed backend requests, no hydration warning (2.4s)
+  ok  31 [chromium] › e2e\home-10f.spec.js:105:7 › Home 10F en 412px › H2 the demo button opens the same demos as the 10D button (/guide) (1.6s)
+NOTE H3 en 412 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+  x   32 [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero (9.9s)
+  x   33 [chromium] › e2e\home-10f.spec.js:161:1 › H4 the prerendered HTML of / has the static hero and none of the removed hero parts (75ms)
+  ok  34 [chromium] › e2e\home-10f.spec.js:171:1 › H5 no lazy hero chunk and no hero timer: no LiveStage request, no hero timers after load (5.0s)
+  ok  35 [chromium] › e2e\home-10f.spec.js:185:3 › H6 hi: no horizontal overflow at 320–1440; hero fits the width (18.6s)
+  ok  36 [chromium] › e2e\home-10f.spec.js:185:3 › H6 en: no horizontal overflow at 320–1440; hero fits the width (17.2s)
+NOTE H7 360x640 bottoms (px from page top): {"heroTop":440,"h1":565,"need":667,"have":743,"demo":828}
+  ok  37 [chromium] › e2e\home-10f.spec.js:207:1 › H7 first screen at 360x640 (hi): heading on screen; positions of the two buttons and the demo button reported (2.4s)
+NOTE H8 1280x720 hi: [{"top":358,"bottom":409,"right":663},{"top":450,"bottom":514,"right":361},{"top":450,"bottom":514,"right":663},{"top":551,"bottom":599,"right":663}]
+NOTE H8 1280x720 en: [{"top":358,"bottom":409,"right":663},{"top":450,"bottom":514,"right":361},{"top":450,"bottom":514,"right":663},{"top":551,"bottom":599,"right":663}]
+  ok  38 [chromium] › e2e\home-10f.spec.js:226:1 › H8 1280x720: the H1, both big buttons and the demo button are visible without scrolling (hi and en) (3.8s)
+  ok  39 [chromium] › e2e\home-10f.spec.js:251:1 › H9 other routes still start as before; in-app navigation / → /guide (demo button) → back works (7.9s)
+  ok  40 [chromium] › e2e\msp-10f.spec.js:42:3 › M1 hi 360: last-price badge next to the headings, readable date, colour from the real date, one line (1.2s)
+  ok  41 [chromium] › e2e\msp-10f.spec.js:68:3 › M2 hi: no ISO date ("2026-10-17") anywhere on /msp, every section open (2.1s)
+  ok  42 [chromium] › e2e\msp-10f.spec.js:42:3 › M1 en 360: last-price badge next to the headings, readable date, colour from the real date, one line (1.2s)
+  ok  43 [chromium] › e2e\msp-10f.spec.js:68:3 › M2 en: no ISO date ("2026-10-17") anywhere on /msp, every section open (1.8s)
+  ok  44 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 412px 7d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.7s)
+  ok  45 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 412px 30d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.8s)
+  ok  46 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 412px 90d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.6s)
+  ok  47 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 1280px 7d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (1.9s)
+  ok  48 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 1280px 30d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (2.1s)
+  ok  49 [chromium] › e2e\msp-10f.spec.js:87:5 › M3 1280px 90d: tooltip on the first / last / highest / lowest point shows its date, price and mandis (2.1s)
+  ok  50 [chromium] › e2e\msp-10f.spec.js:122:3 › M4 320px: labels never overlap and stay inside the chart (7 / 30 / 90, wheat and a thin crop) (12.1s)
+  ok  51 [chromium] › e2e\msp-10f.spec.js:122:3 › M4 412px: labels never overlap and stay inside the chart (7 / 30 / 90, wheat and a thin crop) (12.9s)
+  ok  52 [chromium] › e2e\msp-10f.spec.js:122:3 › M4 1280px: labels never overlap and stay inside the chart (7 / 30 / 90, wheat and a thin crop) (10.0s)
+  ok  53 [chromium] › e2e\msp-10f.spec.js:150:1 › M5 keyboard: focus the chart (ring), End / ← / Home move the tooltip between dots (2.8s)
+  ok  54 [chromium] › e2e\msp-10f.spec.js:170:1 › M6 touch (360 px): a tap shows the nearest dot; dragging along the chart moves the guide and tooltip (2.7s)
+  ok  55 [chromium] › e2e\msp-10f.spec.js:190:1 › M7 trend uses the corrected series: calculator and share text use the chart's latest point; few-mandi crops are labelled (2.8s)
+  ok  56 [chromium] › e2e\msp-history-15a.spec.js:44:3 › H1 hi 375: /msp/chana shows the past-years chart and the 5-year-average block (1.7s)
+  ok  57 [chromium] › e2e\msp-history-15a.spec.js:44:3 › H1 en 375: /msp/chana shows the past-years chart and the 5-year-average block (902ms)
+  ok  58 [chromium] › e2e\msp-history-15a.spec.js:104:1 › H2 375: an empty history response hides both sections and the page still works (2.1s)
+  ok  59 [chromium] › e2e\msp-history-15a.spec.js:120:1 › H3 375: the table missing (404 / error) also hides both sections without a page error (2.2s)
+  ok  60 [chromium] › e2e\msp-history-15a.spec.js:132:1 › H4 375: a division series shorter than 60 months falls back to Madhya Pradesh and says so (1.9s)
+  ok  61 [chromium] › e2e\msp-history-15a.spec.js:149:1 › H5 375: a crop whose harvest months have too few years of data shows no average block (3.0s)
+gehun {"7":{"range":"16–17 अक्टू","points":2,"axis":"16 अक्टू 17 अक्टू","note":"इस अवधि में 2 दिन का भाव उपलब्ध"},"30":{"range":"23 सित – 16 अक्टू","points":17,"axis":"23 सित 28 सित 3 अक्टू 8 अक्टू 13 अक्टू","note":"इस अवधि में 17 दिन का भाव उपलब्ध"},"90":{"range":"27 जुल – 16 अक्टू","points":55,"axis":"27 जुल 11 अग 26 अग 10 सित 25 सित 10 अक्टू","note":"इस अवधि में 55 दिन का भाव उपलब्ध"}}
+  ok  62 [chromium] › e2e\msp-trend-10e.spec.js:30:1 › wheat: 7 / 30 / 90 show different real ranges and more points as the window grows (2.8s)
+dhan 90 {"range":"25 जुल – 17 अक्टू","points":33,"axis":"25 जुल 9 अग 24 अग 8 सित 23 सित 8 अक्टू","note":"इस अवधि में 33 दिन का भाव उपलब्ध"}
+dhan 30/7 {"r30":{"range":"28 सित – 17 अक्टू","points":7,"axis":"28 सित 3 अक्टू 8 अक्टू 13 अक्टू","note":"इस अवधि में 7 दिन का भाव उपलब्ध"},"r7":{"range":"16–17 अक्टू","points":2,"axis":"16 अक्टू 17 अक्टू","note":"इस अवधि में 2 दिन का भाव उपलब्ध"}}
+  ok  63 [chromium] › e2e\msp-trend-10e.spec.js:45:1 › paddy (thin crop): honest "N दिन का भाव" note, never the full period (2.5s)
+  ok  64 [chromium] › e2e\msp-trend-10e.spec.js:59:1 › 320 px: tabs fit, no horizontal overflow, tap targets ≥ 44 px (1.7s)
+  ok  65 [chromium] › e2e\msp-trend-10e.spec.js:73:1 › mandi search lists markets late in the alphabet (list is no longer cut at 1,000 rows) (1.9s)
+  ok  66 [chromium] › e2e\phase11_location_compare.spec.js:7:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › edge: zero selected shows the auto-nearest table, not a blank state (1.8s)
+  ok  67 [chromium] › e2e\phase11_location_compare.spec.js:20:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › positive+edge: up to 5 selections render; a 6th is blocked (never 6 at once) (2.0s)
+  ok  68 [chromium] › e2e\phase19_voice_mandi.spec.js:8:1 › voice: Web Speech API populates the /sawaal search field (mocked recognition) (1.1s)
+  ok  69 [chromium] › e2e\phase19_voice_mandi.spec.js:31:1 › voice: unsupported browser WITH a key shows the Gemini-fallback mic (677ms)
+  ok  70 [chromium] › e2e\phase19_voice_mandi.spec.js:50:1 › voice: permission denied shows the "माइक की अनुमति दें" message, not a stuck mic (Batch 4) (1.0s)
+  ok  71 [chromium] › e2e\phase19_voice_mandi.spec.js:76:1 › voice: unsupported browser with NO key hides the mic — text search still works (1.2s)
+  x   72 [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded (10.9s)
+  ok  73 [chromium] › e2e\phase19_voice_mandi.spec.js:115:1 › mandi: the homepage ticker still shows LIVE prices (regression guard) (2.8s)
+  ok  74 [chromium] › e2e\phase20_mela.spec.js:7:1 › public page: confirmed vs अपेक्षित clearly distinguished, filters + empty state work (2.1s)
+  ok  75 [chromium] › e2e\phase20_mela.spec.js:40:1 › a shared link to a merged-away Mela redirects to its active survivor (3e, no 404) (1.4s)
+  ok  76 [chromium] › e2e\phase20_mela.spec.js:60:1 › "दिलचस्पी है" requires login (anon → redirected to /login) (1.2s)
+  ok  77 [chromium] › e2e\phase20_mela.spec.js:67:1 › a user submission lands pending and is NOT visible on the public page until approved (2.0s)
+  ok  78 [chromium] › e2e\phase20_mela.spec.js:87:1 › corroboration badge only on multi-source cards; universal disclaimer on every card; action buttons stay usable at 375px (1.6s)
+  ok  79 [chromium] › e2e\phase20_mela.spec.js:116:1 › admin: rejected candidate appears in the candidates panel with a publish-anyway action (1.7s)
+  ok  80 [chromium] › e2e\phase20_mela.spec.js:138:1 › Resources nav dropdown contains किसान मेला; homepage teaser renders (2.1s)
+  ok  81 [chromium] › e2e\phase20_mela.spec.js:165:1 › homepage hides the Mela section when no MP / neighbouring-state Mela qualifies (2.7s)
+  ok  82 [chromium] › e2e\ticker-12c.spec.js:33:5 › ticker 360px › at most 12 distinct items, every one in Hindi (no Latin letters), height 38 (2.8s)
+NOTE speed 360px: {"name":"ticker-scroll","seconds":75.1,"half":2627.71875,"dup":true,"pxPerSec":35}
+  ok  83 [chromium] › e2e\ticker-12c.spec.js:44:5 › ticker 360px › steady slow speed: duration >= 40 s and at most 40 px/s (1.6s)
+  ok  84 [chromium] › e2e\ticker-12c.spec.js:59:5 › ticker 360px › screenshot of the strip on the home page (1.8s)
+  ok  85 [chromium] › e2e\ticker-12c.spec.js:33:5 › ticker 1366px › at most 12 distinct items, every one in Hindi (no Latin letters), height 38 (2.3s)
+NOTE speed 1366px: {"name":"ticker-scroll","seconds":75.1,"half":2627.71875,"dup":true,"pxPerSec":35}
+  ok  86 [chromium] › e2e\ticker-12c.spec.js:44:5 › ticker 1366px › steady slow speed: duration >= 40 s and at most 40 px/s (2.4s)
+  ok  87 [chromium] › e2e\ticker-12c.spec.js:59:5 › ticker 1366px › screenshot of the strip on the home page (2.1s)
+  ok  88 [chromium] › e2e\ticker-12c.spec.js:68:1 › no horizontal page overflow at 320 px (1.4s)
+  ok  89 [chromium] › e2e\ticker-12c.spec.js:75:1 › a short list does not scroll: no repeat copy, no animation (1.3s)
+  ok  90 [chromium] › e2e\ticker-12c.spec.js:83:1 › reduced motion: no animation, strip can be swiped, repeat copy hidden (1.4s)
+  ok  91 [chromium] › e2e\whatsapp-channel-12a.spec.js:27:3 › card: home has exactly one card, the footer link, and the exact URL (2.2s)
+  ok  92 [chromium] › e2e\whatsapp-channel-12a.spec.js:27:3 › card: msp has exactly one card, the footer link, and the exact URL (2.7s)
+  ok  93 [chromium] › e2e\whatsapp-channel-12a.spec.js:27:3 › card: mausam has exactly one card, the footer link, and the exact URL (2.1s)
+  ok  94 [chromium] › e2e\whatsapp-channel-12a.spec.js:27:3 › card: about has exactly one card, the footer link, and the exact URL (2.1s)
+  ok  95 [chromium] › e2e\whatsapp-channel-12a.spec.js:27:3 › card: contact has exactly one card, the footer link, and the exact URL (2.0s)
+  ok  96 [chromium] › e2e\whatsapp-channel-12a.spec.js:27:3 › card: guide hub has exactly one card, the footer link, and the exact URL (1.9s)
+  ok  97 [chromium] › e2e\whatsapp-channel-12a.spec.js:37:1 › inline text on /msp and /mausam is the prices-and-weather line (4.4s)
+  ok  98 [chromium] › e2e\whatsapp-channel-12a.spec.js:46:1 › no card (and no footer link) on /login, /signup and /admin (5.4s)
+need {"x":103.390625,"y":614.78125,"width":153.203125,"height":23} have {"x":107.078125,"y":690.78125,"width":145.8125,"height":23} card {"x":0,"y":1214.25,"width":360,"height":167.875}
+  ok  99 [chromium] › e2e\whatsapp-channel-12a.spec.js:56:1 › home 360x640: both big buttons exactly where production has them, the card is below them (2.3s)
+  ok 100 [chromium] › e2e\whatsapp-channel-12a.spec.js:75:1 › home: no layout shift from the card, no animation on it (2.2s)
+  ok 101 [chromium] › e2e\whatsapp-channel-12a.spec.js:84:3 › no horizontal overflow at 320 px (hi) on home, msp, about (8.2s)
+  ok 102 [chromium] › e2e\whatsapp-channel-12a.spec.js:84:3 › no horizontal overflow at 320 px (en) on home, msp, about (5.9s)
+  ok 103 [chromium] › e2e\whatsapp-channel-12a.spec.js:98:1 › touch targets are at least 48 px (1.8s)
+  ok 104 [chromium] › e2e\whatsapp-channel-12a.spec.js:108:1 › Organization JSON-LD lists the channel in sameAs (1.8s)
+  ok 105 [chromium] › e2e\whatsapp-channel-12a.spec.js:116:1 › clicking the link opens a new tab to the channel (no navigation of the app page) (2.0s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\collapsible-10f.spec.js:39:1 › C1 prerendered HTML: every section open and its text present (msp, mausam, home) 
+
+    Error: /msp/gehun/
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      42 |     const html = await (await request.get(path)).text()
+      43 |     const details = html.match(/<details[^>]*class="ks-cs[^"]*"[^>]*>/g) || []
+    > 44 |     expect(details.length, path).toBeGreaterThan(0)
+         |                                  ^
+      45 |     for (const d of details) expect(d, `${path}: ${d}`).toMatch(/\sopen(=""|\s|>)/)
+      46 |   }
+      47 |   const msp = await (await request.get('/msp/gehun/')).text()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\collapsible-10f.spec.js:44:34
+
+    Error Context: test-results\collapsible-10f-C1-prerend-5a880-xt-present-msp-mausam-home--chromium\error-context.md
+
+  2) [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 6
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "inHero": true,
+    +     "value": 0.011415772613830047,
+    +   },
+    + ]
+
+      151 |         expect(anims.filter((n) => n !== 'ticker-scroll')).toEqual([])
+      152 |         const shifts = await page.evaluate(() => window.__ksShifts)
+    > 153 |         expect(shifts.filter((s) => s.inHero)).toEqual([])
+          |                                                ^
+      154 |         expect(errors).toEqual([])
+      155 |         await ctx.close()
+      156 |       })
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\home-10f.spec.js:153:48
+
+    Error Context: test-results\home-10f-Home-10F-hi-360px-8dddf-no-layout-shift-in-the-hero-chromium\error-context.md
+
+  3) [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 6
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "inHero": true,
+    +     "value": 0.0002038213306786188,
+    +   },
+    + ]
+
+      151 |         expect(anims.filter((n) => n !== 'ticker-scroll')).toEqual([])
+      152 |         const shifts = await page.evaluate(() => window.__ksShifts)
+    > 153 |         expect(shifts.filter((s) => s.inHero)).toEqual([])
+          |                                                ^
+      154 |         expect(errors).toEqual([])
+      155 |         await ctx.close()
+      156 |       })
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\home-10f.spec.js:153:48
+
+    Error Context: test-results\home-10f-Home-10F-hi-412px-4ec40-no-layout-shift-in-the-hero-chromium\error-context.md
+
+  4) [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 6
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "inHero": true,
+    +     "value": 0.013649003733463193,
+    +   },
+    + ]
+
+      151 |         expect(anims.filter((n) => n !== 'ticker-scroll')).toEqual([])
+      152 |         const shifts = await page.evaluate(() => window.__ksShifts)
+    > 153 |         expect(shifts.filter((s) => s.inHero)).toEqual([])
+          |                                                ^
+      154 |         expect(errors).toEqual([])
+      155 |         await ctx.close()
+      156 |       })
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\home-10f.spec.js:153:48
+
+    Error Context: test-results\home-10f-Home-10F-en-360px-5d2a5-no-layout-shift-in-the-hero-chromium\error-context.md
+
+  5) [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 6
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "inHero": true,
+    +     "value": 0.0010655430116058068,
+    +   },
+    + ]
+
+      151 |         expect(anims.filter((n) => n !== 'ticker-scroll')).toEqual([])
+      152 |         const shifts = await page.evaluate(() => window.__ksShifts)
+    > 153 |         expect(shifts.filter((s) => s.inHero)).toEqual([])
+          |                                                ^
+      154 |         expect(errors).toEqual([])
+      155 |         await ctx.close()
+      156 |       })
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\home-10f.spec.js:153:48
+
+    Error Context: test-results\home-10f-Home-10F-en-412px-8277c-no-layout-shift-in-the-hero-chromium\error-context.md
+
+  6) [chromium] › e2e\home-10f.spec.js:161:1 › H4 the prerendered HTML of / has the static hero and none of the removed hero parts 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "data-testid=\"home-hero\""
+    Received string:    "<!doctype html>·
+    <html lang=\"hi\">·
+      <head>·
+        <meta charset=\"UTF-8\" />·
+        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\" />·
+        <meta name=\"theme-color\" content=\"#24733F\" />·
+        <!-- Per-page <title> and <meta name=\"description\"> are injected by React 19·
+             document metadata (<Seo/> / <RouteSeo/>) and captured at prerender, so no·
+             static duplicates live here. -->·
+        <link rel=\"icon\" type=\"image/svg+xml\" href=\"/icons/favicon.svg\" />·
+        <link rel=\"icon\" type=\"image/png\" sizes=\"48x48\" href=\"/icons/favicon-48.png\" />·
+        <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/icons/favicon-32.png\" />·
+        <link rel=\"apple-touch-icon\" href=\"/icons/apple-touch-icon.png\" />·
+        <script type=\"module\" crossorigin src=\"/assets/index-BBiPw9H-.js\"></script>
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/rolldown-runtime-hePW80VL.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/react-vendor-Cg-BX6NK.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/LanguageProvider-DAGG5gG7.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/useNativeBack-DSHu5POZ.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/supabase-H6RbKBY9.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/PageShell-D0onITFl.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/WhatsAppQR-Dey4_sF2.js\">
+        <link rel=\"modulepreload\" crossorigin href=\"/assets/device-D4sZPGnq.js\">
+        <link rel=\"stylesheet\" crossorigin href=\"/assets/index-CZnulipy.css\">
+      <link rel=\"manifest\" href=\"/manifest.webmanifest\"></head>·
+      <body>·
+        <div id=\"root\"></div>··
+      </body>·
+    </html>·
+    "
+
+      161 | test('H4 the prerendered HTML of / has the static hero and none of the removed hero parts', async ({ request }) => {
+      162 |   const html = await (await request.get('/')).text()
+    > 163 |   expect(html).toContain('data-testid="home-hero"')
+          |                ^
+      164 |   expect(html).toContain('data-testid="home-hero-demo"')
+      165 |   expect(html).toContain(strings.cta_need.hi)
+      166 |   expect(html).toContain(strings.cta_have.hi)
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\home-10f.spec.js:163:16
+
+    Error Context: test-results\home-10f-H4-the-prerendere-69709-e-of-the-removed-hero-parts-chromium\error-context.md
+
+  7) [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('price-missing').first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByTestId('price-missing').first()
+
+
+      110 |   await expect(tag).toContainText(/कल का भाव|पिछला भाव/)
+      111 |   // A genuinely never-reported commodity renders the honest "—".
+    > 112 |   await expect(page.getByTestId('price-missing').first()).toBeVisible()
+          |                                                           ^
+      113 | })
+      114 |
+      115 | test('mandi: the homepage ticker still shows LIVE prices (regression guard)', async ({ page }) => {
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase19_voice_mandi.spec.js:112:59
+
+    Error Context: test-results\phase19_voice_mandi-mandi--5a706-gs-and-—-for-never-recorded-chromium\error-context.md
+
+  7 failed
+    [chromium] › e2e\collapsible-10f.spec.js:39:1 › C1 prerendered HTML: every section open and its text present (msp, mausam, home) 
+    [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero 
+    [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F hi 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero 
+    [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 360px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero 
+    [chromium] › e2e\home-10f.spec.js:121:7 › Home 10F en 412px › H3 the info cards show real data, static: no animation, no timer-driven change, no layout shift in the hero 
+    [chromium] › e2e\home-10f.spec.js:161:1 › H4 the prerendered HTML of / has the static hero and none of the removed hero parts 
+    [chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded 
+  98 passed (6.7m)

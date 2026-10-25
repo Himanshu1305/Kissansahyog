@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-10-14T21:51:41.131Z",
+  "method": "Unicode code points ([...text].length) after trimming the leading/trailing newline inside the FIELD markers; utf16_units and graphemes are given for information only. Play counts characters; code points is the conservative measure for Devanagari (matras/virama count separately).",
+  "files": {
+    "listing-hi.md": {
+      "title": {
+        "code_points": 29,
+        "limit": 30,
+        "ok": true,
+        "utf16_units": 29,
+        "graphemes": 22,
+        "headroom": 1
+      },
+      "short": {
+        "code_points": 73,
+        "limit": 80,
+        "ok": true,
+        "utf16_units": 73,
+        "graphemes": 49,
+        "headroom": 7
+      },
+      "full": {
+        "code_points": 1949,
+        "limit": 4000,
+        "ok": true,
+        "utf16_units": 1949,
+        "graphemes": 1337,
+        "headroom": 2051
+      },
+      "release_notes": {
+        "code_points": 300,
+        "limit": 500,
+        "ok": true,
+        "utf16_units": 300,
+        "graphemes": 222,
+        "headroom": 200
+      }
+    },
+    "listing-en.md": {
+      "title": {
+        "code_points": 29,
+        "limit": 30,
+        "ok": true,
+        "utf16_units": 29,
+        "graphemes": 29,
+        "headroom": 1
+      },
+      "short": {
+        "code_points": 78,
+        "limit": 80,
+        "ok": true,
+        "utf16_units": 78,
+        "graphemes": 78,
+        "headroom": 2
+      },
+      "full": {
+        "code_points": 2172,
+        "limit": 4000,
+        "ok": true,
+        "utf16_units": 2172,
+        "graphemes": 2172,
+        "headroom": 1828
+      },
+      "release_notes": {
+        "code_points": 352,
+        "limit": 500,
+        "ok": true,
+        "utf16_units": 352,
+        "graphemes": 352,
+        "headroom": 148
+      }
+    }
+  },
+  "all_within_limits": true
+}

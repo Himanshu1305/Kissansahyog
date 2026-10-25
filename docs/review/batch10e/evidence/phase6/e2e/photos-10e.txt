@@ -1,0 +1,9 @@
+
+Running 3 tests using 1 worker
+
+  ok 1 [chromium] › e2e\photos-10e.spec.js:113:1 › the stored photo URL is a public image on the staging storage host (358ms)
+  ok 2 [chromium] › e2e\photos-10e.spec.js:120:1 › listing detail shows the photo under the site CSP (no CSP console error) (1.4s)
+  ok 3 [chromium] › e2e\photos-10e.spec.js:133:1 › control: with the OLD img-src the same photo is blocked (the test detects the bug) (1.4s)
+[teardown] test data cleaned
+
+  3 passed (4.7s)

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>नमूना v4: कम पानी में कौन-सी फसल</title>
+<style>
+  :root{--g:#15803d;--gd:#166534;--gl:#f0fdf4;--b:#e7e5e4;--t:#1c1917;--m:#57534e;--am:#92400e;--aml:#fffbeb;--rd:#991b1b;--rdl:#fef2f2;--bl:#1e40af;--bll:#eff6ff;--sf:#0f766e}
+  *{box-sizing:border-box}
+  body{margin:0;background:#e7e5e4;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Devanagari","Nirmala UI",sans-serif;color:var(--t);line-height:1.55}
+  .phone{max-width:460px;margin:16px auto;background:#fafaf9;border-radius:18px;overflow:hidden;border:1px solid #d6d3d1}
+  .bar{background:var(--g);color:#fff;padding:12px 16px;font-weight:700;font-size:18px}
+  .mock{background:#fef3c7;color:#78350f;font-size:13px;padding:8px 16px;border-bottom:1px solid #fde68a}
+  .tabs{display:flex;gap:6px;padding:10px 12px 0;overflow-x:auto}
+  .tab{white-space:nowrap;padding:10px 14px;border-radius:12px 12px 0 0;border:1px solid var(--b);border-bottom:none;background:#f5f5f4;color:var(--m);font-size:14px;min-height:44px;display:flex;align-items:center}
+  .tab.on{background:#fff;color:var(--gd);font-weight:700;border-color:var(--g)}
+  .body{background:#fff;border-top:2px solid var(--g);padding:14px 16px 20px}
+  h1{font-size:19px;margin:2px 0 4px;line-height:1.35}
+  h2{font-size:16px;margin:20px 0 8px}
+  .sub{color:var(--m);font-size:14px;margin:0 0 12px}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 14px}
+  .opt{min-height:56px;border-radius:12px;border:2px solid var(--b);background:#fff;padding:8px 10px;font:inherit;font-size:14px;font-weight:600;color:var(--t);text-align:left;cursor:pointer}
+  .opt small{display:block;font-weight:400;color:var(--m);font-size:12px}
+  .opt[aria-pressed="true"]{border-color:var(--g);background:var(--gl);color:var(--gd)}
+  .opt.wide{grid-column:1/-1}
+  .now{display:inline-block;background:var(--am);color:#fff;border-radius:999px;font-size:11px;padding:1px 8px;margin-left:4px;vertical-align:middle}
+  .note{border-radius:10px;padding:10px 12px;font-size:14px;margin:0 0 12px}
+  .note.am{background:var(--aml);border:1px solid #fcd34d;color:#78350f}
+  .note.bl{background:var(--bll);border:1px solid #bfdbfe;color:var(--bl)}
+  .note.rd{background:var(--rdl);border:1px solid #fecaca;color:var(--rd)}
+  .note.gn{background:var(--gl);border:1px solid #86efac;color:var(--gd)}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0 6px}
+  .stat{background:#f5f5f4;border-radius:10px;padding:8px 6px;text-align:center}
+  .stat b{display:block;font-size:19px;color:var(--rd)}
+  .stat.g b{color:var(--gd)}
+  .stat span{font-size:11.5px;color:var(--m);line-height:1.3;display:block}
+  .card{border:1px solid var(--b);border-radius:12px;margin:0 0 10px;background:#fff}
+  .card summary{list-style:none;cursor:pointer;min-height:48px;padding:10px 12px;font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+  .card summary::-webkit-details-marker{display:none}
+  .card summary::before{content:"▸";color:var(--g);font-size:16px}
+  .card[open] summary::before{content:"▾"}
+  .card .in{padding:0 14px 12px 14px;font-size:15px}
+  .card ul{margin:6px 0 8px;padding-left:20px}
+  .card li{margin:4px 0}
+  .tag{display:inline-block;font-size:12px;border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+  .src{background:#f5f5f4;color:var(--m);border:1px solid var(--b)}
+  .ver{background:var(--rdl);color:var(--rd);border:1px solid #fecaca}
+  .pend{background:var(--rdl);border:1px dashed #f87171;color:var(--rd);border-radius:8px;padding:8px 10px;font-size:13px;margin:8px 0 0}
+  .crop{border:1px solid var(--b);border-radius:12px;padding:12px;margin:0 0 10px;background:#fff}
+  .crop.safe{border:2px solid var(--g);background:var(--gl)}
+  .ch{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .ch h3{margin:0;font-size:17px}
+  .badge{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap}
+  .b-g{background:var(--g);color:#fff}.b-a{background:#b45309;color:#fff}.b-r{background:#57534e;color:#fff}
+  .facts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .fact{background:#fff;border:1px solid var(--b);border-radius:8px;font-size:12.5px;padding:3px 8px}
+  .bars{margin:8px 0 4px}
+  .row{display:grid;grid-template-columns:86px 1fr;align-items:center;gap:8px;margin:4px 0;font-size:12.5px;color:var(--m)}
+  .trk{background:#f5f5f4;border-radius:6px;height:22px}
+  .fill{height:22px;border-radius:6px;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;padding-left:6px;white-space:nowrap}
+  .f-msp{background:#78716c}.f-mkt{background:var(--g)}
+  .why{font-size:14px;margin:6px 0 0}
+  .gap{font-size:13px;margin-top:4px}
+  .money{background:#fff;border:1px dashed var(--g);border-radius:8px;padding:6px 10px;margin:8px 0;font-size:13.5px}
+  .up{color:#166534;font-weight:700}.dn{color:var(--rd);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0}
+  th,td{border-bottom:1px solid var(--b);padding:6px 4px;text-align:left;vertical-align:top}
+  th{color:var(--m);font-weight:600;font-size:12px}
+  .scroll{overflow-x:auto}
+  .sel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .sel button{min-height:52px;border-radius:12px;border:2px solid var(--b);background:#fff;font:inherit;font-size:14px;font-weight:600;color:var(--t);cursor:pointer;padding:6px 8px}
+  .sel button[aria-pressed="true"]{border-color:var(--g);background:var(--gl);color:var(--gd)}
+  .rec{border-left:4px solid var(--g);background:#fff;border-radius:0 10px 10px 0;padding:8px 12px;margin:6px 0;font-size:14px;border-top:1px solid var(--b);border-right:1px solid var(--b);border-bottom:1px solid var(--b)}
+  .rec.no{border-left-color:var(--rd)}
+  .foot{border-top:1px solid var(--b);margin-top:14px;padding-top:12px;font-size:13px;color:var(--m)}
+  .btn{display:block;text-align:center;background:var(--g);color:#fff;border-radius:12px;min-height:48px;line-height:48px;font-weight:700;text-decoration:none;margin-top:10px}
+  .btn.o{background:#fff;color:var(--gd);border:2px solid var(--g);line-height:44px}
+  .lnk{display:inline-block;font-weight:700;color:var(--bl);text-decoration:underline;min-height:44px;line-height:44px;cursor:pointer}
+  .f-avg{background:#1d4ed8}
+  .vr{background:#f5f5f4;border:1px solid var(--b);border-radius:8px;padding:6px 10px;font-size:13px;margin:8px 0}
+  .ph{background:#fef08a;color:#713f12;border-radius:4px;padding:0 4px}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="bar">फसल सलाह</div>
+  <div class="mock"><b>यह सिर्फ़ नमूना है</b> (असली सलाह नहीं)। आँकड़े असली स्रोतों से हैं, पर पेज पर डालने से पहले KVK सागर से पक्का होंगे।</div>
+
+  <div class="tabs" role="tablist">
+    <div class="tab" role="tab">इस मौसम की सलाह</div>
+    <div class="tab on" role="tab" aria-selected="true">कम पानी / ज़्यादा बारिश</div>
+    <div class="tab" role="tab">मंडी भाव</div>
+  </div>
+
+  <div class="body">
+    <h1>कम पानी में कौन-सी फसल बोएँ, और कितना मिलेगा</h1>
+    <p class="sub">सागर के लिए: सरकारी योजना, MSP और सागर संभाग की मंडियों के भाव एक जगह।</p>
+
+    <div class="opts" id="opts">
+      <button class="opt wide" data-k="safe" aria-pressed="true">सुरक्षित फसलें और कमाई की तुलना <span class="now">अभी रबी</span><small>आपके पास कितना पानी है, उसके हिसाब से</small></button>
+      <button class="opt" data-k="gov" aria-pressed="false">सरकारी सहारा<small>MSP खरीद, बीमा, तालाब</small></button>
+      <button class="opt" data-k="late" aria-pressed="false">बारिश देर से / सूखा<small>खरीफ की बुवाई</small></button>
+      <button class="opt" data-k="wet" aria-pressed="false">बारिश ज़्यादा, पानी भरा<small>सोयाबीन, उड़द, धान</small></button>
+      <button class="opt" data-k="water" aria-pressed="false">पानी बचाने के तरीके<small>तालाब, मेड़, नमी</small></button>
+    </div>
+
+    <div id="view"></div>
+
+    <div class="foot">
+      <div><b>स्रोत:</b> ICAR-CRIDA सागर ज़िला योजना (2013); NRAA बुंदेलखंड रणनीति; MSP 2027-28 (केंद्रीय मंत्रिमंडल, 30 सितंबर 2026); आज का मंडी भाव: हमारे मंडी डेटा, सागर मंडी, पिछले 14 दिन; 5 साल का भाव: Agmarknet / DMI (CEDA अशोका विश्वविद्यालय पोर्टल, सागर संभाग); बारिश: IMD आँकड़े (Down To Earth, 15 अक्तूबर 2026; नवभारत लाइव, 3 अक्तूबर 2026); ICAR-IARI (चना किस्म); PMFBY (दृष्टि IAS); केंद्र सरकार की खरीद मंज़ूरी (मार्च 2025, बिज़नेस स्टैंडर्ड)।</div>
+      <div style="margin-top:4px">* फसल के दिन सामान्य जानकारी से हैं, सागर की किस्म के हिसाब से KVK से पक्का करें।</div>
+      <div style="margin-top:4px"><b>आख़िरी जाँच:</b> 23 अक्टूबर 2026</div>
+      <div class="note am" style="margin-top:10px"><b>पक्का करने के लिए:</b> बीज की किस्म, दवा की मात्रा और योजना की शर्तें कृषि विज्ञान केंद्र (KVK) सागर या कृषि विभाग से पूछें। फ़ोन: <span class="ph">जोड़ना बाकी</span></div>
+      <a class="btn" href="#">आज का मंडी भाव देखें</a>
+      <a class="btn o" href="#">बीज / पंप / ट्रैक्टर ढूँढें (बाज़ार)</a>
+    </div>
+  </div>
+</div>
+
+<script>
+var COST = {wheat:1264, gram:3747, mustard:3374, lentil:3849, barley:1447};
+var CROPS = [
+ {id:'gram', h5:5091, hy:[4907,4560,4737,5764,5485], vars:'JG-11, JG-12, JG-14 (CRIDA सागर योजना 2013); पूसा JG 16 (ICAR-IARI)', hi:'चना', verdict:'सबसे सुरक्षित', cls:'b-g', hl:true, msp:5958, mkt:6905, best:'दमोह ₹7,065, खुरई ₹7,000', days:'110 दिन', water:'कम पानी (बारानी या 1 सिंचाई)', win:'बारानी: अक्टूबर का तीसरा हफ़्ता से नवंबर का पहला हफ़्ता',
+  avg:7.65, good:'13 से 20', g1:13, g2:20, areaK:197,
+  why:'कम पानी की सरकारी सूची में है, भाव MSP से ऊपर है, और सागर में सबसे ज़्यादा बोई जाती है (1.97 लाख हेक्टेयर)।',
+  note:'किस्म: पूसा JG 16 (ICAR-IARI) को सूखा सहने वाली और 110 दिन की बताया गया है, और मध्य प्रदेश व बुंदेलखंड के लिए सुझाया गया है। बीज कहाँ मिलेगा, KVK से पूछें।'},
+ {id:'lentil', h5:5669, hy:[5459,5996,5525,5558,5807], vars:'JL-3, नूरी / Noorie (CRIDA सागर योजना 2013)', hi:'मसूर', verdict:'कम पानी, भाव नीचे', cls:'b-a', msp:7390, mkt:6275, best:'दमोह ₹6,985', days:'लगभग 110 से 125 दिन*', water:'कम पानी', win:'बारानी: अक्टूबर का तीसरा से चौथा हफ़्ता (यानी अब जल्दी)',
+  avg:4.32, good:'', g1:0, g2:0, areaK:66,
+  why:'कम पानी की सूची में है और MSP सबसे ऊँचा है। पर सागर मंडी में भाव MSP से लगभग ₹1,100 नीचे है। केंद्र ने मसूर की 2028-29 तक 100% खरीद का वादा किया है, पर राज्य में यह कैसे लागू होगा, पक्का करें।',
+  note:'सागर में मसूर की औसत उपज बहुत कम (लगभग 4 क्विंटल/हेक्टेयर) रही है, इसलिए अच्छे बीज और समय पर बुवाई पर ध्यान दें।'},
+ {id:'mustard', h5:5337, hy:[5316,6087,4787,4878,5617], vars:'पूसा जयकिसान, पूसा बोल्ड, वरुणा (CRIDA सागर योजना 2013)', hi:'सरसों', verdict:'भाव अच्छा, पानी मध्यम', cls:'b-a', msp:6613, mkt:6700, best:'पन्ना ₹8,150, खुरई ₹8,000, बीना ₹7,948', days:'लगभग 110 से 140 दिन*', water:'मध्यम (कुछ सिंचाई)', win:'सागर योजना में समय नहीं दिया, KVK से पूछें',
+  avg:0, good:'लगभग 20.8 (शोध-खेत, दिल्ली)', g1:0, g2:0, areaK:0,
+  why:'दूसरी मंडियों में भाव बहुत ऊँचा है (₹7,300 से ₹8,150), पर सागर मंडी में सबसे नीचे। बारानी में उपज कम रह सकती है और आम तौर पर 3 से 4 सिंचाई बताई जाती है (कंपनी की सलाह)। सागर में सरसों बड़े पैमाने पर नहीं बोई जाती, इसलिए यहाँ का औसत आँकड़ा उपलब्ध नहीं।',
+  note:'कम से कम 1 से 2 सिंचाई का पानी पक्का हो तभी सोचें, और बेचने की मंडी पहले तय करें।'},
+ {id:'wheat', h5:2113, hy:[1763,1979,2068,2284,2470], vars:'', hi:'गेहूं', verdict:'पानी ज़्यादा', cls:'b-r', msp:2610, mkt:2630, best:'हरपालपुर ₹2,680, राहतगढ़ ₹2,675', days:'लगभग 120 से 135 दिन*', water:'ज़्यादा (5 से 6 सिंचाई)', win:'बारानी: तीसरा हफ़्ता अक्टूबर से पहला हफ़्ता नवंबर; सिंचित: अक्टूबर का दूसरा हफ़्ता से नवंबर का तीसरा हफ़्ता',
+  avg:11.23, good:'', g1:0, g2:0, areaK:180,
+  why:'भाव MSP के आसपास है और प्रति क्विंटल कमाई सबसे कम। पानी कम हो तो जोखिम सबसे ज़्यादा, इसलिए उतना ही बोएँ जितनी सिंचाई पक्की हो।',
+  note:'सिंचाई की गिनती किसान-अनुभव (जौ से तुलना) से ली गई है। कम पानी में गेहूं की जगह जौ या चना पर विचार करें।'},
+ {id:'barley', h5:1906, hy:[1419,2243,1863,1861,2141], vars:'नरेंद्र जौ-7 / Narendra 7 (रेडियो बुंदेलखंड, किसान-अनुभव)', hi:'जौ', verdict:'बहुत कम पानी', cls:'b-g', msp:2286, mkt:0, best:'', days:'लगभग 110 से 125 दिन*', water:'बहुत कम (लगभग 2 सिंचाई)', win:'सागर योजना में समय नहीं दिया, KVK से पूछें',
+  avg:0, good:'', g1:0, g2:0, areaK:0,
+  why:'बुंदेलखंड के एक विशेषज्ञ और किसानों के अनुसार गेहूं की 5 से 6 सिंचाई के मुकाबले लगभग 2 सिंचाई, और कम खाद। पर कमाई प्रति क्विंटल कम है, और हमारे डेटा में सागर के जौ का भाव नहीं है।',
+  note:'बिक्री का ठिकाना पहले तय करें। यह दावा किसान-अनुभव पर आधारित है, KVK से पक्का करें।'}
+];
+function inr(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function bar(label, val, max, cls){ var w = Math.max(6, Math.round(val / max * 100));
+  return '<div class="row"><span>'+label+'</span><div class="trk"><div class="fill '+cls+'" style="width:'+w+'%">'+inr(val)+'</div></div></div>'; }
+function cropCard(c){
+  var cost = COST[c.id]; var maxv = (c.id==='wheat'||c.id==='barley') ? 3000 : 8200;
+  var h = '<div class="crop'+(c.hl?' safe':'')+'"><div class="ch"><h3>'+c.hi+'</h3><span class="badge '+c.cls+'">'+c.verdict+'</span></div>';
+  h += '<div class="facts"><span class="fact">पानी: '+c.water+'</span><span class="fact">समय: '+c.days+'</span></div>';
+  h += '<div class="gap"><b>बुवाई:</b> '+c.win+'</div>';
+  h += '<div class="bars">'+bar('MSP 2027-28', c.msp, maxv, 'f-msp');
+  if (c.mkt) h += bar('सागर मंडी आज', c.mkt, maxv, 'f-mkt'); else h += '<div class="row"><span>सागर मंडी आज</span><span>डेटा नहीं</span></div>';
+  h += bar('5 साल औसत', c.h5, maxv, 'f-avg');
+  h += '</div><div class="gap" style="color:#57534e">5 साल औसत = 2021 से 2025 में मार्च-मई (कटाई के समय) का Modal भाव, सागर संभाग की मंडियाँ।</div>';
+  if (c.mkt){ var d = c.mkt - c.msp; h += '<div class="gap">भाव और MSP का फ़र्क: <span class="'+(d>=0?'up':'dn')+'">'+(d>=0?'+':'−')+inr(Math.abs(d))+' प्रति क्विंटल</span></div>';
+    if (c.best) h += '<div class="gap">सागर संभाग की ऊँची मंडियाँ: '+c.best+'</div>'; }
+  if (c.avg){
+    h += '<div class="money"><b>एक हेक्टेयर से बिक्री (लागत से पहले)</b><br>सागर की औसत उपज '+c.avg+' क्विंटल (CRIDA 2013)<br>• 5 साल के औसत भाव पर: <b>'+inr(c.avg*c.h5)+'</b> (ज़्यादा सुरक्षित अंदाज़ा)'+(c.mkt?'<br>• आज के भाव पर: <b>'+inr(c.avg*c.mkt)+'</b>':'');
+    if (c.g1){ h += '<br>• अच्छे बीज और नमी के साथ ('+c.good+' क्विंटल, ICAR किस्म), 5 साल के औसत भाव पर: <b>'+inr(c.g1*c.h5)+' से '+inr(c.g2*c.h5)+'</b>'; }
+    h += '</div>'; }
+  else if (c.good){ h += '<div class="money">उपज का सागर-आँकड़ा नहीं। शोध-खेत में: '+c.good+' क्विंटल/हेक्टेयर (किसान के खेत में कम होगी)।</div>'; }
+  if (c.vars) h += '<div class="vr"><b>किस्मों के नाम (KVK से पुष्टि करें):</b> '+c.vars+'</div>';
+  h += '<p class="why">'+c.why+'</p><p class="gap" style="color:#57534e">'+c.note+'</p></div>';
+  return h;
+}
+function card(t, open, html, tags, pend){
+  var h = '<details class="card"'+(open?' open':'')+'><summary>'+t+'</summary><div class="in">'+html+'<div>';
+  (tags||[]).forEach(function(x){ h += '<span class="tag '+(x.indexOf('पुष्टि')>-1?'ver':'src')+'">'+x+'</span>'; });
+  h += '</div>' + (pend?(pend.indexOf('<a ')===0?'<div>'+pend+'</div>':'<div class="pend">'+pend+'</div>'):'') + '</div></details>';
+  return h;
+}
+var WATER = {
+ 0:{t:'बिल्कुल सिंचाई नहीं (बारानी)', r:[['चना','सबसे सही। नमी में बोएँ, मेड़-नाली पर बुवाई करें।',1],['मसूर','बारानी में अक्टूबर के चौथे हफ़्ते तक बो दें।',1],['अलसी','बहुत कम पानी की फसल (NRAA की सूची); पर हमारे पास इसका भाव और MSP नहीं है।',1],['गेहूं और सरसों','इस हालत में जोखिम ज़्यादा। न बोएँ, या बहुत थोड़ी ज़मीन में।',0]]},
+ 1:{t:'1 सिंचाई का पानी', r:[['चना','सबसे सही। एक सिंचाई फूल आने से पहले या बुवाई से पहले।',1],['मसूर','ठीक। समय पर बुवाई ज़रूरी।',1],['जौ','कम पानी वाली फसल, पर कमाई कम और बिक्री का ठिकाना पहले तय करें।',1],['गेहूं','बहुत जोखिम। 5 से 6 सिंचाई चाहिए।',0]]},
+ 2:{t:'2 सिंचाई का पानी', r:[['चना','अच्छी उपज के लिए सबसे सही।',1],['जौ','लगभग 2 सिंचाई में हो जाता है (किसान-अनुभव)।',1],['सरसों','सोच सकते हैं। भाव अच्छा, पर उपज का जोखिम; बेचने की मंडी पहले तय करें।',1],['गेहूं','अभी भी जोखिम। 5 से 6 सिंचाई की ज़रूरत।',0]]},
+ 3:{t:'3 या ज़्यादा सिंचाई', r:[['सरसों','सबसे अच्छी कमाई की संभावना (दूसरी मंडियों में भाव ऊँचा)।',1],['चना','हमेशा सुरक्षित विकल्प, कुछ ज़मीन में ज़रूर बोएँ।',1],['गेहूं','सिर्फ़ उतनी ज़मीन में जितनी में 5 से 6 सिंचाई पक्की है।',1],['मसूर','भाव अभी MSP से नीचे, सोच-समझकर।',0]]}
+};
+function waterBox(k){
+  var w = WATER[k]; var h = '<div class="note gn"><b>'+w.t+'</b></div>';
+  w.r.forEach(function(x){ h += '<div class="rec'+(x[2]?'':' no')+'"><b>'+(x[2]?'✔ ':'✖ ')+x[0]+':</b> '+x[1]+'</div>'; });
+  h += '<p class="gap" style="color:#57534e">यह सुझाव सागर की कम-पानी सूची (CRIDA), सिंचाई की गिनती और ऊपर के भाव पर आधारित है। अपने खेत के हिसाब से KVK से पूछें।</p>';
+  return h;
+}
+var V = {};
+V.safe =
+ '<div class="note rd"><b>अभी बुवाई का समय है।</b> बारानी मसूर की बुवाई अक्टूबर के चौथे हफ़्ते तक, और चना, गेहूं व अलसी की नवंबर के पहले हफ़्ते तक (सागर योजना के अनुसार)।</div>'
+ + '<div class="note am"><b>इस साल की बारिश:</b> देश में मानसून सामान्य से <b>12.6% कम</b> रहा (2015 के बाद सबसे कमज़ोर)। मध्य प्रदेश में कुल बारिश सामान्य का <b>95.4%</b> (लगभग 4.6% कम)। पर <b>सागर संभाग सहित पूर्वी मध्य प्रदेश में सामान्य से लगभग 4% ज़्यादा</b> बारिश हुई (3 अक्तूबर 2026 की खबर)। सागर ज़िले का अलग आँकड़ा <span class="ph">जोड़ना बाकी</span>।<br>इसलिए बात सिर्फ़ बारिश की नहीं है: देश के बड़े जलाशय कम भरे हैं और अक्तूबर की बारिश कमज़ोर रहने का अनुमान है। कुओं का पानी कितना टिकेगा, यह अपने कुएँ से देखें।</div>'
+ + '<div class="stats"><div class="stat"><b>−12.6%</b><span>पूरे भारत की बारिश</span></div><div class="stat g"><b>+4%</b><span>सागर संभाग / पूर्वी म.प्र. की बारिश</span></div><div class="stat"><b>70%</b><span>देश के बड़े जलाशय भरे (10 साल में सबसे कम)</span></div></div>'
+ + '<h2>सागर में सिंचाई का हाल</h2>'
+ + '<div class="stats"><div class="stat g"><b>45%</b><span>खेती की ज़मीन में सिंचाई है (2.41 लाख / 5.37 लाख हेक्टेयर)</span></div><div class="stat"><b>63%</b><span>सिंचाई कुओं और ट्यूबवेल से</span></div><div class="stat"><b>3%</b><span>सिंचाई नहर से</span></div></div>'
+ + '<p class="sub">मतलब: आधी से ज़्यादा ज़मीन बारानी है, और सिंचाई ज़्यादातर कुओं पर टिकी है। कम बारिश में कुओं का पानी जल्दी घटता है। (CRIDA 2013 के आँकड़े)</p>'
+ + '<h2>आपके पास कितना पानी है?</h2>'
+ + '<div class="sel" id="wsel"><button data-w="0" aria-pressed="true">सिंचाई नहीं<br><small>बारानी</small></button><button data-w="1" aria-pressed="false">1 सिंचाई</button><button data-w="2" aria-pressed="false">2 सिंचाई</button><button data-w="3" aria-pressed="false">3 या ज़्यादा</button></div>'
+ + '<div id="wbox"></div>'
+ + '<h2>हर फसल का हाल</h2>'
+ + '<p class="sub">अभी बोई गई रबी फसल मार्च-अप्रैल 2027 में कटेगी, इसलिए 2027-28 का MSP दिया है। भाव सागर मंडी के पिछले 14 दिन के हैं।</p>'
+ + CROPS.map(cropCard).join('')
+ + '<h2>आज का भाव बनाम 5 साल का औसत</h2>'
+ + '<p class="sub">Modal भाव = जिस भाव पर मंडी में सबसे ज़्यादा माल बिका। नीचे 5 साल (2021 से 2025) में कटाई के समय, मार्च से मई, का औसत Modal भाव है। सागर संभाग की मंडियाँ।</p>'
+ + '<div class="scroll"><table><tr><th>फसल</th><th>5 साल औसत</th><th>आज (सागर)</th><th>फ़र्क</th><th>MSP 2027-28</th></tr>'
+ + CROPS.filter(function(c){return c.mkt;}).map(function(c){ var p=Math.round((c.mkt-c.h5)/c.h5*100); return '<tr><td><b>'+c.hi+'</b></td><td>'+inr(c.h5)+'</td><td>'+inr(c.mkt)+'</td><td class="'+(p>=0?'up':'dn')+'">'+(p>=0?'+':'−')+Math.abs(p)+'%</td><td>'+inr(c.msp)+'</td></tr>'; }).join('')
+ + '<tr><td><b>जौ</b></td><td>'+inr(1906)+'</td><td>डेटा नहीं</td><td>—</td><td>'+inr(2286)+'</td></tr></table></div>'
+ + '<div class="note am"><b>कैसे पढ़ें:</b> आज चारों फसलों के भाव 5 साल के कटाई-समय औसत से ऊपर हैं। पर कटाई (मार्च-अप्रैल) पर भाव आज जितने ही रहेंगे, यह मानकर न चलें। योजना बनाने के लिए 5 साल का औसत ज़्यादा सुरक्षित है। कोई अनुमान नहीं दिया जा रहा।</div>'
+ + '<details class="card"><summary>साल-दर-साल कटाई के समय का भाव (मार्च-मई)</summary><div class="in"><div class="scroll"><table><tr><th>फसल</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>'
+ + CROPS.map(function(c){ return '<tr><td><b>'+c.hi+'</b></td>'+c.hy.map(function(v){return '<td>'+inr(v)+'</td>';}).join('')+'</tr>'; }).join('')
+ + '</table></div><p class="gap" style="color:#57534e">स्रोत: Agmarknet (कृषि मंत्रालय, DMI) का डेटा, CEDA अशोका विश्वविद्यालय के पोर्टल से। सागर, दमोह, पन्ना, छतरपुर और टीकमगढ़ की मंडियों का औसत। उपलब्ध आँकड़े अक्तूबर 2025 तक। जौ के आँकड़े कम मंडियों से हैं।</p></div></details>'
+ + '<details class="card"><summary>लागत का अंदाज़ा (प्रति क्विंटल)</summary><div class="in"><div class="scroll"><table><tr><th>फसल</th><th>लागत</th><th>सागर भाव − लागत</th><th>MSP − लागत</th></tr>'
+ + CROPS.map(function(c){ var cost=COST[c.id]; return '<tr><td><b>'+c.hi+'</b></td><td>'+inr(cost)+'</td><td>'+(c.mkt? inr(c.mkt-cost):'—')+'</td><td>'+inr(c.msp-cost)+'</td></tr>'; }).join('')
+ + '</table></div><div class="pend">लागत पूरे भारत का औसत है (MSP और सरकार के बताए मार्जिन से निकाला गया)। असल लागत सागर में अलग होगी, और कम उपज होने पर प्रति क्विंटल लागत बढ़ जाती है। इसे सिर्फ़ तुलना के लिए देखें, कमाई की गारंटी न मानें।</div></div></details>';
+V.gov =
+ '<div class="note bl">ये जानकारी खबरों और सरकारी बयानों से ली गई है। योजना की शर्तें और तारीख़ें कृषि विभाग से पक्की करें।</div>'
+ + card('MSP पर खरीद', true, '<ul><li>MSP तभी मिलता है जब सरकारी खरीद केंद्र पर बेचें, और पहले पंजीकरण कराना होता है।</li><li>मार्च 2025 में केंद्र ने राजस्थान, मध्य प्रदेश और गुजरात में चना, सरसों और मसूर की MSP पर सीधी खरीद की मंज़ूरी दी थी (उस रबी सीज़न के लिए)।</li><li>केंद्र ने कहा है कि तुअर, उड़द और मसूर की 100% खरीद 2028-29 तक की जाएगी, जब भाव MSP से नीचे जाएँ।</li></ul>', ['स्रोत: बिज़नेस स्टैंडर्ड, 27 मार्च 2025'], 'इस साल (2026-27 रबी) चना और सरसों की खरीद होगी या नहीं, और पंजीकरण की तारीख़ें: पुष्टि बाकी।')
+ + card('फसल बीमा (PMFBY)', false, '<ul><li>रबी की अनाज और तिलहन फसलों के लिए किसान का हिस्सा <b>1.5%</b> है, बाकी सरकार देती है।</li><li>सूखा बीमा में आता है।</li><li>अगर खराब मौसम की वजह से बुवाई ही न हो पाए, तो बीमित राशि का 25% तक दावा मिल सकता है।</li></ul>', ['स्रोत: दृष्टि IAS (PMFBY)'], 'रबी 2026-27 में नाम लिखवाने की आख़िरी तारीख़: पुष्टि बाकी (पिछले सालों में दिसंबर के आख़िर में)।')
+ + card('खेत तालाब पर सब्सिडी', false, '<ul><li>मध्य प्रदेश में खेत तालाब बनाने पर 90% तक सब्सिडी बताई गई है।</li><li>आवेदन ज़िला मत्स्य विभाग के कार्यालय में, ऑफ़लाइन।</li><li>काग़ज़ात: आधार, पैन, बैंक पासबुक, समग्र आईडी, ज़मीन के काग़ज़।</li></ul>', ['स्रोत: ट्रैक्टर जंक्शन (दिसंबर 2025), खबर'], 'रकम, आख़िरी तारीख़ और असली शर्तें: पुष्टि बाकी। "बलराम तालाब" नाम की पुष्टि नहीं हुई।');
+V.late = card('बारिश कितनी देर से आई?', true, '<ul><li><b>2 हफ़्ते देर:</b> गहरी काली मिट्टी में फसल न बदलें। बखर चलाएँ, बीज उपचार करें, मेड़ पर बुवाई करें।</li><li><b>4 हफ़्ते देर (जुलाई का दूसरा हफ़्ता):</b> कम दिन वाली अरहर, मूंग, उड़द, तिल। बीज 25% ज़्यादा डालें, मेड़-नाली पर बोएँ।</li><li><b>6 से 8 हफ़्ते देर:</b> तिल, रामतिल, कोदो-कुटकी।</li></ul>', ['स्रोत: CRIDA सागर योजना'])
+ + card('कौन-सी किस्में (नाम)', true, '<ul><li><b>4 हफ़्ते देर:</b><br>अरहर (तुअर): प्रगति, जागृति, आशा, JKM-7, JA-4, ICPL-85063 (लक्ष्मी), JKM-189<br>उड़द: JU-2, JU-3, JU-86, T-9, JBG-623, LBG-684, TAU-1, बरखा (Berkha)<br>तिल: TKG-306, TKG-35, JGS-8, JT-21, JT-22, JT-55, PKTS-11, PKTS-12</li><li><b>6 से 8 हफ़्ते देर:</b><br>तिल: ऊपर की सूची के नाम (जैसे TKG-306, JT-21, JT-22, JT-55)<br>रामतिल: JNC-6, JNC-1, JNC-9, JVN-1</li><li><b>सिंचाई का पानी देर से मिले:</b> सोयाबीन की कम अवधि वाली किस्म JS 95-60</li></ul>', ['स्रोत: CRIDA सागर योजना (2013)'], 'ये नाम 2013 की सरकारी योजना में लिखे हैं और कुछ बदल चुके होंगे। KVK सागर से पूछें कि इस साल कौन-सा बीज मिलेगा।')
+ + card('बुवाई के बाद 15 से 20 दिन सूखा पड़े', false, '<ul><li>जहाँ पौधे कम उगे हों वहाँ खाली जगह भरें, ज़रूरत हो तो दोबारा बोएँ।</li><li>मल्च (घास-फूस की परत) बिछाएँ, गुड़ाई करें।</li><li>हर 15 से 20 कतार पर नाली बनाएँ, ताकि पानी रुके।</li></ul>', ['स्रोत: CRIDA सागर योजना'])
+ + card('फूल या फली के समय सूखा पड़े', false, '<ul><li>इसी समय पानी सबसे ज़रूरी है: जितना हो सके एक हल्की सिंचाई दें।</li><li>बारिश जल्दी लौट जाए तो फसल पकते ही काट लें।</li><li>रबी के लिए खेत जल्दी तैयार करें।</li></ul>', ['स्रोत: CRIDA सागर योजना']);
+V.wet = '<div class="note am"><b>ज़्यादा बारिश में सबसे पहला काम:</b> खेत से पानी निकालना। खड़ा पानी जड़ सड़ा देता है।</div>'
+ + card('सोयाबीन, उड़द, मूंग, मक्का', true, '<ul><li>खेत में नालियाँ काटकर <b>पानी तुरंत निकालें</b>।</li><li>आगे से <b>मेड़-नाली पर बुवाई</b> करें (काली मिट्टी में ख़ासकर)।</li><li>पानी निकलने के बाद यूरिया ऊपर से डालें, गुड़ाई करें।</li><li>कटाई साफ़ मौसम में करें।</li></ul>', ['स्रोत: CRIDA सागर योजना','NRAA'], 'बीमारी की दवा और मात्रा यहाँ नहीं दी जा रही। KVK सागर से पूछें।')
+ + card('सोयाबीन की किस्में (नाम)', false, '<ul><li><b>मध्य प्रदेश सरकार की सुझाई:</b> NRC 157, NRC 131, NRC 136</li><li><b>केंद्र से स्वीकृत (खरीफ 2025 सूची):</b> JS 22-12, JS 22-16, JS 21-72, NRC 165, NRC 150, NRC 152</li><li>पुरानी योजना में कम अवधि के लिए: JS 95-60</li></ul>', ['स्रोत: ग्लोबल एग्रीकल्चर (खबर, 2025)','CRIDA सागर योजना (2013)'], 'किस्म की अवधि और जलभराव सहने की क्षमता स्रोत में नहीं मिली। KVK सागर से पूछें।')
+ + card('धान और सब्ज़ी', false, '<ul><li><b>धान:</b> पानी जल्दी निकालें, खाली जगह भरें।</li><li><b>टमाटर, मिर्च, बैंगन:</b> ऊँची क्यारी बनाएँ, पानी निकासी रखें।</li></ul>', ['स्रोत: CRIDA सागर योजना']);
+V.water = card('खेत तालाब और मेड़बंदी', true, '<ul><li>खेत के ढलान वाले हिस्से में <b>खेत तालाब</b> और मेड़ बनाने से बारिश का पानी रुकता है।</li><li>पुराने तालाब और छोटे बाँध की गाद निकालना, कुओं में पानी भरना (रिचार्ज) भी सुझाया गया है।</li></ul>', ['स्रोत: NRAA बुंदेलखंड रणनीति'], '<a class="lnk" href="#sarkari-sahara-khet-talab" data-go="gov">खेत तालाब पर सब्सिडी और आवेदन की जानकारी देखें →</a>')
+ + card('खेत में नमी रोकना', false, '<ul><li>ढलान के आर-पार बुवाई (कंटूर) और घास-फूस की परत से नमी बचती है।</li><li>NRAA के अनुसार इससे पैदावार 15 से 20 प्रतिशत तक बढ़ सकती है।</li></ul>', ['स्रोत: NRAA']);
+var view = document.getElementById('view');
+function show(k){ view.innerHTML = V[k];
+  document.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.k===k ? 'true':'false'); });
+  var ws = document.getElementById('wsel');
+  if (ws){ var set = function(w){ document.getElementById('wbox').innerHTML = waterBox(w); ws.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.w===String(w)?'true':'false'); }); };
+    ws.addEventListener('click', function(e){ var b = e.target.closest('button'); if(b) set(b.dataset.w); }); set(0); } }
+view.addEventListener('click', function(e){ var a=e.target.closest('[data-go]'); if(!a) return; e.preventDefault(); show(a.dataset.go); var ds=view.querySelectorAll('details.card'); for(var i=0;i<ds.length;i++){ if(ds[i].textContent.indexOf('खेत तालाब पर सब्सिडी')>-1 && ds[i].querySelector('summary').textContent.indexOf('खेत तालाब')>-1){ ds[i].open=true; ds[i].scrollIntoView({behavior:'smooth',block:'start'}); } } });
+document.getElementById('opts').addEventListener('click', function(e){ var b = e.target.closest('.opt'); if(b) show(b.dataset.k); });
+show('safe');
+</script>
+</body>
+</html>

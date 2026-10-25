@@ -1,0 +1,16 @@
+Batch 10E Phase 4 — slow-phone check of /guide/post (2026-10-18)
+Method: temp copy of scripts/batch10c/slow-phone.mjs with PAGES = ['/guide/post'] (copy deleted after the run),
+against the local vite preview on :4173 serving the Phase 4 build:full dist (staging mode).
+360x640, isMobile, cold cache, CPU 4x throttle, ~1.6 Mbps down / 150 ms latency (CDP). Demo at NORMAL speed
+(no __KS_GUIDE_SPEED). Long tasks via PerformanceObserver('longtask').
+
+Per-page line printed by the script (its summary writer then crashed because it expects the /guide hub row,
+which this copy did not measure; the numbers below are the script's own output, verbatim):
+{"page":"/guide/post","visibleMs":4221,"fcpMs":2064,"playMs":67855,"noSkip":true,"finished":true,"lt200":0,"maxLt":104,"loadLt":[],"kb":1371,"errors":0}
+
+Reading:
+- finished: true; noSkip: true = all 16 steps played in order (0..15), at normal speed.
+- long tasks during play: 0 over 200 ms; max 104 ms  (target: none > 300 ms) -> RAN-PASSED
+- play time 67.9 s on the throttled phone for 16 steps (10C, 14 steps: see docs/review/batch10c/evidence/slow-phone.md)
+- first demo screen visible 4,221 ms on the throttled network (cold cache), 0 console errors.
+- 10C reference (14 steps, same method): visible 3,252 ms, play 60.2 s, max long task during play 120 ms.

@@ -1,0 +1,404 @@
+[
+ {
+  "at": "2026-10-17T09:07:40.392Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C5|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "dropdown": true,
+   "brands": 13,
+   "other_box_shown": true,
+   "blocked_without_text": true,
+   "message": "ब्रांड का नाम ज़रूरी है।",
+   "posted_with_text": true,
+   "detail_shows": "KSTEST Brand"
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C5-Tractor-other-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:07:44.483Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C5|free-text-for-other-types",
+  "status": "RAN-PASSED",
+  "detail": {
+   "Thresher": "INPUT:",
+   "Drone": "INPUT:"
+  }
+ },
+ {
+  "at": "2026-10-17T09:07:51.193Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी चुनें — यह ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "Swaraj"
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Tractor-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:07:55.588Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Tractor-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:07:59.901Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Tractor-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:04.251Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ट्रैक्टर की अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Tractor-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:04.253Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C3b|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 4,
+   "of": 4
+  }
+ },
+ {
+  "at": "2026-10-17T09:08:06.236Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C2|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "c76aa395-9b70-4701-aeac-fae62dee4a1c",
+   "spec_rows": 4,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C2-Tractor-detail.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:10.556Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Thresher|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Thresher-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:15.178Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Thresher|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Thresher-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:19.466Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Thresher|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Thresher-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:23.817Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Thresher|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ज़रूरी ट्रैक्टर अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Thresher-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:28.278Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Thresher|spec_crop",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "फसल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST crop"
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Thresher-spec_crop-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:28.281Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C3b|Thresher",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-17T09:08:30.286Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C2|Thresher",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "99a5b49b-fb6b-42d1-aefb-39d3cdb04e48",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C2-Thresher-detail.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:34.692Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Drone|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Drone-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:39.185Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Drone|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Drone-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:43.713Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Drone|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Drone-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:48.098Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Drone|spec_tank_litres",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "टंकी (लीटर) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 12
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Drone-spec_tank_litres-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:52.466Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C1|Drone|spec_flight_minutes",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "उड़ान समय (मिनट) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 20
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C1-Drone-spec_flight_minutes-blocked.jpg"
+ },
+ {
+  "at": "2026-10-17T09:08:52.468Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C3b|Drone",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-17T09:08:54.484Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C2|Drone",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "d2ce71c5-786a-411e-80ac-54437ada2cc4",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C2-Drone-detail.jpg"
+ },
+ {
+  "at": "2026-10-17T09:09:00.812Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C7|Trolley",
+  "status": "RAN-PASSED",
+  "detail": {
+   "fields": [
+    "f_equipment_type_id",
+    "f_rental_basis",
+    "f_rate_amount"
+   ],
+   "same_as_before": true,
+   "spec_fields_shown": 0,
+   "posted": true,
+   "spec_keys_saved": []
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C7-Trolley-posted.jpg"
+ },
+ {
+  "at": "2026-10-17T09:09:04.494Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C7|Water tanker",
+  "status": "RAN-PASSED",
+  "detail": {
+   "fields": [
+    "f_equipment_type_id",
+    "f_capacity_litres",
+    "f_tanker_vehicle",
+    "f_water_use",
+    "f_water_source",
+    "f_rate_per_trip",
+    "f_rate_per_1000l",
+    "f_service_radius_km"
+   ],
+   "same_as_before": true,
+   "spec_fields_shown": 0,
+   "posted": true,
+   "spec_keys_saved": []
+  },
+  "evidence": "docs/review/batch10a/evidence/fix9c-rerun/local/C7-Water-tanker-posted.jpg"
+ },
+ {
+  "at": "2026-10-17T09:10:53.351Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "C8|older-listings",
+  "status": "RAN-PASSED",
+  "detail": {
+   "checked": 4,
+   "listings": {
+    "6b9d3437-0414-4101-91e5-80ebcd479b5c": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "424248fa-f587-4239-814d-ba2b9ccb8f48": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "3cd24b09-0eac-4840-8776-abb353d3e316": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "518c81b1-3d4c-4612-be6c-4514515b0e32": {
+     "rows": 5,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": true
+    }
+   },
+   "page_errors": []
+  }
+ }
+]

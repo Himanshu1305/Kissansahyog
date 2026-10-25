@@ -1,0 +1,76 @@
+PASS  equipment: cat is an enabled listings category
+PASS  equipment: hi + en names present
+PASS  equipment: >=250 words of Hindi
+PASS  equipment: >=250 words of English
+PASS  equipment: 3-5 FAQs (hi)
+PASS  equipment: 3-5 FAQs (en)
+PASS  equipment: unique hi title
+PASS  equipment: unique en title
+PASS  labor: cat is an enabled listings category
+PASS  labor: hi + en names present
+PASS  labor: >=250 words of Hindi
+PASS  labor: >=250 words of English
+PASS  labor: 3-5 FAQs (hi)
+PASS  labor: 3-5 FAQs (en)
+PASS  labor: unique hi title
+PASS  labor: unique en title
+PASS  bhusa: cat is an enabled listings category
+PASS  bhusa: hi + en names present
+PASS  bhusa: >=250 words of Hindi
+PASS  bhusa: >=250 words of English
+PASS  bhusa: 3-5 FAQs (hi)
+PASS  bhusa: 3-5 FAQs (en)
+PASS  bhusa: unique hi title
+PASS  bhusa: unique en title
+PASS  agri-inputs: cat is an enabled listings category
+PASS  agri-inputs: hi + en names present
+PASS  agri-inputs: >=250 words of Hindi
+PASS  agri-inputs: >=250 words of English
+PASS  agri-inputs: 3-5 FAQs (hi)
+PASS  agri-inputs: 3-5 FAQs (en)
+PASS  agri-inputs: unique hi title
+PASS  agri-inputs: unique en title
+PASS  transport: cat is an enabled listings category
+PASS  transport: hi + en names present
+PASS  transport: >=250 words of Hindi
+PASS  transport: >=250 words of English
+PASS  transport: 3-5 FAQs (hi)
+PASS  transport: 3-5 FAQs (en)
+PASS  transport: unique hi title
+PASS  transport: unique en title
+PASS  building-materials: cat is an enabled listings category
+PASS  building-materials: hi + en names present
+PASS  building-materials: >=250 words of Hindi
+PASS  building-materials: >=250 words of English
+PASS  building-materials: 3-5 FAQs (hi)
+PASS  building-materials: 3-5 FAQs (en)
+PASS  building-materials: unique hi title
+PASS  building-materials: unique en title
+PASS  vegetable-equipment: cat is an enabled listings category
+PASS  vegetable-equipment: hi + en names present
+PASS  vegetable-equipment: >=250 words of Hindi
+PASS  vegetable-equipment: >=250 words of English
+PASS  vegetable-equipment: 3-5 FAQs (hi)
+PASS  vegetable-equipment: 3-5 FAQs (en)
+PASS  vegetable-equipment: unique hi title
+PASS  vegetable-equipment: unique en title
+PASS  land: cat is an enabled listings category
+PASS  land: hi + en names present
+PASS  land: >=250 words of Hindi
+PASS  land: >=250 words of English
+PASS  land: 3-5 FAQs (hi)
+PASS  land: 3-5 FAQs (en)
+PASS  land: unique hi title
+PASS  land: unique en title
+PASS  land is the last bazaar category
+PASS  dedicated pages link out (cold-storage, greenhouse, jugaad, drone-didi)
+PASS  no dedicated-page category is duplicated as a /bazaar landing
+PASS  screen: Browse + Post buttons with ?cat=
+PASS  screen: BreadcrumbList + FAQPage JSON-LD
+PASS  screen: uses Seo (title/description/canonical via <Seo>)
+PASS  screen: exactly one <h1> per view (hub + landing each render one)
+PASS  route /bazaar and /bazaar/:slug registered
+PASS  prerender: /bazaar hub + per-category routes added
+PASS  footer links to /bazaar
+
+74 passed, 0 failed

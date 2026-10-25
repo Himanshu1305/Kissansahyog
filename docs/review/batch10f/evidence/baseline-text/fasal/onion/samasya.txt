@@ -1,0 +1,114 @@
+### HEAD
+title: प्याज़ की आम समस्याएँ और समाधान
+description: प्याज़: इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+canonical: https://kissansahyog.com/fasal/onion/samasya
+robots: 
+lang: hi
+h1: प्याज़ की आम समस्याएँ और समाधान
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"प्याज़"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"प्याज में थ्रिप्स (रस चूसक कीट) का नियंत्रण कैसे करें?","url":"https://kissansahyog.com/sawaal/onion-thrips-control"},{"@type":"ListItem","position":2,"name":"प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें?","url":"https://kissansahyog.com/sawaal/onion-purple-blotch"},{"@type":"ListItem","position":3,"name":"रबी प्याज का भंडारण कैसे करें ताकि नुकसान कम हो?","url":"https://kissansahyog.com/sawaal/onion-rabi-storage"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+प्याज़
+प्याज़ की आम समस्याएँ और समाधान
+इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+3
+कीट
+❓
+प्याज में थ्रिप्स (रस चूसक कीट) का नियंत्रण कैसे करें?
+थ्रिप्स प्याज का सबसे बड़ा कीट है। तेज प्रकोप में 50% तक उपज घट सकती है। ये पत्तियों पर चाँदी जैसे धब्बे बनाते हैं। नीम घोल 2-3% छिड़कें। ETL (3-5 थ्रिप्स/पत्ती) पार होने पर लेबल दर से कीटनाशक लें। कटाई से 3-4 हफ्ते पहले छिड़काव न करें।
+रोग
+❓
+प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करें?
+रबी में थ्रिप्स का प्रकोप बैंगनी धब्बा व स्टेम्फीलियम ब्लाइट को बढ़ाता है। उठी क्यारी व अच्छी निकासी रखें। फव्वारा सिंचाई से बचें। रोग दिखते ही मैंकोजेब 0.25% या हेक्साकोनाजोल 0.1% जैसे फफूंदनाशक 10-15 दिन अंतराल पर छिड़कें।
+भंडारण
+❓
+रबी प्याज का भंडारण कैसे करें ताकि नुकसान कम हो?
+भंडारण के लिए रबी प्याज ही सही है। बेहतर भंडारण वाली किस्म चुनें। बल्ब तब काटें जब 50-70% से अधिक गर्दनें गिर जाएँ। नीचे से हवादार भंडारण-संरचना में रखें।
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

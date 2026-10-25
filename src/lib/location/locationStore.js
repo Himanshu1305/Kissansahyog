@@ -1,148 +1,21 @@
-// Phase 2 — one source of truth for the farmer's location, shared by the homepage
-// "nearby" (aapke aaspaas) control, /mausam, and /msp.
+// Small location helpers that outlived the old pincode-based control.
 //
-// A location is { pincode, latitude, longitude, label, source }:
-//   - pincode  drives pincode-dependent features (nearby counts, listings, MSP mandi
-//              ranking) — always one of the seeded pincodes.
-//   - latitude/longitude are the PRECISE coordinates when auto-detected via GPS
-//     (used directly for weather — Open-Meteo takes lat/lng natively); when the user
-//     picks a pincode they are that pincode's coordinates.
-//   - label    a human place name for display.
-//   - source   'gps' | 'pincode' | 'recent' | 'default'.
-//
-// The seeded `pincodes` table is the SINGLE coordinate source (same one the mausam/MSP
-// build already uses via fetchPincode) — we do not create a parallel gazetteer.
-import { supabase } from '../supabaseClient'
-import { haversineKm } from '../distance'
-
-export const DEFAULT_PINCODE = '470117' // Khurai, Sagar (MP) — pilot default.
-export const DEFAULT_COORDS = { latitude: 24.045, longitude: 78.33 }
-
-// Distance-sanity threshold for GPS auto-detect. Every seeded pincode is in the Sagar
-// pilot area, so a genuinely far-away user (e.g. Hyderabad, ~670 km) would otherwise be
-// silently matched to the nearest Sagar village. Beyond this radius we treat the user as
-// OUT OF THE SERVICE AREA and never present a far village's data as local without an
-// explicit opt-in. See LocationControl.
-export const SERVICE_AREA_KM = 100
-
-let pincodesCache = null
-export async function fetchAllPincodes() {
-  if (pincodesCache) return pincodesCache
-  const { data, error } = await supabase
-    .from('pincodes')
-    .select('pincode,village_town,district,latitude,longitude')
-  if (error) return []
-  pincodesCache = (data || []).map((p) => ({
-    ...p,
-    latitude: p.latitude != null ? Number(p.latitude) : null,
-    longitude: p.longitude != null ? Number(p.longitude) : null,
-  }))
-  return pincodesCache
-}
-
-// Nearest seeded pincode to a lat/lng (for pincode-dependent features after a GPS
-// grant). Returns the pincode row + distanceKm, or null when the list is empty.
-export function nearestPincode(lat, lng, pincodes) {
-  let best = null
-  let bestD = Infinity
-  for (const p of pincodes || []) {
-    if (p.latitude == null || p.longitude == null) continue
-    const d = haversineKm(lat, lng, p.latitude, p.longitude)
-    if (d < bestD) { bestD = d; best = p }
-  }
-  return best ? { ...best, distanceKm: bestD } : null
-}
-
-// --- active pincode (localStorage; shared with the older nearbyCounts helpers) ---
-export function resolvePincode(profilePincode) {
-  if (profilePincode && /^\d{6}$/.test(String(profilePincode))) return String(profilePincode)
-  try {
-    const saved = localStorage.getItem('ks_pincode')
-    if (saved && /^\d{6}$/.test(saved)) return saved
-  } catch { /* ignore */ }
-  return DEFAULT_PINCODE
-}
-
-export function savePincode(pincode) {
-  if (!/^\d{6}$/.test(String(pincode))) return false
-  try { localStorage.setItem('ks_pincode', String(pincode)) } catch { /* ignore */ }
-  return true
-}
-
-// --- recent locations (localStorage, max 5, newest first) ---
-// Each chip carries BOTH outputs so re-selecting it repopulates weather (rawCoords) AND
-// village-anchored features (matchedVillage) exactly like a fresh detection (Phase 1g).
-const RECENT_KEY = 'ks_recent_locations'
-const MAX_RECENT = 5
-
-// Stable dedupe key: the matched village's pincode if any, else the raw coordinates
-// (rounded), else the label — so a far GPS location (no village) still de-dupes sensibly.
-export function recentKey(loc) {
-  if (loc?.matchedVillage?.pincode) return `p:${loc.matchedVillage.pincode}`
-  if (loc?.rawCoords?.latitude != null) return `c:${Number(loc.rawCoords.latitude).toFixed(2)},${Number(loc.rawCoords.longitude).toFixed(2)}`
-  return `l:${loc?.label || ''}`
-}
-
-export function getRecentLocations() {
-  try {
-    const raw = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]')
-    if (!Array.isArray(raw)) return []
-    // Keep only entries that can repopulate at least one feature (coords or a village).
-    return raw.filter((r) => r && (r.rawCoords || r.matchedVillage || r.label)).slice(0, MAX_RECENT)
-  } catch { return [] }
-}
-
-export function addRecentLocation(loc) {
-  if (!loc || (!loc.rawCoords && !loc.matchedVillage)) return getRecentLocations()
-  const entry = {
-    label: loc.label || loc.matchedVillage?.village_town || loc.matchedVillage?.pincode || '',
-    rawCoords: loc.rawCoords || null,
-    matchedVillage: loc.matchedVillage || null,
-  }
-  const key = recentKey(entry)
-  const prev = getRecentLocations().filter((r) => recentKey(r) !== key)
-  const next = [entry, ...prev].slice(0, MAX_RECENT)
-  try { localStorage.setItem(RECENT_KEY, JSON.stringify(next)) } catch { /* ignore */ }
-  return next
-}
-
-// One-time geolocation-prompt dismissal, so we don't nag on every mount.
-const GEO_DISMISS_KEY = 'ks_geo_prompt_dismissed'
-export function isGeoPromptDismissed() {
-  try { return localStorage.getItem(GEO_DISMISS_KEY) === '1' } catch { return false }
-}
-export function dismissGeoPrompt() {
-  try { localStorage.setItem(GEO_DISMISS_KEY, '1') } catch { /* ignore */ }
-}
-
+// Batch 7L-1: the visitor's location now lives in ./userLocation.js (the one
+// { lat, lng, label, source } object) and ./LocationProvider.jsx. Pincode lookup, the
+// IP-city guess, the "recent places" list and the service-area gate were removed with the
+// old control — nothing here resolves a visitor's location any more.
 export const geolocationSupported = () =>
   typeof navigator !== 'undefined' && 'geolocation' in navigator
 
-// Phase 2 (0028) — Cloudflare IP-based city, from the /geo Pages Function (request.cf).
-// A silent, non-committal pre-permission guess. Returns { city, latitude, longitude } or
-// null when unavailable (local dev / no edge context / VPN) — the caller falls through
-// cleanly to manual pincode with no error shown. Session-cached (one call per load).
-let ipCityCache
-export async function fetchIpCity() {
-  if (ipCityCache !== undefined) return ipCityCache
-  try {
-    const res = await fetch('/geo', { signal: AbortSignal.timeout(5000) })
-    if (!res.ok) { ipCityCache = null; return null }
-    const d = await res.json()
-    ipCityCache = d && d.city
-      ? { city: d.city, latitude: d.latitude != null ? Number(d.latitude) : null, longitude: d.longitude != null ? Number(d.longitude) : null }
-      : null
-    return ipCityCache
-  } catch {
-    ipCityCache = null
-    return null
-  }
-}
+// ADMIN ONLY — the fixed point (Khurai) the admin "today's post" builder reads weather for.
+// It is never used as a visitor's location: with no location set, visitors see the prompt
+// card, not this place.
+export const DEFAULT_COORDS = { latitude: 24.045, longitude: 78.33 }
 
-// Phase 1 (0028) — reverse-geocode precise GPS coords to a real place name for ANY location
-// on Earth, via BigDataCloud's free, keyless client API (Hindi names where available).
-// Session-cached by rounded coordinate so we call it once per location resolution (1d).
-// Returns a name string, or null on failure (the caller must fall back — NEVER raw coords).
+// Reverse-geocode a device position to a place name via BigDataCloud's free, keyless client
+// API (Hindi names where available). Used only to NAME a device fix that is not close to a
+// place in the places list. Session-cached by rounded coordinate. Returns a name, or null on
+// failure (the caller falls back to a generic label — never raw coordinates).
 const geocodeCache = new Map()
 export async function reverseGeocode(lat, lng) {
   if (lat == null || lng == null) return null
@@ -160,19 +33,5 @@ export async function reverseGeocode(lat, lng) {
     return name
   } catch {
     return null
-  }
-}
-
-// Build an initial location from the profile pincode / localStorage / default. The split
-// shape: rawCoords (for weather — resolved from the pincode by the consumer until a GPS
-// fix supplies precise ones) and matchedVillage (for village-anchored features — the
-// default pincode is always in-area, distance 0).
-export function initialLocation(profilePincode) {
-  const pincode = resolvePincode(profilePincode)
-  return {
-    rawCoords: null,
-    matchedVillage: { pincode, village_town: null, distanceKm: 0 },
-    label: '',
-    source: 'default',
   }
 }

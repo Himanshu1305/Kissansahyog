@@ -1,36 +1,101 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import VoiceSearchButton from './VoiceSearchButton'
+import { useNativeBack } from '../lib/useNativeBack'
 
-// Phase 10 — NavBar search. Desktop: inline input + mic. Mobile: a 🔍 button that
-// opens a full-screen overlay with a large input + mic. Both submit to /search?q=.
+// Phase 10 — NavBar search. Tablet (md–lg): inline input + mic. Desktop (lg+, Batch 7H):
+// a compact 🔍 button + mic that expands into the search field, so the header stays on
+// one row. Mobile: a 🔍 button that opens a full-screen overlay with a large input +
+// mic. All of them submit to /search?q=.
 // No hardcoded Devanagari — all copy via t().
-export default function SearchBar() {
+export default function SearchBar({ variant = 'nav' }) {
   const { t } = useLang()
   const navigate = useNavigate()
   const [q, setQ] = useState('')
   const [open, setOpen] = useState(false)
+  const [wide, setWide] = useState(false) // desktop: is the compact search expanded
+  const boxRef = useRef(null)
+  const inputRef = useRef(null)
+  const toggleRef = useRef(null)
+  useNativeBack(open, () => setOpen(false))
+
+  // Desktop compact search: focus the field when it opens; outside click or Esc closes it.
+  useEffect(() => {
+    if (!wide) return
+    inputRef.current?.focus()
+    const onDoc = (e) => { if (boxRef.current && !boxRef.current.contains(e.target)) setWide(false) }
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      setWide(false)
+      toggleRef.current?.focus()
+    }
+    document.addEventListener('pointerdown', onDoc)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('pointerdown', onDoc)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [wide])
 
   const go = (text) => {
     const query = String(text ?? q).trim()
     if (!query) return
     setOpen(false)
+    setWide(false)
     navigate(`/search?q=${encodeURIComponent(query)}`)
   }
   const onSubmit = (e) => { e.preventDefault(); go() }
 
+  if (variant === 'hero') {
+    return (
+      <form onSubmit={onSubmit} className="flex flex-wrap items-center gap-2 rounded-2xl border-2 border-[var(--ks-border-strong)] bg-white p-2 shadow-sm">
+        <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('home_search_placeholder')} aria-label={t('home_search_placeholder')} className="min-w-0 flex-1 bg-transparent px-3 py-3 text-base outline-none" />
+        <VoiceSearchButton onTranscript={(txt) => { setQ(txt); go(txt) }} className="shrink-0" />
+        <button type="submit" className="rounded-xl bg-[var(--ks-primary)] px-5 py-3 font-bold text-white">{t('search_open')}</button>
+      </form>
+    )
+  }
+
   return (
     <>
-      {/* Desktop: inline search */}
-      <form onSubmit={onSubmit} className="hidden md:flex items-center gap-1 rounded-full border border-stone-300 bg-white px-2 py-1">
+      {/* Desktop (lg+): 🔍 + mic; 🔍 opens the field over the nav, to the left of the buttons */}
+      <form ref={boxRef} onSubmit={onSubmit} role="search" data-testid="nav-search" className="relative hidden items-center gap-1 lg:flex">
+        <div id="nav-search-field" hidden={!wide} className="absolute right-full top-1/2 z-40 mr-1 -translate-y-1/2 rounded-full border border-stone-300 bg-white px-2 py-1.5 shadow-md">
+          <input
+            ref={inputRef}
+            type="search"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder={t('search_placeholder')}
+            aria-label={t('search_placeholder')}
+            className="w-64 bg-transparent px-2 text-sm outline-none xl:w-72"
+          />
+        </div>
+        <VoiceSearchButton compact onTranscript={(txt) => { setQ(txt); setWide(true) }} />
+        <button
+          ref={toggleRef}
+          type={wide ? 'submit' : 'button'}
+          onClick={wide ? undefined : (e) => { e.preventDefault(); setWide(true) }}
+          aria-label={t('search_open')}
+          aria-expanded={wide}
+          aria-controls="nav-search-field"
+          data-testid="nav-search-toggle"
+          className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-[var(--ks-border-strong)] bg-white text-green-700 hover:bg-green-50"
+        >
+          🔍
+        </button>
+      </form>
+
+      {/* Tablet (md–lg): inline search */}
+      <form onSubmit={onSubmit} className="hidden md:flex lg:hidden items-center gap-1 rounded-full border border-stone-300 bg-white px-2 py-1">
         <input
           type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder={t('search_placeholder')}
           aria-label={t('search_placeholder')}
-          className="w-36 bg-transparent px-2 text-sm outline-none lg:w-44"
+          className="w-28 bg-transparent px-2 text-sm outline-none lg:w-44"
         />
         <VoiceSearchButton onTranscript={(txt) => setQ(txt)} />
         <button
@@ -47,13 +112,13 @@ export default function SearchBar() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label={t('search_open')}
-        className="md:hidden rounded-full p-2 text-green-700 hover:bg-green-50"
+        className="md:hidden rounded-full px-1 py-2 text-green-700 hover:bg-green-50"
       >
         🔍
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-white md:hidden">
+        <div className="ks-overlay fixed inset-0 z-50 flex flex-col bg-white md:hidden">
           <div className="flex items-center gap-2 border-b border-stone-200 p-3">
             <button
               type="button"

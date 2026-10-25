@@ -1,0 +1,402 @@
+[
+  {
+    "name": "360-hi home: no horizontal scroll",
+    "ok": true,
+    "detail": "{\"doc\":360,\"win\":360}"
+  },
+  {
+    "name": "360-hi home: no overlapping header items (4)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-hi strip: title is the briefed line",
+    "ok": true,
+    "detail": "बिना लॉगिन के सारी जानकारी देखें"
+  },
+  {
+    "name": "360-hi strip: near the top, above the hero, inside the screen",
+    "ok": true,
+    "detail": "{\"x\":0,\"y\":184,\"width\":360,\"height\":185}"
+  },
+  {
+    "name": "360-hi strip: five open pages + the how-to link",
+    "ok": true,
+    "detail": "/msp,/yojana,/sawaal,/cold-storage,/kisan-mela,/how-to-use"
+  },
+  {
+    "name": "360-hi strip: its 7 parts do not overlap or leave the screen",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-hi strip: every link is at least 40px tall (40px)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-hi promotion: one hero badge and one line by the post button, reading exactly \"निःशुल्क रजिस्ट्रेशन\"",
+    "ok": true,
+    "detail": "{\"badge\":[\"✓ निःशुल्क रजिस्ट्रेशन\"],\"line\":[\"✓ निःशुल्क रजिस्ट्रेशन\"]}"
+  },
+  {
+    "name": "360-hi promotion: the phrase appears nowhere else on the homepage",
+    "ok": true,
+    "detail": "count 2"
+  },
+  {
+    "name": "360-hi promotion: badge and line do not overlap anything in the hero",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-hi promotion: the line sits directly under the post-listing button",
+    "ok": true,
+    "detail": "{\"gap\":8,\"alignedRight\":true}"
+  },
+  {
+    "name": "360-hi home: no other \"free / मुफ़्त\" wording anywhere on the page (install banner included)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-hi hero tiles: none empty, none showing just \"—\" (3 tiles)",
+    "ok": true,
+    "detail": "[\"मौसम 32° · साफ आसमान अगले 2 दिन बारिश नहीं · 5 दिन का पूर्वानुमान →\",\"आज का भाव गेहूं ₹2,560 MSP ₹2,585 से ₹25 नीचे · पूरी सूची →\",\"आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन\"]"
+  },
+  {
+    "name": "360-hi category grid: 15 tiles in 2 columns, every row filled to the edge, no tile without a label",
+    "ok": true,
+    "detail": "{\"tiles\":15,\"rows\":8,\"ragged\":0,\"empty\":0,\"cols\":2,\"imgCount\":15}"
+  },
+  {
+    "name": "360-hi home: no broken images",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-hi home: no card or tile with nothing in it",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-hi mela cards: no place line that is just the country (3 cards)",
+    "ok": true,
+    "detail": "📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka | 📍 Lucknow (ICAR-Indian Sugarcane Research Institute campus per organizer materials), Lucknow, Uttar Pradesh"
+  },
+  {
+    "name": "360-en home: no horizontal scroll",
+    "ok": true,
+    "detail": "{\"doc\":360,\"win\":360}"
+  },
+  {
+    "name": "360-en home: no overlapping header items (4)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-en strip: title is the briefed line",
+    "ok": true,
+    "detail": "See all information without logging in"
+  },
+  {
+    "name": "360-en strip: near the top, above the hero, inside the screen",
+    "ok": true,
+    "detail": "{\"x\":0,\"y\":205,\"width\":360,\"height\":185}"
+  },
+  {
+    "name": "360-en strip: five open pages + the how-to link",
+    "ok": true,
+    "detail": "/msp,/yojana,/sawaal,/cold-storage,/kisan-mela,/how-to-use"
+  },
+  {
+    "name": "360-en strip: its 7 parts do not overlap or leave the screen",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-en strip: every link is at least 40px tall (40px)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-en promotion: one hero badge and one line by the post button, reading exactly \"Free Registration\"",
+    "ok": true,
+    "detail": "{\"badge\":[\"✓ Free Registration\"],\"line\":[\"✓ Free Registration\"]}"
+  },
+  {
+    "name": "360-en promotion: the phrase appears nowhere else on the homepage",
+    "ok": true,
+    "detail": "count 2"
+  },
+  {
+    "name": "360-en promotion: badge and line do not overlap anything in the hero",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-en promotion: the line sits directly under the post-listing button",
+    "ok": true,
+    "detail": "{\"gap\":8,\"alignedRight\":true}"
+  },
+  {
+    "name": "360-en home: no other \"free / मुफ़्त\" wording anywhere on the page (install banner included)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-en hero tiles: none empty, none showing just \"—\" (3 tiles)",
+    "ok": true,
+    "detail": "[\"Weather 32° · Clear sky No rain for the next 2 days · 5-day forecast →\",\"Today's price Wheat ₹2,560 MSP ₹2,585 is ₹25 below · Full list →\",\"Today's advice A good day for spraying and harvest\"]"
+  },
+  {
+    "name": "360-en category grid: 15 tiles in 2 columns, every row filled to the edge, no tile without a label",
+    "ok": true,
+    "detail": "{\"tiles\":15,\"rows\":8,\"ragged\":0,\"empty\":0,\"cols\":2,\"imgCount\":15}"
+  },
+  {
+    "name": "360-en home: no broken images",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-en home: no card or tile with nothing in it",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360-en mela cards: no place line that is just the country (3 cards)",
+    "ok": true,
+    "detail": "📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka | 📍 Lucknow (ICAR-Indian Sugarcane Research Institute campus per organizer materials), Lucknow, Uttar Pradesh"
+  },
+  {
+    "name": "360 sign-up: \"✓ निःशुल्क रजिस्ट्रेशन\" sits between the heading and the form",
+    "ok": true,
+    "detail": "{\"sBox\":{\"x\":16,\"y\":133,\"width\":140.578125,\"height\":28},\"h1\":85,\"form\":173}"
+  },
+  {
+    "name": "360 sign-up: no horizontal scroll",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360 terms: general note shown once, 16 clauses, Hindi labels, no \"free\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360 terms: no horizontal scroll",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "360 tab icon: svg, 48px and 32px icons are linked and load",
+    "ok": true,
+    "detail": "{\"links\":[\"/icons/favicon.svg\",\"/icons/favicon-48.png\",\"/icons/favicon-32.png\"],\"loaded\":[\"image/svg+xml\",\"image/png\",\"image/png\"]}"
+  },
+  {
+    "name": "360 safety: nothing was written to the database",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-hi home: no horizontal scroll",
+    "ok": true,
+    "detail": "{\"doc\":1280,\"win\":1280}"
+  },
+  {
+    "name": "1280-hi home: no overlapping header items (15)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-hi strip: title is the briefed line",
+    "ok": true,
+    "detail": "बिना लॉगिन के सारी जानकारी देखें"
+  },
+  {
+    "name": "1280-hi strip: near the top, above the hero, inside the screen",
+    "ok": true,
+    "detail": "{\"x\":0,\"y\":159,\"width\":1280,\"height\":61}"
+  },
+  {
+    "name": "1280-hi strip: five open pages + the how-to link",
+    "ok": true,
+    "detail": "/msp,/yojana,/sawaal,/cold-storage,/kisan-mela,/how-to-use"
+  },
+  {
+    "name": "1280-hi strip: its 7 parts do not overlap or leave the screen",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-hi strip: every link is at least 40px tall (40px)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-hi promotion: one hero badge and one line by the post button, reading exactly \"निःशुल्क रजिस्ट्रेशन\"",
+    "ok": true,
+    "detail": "{\"badge\":[\"✓ निःशुल्क रजिस्ट्रेशन\"],\"line\":[\"✓ निःशुल्क रजिस्ट्रेशन\"]}"
+  },
+  {
+    "name": "1280-hi promotion: the phrase appears nowhere else on the homepage",
+    "ok": true,
+    "detail": "count 2"
+  },
+  {
+    "name": "1280-hi promotion: badge and line do not overlap anything in the hero",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-hi promotion: the line sits directly under the post-listing button",
+    "ok": true,
+    "detail": "{\"gap\":8,\"alignedRight\":true}"
+  },
+  {
+    "name": "1280-hi home: no other \"free / मुफ़्त\" wording anywhere on the page (install banner included)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-hi hero tiles: none empty, none showing just \"—\" (3 tiles)",
+    "ok": true,
+    "detail": "[\"मौसम 32° · साफ आसमान अगले 2 दिन बारिश नहीं · 5 दिन का पूर्वानुमान →\",\"आज का भाव गेहूं ₹2,560 MSP ₹2,585 से ₹25 नीचे · पूरी सूची →\",\"आज की सलाह छिड़काव और कटाई के लिए अच्छा दिन\"]"
+  },
+  {
+    "name": "1280-hi category grid: 15 tiles in 5 columns, every row filled to the edge, no tile without a label",
+    "ok": true,
+    "detail": "{\"tiles\":15,\"rows\":3,\"ragged\":0,\"empty\":0,\"cols\":5,\"imgCount\":15}"
+  },
+  {
+    "name": "1280-hi home: no broken images",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-hi home: no card or tile with nothing in it",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-hi mela cards: no place line that is just the country (3 cards)",
+    "ok": true,
+    "detail": "📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka | 📍 Lucknow (ICAR-Indian Sugarcane Research Institute campus per organizer materials), Lucknow, Uttar Pradesh"
+  },
+  {
+    "name": "1280-en home: no horizontal scroll",
+    "ok": true,
+    "detail": "{\"doc\":1280,\"win\":1280}"
+  },
+  {
+    "name": "1280-en home: no overlapping header items (15)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-en strip: title is the briefed line",
+    "ok": true,
+    "detail": "See all information without logging in"
+  },
+  {
+    "name": "1280-en strip: near the top, above the hero, inside the screen",
+    "ok": true,
+    "detail": "{\"x\":0,\"y\":159,\"width\":1280,\"height\":61}"
+  },
+  {
+    "name": "1280-en strip: five open pages + the how-to link",
+    "ok": true,
+    "detail": "/msp,/yojana,/sawaal,/cold-storage,/kisan-mela,/how-to-use"
+  },
+  {
+    "name": "1280-en strip: its 7 parts do not overlap or leave the screen",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-en strip: every link is at least 40px tall (40px)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-en promotion: one hero badge and one line by the post button, reading exactly \"Free Registration\"",
+    "ok": true,
+    "detail": "{\"badge\":[\"✓ Free Registration\"],\"line\":[\"✓ Free Registration\"]}"
+  },
+  {
+    "name": "1280-en promotion: the phrase appears nowhere else on the homepage",
+    "ok": true,
+    "detail": "count 2"
+  },
+  {
+    "name": "1280-en promotion: badge and line do not overlap anything in the hero",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-en promotion: the line sits directly under the post-listing button",
+    "ok": true,
+    "detail": "{\"gap\":8,\"alignedRight\":true}"
+  },
+  {
+    "name": "1280-en home: no other \"free / मुफ़्त\" wording anywhere on the page (install banner included)",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-en hero tiles: none empty, none showing just \"—\" (3 tiles)",
+    "ok": true,
+    "detail": "[\"Weather 32° · Clear sky No rain for the next 2 days · 5-day forecast →\",\"Today's price Wheat ₹2,560 MSP ₹2,585 is ₹25 below · Full list →\",\"Today's advice A good day for spraying and harvest\"]"
+  },
+  {
+    "name": "1280-en category grid: 15 tiles in 5 columns, every row filled to the edge, no tile without a label",
+    "ok": true,
+    "detail": "{\"tiles\":15,\"rows\":3,\"ragged\":0,\"empty\":0,\"cols\":5,\"imgCount\":15}"
+  },
+  {
+    "name": "1280-en home: no broken images",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-en home: no card or tile with nothing in it",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280-en mela cards: no place line that is just the country (3 cards)",
+    "ok": true,
+    "detail": "📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra | 📍 GKVK Campus, Bengaluru, Karnataka | 📍 Lucknow (ICAR-Indian Sugarcane Research Institute campus per organizer materials), Lucknow, Uttar Pradesh"
+  },
+  {
+    "name": "1280 sign-up: \"✓ निःशुल्क रजिस्ट्रेशन\" sits between the heading and the form",
+    "ok": true,
+    "detail": "{\"sBox\":{\"x\":72,\"y\":149,\"width\":140.578125,\"height\":28},\"h1\":101,\"form\":189}"
+  },
+  {
+    "name": "1280 sign-up: no horizontal scroll",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280 terms: general note shown once, 16 clauses, Hindi labels, no \"free\"",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280 terms: no horizontal scroll",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "1280 tab icon: svg, 48px and 32px icons are linked and load",
+    "ok": true,
+    "detail": "{\"links\":[\"/icons/favicon.svg\",\"/icons/favicon-48.png\",\"/icons/favicon-32.png\"],\"loaded\":[\"image/svg+xml\",\"image/png\",\"image/png\"]}"
+  },
+  {
+    "name": "1280 safety: nothing was written to the database",
+    "ok": true,
+    "detail": ""
+  }
+]

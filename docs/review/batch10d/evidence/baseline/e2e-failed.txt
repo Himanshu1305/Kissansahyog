@@ -1,0 +1,47 @@
+e2e\batch1.spec.js:109:1 › post flow (3 steps): land OFFER end to end
+e2e\batch1.spec.js:130:1 › post flow (3 steps): labor REQUIREMENT end to end
+e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 1280×800 viewport, no h-scroll
+e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 375×812 viewport, no h-scroll
+e2e\batch1.spec.js:66:1 › logged out: browse equipment, Call asks for login and returns to the same listing
+e2e\batch5a.spec.js:23:1 › posts building materials and displays the seller responsibility note
+e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Rare or emergency equipment
+e2e\batch5a.spec.js:43:3 › posts and filters equipment tagged Vegetable farming equipment
+e2e\guide-10c.spec.js:119:7 › Guide en 360px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+e2e\guide-10c.spec.js:119:7 › Guide en 412px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+e2e\guide-10c.spec.js:119:7 › Guide hi 360px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+e2e\guide-10c.spec.js:119:7 › Guide hi 412px › F2 every demo plays to the finish, marks done; hub shows 4 / 4 and the badge
+e2e\guide-10c.spec.js:151:7 › Guide hi 360px › F3 try-it: tapping the highlighted target advances, tapping elsewhere does not
+e2e\guide-10c.spec.js:151:7 › Guide hi 412px › F3 try-it: tapping the highlighted target advances, tapping elsewhere does not
+e2e\guide-10c.spec.js:182:7 › Guide en 360px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+e2e\guide-10c.spec.js:182:7 › Guide en 412px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+e2e\guide-10c.spec.js:182:7 › Guide hi 360px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+e2e\guide-10c.spec.js:182:7 › Guide hi 412px › F4 jumping to a later step shows that step's state; F5 no OTP step with the shipped flag
+e2e\guide-10c.spec.js:227:7 › Guide en 360px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+e2e\guide-10c.spec.js:227:7 › Guide en 412px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+e2e\guide-10c.spec.js:227:7 › Guide hi 360px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+e2e\guide-10c.spec.js:227:7 › Guide hi 412px › F6 GuideSheet on /signup keeps typed name + mobile; Back closes it and stays on /signup
+e2e\guide-10c.spec.js:323:3 › F8 en: no horizontal overflow at 320/360/412/1024 on every guide page; no clipped text
+e2e\guide-10c.spec.js:323:3 › F8 hi: no horizontal overflow at 320/360/412/1024 on every guide page; no clipped text
+e2e\guide-10c.spec.js:391:3 › F11 battery and data care › hub scene pauses when scrolled away and when the page is hidden; tour rotation too
+e2e\guide-10c.spec.js:440:3 › F11 battery and data care › looping / running animations use only transform and opacity (hub, tour, demo mid-play)
+e2e\guide-10c.spec.js:483:3 › F11 battery and data care › data saver: hero static, tour does not rotate, demos still finish
+e2e\guide-10c.spec.js:511:3 › F11 battery and data care › reduced motion: no finger, no confetti, hero static, no tour rotation; steps still reach the end
+e2e\guide-10c.spec.js:71:7 › Guide en 360px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+e2e\guide-10c.spec.js:71:7 › Guide en 412px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+e2e\guide-10c.spec.js:71:7 › Guide hi 360px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+e2e\guide-10c.spec.js:71:7 › Guide hi 412px › F1 hub: four cards, no ErrorBoundary, no console errors, no failed backend requests
+e2e\phase11_location_compare.spec.js:7:3 › Phase 2 — mandi comparison (auto-nearest default, cap 5) › edge: zero selected shows the auto-nearest table, not a blank state
+e2e\phase14_village_geocoding.spec.js:14:1 › Land/Equipment form asks for a VILLAGE name with autocomplete, not a pincode
+e2e\phase16_legal_availability.spec.js:44:1 › seller rules-compliance checkbox is present and gates the submit button
+e2e\phase18_transport.spec.js:25:1 › Transport is a full browse category — chip present, Land still last, no stale count
+e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded
+e2e\phase2.spec.js:107:1 › login with unknown phone shows not-found path
+e2e\phase2.spec.js:117:1 › language persists across logout/login
+e2e\phase3.spec.js:45:1 › land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals number
+e2e\phase3.spec.js:72:1 › land REQUIREMENT: 3-step flow, single confirm checkbox
+e2e\phase4.spec.js:32:1 › equipment OFFER with availability toggle (3-step flow)
+e2e\phase5.spec.js:32:1 › labor OFFER with blank rate renders cleanly (no undefined)
+e2e\phase6.spec.js:33:1 › mark Found closes listing: disappears from browse, stays (Found) in My Listings
+e2e\phase6.spec.js:64:1 › expired listing shows Expired in My Listings and is absent from browse
+e2e\phase7.spec.js:69:1 › posting works in Hindi UI (functional, not just visual)
+e2e\phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one

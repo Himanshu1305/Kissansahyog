@@ -1,0 +1,4 @@
+PASS  prerendered pages found (263)
+PASS  every prerendered page passes SEO structure checks
+
+2 passed, 0 failed

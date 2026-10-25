@@ -1,0 +1,8 @@
+{
+  "packages": [
+    "package:com.kissansahyog.app",
+    "package:com.kissansahyog.app.staging"
+  ],
+  "inStaging": "marker-1792039845984",
+  "inProd": null
+}

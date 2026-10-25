@@ -1,0 +1,3 @@
+# Batch 10G Phase 0 — failing e2e tests on the baseline (release-10f c44c418, frozen build:full dist on :4201)
+# 190 passed / 1 failed of 191 (one file at a time, --workers=1).
+[chromium] › e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded (11.9s)

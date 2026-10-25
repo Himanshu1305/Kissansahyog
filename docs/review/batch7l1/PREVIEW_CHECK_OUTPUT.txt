@@ -1,0 +1,49 @@
+PASS  hi-390: places come from the live production table (54 rows, 200)  [200 54 rows]
+PASS  hi-390: card shows the new wording, not "three things"  [📍 अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे ]
+PASS  hi-390: no place is assumed before the visitor answers (no banner)
+PASS  hi-390: refused → text box, and no pincode box
+PASS  hi-390: misspelt "Chatarpu" → "Did you mean…?" offers Chhatarpur
+PASS  hi-390: Chhatarpur lists 12 towns and never the unverified Lavkush Nagar  [12 towns]
+PASS  hi-390: picked town becomes the location (banner, source "picked")
+PASS  hi-390: /mausam shows weather for the saved place
+PASS  hi-390: /msp renders with the saved place
+PASS  hi-390: device position near Khurai is named "खुरई" from the places list, no outside naming call  [0 BigDataCloud calls]
+PASS  hi-1440: places come from the live production table (54 rows, 200)  [200 54 rows]
+PASS  hi-1440: card shows the new wording, not "three things"  [📍 अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे ]
+PASS  hi-1440: no place is assumed before the visitor answers (no banner)
+PASS  hi-1440: refused → text box, and no pincode box
+PASS  hi-1440: misspelt "Chatarpu" → "Did you mean…?" offers Chhatarpur
+PASS  hi-1440: Chhatarpur lists 12 towns and never the unverified Lavkush Nagar  [12 towns]
+PASS  hi-1440: picked town becomes the location (banner, source "picked")
+PASS  hi-1440: /mausam shows weather for the saved place
+PASS  hi-1440: /msp renders with the saved place
+PASS  hi-1440: device position near Khurai is named "खुरई" from the places list, no outside naming call  [0 BigDataCloud calls]
+PASS  en-390: places come from the live production table (54 rows, 200)  [200 54 rows]
+PASS  en-390: card shows the new wording, not "three things"  [📍 Share your location to see offers, mandi prices and weather near you, and how far melas]
+PASS  en-390: no place is assumed before the visitor answers (no banner)
+PASS  en-390: refused → text box, and no pincode box
+PASS  en-390: misspelt "Chatarpu" → "Did you mean…?" offers Chhatarpur
+PASS  en-390: Chhatarpur lists 12 towns and never the unverified Lavkush Nagar  [12 towns]
+PASS  en-390: picked town becomes the location (banner, source "picked")
+PASS  en-390: /mausam shows weather for the saved place
+PASS  en-390: /msp renders with the saved place
+PASS  en-390: device position near Khurai is named "Khurai" from the places list, no outside naming call  [0 BigDataCloud calls]
+PASS  en-1440: places come from the live production table (54 rows, 200)  [200 54 rows]
+PASS  en-1440: card shows the new wording, not "three things"  [📍 Share your location to see offers, mandi prices and weather near you, and how far melas]
+PASS  en-1440: no place is assumed before the visitor answers (no banner)
+PASS  en-1440: refused → text box, and no pincode box
+PASS  en-1440: misspelt "Chatarpu" → "Did you mean…?" offers Chhatarpur
+PASS  en-1440: Chhatarpur lists 12 towns and never the unverified Lavkush Nagar  [12 towns]
+PASS  en-1440: picked town becomes the location (banner, source "picked")
+PASS  en-1440: /mausam shows weather for the saved place
+PASS  en-1440: /msp renders with the saved place
+PASS  en-1440: device position near Khurai is named "Khurai" from the places list, no outside naming call  [0 BigDataCloud calls]
+INFO  for comparison, the current LIVE site (old code) made 16 requests with is_sagar_district
+PASS  every database request went to the production project  [eltmcznjcqiahqhjvpjg]
+PASS  "local mandi" queries used in_sagar_division and succeeded  [40 requests]
+PASS  the is_sagar_district fallback path was NOT used  [0 requests]
+PASS  the bundled places fallback file was never loaded  [0 loads]
+INFO  database requests: 284, failed: 0
+INFO  visitor writes answered locally (not sent): POST weather_grid_requests, POST rpc/cache_weather_cell
+
+44 passed, 0 failed → C:\Users\usdvi\projects\Kissansahyog\docs\review\batch7l1\stageB

@@ -15,6 +15,10 @@ const CODE_TO_KEY = {
   pincode_not_found: 'err_pincode_not_found',
   phone_exists: 'err_phone_exists',
   not_found: 'err_not_found',
+  too_many_attempts: 'err_too_many_attempts',
+  place_required: 'err_place_required',
+  registration_incomplete: 'err_registration_incomplete',
+  contact_hidden: 'err_contact_hidden',
   self_declaration_required: 'err_self_declaration_required',
   equipment_type_required: 'err_equipment_type_required',
   vehicle_type_required: 'err_vehicle_type_required',
@@ -76,6 +80,29 @@ const CODE_TO_KEY = {
   target_id_required: 'err_report_failed',
   rate_limited: 'err_report_rate_limited',
   invalid_action: 'err_report_failed',
+  equipment_spec_invalid: 'err_equipment_spec_invalid',
+  // Batch 11A — OTP and session (our own codes; provider messages never reach the app)
+  otp_wrong: 'err_otp_wrong',
+  otp_expired: 'err_otp_expired',
+  otp_invalid: 'err_otp_expired',
+  otp_too_many: 'err_otp_too_many',
+  otp_cooldown: 'err_otp_cooldown',
+  otp_service_busy: 'err_otp_service_busy',
+  otp_code_format: 'err_otp_code_format',
+  otp_required: 'err_otp_required',
+  phone_not_registered: 'err_phone_not_registered', // 11B: login with a number that has no account
+  not_authenticated: 'err_not_authenticated',
+  // Batch 14A - admin console and blocked accounts
+  account_blocked: 'err_account_blocked',
+  session_required: 'err_admin_session',
+  super_required: 'err_admin_super',
+  cannot_block_self: 'err_admin_self',
+  cannot_change_self: 'err_admin_self',
+  cannot_block_admin: 'err_admin_block_admin',
+  last_super_admin: 'err_admin_last_super',
+  confirm_required: 'err_admin_confirm',
+  reason_required: 'err_admin_reason',
+  invalid_key: 'err_admin_invalid',
 }
 
 export class AppError extends Error {
@@ -91,6 +118,10 @@ export class AppError extends Error {
 export function toAppError(error) {
   if (error instanceof AppError) return error
   const raw = String(error?.message || error || '').toLowerCase()
+  // Batch 9C (migration 0063): "equipment_spec_invalid:<field>:<required|range>" names the field, so the
+  // equipment form can show the same message as its own check.
+  const spec = raw.match(/equipment_spec_invalid:([a-z_]+):([a-z_]+)/)
+  if (spec) return Object.assign(new AppError('equipment_spec_invalid'), { field: spec[1], reason: spec[2] })
   for (const code of Object.keys(CODE_TO_KEY)) {
     if (raw.includes(code)) return new AppError(code)
   }

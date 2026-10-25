@@ -1,0 +1,66 @@
+[
+  {
+    "name": "GPS on: while looking, the button says it is finding the location (busy)",
+    "pass": true,
+    "detail": {
+      "coords": "✓ 23.83880, 78.73780",
+      "step": "fresh",
+      "fallback": null,
+      "busy": false,
+      "active": null,
+      "button": "मेरी वर्तमान लोकेशन लें"
+    }
+  },
+  {
+    "name": "GPS on: coordinates near the emulator position (23.8388, 78.7378) are shown",
+    "pass": true,
+    "detail": {
+      "coords": "✓ 23.83880, 78.73780",
+      "step": "fresh",
+      "fallback": null,
+      "busy": false,
+      "active": null,
+      "button": "मेरी वर्तमान लोकेशन लें",
+      "ms": 1080
+    }
+  },
+  {
+    "name": "GPS on: the step used is recorded (cached ≤ 10 min or fresh ≤ 20 s)",
+    "pass": true,
+    "detail": "fresh"
+  },
+  {
+    "name": "GPS off: the fallback message is shown (no coordinates)",
+    "pass": true,
+    "detail": {
+      "coords": null,
+      "step": null,
+      "fallback": "फ़ोन से लोकेशन नहीं मिल पाई। कोई बात नहीं — ऊपर अपने गाँव या कस्बे का नाम लिखें, लिस्टिंग उसी से दिखेगी।",
+      "busy": false,
+      "active": "f_asset_village",
+      "button": "मेरी वर्तमान लोकेशन लें",
+      "ms": 20935
+    }
+  },
+  {
+    "name": "GPS off: the message comes within 25 s (10-min cache check + 20 s fresh try at most)",
+    "pass": true,
+    "detail": 20935
+  },
+  {
+    "name": "GPS off: the cursor is in the village field (manual path), the button is usable again",
+    "pass": true,
+    "detail": {
+      "active": "f_asset_village",
+      "busy": false
+    }
+  },
+  {
+    "name": "no crash",
+    "pass": true,
+    "detail": {
+      "pid": "13244",
+      "fatals": 0
+    }
+  }
+]

@@ -1,9 +1,12 @@
 // Labor category module (posted by a contractor/group leader for a team).
 // details JSONB shape:
 //   { worker_count, work_type, available_from|null, available_to|null, rate_basis|null, rate_amount }
+// Batch 10E (3C): the dates come from the shared DateBlock (fields.jsx, rendered by Post.jsx);
+// available_from is mandatory on new posts.
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { OptionSelect, NumberField, TextField, DateField } from './fields'
+import { OptionSelect, NumberField, TextField } from './fields'
 import { WORK_TYPE, RATE_BASIS, optionLabel } from '../../lib/listings/catalog'
+import { datesRow } from '../../lib/listings/listingDates'
 
 export function initialDetails() {
   return {
@@ -26,9 +29,7 @@ export const locationPlaceholderKey = 'ph_labor_pincode'
 
 export function validate(details, listingType, t) {
   if (!details.worker_count || details.worker_count <= 0) return t('err_invalid_worker_count')
-  if (details.available_from && details.available_to && details.available_from > details.available_to) {
-    return t('err_invalid_date_range')
-  }
+  // Batch 10E: the dates (required start, end not before start) are checked by Post.jsx (checkListingDates).
   return null
 }
 
@@ -53,8 +54,6 @@ export function Fields({ details, setDetails }) {
         value={details.work_type}
         onChange={set('work_type')}
       />
-      <DateField name="available_from" label={t('field_from_date')} value={details.available_from} onChange={set('available_from')} hint={t('ph_labor_dates')} />
-      <DateField name="available_to" label={t('field_to_date')} value={details.available_to} onChange={set('available_to')} />
       <OptionSelect
         name="rate_basis"
         label={t('field_rate_basis')}
@@ -80,8 +79,8 @@ export function summarize(listing, lang) {
   if (d.worker_count != null)
     rows.push({ label: LABELS.workers[lang], value: `${d.worker_count} ${WORKERS_UNIT[lang]}` })
   if (d.work_type) rows.push({ label: LABELS.work[lang], value: optionLabel(WORK_TYPE, d.work_type, lang) })
-  if (d.available_from || d.available_to)
-    rows.push({ label: LABELS.dates[lang], value: [d.available_from, d.available_to].filter(Boolean).join(' → ') })
+  const dates = datesRow(listing, lang) // Batch 10E: "उपलब्ध: 20 अक्टू से" / "चाहिए: 22 अक्टू तक"
+  if (dates) rows.push(dates)
   // Rate: combine basis + amount; omit entirely if both blank (no "undefined").
   const rateParts = []
   if (d.rate_basis) rateParts.push(optionLabel(RATE_BASIS, d.rate_basis, lang))
@@ -93,7 +92,6 @@ export function summarize(listing, lang) {
 const LABELS = {
   workers: { hi: 'कृषि सहयोगी', en: 'Workers' },
   work: { hi: 'काम', en: 'Work' },
-  dates: { hi: 'तारीख़ें', en: 'Dates' },
   rate: { hi: 'दर', en: 'Rate' },
 }
 const WORKERS_UNIT = { hi: 'कृषि सहयोगी', en: 'workers' }

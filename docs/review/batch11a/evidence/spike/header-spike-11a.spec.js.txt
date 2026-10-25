@@ -1,0 +1,22 @@
+// Batch 11A Phase 0 spike (throw-away): can the browser on staging.kissansahyog.com send a custom
+// header to the Supabase REST endpoint (CORS) and can SQL read it?
+import { test, expect } from '@playwright/test'
+const URL_ = process.env.VITE_SUPABASE_URL
+const KEY = process.env.VITE_SUPABASE_ANON_KEY
+test('x-ks-session header reaches SQL from the staging origin', async ({ page }) => {
+  await page.goto('https://staging.kissansahyog.com/', { waitUntil: 'domcontentloaded' })
+  const out = await page.evaluate(async ({ url, key }) => {
+    try {
+      const res = await fetch(`${url}/rest/v1/rpc/kstest_spike_header`, {
+        method: 'POST',
+        headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json', 'x-ks-session': 'KSTEST-spike-token-123' },
+        body: '{}',
+      })
+      return { status: res.status, body: await res.text() }
+    } catch (e) { return { error: String(e) } }
+  }, { url: URL_, key: KEY })
+  console.log('SPIKE RESULT', JSON.stringify(out))
+  expect(out.error).toBeUndefined()
+  expect(out.status).toBe(200)
+  expect(JSON.parse(out.body)).toBe('KSTEST-spike-token-123')
+})

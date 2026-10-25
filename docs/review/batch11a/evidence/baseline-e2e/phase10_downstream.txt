@@ -1,0 +1,14 @@
+
+Running 8 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase10_downstream.spec.js:12:3 › downstream: / renders without fatal console errors (791ms)
+  ok 2 [chromium] › e2e\phase10_downstream.spec.js:12:3 › downstream: /msp/gehun renders without fatal console errors (1.8s)
+  ok 3 [chromium] › e2e\phase10_downstream.spec.js:12:3 › downstream: /mausam renders without fatal console errors (802ms)
+  ok 4 [chromium] › e2e\phase10_downstream.spec.js:12:3 › downstream: /drone-didi renders without fatal console errors (915ms)
+  ok 5 [chromium] › e2e\phase10_downstream.spec.js:12:3 › downstream: /info renders without fatal console errors (879ms)
+  ok 6 [chromium] › e2e\phase10_downstream.spec.js:12:3 › downstream: /sawaal renders without fatal console errors (827ms)
+  ok 7 [chromium] › e2e\phase10_downstream.spec.js:21:1 › downstream: homepage mandi ticker + nearby counts + listings feed render (919ms)
+  ok 8 [chromium] › e2e\phase10_downstream.spec.js:36:1 › downstream: /drone-didi local listings section renders (929ms)
+[teardown] test data cleaned
+
+  8 passed (9.7s)

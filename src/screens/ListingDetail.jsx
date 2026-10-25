@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
@@ -12,12 +12,21 @@ import AvailabilityCalendar from '../components/AvailabilityCalendar'
 import ReportButton from '../components/ReportButton'
 import SponsoredBadge from '../components/SponsoredBadge'
 import RelatedBoxes from '../components/RelatedBoxes'
+import DisclaimerBanner from '../components/DisclaimerBanner'
 import { generateListingMessage } from '../lib/share/shareMessages'
 import { getCategory } from '../lib/listings/registry'
 import { loadExtras } from '../lib/listings/extras'
-import { fetchListingById, incrementContactClick, incrementListingView } from '../lib/listings/listingsApi'
+import { fetchListingById, incrementContactClick, incrementListingView, getMyListings } from '../lib/listings/listingsApi'
+import OwnerListingActions, { ownerStatus, Toast } from '../components/listing/OwnerListingActions'
+// Batch 10G: admin-only controls (rendered only for user.is_admin). A static import on purpose: a lazy
+// import here made the bundler pull the shared PageShell/auth chunk into the main chunk (+13 KB gzip).
+import AdminListingActions from '../components/listing/AdminListingActions'
 import { CATEGORY_META, LISTING_TYPE_META } from '../lib/listings/catalog'
 import { haversineKm } from '../lib/distance'
+import { publicOrigin } from '../lib/native'
+import OfflineStamp from '../components/OfflineStamp'
+import OfflineNotice from '../components/OfflineNotice'
+import { useOfflineInfo } from '../lib/offline/useOffline'
 
 export default function ListingDetail() {
   const { id } = useParams()
@@ -31,16 +40,31 @@ export default function ListingDetail() {
   const [listing, setListing] = useState(null)
   const [extras, setExtras] = useState({})
   const [loading, setLoading] = useState(true)
+  const listOffline = useOfflineInfo(['listings'])
   const [error, setError] = useState(null)
+  const [photoIndex, setPhotoIndex] = useState(0)
+  // Batch 10G: the seller's own view (status, admin-disable reason) and the toast after an action.
+  const [mine, setMine] = useState(null)
+  const [toast, setToast] = useState(null)
+  const clearToast = useCallback(() => setToast(null), [])
 
   useEffect(() => {
     let alive = true
     ;(async () => {
       try {
-        const row = await fetchListingById(id)
+        let row = await fetchListingById(id)
         if (!alive) return
+        // Batch 10G: the public read shows only active listings. The seller's own disabled (or
+        // otherwise hidden) listing comes from get_my_listings, so the seller can still see and manage it.
+        let own = null
+        if (user?.id && (!row || row.user_id === user.id)) {
+          own = (await getMyListings(user.id).catch(() => [])).find((x) => x.id === id) || null
+          if (!alive) return
+          if (own && !row) row = { ...own, user_id: user.id }
+        }
+        setMine(own)
         setListing(row)
-        if (row) { setExtras(await loadExtras(row.category)); incrementListingView(row.id) }
+        if (row) { setExtras(await loadExtras(row.category)); if (!own) incrementListingView(row.id) }
       } catch (err) {
         if (alive) setError(t(err.i18nKey || 'err_unknown'))
       } finally {
@@ -50,13 +74,13 @@ export default function ListingDetail() {
     return () => {
       alive = false
     }
-  }, [id, t])
+  }, [id, t, user?.id])
 
   if (loading) return <Screen title={t('detail_title')} onBack={onBack}><Spinner /></Screen>
   if (!listing)
     return (
       <Screen title={t('detail_title')} onBack={onBack}>
-        <p className="py-12 text-center text-stone-500">{t('listing_not_found')}</p>
+        {listOffline.failed ? <OfflineNotice ageMs={listOffline.tooOld ? listOffline.ageMs : null} className="my-6" /> : <p className="py-12 text-center text-stone-500">{t('listing_not_found')}</p>}
       </Screen>
     )
 
@@ -65,6 +89,7 @@ export default function ListingDetail() {
   const mod = getCategory(listing.category)
   const rows = mod.summarize(listing, lang, extras)
   const badges = mod.detailBadges ? mod.detailBadges(listing, lang) : []
+  const detailNote = mod.detailNote ? mod.detailNote(listing, lang) : null
   const photos = listing.details?.photo_urls || []
   const distance =
     user?.latitude != null && listing.latitude != null
@@ -75,6 +100,9 @@ export default function ListingDetail() {
     <Screen title={t('detail_title')} onBack={onBack}>
       {/* Listings are noindex for now (SEO for listings is a later batch). */}
       <Seo noindex path={`/listing/${listing.id}`} />
+      <OfflineStamp resources={['listings']} className="mb-2" />
+      {/* Batch 9B — a Post whose reply was lost: the retry found this listing instead of adding a copy. */}
+      {location.state?.alreadySaved && <Notice tone="success"><span data-testid="already-saved">{t('post_already_saved')}</span></Notice>}
       <div className="mb-4 flex items-center gap-2">
         <CatIcon category={listing.category} className="text-4xl" />
         <div>
@@ -107,6 +135,45 @@ export default function ListingDetail() {
           Hidden on your own listing; sends logged-out users to login and back. */}
       <ContactActions listing={listing} size="detail" className="mb-4" />
 
+      {/* Batch 10G — admins: disable / enable / delete permanently (server re-checks is_admin). */}
+      {user?.is_admin && (
+        <section data-testid="admin-panel-detail" className="mb-4 rounded-2xl border-2 border-red-200 bg-red-50/40 px-4 py-3">
+            <AdminListingActions
+              listing={listing}
+              actorId={user.id}
+              onError={(m) => { setError(m); setToast(m) }}
+              onChanged={(kind) => {
+                if (kind === 'deleted') { navigate('/admin', { replace: true }); return }
+                setListing((l) => ({ ...l, status: kind === 'disabled' ? 'disabled' : 'active', admin_disabled_at: kind === 'disabled' ? new Date().toISOString() : null }))
+                setToast(t(kind === 'disabled' ? 'admin_done_disabled' : 'admin_done_enabled'))
+              }}
+            />
+        </section>
+      )}
+
+      {/* Batch 10G — the seller's own listing: status + disable / enable + permanent delete. */}
+      {mine && (
+        <section data-testid="owner-panel" className="mb-4 rounded-2xl border-2 border-stone-200 bg-white px-4 py-3">
+          {(() => {
+            const st = ownerStatus({ ...mine, status: listing.status })
+            const key = { active: 'badge_active', disabled: 'badge_disabled', admin_disabled: 'badge_admin_disabled', closed: 'badge_found', expired: 'badge_expired', removed: 'status_removed' }[st]
+            const tone = st === 'active' ? 'bg-blue-100 text-blue-800' : st === 'admin_disabled' ? 'bg-red-100 text-red-800' : 'bg-stone-200 text-stone-700'
+            return <span data-testid="owner-status" data-status={st} className={`inline-block rounded-full px-2 py-0.5 text-xs font-bold ${tone}`}>{t(key)}</span>
+          })()}
+          <OwnerListingActions
+            listing={{ ...mine, status: listing.status }}
+            actorId={user.id}
+            onError={(m) => { setError(m); setToast(m) }}
+            onChanged={(kind, row) => {
+              if (kind === 'deleted') { navigate('/my', { replace: true, state: { toast: 'listing_deleted_toast' } }); return }
+              setListing((l) => ({ ...l, status: row?.status ?? l.status }))
+              setMine((m) => ({ ...m, status: row?.status ?? m.status }))
+              setToast(t(kind === 'disabled' ? 'listing_disabled_toast' : 'listing_enabled_toast'))
+            }}
+          />
+        </section>
+      )}
+
       {/* Category-specific prominent badges (e.g. Drone Didi govt scheme + services). */}
       {badges.length > 0 && (
         <div className="mb-4 flex flex-wrap gap-2">
@@ -124,16 +191,17 @@ export default function ListingDetail() {
       )}
 
       {photos.length > 0 && (
-        <div className="mb-4 flex gap-2 overflow-x-auto">
-          {photos.map((url, i) => (
-            <img key={i} src={url} alt="" loading="lazy" className="h-40 w-40 shrink-0 rounded-xl object-cover" />
-          ))}
+        <div className="mb-4">
+          <img src={photos[photoIndex]} alt={`${meta[lang]} ${photoIndex + 1}`} loading="lazy" className="h-64 w-full rounded-2xl object-cover" />
+          {photos.length > 1 && <div className="mt-2 flex gap-2 overflow-x-auto">{photos.map((url, i) => <button type="button" key={url} onClick={() => setPhotoIndex(i)} aria-label={`${meta[lang]} ${i + 1}`} className={`shrink-0 rounded-lg ${i === photoIndex ? 'ring-2 ring-green-700' : ''}`}><img src={url} alt="" loading="lazy" className="h-16 w-16 rounded-lg object-cover" /></button>)}</div>}
         </div>
       )}
 
+      {/* Batch 9C — equipment specs are what the seller typed; nobody checked them. */}
+      {detailNote && <p data-testid="spec-seller-note" className="mb-1 text-sm font-semibold text-stone-600">ℹ️ {detailNote}</p>}
       <dl className="mb-4 divide-y divide-stone-100 rounded-2xl border-2 border-stone-200 bg-white">
         {rows.map((r, i) => (
-          <div key={i} className="flex justify-between gap-4 px-4 py-3">
+          <div key={i} data-spec={r.spec || undefined} className="flex justify-between gap-4 px-4 py-3">
             <dt className="text-stone-500">{r.label}</dt>
             <dd className="text-right font-semibold text-stone-900">{r.value}</dd>
           </div>
@@ -147,6 +215,19 @@ export default function ListingDetail() {
           </div>
         )}
       </dl>
+
+      {/* Batch 10E (3B) — the owner's optional extra information: plain text (React escapes it; links are
+          NOT made clickable), the owner's line breaks kept. */}
+      {typeof listing.details?.extra_info === 'string' && listing.details.extra_info.trim() && (
+        <section data-testid="listing-extra-info" className="mb-4 rounded-2xl border-2 border-stone-200 bg-white px-4 py-3">
+          <h3 className="mb-1 text-sm font-semibold text-stone-500">{t('extra_info_title')}</h3>
+          <p className="whitespace-pre-line break-words text-base text-stone-900">{listing.details.extra_info}</p>
+        </section>
+      )}
+
+      <MapLink listing={listing} t={t} />
+
+      {mod.extraDisclaimerKey && <DisclaimerBanner which={mod.extraDisclaimerKey} className="mb-4" />}
 
       {/* Equipment offers: owner-maintained availability calendar (Phase 7a). */}
       {listing.category === 'equipment' && listing.listing_type === 'offer' && (
@@ -162,8 +243,8 @@ export default function ListingDetail() {
       {/* ks-allow-width: compact share button width */}
       <WhatsAppShareButton
         label={t('contact_share')}
-        message={generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)}
-        className="mx-auto mb-3 max-w-xs !bg-white !text-[var(--ks-green)] border-2 border-[var(--ks-green)] !py-1.5 text-sm"
+        message={generateListingMessage(listing, `${publicOrigin()}/listing/${listing.id}`, lang)}
+        className="mb-3 !bg-white !text-[var(--ks-green)] border-2 border-[var(--ks-green)] !py-1.5 text-sm"
         onClick={() => { if (!user || user.id !== listing.user_id) incrementContactClick(listing.id) }}
       />
 
@@ -173,6 +254,17 @@ export default function ListingDetail() {
       </div>
 
       <RelatedBoxes page="listing" />
+      <Toast message={toast} onDone={clearToast} />
     </Screen>
   )
+}
+
+function MapLink({ listing, t }) {
+  const details = listing.details || {}
+  const query = listing.latitude != null && listing.longitude != null
+    ? `${listing.latitude},${listing.longitude}`
+    : (listing.village_name || listing.village_town || details.from_location || '')
+  const href = details.map_url || (query ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}` : null)
+  if (!href) return null
+  return <a href={href} target="_blank" rel="noopener noreferrer" className="mb-4 inline-flex min-h-[44px] items-center rounded-xl border-2 border-green-700 px-4 py-2 font-bold text-green-800">{t('maps_open')}</a>
 }

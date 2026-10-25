@@ -1,0 +1,266 @@
+{
+  "run": {
+    "flavor": "staging",
+    "startedAt": "2026-10-14T20:51:18.442Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "installedAtStart": "android/ks-apks/ks-staging.apk",
+    "finishedAt": "2026-10-14T21:04:00.236Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "S4",
+      "name": "Signup",
+      "status": "RAN-PASSED",
+      "assertion": "A brand-new KSTEST user signs up through the real signup UI of the staging app; lands logged in; the session survives force-stop + relaunch",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/S4/after-signup.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S4/after-relaunch.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S4/signup.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/S4/checks.json"
+      ],
+      "durationMs": 34106,
+      "notes": ""
+    },
+    {
+      "id": "S5",
+      "name": "Logout / login",
+      "status": "RAN-PASSED",
+      "assertion": "Log out, log in again with the same mobile number (phone login); an unregistered and a malformed number are refused with the in-app message",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/S5/unregistered-number.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S5/logged-in-again.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S5/login.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/S5/checks.json"
+      ],
+      "durationMs": 23795,
+      "notes": "unregistered → \"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\"; malformed → \"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\"; phone login is trust-based (no OTP), lands on /home"
+    },
+    {
+      "id": "S6",
+      "name": "Post with photo",
+      "status": "RAN-PASSED",
+      "assertion": "As the KSTEST user, post a listing (marker KSTEST…) with a photo; it appears in My Listings and Browse; the detail page shows the photo (naturalWidth > 0) and the photo URL returns 200 from staging storage",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/S6/step2-with-photo.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S6/posted.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S6/detail.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S6/my-listings.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S6/browse.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S6/post.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/S6/checks.json"
+      ],
+      "durationMs": 41012,
+      "notes": "photo via Playwright setInputFiles (buffer); listing fda511b1-463f-4847-ba13-356a24944986"
+    },
+    {
+      "id": "S7",
+      "name": "Contact reveal",
+      "status": "RAN-PASSED",
+      "assertion": "A second KSTEST user reveals the number on user A's listing; logged out, the reveal goes to login with the return path and comes back after login",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/S7/revealed.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S7/back-after-login.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S7/reveal.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/S7/checks.json"
+      ],
+      "durationMs": 38463,
+      "notes": ""
+    },
+    {
+      "id": "S8",
+      "name": "Profile and My Listings",
+      "status": "RAN-PASSED",
+      "assertion": "Both render for the logged-in user; an edited profile field persists after relaunch (pincode behaviour recorded)",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/S8/my-listings.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S8/profile-saved.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/S8/profile.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/S8/checks.json"
+      ],
+      "durationMs": 31171,
+      "notes": "KNOWN ISSUE confirmed: saving needs a pincode (first save: \"कृपया सही 6 अंकों का पिन कोड भरें।\"); saved after entering 470001"
+    },
+    {
+      "id": "L1",
+      "name": "Post page location fallback",
+      "status": "RAN-PASSED",
+      "assertion": "Logged in, /post step 3, \"use my current location\": GPS on → coordinates near the emulator position (which step: cached ≤ 10 min / fresh ≤ 20 s recorded); GPS off → within ~25 s the clear fallback message and the cursor in the village field, no crash",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/L1/gps-on-coordinates.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/L1/gps-off-fallback.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/L1/location.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/L1/checks.json"
+      ],
+      "durationMs": 52365,
+      "notes": "GPS on → fresh; GPS off → fallback after 20935 ms"
+    },
+    {
+      "id": "K1",
+      "name": "Keyboard never hides a field",
+      "status": "RAN-PASSED",
+      "assertion": "For /login, /signup, /search, the feedback form (/grievance), Profile edit and every /post step: the LOWEST text field, tapped with a real on-screen keyboard drawn, is fully visible above the keyboard (a), its submit/next button scrolls into view with the keyboard up (b), and after closing the keyboard nothing stays covered (c). Forms needing an account are NOT-RUN where no login is allowed (prod)",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/post-step-2-details--keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/post-step-2-details--submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/post-step-3-location-confirm--keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/post-step-3-location-confirm--submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/profile-edit-keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/profile-edit-submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/login-keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/login-submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/signup-keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/signup-submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/search-keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/search-submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/feedback-grievance--keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/feedback-grievance--submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/measurements.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/K1/checks.json"
+      ],
+      "durationMs": 152664,
+      "notes": "7 forms measured"
+    },
+    {
+      "id": "O2",
+      "name": "Cache fills online",
+      "status": "RAN-PASSED",
+      "assertion": "Visiting /, /mausam (Sagar), /msp, /browse and a listing detail online stores an IndexedDB entry for each, with a recent cachedAt",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/O2/home.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O2/mausam.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O2/msp.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O2/browse_cat_bhusa.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O2/listing_fda511b1-463f-4847-ba13-356a24944986.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O2/idb-entries.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/O2/checks.json"
+      ],
+      "durationMs": 44721,
+      "notes": "53 entries, ~1250 KB"
+    },
+    {
+      "id": "O3",
+      "name": "Offline with cache",
+      "status": "RAN-PASSED",
+      "assertion": "Airplane mode, force-stop, cold launch: /, /mausam, /msp, /browse and the listing detail show the SAME data as online, with the stamp = stored time; no ErrorBoundary; banner does not cover the header",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/O3/home.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O3/mausam.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O3/msp.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O3/browse_cat_bhusa.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O3/listing_fda511b1-463f-4847-ba13-356a24944986.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O3/offline-pages.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/O3/checks.json"
+      ],
+      "durationMs": 53706,
+      "notes": ""
+    },
+    {
+      "id": "O4",
+      "name": "Offline without cache",
+      "status": "RAN-PASSED",
+      "assertion": "Cache cleared, offline, a freshly chosen place: /mausam and /msp show a clear offline message with a working \"try again\" within 10–12 s; no spinner remains",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/O4/mausam.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O4/msp.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/O4/timing.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/O4/checks.json"
+      ],
+      "durationMs": 21875,
+      "notes": "notice after {\"/mausam\":1670,\"/msp\":2482} ms"
+    },
+    {
+      "id": "H1",
+      "name": "Home shows one \"last updated\" time offline",
+      "status": "RAN-PASSED",
+      "assertion": "Online visit fills the cache; airplane mode + cold launch: Home shows the offline banner with its time and NO second stamp under the ticker (exactly one timestamp). Online-but-saved-data (banner gone, data still from the phone): the stamp is shown",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/H1/offline-home-one-timestamp.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/H1/banner-gone-saved-data-stamp.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/H1/timestamps.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/H1/checks.json"
+      ],
+      "durationMs": 35415,
+      "notes": ""
+    },
+    {
+      "id": "C1",
+      "name": "/cold-storage failed load (app)",
+      "status": "RAN-PASSED",
+      "assertion": "Cache emptied, airplane mode, cold launch: /cold-storage shows the \"could not load\" notice with \"try again\" (no ErrorBoundary, no uncaught error, no spinner left); back online, \"try again\" loads the list",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/C1/offline-cold-storage.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/C1/online-again-cold-storage.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/C1/cold-storage.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/C1/checks.json"
+      ],
+      "durationMs": 62249,
+      "notes": "notice after 1585 ms; 17 cache entries cleared first"
+    },
+    {
+      "id": "T9",
+      "name": "Edge-to-edge / safe areas",
+      "status": "RAN-PASSED",
+      "assertion": "API 36 portrait: NavBar below the status bar, tab bar buttons above the navigation bar and not covered, offline banner below the status bar, last footer link fully visible above the tab bar",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/home-top.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/home-offline-banner-forced.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/home-bottom.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/browse-top.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/browse-bottom.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/login-top.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/login-bottom.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/geometry.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/T9/checks.json"
+      ],
+      "durationMs": 36075,
+      "notes": "window padded by Capacitor (CSS insets 0); status bar bottom 136px, navigation bar top 2337px, dpr 2.625; the edge-to-edge CSS path was also checked with simulated insets"
+    },
+    {
+      "id": "T10",
+      "name": "Offline",
+      "status": "RAN-PASSED",
+      "assertion": "Airplane mode + cold launch: app shell renders (not a browser error page), offline banner visible, no crash; /, /browse, /mausam, /msp, /about show content or an in-app failure state; back online the banner goes within 15 s and /mausam loads data",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/offline-home.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/offline-home.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/offline-browse.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/offline-mausam.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/offline-msp.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/offline-about.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/offline-pages.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/online-again-mausam.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/reconnect.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/T10/checks.json"
+      ],
+      "durationMs": 106289,
+      "notes": "offline via cmd connectivity airplane-mode enable. What each page shows offline (input for batch 8B) — /: 4561 chars; temperatures 0, ₹ values 16, listings 0, ticker still loading false, spinners 0 || /browse: 1589 chars; temperatures 0, ₹ values 0, listings 0, ticker still loading false, spinners 0 || /mausam: 3186 chars; temperatures 31, ₹ values 0, listings 0, ticker still loading false, spinners 0 || /msp: 2530 chars; temperatures 0, ₹ values 10, listings 0, ticker still loading false, spinners 1 || /about: 2628 chars; temperatures 0, ₹ values 0, listings 0, ticker still loading false, spinners 0"
+    },
+    {
+      "id": "T14",
+      "name": "Keyboard + search",
+      "status": "RAN-PASSED",
+      "assertion": "On /search a real tap brings up a DRAWN on-screen keyboard (IME frame visible + screenshot differs), the focused input is fully visible above the keyboard and not covered, and a query known to have results renders results",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-run1/T14/keyboard-open.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T14/results.jpg",
+        "docs/review/batch9/evidence/phase1/staging-run1/T14/keyboard.json",
+        "docs/review/batch9/evidence/phase1/staging-run1/T14/checks.json"
+      ],
+      "durationMs": 23641,
+      "notes": "query \"wheat\" → 16 results; keyboard top 1517px, input bottom 495px"
+    }
+  ]
+}

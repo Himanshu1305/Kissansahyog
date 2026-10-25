@@ -1,0 +1,26 @@
+[
+  {
+    "name": "prod APK installed",
+    "pass": true,
+    "detail": "Success"
+  },
+  {
+    "name": "staging APK installed",
+    "pass": true,
+    "detail": "Success"
+  },
+  {
+    "name": "both packages are installed at the same time",
+    "pass": true,
+    "detail": "package:com.kissansahyog.app\npackage:com.kissansahyog.app.staging"
+  },
+  {
+    "name": "marker set in the staging app is readable there",
+    "pass": true
+  },
+  {
+    "name": "the prod app does not see it (separate data)",
+    "pass": true,
+    "detail": null
+  }
+]

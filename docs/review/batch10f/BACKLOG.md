@@ -1,0 +1,13 @@
+# Batch 10F — backlog (found, not done in this batch)
+
+| # | Item | Why it matters | Size |
+|---|---|---|---|
+| 1 | **Homepage first screen on 360 × 640.** The heading is on the first screen; the two big buttons and the demo button sit just below it (bottoms 667 / 743 / 828 px), because 440 px above the hero is kept (header, install strip, ticker, "बिना लॉगिन के सारी जानकारी देखें" strip, "पहली बार?" banner). E.g. the open strip as one sideways-scrolling row (≈ −110 px) and the install strip lower would bring them up. Founder choice (DECISIONS 10). | First-time visitors see the main actions without scrolling | S |
+| 2 | **Homepage animation** — deferred by the founder; only the mandi ticker scrolls now. | Founder decision | — |
+| 3 | **Collapsible sections on other pages** (same component, opt-in): `/yojana` and scheme pages (long benefit/eligibility/FAQ blocks), `/cold-storage` (district groups), `/kisan-mela` (month groups), `/sawaal` (category groups), `/fasal-salah`, `/agro-forestry`, `/carbon-credit`, `/greenhouse`, `/resources`, `/about`. | Less scrolling on long pages | S each |
+| 4 | **Lentil trend:** its few stable mandis sit at very different price levels, so the basket median moves more than the like-for-like change (DECISIONS 18). A like-for-like (chain) index would fit better but shows computed levels, not medians of real prices — needs a founder decision on wording. | Honest trend for thin, mixed crops | M |
+| 5 | **Re-check the basket rule on production data** (read-only snapshot with `scripts/batch10f/pull-mandi-90d.mjs` pointed at a production read replica/export, then `trend-investigate.mjs`) after the 10E backfill is pasted. Tuned on staging only (no production access by rule). | Same honesty on production | S |
+| 6 | **Prerender readiness on more pages.** `/drone-didi`, `/kisan-mela`, `/resources`, `/videos` and part of `/agro-forestry` are sometimes captured before their data loads (text only in the live render). `/mausam` and `/yojana` were fixed in 10F (DECISIONS 32). Same one-line `ready` fix per page. | SEO text in the HTML; steadier ship size gate | S |
+| 7 | **/msp today table at 360 px:** the last column ("MSP अंतर") is cut at the right edge (pre-existing, also in Phase 0). | Readability on small phones | S |
+| 8 | **Other pages' "पिछला भाव (17/10)" tags** still use dd/mm (only /msp switched to "17 अक्टू"; `PriceCell`/`StaleTag` have an opt-in `fmt`). | One date style site-wide | S |
+| 9 | **Trend's last day vs the table's newest day:** after the fix the chart can end a day before the newest table date when that day had few mandis (wheat: 16 vs 17 Oct); explained under the chart. A founder may prefer a dotted "provisional" last point instead. | Clarity | S |

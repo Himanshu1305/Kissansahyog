@@ -47,7 +47,7 @@ export default function Jugaad() {
 
       <h1 className="text-3xl font-bold text-stone-900">{t('home_cat_jugaad')}</h1>
       {/* ks-allow-width: readable one-line intro above the full-width marketplace */}
-      <p className="mt-2 max-w-3xl text-stone-700">{t('jugaad_mkt_intro')}</p>
+      <p className="mt-2 text-stone-700">{t('jugaad_mkt_intro')}</p>
 
       <button
         type="button"

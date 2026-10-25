@@ -1,0 +1,20 @@
+== production database (eltmcznjcqiahqhjvpjg), anon key ==
+PASS  a: anon can SELECT from places  [no error]
+PASS  a: the table returns 54 rows to anon, 53 verified and 1 not  [rows 54, verified=false 1: Lavkush Nagar]
+PASS  a: the client filter offers exactly 53 places and never the unverified one  [offered 53]
+PASS  a: all six districts are present  [{"Sagar":13,"Damoh":8,"Panna":9,"Tikamgarh":8,"Chhatarpur":12,"Niwari":3}]
+PASS  a: src/lib/location/places.js still filters verified=false
+PASS  b: anon INSERT on places is rejected  [42501 permission denied for table places]
+PASS  b: anon UPDATE on places is rejected  [42501 permission denied for table places]
+PASS  b: anon DELETE on places is rejected  [42501 permission denied for table places]
+PASS  b: row count is unchanged after the probes  [before 54, after 54]
+PASS  c: mandi_prices has in_sagar_division (ticker query, no error)  [no error]
+PASS  c: ticker query for the latest date (2026-10-12) returns local rows through the new flag  [5 rows, 4 local]
+PASS  c: /msp snapshot query returns local rows through the new flag  [114 rows, 86 local  ]
+PASS  c: per-crop query (Soyabean) returns local rows through the new flag  [21 local of 21]
+PASS  c: the is_sagar_district fallback path was NOT needed
+INFO  flagged rows (newest 86): Sagar: 8 mandis
+INFO  flagged rows that the OLD is_sagar_district flag would have missed: 0
+INFO  local rows on the latest date by district: {"Sagar":4}
+
+production: 14 passed, 0 failed

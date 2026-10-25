@@ -1,0 +1,4 @@
+STAGING GUARD: OK — .env and the process environment point at staging
+exit 0
+STAGING GUARD: REFUSED — VITE_SUPABASE_URL in the process environment (start with --env-file=.env) points at the PRODUCTION project
+prod-url exit 1

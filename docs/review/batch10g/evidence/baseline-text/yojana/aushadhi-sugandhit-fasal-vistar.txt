@@ -1,0 +1,114 @@
+### HEAD
+title: औषधि एवं सुगंधित फसल क्षेत्र विस्तार — Kissan Sahyog
+description: इस योजना में किसानों को औषधीय एवं सुगंधित फसलों की खेती का क्षेत्र बढ़ाने के लिए 20 से 50 प्रतिशत तक अनुदान दिया जाता है। इसमें आँवला, अश्वगंधा, बेल, कालिय
+canonical: https://kissansahyog.com/yojana/aushadhi-sugandhit-fasal-vistar
+robots: 
+lang: hi
+h1: औषधि एवं सुगंधित फसल क्षेत्र विस्तार
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Article","headline":"औषधि एवं सुगंधित फसल क्षेत्र विस्तार","datePublished":"2026-09-26T05:56:25.427068+00:00","dateModified":"2026-09-26T05:56:25.427068+00:00","description":"इस योजना में किसानों को औषधीय एवं सुगंधित फसलों की खेती का क्षेत्र बढ़ाने के लिए 20 से 50 प्रतिशत तक अनुदान दिया जाता है। इसमें आँवला, अश्वगंधा, बेल, कालियास, गुड़मार, कालमेघ, सफेद मूसली, सर्पगंधा, सतावर और तुलसी जैसी फसलें शामिल हैं।"}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"कितना अनुदान मिलता है?","acceptedAnswer":{"@type":"Answer","text":"औषधीय एवं सुगंधित फसलों की खेती के विस्तार पर 20 से 50 प्रतिशत तक अनुदान मिलता है। सटीक दर फसल पर निर्भर करती है।"}},{"@type":"Question","name":"कौन सी फसलें शामिल हैं?","acceptedAnswer":{"@type":"Answer","text":"आँवला, अश्वगंधा, बेल, कालियास, गुड़मार, कालमेघ, सफेद मूसली, सर्पगंधा, सतावर और तुलसी।"}},{"@type":"Question","name":"आवेदन कहां करें?","acceptedAnswer":{"@type":"Answer","text":"मध्यप्रदेश उद्यानिकी विभाग के किसान पोर्टल पर ऑनलाइन आवेदन करें; सटीक प्रक्रिया व तिथि के लिए विभागीय पोर्टल देखें।"}}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+← वापस
+मध्यप्रदेश सरकार की योजनाएं
+औषधि एवं सुगंधित फसल क्षेत्र विस्तार
+Aushadhi Avam Sugandhit Fasal Shetra Vistar (Medicinal & Aromatic Crop Area Expansion) · उद्यानिकी एवं खाद्य प्रसंस्करण विभाग, मध्यप्रदेश शासन
+इस योजना में किसानों को औषधीय एवं सुगंधित फसलों की खेती का क्षेत्र बढ़ाने के लिए 20 से 50 प्रतिशत तक अनुदान दिया जाता है। इसमें आँवला, अश्वगंधा, बेल, कालियास, गुड़मार, कालमेघ, सफेद मूसली, सर्पगंधा, सतावर और तुलसी जैसी फसलें शामिल हैं।
+लाभ
+औषधीय एवं सुगंधित फसलों की खेती के विस्तार पर 20 से 50 प्रतिशत तक अनुदान।
+कौन आवेदन कर सकता है?
+मध्यप्रदेश का किसान; अपनी कृषि भूमि हो; औषधीय/सुगंधित फसल उगाने में रुचि हो। पात्रता व शर्तों की पुष्टि विभागीय पोर्टल से करें।
+आवेदन कैसे करें?
+मध्यप्रदेश उद्यानिकी विभाग के किसान पोर्टल पर आधार से पंजीकरण करें।
+औषधि एवं सुगंधित फसल योजना चुनें और फसल का चयन करें।
+भूमि के दस्तावेज़ अपलोड करें और आवेदन जमा करें।
+सत्यापन के बाद अनुदान डीबीटी से मिलता है। सटीक प्रक्रिया व तिथियों के लिए विभागीय पोर्टल देखें।
+ज़रूरी दस्तावेज़
+आधार कार्ड, भूमि के दस्तावेज़ (खसरा/खतौनी/बी-1), बैंक पासबुक की प्रति, जाति प्रमाण-पत्र (यदि लागू हो)
+अक्सर पूछे जाने वाले सवाल
+कितना अनुदान मिलता है?
++
+कौन सी फसलें शामिल हैं?
++
+आवेदन कहां करें?
++
+स्रोत
+https://www.myscheme.gov.in/
+आधिकारिक वेबसाइट:
+https://mphorticulture.gov.in/
+अंतिम सत्यापन: 2026-09-26
+व्हाट्सएप पर साझा करें
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

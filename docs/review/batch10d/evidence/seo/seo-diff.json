@@ -1,0 +1,768 @@
+{
+  "verdict": "NOTHING LOST",
+  "method": "whitespace-token multiset; data-driven regions excluded from the requirement; baseline 2nd hero copy taken out of the requirement but each of its lines must still exist once",
+  "counts": {
+    "baselineLines": 305,
+    "afterLines": 387,
+    "baselineDataLines": 128,
+    "afterDataLines": 126,
+    "baselineStaticLines": 177,
+    "baselineDuplicateHeroLines": 17,
+    "baselineWordsTotal": 1053,
+    "afterWordsTotal": 1184,
+    "baselineStaticWords": 597,
+    "requiredWords": 520,
+    "distinctRequiredWords": 301,
+    "afterStaticWords": 739,
+    "lostWords": 0,
+    "lostStaticLines": 0,
+    "expectedDropWords": 36,
+    "addedLines": 83
+  },
+  "lost": [],
+  "lostLines": [],
+  "expectedDuplicateDrops": {
+    "heroCopy": {
+      "found": true,
+      "startLine": 111,
+      "endLine": 127,
+      "lines": [
+        "🌾 किसान की आय बढ़ाना · रोज़गार के अवसर",
+        "✓ निःशुल्क रजिस्ट्रेशन",
+        "आज किसान के लिए",
+        "सही जानकारी, सही मौके — आपके आसपास",
+        "मौसम",
+        "मौसम देखने के लिए अपनी जगह बताएँ",
+        "मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान →",
+        "आज का भाव",
+        "गेहूं ₹2,690",
+        "MSP ₹2,585 से ₹105 ऊपर · पूरी सूची →",
+        "आज की सलाह",
+        "छिड़काव और कटाई के लिए अच्छा दिन",
+        "मुझे कुछ चाहिए",
+        "खोजें, संपर्क करें, किराये पर लें",
+        "मेरे पास कुछ है",
+        "बेचें, किराये पर दें, लोगों तक पहुँचें",
+        "✓ निःशुल्क रजिस्ट्रेशन"
+      ],
+      "allRepeatFirstCopy": true,
+      "firstCopyLines": 17
+    },
+    "lines": [
+      {
+        "line": "🌾 किसान की आय बढ़ाना · रोज़गार के अवसर",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "✓ निःशुल्क रजिस्ट्रेशन",
+        "baseline": 4,
+        "after": 2,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "आज किसान के लिए",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "सही जानकारी, सही मौके — आपके आसपास",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "मौसम",
+        "baseline": 3,
+        "after": 2,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "मौसम देखने के लिए अपनी जगह बताएँ",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "मेरी लोकेशन साझा करें · 5 दिन का पूर्वानुमान →",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "आज का भाव",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "गेहूं ₹2,690",
+        "baseline": 2,
+        "after": 1,
+        "data": "today-price",
+        "stillPresent": true
+      },
+      {
+        "line": "MSP ₹2,585 से ₹105 ऊपर · पूरी सूची →",
+        "baseline": 2,
+        "after": 1,
+        "data": "today-msp",
+        "stillPresent": true
+      },
+      {
+        "line": "आज की सलाह",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "छिड़काव और कटाई के लिए अच्छा दिन",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "मुझे कुछ चाहिए",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "खोजें, संपर्क करें, किराये पर लें",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "मेरे पास कुछ है",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      },
+      {
+        "line": "बेचें, किराये पर दें, लोगों तक पहुँचें",
+        "baseline": 2,
+        "after": 1,
+        "data": null,
+        "stillPresent": true
+      }
+    ],
+    "words": [
+      {
+        "word": "मौसम",
+        "baseline": 7,
+        "after": 6,
+        "requiredWithoutDuplicate": 5
+      },
+      {
+        "word": "संपर्क",
+        "baseline": 5,
+        "after": 4,
+        "requiredWithoutDuplicate": 4
+      },
+      {
+        "word": "आय",
+        "baseline": 4,
+        "after": 3,
+        "requiredWithoutDuplicate": 3
+      },
+      {
+        "word": "बढ़ाना",
+        "baseline": 3,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "रोज़गार",
+        "baseline": 3,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "अवसर",
+        "baseline": 3,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "✓",
+        "baseline": 4,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "निःशुल्क",
+        "baseline": 4,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "रजिस्ट्रेशन",
+        "baseline": 4,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "आज",
+        "baseline": 7,
+        "after": 5,
+        "requiredWithoutDuplicate": 4
+      },
+      {
+        "word": "सही",
+        "baseline": 4,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "जानकारी,",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "मौके",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "आसपास",
+        "baseline": 3,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "देखने",
+        "baseline": 3,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "बताएँ",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "मेरी",
+        "baseline": 3,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "लोकेशन",
+        "baseline": 5,
+        "after": 4,
+        "requiredWithoutDuplicate": 4
+      },
+      {
+        "word": "साझा",
+        "baseline": 4,
+        "after": 3,
+        "requiredWithoutDuplicate": 3
+      },
+      {
+        "word": "दिन",
+        "baseline": 4,
+        "after": 3,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "पूर्वानुमान",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "सलाह",
+        "baseline": 3,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "कटाई",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "मुझे",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "कुछ",
+        "baseline": 4,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "खोजें,",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "करें,",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "किराये",
+        "baseline": 4,
+        "after": 3,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "लें",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "मेरे",
+        "baseline": 3,
+        "after": 2,
+        "requiredWithoutDuplicate": 2
+      },
+      {
+        "word": "पास",
+        "baseline": 4,
+        "after": 3,
+        "requiredWithoutDuplicate": 3
+      },
+      {
+        "word": "बेचें,",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "दें,",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "लोगों",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "तक",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      },
+      {
+        "word": "पहुँचें",
+        "baseline": 2,
+        "after": 1,
+        "requiredWithoutDuplicate": 1
+      }
+    ]
+  },
+  "dataDriven": {
+    "regions": [
+      {
+        "id": "mandi-ticker",
+        "source": "components/MandiTicker.jsx (fetchMandiPrices, staging DB)",
+        "reason": "crop / price / APMC list of the latest mandi day; prices and markets change daily",
+        "baselineLines": 51,
+        "afterLines": 51,
+        "locatedInBaseline": true,
+        "locatedInAfter": true,
+        "identical": true
+      },
+      {
+        "id": "listings",
+        "source": "Homepage.jsx \"ताज़ा लिस्टिंग\" (fetchHomeFeed -> HomeListingCard, staging DB)",
+        "reason": "newest listings in the DB (test listings on staging)",
+        "baselineLines": 40,
+        "afterLines": 40,
+        "locatedInBaseline": true,
+        "locatedInAfter": true,
+        "identical": true
+      },
+      {
+        "id": "videos",
+        "source": "Homepage.jsx video section (fetchFeaturedVideos(3), staging DB)",
+        "reason": "featured video titles / durations / channels from the DB",
+        "baselineLines": 9,
+        "afterLines": 9,
+        "locatedInBaseline": true,
+        "locatedInAfter": true,
+        "identical": true
+      },
+      {
+        "id": "sawaal",
+        "source": "Homepage.jsx \"किसान सवाल\" (fetchFeaturedSawaal(3), staging DB)",
+        "reason": "featured question / answer items from the DB (the \"पूरा उत्तर पढ़ें\" link label repeats per item)",
+        "baselineLines": 12,
+        "afterLines": 12,
+        "locatedInBaseline": true,
+        "locatedInAfter": true,
+        "identical": true
+      },
+      {
+        "id": "melas",
+        "source": "Homepage.jsx \"आस-पास के किसान मेले\" (fetchUpcomingMelas(3) + melaStatus by date, staging DB)",
+        "reason": "next three melas from the DB; status (\"चल रहा है\") depends on the build date",
+        "baselineLines": 10,
+        "afterLines": 10,
+        "locatedInBaseline": true,
+        "locatedInAfter": true,
+        "identical": true
+      },
+      {
+        "id": "articles",
+        "source": "Homepage.jsx \"किसान लेख\" (fetchPublishedArticles, staging DB)",
+        "reason": "published article titles from the DB",
+        "baselineLines": 2,
+        "afterLines": 2,
+        "locatedInBaseline": true,
+        "locatedInAfter": true,
+        "identical": true
+      }
+    ],
+    "lines": [
+      {
+        "id": "ticker-day",
+        "source": "MandiTicker day label",
+        "reason": "date of the latest mandi day",
+        "baseline": [],
+        "after": []
+      },
+      {
+        "id": "today-price",
+        "source": "hero InfoTile \"आज का भाव\" (getTodayForFarmer: fetchMandiPrices + fetchMsp)",
+        "reason": "crop and modal price of the day",
+        "baseline": [
+          "गेहूं ₹2,690",
+          "गेहूं ₹2,690"
+        ],
+        "after": [
+          "गेहूं ₹2,690"
+        ]
+      },
+      {
+        "id": "today-msp",
+        "source": "hero InfoTile \"आज का भाव\" (MSP vs mandi)",
+        "reason": "difference between that price and MSP",
+        "baseline": [
+          "MSP ₹2,585 से ₹105 ऊपर · पूरी सूची →",
+          "MSP ₹2,585 से ₹105 ऊपर · पूरी सूची →"
+        ],
+        "after": [
+          "MSP ₹2,585 से ₹105 ऊपर · पूरी सूची →"
+        ]
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "title",
+      "ok": true,
+      "detail": {
+        "baseline": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+        "after": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार"
+      }
+    },
+    {
+      "name": "metaDescription",
+      "ok": true,
+      "detail": {
+        "baseline": "सागर संभाग (मध्य प्रदेश) के किसानों के लिए जानकारी मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और लिस्टिंग बाज़ार।",
+        "after": "सागर संभाग (मध्य प्रदेश) के किसानों के लिए जानकारी मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और लिस्टिंग बाज़ार।"
+      }
+    },
+    {
+      "name": "canonical",
+      "ok": true,
+      "detail": {
+        "baseline": "https://kissansahyog.com",
+        "after": "https://kissansahyog.com"
+      }
+    },
+    {
+      "name": "htmlLang",
+      "ok": true,
+      "detail": {
+        "baseline": "hi",
+        "after": "hi"
+      }
+    },
+    {
+      "name": "robots",
+      "ok": true,
+      "detail": {
+        "baseline": null,
+        "after": null
+      }
+    },
+    {
+      "name": "ogTitle",
+      "ok": true,
+      "detail": {
+        "baseline": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+        "after": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार"
+      }
+    },
+    {
+      "name": "ogDescription",
+      "ok": true,
+      "detail": {
+        "baseline": "सागर संभाग (मध्य प्रदेश) के किसानों के लिए जानकारी मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और लिस्टिंग बाज़ार।",
+        "after": "सागर संभाग (मध्य प्रदेश) के किसानों के लिए जानकारी मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और लिस्टिंग बाज़ार।"
+      }
+    },
+    {
+      "name": "hreflang",
+      "ok": true,
+      "detail": {
+        "baseline": [
+          {
+            "hreflang": "hi-IN",
+            "href": "https://kissansahyog.com"
+          },
+          {
+            "hreflang": "en-IN",
+            "href": "https://kissansahyog.com"
+          },
+          {
+            "hreflang": "x-default",
+            "href": "https://kissansahyog.com"
+          }
+        ],
+        "after": [
+          {
+            "hreflang": "hi-IN",
+            "href": "https://kissansahyog.com"
+          },
+          {
+            "hreflang": "en-IN",
+            "href": "https://kissansahyog.com"
+          },
+          {
+            "hreflang": "x-default",
+            "href": "https://kissansahyog.com"
+          }
+        ]
+      }
+    },
+    {
+      "name": "jsonld byte-identical",
+      "ok": true,
+      "detail": {
+        "baselineBlocks": 2,
+        "afterBlocks": 2,
+        "types": [
+          "Organization",
+          "WebSite"
+        ]
+      }
+    },
+    {
+      "name": "h1 exactly one, same text",
+      "ok": true,
+      "detail": {
+        "baseline": [
+          "आज किसान के लिए"
+        ],
+        "after": [
+          "आज किसान के लिए"
+        ]
+      }
+    },
+    {
+      "name": "h2 all baseline present, same order",
+      "ok": true,
+      "detail": {
+        "baseline": 11,
+        "after": 11,
+        "extraInAfter": []
+      }
+    },
+    {
+      "name": "h3 unchanged",
+      "ok": true,
+      "detail": {
+        "baseline": [],
+        "after": []
+      }
+    },
+    {
+      "name": "FAQ unchanged (baseline none)",
+      "ok": true,
+      "detail": {
+        "baseline": null,
+        "after": null
+      }
+    },
+    {
+      "name": "headings order (h1 + h2) unchanged",
+      "ok": true,
+      "detail": {
+        "baseline": [
+          "h2: बिना लॉगिन के सारी जानकारी देखें",
+          "h1: आज किसान के लिए",
+          "h2: क्या खोज रहे हैं?",
+          "h2: आपके आसपास क्या मिल रहा है? (30 किमी)",
+          "h2: कृषि बाज़ार की श्रेणियाँ",
+          "h2: ताज़ा लिस्टिंग",
+          "h2: आज की 2 मिनट की वीडियो सलाह",
+          "h2: किसान सवाल",
+          "h2: आस-पास के किसान मेले",
+          "h2: सरकारी मदद",
+          "h2: भरोसेमंद लोग",
+          "h2: किसान लेख"
+        ],
+        "after": [
+          "h2: बिना लॉगिन के सारी जानकारी देखें",
+          "h1: आज किसान के लिए",
+          "h2: क्या खोज रहे हैं?",
+          "h2: आपके आसपास क्या मिल रहा है? (30 किमी)",
+          "h2: कृषि बाज़ार की श्रेणियाँ",
+          "h2: ताज़ा लिस्टिंग",
+          "h2: आज की 2 मिनट की वीडियो सलाह",
+          "h2: किसान सवाल",
+          "h2: आस-पास के किसान मेले",
+          "h2: सरकारी मदद",
+          "h2: भरोसेमंद लोग",
+          "h2: किसान लेख"
+        ]
+      }
+    },
+    {
+      "name": "sitemaps equal without <lastmod>",
+      "ok": true,
+      "detail": {
+        "files": 5
+      }
+    },
+    {
+      "name": "every baseline link still present",
+      "ok": true,
+      "detail": {
+        "baseline": 37,
+        "after": 38,
+        "lost": [],
+        "added": [
+          "/signup"
+        ]
+      }
+    },
+    {
+      "name": "nothing from design/ in dist",
+      "ok": true,
+      "detail": {
+        "designFiles": 6,
+        "shipped": []
+      }
+    }
+  ],
+  "addedLines": [
+    "किराये पर यंत्र चाहिए",
+    "अपना सामान बेचना है",
+    "मंडी भाव देखना है",
+    "मौसम देखना है",
+    "सरकारी योजना जाननी है",
+    "रजिस्टर करें",
+    "1 मिनट का डेमो देखें",
+    "आस-पास खोजें",
+    "उदाहरण",
+    "ट्रैक्टर",
+    "सागर",
+    "महिंद्रा ट्रैक्टर",
+    "₹600 / घंटा · खुरई",
+    "क्रेन ट्रैक्टर",
+    "₹1,200 / घंटा · सागर",
+    "📞 कॉल करें",
+    "फ़ोन में एक उदाहरण चल रहा है:",
+    "ट्रैक्टर खोजिए, नंबर देखिए और सीधे बात कीजिए।",
+    "नाम, भाव और फोटो डालिए। खरीदार खुद फोन करेंगे।",
+    "आज की मंडी का भाव, एक नज़र में।",
+    "अगले 7 दिन का मौसम, खेत के हिसाब से।",
+    "कौन सी योजना आपके लिए है, सरल भाषा में।",
+    "चित्र: सुबह का खेत — उगता सूरज, लहराता गेहूं और धीरे चलता ट्रैक्टर।",
+    "Wheat",
+    "Soybean",
+    "चना",
+    "Gram",
+    "Maize",
+    "Mustard",
+    "मसूर",
+    "Lentil",
+    "प्याज",
+    "Onion",
+    "आलू",
+    "Potato",
+    "Wheat",
+    "Soybean",
+    "चना",
+    "Gram",
+    "Maize",
+    "Mustard",
+    "मसूर",
+    "Lentil",
+    "प्याज",
+    "Onion",
+    "आलू",
+    "Potato",
+    "Wheat",
+    "Soybean",
+    "चना",
+    "Gram",
+    "Maize",
+    "Mustard",
+    "मसूर",
+    "Lentil",
+    "प्याज",
+    "Onion",
+    "आलू",
+    "Potato",
+    "Wheat",
+    "Soybean",
+    "चना",
+    "Gram",
+    "Maize",
+    "Mustard",
+    "मसूर",
+    "Lentil",
+    "प्याज",
+    "Onion",
+    "आलू",
+    "Potato",
+    "11",
+    "11",
+    "तरह के सामान और काम बाज़ार में — यंत्र, मज़दूर, भूसा, ज़मीन",
+    "10",
+    "10",
+    "फ़सलों के मंडी भाव — गेहूं, सोयाबीन, चना और भी",
+    "6",
+    "6",
+    "ज़िले सागर संभाग के — अपनी जगह चुनें",
+    "4",
+    "4",
+    "छोटे डेमो — साइट चलाना सीखें"
+  ]
+}

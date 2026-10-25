@@ -1,0 +1,3 @@
+PASS  no page-level max-w / maxWidth in src/screens (all clamps PageShell-based or ks-allow-width marked)
+
+1 passed, 0 failed

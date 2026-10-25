@@ -1,0 +1,160 @@
+
+> kisan-sahyog@0.1.0 build:full
+> node --env-file=.env scripts/build-search-index.mjs && vite build --mode staging && node --env-file=.env scripts/prerender.mjs && node --env-file=.env scripts/gen-sitemaps.mjs && node scripts/check-no-localhost-dist.mjs dist
+
+  articles: 3
+  schemes: 15
+  videos: 16
+  sawaal: 128
+  cold_storage: 243
+  mela: 44
+  resources: 13
+  experts: 3
+  msp: 10
+  hubs: 22
+
+Wrote 497 items to public/search-index.json
+[36mvite v8.2.2 [32mbuilding client environment for staging...[36m[39m
+transforming...
+✓ 349 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/manifest.webmanifest                          0.57 kB
+dist/index.html                                    1.59 kB │ gzip:  0.65 kB
+dist/assets/guide-DMlG0BeF.css                    19.13 kB │ gzip:  4.41 kB
+dist/assets/index-BhDdSaGm.css                    70.39 kB │ gzip: 14.24 kB
+dist/assets/layout-D1MojTmp.js                     0.06 kB │ gzip:  0.07 kB
+dist/assets/extras-CQcCcsuq.js                     0.25 kB │ gzip:  0.19 kB
+dist/assets/device-D4sZPGnq.js                     0.30 kB │ gzip:  0.25 kB
+dist/assets/esm-BwjXjKdW.js                        0.33 kB │ gzip:  0.24 kB
+dist/assets/esm-DqRNPnEc.js                        0.34 kB │ gzip:  0.24 kB
+dist/assets/mspApi-CJY9jiRB.js                     0.43 kB │ gzip:  0.32 kB
+dist/assets/weatherApi-f5eLqPLK.js                 0.47 kB │ gzip:  0.21 kB
+dist/assets/resourcesApi-Cxdc0hDx.js               0.51 kB │ gzip:  0.30 kB
+dist/assets/BackButton-CeG8fYeI.js                 0.55 kB │ gzip:  0.40 kB
+dist/assets/DisclaimerBanner-CMSb6n_W.js           0.58 kB │ gzip:  0.36 kB
+dist/assets/videosApi-CALvnLx5.js                  0.60 kB │ gzip:  0.35 kB
+dist/assets/months-Bq4Z9vRY.js                     0.60 kB │ gzip:  0.32 kB
+dist/assets/useLoopActive-Db9yagvT.js              0.66 kB │ gzip:  0.37 kB
+dist/assets/OfflineStamp-CLGhfu8k.js               0.66 kB │ gzip:  0.47 kB
+dist/assets/useNativeBack-DSHu5POZ.js              0.68 kB │ gzip:  0.44 kB
+dist/assets/articlesApi-CLvJAk5f.js                0.69 kB │ gzip:  0.37 kB
+dist/assets/rolldown-runtime-hePW80VL.js           0.71 kB │ gzip:  0.42 kB
+dist/assets/Join-B4yXsKjF.js                       0.75 kB │ gzip:  0.48 kB
+dist/assets/inputsApi-BCtjXrSt.js                  0.81 kB │ gzip:  0.44 kB
+dist/assets/CatIcon-CSzKO_FJ.js                    0.83 kB │ gzip:  0.48 kB
+dist/assets/web-BNWoiS4w.js                        0.84 kB │ gzip:  0.39 kB
+dist/assets/Privacy-DJTo6TQu.js                    1.02 kB │ gzip:  0.53 kB
+dist/assets/OfflineNotice-CS6m8ZEz.js              1.04 kB │ gzip:  0.58 kB
+dist/assets/Contact-i1RdM8Pj.js                    1.05 kB │ gzip:  0.50 kB
+dist/assets/web-BX0nUAXe.js                        1.10 kB │ gzip:  0.53 kB
+dist/assets/NotFound-D6XRCTPT.js                   1.18 kB │ gzip:  0.61 kB
+dist/assets/crops-Bmyu-kFh.js                      1.26 kB │ gzip:  0.55 kB
+dist/assets/mspWindow-DilCvU_Z.js                  1.32 kB │ gzip:  0.72 kB
+dist/assets/Home-CJwKHw6c.js                       1.45 kB │ gzip:  0.70 kB
+dist/assets/photos-KAmbK811.js                     1.47 kB │ gzip:  0.85 kB
+dist/assets/WhatsAppShareButton-C15J5Dk3.js        1.55 kB │ gzip:  0.94 kB
+dist/assets/ColdStorageDistrict-CgqWe31M.js        1.75 kB │ gzip:  0.93 kB
+dist/assets/shareMessages-1uM_nkly.js              1.84 kB │ gzip:  0.97 kB
+dist/assets/HelpModal-CTpDBbKA.js                  1.86 kB │ gzip:  0.87 kB
+dist/assets/Terms-m-PcJhe8.js                      2.04 kB │ gzip:  0.80 kB
+dist/assets/weatherRules-kzLuFq6I.js               2.06 kB │ gzip:  0.85 kB
+dist/assets/Credits-DnD3R8oL.js                    2.07 kB │ gzip:  1.00 kB
+dist/assets/ExpertDetail-DjwSHqIv.js               2.09 kB │ gzip:  0.96 kB
+dist/assets/AvailabilityNudge-CxbCuSXz.js          2.16 kB │ gzip:  1.05 kB
+dist/assets/GuideHelpButton-CIiX-djb.js            2.37 kB │ gzip:  1.23 kB
+dist/assets/Articles-DY5WweVg.js                   2.39 kB │ gzip:  1.19 kB
+dist/assets/NativeShell-BFws1QLi.js                2.40 kB │ gzip:  1.16 kB
+dist/assets/feedbackApi-B95UQtZq.js                2.57 kB │ gzip:  1.19 kB
+dist/assets/Jugaad-CxjuTbF5.js                     2.74 kB │ gzip:  1.27 kB
+dist/assets/Experts-BUUPCHkW.js                    2.77 kB │ gzip:  1.31 kB
+dist/assets/SawaalHub-BSmJm-VH.js                  2.79 kB │ gzip:  1.30 kB
+dist/assets/Yojana-DIEaCeuU.js                     2.88 kB │ gzip:  1.23 kB
+dist/assets/Welcome-LH0Ev_-U.js                    2.91 kB │ gzip:  1.20 kB
+dist/assets/Videos-Bo6xsPu5.js                     3.09 kB │ gzip:  1.36 kB
+dist/assets/ListingCard-FAuKfD6E.js                3.13 kB │ gzip:  1.38 kB
+dist/assets/OtpStep-DhgqZxr_.js                    3.23 kB │ gzip:  1.44 kB
+dist/assets/disclaimers-D37lztIn.js                3.23 kB │ gzip:  1.26 kB
+dist/assets/ContactActions-p0FVkuQj.js             3.60 kB │ gzip:  1.53 kB
+dist/assets/RelatedBoxes-8tzASjg6.js               3.69 kB │ gzip:  1.52 kB
+dist/assets/ReportButton-BFZJxkYx.js               3.77 kB │ gzip:  1.38 kB
+dist/assets/ArticleDetail-Dc7rsUta.js              3.84 kB │ gzip:  1.84 kB
+dist/assets/GuideSheet-CeqIYId3.js                 3.98 kB │ gzip:  1.77 kB
+dist/assets/guide-BaGVsYXQ.js                      4.05 kB │ gzip:  1.54 kB
+dist/assets/Greenhouse-Z98DBwIu.js                 4.09 kB │ gzip:  1.55 kB
+dist/assets/weatherApiV2-4GR5Jv7D.js               4.22 kB │ gzip:  1.80 kB
+dist/assets/MyListings-KEhaSLxt.js                 4.33 kB │ gzip:  1.89 kB
+dist/assets/SawaalDetail-CAX-xeka.js               4.50 kB │ gzip:  1.90 kB
+dist/assets/Resources-ZikROwUl.js                  4.84 kB │ gzip:  1.88 kB
+dist/assets/DroneDidi-CJAwLxvn.js                  4.84 kB │ gzip:  1.90 kB
+dist/assets/cachedFetch-DCOxZVKp.js                4.86 kB │ gzip:  2.17 kB
+dist/assets/communityApi-BzWOPFlH.js               4.89 kB │ gzip:  1.50 kB
+dist/assets/KisanMelaSubmit-CcNcKoXW.js            5.04 kB │ gzip:  1.71 kB
+dist/assets/OwnerListingActions-Bqn2igCR.js        5.31 kB │ gzip:  1.92 kB
+dist/assets/Login-D0ZiPNby.js                      5.34 kB │ gzip:  2.12 kB
+dist/assets/About-CoX0NBlZ.js                      5.54 kB │ gzip:  1.83 kB
+dist/assets/workbox-window.prod.es5-Bd17z0YL.js    5.65 kB │ gzip:  2.20 kB
+dist/assets/Safalta-CF4dxfLT.js                    5.69 kB │ gzip:  1.85 kB
+dist/assets/SchemeDetail-B7b6VoEO.js               5.94 kB │ gzip:  2.12 kB
+dist/assets/mandiApi-QN_w77N3.js                   6.03 kB │ gzip:  1.96 kB
+dist/assets/Info-BxCStE2D.js                       6.62 kB │ gzip:  2.10 kB
+dist/assets/GuideHub-DwLf6GIx.js                   6.73 kB │ gzip:  2.30 kB
+dist/assets/listingsApi-DzyvZ9dx.js                6.96 kB │ gzip:  2.42 kB
+dist/assets/CarbonBrief-CivTz1y_.js                6.97 kB │ gzip:  2.74 kB
+dist/assets/Browse-DoDajLCf.js                     7.20 kB │ gzip:  2.65 kB
+dist/assets/FasalSalah-D-ZsZHLh.js                 7.62 kB │ gzip:  2.42 kB
+dist/assets/dist-CgbWuuq4.js                       7.74 kB │ gzip:  3.09 kB
+dist/assets/kit-BRX7_n69.js                        7.86 kB │ gzip:  2.68 kB
+dist/assets/Search-rA7AD4lc.js                     7.93 kB │ gzip:  3.31 kB
+dist/assets/ColdStorageFinder-DEz03lU7.js          8.37 kB │ gzip:  2.84 kB
+dist/assets/LocationControl-BlQtUhn2.js            8.60 kB │ gzip:  2.34 kB
+dist/assets/ColdStorage-CVeDrsvV.js                8.60 kB │ gzip:  3.46 kB
+dist/assets/GuideDemoPage-h-pFMhJ8.js              8.82 kB │ gzip:  2.90 kB
+dist/assets/KisanMela-ROHuifjF.js                  9.06 kB │ gzip:  3.01 kB
+dist/assets/Sawaal-aFUlo93Q.js                     9.23 kB │ gzip:  3.25 kB
+dist/assets/AgroForestry-UuDwRdY9.js               9.53 kB │ gzip:  3.35 kB
+dist/assets/Profile-4F0hgHpZ.js                    9.65 kB │ gzip:  2.89 kB
+dist/assets/melaApi-BT9Chhjr.js                   10.13 kB │ gzip:  3.73 kB
+dist/assets/Signup-Bu_HfUYz.js                    10.17 kB │ gzip:  3.28 kB
+dist/assets/ListingDetail-Cl3izg6q.js             11.67 kB │ gzip:  4.18 kB
+dist/assets/Founder-Sf5SZz05.js                   11.73 kB │ gzip:  3.02 kB
+dist/assets/Mausam-BAjuiUI1.js                    11.93 kB │ gzip:  3.66 kB
+dist/assets/Grievance-DP_auW6b.js                 11.98 kB │ gzip:  4.20 kB
+dist/assets/shared-B8djaKbe.js                    12.88 kB │ gzip:  4.48 kB
+dist/assets/AdminListingActions-CZHfM_7V.js       13.65 kB │ gzip:  4.25 kB
+dist/assets/sagar_division_places-DJaRo9xB.js     15.89 kB │ gzip:  3.14 kB
+dist/assets/catalog-KGaQpWeV.js                   19.59 kB │ gzip:  6.61 kB
+dist/assets/JugaadJankari-CYJI3JNr.js             19.96 kB │ gzip:  6.18 kB
+dist/assets/founder-B7YdwJ2e.js                   21.00 kB │ gzip:  6.34 kB
+dist/assets/Post-C0_6_Etb.js                      25.41 kB │ gzip:  7.83 kB
+dist/assets/legal-BebhSF2e.js                     26.07 kB │ gzip:  8.06 kB
+dist/assets/DemoPlayer-CddzRw4u.js                27.49 kB │ gzip:  8.44 kB
+dist/assets/GreenhouseSubsidy-BevKuLfG.js         29.70 kB │ gzip:  8.48 kB
+dist/assets/Homepage-c0-24eiY.js                  32.40 kB │ gzip:  9.49 kB
+dist/assets/CarbonCredit-BUh0n9_Z.js              38.93 kB │ gzip: 11.09 kB
+dist/assets/Msp-Dr25LZJZ.js                       41.64 kB │ gzip: 12.87 kB
+dist/assets/Bazaar-D4gr2849.js                    53.65 kB │ gzip: 13.22 kB
+dist/assets/HowToUse-BVB_EUx9.js                  55.93 kB │ gzip: 14.88 kB
+dist/assets/PageShell-n9C3VDwC.js                 59.32 kB │ gzip: 16.89 kB
+dist/assets/registry-wnfqV-5c.js                  60.16 kB │ gzip: 14.78 kB
+dist/assets/content-mfO-N_3j.js                   64.63 kB │ gzip: 18.58 kB
+dist/assets/index-CF6MFcma.js                     84.93 kB │ gzip: 28.78 kB
+dist/assets/Admin-CJNKXldD.js                     90.07 kB │ gzip: 15.01 kB
+dist/assets/supabase-H6RbKBY9.js                 208.11 kB │ gzip: 53.77 kB
+dist/assets/react-vendor-Cg-BX6NK.js             228.87 kB │ gzip: 73.23 kB
+dist/assets/LanguageProvider-CR80Wjv8.js         253.11 kB │ gzip: 65.27 kB
+
+[32m✓ built in 3.00s[39m
+
+PWA v1.3.0
+mode      generateSW
+precache  155 entries (2882.89 KiB)
+files generated
+  dist/sw.js
+  dist/workbox-efbd304a.js
+Prerendering 268 routes…
+  ~ / (fallback, no marker)
+
+Prerendered 268/268 (1 via fallback). Failed: 0
+Sitemaps written to C:\Users\usdvi\projects\Kissansahyog\dist: pages 54, sawaal 161, cold-storage 35, schemes 18.
+check-no-localhost-dist: OK — 276 files checked (html, xml, sw.js, _headers, _redirects), no localhost/127.0.0.1.

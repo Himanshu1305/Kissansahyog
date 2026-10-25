@@ -1,0 +1,57 @@
+
+Running 32 tests using 1 worker
+
+NOTE E1 hi 360 hero nodes 2; states before the live engine: [{"by":"html","persona":"rent","tick":0,"live":"0","motion":"paused","auto":"on"},{"by":"react","persona":"rent","tick":0,"live":"0","motion":"paused","auto":"on"}]
+  ok  1 [chromium] › e2e\home-10d.spec.js:150:7 › Home 10D hi 360px › E1 first frame = persona 1 tick 0 poster (server HTML and first client render equal); no hydration warning, console errors or failed backend requests (1.6s)
+NOTE E2 hi 360 personas: ["rent","sell","mandi","weather","schemes","rent"]
+  ok  2 [chromium] › e2e\home-10d.spec.js:204:7 › Home 10D hi 360px › E2 auto-rotation goes through all five personas; tapping a tab stops it; arrows / Home / End; ARIA (10.4s)
+  ok  3 [chromium] › e2e\home-10d.spec.js:287:7 › Home 10D hi 360px › E3 off-screen and hidden tab: hero timer stops (tick frozen), field band animations pause (4.7s)
+  ok  4 [chromium] › e2e\home-10d.spec.js:340:9 › Home 10D hi 360px › E3 reduced-motion: static hero (persona 1 fully drawn, no timer), static band; tabs still switch (2.1s)
+  ok  5 [chromium] › e2e\home-10d.spec.js:340:9 › Home 10D hi 360px › E3 save-data: static hero (persona 1 fully drawn, no timer), static band; tabs still switch (2.1s)
+NOTE E4 expected facts (computed in the spec from registry.jsx, crops.js, places.js, guide/config.js): {"cats":11,"crops":10,"districts":6,"demos":4}
+  ok  6 [chromium] › e2e\home-10d.spec.js:380:7 › Home 10D hi 360px › E4 every fact equals its repo source; count-up ends at the final numbers (2.2s)
+NOTE E1 hi 412 hero nodes 2; states before the live engine: [{"by":"html","persona":"rent","tick":0,"live":"0","motion":"paused","auto":"on"},{"by":"react","persona":"rent","tick":0,"live":"0","motion":"paused","auto":"on"}]
+  ok  7 [chromium] › e2e\home-10d.spec.js:150:7 › Home 10D hi 412px › E1 first frame = persona 1 tick 0 poster (server HTML and first client render equal); no hydration warning, console errors or failed backend requests (1.3s)
+NOTE E2 hi 412 personas: ["rent","sell","mandi","weather","schemes","rent"]
+  ok  8 [chromium] › e2e\home-10d.spec.js:204:7 › Home 10D hi 412px › E2 auto-rotation goes through all five personas; tapping a tab stops it; arrows / Home / End; ARIA (10.4s)
+  ok  9 [chromium] › e2e\home-10d.spec.js:287:7 › Home 10D hi 412px › E3 off-screen and hidden tab: hero timer stops (tick frozen), field band animations pause (4.6s)
+  ok 10 [chromium] › e2e\home-10d.spec.js:340:9 › Home 10D hi 412px › E3 reduced-motion: static hero (persona 1 fully drawn, no timer), static band; tabs still switch (2.1s)
+  ok 11 [chromium] › e2e\home-10d.spec.js:340:9 › Home 10D hi 412px › E3 save-data: static hero (persona 1 fully drawn, no timer), static band; tabs still switch (2.1s)
+NOTE E4 expected facts (computed in the spec from registry.jsx, crops.js, places.js, guide/config.js): {"cats":11,"crops":10,"districts":6,"demos":4}
+  ok 12 [chromium] › e2e\home-10d.spec.js:380:7 › Home 10D hi 412px › E4 every fact equals its repo source; count-up ends at the final numbers (2.2s)
+NOTE E1 en 360 hero nodes 2; states before the live engine: [{"by":"html","persona":"rent","tick":0,"live":"0","motion":"paused","auto":"on"},{"by":"react","persona":"rent","tick":0,"live":"0","motion":"paused","auto":"on"}]
+  ok 13 [chromium] › e2e\home-10d.spec.js:150:7 › Home 10D en 360px › E1 first frame = persona 1 tick 0 poster (server HTML and first client render equal); no hydration warning, console errors or failed backend requests (1.3s)
+NOTE E2 en 360 personas: ["rent","sell","mandi","weather","schemes","rent"]
+  ok 14 [chromium] › e2e\home-10d.spec.js:204:7 › Home 10D en 360px › E2 auto-rotation goes through all five personas; tapping a tab stops it; arrows / Home / End; ARIA (10.4s)
+  ok 15 [chromium] › e2e\home-10d.spec.js:287:7 › Home 10D en 360px › E3 off-screen and hidden tab: hero timer stops (tick frozen), field band animations pause (4.5s)
+  ok 16 [chromium] › e2e\home-10d.spec.js:340:9 › Home 10D en 360px › E3 reduced-motion: static hero (persona 1 fully drawn, no timer), static band; tabs still switch (2.1s)
+  ok 17 [chromium] › e2e\home-10d.spec.js:340:9 › Home 10D en 360px › E3 save-data: static hero (persona 1 fully drawn, no timer), static band; tabs still switch (2.2s)
+NOTE E4 expected facts (computed in the spec from registry.jsx, crops.js, places.js, guide/config.js): {"cats":11,"crops":10,"districts":6,"demos":4}
+  ok 18 [chromium] › e2e\home-10d.spec.js:380:7 › Home 10D en 360px › E4 every fact equals its repo source; count-up ends at the final numbers (2.2s)
+NOTE E1 en 412 hero nodes 2; states before the live engine: [{"by":"html","persona":"rent","tick":0,"live":"0","motion":"paused","auto":"on"},{"by":"react","persona":"rent","tick":0,"live":"0","motion":"paused","auto":"on"}]
+  ok 19 [chromium] › e2e\home-10d.spec.js:150:7 › Home 10D en 412px › E1 first frame = persona 1 tick 0 poster (server HTML and first client render equal); no hydration warning, console errors or failed backend requests (1.4s)
+NOTE E2 en 412 personas: ["rent","sell","mandi","weather","schemes","rent"]
+  ok 20 [chromium] › e2e\home-10d.spec.js:204:7 › Home 10D en 412px › E2 auto-rotation goes through all five personas; tapping a tab stops it; arrows / Home / End; ARIA (10.3s)
+  ok 21 [chromium] › e2e\home-10d.spec.js:287:7 › Home 10D en 412px › E3 off-screen and hidden tab: hero timer stops (tick frozen), field band animations pause (4.5s)
+  ok 22 [chromium] › e2e\home-10d.spec.js:340:9 › Home 10D en 412px › E3 reduced-motion: static hero (persona 1 fully drawn, no timer), static band; tabs still switch (2.0s)
+  ok 23 [chromium] › e2e\home-10d.spec.js:340:9 › Home 10D en 412px › E3 save-data: static hero (persona 1 fully drawn, no timer), static band; tabs still switch (2.1s)
+NOTE E4 expected facts (computed in the spec from registry.jsx, crops.js, places.js, guide/config.js): {"cats":11,"crops":10,"districts":6,"demos":4}
+  ok 24 [chromium] › e2e\home-10d.spec.js:380:7 › Home 10D en 412px › E4 every fact equals its repo source; count-up ends at the final numbers (2.2s)
+NOTE E5 hi overflow / clipping: []
+  ok 25 [chromium] › e2e\home-10d.spec.js:453:3 › E5 hi: no horizontal overflow at 320/360/412/768/1024/1280/1440; hero, band and phone text not clipped (every persona) (10.5s)
+NOTE E5 en overflow / clipping: []
+  ok 26 [chromium] › e2e\home-10d.spec.js:453:3 › E5 en: no horizontal overflow at 320/360/412/768/1024/1280/1440; hero, band and phone text not clipped (every persona) (10.7s)
+NOTE E5 I-need top at 360x640 (baseline hi 1184 / en 1304; allowance hi ≤ 1504): {"hi":1490,"en":1610}
+  ok 27 [chromium] › e2e\home-10d.spec.js:480:1 › E5 first existing action ("I need") on 360x640 within the baseline allowance (DECISIONS 4: top ≤ 1504 px, Hindi) (5.4s)
+NOTE E5 1280x720 hi: {"h1":{"top":360,"bottom":413,"left":80,"right":676,"vis":"visible"},"tabs":[{"top":463,"bottom":515,"left":80,"right":375,"vis":"visible"},{"top":521,"bottom":573,"left":80,"right":375,"vis":"visible"},{"top":579,"bottom":631,"left":80,"right":375,"vis":"visible"},{"top":463,"bottom":515,"left":381,"right":676,"vis":"visible"},{"top":521,"bottom":573,"left":381,"right":676,"vis":"visible"}],"register":{"top":645,"bottom":697,"left":80,"right":373,"vis":"visible"},"demo":{"top":645,"bottom":697,"left":383,"right":676,"vis":"visible"}}
+NOTE E5 1280x720 en: {"h1":{"top":360,"bottom":413,"left":80,"right":676,"vis":"visible"},"tabs":[{"top":463,"bottom":515,"left":80,"right":375,"vis":"visible"},{"top":521,"bottom":573,"left":80,"right":375,"vis":"visible"},{"top":579,"bottom":631,"left":80,"right":375,"vis":"visible"},{"top":463,"bottom":515,"left":381,"right":676,"vis":"visible"},{"top":521,"bottom":573,"left":381,"right":676,"vis":"visible"}],"register":{"top":645,"bottom":697,"left":80,"right":373,"vis":"visible"},"demo":{"top":645,"bottom":697,"left":383,"right":676,"vis":"visible"}}
+  ok 28 [chromium] › e2e\home-10d.spec.js:500:1 › E5 1280x720: the H1, all five tabs and both new buttons are visible without scrolling (hi and en) (4.5s)
+NOTE E5 breakpoints: {"767":{"columns":1,"gridCols":"735px","stageDir":"column","tabsWrap":"nowrap","tabsDir":"row","tabsOverflowX":"auto","ctaCols":1,"stageBg":false},"768":{"columns":1,"gridCols":"720px","stageDir":"row","tabsWrap":"wrap","tabsDir":"row","tabsOverflowX":"visible","ctaCols":2,"stageBg":false},"1023":{"columns":1,"gridCols":"975px","stageDir":"row","tabsWrap":"wrap","tabsDir":"row","tabsOverflowX":"visible","ctaCols":2,"stageBg":false},"1024":{"columns":2,"gridCols":"499.391px 408.609px","stageDir":"column","tabsWrap":"nowrap","tabsDir":"column","tabsOverflowX":"visible","ctaCols":2,"stageBg":true}}
+  ok 29 [chromium] › e2e\home-10d.spec.js:530:1 › E5 layouts switch exactly at the breakpoints: tablet at 768 (not 767), desktop two columns at 1024 (not 1023) (2.8s)
+NOTE E5 farmer photo requests per width: {"320":0,"360":0,"412":0,"768":0,"1023":0,"1024":1,"1280":1,"1440":1}
+  ok 30 [chromium] › e2e\home-10d.spec.js:559:1 › E5 farmer photo: requested once at 1024 px and wider, never below 1024 px (baseline: phone 1 → 0, desktop 1 → 1) (32.1s)
+  ok 31 [chromium] › e2e\home-10d.spec.js:583:1 › E1 the rotation stops by itself after 13 rotations (battery) (14.2s)
+  ok 32 [chromium] › e2e\home-10d.spec.js:600:1 › E6 CLS fix: /, /browse, /guide, /signup, /mausam load directly; in-app navigation to and from / works (6.3s)
+[teardown] cleanup warning: Missing Supabase env (run with node --env-file=.env)
+
+  32 passed (3.0m)

@@ -1,0 +1,28 @@
+{
+  "gpsOnWhileLooking": {
+    "coords": "✓ 23.83880, 78.73780",
+    "step": "fresh",
+    "fallback": null,
+    "busy": false,
+    "active": null,
+    "button": "मेरी वर्तमान लोकेशन लें"
+  },
+  "gpsOnFirstTry": {
+    "coords": "✓ 23.83880, 78.73780",
+    "step": "fresh",
+    "fallback": null,
+    "busy": false,
+    "active": null,
+    "button": "मेरी वर्तमान लोकेशन लें",
+    "ms": 891
+  },
+  "gpsOff": {
+    "coords": null,
+    "step": null,
+    "fallback": "फ़ोन से लोकेशन नहीं मिल पाई। कोई बात नहीं — ऊपर अपने गाँव या कस्बे का नाम लिखें, लिस्टिंग उसी से दिखेगी।",
+    "busy": false,
+    "active": "f_asset_village",
+    "button": "मेरी वर्तमान लोकेशन लें",
+    "ms": 20781
+  }
+}

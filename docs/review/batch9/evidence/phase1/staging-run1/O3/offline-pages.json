@@ -1,0 +1,99 @@
+{
+  "/": {
+    "stamp": null,
+    "prices": [
+      "₹1,849",
+      "₹2,655",
+      "₹6,323",
+      "₹7,190",
+      "₹11,000",
+      "₹1,849",
+      "₹2,655",
+      "₹6,323"
+    ],
+    "mspPrices": [],
+    "temps": [],
+    "notice": null,
+    "errorBoundary": false,
+    "overlap": {
+      "bannerBottom": 37,
+      "headerTop": 37
+    }
+  },
+  "/mausam": {
+    "stamp": {
+      "text": "📴 पिछली बार अपडेट: 15 अक्तू॰, 02:27 am",
+      "cachedAt": 1792011467583
+    },
+    "prices": [],
+    "mspPrices": [],
+    "temps": [
+      "24°",
+      "30°",
+      "25°",
+      "23°",
+      "22°",
+      "21°"
+    ],
+    "notice": null,
+    "errorBoundary": false,
+    "overlap": {
+      "bannerBottom": 37,
+      "headerTop": 37
+    }
+  },
+  "/msp": {
+    "stamp": {
+      "text": "📴 पिछली बार अपडेट: 15 अक्तू॰, 02:27 am",
+      "cachedAt": 1792011476067
+    },
+    "prices": [],
+    "mspPrices": [
+      "₹2,655",
+      "₹2,585",
+      "₹6,323",
+      "₹5,708",
+      "₹1,849",
+      "₹2,410",
+      "₹7,190",
+      "₹5,950"
+    ],
+    "temps": [],
+    "notice": null,
+    "errorBoundary": false,
+    "overlap": {
+      "bannerBottom": 37,
+      "headerTop": 37
+    }
+  },
+  "/browse?cat=bhusa": {
+    "stamp": {
+      "text": "📴 पिछली बार अपडेट: 15 अक्तू॰, 02:28 am",
+      "cachedAt": 1792011487918
+    },
+    "prices": [],
+    "mspPrices": [],
+    "temps": [],
+    "notice": null,
+    "errorBoundary": false,
+    "overlap": {
+      "bannerBottom": 37,
+      "headerTop": 37
+    }
+  },
+  "/listing/fda511b1-463f-4847-ba13-356a24944986": {
+    "stamp": {
+      "text": "📴 पिछली बार अपडेट: 15 अक्तू॰, 02:28 am",
+      "cachedAt": 1792011492396
+    },
+    "prices": [],
+    "mspPrices": [],
+    "temps": [],
+    "notice": null,
+    "errorBoundary": false,
+    "overlap": {
+      "bannerBottom": 37,
+      "headerTop": 37
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# Batch 12B close — decisions
+1. **No rollback.** Every page returned 200 and rendered; no ErrorBoundary or 5xx. The only console/network error on every page is the Cloudflare analytics beacon blocked by the site's own Content-Security-Policy (`script-src 'self'`). No headers changed in this ship; recorded, not treated as a failure.
+2. **Garbled crop names in the home mandi ticker** (e.g. "αñùαÑçαñ╣αÑéαñé" instead of "गेहूं"): the text comes from the production table `mandi_prices.commodity_hi`, which holds mis-encoded Hindi. Identical on the previous deployment `e85e91a0-1674-4726-91e6-1051ebdb47a5` and on `11f140ef` (before 12C), so not caused by this ship. Hard rule 1 forbids database writes here: recorded as HUMAN-REVIEW / known issue, not fixed. The "no Latin letters" check passes (the garbled characters are Greek/box-drawing, not Latin).
+3. **Mobile button position** compared with the text-position method of the 12A spec (nb.y 614.8, hb.y 690.8): matches 615/691, and identical on the previous deployment.
+4. `POST /api/otp/send` needs an Origin header (without one it answers 403 forbidden_origin, as designed); sent with Origin https://kissansahyog.com -> 400 invalid_phone. No SMS possible with phone "123".
+5. Time of run: 2026-10-20 about 09:30 IST, so the card is correctly visible today in real time too.

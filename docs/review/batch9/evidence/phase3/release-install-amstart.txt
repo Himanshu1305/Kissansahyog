@@ -1,0 +1,7 @@
+Starting: Intent { cmp=com.kissansahyog.app/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.kissansahyog.app/.MainActivity
+TotalTime: 4794
+WaitTime: 4805
+Complete

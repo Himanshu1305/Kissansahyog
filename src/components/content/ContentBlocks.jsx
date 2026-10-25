@@ -3,6 +3,7 @@ import { pick } from './citeContext.jsx'
 import Cite from './Cite.jsx'
 import Calc from './Calc.jsx'
 import PastExampleNote from './PastExampleNote.jsx'
+import { Link } from 'react-router-dom'
 
 // Slug an id for heading anchors (ascii fallback if a hi string sneaks in).
 function anchorId(block, i) {
@@ -160,6 +161,23 @@ function Cta({ block, lang }) {
   )
 }
 
+function Related({ block, lang }) {
+  return (
+    <section className="my-6 rounded-2xl border border-stone-200 bg-stone-50 p-4" aria-label={pick(block.title, lang)}>
+      <h2 className="mb-3 text-lg font-bold text-stone-900">{pick(block.title, lang)}</h2>
+      <ul className="grid gap-2 sm:grid-cols-2">
+        {block.items.map((item, i) => (
+          <li key={i}>
+            <Link to={item.href} className="block rounded-xl border border-stone-200 bg-white px-3 py-2 font-semibold text-green-800 hover:bg-green-50">
+              {pick(item.text, lang)}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 export default function ContentBlocks({ blocks = [] }) {
   const { t, lang } = useLang()
   return (
@@ -176,6 +194,7 @@ export default function ContentBlocks({ blocks = [] }) {
           case 'checklist': return <Checklist key={i} block={block} lang={lang} />
           case 'faq': return <Faq key={i} block={block} lang={lang} t={t} />
           case 'cta': return <Cta key={i} block={block} lang={lang} />
+          case 'related': return <Related key={i} block={block} lang={lang} />
           default: return null
         }
       })}

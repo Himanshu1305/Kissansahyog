@@ -1,0 +1,10 @@
+avd-setup: emulator-5554 stopped
+avd-setup: booting -avd ks_test_api36 -port 5554 -no-window -no-audio -no-snapshot -no-boot-anim -gpu swiftshader_indirect
+avd-setup: emulator internet OK (DNS + reachability)
+avd-setup: ready (booted in 67s, API 36)
+emulator-5554
+
+real	1m9.006s
+user	0m1.732s
+sys	0m2.443s
+EXIT=0

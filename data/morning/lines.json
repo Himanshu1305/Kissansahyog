@@ -1,0 +1,9 @@
+{
+  "blessing": [
+    { "id": "b1", "text_hi": "अन्नदाता सुखी भव 🌾", "reviewed": true },
+    { "id": "b2", "text_hi": "आपकी मेहनत को सलाम", "reviewed": true },
+    { "id": "b3", "text_hi": "आपके खेत हरे-भरे रहें", "reviewed": true },
+    { "id": "b4", "text_hi": "आपका दिन शुभ हो", "reviewed": true }
+  ],
+  "kahawat": []
+}

@@ -1373,3 +1373,223 @@ pipeline) and this batch's own test listings (removed in teardown by id). Previe
 - **Tests:** backend all green; **E2E 83/83** (was 79/82 — the 3 known failures fixed; `phase2` selector
   updated for a reworded item-B string). `build:full` **249/249** prerendered; sitemap pages 44 / sawaal 152.
   Screenshots in `docs/review/shots-batch4/`. Preview `5013e32a` — https://v2-preview.kissansahyog.pages.dev.
+
+### Batch 6A (local, pending owner review)
+
+- Added a top-level React error boundary. Stale chunks/category-registry errors get one guarded service-worker and Cache Storage reset, then a bilingual recovery screen.
+- Listing collection cards use `getCategorySafe`, so unknown legacy categories are skipped rather than blanking the page. PWA updates use auto-update plus skip-waiting.
+- Layout tokens now centralize the 72ch content measure, 1200px wide frame, responsive page padding, card/grid values and form/side-panel grid; `Screen` defaults to wide.
+- The homepage has a shared SearchBar hero (including voice), three clamped Q&A cards, individually sourced image tiles, and an ongoing-Mela label. Mela date status/sorting lives in `lib/mela/melaStatus.js` and is reused by the calendar and teaser.
+- Noto Sans Devanagari 400/600/700/800 Latin and Devanagari subsets are served from `public/fonts`; external Google font links/CSP permissions were removed.
+
+## Batches 7L–10A (state as of this ship)
+
+Added 2026-10-17 after the Batch 10A production ship. Only facts checked in files, code or logs.
+Main sources: `docs/review/batch9/` (SHIP, BACKLOG, FIX9B/FIX9C reports), `docs/review/batch10a/`
+(REPORT, DECISIONS, SHIP_REPORT, `evidence/prod-live/RESULT.md`), migrations 0059–0063, the ship scripts.
+
+### What is live
+
+- **Production** (https://kissansahyog.com, Cloudflare Pages project `kissansahyog-prod`): deployment
+  `0845c733-e8d0-4553-957c-10f3db23ecca`, commit `17d77e8` (branch `release-10a`, tag `prod-10a`), shipped
+  2026-10-17. Main chunk `/assets/index-DRo2-cnt.js`.
+- Previous production: `bf4f9479-821b-41a0-b20c-60ce22eb6303` (source `ee3ecfd`, Batch 9 + 9B + 9C), shipped
+  2026-10-15 with `scripts/ship-prod-9.sh`.
+- **Staging** (https://staging.kissansahyog.com, Pages project `kissansahyog`, Supabase `wzxtqbqlahyahsnoqqva`):
+  deployment `b151dafd-81e7-49e8-aae0-48fe690448fe` (source `74413b6`, Batch 10A).
+- Production Supabase is `eltmcznjcqiahqhjvpjg`. `.env` = staging, `.env.production` = production.
+- Nothing from `release-9` / `release-10a` is merged into `main`.
+
+### How prod and staging are deployed and rolled back
+
+- **Staging:** `node --env-file=.env scripts/check-staging-env.mjs && npm run build:full && node --env-file=.env scripts/check-staging-env.mjs --dist && npx wrangler pages deploy dist --project-name kissansahyog --branch main --commit-dirty=true`.
+- **Production** is shipped only with a gated script, run once by the founder:
+  `bash scripts/ship-prod-10a.sh --dry-run`, then `bash scripts/ship-prod-10a.sh`. It checks branch, HEAD = origin,
+  the `pre-10a-ship` tag and the expected live deployment; compares live prod with a snapshot; runs
+  `npm run build:prod`; deploys with `npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true`;
+  waits for the new main chunk; runs the read-only gates; and **rolls back by itself** if any gate fails.
+- `scripts/ship-prod-9.sh` is the Batch 9 version. It also lists DB migrations 0061–0063 (applied by hand in the
+  Supabase SQL editor, never by the script) and, on a real run, stops unless a read-only GET of
+  `listings?select=client_request_id,contact_consent_at` answers 200. `ship-prod-10a.sh` has no database step.
+- **Rollback:** `bash scripts/rollback-prod-10a.sh <deployment-id>` (or `rollback-prod-9.sh`; `--dry-run` prints the
+  plan). Wrangler has no rollback command, so it calls the Cloudflare API endpoint the dashboard "Rollback" button
+  uses (`POST …/pages/projects/kissansahyog-prod/deployments/{id}/rollback`), token never printed, then re-checks pages.
+  Undo for 10A: `bash scripts/rollback-prod-10a.sh bf4f9479-821b-41a0-b20c-60ce22eb6303`.
+- **Gates:** `scripts/verify-batch9-live.mjs --base <url> --checks …` with checks `pages`, `compare`, `cors`,
+  `functions`, `static`, `sw`, `data`, `snapshot` and `post` (staging only). On a production host it is always
+  read-only: the browser aborts every non-GET/HEAD/OPTIONS request and `post` is refused.
+- **Size gate tolerances** (`compare` vs `--snapshot`): page size within −15% / +15%; `/mausam` may grow +60% when its
+  FAQ block is new; `/sawaal` and `/yojana` may grow up to 4.0x (+300%, data pages snapshotted before data loaded).
+  Title and h1 must be unchanged and there must be no ErrorBoundary.
+- The first 10A real ship (16:38, deployment `60bca777`) rolled itself back because of a false failure in the
+  script's own route check (`printf | grep -q` under `pipefail` → SIGPIPE). Fixed in `17d77e8` (here-strings).
+
+### Auth and registration (as built)
+
+- **Signup** (`src/screens/Signup.jsx`, one page since 10A): full name, mobile, email, password, village/town (from
+  the places list), one "show my details" checkbox (ticked by default, with its explanation and a warning when
+  unticked), the unchanged notice + accept box, then the button. No language dropdown (the app language is sent) and
+  no farmer (किसान) block (it stays on Profile).
+- Signup calls `app_register` (migration **0060**): profile for the signed-in Supabase Auth user, mobile required,
+  coordinates of the chosen town, visibility stored in `profiles.consents -> 'details_visibility'`. 0060 also made
+  `profiles.pincode` nullable, and `get_listing_contact` returns `contact_hidden` for "keep hidden" owners.
+  `app_signup` / `app_signup_email` are kept for older app builds.
+- Email + password live in their own block `src/components/auth/EmailPasswordFields.jsx`, so OTP can replace or
+  relax them later without a rewrite.
+- **Login** (`src/screens/Login.jsx`) has two options: email + password, or mobile number. **Mobile login is still
+  trust-based**: `app_login(p_phone)` signs in on the number alone, no OTP. The screen already has an OTP step
+  (`startPhoneLogin` / `verifyPhoneOtp`) waiting for a real SMS sender.
+- **Throttling** (migration **0059**): `login_attempts` table (no anon access); after 5 failed attempts for an
+  identifier within 15 minutes, login is refused for 15 minutes (`too_many_attempts`). Admins are refused on the
+  mobile path. The email throttle depends on the app calling `app_login_email_guard`; Supabase Auth's own rate
+  limit is the real limit on password guessing.
+
+### Listing form architecture
+
+- Categories are modules registered in `src/lib/listings/registry.jsx` (`ENABLED_CATEGORIES`); Post/Browse/detail
+  are category-agnostic.
+- `src/lib/listings/catalog.js` holds the equipment data: `EQUIPMENT_TAGS` (`vegetable_farming`, `rare_emergency`),
+  `EQUIPMENT_TYPE_DEFAULT_TAGS` (tags pre-ticked per type), `SPEC_FIELDS` / `EQUIPMENT_SPECS` (per-type spec
+  fields; `ph` = grey example text such as `जैसे 2023`), and `equipmentServerRules()`.
+- `FieldRow` (`src/components/categories/fields.jsx`) puts two short fields side by side from 400 px wide (one
+  column below 400 px).
+- Posting calls `create_listing_with_location` with `p_client_request_id` (migration **0061**: one random id per Post
+  form, reused on retry; at most one listing per owner + id) and `p_contact_consent` (migration **0062**: stamps
+  `listings.contact_consent_at` for vendor listings and provider offers; a hidden owner's number is shown only on a
+  listing with that stamp).
+- Migration **0063**: equipment offers that carry `details.spec_version = 1` must have every mandatory spec field
+  (else `equipment_spec_invalid:<field>:<required|range>`). Calls without `spec_version` (older apps) are not
+  checked. The rules come from `equipmentServerRules()`; `scripts/check-equipment-specs.mjs` fails if code and SQL differ.
+- On production, 0061 + 0062 are confirmed by the Batch 9 ship script's read-only column check. 0063 changes only a
+  function and cannot be checked read-only; the combined SQL prepared for the founder is
+  `docs/review/batch9/PROD_MIGRATIONS_0061_0063.sql`.
+
+### Batch 10A changes (website only, no database change)
+
+- **A — who is posting first:** Farmer / Business buttons are the first question of the Post form (above the
+  category tiles). Same state, testids (`post-source-farmer`) and consent behaviour.
+- **B — side-by-side fields:** `FieldRow` pairs Brand|Model, Year|HP, Output|Unit, Rental basis|Rate, and
+  building-materials Quantity|Unit. One column under 400 px.
+- **C — example values:** grey examples on Model (`जैसे 575 DI` for tractors), Year (`जैसे 2023`), HP, Output per hour
+  and requirement min HP. Never saved; empty fields still fail "required".
+- **D — equipment tags:** tags sit right under the machine type; Crane Tractor, Pit Digging Tractor, JCB, Drone and
+  Water tanker pre-tick "rare/emergency" until the poster touches the chips. Browse shows large tag chips under the
+  category chips (`equipment-tag-filters`); the `?etag=` deep link works, a tap filters in the page only.
+- **E — one-page signup:** see Auth above. Same data is sent as before.
+- **F — village pre-filled:** the Post form's step-3 village starts with the profile's village when empty.
+
+### Decisions still waiting on others
+
+- **OTP login (batch 10B):** waits on the Jio DLT chain — sender header `KSAHYG`, then the OTP template, then
+  Fast2SMS chain-binding (`docs/review/batch9/BACKLOG.md` B3/B4). The founder sends the approved Template ID.
+- **Lawyer review** of Terms, Privacy and consent text (BACKLOG L1/L2). The signup visibility explanation line is
+  kept and marked HUMAN-REVIEW until then.
+- **Tag auto-tick mapping** (`EQUIPMENT_TYPE_DEFAULT_TAGS`) — founder may change it.
+- **360 px:** side-by-side pairs only start at 400 px, so they stack on 360 px phones.
+- **Browse tag in the URL:** tapping a tag does not write `etag` into the address bar (post-ship HUMAN-REVIEW).
+
+### Test baseline
+
+- E2E (Playwright CLI against staging): 65 passed / 23 failed after 10A (61 / 27 before). All 23 failed before 10A too.
+- `npm run lint` fails: ESLint is not installed.
+- `npm run test:e2e` does not start on Windows; the Playwright CLI is run directly.
+- Static check scripts: 26 pass / 11 known failures, unchanged by 10A. Equipment spec gate 805/805.
+
+## Batch 10C — Guide demos (state as of this ship)
+
+Added 2026-10-18 after the Batch 10C production ship. Sources: `docs/review/batch10c/` (REPORT, DECISIONS, SHIP,
+SHIP_RETRY, CLOSE_REPORT, `evidence/prod-live/RESULT.md`), `src/features/guide/`, the 10C ship and rollback scripts.
+
+### What is live
+
+- **Production**: deployment `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, commit `40ddc4d` (branch `release-10c`, tag
+  `prod-10c`), shipped 2026-10-18. Main chunk `/assets/index-NFbe6Fk2.js`. Website only, **no database change**.
+- Previous production: `0845c733-e8d0-4553-957c-10f3db23ecca` (Batch 10A, `17d77e8`).
+- Shipped with `bash scripts/ship-prod-10c.sh` (same gated pattern as 10A, plus a `10c_routes` check that the five
+  guide pages answer 200 with the new main chunk, following Pages' `/guide` → `/guide/` 308 redirect). The first
+  real run (deployment `1187e82e`) rolled itself back because that check did not follow the redirect; fixed in `9be865c`.
+- Undo: `bash scripts/rollback-prod-10c.sh 0845c733-e8d0-4553-957c-10f3db23ecca`.
+- Live check after the ship (read-only): all page, demo, entry-point, tag-chip, sitemap and robots checks passed;
+  slow-phone targets were missed on production (see KNOWN_ISSUES).
+
+### The guide feature
+
+- Routes: `/guide` (hub) and `/guide/:id` for `register`, `post`, `find`, `tour`; any other id shows NotFound. Both
+  are lazy routes; the five URLs are prerendered and listed in `/sitemap-pages.xml`.
+- Code lives in `src/features/guide/`. Each demo is a **data file** in `src/features/guide/demos/`
+  (`register.js`, `post.js`, `find.js`) played by `DemoPlayer.jsx` (finger, typing, ticks, Watch / Try-it modes,
+  jump to a step, finish card). The tour is `TourExplorer.jsx` (5 tabs: mandi, weather, schemes, questions, market;
+  rotates every 6 s, pauses when hidden or off screen).
+- `GuideSheet.jsx` plays a demo over the current page (help buttons). Opening it adds one history entry with the
+  same URL, so the phone's Back button closes the sheet and the page stays; typed form values are kept. In the
+  Android app it uses the app's own back handling instead.
+- Progress ("n / 4 done") and the badge name are stored only in the browser (`localStorage` keys
+  `ks_guide_done_v1`, `ks_guide_name_v1`). No analytics code in the guide; guide pages make no backend calls of their own.
+- Guide route chunks are about 17 KB gzip (live files measured at close: 16.7 KB).
+- Entry points: Welcome (register-demo card above "नया खाता बनाएं"), Homepage card "पहली बार? 1 मिनट में सीखें",
+  help buttons on Signup, Login, Post (step 1) and Browse, a "▶ गाइड" pill in the top bar, a Guide link in the
+  footer, and a card at the top of How-to-use.
+- **OTP switch:** `GUIDE_OTP_LIVE` in `src/features/guide/config.js` is `false`, so the register demo shows today's
+  signup (no OTP). Flip it to `true` in the same release that makes OTP signup live, and re-test the register demo.
+- **Listen** uses the phone's own voice (`speechSynthesis`). Recorded Hindi audio is a planned later upgrade (needs
+  a text-to-speech service or a recorded voice).
+- All guide text is in `src/lib/i18n/strings.js` (`guide_` keys). The Hindi captions are HUMAN-REVIEW:
+  `docs/review/batch10c/HINDI_CAPTIONS.md`.
+- The design preview the demos were built from is `design/guide-demo-preview.html` (untracked, founder's file).
+
+### Browse tag chips in the web address
+
+- Tapping an equipment tag chip on Browse now writes `etag` into the address (`/browse?cat=equipment&etag=…`),
+  replacing the history entry; tapping it again or "All" removes it; a deep link or refresh keeps it; an unknown
+  value is ignored. This closes the 10A HUMAN-REVIEW item "Browse tag in the URL".
+
+
+---
+
+## Batch 11A — mobile OTP and session tokens (state as of this ship)
+
+- **Live:** deployment `11f140ef-859d-419a-85ee-7f1309bb0256`, commit `7d9adc5` (branch `release-11a`, tags `ship-11a`, `prod-11a`), shipped 2026-10-20. Main chunk `/assets/index-kXKG8WUQ.js`. Previous: `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20` (10C). The same ship carried 10D, 10E, 10F and 10G.
+- **Two database switches** (read at runtime through `get_auth_flags` / `GET /api/otp/config`, cached about 60 s): `otp_required` (real SMS OTP for phone sign-in and sign-up) and `session_enforced` (actor functions require the session token). At close: `otp_required` ON, `session_enforced` OFF. Do not turn `session_enforced` ON before a new Android APK is published.
+- **Pages Functions:** `/api/otp/send`, `/api/otp/verify`, `/api/otp/config` (provider 2Factor). Secrets (names only): `TWOFACTOR_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, set with `bash scripts/set-otp-secrets.sh prod`. `send` rejects a bad number with 400 `invalid_phone` before any SMS.
+- **Migration 0066:** OTP tables, tickets and sessions; switches seeded OFF; a catalog-driven `require_actor` guard on 100 actor functions (checks header `x-ks-session`, only while both switches are ON) and an `otp_required` gate on 3; one allow-list entry (`app_session_valid`); original function bodies saved in `ks_fn_backup_0066`; a random pepper created once per database in `auth_private` (phone and IP are stored only as hashes). Rollback: `PROD_ROLLBACK_0066.sql`.
+- **Client:** `src/lib/auth/sessionToken.js` (token store, header on every data call, revoke on logout), `src/components/auth/OtpStep.jsx` (code step, resend countdown, change number), `getAuthFlags` in the auth service; login shows the mobile box above the e-mail box; e-mail users get a session token after sign-in; a `not_authenticated` answer signs the user out locally.
+- **Shipped with** `bash scripts/ship-prod-11a.sh` (gated, with 0064/0065/0066 probes and OTP gates); migrations were pasted into the production SQL editor first. **Undo:** both switches OFF, then `bash scripts/rollback-prod-11a.sh 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, then `PROD_ROLLBACK_0066.sql` only if needed.
+- `GUIDE_OTP_LIVE` in `src/features/guide/config.js` is still `false` (flip it in a later release once OTP is on for good).
+- Details: `docs/review/batch11a/` (REPORT, DECISIONS, SHIP, CLOSE_REPORT, evidence).
+
+
+---
+
+## Batch 12B — state as of this ship
+
+- **Live:** deployment `8c6a66f2-ad48-444c-8730-67a072c49e0c`, commit `e7432c8` (branch `release-12b`, tags `ship-12b`, `prod-12b`), 2026-10-20. It also carried release-12c: 12A (WhatsApp channel card) and 12C (home mandi ticker); their own close prompts were never run, so 12A and 12C are live via this ship.
+- **Festival card:** `src/lib/festivals.js` holds the list and the India-date gate (Asia/Kolkata, inclusive dates); to add a festival add one entry (the card text is currently Dussehra-only). `src/components/FestivalCard.jsx` is client-side only: it is skipped when `window.__KS_PRERENDER` is set (prerendered HTML has no card) and remembers a close in localStorage key `ks_festival_closed_v1`.
+- **Picture:** `public/festival/neelkanth.webp` and `neelkanth-112.webp` (CC0), licence note `docs/review/batch12b/IMAGE_LICENSE.md`.
+- **Home desktop layout:** the "पहली बार?" banner and the WhatsApp card sit inside the centered hero column via `.ks-section-inner`.
+- Undo: `bash scripts/rollback-prod-12b.sh e85e91a0-1674-4726-91e6-1051ebdb47a5`. Details: `docs/review/batch12b/` (REPORT, DECISIONS, SHIP, CLOSE_REPORT, evidence).
+
+## Batch 14A — state as of this ship
+- Live since 2026-10-23: deployment 3c5b9bbf (commit 6702137, tag `prod-14a`), previous 871f224c (Batch 13A).
+- Admin page = shell + six lazy tabs (`src/screens/admin/`); panel search is built from `registry.js`.
+- Announcement cards replace the Dussehra card (`get_active_announcements`, `AnnouncementCards`, India time). None exists yet; see `docs/review/batch14a/EXAMPLE_ANNOUNCEMENT.md`.
+- New admin RPCs take `p_actor` and need a live session even when `session_enforced` is false (`require_admin_session`).
+- Roles `super` / `editor` (`profiles.admin_role`).
+- Blocking = `profiles.is_blocked` + BEFORE INSERT triggers on listings and kisan_mela_interest + the OTP verify check.
+- Console log = `admin_actions`; old admin writes are logged by the console `withLog` (see `docs/review/batch14a/BACKLOG.md`).
+- `functions/lib/admin-auth.js` is reused by 14B.
+- Switches at ship: otp_required=true, session_enforced=false.
+
+## Batch 15A — mandi price history (state at the end of the batch)
+- New table `mandi_monthly_history` (migration 0069; `commodity_en`, `scope` = `sagar_division` | `mp`, `month`, `modal_price`, `districts_reporting`), public read, no write grants. 12 crops, monthly Modal price 2016-01 to 2025-10, from Agmarknet / DMI via the CEDA portal (Ashoka University). Source note: `data/mandi-history/SOURCE.md`.
+- Loaded by owner-pasted SQL (`docs/review/batch15a/history-prod/part-NN.sql`, generated by `scripts/build-mandi-history-sql.mjs` from `data/mandi-history/ceda-monthly-2016-2025.json`). The browser never calls CEDA.
+- Reusable reads/maths for 15B: `src/lib/mandi/history10y.js` (`fetchMonthlyHistory`) and the pure `history10yCalc.js` (`monthOfYearAverages`, `harvestAverage`, `harvestByYear`, `gapVsAverage`). `CROPS[].harvest_months` are assumptions (see BACKLOG).
+- /msp: "past years" chart (id `pastyears`) and "5-year average vs today" (id `avg5`, after the trend chart). Both hide when the table is empty or missing. Never a forecast.
+- Ship: `scripts/ship-prod-15a.sh` (dry-run only until the owner ships); owner steps in `docs/review/batch15a/SHIP.md`.
+- Switches untouched: otp_required=true, session_enforced=false.
+
+## Batch 15B — "कम पानी में कौन-सी फसल" page (state at the end of the batch)
+- **Route** /fasal-salah/kam-pani (screen src/screens/KamPani.jsx, lazy; prerendered via scripts/lib/prerender-routes.mjs so it is in sitemap-pages.xml; in the search index via scripts/build-search-index.mjs and src/content/searchSynonyms.js). Linked from a card on /fasal-salah and a line on /msp/{chana,masoor,sarson,gehun}.
+- **All text and facts** are in src/content/kamPani.js ({hi,en}; every block has id, reviewed, sources). reviewed:false shows the "समीक्षाधीन" tag; flip to true once KVK Sagar / A.K. Dixit confirms. Pure logic in src/lib/kamPani/logic.js (tests tests/unit/kam-pani-15b.test.mjs); read-only data in src/lib/kamPani/data.js (today = Sagar-mandi median of 14 days via fetchMandiHistoryRows, needs 3+ reports; 5-year harvest-time average March-May 2021-2025 from the 15A table via history10y.js).
+- **MSP** on this page is the 2027-28 constant in kamPani.js, not the msp_prices table.
+- **Refresh the dated claims** (bump LAST_CHECKED): BANNERS.sowing.validUntil (2026-11-15) and BANNERS.rain (2026-12-31) expire by themselves, update their text and date each season; MSP_2027_28 each October; the 5-year window (END_YEAR in data.js and the "2021 से 2025" wording) when new history is loaded.
+- No database change, no migration. Ship: scripts/ship-prod-15b.sh and rollback-prod-15b.sh (generated by scripts/batch15b/make-ship-scripts.mjs), steps in docs/review/batch15b/SHIP.md.

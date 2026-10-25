@@ -7,6 +7,8 @@
 // 404 and set honest expectations. Have it reviewed by counsel before public
 // launch. Contact for data/legal queries: usdvisionai@gmail.com
 
+export { termsOfUse, termsNote } from './termsContent.js'
+
 export const privacyPolicy = [
   {
     hi: 'हम क्या जानकारी लेते हैं: आपका मोबाइल नंबर, पिन कोड, गाँव/कस्बा और आपकी लिस्टिंग का विवरण (जैसे ज़मीन का आकार, उपकरण का प्रकार, दाम)।',
@@ -24,21 +26,32 @@ export const privacyPolicy = [
     hi: 'आवाज़ से खोज: माइक से बोली गई बात केवल खोज चलाने के लिए इस्तेमाल होती है; किसान सहयोग इसे कभी सेव नहीं करता। आवाज़ को लिखाई में बदलने के लिए आपके फ़ोन या ब्राउज़र की अपनी सेवा (जैसे Google या Apple) उसे प्रोसेस कर सकती है।',
     en: 'Voice search: what you say into the mic is used only to run a search; Kissan Sahyog never saves it. To turn your voice into text, your phone or browser’s own service (for example Google or Apple) may process it.',
   },
+  // Batch 7L-1 Stage B, updated in Batch 7L-2 (rounded weather position, Clear button) — "Your location". States only what the code does (userLocation.js,
+  // LocationProvider.jsx, weatherApiV2.js, locationStore.js, places.js). Flagged for lawyer
+  // review in docs/legal/TERMS_DRAFT_FOR_LAWYER.md.
+  {
+    hi: 'आपकी लोकेशन: इसे साझा करना ज़रूरी नहीं है। अगर आप अपने फ़ोन की लोकेशन साझा करते हैं, या अपना गाँव या कस्बा लिखते या चुनते हैं, तो हम उसका इस्तेमाल सिर्फ़ आपके पास के ऑफ़र, मंडी भाव, मौसम, और मेला, कोल्ड स्टोरेज व खोज के नतीजों की दूरी दिखाने के लिए करते हैं। यह आपके इसी फ़ोन के ब्राउज़र में सेव रहती है, आपके खाते या प्रोफ़ाइल में नहीं। अगर आप लॉगिन हैं और इस फ़ोन पर कोई जगह सेव नहीं है, तो आपकी प्रोफ़ाइल में पहले से दर्ज गाँव की जगह इस्तेमाल होती है। पास के ऑफ़र खोजने के लिए हमारे डेटाबेस से आपके आस-पास के इलाके के ऑफ़र माँगे जाते हैं; यह आपके खाते में सेव नहीं होता। मौसम दिखाने के लिए आपकी जगह को पहले लगभग 10 किमी के इलाके तक गोल किया जाता है। सिर्फ़ यही गोल की हुई जगह हमारे मौसम-भंडार और मौसम सेवा Open-Meteo को भेजी जाती है और सिर्फ़ यही सेव होती है, आपके नाम, मोबाइल नंबर या खाते के साथ नहीं। मौसम के लिए आपकी सटीक जगह सेव नहीं होती। आपकी जगह का नाम बताने के लिए जगह नक्शा सेवा BigDataCloud को भेजी जा सकती है, और जो नाम आप नक्शे पर खोजने को कहें वह OpenStreetMap को जाता है। आप अपनी जगह के नाम के पास "बदलें" दबाकर इसे कभी भी बदल सकते हैं। इसे हटाने के लिए अपनी जगह के नाम के पास "मेरी लोकेशन हटाएँ" दबाएँ; ब्राउज़र की सेटिंग में लोकेशन की अनुमति भी बंद कर सकते हैं।',
+    en: 'Your location: sharing it is optional. If you share your device location, or type or pick your village or town, we use it only to show offers near you, mandi prices, weather, and how far melas, cold storages and search results are from you. It is saved in your browser on this device, not in your account or profile. If you are logged in and no place is saved on this device, the village location already in your profile is used. To find offers near you, our database is asked for offers in the area around you; this is not saved to your account. To show the weather, your position is first rounded to an area of about 10 km. Only that rounded position is sent to our weather store and to the weather service Open-Meteo, and only that is saved, not against your name, mobile number or account. Your exact position is not saved for weather. To name your place, the position may be sent to the map service BigDataCloud, and a place name you ask us to look up on the map goes to OpenStreetMap. You can change it anytime with the "Change" link next to your place name. To remove it, press "Clear my location" next to your place name; you can also turn off location permission in your browser settings.',
+  },
   {
     hi: 'वैकल्पिक जानकारी: आपकी प्रोफ़ाइल का अतिरिक्त विवरण, और यदि आप सहमति दें तो WhatsApp पर जानकारी पाने की पसंद (डिफ़ॉल्ट रूप से बंद) — जैसे पसंदीदा मंडी और मुख्य फसलें। यह सहमति देना ज़रूरी नहीं है।',
     en: 'Optional information: extra profile details, and — only if you opt in — a preference to receive information on WhatsApp (off by default), such as a preferred mandi and your main crops. This consent is not required.',
   },
   {
-    hi: 'आपकी सहमति और उसे वापस लेना: आप कभी भी अपनी WhatsApp सहमति या खाता Profile पेज से या grievance@kissansahyog.com पर लिखकर वापस ले/हटवा सकते हैं। यह डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) नियम, 2025 (13 नवंबर 2025 को अधिसूचित) की भावना के अनुरूप है।',
-    en: 'Your consent and withdrawal: you can withdraw your WhatsApp consent or delete your account anytime from the Profile page or by writing to grievance@kissansahyog.com. This follows the spirit of the Digital Personal Data Protection (DPDP) Rules, 2025 (notified 13 November 2025).',
+    hi: 'सुझाव और शिकायत फ़ॉर्म: इस फ़ॉर्म में दिया गया ईमेल या मोबाइल नंबर केवल आपके संदेश का जवाब देने के लिए रखा जाता है और सार्वजनिक रूप से नहीं दिखाया जाता।',
+    en: 'Feedback & Grievance form: the email or mobile number you give in this form is stored only to reply to your message and is not shown publicly.',
   },
   {
-    hi: 'डेटा से जुड़े सवाल या अपना डेटा हटवाने के लिए संपर्क करें: सामान्य — hello@kissansahyog.com; शिकायत/डेटा अधिकार — grievance@kissansahyog.com (शिकायत अधिकारी: श्री अभिनंदन दीक्षित)।',
-    en: 'For data queries or deletion requests, contact: general — hello@kissansahyog.com; grievance/data rights — grievance@kissansahyog.com (Grievance Officer: Shri Abhinandan Dixit).',
+    hi: 'आपकी सहमति और उसे वापस लेना: आप कभी भी अपनी WhatsApp सहमति या खाता Profile पेज से या hello@kissansahyog.com पर लिखकर वापस ले/हटवा सकते हैं। यह डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) नियम, 2025 (13 नवंबर 2025 को अधिसूचित) की भावना के अनुरूप है।',
+    en: 'Your consent and withdrawal: you can withdraw your WhatsApp consent or delete your account anytime from the Profile page or by writing to hello@kissansahyog.com. This follows the spirit of the Digital Personal Data Protection (DPDP) Rules, 2025 (notified 13 November 2025).',
+  },
+  {
+    hi: 'डेटा से जुड़े सवाल, डेटा अधिकार या अपना डेटा हटवाने के लिए hello@kissansahyog.com पर लिखें। शिकायत के लिए grievance@kissansahyog.com पर लिखें या सुझाव और शिकायत पेज (/grievance) का फ़ॉर्म भरें।',
+    en: 'For data queries, data rights or deletion requests, write to hello@kissansahyog.com. For complaints, write to grievance@kissansahyog.com or use the form on the Feedback & Grievance page (/grievance).',
   },
 ]
 
-export const termsOfUse = [
+export const legacyTermsOfUse = [
   {
     hi: 'किसान सहयोग केवल एक जानकारी सेवा है। हम उपयोगकर्ताओं के बीच किसी भी लेन-देन, सौदे या समझौते के लिए ज़िम्मेदार नहीं हैं।',
     en: 'Kissan Sahyog is an information service only. We are not liable for any transaction, deal, or agreement between users.',
@@ -64,8 +77,8 @@ export const termsOfUse = [
     en: 'Provider declarations: in some categories (e.g. equipment, warehouse/cold storage) the seller must agree to a declaration about safety and the accuracy of information before posting. Responsibility for these declarations lies with the seller.',
   },
   {
-    hi: 'शिकायत व हटाने की प्रक्रिया: किसी लिस्टिंग या विक्रेता की शिकायत "शिकायत करें" बटन से या grievance@kissansahyog.com पर करें। हमारे शिकायत अधिकारी श्री अभिनंदन दीक्षित 24 घंटे में पावती और आमतौर पर 7 दिन में निपटारा करते हैं (सूचना प्रौद्योगिकी नियम, 2021 — G.S.R. 120(E), 10 फ़रवरी 2026 को संशोधित)।',
-    en: 'Report & takedown: report any listing or seller via the "Report" button or grievance@kissansahyog.com. Our Grievance Officer, Shri Abhinandan Dixit, acknowledges within 24 hours and usually resolves within 7 days (Information Technology Rules, 2021 — as amended by G.S.R. 120(E), 10 February 2026).',
+    hi: 'शिकायत व हटाने की प्रक्रिया: किसी लिस्टिंग या विक्रेता की शिकायत "शिकायत करें" बटन से, grievance@kissansahyog.com पर लिखकर या सुझाव और शिकायत पेज (/grievance) के फ़ॉर्म से करें। हम हर शिकायत की जाँच करते हैं और शिकायत सही पाए जाने पर लिस्टिंग/विक्रेता को हटा सकते हैं (सूचना प्रौद्योगिकी नियम, 2021 — G.S.R. 120(E), 10 फ़रवरी 2026 को संशोधित)।',
+    en: 'Report & takedown: report any listing or seller via the "Report" button, by writing to grievance@kissansahyog.com, or by using the form on the Feedback & Grievance page (/grievance). We look into every complaint and may remove the listing or seller if the complaint is found valid (Information Technology Rules, 2021 — as amended by G.S.R. 120(E), 10 February 2026).',
   },
   {
     hi: 'मध्यस्थ की भूमिका: किसान सहयोग एक मध्यवर्ती मंच (intermediary) है और मंच पर कोई लेन-देन नहीं होता। सरकारी FARMS ऐप की तरह, उपयोगकर्ता व सेवा प्रदाता को जानकारी स्वयं स्वतंत्र रूप से जाँचनी चाहिए और मोल-भाव आमने-सामने करना चाहिए।',

@@ -6,6 +6,8 @@
 // uses these groups to widen a user's query so "gehu", "गेहूं" and "wheat" all match
 // the same index items.
 export const SYNONYMS = {
+  building_materials: ['construction material', 'cement', 'sand', 'iron rod', 'bricks', 'gravel', 'building materials'],
+  vegetable_equipment: ['vegetable equipment', 'vegetable farming equipment', 'vegetable farming'],
   wheat: ['गेहूं', 'गेहूँ', 'gehu', 'gehun', 'wheat'],
   soybean: ['सोयाबीन', 'soyabean', 'soybean', 'soya'],
   gram: ['चना', 'chana', 'gram', 'chickpea'],
@@ -28,7 +30,10 @@ export const SYNONYMS = {
   drone: ['ड्रोन', 'drone', 'didi', 'दीदी', 'drone didi'],
   warehouse: ['वेयरहाउस', 'warehouse', 'godown', 'गोदाम', 'store'],
   labor: ['मजदूर', 'mazdoor', 'majdoor', 'labour', 'labor', 'worker'],
-  land: ['जमीन', 'ज़मीन', 'zameen', 'jameen', 'land', 'khet', 'खेत'],
+  low_water: ['कम पानी', 'kam pani', 'low water', 'सूखा', 'sukha', 'drought', 'बारानी', 'baarani', 'barani', 'rainfed', 'rain-fed', 'सिंचाई', 'sinchai', 'irrigation'],
+  crop_insurance: ['फसल बीमा', 'fasal bima', 'crop insurance', 'pmfby', 'बीमा'],
+  farm_pond: ['खेत तालाब', 'khet talab', 'farm pond', 'तालाब', 'talab'],
+  land: ['जमीन', 'ज़मीन', 'रकबा', 'भूमि', 'zameen', 'jameen', 'land', 'khet', 'खेत'],
 }
 
 // Pure helper: given a raw query, return a deduped array of lowercased terms — the

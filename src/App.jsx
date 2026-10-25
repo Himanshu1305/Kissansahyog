@@ -1,8 +1,9 @@
-import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams } from 'react-router-dom'
+import { lazy, Suspense, useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams, useNavigate } from 'react-router-dom'
 import { isSafePath } from './lib/returnPath'
 import { LanguageProvider } from './lib/i18n/LanguageProvider'
 import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
+import { LocationProvider } from './lib/location/LocationProvider'
 import { Spinner } from './components/ui'
 import PwaPrompts from './components/PwaPrompts'
 import BuyerComplianceGate from './components/BuyerComplianceGate'
@@ -10,9 +11,23 @@ import Footer from './components/layout/Footer'
 import BottomTabBar from './components/BottomTabBar'
 import { SiteJsonLd } from './components/layout/Seo'
 import RouteSeo from './components/layout/RouteSeo'
+import { isNative } from './lib/native'
+import { useRefreshKey } from './lib/offline/useOffline'
 
 // Route-level code splitting (perf budget: keep the initial bundle small).
-const Homepage = lazy(() => import('./screens/Homepage'))
+// Batch 10D E — layout-shift fix: main.jsx preloads the homepage chunk on "/" before the first
+// render; then "/" draws the loaded module directly, so the first commit replaces the prerendered
+// page with the real homepage instead of the Suspense spinner (which made the footer jump).
+// Anywhere else (or if the preload has not finished) it is the usual lazy route. The choice is
+// made once per mount, so a mounted homepage never switches component type.
+const loadHomepage = () => import('./screens/Homepage')
+let homepageModule = null
+export const preloadHomepage = () => loadHomepage().then((m) => { homepageModule = m })
+const HomepageLazy = lazy(loadHomepage)
+function Homepage() {
+  const [Page] = useState(() => homepageModule?.default || HomepageLazy)
+  return <Page />
+}
 const Welcome = lazy(() => import('./screens/Welcome'))
 const Privacy = lazy(() => import('./screens/Privacy'))
 const Terms = lazy(() => import('./screens/Terms'))
@@ -28,6 +43,7 @@ const Experts = lazy(() => import('./screens/Experts'))
 const ExpertDetail = lazy(() => import('./screens/ExpertDetail'))
 const Profile = lazy(() => import('./screens/Profile'))
 const Admin = lazy(() => import('./screens/Admin'))
+const AdminMorning = lazy(() => import('./screens/AdminMorning'))
 const Articles = lazy(() => import('./screens/Articles'))
 const ArticleDetail = lazy(() => import('./screens/ArticleDetail'))
 const Resources = lazy(() => import('./screens/Resources'))
@@ -43,12 +59,19 @@ const DroneDidi = lazy(() => import('./screens/DroneDidi'))
 const Mausam = lazy(() => import('./screens/Mausam'))
 const Msp = lazy(() => import('./screens/Msp'))
 const FasalSalah = lazy(() => import('./screens/FasalSalah'))
+const KamPani = lazy(() => import('./screens/KamPani'))
 const AgroForestry = lazy(() => import('./screens/AgroForestry'))
 const Credits = lazy(() => import('./screens/Credits'))
 const KisanMela = lazy(() => import('./screens/KisanMela'))
 const KisanMelaSubmit = lazy(() => import('./screens/KisanMelaSubmit'))
 const Grievance = lazy(() => import('./screens/Grievance'))
 const Contact = lazy(() => import('./screens/Contact'))
+const Founder = lazy(() => import('./screens/Founder'))
+const About = lazy(() => import('./screens/About'))
+const HowToUse = lazy(() => import('./screens/HowToUse'))
+// Batch 10C — live guide demos (own lazy chunks; public, not auth-gated).
+const GuideHub = lazy(() => import('./features/guide/GuideHub'))
+const GuideDemoPage = lazy(() => import('./features/guide/GuideDemoPage'))
 const ColdStorage = lazy(() => import('./screens/ColdStorage'))
 const ColdStorageDistrict = lazy(() => import('./screens/ColdStorageDistrict'))
 const Greenhouse = lazy(() => import('./screens/Greenhouse'))
@@ -60,6 +83,17 @@ const JugaadJankari = lazy(() => import('./screens/JugaadJankari'))
 const Join = lazy(() => import('./screens/Join'))
 const Search = lazy(() => import('./screens/Search'))
 const NotFound = lazy(() => import('./screens/NotFound'))
+// Batch 8A — Android app only (back button, link routing); never loaded on the website.
+const NativeShell = lazy(() => import('./components/NativeShell'))
+
+// Batch 11A — the server refused this device's session (not_authenticated): the user is already signed out
+// locally; show the login screen (it says why).
+function SessionWatch() {
+  const { sessionEnded } = useAuth()
+  const navigate = useNavigate()
+  useEffect(() => { if (sessionEnded) navigate('/login', { replace: true }) }, [sessionEnded, navigate])
+  return null
+}
 
 // Gate for logged-in-only routes.
 function Protected({ children }) {
@@ -92,9 +126,11 @@ function AdminOnly({ children }) {
 }
 
 function AppRoutes() {
+  // Batch 8B (app only): "try again" / connection back → remount the page so it fetches again.
+  const refreshKey = useRefreshKey()
   return (
     <Suspense fallback={<Spinner />}>
-      <Routes>
+      <Routes key={refreshKey}>
         {/* Public landing page — viewable by everyone, including logged-in users
             (the logo links here; nav renders the logged-in state). */}
         <Route path="/" element={<Homepage />} />
@@ -107,6 +143,11 @@ function AppRoutes() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/grievance" element={<Grievance />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/founder" element={<Founder />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/how-to-use" element={<HowToUse />} />
+        <Route path="/guide" element={<GuideHub />} />
+        <Route path="/guide/:id" element={<GuideDemoPage />} />
         {/* Static /cold-storage before the dynamic district route. */}
         <Route path="/cold-storage" element={<ColdStorage />} />
         <Route path="/cold-storage/:district" element={<ColdStorageDistrict />} />
@@ -143,6 +184,7 @@ function AppRoutes() {
         <Route path="/drone-didi" element={<DroneDidi />} />
         <Route path="/mausam" element={<Mausam />} />
         <Route path="/fasal-salah" element={<FasalSalah />} />
+        <Route path="/fasal-salah/kam-pani" element={<KamPani />} />
         <Route path="/agro-forestry" element={<AgroForestry />} />
         {/* Static /msp before the dynamic /msp/:crop */}
         <Route path="/msp" element={<Msp />} />
@@ -163,6 +205,7 @@ function AppRoutes() {
         <Route path="/experts/:id" element={<Protected><ExpertDetail /></Protected>} />
         <Route path="/profile" element={<Protected><Profile /></Protected>} />
         <Route path="/admin" element={<AdminOnly><Admin /></AdminOnly>} />
+        <Route path="/admin/morning" element={<AdminOnly><AdminMorning /></AdminOnly>} />
 
         {/* Real 404 (noindex) — replaces the old soft-404 <Navigate to="/">. */}
         <Route path="*" element={<NotFound />} />
@@ -175,9 +218,11 @@ export default function App() {
   return (
     <LanguageProvider>
       <AuthProvider>
+        <LocationProvider>
         <BrowserRouter>
           {/* Per-route SEO for mapped public pages (central; before routes so head is set early). */}
           <RouteSeo />
+          <SessionWatch />
           <AppRoutes />
           {/* Shared site footer + sitewide JSON-LD on every route (central layout). */}
           <Footer />
@@ -186,7 +231,9 @@ export default function App() {
           <BottomTabBar />
           <PwaPrompts />
           <BuyerComplianceGate />
+          {isNative() && <Suspense fallback={null}><NativeShell /></Suspense>}
         </BrowserRouter>
+        </LocationProvider>
       </AuthProvider>
     </LanguageProvider>
   )

@@ -1,0 +1,982 @@
+{
+  "label": "p1-3",
+  "mode": "slow-phone",
+  "baseURL": "http://localhost:4198",
+  "path": "/",
+  "date": "2026-10-18T16:19:14.839Z",
+  "profile": {
+    "viewport": "360x640",
+    "deviceScaleFactor": 2,
+    "isMobile": true,
+    "hasTouch": true,
+    "serviceWorkers": "block",
+    "cacheDisabled": true,
+    "cpuThrottlingRate": 4,
+    "network": {
+      "name": "Lighthouse mobile Slow 4G (devtools throttling: 150 ms RTT x 3.75, 1.6 Mbps x 0.9, 750 Kbps x 0.9)",
+      "offline": false,
+      "latency": 562.5,
+      "downloadThroughput": 180000,
+      "uploadThroughput": 84375,
+      "latencyUnit": "ms",
+      "throughputUnit": "bytes/s"
+    },
+    "language": "hi (localStorage ks_lang_v1)",
+    "loggedIn": false,
+    "settle": "read at max(load + 5000 ms, 10000 ms after navigation)",
+    "tbtWindow": "[FCP, 10000 ms]"
+  },
+  "runs": 1,
+  "median": {
+    "lcpMs": 3152,
+    "cls": 0.01174,
+    "cls10s": 0.01174,
+    "tbtMs": 365,
+    "fcpMs": 3152,
+    "maxLongTaskMs": 276,
+    "loadWallMs": 12882,
+    "requests": 91,
+    "transferBytes": 1713210,
+    "heroFarmerJpgRequests": 0,
+    "jsChunksGzip9Total": null
+  },
+  "all": [
+    {
+      "run": 1,
+      "lcpMs": 3152,
+      "lcp": {
+        "startTime": 3152,
+        "renderTime": 3152,
+        "loadTime": 0,
+        "size": 11653,
+        "url": null,
+        "element": {
+          "tag": "H1",
+          "id": null,
+          "class": "khl-h1",
+          "text": "आज किसान के लिए",
+          "src": null
+        }
+      },
+      "cls": 0.01174,
+      "cls10s": 0.01174,
+      "shifts": [
+        {
+          "t": 4183,
+          "v": 0.00205,
+          "nodes": [
+            "SPAN.ml-auto",
+            "LI",
+            "BUTTON.khl-tab",
+            "LI",
+            "LI"
+          ]
+        },
+        {
+          "t": 4531,
+          "v": 0.00969,
+          "nodes": [
+            "SECTION.khl",
+            "SPAN.grid",
+            "SPAN.shrink-0"
+          ]
+        }
+      ],
+      "fcpMs": 3152,
+      "tbtMs": 365,
+      "longTasks": [
+        {
+          "start": 3666,
+          "dur": 149
+        },
+        {
+          "start": 6489,
+          "dur": 276
+        },
+        {
+          "start": 6928,
+          "dur": 75
+        },
+        {
+          "start": 7016,
+          "dur": 65
+        }
+      ],
+      "maxLongTaskMs": 276,
+      "loadWallMs": 12882,
+      "nav": {
+        "loadEventEnd": 12877,
+        "domContentLoaded": 3813,
+        "responseEnd": 692
+      },
+      "readAtMs": 17908,
+      "heroFarmerJpg": {
+        "requests": 0,
+        "bytes": 0,
+        "statuses": []
+      },
+      "requests": 91,
+      "transferBytes": 1713210,
+      "failedRequests": [],
+      "jsChunks": [
+        {
+          "url": "http://localhost:4198/assets/index-B_oa21vx.js",
+          "transferBytes": 28171,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/rolldown-runtime-hePW80VL.js",
+          "transferBytes": 1037,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/react-vendor-Cg-BX6NK.js",
+          "transferBytes": 72889,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/LanguageProvider-BBzR7O-u.js",
+          "transferBytes": 63307,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/useNativeBack-DSHu5POZ.js",
+          "transferBytes": 1009,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/supabase-H6RbKBY9.js",
+          "transferBytes": 53766,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/PageShell-itptokUU.js",
+          "transferBytes": 15653,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/device-D4sZPGnq.js",
+          "transferBytes": 628,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/Homepage-Bg9XN3Ag.js",
+          "transferBytes": 15229,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/icons-Dd4nfPxy.js",
+          "transferBytes": 1595,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/useLoopActive-Db9yagvT.js",
+          "transferBytes": 986,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/FieldScene-k-zpIXHV.js",
+          "transferBytes": 2244,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/melaApi-CoOihb66.js",
+          "transferBytes": 3319,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/communityApi-DfZ6hRqS.js",
+          "transferBytes": 1873,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/mandiApi-hfrB8eix.js",
+          "transferBytes": 1919,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/weatherApi-f5eLqPLK.js",
+          "transferBytes": 800,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/weatherApiV2-C77FrlwI.js",
+          "transferBytes": 2153,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/kit-BRX7_n69.js",
+          "transferBytes": 3047,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/shared-BJugpdTZ.js",
+          "transferBytes": 4421,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/LocationControl-B73iHOg-.js",
+          "transferBytes": 2715,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/articlesApi-BmEQXJes.js",
+          "transferBytes": 1015,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/shareMessages-1uM_nkly.js",
+          "transferBytes": 1346,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/catalog-KGaQpWeV.js",
+          "transferBytes": 6967,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/registry-D5SjME5t.js",
+          "transferBytes": 13589,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/listingsApi-Ce_RbpjW.js",
+          "transferBytes": 2387,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/photos-Bh2zUa51.js",
+          "transferBytes": 1223,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/OfflineStamp-EJAlKKRs.js",
+          "transferBytes": 987,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/crops-Bmyu-kFh.js",
+          "transferBytes": 920,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/founder-B7YdwJ2e.js",
+          "transferBytes": 6720,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/mspApi-XT49ny6C.js",
+          "transferBytes": 754,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/AvailabilityNudge-B3JmnUNa.js",
+          "transferBytes": 1418,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/videosApi-SUgnpFwY.js",
+          "transferBytes": 921,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/melaFormat-CY14zZ8E.js",
+          "transferBytes": 1246,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/months-vZTFnxQH.js",
+          "transferBytes": 845,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/workbox-window.prod.es5-Bd17z0YL.js",
+          "transferBytes": 2569,
+          "status": 200,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/LiveStage-CmzRwVYP.js",
+          "transferBytes": 1191,
+          "status": 200,
+          "failed": null
+        }
+      ],
+      "jsChunksGzip9Total": null,
+      "consoleErrors": [],
+      "requestLog": [
+        {
+          "url": "http://localhost:4198/",
+          "type": "Document",
+          "status": 200,
+          "bytes": 19324,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/index-B_oa21vx.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 28171,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/rolldown-runtime-hePW80VL.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1037,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/react-vendor-Cg-BX6NK.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 72889,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/LanguageProvider-BBzR7O-u.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 63307,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/useNativeBack-DSHu5POZ.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1009,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/supabase-H6RbKBY9.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 53766,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/PageShell-itptokUU.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 15653,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/device-D4sZPGnq.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 628,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/index-BpE_yT_b.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 16295,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/Homepage-Bg9XN3Ag.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 15229,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/icons-Dd4nfPxy.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1595,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/useLoopActive-Db9yagvT.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 986,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/FieldScene-k-zpIXHV.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2244,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/melaApi-CoOihb66.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3319,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/communityApi-DfZ6hRqS.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1873,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/mandiApi-hfrB8eix.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1919,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/weatherApi-f5eLqPLK.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 800,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/weatherApiV2-C77FrlwI.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2153,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/kit-BRX7_n69.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3047,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/shared-BJugpdTZ.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4421,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/LocationControl-B73iHOg-.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2715,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/articlesApi-BmEQXJes.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1015,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/shareMessages-1uM_nkly.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1346,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/catalog-KGaQpWeV.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6967,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/registry-D5SjME5t.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 13589,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/listingsApi-Ce_RbpjW.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2387,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/photos-Bh2zUa51.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1223,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/OfflineStamp-EJAlKKRs.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 987,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/crops-Bmyu-kFh.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 920,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/founder-B7YdwJ2e.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6720,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/mspApi-XT49ny6C.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 754,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/AvailabilityNudge-B3JmnUNa.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1418,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/videosApi-SUgnpFwY.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 921,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/melaFormat-CY14zZ8E.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1246,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/months-vZTFnxQH.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 845,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/brand/logo-192.webp",
+          "type": "Image",
+          "status": 200,
+          "bytes": 13682,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/fonts/noto-sans-devanagari-devanagari-800-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54088,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/fonts/noto-sans-devanagari-latin-600-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10988,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/fonts/noto-sans-devanagari-devanagari-700-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54304,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/fonts/noto-sans-devanagari-latin-700-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10924,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/fonts/noto-sans-devanagari-latin-400-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10832,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/fonts/noto-sans-devanagari-latin-800-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 10944,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/fonts/noto-sans-devanagari-devanagari-600-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 54036,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/fonts/noto-sans-devanagari-devanagari-400-normal.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 50736,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-rotavator.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 112608,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-tanker.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 108050,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-labour.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 52467,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-drone.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 43411,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-straw.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 42875,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-seeds.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 104611,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-building-materials.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 109036,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-godown.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 57837,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-cold-storage.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 50007,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-greenhouse.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 68826,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-carbon.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 106540,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/images/home/cat-jugaad.jpg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 194870,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/workbox-window.prod.es5-Bd17z0YL.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2569,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/site_settings?select=value&key=eq.whatsapp_channel_url",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/articles?select=id%2Cslug%2Ctitle_hi%2Ctitle_en%2Csummary_hi%2Csummary_en%2Cauthor_name%2Ccover_image_url%2Cpublished_at&is_published=eq.true&order=published_at.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/crops?select=*&order=name_en.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/equipment_types?select=*&order=id.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&is_featured=eq.true&order=answered_at.desc&limit=3",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/videos?select=*&is_active=eq.true&is_featured=eq.true&order=sort_order.asc&limit=3",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/rpc/recent_crop_reports",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/msp_prices?select=*&is_active=eq.true&order=season.asc%2Ccrop_en.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_mela?select=id%2Cname_hi%2Cname_en%2Cvenue%2Cstate%2Cdistrict%2Clatitude%2Clongitude%2Cevent_date_start%2Cevent_date_end%2Cis_date_confirmed%2Cexpected_period%2Ccategory_tags%2Csource_url&is_active=eq.true&moderation_status=eq.approved&merged_into=is.null&order=event_date_start.asc.nullslast",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/listings?select=id%2Clisting_type%2Ccategory%2Cpincode%2Cvillage_town%3Avillage_name%2Clatitude%2Clongitude%2Cgeocoding_status%2Cdetails%2Ccreated_at%2Clisting_source%2Cis_test_data%2Cwide_visibility%2Cis_sponsored&status=eq.active&is_available=eq.true&expires_at=gt.2026-10-18T16%3A19%3A03.896Z&order=created_at.desc&limit=40",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 859,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/site_settings?select=value&key=eq.whatsapp_channel_url",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 799,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/articles?select=id%2Cslug%2Ctitle_hi%2Ctitle_en%2Csummary_hi%2Csummary_en%2Cauthor_name%2Ccover_image_url%2Cpublished_at&is_published=eq.true&order=published_at.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2303,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/crops?select=*&order=name_en.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1110,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/equipment_types?select=*&order=id.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1183,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/places?select=id%2Cname_en%2Cname_hi%2Cdistrict%2Ckind%2Clat%2Clng%2Cverified&limit=500",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&is_featured=eq.true&order=answered_at.desc&limit=3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1557,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/videos?select=*&is_active=eq.true&is_featured=eq.true&order=sort_order.asc&limit=3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1127,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/rpc/recent_crop_reports",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 345,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/msp_prices?select=*&is_active=eq.true&order=season.asc%2Ccrop_en.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3069,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_hi%2Ccommodity_en%2Cmarket%2Cdistrict%2Cmodal_price%2Cprice_date%2Cis_local%3Ain_sagar_division&price_date=eq.2026-10-18&order=in_sagar_division.desc%2Cmodal_price.asc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 665,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_mela?select=id%2Cname_hi%2Cname_en%2Cvenue%2Cstate%2Cdistrict%2Clatitude%2Clongitude%2Cevent_date_start%2Cevent_date_end%2Cis_date_confirmed%2Cexpected_period%2Ccategory_tags%2Csource_url&is_active=eq.true&moderation_status=eq.approved&merged_into=is.null&order=event_date_start.asc.nullslast",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 7841,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/listings?select=id%2Clisting_type%2Ccategory%2Cpincode%2Cvillage_town%3Avillage_name%2Clatitude%2Clongitude%2Cgeocoding_status%2Cdetails%2Ccreated_at%2Clisting_source%2Cis_test_data%2Cwide_visibility%2Cis_sponsored&status=eq.active&is_available=eq.true&expires_at=gt.2026-10-18T16%3A19%3A03.896Z&order=created_at.desc&limit=40",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 5751,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/places?select=id%2Cname_en%2Cname_hi%2Cdistrict%2Ckind%2Clat%2Clng%2Cverified&limit=500",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2287,
+          "failed": null
+        },
+        {
+          "url": "http://localhost:4198/assets/LiveStage-CmzRwVYP.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1191,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1396,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/mandi_prices?select=commodity_en%2Cmarket%2Cmodal_price%2Cprice_date&price_date=lt.2026-10-18&price_date=gte.2026-10-10&order=price_date.desc",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1397,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&order=answered_at.desc%2Ccreated_at.desc&limit=12",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3371,
+          "failed": null
+        },
+        {
+          "url": "https://wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/kisan_sawaal?select=id%2Cquestion_hi%2Cquestion_en%2Canswer_hi%2Canswer_en%2Ccategory%2Casked_by_village%2Canswered_by&is_published=eq.true&order=answered_at.desc%2Ccreated_at.desc&limit=12",
+          "type": "Other",
+          "status": 200,
+          "bytes": 0,
+          "failed": null
+        }
+      ]
+    }
+  ]
+}

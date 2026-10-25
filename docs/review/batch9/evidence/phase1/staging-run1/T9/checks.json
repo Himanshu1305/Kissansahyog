@@ -1,0 +1,215 @@
+[
+  {
+    "name": "status bar and navigation bar frames were read from dumpsys window",
+    "pass": true,
+    "detail": {
+      "status": [
+        0,
+        0,
+        1080,
+        136
+      ],
+      "nav": [
+        0,
+        2337,
+        1080,
+        2400
+      ],
+      "size": [
+        1080,
+        2400
+      ]
+    }
+  },
+  {
+    "name": "device is in portrait",
+    "pass": true,
+    "detail": [
+      1080,
+      2400
+    ]
+  },
+  {
+    "name": "the WebView bounds were read from uiautomator (app in front)",
+    "pass": true,
+    "detail": [
+      0,
+      136,
+      1080,
+      2337
+    ]
+  },
+  {
+    "name": "the WebView ends (2337px) at or above the navigation bar top (2337px)",
+    "pass": true,
+    "detail": [
+      0,
+      136,
+      1080,
+      2337
+    ]
+  },
+  {
+    "name": "/: NavBar top (136px) is at or below the status bar bottom (136px)",
+    "pass": true
+  },
+  {
+    "name": "/: tab bar is present",
+    "pass": true
+  },
+  {
+    "name": "/: tab bar buttons end (2339px) at or above the navigation bar top (2337px), within 3px (1 CSS px) rounding",
+    "pass": true
+  },
+  {
+    "name": "/: no tab bar button is covered by another element",
+    "pass": true
+  },
+  {
+    "name": "/: forced offline banner top (136px) is at or below the status bar bottom (136px)",
+    "pass": true
+  },
+  {
+    "name": "/: offline banner does not cover the NavBar (header top 37.0 ≥ banner bottom 37.0 CSS px)",
+    "pass": true,
+    "detail": {
+      "bottom": 37,
+      "headerTop": 37
+    }
+  },
+  {
+    "name": "/: last footer link is fully visible above the tab bar",
+    "pass": true,
+    "detail": {
+      "text": "Open-Meteo.com",
+      "top": 734.9583740234375,
+      "bottom": 750.5774221420288,
+      "tabBarTop": 783.9761962890625,
+      "headerBottom": 56.761905670166016,
+      "reachable": true
+    }
+  },
+  {
+    "name": "/browse: NavBar top (136px) is at or below the status bar bottom (136px)",
+    "pass": true
+  },
+  {
+    "name": "/browse: tab bar is present",
+    "pass": true
+  },
+  {
+    "name": "/browse: tab bar buttons end (2339px) at or above the navigation bar top (2337px), within 3px (1 CSS px) rounding",
+    "pass": true
+  },
+  {
+    "name": "/browse: no tab bar button is covered by another element",
+    "pass": true
+  },
+  {
+    "name": "/browse: forced offline banner top (136px) is at or below the status bar bottom (136px)",
+    "pass": true
+  },
+  {
+    "name": "/browse: offline banner does not cover the NavBar (header top 37.0 ≥ banner bottom 37.0 CSS px)",
+    "pass": true,
+    "detail": {
+      "bottom": 37,
+      "headerTop": 37
+    }
+  },
+  {
+    "name": "/browse: last footer link is fully visible above the tab bar",
+    "pass": true,
+    "detail": {
+      "text": "Open-Meteo.com",
+      "top": 734.9940795898438,
+      "bottom": 750.6131277084351,
+      "tabBarTop": 783.9761962890625,
+      "headerBottom": 56.761905670166016,
+      "reachable": true
+    }
+  },
+  {
+    "name": "/login: NavBar top (136px) is at or below the status bar bottom (136px)",
+    "pass": true
+  },
+  {
+    "name": "/login: tab bar is present",
+    "pass": true
+  },
+  {
+    "name": "/login: tab bar buttons end (2339px) at or above the navigation bar top (2337px), within 3px (1 CSS px) rounding",
+    "pass": true
+  },
+  {
+    "name": "/login: no tab bar button is covered by another element",
+    "pass": true
+  },
+  {
+    "name": "/login: forced offline banner top (136px) is at or below the status bar bottom (136px)",
+    "pass": true
+  },
+  {
+    "name": "/login: offline banner does not cover the NavBar (header top 37.0 ≥ banner bottom 37.0 CSS px)",
+    "pass": true,
+    "detail": {
+      "bottom": 37,
+      "headerTop": 37
+    }
+  },
+  {
+    "name": "/login: last footer link is fully visible above the tab bar",
+    "pass": true,
+    "detail": {
+      "text": "Open-Meteo.com",
+      "top": 734.8392944335938,
+      "bottom": 750.4583425521851,
+      "tabBarTop": 783.9761962890625,
+      "headerBottom": 56.761905670166016,
+      "reachable": true
+    }
+  },
+  {
+    "name": "simulated edge-to-edge: NavBar top = status-bar inset (52px) + offline banner height, i.e. directly below the banner",
+    "pass": true,
+    "detail": {
+      "header": {
+        "top": 89,
+        "bottom": 145.76190567016602
+      },
+      "banner": {
+        "top": 52,
+        "bottom": 89
+      }
+    }
+  },
+  {
+    "name": "simulated edge-to-edge: an opaque strip covers the status bar",
+    "pass": true,
+    "detail": 52
+  },
+  {
+    "name": "simulated edge-to-edge: offline banner below the status bar",
+    "pass": true,
+    "detail": {
+      "top": 52,
+      "bottom": 89
+    }
+  },
+  {
+    "name": "simulated edge-to-edge: tab bar buttons end above the navigation bar (24px)",
+    "pass": true,
+    "detail": {
+      "tabButtonsBottom": 815.2380981445312,
+      "limit": 815
+    }
+  },
+  {
+    "name": "simulated edge-to-edge: last footer link above the tab bar",
+    "pass": true,
+    "detail": {
+      "footerLastBottom": 726.3869314193726,
+      "tabBarTop": 759.9761962890625
+    }
+  }
+]

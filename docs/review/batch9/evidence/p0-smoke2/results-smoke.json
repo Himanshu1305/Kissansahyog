@@ -1,0 +1,50 @@
+{
+  "run": {
+    "flavor": "prod",
+    "startedAt": "2026-10-14T19:21:39.258Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400",
+      "webview": "133.0.6943.137"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "finishedAt": "2026-10-14T19:22:15.577Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "T2",
+      "name": "APK facts",
+      "status": "RAN-PASSED",
+      "assertion": "aapt2: package com.kissansahyog.app, label \"Kisan Sahyog\", minSdk 24, targetSdk 36, versionName 0.1.0, debuggable, permissions exactly the decided set",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/p0-smoke2/ev/T2/apk-facts.json",
+        "docs/review/batch9/evidence/p0-smoke2/ev/T2/permission-reasons.json",
+        "docs/review/batch9/evidence/p0-smoke2/ev/T2/checks.json"
+      ],
+      "durationMs": 190,
+      "notes": "permissions: ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_NETWORK_STATE, INTERNET, MODIFY_AUDIO_SETTINGS, RECORD_AUDIO, com.kissansahyog.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    },
+    {
+      "id": "T4",
+      "name": "Install + cold start",
+      "status": "RAN-PASSED",
+      "assertion": "After install and am start -W: process alive at 10 s, no FATAL EXCEPTION, page is https://localhost/, text contains \"किसान\", screenshot is not blank",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/p0-smoke2/ev/T4/cold-start.jpg",
+        "docs/review/batch9/evidence/p0-smoke2/ev/T4/start.json",
+        "docs/review/batch9/evidence/p0-smoke2/ev/T4/checks.json"
+      ],
+      "durationMs": 31398,
+      "notes": "am start -W: Status: ok, WaitTime 8002 ms (the emulator renders on a software GPU); title \"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार\""
+    }
+  ]
+}

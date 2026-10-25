@@ -1,0 +1,4 @@
+deployment_id=7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+source=40ddc4d
+main_chunk=/assets/index-NFbe6Fk2.js
+taken_at=2026-10-19T06:22:15Z

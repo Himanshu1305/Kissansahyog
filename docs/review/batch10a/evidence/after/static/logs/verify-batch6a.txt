@@ -1,0 +1,23 @@
+PASS  A1: ErrorBoundary exists and is mounted
+PASS  A1: stale-build recovery clears SW and caches once
+PASS  A1: getCategorySafe nonexistent category returns null
+PASS  A1: collection summary calls are safe
+PASS  A1: PWA updates activate automatically
+PASS  A2: central layout tokens define content, wide, gutter, card and grid
+PASS  A2: PageShell and Screen default to wide
+PASS  A2: no unapproved hard-coded screen page-width wrappers
+PASS  A3: home search reuses SearchBar and voice search
+PASS  A3: navigation search is hidden on homepage
+PASS  A4: Mela status handles fixed-date edge cases
+PASS  A4: homepage Mela query filters active approved unmerged and hides undated
+PASS  A4: calendar has sort, past toggle and ongoing badge
+PASS  A5: each replacement image exists, is optimized and has traceability
+PASS  A5: homepage tile mappings use distinct new images
+PASS  A6: three equal-height Q&A cards and answer links
+PASS  A7: footer credit links safely to USD Vision AI
+PASS  A8: future listing charge is absent from product code and strings
+PASS  A9: Noto font is self-hosted in all used weights
+PASS  A9: Google font links and CSP entries are removed
+PASS  i18n: all Batch 6A user-visible strings have Hindi and English
+
+21 passed, 0 failed

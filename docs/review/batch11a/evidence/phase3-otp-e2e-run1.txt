@@ -1,0 +1,47 @@
+
+Running 15 tests using 1 worker
+
+  ok  1 [chromium] › e2e\otp-11a.spec.js:82:3 › 11A: flags OFF = today › login page: mobile box first; the number alone signs in (no code, no SMS) (2.4s)
+  ok  2 [chromium] › e2e\otp-11a.spec.js:100:3 › 11A: flags OFF = today › the old direct RPC works while OTP is off (1.4s)
+  ok  3 [chromium] › e2e\otp-11a.spec.js:111:3 › 11A: OTP ON › login by OTP: send → wrong code → right code → signed in with a session token (58.0s)
+  ok  4 [chromium] › e2e\otp-11a.spec.js:141:3 › 11A: OTP ON › resend after the 30-second countdown sends a new code; the new code works (33.8s)
+  ok  5 [chromium] › e2e\otp-11a.spec.js:163:3 › 11A: OTP ON › expired code → clear message; "change number" goes back to the number (2.4s)
+  ok  6 [chromium] › e2e\otp-11a.spec.js:180:3 › 11A: OTP ON › number not registered → same code screen, and the code can never sign in (no SMS sent) (3.0s)
+  ok  7 [chromium] › e2e\otp-11a.spec.js:193:3 › 11A: OTP ON › the old direct RPCs are blocked (otp_required) (1.5s)
+  ok  8 [chromium] › e2e\otp-11a.spec.js:201:3 › 11A: OTP ON › sign-up by OTP: form → code → account created and signed in with a token (2.5s)
+  ok  9 [chromium] › e2e\otp-11a.spec.js:224:3 › 11A: OTP ON › sign-up by OTP for a registered number → "already registered", no SMS (2.2s)
+  ok 10 [chromium] › e2e\otp-11a.spec.js:242:3 › 11A: session enforcement ON (both flags) › signed in by OTP: own listings load (token attached); logout revokes the token (16.4s)
+  ok 11 [chromium] › e2e\otp-11a.spec.js:261:3 › 11A: session enforcement ON (both flags) › a cloned user id cannot act: close_listing / delete_my_listing as someone else are refused (2.8s)
+  ok 12 [chromium] › e2e\otp-11a.spec.js:285:3 › 11A: session enforcement ON (both flags) › a revoked session on this device → signed out at start-up with a clear message (3.4s)
+  x  13 [chromium] › e2e\otp-11a.spec.js:296:3 › 11A: session enforcement ON (both flags) › an action refused by the server (not_authenticated) signs out locally and shows the login screen (2.5m)
+  -  14 [chromium] › e2e\otp-11a.spec.js:308:3 › 11A: session enforcement ON (both flags) › e-mail sign-in still works and gets a session token (actions work under enforcement)
+  -  15 [chromium] › e2e\otp-11a.spec.js:328:3 › 11A: session enforcement ON (both flags) › 320 px phone: code step fits, no horizontal scroll, touch targets >= 44 px
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\otp-11a.spec.js:296:3 › 11A: session enforcement ON (both flags) › an action refused by the server (not_authenticated) signs out locally and shows the login screen 
+
+    Test timeout of 150000ms exceeded.
+
+    Error: locator.click: Test timeout of 150000ms exceeded.
+    Call log:
+      - waiting for locator('a[href="/my"]:visible').first()
+
+
+      301 |     // Session dies while the app is open (e.g. signed out on another device), then the user opens My listings.
+      302 |     await runSql(`update public.app_sessions set revoked_at = now() where user_id = '${p.id}'`)
+    > 303 |     await page.locator('a[href="/my"]:visible').first().click() // in-app navigation, no reload
+          |                                                         ^
+      304 |     await expect(page).toHaveURL(/\/login$/, { timeout: 15_000 })
+      305 |     await expect(page.getByTestId('login-session-ended')).toBeVisible()
+      306 |   })
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\otp-11a.spec.js:303:57
+
+    Error Context: test-results\otp-11a-11A-session-enforc-6045d--and-shows-the-login-screen-chromium\error-context.md
+
+    Error Context: test-results\otp-11a-11A-session-enforc-6045d--and-shows-the-login-screen-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\otp-11a.spec.js:296:3 › 11A: session enforcement ON (both flags) › an action refused by the server (not_authenticated) signs out locally and shows the login screen 
+  2 did not run
+  12 passed (4.8m)

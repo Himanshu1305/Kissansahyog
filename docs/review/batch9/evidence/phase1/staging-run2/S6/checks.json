@@ -1,0 +1,61 @@
+[
+  {
+    "name": "logged in as user A",
+    "pass": true
+  },
+  {
+    "name": "a photo is selected in the form",
+    "pass": true,
+    "detail": {
+      "method": "Playwright setInputFiles (buffer)",
+      "gpsPrime": {
+        "ok": true,
+        "lat": 23.8387983,
+        "lng": 78.7377983
+      },
+      "coordinates": "✓ 23.83880, 78.73780"
+    }
+  },
+  {
+    "name": "the listing gets the device position near Sagar (23.8388, 78.7378) from the page's button",
+    "pass": true,
+    "detail": {
+      "coords": "✓ 23.83880, 78.73780",
+      "gpsPrime": {
+        "ok": true,
+        "lat": 23.8387983,
+        "lng": 78.7377983
+      }
+    }
+  },
+  {
+    "name": "the listing is created (success screen)",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "detail page shows the photo (naturalWidth > 0)",
+    "pass": true,
+    "detail": {
+      "src": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg",
+      "w": 640
+    }
+  },
+  {
+    "name": "photo URL returns 200 from the staging storage",
+    "pass": true,
+    "detail": {
+      "status": 200,
+      "host": "wzxtqbqlahyahsnoqqva.supabase.co"
+    }
+  },
+  {
+    "name": "the listing appears in My Listings",
+    "pass": true,
+    "detail": "‹\nमेरी लिस्टिंग\n🌾\nदे रहे हैं (Offer)\nचालू\nभूसा (गेहूं) · KSTEST 842007 — 10 quintal\n📍\nअभी\n📞 कॉल करें\n🟢\nWhatsApp करें"
+  },
+  {
+    "name": "the listing appears in Browse (Sagar, bhusa)",
+    "pass": true
+  }
+]

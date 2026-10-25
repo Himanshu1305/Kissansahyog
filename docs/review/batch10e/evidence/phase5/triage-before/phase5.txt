@@ -1,0 +1,32 @@
+
+Running 3 tests using 1 worker
+
+  x  1 [chromium] › e2e\phase5.spec.js:32:1 › labor OFFER with blank rate renders cleanly (no undefined) (30.0s)
+  ok 2 [chromium] › e2e\phase5.spec.js:53:1 › labor rejects zero workers (1.5s)
+  ok 3 [chromium] › e2e\phase5.spec.js:66:1 › labor rejects from-date after to-date (1.4s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase5.spec.js:32:1 › labor OFFER with blank rate renders cleanly (no undefined) 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      41 |   await pickTodayIfAsked(page) // 10E 3C: labor needs a start date
+      42 |   await page.getByTestId('post-next').click() // → step 3
+    > 43 |
+         | ^
+      44 |   await page.locator('#f_asset_village').fill('Khurai')
+      45 |   await tickAllConsents(page) // 6B/9B consent checklist
+      46 |   await page.getByTestId('post-submit').click()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase5.spec.js:43:42
+
+    Error Context: test-results\phase5-labor-OFFER-with-bl-7b433-nders-cleanly-no-undefined--chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase5.spec.js:32:1 › labor OFFER with blank rate renders cleanly (no undefined) 
+  2 passed (35.0s)

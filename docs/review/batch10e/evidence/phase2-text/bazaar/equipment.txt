@@ -1,0 +1,133 @@
+### HEAD
+title: कृषि मशीनें किराये पर — ट्रैक्टर, हार्वेस्टर, थ्रेशर | किसान
+description: यहाँ आप खेती की महँगी मशीनें किराये पर दे सकते हैं या ले सकते हैं। ट्रैक्टर, हार्वेस्टर, थ्रेशर, रोटावेटर, सीड ड्रिल और ड्रोन — सब एक जगह। सीधे मालिक से बा
+canonical: https://kissansahyog.com/bazaar/equipment
+robots: 
+lang: hi
+h1: 🚜 कृषि मशीनें और उपकरण
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"बाज़ार","item":"https://kissansahyog.com/bazaar"},{"@type":"ListItem","position":3,"name":"कृषि मशीनें और उपकरण"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kissansahyog.com"},{"@type":"ListItem","position":2,"name":"Bazaar","item":"https://kissansahyog.com/bazaar"},{"@type":"ListItem","position":3,"name":"कृषि मशीनें और उपकरण","item":"https://kissansahyog.com/bazaar/equipment"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"मशीन किराये पर कैसे दूँ?","acceptedAnswer":{"@type":"Answer","text":"\"अपना सामान डालें\" पर जाएँ, मशीन और दर भरें, और फ़ोटो लगाएँ। पास के किसान सीधे फ़ोन करेंगे।"}},{"@type":"Question","name":"किराया कौन तय करता है?","acceptedAnswer":{"@type":"Answer","text":"दर मशीन मालिक तय करता है। किसान सहयोग दाम तय नहीं करता, सिर्फ़ आपको जोड़ता है।"}},{"@type":"Question","name":"मशीन कितनी दूर तक दिखती है?","acceptedAnswer":{"@type":"Answer","text":"आम तौर पर 30 किमी के दायरे में। चाहें तो डालते समय इसे 100 किमी तक बढ़ा सकते हैं।"}},{"@type":"Question","name":"क्या किराया यहीं देना होता है?","acceptedAnswer":{"@type":"Answer","text":"नहीं। किसान सहयोग पैसे का लेन-देन नहीं करता। किराया आप सीधे मालिक को देते हैं।"}}]}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 5 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+बाज़ार
+/
+कृषि मशीनें और उपकरण
+🚜 कृषि मशीनें और उपकरण
+यहाँ आप खेती की महँगी मशीनें किराये पर दे सकते हैं या ले सकते हैं। ट्रैक्टर, हार्वेस्टर, थ्रेशर, रोटावेटर, सीड ड्रिल और ड्रोन — सब एक जगह। सीधे मालिक से बात करें, कोई बिचौलिया नहीं।
+🔍 इस श्रेणी में खोजें
+➕ अपना सामान/सेवा डालें
+यहाँ क्या मिलेगा
+✓
+ट्रैक्टर और रोटावेटर
+✓
+हार्वेस्टर और थ्रेशर
+✓
+सीड ड्रिल और प्लांटर
+✓
+रीपर, कल्टीवेटर और प्लाऊ
+✓
+स्प्रेयर और ड्रोन
+✓
+पानी का पंप और टैंकर
+कैसे काम करता है
+1.
+लिस्ट करें — अपनी चीज़ या सेवा डालें
+2.
+खोजें — पास के लोग देखें
+3.
+कॉल करें — सीधे फ़ोन पर बात करें
+किसान सहयोग सिर्फ़ लोगों को जोड़ता है; दाम बेचने वाला खुद तय करता है।
+हर किसान के पास हर मशीन नहीं होती, और नई मशीन खरीदना महँगा पड़ता है। किराये पर लेने से काम भी होता है और पैसा भी बचता है। जिसके पास मशीन खाली है, वह किराये पर देकर कमाई कर सकता है। यहाँ मशीन मालिक अपनी मशीन, दर (प्रति घंटा, प्रति एकड़ या प्रति दिन) और कब खाली है — यह डालते हैं। किसान अपने पास की मशीन खोजते हैं और फ़ोन पर बात करके बुकिंग तय करते हैं। लिस्टिंग डालते समय यह ज़रूर लिखें — मशीन कौन-सी है, कितने साल पुरानी है, किस गाँव में है, और दर क्या है। साफ़ फ़ोटो लगाएँ ताकि खरीदार भरोसा करे। बुवाई और कटाई के समय मशीन की माँग सबसे ज़्यादा रहती है, इसलिए पहले से लिस्ट करें। किसान सहयोग सिर्फ़ दोनों को जोड़ता है; दर और शर्तें मालिक खुद तय करता है। दाम, समय और हालत खुद देख-परख कर ही बुकिंग करें।
+अक्सर पूछे सवाल
+मशीन किराये पर कैसे दूँ?
+"अपना सामान डालें" पर जाएँ, मशीन और दर भरें, और फ़ोटो लगाएँ। पास के किसान सीधे फ़ोन करेंगे।
+किराया कौन तय करता है?
+दर मशीन मालिक तय करता है। किसान सहयोग दाम तय नहीं करता, सिर्फ़ आपको जोड़ता है।
+मशीन कितनी दूर तक दिखती है?
+आम तौर पर 30 किमी के दायरे में। चाहें तो डालते समय इसे 100 किमी तक बढ़ा सकते हैं।
+क्या किराया यहीं देना होता है?
+नहीं। किसान सहयोग पैसे का लेन-देन नहीं करता। किराया आप सीधे मालिक को देते हैं।
+और श्रेणियाँ
+👷 कृषि सहयोगी और मज़दूर
+🌾 भूसा, पराली और चारा
+🧪 बीज, खाद और दवा
+🚚 परिवहन और ढुलाई
+🧱 निर्माण सामग्री
+🥬 सब्ज़ी खेती के यंत्र
+🌍 भूमि / रकबा — पट्टा और बटाई
+सभी श्रेणियाँ देखें →
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

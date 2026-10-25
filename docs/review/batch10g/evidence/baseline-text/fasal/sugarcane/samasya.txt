@@ -1,0 +1,126 @@
+### HEAD
+title: kbcrop_sugarcane की आम समस्याएँ और समाधान
+description: kbcrop_sugarcane: इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+canonical: https://kissansahyog.com/fasal/sugarcane/samasya
+robots: 
+lang: hi
+h1: kbcrop_sugarcane की आम समस्याएँ और समाधान
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"kbcrop_sugarcane"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"गन्ने की शरदकालीन बुवाई का समय और बीज दर क्या है?","url":"https://kissansahyog.com/sawaal/ganna-buwai-samay-beej-dar-mp"},{"@type":"ListItem","position":2,"name":"गन्ने की उन्नत किस्में कौन-सी हैं?","url":"https://kissansahyog.com/sawaal/ganna-unnat-kismein-mp"},{"@type":"ListItem","position":3,"name":"गन्ने में खाद (उर्वरक) कितनी डालें?","url":"https://kissansahyog.com/sawaal/ganna-khaad-urvarak-matra-mp"},{"@type":"ListItem","position":4,"name":"गन्ने में सिंचाई कितने अंतराल पर करें?","url":"https://kissansahyog.com/sawaal/ganna-sinchai-garmi-thand-mp"},{"@type":"ListItem","position":5,"name":"गन्ने के टुकड़ों (बीज) का उपचार कैसे करें?","url":"https://kissansahyog.com/sawaal/ganna-beej-upchar-mp"},{"@type":"ListItem","position":6,"name":"गन्ने में अग्रतना छेदक और पाइरिल्ला का नियंत्रण कैसे करें?","url":"https://kissansahyog.com/sawaal/ganna-agratana-chhedak-pyrilla-control"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+kbcrop_sugarcane
+kbcrop_sugarcane की आम समस्याएँ और समाधान
+इस फसल से जुड़े सबसे ज़्यादा पूछे जाने वाले सवाल और उनके सरल, स्रोत-सहित जवाब।
+6
+बुआई
+❓
+गन्ने की शरदकालीन बुवाई का समय और बीज दर क्या है?
+शरदकालीन गन्ना अक्टूबर-नवंबर में बोएं; फसल 10-14 माह में तैयार होती है। बीज दर 75-80 क्विंटल प्रति हेक्टेयर रखें, और 2 आँख वाले स्वस्थ टुकड़े लगाएं।
+किस्म
+❓
+गन्ने की उन्नत किस्में कौन-सी हैं?
+शीघ्र पकने वाली किस्में — Co.C.-671, CoJN 86-141, Co. 86-572, Co. 94008 और CoJN 9823। मध्यम/देर से पकने वाली — Co. 86032, Co. 7318, K. 99004, CoJN 86-600 और CoJN 9505।
+पोषक तत्व
+❓
+गन्ने में खाद (उर्वरक) कितनी डालें?
+गन्ने में प्रति हेक्टेयर 300 किलो नत्रजन, 85 किलो स्फुर और 60 किलो पोटाश डालें। नत्रजन को कई बार में बाँटकर दें, क्योंकि गन्ना लंबी अवधि की फसल है।
+सिंचाई
+❓
+गन्ने में सिंचाई कितने अंतराल पर करें?
+गर्मी के दिनों में भारी मिट्टी वाले खेत में 8-10 दिन के अंतर पर सिंचाई करें। ठंड के दिनों में 15 दिन के अंतर पर पानी दें। गन्ने को पूरे साल नमी चाहिए।
+रोग
+❓
+गन्ने के टुकड़ों (बीज) का उपचार कैसे करें?
+बुवाई से पहले गन्ने के टुकड़ों को कार्बेन्डाजिम या कार्बाक्सिन के घोल (2 ग्राम प्रति लीटर पानी) में डुबोकर उपचारित करें। इससे बीज-जनित रोग दबते हैं। लेबल पर लिखी मात्रा ही उपयोग करें।
+कीट
+❓
+गन्ने में अग्रतना छेदक और पाइरिल्ला का नियंत्रण कैसे करें?
+अग्रतना छेदक के लिए फोरेट 10 G, 15-20 किलो प्रति हेक्टेयर या कार्बोफ्यूरान 3 G, 33 किलो प्रति हेक्टेयर डालें। पाइरिल्ला के लिए क्विनालफॉस 25 EC, 1.5 लीटर प्रति हेक्टेयर छिड़कें। लेबल पर लिखी मात्रा ही उपयोग करें।
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

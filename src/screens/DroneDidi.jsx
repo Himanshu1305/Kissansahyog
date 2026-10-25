@@ -8,10 +8,11 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { PageShell } from '../components/layout'
 import BackButton from '../components/BackButton'
 import { HomeListingCard, WhatsAppIcon } from '../components/home/kit'
-import { getCategory } from '../lib/listings/registry'
+import { getCategorySafe } from '../lib/listings/registry'
 import { fetchHomeFeed, fetchCrops } from '../lib/listings/listingsApi'
 import { fetchYojanaBySlug, yojanaName, yojanaDesc, yojanaBenefit, yojanaEligibility } from '../lib/community/communityApi'
 import { whatsappListingUrl } from '../lib/share/shareMessages'
+import { publicHref } from '../lib/native'
 
 export default function DroneDidi() {
   const { t, lang } = useLang()
@@ -29,7 +30,7 @@ export default function DroneDidi() {
     return () => { alive = false }
   }, [])
 
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const shareUrl = typeof window !== 'undefined' ? publicHref() : ''
   const waHref = `https://wa.me/?text=${encodeURIComponent(`${t('dd_title')}\n${shareUrl}`)}`
   const H2 = ({ children }) => <h2 className="mt-6 mb-2 text-[22px] font-bold md:text-[26px]" style={{ color: 'var(--ks-ink)' }}>{children}</h2>
 
@@ -68,8 +69,8 @@ export default function DroneDidi() {
         <H2>{t('dd_local_h')}</H2>
         {listings.length > 0 ? (
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {listings.map((l) => {
-              const rows = getCategory(l.category).summarize(l, lang, extras).slice(0, 2)
+          {listings.filter((l) => getCategorySafe(l.category)).map((l) => {
+              const rows = getCategorySafe(l.category).summarize(l, lang, extras).slice(0, 2)
               const place = [l.village_town || l.district].filter(Boolean).join(' · ')
               return (
                 <div key={l.id} className="relative">

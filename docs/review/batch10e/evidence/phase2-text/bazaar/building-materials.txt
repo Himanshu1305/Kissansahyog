@@ -1,0 +1,137 @@
+### HEAD
+title: निर्माण सामग्री खरीदें या बेचें | किसान सहयोग बाज़ार
+description: सीमेंट, रेत, सरिया, ईंट और गिट्टी की जानकारी यहाँ डालें या पास की लिस्टिंग देखें।
+canonical: https://kissansahyog.com/bazaar/building-materials
+robots: 
+lang: hi
+h1: 🧱 निर्माण सामग्री
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"बाज़ार","item":"https://kissansahyog.com/bazaar"},{"@type":"ListItem","position":3,"name":"निर्माण सामग्री"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kissansahyog.com"},{"@type":"ListItem","position":2,"name":"Bazaar","item":"https://kissansahyog.com/bazaar"},{"@type":"ListItem","position":3,"name":"निर्माण सामग्री","item":"https://kissansahyog.com/bazaar/building-materials"}]}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"निर्माण सामग्री कैसे खोजें?","acceptedAnswer":{"@type":"Answer","text":"इस श्रेणी में पास की लिस्टिंग देखें और बेचने वाले से सीधे बात करें।"}},{"@type":"Question","name":"अपनी दर कौन लिखता है?","acceptedAnswer":{"@type":"Answer","text":"विक्रेता अपनी दर खुद लिखता है। किसान सहयोग कोई दर तय नहीं करता।"}},{"@type":"Question","name":"क्या डिलीवरी की जानकारी मिलेगी?","acceptedAnswer":{"@type":"Answer","text":"हर लिस्टिंग में विक्रेता बता सकता है कि डिलीवरी मिलेगी या सामान कहाँ से लेना है।"}},{"@type":"Question","name":"रेत या गिट्टी बेचते समय क्या ध्यान रखें?","acceptedAnswer":{"@type":"Answer","text":"ज़रूरी अनुमति के साथ ही बेचें।"}}]}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 5 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+बाज़ार
+/
+निर्माण सामग्री
+🧱 निर्माण सामग्री
+सीमेंट, रेत, सरिया, ईंट और गिट्टी की जानकारी यहाँ डालें या पास की लिस्टिंग देखें।
+🔍 इस श्रेणी में खोजें
+➕ अपना सामान/सेवा डालें
+यहाँ क्या मिलेगा
+✓
+सीमेंट और ब्रांड
+✓
+रेत और गिट्टी
+✓
+सरिया और ईंट
+✓
+मात्रा और इकाई
+✓
+डिलीवरी या लेने की जगह
+✓
+विक्रेता की अपनी दर
+कैसे काम करता है
+1.
+लिस्ट करें — अपनी चीज़ या सेवा डालें
+2.
+खोजें — पास के लोग देखें
+3.
+कॉल करें — सीधे फ़ोन पर बात करें
+किसान सहयोग सिर्फ़ लोगों को जोड़ता है; दाम बेचने वाला खुद तय करता है।
+खेत, घर, दुकान या किसी छोटे काम के लिए सामग्री चाहिए तो पास की लिस्टिंग देखें। सामग्री का नाम, मात्रा और लेने की जगह पढ़ें। जरूरत हो तो सीधे बेचने वाले को फोन करें। बात करने से पहले यह पूछ लें कि सामान कब मिलेगा और कहाँ से लेना है।
+बेचने वाले अपनी सामग्री की लिस्टिंग डाल सकते हैं। सीमेंट, रेत, सरिया, ईंट, गिट्टी या दूसरी सामग्री चुनें। ब्रांड या ग्रेड लिखना चाहें तो लिखें। सही मात्रा और इकाई भरें। अपनी दर खुद लिखें। किसान सहयोग कोई दर नहीं बताता और कोई सौदा नहीं करता।
+डिलीवरी दे सकते हैं तो यह भी बताएं। नहीं दे सकते तो लेने की साफ़ जगह लिखें। खरीदार और विक्रेता फोन पर समय, सामान और बाकी शर्तें आपस में तय करें। लिस्टिंग में वही लिखें जो आप सच में दे सकते हैं। इससे गलत फोन कम होंगे और सही व्यक्ति तक बात पहुँचेगी।
+रेत या गिट्टी बेचने वाले की ज़िम्मेदारी है कि वह ज़रूरी अनुमति के साथ बेचे। खरीदार भी सामान लेने से पहले जानकारी खुद देखे। किसान सहयोग केवल लोगों को जोड़ता है। भुगतान, ढुलाई और सौदा आप दोनों की बात से तय होगा।
+अगर सामग्री नहीं मिल रही है तो अपनी जरूरत की लिस्टिंग डालें। सामग्री का नाम, कितनी चाहिए और किस जगह चाहिए, यह साफ़ लिखें। पास का विक्रेता आपसे सीधे बात कर सकता है। फोन या WhatsApp पर बात करते समय अपना पता और शर्तें सोच-समझकर साझा करें।
+अक्सर पूछे सवाल
+निर्माण सामग्री कैसे खोजें?
+इस श्रेणी में पास की लिस्टिंग देखें और बेचने वाले से सीधे बात करें।
+अपनी दर कौन लिखता है?
+विक्रेता अपनी दर खुद लिखता है। किसान सहयोग कोई दर तय नहीं करता।
+क्या डिलीवरी की जानकारी मिलेगी?
+हर लिस्टिंग में विक्रेता बता सकता है कि डिलीवरी मिलेगी या सामान कहाँ से लेना है।
+रेत या गिट्टी बेचते समय क्या ध्यान रखें?
+ज़रूरी अनुमति के साथ ही बेचें।
+और श्रेणियाँ
+🚜 कृषि मशीनें और उपकरण
+👷 कृषि सहयोगी और मज़दूर
+🌾 भूसा, पराली और चारा
+🧪 बीज, खाद और दवा
+🚚 परिवहन और ढुलाई
+🥬 सब्ज़ी खेती के यंत्र
+🌍 भूमि / रकबा — पट्टा और बटाई
+सभी श्रेणियाँ देखें →
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

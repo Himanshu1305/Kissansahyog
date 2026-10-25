@@ -10,6 +10,8 @@ import { VEHICLE_TYPE, TRANSPORT_RATE_BASIS, optionLabel } from '../../lib/listi
 
 export function initialDetails() {
   return {
+    from_location: '',
+    to_location: '',
     vehicle_type: '', // required: tractor_trolley | pickup | truck | tempo | other
     capacity: '', // optional free text (e.g. "5 टन" / "50 क्विंटल")
     rate_basis: '', // required: per_km | per_trip | negotiable
@@ -85,10 +87,12 @@ export function summarize(listing, lang) {
     if (d.rate_amount && String(d.rate_amount).trim()) parts.push(String(d.rate_amount).trim())
     rows.push({ label: L('rate'), value: parts.join(' · ') })
   }
+  if (d.from_location || d.to_location) rows.push({ label: L('route'), value: `${d.from_location || '—'} → ${d.to_location || '—'}` })
   return rows
 }
 
 const LABELS = {
+  route: { hi: 'कहाँ से → कहाँ तक', en: 'From → To' },
   vehicle: { hi: 'वाहन', en: 'Vehicle' },
   capacity: { hi: 'क्षमता', en: 'Capacity' },
   rate: { hi: 'दर', en: 'Rate' },

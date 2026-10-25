@@ -3,21 +3,24 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+// Batch 8A — the Capacitor (Android) build sets KS_NATIVE=1 (scripts/build-android.mjs): the
+// bundled app needs no service worker or web manifest. Unset = the normal web build.
+const NATIVE = process.env.KS_NATIVE === '1'
+
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
     VitePWA({
-      // Phase 5 — registerType 'prompt' (NOT autoUpdate): this project deploys
-      // frequently, and a silent auto-swap risks locking a farmer onto a stale build
-      // or changing content mid-session. The update flow is explicit and visible —
-      // src/components/PwaPrompts.jsx surfaces a "new update available" banner via
-      // vite-plugin-pwa's onNeedRefresh, and reload calls updateServiceWorker(true).
-      registerType: 'prompt',
+      disable: NATIVE,
+      // Phase 5 — registerType 'autoUpdate': a new service worker activates as soon
+      // as it is available, so farmers receive the current app without a manual
+      // update prompt.
+      registerType: 'autoUpdate',
       // We register the SW ourselves through virtual:pwa-register/react (in
       // PwaPrompts), so disable the auto-injected registration to avoid double-reg.
       injectRegister: null,
-      includeAssets: ['icons/apple-touch-icon.png', 'icons/favicon-32.png'],
+      includeAssets: ['icons/apple-touch-icon.png', 'icons/favicon-32.png', 'icons/favicon-48.png', 'icons/favicon.svg', 'brand/logo-96.webp', 'brand/logo-192.webp'],
       manifest: {
         name: 'किसान सहयोग',
         short_name: 'Kissan Sahyog',
@@ -36,16 +39,23 @@ export default defineConfig({
       },
       workbox: {
         cleanupOutdatedCaches: true,
-        // clientsClaim lets the FIRST-installed SW control the already-open page so
-        // offline-first works from the first session. NO skipWaiting: a *new* version
-        // still waits until the user accepts the update prompt (updateServiceWorker(
-        // true)), so a fix never swaps content out from under a farmer mid-session.
+        // clientsClaim lets the first-installed SW control the already-open page, and
+        // skipWaiting activates each update immediately for the auto-update flow.
+        skipWaiting: true,
         clientsClaim: true,
         // SPA: serve the precached app shell for any navigation, incl. offline —
         // shows the app (not a blank white screen) when the network is down.
         navigateFallback: '/index.html',
+        // Batch 9 Phase 2 — real files that a browser may navigate to directly must
+        // NOT get the app shell: sitemaps, robots.txt, llms.txt, the search index,
+        // the Pages Functions (/api, /geo, /geocode, /transcribe) and /_* paths.
+        // Without this, a browser that already has the SW sees the app 404 page at
+        // /sitemap.xml instead of the XML.
+        navigateFallbackDenylist: [/^\/sitemap.*\.xml$/, /^\/robots\.txt$/, /^\/llms\.txt$/, /^\/search-index\.json$/, /^\/(api|geo|geocode|transcribe)(\/|$)/, /^\/_/],
         // CacheFirst (precache) for the static app shell ONLY.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // The logo is precached as webp (includeAssets); skip its png fallbacks.
+        globIgnores: ['**/brand/*.png'],
         // Live data endpoints are NEVER treated as fresh cache: NetworkFirst so an
         // online farmer always gets live prices/weather/listings, and an offline one
         // gets the last-known values — always accompanied by the offline banner
@@ -61,11 +71,6 @@ export default defineConfig({
               expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 },
               cacheableResponse: { statuses: [0, 200] },
             },
-          },
-          {
-            urlPattern: ({ url }) => /^https:\/\/fonts\.(googleapis|gstatic)\.com/.test(url.href),
-            handler: 'CacheFirst',
-            options: { cacheName: 'ks-fonts', expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 365 }, cacheableResponse: { statuses: [0, 200] } },
           },
         ],
       },

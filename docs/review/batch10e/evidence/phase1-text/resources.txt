@@ -1,0 +1,108 @@
+### HEAD
+title: उपयोगी संपर्क — कृषि विभाग, KVK, हेल्पलाइन
+description: कृषि विभाग, कृषि विज्ञान केंद्र (KVK) सागर और किसान हेल्पलाइन के ज़रूरी संपर्क।
+canonical: https://kissansahyog.com/resources
+robots: 
+lang: hi
+h1: उपयोगी संपर्क — किसान सहयोग
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+उपयोगी संपर्क — किसान सहयोग
+सागर जिले के किसानों के लिए ज़रूरी सरकारी संपर्क
+⚠️ ये संपर्क सार्वजनिक सरकारी जानकारी के आधार पर दिए गए हैं। कृपया जाने से पहले फ़ोन पर समय की पुष्टि करें।
+मृदा परीक्षण
+पशु चिकित्सा
+कृषि कार्यालय
+मृदा परीक्षण प्रयोगशाला, सागर
+Soil Testing Laboratory, Sagar
+📍 सागर शहर
+सरकारी मृदा परीक्षण प्रयोगशाला — मिट्टी के 14 पैरामीटर की जांच, खाद की सही मात्रा की जानकारी
+📞 1800-180-1551
+टोल-फ्री
+🌐
+mpstl.mponline.gov.in
+🕒 समय: सोमवार-शनिवार, सुबह 10 बजे से शाम 5 बजे तक
+🏠 पता: जिला कृषि कार्यालय परिसर, सागर, म.प्र.
+मृदा सर्वेक्षण प्रयोगशाला, सागर
+Soil Survey Laboratory, Sagar
+📍 सागर शहर
+JNKVV के अंतर्गत मृदा सर्वेक्षण और परीक्षण सुविधा
+📞 07582-288228
+✉️
+kvk_sagar@rediff.com
+🏠 पता: JNKVV परिसर, सागर, म.प्र.
+ऑनलाइन मिट्टी परीक्षण आवेदन (MP Online)
+Online Soil Testing Application (MP Online)
+📍 सभी क्षेत्र
+घर बैठे ऑनलाइन मृदा परीक्षण के लिए आवेदन करें। नमूना जमा करने की प्रक्रिया और निकटतम प्रयोगशाला खोजें।
+🌐
+mpstl.mponline.gov.in
+🕒 समय: 24 घंटे उपलब्ध
+🧪 मिट्टी का नमूना कैसे लें?
++
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

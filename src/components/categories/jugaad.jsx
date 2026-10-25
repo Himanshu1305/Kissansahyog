@@ -68,6 +68,22 @@ export function Fields({ details, setDetails, listingType }) {
     )
   }
 
+  // Post owns the shared PhotoPicker. Keep this category's older picker below
+  // only as unreachable legacy markup until a later cleanup can remove it.
+  if (listingType === 'offer') {
+    return (
+      <>
+        <TextField name="innovation_name" label={t('field_jugaad_name')} value={details.innovation_name} onChange={set('innovation_name')} placeholder={t('ph_jugaad_name')} required />
+        <TextAreaField name="what_does" label={t('field_jugaad_what')} value={details.what_does} onChange={set('what_does')} placeholder={t('ph_jugaad_what')} required />
+        <OptionSelect name="offer_type" label={t('field_jugaad_offer_type')} list={JUGAAD_OFFER_TYPE} value={details.offer_type} onChange={set('offer_type')} required />
+        <TextField name="price" label={t('field_jugaad_price')} value={details.price} onChange={set('price')} required={details.offer_type !== 'wip_help'} />
+        <TextField name="crop_activity" label={t('field_jugaad_crop')} value={details.crop_activity} onChange={set('crop_activity')} />
+        <TextField name="demo_video" label={t('field_jugaad_video')} value={details.demo_video} onChange={set('demo_video')} placeholder={t('ph_jugaad_video')} />
+        <OptionSelect name="tested" label={t('field_jugaad_tested')} list={JUGAAD_TESTED} value={details.tested} onChange={set('tested')} />
+      </>
+    )
+  }
+
   return (
     <>
       {/* Photo — at least one is required for an offer. */}
@@ -99,13 +115,11 @@ export function Fields({ details, setDetails, listingType }) {
   )
 }
 
-export async function finalizeDetails(details, { actorId, listingType } = {}) {
+export async function finalizeDetails(details, { listingType } = {}) {
   if (listingType === 'requirement') {
     return { innovation_name: details.innovation_name, problem: details.problem || '', village: details.village || '' }
   }
-  const files = details.__photoFiles || []
-  let photo_urls = details.photo_urls || []
-  if (files.length) photo_urls = await uploadPhotos(files, actorId)
+  const photo_urls = details.photo_urls || []
   return {
     offer_type: details.offer_type,
     innovation_name: details.innovation_name,

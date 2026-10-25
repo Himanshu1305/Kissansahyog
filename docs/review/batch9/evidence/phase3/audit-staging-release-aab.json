@@ -1,0 +1,252 @@
+{
+  "artifact": "android/ks-apks/ks-staging-release.aab",
+  "flavour": "staging",
+  "sizeBytes": 10093930,
+  "jarsigner": {
+    "verified": true,
+    "unsigned": false,
+    "signedEntries": 641,
+    "summary": [
+      "      X.509, CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN",
+      "      Signature algorithm: SHA384withRSA, 4096-bit key",
+      "      [certificate is valid from 15/10/26, 3:27?am to 02/03/54, 3:27?am]",
+      "      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]",
+      "      X.509, CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN",
+      "      Signature algorithm: SHA384withRSA, 4096-bit key",
+      "      [certificate is valid from 15/10/26, 3:27?am to 02/03/54, 3:27?am]",
+      "      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]",
+      "      X.509, CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN",
+      "      Signature algorithm: SHA384withRSA, 4096-bit key",
+      "      [certificate is valid from 15/10/26, 3:27?am to 02/03/54, 3:27?am]",
+      "      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]"
+    ]
+  },
+  "signerCert": {
+    "sha256": "55:D3:D1:28:15:13:13:ED:FE:F1:62:9A:45:52:48:07:B7:0E:A0:B2:D7:DF:0C:86:D7:53:AB:2D:50:B7:69:D2",
+    "sha1": "50:F9:04:4E:0D:2E:6A:7A:3A:EA:04:10:40:08:4C:6F:1A:C0:50:56",
+    "owner": "CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN"
+  },
+  "bundletool": {
+    "jar": "bundletool-1.18.1.jar",
+    "validateExit": 0,
+    "validateOutputHead": [
+      "App Bundle information",
+      "------------",
+      "Feature modules:",
+      "\tFeature module: base",
+      "\t\tFile: assets/capacitor.config.json",
+      "\t\tFile: assets/capacitor.plugins.json",
+      "\t\tFile: assets/native-bridge.js",
+      "\t\tFile: assets/public/_headers",
+      "\t\tFile: assets/public/_redirects",
+      "\t\tFile: assets/public/_routes.json",
+      "\t\tFile: assets/public/assets/About-ofS711W2.js",
+      "\t\tFile: assets/public/assets/Admin-BcP_kBo5.js",
+      "\t\tFile: assets/public/assets/AgroForestry-hT2xm8Ce.js",
+      "\t\tFile: assets/public/assets/ArticleDetail-Cv7jKWdV.js",
+      "\t\tFile: assets/public/assets/Articles-D1YLnprV.js"
+    ]
+  },
+  "manifest": {
+    "package": "com.kissansahyog.app.staging",
+    "versionCode": "1",
+    "versionName": "0.1.0",
+    "minSdk": "24",
+    "targetSdk": "36",
+    "usesCleartextTraffic": "false",
+    "allowBackup": "false",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.RECORD_AUDIO",
+      "android.permission.MODIFY_AUDIO_SETTINGS",
+      "com.kissansahyog.app.staging.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ]
+  },
+  "icons": [
+    "base/res/mipmap-anydpi-v26/ic_launcher.xml",
+    "base/res/mipmap-anydpi-v26/ic_launcher_round.xml",
+    "base/res/mipmap-hdpi-v4/ic_launcher.png",
+    "base/res/mipmap-hdpi-v4/ic_launcher_foreground.png",
+    "base/res/mipmap-hdpi-v4/ic_launcher_round.png",
+    "base/res/mipmap-mdpi-v4/ic_launcher.png",
+    "base/res/mipmap-mdpi-v4/ic_launcher_foreground.png",
+    "base/res/mipmap-mdpi-v4/ic_launcher_round.png",
+    "base/res/mipmap-xhdpi-v4/ic_launcher.png",
+    "base/res/mipmap-xhdpi-v4/ic_launcher_foreground.png",
+    "base/res/mipmap-xhdpi-v4/ic_launcher_round.png",
+    "base/res/mipmap-xxhdpi-v4/ic_launcher.png",
+    "base/res/mipmap-xxhdpi-v4/ic_launcher_foreground.png",
+    "base/res/mipmap-xxhdpi-v4/ic_launcher_round.png",
+    "base/res/mipmap-xxxhdpi-v4/ic_launcher.png",
+    "base/res/mipmap-xxxhdpi-v4/ic_launcher_foreground.png",
+    "base/res/mipmap-xxxhdpi-v4/ic_launcher_round.png"
+  ],
+  "splash": [
+    "base/res/drawable-land-hdpi-v4/splash.png",
+    "base/res/drawable-land-mdpi-v4/splash.png",
+    "base/res/drawable-land-xhdpi-v4/splash.png",
+    "base/res/drawable-land-xxhdpi-v4/splash.png",
+    "base/res/drawable-land-xxxhdpi-v4/splash.png",
+    "base/res/drawable-port-hdpi-v4/splash.png",
+    "base/res/drawable-port-mdpi-v4/splash.png",
+    "base/res/drawable-port-xhdpi-v4/splash.png",
+    "base/res/drawable-port-xxhdpi-v4/splash.png",
+    "base/res/drawable-port-xxxhdpi-v4/splash.png",
+    "base/res/drawable/splash.png",
+    "base/res/drawable/splash_logo.png"
+  ],
+  "webAssets": {
+    "filesTotal": 199,
+    "textFilesScanned": 121,
+    "prodRef": 0,
+    "stagingRef": 1,
+    "service_role": 0,
+    "GEMINI_API_KEY": 0,
+    "sb_secret key (sb_secret_<key>)": 0
+  },
+  "checks": [
+    {
+      "name": "jarsigner: jar verified",
+      "ok": true,
+      "detail": [
+        "      X.509, CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN",
+        "      Signature algorithm: SHA384withRSA, 4096-bit key",
+        "      [certificate is valid from 15/10/26, 3:27?am to 02/03/54, 3:27?am]",
+        "      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]",
+        "      X.509, CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN",
+        "      Signature algorithm: SHA384withRSA, 4096-bit key",
+        "      [certificate is valid from 15/10/26, 3:27?am to 02/03/54, 3:27?am]",
+        "      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]",
+        "      X.509, CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN",
+        "      Signature algorithm: SHA384withRSA, 4096-bit key",
+        "      [certificate is valid from 15/10/26, 3:27?am to 02/03/54, 3:27?am]",
+        "      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]"
+      ]
+    },
+    {
+      "name": "signer certificate SHA-256 == upload key",
+      "ok": true,
+      "detail": {
+        "signer": "55:D3:D1:28:15:13:13:ED:FE:F1:62:9A:45:52:48:07:B7:0E:A0:B2:D7:DF:0C:86:D7:53:AB:2D:50:B7:69:D2",
+        "expected": "55:D3:D1:28:15:13:13:ED:FE:F1:62:9A:45:52:48:07:B7:0E:A0:B2:D7:DF:0C:86:D7:53:AB:2D:50:B7:69:D2"
+      }
+    },
+    {
+      "name": "signer DN is the upload key DN",
+      "ok": true,
+      "detail": "CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN"
+    },
+    {
+      "name": "bundletool validate exits 0",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "package is the flavour's applicationId",
+      "ok": true,
+      "detail": "com.kissansahyog.app.staging"
+    },
+    {
+      "name": "versionCode 1",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "versionName 0.1.0",
+      "ok": true,
+      "detail": "0.1.0"
+    },
+    {
+      "name": "minSdk 24",
+      "ok": true,
+      "detail": "24"
+    },
+    {
+      "name": "targetSdk 36",
+      "ok": true,
+      "detail": "36"
+    },
+    {
+      "name": "debuggable is not true",
+      "ok": true,
+      "detail": "(absent = false)"
+    },
+    {
+      "name": "usesCleartextTraffic false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "allowBackup false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "no permission beyond the decided six (+ androidx.core app-private one)",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no decided permission missing",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "launcher icons present",
+      "ok": true,
+      "detail": 17
+    },
+    {
+      "name": "splash drawables present",
+      "ok": true,
+      "detail": 12
+    },
+    {
+      "name": "web assets packaged (index.html)",
+      "ok": true,
+      "detail": 199
+    },
+    {
+      "name": "secret scan: service_role occurs 0 times",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "secret scan: GEMINI_API_KEY occurs 0 times",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "secret scan: sb_secret key (sb_secret_<key>) occurs 0 times",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "staging project ref present",
+      "ok": true,
+      "detail": 1
+    },
+    {
+      "name": "production project ref absent",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "packaged capacitor.config has no server.url",
+      "ok": true
+    },
+    {
+      "name": "packaged capacitor.config does not force webContentsDebuggingEnabled",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "packaged capacitor.config has no allowMixedContent",
+      "ok": true
+    }
+  ],
+  "status": "RAN-PASSED"
+}

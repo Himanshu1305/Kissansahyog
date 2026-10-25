@@ -1,0 +1,11 @@
+{"route":"/agro-forestry","marker":true,"h1":"एग्रो फॉरेस्ट्री और उद्यानिकी","loading":false,"entries":null}
+{"route":"/articles","marker":true,"h1":"लेख","loading":true,"entries":null}
+{"route":"/drone-didi","marker":true,"h1":"ड्रोन दीदी — महिला उद्यमी, आधुनिक तकनीक","loading":false,"entries":null}
+{"route":"/info","marker":true,"h1":"किसान की जानकारी","loading":false,"entries":null}
+{"route":"/kisan-mela","marker":true,"h1":"किसान मेला कैलेंडर","loading":true,"entries":null}
+{"route":"/mausam","marker":true,"h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान","loading":false,"entries":null}
+{"route":"/safalta","marker":true,"h1":"किसान सफलता — जब किसान जीतता है","loading":true,"entries":null}
+{"route":"/sawaal","marker":true,"h1":"किसान सवाल — आपके सवाल, हमारे जवाब","loading":true,"entries":null}
+{"route":"/videos","marker":true,"h1":"खेती के वीडियो","loading":false,"entries":null}
+{"route":"/yojana/central","marker":true,"h1":"केंद्र सरकार की योजनाएं","loading":true,"entries":null}
+{"route":"/yojana/mp","marker":true,"h1":"मध्यप्रदेश सरकार की योजनाएं","loading":true,"entries":null}

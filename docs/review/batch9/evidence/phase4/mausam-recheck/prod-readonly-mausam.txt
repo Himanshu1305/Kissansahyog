@@ -1,0 +1,6 @@
+PASS  [data_ticker_mausam] mandi ticker on / shows prices (₹ + number)  — 📊 मंडी भावपिछला भाव (12/10)मक्का ₹1,930/क्विंटल · Sagar APMC|गेहूं ₹2,560/क्विंटल · Shahagarh APMC|सोयाबीन ₹5,700/क्विंटल · Gadakota APMC|सरसों ₹6,700/क्विंटल 
+PASS  [data_ticker_mausam] /mausam has a place set (location banner)  — 📍 सागर के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ
+PASS  [data_ticker_mausam] /mausam shows a temperature (weather data loaded)  — {"temp":"28°","weatherResponses":["GET 200 kissansahyog.com/assets/weatherApiV2-BTYZYe_F.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2","GET 200 kissansahyog.com/assets/weatherApiV2-BTYZYe_F.js","GET 200 kissansahyog.com/assets/weatherRules-kzLuFq6I.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js"]}
+PASS  [data_ticker_mausam] /mausam weather read answered 200 (weather_cache_v2 or open-meteo)  — ["GET 200 kissansahyog.com/assets/weatherApiV2-BTYZYe_F.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2","GET 200 kissansahyog.com/assets/weatherApiV2-BTYZYe_F.js","GET 200 kissansahyog.com/assets/weatherRules-kzLuFq6I.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js"]
+
+ALL PASSED  (results-prod-readonly-mausam.json)

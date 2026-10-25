@@ -1,0 +1,54 @@
+{
+  "label": "staging-mausam-recheck",
+  "base": "https://staging.kissansahyog.com",
+  "startedAt": "2026-10-15T04:27:47.936Z",
+  "gates": {
+    "data_ticker_mausam": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "mandi ticker on / shows prices (₹ + number)",
+          "ok": true,
+          "detail": "📊 मंडी भावमक्का ₹1,849/क्विंटल · Rehli APMC|गेहूं ₹2,655/क्विंटल · Sagar APMC|सोयाबीन ₹6,323/क्विंटल · Rehli APMC|सरसों ₹7,190/क्विंटल · Khurai APMC|लहसुन ₹11,"
+        },
+        {
+          "desc": "/mausam has a place set (location banner)",
+          "ok": true,
+          "detail": "📍 सागर के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
+        },
+        {
+          "desc": "/mausam shows a temperature (weather data loaded)",
+          "ok": true,
+          "detail": {
+            "temp": "21°",
+            "weatherResponses": [
+              "GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+              "GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js",
+              "GET 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_cache_v2",
+              "POST 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_grid_requests",
+              "GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+              "GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js"
+            ]
+          }
+        },
+        {
+          "desc": "/mausam weather read answered 200 (weather_cache_v2 or open-meteo)",
+          "ok": true,
+          "detail": [
+            "GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+            "GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js",
+            "GET 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_cache_v2",
+            "POST 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_grid_requests",
+            "GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+            "GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js"
+          ]
+        }
+      ],
+      "notes": [
+        "console errors on / and /mausam (not allowlisted): [\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg' violates the following Content Security Policy \",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg' violates the following Content Security Policy \",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg' violates the following Content Security Policy \",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg' violates the following Content Security Policy \",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg' violates the following Content Security Policy \"]"
+      ]
+    }
+  },
+  "finishedAt": "2026-10-15T04:27:55.502Z",
+  "verdict": "ALL PASSED"
+}

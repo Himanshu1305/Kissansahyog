@@ -1,6 +1,5 @@
 import { supabase } from '../supabaseClient'
 import { toAppError } from '../errors'
-import { fetchPincode } from '../listings/listingsApi'
 import { haversineKm } from '../distance'
 
 // District slug — MUST match scripts/lib/prerender-routes.mjs slugifyDistrict.
@@ -86,48 +85,4 @@ export function sortByDistance(rows, centre) {
       if (b.distanceKm == null) return -1
       return a.distanceKm - b.distanceKm
     })
-}
-
-// Resolve a typed location (city / village / pincode) to coordinates. Order:
-//   1. a 6-digit pincode via the pincodes gazetteer (fetchPincode);
-//   2. a town/village name in that same gazetteer (covers the Sagar pilot incl. Bina);
-//   3. the Cloudflare /geocode proxy (Nominatim, MP-scoped) — works on the deployed preview.
-// Returns { latitude, longitude, label } or null.
-export async function resolveColdStorageLocation(query) {
-  const q = String(query || '').trim()
-  if (!q) return null
-  if (/^\d{6}$/.test(q)) {
-    const p = await fetchPincode(q).catch(() => null)
-    if (p && p.latitude != null) return { latitude: Number(p.latitude), longitude: Number(p.longitude), label: p.village_town || q }
-  } else {
-    const row = await matchPincodeByName(q)
-    if (row && row.latitude != null) return { latitude: Number(row.latitude), longitude: Number(row.longitude), label: row.village_town }
-  }
-  return geocodeViaProxy(q)
-}
-
-// First gazetteer row whose village/town name matches the query (case-insensitive).
-async function matchPincodeByName(name) {
-  const { data } = await supabase
-    .from('pincodes')
-    .select('village_town, latitude, longitude')
-    .ilike('village_town', `%${name}%`)
-    .not('latitude', 'is', null)
-    .limit(1)
-  return data && data[0] ? data[0] : null
-}
-
-// Forward-geocode an arbitrary MP place via the Cloudflare /geocode function
-// (sets the Nominatim User-Agent server-side). Only available on the deployed
-// site; a local dev server returns 404 → cleanly resolves to null.
-async function geocodeViaProxy(q) {
-  try {
-    const res = await fetch(`/geocode?q=${encodeURIComponent(q)}`, { signal: AbortSignal.timeout(12000) })
-    if (!res.ok) return null
-    const d = await res.json()
-    if (d && d.found && d.lat != null) return { latitude: Number(d.lat), longitude: Number(d.lng), label: q }
-    return null
-  } catch {
-    return null
-  }
 }

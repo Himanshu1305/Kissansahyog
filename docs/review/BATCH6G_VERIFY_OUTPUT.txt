@@ -1,0 +1,51 @@
+PASS  1: /founder route is registered (lazy) in App.jsx
+PASS  1: Founder screen uses PageShell with the wide width
+PASS  1: Founder screen has exactly one <h1>
+PASS  1: heading levels never skip (h1 → h2 → h3 → h4)
+PASS  2: founder copy contains "42 वर्ष"
+PASS  2: founder copy contains "ब्राह्मण परिवार"
+PASS  2: founder copy contains "ॐ सीताराम"
+PASS  2: founder copy contains "WE WILL DO IT"
+PASS  2: founder copy contains "किसान की आय बढ़ाना"
+PASS  2: founder copy contains "रोज़गार के अवसर बनाना"
+PASS  2: mission pull-quotes reuse the site strings hero_h1_l1 / hero_h1_l2 unchanged
+PASS  2: every family name from the brief is present (Hindi)
+PASS  2: every family name is transliterated as specified (English)
+PASS  2: glance has 11 tiles, 4 education steps, 4 service steps, 2 innovations, 2 awards, 3 promises, 3 FAQs
+PASS  3: founder data file has no forbidden wording
+PASS  3: founder strings have no forbidden wording
+PASS  3: no "coming soon" / "under review" label
+PASS  4: every founder field has Hindi and English (91 fields)
+PASS  4: every founder string key has Hindi and English (16 keys)
+PASS  4: every t() key used by Founder.jsx exists in strings.js
+PASS  4: Founder.jsx and Footer.jsx contain no Devanagari literals
+PASS  4: homepage band and agro-forestry author line contain no Devanagari literals
+PASS  5: homepage band links to /founder
+PASS  5: homepage band shows name, role, three badges and the motto
+PASS  5: footer links to /founder
+PASS  5: agro-forestry author line links to /founder with the shared name string
+PASS  5: founder_name uses the one agreed spelling
+PASS  5: old role string "कृषि विशेषज्ञ, किसान परिवार से" is gone
+PASS  5: no "ए.के. दीक्षित" / "A.K. Dixit" outside historical docs and comments
+PASS  5: no second Hindi spelling "अभिनंदन" in shipped source
+PASS  6: /founder is in the shared static route list
+PASS  6: sitemap generator and prerender both read that list
+PASS  6: search-index builder registers /founder
+PASS  6: committed public/search-index.json has the /founder entry
+PASS  6: page title and description match the brief
+PASS  6: /founder is not also in ROUTE_SEO (no duplicate title)
+PASS  6: Open Graph image exists
+PASS  7: Person JSON-LD carries only name, jobTitle, birthPlace, worksFor
+PASS  7: Organization JSON-LD names him as founder
+PASS  7: real data (proof_src null) emits no award
+PASS  7: a fake proven award is emitted, the unproven one is not
+PASS  7: FAQPage JSON-LD has the 3 visible questions
+PASS  8: no image path points to a missing file (6 slots, 0 set)
+PASS  8: video id is null or an 11-character YouTube id
+PASS  8: public/founder/README.md lists every image file
+PASS  8: no localStorage / sessionStorage in the new files
+PASS  8: no iframe on the founder page and no CSP change needed
+PASS  9: carbon-credit screens do not mention the founder (7 files)
+PASS  G7: confirm list and video script exist
+
+49 passed, 0 failed

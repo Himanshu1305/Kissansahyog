@@ -1,0 +1,14 @@
+{
+ "at": "2026-10-17T09:11:38.625Z",
+ "listings_recorded": 6,
+ "listings_deleted": 0,
+ "test_village_names_deleted": 0,
+ "test_users_recorded": 1,
+ "profiles_deleted": 0,
+ "auth_users_deleted": 1,
+ "kstest_10a_listings_left": 0,
+ "kstest_10a_users_left": 0,
+ "kstest_10a_auth_users_left": 0,
+ "kstest_keep_listings_before": 24,
+ "kstest_keep_listings_after": 24
+}

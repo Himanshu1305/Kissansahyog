@@ -7,13 +7,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import { useAuth } from '../lib/auth/AuthProvider'
 import BackButton from '../components/BackButton'
 import { fetchWeatherCell } from '../lib/weather/weatherApiV2'
 import { actionWindows, STATUS_COLOR } from '../lib/weather/weatherRules'
-import { fetchPincode } from '../lib/listings/listingsApi'
 import { fetchRelatedSawaal, sawaalQuestion } from '../lib/community/communityApi'
-import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
+import { useUserLocation } from '../lib/location/LocationProvider'
 import { CROPS, currentSeason, cropName } from '../content/crops'
 import { PageExplainer, LocationControl, JsonLd } from '../components/pages/shared'
 import { PageShell } from '../components/layout'
@@ -29,27 +27,19 @@ const adviceBullets = (text) => String(text || '').split(/[\u0964;]+/).map((s) =
 
 export default function FasalSalah() {
   const { t, lang } = useLang()
-  const { user } = useAuth()
   const navigate = useNavigate()
-  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
+  const { location } = useUserLocation() // Batch 7L-1 — weather verdicts need the shared location
   const [wx, setWx] = useState(null)
   const [selected, setSelected] = useState(null) // crop slug
   const [relatedQ, setRelatedQ] = useState([])
 
+  const lat = location?.lat ?? null, lon = location?.lng ?? null
   useEffect(() => {
     let alive = true
-    ;(async () => {
-      let lat = loc.rawCoords?.latitude, lon = loc.rawCoords?.longitude
-      if (lat == null || lon == null) {
-        const p = loc.matchedVillage?.pincode ? await fetchPincode(loc.matchedVillage.pincode).catch(() => null) : null
-        lat = p?.latitude ?? DEFAULT_COORDS.latitude
-        lon = p?.longitude ?? DEFAULT_COORDS.longitude
-      }
-      const cell = await fetchWeatherCell(Number(lat), Number(lon)).catch(() => null)
-      if (alive) setWx(cell)
-    })()
+    if (lat == null || lon == null) { setWx(null); return }
+    fetchWeatherCell(lat, lon).catch(() => null).then((cell) => { if (alive) setWx(cell) })
     return () => { alive = false }
-  }, [loc])
+  }, [lat, lon])
 
   const windows = useMemo(() => (wx ? actionWindows(wx.hourly, wx.daily) : null), [wx])
   const season = currentSeason()
@@ -178,7 +168,12 @@ export default function FasalSalah() {
         <BackButton fallback="/mausam" />
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{t('fasal_h1')}</h1>
         <PageExplainer title={t('page_explainer_title')} lines={[t('fasal_intro_1'), t('fasal_intro_2')]} />
-        <LocationControl value={loc} onChange={setLoc} showOutOfArea={false} />
+        <LocationControl />
+
+        <Link to="/fasal-salah/kam-pani" data-testid="fasal-kam-pani-card" className="block rounded-xl p-3" style={{ background: 'var(--ks-green-tint)', border: '2px solid var(--ks-green)' }}>
+          <span className="block text-[18px] font-extrabold" style={{ color: 'var(--ks-green-dark)' }}>{t('kp_fasal_card_h')} →</span>
+          <span className="mt-0.5 block text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('kp_fasal_card_sub')}</span>
+        </Link>
 
         <button type="button" onClick={() => navigate('/mausam')} className="inline-block text-[15px] font-bold" style={{ color: 'var(--ks-green)' }}>🌤 {t('fasal_see_mausam')} →</button>
 

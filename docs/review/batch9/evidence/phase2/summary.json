@@ -1,0 +1,81 @@
+{
+  "phase": 2,
+  "generatedAt": "2026-10-14T21:54:19.548Z",
+  "swDenylistInNewSwJs": "denylist:[/^\\/sitemap.*\\.xml$/,/^\\/robots\\.txt$/,/^\\/llms\\.txt$/,/^\\/search-index\\.json$/,/^\\/(api|geo|geocode|transcribe)(\\/|$)/,/^\\/_/]",
+  "swJsIdenticalExceptDenylist": true,
+  "new": {
+    "pass": true,
+    "checks": [
+      "PASS sw.js contains navigateFallback denylist",
+      "PASS sitemap.xml is valid XML",
+      "PASS sitemap-pages.xml is valid XML",
+      "PASS sitemap-sawaal.xml is valid XML",
+      "PASS sitemap-cold-storage.xml is valid XML",
+      "PASS sitemap-schemes.xml is valid XML",
+      "PASS robots.txt points to https://kissansahyog.com/sitemap.xml",
+      "PASS service worker controls the page",
+      "PASS /sitemap.xml served as the real file under the SW",
+      "PASS /robots.txt served as the real file under the SW",
+      "PASS /sitemap-pages.xml served as the real file under the SW",
+      "PASS deep link /mausam renders the app screen (not 404)",
+      "PASS deep link /browse renders the app screen (not 404)",
+      "PASS deep link /yeh-page-nahi-hai-batch9 shows the app 404"
+    ]
+  },
+  "old_negative_control": {
+    "pass": false,
+    "expectedToFail": true,
+    "failed": [
+      "sw.js contains navigateFallback denylist",
+      "/sitemap.xml served as the real file under the SW",
+      "/robots.txt served as the real file under the SW",
+      "/sitemap-pages.xml served as the real file under the SW"
+    ]
+  },
+  "sitemaps": {
+    "sitemap.xml": {
+      "bytes": 548,
+      "root": "sitemapindex",
+      "locs": 4,
+      "parseErrors": [],
+      "nonProdLocs": []
+    },
+    "sitemap-pages.xml": {
+      "bytes": 6089,
+      "root": "urlset",
+      "locs": 49,
+      "parseErrors": [],
+      "nonProdLocs": []
+    },
+    "sitemap-sawaal.xml": {
+      "bytes": 23193,
+      "root": "urlset",
+      "locs": 161,
+      "parseErrors": [],
+      "nonProdLocs": []
+    },
+    "sitemap-cold-storage.xml": {
+      "bytes": 4656,
+      "root": "urlset",
+      "locs": 35,
+      "parseErrors": [],
+      "nonProdLocs": []
+    },
+    "sitemap-schemes.xml": {
+      "bytes": 2429,
+      "root": "urlset",
+      "locs": 18,
+      "parseErrors": [],
+      "nonProdLocs": []
+    }
+  },
+  "builds": {
+    "new": "npm run build:prod -> dist (263/263, PROD GUARD OK) copied to scratch",
+    "old": "vite build --mode production --outDir scratch/old-dist, before the edit, + sitemap*.xml copied from NEW",
+    "after": "npm run build:full (staging) 263/263"
+  },
+  "baselineAfter": "baseline-after/summary.tsv: identical to phase0 and phase1 baselines except verify-batch7d 77/1 -> 78/0 (data-dependent, not counted as a fix); no new failure",
+  "findings": [
+    "B17 prerendered HTML has modulepreload links to http://localhost:4178 (also live prod) -> console ERR_CONNECTION_REFUSED; not fixed"
+  ]
+}

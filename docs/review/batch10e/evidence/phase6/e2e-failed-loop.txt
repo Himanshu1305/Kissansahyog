@@ -1,0 +1,2 @@
+e2e\phase10_location_pwa.spec.js:91:3 › Phase 5 — PWA install + offline › install prompt: not on first visit, shows on a returning visit
+e2e\phase19_voice_mandi.spec.js:103:1 › mandi: /msp shows dated "कल का भाव / पिछला भाव (dd/mm)" tags and "—" for never-recorded

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone, postStep1 } from './support.js'
+import { adminClient, testPhone, postStep1, tickAllConsents, selectSpecFreeEquipmentType } from './support.js'
+import { todayIst, datesRow } from '../src/lib/listings/listingDates.js'
 
 // REWRITTEN (legacy-cleanup). Adds the source step before Offering/Looking-for, fills
 // the now-required equipment rate, expects the mandatory rules checkbox (so the old
@@ -29,33 +30,32 @@ async function makeUser() {
   return data
 }
 
-test('equipment OFFER with availability toggle (3-step flow)', async ({ page }) => {
+// 10E 5.2: the "Available now / Specific dates" toggle was replaced in 10E 3C by the mandatory
+// start date ("Today" = available now; DECISIONS 46), and "Tractor" needs the 9C spec fields. Same
+// intent: an equipment offer posts through the 3-step flow and the detail says when it is available.
+test('equipment OFFER with availability (start date, 3-step flow)', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
   await postStep1(page, 'offer', 'equipment')
-  await page.locator('#f_equipment_type_id').waitFor({ timeout: 8000 })
-
-  await page.getByLabel('Equipment type').selectOption({ label: 'Tractor' })
+  await selectSpecFreeEquipmentType(page) // Trolley
   await page.locator('#f_rate_amount').fill('500') // rate is required for an offer (rental basis is optional)
 
-  // Default is "Available now"; switching to specific dates reveals date inputs.
-  await expect(page.getByLabel('From date')).toHaveCount(0)
-  await page.getByRole('button', { name: 'Specific dates' }).click()
-  await expect(page.getByLabel('From date')).toBeVisible()
-  await expect(page.getByLabel('To date')).toBeVisible()
-  await page.getByRole('button', { name: 'Available now' }).click()
-  await expect(page.getByLabel('From date')).toHaveCount(0)
+  // The old toggle is gone; a start date is required and "Today" fills it.
+  await expect(page.getByRole('button', { name: 'Specific dates' })).toHaveCount(0)
+  await page.getByTestId('post-next').click()
+  await expect(page.locator('#f_asset_village')).toHaveCount(0) // blocked on step 2 without a date
+  await page.getByTestId('date-quick-0').click()
+  await expect(page.locator('#f_available_from')).toHaveValue(todayIst())
 
   await page.getByTestId('post-next').click() // → step 3 (Location + confirm)
 
   await page.locator('#f_asset_village').fill('Khurai')
-  // ONE combined confirm checkbox covers the rules + provider declaration.
-  await expect(page.getByRole('checkbox')).toHaveCount(1)
-  await page.getByTestId('rules-agree-checkbox').check()
+  await tickAllConsents(page)
   await page.getByTestId('post-submit').click()
   await page.getByRole('button', { name: 'View listing' }).click()
-  await expect(page.getByText('Tractor')).toBeVisible()
-  await expect(page.getByText('Available now')).toBeVisible()
+  await expect(page.getByText('Trolley').first()).toBeVisible()
+  const row = datesRow({ category: 'equipment', listing_type: 'offer', details: { available_from: todayIst(), available_to: null, available_now: false } }, 'en')
+  await expect(page.locator('dl')).toContainText(row.value)
 })
 
 test('equipment requires an equipment type', async ({ page }) => {

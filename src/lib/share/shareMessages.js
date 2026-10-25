@@ -2,6 +2,7 @@
 // This is an i18n content source (like disclaimers.js) so it may hold Devanagari.
 // NOTE: Drone Didi uses a satellite/tech glyph, never a helicopter.
 import { CATEGORY_META } from '../listings/catalog'
+import { publicOrigin } from '../native'
 
 const EMOJI = {
   land: '🌾', equipment: '🚜', labor: '👷', drone_didi: '🛰️',
@@ -66,7 +67,7 @@ export function whatsappPlatformUrl() {
 
 // Direct wa.me URL for a listing card's share button (simple fixed-format message).
 export function whatsappListingUrl(listing) {
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://kissansahyog.com'
+  const origin = typeof window !== 'undefined' ? publicOrigin() : 'https://kissansahyog.com'
   const url = `${origin}/listing/${listing.id}`
   const msg = `किसान सहयोग पर देखें — ${listing.title || listing.category}: ${url}`
   return `https://wa.me/?text=${encodeURIComponent(msg)}`

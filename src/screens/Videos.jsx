@@ -2,9 +2,9 @@
 // category tab. Cards link out to YouTube (opens the app on phones); no iframes.
 import { useEffect, useMemo, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
-import NavBar from '../components/NavBar'
 import { Spinner } from '../components/ui'
 import { fetchVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
+import { PageShell } from '../components/layout'
 
 const CATS = ['all', 'pest', 'sowing', 'irrigation', 'drone', 'scheme', 'market', 'general']
 
@@ -24,9 +24,8 @@ export default function Videos() {
   const shown = (rows || []).filter((r) => cat === 'all' || r.category === cat)
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
-      <NavBar />
-      <div style={{ padding: '16px var(--ks-gutter)' }}>
+    <PageShell width="wide">
+      <div>
         <h1 className="text-[28px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{t('videos_page_title')}</h1>
         <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {cats.map((c) => (
@@ -61,6 +60,6 @@ export default function Videos() {
           </div>
         )}
       </div>
-    </div>
+    </PageShell>
   )
 }

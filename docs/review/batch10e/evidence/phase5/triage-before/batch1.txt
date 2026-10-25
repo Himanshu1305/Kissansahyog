@@ -1,0 +1,136 @@
+
+Running 5 tests using 1 worker
+
+  x  1 [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 375×812 viewport, no h-scroll (10.7s)
+  x  2 [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 1280×800 viewport, no h-scroll (10.7s)
+  x  3 [chromium] › e2e\batch1.spec.js:66:1 › logged out: browse equipment, Call asks for login and returns to the same listing (2.1s)
+  x  4 [chromium] › e2e\batch1.spec.js:109:1 › post flow (3 steps): land OFFER end to end (30.0s)
+  x  5 [chromium] › e2e\batch1.spec.js:130:1 › post flow (3 steps): labor REQUIREMENT end to end (30.0s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 375×812 viewport, no h-scroll 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('[data-testid^="chip-"]')
+    Expected: 10
+    Received: 11
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 10000ms
+      - waiting for locator('[data-testid^="chip-"]')
+        4 × locator resolved to 0 elements
+          - unexpected value "0"
+        19 × locator resolved to 11 elements
+           - unexpected value "11"
+
+
+      46 |     await page.goto('/browse') // public — no login
+      47 |     const chips = page.locator('[data-testid^="chip-"]')
+    > 48 |     await expect(chips).toHaveCount(10)
+         |                         ^
+      49 |     // The chips wrap — their container must not scroll horizontally.
+      50 |     const cont = page.getByTestId('browse-cats')
+      51 |     const contScroll = await cont.evaluate((el) => el.scrollWidth - el.clientWidth)
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\batch1.spec.js:48:25
+
+    Error Context: test-results\batch1-browse-all-10-categ-25d74-75×812-viewport-no-h-scroll-chromium\error-context.md
+
+  2) [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 1280×800 viewport, no h-scroll 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('[data-testid^="chip-"]')
+    Expected: 10
+    Received: 11
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 10000ms
+      - waiting for locator('[data-testid^="chip-"]')
+        4 × locator resolved to 0 elements
+          - unexpected value "0"
+        19 × locator resolved to 11 elements
+           - unexpected value "11"
+
+
+      46 |     await page.goto('/browse') // public — no login
+      47 |     const chips = page.locator('[data-testid^="chip-"]')
+    > 48 |     await expect(chips).toHaveCount(10)
+         |                         ^
+      49 |     // The chips wrap — their container must not scroll horizontally.
+      50 |     const cont = page.getByTestId('browse-cats')
+      51 |     const contScroll = await cont.evaluate((el) => el.scrollWidth - el.clientWidth)
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\batch1.spec.js:48:25
+
+    Error Context: test-results\batch1-browse-all-10-categ-b68e7-80×800-viewport-no-h-scroll-chromium\error-context.md
+
+  3) [chromium] › e2e\batch1.spec.js:66:1 › logged out: browse equipment, Call asks for login and returns to the same listing 
+
+    Error: locator.click: Error: strict mode violation: getByRole('button', { name: 'Log in' }) resolved to 2 elements:
+        1) <button type="submit" data-testid="login-email-submit" class="w-full rounded-xl px-5 py-3 text-lg font-bold transition select-none disabled:opacity-50 disabled:cursor-not-allowed bg-green-700 text-white active:bg-green-800 hover:bg-green-600 ">Log in with email</button> aka getByTestId('login-email-submit')
+        2) <button type="submit" data-testid="login-phone-submit" class="w-full rounded-xl px-5 py-3 text-lg font-bold transition select-none disabled:opacity-50 disabled:cursor-not-allowed bg-green-700 text-white active:bg-green-800 hover:bg-green-600 ">Log in with mobile number</button> aka getByTestId('login-phone-submit')
+
+    Call log:
+      - waiting for getByRole('button', { name: 'Log in' })
+
+
+      90 |   // Log in by phone (trust-based MVP). Returns to the SAME listing.
+      91 |   await page.getByLabel('Mobile number').fill(viewer.phone)
+    > 92 |   await page.getByRole('button', { name: 'Log in' }).click()
+         |                                                      ^
+      93 |   await page.waitForURL(new RegExp(`/listing/${listing.id}`))
+      94 |
+      95 |   // Now Call reveals the owner's number in the contact sheet.
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\batch1.spec.js:92:54
+
+    Error Context: test-results\batch1-logged-out-browse-e-4fea1-returns-to-the-same-listing-chromium\error-context.md
+
+  4) [chromium] › e2e\batch1.spec.js:109:1 › post flow (3 steps): land OFFER end to end ────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      117 |   await page.getByTestId('post-next').click() // → step 3 (Location + confirm)
+      118 |
+    > 119 |   await page.locator('#f_asset_village').fill('Khurai')
+          |                                          ^
+      120 |   const submit = page.getByTestId('post-submit')
+      121 |   await expect(submit).toBeDisabled() // the single confirm checkbox gates submit
+      122 |   await page.getByTestId('rules-agree-checkbox').check()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\batch1.spec.js:119:42
+
+    Error Context: test-results\batch1-post-flow-3-steps-land-OFFER-end-to-end-chromium\error-context.md
+
+  5) [chromium] › e2e\batch1.spec.js:130:1 › post flow (3 steps): labor REQUIREMENT end to end ─────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      137 |   await page.getByTestId('post-next').click()
+      138 |
+    > 139 |   await page.locator('#f_asset_village').fill('Khurai')
+          |                                          ^
+      140 |   await page.getByTestId('rules-agree-checkbox').check()
+      141 |   await page.getByTestId('post-submit').click()
+      142 |   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\batch1.spec.js:139:42
+
+    Error Context: test-results\batch1-post-flow-3-steps-labor-REQUIREMENT-end-to-end-chromium\error-context.md
+
+  5 failed
+    [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 375×812 viewport, no h-scroll 
+    [chromium] › e2e\batch1.spec.js:44:3 › browse: all 10 category chips inside the 1280×800 viewport, no h-scroll 
+    [chromium] › e2e\batch1.spec.js:66:1 › logged out: browse equipment, Call asks for login and returns to the same listing 
+    [chromium] › e2e\batch1.spec.js:109:1 › post flow (3 steps): land OFFER end to end ─────────────
+    [chromium] › e2e\batch1.spec.js:130:1 › post flow (3 steps): labor REQUIREMENT end to end ──────

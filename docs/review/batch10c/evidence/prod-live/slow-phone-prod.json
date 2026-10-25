@@ -1,0 +1,455 @@
+{
+  "when": "2026-10-17T22:55:48.328Z",
+  "base": "https://kissansahyog.com",
+  "conditions": {
+    "viewport": "360x640",
+    "cpu": "4x",
+    "down": "200,000 B/s (~1.6 Mbps)",
+    "up": "93,750 B/s (~750 Kbps)",
+    "latency": "150 ms",
+    "cache": "cold (new context, cache disabled)",
+    "serviceWorker": "blocked",
+    "lang": "hi",
+    "speed": "normal (no __KS_GUIDE_SPEED)"
+  },
+  "results": [
+    {
+      "page": "/guide",
+      "visibleMs": 4503,
+      "fcpMs": 1932,
+      "wallVisibleMs": 4593,
+      "loadLongTasks": [
+        {
+          "start": 3473,
+          "dur": 223
+        },
+        {
+          "start": 3853,
+          "dur": 233
+        }
+      ],
+      "cardsVisible": 4,
+      "loadAllLongTasks": [
+        {
+          "start": 3065,
+          "dur": 191
+        },
+        {
+          "start": 3473,
+          "dur": 223
+        },
+        {
+          "start": 3756,
+          "dur": 50
+        },
+        {
+          "start": 3853,
+          "dur": 233
+        },
+        {
+          "start": 4315,
+          "dur": 189
+        }
+      ],
+      "transferKB": 546,
+      "errors": [
+        "Loading the script 'http://localhost:4178/assets/GuideHub-D5eP1opf.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/layout-jmv-UsVC.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/guide-BiyxCfv8.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the stylesheet 'http://localhost:4178/assets/guide-CZRgRg7c.css' violates the following Content Security Policy directive: \"style-src 'self' 'unsafe-inline'\". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/useLoopActive-Db9yagvT.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked."
+      ]
+    },
+    {
+      "page": "/guide/register",
+      "visibleMs": 4609,
+      "fcpMs": 1960,
+      "wallVisibleMs": 4655,
+      "loadLongTasks": [
+        {
+          "start": 3072,
+          "dur": 237
+        },
+        {
+          "start": 3697,
+          "dur": 212
+        },
+        {
+          "start": 4351,
+          "dur": 264
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "noSkip": true,
+      "finished": true,
+      "playMs": 37967,
+      "playLongTasksOver200": 0,
+      "playMaxLongTask": 102,
+      "playLongTasks": [
+        {
+          "start": 28985,
+          "dur": 71
+        },
+        {
+          "start": 42469,
+          "dur": 89
+        },
+        {
+          "start": 42623,
+          "dur": 102
+        }
+      ],
+      "transferKB": 566,
+      "errors": [
+        "Loading the script 'http://localhost:4178/assets/GuideDemoPage-BQPd4yAN.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/layout-jmv-UsVC.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/NotFound-MSnoamb7.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/guide-BiyxCfv8.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the stylesheet 'http://localhost:4178/assets/guide-CZRgRg7c.css' violates the following Content Security Policy directive: \"style-src 'self' 'unsafe-inline'\". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/DemoPlayer-CGPGNn-k.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/disclaimers-D37lztIn.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/catalog-KGaQpWeV.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/useLoopActive-Db9yagvT.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked."
+      ]
+    },
+    {
+      "page": "/guide/post",
+      "visibleMs": 5513,
+      "fcpMs": 2596,
+      "wallVisibleMs": 5589,
+      "loadLongTasks": [
+        {
+          "start": 3569,
+          "dur": 536
+        },
+        {
+          "start": 4160,
+          "dur": 325
+        },
+        {
+          "start": 5139,
+          "dur": 374
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "noSkip": true,
+      "finished": true,
+      "playMs": 59932,
+      "playLongTasksOver200": 2,
+      "playMaxLongTask": 208,
+      "playLongTasks": [
+        {
+          "start": 10276,
+          "dur": 52
+        },
+        {
+          "start": 15760,
+          "dur": 208
+        },
+        {
+          "start": 21387,
+          "dur": 60
+        },
+        {
+          "start": 21448,
+          "dur": 204
+        },
+        {
+          "start": 21656,
+          "dur": 59
+        },
+        {
+          "start": 21735,
+          "dur": 51
+        },
+        {
+          "start": 23636,
+          "dur": 50
+        },
+        {
+          "start": 43063,
+          "dur": 164
+        },
+        {
+          "start": 48343,
+          "dur": 57
+        },
+        {
+          "start": 51584,
+          "dur": 98
+        },
+        {
+          "start": 53148,
+          "dur": 113
+        },
+        {
+          "start": 54634,
+          "dur": 77
+        },
+        {
+          "start": 57274,
+          "dur": 80
+        },
+        {
+          "start": 65158,
+          "dur": 110
+        },
+        {
+          "start": 65313,
+          "dur": 60
+        },
+        {
+          "start": 66240,
+          "dur": 62
+        }
+      ],
+      "transferKB": 565,
+      "errors": [
+        "Loading the script 'http://localhost:4178/assets/GuideDemoPage-BQPd4yAN.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/layout-jmv-UsVC.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/NotFound-MSnoamb7.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/guide-BiyxCfv8.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the stylesheet 'http://localhost:4178/assets/guide-CZRgRg7c.css' violates the following Content Security Policy directive: \"style-src 'self' 'unsafe-inline'\". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/DemoPlayer-CGPGNn-k.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/disclaimers-D37lztIn.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/catalog-KGaQpWeV.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/useLoopActive-Db9yagvT.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked."
+      ]
+    },
+    {
+      "page": "/guide/find",
+      "visibleMs": 5618,
+      "fcpMs": 2560,
+      "wallVisibleMs": 5690,
+      "loadLongTasks": [
+        {
+          "start": 3407,
+          "dur": 216
+        },
+        {
+          "start": 4210,
+          "dur": 448
+        },
+        {
+          "start": 5265,
+          "dur": 354
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "noSkip": true,
+      "finished": true,
+      "playMs": 27657,
+      "playLongTasksOver200": 1,
+      "playMaxLongTask": 345,
+      "playLongTasks": [
+        {
+          "start": 14174,
+          "dur": 345
+        },
+        {
+          "start": 20290,
+          "dur": 90
+        }
+      ],
+      "transferKB": 565,
+      "errors": [
+        "Loading the script 'http://localhost:4178/assets/GuideDemoPage-BQPd4yAN.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/layout-jmv-UsVC.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/NotFound-MSnoamb7.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/guide-BiyxCfv8.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the stylesheet 'http://localhost:4178/assets/guide-CZRgRg7c.css' violates the following Content Security Policy directive: \"style-src 'self' 'unsafe-inline'\". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/DemoPlayer-CGPGNn-k.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/disclaimers-D37lztIn.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/catalog-KGaQpWeV.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/useLoopActive-Db9yagvT.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked."
+      ]
+    },
+    {
+      "page": "/guide/tour",
+      "visibleMs": 4669,
+      "fcpMs": 2632,
+      "wallVisibleMs": 4749,
+      "loadLongTasks": [
+        {
+          "start": 3272,
+          "dur": 207
+        },
+        {
+          "start": 3535,
+          "dur": 250
+        },
+        {
+          "start": 4228,
+          "dur": 441
+        }
+      ],
+      "sequence": [
+        "mandi",
+        "weather",
+        "schemes",
+        "questions",
+        "market"
+      ],
+      "noSkip": true,
+      "finished": true,
+      "playMs": 24453,
+      "playLongTasksOver200": 0,
+      "playMaxLongTask": 50,
+      "playLongTasks": [
+        {
+          "start": 10728,
+          "dur": 50
+        }
+      ],
+      "transferKB": 565,
+      "errors": [
+        "Loading the script 'http://localhost:4178/assets/GuideDemoPage-BQPd4yAN.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/layout-jmv-UsVC.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/NotFound-MSnoamb7.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/guide-BiyxCfv8.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the stylesheet 'http://localhost:4178/assets/guide-CZRgRg7c.css' violates the following Content Security Policy directive: \"style-src 'self' 'unsafe-inline'\". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/DemoPlayer-CGPGNn-k.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/disclaimers-D37lztIn.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/catalog-KGaQpWeV.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'http://localhost:4178/assets/useLoopActive-Db9yagvT.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+        "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' 'unsafe-eval'\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked."
+      ]
+    }
+  ],
+  "chunks": [
+    {
+      "file": "catalog-KGaQpWeV.js",
+      "raw": 19598,
+      "gz9": 6580
+    },
+    {
+      "file": "DemoPlayer-CGPGNn-k.js",
+      "raw": 25154,
+      "gz9": 7746
+    },
+    {
+      "file": "disclaimers-D37lztIn.js",
+      "raw": 3236,
+      "gz9": 1262
+    },
+    {
+      "file": "guide-BiyxCfv8.js",
+      "raw": 4052,
+      "gz9": 1546
+    },
+    {
+      "file": "guide-CZRgRg7c.css",
+      "raw": 19562,
+      "gz9": 4552
+    },
+    {
+      "file": "GuideDemoPage-BQPd4yAN.js",
+      "raw": 8801,
+      "gz9": 2880
+    },
+    {
+      "file": "GuideHelpButton-D7Yom6p6.js",
+      "raw": 2220,
+      "gz9": 1156
+    },
+    {
+      "file": "GuideHub-D5eP1opf.js",
+      "raw": 6339,
+      "gz9": 2144
+    },
+    {
+      "file": "GuideSheet-CZl8V4VR.js",
+      "raw": 3982,
+      "gz9": 1766
+    },
+    {
+      "file": "useLoopActive-Db9yagvT.js",
+      "raw": 665,
+      "gz9": 374
+    }
+  ],
+  "routes": {
+    "/guide/:id (GuideDemoPage + DemoPlayer + useLoopActive + guide js + guide css)": {
+      "raw": 58234,
+      "gz9": 17098
+    },
+    "/guide/:id JS only": {
+      "raw": 38672,
+      "gz9": 12546
+    },
+    "/guide/:id + the shared app chunks it also needs (catalog, disclaimers)": {
+      "raw": 81068,
+      "gz9": 24940
+    },
+    "/guide hub (GuideHub + useLoopActive + guide js + guide css)": {
+      "raw": 30618,
+      "gz9": 8616
+    },
+    "help sheet (GuideSheet + DemoPlayer + guide js + css)": {
+      "raw": 52750,
+      "gz9": 15610
+    },
+    "all guide-only chunks (no catalog / disclaimers)": {
+      "raw": 70775,
+      "gz9": 22164
+    }
+  },
+  "verdict": {
+    "hubUsable": {
+      "value": 4503,
+      "target": 4000,
+      "pass": false
+    },
+    "longTaskDuringPlay": {
+      "value": 345,
+      "target": 300,
+      "pass": false
+    },
+    "allFinishNoSkip": {
+      "pass": true
+    },
+    "chunkGz": {
+      "value": 17098,
+      "target": 40960,
+      "pass": true
+    }
+  }
+}

@@ -1,0 +1,7 @@
+run 1: LCP 7396 ms (H1) CLS 0 (10s 0) TBT 500 ms FCP 7396 ms longTasks 12 (max 638) photo 0x/0B
+run 2: LCP 5352 ms (H1) CLS 0 (10s 0) TBT 784 ms FCP 5352 ms longTasks 11 (max 533) photo 0x/0B
+run 3: LCP 6372 ms (H1) CLS 0 (10s 0) TBT 316 ms FCP 6372 ms longTasks 12 (max 1045) photo 0x/0B
+run 4: LCP 6648 ms (H1) CLS 0 (10s 0) TBT 551 ms FCP 6648 ms longTasks 13 (max 666) photo 0x/0B
+run 5: LCP 6372 ms (H1) CLS 0 (10s 0) TBT 671 ms FCP 6372 ms longTasks 12 (max 6598) photo 0x/0B
+median {"lcpMs":6372,"cls":0,"cls10s":0,"tbtMs":551,"fcpMs":6372,"maxLongTaskMs":666,"loadWallMs":14316,"requests":129,"transferBytes":1746206,"heroFarmerJpgRequests":0,"jsChunksGzip9Total":null}
+wrote docs/review/batch10d/evidence/staging-deploy/perf-staging.json

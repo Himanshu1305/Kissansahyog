@@ -1,0 +1,517 @@
+[
+ {
+  "at": "2026-10-17T09:01:43.964Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T1|who-posting-first",
+  "status": "RAN-PASSED",
+  "detail": {
+   "first_control": "post-source-farmer",
+   "block_first_child_of_step": true,
+   "before_categories": true,
+   "before_type": true,
+   "farmer_selected_by_default": true,
+   "btn_heights": [
+    68,
+    68
+   ],
+   "btn_widths": [
+    186,
+    186
+   ]
+  },
+  "evidence": "evidence/g1/T1-post-step1-top.jpg"
+ },
+ {
+  "at": "2026-10-17T09:01:49.492Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T1|contact-consent-vendor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "source": "vendor",
+   "category": "bhusa/offer",
+   "contact_consent_box": 1,
+   "submitted": false
+  },
+  "evidence": "evidence/g1/T1-step3-vendor.jpg"
+ },
+ {
+  "at": "2026-10-17T09:01:54.892Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T1|contact-consent-farmer",
+  "status": "RAN-PASSED",
+  "detail": {
+   "source": "farmer",
+   "category": "bhusa/offer",
+   "contact_consent_box": 0,
+   "submitted": false
+  },
+  "evidence": "evidence/g1/T1-step3-farmer.jpg"
+ },
+ {
+  "at": "2026-10-17T09:02:54.562Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T2|rows-412",
+  "status": "RAN-PASSED",
+  "detail": {
+   "year": {
+    "x": 30,
+    "y": 130,
+    "w": 170,
+    "h": 56
+   },
+   "hp": {
+    "x": 212,
+    "y": 130,
+    "w": 170,
+    "h": 56
+   },
+   "out": {
+    "x": 30,
+    "y": 244,
+    "w": 170,
+    "h": 56
+   },
+   "unit": {
+    "x": 212,
+    "y": 244,
+    "w": 170,
+    "h": 56
+   },
+   "year_hp_same_row": true,
+   "out_unit_same_row": true,
+   "year_hp_stacked": false,
+   "out_unit_stacked": false,
+   "no_sideways_scroll": true,
+   "input_font_px": 18
+  },
+  "evidence": "evidence/g1/T2-tractor-412.jpg"
+ },
+ {
+  "at": "2026-10-17T09:02:59.205Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T2|rows-360",
+  "status": "RAN-PASSED",
+  "detail": {
+   "year": {
+    "x": 30,
+    "y": 193,
+    "w": 300,
+    "h": 56
+   },
+   "hp": {
+    "x": 30,
+    "y": 283,
+    "w": 300,
+    "h": 56
+   },
+   "out": {
+    "x": 30,
+    "y": 373,
+    "w": 300,
+    "h": 56
+   },
+   "unit": {
+    "x": 30,
+    "y": 463,
+    "w": 300,
+    "h": 53
+   },
+   "year_hp_same_row": false,
+   "out_unit_same_row": false,
+   "year_hp_stacked": true,
+   "out_unit_stacked": true,
+   "no_sideways_scroll": true,
+   "input_font_px": 18
+  },
+  "evidence": "evidence/g1/T2-tractor-360.jpg"
+ },
+ {
+  "at": "2026-10-17T09:03:07.049Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T2|empty-year-hp-block",
+  "status": "RAN-PASSED",
+  "detail": {
+   "year": {
+    "placeholder": "जैसे 2023",
+    "value_empty": true,
+    "blocked": true,
+    "visible_error": "निर्माण वर्ष ज़रूरी है।",
+    "inline_error": "निर्माण वर्ष ज़रूरी है।",
+    "expected": "निर्माण वर्ष ज़रूरी है।"
+   },
+   "power_hp": {
+    "placeholder": "जैसे 45",
+    "value_empty": true,
+    "blocked": true,
+    "visible_error": "ट्रैक्टर की अश्वशक्ति (HP) ज़रूरी है।",
+    "inline_error": "ट्रैक्टर की अश्वशक्ति (HP) ज़रूरी है।",
+    "expected": "ट्रैक्टर की अश्वशक्ति (HP) ज़रूरी है।"
+   }
+  }
+ },
+ {
+  "at": "2026-10-17T09:03:11.666Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T2|tags-under-type",
+  "status": "RAN-PASSED",
+  "detail": {
+   "next_sibling_holds_tags": true,
+   "tags_before_specs": true,
+   "tractor_tags_pressed": 0
+  },
+  "evidence": "evidence/g1/T2-tags-under-type.jpg"
+ },
+ {
+  "at": "2026-10-17T09:03:18.428Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T2|drone-preticks-and-untick-sticks",
+  "status": "RAN-PASSED",
+  "detail": {
+   "drone_pick": "true",
+   "untouched_drone_to_tractor": "false",
+   "untouched_back_to_drone": "true",
+   "after_untick": "false",
+   "touched_to_tractor": "false",
+   "touched_back_to_drone": "false",
+   "reached_step3": true,
+   "back_on_step2": true,
+   "after_step3_and_back": "false"
+  },
+  "evidence": "evidence/g1/T2-drone-unticked-sticks.jpg"
+ },
+ {
+  "at": "2026-10-17T09:03:24.830Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T2|drone-posted-with-preticked-tag",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "saved_tags": [
+    "rare_emergency"
+   ],
+   "has_tags_touched_flag": false,
+   "spec_version": 1,
+   "id": "c94cc9e6-3e9b-4c49-b8d5-69c09fe410f8"
+  },
+  "evidence": "evidence/g1/T2-drone-posted.jpg"
+ },
+ {
+  "at": "2026-10-17T09:04:31.661Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T3|browse-equipment-chips",
+  "status": "RAN-PASSED",
+  "detail": {
+   "chips_top": 397,
+   "chips_bottom": 519,
+   "cats_bottom": 385,
+   "sort_top": 616,
+   "first_card_top": 1232,
+   "first_teaser_top": 694,
+   "chip_heights": [
+    44,
+    44,
+    44
+   ],
+   "first_chip": "etag-chip-all",
+   "result_cards_all": 8,
+   "result_cards_rare": 2,
+   "popular_teasers_not_tag_filtered": 4,
+   "every_rare_card_shows_tag": true,
+   "our_drone_in_rare": true,
+   "chip_pressed": "true",
+   "tap_selected_clears": true,
+   "deep_link_pressed": "true",
+   "deep_link_cards": 2,
+   "errors": []
+  },
+  "evidence": "evidence/g1/T3-browse-equipment.jpg"
+ },
+ {
+  "at": "2026-10-17T09:04:41.437Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T3|no-chips-other-categories",
+  "status": "RAN-PASSED",
+  "detail": {
+   "chips_block_per_category": {
+    "equipment": 1,
+    "labor": 0,
+    "drone_didi": 0,
+    "bhusa": 0,
+    "agri_inputs": 0,
+    "building_materials": 0,
+    "warehouse": 0,
+    "greenhouse": 0,
+    "jugaad": 0,
+    "transport": 0,
+    "land": 0
+   }
+  }
+ },
+ {
+  "at": "2026-10-17T09:04:51.881Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T4|signup-one-page-and-register",
+  "status": "RAN-PASSED",
+  "detail": {
+   "language_dropdown": 0,
+   "farmer_block_fields": 0,
+   "all_on_one_page": true,
+   "visibility_ticked_by_default": true,
+   "unticked_error": "You must accept the notice to continue.",
+   "unticked_requests": 0,
+   "unticked_still_on_signup": true,
+   "register_status": 200,
+   "landed_on": "/home",
+   "logged_in": true,
+   "profile": {}
+  },
+  "evidence": "evidence/g1/T4-signup-landed.jpg"
+ },
+ {
+  "at": "2026-10-17T09:05:29.395Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T5|details-equal-Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "new_id": "608cc17f-fe00-4aa6-b9be-9fa60bebc941",
+   "old_id": "86f54b4e-0ab6-4cae-b5ec-71be17f71211",
+   "posted": {
+    "new": true,
+    "old": true
+   },
+   "blocked": {
+    "new": null,
+    "old": null
+   },
+   "keys_new": [
+    "available_from",
+    "available_now",
+    "available_to",
+    "brand",
+    "equipment_tags",
+    "equipment_type_id",
+    "is_tanker",
+    "model",
+    "output_per_hour",
+    "output_unit",
+    "power_hp",
+    "provider_declared",
+    "rate_amount",
+    "rental_basis",
+    "spec_version",
+    "year"
+   ],
+   "keys_old": [
+    "available_from",
+    "available_now",
+    "available_to",
+    "brand",
+    "equipment_tags",
+    "equipment_type_id",
+    "is_tanker",
+    "model",
+    "output_per_hour",
+    "output_unit",
+    "power_hp",
+    "provider_declared",
+    "rate_amount",
+    "rental_basis",
+    "spec_version",
+    "year"
+   ],
+   "value_diffs": [],
+   "numbers_as_numbers": true,
+   "numeric_keys": [
+    "year",
+    "power_hp",
+    "output_per_hour"
+   ],
+   "spec_version": 1,
+   "tags_new": [],
+   "tags_touched_flag": false,
+   "page_errors": [],
+   "details_new": {
+    "year": 2022,
+    "brand": "Swaraj",
+    "model": "KSTEST model",
+    "power_hp": 45,
+    "is_tanker": false,
+    "output_unit": "acre_hour",
+    "rate_amount": "800",
+    "available_to": null,
+    "rental_basis": "per_hour",
+    "spec_version": 1,
+    "available_now": true,
+    "available_from": null,
+    "equipment_tags": [],
+    "output_per_hour": 1.5,
+    "equipment_type_id": 1,
+    "provider_declared": true
+   }
+  }
+ },
+ {
+  "at": "2026-10-17T09:05:41.923Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T5|details-equal-Thresher",
+  "status": "RAN-PASSED",
+  "detail": {
+   "new_id": "31f0fdbc-cd90-4739-8cd7-8d392f8d9987",
+   "old_id": "f16abff4-9b83-4e31-a0de-4dd3d115953a",
+   "posted": {
+    "new": true,
+    "old": true
+   },
+   "blocked": {
+    "new": null,
+    "old": null
+   },
+   "keys_new": [
+    "available_from",
+    "available_now",
+    "available_to",
+    "brand",
+    "equipment_tags",
+    "equipment_type_id",
+    "is_tanker",
+    "model",
+    "output_per_hour",
+    "output_unit",
+    "power_hp",
+    "provider_declared",
+    "rate_amount",
+    "rental_basis",
+    "spec_crop",
+    "spec_version",
+    "year"
+   ],
+   "keys_old": [
+    "available_from",
+    "available_now",
+    "available_to",
+    "brand",
+    "equipment_tags",
+    "equipment_type_id",
+    "is_tanker",
+    "model",
+    "output_per_hour",
+    "output_unit",
+    "power_hp",
+    "provider_declared",
+    "rate_amount",
+    "rental_basis",
+    "spec_crop",
+    "spec_version",
+    "year"
+   ],
+   "value_diffs": [],
+   "numbers_as_numbers": true,
+   "numeric_keys": [
+    "year",
+    "power_hp",
+    "output_per_hour"
+   ],
+   "spec_version": 1,
+   "tags_new": [],
+   "tags_touched_flag": false,
+   "page_errors": [],
+   "details_new": {
+    "year": 2022,
+    "brand": "KSTEST brand",
+    "model": "KSTEST model",
+    "power_hp": 45,
+    "is_tanker": false,
+    "spec_crop": "KSTEST crop",
+    "output_unit": "quintal_hour",
+    "rate_amount": "800",
+    "available_to": null,
+    "rental_basis": "per_hour",
+    "spec_version": 1,
+    "available_now": true,
+    "available_from": null,
+    "equipment_tags": [],
+    "output_per_hour": 1.5,
+    "equipment_type_id": 3,
+    "provider_declared": true
+   }
+  }
+ },
+ {
+  "at": "2026-10-17T09:06:17.617Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "T5|old-listing-renders",
+  "status": "RAN-PASSED",
+  "detail": {
+   "checked": 2,
+   "listings": {
+    "3cd24b09-0eac-4840-8776-abb353d3e316": {
+     "village_kstest_keep": true,
+     "card_on_browse": true,
+     "detail_rows": 4,
+     "spec_rows": 0,
+     "errors": []
+    },
+    "fdc4df7c-bda1-4285-ac8a-9ece7958a64e": {
+     "village_kstest_keep": false,
+     "card_on_browse": false,
+     "detail_rows": 4,
+     "spec_rows": 0,
+     "errors": []
+    }
+   }
+  }
+ },
+ {
+  "at": "2026-10-17T09:06:41.927Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "G2|hi-360",
+  "status": "RAN-PASSED",
+  "detail": {
+   "post_top_no_hscroll": true,
+   "Tractor_no_hscroll": true,
+   "Thresher_no_hscroll": true,
+   "browse_no_hscroll": true,
+   "signup_no_hscroll": true
+  }
+ },
+ {
+  "at": "2026-10-17T09:06:56.530Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "G2|hi-412",
+  "status": "RAN-PASSED",
+  "detail": {
+   "post_top_no_hscroll": true,
+   "Tractor_no_hscroll": true,
+   "Thresher_no_hscroll": true,
+   "browse_no_hscroll": true,
+   "signup_no_hscroll": true
+  }
+ },
+ {
+  "at": "2026-10-17T09:07:10.950Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "G2|en-360",
+  "status": "RAN-PASSED",
+  "detail": {
+   "post_top_no_hscroll": true,
+   "Tractor_no_hscroll": true,
+   "Thresher_no_hscroll": true,
+   "browse_no_hscroll": true,
+   "signup_no_hscroll": true
+  }
+ },
+ {
+  "at": "2026-10-17T09:07:25.330Z",
+  "base": "http://127.0.0.1:4185",
+  "id": "G2|en-412",
+  "status": "RAN-PASSED",
+  "detail": {
+   "post_top_no_hscroll": true,
+   "Tractor_no_hscroll": true,
+   "Thresher_no_hscroll": true,
+   "browse_no_hscroll": true,
+   "signup_no_hscroll": true
+  }
+ }
+]

@@ -1,0 +1,4 @@
+deployment_id=3c5b9bbf-ec87-4766-9c65-9136affcbd79
+source=6702137
+main_chunk=/assets/index-Da6OQhZC.js
+taken_at=2026-10-23T09:20:38Z

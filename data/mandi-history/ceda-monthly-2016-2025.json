@@ -1,0 +1,6845 @@
+{
+ "source": "CEDA Agri-Market Data portal (Ashoka University), republishing Agmarknet data of the Directorate of Marketing & Inspection (DMI), Ministry of Agriculture and Farmers Welfare, Government of India",
+ "url": "https://agmarknet.ceda.ashoka.edu.in/",
+ "fetched_on": "2026-10-23",
+ "first_month": "2016-01",
+ "last_month": "2025-10",
+ "unit": "rupees per quintal, monthly Modal price",
+ "sagar_division_districts": [
+  {
+   "name": "Tikamgarh",
+   "ceda_id": 424
+  },
+  {
+   "name": "Chhatarpur",
+   "ceda_id": 425
+  },
+  {
+   "name": "Panna",
+   "ceda_id": 426
+  },
+  {
+   "name": "Sagar",
+   "ceda_id": 427
+  },
+  {
+   "name": "Damoh",
+   "ceda_id": 428
+  }
+ ],
+ "how": "mp = state-level monthly p_modal rounded to a whole rupee; sagar_division = plain mean of p_modal over the five districts that reported (value > 0) in that month, rounded; missing months are left out, never interpolated",
+ "commodities": {
+  "Wheat": {
+   "ceda_commodity": "Wheat",
+   "ceda_id": 1,
+   "mp": {
+    "2016-01": 1585,
+    "2016-02": 1581,
+    "2016-03": 1541,
+    "2016-04": 1562,
+    "2016-05": 1598,
+    "2016-06": 1665,
+    "2016-07": 1675,
+    "2016-08": 1677,
+    "2016-09": 1689,
+    "2016-10": 1693,
+    "2016-11": 1822,
+    "2016-12": 1825,
+    "2017-01": 1801,
+    "2017-02": 1721,
+    "2017-03": 1610,
+    "2017-04": 1610,
+    "2017-05": 1601,
+    "2017-06": 1557,
+    "2017-07": 1578,
+    "2017-08": 1615,
+    "2017-09": 1599,
+    "2017-10": 1593,
+    "2017-11": 1599,
+    "2017-12": 1604,
+    "2018-01": 1630,
+    "2018-02": 1645,
+    "2018-03": 1685,
+    "2018-04": 1701,
+    "2018-05": 1739,
+    "2018-06": 1743,
+    "2018-07": 1820,
+    "2018-08": 1872,
+    "2018-09": 1876,
+    "2018-10": 1885,
+    "2018-11": 1898,
+    "2018-12": 1936,
+    "2019-01": 1969,
+    "2019-02": 1937,
+    "2019-03": 1855,
+    "2019-04": 1792,
+    "2019-05": 1845,
+    "2019-06": 1830,
+    "2019-07": 1886,
+    "2019-08": 1955,
+    "2019-09": 1935,
+    "2019-10": 1994,
+    "2019-11": 2037,
+    "2019-12": 2050,
+    "2020-01": 2119,
+    "2020-02": 2027,
+    "2020-03": 1830,
+    "2020-04": 1841,
+    "2020-05": 1858,
+    "2020-06": 1790,
+    "2020-07": 1769,
+    "2020-08": 1710,
+    "2020-09": 1667,
+    "2020-10": 1657,
+    "2020-11": 1673,
+    "2020-12": 1617,
+    "2021-01": 1747,
+    "2021-02": 1709,
+    "2021-03": 1746,
+    "2021-04": 1859,
+    "2021-05": 1887,
+    "2021-06": 1772,
+    "2021-07": 1754,
+    "2021-08": 1784,
+    "2021-09": 1873,
+    "2021-10": 1902,
+    "2021-11": 1926,
+    "2021-12": 1927,
+    "2022-01": 1938,
+    "2022-02": 1962,
+    "2022-03": 2071,
+    "2022-04": 2053,
+    "2022-05": 2075,
+    "2022-06": 2003,
+    "2022-07": 2080,
+    "2022-08": 2205,
+    "2022-09": 2213,
+    "2022-10": 2246,
+    "2022-11": 2428,
+    "2022-12": 2514,
+    "2023-01": 2598,
+    "2023-02": 2342,
+    "2023-03": 2123,
+    "2023-04": 2128,
+    "2023-05": 2187,
+    "2023-06": 2225,
+    "2023-07": 2242,
+    "2023-08": 2356,
+    "2023-09": 2361,
+    "2023-10": 2460,
+    "2023-11": 2510,
+    "2023-12": 2463,
+    "2024-01": 2472,
+    "2024-02": 2355,
+    "2024-03": 2364,
+    "2024-04": 2348,
+    "2024-05": 2415,
+    "2024-06": 2457,
+    "2024-07": 2509,
+    "2024-08": 2602,
+    "2024-09": 2634,
+    "2024-10": 2727,
+    "2024-11": 2789,
+    "2024-12": 2800,
+    "2025-01": 2948,
+    "2025-02": 2889,
+    "2025-03": 2539,
+    "2025-04": 2467,
+    "2025-05": 2510,
+    "2025-06": 2486,
+    "2025-07": 2518,
+    "2025-08": 2584,
+    "2025-09": 2563,
+    "2025-10": 2497
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 1512,
+     "districts_reporting": 5
+    },
+    "2016-02": {
+     "price": 1517,
+     "districts_reporting": 5
+    },
+    "2016-03": {
+     "price": 1490,
+     "districts_reporting": 5
+    },
+    "2016-04": {
+     "price": 1520,
+     "districts_reporting": 5
+    },
+    "2016-05": {
+     "price": 1562,
+     "districts_reporting": 5
+    },
+    "2016-06": {
+     "price": 1580,
+     "districts_reporting": 5
+    },
+    "2016-07": {
+     "price": 1605,
+     "districts_reporting": 5
+    },
+    "2016-08": {
+     "price": 1608,
+     "districts_reporting": 5
+    },
+    "2016-09": {
+     "price": 1627,
+     "districts_reporting": 5
+    },
+    "2016-10": {
+     "price": 1649,
+     "districts_reporting": 5
+    },
+    "2016-11": {
+     "price": 1758,
+     "districts_reporting": 5
+    },
+    "2016-12": {
+     "price": 1775,
+     "districts_reporting": 5
+    },
+    "2017-01": {
+     "price": 1756,
+     "districts_reporting": 5
+    },
+    "2017-02": {
+     "price": 1691,
+     "districts_reporting": 5
+    },
+    "2017-03": {
+     "price": 1573,
+     "districts_reporting": 5
+    },
+    "2017-04": {
+     "price": 1587,
+     "districts_reporting": 5
+    },
+    "2017-05": {
+     "price": 1594,
+     "districts_reporting": 5
+    },
+    "2017-06": {
+     "price": 1540,
+     "districts_reporting": 5
+    },
+    "2017-07": {
+     "price": 1551,
+     "districts_reporting": 5
+    },
+    "2017-08": {
+     "price": 1570,
+     "districts_reporting": 5
+    },
+    "2017-09": {
+     "price": 1573,
+     "districts_reporting": 5
+    },
+    "2017-10": {
+     "price": 1558,
+     "districts_reporting": 5
+    },
+    "2017-11": {
+     "price": 1553,
+     "districts_reporting": 5
+    },
+    "2017-12": {
+     "price": 1553,
+     "districts_reporting": 5
+    },
+    "2018-01": {
+     "price": 1570,
+     "districts_reporting": 5
+    },
+    "2018-02": {
+     "price": 1583,
+     "districts_reporting": 5
+    },
+    "2018-03": {
+     "price": 1591,
+     "districts_reporting": 5
+    },
+    "2018-04": {
+     "price": 1653,
+     "districts_reporting": 5
+    },
+    "2018-05": {
+     "price": 1710,
+     "districts_reporting": 5
+    },
+    "2018-06": {
+     "price": 1679,
+     "districts_reporting": 5
+    },
+    "2018-07": {
+     "price": 1735,
+     "districts_reporting": 5
+    },
+    "2018-08": {
+     "price": 1801,
+     "districts_reporting": 5
+    },
+    "2018-09": {
+     "price": 1802,
+     "districts_reporting": 5
+    },
+    "2018-10": {
+     "price": 1815,
+     "districts_reporting": 5
+    },
+    "2018-11": {
+     "price": 1845,
+     "districts_reporting": 5
+    },
+    "2018-12": {
+     "price": 1852,
+     "districts_reporting": 5
+    },
+    "2019-01": {
+     "price": 1881,
+     "districts_reporting": 5
+    },
+    "2019-02": {
+     "price": 1896,
+     "districts_reporting": 5
+    },
+    "2019-03": {
+     "price": 1840,
+     "districts_reporting": 5
+    },
+    "2019-04": {
+     "price": 1756,
+     "districts_reporting": 5
+    },
+    "2019-05": {
+     "price": 1800,
+     "districts_reporting": 5
+    },
+    "2019-06": {
+     "price": 1778,
+     "districts_reporting": 5
+    },
+    "2019-07": {
+     "price": 1829,
+     "districts_reporting": 5
+    },
+    "2019-08": {
+     "price": 1911,
+     "districts_reporting": 5
+    },
+    "2019-09": {
+     "price": 1902,
+     "districts_reporting": 5
+    },
+    "2019-10": {
+     "price": 1941,
+     "districts_reporting": 5
+    },
+    "2019-11": {
+     "price": 1963,
+     "districts_reporting": 5
+    },
+    "2019-12": {
+     "price": 1966,
+     "districts_reporting": 5
+    },
+    "2020-01": {
+     "price": 2018,
+     "districts_reporting": 5
+    },
+    "2020-02": {
+     "price": 1959,
+     "districts_reporting": 5
+    },
+    "2020-03": {
+     "price": 1853,
+     "districts_reporting": 5
+    },
+    "2020-04": {
+     "price": 1900,
+     "districts_reporting": 5
+    },
+    "2020-05": {
+     "price": 1906,
+     "districts_reporting": 5
+    },
+    "2020-06": {
+     "price": 1774,
+     "districts_reporting": 5
+    },
+    "2020-07": {
+     "price": 1712,
+     "districts_reporting": 5
+    },
+    "2020-08": {
+     "price": 1626,
+     "districts_reporting": 5
+    },
+    "2020-09": {
+     "price": 1571,
+     "districts_reporting": 4
+    },
+    "2020-10": {
+     "price": 1564,
+     "districts_reporting": 3
+    },
+    "2020-11": {
+     "price": 1595,
+     "districts_reporting": 3
+    },
+    "2020-12": {
+     "price": 1745,
+     "districts_reporting": 5
+    },
+    "2021-01": {
+     "price": 1671,
+     "districts_reporting": 5
+    },
+    "2021-02": {
+     "price": 1639,
+     "districts_reporting": 5
+    },
+    "2021-03": {
+     "price": 1616,
+     "districts_reporting": 5
+    },
+    "2021-04": {
+     "price": 1874,
+     "districts_reporting": 5
+    },
+    "2021-05": {
+     "price": 1847,
+     "districts_reporting": 5
+    },
+    "2021-06": {
+     "price": 1661,
+     "districts_reporting": 5
+    },
+    "2021-07": {
+     "price": 1639,
+     "districts_reporting": 5
+    },
+    "2021-08": {
+     "price": 1671,
+     "districts_reporting": 5
+    },
+    "2021-09": {
+     "price": 1795,
+     "districts_reporting": 5
+    },
+    "2021-10": {
+     "price": 1835,
+     "districts_reporting": 5
+    },
+    "2021-11": {
+     "price": 1864,
+     "districts_reporting": 5
+    },
+    "2021-12": {
+     "price": 1875,
+     "districts_reporting": 5
+    },
+    "2022-01": {
+     "price": 1875,
+     "districts_reporting": 5
+    },
+    "2022-02": {
+     "price": 1891,
+     "districts_reporting": 5
+    },
+    "2022-03": {
+     "price": 1975,
+     "districts_reporting": 5
+    },
+    "2022-04": {
+     "price": 1993,
+     "districts_reporting": 5
+    },
+    "2022-05": {
+     "price": 2018,
+     "districts_reporting": 5
+    },
+    "2022-06": {
+     "price": 1938,
+     "districts_reporting": 5
+    },
+    "2022-07": {
+     "price": 2026,
+     "districts_reporting": 5
+    },
+    "2022-08": {
+     "price": 2214,
+     "districts_reporting": 5
+    },
+    "2022-09": {
+     "price": 2198,
+     "districts_reporting": 5
+    },
+    "2022-10": {
+     "price": 2215,
+     "districts_reporting": 5
+    },
+    "2022-11": {
+     "price": 2403,
+     "districts_reporting": 5
+    },
+    "2022-12": {
+     "price": 2470,
+     "districts_reporting": 5
+    },
+    "2023-01": {
+     "price": 2580,
+     "districts_reporting": 5
+    },
+    "2023-02": {
+     "price": 2254,
+     "districts_reporting": 5
+    },
+    "2023-03": {
+     "price": 2043,
+     "districts_reporting": 5
+    },
+    "2023-04": {
+     "price": 2069,
+     "districts_reporting": 5
+    },
+    "2023-05": {
+     "price": 2127,
+     "districts_reporting": 5
+    },
+    "2023-06": {
+     "price": 2167,
+     "districts_reporting": 5
+    },
+    "2023-07": {
+     "price": 2174,
+     "districts_reporting": 5
+    },
+    "2023-08": {
+     "price": 2270,
+     "districts_reporting": 5
+    },
+    "2023-09": {
+     "price": 2307,
+     "districts_reporting": 5
+    },
+    "2023-10": {
+     "price": 2346,
+     "districts_reporting": 5
+    },
+    "2023-11": {
+     "price": 2413,
+     "districts_reporting": 5
+    },
+    "2023-12": {
+     "price": 2369,
+     "districts_reporting": 5
+    },
+    "2024-01": {
+     "price": 2376,
+     "districts_reporting": 5
+    },
+    "2024-02": {
+     "price": 2295,
+     "districts_reporting": 5
+    },
+    "2024-03": {
+     "price": 2300,
+     "districts_reporting": 5
+    },
+    "2024-04": {
+     "price": 2268,
+     "districts_reporting": 5
+    },
+    "2024-05": {
+     "price": 2344,
+     "districts_reporting": 5
+    },
+    "2024-06": {
+     "price": 2391,
+     "districts_reporting": 5
+    },
+    "2024-07": {
+     "price": 2432,
+     "districts_reporting": 5
+    },
+    "2024-08": {
+     "price": 2533,
+     "districts_reporting": 5
+    },
+    "2024-09": {
+     "price": 2564,
+     "districts_reporting": 5
+    },
+    "2024-10": {
+     "price": 2695,
+     "districts_reporting": 5
+    },
+    "2024-11": {
+     "price": 2767,
+     "districts_reporting": 5
+    },
+    "2024-12": {
+     "price": 2729,
+     "districts_reporting": 5
+    },
+    "2025-01": {
+     "price": 2837,
+     "districts_reporting": 5
+    },
+    "2025-02": {
+     "price": 2822,
+     "districts_reporting": 5
+    },
+    "2025-03": {
+     "price": 2513,
+     "districts_reporting": 5
+    },
+    "2025-04": {
+     "price": 2437,
+     "districts_reporting": 5
+    },
+    "2025-05": {
+     "price": 2474,
+     "districts_reporting": 5
+    },
+    "2025-06": {
+     "price": 2458,
+     "districts_reporting": 5
+    },
+    "2025-07": {
+     "price": 2471,
+     "districts_reporting": 5
+    },
+    "2025-08": {
+     "price": 2537,
+     "districts_reporting": 5
+    },
+    "2025-09": {
+     "price": 2523,
+     "districts_reporting": 5
+    },
+    "2025-10": {
+     "price": 2454,
+     "districts_reporting": 5
+    }
+   }
+  },
+  "Gram": {
+   "ceda_commodity": "Bengal Gram (Gram)(Whole)",
+   "ceda_id": 6,
+   "mp": {
+    "2016-01": 4165,
+    "2016-02": 3994,
+    "2016-03": 4217,
+    "2016-04": 4999,
+    "2016-05": 5492,
+    "2016-06": 6226,
+    "2016-07": 7426,
+    "2016-08": 6749,
+    "2016-09": 7315,
+    "2016-10": 8765,
+    "2016-11": 8458,
+    "2016-12": 8200,
+    "2017-01": 6113,
+    "2017-02": 4818,
+    "2017-03": 5034,
+    "2017-04": 5442,
+    "2017-05": 5253,
+    "2017-06": 4759,
+    "2017-07": 4798,
+    "2017-08": 5167,
+    "2017-09": 5403,
+    "2017-10": 4699,
+    "2017-11": 4168,
+    "2017-12": 3726,
+    "2018-01": 3488,
+    "2018-02": 3544,
+    "2018-03": 3473,
+    "2018-04": 3581,
+    "2018-05": 3780,
+    "2018-06": 3491,
+    "2018-07": 3639,
+    "2018-08": 3716,
+    "2018-09": 3557,
+    "2018-10": 3656,
+    "2018-11": 3800,
+    "2018-12": 3842,
+    "2019-01": 3822,
+    "2019-02": 3758,
+    "2019-03": 3741,
+    "2019-04": 3953,
+    "2019-05": 4194,
+    "2019-06": 3947,
+    "2019-07": 3852,
+    "2019-08": 3860,
+    "2019-09": 3773,
+    "2019-10": 3939,
+    "2019-11": 3925,
+    "2019-12": 3903,
+    "2020-01": 3886,
+    "2020-02": 3703,
+    "2020-03": 3846,
+    "2020-04": 3991,
+    "2020-05": 4063,
+    "2020-06": 3927,
+    "2020-07": 3837,
+    "2020-08": 4096,
+    "2020-09": 4486,
+    "2020-10": 4683,
+    "2020-11": 4387,
+    "2020-12": 4119,
+    "2021-01": 4014,
+    "2021-02": 4273,
+    "2021-03": 4735,
+    "2021-04": 5027,
+    "2021-05": 4990,
+    "2021-06": 4773,
+    "2021-07": 4596,
+    "2021-08": 4691,
+    "2021-09": 4843,
+    "2021-10": 4552,
+    "2021-11": 4443,
+    "2021-12": 4295,
+    "2022-01": 4460,
+    "2022-02": 4422,
+    "2022-03": 4647,
+    "2022-04": 4665,
+    "2022-05": 4534,
+    "2022-06": 4314,
+    "2022-07": 4417,
+    "2022-08": 4500,
+    "2022-09": 4384,
+    "2022-10": 4301,
+    "2022-11": 4383,
+    "2022-12": 4501,
+    "2023-01": 4535,
+    "2023-02": 4571,
+    "2023-03": 4724,
+    "2023-04": 4812,
+    "2023-05": 4832,
+    "2023-06": 4902,
+    "2023-07": 4885,
+    "2023-08": 5393,
+    "2023-09": 5579,
+    "2023-10": 5648,
+    "2023-11": 5586,
+    "2023-12": 5378,
+    "2024-01": 4987,
+    "2024-02": 5215,
+    "2024-03": 5603,
+    "2024-04": 5666,
+    "2024-05": 6153,
+    "2024-06": 6407,
+    "2024-07": 6330,
+    "2024-08": 6866,
+    "2024-09": 7033,
+    "2024-10": 6634,
+    "2024-11": 6260,
+    "2024-12": 5917,
+    "2025-01": 5736,
+    "2025-02": 5517,
+    "2025-03": 5416,
+    "2025-04": 5688,
+    "2025-05": 5610,
+    "2025-06": 5377,
+    "2025-07": 5607,
+    "2025-08": 5743,
+    "2025-09": 5429,
+    "2025-10": 5302
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 4138,
+     "districts_reporting": 4
+    },
+    "2016-02": {
+     "price": 3829,
+     "districts_reporting": 4
+    },
+    "2016-03": {
+     "price": 4016,
+     "districts_reporting": 5
+    },
+    "2016-04": {
+     "price": 5757,
+     "districts_reporting": 5
+    },
+    "2016-05": {
+     "price": 5398,
+     "districts_reporting": 5
+    },
+    "2016-06": {
+     "price": 5930,
+     "districts_reporting": 4
+    },
+    "2016-07": {
+     "price": 7301,
+     "districts_reporting": 4
+    },
+    "2016-08": {
+     "price": 6698,
+     "districts_reporting": 4
+    },
+    "2016-09": {
+     "price": 7319,
+     "districts_reporting": 5
+    },
+    "2016-10": {
+     "price": 8466,
+     "districts_reporting": 5
+    },
+    "2016-11": {
+     "price": 8715,
+     "districts_reporting": 3
+    },
+    "2016-12": {
+     "price": 8155,
+     "districts_reporting": 4
+    },
+    "2017-01": {
+     "price": 6131,
+     "districts_reporting": 4
+    },
+    "2017-02": {
+     "price": 4782,
+     "districts_reporting": 3
+    },
+    "2017-03": {
+     "price": 4912,
+     "districts_reporting": 5
+    },
+    "2017-04": {
+     "price": 5219,
+     "districts_reporting": 5
+    },
+    "2017-05": {
+     "price": 5000,
+     "districts_reporting": 5
+    },
+    "2017-06": {
+     "price": 4740,
+     "districts_reporting": 5
+    },
+    "2017-07": {
+     "price": 4637,
+     "districts_reporting": 5
+    },
+    "2017-08": {
+     "price": 4917,
+     "districts_reporting": 4
+    },
+    "2017-09": {
+     "price": 4815,
+     "districts_reporting": 5
+    },
+    "2017-10": {
+     "price": 4546,
+     "districts_reporting": 4
+    },
+    "2017-11": {
+     "price": 3954,
+     "districts_reporting": 4
+    },
+    "2017-12": {
+     "price": 3544,
+     "districts_reporting": 5
+    },
+    "2018-01": {
+     "price": 3419,
+     "districts_reporting": 4
+    },
+    "2018-02": {
+     "price": 3434,
+     "districts_reporting": 5
+    },
+    "2018-03": {
+     "price": 3332,
+     "districts_reporting": 5
+    },
+    "2018-04": {
+     "price": 3679,
+     "districts_reporting": 5
+    },
+    "2018-05": {
+     "price": 3804,
+     "districts_reporting": 5
+    },
+    "2018-06": {
+     "price": 3666,
+     "districts_reporting": 5
+    },
+    "2018-07": {
+     "price": 3588,
+     "districts_reporting": 5
+    },
+    "2018-08": {
+     "price": 3657,
+     "districts_reporting": 5
+    },
+    "2018-09": {
+     "price": 3366,
+     "districts_reporting": 5
+    },
+    "2018-10": {
+     "price": 3604,
+     "districts_reporting": 5
+    },
+    "2018-11": {
+     "price": 3799,
+     "districts_reporting": 5
+    },
+    "2018-12": {
+     "price": 3857,
+     "districts_reporting": 5
+    },
+    "2019-01": {
+     "price": 3811,
+     "districts_reporting": 5
+    },
+    "2019-02": {
+     "price": 3619,
+     "districts_reporting": 5
+    },
+    "2019-03": {
+     "price": 3720,
+     "districts_reporting": 5
+    },
+    "2019-04": {
+     "price": 3878,
+     "districts_reporting": 5
+    },
+    "2019-05": {
+     "price": 4229,
+     "districts_reporting": 5
+    },
+    "2019-06": {
+     "price": 4007,
+     "districts_reporting": 5
+    },
+    "2019-07": {
+     "price": 3882,
+     "districts_reporting": 5
+    },
+    "2019-08": {
+     "price": 3888,
+     "districts_reporting": 5
+    },
+    "2019-09": {
+     "price": 3868,
+     "districts_reporting": 5
+    },
+    "2019-10": {
+     "price": 3989,
+     "districts_reporting": 5
+    },
+    "2019-11": {
+     "price": 3979,
+     "districts_reporting": 5
+    },
+    "2019-12": {
+     "price": 3964,
+     "districts_reporting": 5
+    },
+    "2020-01": {
+     "price": 3904,
+     "districts_reporting": 5
+    },
+    "2020-02": {
+     "price": 3787,
+     "districts_reporting": 5
+    },
+    "2020-03": {
+     "price": 3634,
+     "districts_reporting": 5
+    },
+    "2020-04": {
+     "price": 4363,
+     "districts_reporting": 5
+    },
+    "2020-05": {
+     "price": 4204,
+     "districts_reporting": 5
+    },
+    "2020-06": {
+     "price": 3852,
+     "districts_reporting": 4
+    },
+    "2020-07": {
+     "price": 3861,
+     "districts_reporting": 3
+    },
+    "2020-08": {
+     "price": 4153,
+     "districts_reporting": 5
+    },
+    "2020-09": {
+     "price": 4546,
+     "districts_reporting": 4
+    },
+    "2020-10": {
+     "price": 4789,
+     "districts_reporting": 3
+    },
+    "2020-11": {
+     "price": 4548,
+     "districts_reporting": 2
+    },
+    "2020-12": {
+     "price": 4273,
+     "districts_reporting": 3
+    },
+    "2021-01": {
+     "price": 4059,
+     "districts_reporting": 5
+    },
+    "2021-02": {
+     "price": 4140,
+     "districts_reporting": 5
+    },
+    "2021-03": {
+     "price": 4652,
+     "districts_reporting": 5
+    },
+    "2021-04": {
+     "price": 5078,
+     "districts_reporting": 5
+    },
+    "2021-05": {
+     "price": 4990,
+     "districts_reporting": 5
+    },
+    "2021-06": {
+     "price": 4930,
+     "districts_reporting": 5
+    },
+    "2021-07": {
+     "price": 4623,
+     "districts_reporting": 5
+    },
+    "2021-08": {
+     "price": 4722,
+     "districts_reporting": 5
+    },
+    "2021-09": {
+     "price": 4976,
+     "districts_reporting": 5
+    },
+    "2021-10": {
+     "price": 4708,
+     "districts_reporting": 5
+    },
+    "2021-11": {
+     "price": 4579,
+     "districts_reporting": 5
+    },
+    "2021-12": {
+     "price": 4449,
+     "districts_reporting": 5
+    },
+    "2022-01": {
+     "price": 4540,
+     "districts_reporting": 5
+    },
+    "2022-02": {
+     "price": 4482,
+     "districts_reporting": 5
+    },
+    "2022-03": {
+     "price": 4640,
+     "districts_reporting": 5
+    },
+    "2022-04": {
+     "price": 4614,
+     "districts_reporting": 5
+    },
+    "2022-05": {
+     "price": 4425,
+     "districts_reporting": 5
+    },
+    "2022-06": {
+     "price": 4358,
+     "districts_reporting": 5
+    },
+    "2022-07": {
+     "price": 4414,
+     "districts_reporting": 5
+    },
+    "2022-08": {
+     "price": 4494,
+     "districts_reporting": 5
+    },
+    "2022-09": {
+     "price": 4366,
+     "districts_reporting": 5
+    },
+    "2022-10": {
+     "price": 4351,
+     "districts_reporting": 4
+    },
+    "2022-11": {
+     "price": 4340,
+     "districts_reporting": 4
+    },
+    "2022-12": {
+     "price": 4397,
+     "districts_reporting": 5
+    },
+    "2023-01": {
+     "price": 4591,
+     "districts_reporting": 4
+    },
+    "2023-02": {
+     "price": 4429,
+     "districts_reporting": 5
+    },
+    "2023-03": {
+     "price": 4739,
+     "districts_reporting": 5
+    },
+    "2023-04": {
+     "price": 4726,
+     "districts_reporting": 5
+    },
+    "2023-05": {
+     "price": 4746,
+     "districts_reporting": 5
+    },
+    "2023-06": {
+     "price": 4887,
+     "districts_reporting": 5
+    },
+    "2023-07": {
+     "price": 4842,
+     "districts_reporting": 5
+    },
+    "2023-08": {
+     "price": 5239,
+     "districts_reporting": 5
+    },
+    "2023-09": {
+     "price": 5798,
+     "districts_reporting": 5
+    },
+    "2023-10": {
+     "price": 5534,
+     "districts_reporting": 5
+    },
+    "2023-11": {
+     "price": 5661,
+     "districts_reporting": 4
+    },
+    "2023-12": {
+     "price": 5407,
+     "districts_reporting": 5
+    },
+    "2024-01": {
+     "price": 5264,
+     "districts_reporting": 4
+    },
+    "2024-02": {
+     "price": 5389,
+     "districts_reporting": 4
+    },
+    "2024-03": {
+     "price": 5557,
+     "districts_reporting": 5
+    },
+    "2024-04": {
+     "price": 5639,
+     "districts_reporting": 4
+    },
+    "2024-05": {
+     "price": 6094,
+     "districts_reporting": 4
+    },
+    "2024-06": {
+     "price": 6367,
+     "districts_reporting": 4
+    },
+    "2024-07": {
+     "price": 6377,
+     "districts_reporting": 4
+    },
+    "2024-08": {
+     "price": 6909,
+     "districts_reporting": 5
+    },
+    "2024-09": {
+     "price": 7122,
+     "districts_reporting": 5
+    },
+    "2024-10": {
+     "price": 6821,
+     "districts_reporting": 5
+    },
+    "2024-11": {
+     "price": 6295,
+     "districts_reporting": 4
+    },
+    "2024-12": {
+     "price": 6003,
+     "districts_reporting": 4
+    },
+    "2025-01": {
+     "price": 5754,
+     "districts_reporting": 4
+    },
+    "2025-02": {
+     "price": 5528,
+     "districts_reporting": 4
+    },
+    "2025-03": {
+     "price": 5373,
+     "districts_reporting": 5
+    },
+    "2025-04": {
+     "price": 5537,
+     "districts_reporting": 5
+    },
+    "2025-05": {
+     "price": 5546,
+     "districts_reporting": 5
+    },
+    "2025-06": {
+     "price": 5335,
+     "districts_reporting": 5
+    },
+    "2025-07": {
+     "price": 5571,
+     "districts_reporting": 4
+    },
+    "2025-08": {
+     "price": 5696,
+     "districts_reporting": 4
+    },
+    "2025-09": {
+     "price": 5450,
+     "districts_reporting": 4
+    },
+    "2025-10": {
+     "price": 5286,
+     "districts_reporting": 4
+    }
+   }
+  },
+  "Lentil": {
+   "ceda_commodity": "Lentil (Masur)(Whole)",
+   "ceda_id": 63,
+   "mp": {
+    "2016-01": 4689,
+    "2016-02": 4227,
+    "2016-03": 4665,
+    "2016-04": 5239,
+    "2016-05": 5285,
+    "2016-06": 5309,
+    "2016-07": 5575,
+    "2016-08": 5109,
+    "2016-09": 4976,
+    "2016-10": 4843,
+    "2016-11": 4738,
+    "2016-12": 4266,
+    "2017-01": 4183,
+    "2017-02": 3771,
+    "2017-03": 4014,
+    "2017-04": 3894,
+    "2017-05": 3510,
+    "2017-06": 3311,
+    "2017-07": 3177,
+    "2017-08": 3440,
+    "2017-09": 3310,
+    "2017-10": 2991,
+    "2017-11": 2945,
+    "2017-12": 3015,
+    "2018-01": 3026,
+    "2018-02": 3082,
+    "2018-03": 3134,
+    "2018-04": 3380,
+    "2018-05": 3481,
+    "2018-06": 3327,
+    "2018-07": 3422,
+    "2018-08": 3386,
+    "2018-09": 3372,
+    "2018-10": 3345,
+    "2018-11": 3376,
+    "2018-12": 3455,
+    "2019-01": 3679,
+    "2019-02": 3617,
+    "2019-03": 3590,
+    "2019-04": 3725,
+    "2019-05": 3957,
+    "2019-06": 3879,
+    "2019-07": 3893,
+    "2019-08": 3874,
+    "2019-09": 3767,
+    "2019-10": 3913,
+    "2019-11": 4066,
+    "2019-12": 4154,
+    "2020-01": 4451,
+    "2020-02": 4145,
+    "2020-03": 4073,
+    "2020-04": 4797,
+    "2020-05": 4826,
+    "2020-06": 5037,
+    "2020-07": 5096,
+    "2020-08": 5198,
+    "2020-09": 5226,
+    "2020-10": 5210,
+    "2020-11": 5026,
+    "2020-12": 4715,
+    "2021-01": 4694,
+    "2021-02": 4831,
+    "2021-03": 5057,
+    "2021-04": 5498,
+    "2021-05": 5811,
+    "2021-06": 5636,
+    "2021-07": 5653,
+    "2021-08": 6140,
+    "2021-09": 6646,
+    "2021-10": 6441,
+    "2021-11": 6400,
+    "2021-12": 6213,
+    "2022-01": 6320,
+    "2022-02": 6052,
+    "2022-03": 5906,
+    "2022-04": 6074,
+    "2022-05": 5986,
+    "2022-06": 6012,
+    "2022-07": 6150,
+    "2022-08": 5964,
+    "2022-09": 5658,
+    "2022-10": 5889,
+    "2022-11": 5977,
+    "2022-12": 5759,
+    "2023-01": 5746,
+    "2023-02": 5400,
+    "2023-03": 5414,
+    "2023-04": 5357,
+    "2023-05": 5285,
+    "2023-06": 5204,
+    "2023-07": 5342,
+    "2023-08": 5712,
+    "2023-09": 5792,
+    "2023-10": 5750,
+    "2023-11": 5717,
+    "2023-12": 5398,
+    "2024-01": 5393,
+    "2024-02": 5430,
+    "2024-03": 5530,
+    "2024-04": 5523,
+    "2024-05": 5679,
+    "2024-06": 5773,
+    "2024-07": 5811,
+    "2024-08": 5606,
+    "2024-09": 5693,
+    "2024-10": 5774,
+    "2024-11": 5699,
+    "2024-12": 5654,
+    "2025-01": 5717,
+    "2025-02": 5641,
+    "2025-03": 5730,
+    "2025-04": 5869,
+    "2025-05": 6112,
+    "2025-06": 5992,
+    "2025-07": 6308,
+    "2025-08": 6597,
+    "2025-09": 6220,
+    "2025-10": 5996
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 4921,
+     "districts_reporting": 3
+    },
+    "2016-02": {
+     "price": 3992,
+     "districts_reporting": 4
+    },
+    "2016-03": {
+     "price": 4710,
+     "districts_reporting": 3
+    },
+    "2016-04": {
+     "price": 5220,
+     "districts_reporting": 4
+    },
+    "2016-05": {
+     "price": 5314,
+     "districts_reporting": 4
+    },
+    "2016-06": {
+     "price": 5401,
+     "districts_reporting": 3
+    },
+    "2016-07": {
+     "price": 5711,
+     "districts_reporting": 3
+    },
+    "2016-08": {
+     "price": 5299,
+     "districts_reporting": 3
+    },
+    "2016-09": {
+     "price": 5184,
+     "districts_reporting": 3
+    },
+    "2016-10": {
+     "price": 4956,
+     "districts_reporting": 3
+    },
+    "2016-11": {
+     "price": 4607,
+     "districts_reporting": 4
+    },
+    "2016-12": {
+     "price": 4392,
+     "districts_reporting": 3
+    },
+    "2017-01": {
+     "price": 4287,
+     "districts_reporting": 3
+    },
+    "2017-02": {
+     "price": 3901,
+     "districts_reporting": 3
+    },
+    "2017-03": {
+     "price": 4016,
+     "districts_reporting": 5
+    },
+    "2017-04": {
+     "price": 3931,
+     "districts_reporting": 5
+    },
+    "2017-05": {
+     "price": 3566,
+     "districts_reporting": 4
+    },
+    "2017-06": {
+     "price": 3438,
+     "districts_reporting": 4
+    },
+    "2017-07": {
+     "price": 3265,
+     "districts_reporting": 4
+    },
+    "2017-08": {
+     "price": 3442,
+     "districts_reporting": 5
+    },
+    "2017-09": {
+     "price": 3406,
+     "districts_reporting": 4
+    },
+    "2017-10": {
+     "price": 3097,
+     "districts_reporting": 4
+    },
+    "2017-11": {
+     "price": 2976,
+     "districts_reporting": 4
+    },
+    "2017-12": {
+     "price": 3098,
+     "districts_reporting": 4
+    },
+    "2018-01": {
+     "price": 3050,
+     "districts_reporting": 4
+    },
+    "2018-02": {
+     "price": 3069,
+     "districts_reporting": 4
+    },
+    "2018-03": {
+     "price": 3160,
+     "districts_reporting": 4
+    },
+    "2018-04": {
+     "price": 3497,
+     "districts_reporting": 5
+    },
+    "2018-05": {
+     "price": 3644,
+     "districts_reporting": 5
+    },
+    "2018-06": {
+     "price": 3634,
+     "districts_reporting": 5
+    },
+    "2018-07": {
+     "price": 3449,
+     "districts_reporting": 5
+    },
+    "2018-08": {
+     "price": 3459,
+     "districts_reporting": 5
+    },
+    "2018-09": {
+     "price": 3448,
+     "districts_reporting": 5
+    },
+    "2018-10": {
+     "price": 3459,
+     "districts_reporting": 4
+    },
+    "2018-11": {
+     "price": 3517,
+     "districts_reporting": 4
+    },
+    "2018-12": {
+     "price": 3503,
+     "districts_reporting": 4
+    },
+    "2019-01": {
+     "price": 3650,
+     "districts_reporting": 5
+    },
+    "2019-02": {
+     "price": 3685,
+     "districts_reporting": 4
+    },
+    "2019-03": {
+     "price": 3616,
+     "districts_reporting": 5
+    },
+    "2019-04": {
+     "price": 3776,
+     "districts_reporting": 5
+    },
+    "2019-05": {
+     "price": 4072,
+     "districts_reporting": 5
+    },
+    "2019-06": {
+     "price": 4081,
+     "districts_reporting": 5
+    },
+    "2019-07": {
+     "price": 3936,
+     "districts_reporting": 4
+    },
+    "2019-08": {
+     "price": 3942,
+     "districts_reporting": 4
+    },
+    "2019-09": {
+     "price": 3967,
+     "districts_reporting": 4
+    },
+    "2019-10": {
+     "price": 3938,
+     "districts_reporting": 4
+    },
+    "2019-11": {
+     "price": 4128,
+     "districts_reporting": 4
+    },
+    "2019-12": {
+     "price": 4162,
+     "districts_reporting": 5
+    },
+    "2020-01": {
+     "price": 4478,
+     "districts_reporting": 4
+    },
+    "2020-02": {
+     "price": 4244,
+     "districts_reporting": 4
+    },
+    "2020-03": {
+     "price": 4146,
+     "districts_reporting": 4
+    },
+    "2020-04": {
+     "price": 4907,
+     "districts_reporting": 5
+    },
+    "2020-05": {
+     "price": 4855,
+     "districts_reporting": 4
+    },
+    "2020-06": {
+     "price": 5133,
+     "districts_reporting": 4
+    },
+    "2020-07": {
+     "price": 5137,
+     "districts_reporting": 4
+    },
+    "2020-08": {
+     "price": 5320,
+     "districts_reporting": 4
+    },
+    "2020-09": {
+     "price": 5419,
+     "districts_reporting": 3
+    },
+    "2020-10": {
+     "price": 5123,
+     "districts_reporting": 3
+    },
+    "2020-11": {
+     "price": 5100,
+     "districts_reporting": 2
+    },
+    "2020-12": {
+     "price": 4838,
+     "districts_reporting": 3
+    },
+    "2021-01": {
+     "price": 4946,
+     "districts_reporting": 3
+    },
+    "2021-02": {
+     "price": 4997,
+     "districts_reporting": 3
+    },
+    "2021-03": {
+     "price": 5067,
+     "districts_reporting": 4
+    },
+    "2021-04": {
+     "price": 5483,
+     "districts_reporting": 5
+    },
+    "2021-05": {
+     "price": 5825,
+     "districts_reporting": 4
+    },
+    "2021-06": {
+     "price": 5825,
+     "districts_reporting": 4
+    },
+    "2021-07": {
+     "price": 5857,
+     "districts_reporting": 4
+    },
+    "2021-08": {
+     "price": 6432,
+     "districts_reporting": 4
+    },
+    "2021-09": {
+     "price": 5962,
+     "districts_reporting": 5
+    },
+    "2021-10": {
+     "price": 6651,
+     "districts_reporting": 4
+    },
+    "2021-11": {
+     "price": 6557,
+     "districts_reporting": 4
+    },
+    "2021-12": {
+     "price": 6398,
+     "districts_reporting": 4
+    },
+    "2022-01": {
+     "price": 6510,
+     "districts_reporting": 4
+    },
+    "2022-02": {
+     "price": 6129,
+     "districts_reporting": 4
+    },
+    "2022-03": {
+     "price": 5905,
+     "districts_reporting": 4
+    },
+    "2022-04": {
+     "price": 6045,
+     "districts_reporting": 4
+    },
+    "2022-05": {
+     "price": 6038,
+     "districts_reporting": 4
+    },
+    "2022-06": {
+     "price": 6212,
+     "districts_reporting": 4
+    },
+    "2022-07": {
+     "price": 6332,
+     "districts_reporting": 4
+    },
+    "2022-08": {
+     "price": 6207,
+     "districts_reporting": 3
+    },
+    "2022-09": {
+     "price": 5770,
+     "districts_reporting": 3
+    },
+    "2022-10": {
+     "price": 6039,
+     "districts_reporting": 3
+    },
+    "2022-11": {
+     "price": 6084,
+     "districts_reporting": 3
+    },
+    "2022-12": {
+     "price": 5820,
+     "districts_reporting": 4
+    },
+    "2023-01": {
+     "price": 5596,
+     "districts_reporting": 4
+    },
+    "2023-02": {
+     "price": 5460,
+     "districts_reporting": 4
+    },
+    "2023-03": {
+     "price": 5454,
+     "districts_reporting": 4
+    },
+    "2023-04": {
+     "price": 5579,
+     "districts_reporting": 4
+    },
+    "2023-05": {
+     "price": 5543,
+     "districts_reporting": 4
+    },
+    "2023-06": {
+     "price": 5507,
+     "districts_reporting": 4
+    },
+    "2023-07": {
+     "price": 5486,
+     "districts_reporting": 5
+    },
+    "2023-08": {
+     "price": 5846,
+     "districts_reporting": 5
+    },
+    "2023-09": {
+     "price": 6074,
+     "districts_reporting": 3
+    },
+    "2023-10": {
+     "price": 5850,
+     "districts_reporting": 3
+    },
+    "2023-11": {
+     "price": 5782,
+     "districts_reporting": 3
+    },
+    "2023-12": {
+     "price": 5468,
+     "districts_reporting": 4
+    },
+    "2024-01": {
+     "price": 5603,
+     "districts_reporting": 4
+    },
+    "2024-02": {
+     "price": 5465,
+     "districts_reporting": 4
+    },
+    "2024-03": {
+     "price": 5413,
+     "districts_reporting": 5
+    },
+    "2024-04": {
+     "price": 5471,
+     "districts_reporting": 4
+    },
+    "2024-05": {
+     "price": 5789,
+     "districts_reporting": 4
+    },
+    "2024-06": {
+     "price": 5861,
+     "districts_reporting": 4
+    },
+    "2024-07": {
+     "price": 5888,
+     "districts_reporting": 4
+    },
+    "2024-08": {
+     "price": 5747,
+     "districts_reporting": 4
+    },
+    "2024-09": {
+     "price": 5753,
+     "districts_reporting": 4
+    },
+    "2024-10": {
+     "price": 5884,
+     "districts_reporting": 4
+    },
+    "2024-11": {
+     "price": 5758,
+     "districts_reporting": 4
+    },
+    "2024-12": {
+     "price": 5754,
+     "districts_reporting": 4
+    },
+    "2025-01": {
+     "price": 5756,
+     "districts_reporting": 4
+    },
+    "2025-02": {
+     "price": 5942,
+     "districts_reporting": 5
+    },
+    "2025-03": {
+     "price": 5623,
+     "districts_reporting": 5
+    },
+    "2025-04": {
+     "price": 5874,
+     "districts_reporting": 5
+    },
+    "2025-05": {
+     "price": 5925,
+     "districts_reporting": 4
+    },
+    "2025-06": {
+     "price": 5992,
+     "districts_reporting": 5
+    },
+    "2025-07": {
+     "price": 6449,
+     "districts_reporting": 4
+    },
+    "2025-08": {
+     "price": 6718,
+     "districts_reporting": 4
+    },
+    "2025-09": {
+     "price": 6346,
+     "districts_reporting": 4
+    },
+    "2025-10": {
+     "price": 6196,
+     "districts_reporting": 4
+    }
+   }
+  },
+  "Mustard": {
+   "ceda_commodity": "Mustard",
+   "ceda_id": 12,
+   "mp": {
+    "2016-01": 3652,
+    "2016-02": 3425,
+    "2016-03": 3385,
+    "2016-04": 3707,
+    "2016-05": 3756,
+    "2016-06": 3799,
+    "2016-07": 3998,
+    "2016-08": 4016,
+    "2016-09": 3911,
+    "2016-10": 3825,
+    "2016-11": 3788,
+    "2016-12": 3659,
+    "2017-01": 3414,
+    "2017-02": 3211,
+    "2017-03": 3287,
+    "2017-04": 3354,
+    "2017-05": 3268,
+    "2017-06": 3208,
+    "2017-07": 3239,
+    "2017-08": 3378,
+    "2017-09": 3452,
+    "2017-10": 3306,
+    "2017-11": 3427,
+    "2017-12": 3610,
+    "2018-01": 3419,
+    "2018-02": 3446,
+    "2018-03": 3482,
+    "2018-04": 3434,
+    "2018-05": 3498,
+    "2018-06": 3502,
+    "2018-07": 3577,
+    "2018-08": 3624,
+    "2018-09": 3573,
+    "2018-10": 3609,
+    "2018-11": 3608,
+    "2018-12": 3562,
+    "2019-01": 3514,
+    "2019-02": 3392,
+    "2019-03": 3269,
+    "2019-04": 3302,
+    "2019-05": 3427,
+    "2019-06": 3396,
+    "2019-07": 3383,
+    "2019-08": 3433,
+    "2019-09": 3477,
+    "2019-10": 3528,
+    "2019-11": 3623,
+    "2019-12": 3782,
+    "2020-01": 3754,
+    "2020-02": 3432,
+    "2020-03": 3341,
+    "2020-04": 3760,
+    "2020-05": 3867,
+    "2020-06": 4055,
+    "2020-07": 4160,
+    "2020-08": 4479,
+    "2020-09": 4578,
+    "2020-10": 4770,
+    "2020-11": 4989,
+    "2020-12": 4823,
+    "2021-01": 4995,
+    "2021-02": 5048,
+    "2021-03": 4904,
+    "2021-04": 5757,
+    "2021-05": 6332,
+    "2021-06": 5965,
+    "2021-07": 6178,
+    "2021-08": 6773,
+    "2021-09": 7338,
+    "2021-10": 7161,
+    "2021-11": 7016,
+    "2021-12": 6773,
+    "2022-01": 6421,
+    "2022-02": 6349,
+    "2022-03": 6166,
+    "2022-04": 6194,
+    "2022-05": 6199,
+    "2022-06": 6021,
+    "2022-07": 5872,
+    "2022-08": 5866,
+    "2022-09": 5421,
+    "2022-10": 5538,
+    "2022-11": 5826,
+    "2022-12": 5657,
+    "2023-01": 5295,
+    "2023-02": 4917,
+    "2023-03": 4846,
+    "2023-04": 4833,
+    "2023-05": 4656,
+    "2023-06": 4616,
+    "2023-07": 4942,
+    "2023-08": 5183,
+    "2023-09": 5166,
+    "2023-10": 5021,
+    "2023-11": 5093,
+    "2023-12": 4986,
+    "2024-01": 4712,
+    "2024-02": 4418,
+    "2024-03": 4828,
+    "2024-04": 4865,
+    "2024-05": 5183,
+    "2024-06": 5365,
+    "2024-07": 5273,
+    "2024-08": 5236,
+    "2024-09": 5721,
+    "2024-10": 5774,
+    "2024-11": 5645,
+    "2024-12": 5522,
+    "2025-01": 5428,
+    "2025-02": 5376,
+    "2025-03": 5431,
+    "2025-04": 5780,
+    "2025-05": 5907,
+    "2025-06": 6035,
+    "2025-07": 6443,
+    "2025-08": 6626,
+    "2025-09": 6507,
+    "2025-10": 6229
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 3721,
+     "districts_reporting": 5
+    },
+    "2016-02": {
+     "price": 3455,
+     "districts_reporting": 5
+    },
+    "2016-03": {
+     "price": 3317,
+     "districts_reporting": 5
+    },
+    "2016-04": {
+     "price": 3738,
+     "districts_reporting": 5
+    },
+    "2016-05": {
+     "price": 3796,
+     "districts_reporting": 5
+    },
+    "2016-06": {
+     "price": 3754,
+     "districts_reporting": 5
+    },
+    "2016-07": {
+     "price": 3880,
+     "districts_reporting": 5
+    },
+    "2016-08": {
+     "price": 3885,
+     "districts_reporting": 5
+    },
+    "2016-09": {
+     "price": 3749,
+     "districts_reporting": 5
+    },
+    "2016-10": {
+     "price": 3663,
+     "districts_reporting": 5
+    },
+    "2016-11": {
+     "price": 3592,
+     "districts_reporting": 4
+    },
+    "2016-12": {
+     "price": 3626,
+     "districts_reporting": 5
+    },
+    "2017-01": {
+     "price": 3418,
+     "districts_reporting": 5
+    },
+    "2017-02": {
+     "price": 3239,
+     "districts_reporting": 5
+    },
+    "2017-03": {
+     "price": 3247,
+     "districts_reporting": 5
+    },
+    "2017-04": {
+     "price": 3227,
+     "districts_reporting": 5
+    },
+    "2017-05": {
+     "price": 3133,
+     "districts_reporting": 5
+    },
+    "2017-06": {
+     "price": 3129,
+     "districts_reporting": 5
+    },
+    "2017-07": {
+     "price": 3137,
+     "districts_reporting": 5
+    },
+    "2017-08": {
+     "price": 3289,
+     "districts_reporting": 5
+    },
+    "2017-09": {
+     "price": 3325,
+     "districts_reporting": 5
+    },
+    "2017-10": {
+     "price": 3196,
+     "districts_reporting": 5
+    },
+    "2017-11": {
+     "price": 3260,
+     "districts_reporting": 5
+    },
+    "2017-12": {
+     "price": 3413,
+     "districts_reporting": 5
+    },
+    "2018-01": {
+     "price": 3355,
+     "districts_reporting": 5
+    },
+    "2018-02": {
+     "price": 3330,
+     "districts_reporting": 5
+    },
+    "2018-03": {
+     "price": 3409,
+     "districts_reporting": 5
+    },
+    "2018-04": {
+     "price": 3405,
+     "districts_reporting": 5
+    },
+    "2018-05": {
+     "price": 3560,
+     "districts_reporting": 5
+    },
+    "2018-06": {
+     "price": 3470,
+     "districts_reporting": 5
+    },
+    "2018-07": {
+     "price": 3458,
+     "districts_reporting": 5
+    },
+    "2018-08": {
+     "price": 3550,
+     "districts_reporting": 5
+    },
+    "2018-09": {
+     "price": 3482,
+     "districts_reporting": 5
+    },
+    "2018-10": {
+     "price": 3480,
+     "districts_reporting": 5
+    },
+    "2018-11": {
+     "price": 3433,
+     "districts_reporting": 5
+    },
+    "2018-12": {
+     "price": 3429,
+     "districts_reporting": 5
+    },
+    "2019-01": {
+     "price": 3412,
+     "districts_reporting": 5
+    },
+    "2019-02": {
+     "price": 3389,
+     "districts_reporting": 5
+    },
+    "2019-03": {
+     "price": 3229,
+     "districts_reporting": 5
+    },
+    "2019-04": {
+     "price": 3249,
+     "districts_reporting": 5
+    },
+    "2019-05": {
+     "price": 3384,
+     "districts_reporting": 5
+    },
+    "2019-06": {
+     "price": 3325,
+     "districts_reporting": 5
+    },
+    "2019-07": {
+     "price": 3319,
+     "districts_reporting": 5
+    },
+    "2019-08": {
+     "price": 3357,
+     "districts_reporting": 5
+    },
+    "2019-09": {
+     "price": 3368,
+     "districts_reporting": 5
+    },
+    "2019-10": {
+     "price": 3412,
+     "districts_reporting": 5
+    },
+    "2019-11": {
+     "price": 3498,
+     "districts_reporting": 5
+    },
+    "2019-12": {
+     "price": 3699,
+     "districts_reporting": 5
+    },
+    "2020-01": {
+     "price": 3719,
+     "districts_reporting": 5
+    },
+    "2020-02": {
+     "price": 3459,
+     "districts_reporting": 5
+    },
+    "2020-03": {
+     "price": 3452,
+     "districts_reporting": 5
+    },
+    "2020-04": {
+     "price": 3922,
+     "districts_reporting": 5
+    },
+    "2020-05": {
+     "price": 3942,
+     "districts_reporting": 5
+    },
+    "2020-06": {
+     "price": 4064,
+     "districts_reporting": 5
+    },
+    "2020-07": {
+     "price": 4148,
+     "districts_reporting": 5
+    },
+    "2020-08": {
+     "price": 4549,
+     "districts_reporting": 5
+    },
+    "2020-09": {
+     "price": 4845,
+     "districts_reporting": 4
+    },
+    "2020-10": {
+     "price": 4708,
+     "districts_reporting": 3
+    },
+    "2020-11": {
+     "price": 4995,
+     "districts_reporting": 3
+    },
+    "2020-12": {
+     "price": 4745,
+     "districts_reporting": 2
+    },
+    "2021-01": {
+     "price": 5119,
+     "districts_reporting": 4
+    },
+    "2021-02": {
+     "price": 5103,
+     "districts_reporting": 4
+    },
+    "2021-03": {
+     "price": 4906,
+     "districts_reporting": 5
+    },
+    "2021-04": {
+     "price": 5298,
+     "districts_reporting": 5
+    },
+    "2021-05": {
+     "price": 5745,
+     "districts_reporting": 3
+    },
+    "2021-06": {
+     "price": 5795,
+     "districts_reporting": 5
+    },
+    "2021-07": {
+     "price": 5939,
+     "districts_reporting": 5
+    },
+    "2021-08": {
+     "price": 6396,
+     "districts_reporting": 5
+    },
+    "2021-09": {
+     "price": 7160,
+     "districts_reporting": 5
+    },
+    "2021-10": {
+     "price": 6909,
+     "districts_reporting": 5
+    },
+    "2021-11": {
+     "price": 6885,
+     "districts_reporting": 5
+    },
+    "2021-12": {
+     "price": 6522,
+     "districts_reporting": 5
+    },
+    "2022-01": {
+     "price": 6510,
+     "districts_reporting": 5
+    },
+    "2022-02": {
+     "price": 6360,
+     "districts_reporting": 5
+    },
+    "2022-03": {
+     "price": 6042,
+     "districts_reporting": 5
+    },
+    "2022-04": {
+     "price": 6106,
+     "districts_reporting": 5
+    },
+    "2022-05": {
+     "price": 6114,
+     "districts_reporting": 5
+    },
+    "2022-06": {
+     "price": 5906,
+     "districts_reporting": 5
+    },
+    "2022-07": {
+     "price": 5771,
+     "districts_reporting": 5
+    },
+    "2022-08": {
+     "price": 5779,
+     "districts_reporting": 5
+    },
+    "2022-09": {
+     "price": 5500,
+     "districts_reporting": 5
+    },
+    "2022-10": {
+     "price": 5474,
+     "districts_reporting": 5
+    },
+    "2022-11": {
+     "price": 5813,
+     "districts_reporting": 5
+    },
+    "2022-12": {
+     "price": 5654,
+     "districts_reporting": 5
+    },
+    "2023-01": {
+     "price": 5407,
+     "districts_reporting": 5
+    },
+    "2023-02": {
+     "price": 4910,
+     "districts_reporting": 5
+    },
+    "2023-03": {
+     "price": 4805,
+     "districts_reporting": 5
+    },
+    "2023-04": {
+     "price": 4860,
+     "districts_reporting": 5
+    },
+    "2023-05": {
+     "price": 4697,
+     "districts_reporting": 5
+    },
+    "2023-06": {
+     "price": 4682,
+     "districts_reporting": 5
+    },
+    "2023-07": {
+     "price": 4861,
+     "districts_reporting": 5
+    },
+    "2023-08": {
+     "price": 5117,
+     "districts_reporting": 5
+    },
+    "2023-09": {
+     "price": 5002,
+     "districts_reporting": 5
+    },
+    "2023-10": {
+     "price": 4936,
+     "districts_reporting": 5
+    },
+    "2023-11": {
+     "price": 5022,
+     "districts_reporting": 5
+    },
+    "2023-12": {
+     "price": 4997,
+     "districts_reporting": 5
+    },
+    "2024-01": {
+     "price": 4582,
+     "districts_reporting": 5
+    },
+    "2024-02": {
+     "price": 4485,
+     "districts_reporting": 5
+    },
+    "2024-03": {
+     "price": 4876,
+     "districts_reporting": 5
+    },
+    "2024-04": {
+     "price": 4761,
+     "districts_reporting": 5
+    },
+    "2024-05": {
+     "price": 4998,
+     "districts_reporting": 5
+    },
+    "2024-06": {
+     "price": 5227,
+     "districts_reporting": 5
+    },
+    "2024-07": {
+     "price": 5170,
+     "districts_reporting": 5
+    },
+    "2024-08": {
+     "price": 5159,
+     "districts_reporting": 5
+    },
+    "2024-09": {
+     "price": 5581,
+     "districts_reporting": 5
+    },
+    "2024-10": {
+     "price": 5665,
+     "districts_reporting": 5
+    },
+    "2024-11": {
+     "price": 5502,
+     "districts_reporting": 5
+    },
+    "2024-12": {
+     "price": 5421,
+     "districts_reporting": 5
+    },
+    "2025-01": {
+     "price": 5460,
+     "districts_reporting": 5
+    },
+    "2025-02": {
+     "price": 5216,
+     "districts_reporting": 5
+    },
+    "2025-03": {
+     "price": 5270,
+     "districts_reporting": 5
+    },
+    "2025-04": {
+     "price": 5742,
+     "districts_reporting": 5
+    },
+    "2025-05": {
+     "price": 5841,
+     "districts_reporting": 5
+    },
+    "2025-06": {
+     "price": 5902,
+     "districts_reporting": 5
+    },
+    "2025-07": {
+     "price": 6246,
+     "districts_reporting": 5
+    },
+    "2025-08": {
+     "price": 6506,
+     "districts_reporting": 5
+    },
+    "2025-09": {
+     "price": 6250,
+     "districts_reporting": 5
+    },
+    "2025-10": {
+     "price": 5947,
+     "districts_reporting": 5
+    }
+   }
+  },
+  "Barley": {
+   "ceda_commodity": "Barley (Jau)",
+   "ceda_id": 29,
+   "mp": {
+    "2016-01": 1335,
+    "2016-02": 1291,
+    "2016-03": 1263,
+    "2016-04": 1420,
+    "2016-05": 1514,
+    "2016-06": 1536,
+    "2016-07": 1564,
+    "2016-08": 1614,
+    "2016-09": 1652,
+    "2016-10": 1667,
+    "2016-11": 1803,
+    "2016-12": 1823,
+    "2017-01": 1762,
+    "2017-02": 1676,
+    "2017-03": 1332,
+    "2017-04": 1353,
+    "2017-05": 1345,
+    "2017-06": 1297,
+    "2017-07": 1293,
+    "2017-08": 1335,
+    "2017-09": 1346,
+    "2017-10": 1313,
+    "2017-11": 1326,
+    "2017-12": 1321,
+    "2018-01": 1320,
+    "2018-02": 1305,
+    "2018-03": 1250,
+    "2018-04": 1236,
+    "2018-05": 1266,
+    "2018-06": 1303,
+    "2018-07": 1428,
+    "2018-08": 1458,
+    "2018-09": 1448,
+    "2018-10": 1513,
+    "2018-11": 1706,
+    "2018-12": 1691,
+    "2019-01": 1706,
+    "2019-02": 1832,
+    "2019-03": 1559,
+    "2019-04": 1516,
+    "2019-05": 1604,
+    "2019-06": 1632,
+    "2019-07": 1666,
+    "2019-08": 1688,
+    "2019-09": 1725,
+    "2019-10": 1782,
+    "2019-11": 1839,
+    "2019-12": 1850,
+    "2020-01": 1970,
+    "2020-02": 1966,
+    "2020-03": 1530,
+    "2020-04": 1489,
+    "2020-05": 1506,
+    "2020-06": 1451,
+    "2020-07": 1389,
+    "2020-08": 1293,
+    "2020-09": 1249,
+    "2020-10": 1186,
+    "2020-11": 1238,
+    "2020-12": 1202,
+    "2021-01": 1322,
+    "2021-02": 1265,
+    "2021-03": 1280,
+    "2021-04": 1489,
+    "2021-05": 1517,
+    "2021-06": 1547,
+    "2021-07": 1562,
+    "2021-08": 1799,
+    "2021-09": 1890,
+    "2021-10": 1898,
+    "2021-11": 1846,
+    "2021-12": 1900,
+    "2022-01": 2024,
+    "2022-02": 2281,
+    "2022-03": 2098,
+    "2022-04": 2371,
+    "2022-05": 2384,
+    "2022-06": 2381,
+    "2022-07": 2438,
+    "2022-08": 2496,
+    "2022-09": 2544,
+    "2022-10": 2462,
+    "2022-11": 2624,
+    "2022-12": 2627,
+    "2023-01": 2670,
+    "2023-02": 2416,
+    "2023-03": 1992,
+    "2023-04": 1863,
+    "2023-05": 1816,
+    "2023-06": 1763,
+    "2023-07": 1717,
+    "2023-08": 1727,
+    "2023-09": 1748,
+    "2023-10": 1769,
+    "2023-11": 1771,
+    "2023-12": 1819,
+    "2024-01": 1806,
+    "2024-02": 1848,
+    "2024-03": 1884,
+    "2024-04": 1850,
+    "2024-05": 2040,
+    "2024-06": 2135,
+    "2024-07": 2178,
+    "2024-08": 2139,
+    "2024-09": 2195,
+    "2024-10": 2284,
+    "2024-11": 2349,
+    "2024-12": 2372,
+    "2025-01": 2388,
+    "2025-02": 2400,
+    "2025-03": 2112,
+    "2025-04": 2143,
+    "2025-05": 2201,
+    "2025-06": 2189,
+    "2025-07": 2207,
+    "2025-08": 2267,
+    "2025-09": 2272,
+    "2025-10": 2237
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 1274,
+     "districts_reporting": 3
+    },
+    "2016-02": {
+     "price": 1204,
+     "districts_reporting": 4
+    },
+    "2016-03": {
+     "price": 1239,
+     "districts_reporting": 4
+    },
+    "2016-04": {
+     "price": 1372,
+     "districts_reporting": 4
+    },
+    "2016-05": {
+     "price": 1434,
+     "districts_reporting": 4
+    },
+    "2016-06": {
+     "price": 1369,
+     "districts_reporting": 4
+    },
+    "2016-07": {
+     "price": 1466,
+     "districts_reporting": 4
+    },
+    "2016-08": {
+     "price": 1556,
+     "districts_reporting": 4
+    },
+    "2016-09": {
+     "price": 1604,
+     "districts_reporting": 3
+    },
+    "2016-10": {
+     "price": 1625,
+     "districts_reporting": 2
+    },
+    "2016-11": {
+     "price": 1773,
+     "districts_reporting": 2
+    },
+    "2016-12": {
+     "price": 1755,
+     "districts_reporting": 2
+    },
+    "2017-01": {
+     "price": 1749,
+     "districts_reporting": 2
+    },
+    "2017-02": {
+     "price": 1581,
+     "districts_reporting": 2
+    },
+    "2017-03": {
+     "price": 1453,
+     "districts_reporting": 3
+    },
+    "2017-04": {
+     "price": 1332,
+     "districts_reporting": 3
+    },
+    "2017-05": {
+     "price": 1377,
+     "districts_reporting": 3
+    },
+    "2017-06": {
+     "price": 1286,
+     "districts_reporting": 3
+    },
+    "2017-07": {
+     "price": 1272,
+     "districts_reporting": 3
+    },
+    "2017-08": {
+     "price": 1292,
+     "districts_reporting": 3
+    },
+    "2017-09": {
+     "price": 1320,
+     "districts_reporting": 3
+    },
+    "2017-10": {
+     "price": 1298,
+     "districts_reporting": 3
+    },
+    "2017-11": {
+     "price": 1318,
+     "districts_reporting": 3
+    },
+    "2017-12": {
+     "price": 1320,
+     "districts_reporting": 3
+    },
+    "2018-01": {
+     "price": 1323,
+     "districts_reporting": 3
+    },
+    "2018-02": {
+     "price": 1449,
+     "districts_reporting": 3
+    },
+    "2018-03": {
+     "price": 1243,
+     "districts_reporting": 3
+    },
+    "2018-04": {
+     "price": 1235,
+     "districts_reporting": 3
+    },
+    "2018-05": {
+     "price": 1247,
+     "districts_reporting": 3
+    },
+    "2018-06": {
+     "price": 1278,
+     "districts_reporting": 3
+    },
+    "2018-07": {
+     "price": 1364,
+     "districts_reporting": 4
+    },
+    "2018-08": {
+     "price": 1407,
+     "districts_reporting": 4
+    },
+    "2018-09": {
+     "price": 1412,
+     "districts_reporting": 3
+    },
+    "2018-10": {
+     "price": 1441,
+     "districts_reporting": 4
+    },
+    "2018-11": {
+     "price": 1632,
+     "districts_reporting": 4
+    },
+    "2018-12": {
+     "price": 1709,
+     "districts_reporting": 2
+    },
+    "2019-01": {
+     "price": 1622,
+     "districts_reporting": 3
+    },
+    "2019-02": {
+     "price": 1831,
+     "districts_reporting": 2
+    },
+    "2019-03": {
+     "price": 1467,
+     "districts_reporting": 3
+    },
+    "2019-04": {
+     "price": 1453,
+     "districts_reporting": 4
+    },
+    "2019-05": {
+     "price": 1575,
+     "districts_reporting": 3
+    },
+    "2019-06": {
+     "price": 1620,
+     "districts_reporting": 3
+    },
+    "2019-07": {
+     "price": 1653,
+     "districts_reporting": 3
+    },
+    "2019-08": {
+     "price": 1692,
+     "districts_reporting": 3
+    },
+    "2019-09": {
+     "price": 1707,
+     "districts_reporting": 2
+    },
+    "2019-10": {
+     "price": 1764,
+     "districts_reporting": 2
+    },
+    "2019-11": {
+     "price": 1801,
+     "districts_reporting": 3
+    },
+    "2019-12": {
+     "price": 1810,
+     "districts_reporting": 3
+    },
+    "2020-01": {
+     "price": 1937,
+     "districts_reporting": 2
+    },
+    "2020-02": {
+     "price": 1739,
+     "districts_reporting": 2
+    },
+    "2020-03": {
+     "price": 1450,
+     "districts_reporting": 2
+    },
+    "2020-04": {
+     "price": 1465,
+     "districts_reporting": 3
+    },
+    "2020-05": {
+     "price": 1490,
+     "districts_reporting": 3
+    },
+    "2020-06": {
+     "price": 1429,
+     "districts_reporting": 3
+    },
+    "2020-07": {
+     "price": 1323,
+     "districts_reporting": 2
+    },
+    "2020-08": {
+     "price": 1266,
+     "districts_reporting": 2
+    },
+    "2020-09": {
+     "price": 1186,
+     "districts_reporting": 1
+    },
+    "2020-10": {
+     "price": 1110,
+     "districts_reporting": 2
+    },
+    "2020-11": {
+     "price": 1202,
+     "districts_reporting": 1
+    },
+    "2020-12": {
+     "price": 1162,
+     "districts_reporting": 1
+    },
+    "2021-01": {
+     "price": 1279,
+     "districts_reporting": 1
+    },
+    "2021-02": {
+     "price": 1243,
+     "districts_reporting": 3
+    },
+    "2021-03": {
+     "price": 1256,
+     "districts_reporting": 2
+    },
+    "2021-04": {
+     "price": 1463,
+     "districts_reporting": 2
+    },
+    "2021-05": {
+     "price": 1538,
+     "districts_reporting": 2
+    },
+    "2021-06": {
+     "price": 1505,
+     "districts_reporting": 3
+    },
+    "2021-07": {
+     "price": 1567,
+     "districts_reporting": 2
+    },
+    "2021-08": {
+     "price": 1725,
+     "districts_reporting": 2
+    },
+    "2021-09": {
+     "price": 1859,
+     "districts_reporting": 2
+    },
+    "2021-10": {
+     "price": 1836,
+     "districts_reporting": 2
+    },
+    "2021-11": {
+     "price": 1926,
+     "districts_reporting": 3
+    },
+    "2021-12": {
+     "price": 1995,
+     "districts_reporting": 3
+    },
+    "2022-01": {
+     "price": 2014,
+     "districts_reporting": 3
+    },
+    "2022-02": {
+     "price": 2104,
+     "districts_reporting": 2
+    },
+    "2022-03": {
+     "price": 2039,
+     "districts_reporting": 4
+    },
+    "2022-04": {
+     "price": 2289,
+     "districts_reporting": 4
+    },
+    "2022-05": {
+     "price": 2400,
+     "districts_reporting": 4
+    },
+    "2022-06": {
+     "price": 2376,
+     "districts_reporting": 4
+    },
+    "2022-07": {
+     "price": 2455,
+     "districts_reporting": 3
+    },
+    "2022-08": {
+     "price": 2448,
+     "districts_reporting": 3
+    },
+    "2022-09": {
+     "price": 2473,
+     "districts_reporting": 3
+    },
+    "2022-10": {
+     "price": 2480,
+     "districts_reporting": 2
+    },
+    "2022-11": {
+     "price": 2731,
+     "districts_reporting": 3
+    },
+    "2022-12": {
+     "price": 2640,
+     "districts_reporting": 2
+    },
+    "2023-01": {
+     "price": 2554,
+     "districts_reporting": 2
+    },
+    "2023-02": {
+     "price": 2083,
+     "districts_reporting": 3
+    },
+    "2023-03": {
+     "price": 1954,
+     "districts_reporting": 4
+    },
+    "2023-04": {
+     "price": 1832,
+     "districts_reporting": 4
+    },
+    "2023-05": {
+     "price": 1803,
+     "districts_reporting": 3
+    },
+    "2023-06": {
+     "price": 1778,
+     "districts_reporting": 4
+    },
+    "2023-07": {
+     "price": 1717,
+     "districts_reporting": 3
+    },
+    "2023-08": {
+     "price": 1627,
+     "districts_reporting": 3
+    },
+    "2023-09": {
+     "price": 1738,
+     "districts_reporting": 3
+    },
+    "2023-10": {
+     "price": 1760,
+     "districts_reporting": 4
+    },
+    "2023-11": {
+     "price": 1747,
+     "districts_reporting": 3
+    },
+    "2023-12": {
+     "price": 1804,
+     "districts_reporting": 3
+    },
+    "2024-01": {
+     "price": 1838,
+     "districts_reporting": 2
+    },
+    "2024-02": {
+     "price": 1845,
+     "districts_reporting": 3
+    },
+    "2024-03": {
+     "price": 1850,
+     "districts_reporting": 3
+    },
+    "2024-04": {
+     "price": 1818,
+     "districts_reporting": 2
+    },
+    "2024-05": {
+     "price": 1916,
+     "districts_reporting": 3
+    },
+    "2024-06": {
+     "price": 2011,
+     "districts_reporting": 2
+    },
+    "2024-07": {
+     "price": 2021,
+     "districts_reporting": 3
+    },
+    "2024-08": {
+     "price": 2100,
+     "districts_reporting": 4
+    },
+    "2024-09": {
+     "price": 2228,
+     "districts_reporting": 5
+    },
+    "2024-10": {
+     "price": 2245,
+     "districts_reporting": 4
+    },
+    "2024-11": {
+     "price": 2298,
+     "districts_reporting": 3
+    },
+    "2024-12": {
+     "price": 2354,
+     "districts_reporting": 3
+    },
+    "2025-01": {
+     "price": 2292,
+     "districts_reporting": 3
+    },
+    "2025-02": {
+     "price": 2346,
+     "districts_reporting": 2
+    },
+    "2025-03": {
+     "price": 2126,
+     "districts_reporting": 3
+    },
+    "2025-04": {
+     "price": 2115,
+     "districts_reporting": 4
+    },
+    "2025-05": {
+     "price": 2181,
+     "districts_reporting": 4
+    },
+    "2025-06": {
+     "price": 2184,
+     "districts_reporting": 3
+    },
+    "2025-07": {
+     "price": 2169,
+     "districts_reporting": 4
+    },
+    "2025-08": {
+     "price": 2217,
+     "districts_reporting": 4
+    },
+    "2025-09": {
+     "price": 2257,
+     "districts_reporting": 3
+    },
+    "2025-10": {
+     "price": 2138,
+     "districts_reporting": 3
+    }
+   }
+  },
+  "Soyabean": {
+   "ceda_commodity": "Soyabean",
+   "ceda_id": 13,
+   "mp": {
+    "2016-01": 3391,
+    "2016-02": 3358,
+    "2016-03": 3324,
+    "2016-04": 3575,
+    "2016-05": 3563,
+    "2016-06": 3517,
+    "2016-07": 3408,
+    "2016-08": 3339,
+    "2016-09": 3025,
+    "2016-10": 2771,
+    "2016-11": 2777,
+    "2016-12": 2764,
+    "2017-01": 2796,
+    "2017-02": 2738,
+    "2017-03": 2718,
+    "2017-04": 2723,
+    "2017-05": 2708,
+    "2017-06": 2632,
+    "2017-07": 2709,
+    "2017-08": 2797,
+    "2017-09": 2755,
+    "2017-10": 2558,
+    "2017-11": 2503,
+    "2017-12": 2727,
+    "2018-01": 3074,
+    "2018-02": 3398,
+    "2018-03": 3380,
+    "2018-04": 3385,
+    "2018-05": 3353,
+    "2018-06": 3228,
+    "2018-07": 3230,
+    "2018-08": 3151,
+    "2018-09": 3035,
+    "2018-10": 2961,
+    "2018-11": 3123,
+    "2018-12": 3149,
+    "2019-01": 3393,
+    "2019-02": 3536,
+    "2019-03": 3459,
+    "2019-04": 3503,
+    "2019-05": 3502,
+    "2019-06": 3482,
+    "2019-07": 3385,
+    "2019-08": 3420,
+    "2019-09": 3564,
+    "2019-10": 3343,
+    "2019-11": 3557,
+    "2019-12": 3817,
+    "2020-01": 3933,
+    "2020-02": 3707,
+    "2020-03": 3396,
+    "2020-04": 3519,
+    "2020-05": 3570,
+    "2020-06": 3568,
+    "2020-07": 3459,
+    "2020-08": 3537,
+    "2020-09": 3487,
+    "2020-10": 3658,
+    "2020-11": 3882,
+    "2020-12": 3972,
+    "2021-01": 4160,
+    "2021-02": 4410,
+    "2021-03": 4909,
+    "2021-04": 5951,
+    "2021-05": 6462,
+    "2021-06": 6575,
+    "2021-07": 7544,
+    "2021-08": 8409,
+    "2021-09": 6856,
+    "2021-10": 4786,
+    "2021-11": 5383,
+    "2021-12": 5945,
+    "2022-01": 5931,
+    "2022-02": 6368,
+    "2022-03": 6998,
+    "2022-04": 7024,
+    "2022-05": 6507,
+    "2022-06": 6193,
+    "2022-07": 5796,
+    "2022-08": 5645,
+    "2022-09": 4771,
+    "2022-10": 4534,
+    "2022-11": 5172,
+    "2022-12": 5163,
+    "2023-01": 5209,
+    "2023-02": 5128,
+    "2023-03": 5008,
+    "2023-04": 5010,
+    "2023-05": 4917,
+    "2023-06": 4822,
+    "2023-07": 4693,
+    "2023-08": 4700,
+    "2023-09": 4560,
+    "2023-10": 4353,
+    "2023-11": 4761,
+    "2023-12": 4570,
+    "2024-01": 4357,
+    "2024-02": 4209,
+    "2024-03": 4329,
+    "2024-04": 4443,
+    "2024-05": 4472,
+    "2024-06": 4397,
+    "2024-07": 4287,
+    "2024-08": 4154,
+    "2024-09": 4384,
+    "2024-10": 4177,
+    "2024-11": 4132,
+    "2024-12": 4048,
+    "2025-01": 4058,
+    "2025-02": 3934,
+    "2025-03": 3855,
+    "2025-04": 4123,
+    "2025-05": 4120,
+    "2025-06": 4103,
+    "2025-07": 4174,
+    "2025-08": 4436,
+    "2025-09": 4108,
+    "2025-10": 3912
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 3356,
+     "districts_reporting": 5
+    },
+    "2016-02": {
+     "price": 3311,
+     "districts_reporting": 4
+    },
+    "2016-03": {
+     "price": 3343,
+     "districts_reporting": 5
+    },
+    "2016-04": {
+     "price": 3589,
+     "districts_reporting": 5
+    },
+    "2016-05": {
+     "price": 3528,
+     "districts_reporting": 4
+    },
+    "2016-06": {
+     "price": 3339,
+     "districts_reporting": 5
+    },
+    "2016-07": {
+     "price": 3312,
+     "districts_reporting": 5
+    },
+    "2016-08": {
+     "price": 3320,
+     "districts_reporting": 4
+    },
+    "2016-09": {
+     "price": 3049,
+     "districts_reporting": 5
+    },
+    "2016-10": {
+     "price": 2826,
+     "districts_reporting": 5
+    },
+    "2016-11": {
+     "price": 2888,
+     "districts_reporting": 4
+    },
+    "2016-12": {
+     "price": 2798,
+     "districts_reporting": 5
+    },
+    "2017-01": {
+     "price": 2766,
+     "districts_reporting": 5
+    },
+    "2017-02": {
+     "price": 2734,
+     "districts_reporting": 5
+    },
+    "2017-03": {
+     "price": 2686,
+     "districts_reporting": 5
+    },
+    "2017-04": {
+     "price": 2668,
+     "districts_reporting": 5
+    },
+    "2017-05": {
+     "price": 2620,
+     "districts_reporting": 5
+    },
+    "2017-06": {
+     "price": 2653,
+     "districts_reporting": 5
+    },
+    "2017-07": {
+     "price": 2660,
+     "districts_reporting": 5
+    },
+    "2017-08": {
+     "price": 2749,
+     "districts_reporting": 5
+    },
+    "2017-09": {
+     "price": 2709,
+     "districts_reporting": 5
+    },
+    "2017-10": {
+     "price": 2443,
+     "districts_reporting": 5
+    },
+    "2017-11": {
+     "price": 2450,
+     "districts_reporting": 5
+    },
+    "2017-12": {
+     "price": 2652,
+     "districts_reporting": 5
+    },
+    "2018-01": {
+     "price": 2986,
+     "districts_reporting": 5
+    },
+    "2018-02": {
+     "price": 3282,
+     "districts_reporting": 5
+    },
+    "2018-03": {
+     "price": 3225,
+     "districts_reporting": 5
+    },
+    "2018-04": {
+     "price": 3249,
+     "districts_reporting": 5
+    },
+    "2018-05": {
+     "price": 3262,
+     "districts_reporting": 4
+    },
+    "2018-06": {
+     "price": 3142,
+     "districts_reporting": 4
+    },
+    "2018-07": {
+     "price": 2927,
+     "districts_reporting": 5
+    },
+    "2018-08": {
+     "price": 3077,
+     "districts_reporting": 4
+    },
+    "2018-09": {
+     "price": 3013,
+     "districts_reporting": 4
+    },
+    "2018-10": {
+     "price": 3038,
+     "districts_reporting": 5
+    },
+    "2018-11": {
+     "price": 3153,
+     "districts_reporting": 5
+    },
+    "2018-12": {
+     "price": 3155,
+     "districts_reporting": 5
+    },
+    "2019-01": {
+     "price": 3317,
+     "districts_reporting": 5
+    },
+    "2019-02": {
+     "price": 3438,
+     "districts_reporting": 5
+    },
+    "2019-03": {
+     "price": 3427,
+     "districts_reporting": 5
+    },
+    "2019-04": {
+     "price": 3409,
+     "districts_reporting": 5
+    },
+    "2019-05": {
+     "price": 3467,
+     "districts_reporting": 4
+    },
+    "2019-06": {
+     "price": 3437,
+     "districts_reporting": 4
+    },
+    "2019-07": {
+     "price": 3379,
+     "districts_reporting": 5
+    },
+    "2019-08": {
+     "price": 3395,
+     "districts_reporting": 4
+    },
+    "2019-09": {
+     "price": 3562,
+     "districts_reporting": 4
+    },
+    "2019-10": {
+     "price": 3414,
+     "districts_reporting": 5
+    },
+    "2019-11": {
+     "price": 3544,
+     "districts_reporting": 5
+    },
+    "2019-12": {
+     "price": 3803,
+     "districts_reporting": 5
+    },
+    "2020-01": {
+     "price": 3911,
+     "districts_reporting": 5
+    },
+    "2020-02": {
+     "price": 3680,
+     "districts_reporting": 4
+    },
+    "2020-03": {
+     "price": 3430,
+     "districts_reporting": 5
+    },
+    "2020-04": {
+     "price": 3444,
+     "districts_reporting": 5
+    },
+    "2020-05": {
+     "price": 3456,
+     "districts_reporting": 5
+    },
+    "2020-06": {
+     "price": 3334,
+     "districts_reporting": 5
+    },
+    "2020-07": {
+     "price": 3282,
+     "districts_reporting": 5
+    },
+    "2020-08": {
+     "price": 3441,
+     "districts_reporting": 4
+    },
+    "2020-09": {
+     "price": 3452,
+     "districts_reporting": 3
+    },
+    "2020-10": {
+     "price": 3659,
+     "districts_reporting": 3
+    },
+    "2020-11": {
+     "price": 3992,
+     "districts_reporting": 3
+    },
+    "2020-12": {
+     "price": 3926,
+     "districts_reporting": 3
+    },
+    "2021-01": {
+     "price": 4055,
+     "districts_reporting": 4
+    },
+    "2021-02": {
+     "price": 4244,
+     "districts_reporting": 5
+    },
+    "2021-03": {
+     "price": 4910,
+     "districts_reporting": 4
+    },
+    "2021-04": {
+     "price": 6070,
+     "districts_reporting": 4
+    },
+    "2021-05": {
+     "price": 6450,
+     "districts_reporting": 4
+    },
+    "2021-06": {
+     "price": 6381,
+     "districts_reporting": 4
+    },
+    "2021-07": {
+     "price": 7509,
+     "districts_reporting": 4
+    },
+    "2021-08": {
+     "price": 8570,
+     "districts_reporting": 4
+    },
+    "2021-09": {
+     "price": 6832,
+     "districts_reporting": 4
+    },
+    "2021-10": {
+     "price": 4996,
+     "districts_reporting": 4
+    },
+    "2021-11": {
+     "price": 5811,
+     "districts_reporting": 4
+    },
+    "2021-12": {
+     "price": 5804,
+     "districts_reporting": 4
+    },
+    "2022-01": {
+     "price": 5666,
+     "districts_reporting": 4
+    },
+    "2022-02": {
+     "price": 6293,
+     "districts_reporting": 4
+    },
+    "2022-03": {
+     "price": 6908,
+     "districts_reporting": 4
+    },
+    "2022-04": {
+     "price": 7011,
+     "districts_reporting": 3
+    },
+    "2022-05": {
+     "price": 6589,
+     "districts_reporting": 3
+    },
+    "2022-06": {
+     "price": 6200,
+     "districts_reporting": 4
+    },
+    "2022-07": {
+     "price": 5751,
+     "districts_reporting": 3
+    },
+    "2022-08": {
+     "price": 5490,
+     "districts_reporting": 4
+    },
+    "2022-09": {
+     "price": 4488,
+     "districts_reporting": 3
+    },
+    "2022-10": {
+     "price": 4440,
+     "districts_reporting": 4
+    },
+    "2022-11": {
+     "price": 5107,
+     "districts_reporting": 4
+    },
+    "2022-12": {
+     "price": 5127,
+     "districts_reporting": 4
+    },
+    "2023-01": {
+     "price": 4942,
+     "districts_reporting": 4
+    },
+    "2023-02": {
+     "price": 4966,
+     "districts_reporting": 5
+    },
+    "2023-03": {
+     "price": 4903,
+     "districts_reporting": 4
+    },
+    "2023-04": {
+     "price": 4970,
+     "districts_reporting": 4
+    },
+    "2023-05": {
+     "price": 4923,
+     "districts_reporting": 3
+    },
+    "2023-06": {
+     "price": 4775,
+     "districts_reporting": 3
+    },
+    "2023-07": {
+     "price": 4533,
+     "districts_reporting": 5
+    },
+    "2023-08": {
+     "price": 4618,
+     "districts_reporting": 4
+    },
+    "2023-09": {
+     "price": 4542,
+     "districts_reporting": 4
+    },
+    "2023-10": {
+     "price": 4266,
+     "districts_reporting": 5
+    },
+    "2023-11": {
+     "price": 4542,
+     "districts_reporting": 5
+    },
+    "2023-12": {
+     "price": 4538,
+     "districts_reporting": 4
+    },
+    "2024-01": {
+     "price": 4243,
+     "districts_reporting": 4
+    },
+    "2024-02": {
+     "price": 4216,
+     "districts_reporting": 4
+    },
+    "2024-03": {
+     "price": 4279,
+     "districts_reporting": 4
+    },
+    "2024-04": {
+     "price": 4260,
+     "districts_reporting": 5
+    },
+    "2024-05": {
+     "price": 4321,
+     "districts_reporting": 4
+    },
+    "2024-06": {
+     "price": 4300,
+     "districts_reporting": 4
+    },
+    "2024-07": {
+     "price": 4185,
+     "districts_reporting": 4
+    },
+    "2024-08": {
+     "price": 4094,
+     "districts_reporting": 4
+    },
+    "2024-09": {
+     "price": 4286,
+     "districts_reporting": 4
+    },
+    "2024-10": {
+     "price": 4181,
+     "districts_reporting": 5
+    },
+    "2024-11": {
+     "price": 4147,
+     "districts_reporting": 5
+    },
+    "2024-12": {
+     "price": 4045,
+     "districts_reporting": 5
+    },
+    "2025-01": {
+     "price": 4024,
+     "districts_reporting": 4
+    },
+    "2025-02": {
+     "price": 3755,
+     "districts_reporting": 5
+    },
+    "2025-03": {
+     "price": 3788,
+     "districts_reporting": 5
+    },
+    "2025-04": {
+     "price": 4082,
+     "districts_reporting": 4
+    },
+    "2025-05": {
+     "price": 3808,
+     "districts_reporting": 5
+    },
+    "2025-06": {
+     "price": 4048,
+     "districts_reporting": 4
+    },
+    "2025-07": {
+     "price": 4136,
+     "districts_reporting": 5
+    },
+    "2025-08": {
+     "price": 4346,
+     "districts_reporting": 5
+    },
+    "2025-09": {
+     "price": 4156,
+     "districts_reporting": 4
+    },
+    "2025-10": {
+     "price": 3847,
+     "districts_reporting": 5
+    }
+   }
+  },
+  "Moong": {
+   "ceda_commodity": "Green Gram (Moong)(Whole)",
+   "ceda_id": 9,
+   "mp": {
+    "2016-01": 6104,
+    "2016-02": 5410,
+    "2016-03": 5464,
+    "2016-04": 6059,
+    "2016-05": 5696,
+    "2016-06": 5373,
+    "2016-07": 5028,
+    "2016-08": 4473,
+    "2016-09": 4428,
+    "2016-10": 4396,
+    "2016-11": 4352,
+    "2016-12": 3907,
+    "2017-01": 3933,
+    "2017-02": 3814,
+    "2017-03": 4248,
+    "2017-04": 4281,
+    "2017-05": 3867,
+    "2017-06": 4425,
+    "2017-07": 4454,
+    "2017-08": 4026,
+    "2017-09": 3997,
+    "2017-10": 3665,
+    "2017-11": 3606,
+    "2017-12": 3888,
+    "2018-01": 3819,
+    "2018-02": 3657,
+    "2018-03": 3878,
+    "2018-04": 4041,
+    "2018-05": 4527,
+    "2018-06": 4502,
+    "2018-07": 4393,
+    "2018-08": 4096,
+    "2018-09": 3940,
+    "2018-10": 3995,
+    "2018-11": 4340,
+    "2018-12": 4402,
+    "2019-01": 4421,
+    "2019-02": 4137,
+    "2019-03": 4048,
+    "2019-04": 4748,
+    "2019-05": 5523,
+    "2019-06": 5273,
+    "2019-07": 5095,
+    "2019-08": 5115,
+    "2019-09": 5032,
+    "2019-10": 5208,
+    "2019-11": 5611,
+    "2019-12": 5619,
+    "2020-01": 6590,
+    "2020-02": 6312,
+    "2020-03": 6774,
+    "2020-04": 8172,
+    "2020-05": 7117,
+    "2020-06": 6026,
+    "2020-07": 5207,
+    "2020-08": 5305,
+    "2020-09": 5244,
+    "2020-10": 6357,
+    "2020-11": 6338,
+    "2020-12": 6246,
+    "2021-01": 6341,
+    "2021-02": 6120,
+    "2021-03": 5921,
+    "2021-04": 6491,
+    "2021-05": 6000,
+    "2021-06": 5771,
+    "2021-07": 5719,
+    "2021-08": 5739,
+    "2021-09": 5805,
+    "2021-10": 5530,
+    "2021-11": 5872,
+    "2021-12": 5679,
+    "2022-01": 5780,
+    "2022-02": 5808,
+    "2022-03": 5483,
+    "2022-04": 5788,
+    "2022-05": 5812,
+    "2022-06": 5506,
+    "2022-07": 5520,
+    "2022-08": 5834,
+    "2022-09": 5845,
+    "2022-10": 5775,
+    "2022-11": 5908,
+    "2022-12": 5796,
+    "2023-01": 6260,
+    "2023-02": 6447,
+    "2023-03": 6574,
+    "2023-04": 6693,
+    "2023-05": 6949,
+    "2023-06": 6946,
+    "2023-07": 7000,
+    "2023-08": 7275,
+    "2023-09": 7445,
+    "2023-10": 7088,
+    "2023-11": 6801,
+    "2023-12": 6859,
+    "2025-06": 6818,
+    "2025-07": 6989,
+    "2025-08": 6943,
+    "2025-09": 6649,
+    "2025-10": 6636
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 5678,
+     "districts_reporting": 1
+    },
+    "2016-02": {
+     "price": 4925,
+     "districts_reporting": 2
+    },
+    "2016-04": {
+     "price": 5130,
+     "districts_reporting": 2
+    },
+    "2016-05": {
+     "price": 5150,
+     "districts_reporting": 1
+    },
+    "2016-06": {
+     "price": 5335,
+     "districts_reporting": 2
+    },
+    "2016-07": {
+     "price": 5053,
+     "districts_reporting": 2
+    },
+    "2016-08": {
+     "price": 4901,
+     "districts_reporting": 2
+    },
+    "2016-09": {
+     "price": 4709,
+     "districts_reporting": 2
+    },
+    "2016-10": {
+     "price": 4237,
+     "districts_reporting": 2
+    },
+    "2016-11": {
+     "price": 4738,
+     "districts_reporting": 2
+    },
+    "2016-12": {
+     "price": 4061,
+     "districts_reporting": 2
+    },
+    "2017-01": {
+     "price": 4250,
+     "districts_reporting": 2
+    },
+    "2017-02": {
+     "price": 3941,
+     "districts_reporting": 2
+    },
+    "2017-03": {
+     "price": 4082,
+     "districts_reporting": 4
+    },
+    "2017-04": {
+     "price": 4427,
+     "districts_reporting": 2
+    },
+    "2017-05": {
+     "price": 3771,
+     "districts_reporting": 2
+    },
+    "2017-06": {
+     "price": 4505,
+     "districts_reporting": 2
+    },
+    "2017-07": {
+     "price": 4218,
+     "districts_reporting": 3
+    },
+    "2017-08": {
+     "price": 3857,
+     "districts_reporting": 3
+    },
+    "2017-09": {
+     "price": 3871,
+     "districts_reporting": 4
+    },
+    "2017-10": {
+     "price": 3441,
+     "districts_reporting": 4
+    },
+    "2017-11": {
+     "price": 3530,
+     "districts_reporting": 4
+    },
+    "2017-12": {
+     "price": 3801,
+     "districts_reporting": 3
+    },
+    "2018-01": {
+     "price": 3917,
+     "districts_reporting": 2
+    },
+    "2018-02": {
+     "price": 3811,
+     "districts_reporting": 2
+    },
+    "2018-03": {
+     "price": 4305,
+     "districts_reporting": 1
+    },
+    "2018-04": {
+     "price": 3700,
+     "districts_reporting": 1
+    },
+    "2018-05": {
+     "price": 4850,
+     "districts_reporting": 2
+    },
+    "2018-06": {
+     "price": 4364,
+     "districts_reporting": 3
+    },
+    "2018-07": {
+     "price": 4772,
+     "districts_reporting": 2
+    },
+    "2018-08": {
+     "price": 3999,
+     "districts_reporting": 4
+    },
+    "2018-09": {
+     "price": 4278,
+     "districts_reporting": 2
+    },
+    "2018-10": {
+     "price": 3134,
+     "districts_reporting": 1
+    },
+    "2018-11": {
+     "price": 3533,
+     "districts_reporting": 2
+    },
+    "2018-12": {
+     "price": 4479,
+     "districts_reporting": 3
+    },
+    "2019-01": {
+     "price": 4073,
+     "districts_reporting": 3
+    },
+    "2019-02": {
+     "price": 2797,
+     "districts_reporting": 3
+    },
+    "2019-03": {
+     "price": 3325,
+     "districts_reporting": 1
+    },
+    "2019-04": {
+     "price": 3480,
+     "districts_reporting": 1
+    },
+    "2019-05": {
+     "price": 4328,
+     "districts_reporting": 1
+    },
+    "2019-06": {
+     "price": 4948,
+     "districts_reporting": 1
+    },
+    "2019-07": {
+     "price": 4965,
+     "districts_reporting": 2
+    },
+    "2019-08": {
+     "price": 4906,
+     "districts_reporting": 2
+    },
+    "2019-09": {
+     "price": 4358,
+     "districts_reporting": 2
+    },
+    "2019-10": {
+     "price": 5388,
+     "districts_reporting": 2
+    },
+    "2019-11": {
+     "price": 4625,
+     "districts_reporting": 2
+    },
+    "2019-12": {
+     "price": 4847,
+     "districts_reporting": 2
+    },
+    "2020-01": {
+     "price": 4350,
+     "districts_reporting": 1
+    },
+    "2020-02": {
+     "price": 4854,
+     "districts_reporting": 2
+    },
+    "2020-03": {
+     "price": 5409,
+     "districts_reporting": 1
+    },
+    "2020-04": {
+     "price": 4875,
+     "districts_reporting": 1
+    },
+    "2020-05": {
+     "price": 3813,
+     "districts_reporting": 1
+    },
+    "2020-06": {
+     "price": 5410,
+     "districts_reporting": 2
+    },
+    "2020-07": {
+     "price": 4755,
+     "districts_reporting": 2
+    },
+    "2020-08": {
+     "price": 4866,
+     "districts_reporting": 2
+    },
+    "2020-09": {
+     "price": 5150,
+     "districts_reporting": 1
+    },
+    "2021-02": {
+     "price": 4100,
+     "districts_reporting": 1
+    },
+    "2021-03": {
+     "price": 5810,
+     "districts_reporting": 1
+    },
+    "2021-06": {
+     "price": 5654,
+     "districts_reporting": 3
+    },
+    "2021-07": {
+     "price": 5760,
+     "districts_reporting": 2
+    },
+    "2021-08": {
+     "price": 5710,
+     "districts_reporting": 2
+    },
+    "2021-09": {
+     "price": 5528,
+     "districts_reporting": 3
+    },
+    "2021-10": {
+     "price": 5261,
+     "districts_reporting": 2
+    },
+    "2021-11": {
+     "price": 5626,
+     "districts_reporting": 2
+    },
+    "2021-12": {
+     "price": 5484,
+     "districts_reporting": 2
+    },
+    "2022-01": {
+     "price": 5336,
+     "districts_reporting": 2
+    },
+    "2022-02": {
+     "price": 5618,
+     "districts_reporting": 2
+    },
+    "2022-03": {
+     "price": 5710,
+     "districts_reporting": 2
+    },
+    "2022-04": {
+     "price": 5406,
+     "districts_reporting": 3
+    },
+    "2022-05": {
+     "price": 5481,
+     "districts_reporting": 2
+    },
+    "2022-06": {
+     "price": 5411,
+     "districts_reporting": 4
+    },
+    "2022-07": {
+     "price": 5406,
+     "districts_reporting": 4
+    },
+    "2022-08": {
+     "price": 5896,
+     "districts_reporting": 4
+    },
+    "2022-09": {
+     "price": 5836,
+     "districts_reporting": 3
+    },
+    "2022-10": {
+     "price": 5744,
+     "districts_reporting": 2
+    },
+    "2022-11": {
+     "price": 5884,
+     "districts_reporting": 2
+    },
+    "2022-12": {
+     "price": 5651,
+     "districts_reporting": 2
+    },
+    "2023-01": {
+     "price": 5871,
+     "districts_reporting": 3
+    },
+    "2023-02": {
+     "price": 5743,
+     "districts_reporting": 2
+    },
+    "2023-03": {
+     "price": 6595,
+     "districts_reporting": 2
+    },
+    "2023-04": {
+     "price": 6481,
+     "districts_reporting": 3
+    },
+    "2023-05": {
+     "price": 6790,
+     "districts_reporting": 3
+    },
+    "2023-06": {
+     "price": 6639,
+     "districts_reporting": 4
+    },
+    "2023-07": {
+     "price": 7006,
+     "districts_reporting": 3
+    },
+    "2023-08": {
+     "price": 7347,
+     "districts_reporting": 2
+    },
+    "2023-09": {
+     "price": 6991,
+     "districts_reporting": 2
+    },
+    "2023-10": {
+     "price": 6241,
+     "districts_reporting": 2
+    },
+    "2023-11": {
+     "price": 6424,
+     "districts_reporting": 2
+    },
+    "2023-12": {
+     "price": 5653,
+     "districts_reporting": 2
+    },
+    "2025-06": {
+     "price": 6660,
+     "districts_reporting": 5
+    },
+    "2025-07": {
+     "price": 6933,
+     "districts_reporting": 5
+    },
+    "2025-08": {
+     "price": 6938,
+     "districts_reporting": 3
+    },
+    "2025-09": {
+     "price": 6533,
+     "districts_reporting": 2
+    },
+    "2025-10": {
+     "price": 6042,
+     "districts_reporting": 2
+    }
+   }
+  },
+  "Urad": {
+   "ceda_commodity": "Black Gram (Urad Beans)(Whole)",
+   "ceda_id": 8,
+   "mp": {
+    "2016-01": 8678,
+    "2016-02": 7721,
+    "2016-03": 7696,
+    "2016-04": 8973,
+    "2016-05": 9439,
+    "2016-06": 9183,
+    "2016-07": 8335,
+    "2016-08": 6923,
+    "2016-09": 6201,
+    "2016-10": 5932,
+    "2016-11": 5533,
+    "2016-12": 4981,
+    "2017-01": 4977,
+    "2017-02": 4357,
+    "2017-03": 4608,
+    "2017-04": 4541,
+    "2017-05": 4258,
+    "2017-06": 4193,
+    "2017-07": 3662,
+    "2017-08": 3613,
+    "2017-09": 3550,
+    "2017-10": 2834,
+    "2017-11": 2552,
+    "2017-12": 2781,
+    "2018-01": 2610,
+    "2018-02": 2638,
+    "2018-03": 2524,
+    "2018-04": 2430,
+    "2018-05": 2404,
+    "2018-06": 2419,
+    "2018-07": 2676,
+    "2018-08": 2723,
+    "2018-09": 2752,
+    "2018-10": 3272,
+    "2018-11": 3739,
+    "2018-12": 3496,
+    "2019-01": 3495,
+    "2019-02": 3217,
+    "2019-03": 3119,
+    "2019-04": 3358,
+    "2019-05": 3596,
+    "2019-06": 3519,
+    "2019-07": 3418,
+    "2019-08": 3543,
+    "2019-09": 3741,
+    "2019-10": 3827,
+    "2019-11": 4222,
+    "2019-12": 3971,
+    "2020-01": 3907,
+    "2020-02": 3739,
+    "2020-03": 3437,
+    "2020-04": 3778,
+    "2020-05": 3965,
+    "2020-06": 3855,
+    "2020-07": 3430,
+    "2020-08": 3595,
+    "2020-09": 4580,
+    "2020-10": 5833,
+    "2020-11": 5021,
+    "2020-12": 4845,
+    "2021-01": 4833,
+    "2021-02": 5104,
+    "2021-03": 4895,
+    "2021-04": 4603,
+    "2021-05": 6099,
+    "2021-06": 5434,
+    "2021-07": 4812,
+    "2021-08": 5083,
+    "2021-09": 5277,
+    "2021-10": 4420,
+    "2021-11": 4347,
+    "2021-12": 4301,
+    "2022-01": 4146,
+    "2022-02": 3972,
+    "2022-03": 4314,
+    "2022-04": 4199,
+    "2022-05": 4236,
+    "2022-06": 4571,
+    "2022-07": 4784,
+    "2022-08": 4817,
+    "2022-09": 5009,
+    "2022-10": 4654,
+    "2022-11": 4889,
+    "2022-12": 5012,
+    "2023-01": 4972,
+    "2023-02": 5070,
+    "2023-03": 5240,
+    "2023-04": 5654,
+    "2023-05": 6186,
+    "2023-06": 6559,
+    "2023-07": 6382,
+    "2023-08": 6642,
+    "2023-09": 6669,
+    "2023-10": 6088,
+    "2023-11": 6439,
+    "2023-12": 6002,
+    "2024-08": 7357,
+    "2024-09": 7328,
+    "2024-10": 6781,
+    "2024-11": 6600,
+    "2024-12": 6317,
+    "2025-01": 5954,
+    "2025-02": 5942,
+    "2025-03": 6266,
+    "2025-04": 6232,
+    "2025-05": 6089,
+    "2025-06": 5938,
+    "2025-07": 5812,
+    "2025-08": 6024,
+    "2025-09": 5984,
+    "2025-10": 5693
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 8933,
+     "districts_reporting": 4
+    },
+    "2016-02": {
+     "price": 8057,
+     "districts_reporting": 4
+    },
+    "2016-03": {
+     "price": 8617,
+     "districts_reporting": 5
+    },
+    "2016-04": {
+     "price": 9464,
+     "districts_reporting": 5
+    },
+    "2016-05": {
+     "price": 9600,
+     "districts_reporting": 4
+    },
+    "2016-06": {
+     "price": 9557,
+     "districts_reporting": 4
+    },
+    "2016-07": {
+     "price": 8330,
+     "districts_reporting": 4
+    },
+    "2016-08": {
+     "price": 6979,
+     "districts_reporting": 4
+    },
+    "2016-09": {
+     "price": 6455,
+     "districts_reporting": 4
+    },
+    "2016-10": {
+     "price": 5922,
+     "districts_reporting": 5
+    },
+    "2016-11": {
+     "price": 5816,
+     "districts_reporting": 5
+    },
+    "2016-12": {
+     "price": 5085,
+     "districts_reporting": 5
+    },
+    "2017-01": {
+     "price": 4991,
+     "districts_reporting": 5
+    },
+    "2017-02": {
+     "price": 4511,
+     "districts_reporting": 5
+    },
+    "2017-03": {
+     "price": 4584,
+     "districts_reporting": 5
+    },
+    "2017-04": {
+     "price": 4661,
+     "districts_reporting": 4
+    },
+    "2017-05": {
+     "price": 4422,
+     "districts_reporting": 4
+    },
+    "2017-06": {
+     "price": 4082,
+     "districts_reporting": 5
+    },
+    "2017-07": {
+     "price": 3837,
+     "districts_reporting": 5
+    },
+    "2017-08": {
+     "price": 3784,
+     "districts_reporting": 4
+    },
+    "2017-09": {
+     "price": 3630,
+     "districts_reporting": 5
+    },
+    "2017-10": {
+     "price": 2771,
+     "districts_reporting": 5
+    },
+    "2017-11": {
+     "price": 2593,
+     "districts_reporting": 5
+    },
+    "2017-12": {
+     "price": 2938,
+     "districts_reporting": 5
+    },
+    "2018-01": {
+     "price": 2792,
+     "districts_reporting": 5
+    },
+    "2018-02": {
+     "price": 2825,
+     "districts_reporting": 5
+    },
+    "2018-03": {
+     "price": 2544,
+     "districts_reporting": 5
+    },
+    "2018-04": {
+     "price": 2676,
+     "districts_reporting": 4
+    },
+    "2018-05": {
+     "price": 2652,
+     "districts_reporting": 4
+    },
+    "2018-06": {
+     "price": 2563,
+     "districts_reporting": 4
+    },
+    "2018-07": {
+     "price": 2876,
+     "districts_reporting": 5
+    },
+    "2018-08": {
+     "price": 2745,
+     "districts_reporting": 5
+    },
+    "2018-09": {
+     "price": 2796,
+     "districts_reporting": 4
+    },
+    "2018-10": {
+     "price": 3371,
+     "districts_reporting": 5
+    },
+    "2018-11": {
+     "price": 3605,
+     "districts_reporting": 5
+    },
+    "2018-12": {
+     "price": 3645,
+     "districts_reporting": 5
+    },
+    "2019-01": {
+     "price": 3671,
+     "districts_reporting": 5
+    },
+    "2019-02": {
+     "price": 3308,
+     "districts_reporting": 5
+    },
+    "2019-03": {
+     "price": 3195,
+     "districts_reporting": 5
+    },
+    "2019-04": {
+     "price": 3367,
+     "districts_reporting": 5
+    },
+    "2019-05": {
+     "price": 3671,
+     "districts_reporting": 5
+    },
+    "2019-06": {
+     "price": 3659,
+     "districts_reporting": 5
+    },
+    "2019-07": {
+     "price": 3623,
+     "districts_reporting": 5
+    },
+    "2019-08": {
+     "price": 3588,
+     "districts_reporting": 4
+    },
+    "2019-09": {
+     "price": 3637,
+     "districts_reporting": 4
+    },
+    "2019-10": {
+     "price": 3595,
+     "districts_reporting": 5
+    },
+    "2019-11": {
+     "price": 3756,
+     "districts_reporting": 5
+    },
+    "2019-12": {
+     "price": 3702,
+     "districts_reporting": 5
+    },
+    "2020-01": {
+     "price": 3855,
+     "districts_reporting": 5
+    },
+    "2020-02": {
+     "price": 3682,
+     "districts_reporting": 5
+    },
+    "2020-03": {
+     "price": 3277,
+     "districts_reporting": 5
+    },
+    "2020-04": {
+     "price": 3964,
+     "districts_reporting": 4
+    },
+    "2020-05": {
+     "price": 3952,
+     "districts_reporting": 4
+    },
+    "2020-06": {
+     "price": 3819,
+     "districts_reporting": 4
+    },
+    "2020-07": {
+     "price": 3915,
+     "districts_reporting": 4
+    },
+    "2020-08": {
+     "price": 3835,
+     "districts_reporting": 3
+    },
+    "2020-09": {
+     "price": 4984,
+     "districts_reporting": 4
+    },
+    "2020-10": {
+     "price": 5967,
+     "districts_reporting": 3
+    },
+    "2020-11": {
+     "price": 5678,
+     "districts_reporting": 3
+    },
+    "2020-12": {
+     "price": 5479,
+     "districts_reporting": 3
+    },
+    "2021-01": {
+     "price": 5603,
+     "districts_reporting": 3
+    },
+    "2021-02": {
+     "price": 5203,
+     "districts_reporting": 5
+    },
+    "2021-03": {
+     "price": 4971,
+     "districts_reporting": 5
+    },
+    "2021-04": {
+     "price": 4906,
+     "districts_reporting": 3
+    },
+    "2021-05": {
+     "price": 5350,
+     "districts_reporting": 1
+    },
+    "2021-06": {
+     "price": 5129,
+     "districts_reporting": 5
+    },
+    "2021-07": {
+     "price": 5030,
+     "districts_reporting": 4
+    },
+    "2021-08": {
+     "price": 5623,
+     "districts_reporting": 3
+    },
+    "2021-09": {
+     "price": 5984,
+     "districts_reporting": 5
+    },
+    "2021-10": {
+     "price": 5223,
+     "districts_reporting": 5
+    },
+    "2021-11": {
+     "price": 5098,
+     "districts_reporting": 5
+    },
+    "2021-12": {
+     "price": 5006,
+     "districts_reporting": 5
+    },
+    "2022-01": {
+     "price": 4682,
+     "districts_reporting": 5
+    },
+    "2022-02": {
+     "price": 4607,
+     "districts_reporting": 5
+    },
+    "2022-03": {
+     "price": 4778,
+     "districts_reporting": 4
+    },
+    "2022-04": {
+     "price": 4633,
+     "districts_reporting": 5
+    },
+    "2022-05": {
+     "price": 4376,
+     "districts_reporting": 4
+    },
+    "2022-06": {
+     "price": 4898,
+     "districts_reporting": 4
+    },
+    "2022-07": {
+     "price": 5157,
+     "districts_reporting": 4
+    },
+    "2022-08": {
+     "price": 5010,
+     "districts_reporting": 5
+    },
+    "2022-09": {
+     "price": 5020,
+     "districts_reporting": 5
+    },
+    "2022-10": {
+     "price": 4574,
+     "districts_reporting": 5
+    },
+    "2022-11": {
+     "price": 4823,
+     "districts_reporting": 5
+    },
+    "2022-12": {
+     "price": 4891,
+     "districts_reporting": 5
+    },
+    "2023-01": {
+     "price": 4858,
+     "districts_reporting": 5
+    },
+    "2023-02": {
+     "price": 5001,
+     "districts_reporting": 5
+    },
+    "2023-03": {
+     "price": 5079,
+     "districts_reporting": 5
+    },
+    "2023-04": {
+     "price": 5528,
+     "districts_reporting": 4
+    },
+    "2023-05": {
+     "price": 5680,
+     "districts_reporting": 5
+    },
+    "2023-06": {
+     "price": 6540,
+     "districts_reporting": 4
+    },
+    "2023-07": {
+     "price": 6415,
+     "districts_reporting": 4
+    },
+    "2023-08": {
+     "price": 6635,
+     "districts_reporting": 5
+    },
+    "2023-09": {
+     "price": 6109,
+     "districts_reporting": 5
+    },
+    "2023-10": {
+     "price": 6004,
+     "districts_reporting": 5
+    },
+    "2023-11": {
+     "price": 6357,
+     "districts_reporting": 5
+    },
+    "2023-12": {
+     "price": 6153,
+     "districts_reporting": 5
+    },
+    "2024-08": {
+     "price": 6726,
+     "districts_reporting": 5
+    },
+    "2024-09": {
+     "price": 6779,
+     "districts_reporting": 5
+    },
+    "2024-10": {
+     "price": 6514,
+     "districts_reporting": 5
+    },
+    "2024-11": {
+     "price": 6268,
+     "districts_reporting": 5
+    },
+    "2024-12": {
+     "price": 5969,
+     "districts_reporting": 5
+    },
+    "2025-01": {
+     "price": 5664,
+     "districts_reporting": 5
+    },
+    "2025-02": {
+     "price": 5488,
+     "districts_reporting": 5
+    },
+    "2025-03": {
+     "price": 5371,
+     "districts_reporting": 5
+    },
+    "2025-04": {
+     "price": 5225,
+     "districts_reporting": 5
+    },
+    "2025-05": {
+     "price": 5230,
+     "districts_reporting": 5
+    },
+    "2025-06": {
+     "price": 5558,
+     "districts_reporting": 5
+    },
+    "2025-07": {
+     "price": 5510,
+     "districts_reporting": 5
+    },
+    "2025-08": {
+     "price": 5120,
+     "districts_reporting": 5
+    },
+    "2025-09": {
+     "price": 5726,
+     "districts_reporting": 5
+    },
+    "2025-10": {
+     "price": 5727,
+     "districts_reporting": 5
+    }
+   }
+  },
+  "Paddy(Dhan)(Common)": {
+   "ceda_commodity": "Paddy(Dhan)(Common)",
+   "ceda_id": 2,
+   "mp": {
+    "2016-01": 1523,
+    "2016-02": 1521,
+    "2016-03": 1510,
+    "2016-04": 1590,
+    "2016-05": 1577,
+    "2016-06": 1598,
+    "2016-07": 1595,
+    "2016-08": 1577,
+    "2016-09": 1534,
+    "2016-10": 1552,
+    "2016-11": 1639,
+    "2016-12": 1725,
+    "2017-01": 1840,
+    "2017-02": 1948,
+    "2017-03": 1923,
+    "2017-04": 1911,
+    "2017-05": 1765,
+    "2017-06": 1633,
+    "2017-07": 1636,
+    "2017-08": 1583,
+    "2017-09": 1644,
+    "2017-10": 1780,
+    "2017-11": 1916,
+    "2017-12": 1900,
+    "2018-01": 2001,
+    "2018-02": 1978,
+    "2018-03": 1915,
+    "2018-04": 1915,
+    "2018-05": 1863,
+    "2018-06": 1779,
+    "2018-07": 1853,
+    "2018-08": 1766,
+    "2018-09": 1727,
+    "2018-10": 1906,
+    "2018-11": 2089,
+    "2018-12": 2089,
+    "2019-01": 1926,
+    "2019-02": 1890,
+    "2019-03": 1819,
+    "2019-04": 1864,
+    "2019-05": 1856,
+    "2019-06": 1780,
+    "2019-07": 1690,
+    "2019-08": 1686,
+    "2019-09": 1691,
+    "2019-10": 1755,
+    "2019-11": 1730,
+    "2019-12": 1826,
+    "2020-01": 1864,
+    "2020-02": 1781,
+    "2020-03": 1820,
+    "2020-04": 1826,
+    "2020-05": 1821,
+    "2020-06": 1829,
+    "2020-07": 1889,
+    "2020-08": 1882,
+    "2020-09": 1903,
+    "2020-10": 1610,
+    "2020-11": 1821,
+    "2020-12": 1974,
+    "2021-01": 2028,
+    "2021-02": 1856,
+    "2021-03": 1782,
+    "2021-04": 1725,
+    "2021-05": 1831,
+    "2021-06": 1741,
+    "2021-07": 1631,
+    "2021-08": 1651,
+    "2021-09": 1635,
+    "2021-10": 1772,
+    "2021-11": 2080,
+    "2021-12": 2216,
+    "2022-01": 2198,
+    "2022-02": 2176,
+    "2022-03": 1958,
+    "2022-04": 1819,
+    "2022-05": 1706,
+    "2022-06": 1702,
+    "2022-07": 1683,
+    "2022-08": 1680,
+    "2022-09": 1687,
+    "2022-10": 1897,
+    "2022-11": 2256,
+    "2022-12": 2489,
+    "2023-01": 2526,
+    "2023-02": 2217,
+    "2023-03": 2232,
+    "2023-04": 2049,
+    "2023-05": 2050,
+    "2023-06": 2071,
+    "2023-07": 2062,
+    "2023-08": 2100,
+    "2023-09": 2067,
+    "2023-10": 2265,
+    "2023-11": 2447,
+    "2023-12": 2960,
+    "2024-01": 3498,
+    "2024-02": 3101,
+    "2024-03": 3067,
+    "2024-04": 2957,
+    "2024-05": 2723,
+    "2024-06": 2672,
+    "2024-07": 2655,
+    "2024-08": 2408,
+    "2024-09": 2372,
+    "2024-10": 2360,
+    "2024-11": 2525,
+    "2024-12": 2561,
+    "2025-01": 2620,
+    "2025-02": 2480,
+    "2025-03": 2390,
+    "2025-04": 2501,
+    "2025-05": 2472,
+    "2025-06": 2379,
+    "2025-07": 2414,
+    "2025-08": 2337,
+    "2025-09": 2334,
+    "2025-10": 2366
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 1415,
+     "districts_reporting": 1
+    },
+    "2016-02": {
+     "price": 1427,
+     "districts_reporting": 3
+    },
+    "2016-03": {
+     "price": 1055,
+     "districts_reporting": 2
+    },
+    "2016-07": {
+     "price": 1431,
+     "districts_reporting": 1
+    },
+    "2016-10": {
+     "price": 1472,
+     "districts_reporting": 1
+    },
+    "2016-11": {
+     "price": 1470,
+     "districts_reporting": 1
+    },
+    "2016-12": {
+     "price": 1516,
+     "districts_reporting": 4
+    },
+    "2017-01": {
+     "price": 1487,
+     "districts_reporting": 3
+    },
+    "2017-02": {
+     "price": 1674,
+     "districts_reporting": 3
+    },
+    "2017-03": {
+     "price": 1588,
+     "districts_reporting": 2
+    },
+    "2017-04": {
+     "price": 2010,
+     "districts_reporting": 2
+    },
+    "2017-05": {
+     "price": 1470,
+     "districts_reporting": 1
+    },
+    "2017-06": {
+     "price": 1470,
+     "districts_reporting": 2
+    },
+    "2017-07": {
+     "price": 1500,
+     "districts_reporting": 2
+    },
+    "2017-08": {
+     "price": 1510,
+     "districts_reporting": 2
+    },
+    "2017-09": {
+     "price": 1403,
+     "districts_reporting": 2
+    },
+    "2017-10": {
+     "price": 1600,
+     "districts_reporting": 2
+    },
+    "2017-11": {
+     "price": 1166,
+     "districts_reporting": 1
+    },
+    "2017-12": {
+     "price": 1585,
+     "districts_reporting": 3
+    },
+    "2018-01": {
+     "price": 1813,
+     "districts_reporting": 3
+    },
+    "2018-02": {
+     "price": 1482,
+     "districts_reporting": 3
+    },
+    "2018-03": {
+     "price": 1816,
+     "districts_reporting": 2
+    },
+    "2018-04": {
+     "price": 1830,
+     "districts_reporting": 2
+    },
+    "2018-05": {
+     "price": 1100,
+     "districts_reporting": 1
+    },
+    "2018-07": {
+     "price": 976,
+     "districts_reporting": 2
+    },
+    "2018-08": {
+     "price": 1135,
+     "districts_reporting": 1
+    },
+    "2018-09": {
+     "price": 1471,
+     "districts_reporting": 1
+    },
+    "2018-10": {
+     "price": 1624,
+     "districts_reporting": 2
+    },
+    "2018-11": {
+     "price": 1481,
+     "districts_reporting": 3
+    },
+    "2018-12": {
+     "price": 1895,
+     "districts_reporting": 2
+    },
+    "2019-01": {
+     "price": 1723,
+     "districts_reporting": 4
+    },
+    "2019-02": {
+     "price": 1450,
+     "districts_reporting": 3
+    },
+    "2019-03": {
+     "price": 1479,
+     "districts_reporting": 3
+    },
+    "2019-04": {
+     "price": 1438,
+     "districts_reporting": 2
+    },
+    "2019-06": {
+     "price": 1471,
+     "districts_reporting": 1
+    },
+    "2019-07": {
+     "price": 1460,
+     "districts_reporting": 1
+    },
+    "2019-08": {
+     "price": 1478,
+     "districts_reporting": 2
+    },
+    "2019-09": {
+     "price": 1372,
+     "districts_reporting": 2
+    },
+    "2019-10": {
+     "price": 1582,
+     "districts_reporting": 2
+    },
+    "2019-11": {
+     "price": 1325,
+     "districts_reporting": 4
+    },
+    "2019-12": {
+     "price": 1473,
+     "districts_reporting": 4
+    },
+    "2020-01": {
+     "price": 1320,
+     "districts_reporting": 3
+    },
+    "2020-02": {
+     "price": 1643,
+     "districts_reporting": 2
+    },
+    "2020-12": {
+     "price": 2213,
+     "districts_reporting": 1
+    },
+    "2021-01": {
+     "price": 1000,
+     "districts_reporting": 1
+    },
+    "2021-02": {
+     "price": 1140,
+     "districts_reporting": 1
+    },
+    "2021-03": {
+     "price": 1120,
+     "districts_reporting": 1
+    },
+    "2021-06": {
+     "price": 600,
+     "districts_reporting": 1
+    },
+    "2021-10": {
+     "price": 1270,
+     "districts_reporting": 1
+    },
+    "2021-11": {
+     "price": 1293,
+     "districts_reporting": 2
+    },
+    "2021-12": {
+     "price": 1931,
+     "districts_reporting": 3
+    },
+    "2022-01": {
+     "price": 2136,
+     "districts_reporting": 2
+    },
+    "2022-02": {
+     "price": 1989,
+     "districts_reporting": 3
+    },
+    "2022-03": {
+     "price": 1600,
+     "districts_reporting": 2
+    },
+    "2022-04": {
+     "price": 1250,
+     "districts_reporting": 1
+    },
+    "2022-06": {
+     "price": 1390,
+     "districts_reporting": 1
+    },
+    "2022-07": {
+     "price": 1480,
+     "districts_reporting": 1
+    },
+    "2022-08": {
+     "price": 1408,
+     "districts_reporting": 3
+    },
+    "2022-09": {
+     "price": 1356,
+     "districts_reporting": 3
+    },
+    "2022-10": {
+     "price": 1711,
+     "districts_reporting": 3
+    },
+    "2022-11": {
+     "price": 1705,
+     "districts_reporting": 5
+    },
+    "2022-12": {
+     "price": 2045,
+     "districts_reporting": 4
+    },
+    "2023-01": {
+     "price": 2033,
+     "districts_reporting": 4
+    },
+    "2023-02": {
+     "price": 1730,
+     "districts_reporting": 3
+    },
+    "2023-03": {
+     "price": 1456,
+     "districts_reporting": 2
+    },
+    "2023-04": {
+     "price": 1508,
+     "districts_reporting": 2
+    },
+    "2023-05": {
+     "price": 1425,
+     "districts_reporting": 1
+    },
+    "2023-06": {
+     "price": 1400,
+     "districts_reporting": 1
+    },
+    "2023-07": {
+     "price": 1873,
+     "districts_reporting": 3
+    },
+    "2023-08": {
+     "price": 1873,
+     "districts_reporting": 3
+    },
+    "2023-09": {
+     "price": 1955,
+     "districts_reporting": 2
+    },
+    "2023-10": {
+     "price": 1956,
+     "districts_reporting": 3
+    },
+    "2023-11": {
+     "price": 2136,
+     "districts_reporting": 3
+    },
+    "2023-12": {
+     "price": 2157,
+     "districts_reporting": 5
+    },
+    "2024-01": {
+     "price": 2059,
+     "districts_reporting": 5
+    },
+    "2024-02": {
+     "price": 2339,
+     "districts_reporting": 3
+    },
+    "2024-03": {
+     "price": 2189,
+     "districts_reporting": 4
+    },
+    "2024-05": {
+     "price": 2041,
+     "districts_reporting": 2
+    },
+    "2024-06": {
+     "price": 2311,
+     "districts_reporting": 2
+    },
+    "2024-07": {
+     "price": 1884,
+     "districts_reporting": 2
+    },
+    "2024-08": {
+     "price": 1842,
+     "districts_reporting": 4
+    },
+    "2024-09": {
+     "price": 2032,
+     "districts_reporting": 3
+    },
+    "2024-10": {
+     "price": 1962,
+     "districts_reporting": 3
+    },
+    "2024-11": {
+     "price": 1979,
+     "districts_reporting": 4
+    },
+    "2024-12": {
+     "price": 2212,
+     "districts_reporting": 4
+    },
+    "2025-01": {
+     "price": 2042,
+     "districts_reporting": 5
+    },
+    "2025-02": {
+     "price": 1954,
+     "districts_reporting": 4
+    },
+    "2025-03": {
+     "price": 2034,
+     "districts_reporting": 4
+    },
+    "2025-04": {
+     "price": 1935,
+     "districts_reporting": 2
+    },
+    "2025-05": {
+     "price": 1797,
+     "districts_reporting": 3
+    },
+    "2025-06": {
+     "price": 1801,
+     "districts_reporting": 3
+    },
+    "2025-07": {
+     "price": 1944,
+     "districts_reporting": 3
+    },
+    "2025-08": {
+     "price": 1991,
+     "districts_reporting": 3
+    },
+    "2025-09": {
+     "price": 1996,
+     "districts_reporting": 3
+    },
+    "2025-10": {
+     "price": 1801,
+     "districts_reporting": 3
+    }
+   }
+  },
+  "Maize": {
+   "ceda_commodity": "Maize",
+   "ceda_id": 4,
+   "mp": {
+    "2016-01": 1363,
+    "2016-02": 1362,
+    "2016-03": 1335,
+    "2016-04": 1353,
+    "2016-05": 1359,
+    "2016-06": 1499,
+    "2016-07": 1569,
+    "2016-08": 1532,
+    "2016-09": 1473,
+    "2016-10": 1306,
+    "2016-11": 1311,
+    "2016-12": 1314,
+    "2017-01": 1331,
+    "2017-02": 1327,
+    "2017-03": 1303,
+    "2017-04": 1285,
+    "2017-05": 1272,
+    "2017-06": 1290,
+    "2017-07": 1307,
+    "2017-08": 1291,
+    "2017-09": 1282,
+    "2017-10": 1149,
+    "2017-11": 1072,
+    "2017-12": 1098,
+    "2018-01": 1120,
+    "2018-02": 1113,
+    "2018-03": 1123,
+    "2018-04": 1119,
+    "2018-05": 1151,
+    "2018-06": 1196,
+    "2018-07": 1226,
+    "2018-08": 1254,
+    "2018-09": 1235,
+    "2018-10": 1209,
+    "2018-11": 1304,
+    "2018-12": 1498,
+    "2019-01": 1632,
+    "2019-02": 1825,
+    "2019-03": 1814,
+    "2019-04": 1963,
+    "2019-05": 1875,
+    "2019-06": 1862,
+    "2019-07": 1942,
+    "2019-08": 1905,
+    "2019-09": 1759,
+    "2019-10": 1638,
+    "2019-11": 1643,
+    "2019-12": 1862,
+    "2020-01": 1809,
+    "2020-02": 1522,
+    "2020-03": 1442,
+    "2020-04": 1230,
+    "2020-05": 1137,
+    "2020-06": 1145,
+    "2020-07": 1141,
+    "2020-08": 1134,
+    "2020-09": 1044,
+    "2020-10": 1098,
+    "2020-11": 1261,
+    "2020-12": 1234,
+    "2021-01": 1199,
+    "2021-02": 1207,
+    "2021-03": 1262,
+    "2021-04": 1294,
+    "2021-05": 1411,
+    "2021-06": 1482,
+    "2021-07": 1614,
+    "2021-08": 1591,
+    "2021-09": 1503,
+    "2021-10": 1376,
+    "2021-11": 1459,
+    "2021-12": 1528,
+    "2022-01": 1654,
+    "2022-02": 1790,
+    "2022-03": 1955,
+    "2022-04": 1998,
+    "2022-05": 2025,
+    "2022-06": 2002,
+    "2022-07": 2053,
+    "2022-08": 2066,
+    "2022-09": 2015,
+    "2022-10": 1706,
+    "2022-11": 1896,
+    "2022-12": 2011,
+    "2023-01": 2054,
+    "2023-02": 1997,
+    "2023-03": 1967,
+    "2023-04": 1825,
+    "2023-05": 1744,
+    "2023-06": 1835,
+    "2023-07": 1935,
+    "2023-08": 1914,
+    "2023-09": 1814,
+    "2023-10": 1748,
+    "2023-11": 1952,
+    "2023-12": 1992,
+    "2024-01": 2022,
+    "2024-02": 2040,
+    "2024-03": 2081,
+    "2024-04": 2001,
+    "2024-05": 2087,
+    "2024-06": 2163,
+    "2024-07": 2275,
+    "2024-08": 2337,
+    "2024-09": 2141,
+    "2024-10": 1997,
+    "2024-11": 2154,
+    "2024-12": 2209,
+    "2025-01": 2240,
+    "2025-02": 2157,
+    "2025-03": 2089,
+    "2025-04": 1994,
+    "2025-05": 2003,
+    "2025-06": 2039,
+    "2025-07": 2091,
+    "2025-08": 2102,
+    "2025-09": 1835,
+    "2025-10": 1641
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 1100,
+     "districts_reporting": 1
+    },
+    "2016-04": {
+     "price": 3646,
+     "districts_reporting": 1
+    },
+    "2016-05": {
+     "price": 3406,
+     "districts_reporting": 1
+    },
+    "2016-06": {
+     "price": 3863,
+     "districts_reporting": 1
+    },
+    "2016-07": {
+     "price": 4005,
+     "districts_reporting": 1
+    },
+    "2016-08": {
+     "price": 3100,
+     "districts_reporting": 1
+    },
+    "2016-09": {
+     "price": 3454,
+     "districts_reporting": 1
+    },
+    "2016-10": {
+     "price": 3272,
+     "districts_reporting": 1
+    },
+    "2016-11": {
+     "price": 3390,
+     "districts_reporting": 1
+    },
+    "2016-12": {
+     "price": 2889,
+     "districts_reporting": 1
+    },
+    "2017-01": {
+     "price": 2570,
+     "districts_reporting": 1
+    },
+    "2017-02": {
+     "price": 1879,
+     "districts_reporting": 1
+    },
+    "2017-03": {
+     "price": 2046,
+     "districts_reporting": 1
+    },
+    "2017-07": {
+     "price": 1425,
+     "districts_reporting": 1
+    },
+    "2017-08": {
+     "price": 1482,
+     "districts_reporting": 1
+    },
+    "2017-11": {
+     "price": 1115,
+     "districts_reporting": 1
+    },
+    "2017-12": {
+     "price": 1080,
+     "districts_reporting": 1
+    },
+    "2018-01": {
+     "price": 1425,
+     "districts_reporting": 1
+    },
+    "2018-08": {
+     "price": 1560,
+     "districts_reporting": 1
+    },
+    "2018-10": {
+     "price": 1325,
+     "districts_reporting": 2
+    },
+    "2018-11": {
+     "price": 1281,
+     "districts_reporting": 3
+    },
+    "2018-12": {
+     "price": 1997,
+     "districts_reporting": 4
+    },
+    "2019-01": {
+     "price": 2363,
+     "districts_reporting": 3
+    },
+    "2019-02": {
+     "price": 1683,
+     "districts_reporting": 1
+    },
+    "2019-03": {
+     "price": 3500,
+     "districts_reporting": 1
+    },
+    "2019-04": {
+     "price": 3618,
+     "districts_reporting": 2
+    },
+    "2019-06": {
+     "price": 3800,
+     "districts_reporting": 1
+    },
+    "2019-08": {
+     "price": 3828,
+     "districts_reporting": 1
+    },
+    "2019-11": {
+     "price": 1619,
+     "districts_reporting": 2
+    },
+    "2019-12": {
+     "price": 1977,
+     "districts_reporting": 3
+    },
+    "2020-01": {
+     "price": 1782,
+     "districts_reporting": 2
+    },
+    "2020-02": {
+     "price": 1484,
+     "districts_reporting": 1
+    },
+    "2020-03": {
+     "price": 2716,
+     "districts_reporting": 2
+    },
+    "2020-04": {
+     "price": 1138,
+     "districts_reporting": 1
+    },
+    "2020-07": {
+     "price": 1073,
+     "districts_reporting": 1
+    },
+    "2020-08": {
+     "price": 850,
+     "districts_reporting": 1
+    },
+    "2020-10": {
+     "price": 1156,
+     "districts_reporting": 1
+    },
+    "2020-11": {
+     "price": 1662,
+     "districts_reporting": 1
+    },
+    "2020-12": {
+     "price": 1593,
+     "districts_reporting": 1
+    },
+    "2021-01": {
+     "price": 1582,
+     "districts_reporting": 1
+    },
+    "2021-02": {
+     "price": 1411,
+     "districts_reporting": 2
+    },
+    "2021-03": {
+     "price": 1147,
+     "districts_reporting": 1
+    },
+    "2021-04": {
+     "price": 1259,
+     "districts_reporting": 1
+    },
+    "2021-06": {
+     "price": 1375,
+     "districts_reporting": 1
+    },
+    "2021-07": {
+     "price": 1345,
+     "districts_reporting": 1
+    },
+    "2021-08": {
+     "price": 1310,
+     "districts_reporting": 1
+    },
+    "2021-09": {
+     "price": 1320,
+     "districts_reporting": 1
+    },
+    "2021-10": {
+     "price": 1326,
+     "districts_reporting": 3
+    },
+    "2021-11": {
+     "price": 1496,
+     "districts_reporting": 3
+    },
+    "2021-12": {
+     "price": 1544,
+     "districts_reporting": 3
+    },
+    "2022-01": {
+     "price": 1537,
+     "districts_reporting": 2
+    },
+    "2022-02": {
+     "price": 1684,
+     "districts_reporting": 2
+    },
+    "2022-03": {
+     "price": 1831,
+     "districts_reporting": 1
+    },
+    "2022-04": {
+     "price": 1375,
+     "districts_reporting": 2
+    },
+    "2022-05": {
+     "price": 1840,
+     "districts_reporting": 1
+    },
+    "2022-06": {
+     "price": 3175,
+     "districts_reporting": 1
+    },
+    "2022-07": {
+     "price": 1386,
+     "districts_reporting": 1
+    },
+    "2022-08": {
+     "price": 1455,
+     "districts_reporting": 1
+    },
+    "2022-10": {
+     "price": 1557,
+     "districts_reporting": 2
+    },
+    "2022-11": {
+     "price": 1789,
+     "districts_reporting": 3
+    },
+    "2022-12": {
+     "price": 1996,
+     "districts_reporting": 3
+    },
+    "2023-01": {
+     "price": 2161,
+     "districts_reporting": 3
+    },
+    "2023-02": {
+     "price": 1874,
+     "districts_reporting": 1
+    },
+    "2023-03": {
+     "price": 1623,
+     "districts_reporting": 2
+    },
+    "2023-04": {
+     "price": 3098,
+     "districts_reporting": 1
+    },
+    "2023-05": {
+     "price": 3396,
+     "districts_reporting": 1
+    },
+    "2023-06": {
+     "price": 3334,
+     "districts_reporting": 1
+    },
+    "2023-07": {
+     "price": 3361,
+     "districts_reporting": 1
+    },
+    "2023-08": {
+     "price": 3764,
+     "districts_reporting": 1
+    },
+    "2023-10": {
+     "price": 1870,
+     "districts_reporting": 3
+    },
+    "2023-11": {
+     "price": 1926,
+     "districts_reporting": 3
+    },
+    "2023-12": {
+     "price": 1984,
+     "districts_reporting": 3
+    },
+    "2024-01": {
+     "price": 2029,
+     "districts_reporting": 2
+    },
+    "2024-02": {
+     "price": 1925,
+     "districts_reporting": 3
+    },
+    "2024-03": {
+     "price": 1860,
+     "districts_reporting": 2
+    },
+    "2024-04": {
+     "price": 1919,
+     "districts_reporting": 2
+    },
+    "2024-05": {
+     "price": 2005,
+     "districts_reporting": 1
+    },
+    "2024-06": {
+     "price": 1950,
+     "districts_reporting": 1
+    },
+    "2024-07": {
+     "price": 1800,
+     "districts_reporting": 1
+    },
+    "2024-08": {
+     "price": 2000,
+     "districts_reporting": 1
+    },
+    "2024-09": {
+     "price": 1842,
+     "districts_reporting": 1
+    },
+    "2024-10": {
+     "price": 2015,
+     "districts_reporting": 3
+    },
+    "2024-11": {
+     "price": 2119,
+     "districts_reporting": 3
+    },
+    "2024-12": {
+     "price": 2233,
+     "districts_reporting": 3
+    },
+    "2025-01": {
+     "price": 2208,
+     "districts_reporting": 3
+    },
+    "2025-02": {
+     "price": 2187,
+     "districts_reporting": 2
+    },
+    "2025-03": {
+     "price": 2133,
+     "districts_reporting": 2
+    },
+    "2025-04": {
+     "price": 1976,
+     "districts_reporting": 2
+    },
+    "2025-05": {
+     "price": 2184,
+     "districts_reporting": 2
+    },
+    "2025-06": {
+     "price": 2506,
+     "districts_reporting": 1
+    },
+    "2025-07": {
+     "price": 1755,
+     "districts_reporting": 2
+    },
+    "2025-08": {
+     "price": 1850,
+     "districts_reporting": 1
+    },
+    "2025-09": {
+     "price": 1783,
+     "districts_reporting": 2
+    },
+    "2025-10": {
+     "price": 1676,
+     "districts_reporting": 3
+    }
+   }
+  },
+  "Garlic": {
+   "ceda_commodity": "Garlic",
+   "ceda_id": 25,
+   "mp": {
+    "2016-01": 5292,
+    "2016-02": 4391,
+    "2016-03": 3215,
+    "2016-04": 3486,
+    "2016-05": 4501,
+    "2016-06": 5351,
+    "2016-07": 6319,
+    "2016-08": 6997,
+    "2016-09": 6654,
+    "2016-10": 6436,
+    "2016-11": 6647,
+    "2016-12": 6512,
+    "2017-01": 6973,
+    "2017-02": 4830,
+    "2017-03": 2905,
+    "2017-04": 2571,
+    "2017-05": 2625,
+    "2017-06": 2445,
+    "2017-07": 2529,
+    "2017-08": 2356,
+    "2017-09": 2103,
+    "2017-10": 2124,
+    "2017-11": 1912,
+    "2017-12": 1766,
+    "2018-01": 1462,
+    "2018-02": 1385,
+    "2018-03": 1460,
+    "2018-04": 1279,
+    "2018-05": 993,
+    "2018-06": 886,
+    "2018-07": 1141,
+    "2018-08": 1084,
+    "2018-09": 939,
+    "2018-10": 872,
+    "2018-11": 873,
+    "2018-12": 887,
+    "2019-01": 972,
+    "2019-02": 1261,
+    "2019-03": 1807,
+    "2019-04": 2722,
+    "2019-05": 3369,
+    "2019-06": 3877,
+    "2019-07": 4179,
+    "2019-08": 4458,
+    "2019-09": 7379,
+    "2019-10": 9274,
+    "2019-11": 8852,
+    "2019-12": 8258,
+    "2020-01": 9618,
+    "2020-02": 8064,
+    "2020-03": 4437,
+    "2020-04": 4307,
+    "2020-05": 4128,
+    "2020-06": 4316,
+    "2020-07": 5308,
+    "2020-08": 6333,
+    "2020-09": 6138,
+    "2020-10": 6287,
+    "2020-11": 5616,
+    "2020-12": 5183,
+    "2021-01": 5507,
+    "2021-02": 5195,
+    "2021-03": 3954,
+    "2021-04": 3683,
+    "2021-05": 4736,
+    "2021-06": 4615,
+    "2021-07": 4293,
+    "2021-08": 4308,
+    "2021-09": 3822,
+    "2021-10": 3881,
+    "2021-11": 3228,
+    "2021-12": 2448,
+    "2022-01": 1806,
+    "2022-02": 2128,
+    "2022-03": 2252,
+    "2022-04": 2101,
+    "2022-05": 1909,
+    "2022-06": 1845,
+    "2022-07": 1800,
+    "2022-08": 1576,
+    "2022-09": 1334,
+    "2022-10": 1368,
+    "2022-11": 1544,
+    "2022-12": 1367,
+    "2023-01": 1523,
+    "2023-02": 2232,
+    "2023-03": 2738,
+    "2023-04": 2977,
+    "2023-05": 3630,
+    "2023-06": 5093,
+    "2023-07": 6429,
+    "2023-08": 7422,
+    "2023-09": 7975,
+    "2023-10": 8147,
+    "2023-11": 10194,
+    "2023-12": 12874,
+    "2024-01": 13766,
+    "2024-02": 9813,
+    "2024-03": 6161,
+    "2024-04": 7439,
+    "2024-05": 8345,
+    "2024-06": 9339,
+    "2024-07": 11625,
+    "2024-08": 15821,
+    "2024-09": 18199,
+    "2024-10": 19107,
+    "2024-11": 20431,
+    "2024-12": 18747,
+    "2025-01": 11570,
+    "2025-02": 5496,
+    "2025-03": 4375,
+    "2025-04": 3732,
+    "2025-05": 4421,
+    "2025-06": 4388,
+    "2025-07": 3900,
+    "2025-08": 4184,
+    "2025-09": 3422,
+    "2025-10": 3768
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 4750,
+     "districts_reporting": 1
+    },
+    "2016-02": {
+     "price": 3713,
+     "districts_reporting": 1
+    },
+    "2016-03": {
+     "price": 2725,
+     "districts_reporting": 2
+    },
+    "2016-04": {
+     "price": 2550,
+     "districts_reporting": 2
+    },
+    "2016-05": {
+     "price": 2625,
+     "districts_reporting": 2
+    },
+    "2016-06": {
+     "price": 4460,
+     "districts_reporting": 1
+    },
+    "2016-07": {
+     "price": 3250,
+     "districts_reporting": 2
+    },
+    "2016-08": {
+     "price": 3833,
+     "districts_reporting": 2
+    },
+    "2016-09": {
+     "price": 4750,
+     "districts_reporting": 1
+    },
+    "2016-10": {
+     "price": 3292,
+     "districts_reporting": 2
+    },
+    "2016-11": {
+     "price": 5633,
+     "districts_reporting": 1
+    },
+    "2016-12": {
+     "price": 4350,
+     "districts_reporting": 2
+    },
+    "2017-01": {
+     "price": 3315,
+     "districts_reporting": 2
+    },
+    "2017-02": {
+     "price": 4529,
+     "districts_reporting": 1
+    },
+    "2017-03": {
+     "price": 3121,
+     "districts_reporting": 2
+    },
+    "2017-04": {
+     "price": 3033,
+     "districts_reporting": 1
+    },
+    "2017-05": {
+     "price": 2825,
+     "districts_reporting": 2
+    },
+    "2017-06": {
+     "price": 2750,
+     "districts_reporting": 2
+    },
+    "2017-07": {
+     "price": 2975,
+     "districts_reporting": 1
+    },
+    "2017-08": {
+     "price": 2800,
+     "districts_reporting": 1
+    },
+    "2017-09": {
+     "price": 3793,
+     "districts_reporting": 1
+    },
+    "2017-10": {
+     "price": 3671,
+     "districts_reporting": 1
+    },
+    "2017-11": {
+     "price": 2889,
+     "districts_reporting": 1
+    },
+    "2017-12": {
+     "price": 3100,
+     "districts_reporting": 1
+    },
+    "2018-01": {
+     "price": 2375,
+     "districts_reporting": 1
+    },
+    "2018-02": {
+     "price": 2800,
+     "districts_reporting": 1
+    },
+    "2018-03": {
+     "price": 2250,
+     "districts_reporting": 1
+    },
+    "2018-04": {
+     "price": 1325,
+     "districts_reporting": 2
+    },
+    "2018-05": {
+     "price": 968,
+     "districts_reporting": 1
+    },
+    "2018-06": {
+     "price": 1530,
+     "districts_reporting": 2
+    },
+    "2018-07": {
+     "price": 900,
+     "districts_reporting": 1
+    },
+    "2018-08": {
+     "price": 1814,
+     "districts_reporting": 1
+    },
+    "2018-09": {
+     "price": 2319,
+     "districts_reporting": 2
+    },
+    "2018-10": {
+     "price": 1271,
+     "districts_reporting": 1
+    },
+    "2018-11": {
+     "price": 1975,
+     "districts_reporting": 1
+    },
+    "2018-12": {
+     "price": 1855,
+     "districts_reporting": 2
+    },
+    "2019-01": {
+     "price": 1800,
+     "districts_reporting": 2
+    },
+    "2019-02": {
+     "price": 1850,
+     "districts_reporting": 2
+    },
+    "2019-03": {
+     "price": 1783,
+     "districts_reporting": 2
+    },
+    "2019-04": {
+     "price": 1640,
+     "districts_reporting": 2
+    },
+    "2019-05": {
+     "price": 3740,
+     "districts_reporting": 1
+    },
+    "2019-06": {
+     "price": 4000,
+     "districts_reporting": 1
+    },
+    "2019-07": {
+     "price": 3750,
+     "districts_reporting": 2
+    },
+    "2019-08": {
+     "price": 4333,
+     "districts_reporting": 2
+    },
+    "2019-10": {
+     "price": 900,
+     "districts_reporting": 1
+    },
+    "2019-11": {
+     "price": 5500,
+     "districts_reporting": 2
+    },
+    "2020-01": {
+     "price": 8000,
+     "districts_reporting": 1
+    },
+    "2020-02": {
+     "price": 8000,
+     "districts_reporting": 1
+    },
+    "2020-03": {
+     "price": 5833,
+     "districts_reporting": 1
+    },
+    "2020-04": {
+     "price": 3875,
+     "districts_reporting": 1
+    },
+    "2020-05": {
+     "price": 3600,
+     "districts_reporting": 1
+    },
+    "2020-06": {
+     "price": 4000,
+     "districts_reporting": 1
+    },
+    "2020-07": {
+     "price": 9000,
+     "districts_reporting": 1
+    },
+    "2020-08": {
+     "price": 6500,
+     "districts_reporting": 1
+    },
+    "2020-09": {
+     "price": 8000,
+     "districts_reporting": 1
+    },
+    "2020-10": {
+     "price": 5833,
+     "districts_reporting": 1
+    },
+    "2020-11": {
+     "price": 5000,
+     "districts_reporting": 1
+    },
+    "2020-12": {
+     "price": 6400,
+     "districts_reporting": 2
+    },
+    "2021-01": {
+     "price": 5157,
+     "districts_reporting": 2
+    },
+    "2021-02": {
+     "price": 7000,
+     "districts_reporting": 1
+    },
+    "2021-03": {
+     "price": 3685,
+     "districts_reporting": 2
+    },
+    "2021-04": {
+     "price": 3313,
+     "districts_reporting": 2
+    },
+    "2021-05": {
+     "price": 3425,
+     "districts_reporting": 2
+    },
+    "2021-06": {
+     "price": 4260,
+     "districts_reporting": 1
+    },
+    "2021-07": {
+     "price": 5000,
+     "districts_reporting": 2
+    },
+    "2021-08": {
+     "price": 4000,
+     "districts_reporting": 1
+    },
+    "2021-09": {
+     "price": 4909,
+     "districts_reporting": 1
+    },
+    "2021-10": {
+     "price": 4967,
+     "districts_reporting": 1
+    },
+    "2021-11": {
+     "price": 4750,
+     "districts_reporting": 1
+    },
+    "2021-12": {
+     "price": 4700,
+     "districts_reporting": 1
+    },
+    "2022-01": {
+     "price": 3071,
+     "districts_reporting": 1
+    },
+    "2022-02": {
+     "price": 2467,
+     "districts_reporting": 2
+    },
+    "2022-03": {
+     "price": 2346,
+     "districts_reporting": 2
+    },
+    "2022-04": {
+     "price": 1572,
+     "districts_reporting": 2
+    },
+    "2022-05": {
+     "price": 1103,
+     "districts_reporting": 2
+    },
+    "2022-06": {
+     "price": 1308,
+     "districts_reporting": 2
+    },
+    "2022-07": {
+     "price": 600,
+     "districts_reporting": 1
+    },
+    "2022-08": {
+     "price": 1544,
+     "districts_reporting": 2
+    },
+    "2022-09": {
+     "price": 1250,
+     "districts_reporting": 2
+    },
+    "2022-10": {
+     "price": 1074,
+     "districts_reporting": 2
+    },
+    "2022-11": {
+     "price": 982,
+     "districts_reporting": 2
+    },
+    "2022-12": {
+     "price": 743,
+     "districts_reporting": 2
+    },
+    "2023-01": {
+     "price": 759,
+     "districts_reporting": 2
+    },
+    "2023-02": {
+     "price": 847,
+     "districts_reporting": 2
+    },
+    "2023-03": {
+     "price": 1649,
+     "districts_reporting": 2
+    },
+    "2023-04": {
+     "price": 1949,
+     "districts_reporting": 2
+    },
+    "2023-05": {
+     "price": 2020,
+     "districts_reporting": 2
+    },
+    "2023-06": {
+     "price": 2436,
+     "districts_reporting": 2
+    },
+    "2023-07": {
+     "price": 3290,
+     "districts_reporting": 2
+    },
+    "2023-08": {
+     "price": 9250,
+     "districts_reporting": 1
+    },
+    "2023-09": {
+     "price": 9575,
+     "districts_reporting": 1
+    },
+    "2023-10": {
+     "price": 5820,
+     "districts_reporting": 2
+    },
+    "2023-11": {
+     "price": 9684,
+     "districts_reporting": 1
+    },
+    "2023-12": {
+     "price": 12729,
+     "districts_reporting": 1
+    },
+    "2024-01": {
+     "price": 7000,
+     "districts_reporting": 1
+    },
+    "2024-02": {
+     "price": 8000,
+     "districts_reporting": 1
+    },
+    "2024-03": {
+     "price": 5847,
+     "districts_reporting": 1
+    },
+    "2024-04": {
+     "price": 5852,
+     "districts_reporting": 1
+    },
+    "2024-05": {
+     "price": 5474,
+     "districts_reporting": 2
+    },
+    "2024-06": {
+     "price": 5521,
+     "districts_reporting": 2
+    },
+    "2024-07": {
+     "price": 6304,
+     "districts_reporting": 1
+    },
+    "2024-08": {
+     "price": 7328,
+     "districts_reporting": 1
+    },
+    "2024-09": {
+     "price": 16200,
+     "districts_reporting": 1
+    },
+    "2024-10": {
+     "price": 11910,
+     "districts_reporting": 1
+    },
+    "2024-11": {
+     "price": 13006,
+     "districts_reporting": 1
+    },
+    "2024-12": {
+     "price": 13693,
+     "districts_reporting": 1
+    },
+    "2025-01": {
+     "price": 12850,
+     "districts_reporting": 1
+    },
+    "2025-02": {
+     "price": 10600,
+     "districts_reporting": 1
+    },
+    "2025-03": {
+     "price": 4314,
+     "districts_reporting": 1
+    },
+    "2025-04": {
+     "price": 4255,
+     "districts_reporting": 1
+    },
+    "2025-05": {
+     "price": 4004,
+     "districts_reporting": 2
+    },
+    "2025-06": {
+     "price": 3560,
+     "districts_reporting": 2
+    },
+    "2025-07": {
+     "price": 3427,
+     "districts_reporting": 2
+    },
+    "2025-08": {
+     "price": 4606,
+     "districts_reporting": 2
+    },
+    "2025-09": {
+     "price": 3376,
+     "districts_reporting": 3
+    },
+    "2025-10": {
+     "price": 3408,
+     "districts_reporting": 3
+    }
+   }
+  },
+  "Linseed": {
+   "ceda_commodity": "Linseed",
+   "ceda_id": 67,
+   "mp": {
+    "2016-01": 4331,
+    "2016-02": 4115,
+    "2016-03": 4380,
+    "2016-04": 4892,
+    "2016-05": 6426,
+    "2016-06": 6307,
+    "2016-07": 6609,
+    "2016-08": 6347,
+    "2016-09": 5959,
+    "2016-10": 6060,
+    "2016-11": 5439,
+    "2016-12": 5203,
+    "2017-01": 5105,
+    "2017-02": 4414,
+    "2017-03": 4123,
+    "2017-04": 4094,
+    "2017-05": 3824,
+    "2017-06": 3631,
+    "2017-07": 3739,
+    "2017-08": 3980,
+    "2017-09": 3994,
+    "2017-10": 3946,
+    "2017-11": 3694,
+    "2017-12": 3786,
+    "2018-01": 3636,
+    "2018-02": 3665,
+    "2018-03": 3485,
+    "2018-04": 3355,
+    "2018-05": 3394,
+    "2018-06": 3552,
+    "2018-07": 3693,
+    "2018-08": 3888,
+    "2018-09": 3784,
+    "2018-10": 3740,
+    "2018-11": 3769,
+    "2018-12": 3748,
+    "2019-01": 3857,
+    "2019-02": 3798,
+    "2019-03": 3782,
+    "2019-04": 3961,
+    "2019-05": 4274,
+    "2019-06": 4186,
+    "2019-07": 4241,
+    "2019-08": 4286,
+    "2019-09": 4204,
+    "2019-10": 4340,
+    "2019-11": 4640,
+    "2019-12": 4819,
+    "2020-01": 4897,
+    "2020-02": 4239,
+    "2020-03": 4027,
+    "2020-04": 4153,
+    "2020-05": 4171,
+    "2020-06": 4286,
+    "2020-07": 4560,
+    "2020-08": 5045,
+    "2020-09": 5021,
+    "2020-10": 5074,
+    "2020-11": 5002,
+    "2020-12": 4995,
+    "2021-01": 5008,
+    "2021-02": 5027,
+    "2021-03": 5360,
+    "2021-04": 6763,
+    "2021-05": 6200,
+    "2021-06": 6507,
+    "2021-07": 6763,
+    "2021-08": 7361,
+    "2021-09": 7525,
+    "2021-10": 7537,
+    "2021-11": 8102,
+    "2021-12": 8105,
+    "2022-01": 8113,
+    "2022-02": 7779,
+    "2022-03": 7702,
+    "2022-04": 6657,
+    "2022-05": 6426,
+    "2022-06": 6137,
+    "2022-07": 5870,
+    "2022-08": 6012,
+    "2022-09": 5661,
+    "2022-10": 5788,
+    "2022-11": 5982,
+    "2022-12": 5698,
+    "2023-01": 5534,
+    "2023-02": 5083,
+    "2023-03": 4872,
+    "2023-04": 4496,
+    "2023-05": 4283,
+    "2023-06": 4293,
+    "2023-07": 4656,
+    "2023-08": 4825,
+    "2023-09": 5277,
+    "2023-10": 5053,
+    "2023-11": 5341,
+    "2023-12": 5436,
+    "2024-01": 4850,
+    "2024-02": 4790,
+    "2024-03": 4938,
+    "2024-04": 5005,
+    "2024-05": 5666,
+    "2024-06": 5720,
+    "2024-07": 5576,
+    "2024-08": 5542,
+    "2024-09": 5704,
+    "2024-10": 5786,
+    "2024-11": 5755,
+    "2024-12": 5711,
+    "2025-01": 5724,
+    "2025-02": 5813,
+    "2025-03": 5666,
+    "2025-04": 6312,
+    "2025-05": 6714,
+    "2025-06": 6763,
+    "2025-07": 6969,
+    "2025-08": 7331,
+    "2025-09": 7226,
+    "2025-10": 7223
+   },
+   "sagar_division": {
+    "2016-01": {
+     "price": 4175,
+     "districts_reporting": 2
+    },
+    "2016-02": {
+     "price": 3949,
+     "districts_reporting": 2
+    },
+    "2016-03": {
+     "price": 4103,
+     "districts_reporting": 2
+    },
+    "2016-04": {
+     "price": 4832,
+     "districts_reporting": 2
+    },
+    "2016-05": {
+     "price": 6786,
+     "districts_reporting": 2
+    },
+    "2016-06": {
+     "price": 6440,
+     "districts_reporting": 2
+    },
+    "2016-07": {
+     "price": 6954,
+     "districts_reporting": 2
+    },
+    "2016-08": {
+     "price": 7000,
+     "districts_reporting": 1
+    },
+    "2016-09": {
+     "price": 5818,
+     "districts_reporting": 2
+    },
+    "2016-10": {
+     "price": 5933,
+     "districts_reporting": 1
+    },
+    "2016-11": {
+     "price": 6070,
+     "districts_reporting": 1
+    },
+    "2016-12": {
+     "price": 4991,
+     "districts_reporting": 2
+    },
+    "2017-01": {
+     "price": 4799,
+     "districts_reporting": 3
+    },
+    "2017-02": {
+     "price": 4680,
+     "districts_reporting": 2
+    },
+    "2017-03": {
+     "price": 3708,
+     "districts_reporting": 3
+    },
+    "2017-04": {
+     "price": 3733,
+     "districts_reporting": 3
+    },
+    "2017-05": {
+     "price": 3481,
+     "districts_reporting": 3
+    },
+    "2017-06": {
+     "price": 3749,
+     "districts_reporting": 3
+    },
+    "2017-07": {
+     "price": 3705,
+     "districts_reporting": 3
+    },
+    "2017-08": {
+     "price": 4189,
+     "districts_reporting": 4
+    },
+    "2017-09": {
+     "price": 4082,
+     "districts_reporting": 3
+    },
+    "2017-10": {
+     "price": 3899,
+     "districts_reporting": 3
+    },
+    "2017-11": {
+     "price": 3744,
+     "districts_reporting": 2
+    },
+    "2017-12": {
+     "price": 3763,
+     "districts_reporting": 1
+    },
+    "2018-01": {
+     "price": 3981,
+     "districts_reporting": 3
+    },
+    "2018-02": {
+     "price": 3820,
+     "districts_reporting": 3
+    },
+    "2018-03": {
+     "price": 3886,
+     "districts_reporting": 2
+    },
+    "2018-04": {
+     "price": 3534,
+     "districts_reporting": 2
+    },
+    "2018-05": {
+     "price": 3357,
+     "districts_reporting": 3
+    },
+    "2018-06": {
+     "price": 3718,
+     "districts_reporting": 3
+    },
+    "2018-07": {
+     "price": 3928,
+     "districts_reporting": 3
+    },
+    "2018-08": {
+     "price": 4002,
+     "districts_reporting": 2
+    },
+    "2018-09": {
+     "price": 3726,
+     "districts_reporting": 3
+    },
+    "2018-10": {
+     "price": 3757,
+     "districts_reporting": 3
+    },
+    "2018-11": {
+     "price": 3702,
+     "districts_reporting": 3
+    },
+    "2018-12": {
+     "price": 3941,
+     "districts_reporting": 4
+    },
+    "2019-01": {
+     "price": 3935,
+     "districts_reporting": 3
+    },
+    "2019-02": {
+     "price": 3887,
+     "districts_reporting": 4
+    },
+    "2019-03": {
+     "price": 3744,
+     "districts_reporting": 3
+    },
+    "2019-04": {
+     "price": 4128,
+     "districts_reporting": 3
+    },
+    "2019-05": {
+     "price": 4496,
+     "districts_reporting": 3
+    },
+    "2019-06": {
+     "price": 4588,
+     "districts_reporting": 3
+    },
+    "2019-07": {
+     "price": 4464,
+     "districts_reporting": 2
+    },
+    "2019-08": {
+     "price": 4652,
+     "districts_reporting": 3
+    },
+    "2019-09": {
+     "price": 4600,
+     "districts_reporting": 2
+    },
+    "2019-10": {
+     "price": 4579,
+     "districts_reporting": 3
+    },
+    "2019-11": {
+     "price": 4879,
+     "districts_reporting": 2
+    },
+    "2019-12": {
+     "price": 4797,
+     "districts_reporting": 3
+    },
+    "2020-01": {
+     "price": 4772,
+     "districts_reporting": 3
+    },
+    "2020-02": {
+     "price": 4698,
+     "districts_reporting": 2
+    },
+    "2020-03": {
+     "price": 4035,
+     "districts_reporting": 1
+    },
+    "2020-06": {
+     "price": 4266,
+     "districts_reporting": 1
+    },
+    "2020-07": {
+     "price": 4455,
+     "districts_reporting": 2
+    },
+    "2020-08": {
+     "price": 5002,
+     "districts_reporting": 2
+    },
+    "2020-09": {
+     "price": 5102,
+     "districts_reporting": 1
+    },
+    "2020-10": {
+     "price": 5228,
+     "districts_reporting": 2
+    },
+    "2020-11": {
+     "price": 5225,
+     "districts_reporting": 2
+    },
+    "2021-01": {
+     "price": 4986,
+     "districts_reporting": 1
+    },
+    "2021-02": {
+     "price": 5187,
+     "districts_reporting": 2
+    },
+    "2021-03": {
+     "price": 5110,
+     "districts_reporting": 2
+    },
+    "2021-04": {
+     "price": 6583,
+     "districts_reporting": 2
+    },
+    "2021-06": {
+     "price": 6643,
+     "districts_reporting": 3
+    },
+    "2021-07": {
+     "price": 6888,
+     "districts_reporting": 3
+    },
+    "2021-08": {
+     "price": 7591,
+     "districts_reporting": 3
+    },
+    "2021-09": {
+     "price": 7518,
+     "districts_reporting": 3
+    },
+    "2021-10": {
+     "price": 7631,
+     "districts_reporting": 3
+    },
+    "2021-11": {
+     "price": 8479,
+     "districts_reporting": 3
+    },
+    "2021-12": {
+     "price": 8135,
+     "districts_reporting": 2
+    },
+    "2022-01": {
+     "price": 8065,
+     "districts_reporting": 3
+    },
+    "2022-02": {
+     "price": 7766,
+     "districts_reporting": 2
+    },
+    "2022-03": {
+     "price": 7344,
+     "districts_reporting": 2
+    },
+    "2022-04": {
+     "price": 6450,
+     "districts_reporting": 4
+    },
+    "2022-05": {
+     "price": 5812,
+     "districts_reporting": 3
+    },
+    "2022-06": {
+     "price": 6518,
+     "districts_reporting": 2
+    },
+    "2022-07": {
+     "price": 6236,
+     "districts_reporting": 2
+    },
+    "2022-08": {
+     "price": 5100,
+     "districts_reporting": 3
+    },
+    "2022-09": {
+     "price": 6195,
+     "districts_reporting": 2
+    },
+    "2022-10": {
+     "price": 6345,
+     "districts_reporting": 2
+    },
+    "2022-11": {
+     "price": 6525,
+     "districts_reporting": 2
+    },
+    "2022-12": {
+     "price": 6230,
+     "districts_reporting": 2
+    },
+    "2023-01": {
+     "price": 4878,
+     "districts_reporting": 3
+    },
+    "2023-02": {
+     "price": 4459,
+     "districts_reporting": 3
+    },
+    "2023-03": {
+     "price": 4987,
+     "districts_reporting": 3
+    },
+    "2023-04": {
+     "price": 4844,
+     "districts_reporting": 2
+    },
+    "2023-05": {
+     "price": 3712,
+     "districts_reporting": 3
+    },
+    "2023-06": {
+     "price": 4614,
+     "districts_reporting": 2
+    },
+    "2023-07": {
+     "price": 3705,
+     "districts_reporting": 3
+    },
+    "2023-08": {
+     "price": 5037,
+     "districts_reporting": 2
+    },
+    "2023-09": {
+     "price": 5236,
+     "districts_reporting": 2
+    },
+    "2023-10": {
+     "price": 4902,
+     "districts_reporting": 2
+    },
+    "2023-11": {
+     "price": 4897,
+     "districts_reporting": 2
+    },
+    "2023-12": {
+     "price": 5032,
+     "districts_reporting": 2
+    },
+    "2024-02": {
+     "price": 4790,
+     "districts_reporting": 1
+    },
+    "2024-03": {
+     "price": 5075,
+     "districts_reporting": 1
+    },
+    "2024-04": {
+     "price": 5312,
+     "districts_reporting": 1
+    },
+    "2024-05": {
+     "price": 5925,
+     "districts_reporting": 1
+    },
+    "2024-06": {
+     "price": 5768,
+     "districts_reporting": 1
+    },
+    "2024-07": {
+     "price": 5677,
+     "districts_reporting": 2
+    },
+    "2024-08": {
+     "price": 5580,
+     "districts_reporting": 2
+    },
+    "2024-09": {
+     "price": 5948,
+     "districts_reporting": 3
+    },
+    "2024-10": {
+     "price": 5767,
+     "districts_reporting": 3
+    },
+    "2024-11": {
+     "price": 5866,
+     "districts_reporting": 2
+    },
+    "2024-12": {
+     "price": 6045,
+     "districts_reporting": 2
+    },
+    "2025-01": {
+     "price": 5856,
+     "districts_reporting": 4
+    },
+    "2025-02": {
+     "price": 6175,
+     "districts_reporting": 2
+    },
+    "2025-03": {
+     "price": 5758,
+     "districts_reporting": 2
+    },
+    "2025-04": {
+     "price": 6667,
+     "districts_reporting": 2
+    },
+    "2025-05": {
+     "price": 7098,
+     "districts_reporting": 2
+    },
+    "2025-06": {
+     "price": 5979,
+     "districts_reporting": 3
+    },
+    "2025-07": {
+     "price": 7133,
+     "districts_reporting": 2
+    },
+    "2025-08": {
+     "price": 7283,
+     "districts_reporting": 2
+    },
+    "2025-09": {
+     "price": 7257,
+     "districts_reporting": 2
+    },
+    "2025-10": {
+     "price": 7141,
+     "districts_reporting": 2
+    }
+   }
+  }
+ }
+}

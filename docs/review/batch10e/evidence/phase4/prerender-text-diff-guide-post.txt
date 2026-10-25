@@ -1,0 +1,7 @@
+CHANGED: routes 268/268 compared, missing 0, added 0; routes with removals 22, with only additions 1; words −8117 +1261; lines −1495 +533; head lines changed 22; data lines excluded (base) 424
+
+Phase 4 route (the only one this phase touches):
+/guide/post
+  lines added:   "कब से उपलब्ध है, यह भरना ज़रूरी है। \"आज\", \"कल\", \"परसों\" दबाइए या \"तारीख़ चुनें\"। कब तक का पता न हो तो \"जब तक चाहें\" रहने दीजिए। तारीख़ देखकर खरीदार पहले से योजना बना पाते हैं।", "\"फोटो जोड़ें\" दबाकर फ़ोन से मशीन की फोटो चुनिए। साफ़ फोटो वाली लिस्टिंग पर ज़्यादा कॉल आते हैं। (इस डेमो में कुछ अपलोड नहीं होता।)", "15", "16"
+
+All other routes in the diff: earlier phases (2D /msp data+labels, 3A /guide/register e-mail/password removed) and the known loading-state captures (decision 14); none comes from Phase 4.

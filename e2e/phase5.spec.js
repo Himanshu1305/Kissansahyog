@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone, postStep1 } from './support.js'
+import { adminClient, testPhone, postStep1, pickTodayIfAsked, tickAllConsents } from './support.js'
 
 // REWRITTEN (legacy-cleanup). Adds the source step and the mandatory rules checkbox;
 // validation copy ("must be 1 or more", "cannot be after") is unchanged. The blank-rate
@@ -38,10 +38,11 @@ test('labor OFFER with blank rate renders cleanly (no undefined)', async ({ page
   await page.getByLabel('Number of workers').fill('8')
   await page.getByLabel('Type of work').selectOption({ label: 'Harvesting' })
   // Leave rate basis + rate amount blank (optional).
+  await pickTodayIfAsked(page) // 10E 3C: labor needs a start date
   await page.getByTestId('post-next').click() // → step 3
 
   await page.locator('#f_asset_village').fill('Khurai')
-  await page.getByTestId('rules-agree-checkbox').check()
+  await tickAllConsents(page) // 6B/9B consent checklist
   await page.getByTestId('post-submit').click()
   await page.getByRole('button', { name: 'View listing' }).click()
 
@@ -61,14 +62,17 @@ test('labor rejects zero workers', async ({ page }) => {
   await expect(page.getByText(/must be 1 or more/)).toBeVisible()
 })
 
+// Batch 10E (3C): the shared date block ("Available from" mandatory, "Until when (optional)") replaced
+// the old From / To date fields; the end date may not be before the start date.
 test('labor rejects from-date after to-date', async ({ page }) => {
   const user = await makeUser()
   await loginAs(page, user)
   await postStep1(page, 'offer', 'labor')
   await page.getByLabel('Number of workers').waitFor({ timeout: 8000 })
   await page.getByLabel('Number of workers').fill('3')
-  await page.getByLabel('From date').fill('2026-10-20')
-  await page.getByLabel('To date').fill('2026-10-01')
+  const day = (n) => new Date(Date.now() + 330 * 60000 + n * 86400000).toISOString().slice(0, 10) // IST day + n
+  await page.locator('#f_available_from').fill(day(20))
+  await page.locator('#f_available_to').fill(day(5))
   await page.getByTestId('post-next').click()
-  await expect(page.getByText(/cannot be after/)).toBeVisible()
+  await expect(page.getByTestId('post-dates').getByText('The end date cannot be before the start date')).toBeVisible()
 })

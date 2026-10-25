@@ -1,0 +1,155 @@
+### HEAD
+title: मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्ट
+description: soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए
+canonical: https://kissansahyog.com/sawaal/mere-kheta-mitti-kaali-chikani-soyaabina-bone
+robots: 
+lang: hi
+h1: मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ?
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://kissansahyog.com/"},{"@type":"ListItem","position":2,"name":"किसान सवाल — आपके सवाल, हमारे जवाब","item":"https://kissansahyog.com/sawaal"},{"@type":"ListItem","position":3,"name":"मिट्टी","item":"https://kissansahyog.com/sawaal/vishay/soil"},{"@type":"ListItem","position":4,"name":"मेरे खेत की मिट्टी काली-चिकनी है, सोयाबी"}]}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"QAPage","mainEntity":{"@type":"Question","name":"मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ?","acceptedAnswer":{"@type":"Answer","text":"soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए खाद की मात्रा बताता है। यह हर दो साल में मुफ़्त मिलता है।"}}}
+--- end jsonld ---
+--- jsonld 3 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 4 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+होम
+/
+किसान सवाल — आपके सवाल, हमारे जवाब
+/
+मिट्टी
+/
+मेरे खेत की मिट्टी काली-चिकनी है, सोयाबी
+मिट्टी
+मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ?
+संक्षेप में
+soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए खाद की मात्रा बताता है। यह हर दो साल में मुफ़्त मिलता है।
+सॉयल हेल्थ कार्ड (SHC) एक रिपोर्ट कार्ड है, जो मिट्टी की स्थिति 12 मापदंडों पर बताता है। यह किसानों को हर दो साल में मुफ़्त दिया जाता है।
+[1]
+,
+[2]
+कार्ड क्या बताता है
+12 मापदंड: N, P, K (मुख्य पोषक), S (गौण), Zn, Cu, Fe, Bo, Mn (सूक्ष्म पोषक), और pH, OC, EC (भौतिक गुण)।
+[2]
+कार्ड फसल के लिए खाद की मात्रा की सलाह भी देता है।
+[1]
+,
+[2]
+क्या करें (जाँच कैसे कराएँ)
+soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि विज्ञान केंद्र (KVK)/ब्लॉक कृषि कार्यालय पर मिट्टी जाँच का अनुरोध करें।
+[1]
+कृषि कर्मचारी खेत से मिट्टी का नमूना लेते हैं और प्रयोगशाला में जाँच होती है।
+[1]
+कार्ड में लिखी सलाह के अनुसार सोयाबीन में खाद डालें।
+[1]
+,
+[2]
+रोकथाम
+हर दो साल में मिट्टी जाँच कराएँ, ताकि पोषक तत्वों का सही संतुलन बना रहे।
+[1]
+कहाँ संपर्क करें
+नमूना लेने के सही तरीके और गहराई के लिए KVK सागर या ब्लॉक कृषि कार्यालय से पूछें।
+[1]
+स्रोत
+[1]
+Soil Health Card — launched 19 Feb 2015; issued every two years; provided free
+सरकारी स्रोत
+— Press Information Bureau (PIB) — Celebrating a Decade of Soil Health Cards, 2025-02-18
+[2]
+Soil Health Card — the 12 parameters (N, P, K, S, Zn, Fe, Cu, Mn, B, pH, EC, OC)
+सरकारी स्रोत
+— Press Information Bureau (PIB) — Soil Health Card Factsheet, n.d.
+KVK सागर या कृषि कार्यालय से कब संपर्क करें
+अगर समस्या बढ़ रही हो या पहचान में शक हो, तो नज़दीकी कृषि विज्ञान केंद्र (KVK) सागर या ब्लॉक कृषि कार्यालय से संपर्क करें। संपर्क जानकारी के लिए संसाधन पेज देखें।
+उपयोगी संपर्क →
+WhatsApp पर शेयर करें
+इनसे जुड़े सवाल
+❓
+Soil Health Card कितनी भाषाओं में बन सकता है?
+❓
+Soil Health Card में क्या जानकारी मिलती है?
+❓
+Soil Health Card portal में recommendation कैसे बनती है?
+❓
+मिट्टी की जांच कैसे कराएं और कार्ड कैसे पढ़ें?
+❓
+सॉयल हेल्थ कार्ड (मृदा स्वास्थ्य कार्ड) क्या है?
+इससे जुड़ी सेवाएँ
+👨‍🌾
+विशेषज्ञ
+🧪
+बीज, खाद व दवा
+🚁
+ड्रोन दीदी छिड़काव
+📞
+KVK व कृषि संपर्क
+और जानकारी
+किसान सवाल
+सरकारी योजनाएं
+ज़रूरी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

@@ -1,0 +1,8 @@
+{
+  "patterns": ["FATAL EXCEPTION", "ANR in", "has died", "StrictMode", "WebView crash"],
+  "files": {
+    "logs/logcat-results-staging-dev1.txt": { "FATAL EXCEPTION": 0, "ANR in": 0, "has died": 0, "StrictMode": 0, "WebView crash": 0 },
+    "logs/logcat-results-staging-run1.txt (partial: S1-S3 + part of S10)": { "FATAL EXCEPTION": 0, "ANR in": 0, "has died": 1, "StrictMode": 0, "WebView crash": 0,
+      "has_died_lines": ["10-15 10:23:01.959 ActivityManager: Process android.process.acore (pid 1605) has died: cch+5 CEM — system cached-process kill, not our app"] }
+  }
+}

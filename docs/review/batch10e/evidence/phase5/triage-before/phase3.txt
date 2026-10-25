@@ -1,0 +1,53 @@
+
+Running 3 tests using 1 worker
+
+  x  1 [chromium] › e2e\phase3.spec.js:45:1 › land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals number (30.0s)
+  x  2 [chromium] › e2e\phase3.spec.js:72:1 › land REQUIREMENT: 3-step flow, single confirm checkbox (30.0s)
+  ok 3 [chromium] › e2e\phase3.spec.js:89:1 › browse shows a nearby land listing and opens its detail (1.3s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase3.spec.js:45:1 › land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals number 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      53 |   await page.getByTestId('post-next').click() // → step 3
+      54 |
+    > 55 |   await page.locator('#f_asset_village').fill('Khurai')
+         |                                          ^
+      56 |   const submit = page.getByTestId('post-submit')
+      57 |   const confirm = page.getByTestId('rules-agree-checkbox') // one checkbox covers rules + ownership
+      58 |   await expect(submit).toBeDisabled()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase3.spec.js:55:42
+
+    Error Context: test-results\phase3-land-OFFER-3-step-f-eca40--submit-Call-reveals-number-chromium\error-context.md
+
+  2) [chromium] › e2e\phase3.spec.js:72:1 › land REQUIREMENT: 3-step flow, single confirm checkbox ─
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      79 |   await page.getByTestId('post-next').click() // price_type optional for requirements → straight on
+      80 |
+    > 81 |   await page.locator('#f_asset_village').fill('Khurai')
+         |                                          ^
+      82 |   // Only ONE checkbox on the confirm step now (rules + ownership combined).
+      83 |   await expect(page.getByRole('checkbox')).toHaveCount(1)
+      84 |   await page.getByTestId('rules-agree-checkbox').check()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase3.spec.js:81:42
+
+    Error Context: test-results\phase3-land-REQUIREMENT-3-step-flow-single-confirm-checkbox-chromium\error-context.md
+
+  2 failed
+    [chromium] › e2e\phase3.spec.js:45:1 › land OFFER: 3-step flow, confirm checkbox gates submit, Call reveals number 
+    [chromium] › e2e\phase3.spec.js:72:1 › land REQUIREMENT: 3-step flow, single confirm checkbox ──
+  1 passed (1.1m)

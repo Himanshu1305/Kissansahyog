@@ -1,0 +1,451 @@
+{
+ "area": "network",
+ "results": [
+  {
+   "at": "2026-10-15T07:26:36.657Z",
+   "id": "slow:2g:/",
+   "title": "/ on 2G-like (250 kbit/s, 800 ms), cold cache",
+   "status": "RAN-PASSED",
+   "detail": {
+    "wrongPageShownUntilMs": null,
+    "net": {
+     "requests": 7,
+     "totalKB": 34,
+     "biggest": {
+      "name": "PageShell-CKmWUWEB.js",
+      "kB": 15,
+      "ms": 4630,
+      "kbitPerS": 27
+     }
+    },
+    "realContentSelector": "a[href^=\"/msp/\"]",
+    "firstSomethingVisibleMs": 1479,
+    "firstRealContentMs": 1479,
+    "spinnerStillShownMsAfterContent": null,
+    "timeline": [
+     {
+      "t": 1479,
+      "h1": "आज किसान के लिए",
+      "real": true,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 6801,
+      "h1": "आज किसान के लिए",
+      "real": true,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 7827,
+      "h1": "आज किसान के लिए",
+      "real": true,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     }
+    ],
+    "lastSample": {
+     "t": 7827,
+     "h1": "आज किसान के लिए",
+     "real": true,
+     "root": 5203,
+     "body": 5216,
+     "spin": 0,
+     "skel": 0
+    },
+    "console": [],
+    "rule": "something visible (content or progress) within 10 s; no spinner/skeleton > 10 s after content; not more than 10 s of another page content under this URL"
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/network/slow-2g-home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:27:36.664Z",
+   "id": "slow:2g:/browse",
+   "title": "/browse on 2G-like (250 kbit/s, 800 ms), cold cache",
+   "status": "RAN-FAILED",
+   "detail": {
+    "wrongPageShownUntilMs": 43728,
+    "net": {
+     "requests": 44,
+     "totalKB": 927,
+     "biggest": {
+      "name": "cat-land.jpg",
+      "kB": 84,
+      "ms": 53138,
+      "kbitPerS": 13
+     }
+    },
+    "realContentSelector": "[data-testid=\"listing-card\"]",
+    "firstSomethingVisibleMs": 1478,
+    "firstRealContentMs": 52460,
+    "spinnerStillShownMsAfterContent": -519,
+    "timeline": [
+     {
+      "t": 1478,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 6745,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 11873,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 17025,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 22151,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 27284,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 32407,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 37554,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 42697,
+      "h1": "आज किसान के लिए",
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 47858,
+      "h1": null,
+      "real": false,
+      "spin": 1,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 52976,
+      "h1": "आस-पास खोजें",
+      "real": true,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 58112,
+      "h1": "आस-पास खोजें",
+      "real": true,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 58615,
+      "h1": "आस-पास खोजें",
+      "real": true,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     }
+    ],
+    "lastSample": {
+     "t": 58615,
+     "h1": "आस-पास खोजें",
+     "real": true,
+     "root": 1696,
+     "body": 1698,
+     "spin": 0,
+     "skel": 0
+    },
+    "console": [],
+    "rule": "something visible (content or progress) within 10 s; no spinner/skeleton > 10 s after content; not more than 10 s of another page content under this URL"
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/network/slow-2g-browse.jpg"
+  },
+  {
+   "at": "2026-10-15T07:28:10.265Z",
+   "id": "slow:edge:/",
+   "title": "/ on EDGE-like (240 kbit/s, 400 ms), cold cache",
+   "status": "RAN-PASSED",
+   "detail": {
+    "wrongPageShownUntilMs": null,
+    "net": {
+     "requests": 7,
+     "totalKB": 34,
+     "biggest": {
+      "name": "PageShell-CKmWUWEB.js",
+      "kB": 15,
+      "ms": 5425,
+      "kbitPerS": 23
+     }
+    },
+    "realContentSelector": "a[href^=\"/msp/\"]",
+    "firstSomethingVisibleMs": 1122,
+    "firstRealContentMs": 1122,
+    "spinnerStillShownMsAfterContent": null,
+    "timeline": [
+     {
+      "t": 514,
+      "h1": null,
+      "real": false,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 5707,
+      "h1": "आज किसान के लिए",
+      "real": true,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     },
+     {
+      "t": 7249,
+      "h1": "आज किसान के लिए",
+      "real": true,
+      "spin": 0,
+      "skel": 0,
+      "path": null
+     }
+    ],
+    "lastSample": {
+     "t": 7249,
+     "h1": "आज किसान के लिए",
+     "real": true,
+     "root": 5203,
+     "body": 5216,
+     "spin": 0,
+     "skel": 0
+    },
+    "console": [],
+    "rule": "something visible (content or progress) within 10 s; no spinner/skeleton > 10 s after content; not more than 10 s of another page content under this URL"
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/network/slow-edge-home.jpg"
+  },
+  {
+   "at": "2026-10-15T07:29:56.430Z",
+   "id": "drop:signup:after",
+   "title": "sign-up: server created the account but the answer was lost → message; after reconnect: no duplicate account, user can get in",
+   "status": "RAN-PASSED",
+   "detail": {
+    "serverStatusOfLostAnswer": 200,
+    "messageShown": "कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।",
+    "retry": null,
+    "emailLoginOk": true,
+    "phoneLoginOk": true,
+    "sameAccount": true,
+    "note": null
+   },
+   "evidence": [
+    "docs/review/batch9/evidence/phase5c/network/signup-S2-answer-lost.jpg",
+    "docs/review/batch9/evidence/phase5c/network/signup-S2-after-retry.jpg"
+   ]
+  },
+  {
+   "at": "2026-10-15T07:31:34.302Z",
+   "id": "drop:signup:before",
+   "title": "sign-up: connection lost while the profile is being created (app_register never reached) → message, retry after reconnect completes ONE account",
+   "status": "RAN-PASSED",
+   "detail": {
+    "messageShown": "कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।",
+    "sessionWhileOffline": false,
+    "requestCut": 1,
+    "retry": {
+     "registerStatus": 200,
+     "loggedIn": true,
+     "url": "/home",
+     "error": null
+    },
+    "emailLoginId": "cdfb9d05-d082-47dc-816c-38d22bfb4dd4",
+    "phoneLoginId": "cdfb9d05-d082-47dc-816c-38d22bfb4dd4",
+    "sameAccount": true,
+    "afterDrop": "form shown again with all data kept + generic message + offline banner; e-mail and mobile could NOT log in yet (auth user without profile)"
+   },
+   "evidence": [
+    "docs/review/batch9/evidence/phase5c/network/signup-S1-dropped.jpg",
+    "docs/review/batch9/evidence/phase5c/network/signup-S1-after-retry.jpg"
+   ]
+  },
+  {
+   "at": "2026-10-15T07:31:59.395Z",
+   "id": "drop:login:phone",
+   "title": "login by mobile: connection lost mid-request → message; retry after reconnect logs in",
+   "status": "RAN-PASSED",
+   "detail": {
+    "requestCut": 1,
+    "messageShown": "कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।",
+    "loggedInWhileOffline": false,
+    "loggedInAfterRetry": true
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/network/login-phone-dropped.jpg"
+  },
+  {
+   "at": "2026-10-15T07:32:11.391Z",
+   "id": "drop:login:email",
+   "title": "login by e-mail + password: connection lost mid-request → message; retry after reconnect logs in",
+   "status": "RAN-PASSED",
+   "detail": {
+    "requestCut": 1,
+    "messageShown": "कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।",
+    "loggedInWhileOffline": false,
+    "loggedInAfterRetry": true
+   },
+   "evidence": "docs/review/batch9/evidence/phase5c/network/login-email-dropped.jpg"
+  },
+  {
+   "at": "2026-10-15T07:33:03.176Z",
+   "id": "drop:reveal",
+   "title": "contact reveal: connection lost mid-request → message (no endless spinner); reveal works after reconnect",
+   "status": "RAN-PASSED",
+   "detail": {
+    "requestCut": 1,
+    "messageShown": "कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।",
+    "numberShownWhileOffline": false,
+    "spinnerLeft": false,
+    "numberShownAfterRetry": true,
+    "note": "viewer = throw-away KSTEST account; target = KEEP P1 listing (details SHOWN) — the contact-click counter on that listing went up by up to 2"
+   },
+   "evidence": [
+    "docs/review/batch9/evidence/phase5c/network/reveal-dropped.jpg",
+    "docs/review/batch9/evidence/phase5c/network/reveal-after-retry.jpg"
+   ]
+  },
+  {
+   "at": "2026-10-15T07:34:14.149Z",
+   "id": "drop:post:before",
+   "title": "post submit: connection lost before the server → message, retry after reconnect posts ONE listing",
+   "status": "RAN-PASSED",
+   "detail": {
+    "requestCut": 1,
+    "serverStatusOfLostAnswer": null,
+    "messageShown": "कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।",
+    "stillOnFormWhileOffline": true,
+    "retried": true,
+    "successAfterRetry": true,
+    "myListingsBefore": 0,
+    "myListingsAfter": 1,
+    "delta": 1,
+    "createCallsSeenByPage": [
+     {
+      "status": 200,
+      "id": "932fb10d-15dd-4617-892c-6c5ca57421dc"
+     }
+    ],
+    "listingIdsWithMarker": [
+     "932fb10d-15dd-4617-892c-6c5ca57421dc"
+    ]
+   },
+   "evidence": [
+    "docs/review/batch9/evidence/phase5c/network/post-before-dropped.jpg",
+    "docs/review/batch9/evidence/phase5c/network/post-before-after-retry.jpg"
+   ]
+  },
+  {
+   "at": "2026-10-15T07:34:42.062Z",
+   "id": "drop:post:after",
+   "title": "post submit: server created the listing but the answer was lost → message; retry must not create a second listing",
+   "status": "RAN-FAILED",
+   "detail": {
+    "requestCut": 1,
+    "serverStatusOfLostAnswer": 200,
+    "messageShown": "कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।",
+    "stillOnFormWhileOffline": true,
+    "retried": true,
+    "successAfterRetry": true,
+    "myListingsBefore": 1,
+    "myListingsAfter": 3,
+    "delta": 2,
+    "createCallsSeenByPage": [
+     {
+      "status": 200,
+      "id": "666ff01a-2628-4be6-a167-b6c688504fce"
+     }
+    ],
+    "listingIdsWithMarker": [
+     "e0b5f22c-f597-4a57-bddb-c5523c858aa3",
+     "666ff01a-2628-4be6-a167-b6c688504fce"
+    ]
+   },
+   "evidence": [
+    "docs/review/batch9/evidence/phase5c/network/post-after-dropped.jpg",
+    "docs/review/batch9/evidence/phase5c/network/post-after-after-retry.jpg"
+   ]
+  },
+  {
+   "at": "2026-10-15T07:35:10.800Z",
+   "id": "drop:post:photo",
+   "title": "post with photo: connection lost during the photo upload → message, retry posts ONE listing with the photo",
+   "status": "RAN-PASSED",
+   "detail": {
+    "requestCut": 1,
+    "serverStatusOfLostAnswer": null,
+    "messageShown": "कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।",
+    "stillOnFormWhileOffline": true,
+    "retried": true,
+    "successAfterRetry": true,
+    "myListingsBefore": 3,
+    "myListingsAfter": 4,
+    "delta": 1,
+    "createCallsSeenByPage": [
+     {
+      "status": 200,
+      "id": "70517023-2484-415e-9bc3-dbb6356f3194"
+     }
+    ],
+    "listingIdsWithMarker": [
+     "70517023-2484-415e-9bc3-dbb6356f3194"
+    ],
+    "photoOnListingAfterRetry": {
+     "imgElements": 1,
+     "photoRequests": 18
+    }
+   },
+   "evidence": [
+    "docs/review/batch9/evidence/phase5c/network/post-photo-dropped.jpg",
+    "docs/review/batch9/evidence/phase5c/network/post-photo-after-retry.jpg"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+flags before: otp_required=false, session_enforced=false ; public tables (other than the new one): 57 ; functions: 213 ; mandi_prices rows: 8740
+round 1: migration 0069 applied in 628 ms
+round 1: 6 parts applied in 4483 ms
+PASS  round 1: total rows = 2723 (got 2723)
+round 2: migration 0069 applied in 736 ms
+round 2: 6 parts applied in 4618 ms
+PASS  round 2: total rows = 2723 (got 2723)
+PASS  verify.sql total_rows matches (2723)
+PASS  verify.sql groups (24) match expected counts and month ranges
+per commodity and scope (months): Barley/mp=118, Barley/sagar_division=118, Garlic/mp=118, Garlic/sagar_division=116, Gram/mp=118, Gram/sagar_division=118, Lentil/mp=118, Lentil/sagar_division=118, Linseed/mp=118, Linseed/sagar_division=113, Maize/mp=118, Maize/sagar_division=94, Moong/mp=101, Moong/sagar_division=94, Mustard/mp=118, Mustard/sagar_division=118, Paddy(Dhan)(Common)/mp=118, Paddy(Dhan)(Common)/sagar_division=95, Soyabean/mp=118, Soyabean/sagar_division=118, Urad/mp=111, Urad/sagar_division=111, Wheat/mp=118, Wheat/sagar_division=118
+PASS  anon select works (HTTP 200 [{"commodity_en":"Gram","scope":"sagar_division","month":"2025-10-01","modal_pri)
+PASS  anon insert is refused (HTTP 401)
+PASS  anon delete is refused (HTTP 401)
+PASS  anon update is refused (HTTP 401)
+PASS  row check constraint: modal_price > 0
+PASS  no test row was left behind
+PASS  auth switches unchanged (otp_required=false, session_enforced=false)
+note: these are STAGING's own values, found like this and left alone (production runs otp_required=true, session_enforced=false; this script never sets a switch)
+PASS  every other public table still there (none added, none dropped)
+PASS  every function identical (none created, altered or dropped)
+PASS  mandi_prices untouched (same row count) (8740 -> 8740)
+RESULT: all passed

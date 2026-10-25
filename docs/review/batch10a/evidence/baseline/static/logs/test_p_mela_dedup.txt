@@ -1,0 +1,51 @@
+PASS normalizeState("MP") → Madhya Pradesh
+PASS normalizeState("M.P.") → Madhya Pradesh
+PASS normalizeState("M P") → Madhya Pradesh
+PASS normalizeState("मध्य प्रदेश") → Madhya Pradesh
+PASS normalizeState("म.प्र.") → Madhya Pradesh
+PASS normalizeState("madhya pradesh ") → Madhya Pradesh
+PASS normalizeState("Madhyapradesh") → Madhya Pradesh
+PASS normalizeState UP / उत्तर प्रदेश → Uttar Pradesh
+PASS legacy Orissa → Odisha
+PASS legacy Uttaranchal → Uttarakhand
+PASS legacy Pondicherry → Puducherry
+PASS Chandigarh (UT) → Chandigarh
+PASS pre-2020 Daman and Diu → merged UT
+PASS unmappable city name → null (NOT guessed)
+PASS empty / junk → null
+PASS 28 states + 8 UTs present
+PASS stateHindi maps en → hi
+PASS reverse-geocoded value normalizes like any other
+PASS periodWindow "Oct 2026" → full October
+PASS periodWindow "February–March 2027" spans both months
+PASS periodWindow with no year → null
+PASS Pantnagar: expected-Oct vs confirmed-3–6-Oct, diff venue wording → MERGE
+PASS MP vs Madhya Pradesh duplicates MERGE after normalization
+PASS private expo, one venue string fuller → MERGE (containment)
+PASS both venue-precision within 5km → MERGE on coordinates alone (2a)
+PASS PAU March vs September at the same venue → SEPARATE (2c)
+PASS PAU Ludhiana vs Faridkot (same org, same month, diff district) → SEPARATE (district gate)
+PASS two events same date, different districts → SEPARATE
+PASS same text, different state → SEPARATE (state_mismatch)
+PASS same-city CENTROID, same week, different events → SEPARATE (2a-i)
+PASS 2a-i: area-precision coords never trigger a location match
+PASS clusterByEvent: Pantnagar pair clusters, PAU March/Sept stay singletons
+PASS a split-apart pair is NOT re-clustered (exclusion honored)
+PASS pickSurvivor prefers confirmed over expected
+PASS planMerge unions source_urls (dedup)
+PASS planMerge fills blank survivor fields from the duplicate
+PASS planMerge adopts a confirmed date over the survivor expected one
+PASS merge: dup deactivated with merged_into (not deleted)
+PASS merge: U2 interest re-pointed to survivor
+PASS merge: U1 (already on survivor) NOT duplicated — no PK violation
+PASS merge: U1 conflict row preserved on the dup for a later split
+PASS merge: re-pointed interest records original_mela_id
+PASS merge: candidate back-reference re-pointed to survivor
+PASS dedupActiveMelas: 3 identical → 1 merge record with 2 merged-away
+PASS dedupActiveMelas: exactly 1 active survivor remains
+PASS dedupActiveMelas: survivor has all 3 source_urls combined
+PASS statesIn: only canonical names, no "MP"/"Chandigarh (UT)"
+PASS filterMelas matches a raw "MP" row under canonical "Madhya Pradesh"
+PASS digest window still selects a merged survivor in range (regression)
+
+49 passed, 0 failed

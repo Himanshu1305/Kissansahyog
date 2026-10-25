@@ -1,0 +1,16 @@
+﻿{"route":"/drone-didi","marker":true,"h1":"ड्रोन दीदी — महिला उद्यमी, आधुनिक तकनीक","loading":false,"entries":null}
+{"route":"/info","marker":true,"h1":"किसान की जानकारी","loading":false,"entries":null}
+{"route":"/kisan-mela","marker":true,"h1":"किसान मेला कैलेंडर","loading":true,"entries":null}
+{"route":"/safalta","marker":true,"h1":"किसान सफलता — जब किसान जीतता है","loading":false,"entries":null}
+{"route":"/sawaal","marker":true,"h1":"किसान सवाल — आपके सवाल, हमारे जवाब","loading":true,"entries":null}
+{"route":"/videos","marker":true,"h1":"खेती के वीडियो","loading":true,"entries":null}
+{"route":"/yojana/central","marker":true,"h1":"केंद्र सरकार की योजनाएं","loading":true,"entries":null}
+{"route":"/yojana/mp","marker":true,"h1":"मध्यप्रदेश सरकार की योजनाएं","loading":true,"entries":null}
+{"route":"/kisan-mela","sample":"असम","presentLive":true}
+{"route":"/sawaal","sample":"कीट (18)","presentLive":true}
+{"route":"/videos","sample":"बुवाई","presentLive":true}
+{"route":"/yojana/central","sample":"पीएम किसान सम्मान निधि","presentLive":true}
+{"route":"/yojana/mp","sample":"मुख्यमंत्री किसान कल्याण योजना","presentLive":true}
+{"route":"/drone-didi","sample":"यह योजना क्या है?","presentLive":true}
+{"route":"/info","sample":"डीएपी","presentLive":true}
+{"route":"/safalta","sample":"अपनी कहानी शेयर करें","presentLive":true}

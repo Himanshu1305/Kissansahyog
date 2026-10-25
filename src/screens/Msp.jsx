@@ -1,39 +1,51 @@
 // /msp and /msp/:crop — today's mandi price vs MSP, trend, wait-vs-sell calculator,
 // e-Uparjan/Bhavantar routes, per-crop pages. Never predicts prices.
 import { useEffect, useMemo, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import RelatedBoxes from '../components/RelatedBoxes'
 import WhatsAppJoin from '../components/WhatsAppJoin'
 import BackButton from '../components/BackButton'
 import { Spinner } from '../components/ui'
 import { CROPS, cropBySlug, cropName, defaultCropSlug } from '../content/crops'
-import { MONTHS_HI } from '../content/months'
-import { fetchMandiForCrop, fetchMandiHistory, fetchMandiMonthly, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
+import { MONTHS_HI, MONTHS_SHORT_EN, MONTHS_FULL_HI, MONTHS_FULL_EN } from '../content/months'
+import { fetchMandiForCrop, fetchMandiHistoryRows, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
 import { marketDistanceKm } from '../content/mandiCoords'
+import { windowInfo, windowStart, formatDay, formatDateFull } from '../lib/mandi/mspWindow'
+import { basketSeries } from '../lib/mandi/basket'
+import { fetchMonthlyHistory, monthOfYearAverages, harvestAverage, harvestByYear, gapVsAverage, latestMonth } from '../lib/mandi/history10y'
 import { fetchMsp } from '../lib/msp/mspApi'
-import { fetchHomeFeed, fetchPincode } from '../lib/listings/listingsApi'
-import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
+import { fetchHomeFeed } from '../lib/listings/listingsApi'
+import { useUserLocation } from '../lib/location/LocationProvider'
 import { fetchPageFaqs, fetchProcurement, fetchSiteSetting } from '../lib/pages/pagesApi'
-import { useAuth } from '../lib/auth/AuthProvider'
-import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TrendChart, MonthBars, JsonLd, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
+import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, MonthBars, JsonLd, PriceCell, StaleTag, priceStaleness, InfoTip } from '../components/pages/shared'
+import TrendChart from '../components/pages/TrendChart'
+import LastPriceBadge from '../components/pages/LastPriceBadge'
 import Seo from '../components/layout/Seo'
 import { PageShell } from '../components/layout'
+import OfflineStamp from '../components/OfflineStamp'
+import OfflineNotice from '../components/OfflineNotice'
+import CollapsibleSection from '../components/CollapsibleSection'
+import { useOfflineInfo } from '../lib/offline/useOffline'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
+// Batch 8B — resources behind the price table (app offline stamp / notice).
+const MANDI_RES = ['mandi_prices', 'msp_prices']
+// Batch 15B: the rabi crops that /fasal-salah/kam-pani covers (gram, lentil, mustard, wheat; barley has no /msp page).
+const KAM_PANI_CROPS = ['chana', 'masoor', 'sarson', 'gehun']
 const rs = (n) => `₹${Math.round(Number(n) || 0).toLocaleString('en-IN')}`
 const firstNum = (s) => { const m = String(s || '').replace(/,/g, '').match(/\d+(\.\d+)?/); return m ? Number(m[0]) : null }
 
 export default function Msp() {
   const { crop: cropParam } = useParams()
   const { t, lang } = useLang()
-  const { user } = useAuth()
   const navigate = useNavigate()
   const slug = cropBySlug(cropParam) ? cropParam : defaultCropSlug()
   const crop = cropBySlug(slug)
 
-  // Phase 2 — shared location (drives the Phase 3a nearby-mandi ranking).
-  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
-  const [center, setCenter] = useState(null) // { latitude, longitude } for ranking
+  // Batch 7L-1 — nearest-mandi ranking uses the shared location object. No location → no
+  // centre → the tables fall back to price order (distance is a label here, never a filter).
+  const { center } = useUserLocation()
   // Phase 3b — free mandi search (deliberately NOT geofenced).
   const [markets, setMarkets] = useState([])
   const [mandiQuery, setMandiQuery] = useState('')
@@ -48,9 +60,10 @@ export default function Msp() {
   const [pickWarn, setPickWarn] = useState(false)
 
   const [today, setToday] = useState(undefined) // { rows, date }
+  const mandiOffline = useOfflineInfo(MANDI_RES)
   const [mspRow, setMspRow] = useState(null)
-  const [history, setHistory] = useState([])
-  const [monthly, setMonthly] = useState([])
+  const [trend90, setTrend90] = useState(null) // { rows (90 days, one per mandi and day), scope } — 7/30 are slices of it
+  const [hist, setHist] = useState({ rows: [], scope: null }) // Batch 15A: 10 years of monthly Modal prices (mandi_monthly_history)
   const [faqs, setFaqs] = useState([])
   const [procurement, setProcurement] = useState([])
   const [storageRate, setStorageRate] = useState({ rate: 15, fromListings: false })
@@ -77,15 +90,34 @@ export default function Msp() {
     setToday(undefined)
     fetchMandiForCrop(crop.mandi_en).then((r) => alive && setToday(r)).catch(() => alive && setToday({ rows: [], date: null }))
     fetchMsp().then((rows) => { if (alive) setMspRow((rows || []).find((m) => m.crop_en === crop.msp_en) || null) }).catch(() => {})
-    fetchMandiMonthly(crop.mandi_en).then((r) => alive && setMonthly(r)).catch(() => {})
+    setHist({ rows: [], scope: null })
+    fetchMonthlyHistory(crop.mandi_en).then((r) => alive && setHist(r)).catch(() => {})
     return () => { alive = false }
   }, [slug])
 
+  // Batch 10E — one 90-day read per crop; the 7- and 30-day tabs are slices of it, so every
+  // tab can show the real date range it covers before it is opened.
+  // Batch 10F — the read keeps one row per mandi and day; each window gets its own stable-basket
+  // series (src/lib/mandi/basket.js), so a day when only a few mandis reported can no longer fake a
+  // rise or a fall. The chart, the trend sentence, the calculator and the WhatsApp text all use it.
   useEffect(() => {
     let alive = true
-    fetchMandiHistory(crop.mandi_en, trendDays).then((r) => alive && setHistory(r)).catch(() => {})
+    setTrend90(null)
+    fetchMandiHistoryRows(crop.mandi_en, 90).then((r) => alive && setTrend90(r)).catch(() => alive && setTrend90({ rows: [], scope: 'division' }))
     return () => { alive = false }
-  }, [slug, trendDays])
+  }, [slug])
+  const trendWins = useMemo(() => {
+    if (!trend90) return null
+    const out = {}
+    for (const d of [7, 30, 90]) {
+      const from = windowStart(d)
+      const b = basketSeries(trend90.rows.filter((r) => r.price_date >= from))
+      out[d] = { ...windowInfo(b.series, d, lang), few: b.few, skipped: b.skipped.length }
+    }
+    return out
+  }, [trend90, lang])
+  const win = trendWins ? trendWins[trendDays] : null
+  const history = win ? win.series : []
 
   // Mandi-name list for the search box (Phase 3b) — from DISTINCT market.
   useEffect(() => { fetchMandiMarkets().then(setMarkets).catch(() => setMarkets([])) }, [])
@@ -123,20 +155,6 @@ export default function Msp() {
     })
   }
 
-  // Mandi distance-ranking is VILLAGE-ANCHORED (Phase 1c): the center comes from the
-  // matched village, not raw GPS. When the user is out of the service area (matchedVillage
-  // null), there is no center — the table falls back to price-sort (rankedToday handles a
-  // null center). Distance is only ever a label here, never a filter.
-  useEffect(() => {
-    let alive = true
-    ;(async () => {
-      if (!loc.matchedVillage?.pincode) { if (alive) setCenter(null); return }
-      const p = await fetchPincode(loc.matchedVillage.pincode).catch(() => null)
-      if (alive) setCenter(p?.latitude != null ? { latitude: Number(p.latitude), longitude: Number(p.longitude) } : null)
-    })()
-    return () => { alive = false }
-  }, [loc])
-
   // Clear a previous search result when the crop changes.
   useEffect(() => { setMandiPick(null); setMandiQuery('') }, [slug])
 
@@ -172,28 +190,60 @@ export default function Msp() {
     return p.length ? p[Math.floor(p.length / 2)] : null
   }, [today])
 
+  // Batch 10F — the calculator and the WhatsApp text use the same corrected series as the chart: its
+  // latest point (date + number of mandis shown), falling back to today's plain median only when
+  // there is no series at all.
+  const latestPoint = history.length ? history[history.length - 1] : null
+  const calcPrice = latestPoint ? latestPoint.price : medianToday
+
   const trendSentence = useMemo(() => {
     if (history.length < 2) return null
     const diff = history[history.length - 1].price - history[0].price
     const key = diff >= 0 ? 'msp_trend_up' : 'msp_trend_down'
-    return t(key).replace('{n}', rs(Math.abs(diff))).replace('{d}', trendDays)
-  }, [history, trendDays, t])
+    return t(key).replace('{n}', rs(Math.abs(diff))).replace('{d}', trendDays).replace('{range}', win.range)
+  }, [history, win, trendDays, t])
 
-  // wait-vs-sell maths. diff = today's price − MSP (positive = above MSP).
-  const diff = msp && medianToday != null ? medianToday - msp : null
+  // wait-vs-sell maths. diff = the latest corrected price − MSP (positive = above MSP).
+  const diff = msp && calcPrice != null ? calcPrice - msp : null
   const belowMsp = diff != null && diff < 0
   const storageCost = storageRate.rate * months
   const totalShortfall = diff != null ? Math.abs(diff) * qty : null
 
-  // past years by month (only if >= 12 distinct months)
+  // Batch 15A: past years by month = the average Modal price of each calendar month over the last 5 years (a month
+  // with data in fewer than 3 of the 5 years is left out). Hidden when the history table has nothing (e.g. production
+  // before its data is loaded): the page then looks exactly as it did before.
   const monthBars = useMemo(() => {
-    if (!monthly.length) return null
-    const byMonth = {}
-    for (const r of monthly) { const m = new Date(r.date).getMonth(); (byMonth[m] ||= []).push(r.price) }
-    const distinct = Object.keys(byMonth).length
-    if (distinct < 12) return null
-    return Array.from({ length: 12 }, (_, m) => ({ label: MONTHS_HI[m], avg: byMonth[m] ? Math.round(byMonth[m].reduce((a, b) => a + b, 0) / byMonth[m].length) : 0 }))
-  }, [monthly])
+    if (!hist.rows.length) return null
+    const avgs = monthOfYearAverages(hist.rows)
+    if (!avgs.some((v) => v != null)) return null
+    const names = lang === 'hi' ? MONTHS_HI : MONTHS_SHORT_EN
+    const full = lang === 'hi' ? MONTHS_FULL_HI : MONTHS_FULL_EN
+    const have = avgs.map((v, i) => ({ v, i })).filter((x) => x.v != null).sort((x, y) => x.v - y.v)
+    const lo = have[0], hi = have[have.length - 1]
+    return {
+      bars: avgs.map((v, i) => ({ label: names[i], avg: v ?? 0 })),
+      high: { m: full[hi.i], p: rs(hi.v) }, low: { m: full[lo.i], p: rs(lo.v) },
+      until: latestMonth(hist.rows),
+    }
+  }, [hist, lang])
+  const untilLabel = (ym) => (ym ? `${(lang === 'hi' ? MONTHS_FULL_HI : MONTHS_FULL_EN)[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}` : '')
+
+  // Batch 15A: "5-year average vs today" = the average Modal price of the crop's harvest months over the last 5 years,
+  // the yearly values, and today's price (the same corrected price the calculator uses) against that average.
+  const harvest = useMemo(() => {
+    const hm = crop.harvest_months
+    if (!hist.rows.length || !hm) return null
+    const avg = harvestAverage(hist.rows, hm)
+    if (!avg) return null
+    const full = lang === 'hi' ? MONTHS_FULL_HI : MONTHS_FULL_EN
+    const monthsLabel = hm.length > 1 ? `${full[hm[0] - 1]}–${full[hm[hm.length - 1] - 1]}` : full[hm[0] - 1]
+    return { ...avg, byYear: harvestByYear(hist.rows, hm), monthsLabel }
+  }, [hist, crop, lang])
+  const harvestGap = harvest ? gapVsAverage(calcPrice, harvest.avg) : null
+  const scopeLabel = hist.scope === 'mp' ? t('msp_py_scope_mp') : t('msp_py_scope_division')
+
+  // Newest price date among the compared mandis (badge of the mandi-compare view).
+  const compareLatest = useMemo(() => { const ds = Object.values(compareData || {}).map((r) => r.price_date).filter(Boolean); return ds.length ? ds.sort().slice(-1)[0] : null }, [compareData])
 
   // all-crops snapshot (3a): latest price + MSP verdict per crop, today's data first.
   const latestDate = useMemo(() => { const ds = Object.values(snapshot || {}).map((r) => r.price_date); return ds.length ? ds.sort().slice(-1)[0] : null }, [snapshot])
@@ -207,18 +257,17 @@ export default function Msp() {
   }, [snapshot, mspAll, latestDate])
 
   const shareText = useMemo(() => {
-    if (medianToday == null) return ''
-    const d = new Date().toLocaleDateString('hi-IN', { day: 'numeric', month: 'long' })
+    if (calcPrice == null) return ''
+    // Batch 10F: the date of the prices (not today's date), and MSP compared with the corrected price.
+    const d = today?.date ? formatDateFull(today.date, lang) : ''
     const rows = (today?.rows || []).slice(0, 2).map((r) => `${r.market} ${rs(r.modal_price)}`).join(' · ')
-    const mspLine = msp ? `MSP ${rs(msp)} (${medianToday >= msp ? t('msp_above_short') : t('msp_below_short')} ${rs(Math.abs(msp - medianToday))})` : ''
+    const mspLine = msp ? `MSP ${rs(msp)} (${calcPrice >= msp ? t('msp_above_short') : t('msp_below_short')} ${rs(Math.abs(msp - calcPrice))})` : ''
     const trend = trendSentence ? `\n${trendSentence}` : ''
     return `🌾 ${cropName(crop, lang)} ${t('nav_mandi')} — ${d}\n${rows}\n${mspLine}${trend}\n${t('daily_see')}: kissansahyog.com/msp/${slug}`
-  }, [medianToday, today, msp, trendSentence, crop, lang, slug, t])
+  }, [calcPrice, today, msp, trendSentence, crop, lang, slug, t])
 
-  const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: `${cropName(crop, 'en')} mandi prices — Sagar, MP`, description: `Daily modal mandi price for ${cropName(crop, 'en')} in Sagar district vs MSP.`, temporalCoverage: history.length ? `${history[0].date}/${history[history.length - 1].date}` : undefined, url: 'https://kissansahyog.com/msp/' + slug, creator: { '@type': 'Organization', name: 'Agmarknet / data.gov.in' } }
+  const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: `${cropName(crop, 'en')} mandi prices — Sagar Division, MP`, description: `Daily modal mandi price for ${cropName(crop, 'en')} in Sagar Division (Sagar Sambhag) vs MSP.`, temporalCoverage: history.length ? `${history[0].date}/${history[history.length - 1].date}` : undefined, url: 'https://kissansahyog.com/msp/' + slug, creator: { '@type': 'Organization', name: 'Agmarknet / data.gov.in' } }
   const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${cropName(crop, lang)} ${t('nav_mandi')} — ${t('msp_sagar')}`, ...(today?.date ? { dateModified: today.date } : {}) }
-
-  const H2 = ({ children }) => <h2 className="mb-2 text-[22px] font-bold md:text-[24px]" style={{ color: 'var(--ks-ink)' }}>{children}</h2>
 
   return (
     <PageShell width="wide" ready={today !== undefined}>
@@ -234,16 +283,17 @@ export default function Msp() {
         <BackButton fallback={cropParam ? '/msp' : '/'} />
         <h1 className="text-[26px] font-extrabold md:text-[32px]" style={{ color: 'var(--ks-ink)' }}>{cropName(crop, lang)} {t('msp_h1')}</h1>
 
-        {/* 1. explainer */}
-        <PageExplainer title={t('page_explainer_title')} lines={[t('msp_explain_1'), t('msp_explain_2'), t('msp_explain_3'), t('msp_explain_4')]} />
+        {/* 1. explainer — Batch 10F: every section below is a CollapsibleSection (page 'msp'). The first
+            three (explainer, all crops, today's prices = the main data table) always start open; the
+            rest start collapsed on phones (docs/review/batch10f/evidence/collapsible-defaults.md). */}
+        <PageExplainer title={t('page_explainer_title')} lines={[t('msp_explain_1'), t('msp_explain_2'), t('msp_explain_3'), t('msp_explain_4')]} collapsible={{ page: 'msp', id: 'explainer', primary: true }} />
 
         {/* Shared location control (drives the nearby-mandi distance ranking below). */}
-        <LocationControl value={loc} onChange={setLoc} />
+        <LocationControl />
 
         {/* 3a. all-crops snapshot table */}
         {snapshotRows && (
-          <section>
-            <H2>{t('msp_snapshot_h')}</H2>
+          <CollapsibleSection page="msp" id="snapshot" primary title={t('msp_snapshot_h')} after={<LastPriceBadge date={latestDate} testId="snapshot-price-badge" />}>
             <div className="overflow-hidden rounded-lg" style={{ border: '1px solid var(--ks-border)' }}>
               <table className="w-full text-[14px]">
                 <thead><tr style={{ background: 'var(--ks-bg-soft)' }}><th className="p-2 text-left">{t('col_crop')}</th><th className="p-2 text-right">{t('col_modal')}</th><th className="p-2 text-right">MSP</th><th className="p-2 text-right"> </th></tr></thead>
@@ -251,14 +301,14 @@ export default function Msp() {
                   {snapshotRows.map(({ c, price, date, msp: m }) => { const above = m != null && price != null && price >= m; return (
                     <tr key={c.slug} onClick={() => navigate(`/msp/${c.slug}`)} className="cursor-pointer" style={{ borderTop: '1px solid var(--ks-border)', background: c.slug === slug ? 'var(--ks-bg-soft)' : undefined }}>
                       <td className="p-2 font-semibold" style={{ color: 'var(--ks-green)' }}>{cropName(c, lang)}</td>
-                      <td className="p-2 text-right font-bold" style={{ color: 'var(--ks-ink)' }}><PriceCell price={price} date={date} bold /></td>
+                      <td className="p-2 text-right font-bold" style={{ color: 'var(--ks-ink)' }}><PriceCell price={price} date={date} bold fmt={(iso) => formatDay(iso, lang)} /></td>
                       <td className="p-2 text-right" style={{ color: 'var(--ks-ink-3)' }}>{m != null ? rs(m) : '—'}</td>
                       <td className="p-2 text-right">{m != null && price != null ? <span className="rounded px-1.5 py-0.5 text-[12px] font-bold" style={{ background: above ? 'var(--ks-green-tint)' : 'var(--ks-saffron-tint)', color: above ? 'var(--ks-green-dark)' : 'var(--ks-orange-dark)' }}>{above ? t('msp_above_short') : t('msp_below_short')}</span> : ''}</td>
                     </tr>) })}
                 </tbody>
               </table>
             </div>
-          </section>
+          </CollapsibleSection>
         )}
 
         {/* View toggle (0026 Phase 2): फसल अनुसार / मंडी तुलना */}
@@ -286,18 +336,19 @@ export default function Msp() {
 
         {/* मंडी तुलना — up to 3 mandis compared across all commodities (0026 Phase 2) */}
         {view === 'compare' && (
+          <CollapsibleSection page="msp" id="compare" primary title={t('msp_view_compare')} after={<LastPriceBadge date={compareLatest} testId="compare-price-badge" />}>
           <MandiCompare
             t={t} lang={lang} rs={rs}
             marketsDist={marketsDist} selectedMandis={selectedMandis} toggleMandi={toggleMandi}
             effectiveMandis={effectiveMandis} compareData={compareData} mspAll={mspAll}
             snapshot={snapshot} pickWarn={pickWarn} usingAuto={!selectedMandis.length}
           />
+          </CollapsibleSection>
         )}
 
         {/* 3. today's prices vs MSP — ranked by real distance (Phase 3a) */}
         {view === 'crop' && (
-        <section>
-          <H2>{t('msp_today_h')} {today?.date && <span className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('msp_last_price')}: {today.date})</span>}</H2>
+        <CollapsibleSection page="msp" id="today" primary title={t('msp_today_h')} after={<LastPriceBadge date={today?.date} />}>
 
           {/* Phase 3b — free mandi search (distance-unrestricted). */}
           <div className="mb-3">
@@ -320,16 +371,19 @@ export default function Msp() {
                 ) : (
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>{mandiPick.market}</span>
-                    <span className="text-[15px] font-extrabold" style={{ color: 'var(--ks-green-dark)' }}><PriceCell price={mandiPick.modal_price} date={mandiPick.price_date} bold /></span>
+                    <span className="text-[15px] font-extrabold" style={{ color: 'var(--ks-green-dark)' }}><PriceCell price={mandiPick.modal_price} date={mandiPick.price_date} bold fmt={(iso) => formatDay(iso, lang)} /></span>
                   </div>
                 )}
-                {!mandiPick.notFound && <p className="mt-0.5 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{t('mandi_last_price_on')}: {mandiPick.price_date}</p>}
+                {!mandiPick.notFound && <p className="mt-0.5 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{t('mandi_last_price_on')}: {formatDateFull(mandiPick.price_date, lang)}</p>}
               </div>
             )}
           </div>
 
+          <OfflineStamp resources={MANDI_RES} className="mb-2" />
           {today === undefined ? <Spinner /> : !today.rows.length ? (
-            <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
+            mandiOffline.failed ? <OfflineNotice ageMs={mandiOffline.tooOld ? mandiOffline.ageMs : null} /> : (
+              <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
+            )
           ) : (
             <div className="overflow-hidden rounded-lg" style={{ border: '1px solid var(--ks-border)' }}>
               <table className="w-full text-[14px]">
@@ -339,7 +393,7 @@ export default function Msp() {
                     <tr key={i} style={{ borderTop: '1px solid var(--ks-border)' }}>
                       <td className="p-2 font-semibold" style={{ color: 'var(--ks-ink)' }}>{r.market}{r.arrivals_tonnes ? <span className="ml-1 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>· {r.arrivals_tonnes}{t('tonnes')}</span> : null}</td>
                       <td className="p-2 text-right text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{r.distanceKm != null ? `${Math.round(r.distanceKm)} ${t('km_short')}` : '—'}</td>
-                      <td className="p-2 text-right font-extrabold" style={{ color: 'var(--ks-ink)' }}><PriceCell price={r.modal_price} date={r.price_date || today.date} bold /></td>
+                      <td className="p-2 text-right font-extrabold" style={{ color: 'var(--ks-ink)' }}><PriceCell price={r.modal_price} date={r.price_date || today.date} bold fmt={(iso) => formatDay(iso, lang)} /></td>
                       {crop.msp_en && <td className="p-2 text-right"><span className="rounded px-1.5 py-0.5 text-[13px] font-bold" style={{ background: above ? 'var(--ks-green-tint)' : 'var(--ks-saffron-tint)', color: above ? 'var(--ks-green-dark)' : 'var(--ks-orange-dark)' }}>{d >= 0 ? '+' : ''}{rs(d)} · {above ? t('msp_above') : t('msp_below')}</span></td>}
                     </tr>) })}
                 </tbody>
@@ -349,34 +403,77 @@ export default function Msp() {
           {today && today.rows.length === 1 && <p className="mt-2 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_one_mandi').replace('{m}', today.rows[0].market)}</p>}
           {!crop.msp_en && <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_no_msp_crop')}</p>}
           {crop.msp_en && msp && <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>MSP {new Date().getFullYear()}: {rs(msp)}/{t('qtl')}</p>}
-        </section>
+          {KAM_PANI_CROPS.includes(slug) && <Link to="/fasal-salah/kam-pani" data-testid="msp-kam-pani-link" className="mt-1 inline-flex min-h-[44px] items-center text-[15px] font-bold underline" style={{ color: 'var(--ks-green)' }}>{t('kp_msp_link')} →</Link>}
+        </CollapsibleSection>
         )}
 
         {/* 4. trend chart */}
         {view === 'crop' && crop.msp_en && (
-          <section>
-            <div className="mb-2 flex items-center justify-between gap-2">
-              <H2>{t('msp_trend_h')}</H2>
-              <div className="flex gap-1">{[7, 30, 90].map((d) => <button key={d} type="button" onClick={() => setTrendDays(d)} className="rounded px-2 py-1 text-[13px] font-bold" style={trendDays === d ? { background: 'var(--ks-green)', color: '#fff' } : { background: 'var(--ks-bg-soft)', color: 'var(--ks-ink-2)' }}>{d}{t('days_short')}</button>)}</div>
-            </div>
+          <CollapsibleSection page="msp" id="trend" testId="msp-trend" title={t('msp_trend_h')}>
+            {/* Batch 10E — two-part tabs: "30 दिन" + the real date range of the prices in that window. */}
+            <div className="mb-3 grid grid-cols-3 gap-1.5 sm:max-w-[480px]" role="group" aria-label={t('msp_trend_h')}>{[7, 30, 90].map((d) => { const w = trendWins?.[d]; const on = trendDays === d; return (
+              <button key={d} type="button" data-trend-tab={d} aria-pressed={on} onClick={() => setTrendDays(d)} className="flex min-h-[44px] min-w-0 flex-col items-center justify-center rounded-lg px-1 py-1 text-center leading-tight" style={on ? { background: 'var(--ks-green)', color: '#fff' } : { background: 'var(--ks-bg-soft)', color: 'var(--ks-ink-2)' }}>
+                <span className="text-[14px] font-bold">{t('msp_tab_days').replace('{d}', d)}</span>
+                <span data-trend-range className="text-[12px] font-semibold" style={{ opacity: 0.9 }}>{w ? (w.n ? w.range : t('msp_tab_nodata')) : ' '}</span>
+              </button>) })}</div>
             {/* takeaway ABOVE the chart (3e) */}
             {trendSentence && <p className="mb-2 text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>{trendSentence}</p>}
-            <TrendChart series={history} mspValue={msp} ariaLabel={`${cropName(crop, lang)} ${t('msp_trend_h')}`} />
+            <TrendChart series={history} mspValue={msp} days={trendDays} cropLabel={`${cropName(crop, lang)} ${t('msp_trend_h')}`} rangeLabel={win?.range} few={!!win?.few} />
             {/* summary block BELOW with clearance so nothing overlaps the axis labels (3b) */}
             <div className="mt-4 space-y-1">
               {trendSentence && <p className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{trendSentence}</p>}
-              {history.length > 0 && history.length < trendDays && (
-                <p className="text-[13px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_only_ndays').replace('{n}', history.length)}</p>
+              {win && win.n > 0 && win.thin && (
+                <p data-trend-note className="text-[13px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_only_ndays').replace('{n}', win.n)}</p>
               )}
-              {history.length > 0 && <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('data_from')} {history[0].date}</p>}
+              {win && win.skipped > 0 && <p data-trend-skipped className="text-[13px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_trend_skipped').replace('{n}', win.skipped)}</p>}
+              {win && win.startsLate && <p data-trend-since className="text-[13px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_data_since').replace('{date}', formatDay(win.first, lang))}</p>}
+              {trend90?.scope === 'all' && history.length > 0 && <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_trend_scope_all')}</p>}
+              {history.length > 0 && <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('data_from')} {formatDateFull(history[0].date, lang)}</p>}
             </div>
-          </section>
+          </CollapsibleSection>
+        )}
+
+        {/* 4b. Batch 15A: 5-year average vs today (past prices only; never a forecast) */}
+        {view === 'crop' && harvest && (
+          <CollapsibleSection page="msp" id="avg5" testId="msp-avg5" title={t('msp_avg_h')}>
+            <div data-testid="msp-avg5-body" className="space-y-3">
+              <p className="text-[15px]" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_avg_harvest_line').replace('{months}', harvest.monthsLabel)}</p>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded-lg p-3" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}>
+                  <div className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_avg_label')}</div>
+                  <div data-testid="msp-avg5-avg" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{rs(harvest.avg)}</div>
+                </div>
+                <div className="rounded-lg p-3" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}>
+                  <div className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{latestPoint ? t('msp_avg_today_on').replace('{date}', formatDay(latestPoint.date, lang)) : t('msp_avg_today')}</div>
+                  <div data-testid="msp-avg5-today" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{calcPrice != null ? rs(calcPrice) : '—'}</div>
+                </div>
+              </div>
+              {calcPrice == null && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_avg_today_none')}</p>}
+              {harvestGap != null && (
+                <p data-testid="msp-avg5-gap" className="text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>
+                  {harvestGap > 0 ? t('msp_avg_gap_up').replace('{p}', harvestGap) : harvestGap < 0 ? t('msp_avg_gap_down').replace('{p}', Math.abs(harvestGap)) : t('msp_avg_gap_same')}
+                </p>
+              )}
+              <div>
+                <div className="mb-1 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_avg_by_year')}</div>
+                <ul data-testid="msp-avg5-years" className="flex flex-wrap gap-1.5">
+                  {harvest.byYear.map((y) => (
+                    <li key={y.year} className="rounded-lg px-2.5 py-1.5 text-[14px]" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', color: 'var(--ks-ink)' }}>
+                      <span style={{ color: 'var(--ks-ink-3)' }}>{y.year}</span> <b>{rs(y.price)}</b>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p data-testid="msp-avg5-note" className="text-[14px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_avg_note')}</p>
+              <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_modal_def')}</p>
+              <p className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{scopeLabel} · {t('msp_py_until').replace('{month}', untilLabel(latestMonth(hist.rows)))}. {t('msp_py_source')}</p>
+            </div>
+          </CollapsibleSection>
         )}
 
         {/* 5. wait-vs-sell calculator */}
         {view === 'crop' && crop.msp_en && (
-          <section style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
-            <H2>{t('msp_calc_h')}</H2>
+          <CollapsibleSection page="msp" id="calc" title={t('msp_calc_h')} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
             <div className="grid gap-3 sm:grid-cols-2">
               <label className="block"><span className="mb-1 block text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_calc_qty')}</span>
                 <input inputMode="numeric" value={qty} onChange={(e) => setQty(Number(e.target.value.replace(/\D/g, '')) || 0)} className="w-full rounded-lg border px-3 py-2 text-[16px]" style={{ borderColor: 'var(--ks-border-strong)' }} /></label>
@@ -386,7 +483,8 @@ export default function Msp() {
             {/* step-by-step labelled arithmetic (3f) */}
             {diff != null ? (
               <div className="mt-3 space-y-2 text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>
-                <div>{t('msp_calc_shortfall')}: <b>{rs(Math.max(msp, medianToday))} − {rs(Math.min(msp, medianToday))} = {rs(Math.abs(diff))}/{t('qtl')} {belowMsp ? t('msp_below_short') : t('msp_above_short')}</b></div>
+                {latestPoint && <div data-calc-price-from className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_calc_price_from').replace('{price}', rs(latestPoint.price)).replace('{date}', formatDay(latestPoint.date, lang)).replace('{n}', latestPoint.n ?? '—')}</div>}
+                <div>{t('msp_calc_shortfall')}: <b>{rs(Math.max(msp, calcPrice))} − {rs(Math.min(msp, calcPrice))} = {rs(Math.abs(diff))}/{t('qtl')} {belowMsp ? t('msp_below_short') : t('msp_above_short')}</b></div>
                 <div>{t('msp_calc_total')}: <b>{rs(Math.abs(diff))} × {qty} {t('qtl')} = {rs(totalShortfall)}</b></div>
                 <div>{t('msp_calc_storage')}: <b>{rs(storageRate.rate)}/{t('qtl')}/{t('month_short')} × {months} {t('month_short')} = {rs(storageCost)}/{t('qtl')}</b>{!storageRate.fromListings && <span className="text-[13px]" style={{ color: 'var(--ks-ink-3)' }}> ({t('msp_calc_est')})</span>}</div>
                 {belowMsp
@@ -397,12 +495,11 @@ export default function Msp() {
             <p className="mt-3 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_calc_trend_note').replace('{d}', trendDays)}</p>
             <p className="mt-1 text-[13px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_calc_disclaimer')}</p>
             <button type="button" onClick={() => navigate('/browse?cat=warehouse')} className="mt-2 rounded-lg px-4 py-2 text-[14px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>{t('msp_calc_godown')} →</button>
-          </section>
+          </CollapsibleSection>
         )}
 
         {/* 6. procurement centres */}
-        <section>
-          <H2>{t('msp_procurement_h')}</H2>
+        <CollapsibleSection page="msp" id="procurement" title={t('msp_procurement_h')}>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {procurement.map((p) => (
               <div key={p.id} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
@@ -414,11 +511,10 @@ export default function Msp() {
             ))}
           </div>
           <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_euparjan_steps')}</p>
-        </section>
+        </CollapsibleSection>
 
         {/* 7. sold below MSP routes */}
-        <section>
-          <H2>{t('msp_below_h')}</H2>
+        <CollapsibleSection page="msp" id="below" title={t('msp_below_h')}>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button type="button" onClick={() => navigate('/yojana/bhavantar')} className="text-left" style={{ background: 'var(--ks-green-tint)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
               <div className="text-[16px] font-bold" style={{ color: 'var(--ks-green-dark)' }}>{t('msp_bhavantar_t')}</div>
@@ -432,26 +528,34 @@ export default function Msp() {
             </button>
           </div>
           <p className="mt-2 text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('msp_complaint')}</p>
-        </section>
+        </CollapsibleSection>
 
         {/* 8. past years */}
         {monthBars && (
-          <section>
-            <H2>{t('msp_pastyears_h')}</H2>
-            <MonthBars months={monthBars} ariaLabel={t('msp_pastyears_h')} />
-          </section>
+          <CollapsibleSection page="msp" id="pastyears" title={t('msp_pastyears_h')}>
+            <div data-testid="msp-pastyears-body">
+              <MonthBars months={monthBars.bars} ariaLabel={t('msp_pastyears_h')} />
+              <p className="mt-3 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>
+                {t('msp_py_high_low').replace('{hi_m}', monthBars.high.m).replace('{hi_p}', monthBars.high.p).replace('{lo_m}', monthBars.low.m).replace('{lo_p}', monthBars.low.p)}
+              </p>
+              <p className="mt-1 text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_modal_def')}</p>
+              <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{scopeLabel} · {t('msp_py_until').replace('{month}', untilLabel(monthBars.until))}. {t('msp_py_source')}</p>
+              {hist.scope === 'mp' && <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-orange-dark)' }}>{t('msp_py_scope_mp_note')}</p>}
+            </div>
+          </CollapsibleSection>
         )}
 
         {/* 10. share */}
         <section><ShareWhatsApp text={shareText} /></section>
 
         {/* 11. signup */}
-        <DailyUpdateSignup sourcePage="msp" pincode={loc.matchedVillage?.pincode || ''} heading={t('msp_signup_h')} />
+        <DailyUpdateSignup sourcePage="msp" heading={t('msp_signup_h')} />
 
         {/* 9. FAQ */}
-        <FaqAccordion faqs={faqs} />
+        <FaqAccordion faqs={faqs} collapsible={{ page: 'msp', id: 'faq' }} />
 
         <WhatsAppJoin variant="box" src="msp" />
+        <WhatsAppChannelCard variant="inline" textKey="wa_ch_line_prices" />
         <RelatedBoxes page="msp" />
       </div>
     </PageShell>
@@ -466,7 +570,7 @@ export default function Msp() {
 function MandiCompare({ t, lang, rs, marketsDist, selectedMandis, toggleMandi, effectiveMandis, compareData, mspAll, snapshot, pickWarn, usingAuto }) {
   const mspFor = (c) => { const m = c.msp_en ? mspAll.find((x) => x.crop_en === c.msp_en) : null; return m ? Number(m.msp_per_quintal) : null }
   const cell = (c, market) => compareData[`${c.mandi_en}||${market}`] || null
-  const ddmm = (d) => (d ? `${String(d).slice(8, 10)}/${String(d).slice(5, 7)}` : '')
+  const ddmm = (d) => (d ? formatDay(d, lang) : '')
   // Best price for a commodity ANYWHERE (across all mandis), for the cross-mandi hint.
   const bestElsewhere = (c) => snapshot?.[c.mandi_en] || null
   const snapshotReady = snapshot && Object.keys(snapshot).length > 0
@@ -522,7 +626,7 @@ function MandiCompare({ t, lang, rs, marketsDist, selectedMandis, toggleMandi, e
                         <td key={m} className="p-2 text-right font-bold" data-testid={best ? 'compare-best' : undefined}
                           style={{ color: 'var(--ks-ink)', background: best ? 'var(--ks-green-tint)' : undefined }}>
                           {cel
-                            ? <PriceCell price={cel.modal_price} date={cel.price_date} />
+                            ? <PriceCell price={cel.modal_price} date={cel.price_date} fmt={(iso) => formatDay(iso, lang)} />
                             : alt
                               ? <span data-testid="cross-mandi-hint" style={{ color: 'var(--ks-ink-3)', fontWeight: 400 }}>—<InfoTip label={`${t('mandi_hint_elsewhere')} ${alt.market} ${rs(alt.modal_price)} (${ddmm(alt.price_date)})`} label_en={`${t('mandi_hint_elsewhere')} ${alt.market} ${rs(alt.modal_price)} (${ddmm(alt.price_date)})`} /></span>
                               : <PriceCell price={null} />}

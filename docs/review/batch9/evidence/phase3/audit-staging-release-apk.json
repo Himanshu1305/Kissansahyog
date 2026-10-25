@@ -1,0 +1,283 @@
+{
+  "artifact": "android/ks-apks/ks-staging-release.apk",
+  "flavour": "staging",
+  "sizeBytes": 10345995,
+  "jarsigner": {
+    "verified": false,
+    "unsigned": true,
+    "signedEntries": 0,
+    "summary": [
+      "  k = at least one certificate was found in keystore",
+      "jar is unsigned."
+    ]
+  },
+  "jarsignerNote": "AGP signs APKs with minSdk >= 24 using APK Signature Scheme v2/v3 only (no v1 JAR signature), so jarsigner reports \"jar is unsigned\" for the APK by design; apksigner is the authoritative check.",
+  "apksigner": [
+    "Verifies",
+    "Verified using v1 scheme (JAR signing): false",
+    "Verified using v2 scheme (APK Signature Scheme v2): true",
+    "Verified using v3 scheme (APK Signature Scheme v3): false",
+    "Verified using v3.1 scheme (APK Signature Scheme v3.1): false",
+    "Verified using v3.2 scheme (APK Signature Scheme v3.2): false",
+    "Verified using v4 scheme (APK Signature Scheme v4): false",
+    "Number of signers: 1",
+    "V2 Signer: certificate DN: CN=USD Vision AI LLP, O=USD Vision AI LLP, L=Hyderabad, C=IN",
+    "V2 Signer: certificate SHA-256 digest: 55d3d128151313edfef1629a45524807b70ea0b2d7df0c86d753ab2d50b769d2",
+    "V2 Signer: certificate SHA-1 digest: 50f9044e0d2e6a7a3aea041040084c6f1ac05056"
+  ],
+  "signerSha256": "55d3d128151313edfef1629a45524807b70ea0b2d7df0c86d753ab2d50b769d2",
+  "manifest": {
+    "package": "com.kissansahyog.app.staging",
+    "versionCode": "1",
+    "versionName": "0.1.0",
+    "minSdk": "24",
+    "targetSdk": "36",
+    "usesCleartextTraffic": "false",
+    "allowBackup": "false",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.RECORD_AUDIO",
+      "android.permission.MODIFY_AUDIO_SETTINGS",
+      "com.kissansahyog.app.staging.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ]
+  },
+  "badgingDebuggable": false,
+  "permissionJustification": {
+    "android.permission.INTERNET": {
+      "why": "live data from Supabase / weather / the site's server functions",
+      "codeRefs": [
+        "src/lib/supabase.js (Supabase client)",
+        "every fetch to the API origin"
+      ]
+    },
+    "android.permission.ACCESS_NETWORK_STATE": {
+      "why": "offline banner: without it the WebView always reports navigator.onLine = true; also required by @capacitor/network",
+      "codeRefs": [
+        "src/components/PwaPrompts.jsx:76 import(@capacitor/network)",
+        "src/components/NativeShell.jsx:60",
+        "src/lib/offline/cachedFetch.js:64"
+      ]
+    },
+    "android.permission.ACCESS_COARSE_LOCATION": {
+      "why": "\"Share my location\"",
+      "codeRefs": [
+        "src/lib/location/postPosition.js:31,36 (enableHighAccuracy:false)",
+        "src/screens/Post.jsx:161"
+      ]
+    },
+    "android.permission.ACCESS_FINE_LOCATION": {
+      "why": "\"Share my location\" (the page asks for a high-accuracy fix)",
+      "codeRefs": [
+        "src/lib/location/userLocation.js:95-98 (enableHighAccuracy:true, \"Share my location\")"
+      ]
+    },
+    "android.permission.RECORD_AUDIO": {
+      "why": "voice search fallback records audio",
+      "codeRefs": [
+        "src/components/VoiceSearchButton.jsx:95 getUserMedia({audio:true})",
+        "src/lib/voice/voiceSearch.js:58"
+      ]
+    },
+    "android.permission.MODIFY_AUDIO_SETTINGS": {
+      "why": "Capacitor 8 requests it together with RECORD_AUDIO for getUserMedia audio and denies the request unless both are granted (BridgeWebChromeClient.onPermissionRequest)",
+      "codeRefs": [
+        "node_modules/@capacitor/android BridgeWebChromeClient.onPermissionRequest asks for it with RECORD_AUDIO",
+        "src/components/VoiceSearchButton.jsx:95"
+      ]
+    },
+    "com.kissansahyog.app.staging.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION": {
+      "why": "added automatically by androidx.core (signature-level, app-private); not a user-facing permission",
+      "codeRefs": null
+    }
+  },
+  "icons": {
+    "mipmap/ic_launcher": [
+      "(mdpi) (file) res/9w.png type=PNG",
+      "(hdpi) (file) res/yn.png type=PNG",
+      "(xhdpi) (file) res/FS.png type=PNG",
+      "(xxhdpi) (file) res/RJ.png type=PNG",
+      "(xxxhdpi) (file) res/o-.png type=PNG",
+      "(anydpi-v26) (file) res/BW.xml type=XML"
+    ],
+    "mipmap/ic_launcher_round": [
+      "(mdpi) (file) res/zR.png type=PNG",
+      "(hdpi) (file) res/8c.png type=PNG",
+      "(xhdpi) (file) res/wb.png type=PNG",
+      "(xxhdpi) (file) res/fO.png type=PNG",
+      "(xxxhdpi) (file) res/Gc.png type=PNG",
+      "(anydpi-v26) (file) res/0K.xml type=XML"
+    ],
+    "mipmap/ic_launcher_foreground": [
+      "(mdpi) (file) res/QZ.png type=PNG",
+      "(hdpi) (file) res/zr.png type=PNG",
+      "(xhdpi) (file) res/Em.png type=PNG",
+      "(xxhdpi) (file) res/Lf.png type=PNG",
+      "(xxxhdpi) (file) res/as.png type=PNG"
+    ]
+  },
+  "splash": [
+    "() (file) res/-u.png type=PNG",
+    "(port-mdpi) (file) res/Zd.png type=PNG",
+    "(land-mdpi) (file) res/UE.png type=PNG",
+    "(port-hdpi) (file) res/CK.png type=PNG",
+    "(land-hdpi) (file) res/wv.png type=PNG",
+    "(port-xhdpi) (file) res/MH.png type=PNG",
+    "(land-xhdpi) (file) res/-j.png type=PNG",
+    "(port-xxhdpi) (file) res/lp.png type=PNG",
+    "(land-xxhdpi) (file) res/Zp.png type=PNG",
+    "(port-xxxhdpi) (file) res/GE.png type=PNG",
+    "(land-xxxhdpi) (file) res/YH.png type=PNG"
+  ],
+  "badgingApplication": "application: label='Kisan Sahyog (Staging)' icon='res/BW.xml'",
+  "webAssets": {
+    "filesTotal": 199,
+    "textFilesScanned": 121,
+    "prodRef": 0,
+    "stagingRef": 1,
+    "service_role": 0,
+    "GEMINI_API_KEY": 0,
+    "sb_secret key (sb_secret_<key>)": 0
+  },
+  "checks": [
+    {
+      "name": "apksigner: Verifies",
+      "ok": true,
+      "detail": [
+        "Verifies",
+        "Verified using v1 scheme (JAR signing): false",
+        "Verified using v2 scheme (APK Signature Scheme v2): true",
+        "Verified using v3 scheme (APK Signature Scheme v3): false",
+        "Verified using v3.1 scheme (APK Signature Scheme v3.1): false",
+        "Verified using v3.2 scheme (APK Signature Scheme v3.2): false"
+      ]
+    },
+    {
+      "name": "signer certificate SHA-256 == upload key",
+      "ok": true,
+      "detail": {
+        "signer": "55d3d128151313edfef1629a45524807b70ea0b2d7df0c86d753ab2d50b769d2",
+        "expected": "55:D3:D1:28:15:13:13:ED:FE:F1:62:9A:45:52:48:07:B7:0E:A0:B2:D7:DF:0C:86:D7:53:AB:2D:50:B7:69:D2"
+      }
+    },
+    {
+      "name": "aapt2 badging has no application-debuggable",
+      "ok": true
+    },
+    {
+      "name": "package is the flavour's applicationId",
+      "ok": true,
+      "detail": "com.kissansahyog.app.staging"
+    },
+    {
+      "name": "versionCode 1",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "versionName 0.1.0",
+      "ok": true,
+      "detail": "0.1.0"
+    },
+    {
+      "name": "minSdk 24",
+      "ok": true,
+      "detail": "24"
+    },
+    {
+      "name": "targetSdk 36",
+      "ok": true,
+      "detail": "36"
+    },
+    {
+      "name": "debuggable is not true",
+      "ok": true,
+      "detail": "(absent = false)"
+    },
+    {
+      "name": "usesCleartextTraffic false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "allowBackup false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "no permission beyond the decided six (+ androidx.core app-private one)",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no decided permission missing",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "launcher icon: 5 densities + adaptive for ic_launcher and ic_launcher_round",
+      "ok": true,
+      "detail": {
+        "mipmap/ic_launcher": 6,
+        "mipmap/ic_launcher_round": 6,
+        "mipmap/ic_launcher_foreground": 5
+      }
+    },
+    {
+      "name": "aapt2 badging: application label + icon set",
+      "ok": true,
+      "detail": "application: label='Kisan Sahyog (Staging)' icon='res/BW.xml'"
+    },
+    {
+      "name": "splash drawables present",
+      "ok": true,
+      "detail": 11
+    },
+    {
+      "name": "web assets packaged (index.html)",
+      "ok": true,
+      "detail": 199
+    },
+    {
+      "name": "secret scan: service_role occurs 0 times",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "secret scan: GEMINI_API_KEY occurs 0 times",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "secret scan: sb_secret key (sb_secret_<key>) occurs 0 times",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "staging project ref present",
+      "ok": true,
+      "detail": 1
+    },
+    {
+      "name": "production project ref absent",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "packaged capacitor.config has no server.url",
+      "ok": true
+    },
+    {
+      "name": "packaged capacitor.config does not force webContentsDebuggingEnabled",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "packaged capacitor.config has no allowMixedContent",
+      "ok": true
+    }
+  ],
+  "status": "RAN-PASSED"
+}

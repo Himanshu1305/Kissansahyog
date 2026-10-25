@@ -1,0 +1,682 @@
+{
+  "label": "staging-gates",
+  "base": "https://staging.kissansahyog.com",
+  "startedAt": "2026-10-15T04:29:20.893Z",
+  "gates": {
+    "a_pages": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "/ → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "आज किसान के लिए",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-home.png"
+          }
+        },
+        {
+          "desc": "/ no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/mausam → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-mausam.png"
+          }
+        },
+        {
+          "desc": "/mausam no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/msp → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "गेहूं भाव — आज व MSP से तुलना",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-msp.png"
+          }
+        },
+        {
+          "desc": "/msp no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/browse → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "आस-पास खोजें",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-browse.png"
+          }
+        },
+        {
+          "desc": "/browse no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/sawaal → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "किसान सवाल — आपके सवाल, हमारे जवाब",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-sawaal.png"
+          }
+        },
+        {
+          "desc": "/sawaal no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/yojana → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "सरकारी योजनाएं",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-yojana.png"
+          }
+        },
+        {
+          "desc": "/yojana no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/cold-storage → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "मध्य प्रदेश कोल्ड स्टोरेज खोजें",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-cold_storage.png"
+          }
+        },
+        {
+          "desc": "/cold-storage no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/about → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "हमारे बारे में",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-about.png"
+          }
+        },
+        {
+          "desc": "/about no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/privacy → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "गोपनीयता नीति",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-privacy.png"
+          }
+        },
+        {
+          "desc": "/privacy no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/terms → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "उपयोग की शर्तें",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-terms.png"
+          }
+        },
+        {
+          "desc": "/terms no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "desc": "/grievance → 200, h1 rendered, no ErrorBoundary",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "h1": "सुझाव और शिकायत",
+            "errorBoundary": false,
+            "screenshot": "page-staging-gates-grievance.png"
+          }
+        },
+        {
+          "desc": "/grievance no failed request to our own origin",
+          "ok": true,
+          "detail": []
+        }
+      ],
+      "notes": [
+        "/ console errors (not allowlisted): [\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\"]",
+        "/: 23 allowlisted console error(s) (B17 localhost preload)",
+        "/mausam console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/mausam: 11 allowlisted console error(s) (B17 localhost preload)",
+        "/msp console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/msp: 14 allowlisted console error(s) (B17 localhost preload)",
+        "/browse console errors (not allowlisted): [\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg' violates the following Content Security Policy directive: \\\"img-src 'self' data: blob: https://images.pexels.com https://images.unsplash.com https:/\"]",
+        "/browse: 23 allowlisted console error(s) (B17 localhost preload)",
+        "/sawaal console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/sawaal: 6 allowlisted console error(s) (B17 localhost preload)",
+        "/yojana console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/yojana: 3 allowlisted console error(s) (B17 localhost preload)",
+        "/cold-storage console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/cold-storage: 7 allowlisted console error(s) (B17 localhost preload)",
+        "/about console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/about: 3 allowlisted console error(s) (B17 localhost preload)",
+        "/privacy console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/privacy: 3 allowlisted console error(s) (B17 localhost preload)",
+        "/terms console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/terms: 3 allowlisted console error(s) (B17 localhost preload)",
+        "/grievance console errors (not allowlisted): [\"Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920' violates the following Content Security Policy directive: \\\"script-src 'self' 'unsafe-inline' 'unsafe-eval'\\\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is \"]",
+        "/grievance: 4 allowlisted console error(s) (B17 localhost preload)"
+      ]
+    },
+    "b_cors_preflight": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "OPTIONS /api/feedback Origin https://localhost → 204 + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 204,
+            "headers": {
+              "access-control-allow-headers": "content-type",
+              "access-control-allow-methods": "GET, POST, OPTIONS",
+              "access-control-allow-origin": "https://localhost",
+              "access-control-max-age": "86400"
+            }
+          }
+        },
+        {
+          "desc": "no '*' for https://localhost",
+          "ok": true,
+          "detail": {
+            "access-control-allow-headers": "content-type",
+            "access-control-allow-methods": "GET, POST, OPTIONS",
+            "access-control-allow-origin": "https://localhost",
+            "access-control-max-age": "86400"
+          }
+        },
+        {
+          "desc": "OPTIONS /api/feedback Origin capacitor://localhost → 204 + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 204,
+            "headers": {
+              "access-control-allow-headers": "content-type",
+              "access-control-allow-methods": "GET, POST, OPTIONS",
+              "access-control-allow-origin": "capacitor://localhost",
+              "access-control-max-age": "86400"
+            }
+          }
+        },
+        {
+          "desc": "no '*' for capacitor://localhost",
+          "ok": true,
+          "detail": {
+            "access-control-allow-headers": "content-type",
+            "access-control-allow-methods": "GET, POST, OPTIONS",
+            "access-control-allow-origin": "capacitor://localhost",
+            "access-control-max-age": "86400"
+          }
+        },
+        {
+          "desc": "OPTIONS /api/feedback Origin https://evil.example → NO allow-origin",
+          "ok": true,
+          "detail": {
+            "status": 204,
+            "headers": {}
+          }
+        },
+        {
+          "desc": "no '*' for https://evil.example",
+          "ok": true,
+          "detail": {}
+        }
+      ],
+      "notes": []
+    },
+    "c_feedback_post": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "POST /api/feedback (Origin https://localhost) → 200 {ok:true} (the function answers ok only after submit_feedback stored the row)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "body": {
+              "ok": true
+            }
+          }
+        },
+        {
+          "desc": "response carries Access-Control-Allow-Origin: https://localhost",
+          "ok": true,
+          "detail": {
+            "access-control-allow-headers": "content-type",
+            "access-control-allow-methods": "GET, POST, OPTIONS",
+            "access-control-allow-origin": "https://localhost",
+            "access-control-max-age": "86400"
+          }
+        }
+      ],
+      "notes": []
+    },
+    "d_functions": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "GET /geo Origin https://localhost → 200 JSON + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "json": [
+              "city",
+              "region",
+              "country",
+              "latitude",
+              "longitude"
+            ],
+            "headers": {
+              "access-control-allow-headers": "content-type",
+              "access-control-allow-methods": "GET, POST, OPTIONS",
+              "access-control-allow-origin": "https://localhost",
+              "access-control-max-age": "86400"
+            }
+          }
+        },
+        {
+          "desc": "GET /geo Origin capacitor://localhost → 200 JSON + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "json": [
+              "city",
+              "region",
+              "country",
+              "latitude",
+              "longitude"
+            ],
+            "headers": {
+              "access-control-allow-headers": "content-type",
+              "access-control-allow-methods": "GET, POST, OPTIONS",
+              "access-control-allow-origin": "capacitor://localhost",
+              "access-control-max-age": "86400"
+            }
+          }
+        },
+        {
+          "desc": "GET /geo Origin https://evil.example → no allow-origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {}
+          }
+        },
+        {
+          "desc": "OPTIONS /geo Origin https://localhost → 204 + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 204
+          }
+        },
+        {
+          "desc": "GET /geocode?village=Rahatgarh&district=Sagar Origin https://localhost → 200 JSON + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "json": [
+              "found",
+              "lat",
+              "lng",
+              "display_name"
+            ],
+            "headers": {
+              "access-control-allow-headers": "content-type",
+              "access-control-allow-methods": "GET, POST, OPTIONS",
+              "access-control-allow-origin": "https://localhost",
+              "access-control-max-age": "86400"
+            }
+          }
+        },
+        {
+          "desc": "GET /geocode?village=Rahatgarh&district=Sagar Origin capacitor://localhost → 200 JSON + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "json": [
+              "found",
+              "lat",
+              "lng",
+              "display_name"
+            ],
+            "headers": {
+              "access-control-allow-headers": "content-type",
+              "access-control-allow-methods": "GET, POST, OPTIONS",
+              "access-control-allow-origin": "capacitor://localhost",
+              "access-control-max-age": "86400"
+            }
+          }
+        },
+        {
+          "desc": "GET /geocode?village=Rahatgarh&district=Sagar Origin https://evil.example → no allow-origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {}
+          }
+        },
+        {
+          "desc": "OPTIONS /geocode?village=Rahatgarh&district=Sagar Origin https://localhost → 204 + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 204
+          }
+        },
+        {
+          "desc": "GET /transcribe Origin https://localhost → 200 JSON + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "json": [
+              "configured"
+            ],
+            "headers": {
+              "access-control-allow-headers": "content-type",
+              "access-control-allow-methods": "GET, POST, OPTIONS",
+              "access-control-allow-origin": "https://localhost",
+              "access-control-max-age": "86400"
+            }
+          }
+        },
+        {
+          "desc": "GET /transcribe Origin capacitor://localhost → 200 JSON + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "json": [
+              "configured"
+            ],
+            "headers": {
+              "access-control-allow-headers": "content-type",
+              "access-control-allow-methods": "GET, POST, OPTIONS",
+              "access-control-allow-origin": "capacitor://localhost",
+              "access-control-max-age": "86400"
+            }
+          }
+        },
+        {
+          "desc": "GET /transcribe Origin https://evil.example → no allow-origin",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {}
+          }
+        },
+        {
+          "desc": "OPTIONS /transcribe Origin https://localhost → 204 + echoed origin",
+          "ok": true,
+          "detail": {
+            "status": 204
+          }
+        }
+      ],
+      "notes": []
+    },
+    "e_static_no_cors": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "GET / Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET / Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET / Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam/ Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam/ Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam/ Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 308,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 308,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /mausam Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 308,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /sitemap.xml Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /sitemap.xml Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        },
+        {
+          "desc": "GET /sitemap.xml Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "headers": {
+              "access-control-allow-origin": "*"
+            }
+          }
+        }
+      ],
+      "notes": [
+        "Cloudflare Pages platform default \"Access-Control-Allow-Origin: *\" seen on 12 static responses (pre-existing, not from functions/_middleware.js)"
+      ]
+    },
+    "f_service_worker_sitemap": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "service worker installed and controls the page",
+          "ok": true,
+          "detail": "https://staging.kissansahyog.com/sw.js"
+        },
+        {
+          "desc": "/sitemap.xml under the SW is the real file (not the app shell)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "contentType": "application/xml",
+            "fromServiceWorker": false,
+            "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<sitemapindex xmlns=\"http://www.sitemaps."
+          }
+        },
+        {
+          "desc": "/robots.txt under the SW is the real file (not the app shell)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "contentType": "text/plain; charset=utf-8",
+            "fromServiceWorker": false,
+            "head": "User-agent: *\r\nAllow: /\r\nDisallow: /search\r\nDisallow: /join\r\nDisallow: /admin\r\nD"
+          }
+        },
+        {
+          "desc": "/sitemap-pages.xml under the SW is the real file (not the app shell)",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "contentType": "application/xml",
+            "fromServiceWorker": false,
+            "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/sc"
+          }
+        }
+      ],
+      "notes": []
+    },
+    "data_ticker_mausam": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "mandi ticker on / shows prices (₹ + number)",
+          "ok": true,
+          "detail": "📊 मंडी भावमक्का ₹1,849/क्विंटल · Rehli APMC|गेहूं ₹2,655/क्विंटल · Sagar APMC|सोयाबीन ₹6,323/क्विंटल · Rehli APMC|सरसों ₹7,190/क्विंटल · Khurai APMC|लहसुन ₹11,"
+        },
+        {
+          "desc": "/mausam has a place set (location banner)",
+          "ok": true,
+          "detail": "📍 सागर के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
+        },
+        {
+          "desc": "/mausam shows a temperature (weather data loaded)",
+          "ok": true,
+          "detail": {
+            "temp": "21°",
+            "weatherResponses": [
+              "GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+              "GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js",
+              "GET 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_cache_v2",
+              "POST 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_grid_requests",
+              "GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+              "GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js"
+            ]
+          }
+        },
+        {
+          "desc": "/mausam weather read answered 200 (weather_cache_v2 or open-meteo)",
+          "ok": true,
+          "detail": [
+            "GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+            "GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js",
+            "GET 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_cache_v2",
+            "POST 200 wzxtqbqlahyahsnoqqva.supabase.co/rest/v1/weather_grid_requests",
+            "GET 200 staging.kissansahyog.com/assets/weatherApi-f5eLqPLK.js",
+            "GET 200 staging.kissansahyog.com/assets/weatherApiV2-DfUuSj-y.js"
+          ]
+        }
+      ],
+      "notes": [
+        "console errors on / and /mausam (not allowlisted): [\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg' violates the following Content Security Policy \",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg' violates the following Content Security Policy \",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg' violates the following Content Security Policy \",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg' violates the following Content Security Policy \",\"Loading the image 'https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg' violates the following Content Security Policy \"]"
+      ]
+    }
+  },
+  "kstest": {
+    "time": "2026-10-15T04:30:19.612Z",
+    "kind": "feedback",
+    "site": "https://staging.kissansahyog.com",
+    "marker": "KSTEST-B9P4-1792038619612",
+    "email": "kstest-b9p4-1792038619612@example.com",
+    "device": "KSTEST-phase4-gate",
+    "status": 200,
+    "response": {
+      "ok": true
+    }
+  },
+  "platformStar": 12,
+  "finishedAt": "2026-10-15T04:30:28.790Z",
+  "verdict": "ALL PASSED"
+}

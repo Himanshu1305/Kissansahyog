@@ -1,0 +1,6 @@
+Same tool (Git Bash gzip -9), same session:
+baseline main index-DfikRbEu.js 81931 raw / 27565 gz
+phase1   main index-B_oa21vx.js 81931 raw / 27554 gz (-11 B)
+baseline css index-1G45bePi.css 77384 / 15505
+phase1   css index-BpE_yT_b.css 78381 / 15754 (+249 B gz)
+(Phase 0 reported 27,758 B for the baseline chunk with a different gzip; compare like with like.)

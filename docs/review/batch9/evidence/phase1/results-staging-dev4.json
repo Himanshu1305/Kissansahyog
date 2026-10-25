@@ -1,0 +1,97 @@
+{
+  "run": {
+    "flavor": "staging",
+    "startedAt": "2026-10-14T20:33:23.775Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "installedAtStart": "android/ks-apks/ks-staging.apk",
+    "finishedAt": "2026-10-14T20:36:38.034Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "S4",
+      "name": "Signup",
+      "status": "RAN-PASSED",
+      "assertion": "A brand-new KSTEST user signs up through the real signup UI of the staging app; lands logged in; the session survives force-stop + relaunch",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-dev4/S4/after-signup.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S4/after-relaunch.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S4/signup.json",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S4/checks.json"
+      ],
+      "durationMs": 45276,
+      "notes": ""
+    },
+    {
+      "id": "S5",
+      "name": "Logout / login",
+      "status": "RAN-PASSED",
+      "assertion": "Log out, log in again with the same mobile number (phone login); an unregistered and a malformed number are refused with the in-app message",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-dev4/S5/unregistered-number.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S5/logged-in-again.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S5/login.json",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S5/checks.json"
+      ],
+      "durationMs": 30324,
+      "notes": "unregistered → \"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\"; malformed → \"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\"; phone login is trust-based (no OTP), lands on /home"
+    },
+    {
+      "id": "S6",
+      "name": "Post with photo",
+      "status": "RAN-PASSED",
+      "assertion": "As the KSTEST user, post a listing (marker KSTEST…) with a photo; it appears in My Listings and Browse; the detail page shows the photo (naturalWidth > 0) and the photo URL returns 200 from staging storage",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-dev4/S6/step2-with-photo.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S6/posted.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S6/detail.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S6/my-listings.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S6/browse.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S6/post.json",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S6/checks.json"
+      ],
+      "durationMs": 41310,
+      "notes": "photo via Playwright setInputFiles (buffer); listing 992392ae-7ecb-440a-9513-05389fdf3b9d"
+    },
+    {
+      "id": "S7",
+      "name": "Contact reveal",
+      "status": "RAN-PASSED",
+      "assertion": "A second KSTEST user reveals the number on user A's listing; logged out, the reveal goes to login with the return path and comes back after login",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-dev4/S7/revealed.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S7/back-after-login.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S7/reveal.json",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S7/checks.json"
+      ],
+      "durationMs": 40480,
+      "notes": ""
+    },
+    {
+      "id": "S8",
+      "name": "Profile and My Listings",
+      "status": "RAN-PASSED",
+      "assertion": "Both render for the logged-in user; an edited profile field persists after relaunch (pincode behaviour recorded)",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/staging-dev4/S8/my-listings.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S8/profile-saved.jpg",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S8/profile.json",
+        "docs/review/batch9/evidence/phase1/staging-dev4/S8/checks.json"
+      ],
+      "durationMs": 32751,
+      "notes": "KNOWN ISSUE confirmed: saving needs a pincode (first save: \"कृपया सही 6 अंकों का पिन कोड भरें।\"); saved after entering 470001"
+    }
+  ]
+}

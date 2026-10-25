@@ -21,9 +21,9 @@ export default function NotFound() {
         <div className="text-6xl font-black text-green-700">404</div>
         <h1 className="mt-3 text-2xl font-bold text-stone-900">{t('nf_h1')}</h1>
         {/* ks-allow-width: centred 404 message + link grid, not a page-level clamp */}
-        <p className="mx-auto mt-2 max-w-md text-stone-600">{t('nf_body')}</p>
+        <p className="mt-2 text-stone-600">{t('nf_body')}</p>
         {/* ks-allow-width */}
-        <ul className="mx-auto mt-6 grid max-w-md grid-cols-2 gap-3">
+        <ul className="mt-6 grid grid-cols-2 gap-3">
           {links.map((l) => (
             <li key={l.to}>
               <Link to={l.to} className="block rounded-xl border border-stone-200 bg-white px-4 py-3 font-semibold text-green-700 hover:bg-green-50">

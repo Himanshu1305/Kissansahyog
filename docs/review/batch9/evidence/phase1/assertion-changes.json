@@ -1,0 +1,17 @@
+{
+  "T14": {
+    "removed": "the viewport shrank for the keyboard (visualViewport.height < 0.8 x screen.height)",
+    "why": "Timing-sensitive and not the real condition. In 8B prod run #2 it failed (839 of 915 CSS px) while the screenshot showed NO soft keyboard at all: the emulator had show_ime_with_hard_keyboard = 0, so adb input counted as a hardware keyboard and no keyboard was ever drawn. A shrinking viewport neither proves a keyboard is drawn nor that the field is visible.",
+    "added": [
+      "keyboard opens: dumpsys input_method mInputShown=true AND dumpsys window reports a VISIBLE IME frame (its top edge in screen px is recorded)",
+      "the keyboard is DRAWN on the screenshot: the screen band below the IME top differs strongly from the same band before the tap (mean absolute grey difference > 12)",
+      "the input is fully visible: below the sticky header, above the fixed tab bar and above the keyboard top in real screen pixels, and not covered (elementFromPoint at 4 corners + centre hits the input)"
+    ],
+    "kept": ["a query known to have results", "the input has focus", "typed text reaches the input", "results render", "URL carries the query"],
+    "emulator": "show_ime_with_hard_keyboard is now set to 1 by scripts/android/avd-setup.sh and again at the start of T14 / K1"
+  },
+  "O3": {
+    "changed": "On / (Home) only: 'stamp shown, its time is a stored cachedAt' → 'exactly one timestamp: the offline banner shows a time and the stamp under the ticker is hidden while the banner shows'",
+    "why": "Batch 9 Phase 1B removes the duplicate time on Home: the orange offline banner already says 'आख़िरी बार अपडेट …'. The other O3 pages (/mausam, /msp, /browse, listing) keep their stamp and the unchanged assertion. The stamp's return when online-but-showing-saved-data is checked by the new test H1."
+  }
+}

@@ -1,0 +1,21 @@
+Same tool (Git Bash gzip -9 -c | wc -c), same session, Phase 6 build (HEAD aaafc80) vs frozen Phase 0 baseline-dist
+main  baseline index-DfikRbEu.js 81931 raw / 27565 gz
+main  phase6   index-BEoquPCU.js 81997 raw / 27569 gz  (+66 raw / +4 gz; budget <= 27,565 + 1,500 = 29,065) PASS
+css   baseline index-1G45bePi.css 77384 raw / 15505 gz
+css   phase6   index-DxJSf2QD.css 79151 raw / 15927 gz (+422 gz)
+
+Lazy chunks with real deltas (gz; hash-only renames omitted):
+LanguageProvider (strings) 62351 -> 63428 (+1077)
+registry (guide demos)     13138 -> 14583 (+1445)
+DemoPlayer                  7785 ->  8390 (+605)
+guide.css                   4204 ->  4371 (+167)
+melaApi + melaFormat        2961+898 -> 3731 (merged; -128 net)
+Msp                         7480 ->  7857 (+377) + new mspWindow 668
+mandiApi                    1580 ->  1910 (+330)
+Post                        7586 ->  7801 (+215)
+Signup                      3368 ->  3084 (-284)
+Login                       1758 ->  1903 (+145)
+Homepage                   14795 -> 14729 (-66)
+ListingDetail               3533 ->  3637 (+104)
+ListingCard                 1358 ->  1402 (+44)
+All JS+CSS assets total    562189 -> 567575 (+5386 gz, all lazy except main/css)

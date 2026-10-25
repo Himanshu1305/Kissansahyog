@@ -1,0 +1,25 @@
+{
+  "label": "staging-data",
+  "base": "https://staging.kissansahyog.com",
+  "startedAt": "2026-10-14T22:39:32.802Z",
+  "gates": {
+    "data_ticker_mausam": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "mandi ticker on / shows prices (₹ + number)",
+          "ok": true,
+          "detail": "📊 मंडी भावकल का भाव (14/10)मक्का ₹1,849/क्विंटल · Rehli APMC|गेहूं ₹2,655/क्विंटल · Sagar APMC|सोयाबीन ₹6,323/क्विंटल · Rehli APMC|सरसों ₹7,190/क्विंटल · Khura"
+        },
+        {
+          "desc": "/mausam shows a temperature (weather data loaded)",
+          "ok": true,
+          "detail": "21°"
+        }
+      ],
+      "notes": []
+    }
+  },
+  "finishedAt": "2026-10-14T22:39:41.476Z",
+  "verdict": "ALL PASSED"
+}

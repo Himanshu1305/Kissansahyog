@@ -1,0 +1,129 @@
+### HEAD
+title: बेचने वाले का नंबर कैसे मिलेगा — किसान सहयोग गाइड
+description: आस-पास की लिस्टिंग खोजिए, खोलिए और कॉल या WhatsApp कीजिए — 1 मिनट का डेमो।
+canonical: https://kissansahyog.com/guide/find
+robots: 
+lang: hi
+h1: बेचने वाले का नंबर कैसे मिलेगा
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+← सभी डेमो
+बेचने वाले का नंबर कैसे मिलेगा
+खोजिए, लिस्टिंग खोलिए, कॉल कीजिए।
+ऊपर श्रेणी चुनिए। "मशीन" पहले से चुनी रहती है।
+‹
+आस-पास खोजें
+🚜 मशीन
+👷 कृषि सहयोगी (Labor)
+🌾 भूसा / पराली
+🧪 कृषि सामग्री
+यंत्र के टैग (चाहें तो चुनें)
+✓
+सभी
+सब्ज़ी खेती के यंत्र
+दुर्लभ या ज़रूरत पर मिलने वाले यंत्र
+📍 खुरई, सागर
+बदलें
+दे रहे हैं (Offer)
+नमूना
+महिंद्रा 575 DI · 2021 · 45 HP
+ट्रैक्टर · प्रति घंटा · ₹600
+📍 खुरई
+📞 कॉल करें
+WhatsApp करें
+दे रहे हैं (Offer)
+दुर्लभ या ज़रूरत पर मिलने वाले यंत्र
+नमूना
+महिंद्रा 275 DI · 2019 · 39 HP
+क्रेन ट्रैक्टर · प्रति घंटा · ₹1,200
+📍 खुरई
+📞 कॉल करें
+WhatsApp करें
+फ़ोन के अंदर के नाम, नंबर और दाम सिर्फ़ नमूना हैं।
+देखिए
+करके देखिए
+चलाइए
+फिर से
+सुनिए
+1
+ऊपर श्रेणी चुनिए। "मशीन" पहले से चुनी रहती है।
+2
+टैग चुनिए। सूची अपने आप छोटी हो जाती है।
+3
+जो लिस्टिंग पसंद आए, उसे खोलिए।
+4
+मशीन, किराया और जगह यहाँ देखिए।
+5
+"कॉल करें" दबाइए। लॉग इन नहीं है तो पहले लॉग इन करना होगा, फिर आप यहीं लौटेंगे।
+6
+पहले यह सावधानी पढ़िए।
+7
+अब नाम और नंबर दिखते हैं। कॉल या WhatsApp कीजिए।
+8
+जिसने अपनी जानकारी छिपाई है, उसका नंबर नहीं दिखता।
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

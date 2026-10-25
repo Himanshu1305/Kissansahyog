@@ -1,0 +1,18 @@
+✔ shipped flag: GUIDE_OTP_LIVE is false and the shipped register demo has no OTP (5.2494ms)
+✔ otpLive:false → zero OTP steps and zero OTP nodes (1.0936ms)
+✔ otpLive:true → Send OTP, 6-digit code, verified steps (right after the mobile step) (2.2098ms)
+✔ register (otpLive:false) is internally consistent (2.1606ms)
+✔ register (otpLive:true) is internally consistent (1.3438ms)
+✔ demo "register": targets exist in the screens, keys exist in strings.js (0.9676ms)
+✔ demo "post": targets exist in the screens, keys exist in strings.js (1.6733ms)
+✔ demo "find": targets exist in the screens, keys exist in strings.js (0.7924ms)
+✔ GUIDE_ORDER covers the three scripted demos + the tour (0.6681ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 384.7841
+unit exit 0

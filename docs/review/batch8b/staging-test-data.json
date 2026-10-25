@@ -1,0 +1,695 @@
+{
+  "note": "Everything Batch 8B tests created in the STAGING project, for later cleanup by someone with database access. Names / titles start with KSTEST; mobiles are fake. Passwords are not recorded.",
+  "created": [
+    {
+      "at": "2026-10-14T06:52:28.036Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 702873",
+      "email": "kstest-1791960702873-a@example.com",
+      "phone": "9960702873",
+      "profile_id": "46e5c28e-26d8-4490-9f22-635a6498f983"
+    },
+    {
+      "at": "2026-10-14T06:54:33.361Z",
+      "kind": "listing (posted through the app)",
+      "by": "9960702873",
+      "listing_id": "538e76d8-bc08-4622-af78-c385fa53720e",
+      "marker": "KSTEST 702873",
+      "category": "bhusa",
+      "village": "KSTEST 702873 Sagar",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/5a193a83-0066-469d-82e1-87010b7de92d/0.jpg"
+    },
+    {
+      "at": "2026-10-14T06:55:39.251Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 914364",
+      "email": "kstest-1791960914364-a@example.com",
+      "phone": "9960914364",
+      "profile_id": "048da696-6a7b-4aa4-9e06-26d258499dfd"
+    },
+    {
+      "at": "2026-10-14T06:56:56.776Z",
+      "kind": "listing (posted through the app)",
+      "by": "9960914364",
+      "listing_id": "6d46fa29-5ec6-4768-bbed-e007326b6b4f",
+      "marker": "KSTEST 914364",
+      "category": "bhusa",
+      "village": "KSTEST 914364 Sagar",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/f7e9de30-febd-48bf-9044-6bb7061775dd/0.jpg"
+    },
+    {
+      "at": "2026-10-14T06:57:50.073Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 914364",
+      "email": "kstest-1791960914364-b@example.com",
+      "phone": "8960914364",
+      "profile_id": "bd3cafd9-fd1b-4450-85b4-1150087cf69e"
+    },
+    {
+      "at": "2026-10-14T06:58:00.404Z",
+      "kind": "contact reveal",
+      "viewer": "8960914364",
+      "listing_id": "6d46fa29-5ec6-4768-bbed-e007326b6b4f"
+    },
+    {
+      "at": "2026-10-14T06:59:00.425Z",
+      "kind": "profile edit",
+      "who": "8960914364",
+      "full_name": "KSTEST Kisan B 914364 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T07:00:18.733Z",
+      "kind": "profile edit",
+      "who": "8961174260",
+      "full_name": "KSTEST Kisan B 174260 edited",
+      "pincode": null
+    },
+    {
+      "at": "2026-10-14T07:05:45.424Z",
+      "kind": "profile edit",
+      "who": "8961506949",
+      "full_name": "KSTEST Kisan B 506949 edited",
+      "pincode": null
+    },
+    {
+      "at": "2026-10-14T07:14:51.436Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 044291",
+      "email": "kstest-1791962044291-a@example.com",
+      "phone": "9962044291",
+      "profile_id": "a9f48819-2e13-4db5-ab0f-681b8491f41b"
+    },
+    {
+      "at": "2026-10-14T07:16:27.964Z",
+      "kind": "listing (posted through the app)",
+      "by": "9962044291",
+      "listing_id": "2c5fbb2a-a1a5-4a6b-8c24-e9b1d8f167ac",
+      "marker": "KSTEST 044291",
+      "category": "bhusa",
+      "village": "KSTEST 044291 Sagar",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/9e45a42a-7a9a-4a42-b129-1f5c81a80a67/0.jpg"
+    },
+    {
+      "at": "2026-10-14T07:17:04.288Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 044291",
+      "email": "kstest-1791962044291-b@example.com",
+      "phone": "8962044291",
+      "profile_id": "a5ec840c-beb8-4498-bae1-3a8470bc35d1"
+    },
+    {
+      "at": "2026-10-14T07:17:11.746Z",
+      "kind": "contact reveal",
+      "viewer": "8962044291",
+      "listing_id": "2c5fbb2a-a1a5-4a6b-8c24-e9b1d8f167ac"
+    },
+    {
+      "at": "2026-10-14T07:18:05.625Z",
+      "kind": "profile edit",
+      "who": "8962044291",
+      "full_name": "KSTEST Kisan B 044291 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T07:25:14.103Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 667983",
+      "email": "kstest-1791962667983-a@example.com",
+      "phone": "9962667983",
+      "profile_id": "ee4a906f-bec8-4ebb-a420-b81aaa7dc84d"
+    },
+    {
+      "at": "2026-10-14T07:26:23.700Z",
+      "kind": "listing (posted through the app)",
+      "by": "9962667983",
+      "listing_id": "f10d4fc9-735b-4552-b312-50ee4ef6b14c",
+      "marker": "KSTEST 667983",
+      "category": "bhusa",
+      "village": "KSTEST 667983 Sagar",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/893f08c3-5b6f-4ccf-b262-6ebdbeed8ff3/0.jpg"
+    },
+    {
+      "at": "2026-10-14T07:42:54.746Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 727212",
+      "email": "kstest-1791963727212-a@example.com",
+      "phone": "9963727212",
+      "profile_id": "5a96db5a-18c1-413c-a38b-78eabbf55715"
+    },
+    {
+      "at": "2026-10-14T07:48:09.415Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 802475",
+      "email": "kstest-1791963802475-a@example.com",
+      "phone": "9963802475",
+      "profile_id": "33fbcdaf-4110-4c3f-aa80-a5a580425dd6"
+    },
+    {
+      "at": "2026-10-14T07:50:12.502Z",
+      "kind": "listing (posted through the app)",
+      "by": "9963802475",
+      "listing_id": "ecc375f8-6c4d-47ec-9c15-04cb58cb8315",
+      "marker": "KSTEST 802475",
+      "category": "bhusa",
+      "village": "KSTEST 802475 Sagar",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/f1654d55-cfb5-4bb4-bfa4-07240914172b/0.jpg"
+    },
+    {
+      "at": "2026-10-14T07:50:48.922Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 802475",
+      "email": "kstest-1791963802475-b@example.com",
+      "phone": "8963802475",
+      "profile_id": "118b0a61-3312-4393-8ffb-1c995d8d3d04"
+    },
+    {
+      "at": "2026-10-14T07:50:57.940Z",
+      "kind": "contact reveal",
+      "viewer": "8963802475",
+      "listing_id": "ecc375f8-6c4d-47ec-9c15-04cb58cb8315"
+    },
+    {
+      "at": "2026-10-14T07:51:49.686Z",
+      "kind": "profile edit",
+      "who": "8963802475",
+      "full_name": "KSTEST Kisan B 802475 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T08:16:30.460Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 719414",
+      "email": "kstest-1791965719414-a@example.com",
+      "phone": "9965719414",
+      "profile_id": "d4a137c9-8088-44ee-b73a-a0330de1681e"
+    },
+    {
+      "at": "2026-10-14T08:17:49.394Z",
+      "kind": "listing (posted through the app)",
+      "by": "9965719414",
+      "listing_id": "b25533e5-9435-4e99-a4c1-bd7cf24ab895",
+      "marker": "KSTEST 719414",
+      "category": "bhusa",
+      "village": "KSTEST 719414 Sagar",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/7a82df4c-a3fc-4346-9743-ea543bfda94c/0.jpg"
+    },
+    {
+      "at": "2026-10-14T08:30:30.351Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 379067",
+      "email": "kstest-1791966379067-a@example.com",
+      "phone": "9966379067",
+      "profile_id": "835db2cf-daed-436b-9c54-524bce706b22"
+    },
+    {
+      "at": "2026-10-14T08:32:22.758Z",
+      "kind": "listing (posted through the app)",
+      "by": "9966379067",
+      "listing_id": "dd3a3160-eb9d-4897-8fce-f32a337cf65f",
+      "marker": "KSTEST 379067",
+      "category": "bhusa",
+      "village": "KSTEST 379067 Sagar",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/7ddbff11-f3a6-415a-aa02-f1a14a70b30d/0.jpg"
+    },
+    {
+      "at": "2026-10-14T08:32:53.157Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 379067",
+      "email": "kstest-1791966379067-b@example.com",
+      "phone": "8966379067",
+      "profile_id": "f7fc12db-fa35-4e9d-aa04-200f2ed1d22d"
+    },
+    {
+      "at": "2026-10-14T08:32:59.507Z",
+      "kind": "contact reveal",
+      "viewer": "8966379067",
+      "listing_id": "dd3a3160-eb9d-4897-8fce-f32a337cf65f"
+    },
+    {
+      "at": "2026-10-14T08:33:45.268Z",
+      "kind": "profile edit",
+      "who": "8966379067",
+      "full_name": "KSTEST Kisan B 379067 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T08:38:51.655Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791966379067-a@example.com",
+      "marker": "KSTEST 379067",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    },
+    {
+      "at": "2026-10-14T08:40:42.303Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 205495",
+      "email": "kstest-1791967205495-a@example.com",
+      "phone": "9967205495",
+      "profile_id": "f0b6a7ab-7b7b-4272-b644-773d194ca602"
+    },
+    {
+      "at": "2026-10-14T08:42:19.690Z",
+      "kind": "listing (posted through the app)",
+      "by": "9967205495",
+      "listing_id": "a637d2cb-9b01-4b90-9144-ce6307e9e3d3",
+      "marker": "KSTEST 205495",
+      "category": "bhusa",
+      "village": "KSTEST 205495 Sagar",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/dfc0b4d6-28a7-4f77-969b-58c2aa5d2d1d/0.jpg"
+    },
+    {
+      "at": "2026-10-14T08:53:33.955Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 971182",
+      "email": "kstest-1791967971182-a@example.com",
+      "phone": "9967971182",
+      "profile_id": "588dd56b-41db-409e-8bb7-b8b8c540de61"
+    },
+    {
+      "at": "2026-10-14T08:54:11.455Z",
+      "kind": "listing (posted through the app)",
+      "by": "9967971182",
+      "listing_id": "6ac8e9f8-be1c-4e87-9bce-df8fd1d4f256",
+      "marker": "KSTEST 971182",
+      "category": "bhusa",
+      "location": "device position (current-location button)",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/d75b1021-7538-470f-8f7b-ee87e2a8e74f/0.jpg"
+    },
+    {
+      "at": "2026-10-14T09:01:57.224Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 479992",
+      "email": "kstest-1791968479992-a@example.com",
+      "phone": "9968479992",
+      "profile_id": "651599e0-5831-434b-971c-9ba89256c21d"
+    },
+    {
+      "at": "2026-10-14T09:03:32.484Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791968479992-a@example.com",
+      "marker": "KSTEST 479992",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    },
+    {
+      "at": "2026-10-14T09:05:04.033Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791968656207-a@example.com",
+      "marker": "KSTEST 656207",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    },
+    {
+      "at": "2026-10-14T09:37:13.791Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 330894",
+      "email": "kstest-1791970330894-a@example.com",
+      "phone": "9970330894",
+      "profile_id": "f03467c2-910c-42f5-87cb-b112b496f529"
+    },
+    {
+      "at": "2026-10-14T09:38:32.544Z",
+      "kind": "listing (posted through the app)",
+      "by": "9970330894",
+      "listing_id": "e11d39f5-2efd-4cdc-8445-90569b58c488",
+      "marker": "KSTEST 330894",
+      "category": "bhusa",
+      "location": "known village from the page's list: \"Sagar\" (the button got no low-accuracy fix on the emulator)",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/11f25db7-e67a-454c-8e0f-74c7131def0e/0.jpg"
+    },
+    {
+      "at": "2026-10-14T09:39:06.844Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 330894",
+      "email": "kstest-1791970330894-b@example.com",
+      "phone": "8970330894",
+      "profile_id": "a23f34b1-c784-4cc4-8180-e9cf461dc96f"
+    },
+    {
+      "at": "2026-10-14T09:39:14.655Z",
+      "kind": "contact reveal",
+      "viewer": "8970330894",
+      "listing_id": "e11d39f5-2efd-4cdc-8445-90569b58c488"
+    },
+    {
+      "at": "2026-10-14T09:40:03.877Z",
+      "kind": "profile edit",
+      "who": "8970330894",
+      "full_name": "KSTEST Kisan B 330894 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T09:45:24.931Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791970330894-a@example.com",
+      "marker": "KSTEST 330894",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    },
+    {
+      "at": "2026-10-14T09:52:44.170Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 229569",
+      "email": "kstest-1791971229569-a@example.com",
+      "phone": "9971229569",
+      "profile_id": "785c8eed-d4ce-4497-9d7f-cf1abc41439d"
+    },
+    {
+      "at": "2026-10-14T09:54:19.140Z",
+      "kind": "listing (posted through the app)",
+      "by": "9971229569",
+      "listing_id": "05530f55-5a41-48c5-bc09-a2f344a98ceb",
+      "marker": "KSTEST 229569",
+      "category": "bhusa",
+      "location": "known village from the page's list: \"Sagar\" (the button got no low-accuracy fix on the emulator)",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/9e875fd4-c8ea-4810-8154-95d0a951665f/0.jpg"
+    },
+    {
+      "at": "2026-10-14T09:54:57.522Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 229569",
+      "email": "kstest-1791971229569-b@example.com",
+      "phone": "8971229569",
+      "profile_id": "5fd5bb8b-9b9a-4848-8e96-f2a86af71453"
+    },
+    {
+      "at": "2026-10-14T09:55:14.259Z",
+      "kind": "contact reveal",
+      "viewer": "8971229569",
+      "listing_id": "05530f55-5a41-48c5-bc09-a2f344a98ceb"
+    },
+    {
+      "at": "2026-10-14T09:56:34.510Z",
+      "kind": "profile edit",
+      "who": "8971229569",
+      "full_name": "KSTEST Kisan B 229569 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T10:08:25.099Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791971229569-a@example.com",
+      "marker": "KSTEST 229569",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    },
+    {
+      "at": "2026-10-14T10:13:44.229Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 776613",
+      "email": "kstest-1791972776613-a@example.com",
+      "phone": "9972776613",
+      "profile_id": "1dcab8c8-19fb-486c-b6a1-49a70839ecd5"
+    },
+    {
+      "at": "2026-10-14T10:14:26.673Z",
+      "kind": "listing (posted through the app)",
+      "by": "9972776613",
+      "listing_id": "e0890747-e332-4ac4-8e1b-afb268a1690f",
+      "marker": "KSTEST 776613",
+      "category": "bhusa",
+      "village": "KSTEST 776613 Sagar",
+      "coordinates": "✓ 23.83880, 78.73780",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/771ab527-7899-44fd-9e32-4fb646728875/0.jpg"
+    },
+    {
+      "at": "2026-10-14T10:14:58.153Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 776613",
+      "email": "kstest-1791972776613-b@example.com",
+      "phone": "8972776613",
+      "profile_id": "b9921873-745c-4cb7-a606-b7e2835e2846"
+    },
+    {
+      "at": "2026-10-14T10:15:05.248Z",
+      "kind": "contact reveal",
+      "viewer": "8972776613",
+      "listing_id": "e0890747-e332-4ac4-8e1b-afb268a1690f"
+    },
+    {
+      "at": "2026-10-14T10:25:10.362Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 162610",
+      "email": "kstest-1791973162610-a@example.com",
+      "phone": "9973162610",
+      "profile_id": "ca5f14cb-f4a0-47dd-8339-1e65c924984f"
+    },
+    {
+      "at": "2026-10-14T10:26:24.542Z",
+      "kind": "listing (posted through the app)",
+      "by": "9973162610",
+      "listing_id": "f1c440ef-6402-4f92-b87e-c61d98cf9cb2",
+      "marker": "KSTEST 162610",
+      "category": "bhusa",
+      "village": "KSTEST 162610 Sagar",
+      "coordinates": "✓ 23.83880, 78.73780",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/79eef749-683c-4769-8ff4-e933b6fa9cdf/0.jpg"
+    },
+    {
+      "at": "2026-10-14T10:26:55.499Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 162610",
+      "email": "kstest-1791973162610-b@example.com",
+      "phone": "8973162610",
+      "profile_id": "bb65f24c-b42e-42fe-bbc3-6f77880e26b4"
+    },
+    {
+      "at": "2026-10-14T10:27:05.904Z",
+      "kind": "contact reveal",
+      "viewer": "8973162610",
+      "listing_id": "f1c440ef-6402-4f92-b87e-c61d98cf9cb2"
+    },
+    {
+      "at": "2026-10-14T10:27:56.312Z",
+      "kind": "profile edit",
+      "who": "8973162610",
+      "full_name": "KSTEST Kisan B 162610 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T10:47:16.830Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 521475",
+      "email": "kstest-1791974521475-a@example.com",
+      "phone": "9974521475",
+      "profile_id": "601cda62-9727-4852-94ed-9d8e3fe47a89"
+    },
+    {
+      "at": "2026-10-14T10:48:28.998Z",
+      "kind": "listing (posted through the app)",
+      "by": "9974521475",
+      "listing_id": "226fde40-3e5a-4beb-b0d4-6a8fa7d8439c",
+      "marker": "KSTEST 521475",
+      "category": "bhusa",
+      "village": "KSTEST 521475 Sagar",
+      "coordinates": "✓ 23.83880, 78.73780",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/7f3430c4-ca88-4387-bf5c-5787ff459c82/0.jpg"
+    },
+    {
+      "at": "2026-10-14T10:48:59.648Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 521475",
+      "email": "kstest-1791974521475-b@example.com",
+      "phone": "8974521475",
+      "profile_id": "87132c3e-1ddc-499f-9b16-8e2127701659"
+    },
+    {
+      "at": "2026-10-14T10:49:05.896Z",
+      "kind": "contact reveal",
+      "viewer": "8974521475",
+      "listing_id": "226fde40-3e5a-4beb-b0d4-6a8fa7d8439c"
+    },
+    {
+      "at": "2026-10-14T10:49:49.652Z",
+      "kind": "profile edit",
+      "who": "8974521475",
+      "full_name": "KSTEST Kisan B 521475 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T10:57:43.217Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 182204",
+      "email": "kstest-1791975182204-a@example.com",
+      "phone": "9975182204",
+      "profile_id": "59fb019f-1846-4a8e-a2b2-2dee142f5e6b"
+    },
+    {
+      "at": "2026-10-14T10:58:42.723Z",
+      "kind": "listing (posted through the app)",
+      "by": "9975182204",
+      "listing_id": "8bf68441-52c8-4939-927c-ae0ee1310bcd",
+      "marker": "KSTEST 182204",
+      "category": "bhusa",
+      "village": "KSTEST 182204 Sagar",
+      "coordinates": "✓ 23.83880, 78.73780",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg"
+    },
+    {
+      "at": "2026-10-14T10:59:12.461Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 182204",
+      "email": "kstest-1791975182204-b@example.com",
+      "phone": "8975182204",
+      "profile_id": "34ec3bc3-f9e8-42c6-89d3-5ebe9377096f"
+    },
+    {
+      "at": "2026-10-14T10:59:18.421Z",
+      "kind": "contact reveal",
+      "viewer": "8975182204",
+      "listing_id": "8bf68441-52c8-4939-927c-ae0ee1310bcd"
+    },
+    {
+      "at": "2026-10-14T11:00:00.523Z",
+      "kind": "profile edit",
+      "who": "8975182204",
+      "full_name": "KSTEST Kisan B 182204 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T11:05:41.020Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791975182204-a@example.com",
+      "marker": "KSTEST 182204",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    },
+    {
+      "at": "2026-10-14T11:29:43.082Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791976051114-a@example.com",
+      "marker": "KSTEST 051114",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    },
+    {
+      "at": "2026-10-14T12:15:32.953Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 696049",
+      "email": "kstest-1791979696049-a@example.com",
+      "phone": "9979696049",
+      "profile_id": "24c5445b-cd73-4334-95b3-159f6d6b1a78"
+    },
+    {
+      "at": "2026-10-14T12:16:49.096Z",
+      "kind": "listing (posted through the app)",
+      "by": "9979696049",
+      "listing_id": "c57118e3-d3b3-4fb6-a5e2-7145d376274d",
+      "marker": "KSTEST 696049",
+      "category": "bhusa",
+      "village": "KSTEST 696049 Sagar",
+      "coordinates": "✓ 23.83880, 78.73780",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg"
+    },
+    {
+      "at": "2026-10-14T12:17:24.363Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 696049",
+      "email": "kstest-1791979696049-b@example.com",
+      "phone": "8979696049",
+      "profile_id": "1479dbd3-2d7b-44c0-b296-92599ceb274c"
+    },
+    {
+      "at": "2026-10-14T12:17:31.246Z",
+      "kind": "contact reveal",
+      "viewer": "8979696049",
+      "listing_id": "c57118e3-d3b3-4fb6-a5e2-7145d376274d"
+    },
+    {
+      "at": "2026-10-14T12:18:22.942Z",
+      "kind": "profile edit",
+      "who": "8979696049",
+      "full_name": "KSTEST Kisan B 696049 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T12:25:05.293Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791979696049-a@example.com",
+      "marker": "KSTEST 696049",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    },
+    {
+      "at": "2026-10-14T12:32:57.812Z",
+      "kind": "profile (signup through the app)",
+      "who": "A",
+      "full_name": "KSTEST Kisan A 816161",
+      "email": "kstest-1791980816161-a@example.com",
+      "phone": "9980816161",
+      "profile_id": "1aaa5e22-8158-461b-9442-4aaa19db0a6f"
+    },
+    {
+      "at": "2026-10-14T12:34:28.028Z",
+      "kind": "listing (posted through the app)",
+      "by": "9980816161",
+      "listing_id": "64a4d224-ac8d-4b5e-b3f8-47b415ecbd69",
+      "marker": "KSTEST 816161",
+      "category": "bhusa",
+      "village": "KSTEST 816161 Sagar",
+      "coordinates": "✓ 23.83880, 78.73780",
+      "photo_url": "https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg"
+    },
+    {
+      "at": "2026-10-14T12:35:08.644Z",
+      "kind": "profile (signup through the app)",
+      "who": "B",
+      "full_name": "KSTEST Kisan B 816161",
+      "email": "kstest-1791980816161-b@example.com",
+      "phone": "8980816161",
+      "profile_id": "36096bdf-0981-4653-83ff-e5f8f93496cc"
+    },
+    {
+      "at": "2026-10-14T12:35:16.631Z",
+      "kind": "contact reveal",
+      "viewer": "8980816161",
+      "listing_id": "64a4d224-ac8d-4b5e-b3f8-47b415ecbd69"
+    },
+    {
+      "at": "2026-10-14T12:36:10.081Z",
+      "kind": "profile edit",
+      "who": "8980816161",
+      "full_name": "KSTEST Kisan B 816161 edited",
+      "pincode": "470001"
+    },
+    {
+      "at": "2026-10-14T12:42:21.129Z",
+      "kind": "feedback attempt (local wrangler, staging)",
+      "contact": "kstest-1791980816161-a@example.com",
+      "marker": "KSTEST 816161",
+      "outcome": "failure-with-email-fallback",
+      "stored": false
+    }
+  ]
+}

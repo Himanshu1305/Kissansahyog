@@ -1,0 +1,25 @@
+# 1.6 live code markers (2026-10-17T22:51:44Z)
+main chunk: /assets/index-NFbe6Fk2.js (ship log: /assets/index-NFbe6Fk2.js)
+main size bytes: 77934
+  main has nav-guide            0
+  main has footer-guide         1
+  main has entry-home-guide     0
+  main has entry-welcome-guide  0
+  main has help-signup          0
+  main has help-login           0
+  main has help-browse          0
+  main has help-post            0
+  main has etag                 0
+  main has GuideHub             2
+  main has GuideDemoPage        2
+  assets/Browse-s6_HPgqT.js                bytes=7195    ksg-=0 guide-hub=0 demo-player=0 etag=1 help-post=0 caption(पहले अपना पूरा नाम)=0
+  assets/DemoPlayer-CGPGNn-k.js            bytes=25058   ksg-=1 guide-hub=0 demo-player=1 etag=0 help-post=0 caption(पहले अपना पूरा नाम)=0
+  assets/GuideDemoPage-BQPd4yAN.js         bytes=8765    ksg-=1 guide-hub=0 demo-player=0 etag=0 help-post=0 caption(पहले अपना पूरा नाम)=0
+  assets/GuideHelpButton-D7Yom6p6.js       bytes=2220    ksg-=0 guide-hub=0 demo-player=0 etag=0 help-post=0 caption(पहले अपना पूरा नाम)=0
+  assets/GuideHub-D5eP1opf.js              bytes=6335    ksg-=1 guide-hub=1 demo-player=0 etag=0 help-post=0 caption(पहले अपना पूरा नाम)=0
+  assets/Post-C1jZ_Ils.js                  bytes=24641   ksg-=0 guide-hub=0 demo-player=0 etag=0 help-post=1 caption(पहले अपना पूरा नाम)=0
+
+# 1.8 sitemaps / robots
+sitemap.xml valid XML, children: ['https://kissansahyog.com/sitemap-pages.xml', 'https://kissansahyog.com/sitemap-sawaal.xml', 'https://kissansahyog.com/sitemap-cold-storage.xml', 'https://kissansahyog.com/sitemap-schemes.xml']
+sitemap-pages valid XML, urls: 54
+guide urls: ['https://kissansahyog.com/guide', 'https://kissansahyog.com/guide/find', 'https://kissansahyog.com/guide/post', 'https://kissansahyog.com/guide/register', 'https://kissansahyog.com/guide/tour']

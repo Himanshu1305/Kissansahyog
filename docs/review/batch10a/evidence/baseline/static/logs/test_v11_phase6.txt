@@ -1,0 +1,34 @@
+PASS  every strings.js entry has non-empty hi + en
+FAIL  every disclaimer has hi + en  — listingConsents
+PASS  Bhusa environmental disclaimer wired through i18n (not hardcoded)
+PASS  privacy policy points all bilingual
+PASS  terms of use points all bilingual
+PASS  CATEGORY_META bilingual (incl. bhusa, agri_inputs)
+PASS  catalog.PRICE_TYPE options bilingual
+PASS  catalog.ARRANGEMENT options bilingual
+PASS  catalog.WATER_SOURCE options bilingual
+PASS  catalog.SEASON options bilingual
+PASS  catalog.RENTAL_BASIS options bilingual
+PASS  catalog.WORK_TYPE options bilingual
+PASS  catalog.RATE_BASIS options bilingual
+PASS  catalog.RESIDUE_TYPE options bilingual
+PASS  catalog.PICKUP_ARRANGEMENT options bilingual
+PASS  catalog.BUYER_TYPE_PREFERENCE options bilingual
+PASS  catalog.AGRI_SUBTYPE options bilingual
+PASS  catalog.INPUT_TYPE options bilingual
+PASS  catalog.INPUT_CONDITION options bilingual
+FAIL  all v1.1 string keys present  — tab_phone, tab_email
+PASS  land.jsx hi/en label parity  — hi=6 en=6
+PASS  equipment.jsx hi/en label parity  — hi=6 en=6
+PASS  labor.jsx hi/en label parity  — hi=5 en=5
+PASS  drone_didi.jsx hi/en label parity  — hi=12 en=12
+PASS  bhusa.jsx hi/en label parity  — hi=6 en=6
+PASS  agri_inputs.jsx hi/en label parity  — hi=8 en=8
+PASS  building_materials.jsx hi/en label parity  — hi=6 en=6
+PASS  warehouse.jsx hi/en label parity  — hi=12 en=12
+PASS  transport.jsx hi/en label parity  — hi=4 en=4
+PASS  greenhouse.jsx hi/en label parity  — hi=8 en=8
+PASS  jugaad.jsx hi/en label parity  — hi=7 en=7
+FAIL  no hardcoded Devanagari outside sanctioned i18n/label files  — src\components\admin\WhatsAppAdminPanel.jsx, src\components\categories\agri_inputs.jsx, src\components\categories\bhusa.jsx, src\components\categories\building_materials.jsx, src\components\categories\drone_didi.jsx, src\components\categories\equipment.jsx, src\components\categories\greenhouse.jsx, src\components\categories\jugaad.jsx, src\components\categories\labor.jsx, src\components\categories\land.jsx, src\components\categories\transport.jsx, src\components\categories\warehouse.jsx, src\components\LanguageToggle.jsx, src\components\PromoBento.jsx, src\content\about.js, src\content\agroforestry.js, src\content\boxRegistry.js, src\content\crops.js, src\content\founder.js, src\content\howToUse.js, src\content\months.js, src\content\pages\bazaar.js, src\content\pages\carbon-brief.js, src\content\pages\carbon-credit.js, src\content\pages\cold-storage.js, src\content\pages\greenhouse.js, src\content\pages\grievance.js, src\content\pages\jugaad.js, src\content\qa\batch4_pulses.js, src\content\qa\batch4_rabi.js, src\content\qa\batch4_rabi2.js, src\content\qa\batch4_rabi3.js, src\content\qa\batch4_rabi4.js, src\content\qa\batch5b.js, src\content\qa\grains.js, src\content\qa\legacy.js, src\content\qa\pulses_veg.js, src\content\qa\schemes.js, src\content\searchSynonyms.js, src\content\seo.js, src\content\sources.js, src\content\states.js, src\lib\i18n\disclaimers.js, src\lib\i18n\legal.js, src\lib\i18n\strings.js, src\lib\i18n\termsContent.js, src\lib\listings\catalog.js, src\lib\location\places.js, src\lib\mela\melaFormat.js, src\lib\share\shareMessages.js
+
+29 passed, 3 failed

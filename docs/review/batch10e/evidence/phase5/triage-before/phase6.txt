@@ -1,0 +1,68 @@
+
+Running 2 tests using 1 worker
+
+  x  1 [chromium] › e2e\phase6.spec.js:33:1 › mark Found closes listing: disappears from browse, stays (Found) in My Listings (13.0s)
+  x  2 [chromium] › e2e\phase6.spec.js:64:1 › expired listing shows Expired in My Listings and is absent from browse (11.7s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase6.spec.js:33:1 › mark Found closes listing: disappears from browse, stays (Found) in My Listings 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('listing-card')
+    Expected: 0
+    Received: 1
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 10000ms
+      - waiting for getByTestId('listing-card')
+        2 × locator resolved to 4 elements
+          - unexpected value "4"
+        21 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      59 |   await page.goto('/browse')
+      60 |   await page.getByTestId('chip-land').click()
+    > 61 |   await expect(page.getByTestId('listing-card')).toHaveCount(0)
+         |                                                  ^
+      62 | })
+      63 |
+      64 | test('expired listing shows Expired in My Listings and is absent from browse', async ({ page }) => {
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase6.spec.js:61:50
+
+    Error Context: test-results\phase6-mark-Found-closes-l-9dde5--stays-Found-in-My-Listings-chromium\error-context.md
+
+  2) [chromium] › e2e\phase6.spec.js:64:1 › expired listing shows Expired in My Listings and is absent from browse 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('listing-card')
+    Expected: 0
+    Received: 1
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 10000ms
+      - waiting for getByTestId('listing-card')
+        2 × locator resolved to 4 elements
+          - unexpected value "4"
+        21 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      79 |   await page.goto('/browse')
+      80 |   await page.getByTestId('chip-labor').click()
+    > 81 |   await expect(page.getByTestId('listing-card')).toHaveCount(0)
+         |                                                  ^
+      82 | })
+      83 |
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase6.spec.js:81:50
+
+    Error Context: test-results\phase6-expired-listing-sho-64f86-s-and-is-absent-from-browse-chromium\error-context.md
+
+  2 failed
+    [chromium] › e2e\phase6.spec.js:33:1 › mark Found closes listing: disappears from browse, stays (Found) in My Listings 
+    [chromium] › e2e\phase6.spec.js:64:1 › expired listing shows Expired in My Listings and is absent from browse 

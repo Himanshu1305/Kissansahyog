@@ -1,13 +1,42 @@
+# Daily mandi prices + weather refresh, for production AND staging.
+#
+# IMPORTANT: GitHub runs `schedule` triggers only from the DEFAULT branch (main), and a scheduled run checks out
+# main. So main must contain BOTH this file AND the scripts it calls (scripts/refresh-data.mjs, scripts/lib/*).
+# A release branch that has newer scripts does nothing for the schedule until it is merged into main.
+#
+# Each target is checked against its expected Supabase project ref before anything is written, so a staging secret in
+# the production slot (or the reverse) fails at once. Empty secrets fail with a plain message; they are never skipped.
 name: Refresh Mandi Prices
 
 on:
   schedule:
-    - cron: '0 */3 * * *'   # Every 3 hours UTC (covers 2:30 PM IST and other key times); keeps weather current
-  workflow_dispatch:         # Keep manual trigger
+    - cron: '0 */3 * * *'   # every 3 hours UTC; keeps weather current
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refresh-mandi-prices
+  cancel-in-progress: false
 
 jobs:
   refresh:
+    name: refresh (${{ matrix.target }})
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: production
+            expected_ref: eltmcznjcqiahqhjvpjg
+            url_secret_name: PROD_SUPABASE_URL
+            key_secret_name: PROD_SUPABASE_SERVICE_ROLE_KEY
+          - target: staging
+            expected_ref: wzxtqbqlahyahsnoqqva
+            url_secret_name: VITE_SUPABASE_URL
+            key_secret_name: SUPABASE_SERVICE_ROLE_KEY
     steps:
       - uses: actions/checkout@v4
 
@@ -17,12 +46,15 @@ jobs:
 
       - run: npm ci
 
-      - name: Refresh mandi prices and weather
+      - name: Refresh mandi prices and weather (${{ matrix.target }})
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # Secrets are chosen by target; the script reads VITE_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY.
+          VITE_SUPABASE_URL: ${{ matrix.target == 'production' && secrets.PROD_SUPABASE_URL || secrets.VITE_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ matrix.target == 'production' && secrets.PROD_SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SERVICE_ROLE_KEY }}
           DATA_GOV_IN_API_KEY: ${{ secrets.DATA_GOV_IN_API_KEY }}
-        # Run node directly (no --env-file): CI injects env vars via the env: block
-        # above, and there is no .env file in the runner. The local `npm run
-        # refresh-prices` keeps using --env-file=.env for local runs.
-        run: node scripts/refresh-data.mjs
+          URL_SECRET_NAME: ${{ matrix.url_secret_name }}
+          KEY_SECRET_NAME: ${{ matrix.key_secret_name }}
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ]; then echo "::error::GitHub secret $URL_SECRET_NAME is empty or missing (target: ${{ matrix.target }}). Add it under Settings > Secrets and variables > Actions."; exit 1; fi
+          if [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then echo "::error::GitHub secret $KEY_SECRET_NAME is empty or missing (target: ${{ matrix.target }}). Add it under Settings > Secrets and variables > Actions."; exit 1; fi
+          node scripts/refresh-data.mjs --expect-project-ref ${{ matrix.expected_ref }}

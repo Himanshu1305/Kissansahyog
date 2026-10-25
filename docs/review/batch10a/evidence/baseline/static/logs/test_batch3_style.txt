@@ -1,0 +1,18 @@
+FAIL  no avoid-list word in Hindi content  — 
+    src\content\qa\batch5b.js:274  "उपयुक्त"  "short_hi": "छोटे स्तर पर सब्जी संभालने के लिए महँगी मशीन हमेशा जरूरी 
+    src\content\qa\batch5b.js:2088  "तथा"  "hi": "e-NAM के व्यापारी पेज में पंजीकरण के लिए शुल्क नहीं बताया गया ह
+    src\content\qa\batch5b.js:2694  "उपलब्ध कराना"  "short_hi": "NABARD के Modified Interest Subvention Scheme पेज के अनुस
+    src\content\qa\batch5b.js:3328  "तथा"  "hi": "NABARD की कृषि ऋण जानकारी उत्पादन-उन्मुख ऋण में ऋण जरूरत के आकल
+    src\content\qa\batch5b.js:4258  "एवं"  "hi": "NIC के अनुसार Soil Health Card Portal कृषि एवं किसान कल्याण मंत
+    src\content\qa\batch5b.js:4258  "तथा"  "hi": "NIC के अनुसार Soil Health Card Portal कृषि एवं किसान कल्याण मंत
+
+  Hindi sentence length per page (avg / max words):
+     14.0 /  24   src\content\pages\carbon-brief.js  (21 sentences)
+     13.6 /  40   src\content\pages\carbon-credit.js  (129 sentences)
+     12.4 /  32   src\content\pages\cold-storage.js  (27 sentences)
+     11.7 /  57   src\content\pages\greenhouse.js  (108 sentences)
+     10.1 /  27   src\content\pages\grievance.js  (23 sentences)
+     12.0 /  29   src\content\pages\jugaad.js  (77 sentences)
+PASS  no content page averages > 18 words/sentence
+
+1 passed, 1 failed

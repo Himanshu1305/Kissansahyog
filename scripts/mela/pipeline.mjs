@@ -43,6 +43,7 @@ const INDIA_STATES = new Set([
 
 const s = (v) => (typeof v === 'string' ? v.trim() : '')
 const lc = (v) => s(v).toLowerCase()
+const COUNTRY_ONLY = /^(india|bharat|भारत|इंडिया|republic of india)$/i
 
 // --- India scoping (2a) ---------------------------------------------------------
 export function isIndiaScoped(raw) {
@@ -110,6 +111,9 @@ export function validateMela(raw) {
     return { ok: false, reason: 'no_source_url' } // rule 3
   }
   if (!s(raw.venue) || !s(raw.state)) return { ok: false, reason: 'missing_venue_or_state' }
+  // A venue or state that is just the country name is not a location (it produced
+  // "📍 India, Uttar Pradesh" on a card). Treat it as missing.
+  if (COUNTRY_ONLY.test(s(raw.venue)) || COUNTRY_ONLY.test(s(raw.state))) return { ok: false, reason: 'venue_or_state_is_country' }
   if (!isIndiaScoped(raw)) return { ok: false, reason: 'not_india' } // 2a
   const row = normalizeMela(raw)
   // An unconfirmed entry MUST carry an expected period to be worth showing honestly (rule 2).

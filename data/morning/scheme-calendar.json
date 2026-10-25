@@ -1,0 +1,5 @@
+[
+  { "id": "pm-kisan", "title_hi": "पीएम-किसान सम्मान निधि", "who_hi": "पात्र किसान परिवार", "deadline": null, "source_name": "pmkisan.gov.in", "source_url": "https://pmkisan.gov.in", "verified": false, "last_checked": "2026-10-25", "note": "official site could not be opened (certificate error); eligibility and any deadline NOT verified" },
+  { "id": "pmfby", "title_hi": "प्रधानमंत्री फसल बीमा योजना", "who_hi": "फसल बीमा चाहने वाले किसान", "deadline": null, "source_name": "pmfby.gov.in", "source_url": "https://pmfby.gov.in", "verified": false, "last_checked": "2026-10-25", "note": "official site is script-driven and showed no text; the Rabi 2026-27 enrolment last date for MP is NOT verified" },
+  { "id": "kcc", "title_hi": "किसान क्रेडिट कार्ड", "who_hi": "खेती करने वाले किसान", "deadline": null, "source_name": "बैंक / कृषि विभाग", "source_url": "https://www.myscheme.gov.in", "verified": false, "last_checked": "2026-10-25", "note": "not checked against an official page" }
+]

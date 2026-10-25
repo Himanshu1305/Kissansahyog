@@ -1,0 +1,135 @@
+### HEAD
+title: जानकारी — मंडी, MSP, मौसम व योजनाएं
+description: मंडी भाव, न्यूनतम समर्थन मूल्य (MSP), मौसम और प्रमुख सरकारी योजनाओं की एक जगह जानकारी।
+canonical: https://kissansahyog.com/info
+robots: 
+lang: hi
+h1: किसान की जानकारी
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+किसान की जानकारी
+🌤️
+मौसम
+मौसम व 7-दिन पूर्वानुमान देखें →
+🏷️
+मंडी भाव
+मंडी भाव व MSP देखें →
+📅 आने वाले कृषि कार्यक्रम
+अभी कोई आगामी कार्यक्रम नहीं।
+🧪 कृषि सामग्री के भाव
+खुरई क्षेत्र की दुकानों के अनुमानित भाव
+सामग्री
+दुकान
+भाव
+डीएपी
+जय किसान कृषि केंद्र
+Khurai
+₹1,350
+/बोरी (50 किग्रा)
+डीएपी
+बालाजी बीज भंडार
+Khurai
+₹1,365
+/बोरी (50 किग्रा)
+डीज़ल
+HP पेट्रोल पंप, खुरई रोड
+Khurai
+₹92
+/लीटर
+डीज़ल
+भारत पेट्रोल पंप, खुरई
+Khurai
+₹92
+/लीटर
+यूरिया
+जय किसान कृषि केंद्र
+Khurai
+₹267
+/बोरी (45 किग्रा)
+यूरिया
+बालाजी बीज भंडार
+Khurai
+₹270
+/बोरी (45 किग्रा)
+यूरिया
+सागर कृषि सेवा केंद्र
+Khurai
+₹266
+/बोरी (45 किग्रा)
+अपडेट: 2026-09-25 · ये भाव केवल जानकारी के लिए हैं और बदल सकते हैं — दुकान से पुष्टि करें।
+🏛️ सरकारी योजनाएं
+पूरी सूची →
+पीएम किसान सम्मान निधि
+₹6,000 प्रति वर्ष — तीन किस्तों में (₹2,000 प्रत्येक)
+प्रधानमंत्री फसल बीमा योजना (PMFBY)
+खरीफ में 2%, रबी में 1.5% प्रीमियम — बाकी सरकार देती है। नुकसान होने पर पूरी राशि मिलती है।
+पीएम कुसुम योजना (सोलर पंप)
+60% सब्सिडी + 30% लोन — किसान का खर्च केवल 10%। बिजली बेचकर अतिरिक्त कमाई भी हो सकती है।
+📞 उपयोगी संपर्क
+पूरी जानकारी के लिए देखें → उपयोगी संपर्क
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

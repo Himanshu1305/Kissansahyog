@@ -13,11 +13,16 @@ import { join, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright'
 import { getRoutes } from './lib/prerender-routes.mjs'
+import { rootRelativeAssetLinks } from './lib/prerender-html.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
 const PORT = 4178
 const MARKER_TIMEOUT = 3500
+// Batch 10E (B17): the pristine Vite index.html, read once before any route is written, so the SPA
+// fallback never serves an already-prerendered page (which would carry its runtime-injected tags
+// into every later route).
+let PRISTINE_INDEX = null
 
 const MIME = {
   '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json',
@@ -32,7 +37,8 @@ function staticServer() {
       let file = join(DIST, url)
       if (url.endsWith('/')) file = join(file, 'index.html')
       if (extname(file) && existsSync(file)) {
-        const buf = await readFile(file)
+        // B17: the root document is always the pristine copy too, never a prerendered page.
+        const buf = PRISTINE_INDEX && file === join(DIST, 'index.html') ? PRISTINE_INDEX : await readFile(file)
         res.writeHead(200, { 'Content-Type': MIME[extname(file)] || 'application/octet-stream' })
         return res.end(buf)
       }
@@ -41,8 +47,8 @@ function staticServer() {
         res.writeHead(200, { 'Content-Type': 'text/html' })
         return res.end(buf)
       }
-      // SPA fallback
-      const buf = await readFile(join(DIST, 'index.html'))
+      // SPA fallback — always the original (pre-prerender) index.html (B17).
+      const buf = PRISTINE_INDEX ?? await readFile(join(DIST, 'index.html'))
       res.writeHead(200, { 'Content-Type': 'text/html' })
       res.end(buf)
     } catch (e) {
@@ -56,6 +62,7 @@ async function main() {
     console.error('dist/index.html missing — run `vite build` first.')
     process.exit(1)
   }
+  PRISTINE_INDEX = await readFile(join(DIST, 'index.html'))
   const routes = await getRoutes({ verbose: true })
   console.log(`Prerendering ${routes.length} routes…`)
 
@@ -63,6 +70,9 @@ async function main() {
   await new Promise((r) => server.listen(PORT, r))
   const browser = await chromium.launch()
   const page = await browser.newPage()
+  // Batch 10D: tell pages they are being snapshotted, so the homepage live hero keeps its static
+  // poster (persona 1, tick 0) in the HTML instead of whatever frame its timer reached.
+  await page.addInitScript(() => { window.__KS_PRERENDER = true })
 
   let ok = 0, fallback = 0, failed = []
   for (const route of routes) {
@@ -78,7 +88,8 @@ async function main() {
         try { await page.waitForLoadState('networkidle', { timeout: 6000 }) } catch { /* ignore */ }
         await page.waitForTimeout(800)
       }
-      const html = '<!doctype html>\n' + (await page.content()).replace(/^<!doctype html>/i, '').trim()
+      // B17: asset <link>/<script> URLs back to root-relative "/assets/…" (never localhost).
+      const html = rootRelativeAssetLinks('<!doctype html>\n' + (await page.content()).replace(/^<!doctype html>/i, '').trim())
       const outDir = route === '/' ? DIST : join(DIST, route)
       await mkdir(outDir, { recursive: true })
       await writeFile(join(outDir, 'index.html'), html)

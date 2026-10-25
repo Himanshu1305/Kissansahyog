@@ -1,0 +1,14 @@
+
+Running 8 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase20_mela.spec.js:7:1 › public page: confirmed vs अपेक्षित clearly distinguished, filters + empty state work (1.6s)
+  ok 2 [chromium] › e2e\phase20_mela.spec.js:40:1 › a shared link to a merged-away Mela redirects to its active survivor (3e, no 404) (1.5s)
+  ok 3 [chromium] › e2e\phase20_mela.spec.js:60:1 › "दिलचस्पी है" requires login (anon → redirected to /login) (1.3s)
+  ok 4 [chromium] › e2e\phase20_mela.spec.js:67:1 › a user submission lands pending and is NOT visible on the public page until approved (1.9s)
+  ok 5 [chromium] › e2e\phase20_mela.spec.js:87:1 › corroboration badge only on multi-source cards; universal disclaimer on every card; action buttons stay usable at 375px (1.3s)
+  ok 6 [chromium] › e2e\phase20_mela.spec.js:116:1 › admin: rejected candidate appears in the candidates panel with a publish-anyway action (1.5s)
+  ok 7 [chromium] › e2e\phase20_mela.spec.js:138:1 › Resources nav dropdown contains किसान मेला; homepage teaser renders (900ms)
+  ok 8 [chromium] › e2e\phase20_mela.spec.js:165:1 › homepage hides the Mela section when no MP / neighbouring-state Mela qualifies (1.6s)
+[teardown] test data cleaned
+
+  8 passed (12.9s)

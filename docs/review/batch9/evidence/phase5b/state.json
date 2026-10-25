@@ -1,0 +1,3019 @@
+{
+ "personas": {
+  "P1": {
+   "id": "P1",
+   "role": "Farmer-Seller, details SHOWN, full kisan profile",
+   "name": "KSTEST-KEEP P1 किसान विक्रेता",
+   "town": "Makronia",
+   "lang": "hi",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 मकरोनिया, सागर बदलें\"}",
+     "at": "2026-10-15T05:06:59.345Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:07:02.128Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:07:29.855Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:07:32.641Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:07:59.937Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:08:02.842Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:08:35.364Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:08:38.309Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"मकरोनिया\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:08:40.976Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:09:18.184Z"
+    },
+    "profileNameSaveB8": {
+     "ok": false,
+     "detail": "{\"saved\":false,\"message\":\"कृपया सही 6 अंकों का पिन कोड भरें।\"}",
+     "at": "2026-10-15T05:09:24.078Z"
+    }
+   },
+   "profileId": "c4be2d7e-a00e-4d92-875d-5e805d780a38",
+   "createdAt": "2026-10-15T05:06:59.343Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:24:24.965Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  },
+  "P2": {
+   "id": "P2",
+   "role": "Farmer-Buyer, details SHOWN, kisan profile (different)",
+   "name": "KSTEST-KEEP P2 किसान खरीदार",
+   "town": "Sagar",
+   "lang": "hi",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 सागर, सागर बदलें\"}",
+     "at": "2026-10-15T05:18:10.099Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:18:12.840Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:18:40.275Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:18:42.949Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:19:10.251Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:19:13.153Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:19:45.704Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:19:48.456Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"सागर\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:20:16.179Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:20:53.243Z"
+    }
+   },
+   "error": "page.fill: Timeout 25000ms exceeded.",
+   "profileId": "01591891-9742-4012-9a3d-6da1198cea99",
+   "createdAt": "2026-10-15T05:18:10.098Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:25:26.627Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  },
+  "P3": {
+   "id": "P3",
+   "role": "Farmer-Seller, details HIDDEN, minimal profile",
+   "name": "KSTEST-KEEP P3 Hidden Seller",
+   "town": "Makronia",
+   "lang": "hi",
+   "details": "HIDDEN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 मकरोनिया, सागर बदलें\"}",
+     "at": "2026-10-15T05:11:13.959Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:11:16.747Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:11:44.198Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:11:47.005Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:12:14.166Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:12:17.128Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:12:49.644Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:12:52.544Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"मकरोनिया\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:13:20.190Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:13:57.337Z"
+    }
+   },
+   "profileId": "7b90dd96-deaf-4eaf-92d9-bb9e3801d38f",
+   "createdAt": "2026-10-15T05:11:13.958Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:26:28.389Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  },
+  "P4": {
+   "id": "P4",
+   "role": "Farmer-Buyer, details HIDDEN, English, Damoh",
+   "name": "KSTEST-KEEP P4 Hidden Buyer Damoh",
+   "town": "Damoh",
+   "lang": "en",
+   "details": "HIDDEN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 Damoh, Damoh Change\"}",
+     "at": "2026-10-15T05:14:30.491Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:14:33.233Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:15:00.585Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:15:03.467Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:15:30.700Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:15:33.709Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"hi\",\"uiAfterSwitch\":\"hi\",\"profileLangAfterLogin\":\"hi\",\"uiAfterLogin\":\"hi\"}",
+     "at": "2026-10-15T05:16:06.305Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"en\"}",
+     "at": "2026-10-15T05:16:09.006Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"Damoh\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:16:36.636Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:17:13.829Z"
+    }
+   },
+   "profileId": "79ec9229-e3d1-4f50-9d8d-6eb4ae7984a1",
+   "createdAt": "2026-10-15T05:14:30.490Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:27:29.660Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  },
+  "P5": {
+   "id": "P5",
+   "role": "Vendor/trader-Seller (source vendor), English, details SHOWN, partial profile",
+   "name": "KSTEST-KEEP P5 Vendor Seller",
+   "town": "Sagar",
+   "lang": "en",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 Sagar, Sagar Change\"}",
+     "at": "2026-10-15T05:21:26.421Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:21:29.199Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:21:56.632Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:21:59.323Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:22:26.613Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:22:29.488Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"hi\",\"uiAfterSwitch\":\"hi\",\"profileLangAfterLogin\":\"hi\",\"uiAfterLogin\":\"hi\"}",
+     "at": "2026-10-15T05:23:02.061Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"en\"}",
+     "at": "2026-10-15T05:23:04.951Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"Sagar\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:23:07.731Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:23:44.897Z"
+    }
+   },
+   "profileId": "1eb71dfa-07cd-4180-8b21-5c70c0a83f4a",
+   "createdAt": "2026-10-15T05:21:26.420Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:28:31.326Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  },
+  "P6": {
+   "id": "P6",
+   "role": "Vendor/trader-Buyer (source vendor), Hindi, details HIDDEN",
+   "name": "KSTEST-KEEP P6 व्यापारी खरीदार",
+   "town": "Garhakota",
+   "lang": "hi",
+   "details": "HIDDEN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 गढ़ाकोटा, सागर बदलें\"}",
+     "at": "2026-10-15T05:24:17.727Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:24:20.813Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:24:48.351Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:24:51.115Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:25:18.346Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:25:21.326Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:25:54.119Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:25:56.824Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"गढ़ाकोटा\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:26:24.551Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:27:59.467Z"
+    }
+   },
+   "profileId": "d3386b37-17ec-4ef5-b357-0c67ba068f49",
+   "createdAt": "2026-10-15T05:24:17.727Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:29:32.686Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  },
+  "P7": {
+   "id": "P7",
+   "role": "Provider (equipment/warehouse/greenhouse/jugaad offers), Hindi, details SHOWN",
+   "name": "KSTEST-KEEP P7 सेवा प्रदाता",
+   "town": "Sagar",
+   "lang": "hi",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 सागर, सागर बदलें\"}",
+     "at": "2026-10-15T05:28:32.512Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:28:35.261Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:29:02.627Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:29:05.520Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:29:32.739Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:29:35.726Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"en\",\"uiAfterSwitch\":\"en\",\"profileLangAfterLogin\":\"en\",\"uiAfterLogin\":\"en\"}",
+     "at": "2026-10-15T05:30:08.375Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"hi\"}",
+     "at": "2026-10-15T05:30:11.136Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"सागर\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:30:38.881Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:31:15.587Z"
+    }
+   },
+   "profileId": "5fcb2bf9-dfaa-444d-8e26-8c66bfe5990e",
+   "createdAt": "2026-10-15T05:28:32.512Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:30:34.482Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  },
+  "P8": {
+   "id": "P8",
+   "role": "Far-away user (Orchha, Niwari, >100 km), English, details SHOWN",
+   "name": "KSTEST-KEEP P8 Far Away Orchha",
+   "town": "Orchha",
+   "lang": "en",
+   "details": "SHOWN",
+   "steps": {
+    "signup": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"placeLabel\":\"📍 Orchha, Niwari Change\"}",
+     "at": "2026-10-15T05:31:58.217Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:32:00.885Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"as registered\"}",
+     "at": "2026-10-15T05:32:28.226Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:32:30.805Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:32:57.935Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:33:00.638Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"hi\",\"uiAfterSwitch\":\"hi\",\"profileLangAfterLogin\":\"hi\",\"uiAfterLogin\":\"hi\"}",
+     "at": "2026-10-15T05:33:32.999Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"en\"}",
+     "at": "2026-10-15T05:33:35.633Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"Orchha\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:34:03.263Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:34:40.072Z"
+    }
+   },
+   "profileId": "ac81d7e4-d540-4fc9-bf94-6eab815b9436",
+   "createdAt": "2026-10-15T05:31:58.216Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:31:36.288Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  },
+  "P9": {
+   "id": "P9",
+   "role": "E-mail edge: mixed-case e-mail, spaces around inputs, long Devanagari+English name, hi/en switch at signup",
+   "name": "KSTEST-KEEP P9 रामप्रसाद Ramprasad लंबा नाम Long Name Edge केस",
+   "town": "Rehli",
+   "lang": "en",
+   "details": "SHOWN",
+   "steps": {
+    "p9-lang-switch-keeps-fields": {
+     "ok": true,
+     "detail": "{\"nameKept\":true}",
+     "at": "2026-10-15T05:34:47.166Z"
+    },
+    "signup": {
+     "ok": true,
+     "detail": "{\"autoconfirmSession\":true,\"signupStatus\":200,\"regStatus\":200,\"error\":null,\"storedName\":true,\"storedEmailLower\":true}",
+     "at": "2026-10-15T05:35:13.936Z"
+    },
+    "logout1": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:35:16.649Z"
+    },
+    "loginEmail": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true,\"variant\":\"upper-case + spaces\"}",
+     "at": "2026-10-15T05:35:44.004Z"
+    },
+    "logout2": {
+     "ok": true,
+     "detail": null,
+     "at": "2026-10-15T05:35:46.595Z"
+    },
+    "loginPhone": {
+     "ok": true,
+     "detail": "{\"url\":\"https://staging.kissansahyog.com/home\",\"error\":null,\"sameProfile\":true}",
+     "at": "2026-10-15T05:36:13.731Z"
+    },
+    "reloadPersists": {
+     "ok": true,
+     "detail": "{\"sessionAfterReload\":true,\"nameOnHome\":true}",
+     "at": "2026-10-15T05:36:16.449Z"
+    },
+    "langPersists": {
+     "ok": true,
+     "detail": "{\"switchedTo\":\"hi\",\"uiAfterSwitch\":\"hi\",\"profileLangAfterLogin\":\"hi\",\"uiAfterLogin\":\"hi\"}",
+     "at": "2026-10-15T05:36:48.765Z"
+    },
+    "langRestored": {
+     "ok": true,
+     "detail": "{\"now\":\"en\"}",
+     "at": "2026-10-15T05:36:51.567Z"
+    },
+    "profileData": {
+     "ok": true,
+     "detail": "{\"mismatched\":[],\"villageShown\":\"रहली\",\"mobileShownOnProfile\":false}",
+     "at": "2026-10-15T05:37:19.194Z"
+    },
+    "profileEdit": {
+     "ok": true,
+     "detail": "{\"field\":\"main_crops\",\"savedNotice\":true,\"persistsAfterReload\":true,\"persistsAfterRelogin\":true}",
+     "at": "2026-10-15T05:37:55.849Z"
+    }
+   },
+   "profileId": "9f4841a0-ea8a-49c1-ae84-1fa9a7e94aa7",
+   "createdAt": "2026-10-15T05:35:13.935Z",
+   "diag": {
+    "consoleErrors": [],
+    "failedOwnRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/05f35eac-4f94-45e5-a84a-162ef42fabb8/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/1d941b52-2d96-4e4e-b2a5-3f6a3e4481ee/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/68df5895-65be-4b47-8e47-b1231c9f19ea/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp"
+    ]
+   },
+   "gate": {
+    "email": true,
+    "mobile": true,
+    "at": "2026-10-15T06:33:39.025Z",
+    "emailError": null,
+    "mobileError": null
+   }
+  }
+ },
+ "listings": [
+  {
+   "lid": "L03",
+   "persona": "P1",
+   "category": "labor",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L03 Makronia",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "76e13f41-f2eb-4565-998a-5244640329b7",
+   "at": "2026-10-15T05:41:07.110Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L03-labor-offer/"
+  },
+  {
+   "lid": "L07",
+   "persona": "P1",
+   "category": "bhusa",
+   "type": "offer",
+   "source": "farmer",
+   "wide": true,
+   "village": "KSTEST-KEEP L07 Makronia",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "364cf291-9d74-48dd-97e9-c7c18953921b",
+   "at": "2026-10-15T05:41:38.359Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": true,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L07-bhusa-offer/"
+  },
+  {
+   "lid": "L25",
+   "persona": "P1",
+   "category": "labor",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST L25 Makronia",
+   "keep": false,
+   "note": "KSTEST noise: used for My Listings close/availability tests",
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "8886a32b-562c-4ca5-b4d7-d94c5e61cc52",
+   "at": "2026-10-15T05:41:44.313Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L25-labor-offer/",
+   "closed": true
+  },
+  {
+   "lid": "L02",
+   "persona": "P2",
+   "category": "equipment",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L02 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "424248fa-f587-4239-814d-ba2b9ccb8f48",
+   "at": "2026-10-15T05:42:41.053Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L02-equipment-requirement/"
+  },
+  {
+   "lid": "L04",
+   "persona": "P2",
+   "category": "labor",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L04 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "915e5178-331e-4acf-ad1e-9d06888b56c8",
+   "at": "2026-10-15T05:42:47.012Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L04-labor-requirement/"
+  },
+  {
+   "lid": "L06",
+   "persona": "P2",
+   "category": "drone_didi",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L06 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "0ee85a0d-b623-457f-913a-cbedc7aa7bde",
+   "at": "2026-10-15T05:42:52.902Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L06-drone_didi-requirement/"
+  },
+  {
+   "lid": "L16",
+   "persona": "P2",
+   "category": "greenhouse",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L16 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "44442f60-abf9-4519-b8ff-26d297d1c072",
+   "at": "2026-10-15T05:42:59.013Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L16-greenhouse-requirement/"
+  },
+  {
+   "lid": "L05",
+   "persona": "P1",
+   "category": "drone_didi",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L05 Makronia",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "8f5c1fb1-fdc8-4df9-a3e8-da909ac59263",
+   "at": "2026-10-15T05:43:36.678Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L05-drone_didi-offer/"
+  },
+  {
+   "lid": "L18",
+   "persona": "P3",
+   "category": "jugaad",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L18 Makronia",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "d1bc23b1-992b-4617-a7d0-ea06d2a9de6d",
+   "at": "2026-10-15T05:44:13.892Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L18-jugaad-requirement/"
+  },
+  {
+   "lid": "L19",
+   "persona": "P3",
+   "category": "transport",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L19 Makronia",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "97af326f-2838-4e87-9fed-497b723eef28",
+   "at": "2026-10-15T05:44:19.840Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L19-transport-offer/"
+  },
+  {
+   "lid": "L21",
+   "persona": "P3",
+   "category": "land",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L21 Makronia",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.91123, 78.72912",
+   "status": 200,
+   "id": "125b9723-e476-4b38-bd85-f82cbf66b958",
+   "at": "2026-10-15T05:44:26.830Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L21-land-offer/"
+  },
+  {
+   "lid": "L08",
+   "persona": "P6",
+   "category": "bhusa",
+   "type": "requirement",
+   "source": "vendor",
+   "wide": false,
+   "village": "KSTEST-KEEP L08 Garhakota",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.78365, 79.14949",
+   "status": 200,
+   "id": "087638e1-c335-458f-a820-516a06f454be",
+   "at": "2026-10-15T05:45:14.205Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L08-bhusa-requirement/"
+  },
+  {
+   "lid": "L12",
+   "persona": "P6",
+   "category": "building_materials",
+   "type": "requirement",
+   "source": "vendor",
+   "wide": false,
+   "village": "KSTEST-KEEP L12 Garhakota",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.78365, 79.14949",
+   "status": 200,
+   "id": "f4ffa4dc-8b72-45c2-96a6-b9fc95ca41f9",
+   "at": "2026-10-15T05:45:20.182Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L12-building_materials-requirement/"
+  },
+  {
+   "lid": "L23",
+   "persona": "P6",
+   "category": "agri_inputs",
+   "type": "offer",
+   "source": "vendor",
+   "wide": false,
+   "village": "KSTEST-KEEP L23 Garhakota",
+   "keep": true,
+   "note": "HIDDEN poster + vendor sub-type (contact_phone leak check)",
+   "vendorContactPrefilledFromProfile": true,
+   "coords": "✓ 23.78365, 79.14949",
+   "status": 200,
+   "id": "2286327f-63b1-4101-b666-293f07c17476",
+   "at": "2026-10-15T05:45:26.168Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "vendorPhoneInPublicDetails": true,
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L23-agri_inputs-offer/"
+  },
+  {
+   "lid": "L09",
+   "persona": "P5",
+   "category": "agri_inputs",
+   "type": "offer",
+   "source": "vendor",
+   "wide": true,
+   "village": "KSTEST-KEEP L09 Sagar",
+   "keep": true,
+   "note": null,
+   "vendorContactPrefilledFromProfile": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "3b8071b1-e3a4-412b-8ac3-3fe8530197ad",
+   "at": "2026-10-15T05:46:03.594Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": true,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "vendorPhoneInPublicDetails": true,
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L09-agri_inputs-offer/"
+  },
+  {
+   "lid": "L11",
+   "persona": "P5",
+   "category": "building_materials",
+   "type": "offer",
+   "source": "vendor",
+   "wide": false,
+   "village": "KSTEST-KEEP L11 Sagar",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "3338eb8b-2e71-47e9-a6cd-a30367a205f0",
+   "at": "2026-10-15T05:46:10.643Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L11-building_materials-offer/"
+  },
+  {
+   "lid": "L10",
+   "persona": "P4",
+   "category": "agri_inputs",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L10 Damoh",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84357, 79.44844",
+   "status": 200,
+   "id": "203a0859-a432-4a2a-ab64-8d954baa13c9",
+   "at": "2026-10-15T05:46:47.949Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L10-agri_inputs-requirement/"
+  },
+  {
+   "lid": "L14",
+   "persona": "P4",
+   "category": "warehouse",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L14 Damoh",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84357, 79.44844",
+   "status": 200,
+   "id": "6d551014-1d1a-4736-be14-7be86ef40659",
+   "at": "2026-10-15T05:46:53.931Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L14-warehouse-requirement/"
+  },
+  {
+   "lid": "L01",
+   "persona": "P7",
+   "category": "equipment",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L01 Sagar",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "3cd24b09-0eac-4840-8776-abb353d3e316",
+   "at": "2026-10-15T05:47:42.000Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": true,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L01-equipment-offer/"
+  },
+  {
+   "lid": "L13",
+   "persona": "P7",
+   "category": "warehouse",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L13 Sagar",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "d14c4ac6-a1cc-48e3-9656-4dc9a240864c",
+   "at": "2026-10-15T05:47:49.055Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": true,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L13-warehouse-offer/"
+  },
+  {
+   "lid": "L15",
+   "persona": "P7",
+   "category": "greenhouse",
+   "type": "offer",
+   "source": "vendor",
+   "wide": true,
+   "village": "KSTEST-KEEP L15 Sagar",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "bb28aff9-08b3-4813-a420-772c44649157",
+   "at": "2026-10-15T05:47:55.172Z",
+   "server": {
+    "listing_source": "vendor",
+    "wide_visibility": true,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": true,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L15-greenhouse-offer/"
+  },
+  {
+   "lid": "L17",
+   "persona": "P7",
+   "category": "jugaad",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L17 Sagar",
+   "keep": true,
+   "note": null,
+   "photo": true,
+   "coords": "✓ 23.84578, 78.75068",
+   "status": 200,
+   "id": "f453ce46-82c3-4c35-9ac7-030c046a30df",
+   "at": "2026-10-15T05:48:02.158Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 1,
+    "provider_declared": true,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L17-jugaad-offer/"
+  },
+  {
+   "lid": "L20",
+   "persona": "P8",
+   "category": "transport",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L20 Orchha",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 25.35687, 78.64425",
+   "status": 200,
+   "id": "6dd92f00-be98-435b-8709-906e89af9592",
+   "at": "2026-10-15T05:48:39.598Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L20-transport-requirement/"
+  },
+  {
+   "lid": "L22",
+   "persona": "P8",
+   "category": "land",
+   "type": "requirement",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L22 Orchha",
+   "keep": true,
+   "note": null,
+   "coords": "✓ 25.35687, 78.64425",
+   "status": 200,
+   "id": "3ac1830c-ad5e-4fac-a333-e6fd63e50096",
+   "at": "2026-10-15T05:48:45.669Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L22-land-requirement/"
+  },
+  {
+   "lid": "L24",
+   "persona": "P8",
+   "category": "labor",
+   "type": "offer",
+   "source": "farmer",
+   "wide": false,
+   "village": "KSTEST-KEEP L24 Orchha",
+   "keep": true,
+   "note": "SHOWN far-away poster",
+   "coords": "✓ 25.35687, 78.64425",
+   "status": 200,
+   "id": "64a21928-58ef-4723-b389-2a547f506b88",
+   "at": "2026-10-15T05:48:51.606Z",
+   "server": {
+    "listing_source": "farmer",
+    "wide_visibility": false,
+    "geocoding_status": "resolved",
+    "hasCoords": true,
+    "photos": 0,
+    "provider_declared": null,
+    "village_town": false
+   },
+   "result": "RAN-PASSED",
+   "evidence": "evidence/phase5b/listings/L24-labor-offer/"
+  }
+ ],
+ "noise": [
+  {
+   "kind": "profile + auth user (throw-away, website signup)",
+   "keep": false,
+   "tag": "N1",
+   "profile_id": "c40d50ec-e368-4ab9-8ac8-d58e85e78a0a",
+   "marker": "KSTEST",
+   "time": "2026-10-15T05:50:48.708Z"
+  },
+  {
+   "kind": "listing (edge test, website Post form)",
+   "keep": false,
+   "by": "N1",
+   "marker": "KSTEST",
+   "time": "2026-10-15T05:52:08.590Z",
+   "listing_id": "926651a4-8eb1-4095-b63d-7a20a546c0b4",
+   "category": "bhusa",
+   "listing_type": "offer",
+   "note": "E3b/E5 valid maps link + double tap"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST",
+   "time": "2026-10-15T06:12:44.586Z",
+   "kind": "profile + auth user (throw-away, double-tap test)",
+   "tag": "N4",
+   "profile_id": "e800d9f6-1a8e-46d8-97f1-e02f663b521b"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST",
+   "time": "2026-10-15T06:13:14.531Z",
+   "kind": "Supabase Auth user WITHOUT profile (half-finished: duplicate-mobile test)",
+   "tag": "N2",
+   "note": "auth.users row only; e-mail kept outside the repo (noise.json)"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST",
+   "time": "2026-10-15T06:13:21.997Z",
+   "kind": "profile completing the half-finished registration (throw-away)",
+   "tag": "N2b",
+   "profile_id": "a626c32d-2cbf-4466-93ca-815db151b151"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST",
+   "time": "2026-10-15T06:15:09.726Z",
+   "kind": "profile + auth user (throw-away, lockout test)",
+   "tag": "N5",
+   "profile_id": "1f159c47-b9cf-4314-aee7-1347a8470a7c"
+  }
+ ],
+ "results": [
+  {
+   "at": "2026-10-15T05:51:54.125Z",
+   "area": "5B.3-edge",
+   "id": "E1",
+   "title": "every category×type shows a required-field error on an empty step 2",
+   "status": "RAN-PASSED",
+   "detail": "{\"checked\":22,\"failing\":[],\"sample\":[{\"cell\":\"equipment/offer\",\"error\":\"कृपया मशीन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"equipment/requirement\",\"error\":\"कृपया मशीन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"labor/offer\",\"error\":\"कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।\",\"stayedOnStep2\":true},{\"cell\":\"labor/requirement\",\"error\":\"कृषि सहयोगियों की संख्या 1 या उससे अधिक होनी चाहिए।\",\"stayedOnStep2\":true},{\"cell\":\"drone_didi/offer\",\"error\":\"कृपया ऑपरेटर / समूह का नाम भरें।\",\"stayedOnStep2\":true},{\"cell\":\"drone_didi/requirement\",\"error\":\"कृपया फसल भरें।\",\"stayedOnStep2\":true},{\"cell\":\"bhusa/offer\",\"error\":\"कृपया अवशेष का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"bhusa/requirement\",\"error\":\"कृपया अवशेष का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"agri_inputs/offer\",\"error\":\"कृपया सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"agri_inputs/requirement\",\"error\":\"कृपया सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"building_materials/offer\",\"error\":\"सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"building_materials/requirement\",\"error\":\"सामग्री का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"warehouse/offer\",\"error\":\"कृपया गोदाम का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"warehouse/requirement\",\"error\":\"कृपया फसल भरें।\",\"stayedOnStep2\":true},{\"cell\":\"greenhouse/offer\",\"error\":\"सेवा का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"greenhouse/requirement\",\"error\":\"ढांचा चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"jugaad/offer\",\"error\":\"कृपया चुनें कि किस रूप में दे रहे हैं।\",\"stayedOnStep2\":true},{\"cell\":\"jugaad/requirement\",\"error\":\"जुगाड़/मशीन का नाम भरें।\",\"stayedOnStep2\":true},{\"cell\":\"transport/offer\",\"error\":\"कृपया वाहन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"transport/requirement\",\"error\":\"कृपया वाहन का प्रकार चुनें।\",\"stayedOnStep2\":true},{\"cell\":\"land/offer\",\"error\":\"सही आकार लिखें (कम से कम 0.1 एकड़)।\",\"stayedOnStep2\":true},{\"cell\":\"land/requirement\",\"error\":\"सही आकार लिखें (कम से कम 0.1 एकड़)।\",\"stayedOnStep2\":true}]}",
+   "evidence": "evidence/phase5b/listing-edge/"
+  },
+  {
+   "at": "2026-10-15T05:51:58.471Z",
+   "area": "5B.3-edge",
+   "id": "E7",
+   "title": "photo limit: 4 photos into bhusa (limit 3)",
+   "status": "RAN-PASSED",
+   "detail": "{\"counter\":\"3/3 · ज़्यादा से ज़्यादा 3 फोटो (वैकल्पिक)\",\"message\":\"×\"}"
+  },
+  {
+   "at": "2026-10-15T05:52:01.108Z",
+   "area": "5B.3-edge",
+   "id": "E2",
+   "title": "3-step form: Back keeps entered data",
+   "status": "RAN-PASSED",
+   "detail": "{\"step2KeptAfterBack\":true,\"step1KeepsCategory\":true,\"step2KeptAfterForward\":true,\"photosKept\":true,\"step3VillageKeptAfterBackForward\":true}"
+  },
+  {
+   "at": "2026-10-15T05:52:03.491Z",
+   "area": "5B.3-edge",
+   "id": "E3a",
+   "title": "maps link invalid → clear message, nothing posted",
+   "status": "RAN-PASSED",
+   "detail": "{\"onBlur\":\"सिर्फ़ Google Maps का सही लिंक डालें।\",\"onSubmit\":\"सिर्फ़ Google Maps का सही लिंक डालें।\",\"createCalls\":0}"
+  },
+  {
+   "at": "2026-10-15T05:52:08.592Z",
+   "area": "5B.3-edge",
+   "id": "E3b",
+   "title": "valid Google Maps short link accepted and stored",
+   "status": "RAN-PASSED",
+   "detail": "{\"listing\":\"926651a4-8eb1-4095-b63d-7a20a546c0b4\",\"map_url_stored\":\"https://maps.app.goo.gl/KSTESTabc123\"}"
+  },
+  {
+   "at": "2026-10-15T05:52:08.593Z",
+   "area": "5B.3-edge",
+   "id": "E5",
+   "title": "double tap on Submit → exactly one listing",
+   "status": "RAN-PASSED",
+   "detail": "{\"createCalls\":1}"
+  },
+  {
+   "at": "2026-10-15T05:52:13.953Z",
+   "area": "5B.3-edge",
+   "id": "E4",
+   "title": "transport: missing \"to\" and missing \"from\" each blocked with a message",
+   "status": "RAN-PASSED",
+   "detail": "{\"missingTo\":\"कहाँ तक जाना है, लिखें।\",\"missingFrom\":\"कहाँ से जाना है, लिखें।\",\"createCalls\":0}"
+  },
+  {
+   "at": "2026-10-15T05:52:32.610Z",
+   "area": "5B.3-edge",
+   "id": "E6",
+   "title": "posting while offline → clear message, no listing created",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"stillOnForm\":true,\"myListingsBefore\":1,\"myListingsAfter\":1,\"createAttempts\":0,\"note\":\"the message is the generic something-went-wrong text; it does not say there is no internet\"}"
+  },
+  {
+   "at": "2026-10-15T05:52:39.884Z",
+   "area": "5B.3-edge",
+   "id": "E8",
+   "title": "wide-visibility box shown for bhusa, hidden for labor",
+   "status": "RAN-PASSED",
+   "detail": "{\"bhusa\":1,\"labor\":0}"
+  },
+  {
+   "at": "2026-10-15T05:58:24.616Z",
+   "area": "5B.4",
+   "id": "V1",
+   "title": "Browse: UI card counts equal the 30/50/100-km rule recomputed from the fetched rows; spot checks",
+   "status": "RAN-PASSED",
+   "detail": "{\"views\":25,\"mismatches\":[],\"spot\":{\"P2 sees L03 (P1 labor, ~8 km)\":\"primary\",\"P4 Damoh does NOT see L03 (~73 km, not wide)\":\"not fetched\",\"P4 Damoh sees L07 (P1 bhusa wide, ~73 km)\":\"primary-wide\",\"P8 Orchha does NOT see L07 (wide but >100 km)\":\"not fetched\",\"P8 sees own-area L24? (P8 labor, 0 km)\":\"primary\",\"P2 does NOT see L24 (Orchha)\":\"not fetched\",\"P4 sees L09 (P5 agri wide, Sagar ~70 km)\":\"primary-wide\",\"P6 Garhakota and L03 (~42 km)\":\"hidden\",\"logged-out at Sagar sees L03\":\"primary\"}}",
+   "evidence": "evidence/phase5b/visibility/V1-*"
+  },
+  {
+   "at": "2026-10-15T06:06:00.762Z",
+   "area": "5B.4",
+   "id": "V2",
+   "title": "contact reveal: SHOWN/HIDDEN × logged-in/out/own + leak scan (DOM, network, share text)",
+   "status": "RAN-FAILED",
+   "detail": "{\"failing\":[{\"case\":\"hidden-vendor-agri\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":true,\"net\":[\"/rest/v1/listings\"]}],\"rows\":[{\"case\":\"shown-loggedin\",\"expected\":\"number\",\"seen\":\"number\",\"leak\":false},{\"case\":\"hidden-loggedin\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":false},{\"case\":\"hidden-vendor-agri\",\"expected\":\"hidden\",\"seen\":\"hidden\",\"leak\":true},{\"case\":\"shown-vendor\",\"expected\":\"number\",\"seen\":\"number\",\"leak\":false},{\"case\":\"hidden-own\",\"expected\":\"own\",\"seen\":\"own\",\"leak\":false},{\"case\":\"shown-own\",\"expected\":\"own\",\"seen\":\"own\",\"leak\":false},{\"case\":\"loggedout\",\"expected\":\"login then same listing\",\"seen\":\"returned to listing\"}]}",
+   "evidence": "evidence/phase5b/visibility/V2-*"
+  },
+  {
+   "at": "2026-10-15T06:07:24.266Z",
+   "area": "5B.4",
+   "id": "V3a",
+   "title": "view counter call on opening a listing",
+   "status": "RAN-PASSED",
+   "detail": "{\"view\":\"increment_listing_view:204\"}"
+  },
+  {
+   "at": "2026-10-15T06:07:24.269Z",
+   "area": "5B.4",
+   "id": "V3b",
+   "title": "contact-click counter on first Call/WhatsApp tap",
+   "status": "RAN-PASSED",
+   "detail": "{\"click\":\"increment_contact_click:204\"}"
+  },
+  {
+   "at": "2026-10-15T06:07:26.101Z",
+   "area": "5B.4",
+   "id": "V3c",
+   "title": "Report: reason required, then success",
+   "status": "RAN-PASSED",
+   "detail": "{\"noReasonMessage\":\"Please choose a reason.\",\"sent\":true}"
+  },
+  {
+   "at": "2026-10-15T06:07:59.543Z",
+   "area": "5B.4",
+   "id": "V4a",
+   "title": "My Listings shows only the user's own listings",
+   "status": "RAN-PASSED",
+   "detail": "{\"returned\":4,\"cards\":4,\"othersPresent\":[],\"allP1ListingsPresent\":true}"
+  },
+  {
+   "at": "2026-10-15T06:08:35.744Z",
+   "area": "5B.4",
+   "id": "V4b",
+   "title": "availability switch off → listing gone from Browse for others",
+   "status": "RAN-PASSED",
+   "detail": "{\"inBrowseAfterSwitchOff\":false}"
+  },
+  {
+   "at": "2026-10-15T06:09:15.416Z",
+   "area": "5B.4",
+   "id": "V4c",
+   "title": "\"Found\" closes the listing; others get \"not found\" on its page",
+   "status": "RAN-PASSED",
+   "detail": "{\"notFoundShownToP2\":true}"
+  },
+  {
+   "at": "2026-10-15T06:10:26.964Z",
+   "area": "5B.4",
+   "id": "V5",
+   "title": "account switch P1 → P3 leaves nothing of P1 (profile, My Listings, storage)",
+   "status": "RAN-PASSED",
+   "detail": "{\"p1ProfileIdInStorage\":false,\"p1EmailInStorage\":false,\"p1MobileInStorage\":false,\"p1NameInStorage\":false,\"p1ListingsInMy\":0,\"profileName\":\"P3\",\"localStorageKeys\":[\"ks_last_online_at\",\"ks_visit_count\",\"ks_lang_v1\",\"ks_location_v1\",\"ks_session_v1\"]}"
+  },
+  {
+   "at": "2026-10-15T06:12:27.223Z",
+   "area": "5B.2",
+   "id": "N01",
+   "title": "empty name / invalid e-mail / 7-char password / 9-digit mobile / no village → one message per field, no network call",
+   "status": "RAN-PASSED",
+   "detail": "{\"messages\":[\"कृपया अपना पूरा नाम भरें।\",\"कृपया सही ईमेल पता भरें।\",\"पासवर्ड कम से कम 8 अक्षर का होना चाहिए।\",\"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\",\"कृपया अपना गाँव या पास का कस्बा चुनें।\"],\"networkCalls\":0}"
+  },
+  {
+   "at": "2026-10-15T06:12:31.160Z",
+   "area": "5B.2",
+   "id": "N02a",
+   "title": "11-digit mobile: box keeps at most 10 digits (maxLength)",
+   "status": "RAN-PASSED",
+   "detail": "{\"valueLength\":10}"
+  },
+  {
+   "at": "2026-10-15T06:12:31.161Z",
+   "area": "5B.2",
+   "id": "N02b",
+   "title": "non-numeric mobile \"98765abcde\" refused",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"कृपया सही 10 अंकों का मोबाइल नंबर भरें।\"}"
+  },
+  {
+   "at": "2026-10-15T06:12:31.164Z",
+   "area": "5B.2",
+   "id": "N02c",
+   "title": "mobile starting with 0 or 1 (not an Indian mobile) — refused?",
+   "status": "RAN-FAILED",
+   "detail": "{\"startsWith0Refused\":false,\"startsWith1Refused\":false,\"note\":\"isValidPhone accepts any 10 digits (authService.js:30); the screen asks for a \\\"10-digit mobile number\\\"\"}"
+  },
+  {
+   "at": "2026-10-15T06:12:34.638Z",
+   "area": "5B.2",
+   "id": "N03",
+   "title": "password Show/Hide toggle (signup + login)",
+   "status": "RAN-PASSED",
+   "detail": "{\"signup\":[\"password\",\"text\",\"password\"],\"login\":[\"password\",\"text\"]}"
+  },
+  {
+   "at": "2026-10-15T06:12:38.536Z",
+   "area": "5B.2",
+   "id": "N04a",
+   "title": "language switch mid-form keeps every field",
+   "status": "RAN-PASSED",
+   "detail": "{\"kept\":true,\"placeKept\":true}"
+  },
+  {
+   "at": "2026-10-15T06:12:38.538Z",
+   "area": "5B.2",
+   "id": "N04b",
+   "title": "disclaimer not ticked → \"Accept and continue\" disabled",
+   "status": "RAN-PASSED",
+   "detail": "{\"disabled\":true}"
+  },
+  {
+   "at": "2026-10-15T06:12:38.539Z",
+   "area": "5B.2",
+   "id": "N04c",
+   "title": "Back from step 2 keeps every field",
+   "status": "RAN-PASSED",
+   "detail": "{\"nameKept\":true,\"emailKept\":true,\"mobileKept\":true,\"passwordKept\":true,\"placeKept\":true,\"visibility\":\"show\"}"
+  },
+  {
+   "at": "2026-10-15T06:12:44.589Z",
+   "area": "5B.2",
+   "id": "N05",
+   "title": "double tap on \"Accept and continue\" → one sign-up call, one profile",
+   "status": "RAN-PASSED",
+   "detail": "{\"signupCalls\":1,\"registerCalls\":1,\"loggedIn\":true}"
+  },
+  {
+   "at": "2026-10-15T06:13:06.888Z",
+   "area": "5B.2",
+   "id": "N06a",
+   "title": "duplicate e-mail → \"account with this email already exists\", no session",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"इस ईमेल से पहले से खाता है। कृपया लॉग इन करें।\",\"session\":false}"
+  },
+  {
+   "at": "2026-10-15T06:13:14.534Z",
+   "area": "5B.2",
+   "id": "N06b",
+   "title": "duplicate mobile → \"account with this number already exists\" next to the mobile box, back on step 1",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"इस नंबर से पहले से खाता है। कृपया लॉग इन करें।\",\"underMobileBox\":\"इस नंबर से पहले से खाता है। कृपया लॉग इन करें।\",\"session\":false}"
+  },
+  {
+   "at": "2026-10-15T06:13:17.035Z",
+   "area": "5B.2",
+   "id": "N06c",
+   "title": "e-mail login of the half-finished registration → \"account was not finished\" message",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"आपका खाता पूरा नहीं बना था। कृपया \\\"नया खाता बनाएं\\\" से उसी ईमेल और पासवर्ड के साथ दोबारा भरें।\"}"
+  },
+  {
+   "at": "2026-10-15T06:13:21.999Z",
+   "area": "5B.2",
+   "id": "N06d",
+   "title": "same e-mail + password + a new mobile finishes the half-finished registration",
+   "status": "RAN-PASSED",
+   "detail": "{\"profileCreated\":true}"
+  },
+  {
+   "at": "2026-10-15T06:13:27.069Z",
+   "area": "5B.2",
+   "id": "N07a",
+   "title": "correct e-mail + wrong password → \"Wrong email or password\"",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"गलत ईमेल या पासवर्ड।\"}"
+  },
+  {
+   "at": "2026-10-15T06:13:29.302Z",
+   "area": "5B.2",
+   "id": "N07b",
+   "title": "unregistered mobile → \"No account found for this number\"",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\"}"
+  },
+  {
+   "at": "2026-10-15T06:13:56.393Z",
+   "area": "5B.2",
+   "id": "N07c",
+   "title": "mobile typed with spaces (\" 00000 556NN \") on the sign-in screen",
+   "status": "RAN-FAILED",
+   "detail": "not signed in: the box has maxLength=10, which counts spaces, so a number typed or pasted as \"98765 43210\" is cut to 9 digits and refused (\"enter a valid 10-digit mobile\"). normalizePhone would strip the spaces, but the box never lets the 10th digit in. src/screens/Login.jsx:90, Signup.jsx:115"
+  },
+  {
+   "at": "2026-10-15T06:14:23.808Z",
+   "area": "5B.2",
+   "id": "N07d",
+   "title": "upper-case e-mail with spaces signs in",
+   "status": "RAN-PASSED",
+   "detail": "{\"ok\":true,\"error\":null}"
+  },
+  {
+   "at": "2026-10-15T06:14:41.137Z",
+   "area": "5B.2",
+   "id": "N08",
+   "title": "offline sign-up → message, no account (neither e-mail nor mobile can sign in afterwards)",
+   "status": "RAN-PASSED",
+   "detail": "{\"message\":\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"emailLoginAfter\":\"गलत ईमेल या पासवर्ड।\",\"mobileLoginAfter\":\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"note\":\"message is the generic \\\"something went wrong\\\", it does not say \\\"no internet\\\"\"}"
+  },
+  {
+   "at": "2026-10-15T06:15:26.648Z",
+   "area": "5B.2",
+   "id": "N09a",
+   "title": "e-mail lockout: 5 wrong passwords, then the RIGHT password is refused for 15 min",
+   "status": "RAN-PASSED",
+   "detail": "{\"wrongPasswordMessages\":[\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\",\"गलत ईमेल या पासवर्ड।\"],\"sixthWithCorrectPassword\":\"बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।\",\"lockedAt\":\"2026-10-15T06:15:26.648Z\"}"
+  },
+  {
+   "at": "2026-10-15T06:15:39.963Z",
+   "area": "5B.2",
+   "id": "N09b",
+   "title": "mobile: 6 tries of an unregistered number → the 6th says \"too many attempts\"",
+   "status": "RAN-PASSED",
+   "detail": "{\"messages\":[\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"इस नंबर से कोई खाता नहीं मिला। कृपया नया खाता बनाएं।\",\"बहुत बार कोशिश हो चुकी है। कृपया 15 मिनट बाद दोबारा कोशिश करें।\"]}"
+  },
+  {
+   "at": "2026-10-15T06:16:07.109Z",
+   "area": "5B.2",
+   "id": "N09c",
+   "title": "while N5's e-mail is locked, N5 can still sign in with its mobile (lock is per identifier)",
+   "status": "HUMAN-REVIEW",
+   "detail": "{\"mobileLoginWorks\":true}"
+  },
+  {
+   "at": "2026-10-15T06:18:16.594Z",
+   "area": "5B.5",
+   "id": "F1a",
+   "title": "Feedback: empty form refused with a message, nothing sent",
+   "status": "RAN-PASSED",
+   "detail": "{\"messages\":[\"कृपया अपना ईमेल या मोबाइल नंबर भरें।\"],\"writes\":[]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:16.959Z",
+   "area": "5B.5",
+   "id": "F1b",
+   "title": "Feedback: valid KSTEST message → thank-you state, POST /api/feedback 200",
+   "status": "RAN-PASSED",
+   "detail": "{\"done\":true,\"writes\":[\"/api/feedback 200\"]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:21.444Z",
+   "area": "5B.5",
+   "id": "F2a",
+   "title": "Sawaal: empty question refused with a message, nothing stored",
+   "status": "RAN-PASSED",
+   "detail": "{\"messages\":[\"कृपया अपना सवाल लिखें।\"],\"writes\":[]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:21.660Z",
+   "area": "5B.5",
+   "id": "F2b",
+   "title": "Sawaal: valid KSTEST question → \"question received\"",
+   "status": "RAN-PASSED",
+   "detail": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_sawaal 201\"]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:29.841Z",
+   "area": "5B.5",
+   "id": "F4a",
+   "title": "Kisan Mela submit: empty form refused with a message",
+   "status": "RAN-PASSED",
+   "detail": "{\"messages\":[\"कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।\",\"*\",\"*\"],\"writes\":[]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:30.494Z",
+   "area": "5B.5",
+   "id": "F4b",
+   "title": "Kisan Mela submit: valid KSTEST event → \"sent for review\"",
+   "status": "RAN-PASSED",
+   "detail": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_mela 201\"],\"errors\":null}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:34.902Z",
+   "area": "5B.5",
+   "id": "F5a",
+   "title": "Carbon suggestion: empty text refused",
+   "status": "RAN-PASSED",
+   "detail": "{\"messages\":[\"कृपया अपना सुझाव लिखें।\"],\"writes\":[\"/rest/v1/rpc/submit_carbon_suggestion 400\"]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:37.992Z",
+   "area": "5B.5",
+   "id": "F5b",
+   "title": "Carbon suggestion: valid KSTEST text stored",
+   "status": "RAN-PASSED",
+   "detail": "{\"writes\":[\"/rest/v1/rpc/submit_carbon_suggestion 204\"]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:37.993Z",
+   "area": "5B.5",
+   "id": "F5c",
+   "title": "Carbon poll vote",
+   "status": "NOT-RUN",
+   "detail": "not run: a vote is one per device and counts in the PUBLIC poll results shown on the page; skipped to keep the staging poll clean (no invalid input exists — a vote is one tap)",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:42.824Z",
+   "area": "5B.5",
+   "id": "F6a",
+   "title": "Daily-update signup: number not starting 6-9 refused (\"valid 10-digit mobile\")",
+   "status": "RAN-PASSED",
+   "detail": "{\"refused\":true,\"writes\":[]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:18:42.826Z",
+   "area": "5B.5",
+   "id": "F6b",
+   "title": "Daily-update signup: valid submission",
+   "status": "NOT-RUN",
+   "detail": "not run on purpose: this form only accepts numbers starting 6-9, i.e. numbers that can belong to a real person; storing one as a test subscription is unsafe. Note: the registration form accepts 0-leading numbers but this one does not (inconsistent rules).",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:20:12.055Z",
+   "area": "5B.5",
+   "id": "F3a",
+   "title": "Safalta: empty story refused with a message, nothing stored",
+   "status": "RAN-PASSED",
+   "detail": "{\"messages\":[\"कृपया अपना पूरा नाम भरें।\"],\"writes\":[]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:20:12.323Z",
+   "area": "5B.5",
+   "id": "F3b",
+   "title": "Safalta: valid KSTEST story (no phone) → \"story received\"",
+   "status": "RAN-PASSED",
+   "detail": "{\"ok\":true,\"writes\":[\"/rest/v1/kisan_safalta 201\"]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:21:47.706Z",
+   "area": "5B.5",
+   "id": "F7a",
+   "title": "Change password: new ≠ confirm refused",
+   "status": "RAN-PASSED",
+   "detail": "{\"messages\":[\"*\",\"*\",\"दोनों पासवर्ड एक जैसे नहीं हैं।\"]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:22:21.432Z",
+   "area": "5B.5",
+   "id": "F7b",
+   "title": "Change password works (log in with the new one), then restored",
+   "status": "RAN-PASSED",
+   "detail": "{\"changed\":true,\"loginWithNew\":true,\"restored\":true}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:22:27.685Z",
+   "area": "5B.5",
+   "id": "F8",
+   "title": "Kisan Mela \"interested\" button (logged in)",
+   "status": "RAN-PASSED",
+   "detail": "{\"writes\":[\"/rest/v1/rpc/set_mela_interest 200\"]}",
+   "evidence": "evidence/phase5b/forms/"
+  },
+  {
+   "at": "2026-10-15T06:24:24.970Z",
+   "area": "5B.7",
+   "id": "GATE-P1",
+   "title": "P1 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:24:24.972Z",
+   "area": "5B.7",
+   "id": "APPGATE-P1",
+   "title": "P1 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  },
+  {
+   "at": "2026-10-15T06:25:26.627Z",
+   "area": "5B.7",
+   "id": "GATE-P2",
+   "title": "P2 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:25:26.630Z",
+   "area": "5B.7",
+   "id": "APPGATE-P2",
+   "title": "P2 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  },
+  {
+   "at": "2026-10-15T06:26:28.389Z",
+   "area": "5B.7",
+   "id": "GATE-P3",
+   "title": "P3 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:26:28.390Z",
+   "area": "5B.7",
+   "id": "APPGATE-P3",
+   "title": "P3 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  },
+  {
+   "at": "2026-10-15T06:27:29.660Z",
+   "area": "5B.7",
+   "id": "GATE-P4",
+   "title": "P4 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:27:29.662Z",
+   "area": "5B.7",
+   "id": "APPGATE-P4",
+   "title": "P4 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  },
+  {
+   "at": "2026-10-15T06:28:31.326Z",
+   "area": "5B.7",
+   "id": "GATE-P5",
+   "title": "P5 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:28:31.329Z",
+   "area": "5B.7",
+   "id": "APPGATE-P5",
+   "title": "P5 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  },
+  {
+   "at": "2026-10-15T06:29:32.686Z",
+   "area": "5B.7",
+   "id": "GATE-P6",
+   "title": "P6 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:29:32.688Z",
+   "area": "5B.7",
+   "id": "APPGATE-P6",
+   "title": "P6 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  },
+  {
+   "at": "2026-10-15T06:30:34.482Z",
+   "area": "5B.7",
+   "id": "GATE-P7",
+   "title": "P7 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:30:34.484Z",
+   "area": "5B.7",
+   "id": "APPGATE-P7",
+   "title": "P7 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  },
+  {
+   "at": "2026-10-15T06:31:36.288Z",
+   "area": "5B.7",
+   "id": "GATE-P8",
+   "title": "P8 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:31:36.289Z",
+   "area": "5B.7",
+   "id": "APPGATE-P8",
+   "title": "P8 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  },
+  {
+   "at": "2026-10-15T06:33:39.032Z",
+   "area": "5B.7",
+   "id": "GATE-P9",
+   "title": "P9 web login: e-mail+password and mobile only",
+   "status": "RAN-PASSED",
+   "detail": "{\"email\":true,\"mobile\":true,\"emailError\":null,\"mobileError\":null}"
+  },
+  {
+   "at": "2026-10-15T06:33:39.035Z",
+   "area": "5B.7",
+   "id": "APPGATE-P9",
+   "title": "P9 in-app login gate",
+   "status": "NOT-RUN",
+   "detail": "no emulator this session (low memory)"
+  }
+ ],
+ "rows": [
+  {
+   "kind": "listing report (website Report button)",
+   "keep": false,
+   "listing_id": "3b8071b1-e3a4-412b-8ac3-3fe8530197ad",
+   "by": "P4",
+   "marker": "KSTEST 5B report test",
+   "time": "2026-10-15T06:07:26.101Z"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST-5B-87410",
+   "time": "2026-10-15T06:18:16.956Z",
+   "kind": "feedback (website /grievance → /api/feedback)",
+   "table": "feedback_messages"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST-5B-87410",
+   "time": "2026-10-15T06:18:21.658Z",
+   "kind": "kisan_sawaal question (website /sawaal)",
+   "table": "kisan_sawaal"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST-5B-87410",
+   "time": "2026-10-15T06:18:26.006Z",
+   "kind": "kisan_safalta story (website /safalta, no contact phone)",
+   "table": "kisan_safalta"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST-5B-87410",
+   "time": "2026-10-15T06:18:30.492Z",
+   "kind": "kisan_mela submission (website /kisan-mela/submit, for review)",
+   "table": "kisan_mela"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST-5B-87410",
+   "time": "2026-10-15T06:18:37.989Z",
+   "kind": "carbon suggestion (website /carbon-credit)",
+   "table": "carbon_suggestions (via submit_carbon_suggestion)"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST-5B-201648",
+   "time": "2026-10-15T06:20:12.320Z",
+   "kind": "kisan_safalta story (website /safalta, no contact phone)",
+   "table": "kisan_safalta"
+  },
+  {
+   "keep": false,
+   "marker": "KSTEST-5B-270774",
+   "time": "2026-10-15T06:22:27.682Z",
+   "kind": "mela interest (throw-away N1)",
+   "table": "mela interest (set_mela_interest)"
+  }
+ ],
+ "noiseAccounts": {
+  "N1": {
+   "profileId": "c40d50ec-e368-4ab9-8ac8-d58e85e78a0a",
+   "ok": true,
+   "at": "2026-10-15T05:50:48.708Z"
+  },
+  "N4": {
+   "profileId": "e800d9f6-1a8e-46d8-97f1-e02f663b521b"
+  },
+  "N5": {
+   "profileId": "1f159c47-b9cf-4314-aee7-1347a8470a7c"
+  }
+ },
+ "v1": [
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "labor",
+   "fetched": 9,
+   "expPrimary": 3,
+   "uiPrimary": 3,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "bhusa",
+   "fetched": 26,
+   "expPrimary": 19,
+   "uiPrimary": 19,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "agri_inputs",
+   "fetched": 10,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": true,
+     "km": 71,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "land",
+   "fetched": 10,
+   "expPrimary": 2,
+   "uiPrimary": 2,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P2",
+   "at": "Sagar",
+   "cat": "transport",
+   "fetched": 4,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "labor",
+   "fetched": 4,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 1,
+   "uiFallback": 1,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "bhusa",
+   "fetched": 21,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 2,
+   "uiFallback": 2,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": true,
+     "km": 73,
+     "shownByRule": true,
+     "where": "primary-wide"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": true,
+     "km": 31,
+     "shownByRule": true,
+     "where": "fallback-ring"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "agri_inputs",
+   "fetched": 6,
+   "expPrimary": 2,
+   "uiPrimary": 2,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": true,
+     "km": 31,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": true,
+     "km": 71,
+     "shownByRule": true,
+     "where": "primary-wide"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "land",
+   "fetched": 3,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 1,
+   "uiFallback": 1,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P4",
+   "at": "Damoh",
+   "cat": "transport",
+   "fetched": 2,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 1,
+   "uiFallback": 1,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "labor",
+   "fetched": 7,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "bhusa",
+   "fetched": 26,
+   "expPrimary": 4,
+   "uiPrimary": 4,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": true,
+     "where": "primary-wide"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "agri_inputs",
+   "fetched": 10,
+   "expPrimary": 3,
+   "uiPrimary": 3,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": true,
+     "where": "primary-wide"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": true,
+     "km": 32,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "land",
+   "fetched": 5,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P6",
+   "at": "Garhakota",
+   "cat": "transport",
+   "fetched": 3,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": true,
+     "km": 45,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "labor",
+   "fetched": 1,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "bhusa",
+   "fetched": 0,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "agri_inputs",
+   "fetched": 0,
+   "expPrimary": 0,
+   "uiPrimary": 0,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "land",
+   "fetched": 1,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "P8",
+   "at": "Orchha",
+   "cat": "transport",
+   "fetched": 1,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "labor",
+   "fetched": 9,
+   "expPrimary": 3,
+   "uiPrimary": 3,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L03",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L25",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L04",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L24",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "bhusa",
+   "fetched": 26,
+   "expPrimary": 19,
+   "uiPrimary": 19,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L07",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L08",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "agri_inputs",
+   "fetched": 10,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L23",
+     "inBoxResponse": true,
+     "km": 41,
+     "shownByRule": false,
+     "where": "hidden"
+    },
+    {
+     "lid": "L09",
+     "inBoxResponse": true,
+     "km": 1,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L10",
+     "inBoxResponse": true,
+     "km": 71,
+     "shownByRule": false,
+     "where": "hidden"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "land",
+   "fetched": 10,
+   "expPrimary": 2,
+   "uiPrimary": 2,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L21",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L22",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  },
+  {
+   "viewer": "logged-out",
+   "at": "Sagar",
+   "cat": "transport",
+   "fetched": 4,
+   "expPrimary": 1,
+   "uiPrimary": 1,
+   "expFallback": 0,
+   "uiFallback": 0,
+   "ours": [
+    {
+     "lid": "L19",
+     "inBoxResponse": true,
+     "km": 8,
+     "shownByRule": true,
+     "where": "primary"
+    },
+    {
+     "lid": "L20",
+     "inBoxResponse": false,
+     "km": null,
+     "shownByRule": false,
+     "where": "not fetched"
+    }
+   ]
+  }
+ ],
+ "v2": [
+  {
+   "case": "shown-loggedin",
+   "listing": "L03",
+   "poster": "P1 SHOWN",
+   "viewer": "P2",
+   "expected": "number",
+   "seen": "number",
+   "telLinks": 1,
+   "numberInDom": true,
+   "numberInNetworkResponses": [
+    "/rest/v1/rpc/get_listing_contact"
+   ],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "hidden-loggedin",
+   "listing": "L21",
+   "poster": "P3 HIDDEN",
+   "viewer": "P2",
+   "expected": "hidden",
+   "seen": "hidden",
+   "telLinks": 0,
+   "numberInDom": false,
+   "numberInNetworkResponses": [],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "hidden-vendor-agri",
+   "listing": "L23",
+   "poster": "P6 HIDDEN",
+   "viewer": "P2",
+   "expected": "hidden",
+   "seen": "hidden",
+   "telLinks": 0,
+   "numberInDom": false,
+   "numberInNetworkResponses": [
+    "/rest/v1/listings"
+   ],
+   "numberInShareText": false,
+   "leak": true
+  },
+  {
+   "case": "shown-vendor",
+   "listing": "L09",
+   "poster": "P5 SHOWN",
+   "viewer": "P4",
+   "expected": "number",
+   "seen": "number",
+   "telLinks": 1,
+   "numberInDom": true,
+   "numberInNetworkResponses": [
+    "/rest/v1/listings",
+    "/rest/v1/rpc/get_listing_contact"
+   ],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "hidden-own",
+   "listing": "L21",
+   "poster": "P3 HIDDEN",
+   "viewer": "P3",
+   "expected": "own",
+   "seen": "own",
+   "telLinks": null,
+   "numberInDom": false,
+   "numberInNetworkResponses": [],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "shown-own",
+   "listing": "L03",
+   "poster": "P1 SHOWN",
+   "viewer": "P1",
+   "expected": "own",
+   "seen": "own",
+   "telLinks": null,
+   "numberInDom": false,
+   "numberInNetworkResponses": [],
+   "numberInShareText": false,
+   "leak": false
+  },
+  {
+   "case": "loggedout",
+   "listing": "L03",
+   "viewer": "logged-out",
+   "expected": "login then same listing",
+   "seen": "returned to listing",
+   "loginUrl": "/login?next=/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "after": "/login?next=/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "sameListing": true,
+   "note": "first attempt: phone sign-in spinner still turning after 20 s (screenshot V2-loggedout-return.jpg); re-run twice with scripts/phase5b/loggedout-return.mjs: app_login 200, back on the same listing in ~5 s both times (V2-loggedout-return-retry1/2.jpg)"
+  }
+ ]
+}

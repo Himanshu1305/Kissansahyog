@@ -1,0 +1,339 @@
+[
+ {
+  "at": "2026-10-15T09:42:29.505Z",
+  "base": "http://localhost:4173",
+  "id": "B1",
+  "title": "double-click on Post -> exactly 1 listing",
+  "status": "RAN-PASSED",
+  "detail": {
+   "success_screen": true,
+   "listings_in_db": 1
+  },
+  "evidence": "evidence/fix9b/local/B1-after-double-click.jpg"
+ },
+ {
+  "at": "2026-10-15T09:42:40.573Z",
+  "base": "http://localhost:4173",
+  "id": "B2",
+  "title": "lost reply: server saved, client saw a failure; Post again -> 1 listing, user lands on it",
+  "status": "RAN-PASSED",
+  "detail": {
+   "server_saved_first": true,
+   "error_shown_first": true,
+   "listings_after_first": 1,
+   "listings_after_retry": 1,
+   "landed_on_that_listing": true,
+   "already_saved_notice": true,
+   "extra_create_calls_on_retry": 0
+  },
+  "evidence": "evidence/fix9b/local/B2-2-landed-on-listing.jpg"
+ },
+ {
+  "at": "2026-10-15T09:42:41.350Z",
+  "base": "http://localhost:4173",
+  "id": "B3",
+  "title": "parallel submits with the same client_request_id -> 1 listing",
+  "status": "RAN-PASSED",
+  "detail": {
+   "parallel_calls": 6,
+   "all_answered_ok": true,
+   "distinct_ids_returned": 1,
+   "listings_in_db": 1,
+   "statuses": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+   ]
+  }
+ },
+ {
+  "at": "2026-10-15T09:42:55.437Z",
+  "base": "http://localhost:4173",
+  "id": "B5",
+  "title": "retry after a failed photo upload leaves no duplicate or orphan photo files",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listings_after_failed_try": 0,
+   "success_after_retry": true,
+   "listings_in_db": 1,
+   "files_in_request_folder": 2,
+   "photo_urls_on_listing": 2,
+   "every_file_used_by_listing": true,
+   "upload_requests_seen": 4
+  },
+  "evidence": "evidence/fix9b/local/B5-2-posted-after-retry.jpg"
+ },
+ {
+  "at": "2026-10-15T09:43:08.980Z",
+  "base": "http://localhost:4173",
+  "id": "B4",
+  "title": "old-style post without client_request_id (older app) still works",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "listings_in_db": 1,
+   "client_request_id_stored": null
+  }
+ },
+ {
+  "at": "2026-10-15T09:43:33.189Z",
+  "base": "http://localhost:4173",
+  "id": "A1",
+  "title": "hidden farmer posts Shop/Vendor in agri_inputs: box shown, Post blocked until ticked, number then shown",
+  "status": "RAN-PASSED",
+  "detail": {
+   "box_shown": true,
+   "post_blocked_before_tick": true,
+   "post_enabled_after_tick": true,
+   "success": true,
+   "api": {
+    "consent": true,
+    "raw_json_has_number": true,
+    "lookup_gives_number": true,
+    "lookup_says_hidden": false
+   },
+   "other_user": {
+    "number_shown": true,
+    "hidden_message": false,
+    "sent_to_login": false,
+    "evidence": "evidence/fix9b/local/A1-3-other-user-sees-number.jpg"
+   },
+   "listing": "52b37d32-0ebc-4d4f-b565-6d156eb06215"
+  },
+  "evidence": "evidence/fix9b/local/A1-3-other-user-sees-number.jpg"
+ },
+ {
+  "at": "2026-10-15T09:44:29.377Z",
+  "base": "http://localhost:4173",
+  "id": "A2",
+  "title": "same hidden account as farmer (non-provider): no box; number hidden in UI and network, other user + logged out",
+  "status": "RAN-PASSED",
+  "detail": {
+   "bhusa_box_shown": false,
+   "bhusa_post_enabled": true,
+   "bhusa_success": true,
+   "agri_shop_as_farmer_box_shown": false,
+   "agri_shop_as_farmer_post_enabled": true,
+   "agri_shop_as_farmer_success": true,
+   "bhusa_api": {
+    "consent": false,
+    "raw_json_has_number": false,
+    "lookup_gives_number": false,
+    "lookup_says_hidden": true
+   },
+   "agri_shop_as_farmer_api": {
+    "consent": false,
+    "raw_json_has_number": false,
+    "lookup_gives_number": false,
+    "lookup_says_hidden": true
+   },
+   "other_user": {
+    "number_shown": false,
+    "hidden_message": true,
+    "sent_to_login": false,
+    "evidence": "evidence/fix9b/local/A2-other-user-hidden.jpg"
+   },
+   "logged_out": {
+    "number_shown": false,
+    "hidden_message": false,
+    "sent_to_login": true,
+    "evidence": "evidence/fix9b/local/A2-logged-out.jpg"
+   },
+   "listings": {
+    "bhusa": "b5bf077e-0634-4481-97d5-1ed9c0a8d987",
+    "agri_shop_as_farmer": "52f3c43f-f890-46a5-b1b3-012edf7ab4f1"
+   }
+  },
+  "evidence": "evidence/fix9b/local/A2-other-user-hidden.jpg"
+ },
+ {
+  "at": "2026-10-15T09:44:44.860Z",
+  "base": "http://localhost:4173",
+  "id": "A3",
+  "title": "show-number farmer: unchanged (farmer post: no box, number shown; vendor post: box like everyone)",
+  "status": "RAN-PASSED",
+  "detail": {
+   "farmer_box_shown": false,
+   "success": true,
+   "vendor_box_shown_for_show_owner": true,
+   "vendor_post_blocked_before_tick": true,
+   "api": {
+    "consent": false,
+    "raw_json_has_number": false,
+    "lookup_gives_number": true,
+    "lookup_says_hidden": false
+   },
+   "listing": "a5747ab6-078c-46ad-a7dd-d61bfda82d65"
+  }
+ },
+ {
+  "at": "2026-10-15T09:45:13.016Z",
+  "base": "http://localhost:4173",
+  "id": "A4",
+  "title": "the 4 provider categories (offers) with a hidden owner: consent required in each",
+  "status": "RAN-PASSED",
+  "detail": {
+   "equipment": {
+    "box": true,
+    "blocked": true,
+    "enabled_after_tick": true,
+    "success": true,
+    "api": {
+     "consent": true,
+     "raw_json_has_number": false,
+     "lookup_gives_number": true,
+     "lookup_says_hidden": false
+    }
+   },
+   "warehouse": {
+    "box": true,
+    "blocked": true,
+    "enabled_after_tick": true,
+    "success": true,
+    "api": {
+     "consent": true,
+     "raw_json_has_number": false,
+     "lookup_gives_number": true,
+     "lookup_says_hidden": false
+    }
+   },
+   "greenhouse": {
+    "box": true,
+    "blocked": true,
+    "enabled_after_tick": true,
+    "success": true,
+    "api": {
+     "consent": true,
+     "raw_json_has_number": false,
+     "lookup_gives_number": true,
+     "lookup_says_hidden": false
+    }
+   },
+   "jugaad": {
+    "box": true,
+    "blocked": true,
+    "enabled_after_tick": true,
+    "success": true,
+    "api": {
+     "consent": true,
+     "raw_json_has_number": false,
+     "lookup_gives_number": true,
+     "lookup_says_hidden": false
+    }
+   }
+  }
+ },
+ {
+  "at": "2026-10-15T09:45:24.502Z",
+  "base": "http://localhost:4173",
+  "id": "A5",
+  "title": "existing vendor listing, NULL consent, hidden owner: number not shown",
+  "status": "RAN-PASSED",
+  "detail": {
+   "existing_rows_checked": 3,
+   "rows": [
+    {
+     "id": "087638e1-c335-458f-a820-516a06f454be",
+     "consent": false,
+     "raw_json_has_number": false,
+     "lookup_gives_number": false,
+     "lookup_says_hidden": true
+    },
+    {
+     "id": "f4ffa4dc-8b72-45c2-96a6-b9fc95ca41f9",
+     "consent": false,
+     "raw_json_has_number": false,
+     "lookup_gives_number": false,
+     "lookup_says_hidden": true
+    },
+    {
+     "id": "2286327f-63b1-4101-b666-293f07c17476",
+     "consent": false,
+     "raw_json_has_number": true,
+     "lookup_gives_number": false,
+     "lookup_says_hidden": true
+    }
+   ],
+   "other_user": {
+    "number_shown": false,
+    "hidden_message": true,
+    "sent_to_login": false,
+    "evidence": "evidence/fix9b/local/A5-existing-vendor-hidden.jpg"
+   },
+   "raw_json_still_has_number_old_rows": [
+    "2286327f-63b1-4101-b666-293f07c17476"
+   ]
+  },
+  "evidence": "evidence/fix9b/local/A5-existing-vendor-hidden.jpg"
+ },
+ {
+  "at": "2026-10-15T09:45:56.033Z",
+  "base": "http://localhost:4173",
+  "id": "A6",
+  "title": "Hindi + English text render; checkbox tappable at 360 px and with large font",
+  "status": "RAN-PASSED",
+  "detail": {
+   "A6-hi-360-font1": {
+    "text_ok": true,
+    "agree_word": true,
+    "checkbox_px": 28,
+    "tap_area_px": "328x144",
+    "inside_screen": true,
+    "no_sideways_scroll": true,
+    "tap_ticks_it": true
+   },
+   "A6-hi-360-font1.3": {
+    "text_ok": true,
+    "agree_word": true,
+    "checkbox_px": 36,
+    "tap_area_px": "318x220",
+    "inside_screen": true,
+    "no_sideways_scroll": true,
+    "tap_ticks_it": true
+   },
+   "A6-en-360-font1": {
+    "text_ok": true,
+    "agree_word": true,
+    "checkbox_px": 28,
+    "tap_area_px": "328x170",
+    "inside_screen": true,
+    "no_sideways_scroll": true,
+    "tap_ticks_it": true
+   },
+   "A6-en-360-font1.3": {
+    "text_ok": true,
+    "agree_word": true,
+    "checkbox_px": 36,
+    "tap_area_px": "318x253",
+    "inside_screen": true,
+    "no_sideways_scroll": true,
+    "tap_ticks_it": true
+   }
+  }
+ },
+ {
+  "at": "2026-10-15T09:48:39.801Z",
+  "base": "http://localhost:4173",
+  "id": "R11",
+  "title": "regression: post one listing in each of the 11 categories, it appears",
+  "status": "RAN-PASSED",
+  "detail": {
+   "passed": 11,
+   "failed": 0,
+   "equipment": "RAN-PASSED",
+   "labor": "RAN-PASSED",
+   "drone_didi": "RAN-PASSED",
+   "bhusa": "RAN-PASSED",
+   "agri_inputs": "RAN-PASSED",
+   "building_materials": "RAN-PASSED",
+   "warehouse": "RAN-PASSED",
+   "greenhouse": "RAN-PASSED",
+   "jugaad": "RAN-PASSED",
+   "transport": "RAN-PASSED",
+   "land": "RAN-PASSED"
+  }
+ }
+]

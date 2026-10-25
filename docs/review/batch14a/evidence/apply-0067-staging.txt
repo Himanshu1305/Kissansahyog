@@ -1,0 +1,6 @@
+flags before: otp_required=false, session_enforced=false ; public functions before: 189
+applied 0067 in 761 ms
+re-applied (idempotent) in 813 ms
+pre-existing functions: 189; missing or changed after: 0
+functions defined by 0067: 24: ks_scrub_details, log_admin_action, require_admin_session, require_super_admin, admin_whoami, ks_announcement_clean, admin_list_announcements, admin_upsert_announcement, admin_delete_announcement, admin_duplicate_announcement, get_active_announcements, admin_get_security_status, admin_set_security_flag, ks_otp_usage_trg, admin_get_otp_usage, ks_assert_not_blocked, ks_block_guard, admin_set_user_blocked, admin_list_user_status, admin_set_admin_role, ks_phone_is_blocked, ks_session_admin, admin_list_actions, admin_log_console_action
+flags after: otp_required=false, session_enforced=false ; unchanged = true

@@ -1,0 +1,13 @@
+[
+  {
+    "_comment": "TEMPLATE ONLY - not deployed. Needed ONLY if the app later declares verified App Links (intent-filter android:autoVerify=\"true\" for https://kissansahyog.com/...). Today the app has no such intent-filter, so this file is NOT needed. When it is: replace the fingerprint with the SHA-256 of the Play App Signing certificate (Play Console > Test and release > App integrity > App signing key certificate), available only AFTER the first upload - NOT the upload key fingerprint. Optionally also list the upload key SHA-256 (55:D3:D1:28:15:13:13:ED:FE:F1:62:9A:45:52:48:07:B7:0E:A0:B2:D7:DF:0C:86:D7:53:AB:2D:50:B7:69:D2) so locally signed builds verify too. Remove this _comment key, then serve the file at https://kissansahyog.com/.well-known/assetlinks.json (Content-Type application/json, no redirect).",
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.kissansahyog.app",
+      "sha256_cert_fingerprints": [
+        "REPLACE_WITH_PLAY_APP_SIGNING_CERT_SHA256"
+      ]
+    }
+  }
+]

@@ -1,0 +1,9 @@
+✔ text, <a href>, <img src>, canonical and external URLs are untouched (0.3414ms)
+ℹ tests 81
+ℹ suites 0
+ℹ pass 81
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 493.2531

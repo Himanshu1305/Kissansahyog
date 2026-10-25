@@ -1,0 +1,245 @@
+== G. first gate: Batch 10C shipped and closed (tag prod-10c on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin prod-10c -> dd01a2f
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 10C is live and closed
+  (tag prod-10d is not on origin: Batch 10D has not shipped on its own)
+  (tag prod-10e is not on origin: Batch 10E has not shipped — this ship carries it; migration 0064 must be on production first, step D)
+  (tag prod-10g is not on origin: Batch 10G has not shipped — this ship carries it; migration 0065 must be on production first, step D2)
+== 0. preconditions
++ git branch --show-current -> release-11a
++ git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
++ git rev-parse ship-11a -> 7d9adc5
++ git ls-remote --tags origin ship-11a (peeled) -> 7d9adc5
++ HEAD 7d9adc5  origin/release-11a 7d9adc5
+== D. read-only probe: is migration 0064 (app_register_phone) on the PRODUCTION database?
++ POST <VITE_SUPABASE_URL of .env.production>/rest/v1/rpc/app_register_phone  {p_full_name:'', p_phone:'', p_disclaimer_accepted:false, …}  (anon key from .env.production, not shown)
+  expected: HTTP 400 with 'name_required' (validation error raised before any insert)
+  HTTP=400 CODE=P0001 MESSAGE=name_required 
+  = migration 0064 is on production (app_register_phone answered name_required; nothing written)
+== D2. read-only probes: is migration 0065 (listing disable / permanent delete) on the PRODUCTION database?
++ POST <VITE_SUPABASE_URL of .env.production>/rest/v1/rpc/delete_my_listing  {two random UUIDs}  -> expected: not_found
++ POST <VITE_SUPABASE_URL of .env.production>/rest/v1/rpc/admin_delete_listing {random actor}    -> expected: not_admin
+  admin_delete_listing: HTTP=400 CODE=P0001 MESSAGE=not_admin -> PRESENT
+  delete_my_listing: HTTP=400 CODE=P0001 MESSAGE=not_found -> PRESENT
+  = migration 0065 is on production (both probes answered their application error; nothing written)
+== D3. read-only probes: is migration 0066 (OTP + sessions, Batch 11A) on the PRODUCTION database?
++ node scripts/batch11a/prod-probes.mjs db   (anon key from .env.production, not shown)
+  expected: get_auth_flags -> 200 {otp_required, session_enforced}; app_login_otp('', random ticket) -> 400 invalid_phone
+  get_auth_flags: HTTP=200 otp_required=false session_enforced=false -> PRESENT
+  app_login_otp: HTTP=400 CODE=P0001 MESSAGE=invalid_phone -> PRESENT
+  = migration 0066 is on production (both probes answered as expected; nothing written)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 10D close report (docs/review/batch10d/CLOSE_REPORT.md) here or on origin/release-10d: 10D has not shipped on its own
+  no Batch 10E close report (docs/review/batch10e/CLOSE_REPORT.md) here or on origin/release-10e: 10E has not shipped (or not closed)
+  no Batch 10F close report (docs/review/batch10f/CLOSE_REPORT.md) here or on origin/release-10f: 10F has not shipped (or not closed)
+  no Batch 10G close report (docs/review/batch10g/CLOSE_REPORT.md) here or on origin/release-10g: 10G has not shipped (or not closed)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (source 40ddc4d), main chunk /assets/index-NFbe6Fk2.js
+  = live is the expected deployment: Batch 10C (prod-10c) — rollback target 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+== 2. read-only snapshot of the live deployment: /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-before.json
+  snapshot present, taken of 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (the live deployment) — reused
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/prod-before-ship.json
+PASS  [compare_with_snapshot] /: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /mausam: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /msp: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /browse: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /sawaal: 200, title/h1 unchanged, size within -15%/+300% (data page, snapshot taken before data loaded), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /yojana: 200, title/h1 unchanged, size within -15%/+300% (data page, snapshot taken before data loaded), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /cold-storage: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /about: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /privacy: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /terms: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] robots.txt unchanged
+PASS  [compare_with_snapshot] sitemap index is valid XML and lists 4 children  — ["https://kissansahyog.com/sitemap-pages.xml","https://kissansahyog.com/sitemap-sawaal.xml","https://kissansahyog.com/sitemap-cold-storage.xml","https://kissansahyog.com/sitemap-schemes.xml"]
+PASS  [compare_with_snapshot] /sitemap-pages.xml valid XML with urls  — {"status":200,"urls":54,"before":54}
+PASS  [compare_with_snapshot] /sitemap-sawaal.xml valid XML with urls  — {"status":200,"urls":161,"before":161}
+PASS  [compare_with_snapshot] /sitemap-cold-storage.xml valid XML with urls  — {"status":200,"urls":35,"before":35}
+PASS  [compare_with_snapshot] /sitemap-schemes.xml valid XML with urls  — {"status":200,"urls":18,"before":18}
+
+ALL PASSED  (results-prod-pre-ship.json)
+PASS  [snapshot] / recorded  — {"status":200,"bytes":79827,"title":"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार","h1":"आज किसान के लिए"}
+PASS  [snapshot] /mausam recorded  — {"status":200,"bytes":37959,"title":"मौसम — सागर संभाग का पूर्वानुमान","h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान"}
+PASS  [snapshot] /msp recorded  — {"status":200,"bytes":72171,"title":"मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य","h1":"गेहूं भाव — आज व MSP से तुलना"}
+PASS  [snapshot] /browse recorded  — {"status":200,"bytes":79827,"title":"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार","h1":"आज किसान के लिए"}
+PASS  [snapshot] /sawaal recorded  — {"status":200,"bytes":26051,"title":"किसान सवाल — खेती के सवालों के जवाब","h1":"किसान सवाल — आपके सवाल, हमारे जवाब"}
+PASS  [snapshot] /yojana recorded  — {"status":200,"bytes":39969,"title":"सरकारी योजनाएं — केंद्र व मध्य प्रदेश","h1":"सरकारी योजनाएं"}
+PASS  [snapshot] /cold-storage recorded  — {"status":200,"bytes":486320,"title":"मध्य प्रदेश कोल्ड स्टोरेज खोजें — गोदाम सूची","h1":"मध्य प्रदेश कोल्ड स्टोरेज खोजें"}
+PASS  [snapshot] /about recorded  — {"status":200,"bytes":38309,"title":"हमारे बारे में — किसान सहयोग","h1":"हमारे बारे में"}
+PASS  [snapshot] /privacy recorded  — {"status":200,"bytes":35416,"title":"गोपनीयता नीति — किसान सहयोग","h1":"गोपनीयता नीति"}
+PASS  [snapshot] /terms recorded  — {"status":200,"bytes":47312,"title":"उपयोग की शर्तें — किसान सहयोग","h1":"उपयोग की शर्तें"}
+PASS  [snapshot] /sitemap.xml recorded  — {"status":200,"bytes":548}
+PASS  [snapshot] /sitemap-pages.xml recorded  — {"status":200,"bytes":6688}
+PASS  [snapshot] /sitemap-sawaal.xml recorded  — {"status":200,"bytes":23193}
+PASS  [snapshot] /sitemap-cold-storage.xml recorded  — {"status":200,"bytes":4656}
+PASS  [snapshot] /sitemap-schemes.xml recorded  — {"status":200,"bytes":2429}
+PASS  [snapshot] /robots.txt recorded  — {"status":200,"bytes":180}
+
+ALL PASSED  (results-prod-pre-snapshot.json)
+== 3. build
++ timeout 1500 npm run build:prod   > /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/build-prod-20261020-010006.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co
+PROD GUARD: OK — dist (406 files) points at production, no staging references, indexable
+check-no-localhost-dist: OK — 276 files checked (html, xml, sw.js, _headers, _redirects), no localhost/127.0.0.1.
+new main chunk (from dist/index.html): /assets/index-kXKG8WUQ.js
+guide chunks in dist: /assets/GuideHub-DN-mJR0H.js /assets/GuideDemoPage-hx2YvYla.js
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: /assets/PageShell-DCGZBOKy.js /assets/index-kXKG8WUQ.js
+chunk(s) holding the /msp badge (ks-date-badge) in dist: /assets/Msp-D9MA6DdC.js
+chunk(s) calling delete_my_listing (10G seller delete / disable) in dist: /assets/index-kXKG8WUQ.js /assets/listingsApi-B1ADKB3b.js
+chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-DCGZBOKy.js
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  dist/index.html has nav-guide
+  dist/index.html has data-testid="home-hero"
+  dist/index.html has data-testid="home-hero-demo"
+  dist/index.html has मुझे कुछ चाहिए
+  dist/index.html has मेरे पास कुछ है
+  dist/index.html has no data-testid="home-live" (removed in 10F)
+  dist/index.html has no data-testid="home-field" (removed in 10F)
+  dist/index.html has no data-testid="home-band" (removed in 10F)
+  dist/index.html has no data-testid="home-facts" (removed in 10F)
+  dist/msp/index.html has ks-date-badge
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+PASS  [predeploy_size] /: 101428 B vs live 79827 B = 1.271 (allowed 0.7–1.4; FAQ live no, new no) <- index.html
+PASS  [predeploy_size] /mausam: 38453 B vs live 37959 B = 1.013 (allowed 0.85–1.15; FAQ live yes, new yes) <- mausam\index.html
+PASS  [predeploy_size] /msp: 88281 B vs live 72171 B = 1.223 (allowed 0.85–1.6; FAQ live yes, new yes) <- msp\index.html
+PASS  [predeploy_size] /browse: 101428 B vs live 79827 B = 1.271 (allowed 0.7–1.4; FAQ live no, new no) <- index.html
+PASS  [predeploy_size] /sawaal: 25676 B vs live 26051 B = 0.986 (allowed 0.85–4; FAQ live no, new no) <- sawaal\index.html
+PASS  [predeploy_size] /yojana: 39657 B vs live 39969 B = 0.992 (allowed 0.85–4; FAQ live no, new no) <- yojana\index.html
+PASS  [predeploy_size] /cold-storage: 485924 B vs live 486320 B = 0.999 (allowed 0.85–1.15; FAQ live yes, new yes) <- cold-storage\index.html
+PASS  [predeploy_size] /about: 37856 B vs live 38309 B = 0.988 (allowed 0.85–1.15; FAQ live no, new no) <- about\index.html
+PASS  [predeploy_size] /privacy: 34346 B vs live 35416 B = 0.970 (allowed 0.85–1.15; FAQ live no, new no) <- privacy\index.html
+PASS  [predeploy_size] /terms: 46234 B vs live 47312 B = 0.977 (allowed 0.85–1.15; FAQ live no, new no) <- terms\index.html
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/deploy-20261020-010006.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co
++ GET chunk(s) calling 'app_login_otp' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live https://kissansahyog.com --expect-off   (GET /api/otp/config -> JSON, both flags false; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS)
+== 7. on any failure: bash scripts/rollback-prod-11a.sh 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+live now: deployment 11f140ef-859d-419a-85ee-7f1309bb0256, main chunk /assets/index-kXKG8WUQ.js
+PASS  [a_pages] / → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आज किसान के लिए","errorBoundary":false,"screenshot":"page-prod-after-home.png"}
+PASS  [a_pages] / no failed request to our own origin  — []
+PASS  [a_pages] /mausam → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान","errorBoundary":false,"screenshot":"page-prod-after-mausam.png"}
+PASS  [a_pages] /mausam no failed request to our own origin  — []
+PASS  [a_pages] /msp → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"गेहूं भाव — आज व MSP से तुलना","errorBoundary":false,"screenshot":"page-prod-after-msp.png"}
+PASS  [a_pages] /msp no failed request to our own origin  — []
+PASS  [a_pages] /browse → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"आस-पास खोजें","errorBoundary":false,"screenshot":"page-prod-after-browse.png"}
+PASS  [a_pages] /browse no failed request to our own origin  — []
+PASS  [a_pages] /sawaal → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"किसान सवाल — आपके सवाल, हमारे जवाब","errorBoundary":false,"screenshot":"page-prod-after-sawaal.png"}
+PASS  [a_pages] /sawaal no failed request to our own origin  — []
+PASS  [a_pages] /yojana → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"सरकारी योजनाएं","errorBoundary":false,"screenshot":"page-prod-after-yojana.png"}
+PASS  [a_pages] /yojana no failed request to our own origin  — []
+PASS  [a_pages] /cold-storage → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"मध्य प्रदेश कोल्ड स्टोरेज खोजें","errorBoundary":false,"screenshot":"page-prod-after-cold_storage.png"}
+PASS  [a_pages] /cold-storage no failed request to our own origin  — []
+PASS  [a_pages] /about → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"हमारे बारे में","errorBoundary":false,"screenshot":"page-prod-after-about.png"}
+PASS  [a_pages] /about no failed request to our own origin  — []
+PASS  [a_pages] /privacy → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"गोपनीयता नीति","errorBoundary":false,"screenshot":"page-prod-after-privacy.png"}
+PASS  [a_pages] /privacy no failed request to our own origin  — []
+PASS  [a_pages] /terms → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"उपयोग की शर्तें","errorBoundary":false,"screenshot":"page-prod-after-terms.png"}
+PASS  [a_pages] /terms no failed request to our own origin  — []
+PASS  [a_pages] /grievance → 200, h1 rendered, no ErrorBoundary  — {"status":200,"h1":"सुझाव और शिकायत","errorBoundary":false,"screenshot":"page-prod-after-grievance.png"}
+PASS  [a_pages] /grievance no failed request to our own origin  — []
+PASS  [compare_with_snapshot] /: 200, title/h1 unchanged, size within -30%/+40% (--max-growth for this ship) (--min-ratio for this ship), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1.274,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /mausam: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1.02,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /msp: 200, title/h1 unchanged, size within -15%/+60% (--max-growth for this ship), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1.227,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /browse: 200, title/h1 unchanged, size within -30%/+40% (--max-growth for this ship) (--min-ratio for this ship), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1.274,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /sawaal: 200, title/h1 unchanged, size within -15%/+300% (data page, snapshot taken before data loaded), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":0.995,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /yojana: 200, title/h1 unchanged, size within -15%/+300% (data page, snapshot taken before data loaded), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":0.998,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /cold-storage: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":true,"faqNow":true}
+PASS  [compare_with_snapshot] /about: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":0.998,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /privacy: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":0.998,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] /terms: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":0.999,"faqBefore":false,"faqNow":false}
+PASS  [compare_with_snapshot] robots.txt unchanged
+PASS  [compare_with_snapshot] sitemap index is valid XML and lists 4 children  — ["https://kissansahyog.com/sitemap-pages.xml","https://kissansahyog.com/sitemap-sawaal.xml","https://kissansahyog.com/sitemap-cold-storage.xml","https://kissansahyog.com/sitemap-schemes.xml"]
+PASS  [compare_with_snapshot] /sitemap-pages.xml valid XML with urls  — {"status":200,"urls":54,"before":54}
+PASS  [compare_with_snapshot] /sitemap-sawaal.xml valid XML with urls  — {"status":200,"urls":161,"before":161}
+PASS  [compare_with_snapshot] /sitemap-cold-storage.xml valid XML with urls  — {"status":200,"urls":35,"before":35}
+PASS  [compare_with_snapshot] /sitemap-schemes.xml valid XML with urls  — {"status":200,"urls":18,"before":18}
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin https://localhost → 204 + echoed origin  — {"status":204,"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [b_cors_preflight] no '*' for https://localhost  — {"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin capacitor://localhost → 204 + echoed origin  — {"status":204,"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [b_cors_preflight] no '*' for capacitor://localhost  — {"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}
+PASS  [b_cors_preflight] OPTIONS /api/feedback Origin https://evil.example → NO allow-origin  — {"status":204,"headers":{}}
+PASS  [b_cors_preflight] no '*' for https://evil.example  — {}
+PASS  [d_functions] GET /geo Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["city","region","country","latitude","longitude"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geo Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["city","region","country","latitude","longitude"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geo Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /geo Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["found","lat","lng","display_name"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["found","lat","lng","display_name"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /geocode?village=Rahatgarh&district=Sagar Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /geocode?village=Rahatgarh&district=Sagar Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [d_functions] GET /transcribe Origin https://localhost → 200 JSON + echoed origin  — {"status":200,"json":["configured"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"https://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /transcribe Origin capacitor://localhost → 200 JSON + echoed origin  — {"status":200,"json":["configured"],"headers":{"access-control-allow-headers":"content-type","access-control-allow-methods":"GET, POST, OPTIONS","access-control-allow-origin":"capacitor://localhost","access-control-max-age":"86400"}}
+PASS  [d_functions] GET /transcribe Origin https://evil.example → no allow-origin  — {"status":200,"headers":{}}
+PASS  [d_functions] OPTIONS /transcribe Origin https://localhost → 204 + echoed origin  — {"status":204}
+PASS  [e_static_no_cors] GET / Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET / Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET / Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam/ Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /mausam Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":308,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin https://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin capacitor://localhost → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [e_static_no_cors] GET /sitemap.xml Origin https://evil.example → no CORS from the middleware (only the Pages platform default allowed)  — {"status":200,"headers":{"access-control-allow-origin":"*"}}
+PASS  [f_service_worker_sitemap] service worker installed and controls the page  — https://kissansahyog.com/sw.js
+PASS  [f_service_worker_sitemap] /sitemap.xml under the SW is the real file (not the app shell)  — {"status":200,"contentType":"application/xml","fromServiceWorker":false,"head":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<sitemapindex xmlns=\"http://www.sitemaps."}
+PASS  [f_service_worker_sitemap] /robots.txt under the SW is the real file (not the app shell)  — {"status":200,"contentType":"text/plain; charset=utf-8","fromServiceWorker":false,"head":"User-agent: *\r\nAllow: /\r\nDisallow: /search\r\nDisallow: /join\r\nDisallow: /admin\r\nD"}
+PASS  [f_service_worker_sitemap] /sitemap-pages.xml under the SW is the real file (not the app shell)  — {"status":200,"contentType":"application/xml","fromServiceWorker":false,"head":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/sc"}
+PASS  [data_ticker_mausam] mandi ticker on / shows prices (₹ + number)  — 📊 मंडी भावपिछला भाव (12/10)मक्का ₹1,930/क्विंटल · Sagar APMC|गेहूं ₹2,560/क्विंटल · Shahagarh APMC|सोयाबीन ₹5,700/क्विंटल · Gadakota APMC|सरसों ₹6,700/क्विंटल 
+PASS  [data_ticker_mausam] /mausam has a place set (location banner)  — 📍 सागर के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ
+PASS  [data_ticker_mausam] /mausam shows a temperature (weather data loaded)  — {"temp":"28°","weatherResponses":["GET 200 kissansahyog.com/assets/weatherApiV2-CdZQaOBf.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2","GET 200 kissansahyog.com/assets/weatherApiV2-CdZQaOBf.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 kissansahyog.com/assets/weatherRules-kzLuFq6I.js"]}
+PASS  [data_ticker_mausam] /mausam weather read answered 200 (weather_cache_v2 or open-meteo)  — ["GET 200 kissansahyog.com/assets/weatherApiV2-CdZQaOBf.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/weather_cache_v2","GET 200 kissansahyog.com/assets/weatherApiV2-CdZQaOBf.js","GET 200 kissansahyog.com/assets/weatherApi-f5eLqPLK.js","GET 200 kissansahyog.com/assets/weatherRules-kzLuFq6I.js"]
+
+ALL PASSED  (results-prod-after.json)
+PASS  [10f_routes] GET / -> 200, serves /assets/index-kXKG8WUQ.js
+PASS  [10f_routes] GET /signup -> 200, serves /assets/index-kXKG8WUQ.js
+PASS  [10f_routes] GET /browse -> 200, serves /assets/index-kXKG8WUQ.js
+PASS  [10f_routes] GET /guide -> 200, serves /assets/index-kXKG8WUQ.js
+PASS  [10f_routes] GET /msp -> 200, serves /assets/index-kXKG8WUQ.js
+PASS  [10f_routes] GET /post -> 200, serves /assets/index-kXKG8WUQ.js
+PASS  [10f_routes] GET /guide/post -> 200, serves /assets/index-kXKG8WUQ.js
+PASS  [10f_routes] GET /mausam -> 200, serves /assets/index-kXKG8WUQ.js
+PASS  [10f_home] / has nav-guide
+PASS  [10f_home] / has data-testid="home-hero"
+PASS  [10f_home] / has data-testid="home-hero-demo"
+PASS  [10f_home] / has मुझे कुछ चाहिए
+PASS  [10f_home] / has मेरे पास कुछ है
+PASS  [10f_home] / has no data-testid="home-live" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-field" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-band" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-facts" (removed in 10F)
+PASS  [10f_msp] GET /msp -> 200, new main chunk, has ks-date-badge
+PASS  [10g_listing] GET /assets/index-kXKG8WUQ.js -> 200, holds delete_my_listing
+PASS  [10g_listing] GET /assets/listingsApi-B1ADKB3b.js -> 200, holds delete_my_listing
+PASS  [11a_otp] GET /assets/PageShell-DCGZBOKy.js -> 200, holds app_login_otp
+PASS  [11a_otp] GET /api/otp/config -> 200 otp_required=false session_enforced=false (both must be false right after the first ship)
+PASS  [11a_otp] POST /api/otp/send {phone:'123'} -> 400 error=invalid_phone (expected 400 invalid_phone; no SMS sent)
+PASS  [10f_msp] GET /assets/Msp-D9MA6DdC.js -> 200, holds ks-date-badge
+PASS  [10c_markers] GET /assets/GuideHub-DN-mJR0H.js -> 200, holds ksg-
+PASS  [10c_markers] GET /assets/GuideDemoPage-hx2YvYla.js -> 200, holds ksg-
+PASS  [10e_markers] GET /assets/PageShell-DCGZBOKy.js -> 200, holds app_register_phone
+PASS  [10e_markers] GET /assets/index-kXKG8WUQ.js -> 200, holds app_register_phone
+PASS  [10e_csp] GET / Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co
+
+##################################################################
+SHIP OK: kissansahyog.com now runs 7d9adc5 (deployment 11f140ef-859d-419a-85ee-7f1309bb0256).
+All read-only prod gates passed. Report: /c/Users/usdvi/projects/Kissansahyog/docs/review/batch11a/evidence/prod-ship/prod-gates-20261020-010006.txt
+Previous deployment (rollback target): 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20 (Batch 10C (prod-10c))
+Both auth flags are still OFF: the site behaves as before until you flip them (docs/review/batch11a/SHIP.md step 9).
+NEXT: if not done yet, paste the 10E mandi history backfill (docs/review/batch10g/SHIP.md step 6), then BATCH11A_CLOSE_PROMPT.md.
+If anything looks wrong later:  bash scripts/rollback-prod-11a.sh 7f5dc56a-9d1c-4bd2-8bde-a4512a96be20
+##################################################################

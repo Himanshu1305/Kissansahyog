@@ -42,7 +42,7 @@ export default function Safalta() {
           <div className="mt-4 rounded-xl border border-dashed border-green-300 bg-green-50 p-6 text-center">
             <div className="text-4xl">🌱</div>
             {/* ks-allow-width: empty-state message stays readable/centred, not a page clamp */}
-            <p className="mx-auto mt-2 max-w-md text-sm font-semibold text-green-900">{t('safalta_empty')}</p>
+            <p className="mt-2 text-sm font-semibold text-green-900">{t('safalta_empty')}</p>
             <button type="button" onClick={() => setShowForm(true)} className="mt-3 rounded-lg bg-green-700 px-4 py-2 text-sm font-bold text-white">{t('safalta_share_cta')} →</button>
           </div>
         ) : (

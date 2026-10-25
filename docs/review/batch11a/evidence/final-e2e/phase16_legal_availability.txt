@@ -1,0 +1,10 @@
+
+Running 4 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase16_legal_availability.spec.js:13:1 › buyer compliance modal shows once per browser, not again after acceptance (885ms)
+  ok 2 [chromium] › e2e\phase16_legal_availability.spec.js:31:1 › both new scheme pages, the agro-forestry hub, and the article render (3.7s)
+  ok 3 [chromium] › e2e\phase16_legal_availability.spec.js:45:1 › seller rules-compliance checkbox is present and gates the submit button (1.4s)
+  ok 4 [chromium] › e2e\phase16_legal_availability.spec.js:75:1 › PWA install banner: hidden in standalone, shown otherwise (Android event) (1.3s)
+[teardown] test data cleaned
+
+  4 passed (8.3s)

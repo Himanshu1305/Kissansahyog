@@ -1,20 +1,27 @@
 import { useEffect, useState, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { Screen, BigButton, Notice, Spinner } from '../components/ui'
 import ListingCard from '../components/ListingCard'
 import AvailabilityNudge from '../components/AvailabilityNudge'
-import { fetchCrops, fetchEquipmentTypes, getMyListings, closeListing, setListingAvailability } from '../lib/listings/listingsApi'
+import { fetchCrops, fetchEquipmentTypes, getMyListings, closeListing, setListingAvailability, retryPendingPhotoDeletions } from '../lib/listings/listingsApi'
+import OwnerListingActions, { ownerStatus, Toast } from '../components/listing/OwnerListingActions'
 
 // My Listings: the user's own listings across all categories, incl. closed and
 // expired. Active (non-expired) listings get a "Found" button to close them.
+// Batch 10G: every listing also gets "अक्षम करें / चालू करें" and a red "हटाएं" (permanent, asks first);
+// disabled listings stay here, greyed, with the enable button (none when an admin disabled it).
 export default function MyListings() {
   const { t, lang } = useLang()
   const { user } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [rows, setRows] = useState(null)
+  // A delete on the detail page comes back here with a toast message.
+  const [toast, setToast] = useState(() => (location.state?.toast ? t(location.state.toast) : null))
+  const clearToast = useCallback(() => setToast(null), [])
   const [extras, setExtras] = useState({})
   const [error, setError] = useState(null)
   const [closingId, setClosingId] = useState(null)
@@ -37,6 +44,20 @@ export default function MyListings() {
   useEffect(() => {
     load()
   }, [load])
+  // Batch 10G: photo files of an earlier delete that could not be removed then (offline, tab closed).
+  useEffect(() => { if (user?.id) retryPendingPhotoDeletions(user.id) }, [user])
+
+  function ownerChanged(id, kind, row) {
+    setError(null)
+    if (kind === 'deleted') {
+      setRows((prev) => prev.filter((x) => x.id !== id))
+      setToast(t('listing_deleted_toast'))
+      return
+    }
+    setRows((prev) => prev.map((x) => (x.id === id ? { ...x, status: row?.status ?? x.status } : x)))
+    setToast(t(kind === 'disabled' ? 'listing_disabled_toast' : 'listing_enabled_toast'))
+    load()
+  }
 
   async function toggleAvailable(l) {
     // One tap, no confirmation dialog (Phase 3b).
@@ -65,6 +86,9 @@ export default function MyListings() {
 
   function badgeFor(l) {
     // Manual close is distinct from auto-expiry (see PROJECT_CONTEXT.md).
+    const st = ownerStatus(l)
+    if (st === 'admin_disabled') return <Badge tone="red">{t('badge_admin_disabled')}</Badge>
+    if (st === 'disabled') return <Badge tone="stone">{t('badge_disabled')}</Badge>
     if (l.status === 'closed')
       return <Badge tone="green">{t('badge_found')} ✓</Badge>
     if (l.is_expired) return <Badge tone="stone">{t('badge_expired')}</Badge>
@@ -85,13 +109,15 @@ export default function MyListings() {
       ) : (
         <div className="space-y-4">
           {rows.map((l) => (
-            <div key={l.id}>
+            <div key={l.id} data-testid="my-listing" data-listing-id={l.id} data-status={ownerStatus(l)}>
+              <div className={l.status === 'disabled' ? 'opacity-60 grayscale' : undefined}>
               <ListingCard
                 listing={l}
                 extras={extras}
                 statusBadge={badgeFor(l)}
                 onClick={() => navigate(`/listing/${l.id}`)}
               />
+              </div>
               {l.status === 'active' && !l.is_expired && (
                 <>
                   {/* Phase 3b — one-tap availability toggle (offer listings). */}
@@ -128,10 +154,12 @@ export default function MyListings() {
                   </div>
                 </>
               )}
+              <OwnerListingActions listing={l} actorId={user.id} onChanged={(kind, row) => ownerChanged(l.id, kind, row)} onError={(m) => { setError(m); setToast(m) }} />
             </div>
           ))}
         </div>
       )}
+      <Toast message={toast} onDone={clearToast} />
     </Screen>
   )
 }
@@ -141,6 +169,7 @@ function Badge({ tone, children }) {
     green: 'bg-green-100 text-green-800',
     blue: 'bg-blue-100 text-blue-800',
     stone: 'bg-stone-200 text-stone-600',
+    red: 'bg-red-100 text-red-800',
   }
   return <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${tones[tone]}`}>{children}</span>
 }

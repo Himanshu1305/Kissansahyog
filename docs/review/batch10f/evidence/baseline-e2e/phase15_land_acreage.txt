@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase15_land_acreage.spec.js:25:1 › Land form uses a plain numeric acreage input — no bucket dropdown, no cap (1.7s)
+  ok 2 [chromium] › e2e\phase15_land_acreage.spec.js:40:1 › Land form: fixed/ठेका shows a per-acre rate; optional contact field present (1.4s)
+[teardown] test data cleaned
+
+  2 passed (4.4s)

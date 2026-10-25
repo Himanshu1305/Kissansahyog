@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 import { priceStaleness, ddmm } from '../lib/mandi/staleness'
 import { cropByMandi } from '../content/crops'
+import { useOfflineInfo } from '../lib/offline/useOffline'
+import { marketLabel } from '../lib/mandi/marketNames'
+import { tickerRows, tickerDuration } from '../lib/mandi/tickerRows'
 
-// Raw market name → i18n key for its Hindi mandi label (fallback: raw name).
-const MARKET_KEY = {
-  Khurai: 'mandi_mkt_khurai', Sagar: 'mandi_mkt_sagar', Rehli: 'mandi_mkt_rehli',
-  Banda: 'mandi_mkt_banda', Deori: 'mandi_mkt_deori', Malthone: 'mandi_mkt_malthone',
-}
 const fmt = (n) => Math.round(Number(n) || 0).toLocaleString('en-IN')
 
 // Live scrolling mandi-price ticker. Fixed 38px height reserved up-front to avoid
@@ -17,6 +15,7 @@ const fmt = (n) => Math.round(Number(n) || 0).toLocaleString('en-IN')
 export default function MandiTicker() {
   const { t } = useLang()
   const [state, setState] = useState({ loading: true, rows: [], day: 'none', date: null })
+  const offline = useOfflineInfo(['mandi_prices'])
 
   useEffect(() => {
     let alive = true
@@ -26,7 +25,25 @@ export default function MandiTicker() {
     return () => { alive = false }
   }, [])
 
-  const marketHi = (m) => (MARKET_KEY[m] ? t(MARKET_KEY[m]) : m)
+  // Batch 12C: one row per crop (max 12), a Hindi mandi name for every market, a steady scroll speed.
+  const list = tickerRows(state.rows)
+  const marketHi = (r) => marketLabel(r.market, r.district, t)
+  // Scroll only when the list is wider than the strip (about 35 px per second, at least 40 s).
+  const viewRef = useRef(null)
+  const setRef = useRef(null)
+  const [fit, setFit] = useState({ scroll: false, seconds: 60 })
+  useLayoutEffect(() => {
+    const view = viewRef.current; const set = setRef.current
+    if (!view || !set) return undefined
+    const measure = () => {
+      const w = set.offsetWidth; const scroll = w > view.clientWidth; const seconds = tickerDuration(w * 2)
+      setFit((p) => (p.scroll === scroll && p.seconds === seconds ? p : { scroll, seconds }))
+    }
+    measure()
+    if (typeof ResizeObserver === 'undefined') return undefined
+    const ro = new ResizeObserver(measure); ro.observe(view); ro.observe(set)
+    return () => ro.disconnect()
+  }, [list.length, state.loading])
   // Honest, dated label for a non-today ticker (Phase 4c). The staleness is classified by the
   // SAME local-time priceStaleness() used by the MSP page's PriceCell, so the ticker and the
   // MSP tables never disagree about whether a given date is "today" vs "कल का भाव" (the ticker
@@ -46,7 +63,7 @@ export default function MandiTicker() {
         </span>
       )}
       <span className="text-[var(--ks-primary-light)]"> · </span>
-      <span>{marketHi(r.market)}</span>
+      <span>{marketHi(r)}</span>
       <span className="px-2 text-[var(--ks-primary-light)]">|</span>
     </>)
     // min-h-0 opts these ticker links out of the global 44px tap-target min-height, which
@@ -72,16 +89,16 @@ export default function MandiTicker() {
       </div>
 
       {/* Scrolling prices / states */}
-      <div className="relative flex-1 overflow-hidden">
+      <div ref={viewRef} className="ticker-view relative flex-1 overflow-hidden">
         {state.loading ? (
           <div className="ticker-shimmer h-full w-full" />
-        ) : state.rows.length === 0 ? (
-          <div className="flex h-full items-center px-4 text-[14px] text-[#c8e6b0]">{t('mandi_soon')}</div>
+        ) : list.length === 0 ? (
+          <div className="flex h-full items-center px-4 text-[14px] text-[#c8e6b0]" data-testid={offline.failed ? 'ticker-offline' : undefined}>{t(offline.failed ? 'offline_no_data' : 'mandi_soon')}</div>
         ) : (
-          <div className="ticker-content h-full items-center text-[14px]">
-            {/* content duplicated once for a seamless -50% loop */}
-            {state.rows.map(item)}
-            {state.rows.map((r, i) => item(r, i + state.rows.length))}
+          <div className={`ticker-content h-full items-center text-[14px]${fit.scroll ? ' is-scrolling' : ''}`} style={{ '--ticker-duration': `${fit.seconds}s` }}>
+            <div ref={setRef} className="flex h-full items-center">{list.map(item)}</div>
+            {/* second copy only while scrolling, for a seamless -50% loop */}
+            {fit.scroll && <div className="ticker-dup flex h-full items-center" aria-hidden="true">{list.map((r, i) => item(r, i + list.length))}</div>}
           </div>
         )}
       </div>

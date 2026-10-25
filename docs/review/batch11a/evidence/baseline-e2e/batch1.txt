@@ -1,0 +1,11 @@
+
+Running 5 tests using 1 worker
+
+  ok 1 [chromium] › e2e\batch1.spec.js:45:3 › browse: all 11 category chips inside the 375×812 viewport, no h-scroll (1.2s)
+  ok 2 [chromium] › e2e\batch1.spec.js:45:3 › browse: all 11 category chips inside the 1280×800 viewport, no h-scroll (1.1s)
+  ok 3 [chromium] › e2e\batch1.spec.js:67:1 › logged out: browse equipment, Call asks for login and returns to the same listing (2.0s)
+  ok 4 [chromium] › e2e\batch1.spec.js:111:1 › post flow (3 steps): land OFFER end to end (1.9s)
+  ok 5 [chromium] › e2e\batch1.spec.js:133:1 › post flow (3 steps): labor REQUIREMENT end to end (1.7s)
+[teardown] test data cleaned
+
+  5 passed (9.5s)

@@ -3,57 +3,68 @@
 // (Phase 2), free mandi search (Phase 3), and PWA offline/install behaviour (Phase 5).
 // These run on the public pages (no auth) against the production preview build.
 import { test, expect } from '@playwright/test'
+import { blockVisitorWrites } from './support.js'
 
 // Sagar-district coordinate (near Khurai) and a far-outside-MP one (Hyderabad).
 const SAGAR = { latitude: 24.045, longitude: 78.33 }
 const HYDERABAD = { latitude: 17.385, longitude: 78.4867 }
 
 test.describe('Phase 2 — LocationControl', () => {
-  test('positive: geolocation grant updates the location', async ({ browser }) => {
+  // Batch 7L-1: the pincode control is gone. One shared location: device position, else the
+  // place saved on this device, else type a village/town, else the district → town picker.
+  test('positive: geolocation already granted sets the location from the device', async ({ browser }) => {
     const ctx = await browser.newContext({ permissions: ['geolocation'], geolocation: SAGAR })
+    await blockVisitorWrites(ctx)
     const page = await ctx.newPage()
     const errors = []
     page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()) })
     await page.goto('/mausam')
     await expect(page.getByTestId('location-control')).toBeVisible()
-    // Accept the auto-detect prompt.
-    await page.getByTestId('gps-detect').click()
-    // The control should reflect a detected place (not crash); weather area renders.
-    await expect(page.getByTestId('location-control')).toContainText('📍')
+    // Permission is already granted, so no card and no prompt: the banner names the place.
+    const banner = page.getByTestId('location-banner')
+    await expect(banner).toBeVisible({ timeout: 20000 })
+    await expect(banner).toHaveAttribute('data-source', 'device')
+    await expect(banner).toContainText('📍')
     expect(errors.join('\n')).not.toMatch(/Uncaught|is not a function|undefined is not/)
     await ctx.close()
   })
 
-  test('negative: geolocation denied falls back to manual pincode, no crash', async ({ browser }) => {
+  test('negative: geolocation refused falls back to the village/town box, no pincode, no crash', async ({ browser }) => {
     const ctx = await browser.newContext({ permissions: [], geolocation: SAGAR }) // no geolocation permission
+    await blockVisitorWrites(ctx)
     const page = await ctx.newPage()
     const errors = []
     page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()) })
     await page.goto('/mausam')
-    // Manual override must ALWAYS be reachable (even without granting geolocation).
-    await page.getByRole('button', { name: 'जगह बदलें' }).first().click()
-    await expect(page.getByTestId('pincode-input')).toBeVisible()
+    // The browser has already refused geolocation, so the "Share my location" card is not
+    // offered (asking could not work). Typing a place must ALWAYS be reachable instead.
+    await expect(page.getByTestId('location-input')).toBeVisible({ timeout: 20000 })
+    await expect(page.getByTestId('location-prompt')).toHaveCount(0)
+    await expect(page.getByTestId('pincode-input')).toHaveCount(0)
     expect(errors.join('\n')).not.toMatch(/Uncaught|is not a function/)
     await ctx.close()
   })
 
   test('edge: coordinates far outside MP do not crash the page', async ({ browser }) => {
     const ctx = await browser.newContext({ permissions: ['geolocation'], geolocation: HYDERABAD })
+    await blockVisitorWrites(ctx)
     const page = await ctx.newPage()
     await page.goto('/mausam')
-    await page.getByTestId('gps-detect').click()
+    await expect(page.getByTestId('location-banner')).toBeVisible({ timeout: 20000 })
     // Page still renders its heading (no white-screen / thrown error).
     await expect(page.locator('h1')).toBeVisible()
     await ctx.close()
   })
 
-  test('manual pincode input applies a location', async ({ page }) => {
+  test('typing a village/town applies a location', async ({ page }) => {
+    await blockVisitorWrites(page.context())
     await page.goto('/mausam')
-    await page.getByRole('button', { name: 'जगह बदलें' }).first().click()
-    const input = page.getByTestId('pincode-input')
-    await input.fill('470442') // Bandri
-    await page.getByRole('button', { name: 'लागू करें' }).click()
-    await expect(page.getByTestId('location-control')).toContainText('470442')
+    await page.getByTestId('location-not-now').click()
+    await page.getByTestId('location-input').fill('Khurai')
+    await page.getByTestId('location-find').click()
+    const banner = page.getByTestId('location-banner')
+    await expect(banner).toContainText(/खुरई|Khurai/)
+    await expect(banner).toHaveAttribute('data-source', 'typed')
   })
 })
 
@@ -70,7 +81,8 @@ test.describe('Phase 3 — mandi search (distance-unrestricted)', () => {
     // Honesty rule: a shown price is ALWAYS accompanied by a date; otherwise the
     // explicit empty state — never a price with no date, never a crash.
     const text = await result.innerText()
-    const hasDatedPrice = /₹[\d,]+/.test(text) && /\d{4}-\d{2}-\d{2}/.test(text)
+    // Batch 10F: /msp shows readable dates ("17 अक्टू 2026" / "17 Oct 2026") instead of ISO text.
+    const hasDatedPrice = /₹[\d,]+/.test(text) && /(\d{4}-\d{2}-\d{2}|\d{1,2} [^\s\d]+ \d{4})/.test(text)
     const hasEmptyState = /उपलब्ध नहीं|No recent price/.test(text)
     expect(hasDatedPrice || hasEmptyState).toBeTruthy()
   })
@@ -87,6 +99,9 @@ test.describe('Phase 5 — PWA install + offline', () => {
     await expect(page.getByTestId('pwa-install-banner')).toHaveCount(0)
     // Returning visit — reload bumps the visit counter to >=2.
     await page.reload()
+    // 10E Phase 6: wait until the app has counted this returning visit (its effect also attaches the
+    // beforeinstallprompt listener); dispatching earlier raced hydration (failed on the 10D build too).
+    await page.waitForFunction(() => Number(localStorage.getItem('ks_visit_count')) >= 2, null, { timeout: 10_000 })
     await page.evaluate(() => window.dispatchEvent(new Event('beforeinstallprompt')))
     await expect(page.getByTestId('pwa-install-banner')).toBeVisible({ timeout: 5000 })
     await ctx.close()

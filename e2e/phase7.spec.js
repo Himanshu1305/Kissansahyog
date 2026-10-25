@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { adminClient, testPhone } from './support.js'
+import { adminClient, testPhone, pickTodayIfAsked, tickAllConsents } from './support.js'
 
 // phase7:28 (language toggle chrome) still passes as-is. The other two are REWRITTEN
 // to add the source step before Offering/Looking-for and the numeric land form; the
@@ -76,9 +76,10 @@ test('posting works in Hindi UI (functional, not just visual)', async ({ page })
   await page.locator('#f_size_acres').waitFor({ timeout: 8000 })
   await page.locator('#f_size_acres').fill('2')
   await page.locator('#f_price_type').selectOption('negotiable')
+  await pickTodayIfAsked(page) // 10E 3C: land needs a start date (आज)
   await page.getByTestId('post-next').click() // → Location + confirm
   await page.locator('#f_asset_village').fill('खुरई')
-  await page.getByTestId('rules-agree-checkbox').check() // single confirm (rules + ownership)
+  await tickAllConsents(page) // 6B/9B consent checklist + ownership declaration
   await page.getByTestId('post-submit').click() // Submit
   await expect(page.getByRole('button', { name: 'लिस्टिंग देखें' })).toBeVisible() // View listing
 })

@@ -1,0 +1,247 @@
+{
+  "source": "dist/index.html",
+  "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+  "metaDescription": "सागर संभाग (मध्य प्रदेश) के किसानों के लिए जानकारी मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और लिस्टिंग बाज़ार।",
+  "canonical": "https://kissansahyog.com",
+  "htmlLang": "hi",
+  "robots": null,
+  "ogTitle": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+  "ogDescription": "सागर संभाग (मध्य प्रदेश) के किसानों के लिए जानकारी मंच: मंडी भाव, MSP, मौसम, सरकारी योजनाएं, किसान सवाल और लिस्टिंग बाज़ार।",
+  "hreflang": [
+    {
+      "hreflang": "hi-IN",
+      "href": "https://kissansahyog.com"
+    },
+    {
+      "hreflang": "en-IN",
+      "href": "https://kissansahyog.com"
+    },
+    {
+      "hreflang": "x-default",
+      "href": "https://kissansahyog.com"
+    }
+  ],
+  "jsonld": [
+    {
+      "verbatim": "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Kissan Sahyog\",\"description\":\"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।\",\"url\":\"https://kissansahyog.com\",\"logo\":\"https://kissansahyog.com/icons/icon-512.png\",\"email\":\"hello@kissansahyog.com\",\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Sagar Division\",\"alternateName\":[\"Sagar Sambhag\",\"सागर संभाग\"],\"containedInPlace\":{\"@type\":\"State\",\"name\":\"Madhya Pradesh\",\"identifier\":\"IN-MP\"},\"containsPlace\":[{\"@type\":\"AdministrativeArea\",\"name\":\"Sagar district\"},{\"@type\":\"AdministrativeArea\",\"name\":\"Damoh district\"},{\"@type\":\"AdministrativeArea\",\"name\":\"Panna district\"},{\"@type\":\"AdministrativeArea\",\"name\":\"Tikamgarh district\"},{\"@type\":\"AdministrativeArea\",\"name\":\"Chhatarpur district\"},{\"@type\":\"AdministrativeArea\",\"name\":\"Niwari district\"}]}}",
+      "parsed": {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Kissan Sahyog",
+        "description": "किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।",
+        "url": "https://kissansahyog.com",
+        "logo": "https://kissansahyog.com/icons/icon-512.png",
+        "email": "hello@kissansahyog.com",
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Sagar Division",
+          "alternateName": [
+            "Sagar Sambhag",
+            "सागर संभाग"
+          ],
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Madhya Pradesh",
+            "identifier": "IN-MP"
+          },
+          "containsPlace": [
+            {
+              "@type": "AdministrativeArea",
+              "name": "Sagar district"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Damoh district"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Panna district"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Tikamgarh district"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Chhatarpur district"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Niwari district"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "verbatim": "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"Kissan Sahyog\",\"description\":\"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।\",\"url\":\"https://kissansahyog.com\",\"inLanguage\":[\"hi-IN\",\"en-IN\"],\"potentialAction\":{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://kissansahyog.com/search?q={search_term_string}\"},\"query-input\":\"required name=search_term_string\"}}",
+      "parsed": {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Kissan Sahyog",
+        "description": "किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।",
+        "url": "https://kissansahyog.com",
+        "inLanguage": [
+          "hi-IN",
+          "en-IN"
+        ],
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://kissansahyog.com/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    }
+  ],
+  "h1": [
+    "आज किसान के लिए"
+  ],
+  "h2": [
+    "बिना लॉगिन के सारी जानकारी देखें",
+    "क्या खोज रहे हैं?",
+    "आपके आसपास क्या मिल रहा है? (30 किमी)",
+    "कृषि बाज़ार की श्रेणियाँ",
+    "ताज़ा लिस्टिंग",
+    "आज की 2 मिनट की वीडियो सलाह",
+    "किसान सवाल",
+    "आस-पास के किसान मेले",
+    "सरकारी मदद",
+    "भरोसेमंद लोग",
+    "किसान लेख"
+  ],
+  "h3": [],
+  "headingsInOrder": [
+    "h2: बिना लॉगिन के सारी जानकारी देखें",
+    "h1: आज किसान के लिए",
+    "h2: क्या खोज रहे हैं?",
+    "h2: आपके आसपास क्या मिल रहा है? (30 किमी)",
+    "h2: कृषि बाज़ार की श्रेणियाँ",
+    "h2: ताज़ा लिस्टिंग",
+    "h2: आज की 2 मिनट की वीडियो सलाह",
+    "h2: किसान सवाल",
+    "h2: आस-पास के किसान मेले",
+    "h2: सरकारी मदद",
+    "h2: भरोसेमंद लोग",
+    "h2: किसान लेख"
+  ],
+  "faq": null,
+  "sections": [
+    {
+      "h2": "बिना लॉगिन के सारी जानकारी देखें",
+      "sectionText": "बिना लॉगिन के सारी जानकारी देखेंमंडी भावयोजनाएँकिसान सवालकोल्ड स्टोरेजमेलेकैसे इस्तेमाल करें →"
+    },
+    {
+      "h2": "क्या खोज रहे हैं?",
+      "sectionText": "क्या खोज रहे हैं?मंडी भाव, योजना, मशीन या जगह खोजें🎤खोजेंमंडी भावसरकारी योजनाकृषि मशीनमेरे पास"
+    },
+    {
+      "h2": "आपके आसपास क्या मिल रहा है? (30 किमी)",
+      "sectionText": "आपके आसपास क्या मिल रहा है? (30 किमी)📍 अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे कितनी दूर हैं यह जानने के लिए अपनी लोकेशन साझा करें। हम आपकी लोकेशन सिर्फ़ इसी काम के लिए इस्तेमाल करते हैं।मेरी लोकेशन साझा करेंअभी नहीं"
+    },
+    {
+      "h2": "कृषि बाज़ार की श्रेणियाँ",
+      "sectionText": "कृषि बाज़ार की श्रेणियाँमशीनेंट्रैक्टर, हार्वेस्टर, किरायापानी का टैंकरगर्मी में पानी की ढुलाईकृषि सहयोगीमज़दूर, टीम, दिहाड़ीDrone Didiछिड़काव सेवाभूसा/परालीचारा, परालीबीज, खाद व इनपुटबीज, खाद, दवानिर्माण सामग्रीसीमेंट, रेत, सरिया और ईंटगोदाम/भंडारणभंडारण जगहकोल्ड स्टोरेजभंडारण खोजेंग्रीनहाउसपॉलीहाउस व सब्सिडीकार्बन क्रेडिटकिसान आय का नया ज़रिया?जुगाड़गाँव के देसी आविष्कारपरिवहन/ढुलाईट्रैक्टर-ट्रॉली, ट्रक, पिकअपकृषि विशेषज्ञसलाह, मार्गदर्शनभूमि / रकबा (पट्टा/बटाई)किराया, बटाई"
+    },
+    {
+      "h2": "ताज़ा लिस्टिंग",
+      "sectionText": "ताज़ा लिस्टिंगसभी देखें →दे रहे हैंभूसा (गेहूं)5📍 KSTEST 5C-photo 82064 Sagar WhatsAppदे रहे हैंभूसा (गेहूं)5📍 KSTEST 5C-after 54152 Sagar WhatsAppदे रहे हैंभूसा (गेहूं)5📍 KSTEST 5C-after 54152 Sagar WhatsAppदे रहे हैंभूसा (गेहूं)5📍 KSTEST 5C-before 26165 Sagar WhatsAppदे रहे हैंभूसा (गेहूं)5📍 KSTEST N1 E2 village WhatsAppदे रहे हैं5 कृषि सहयोगीबुवाई📍 KSTEST-KEEP L24 Orchha WhatsAppचाहिए5 एकड़पट्टा / किराया (Lease)📍 KSTEST-KEEP L22 Orchha WhatsAppचाहिएट्रैक्टर-ट्रॉली5📍 KSTEST-KEEP L20 Orchha WhatsApp"
+    },
+    {
+      "h2": "आज की 2 मिनट की वीडियो सलाह",
+      "sectionText": "आज की 2 मिनट की वीडियो सलाहसभी देखें →3:07सोयाबीन में पीले मोज़ेक रोग का प्रबंधन▶ देखें · ICAR National Soybean Research Institute, Indore8:45गेहूं की उन्नत बुवाई तकनीक, खेती कर कमाएं अच्छा लाभ▶ देखें · News18 MP Chhattisgarh22:07किसान ड्रोन से छिड़काव — पूरी जानकारी▶ देखें · किसान ड्रोन (Hindi)"
+    },
+    {
+      "h2": "किसान सवाल",
+      "sectionText": "किसान सवालसभी सवाल देखें →💬सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है?मध्य प्रदेश के लिए लोक-1, GW-322, GW-366, GW-273 जैसी सामान्य गेहूं किस्में लोकप्रिय हैं। शरबती में C-306 और अमृता (HI 1500) अच्छी हैं। डुरम में पूसा तेजस (HI-8759) अच्छी है। अपने क्षेत्र और सिंचाई के अनुसार 2-3 किस्में चुनें।पूरा उत्तर पढ़ें💬सोयाबीन के पत्ते पीले क्यों हो रहे हैं और क्या करें?पीलेपन के कई कारण हो सकते हैं — वायरस, पोषक तत्व की कमी, या जड़ सड़न। पत्तियों पर पीले-हरे धब्बे और फली न बनना पीला मोज़ायक वायरस का संकेत है। पक्का कारण जानने के लिए पत्ती का नमूना लेकर KVK सागर से जाँच कराएँ, फिर उपाय करें।पूरा उत्तर पढ़ें💬Soil Health Card portal में recommendation कैसे बनती है?Portal workflow में sample collection, sample registration, soil testing और automatic fertiliser recommendation शामिल हैं।पूरा उत्तर पढ़ें📷 फोटो भेजकर सवाल पूछें"
+    },
+    {
+      "h2": "आस-पास के किसान मेले",
+      "sectionText": "आस-पास के किसान मेलेसभी मेले देखें →🌾 डेयरी इंडस्ट्री एक्सपो 2026चल रहा है📅 16–18 अक्टूबर 2026📍 The Ramkrishna Lawns / Ramkrishna Multipurpose Hall, Shri Shahu Market Yard, Kolhapur, Maharashtra🌾 कृषि मेला, कृषि विज्ञान विश्वविद्यालय बेंगलुरु📅 22–25 अक्टूबर 2026📍 GKVK Campus, Bengaluru, Karnataka🌾 किसान मेला, सरदार वल्लभभाई पटेल कृषि एवं प्रौद्योगिक विश्वविद्यालय, मेरठ📅 2–4 नवंबर 2026📍 SVPUAT Campus, Modipuram, Meerut, Uttar Pradesh"
+    },
+    {
+      "h2": "सरकारी मदद",
+      "sectionText": "सरकारी मदद🌾योजनाएँPM किसान ₹6,000 · फसल बीमा 2% · कुसुम 60%सभी देखें →☎️ज़रूरी नंबरपशु 1962 · हेल्पलाइन 1800-180-1551 · KVKसभी देखें →📋MSP 2026-27गेहूं ₹2,585 · सोयाबीन ₹5,708 · चना ₹5,875सभी देखें →"
+    },
+    {
+      "h2": "भरोसेमंद लोग",
+      "sectionText": "भरोसेमंद लोगअ.दी.श्री अभिनन्दन दीक्षितसंस्थापक · सेवानिवृत्त उप वन संरक्षक (DCF)42 वर्ष की सेवास्वर्ण पदक, 2011गिनीज वर्ल्ड रिकॉर्ड, 2013“WE WILL DO IT”पूरा परिचय पढ़ें →"
+    },
+    {
+      "h2": "किसान लेख",
+      "sectionText": "किसान लेखसभी देखें →इंटरक्रॉपिंग (अंतरवर्ती खेती): मध्यप्रदेश के किसानों के लिए व्यावहारिक मार्गदर्शिकापराली जलाना — किसान की मजबूरी या हमारी गलत सोच?"
+    }
+  ],
+  "links": [
+    "/how-to-use",
+    "/about",
+    "/founder",
+    "/agro-forestry",
+    "/videos",
+    "/resources",
+    "/kisan-mela",
+    "/how-to-use",
+    "/about",
+    "/founder",
+    "/guide",
+    "/msp/makka",
+    "/msp/gehun",
+    "/msp/soyabean",
+    "/msp/sarson",
+    "/msp/lahsun",
+    "/msp/makka",
+    "/msp/gehun",
+    "/msp/soyabean",
+    "/msp/sarson",
+    "/msp/lahsun",
+    "/msp",
+    "/yojana",
+    "/sawaal",
+    "/cold-storage",
+    "/kisan-mela",
+    "/how-to-use",
+    "/guide",
+    "https://wa.me/?text=%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%20%E2%80%94%20bhusa%3A%20http%3A%2F%2Flocalhost%3A4178%2Flisting%2F70517023-2484-415e-9bc3-dbb6356f3194",
+    "https://wa.me/?text=%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%20%E2%80%94%20bhusa%3A%20http%3A%2F%2Flocalhost%3A4178%2Flisting%2F666ff01a-2628-4be6-a167-b6c688504fce",
+    "https://wa.me/?text=%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%20%E2%80%94%20bhusa%3A%20http%3A%2F%2Flocalhost%3A4178%2Flisting%2Fe0b5f22c-f597-4a57-bddb-c5523c858aa3",
+    "https://wa.me/?text=%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%20%E2%80%94%20bhusa%3A%20http%3A%2F%2Flocalhost%3A4178%2Flisting%2F932fb10d-15dd-4617-892c-6c5ca57421dc",
+    "https://wa.me/?text=%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%20%E2%80%94%20bhusa%3A%20http%3A%2F%2Flocalhost%3A4178%2Flisting%2F926651a4-8eb1-4095-b63d-7a20a546c0b4",
+    "https://wa.me/?text=%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%20%E2%80%94%20labor%3A%20http%3A%2F%2Flocalhost%3A4178%2Flisting%2F64a21928-58ef-4723-b389-2a547f506b88",
+    "https://wa.me/?text=%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%20%E2%80%94%20land%3A%20http%3A%2F%2Flocalhost%3A4178%2Flisting%2F3ac1830c-ad5e-4fac-a333-e6fd63e50096",
+    "https://wa.me/?text=%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%20%E2%80%94%20transport%3A%20http%3A%2F%2Flocalhost%3A4178%2Flisting%2F6dd92f00-be98-435b-8709-906e89af9592",
+    "https://www.youtube.com/watch?v=2fOVTX4mDZ8",
+    "https://www.youtube.com/watch?v=ULZg7ewKOsY",
+    "https://www.youtube.com/watch?v=O0PMu9lfboY",
+    "/founder",
+    "/",
+    "/bazaar",
+    "/about",
+    "/how-to-use",
+    "/guide",
+    "/founder",
+    "/privacy",
+    "/terms",
+    "/grievance",
+    "/resources",
+    "/credits",
+    "mailto:hello@kissansahyog.com",
+    "https://usdvisionai.com",
+    "https://open-meteo.com"
+  ],
+  "sitemapsSha256": {
+    "sitemap-cold-storage.xml": "8053475133c4dc342ebc4b8a6c05d414234e60214126d6163051e8a34a748f61",
+    "sitemap-pages.xml": "db1945bf1125f3c8bf4c0a2863c08bd4db3c23b03ae41e9bbd73d84541c53b9a",
+    "sitemap-sawaal.xml": "13afa43e8efbcd91ab2e1bb129d6bc416303844ac1d6170a1bcb17133e96717b",
+    "sitemap-schemes.xml": "fb3a17e1b2ac239c2a7802957bf5fea299dcc992d92d9b15d6ea79358cfeb207",
+    "sitemap.xml": "3fd153e5545950983a6fd088fc3a49a3300c347640cea540e76fd9e8371a680c"
+  },
+  "sitemapsSha256NoLastmod": {
+    "sitemap-cold-storage.xml": "b891a7abf3e9e5af6ab72ce2acf25868163e5fbc1804213e0b0b84127094ade8",
+    "sitemap-pages.xml": "6c4f7eb1913875d20bc4be4c2da05e76425e897550dec65e4b7d0fc480c0d5cf",
+    "sitemap-sawaal.xml": "24a2d7ec7b8c41867f692e1bc3425b30993dda18150f0f9d143362d9b72734cc",
+    "sitemap-schemes.xml": "c40a62dfea76ad51c7f60e8f712556f1fc940a124261090e79f882e9b859f62c",
+    "sitemap.xml": "34b40b2e21ec559500ab9c10d9c12af416799c23296c0ecdc1cb5e99e4ca0a71"
+  }
+}

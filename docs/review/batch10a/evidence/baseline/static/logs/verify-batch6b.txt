@@ -1,0 +1,11 @@
+PASS  B1: Post uses responsive desktop two-column layout
+PASS  B2: reusable promo config and bento exist
+PASS  B3: checklist has four separate checkboxes and gates submit
+PASS  B4: central picker, catalog limits, compression and prescribed path exist
+PASS  B5: click-only browser geolocation and Maps validation exist
+PASS  B6: transport stores From/To and displays route
+PASS  B7: land label and search synonyms updated
+PASS  migration: 0054 is additive with rollback, consents and 5 MB bucket limit
+PASS  migration: no forbidden destructive SQL
+PASS  migration: old create_listing signature remains untouched; compatible wrapper exists
+PASS  batch6b total: 0 failed

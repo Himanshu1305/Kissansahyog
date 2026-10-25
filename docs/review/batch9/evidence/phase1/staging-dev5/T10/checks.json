@@ -1,0 +1,113 @@
+[
+  {
+    "name": "device is offline (airplane mode on)",
+    "pass": true,
+    "detail": "cmd connectivity airplane-mode enable; airplane_mode_on=1"
+  },
+  {
+    "name": "app shell renders offline at https://localhost/ (not a browser error page)",
+    "pass": true,
+    "detail": {
+      "href": "https://localhost/",
+      "textLength": 4561
+    }
+  },
+  {
+    "name": "offline banner is visible",
+    "pass": true,
+    "detail": {
+      "banner": "📴 आप ऑफ़लाइन हैं — आख़िरी बार अपडेट: 15 अक्तू॰, 02:18 am",
+      "navigatorOnLine": false
+    }
+  },
+  {
+    "name": "/ offline: content or an in-app state — not the ErrorBoundary, not blank",
+    "pass": true,
+    "detail": {
+      "err": null,
+      "boundary": false,
+      "blank": false,
+      "href": "https://localhost/",
+      "textLength": 4561
+    }
+  },
+  {
+    "name": "/browse offline: content or an in-app state — not the ErrorBoundary, not blank",
+    "pass": true,
+    "detail": {
+      "err": null,
+      "boundary": false,
+      "blank": false,
+      "href": "https://localhost/browse",
+      "textLength": 1589
+    }
+  },
+  {
+    "name": "/mausam offline: content or an in-app state — not the ErrorBoundary, not blank",
+    "pass": true,
+    "detail": {
+      "err": null,
+      "boundary": false,
+      "blank": false,
+      "href": "https://localhost/mausam",
+      "textLength": 3186
+    }
+  },
+  {
+    "name": "/msp offline: content or an in-app state — not the ErrorBoundary, not blank",
+    "pass": true,
+    "detail": {
+      "err": null,
+      "boundary": false,
+      "blank": false,
+      "href": "https://localhost/msp",
+      "textLength": 2530
+    }
+  },
+  {
+    "name": "/about offline: content or an in-app state — not the ErrorBoundary, not blank",
+    "pass": true,
+    "detail": {
+      "err": null,
+      "boundary": false,
+      "blank": false,
+      "href": "https://localhost/about",
+      "textLength": 2628
+    }
+  },
+  {
+    "name": "no crash while offline",
+    "pass": true,
+    "detail": {
+      "pid": "10246",
+      "fatals": 0
+    }
+  },
+  {
+    "name": "offline banner disappears within 15 s of going back online",
+    "pass": true,
+    "detail": {
+      "bannerGoneMs": 3785,
+      "androidNetworkUpMs": 3304,
+      "appLagMs": 481
+    }
+  },
+  {
+    "name": "/mausam loads data again after reconnecting",
+    "pass": true,
+    "detail": {
+      "temps": [
+        "24°",
+        "30°",
+        "25°",
+        "23°",
+        "22°",
+        "21°"
+      ],
+      "hosts": {
+        "wzxtqbqlahyahsnoqqva.supabase.co 200": 5,
+        "staging.kissansahyog.com 0": 1
+      }
+    }
+  }
+]

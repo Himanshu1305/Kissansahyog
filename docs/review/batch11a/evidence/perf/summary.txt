@@ -1,0 +1,4 @@
+homepage slow-phone (10D method: 360x640, 4x CPU, Slow 4G, hi), interleaved base/final/base/final, 4 runs per block
+baseline (frozen Phase 0, :4211) {"runs":8,"lcpMedianMs":2716,"clsMedian":0.01059}
+final    (Phase 4 build, :4212)    {"runs":8,"lcpMedianMs":2692,"clsMedian":0.01059}
+LCP delta ms -24  CLS delta 0.00000

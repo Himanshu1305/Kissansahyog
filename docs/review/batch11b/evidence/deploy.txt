@@ -1,0 +1,16 @@
+
+ ⛅️ wrangler 4.151.2
+────────────────────
+✨ Compiled Worker successfully
+Uploading... (119/481)
+Uploading... (240/481)
+Uploading... (361/481)
+Uploading... (481/481)
+✨ Success! Uploaded 362 files (119 already uploaded) (2.91 sec)
+
+✨ Uploading _headers
+✨ Uploading _redirects
+✨ Uploading Functions bundle
+✨ Uploading _routes.json
+🌎 Deploying...
+✨ Deployment complete! Take a peek over at https://a21bd909.kissansahyog.pages.dev

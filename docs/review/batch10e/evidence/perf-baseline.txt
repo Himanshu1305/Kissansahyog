@@ -1,0 +1,7 @@
+run 1: LCP 9620 ms (H1) CLS 0 (10s 0) TBT 0 ms FCP 9620 ms longTasks 5 (max 1758) photo 0x/0B
+run 2: LCP 10436 ms (H1) CLS 0 (10s 0) TBT 0 ms FCP 10436 ms longTasks 4 (max 1614) photo 0x/0B
+run 3: LCP 10644 ms (H1) CLS 0 (10s 0) TBT 0 ms FCP 10644 ms longTasks 9 (max 1131) photo 0x/0B
+run 4: LCP 9312 ms (H1) CLS 0 (10s 0) TBT 0 ms FCP 9312 ms longTasks 6 (max 1413) photo 0x/0B
+run 5: LCP 9460 ms (H1) CLS 0 (10s 0) TBT 0 ms FCP 9460 ms longTasks 9 (max 544) photo 0x/0B
+median {"lcpMs":9620,"cls":0,"cls10s":0,"tbtMs":0,"fcpMs":9620,"maxLongTaskMs":1413,"loadWallMs":13915,"requests":110,"transferBytes":1676505,"heroFarmerJpgRequests":0,"jsChunksGzip9Total":303796}
+wrote docs/review/batch10e/evidence/perf-baseline.json

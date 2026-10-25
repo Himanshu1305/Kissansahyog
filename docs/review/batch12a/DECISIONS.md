@@ -1,0 +1,14 @@
+# Batch 12A — decisions
+1. **Branch/tags:** `release-12a` from `release-11a` head `169fb74`; safety tag `pre-12a-ship` there; ship tag `ship-12a` on the final head.
+2. **One source of truth:** `src/lib/social.js` (URL + name). A unit test fails if the channel id appears anywhere else in `src/`.
+3. **Old gated WhatsApp mechanism left untouched** (`WhatsAppJoin.jsx`, `/join`, `whatsapp_channel_url` in site_settings). It renders nothing until an admin sets that setting, so today there is one card per page. If an admin ever sets it, those pages would show two cards: unset it, or remove the old component in a later batch (KNOWN_ISSUES).
+4. **Home placement:** `hero` card right after the hero block (heading, two big buttons, three info cards), before the collapsible sections. The big buttons did not move: on production at 360x640 they sit at y 615-638 and 691-714 (measured 2026-10-20), and in the new build at 614.8 and 690.8. The second button was already below the 640 px fold on production; the founder's "visible without scrolling" is true only for the first. Recorded, not changed.
+5. **Footer link:** shown on every page except `/login`, `/signup`, `/admin*`, `/offline` (the footer is global; the pages the rules exclude get none). It is a text link, not a card.
+6. **Sign-up / login success:** neither has a success screen (both navigate away), so the inline card is at the top of the Profile page, as the prompt said.
+7. **Post success:** inline card added under the existing gated box.
+8. **No change for the Android app:** every existing external link (wa.me share, usdvisionai.com, Open-Meteo) is a plain `<a target="_blank" rel="noopener noreferrer">`, and `capacitor.config.json` has no `allowNavigation`, so the WebView hands the link to the phone's browser or WhatsApp. The channel link is the same kind of link, so no code was added. NOT tested on a device (no APK built here).
+9. **Hindi wording is the prompt's text, unchanged**; listed in `HINDI_CAPTIONS.md` for founder review.
+10. **Prerendered pages:** the footer link is in all 268 prerendered pages; cards are in home, about, contact, guide, mausam, msp and the 8 msp crop pages. Only added strings differ (`evidence/text-diff.json`); the one page with lost words, `videos`, is the known loading-state race.
+11. **Ship scripts:** the 11A gate "both flags OFF" is replaced by "record before; require otp_required=true and session_enforced=false before deploying; the same values after". No migration probes. Rollback target = the live deployment read from Cloudflare when the script starts (must be the 11A deployment, or `KS_EXPECT_LIVE_ID`).
+12. **`npm run test:android`** is not an offline unit test (needs an APK, drives the app against the live site): NOT-RUN. The files it modified (android gradle, batch8b results) were restored.
+13. Tracked generated file that changed: `public/search-index.json` (rewritten by every build).

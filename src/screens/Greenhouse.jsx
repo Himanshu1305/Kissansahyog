@@ -54,7 +54,7 @@ export default function Greenhouse() {
 
       <h1 className="text-3xl font-bold text-stone-900">{t('nav_greenhouse')}</h1>
       {/* ks-allow-width: readable one-line intro above the full-width marketplace */}
-      <p className="mt-2 max-w-3xl text-stone-700">{t('gh_mkt_intro')}</p>
+      <p className="mt-2 text-stone-700">{t('gh_mkt_intro')}</p>
 
       {/* Two big CTAs — preselect the Greenhouse category + offer/requirement in /post. */}
       <div className="mt-4 flex flex-col gap-3 sm:flex-row">

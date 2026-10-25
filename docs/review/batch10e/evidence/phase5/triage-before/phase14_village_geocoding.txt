@@ -1,0 +1,36 @@
+
+Running 2 tests using 1 worker
+
+  x  1 [chromium] › e2e\phase14_village_geocoding.spec.js:14:1 › Land/Equipment form asks for a VILLAGE name with autocomplete, not a pincode (9.4s)
+  ok 2 [chromium] › e2e\phase14_village_geocoding.spec.js:40:1 › Land form (contract) also uses the village input, no pincode (1.4s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\phase14_village_geocoding.spec.js:14:1 › Land/Equipment form asks for a VILLAGE name with autocomplete, not a pincode 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#f_asset_village')
+    Expected: visible
+    Timeout: 8000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 8000ms
+      - waiting for locator('#f_asset_village')
+
+
+      28 |
+      29 |   // Village-name input is present…
+    > 30 |   await expect(page.locator('#f_asset_village')).toBeVisible({ timeout: 8000 })
+         |                                                  ^
+      31 |   // …with an autocomplete datalist populated from resolved villages…
+      32 |   await expect(page.locator('#known-villages option').first()).toHaveCount(1)
+      33 |   const optionCount = await page.locator('#known-villages option').count()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\phase14_village_geocoding.spec.js:30:50
+
+    Error Context: test-results\phase14_village_geocoding--05b8b--autocomplete-not-a-pincode-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\phase14_village_geocoding.spec.js:14:1 › Land/Equipment form asks for a VILLAGE name with autocomplete, not a pincode 
+  1 passed (13.4s)

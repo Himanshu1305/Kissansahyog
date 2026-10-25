@@ -1,0 +1,22 @@
+{
+  "staging": {
+    "package": "com.kissansahyog.app.staging",
+    "label": "Kisan Sahyog (Staging)",
+    "cleartext": false,
+    "assets": {
+      "files": 124,
+      "prodRef": 0,
+      "stagingRef": 1
+    }
+  },
+  "prod": {
+    "package": "com.kissansahyog.app",
+    "label": "Kisan Sahyog",
+    "cleartext": false,
+    "assets": {
+      "files": 124,
+      "prodRef": 1,
+      "stagingRef": 0
+    }
+  }
+}

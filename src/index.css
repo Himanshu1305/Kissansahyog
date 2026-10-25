@@ -1,5 +1,17 @@
 @import 'tailwindcss';
+/* Batch 10C: design/ holds mock-ups and reference files, never app code — keep Tailwind from
+   scanning it (otherwise their class names add unused CSS to every page). */
+@source not "../design";
 @import './styles/tokens.css';
+
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-400-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-600-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-700-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/noto-sans-devanagari-devanagari-800-normal.woff2') format('woff2'); unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/noto-sans-devanagari-latin-400-normal.woff2') format('woff2'); unicode-range: U+0000-00FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/noto-sans-devanagari-latin-600-normal.woff2') format('woff2'); unicode-range: U+0000-00FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/noto-sans-devanagari-latin-700-normal.woff2') format('woff2'); unicode-range: U+0000-00FF; }
+@font-face { font-family: 'Noto Sans Devanagari'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/noto-sans-devanagari-latin-800-normal.woff2') format('woff2'); unicode-range: U+0000-00FF; }
 
 /* Base tweaks for a low-literacy, low-end-device audience:
    larger default tap targets, comfortable line-height, no tiny text. */
@@ -21,6 +33,28 @@
   textarea {
     min-height: 44px;
   }
+  /* Batch 10E: Tailwind v4 dropped the hand cursor on buttons — give every clickable control
+     the pointer once, here; disabled controls show "not allowed". In the base layer so a
+     utility class (cursor-default etc.) can still override it on purpose. */
+  a[href],
+  button:not(:disabled),
+  [role="button"],
+  summary,
+  label[for],
+  select,
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="submit"],
+  input[type="button"] {
+    cursor: pointer;
+  }
+  button:disabled,
+  select:disabled,
+  input:disabled,
+  textarea:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
   /* Reserve space at the foot of every page for the fixed mobile bottom tab bar
      (below md); honour the iPhone home-indicator safe area. Desktop has none. */
   @media (max-width: 767px) {
@@ -28,6 +62,44 @@
       padding-bottom: calc(64px + env(safe-area-inset-bottom));
     }
   }
+}
+
+/* --- Batch 8A: Android app only (html.native-app is set in main.jsx when the page runs
+   inside the Capacitor shell — never on the website). On Android 15+ the app draws edge to
+   edge, under the status bar and the navigation / gesture bar. Capacitor's SystemBars plugin
+   publishes the bar sizes as --safe-area-inset-* on <html> (and zeroes them on older
+   WebViews, where it pads the window itself); env() is the fallback until that arrives. --- */
+html.native-app {
+  --ks-safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  /* Batch 8B (D1): status bar + the offline banner when it shows (PwaPrompts sets --ks-offline-h). */
+  --ks-top-total: calc(var(--ks-safe-top) + var(--ks-offline-h, 0px));
+  --ks-safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+}
+/* Page content starts below the status bar and ends above the navigation bar. */
+html.native-app body {
+  padding-top: var(--ks-top-total);
+  padding-bottom: var(--ks-safe-bottom);
+}
+@media (max-width: 767px) {
+  html.native-app body { padding-bottom: calc(64px + var(--ks-safe-bottom)); }
+}
+/* An opaque strip behind the status bar, so scrolled content never shows through the clock. */
+html.native-app body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--ks-safe-top);
+  background: #fff;
+  z-index: 55;
+}
+/* Sticky header sits under the status bar, not behind it. */
+html.native-app .ks-safe-sticky { top: var(--ks-top-total); }
+/* Bottom tab bar: its buttons end above the navigation / gesture bar. */
+html.native-app [data-ks-tabbar] { padding-bottom: var(--ks-safe-bottom) !important; }
+/* Full-screen overlays and bottom sheets keep their content clear of both bars. */
+html.native-app .ks-overlay {
+  padding-top: var(--ks-safe-top);
+  padding-bottom: var(--ks-safe-bottom);
 }
 
 /* --- Mandi price ticker (CSS-only horizontal scroll) --- */
@@ -38,7 +110,11 @@
 .ticker-content {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 80s linear infinite;
+}
+/* Batch 12C: scroll only when the list is wider than the strip; MandiTicker measures the width and
+   sets --ticker-duration (about 35 px per second, at least 40 s). */
+.ticker-content.is-scrolling {
+  animation: ticker-scroll var(--ticker-duration, 60s) linear infinite;
 }
 /* Pause on hover / tap-focus so a farmer can read a price. */
 .ticker-content:hover,
@@ -46,7 +122,11 @@
   animation-play-state: paused;
 }
 @media (prefers-reduced-motion: reduce) {
-  .ticker-content { animation: none; }
+  .ticker-content.is-scrolling { animation: none; }
+  /* no motion: the strip is swiped by touch instead, and the repeat copy is hidden */
+  .ticker-view { overflow-x: auto !important; scrollbar-width: none; }
+  .ticker-view::-webkit-scrollbar { display: none; }
+  .ticker-dup { display: none !important; }
 }
 
 /* Shimmer placeholder while prices load (keeps the 38px height reserved). */
@@ -59,3 +139,99 @@
   background-size: 400px 100%;
   animation: ticker-shimmer 1.4s linear infinite;
 }
+
+/* --- Batch 10E: homepage category tiles (PhotoTile) — hover glow, keyboard focus, press ---
+   Hover only for a real mouse (fine pointer); phones get the :active press instead. The glow is a
+   box-shadow ring + soft brand-green halo (no border/size change, so no layout shift). */
+.ks-cat-tile {
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ks-cat-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 2px var(--ks-saffron), 0 8px 22px rgba(36, 115, 63, .45);
+  }
+  .ks-cat-tile:hover .ks-cat-tile-shade { background: rgba(23, 51, 35, .26) !important; }
+}
+.ks-cat-tile:focus-visible {
+  outline: 3px solid var(--ks-saffron);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--ks-saffron), 0 8px 22px rgba(36, 115, 63, .45);
+}
+.ks-cat-tile:active {
+  transform: translateY(0) scale(.98);
+  box-shadow: 0 0 0 2px var(--ks-green), 0 2px 8px rgba(36, 115, 63, .35);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ks-cat-tile { transition: none; }
+  .ks-cat-tile:hover,
+  .ks-cat-tile:focus-visible,
+  .ks-cat-tile:active { transform: none; }
+}
+
+/* --- Batch 10F: CollapsibleSection (src/components/CollapsibleSection.jsx) — native <details>.
+   The chevron sits right after the heading text and turns when open; the whole summary row is the
+   tap target (≥ 44 px), with the 10E hover glow (fine pointer only), a visible focus ring and a press
+   state. No height animation; under reduced motion nothing moves at all. */
+.ks-cs-wrap { position: relative; }
+.ks-cs > summary { list-style: none; }
+.ks-cs > summary::-webkit-details-marker { display: none; }
+.ks-cs > summary::marker { content: ''; }
+.ks-cs-sum {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px;
+  min-height: 44px; cursor: pointer; border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 180ms ease;
+}
+.ks-cs-has-action > .ks-cs > .ks-cs-sum { padding-right: 7.5rem; }
+.ks-cs-h { margin: 0; }
+.ks-cs-chev {
+  display: inline-flex; align-items: center; justify-content: center; vertical-align: middle;
+  width: 30px; height: 30px; margin-left: 8px; border-radius: 999px;
+  background: var(--ks-green-tint); color: var(--ks-green-dark); border: 1.5px solid var(--ks-green);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.ks-cs[open] > .ks-cs-sum .ks-cs-chev { transform: rotate(180deg); }
+.ks-cs-body { margin-top: 8px; }
+.ks-cs-action { position: absolute; top: 0; right: 0; min-height: 44px; display: flex; align-items: center; }
+@media (hover: hover) and (pointer: fine) {
+  .ks-cs-sum:hover { background-color: var(--ks-green-tint); }
+  .ks-cs-sum:hover .ks-cs-chev { box-shadow: 0 0 0 2px var(--ks-saffron), 0 6px 16px rgba(36, 115, 63, .45); }
+}
+.ks-cs-sum:focus-visible { outline: 3px solid var(--ks-saffron); outline-offset: 2px; }
+.ks-cs-sum:focus-visible .ks-cs-chev { box-shadow: 0 0 0 2px var(--ks-saffron), 0 6px 16px rgba(36, 115, 63, .45); }
+.ks-cs-sum:active .ks-cs-chev { box-shadow: 0 0 0 2px var(--ks-green); }
+@media (prefers-reduced-motion: reduce) {
+  .ks-cs-sum, .ks-cs-chev { transition: none; }
+}
+@media print {
+  .ks-cs-chev { display: none; }
+}
+
+/* --- Batch 10F: /msp last-price badge (src/components/pages/LastPriceBadge.jsx) ---
+   Saffron (price older than today): saffron tint, border, bold, a glow that pulses 3 times on load
+   and then stays as a steady highlight. Green: today's price. Reduced motion: steady from the start. */
+.ks-date-badge {
+  display: inline-flex; align-items: center; gap: 6px; flex: none;
+  padding: 4px 10px; border-radius: 999px; border: 1.5px solid;
+  font-size: 14px; font-weight: 800; line-height: 1.25; white-space: nowrap;
+}
+.ks-date-badge svg { flex: none; }
+.ks-date-old {
+  background: var(--ks-saffron-tint); color: var(--ks-orange-dark); border-color: var(--ks-orange);
+  box-shadow: 0 0 0 3px rgba(230, 154, 45, .28);
+  animation: ks-date-glow 1.4s ease-in-out 3;
+}
+.ks-date-today { background: var(--ks-green-tint); color: var(--ks-green-dark); border-color: var(--ks-green); }
+@keyframes ks-date-glow {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(230, 154, 45, .28); }
+  50% { box-shadow: 0 0 0 6px rgba(230, 154, 45, .45), 0 0 16px rgba(232, 115, 31, .55); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ks-date-old { animation: none; }
+}
+
+/* --- Batch 10F: /msp trend chart (src/components/pages/TrendChart.jsx) — keyboard focus ring --- */
+.ks-tc-box { border-radius: 8px; -webkit-tap-highlight-color: transparent; }
+.ks-tc-box:focus-visible { outline: 3px solid var(--ks-saffron); outline-offset: 3px; }

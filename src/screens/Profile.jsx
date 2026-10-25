@@ -8,6 +8,7 @@ import { changePassword } from '../lib/auth/authService'
 import { getMyListings } from '../lib/listings/listingsApi'
 import { CATEGORY_META, CATEGORIES } from '../lib/listings/catalog'
 import { CatIcon } from '../components/CatIcon'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 // Authenticated user profile: edit info, listings summary, account management.
 export default function Profile() {
@@ -114,6 +115,7 @@ export default function Profile() {
 
   return (
     <Screen title={t('my_profile')} onBack={() => navigate('/home')}>
+      <WhatsAppChannelCard variant="inline" />
       {/* 3a — editable profile info */}
       <section className="mb-6">
         <h2 className="mb-3 text-lg font-bold text-stone-800">{t('profile_info_title')}</h2>

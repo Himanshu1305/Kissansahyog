@@ -1,0 +1,16 @@
+PASS state filter → Punjab yields a + c
+PASS state filter → no match yields empty (edge)
+PASS no filter → all
+PASS melaMonth confirmed (Nov) = 11
+PASS melaMonth expected "Mar 2027" = 3
+PASS month filter March → a + c
+PASS month filter Nov → b only
+PASS nearest-first from Punjab puts a Punjab mela first
+PASS no center → order preserved
+PASS confirmed is NOT flagged expected
+PASS unconfirmed IS flagged expected
+PASS expected label uses the passed prefix
+PASS confirmed label renders a real date (en)
+PASS statesIn → distinct sorted
+
+14 passed, 0 failed

@@ -1764,7 +1764,7 @@ export default [
     "question_hi": "मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्टी जाँच कैसे कराऊँ?",
     "question_en": "My field has black clay soil — how do I get the soil tested before sowing soybean?",
     "short_hi": "soilhealth.dac.gov.in पोर्टल या नजदीकी कृषि कार्यालय/कृषि विज्ञान केंद्र पर मिट्टी जाँच का अनुरोध करें। कार्ड 12 मापदंडों पर मिट्टी की स्थिति और फसल के लिए खाद की मात्रा बताता है। यह हर दो साल में मुफ़्त मिलता है।",
-    "short_en": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby agriculture office or Krishi Vigyan Kendra. The card gives your soil's status on 12 parameters and the fertiliser amount for the crop. It is free, every two years.",
+    "short_en": "Request a soil test on the soilhealth.dac.gov.in portal or at your nearest agriculture office or Krishi Vigyan Kendra. The card shows the condition of your soil on 12 parameters and the amount of fertiliser for the crop. It is issued every two years, free of cost.",
     "blocks": [
       {
         "type": "paragraph",
@@ -1863,7 +1863,7 @@ export default [
     "blocks_en": [
       {
         "type": "paragraph",
-        "text": "The Soil Health Card (SHC) is a report card that tells your soil's status on 12 parameters. It is given to farmers free every two years.",
+        "text": "A Soil Health Card (SHC) is a report that shows the condition of your soil on 12 parameters. It is given to farmers every two years, free of cost.",
         "cites": [
           "S-QAS-07",
           "S-QAS-08"
@@ -1902,13 +1902,13 @@ export default [
         "ordered": true,
         "items": [
           {
-            "text": "Request a soil test on the soilhealth.dac.gov.in portal or at the nearby Krishi Vigyan Kendra (KVK) or block agriculture office.",
+            "text": "Request a soil test on the soilhealth.dac.gov.in portal or at your nearest Krishi Vigyan Kendra (KVK) or block agriculture office.",
             "cites": [
               "S-QAS-07"
             ]
           },
           {
-            "text": "Agriculture staff take a soil sample from the field and it is tested in a lab.",
+            "text": "Agriculture staff take a soil sample from your field, and it is tested in a laboratory.",
             "cites": [
               "S-QAS-07"
             ]

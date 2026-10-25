@@ -1,0 +1,12 @@
+PASS  0 mm → no classification
+PASS  10 mm → light/green (no IMD alert)
+PASS  30 mm → moderate/blue (no IMD alert)
+PASS  80 mm → heavy/yellow (IMD alert)
+PASS  150 mm → very_heavy/orange (IMD alert)
+PASS  250 mm → extreme/red (IMD alert)
+PASS  no rain → null
+PASS  2 consecutive rainy days → days=2, total=28, moderate(max16)  — {"level":"moderate","color":"blue","days":2,"total":28,"maxDay":16,"max48":16,"perDay":[12,16,0]}
+PASS  single 85mm day → heavy IMD yellow, days=1
+PASS  rain on day 2 (within 48h) triggers
+
+10 passed, 0 failed

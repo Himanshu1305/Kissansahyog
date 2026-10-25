@@ -1,0 +1,5 @@
+  ok  1 [chromium] › e2e\home-10d.spec.js:150:7 › Home 10D hi 360px › E1 first frame = persona 1 tick 0 poster (server HTML and first client render equal); no hydration warning, console errors or failed backend requests (1.6s)
+  ok  7 [chromium] › e2e\home-10d.spec.js:150:7 › Home 10D hi 412px › E1 first frame = persona 1 tick 0 poster (server HTML and first client render equal); no hydration warning, console errors or failed backend requests (1.2s)
+  ok 13 [chromium] › e2e\home-10d.spec.js:150:7 › Home 10D en 360px › E1 first frame = persona 1 tick 0 poster (server HTML and first client render equal); no hydration warning, console errors or failed backend requests (1.3s)
+  ok 19 [chromium] › e2e\home-10d.spec.js:150:7 › Home 10D en 412px › E1 first frame = persona 1 tick 0 poster (server HTML and first client render equal); no hydration warning, console errors or failed backend requests (1.2s)
+  32 passed (2.9m)

@@ -1,0 +1,80 @@
+[dry-run] गेहूं ₹2560 Shahagarh APMC (Sagar) division=true [wrapper]
+[dry-run] गेहूं ₹2550 Pawai APMC (Panna) division=true [wrapper]
+[dry-run] गेहूं ₹2500 Bina APMC (Sagar) division=true [wrapper]
+[dry-run] गेहूं ₹2535 Damoh APMC (Damoh) division=true [wrapper]
+[dry-run] गेहूं ₹2525 Naugaon APMC (Chhatarpur) division=true [wrapper]
+[dry-run] गेहूं ₹2500 Deori APMC (Sagar) division=true [wrapper]
+[dry-run] गेहूं ₹2460 LavKush Nagar(Laundi) APMC (Chhatarpur) division=true [wrapper]
+[dry-run] गेहूं ₹2585 Sagar APMC (Sagar) division=true [wrapper]
+[dry-run] गेहूं ₹2510 Rehli APMC (Sagar) division=true [wrapper]
+[dry-run] गेहूं ₹2495 Rajnagar APMC (Chhatarpur) division=true [wrapper]
+[dry-run] गेहूं ₹2565 Badamalhera APMC (Chhatarpur) division=true [wrapper]
+[dry-run] गेहूं ₹2520 Devandranagar APMC (Panna) division=true [wrapper]
+[dry-run] गेहूं ₹2582 Tikamgarh APMC (Tikamgarh) division=true [wrapper]
+[dry-run] गेहूं ₹2530 Kesli APMC (Sagar) division=true [wrapper]
+[dry-run] गेहूं ₹2550 Ajaygarh APMC (Panna) division=true [wrapper]
+[dry-run] गेहूं ₹2460 Panna APMC (Panna) division=true [wrapper]
+[dry-run] गेहूं ₹2590 Chhatarpur APMC (Chhatarpur) division=true [wrapper]
+[dry-run] सोयाबीन ₹5475 Damoh APMC (Damoh) division=true [wrapper]
+[dry-run] सोयाबीन ₹5700 Gadakota APMC (Sagar) division=true [wrapper]
+[dry-run] सोयाबीन ₹5700 Sagar APMC (Sagar) division=true [wrapper]
+[dry-run] सोयाबीन ₹5051 Bina APMC (Sagar) division=true [wrapper]
+[dry-run] सोयाबीन ₹5295 Khurai APMC (Sagar) division=true [wrapper]
+[dry-run] सोयाबीन ₹5410 Rahatgarh APMC (Sagar) division=true [wrapper]
+official form [filters[state]=Madhya Pradesh&filters[district]=Sagar] HTTP 403
+official form [filters[state]=Madhya Pradesh&filters[district]=Damoh] HTTP 403
+official form [filters[state]=Madhya Pradesh&filters[district]=Panna] HTTP 403
+official form [filters[state]=Madhya Pradesh&filters[district]=Tikamgarh] HTTP 403
+official form [filters[state]=Madhya Pradesh&filters[district]=Chhatarpur] HTTP 403
+official form [filters[state]=Madhya Pradesh&filters[district]=Niwari] HTTP 403
+official form [filters[state]=Madhya Pradesh&filters[district]={D}]: raw=0 mp=0 division=0
+official form [filters[state.keyword]=Madhya Pradesh&filters[district.keyword]=Sagar] HTTP 403
+official form [filters[state.keyword]=Madhya Pradesh&filters[district.keyword]=Damoh] HTTP 403
+official form [filters[state.keyword]=Madhya Pradesh&filters[district.keyword]=Panna] HTTP 403
+official form [filters[state.keyword]=Madhya Pradesh&filters[district.keyword]=Tikamgarh] HTTP 403
+official form [filters[state.keyword]=Madhya Pradesh&filters[district.keyword]=Chhatarpur] HTTP 429
+official form [filters[state.keyword]=Madhya Pradesh&filters[district.keyword]=Niwari] HTTP 429
+official form [filters[state.keyword]=Madhya Pradesh&filters[district.keyword]={D}]: raw=0 mp=0 division=0
+official form [filters[State.keyword]=Madhya Pradesh&filters[District.keyword]=Sagar] HTTP 429
+official form [filters[State.keyword]=Madhya Pradesh&filters[District.keyword]=Damoh] HTTP 429
+official form [filters[State.keyword]=Madhya Pradesh&filters[District.keyword]=Panna] HTTP 429
+official form [filters[State.keyword]=Madhya Pradesh&filters[District.keyword]=Tikamgarh] HTTP 429
+official form [filters[State.keyword]=Madhya Pradesh&filters[District.keyword]=Chhatarpur] HTTP 429
+official form [filters[State.keyword]=Madhya Pradesh&filters[District.keyword]=Niwari] HTTP 429
+official form [filters[State.keyword]=Madhya Pradesh&filters[District.keyword]={D}]: raw=0 mp=0 division=0
+official form [filters[State]=Madhya Pradesh&filters[District]=Sagar] HTTP 429
+official form [filters[State]=Madhya Pradesh&filters[District]=Damoh] HTTP 429
+official form [filters[State]=Madhya Pradesh&filters[District]=Panna] HTTP 429
+official form [filters[State]=Madhya Pradesh&filters[District]=Tikamgarh] HTTP 429
+official form [filters[State]=Madhya Pradesh&filters[District]=Chhatarpur] HTTP 429
+official form [filters[State]=Madhya Pradesh&filters[District]=Niwari] HTTP 429
+official form [filters[State]=Madhya Pradesh&filters[District]={D}]: raw=0 mp=0 division=0
+official form [filters[state]=Madhya Pradesh] HTTP 429
+official form [filters[state]=Madhya Pradesh]: raw=0 mp=0 division=0
+official form [none] HTTP 429
+official form [no-filter]: raw=0 mp=0 division=0
+official API pool: 0 MP records via [none] (key: demo)
+✗ चना (Gram) — no records via official
+✗ मसूर (Lentil) — no records via official
+✗ मूंग (Moong) — no records via official
+✗ उड़द (Urad) — no records via official
+✗ धान (Paddy(Dhan)(Common)) — no records via official
+[dry-run] मक्का ₹1930 Sagar APMC (Sagar) division=true [wrapper]
+[dry-run] सरसों ₹6700 Sagar APMC (Sagar) division=true [wrapper]
+[dry-run] सरसों ₹7260 Naugaon APMC (Chhatarpur) division=true [wrapper]
+[dry-run] सरसों ₹7500 LavKush Nagar(Laundi) APMC (Chhatarpur) division=true [wrapper]
+[dry-run] सरसों ₹8065 Panna APMC (Panna) division=true [wrapper]
+[dry-run] सरसों ₹6950 Rajnagar APMC (Chhatarpur) division=true [wrapper]
+[dry-run] सरसों ₹7190 Chhatarpur APMC (Chhatarpur) division=true [wrapper]
+[dry-run] सरसों ₹7899 Bina APMC (Sagar) division=true [wrapper]
+[dry-run] सरसों ₹7130 Damoh APMC (Damoh) division=true [wrapper]
+[dry-run] सरसों ₹5805 Gadakota APMC (Sagar) division=true [wrapper]
+[dry-run] सरसों ₹6940 Badamalhera APMC (Chhatarpur) division=true [wrapper]
+[dry-run] सरसों ₹7300 Bijawar APMC (Chhatarpur) division=true [wrapper]
+[dry-run] सरसों ₹7700 Khurai APMC (Sagar) division=true [wrapper]
+[dry-run] सरसों ₹6835 Patharia APMC (Damoh) division=true [wrapper]
+[dry-run] सरसों ₹7400 Tikamgarh APMC (Tikamgarh) division=true [wrapper]
+[dry-run] लहसुन ₹10150 Damoh APMC (Damoh) division=true [wrapper]
+[dry-run] लहसुन ₹11500 Damoh(F&V) APMC (Damoh) division=true [wrapper]
+mandi: 5 ok, 5 fail
+dry run: nothing written, weather skipped

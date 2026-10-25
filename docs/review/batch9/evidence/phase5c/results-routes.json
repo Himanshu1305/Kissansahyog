@@ -1,0 +1,2618 @@
+{
+ "area": "routes",
+ "results": [
+  {
+   "at": "2026-10-15T06:44:19.716Z",
+   "id": "out:/welcome",
+   "pattern": "/welcome",
+   "auth": "out",
+   "path": "/welcome",
+   "title": "visit /welcome (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "किसान सहयोग",
+    "textLength": 607,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/welcome",
+     "backTextLength": 607,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:44:26.520Z",
+   "id": "out:/signup",
+   "pattern": "/signup",
+   "auth": "out",
+   "path": "/signup",
+   "title": "visit /signup (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "नया खाता बनाएं",
+    "textLength": 1292,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/signup",
+     "backTextLength": 1292,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:44:33.320Z",
+   "id": "out:/login",
+   "pattern": "/login",
+   "auth": "out",
+   "path": "/login",
+   "title": "visit /login (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "लॉग इन करें",
+    "textLength": 722,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/signup",
+     "after": "/signup",
+     "backPath": "/login",
+     "backTextLength": 722,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:44:40.175Z",
+   "id": "out:/privacy",
+   "pattern": "/privacy",
+   "auth": "out",
+   "path": "/privacy",
+   "title": "visit /privacy (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "गोपनीयता नीति",
+    "textLength": 5922,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/privacy",
+     "backTextLength": 5922,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:44:47.134Z",
+   "id": "out:/terms",
+   "pattern": "/terms",
+   "auth": "out",
+   "path": "/terms",
+   "title": "visit /terms (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "उपयोग की शर्तें",
+    "textLength": 10461,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/terms",
+     "backTextLength": 10461,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:44:53.960Z",
+   "id": "out:/grievance",
+   "pattern": "/grievance",
+   "auth": "out",
+   "path": "/grievance",
+   "title": "visit /grievance (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "सुझाव और शिकायत",
+    "textLength": 904,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/grievance",
+     "backTextLength": 904,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:00.794Z",
+   "id": "out:/contact",
+   "pattern": "/contact",
+   "auth": "out",
+   "path": "/contact",
+   "title": "visit /contact (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "हमसे संपर्क करें",
+    "textLength": 678,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/contact",
+     "backTextLength": 678,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:07.595Z",
+   "id": "out:/founder",
+   "pattern": "/founder",
+   "auth": "out",
+   "path": "/founder",
+   "title": "visit /founder (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "42 वर्ष की सेवा। एक संकल्प: किसान की आय बढ़ाना।",
+    "textLength": 5039,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/founder",
+     "backTextLength": 5039,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:14.803Z",
+   "id": "out:/about",
+   "pattern": "/about",
+   "auth": "out",
+   "path": "/about",
+   "title": "visit /about (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "हमारे बारे में",
+    "textLength": 2531,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/about",
+     "backTextLength": 2531,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:21.681Z",
+   "id": "out:/how-to-use",
+   "pattern": "/how-to-use",
+   "auth": "out",
+   "path": "/how-to-use",
+   "title": "visit /how-to-use (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "वेबसाइट कैसे इस्तेमाल करें",
+    "textLength": 9494,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/how-to-use",
+     "backTextLength": 9494,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:28.909Z",
+   "id": "out:/cold-storage",
+   "pattern": "/cold-storage",
+   "auth": "out",
+   "path": "/cold-storage",
+   "title": "visit /cold-storage (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "मध्य प्रदेश कोल्ड स्टोरेज खोजें",
+    "textLength": 69108,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/cold-storage",
+     "backTextLength": 69108,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:38.886Z",
+   "id": "out:/cold-storage/:district",
+   "pattern": "/cold-storage/:district",
+   "auth": "out",
+   "path": "/cold-storage/indore",
+   "title": "visit /cold-storage/:district (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "Indore कोल्ड स्टोरेज",
+    "textLength": 16187,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/cold-storage/indore",
+     "backTextLength": 16187,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:45.775Z",
+   "id": "out:/greenhouse/subsidy",
+   "pattern": "/greenhouse/subsidy",
+   "auth": "out",
+   "path": "/greenhouse/subsidy",
+   "title": "visit /greenhouse/subsidy (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "ग्रीनहाउस / पॉलीहाउस सब्सिडी और खेती गाइड (मध्य प्रदेश)",
+    "textLength": 8394,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/greenhouse/subsidy",
+     "backTextLength": 8394,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:52.991Z",
+   "id": "out:/greenhouse",
+   "pattern": "/greenhouse",
+   "auth": "out",
+   "path": "/greenhouse",
+   "title": "visit /greenhouse (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "ग्रीनहाउस / पॉलीहाउस",
+    "textLength": 1645,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/greenhouse",
+     "backTextLength": 1645,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:45:59.794Z",
+   "id": "out:/carbon-credit/niti-sujhav",
+   "pattern": "/carbon-credit/niti-sujhav",
+   "auth": "out",
+   "path": "/carbon-credit/niti-sujhav",
+   "title": "visit /carbon-credit/niti-sujhav (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "कार्बन क्रेडिट — नीति सुझाव (मध्य प्रदेश)",
+    "textLength": 2737,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/carbon-credit/niti-sujhav",
+     "backTextLength": 2737,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:46:06.954Z",
+   "id": "out:/carbon-credit",
+   "pattern": "/carbon-credit",
+   "auth": "out",
+   "path": "/carbon-credit",
+   "title": "visit /carbon-credit (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "कार्बन क्रेडिट: क्या यह किसानों की आय का नया ज़रिया बन सकता है — और क्या मध्य प्रदेश को इसे अपनाना चाहिए?",
+    "textLength": 10386,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/carbon-credit",
+     "backTextLength": 10386,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:46:14.121Z",
+   "id": "out:/jugaad/jankari",
+   "pattern": "/jugaad/jankari",
+   "auth": "out",
+   "path": "/jugaad/jankari",
+   "title": "visit /jugaad/jankari (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "जुगाड़ और देसी आविष्कार: पूरी जानकारी गाइड",
+    "textLength": 5995,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/jugaad/jankari",
+     "backTextLength": 5995,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:46:21.397Z",
+   "id": "out:/jugaad",
+   "pattern": "/jugaad",
+   "auth": "out",
+   "path": "/jugaad",
+   "title": "visit /jugaad (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "जुगाड़ / देसी आविष्कार",
+    "textLength": 1276,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/jugaad",
+     "backTextLength": 1276,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:46:44.221Z",
+   "id": "out:/bazaar",
+   "pattern": "/bazaar",
+   "auth": "out",
+   "path": "/bazaar",
+   "title": "visit /bazaar (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "किसान सहयोग बाज़ार",
+    "textLength": 2192,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/bazaar",
+     "backTextLength": 2192,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:46:53.641Z",
+   "id": "out:/bazaar/:slug",
+   "pattern": "/bazaar/:slug",
+   "auth": "out",
+   "path": "/bazaar/equipment",
+   "title": "visit /bazaar/:slug (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "🚜 कृषि मशीनें और उपकरण",
+    "textLength": 2440,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/bazaar/equipment",
+     "backTextLength": 2440,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:47:01.142Z",
+   "id": "out:/search",
+   "pattern": "/search",
+   "auth": "out",
+   "path": "/search?q=gehu",
+   "title": "visit /search (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": null,
+    "textLength": 3196,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/msp/gehun",
+     "after": "/msp/gehun",
+     "backPath": "/search?q=gehu",
+     "backTextLength": 3196,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:47:09.001Z",
+   "id": "out:/articles",
+   "pattern": "/articles",
+   "auth": "out",
+   "path": "/articles",
+   "title": "visit /articles (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "लेख",
+    "textLength": 1104,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/articles",
+     "backTextLength": 1104,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:48:31.662Z",
+   "id": "out:/",
+   "pattern": "/",
+   "auth": "out",
+   "path": "/",
+   "title": "visit / (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "आज किसान के लिए",
+    "textLength": 5169,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/bazaar",
+     "after": "/bazaar",
+     "backPath": "/",
+     "backTextLength": 5169,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:48:36.073Z",
+   "id": "out:/join",
+   "pattern": "/join",
+   "auth": "out",
+   "path": "/join?src=ks5c-route-sweep",
+   "title": "visit /join (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": null
+    },
+    "failedChecks": [],
+    "h1": "आज किसान के लिए",
+    "textLength": 5169,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp"
+    ],
+    "back": {
+     "tried": false
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:48:43.296Z",
+   "id": "out:/articles/:slug",
+   "pattern": "/articles/:slug",
+   "auth": "out",
+   "path": "/articles/parali-pollution-kisaan-ki-majboori",
+   "title": "visit /articles/:slug (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "पराली जलाना — किसान की मजबूरी या हमारी गलत सोच?",
+    "textLength": 1933,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/articles/parali-pollution-kisaan-ki-majboori",
+     "backTextLength": 1933,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:49:09.238Z",
+   "id": "out:/info",
+   "pattern": "/info",
+   "auth": "out",
+   "path": "/info",
+   "title": "visit /info (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "किसान की जानकारी",
+    "textLength": 1613,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/info",
+     "backTextLength": 1613,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:49:16.557Z",
+   "id": "out:/sawaal",
+   "pattern": "/sawaal",
+   "auth": "out",
+   "path": "/sawaal",
+   "title": "visit /sawaal (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "किसान सवाल — आपके सवाल, हमारे जवाब",
+    "textLength": 10261,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/sawaal/masoor-fali-chhedak-control",
+     "after": "/sawaal/masoor-fali-chhedak-control",
+     "backPath": "/sawaal",
+     "backTextLength": 10261,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:50:22.304Z",
+   "id": "out:/sawaal/:slug",
+   "pattern": "/sawaal/:slug",
+   "auth": "out",
+   "path": "/sawaal/masoor-fali-chhedak-control",
+   "title": "visit /sawaal/:slug (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "मसूर में फली छेदक का नियंत्रण कैसे करें?",
+    "textLength": 1690,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/sawaal/masoor-fali-chhedak-control",
+     "backTextLength": 1690,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:50:29.573Z",
+   "id": "out:/safalta",
+   "pattern": "/safalta",
+   "auth": "out",
+   "path": "/safalta",
+   "title": "visit /safalta (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "किसान सफलता — जब किसान जीतता है",
+    "textLength": 669,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/safalta",
+     "backTextLength": 669,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:50:36.679Z",
+   "id": "out:/yojana",
+   "pattern": "/yojana",
+   "auth": "out",
+   "path": "/yojana",
+   "title": "visit /yojana (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "सरकारी योजनाएं",
+    "textLength": 3509,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/yojana",
+     "backTextLength": 3509,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:50:43.919Z",
+   "id": "out:/yojana/central",
+   "pattern": "/yojana/central",
+   "auth": "out",
+   "path": "/yojana/central",
+   "title": "visit /yojana/central (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "केंद्र सरकार की योजनाएं",
+    "textLength": 1466,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/yojana/central",
+     "backTextLength": 1466,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:50:51.152Z",
+   "id": "out:/yojana/mp",
+   "pattern": "/yojana/mp",
+   "auth": "out",
+   "path": "/yojana/mp",
+   "title": "visit /yojana/mp (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "मध्यप्रदेश सरकार की योजनाएं",
+    "textLength": 2457,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/yojana/mp",
+     "backTextLength": 2457,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:51:27.028Z",
+   "id": "out:/videos",
+   "pattern": "/videos",
+   "auth": "out",
+   "path": "/videos",
+   "title": "visit /videos (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "खेती के वीडियो",
+    "textLength": 1631,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/videos",
+     "backTextLength": 1631,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:51:34.372Z",
+   "id": "out:/drone-didi",
+   "pattern": "/drone-didi",
+   "auth": "out",
+   "path": "/drone-didi",
+   "title": "visit /drone-didi (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "ड्रोन दीदी — महिला उद्यमी, आधुनिक तकनीक",
+    "textLength": 1880,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/drone-didi",
+     "backTextLength": 1880,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:51:41.864Z",
+   "id": "out:/mausam",
+   "pattern": "/mausam",
+   "auth": "out",
+   "path": "/mausam",
+   "title": "visit /mausam (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "सागर मौसम — आज और 7 दिन का पूर्वानुमान",
+    "textLength": 3324,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/cold-storage",
+     "after": "/cold-storage",
+     "backPath": "/mausam",
+     "backTextLength": 3324,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:51:49.336Z",
+   "id": "out:/fasal-salah",
+   "pattern": "/fasal-salah",
+   "auth": "out",
+   "path": "/fasal-salah",
+   "title": "visit /fasal-salah (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "फसल सलाह — इस मौसम में क्या करें",
+    "textLength": 1906,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/fasal-salah",
+     "backTextLength": 1906,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:51:56.653Z",
+   "id": "out:/agro-forestry",
+   "pattern": "/agro-forestry",
+   "auth": "out",
+   "path": "/agro-forestry",
+   "title": "visit /agro-forestry (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "एग्रो फॉरेस्ट्री और उद्यानिकी",
+    "textLength": 3024,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/founder",
+     "after": "/founder",
+     "backPath": "/agro-forestry",
+     "backTextLength": 3024,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:52:04.099Z",
+   "id": "out:/msp",
+   "pattern": "/msp",
+   "auth": "out",
+   "path": "/msp",
+   "title": "visit /msp (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "गेहूं भाव — आज व MSP से तुलना",
+    "textLength": 4351,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/cold-storage",
+     "after": "/cold-storage",
+     "backPath": "/msp",
+     "backTextLength": 4351,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:52:39.618Z",
+   "id": "out:/credits",
+   "pattern": "/credits",
+   "auth": "out",
+   "path": "/credits",
+   "title": "visit /credits (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "फोटो श्रेय",
+    "textLength": 4643,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/credits",
+     "backTextLength": 4643,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:52:46.524Z",
+   "id": "out:/kisan-mela/submit",
+   "pattern": "/kisan-mela/submit",
+   "auth": "out",
+   "path": "/kisan-mela/submit",
+   "title": "visit /kisan-mela/submit (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "मेले की जानकारी दें",
+    "textLength": 1219,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/kisan-mela/submit",
+     "backTextLength": 1219,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:52:53.760Z",
+   "id": "out:/kisan-mela",
+   "pattern": "/kisan-mela",
+   "auth": "out",
+   "path": "/kisan-mela",
+   "title": "visit /kisan-mela (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "किसान मेला कैलेंडर",
+    "textLength": 23054,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/kisan-mela",
+     "backTextLength": 23054,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:53:01.110Z",
+   "id": "out:/browse",
+   "pattern": "/browse",
+   "auth": "out",
+   "path": "/browse",
+   "title": "visit /browse (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "आस-पास खोजें",
+    "textLength": 1696,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/browse",
+     "backTextLength": 1696,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:53:08.449Z",
+   "id": "out:/listing/:id",
+   "pattern": "/listing/:id",
+   "auth": "out",
+   "path": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "title": "visit /listing/:id (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "लिस्टिंग",
+    "textLength": 668,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/browse?cat=transport",
+     "after": "/browse",
+     "backPath": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+     "backTextLength": 668,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:53:15.370Z",
+   "id": "out:*",
+   "pattern": "*",
+   "auth": "out",
+   "path": "/ks-route-does-not-exist-5c",
+   "title": "visit * (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "यह पेज नहीं मिला (404)",
+    "textLength": 649,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/ks-route-does-not-exist-5c",
+     "backTextLength": 649,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T06:54:05.096Z",
+   "id": "out:/resources",
+   "pattern": "/resources",
+   "auth": "out",
+   "path": "/resources",
+   "title": "visit /resources (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "उपयोगी संपर्क — किसान सहयोग",
+    "textLength": 1472,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/11f25db7-e67a-454c-8e0f-74c7131def0e/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/resources/",
+     "backTextLength": 1472,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/resources/",
+    "note": "server redirected to a trailing-slash URL"
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:01:02.530Z",
+   "id": "out:/fasal/:crop/samasya",
+   "pattern": "/fasal/:crop/samasya",
+   "auth": "out",
+   "path": "/fasal/lentil/samasya",
+   "title": "visit /fasal/:crop/samasya (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "मसूर की आम समस्याएँ और समाधान",
+    "textLength": 2579,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/fasal/lentil/samasya",
+     "backTextLength": 2579,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/fasal/lentil/samasya",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:01:09.786Z",
+   "id": "out:/yojana/:slug",
+   "pattern": "/yojana/:slug",
+   "auth": "out",
+   "path": "/yojana/e-krishi-yantra",
+   "title": "visit /yojana/:slug (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "ई-कृषि यंत्र अनुदान योजना",
+    "textLength": 2297,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/yojana/e-krishi-yantra",
+     "backTextLength": 2297,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/yojana/e-krishi-yantra",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:01:17.131Z",
+   "id": "out:/msp/:crop",
+   "pattern": "/msp/:crop",
+   "auth": "out",
+   "path": "/msp/gehun",
+   "title": "visit /msp/:crop (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "गेहूं भाव — आज व MSP से तुलना",
+    "textLength": 4351,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/cold-storage",
+     "after": "/cold-storage",
+     "backPath": "/msp/gehun",
+     "backTextLength": 4351,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/msp/gehun",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:02:24.063Z",
+   "id": "out:/sawaal/vishay/:category",
+   "pattern": "/sawaal/vishay/:category",
+   "auth": "out",
+   "path": "/sawaal/vishay/disease",
+   "title": "visit /sawaal/vishay/:category (logged out)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "रोग — किसान सवाल — जानकारी",
+    "textLength": 7666,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/11f25db7-e67a-454c-8e0f-74c7131def0e/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/sawaal/vishay/disease/",
+     "backTextLength": 7666,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/sawaal/vishay/disease/",
+    "note": "server redirected to a trailing-slash URL"
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:03:19.776Z",
+   "id": "in:/home",
+   "pattern": "/home",
+   "auth": "in",
+   "path": "/home",
+   "title": "visit /home (logged in as KEEP P2)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": null,
+    "textLength": 608,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/home",
+     "backTextLength": 608,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/home",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:03:27.180Z",
+   "id": "in:/post",
+   "pattern": "/post",
+   "auth": "in",
+   "path": "/post",
+   "title": "visit /post (logged in as KEEP P2)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "नई लिस्टिंग डालें · 1/3",
+    "textLength": 1144,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/sawaal/garlic-thrips-mite",
+     "after": "/sawaal/garlic-thrips-mite",
+     "backPath": "/post",
+     "backTextLength": 1144,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/post",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:03:34.456Z",
+   "id": "in:/my",
+   "pattern": "/my",
+   "auth": "in",
+   "path": "/my",
+   "title": "visit /my (logged in as KEEP P2)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "मेरी लिस्टिंग",
+    "textLength": 890,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/my",
+     "backTextLength": 890,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/my",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:03:41.728Z",
+   "id": "in:/experts",
+   "pattern": "/experts",
+   "auth": "in",
+   "path": "/experts",
+   "title": "visit /experts (logged in as KEEP P2)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "विशेषज्ञ / Experts",
+    "textLength": 1192,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/experts",
+     "backTextLength": 1192,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/experts",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:03:53.199Z",
+   "id": "in:/experts/:id",
+   "pattern": "/experts/:id",
+   "auth": "in",
+   "path": "/experts/00000000-0000-4000-a000-0000000e0001",
+   "title": "visit /experts/:id (logged in as KEEP P2)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "विशेषज्ञ / Experts",
+    "textLength": 898,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/experts/00000000-0000-4000-a000-0000000e0001",
+     "backTextLength": 898,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/experts/00000000-0000-4000-a000-0000000e0001",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:04:00.417Z",
+   "id": "in:/profile",
+   "pattern": "/profile",
+   "auth": "in",
+   "path": "/profile",
+   "title": "visit /profile (logged in as KEEP P2)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "मेरी प्रोफ़ाइल",
+    "textLength": 1183,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/profile",
+     "backTextLength": 1183,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/profile",
+    "note": null
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:04:07.337Z",
+   "id": "in:/admin",
+   "pattern": "/admin",
+   "auth": "in",
+   "path": "/admin",
+   "title": "visit /admin (logged in as KEEP P2)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "checks": {
+     "content": true,
+     "noErrorBoundary": true,
+     "notFoundAsExpected": true,
+     "stayedOnRoute": true,
+     "noSpinnerLeft": true,
+     "noNewConsoleError": true,
+     "backWorks": true
+    },
+    "failedChecks": [],
+    "h1": "पहुँच नहीं",
+    "textLength": 523,
+    "spinners": 0,
+    "console": [],
+    "pageErrors": [],
+    "failedRequests": [
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/a4db7507-2beb-4f9f-9994-18f2a7c8b85b/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/598cbfa3-9f4d-40da-8f23-ff3310f80b60/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/77c5ec35-5151-4a89-a688-907b7060de67/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e5de557c-da95-4e99-a911-37f3ecc587a1/0.jpg csp",
+     "GET https://wzxtqbqlahyahsnoqqva.supabase.co/storage/v1/object/public/listing-photos/listings/e8bd62db-b4a9-4bf6-918e-83bd0ed4f76c/0.jpg csp"
+    ],
+    "back": {
+     "tried": true,
+     "via": "/",
+     "after": "/",
+     "backPath": "/admin",
+     "backTextLength": 523,
+     "backErrorBoundary": false,
+     "ok": true
+    },
+    "landedPath": "/admin",
+    "note": "admin screen for a non-admin: expected a \"no access\" message, not a crash"
+   },
+   "evidence": null
+  },
+  {
+   "at": "2026-10-15T07:04:37.459Z",
+   "id": "guard:out:/admin",
+   "pattern": "/admin",
+   "auth": "out",
+   "title": "/admin logged out → redirect-login",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/login",
+    "h1": "लॉग इन करें",
+    "textLength": 722
+   }
+  },
+  {
+   "at": "2026-10-15T07:04:43.904Z",
+   "id": "guard:in:/login",
+   "pattern": "/login",
+   "auth": "in",
+   "title": "/login logged in → redirect-away",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/home",
+    "h1": null,
+    "textLength": 608
+   }
+  },
+  {
+   "at": "2026-10-15T07:04:47.263Z",
+   "id": "guard:in:/signup",
+   "pattern": "/signup",
+   "auth": "in",
+   "title": "/signup logged in → redirect-away",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/home",
+    "h1": null,
+    "textLength": 608
+   }
+  },
+  {
+   "at": "2026-10-15T07:04:50.585Z",
+   "id": "guard:in:/welcome",
+   "pattern": "/welcome",
+   "auth": "in",
+   "title": "/welcome logged in → redirect-away",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/home",
+    "h1": null,
+    "textLength": 608
+   }
+  },
+  {
+   "at": "2026-10-15T07:04:54.317Z",
+   "id": "guard:in:/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "pattern": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+   "auth": "in",
+   "title": "/listing/76e13f41-f2eb-4565-998a-5244640329b7 logged in → content",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/listing/76e13f41-f2eb-4565-998a-5244640329b7",
+    "h1": "लिस्टिंग",
+    "textLength": 704
+   }
+  },
+  {
+   "at": "2026-10-15T07:04:58.051Z",
+   "id": "guard:in:/browse",
+   "pattern": "/browse",
+   "auth": "in",
+   "title": "/browse logged in → content",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/browse",
+    "h1": "आस-पास खोजें",
+    "textLength": 1690
+   }
+  },
+  {
+   "at": "2026-10-15T07:05:22.343Z",
+   "id": "guard:out:/home",
+   "pattern": "/home",
+   "auth": "out",
+   "title": "/home logged out → redirect-home",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/",
+    "h1": "आज किसान के लिए",
+    "textLength": 5050
+   }
+  },
+  {
+   "at": "2026-10-15T07:05:25.794Z",
+   "id": "guard:out:/post",
+   "pattern": "/post",
+   "auth": "out",
+   "title": "/post logged out → redirect-home",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/",
+    "h1": "आज किसान के लिए",
+    "textLength": 5050
+   }
+  },
+  {
+   "at": "2026-10-15T07:05:29.238Z",
+   "id": "guard:out:/my",
+   "pattern": "/my",
+   "auth": "out",
+   "title": "/my logged out → redirect-home",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/",
+    "h1": "आज किसान के लिए",
+    "textLength": 5050
+   }
+  },
+  {
+   "at": "2026-10-15T07:05:32.628Z",
+   "id": "guard:out:/experts",
+   "pattern": "/experts",
+   "auth": "out",
+   "title": "/experts logged out → redirect-home",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/",
+    "h1": "आज किसान के लिए",
+    "textLength": 5050
+   }
+  },
+  {
+   "at": "2026-10-15T07:05:36.067Z",
+   "id": "guard:out:/profile",
+   "pattern": "/profile",
+   "auth": "out",
+   "title": "/profile logged out → redirect-home",
+   "status": "RAN-PASSED",
+   "detail": {
+    "landed": "/",
+    "h1": "आज किसान के लिए",
+    "textLength": 5050
+   }
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+CHANGED: routes 268/268 compared, missing 0, added 0; routes with removals 5, with only additions 1; words −290 +4864; lines −102 +874; head lines changed 0; data lines excluded (base) 627
+
+/agro-forestry
+  lines removed: "इंटरक्रॉपिंग यानी एक ही खेत में एक ही समय पर दो या अधिक फसलें एक तय कतार-अनुपात में उगाना। मध्यप्रदेश में सोयाबीन के साथ अरहर, और अरहर के साथ मूँग या उड़द जैसे संयोजन परखे गए हैं। इससे भूमि का बेहतर उपयोग होता है, दलहन मिट्टी में नाइट्रोजन बढ़ाती है, आय के एक से अधिक स्रोत बनते हैं, और एक फसल कमज़ोर रहने पर दूसरी सहारा देकर जोखिम घटाती है।"
+
+/drone-didi
+  lines added:   "यह योजना क्या है?", "महिला स्वयं सहायता समूहों को ड्रोन दिए जाते हैं — खेतों में कीटनाशक और खाद का छिड़काव करके कमाई करें। सरकार ट्रेनिंग और सब्सिडी देती है।", "लाभ", "ड्रोन पर 80% सब्सिडी + मुफ्त ट्रेनिंग। ड्रोन छिड़काव से ₹1,000-1,500 प्रति एकड़ की कमाई।", "कौन आवेदन कर सकता है?", "महिला स्वयं सहायता समूह (SHG) जो NRLM के तहत पंजीकृत हैं। कम से कम 8वीं पास और 18-45 वर्ष की उम्र।", "पूरी जानकारी देखें →", "स्रोत ↗"
+
+/
+  lines removed: "किराये पर यंत्र चाहिए", "अपना सामान बेचना है", "मंडी भाव देखना है", "मौसम देखना है", "सरकारी योजना जाननी है", "रजिस्टर करें", "आस-पास खोजें", "उदाहरण", … (+38)
+
+/kisan-mela
+  lines removed: "थोड़ा रुकें…"
+  lines added:   "अंडमान और निकोबार द्वीप समूह", "असम", "बिहार", "चंडीगढ़", "दिल्ली", "गुजरात", "हरियाणा", "India", … (+268)
+
+/resources
+  lines removed: "थोड़ा रुकें…"
+  lines added:   "मृदा परीक्षण प्रयोगशाला, सागर", "Soil Testing Laboratory, Sagar", "📍 सागर शहर" ×2, "सरकारी मृदा परीक्षण प्रयोगशाला — मिट्टी के 14 पैरामीटर की जांच, खाद की सही मात्रा की जानकारी", "📞 1800-180-1551", "टोल-फ्री", "🌐" ×2, "mpstl.mponline.gov.in" ×2, … (+16)
+
+/videos
+  lines removed: "थोड़ा रुकें…"
+  lines added:   "कीट/रोग" ×4, "बुवाई" ×3, "सिंचाई" ×3, "ड्रोन" ×4, "योजना" ×3, "बाज़ार" ×3, "सामान्य" ×3, "3:07", … (+40)
+
+## Re-check (orchestrator)
+- `/`: intended. Removed lines are the 10D persona tabs, phone example, caption, register button, facts row and field-picture text; added: the "1 मिनट का डेमो देखें" button keeps the same text (key renamed home_live_cta_demo -> home_hero_demo).
+- `/agro-forestry`: the one removed line ("इंटरक्रॉपिंग यानी एक ही खेत …") is staging-DB text (not in src). A live render of BOTH builds (:4196 baseline, :4197 Phase 1) shows it -> prerender captured the block before its data arrived (known 10E non-determinism, decision 5). Nothing lost.
+- `/drone-didi`, `/kisan-mela`, `/resources`, `/videos`: only ADDITIONS (the baseline snapshot caught these pages in the loading state "थोड़ा रुकें…"). Nothing lost.

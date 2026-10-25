@@ -1,0 +1,162 @@
+2026-10-15 09:53 | resume | inspecting repo state before any work
+2026-10-15 09:54 | orchestrator | inspection recorded; launching Phase 4 finish subagent
+2026-10-15 09:54 | phase4 | resume: reading state, starting mausam gate investigation
+2026-10-15 09:57 | phase4 | mausam gate: test fixed (read-only mode + banner wait), re-running data gate on staging and prod (read-only)
+2026-10-15 09:58 | phase4 | task2: verifying staging Pages secrets source (refs only)
+2026-10-15 09:59 | phase4 | task2 done: staging secrets -> staging (row found in staging feedback_messages); now re-running full staging gate set
+2026-10-15 10:02 | phase4 | verifying prod read-only compare mode against prod-before.json
+2026-10-15 10:04 | phase4 | ship/rollback scripts written; writing DECISIONS, then commit+push, dry-runs
+2026-10-15 10:06 | phase4 | commit 1 (evidence, verifier, ship/rollback scripts) + push release-9
+2026-10-15 10:06 | phase4 | running ship/rollback dry-runs
+2026-10-15 10:10 | phase4 | SHIP.md + PROD_SHIP_STEPS.md + dry-run outputs; final commit + push
+2026-10-15 10:11 | orchestrator | Phase 4 verified DONE; committing; next Phase 5
+2026-10-15 10:12 | orchestrator | Phase 5 subagent launched
+2026-10-15 10:12 | phase5 | start: reading harness and prior evidence
+2026-10-15 10:13 | phase5 | 5.1 building prod, staging, staging-local debug APKs
+2026-10-15 10:16 | phase5 | APKs built; dev run of new S11 (live staging feedback/village/mic)
+2026-10-15 10:19 | phase5 | S11 dev run RAN-PASSED; starting staging full suite run 1 (reboot first)
+2026-10-15 10:24 | phase5 | staging run1 reaped (system low memory, 0.9 GB free); orphans + emulator stopped; NOT restarted; writing report
+2026-10-15 10:25 | phase5 | committing Phase 5 (partial) and pushing release-9
+2026-10-15 10:27 | orchestrator | Phase 5 recorded DONE-WITH-FAILURES; no emulator for rest of session (low memory); next Phase 5B web-based
+2026-10-15 10:27 | phase5b | started: reading prompt, progress, decisions
+2026-10-15 10:29 | phase5b | staging supabase-ref guard check
+2026-10-15 10:32 | phase5b | step 1: writing ACCOUNT_MATRIX.md (expected behaviour from code)
+2026-10-15 10:34 | phase5b | step 2: writing Playwright helpers scripts/phase5b/*.mjs and personas (outside repo)
+2026-10-15 10:36 | phase5b | 5B.1 running personas P1
+2026-10-15 10:36 | phase5b | 5B.1 persona P1
+2026-10-15 10:40 | phase5b | 5B.1 personas P2-P4
+2026-10-15 10:40 | phase5b | 5B.1 persona P2
+2026-10-15 10:40 | phase5b | 5B.1 persona P3
+2026-10-15 10:44 | phase5b | 5B.1 persona P4
+2026-10-15 10:47 | phase5b | 5B.1 personas P2,P5,P6
+2026-10-15 10:47 | phase5b | 5B.1 persona P2
+2026-10-15 10:50 | phase5b | 5B.1 persona P5
+2026-10-15 10:53 | phase5b | 5B.1 persona P6
+2026-10-15 10:56 | phase5b | 5B.1 personas P6,P7
+2026-10-15 10:56 | phase5b | 5B.1 persona P6
+2026-10-15 10:58 | phase5b | 5B.1 persona P7
+2026-10-15 11:01 | phase5b | 5B.1 personas P8,P9
+2026-10-15 11:01 | phase5b | 5B.1 persona P8
+2026-10-15 11:04 | phase5b | 5B.1 persona P9
+2026-10-15 11:10 | phase5b | 5B.3 listings for P1: L03,L05,L07,L25
+2026-10-15 11:12 | phase5b | 5B.3 listings P1(L05),P2,P3
+2026-10-15 11:12 | phase5b | 5B.3 listings for P2: L02,L04,L06,L16
+2026-10-15 11:13 | phase5b | 5B.3 listings for P1: L05
+2026-10-15 11:13 | phase5b | 5B.3 listings for P3: L18,L19,L21
+2026-10-15 11:14 | phase5b | 5B.3 listings P4-P8
+2026-10-15 11:14 | phase5b | 5B.3 listings for P6: L08,L12,L23
+2026-10-15 11:15 | phase5b | 5B.3 listings for P5: L09,L11
+2026-10-15 11:16 | phase5b | 5B.3 listings for P4: L10,L14
+2026-10-15 11:17 | phase5b | 5B.3 listings for P7: L01,L13,L15,L17
+2026-10-15 11:18 | phase5b | 5B.3 listings for P8: L20,L22,L24
+2026-10-15 11:20 | phase5b | 5B.3 listing edge checks
+2026-10-15 11:20 | phase5b | 5B.3 listing edge checks (throw-away N1)
+2026-10-15 11:24 | phase5b | 5B.4 V1 browse radius matrix
+2026-10-15 11:28 | phase5b | 5B.4 V2 contact reveal matrix
+2026-10-15 11:32 | phase5b | 5B.4 V2 contact reveal matrix
+2026-10-15 11:36 | phase5b | 5B.4 V3-V5
+2026-10-15 11:36 | phase5b | 5B.4 V3 counters + report
+2026-10-15 11:37 | phase5b | 5B.4 V4 My Listings actions
+2026-10-15 11:39 | phase5b | 5B.4 V5 account switch P1 → P3
+2026-10-15 11:42 | phase5b | 5B.2 negatives (throw-away accounts only)
+2026-10-15 11:42 | phase5b | 5B.2 negatives N06-N09 (lockout on throw-away N5)
+2026-10-15 11:42 | phase5b | 5B.2 negatives (throw-away accounts only)
+2026-10-15 11:48 | phase5b | 5B.5 forms
+2026-10-15 11:50 | phase5b | 5B.5 forms
+2026-10-15 11:51 | phase5b | 5B.5 forms
+2026-10-15 11:53 | phase5b | 5B.7 final web login gate (9 personas, both ways)
+2026-10-15 12:02 | phase5b | 5B.7 final web login gate (9 personas, both ways)
+2026-10-15 12:05 | phase5b | writing reports, final commit
+2026-10-15 12:06 | phase5b | done (commits abe268a 39cd66c 061368e)
+2026-10-15 12:08 | orchestrator | Phase 5B verified; launching Phase 5C (no emulator)
+2026-10-15 12:08 | phase5c | start: reading inputs
+2026-10-15 12:11 | phase5c | inputs read; writing scripts/phase5c
+2026-10-15 12:13 | phase5c | 5C.1 route sweep part public1
+2026-10-15 12:17 | phase5c | 5C.1 public1 done
+2026-10-15 12:18 | phase5c | 5C.1 route sweep part public1
+2026-10-15 12:18 | phase5c | 5C.1 route sweep part public2
+2026-10-15 12:23 | phase5c | 5C.1 route sweep part public2
+2026-10-15 12:31 | phase5c | 5C.1 route sweep part public1
+2026-10-15 12:32 | phase5c | 5C.1 route sweep part public2
+2026-10-15 12:32 | phase5c | 5C.1 public done; auth+guards
+2026-10-15 12:32 | phase5c | 5C.1 route sweep part auth
+2026-10-15 12:34 | phase5c | 5C.1 route sweep part guards
+2026-10-15 12:35 | phase5c | 5C.1 route sweep part guards
+2026-10-15 12:36 | phase5c | 5C.3 display base
+2026-10-15 12:36 | phase5c | 5C.3 display variant base
+2026-10-15 12:38 | phase5c | 5C.3 display variant f13
+2026-10-15 12:39 | phase5c | 5C.3 display variant f15
+2026-10-15 12:40 | phase5c | 5C.3 display f13 f15 done
+2026-10-15 12:40 | phase5c | 5C.3 display base f15en large done
+2026-10-15 12:40 | phase5c | 5C.3 display variant base
+2026-10-15 12:41 | phase5c | 5C.3 display variant f15en
+2026-10-15 12:42 | phase5c | 5C.3 display variant large
+2026-10-15 12:42 | phase5c | 5C.3 display base f15en large done
+2026-10-15 12:43 | phase5c | 5C.3 display variant large15
+2026-10-15 12:43 | phase5c | 5C.3 display variant dark
+2026-10-15 12:44 | phase5c | 5C.3 display variant en
+2026-10-15 12:45 | phase5c | 5C.3 display all 8 variants done
+2026-10-15 12:48 | phase5c | 5C.4 network slow
+2026-10-15 12:48 | phase5c | 5C.4 network part slow
+2026-10-15 12:50 | phase5c | 5C.4 network part slow
+2026-10-15 12:53 | phase5c | 5C.4 network part slow
+2026-10-15 12:55 | phase5c | 5C.4 slow done; signup drops
+2026-10-15 12:55 | phase5c | 5C.4 network part slow
+2026-10-15 12:58 | phase5c | 5C.4 slow done; signup drops
+2026-10-15 12:58 | phase5c | 5C.4 network part signup
+2026-10-15 13:00 | phase5c | 5C.4 network part signup1retry
+2026-10-15 13:01 | phase5c | 5C.4 login/reveal/post drops
+2026-10-15 13:01 | phase5c | 5C.4 network part login
+2026-10-15 13:02 | phase5c | 5C.4 network part reveal
+2026-10-15 13:03 | phase5c | 5C.4 network part post
+2026-10-15 13:05 | phase5c | 5C.4 done; 5C.7 perf
+2026-10-15 13:06 | phase5c | 5C.7 perf load
+2026-10-15 13:06 | phase5c | 5C.7 load done; heap run
+2026-10-15 13:06 | phase5c | 5C.7 perf heap
+2026-10-15 13:10 | phase5c | perf done; writing avd-matrix.sh monkey-stress.sh
+2026-10-15 13:11 | phase5c | device scripts written (bash -n ok); building ROUTE_COVERAGE/CONDITIONS
+2026-10-15 13:14 | phase5c | writing CONDITIONS.md + DECISIONS
+2026-10-15 13:15 | phase5c | docs written; committing
+2026-10-15 13:16 | phase5c | committed 409ae03; pushing
+2026-10-15 13:16 | phase5c | done (commit 409ae03 pushed)
+2026-10-15 13:17 | orchestrator | Phase 5C verified; launching Phase 6.6 graphics
+2026-10-15 13:17 | phase6.6 | start: reading inputs, locating icon sources
+2026-10-15 13:18 | phase6.6 | step 1: icon-512 from design/kissansahyog-logo-source.jpg
+2026-10-15 13:19 | phase6.6 | step 2: feature graphic hi/en via Chromium
+2026-10-15 13:20 | phase6.6 | step 3: planning web stand-in screenshots (prod, read-only)
+2026-10-15 13:21 | phase6.6 | shot hi/01-home
+2026-10-15 13:21 | phase6.6 | shot hi/02-msp
+2026-10-15 13:21 | phase6.6 | shot hi/03-mausam
+2026-10-15 13:21 | phase6.6 | shot hi/04-browse
+2026-10-15 13:22 | phase6.6 | shot hi/05-yojana
+2026-10-15 13:22 | phase6.6 | shot hi/06-sawaal
+2026-10-15 13:22 | phase6.6 | shot hi/07-cold-storage
+2026-10-15 13:22 | phase6.6 | shot hi/08-about
+2026-10-15 13:22 | phase6.6 | hi shots captured (8); visual check
+2026-10-15 13:22 | phase6.6 | hi 8/8 viewed OK; capturing en
+2026-10-15 13:22 | phase6.6 | shot en/01-home
+2026-10-15 13:22 | phase6.6 | shot en/02-msp
+2026-10-15 13:22 | phase6.6 | shot en/03-mausam
+2026-10-15 13:23 | phase6.6 | shot en/04-browse
+2026-10-15 13:23 | phase6.6 | shot en/05-yojana
+2026-10-15 13:23 | phase6.6 | shot en/06-sawaal
+2026-10-15 13:23 | phase6.6 | shot en/07-cold-storage
+2026-10-15 13:23 | phase6.6 | shot en/08-about
+2026-10-15 13:23 | phase6.6 | shot en/05-yojana
+2026-10-15 13:23 | phase6.6 | shot en/05-yojana
+2026-10-15 13:24 | phase6.6 | en 8/8 viewed OK (yojana re-shot after false-positive regex); writing README/checklist
+2026-10-15 13:25 | phase6.6 | docs written; committing
+2026-10-15 13:25 | phase6.6 | done (commit bc9fbc0 pushed)
+2026-10-15 13:26 | orchestrator | Phase 6.6 verified; launching Phase 8
+2026-10-15 13:26 | phase8 | start: reading inputs
+2026-10-15 13:27 | phase8 | reading inputs (report.mjs, results json)
+2026-10-15 13:29 | phase8 | 8.1 writing scripts/android/morning.sh
+2026-10-15 13:29 | phase8 | 8.1 morning.sh written, bash -n OK, memory probe works; 8.2 guide next
+2026-10-15 13:31 | phase8 | 8.2 MORNING_EMULATOR_GUIDE.md written; 8.3 checklist next
+2026-10-15 13:31 | phase8 | 8.3 PHONE_TEST_CHECKLIST.md written; 8.4 REPORT next
+2026-10-15 13:32 | phase8 | restored 2 gradle files (EOL-only) so ship-prod-9 precondition is clean; DECISIONS updated
+2026-10-15 13:33 | phase8 | 8.4 writing REPORT.md
+2026-10-15 13:35 | phase8 | REPORT.md write refused by tool (subagent rule); report text returned to orchestrator; 8.5 commit next
+2026-10-15 13:36 | phase8 | committed 0670551, pushed release-9, android-app fast-forwarded; running ship-prod-9 --dry-run (read-only)
+2026-10-15 13:37 | phase8 | ship-prod-9 --dry-run at 0670551: exit 0, DRY RUN OK; phase 8 subagent done (REPORT.md text handed to orchestrator)
+2026-10-15 13:41 | orchestrator | Phase 8 done; final commit and push

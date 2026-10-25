@@ -17,6 +17,21 @@ export function melaMonth(mela) {
   return m && MON_LC[m[1]] ? MON_LC[m[1]] : null
 }
 
+// The "📍 where" line for a Mela card: venue, district, state. A part that is only the
+// country ("India" / "भारत") says nothing about where the Mela is, so it is dropped — the
+// discovery job sometimes stores it as the venue or the state. Repeated parts are dropped too.
+const COUNTRY_ONLY = /^(india|bharat|भारत|इंडिया|republic of india)$/i
+const usefulPart = (v) => { const s = String(v ?? '').trim(); return s && !COUNTRY_ONLY.test(s) ? s : '' }
+export function melaPlace(mela) {
+  const seen = new Set()
+  return [mela?.venue, mela?.district, mela?.state].map(usefulPart).filter((part) => {
+    const key = part.toLowerCase()
+    if (!part || seen.has(key)) return false
+    seen.add(key)
+    return true
+  }).join(', ')
+}
+
 // Distance (km) from a center to a Mela's coordinates, or null when either is missing.
 export function melaDistanceKm(center, mela) {
   if (!center || center.latitude == null || mela?.latitude == null || mela?.longitude == null) return null
@@ -77,4 +92,23 @@ export function isExpectedDate(mela) {
 // text so the Mela is still filterable rather than silently excluded.
 export function statesIn(melas) {
   return [...new Set((melas || []).map((m) => normalizeState(m.state) || m.state).filter(Boolean))].sort()
+}
+
+// Batch 10E 5.1 — the homepage "आस-पास के किसान मेले" teaser shows only Madhya Pradesh and its
+// neighbouring states, MP first. Canonical English names (content/states.js); every Mela's state is
+// folded with normalizeState() so "MP", "M.P.", "मध्य प्रदेश" etc. all match. A Mela whose state is
+// unknown/blank/"India" is left out of the teaser (it stays on /kisan-mela). Data is never changed.
+export const HOME_MELA_FIRST_STATE = 'Madhya Pradesh'
+export const HOME_MELA_STATES = ['Madhya Pradesh', 'Uttar Pradesh', 'Maharashtra', 'Chhattisgarh', 'Gujarat', 'Rajasthan']
+
+// Keep the incoming order (the caller passes them soonest-first) within each group; MP group first.
+// Returns at most `limit` Melas; [] when none qualify (the homepage then hides the whole section).
+export function homeRegionMelas(melas, limit = 3) {
+  const allowed = new Set(HOME_MELA_STATES)
+  const inRegion = (melas || [])
+    .map((m) => ({ m, st: normalizeState(m?.state) }))
+    .filter((x) => x.st && allowed.has(x.st))
+  const mp = inRegion.filter((x) => x.st === HOME_MELA_FIRST_STATE)
+  const near = inRegion.filter((x) => x.st !== HOME_MELA_FIRST_STATE)
+  return [...mp, ...near].slice(0, Math.max(0, limit)).map((x) => x.m)
 }

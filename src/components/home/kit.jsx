@@ -1,6 +1,6 @@
 // Shared homepage-v4 UI kit (Direction B). Built once, used everywhere. Uses the
 // design tokens from src/styles/tokens.css. Font sizes follow Phase 1b.
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // ---- Icons (inline SVG, never <img>) ----
 export function WhatsAppIcon({ size = 18, color = '#fff' }) {
@@ -22,8 +22,8 @@ export function PhoneIcon({ size = 18, color = '#fff' }) {
 // ---- Layout: full-bleed section, 12px gutter ----
 export function Section({ children, bg, className = '', id }) {
   return (
-    <section id={id} className={`w-full ${className}`} style={{ background: bg, padding: 'var(--ks-gutter)' }}>
-      {children}
+    <section id={id} className={`ks-section ${className}`} style={{ background: bg }}>
+      <div className="ks-section-inner py-[var(--ks-section-space)]">{children}</div>
     </section>
   )
 }
@@ -66,16 +66,23 @@ export function Button({ variant = 'primary', giant = false, icon, sublabel, chi
 }
 
 // ---- PhotoTile: photo + flat dark overlay + white label ----
-export function PhotoTile({ src, label, sublabel, onClick, height = 150 }) {
-  return (
-    <button type="button" onClick={onClick} className="relative w-full overflow-hidden text-left" style={{ height, borderRadius: 'var(--ks-radius)', minHeight: 0 }}>
+// Batch 10E: with `to` it is a real link (React Router <Link>, a crawlable <a href>) — keyboard,
+// middle-click and SEO friendly; hover glow / focus / press styles are `.ks-cat-tile` in index.css.
+export function PhotoTile({ src, label, sublabel, onClick, to, height = 150 }) {
+  const style = { height, borderRadius: 'var(--ks-radius)', minHeight: 0, background: 'var(--ks-green-dark)' }
+  const inner = (
+    <>
       <img src={src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ background: 'var(--ks-green-dark)' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
-      <span className="absolute inset-0" style={{ background: 'rgba(23,51,35,.38)' }} />
+      <span className="ks-cat-tile-shade absolute inset-0" style={{ background: 'rgba(23,51,35,.38)' }} />
       <span className="absolute inset-x-0 bottom-0 p-2.5">
         <span className="block text-[17px] font-800 font-bold leading-tight text-white drop-shadow" style={{ textShadow: '0 1px 3px rgba(0,0,0,.5)' }}>{label}</span>
         {sublabel && <span className="block text-[14px] font-semibold text-white/90" style={{ textShadow: '0 1px 3px rgba(0,0,0,.5)' }}>{sublabel}</span>}
       </span>
-    </button>
+    </>
+  )
+  if (to) return <Link to={to} onClick={onClick} className="ks-cat-tile relative block w-full overflow-hidden text-left" style={style}>{inner}</Link>
+  return (
+    <button type="button" onClick={onClick} className="ks-cat-tile relative w-full overflow-hidden text-left" style={style}>{inner}</button>
   )
 }
 

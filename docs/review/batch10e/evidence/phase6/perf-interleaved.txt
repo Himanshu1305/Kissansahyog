@@ -1,0 +1,10 @@
+base1 run 1: LCP 2872 ms (H1) CLS 0.01184 (10s 0.01184) TBT 187 ms FCP 2872 ms longTasks 4 (max 181) photo 0x/0B
+p6-1 run 1: LCP 2880 ms (H1) CLS 0.01184 (10s 0.01184) TBT 179 ms FCP 2880 ms longTasks 4 (max 190) photo 0x/0B
+base2 run 1: LCP 2888 ms (H1) CLS 0.01184 (10s 0.01184) TBT 227 ms FCP 2888 ms longTasks 4 (max 211) photo 0x/0B
+p6-2 run 1: LCP 2888 ms (H1) CLS 0.01184 (10s 0.01184) TBT 217 ms FCP 2888 ms longTasks 3 (max 235) photo 0x/0B
+base3 run 1: LCP 2864 ms (H1) CLS 0.01184 (10s 0.01184) TBT 224 ms FCP 2864 ms longTasks 4 (max 212) photo 0x/0B
+p6-3 run 1: LCP 2900 ms (H1) CLS 0.01184 (10s 0.01184) TBT 186 ms FCP 2900 ms longTasks 4 (max 199) photo 0x/0B
+base4 run 1: LCP 2892 ms (H1) CLS 0.01184 (10s 0.01184) TBT 202 ms FCP 2892 ms longTasks 3 (max 193) photo 0x/0B
+p6-4 run 1: LCP 2884 ms (H1) CLS 0.01184 (10s 0.01184) TBT 191 ms FCP 2884 ms longTasks 3 (max 203) photo 0x/0B
+base5 run 1: LCP 2868 ms (H1) CLS 0.01184 (10s 0.01184) TBT 200 ms FCP 2868 ms longTasks 3 (max 185) photo 0x/0B
+p6-5 run 1: LCP 2948 ms (H1) CLS 0.01184 (10s 0.01184) TBT 188 ms FCP 2948 ms longTasks 4 (max 197) photo 0x/0B

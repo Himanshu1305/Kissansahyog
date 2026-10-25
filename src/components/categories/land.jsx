@@ -1,16 +1,15 @@
 // Land category module: form fields, validation, detail summary.
 // Shape of details JSONB (see PROJECT_CONTEXT.md):
 //   { size_acres, arrangement[], water_source, crop_id|null, season, price_type,
-//     price_amount, contact_phone?, photo_urls[] }
+//     price_amount, contact_phone?, photo_urls[], available_from, available_to|null }
+// Batch 10E (3C): available_from / available_to are new for land (lease / contract period); they come
+// from the shared DateBlock (fields.jsx, rendered by Post.jsx). Older land rows have no dates.
 // size_acres is a plain positive number of acres (no upper cap) — replaced the old
 // size_range buckets so a farmer can list exactly e.g. 50 acres.
-import { useRef } from 'react'
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { Field } from '../ui'
 import { OptionSelect, MultiChips, LookupSelect, TextField } from './fields'
 import { ARRANGEMENT, WATER_SOURCE, SEASON, PRICE_TYPE, optionLabel, optionLabels } from '../../lib/listings/catalog'
-import { MAX_PHOTOS } from '../../lib/listings/photos'
-import { uploadPhotos } from '../../lib/listings/photos'
+import { datesRow } from '../../lib/listings/listingDates'
 
 export const MIN_ACRES = 0.1
 
@@ -25,7 +24,8 @@ export function initialDetails() {
     price_amount: '', // ₹/acre for 'fixed' (ठेका); % split for 'sharecropping' (बटाई)
     contact_phone: '', // optional per-listing override; blank → poster's profile phone
     photo_urls: [],
-    __photoFiles: [], // transient: File[] pending upload, stripped before save
+    available_from: null, // Batch 10E: mandatory start (DateBlock)
+    available_to: null,
   }
 }
 
@@ -52,14 +52,7 @@ export function validate(details, listingType, t) {
 
 export function Fields({ details, setDetails, extras, listingType }) {
   const { t } = useLang()
-  const fileRef = useRef(null)
   const set = (k) => (v) => setDetails((d) => ({ ...d, [k]: v }))
-  const files = details.__photoFiles || []
-
-  function onPickFiles(e) {
-    const picked = Array.from(e.target.files || []).slice(0, MAX_PHOTOS)
-    setDetails((d) => ({ ...d, __photoFiles: picked }))
-  }
 
   return (
     <>
@@ -141,39 +134,14 @@ export function Fields({ details, setDetails, extras, listingType }) {
         inputMode="numeric"
       />
 
-      <Field label={t('field_photos')} hint={t('photos_help')}>
-        <input
-          ref={fileRef}
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={onPickFiles}
-          className="block w-full text-base file:mr-3 file:rounded-lg file:border-0 file:bg-green-700 file:px-4 file:py-2 file:text-white"
-        />
-        {files.length > 0 && (
-          <div className="mt-2 flex gap-2">
-            {files.map((f, i) => (
-              <img
-                key={i}
-                src={URL.createObjectURL(f)}
-                alt=""
-                className="h-16 w-16 rounded-lg object-cover"
-              />
-            ))}
-          </div>
-        )}
-      </Field>
     </>
   )
 }
 
 // Upload any pending photos, then return the clean details for saving.
-export async function finalizeDetails(details, { actorId }) {
-  const files = details.__photoFiles || []
-  let photo_urls = details.photo_urls || []
-  if (files.length) photo_urls = await uploadPhotos(files, actorId)
+export async function finalizeDetails(details) {
+  const photo_urls = details.photo_urls || []
   const clean = { ...details }
-  delete clean.__photoFiles
   // Optional per-listing contact: keep only a real 10-digit override; blank falls back to profile phone.
   clean.contact_phone = String(clean.contact_phone || '').trim()
   if (!clean.contact_phone) delete clean.contact_phone
@@ -208,11 +176,13 @@ export function summarize(listing, lang, extras) {
     }
     rows.push({ label: L('price'), value: base + amt })
   }
+  const dates = datesRow(listing, lang) // Batch 10E: "उपलब्ध: 20 अक्टू से"
+  if (dates) rows.push(dates)
   return rows
 }
 
 const LABELS = {
-  size: { hi: 'ज़मीन का आकार', en: 'Land size' },
+  size: { hi: 'क्षेत्रफल', en: 'Area' },
   arrangement: { hi: 'व्यवस्था', en: 'Arrangement' },
   water: { hi: 'पानी का स्रोत', en: 'Water source' },
   crop: { hi: 'फसल', en: 'Crop' },

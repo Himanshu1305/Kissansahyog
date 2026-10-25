@@ -6,6 +6,8 @@ import DisclaimerBanner from './DisclaimerBanner'
 import { Spinner, Notice } from './ui'
 import { getListingContact, incrementContactClick } from '../lib/listings/listingsApi'
 import { generateListingMessage } from '../lib/share/shareMessages'
+import { publicOrigin } from '../lib/native'
+import { useNativeBack } from '../lib/useNativeBack'
 
 // Batch1 item 4 — Call + WhatsApp on every listing (card + detail), in one or two
 // taps. Reuses the existing reveal RPC (getListingContact), the phoneReveal
@@ -29,6 +31,7 @@ export default function ContactActions({ listing, size = 'card', className = '' 
   const [contact, setContact] = useState(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState(null)
+  useNativeBack(open, () => setOpen(false))
 
   // Never show on the viewer's own listing.
   if (user && listing?.user_id && user.id === listing.user_id) return null
@@ -61,7 +64,7 @@ export default function ContactActions({ listing, size = 'card', className = '' 
     : 'flex min-h-[44px] flex-1 items-center justify-center gap-1 rounded-lg px-2 py-2 text-[13px] font-bold'
 
   const message = typeof window !== 'undefined'
-    ? generateListingMessage(listing, `${window.location.origin}/listing/${listing.id}`, lang)
+    ? generateListingMessage(listing, `${publicOrigin()}/listing/${listing.id}`, lang)
     : generateListingMessage(listing, '', lang)
 
   return (
@@ -77,7 +80,7 @@ export default function ContactActions({ listing, size = 'card', className = '' 
 
       {open && (
         <div
-          className="fixed inset-0 z-[90] flex items-end justify-center bg-black/50 sm:items-center sm:p-4"
+          className="ks-overlay fixed inset-0 z-[90] flex items-end justify-center bg-black/50 sm:items-center sm:p-4"
           role="dialog"
           aria-modal="true"
           data-testid="contact-sheet"

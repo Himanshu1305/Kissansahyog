@@ -1,0 +1,11 @@
+
+Running 5 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase12_weather_split.spec.js:22:3 › Phase 1 — weather is global, ungated › /mausam renders weather for a far Indian location (Hyderabad), NO out-of-service message (1.0s)
+  ok 2 [chromium] › e2e\phase12_weather_split.spec.js:33:3 › Phase 1 — weather is global, ungated › /mausam renders weather for a location clearly outside India (London) via live fetch (872ms)
+  ok 3 [chromium] › e2e\phase12_weather_split.spec.js:49:3 › Phase 1 — mandi page: no service-area gate any more (Batch 7L-1) › /msp takes a far location (Hyderabad) without an out-of-service message (809ms)
+  ok 4 [chromium] › e2e\phase12_weather_split.spec.js:59:3 › Phase 1 — mandi page: no service-area gate any more (Batch 7L-1) › /msp names a genuinely local location (Khurai area) from the places list (885ms)
+  ok 5 [chromium] › e2e\phase12_weather_split.spec.js:72:3 › Phase 1g — a chosen place is remembered on the device and can be changed › typed place → changed from the picker → restored after a reload, weather still renders (1.9s)
+[teardown] test data cleaned
+
+  5 passed (6.5s)

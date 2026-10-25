@@ -1,0 +1,3128 @@
+[
+ {
+  "at": "2026-10-15T11:02:53.167Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Tractor|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.240Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.308Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.351Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.399Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.453Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Pit Digging Tractor|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.490Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Pit Digging Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.531Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Pit Digging Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.571Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Pit Digging Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.619Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Pit Digging Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.667Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Pit Digging Tractor|spec_auger_size",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_auger_size:required",
+   "expected": "equipment_spec_invalid:spec_auger_size:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.715Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Crane Tractor|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.755Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Crane Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.808Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Crane Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.850Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Crane Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.900Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Crane Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:53.966Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Crane Tractor|spec_lifting_capacity",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_lifting_capacity:required",
+   "expected": "equipment_spec_invalid:spec_lifting_capacity:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.016Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Thresher|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.061Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Thresher|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.103Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Thresher|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.139Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Thresher|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.182Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Thresher|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.229Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Thresher|spec_crop",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_crop:required",
+   "expected": "equipment_spec_invalid:spec_crop:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.279Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Harvester|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.322Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Harvester|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.372Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Harvester|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.418Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Harvester|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.484Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Harvester|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.521Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Harvester|spec_cutting_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_cutting_width:required",
+   "expected": "equipment_spec_invalid:spec_cutting_width:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.557Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Harvester|spec_crop",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_crop:required",
+   "expected": "equipment_spec_invalid:spec_crop:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.608Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Rotavator|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.651Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Rotavator|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.702Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Rotavator|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.748Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Rotavator|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.796Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Rotavator|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.841Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Rotavator|spec_working_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_working_width:required",
+   "expected": "equipment_spec_invalid:spec_working_width:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.890Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Seed Drill|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.934Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Seed Drill|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:54.981Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Seed Drill|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.027Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Seed Drill|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.073Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Seed Drill|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.120Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Seed Drill|spec_rows",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_rows:required",
+   "expected": "equipment_spec_invalid:spec_rows:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.170Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Reaper|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.213Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Reaper|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.261Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Reaper|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.309Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Reaper|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.351Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Reaper|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.403Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Reaper|spec_working_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_working_width:required",
+   "expected": "equipment_spec_invalid:spec_working_width:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.444Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Paddy Planting Machine|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.494Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Paddy Planting Machine|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.530Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Paddy Planting Machine|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.575Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Paddy Planting Machine|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.625Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Paddy Planting Machine|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.666Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Paddy Planting Machine|spec_rows",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_rows:required",
+   "expected": "equipment_spec_invalid:spec_rows:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.719Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Blower|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.762Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Blower|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.810Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Blower|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.851Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Blower|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.902Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Blower|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.950Z",
+  "base": "http://localhost:4173",
+  "id": "C11|LCB (Straw Machine)|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:55.993Z",
+  "base": "http://localhost:4173",
+  "id": "C11|LCB (Straw Machine)|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.038Z",
+  "base": "http://localhost:4173",
+  "id": "C11|LCB (Straw Machine)|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.073Z",
+  "base": "http://localhost:4173",
+  "id": "C11|LCB (Straw Machine)|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.110Z",
+  "base": "http://localhost:4173",
+  "id": "C11|LCB (Straw Machine)|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.153Z",
+  "base": "http://localhost:4173",
+  "id": "C11|JCB / Excavator|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.199Z",
+  "base": "http://localhost:4173",
+  "id": "C11|JCB / Excavator|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.232Z",
+  "base": "http://localhost:4173",
+  "id": "C11|JCB / Excavator|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.274Z",
+  "base": "http://localhost:4173",
+  "id": "C11|JCB / Excavator|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.317Z",
+  "base": "http://localhost:4173",
+  "id": "C11|JCB / Excavator|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.365Z",
+  "base": "http://localhost:4173",
+  "id": "C11|JCB / Excavator|spec_bucket_size",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_bucket_size:required",
+   "expected": "equipment_spec_invalid:spec_bucket_size:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.416Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Drone|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.457Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Drone|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.506Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Drone|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.553Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Drone|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.593Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Drone|spec_tank_litres",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_tank_litres:required",
+   "expected": "equipment_spec_invalid:spec_tank_litres:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.630Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Drone|spec_flight_minutes",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_flight_minutes:required",
+   "expected": "equipment_spec_invalid:spec_flight_minutes:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.679Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Other|valid",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200,
+   "saved_spec_version": 1,
+   "error": null
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.725Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Other|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:brand:required",
+   "expected": "equipment_spec_invalid:brand:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.771Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Other|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:model:required",
+   "expected": "equipment_spec_invalid:model:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.821Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Other|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:year:required",
+   "expected": "equipment_spec_invalid:year:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.869Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Other|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:power_hp:required",
+   "expected": "equipment_spec_invalid:power_hp:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.914Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Other|spec_machine_name",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 400,
+   "refused_with": "equipment_spec_invalid:spec_machine_name:required",
+   "expected": "equipment_spec_invalid:spec_machine_name:required"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:56.991Z",
+  "base": "http://localhost:4173",
+  "id": "C11|blank-values",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blank_model": 400,
+   "blank_crop": 400
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:57.091Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Tractor|brand_other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "without_text": 400,
+   "with_text": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:57.167Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Pit Digging Tractor|brand_other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "without_text": 400,
+   "with_text": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:57.258Z",
+  "base": "http://localhost:4173",
+  "id": "C11|Crane Tractor|brand_other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "without_text": 400,
+   "with_text": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:57.933Z",
+  "base": "http://localhost:4173",
+  "id": "C11|ranges",
+  "status": "RAN-PASSED",
+  "detail": {
+   "Tractor {\"year\":1985}": "refused",
+   "Tractor {\"year\":3000}": "refused",
+   "Tractor {\"year\":\"abc\"}": "refused",
+   "Tractor {\"year\":2028}": "refused",
+   "Tractor {\"power_hp\":0}": "refused",
+   "Tractor {\"power_hp\":600}": "refused",
+   "Tractor {\"power_hp\":\"4O\"}": "refused",
+   "Seed Drill {\"spec_rows\":0}": "refused",
+   "Seed Drill {\"spec_rows\":2.5}": "refused",
+   "Drone {\"spec_tank_litres\":0}": "refused",
+   "Drone {\"spec_flight_minutes\":\"x\"}": "refused",
+   "Other {\"power_hp\":0}": "accepted",
+   "Tractor {\"year\":1990}": "accepted",
+   "Tractor {\"year\":2027}": "accepted",
+   "Tractor {\"power_hp\":500}": "accepted"
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:57.982Z",
+  "base": "http://localhost:4173",
+  "id": "C11|older-app-no-spec_version",
+  "status": "RAN-PASSED",
+  "detail": {
+   "http": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:02:58.123Z",
+  "base": "http://localhost:4173",
+  "id": "C11|trolley-tanker-and-requirement",
+  "status": "RAN-PASSED",
+  "detail": {
+   "trolley": 200,
+   "tanker": 200,
+   "requirement_without_specs": 200
+  }
+ },
+ {
+  "at": "2026-10-15T11:03:59.975Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C4|year-and-hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "year=1985": "blocked",
+   "year=3000": "blocked",
+   "year=abc": "blocked",
+   "power_hp=0": "blocked",
+   "power_hp=600": "blocked",
+   "power_hp=4O": "blocked",
+   "Other HP=0": "accepted",
+   "Other hint shown": true
+  },
+  "evidence": "evidence/fix9c/local/C4-other-hp0-accepted.jpg"
+ },
+ {
+  "at": "2026-10-15T11:04:12.575Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C5|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "dropdown": true,
+   "brands": 13,
+   "other_box_shown": true,
+   "blocked_without_text": true,
+   "message": "ब्रांड का नाम ज़रूरी है।",
+   "posted_with_text": true,
+   "detail_shows": "KSTEST Brand"
+  },
+  "evidence": "evidence/fix9c/local/C5-Tractor-other-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:04:19.225Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C5|Pit Digging Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "dropdown": true,
+   "brands": 13,
+   "other_box_shown": true,
+   "blocked_without_text": true,
+   "message": "ब्रांड का नाम ज़रूरी है।",
+   "posted_with_text": true,
+   "detail_shows": "KSTEST Brand"
+  },
+  "evidence": "evidence/fix9c/local/C5-Pit-Digging-Tractor-other-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:04:26.041Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C5|Crane Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "dropdown": true,
+   "brands": 13,
+   "other_box_shown": true,
+   "blocked_without_text": true,
+   "message": "ब्रांड का नाम ज़रूरी है।",
+   "posted_with_text": true,
+   "detail_shows": "KSTEST Brand"
+  },
+  "evidence": "evidence/fix9c/local/C5-Crane-Tractor-other-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:04:49.027Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C5|free-text-for-other-types",
+  "status": "RAN-PASSED",
+  "detail": {
+   "Thresher": "INPUT:",
+   "Harvester": "INPUT:",
+   "Rotavator": "INPUT:",
+   "Seed Drill": "INPUT:",
+   "Reaper": "INPUT:",
+   "Paddy Planting Machine": "INPUT:",
+   "Blower": "INPUT:",
+   "LCB (Straw Machine)": "INPUT:",
+   "JCB / Excavator": "INPUT:",
+   "Drone": "INPUT:",
+   "Other": "INPUT:"
+  }
+ },
+ {
+  "at": "2026-10-15T11:05:09.485Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी चुनें — यह ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "Swaraj"
+  },
+  "evidence": "evidence/fix9c/local/C1-Tractor-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:13.693Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Tractor-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:17.988Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Tractor-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:22.263Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ट्रैक्टर की अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Tractor-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:22.267Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 4,
+   "of": 4
+  }
+ },
+ {
+  "at": "2026-10-15T11:05:24.258Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "d6282688-6ba7-4a5e-a21c-63681e628bdb",
+   "spec_rows": 4,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Tractor-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:28.610Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Pit Digging Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी चुनें — यह ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "Swaraj"
+  },
+  "evidence": "evidence/fix9c/local/C1-Pit-Digging-Tractor-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:32.805Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Pit Digging Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Pit-Digging-Tractor-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:37.391Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Pit Digging Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Pit-Digging-Tractor-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:41.819Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Pit Digging Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ट्रैक्टर की अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Pit-Digging-Tractor-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:46.008Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Pit Digging Tractor|spec_auger_size",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "बरमे (ऑगर) का साइज़ ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST auger_size"
+  },
+  "evidence": "evidence/fix9c/local/C1-Pit-Digging-Tractor-spec_auger_size-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:46.012Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Pit Digging Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:05:48.065Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Pit Digging Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "9299f074-77d9-4177-b967-4c07661eef50",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Pit-Digging-Tractor-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:52.424Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Crane Tractor|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी चुनें — यह ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "Swaraj"
+  },
+  "evidence": "evidence/fix9c/local/C1-Crane-Tractor-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:05:56.939Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Crane Tractor|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Crane-Tractor-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:01.278Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Crane Tractor|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Crane-Tractor-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:05.781Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Crane Tractor|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ट्रैक्टर की अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Crane-Tractor-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:10.104Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Crane Tractor|spec_lifting_capacity",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "उठाने की क्षमता ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST lifting_capacity"
+  },
+  "evidence": "evidence/fix9c/local/C1-Crane-Tractor-spec_lifting_capacity-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:10.108Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Crane Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:06:12.173Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Crane Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "e458c040-e305-4dcb-9e5a-dd19e803c82e",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Crane-Tractor-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:16.534Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Thresher|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Thresher-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:20.763Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Thresher|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Thresher-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:24.922Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Thresher|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Thresher-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:29.248Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Thresher|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ज़रूरी ट्रैक्टर अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Thresher-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:33.524Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Thresher|spec_crop",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "फसल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST crop"
+  },
+  "evidence": "evidence/fix9c/local/C1-Thresher-spec_crop-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:33.532Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Thresher",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:06:35.611Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Thresher",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "a5747b63-8198-4ce1-b151-7b4e596ee56c",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Thresher-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:40.031Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Harvester|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Harvester-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:44.425Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Harvester|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Harvester-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:48.612Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Harvester|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Harvester-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:52.857Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Harvester|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "इंजन की अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Harvester-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:06:57.272Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Harvester|spec_cutting_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "कटाई की चौड़ाई ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST cutting_width"
+  },
+  "evidence": "evidence/fix9c/local/C1-Harvester-spec_cutting_width-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:01.605Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Harvester|spec_crop",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "फसल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST crop"
+  },
+  "evidence": "evidence/fix9c/local/C1-Harvester-spec_crop-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:01.608Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Harvester",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 6,
+   "of": 6
+  }
+ },
+ {
+  "at": "2026-10-15T11:07:03.627Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Harvester",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "4d7a1b5e-6757-4930-bc7b-5b5c6d610c03",
+   "spec_rows": 6,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Harvester-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:07.992Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Rotavator|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Rotavator-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:12.205Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Rotavator|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Rotavator-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:16.648Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Rotavator|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Rotavator-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:20.974Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Rotavator|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ज़रूरी ट्रैक्टर अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Rotavator-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:25.440Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Rotavator|spec_working_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "काम की चौड़ाई ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST working_width"
+  },
+  "evidence": "evidence/fix9c/local/C1-Rotavator-spec_working_width-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:25.443Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Rotavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:07:27.434Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Rotavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "7e977f15-fb35-488f-86f9-665efff571f6",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Rotavator-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:31.713Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Seed Drill|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Seed-Drill-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:36.094Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Seed Drill|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Seed-Drill-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:40.375Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Seed Drill|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Seed-Drill-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:44.612Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Seed Drill|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ज़रूरी ट्रैक्टर अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Seed-Drill-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:48.906Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Seed Drill|spec_rows",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "कतारों की संख्या ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 9
+  },
+  "evidence": "evidence/fix9c/local/C1-Seed-Drill-spec_rows-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:48.909Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Seed Drill",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:07:50.883Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Seed Drill",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "9121c671-d795-4b51-9598-614edb507328",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Seed-Drill-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:55.231Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Reaper|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Reaper-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:07:59.536Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Reaper|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Reaper-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:03.777Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Reaper|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Reaper-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:08.190Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Reaper|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Reaper-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:12.548Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Reaper|spec_working_width",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "काम की चौड़ाई ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST working_width"
+  },
+  "evidence": "evidence/fix9c/local/C1-Reaper-spec_working_width-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:12.551Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Reaper",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:08:14.589Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Reaper",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "45418be7-a0bf-4136-aa0d-cf31f4257a9d",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Reaper-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:18.937Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Paddy Planting Machine|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Paddy-Planting-Machine-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:23.866Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Paddy Planting Machine|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Paddy-Planting-Machine-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:28.439Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Paddy Planting Machine|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Paddy-Planting-Machine-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:32.837Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Paddy Planting Machine|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Paddy-Planting-Machine-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:37.217Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Paddy Planting Machine|spec_rows",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "कतारों की संख्या ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 9
+  },
+  "evidence": "evidence/fix9c/local/C1-Paddy-Planting-Machine-spec_rows-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:37.226Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Paddy Planting Machine",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:08:39.333Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Paddy Planting Machine",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "3d7c37e2-c739-4475-abcc-7b83e4127d6e",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Paddy-Planting-Machine-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:43.767Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Blower|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Blower-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:48.221Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Blower|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Blower-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:52.500Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Blower|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Blower-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:56.801Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Blower|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Blower-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:08:56.805Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Blower",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 4,
+   "of": 4
+  }
+ },
+ {
+  "at": "2026-10-15T11:08:58.782Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Blower",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "d607c187-7e07-4a83-bdc1-fdd5709b04d1",
+   "spec_rows": 4,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Blower-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:03.064Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|LCB (Straw Machine)|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-LCB-Straw-Machine-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:07.337Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|LCB (Straw Machine)|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-LCB-Straw-Machine-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:11.591Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|LCB (Straw Machine)|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-LCB-Straw-Machine-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:15.892Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|LCB (Straw Machine)|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-LCB-Straw-Machine-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:15.896Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|LCB (Straw Machine)",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 4,
+   "of": 4
+  }
+ },
+ {
+  "at": "2026-10-15T11:09:17.938Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|LCB (Straw Machine)",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "3481466a-519d-4ae2-90cd-6a942306cb11",
+   "spec_rows": 4,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-LCB-Straw-Machine-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:22.536Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|JCB / Excavator|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-JCB-Excavator-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:26.892Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|JCB / Excavator|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-JCB-Excavator-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:31.946Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|JCB / Excavator|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-JCB-Excavator-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:36.682Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|JCB / Excavator|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "इंजन की अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-JCB-Excavator-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:41.040Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|JCB / Excavator|spec_bucket_size",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "बकेट (बाल्टी) का साइज़ ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST bucket_size"
+  },
+  "evidence": "evidence/fix9c/local/C1-JCB-Excavator-spec_bucket_size-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:41.048Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|JCB / Excavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:09:43.116Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|JCB / Excavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "e4f7f562-355c-45bd-85ba-fc85b756226f",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-JCB-Excavator-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:47.595Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Drone|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Drone-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:52.213Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Drone|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Drone-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:09:56.595Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Drone|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Drone-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:01.106Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Drone|spec_tank_litres",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "टंकी (लीटर) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 12
+  },
+  "evidence": "evidence/fix9c/local/C1-Drone-spec_tank_litres-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:05.704Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Drone|spec_flight_minutes",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "उड़ान समय (मिनट) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 20
+  },
+  "evidence": "evidence/fix9c/local/C1-Drone-spec_flight_minutes-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:05.707Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Drone",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:10:07.749Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Drone",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "b659b5a3-79f0-4d04-9c98-235a09512c57",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Drone-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:12.110Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Other|brand",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "ब्रांड / कंपनी ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST brand"
+  },
+  "evidence": "evidence/fix9c/local/C1-Other-brand-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:16.469Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Other|model",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मॉडल ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST model"
+  },
+  "evidence": "evidence/fix9c/local/C1-Other-model-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:20.950Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Other|year",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "निर्माण वर्ष ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 2022
+  },
+  "evidence": "evidence/fix9c/local/C1-Other-year-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:25.395Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Other|power_hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "अश्वशक्ति (HP) ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": 45
+  },
+  "evidence": "evidence/fix9c/local/C1-Other-power_hp-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:29.834Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C1|Other|spec_machine_name",
+  "status": "RAN-PASSED",
+  "detail": {
+   "blocked": true,
+   "message": "मशीन का नाम ज़रूरी है।",
+   "message_ok": true,
+   "inline_under_field": true,
+   "posted_after_fill": true,
+   "listings": 1,
+   "saved_value": "KSTEST machine_name"
+  },
+  "evidence": "evidence/fix9c/local/C1-Other-spec_machine_name-blocked.jpg"
+ },
+ {
+  "at": "2026-10-15T11:10:29.839Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3b|Other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posts_with_output_empty": 5,
+   "of": 5
+  }
+ },
+ {
+  "at": "2026-10-15T11:10:31.882Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C2|Other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "listing": "3171043a-cd6a-4d38-8f98-6087045dac13",
+   "spec_rows": 5,
+   "missing": [],
+   "seller_note": true,
+   "output_row_absent": true,
+   "page_errors": []
+  },
+  "evidence": "evidence/fix9c/local/C2-Other-detail.jpg"
+ },
+ {
+  "at": "2026-10-15T11:11:44.835Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C11UI|server-message-in-app",
+  "status": "RAN-PASSED",
+  "detail": {
+   "shown": "मॉडल ज़रूरी है।",
+   "expected": "मॉडल ज़रूरी है।",
+   "listings_created": 0
+  },
+  "evidence": "evidence/fix9c/local/C11UI-server-refusal-message.jpg"
+ },
+ {
+  "at": "2026-10-15T11:11:55.102Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Tractor-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:01.116Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Pit Digging Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "pits_hour",
+   "expected_unit": "pits_hour",
+   "posted": true,
+   "shown": "1.5 गड्ढे/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Pit-Digging-Tractor-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:07.730Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Crane Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "other",
+   "expected_unit": "other",
+   "posted": true,
+   "shown": "1.5 KSTEST गड्ढे"
+  },
+  "evidence": "evidence/fix9c/local/C3-Crane-Tractor-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:13.850Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Thresher",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "quintal_hour",
+   "expected_unit": "quintal_hour",
+   "posted": true,
+   "shown": "1.5 क्विंटल/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Thresher-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:20.205Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Harvester",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Harvester-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:26.267Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Rotavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Rotavator-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:32.319Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Seed Drill",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Seed-Drill-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:38.582Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Reaper",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Reaper-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:44.959Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Paddy Planting Machine",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Paddy-Planting-Machine-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:51.285Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Blower",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "quintal_hour",
+   "expected_unit": "quintal_hour",
+   "posted": true,
+   "shown": "1.5 क्विंटल/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Blower-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:12:57.525Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|LCB (Straw Machine)",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "quintal_hour",
+   "expected_unit": "quintal_hour",
+   "posted": true,
+   "shown": "1.5 क्विंटल/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-LCB-Straw-Machine-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:13:04.173Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|JCB / Excavator",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "cum_hour",
+   "expected_unit": "cum_hour",
+   "posted": true,
+   "shown": "1.5 घन मीटर/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-JCB-Excavator-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:13:10.195Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Drone",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "acre_hour",
+   "expected_unit": "acre_hour",
+   "posted": true,
+   "shown": "1.5 एकड़/घंटा"
+  },
+  "evidence": "evidence/fix9c/local/C3-Drone-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:13:16.726Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C3|Other",
+  "status": "RAN-PASSED",
+  "detail": {
+   "preselected_unit": "other",
+   "expected_unit": "other",
+   "posted": true,
+   "shown": "1.5 KSTEST गड्ढे"
+  },
+  "evidence": "evidence/fix9c/local/C3-Other-output.jpg"
+ },
+ {
+  "at": "2026-10-15T11:13:51.969Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C6|Tractor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "offer_spec_fields_hidden": true,
+   "min_hp_field": true,
+   "nothing_forced": true,
+   "posted": true,
+   "saved_min_hp": null,
+   "shown": null
+  },
+  "evidence": "evidence/fix9c/local/C6-Tractor-requirement.jpg"
+ },
+ {
+  "at": "2026-10-15T11:13:57.752Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C6|Harvester",
+  "status": "RAN-PASSED",
+  "detail": {
+   "offer_spec_fields_hidden": true,
+   "min_hp_field": true,
+   "nothing_forced": true,
+   "posted": true,
+   "saved_min_hp": 40,
+   "shown": "40 HP"
+  },
+  "evidence": "evidence/fix9c/local/C6-Harvester-requirement.jpg"
+ },
+ {
+  "at": "2026-10-15T11:14:03.664Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C6|Seed Drill",
+  "status": "RAN-PASSED",
+  "detail": {
+   "offer_spec_fields_hidden": true,
+   "min_hp_field": true,
+   "nothing_forced": true,
+   "posted": true,
+   "saved_min_hp": 35,
+   "shown": "35 HP"
+  },
+  "evidence": "evidence/fix9c/local/C6-Seed-Drill-requirement.jpg"
+ },
+ {
+  "at": "2026-10-15T11:14:05.894Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C6|drone-requirement-has-no-min-hp",
+  "status": "RAN-PASSED",
+  "detail": {
+   "min_hp_field": 0
+  }
+ },
+ {
+  "at": "2026-10-15T11:14:15.481Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C7|Trolley",
+  "status": "RAN-PASSED",
+  "detail": {
+   "fields": [
+    "f_equipment_type_id",
+    "f_rental_basis",
+    "f_rate_amount"
+   ],
+   "same_as_before": true,
+   "spec_fields_shown": 0,
+   "posted": true,
+   "spec_keys_saved": []
+  },
+  "evidence": "evidence/fix9c/local/C7-Trolley-posted.jpg"
+ },
+ {
+  "at": "2026-10-15T11:14:19.297Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C7|Water tanker",
+  "status": "RAN-PASSED",
+  "detail": {
+   "fields": [
+    "f_equipment_type_id",
+    "f_capacity_litres",
+    "f_tanker_vehicle",
+    "f_water_use",
+    "f_water_source",
+    "f_rate_per_trip",
+    "f_rate_per_1000l",
+    "f_service_radius_km"
+   ],
+   "same_as_before": true,
+   "spec_fields_shown": 0,
+   "posted": true,
+   "spec_keys_saved": []
+  },
+  "evidence": "evidence/fix9c/local/C7-Water-tanker-posted.jpg"
+ },
+ {
+  "at": "2026-10-15T11:16:10.200Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C8|older-listings",
+  "status": "RAN-PASSED",
+  "detail": {
+   "checked": 4,
+   "listings": {
+    "6b9d3437-0414-4101-91e5-80ebcd479b5c": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "424248fa-f587-4239-814d-ba2b9ccb8f48": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "3cd24b09-0eac-4840-8776-abb353d3e316": {
+     "rows": 4,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": false
+    },
+    "22d3fa29-a67f-47ce-982a-f1d643bc35c1": {
+     "rows": 5,
+     "spec_rows": 0,
+     "seller_note": false,
+     "tanker": true
+    }
+   },
+   "page_errors": []
+  }
+ },
+ {
+  "at": "2026-10-15T11:16:32.166Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C9|form-hi-font1",
+  "status": "RAN-PASSED",
+  "detail": {
+   "labels": {
+    "brand": true,
+    "model": true,
+    "year": true,
+    "power_hp": true,
+    "spec_cutting_width": true,
+    "spec_crop": true
+   },
+   "inputmode": {
+    "brand": "text",
+    "model": "text",
+    "year": "decimal",
+    "power_hp": "decimal",
+    "spec_cutting_width": "text",
+    "spec_crop": "text"
+   },
+   "tap_height": {
+    "brand": 56,
+    "model": 56,
+    "year": 56,
+    "power_hp": 56,
+    "spec_cutting_width": 56,
+    "spec_crop": 56
+   },
+   "no_sideways_scroll": true
+  },
+  "evidence": "evidence/fix9c/local/C9-form-hi-360-font1.jpg"
+ },
+ {
+  "at": "2026-10-15T11:16:38.183Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C9|form-hi-font1.3",
+  "status": "RAN-PASSED",
+  "detail": {
+   "labels": {
+    "brand": true,
+    "model": true,
+    "year": true,
+    "power_hp": true,
+    "spec_cutting_width": true,
+    "spec_crop": true
+   },
+   "inputmode": {
+    "brand": "text",
+    "model": "text",
+    "year": "decimal",
+    "power_hp": "decimal",
+    "spec_cutting_width": "text",
+    "spec_crop": "text"
+   },
+   "tap_height": {
+    "brand": 72,
+    "model": 72,
+    "year": 72,
+    "power_hp": 72,
+    "spec_cutting_width": 72,
+    "spec_crop": 72
+   },
+   "no_sideways_scroll": true
+  },
+  "evidence": "evidence/fix9c/local/C9-form-hi-360-font1.3.jpg"
+ },
+ {
+  "at": "2026-10-15T11:16:44.361Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C9|form-en-font1",
+  "status": "RAN-PASSED",
+  "detail": {
+   "labels": {
+    "brand": true,
+    "model": true,
+    "year": true,
+    "power_hp": true,
+    "spec_cutting_width": true,
+    "spec_crop": true
+   },
+   "inputmode": {
+    "brand": "text",
+    "model": "text",
+    "year": "decimal",
+    "power_hp": "decimal",
+    "spec_cutting_width": "text",
+    "spec_crop": "text"
+   },
+   "tap_height": {
+    "brand": 56,
+    "model": 56,
+    "year": 56,
+    "power_hp": 56,
+    "spec_cutting_width": 56,
+    "spec_crop": 56
+   },
+   "no_sideways_scroll": true
+  },
+  "evidence": "evidence/fix9c/local/C9-form-en-360-font1.jpg"
+ },
+ {
+  "at": "2026-10-15T11:16:50.389Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C9|form-en-font1.3",
+  "status": "RAN-PASSED",
+  "detail": {
+   "labels": {
+    "brand": true,
+    "model": true,
+    "year": true,
+    "power_hp": true,
+    "spec_cutting_width": true,
+    "spec_crop": true
+   },
+   "inputmode": {
+    "brand": "text",
+    "model": "text",
+    "year": "decimal",
+    "power_hp": "decimal",
+    "spec_cutting_width": "text",
+    "spec_crop": "text"
+   },
+   "tap_height": {
+    "brand": 72,
+    "model": 72,
+    "year": 72,
+    "power_hp": 72,
+    "spec_cutting_width": 72,
+    "spec_crop": 72
+   },
+   "no_sideways_scroll": true
+  },
+  "evidence": "evidence/fix9c/local/C9-form-en-360-font1.3.jpg"
+ },
+ {
+  "at": "2026-10-15T11:16:57.510Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C9|keyboard-short-screen",
+  "status": "RAN-PASSED",
+  "detail": {
+   "visible_when_focused_in_420px_high_screen": {
+    "spec_flight_minutes": true,
+    "output_per_hour": true,
+    "rate_amount": true
+   }
+  },
+  "evidence": "evidence/fix9c/local/C9-keyboard-short-screen.jpg"
+ },
+ {
+  "at": "2026-10-15T11:17:03.943Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C9|card-line-hi",
+  "status": "RAN-PASSED",
+  "detail": {
+   "spec_lines": 106,
+   "example": "KSTEST brand KSTEST model · 2022 · 45 HP · 1.5 KSTEST गड्ढे",
+   "any_cut": false
+  },
+  "evidence": "evidence/fix9c/local/C9-card-hi-360-font1.3.jpg"
+ },
+ {
+  "at": "2026-10-15T11:17:10.310Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C9|card-line-en",
+  "status": "RAN-PASSED",
+  "detail": {
+   "spec_lines": 106,
+   "example": "KSTEST brand KSTEST model · 2022 · 45 HP · 1.5 KSTEST गड्ढे",
+   "any_cut": false
+  },
+  "evidence": "evidence/fix9c/local/C9-card-en-360-font1.3.jpg"
+ },
+ {
+  "at": "2026-10-15T11:17:45.908Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|labor",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-labor.jpg"
+ },
+ {
+  "at": "2026-10-15T11:18:17.773Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|drone_didi",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-drone_didi.jpg"
+ },
+ {
+  "at": "2026-10-15T11:18:49.186Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|bhusa",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-bhusa.jpg"
+ },
+ {
+  "at": "2026-10-15T11:19:20.988Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|agri_inputs",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-agri_inputs.jpg"
+ },
+ {
+  "at": "2026-10-15T11:19:52.785Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|building_materials",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-building_materials.jpg"
+ },
+ {
+  "at": "2026-10-15T11:20:24.470Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|warehouse",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-warehouse.jpg"
+ },
+ {
+  "at": "2026-10-15T11:20:56.901Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|greenhouse",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-greenhouse.jpg"
+ },
+ {
+  "at": "2026-10-15T11:21:29.783Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|jugaad",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-jugaad.jpg"
+ },
+ {
+  "at": "2026-10-15T11:22:01.749Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|transport",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-transport.jpg"
+ },
+ {
+  "at": "2026-10-15T11:22:33.731Z",
+  "base": "http://127.0.0.1:4174",
+  "id": "C10|land",
+  "status": "RAN-PASSED",
+  "detail": {
+   "posted": true,
+   "listings": 1,
+   "detail_renders": true
+  },
+  "evidence": "evidence/fix9c/local/C10-land.jpg"
+ }
+]

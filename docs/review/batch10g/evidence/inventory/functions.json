@@ -1,0 +1,47 @@
+[
+  {
+    "proname": "close_listing",
+    "args": "p_actor_id uuid, p_listing_id uuid",
+    "res": "listings"
+  },
+  {
+    "proname": "get_admin_listings",
+    "args": "p_actor_id uuid, p_limit integer, p_offset integer",
+    "res": "TABLE(id uuid, category text, listing_type text, status text, pincode text, village_town text, poster_phone text, poster_email text, created_at timestamp with time zone)"
+  },
+  {
+    "proname": "get_listing_reports",
+    "args": "p_actor_id uuid, p_status text, p_limit integer",
+    "res": "TABLE(id bigint, target_type text, target_id text, listing_id uuid, reason text, note text, reporter_phone text, status text, resolution_note text, created_at timestamp with time zone, resolved_at timestamp with time zone, listing_category text, listing_status text)"
+  },
+  {
+    "proname": "get_my_listings",
+    "args": "p_actor_id uuid",
+    "res": "TABLE(id uuid, listing_type text, category text, status text, latitude numeric, longitude numeric, pincode text, details jsonb, self_declared boolean, created_at timestamp with time zone, expires_at timestamp with time zone, is_expired boolean, is_available boolean, contact_click_count integer)"
+  },
+  {
+    "proname": "remove_listing",
+    "args": "p_actor_id uuid, p_listing_id uuid",
+    "res": "listings"
+  },
+  {
+    "proname": "require_admin",
+    "args": "p_actor_id uuid",
+    "res": "void"
+  },
+  {
+    "proname": "resolve_listing_report",
+    "args": "p_actor_id uuid, p_report_id bigint, p_action text, p_resolution_note text",
+    "res": "listing_reports"
+  },
+  {
+    "proname": "search_listings",
+    "args": "p_query text, p_limit integer",
+    "res": "TABLE(id uuid, category text, listing_type text, village_name text, latitude numeric, longitude numeric, details jsonb, is_sponsored boolean, sim real)"
+  },
+  {
+    "proname": "set_listing_availability",
+    "args": "p_actor_id uuid, p_listing_id uuid, p_is_available boolean",
+    "res": "listings"
+  }
+]

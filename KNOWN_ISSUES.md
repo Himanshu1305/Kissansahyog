@@ -254,11 +254,17 @@ left because acting on it touches working, pre-existing code with no reported is
   helpline verified); source URLs recorded instead.
 
 ## मौसम/MSP build (2026-09-25)
-- **DATA_GOV_IN_API_KEY secret not set → 3-year mandi history not backfilled.** Trend
-  and "पिछले सालों में" sections show only the short history the 3-hourly refresh has
-  gathered; the past-years bar chart stays hidden until ≥12 months exist. Owner action:
-  register at data.gov.in, add the `DATA_GOV_IN_API_KEY` repo secret, run the "Backfill
-  mandi history" GitHub workflow.
+- **Mandi history (updated Batch 15A, 2026-10-23).** The daily table `mandi_prices` only holds days from 2026-06-20 on (the planned
+  data.gov.in 3-year backfill never worked: that resource is a daily snapshot, and `backfill-mandi-history.mjs` stays unused). The
+  ten-year history now lives in its own table, **`mandi_monthly_history`** (migration 0069): monthly Modal prices, **2016-01 to
+  2025-10**, scope `sagar_division` (plain mean of the five CEDA districts Tikamgarh, Chhatarpur, Panna, Sagar, Damoh that reported
+  that month) and `mp` (state level), 12 crops. Source: Agmarknet / DMI data republished by the CEDA portal (Ashoka University); files in
+  `data/mandi-history/`, fetched once by `scripts/fetch-mandi-history.mjs`. **Known gaps:** nothing between 2025-11 and 2026-06 (the
+  daily table starts 2026-06-20); some crops have months missing in the division series (Moong, Paddy, Maize, Garlic, Linseed, Urad)
+  and those months are left out, never filled in. **Refresh is manual** (re-run the fetch and build scripts; see
+  `docs/review/batch15a/BACKLOG.md`). /msp shows "पिछले 5 सालों में महीने के हिसाब से औसत Modal भाव" and "5 साल का औसत बनाम आज"
+  from it; both sections hide by themselves when the table is missing or empty. The CEDA site states no licence (underlying data is
+  government open data); the attribution line is shown wherever the history is shown.
 - **ActionWindows / per-crop advice / procurement steps are pending expert review** —
   they carry a "समीक्षाधीन" tag until Shri A.K. Dixit reviews docs/content/
   MAUSAM_MSP_CONTENT_REVIEW.md and an admin flips the review flag.
@@ -271,7 +277,7 @@ left because acting on it touches working, pre-existing code with no reported is
   - Filter field names must be **lowercase** (`filters[state]=Madhya Pradesh`); the capitalised `filters[State]`/`.keyword` forms return 0. The text filter also returns other "*Pradesh" states, so we narrow to true MP client-side (~85 rows/day).
   - **The daily feed currently carries NO Sagar-district rows.** So `refresh-data.mjs` pools MP-wide and picks the best available MP mandi for a commodity (marked `is_sagar_district=false`) when Sagar has none. गेहूं/सोयाबीन/मक्का/सरसों/लहसुन come from the wrapper (Sagar); चना and धान now populate from MP mandis via the official API.
   - **मसूर/मूंग/उड़द** still don't populate on some days: they are simply absent from the MP daily feed (off-season / not reported that day) — a data-availability reality, not a code bug. They fill in automatically on days the feed has them.
-- **Note for the history backfill:** resource `9ef84268-…` is a *daily-snapshot* resource (today's rows only), and its filters are lowercase; `backfill-mandi-history.mjs` should be revisited (lowercase filters + a genuinely historical Agmarknet source) before relying on it for multi-year history.
+- **Note for the history backfill (superseded by Batch 15A):** resource `9ef84268-…` is a *daily-snapshot* resource (today's rows only); the ten-year history now comes from `mandi_monthly_history` (CEDA), see the Batch 15A entry above. `backfill-mandi-history.mjs` is not used.
 
 ## Geofencing / Location / Mandi / PWA / Inputs build (2026-09-25, migration 0025)
 - **Failing backend suites — CORRECTED (2026-09-25).** The baseline was 21 pass / 5 fail. This
@@ -444,3 +450,96 @@ left because acting on it touches working, pre-existing code with no reported is
   the old soft-redirect. If a hard 404 status is wanted, add a `dist/404.html` for Cloudflare Pages.
 - **WhatsApp features are built but hidden** until an admin pastes the channel URL into
   Admin → WhatsApp (`site_settings.whatsapp_channel_url`). Nothing WhatsApp-related shows while empty.
+
+---
+
+## Batch 10A production ship (2026-10-17)
+
+Live: deployment `0845c733-e8d0-4553-957c-10f3db23ecca`, commit `17d77e8`. See PROJECT_CONTEXT "Batches 7L–10A".
+
+- **Mobile-only login is trust-based (P0, open).** `app_login(p_phone)` signs in on the mobile number alone, with no
+  OTP. Anyone who types a non-admin user's number is logged in as that user (admins are refused on this path since
+  0059; the 5-failures throttle does not help when the number is right). Owner actions such as `close_listing`,
+  `get_my_listings` and `set_listing_unavailable` take the acting id from the app (`p_actor_id`), so the server
+  checks ownership against an id the caller chooses; edit/delete by user id is not truly server-enforced.
+  **Fix:** OTP login plus a server-checked session — batch 10B, waiting on the Jio DLT template
+  (`docs/review/batch9/BACKLOG.md` B3/B4).
+- **23 old e2e specs fail, before and after 10A** (65 passed / 23 failed on staging; 61 / 27 before 10A, the 4 fixed
+  were signup tests). They are out-of-date specs, not 10A regressions. **ESLint is not installed**, so `npm run lint`
+  fails, and `npm run test:e2e` does not start on Windows (the Playwright CLI is run directly).
+- **At 360 px the new side-by-side pairs stack.** `FieldRow` pairs fields only from 400 px wide (`min-[400px]`), so on
+  a 360 px phone Brand/Model, Year/HP etc. are one per row. Intentional; revisit if 360 px users need pairs.
+- **Signup "show my details" explanation line kept pending legal review.** The independent review flagged its
+  removal; it was put back under the checkbox (`visibility-explain`). HUMAN-REVIEW: the lawyer/founder decides if it
+  may go.
+- **Browse at 360 px: the 11 category chips push results below the first screen.** Pre-existing (before 10A); with
+  the equipment tag chips the results start even lower on the equipment tab.
+- **Browse equipment tag tap does not change the URL.** It filters the page; only the `?etag=` deep link (from
+  Bazaar) selects a tag on load. Seen in the post-ship check; not a regression. HUMAN-REVIEW.
+- **Console noise on every live page (pre-existing, not from 10A):** Cloudflare's analytics beacon
+  (`static.cloudflareinsights.com`) is blocked by our CSP, and prerendered pages carry `modulepreload` links to
+  `http://localhost:4178/assets/…` (BACKLOG B17). Both are in Batch 9 production results too.
+
+---
+
+## Batch 10C production ship (2026-10-18)
+
+Live: deployment `7f5dc56a-9d1c-4bd2-8bde-a4512a96be20`, commit `40ddc4d`. See PROJECT_CONTEXT "Batch 10C — Guide demos".
+
+- **Hindi guide captions await founder review.** Every caption and mock-screen label is listed in
+  `docs/review/batch10c/HINDI_CAPTIONS.md`. HUMAN-REVIEW.
+- **Listen quality depends on the phone.** The Listen button uses the phone's built-in voice (`speechSynthesis`); a
+  phone without a Hindi voice reads poorly or not at all. Recorded audio is a later upgrade.
+- **Register demo must change when OTP signup ships.** Set `GUIDE_OTP_LIVE` to `true` in
+  `src/features/guide/config.js` in that release and re-test `/guide/register` and the Signup help sheet.
+- **Slow-phone targets missed on production** (360x640, CPU 4x, ~1.6 Mbps / 150 ms, cold cache): `/guide` first card
+  visible after **4.5 s** (target 4 s; 2.8 s on the local build), demo screens 4.6–5.6 s, longest task during play
+  **345 ms** on `/guide/find` (target 300 ms). Every demo still plays to the end. Details:
+  `docs/review/batch10c/evidence/prod-live/slow-phone-prod.md`.
+- **Prerendered preload links point at `http://localhost:4178/…` (BACKLOG B17, still open).** Seen again on every live
+  page (23 on `/`, 5 on `/guide/`); the CSP blocks them, so the browser cannot preload page chunks early — a likely part
+  of the slower production numbers above. Also on the previous deployment `0845c733`. Fix belongs in `scripts/prerender.mjs`.
+- **Post help button not opened on production.** `/post` needs a login; the live check confirmed the `help-post` button
+  is in the live Post chunk and the staging test opened it with a fake local session.
+- **Browse title cut next to the help pill** in English at 360 px ("Browse nea…"); Hindi is fine at 360/412 px.
+  HUMAN-REVIEW (from the 10C build report).
+
+
+---
+
+## Batch 11A production ship (2026-10-20)
+
+Live: deployment `11f140ef-859d-419a-85ee-7f1309bb0256`, commit `7d9adc5`. See PROJECT_CONTEXT "Batch 11A".
+
+- **Hindi OTP wording awaits founder review:** `docs/review/batch11a/HINDI_CAPTIONS.md`. HUMAN-REVIEW.
+- **Old Android APKs and the flag order:** old APKs do not send the session token. Publish a new APK before turning `session_enforced` ON, or old-app users cannot act.
+- **60-second switch cache:** a changed switch can take up to about 60 seconds to reach every open page.
+- **Prerender loading-state race on 5 pages:** the prerendered text of 5 pages can differ from run to run (also in the baseline build); see `docs/review/batch11a/evidence/text-diff.md`.
+- **Home-page mandi ticker glyphs in narrow screenshots:** in headless screenshots at 320 and 360 px the moving ticker strip showed garbled glyphs mid-scroll; the ship gate read correct text. HUMAN-REVIEW on a real phone.
+- **OTP on production not tested by the builder** (it would send a real SMS). `otp_required` was ON at close; the founder's own test result is HUMAN-REVIEW. The 10E mandi backfill was not verifiable read-only.
+
+
+---
+
+## Batch 12B production ship (2026-10-20)
+
+Live: deployment `8c6a66f2-ad48-444c-8730-67a072c49e0c`, commit `e7432c8`. See PROJECT_CONTEXT "Batch 12B".
+
+- **Hindi greeting wording awaits founder review:** `docs/review/batch12b/HINDI_CAPTIONS.md`. HUMAN-REVIEW.
+- **The festival card is Dussehra-only text:** a new festival needs its own text and picture, not just a new date entry.
+- **Old home e2e specs pre-dismiss the card** (set the close key) so they keep passing on 20 Oct 2026.
+- **Mandi ticker crop names are garbled (data problem, HUMAN-REVIEW):** production `mandi_prices.commodity_hi` holds mis-encoded Hindi (shows as "αñùαÑçαñ╣αÑéαñé" instead of "गेहूं"); the same on the deployments before this ship. This is the real cause of the "garbled glyphs" noted under Batch 11A, not a screenshot artefact. Needs a database fix (not done: closes ran read-only).
+- **Cloudflare analytics beacon is blocked by the site's own CSP** (`script-src 'self'`): one harmless console error on every page; unchanged by this ship.
+- 12A and 12C close prompts were never run; both are live via this ship and verified by the 12B live checks.
+
+## Batch 14A
+- **Hindi wording awaits review** (HUMAN-REVIEW, `docs/review/batch14a/HINDI_CAPTIONS.md`).
+- **The block does not reach anonymous inserts** (Sawaal, reports, feedback).
+- **Rate-limited OTP refusals are not counted** in the SMS usage numbers.
+- **Signed-out `/admin` redirects to `/login`** rather than showing the access-denied screen.
+
+## Batch 15B
+- **Content awaits KVK Sagar / A.K. Dixit review:** government-support, late-monsoon, heavy-rain and water-saving cards, every variety list, the days-to-harvest figures, the barley card and the irrigation counts show "समीक्षाधीन". HUMAN-REVIEW.
+- **KVK Sagar phone (07582-288228)** is the existing string res_card_offices_1; the owner should confirm it is current.
+- **MSP table problems** (3 identical rows per crop on staging, mustard 5950 vs 6200, 2027-28 not loaded): see docs/review/batch15b/BACKLOG.md.
+- **Source links** on the page point to the publisher site, not the exact article.

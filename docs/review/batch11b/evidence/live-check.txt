@@ -1,0 +1,3 @@
+PASS: confirmed absent test number -> HTTP 409 phone_not_registered; reserved row unsent, no provider session
+PASS: staging serves the final build main chunk /assets/index-oGHBwOCA.js
+Only the live smoke test request was removed; no profile was created

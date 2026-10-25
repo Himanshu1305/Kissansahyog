@@ -5,6 +5,9 @@
 // writes go through the is_admin-checked RPCs in src/lib/admin/adminApi.js.
 import { supabase } from '../supabaseClient'
 import { toAppError, AppError } from '../errors'
+import { topUpFeaturedSawaal } from './sawaalSelection.js'
+
+export { topUpFeaturedSawaal } from './sawaalSelection.js'
 
 // --- Kisan Sawaal (Q&A) ----------------------------------------------------
 export async function fetchPublishedSawaal() {
@@ -67,7 +70,18 @@ export async function fetchFeaturedSawaal(limit = 2) {
     .order('answered_at', { ascending: false })
     .limit(limit)
   if (error) throw toAppError(error)
-  return data || []
+  const featured = data || []
+  if (topUpFeaturedSawaal(featured, [], limit).length >= limit) return topUpFeaturedSawaal(featured, [], limit)
+
+  const { data: recent, error: recentError } = await supabase
+    .from('kisan_sawaal')
+    .select('id,question_hi,question_en,answer_hi,answer_en,category,asked_by_village,answered_by')
+    .eq('is_published', true)
+    .order('answered_at', { ascending: false })
+    .order('created_at', { ascending: false })
+    .limit(Math.max(limit * 4, 12))
+  if (recentError) throw toAppError(recentError)
+  return topUpFeaturedSawaal(featured, recent || [], limit)
 }
 
 // Submit a question for admin review. Never published on insert (RLS enforces).

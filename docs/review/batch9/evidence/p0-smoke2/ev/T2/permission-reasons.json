@@ -1,0 +1,9 @@
+{
+  "android.permission.INTERNET": "live data from Supabase / weather / the site's server functions",
+  "android.permission.ACCESS_NETWORK_STATE": "offline banner: without it the WebView always reports navigator.onLine = true; also required by @capacitor/network",
+  "android.permission.ACCESS_COARSE_LOCATION": "\"Share my location\"",
+  "android.permission.ACCESS_FINE_LOCATION": "\"Share my location\" (the page asks for a high-accuracy fix)",
+  "android.permission.RECORD_AUDIO": "voice search fallback records audio",
+  "android.permission.MODIFY_AUDIO_SETTINGS": "Capacitor 8 requests it together with RECORD_AUDIO for getUserMedia audio and denies the request unless both are granted (BridgeWebChromeClient.onPermissionRequest)",
+  "com.kissansahyog.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION": "added automatically by androidx.core (signature-level, app-private); not a user-facing permission"
+}

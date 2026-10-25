@@ -52,8 +52,8 @@ async function underRateLimit(env, requester) {
 }
 
 // Abuse guard (Batch 4 item E): only our own pages may POST audio here. Accept a request
-// whose Origin/Referer host is kissansahyog.com, www.kissansahyog.com, a
-// *.kissansahyog.pages.dev preview host, or localhost/127.0.0.1 (so the preview + local
+// whose Origin/Referer host is kissansahyog.com, www.kissansahyog.com, staging.kissansahyog.com,
+// a kissansahyog / kissansahyog-prod pages.dev host (incl. previews), or localhost/127.0.0.1 (so the preview + local
 // tests still work). A request carrying a DISALLOWED host is rejected; a request with no
 // Origin and no Referer is allowed (same-origin browsers may omit Origin — never break the
 // existing same-origin caller, which is the only legitimate one). No secrets involved.
@@ -63,7 +63,9 @@ function hostAllowed(host) {
   return (
     h === 'kissansahyog.com' ||
     h === 'www.kissansahyog.com' ||
+    h === 'staging.kissansahyog.com' ||
     h === 'kissansahyog.pages.dev' || h.endsWith('.kissansahyog.pages.dev') ||
+    h === 'kissansahyog-prod.pages.dev' || h.endsWith('.kissansahyog-prod.pages.dev') ||
     h === 'localhost' || h.startsWith('localhost:') ||
     h === '127.0.0.1' || h.startsWith('127.0.0.1:')
   )

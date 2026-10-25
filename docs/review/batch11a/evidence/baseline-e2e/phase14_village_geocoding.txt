@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase14_village_geocoding.spec.js:15:1 › Land/Equipment form asks for a VILLAGE name with autocomplete, not a pincode (1.7s)
+  ok 2 [chromium] › e2e\phase14_village_geocoding.spec.js:40:1 › Land form (contract) also uses the village input, no pincode (1.3s)
+[teardown] test data cleaned
+
+  2 passed (4.3s)

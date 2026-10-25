@@ -1,0 +1,56 @@
+PASS  1: no "Sagar district" / "सागर ज़िला" left in the shared strings (kept as data labels: resources_subtitle, res_home_sub, agro_region_body, cs_sagar_note)
+PASS  1: no "Sagar district" / "सागर ज़िला" in the About, Terms, home, contact, how-to, grievance, llms.txt or SEO sources
+PASS  1: none of the built pages says "Sagar district" / "सागर ज़िला" (9 pages)
+PASS  1: "Sagar, Madhya Pradesh" is left only where it names the courts (Terms #law), not the service area
+PASS  1: Terms clause 1 — both mentions say Sagar Division / सागर संभाग, the first with "(Sagar Sambhag)"
+PASS  1: Terms — nothing but the area name changed in clause 1 (owner, not-a-party and check-yourself sentences intact)
+PASS  1: built /terms has "Sagar Division" and "सागर संभाग", no "Draft", no "USD Vision AI"
+PASS  1: About "Our area" names the six districts, in the briefed sentence (Hindi + English)
+PASS  1: the six districts are listed in ONE place in the copy (About "Our area"); elsewhere only JSON-LD and the picker
+PASS  1: About intro and "farm bazaar" block use the new wording; "growing district by district" is gone
+PASS  1: built /about shows the heading, the six-district sentence and the new line
+PASS  1: home meta description says Sagar Division (source: Hindi + English; built page)
+PASS  1: home og:description carries the same text as the description
+PASS  1: llms.txt says Sagar Division (English + Hindi), no "Sagar, Madhya Pradesh"
+PASS  1: site JSON-LD areaServed = Sagar Division with its six districts (built home page + /about builder)
+PASS  1: weather / crop-advice / MSP descriptions and the stories + empty-listings lines follow the same wording
+PASS  2: one location object { lat, lng, label, source } with source = device | saved | typed | picked
+PASS  2: home, weather, browse, MSP, crop advice, mela, search and the cold-storage finder all read the shared location
+PASS  2: none of them uses a pincode, a default place or its own device call any more
+PASS  2: no pincode input or "Pincode:" display on home / weather / browse / cold storage, nor in the daily-update box
+PASS  2: the old "enter a pincode" strings are gone
+PASS  2: the registration form no longer has a pincode field (removed in Batch 7L-2)
+PASS  2: pre-permission card text and buttons are the briefed wording (Hindi + English)
+PASS  2: banner and text-box wording are the briefed wording (Hindi + English)
+PASS  2: every string the control uses exists in Hindi and English (21 location keys)
+PASS  2: no Devanagari literal in the control or the provider (copy comes from the i18n file)
+PASS  2: the device is asked only from the "Share my location" action; the saved place lives in localStorage; no profile write
+PASS  2: with no location the home counts, browse results and weather are not rendered (prompt card instead)
+PASS  2: no new external host — CSP (public/_headers) and the Pages Functions are unchanged; the lookup uses the site's own /geocode
+PASS  3: seed has about 50 places (54) across all six districts, each with EN + HI name, kind, coordinates and a source
+PASS  3: all six district HQs are present and verified
+PASS  3: every verified point is inside the division's bounding box (the per-district polygon test ran when the seed was built)
+PASS  3: unverified rows carry verified=false and a note (Lavkush Nagar) and the client never offers them
+PASS  3: migration 0057 creates public.places with the briefed columns
+PASS  3: migration 0057 — RLS on, public read only, no write policy or grant
+PASS  3: migration 0057 loads the same 54 rows as the seed file
+PASS  3: migrations 0057 and 0058 have a header, a "not applied" line and a rollback note
+PASS  4: migration 0058 adds in_sagar_division (boolean, not null, default false), backfills the six districts and indexes it
+PASS  4: migration 0058 leaves is_sagar_district untouched
+PASS  4: the new migrations are the next numbers after 0056 (0057, 0058), directly, in order
+PASS  4: the "local mandis" queries use in_sagar_division (falling back to is_sagar_district only if the column is missing)
+PASS  4: the ingestion covers the six districts and sets the flag (refresh + backfill), still setting is_sagar_district
+PASS  4: the ingestion has a dry run that opens no database connection
+PASS  4: the workflow file is unchanged (nothing was scheduled or run)
+PASS  4: nearest-mandi ranking takes its centre from the location object
+PASS  4: mandi distance knows the other five district HQs
+PASS  5: browser run — 140 checks, all passed
+PASS  5: step "1 granted" ran in Hindi and English at 390 and 1440
+PASS  5: step "2 saved" ran in Hindi and English at 390 and 1440
+PASS  5: step "3 typed" ran in Hindi and English at 390 and 1440
+PASS  5: step "4 did-you-mean" ran in Hindi and English at 390 and 1440
+PASS  5: step "5 picker" ran in Hindi and English at 390 and 1440
+PASS  5: no pincode box on home / weather / browse in the browser
+PASS  5: screenshots saved (36)
+
+54 passed, 0 failed

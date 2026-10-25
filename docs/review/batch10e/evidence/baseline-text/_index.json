@@ -1,0 +1,1878 @@
+{
+  "/about": {
+    "file": "about.txt",
+    "bodyLines": 105,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "हमारे बारे में — किसान सहयोग"
+  },
+  "/agro-forestry": {
+    "file": "agro-forestry.txt",
+    "bodyLines": 104,
+    "h1": 1,
+    "jsonld": 3,
+    "title": "कृषि वानिकी व बागवानी — किसान सहयोग"
+  },
+  "/articles": {
+    "file": "articles.txt",
+    "bodyLines": 75,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "खेती के लेख व सुझाव — किसान सहयोग"
+  },
+  "/articles/intercropping-madhya-pradesh": {
+    "file": "articles/intercropping-madhya-pradesh.txt",
+    "bodyLines": 89,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "इंटरक्रॉपिंग (अंतरवर्ती खेती): मध्यप्रदेश के किसानों के लिए व्यावहारिक"
+  },
+  "/articles/kisaan-carbon-credit-kya-hai": {
+    "file": "articles/kisaan-carbon-credit-kya-hai.txt",
+    "bodyLines": 79,
+    "h1": 1,
+    "jsonld": 3,
+    "title": "क्या किसान कार्बन क्रेडिट से कमाई कर सकते हैं? — एक खुला सवाल — Kissan"
+  },
+  "/articles/parali-pollution-kisaan-ki-majboori": {
+    "file": "articles/parali-pollution-kisaan-ki-majboori.txt",
+    "bodyLines": 78,
+    "h1": 1,
+    "jsonld": 3,
+    "title": "पराली जलाना — किसान की मजबूरी या हमारी गलत सोच? — Kissan Sahyog"
+  },
+  "/bazaar/agri-inputs": {
+    "file": "bazaar/agri-inputs.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "बीज, खाद और दवा — किसान और दुकानें | किसान सहयोग बाज़ार"
+  },
+  "/bazaar/bhusa": {
+    "file": "bazaar/bhusa.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "भूसा, पराली और चारा बेचें या खरीदें | किसान सहयोग बाज़ार"
+  },
+  "/bazaar/building-materials": {
+    "file": "bazaar/building-materials.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "निर्माण सामग्री खरीदें या बेचें | किसान सहयोग बाज़ार"
+  },
+  "/bazaar/equipment": {
+    "file": "bazaar/equipment.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "कृषि मशीनें किराये पर — ट्रैक्टर, हार्वेस्टर, थ्रेशर | किसान"
+  },
+  "/bazaar": {
+    "file": "bazaar.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "किसान सहयोग बाज़ार — मशीन, मज़दूर, भूसा, बीज-खाद, ज़मीन"
+  },
+  "/bazaar/labor": {
+    "file": "bazaar/labor.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "खेत मज़दूर और टीम खोजें या दें | किसान सहयोग बाज़ार"
+  },
+  "/bazaar/land": {
+    "file": "bazaar/land.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "खेती की ज़मीन पट्टे या बटाई पर — खोजें या दें | किसान सहयोग"
+  },
+  "/bazaar/transport": {
+    "file": "bazaar/transport.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "खेत से मंडी तक ढुलाई — ट्रैक्टर-ट्रॉली, ट्रक | किसान सहयोग ब"
+  },
+  "/bazaar/vegetable-equipment": {
+    "file": "bazaar/vegetable-equipment.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "सब्ज़ी खेती के यंत्र खोजें या किराये पर दें | किसान सहयोग बा"
+  },
+  "/carbon-credit": {
+    "file": "carbon-credit.txt",
+    "bodyLines": 286,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "कार्बन क्रेडिट: क्या यह किसानों की आय का नया ज़रिया बन सकता"
+  },
+  "/carbon-credit/niti-sujhav": {
+    "file": "carbon-credit/niti-sujhav.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 3,
+    "title": "कार्बन क्रेडिट — नीति सुझाव (मध्य प्रदेश)"
+  },
+  "/cold-storage/anuppur": {
+    "file": "cold-storage/anuppur.txt",
+    "bodyLines": 117,
+    "h1": 1,
+    "jsonld": 8,
+    "title": "Anuppur कोल्ड स्टोरेज"
+  },
+  "/cold-storage/balaghat": {
+    "file": "cold-storage/balaghat.txt",
+    "bodyLines": 85,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "Balaghat कोल्ड स्टोरेज"
+  },
+  "/cold-storage/barwani": {
+    "file": "cold-storage/barwani.txt",
+    "bodyLines": 85,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "Barwani कोल्ड स्टोरेज"
+  },
+  "/cold-storage/betul": {
+    "file": "cold-storage/betul.txt",
+    "bodyLines": 85,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "Betul कोल्ड स्टोरेज"
+  },
+  "/cold-storage/bhind": {
+    "file": "cold-storage/bhind.txt",
+    "bodyLines": 174,
+    "h1": 1,
+    "jsonld": 13,
+    "title": "Bhind कोल्ड स्टोरेज"
+  },
+  "/cold-storage/bhopal": {
+    "file": "cold-storage/bhopal.txt",
+    "bodyLines": 194,
+    "h1": 1,
+    "jsonld": 15,
+    "title": "Bhopal कोल्ड स्टोरेज"
+  },
+  "/cold-storage/burhanpur": {
+    "file": "cold-storage/burhanpur.txt",
+    "bodyLines": 103,
+    "h1": 1,
+    "jsonld": 7,
+    "title": "Burhanpur कोल्ड स्टोरेज"
+  },
+  "/cold-storage/chhatarpur": {
+    "file": "cold-storage/chhatarpur.txt",
+    "bodyLines": 105,
+    "h1": 1,
+    "jsonld": 7,
+    "title": "Chhatarpur कोल्ड स्टोरेज"
+  },
+  "/cold-storage/chhindwara": {
+    "file": "cold-storage/chhindwara.txt",
+    "bodyLines": 134,
+    "h1": 1,
+    "jsonld": 10,
+    "title": "Chhindwara कोल्ड स्टोरेज"
+  },
+  "/cold-storage/dewas": {
+    "file": "cold-storage/dewas.txt",
+    "bodyLines": 152,
+    "h1": 1,
+    "jsonld": 11,
+    "title": "Dewas कोल्ड स्टोरेज"
+  },
+  "/cold-storage/dhar": {
+    "file": "cold-storage/dhar.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 7,
+    "title": "Dhar कोल्ड स्टोरेज"
+  },
+  "/cold-storage/guna": {
+    "file": "cold-storage/guna.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 8,
+    "title": "Guna कोल्ड स्टोरेज"
+  },
+  "/cold-storage/gwalior": {
+    "file": "cold-storage/gwalior.txt",
+    "bodyLines": 325,
+    "h1": 1,
+    "jsonld": 29,
+    "title": "Gwalior कोल्ड स्टोरेज"
+  },
+  "/cold-storage": {
+    "file": "cold-storage.txt",
+    "bodyLines": 2583,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मध्य प्रदेश कोल्ड स्टोरेज खोजें — गोदाम सूची"
+  },
+  "/cold-storage/indore": {
+    "file": "cold-storage/indore.txt",
+    "bodyLines": 646,
+    "h1": 1,
+    "jsonld": 67,
+    "title": "Indore कोल्ड स्टोरेज"
+  },
+  "/cold-storage/jabalpur": {
+    "file": "cold-storage/jabalpur.txt",
+    "bodyLines": 137,
+    "h1": 1,
+    "jsonld": 10,
+    "title": "Jabalpur कोल्ड स्टोरेज"
+  },
+  "/cold-storage/jhabua": {
+    "file": "cold-storage/jhabua.txt",
+    "bodyLines": 85,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "Jhabua कोल्ड स्टोरेज"
+  },
+  "/cold-storage/katni": {
+    "file": "cold-storage/katni.txt",
+    "bodyLines": 126,
+    "h1": 1,
+    "jsonld": 9,
+    "title": "Katni कोल्ड स्टोरेज"
+  },
+  "/cold-storage/khandwa": {
+    "file": "cold-storage/khandwa.txt",
+    "bodyLines": 94,
+    "h1": 1,
+    "jsonld": 6,
+    "title": "Khandwa कोल्ड स्टोरेज"
+  },
+  "/cold-storage/khargone": {
+    "file": "cold-storage/khargone.txt",
+    "bodyLines": 94,
+    "h1": 1,
+    "jsonld": 7,
+    "title": "Khargone कोल्ड स्टोरेज"
+  },
+  "/cold-storage/mandsaur": {
+    "file": "cold-storage/mandsaur.txt",
+    "bodyLines": 116,
+    "h1": 1,
+    "jsonld": 8,
+    "title": "Mandsaur कोल्ड स्टोरेज"
+  },
+  "/cold-storage/morena": {
+    "file": "cold-storage/morena.txt",
+    "bodyLines": 270,
+    "h1": 1,
+    "jsonld": 21,
+    "title": "Morena कोल्ड स्टोरेज"
+  },
+  "/cold-storage/narmadapuram-hoshangabad": {
+    "file": "cold-storage/narmadapuram-hoshangabad.txt",
+    "bodyLines": 88,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "Narmadapuram (Hoshangabad) कोल्ड स्टोरेज"
+  },
+  "/cold-storage/neemuch": {
+    "file": "cold-storage/neemuch.txt",
+    "bodyLines": 111,
+    "h1": 1,
+    "jsonld": 7,
+    "title": "Neemuch कोल्ड स्टोरेज"
+  },
+  "/cold-storage/niwari": {
+    "file": "cold-storage/niwari.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 6,
+    "title": "Niwari कोल्ड स्टोरेज"
+  },
+  "/cold-storage/raisen": {
+    "file": "cold-storage/raisen.txt",
+    "bodyLines": 85,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "Raisen कोल्ड स्टोरेज"
+  },
+  "/cold-storage/ratlam": {
+    "file": "cold-storage/ratlam.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 7,
+    "title": "Ratlam कोल्ड स्टोरेज"
+  },
+  "/cold-storage/rewa": {
+    "file": "cold-storage/rewa.txt",
+    "bodyLines": 122,
+    "h1": 1,
+    "jsonld": 8,
+    "title": "Rewa कोल्ड स्टोरेज"
+  },
+  "/cold-storage/sagar": {
+    "file": "cold-storage/sagar.txt",
+    "bodyLines": 117,
+    "h1": 1,
+    "jsonld": 8,
+    "title": "Sagar कोल्ड स्टोरेज"
+  },
+  "/cold-storage/satna": {
+    "file": "cold-storage/satna.txt",
+    "bodyLines": 134,
+    "h1": 1,
+    "jsonld": 9,
+    "title": "Satna कोल्ड स्टोरेज"
+  },
+  "/cold-storage/shajapur": {
+    "file": "cold-storage/shajapur.txt",
+    "bodyLines": 193,
+    "h1": 1,
+    "jsonld": 16,
+    "title": "Shajapur कोल्ड स्टोरेज"
+  },
+  "/cold-storage/shivpuri": {
+    "file": "cold-storage/shivpuri.txt",
+    "bodyLines": 186,
+    "h1": 1,
+    "jsonld": 15,
+    "title": "Shivpuri कोल्ड स्टोरेज"
+  },
+  "/cold-storage/tikamgarh": {
+    "file": "cold-storage/tikamgarh.txt",
+    "bodyLines": 93,
+    "h1": 1,
+    "jsonld": 6,
+    "title": "Tikamgarh कोल्ड स्टोरेज"
+  },
+  "/cold-storage/ujjain": {
+    "file": "cold-storage/ujjain.txt",
+    "bodyLines": 194,
+    "h1": 1,
+    "jsonld": 15,
+    "title": "Ujjain कोल्ड स्टोरेज"
+  },
+  "/cold-storage/vidisha": {
+    "file": "cold-storage/vidisha.txt",
+    "bodyLines": 87,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "Vidisha कोल्ड स्टोरेज"
+  },
+  "/contact": {
+    "file": "contact.txt",
+    "bodyLines": 74,
+    "h1": 1,
+    "jsonld": 3,
+    "title": "संपर्क — किसान सहयोग"
+  },
+  "/credits": {
+    "file": "credits.txt",
+    "bodyLines": 174,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "फोटो श्रेय — किसान सहयोग"
+  },
+  "/drone-didi": {
+    "file": "drone-didi.txt",
+    "bodyLines": 77,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "ड्रोन दीदी — छिड़काव सेवा व जानकारी"
+  },
+  "/fasal-salah": {
+    "file": "fasal-salah.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 3,
+    "title": "फसल सलाह — बुवाई से कटाई तक"
+  },
+  "/fasal/chilli/samasya": {
+    "file": "fasal/chilli/samasya.txt",
+    "bodyLines": 90,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मिर्च की आम समस्याएँ और समाधान"
+  },
+  "/fasal/garlic/samasya": {
+    "file": "fasal/garlic/samasya.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "लहसुन की आम समस्याएँ और समाधान"
+  },
+  "/fasal/gram/samasya": {
+    "file": "fasal/gram/samasya.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "चना की आम समस्याएँ और समाधान"
+  },
+  "/fasal/lentil/samasya": {
+    "file": "fasal/lentil/samasya.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मसूर की आम समस्याएँ और समाधान"
+  },
+  "/fasal/linseed/samasya": {
+    "file": "fasal/linseed/samasya.txt",
+    "bodyLines": 98,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "kbcrop_linseed की आम समस्याएँ और समाधान"
+  },
+  "/fasal/maize/samasya": {
+    "file": "fasal/maize/samasya.txt",
+    "bodyLines": 98,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मक्का की आम समस्याएँ और समाधान"
+  },
+  "/fasal/moong/samasya": {
+    "file": "fasal/moong/samasya.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग की आम समस्याएँ और समाधान"
+  },
+  "/fasal/mustard/samasya": {
+    "file": "fasal/mustard/samasya.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सरसों की आम समस्याएँ और समाधान"
+  },
+  "/fasal/onion/samasya": {
+    "file": "fasal/onion/samasya.txt",
+    "bodyLines": 94,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "प्याज़ की आम समस्याएँ और समाधान"
+  },
+  "/fasal/paddy/samasya": {
+    "file": "fasal/paddy/samasya.txt",
+    "bodyLines": 86,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "धान की आम समस्याएँ और समाधान"
+  },
+  "/fasal/pea/samasya": {
+    "file": "fasal/pea/samasya.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "kbcrop_pea की आम समस्याएँ और समाधान"
+  },
+  "/fasal/soybean/samasya": {
+    "file": "fasal/soybean/samasya.txt",
+    "bodyLines": 126,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सोयाबीन की आम समस्याएँ और समाधान"
+  },
+  "/fasal/sugarcane/samasya": {
+    "file": "fasal/sugarcane/samasya.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "kbcrop_sugarcane की आम समस्याएँ और समाधान"
+  },
+  "/fasal/sunflower/samasya": {
+    "file": "fasal/sunflower/samasya.txt",
+    "bodyLines": 98,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "kbcrop_sunflower की आम समस्याएँ और समाधान"
+  },
+  "/fasal/tomato/samasya": {
+    "file": "fasal/tomato/samasya.txt",
+    "bodyLines": 98,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "टमाटर की आम समस्याएँ और समाधान"
+  },
+  "/fasal/urad/samasya": {
+    "file": "fasal/urad/samasya.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "उड़द की आम समस्याएँ और समाधान"
+  },
+  "/fasal/wheat/samasya": {
+    "file": "fasal/wheat/samasya.txt",
+    "bodyLines": 130,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं की आम समस्याएँ और समाधान"
+  },
+  "/founder": {
+    "file": "founder.txt",
+    "bodyLines": 163,
+    "h1": 1,
+    "jsonld": 6,
+    "title": "श्री अभिनन्दन दीक्षित — संस्थापक, किसान सहयोग"
+  },
+  "/greenhouse": {
+    "file": "greenhouse.txt",
+    "bodyLines": 159,
+    "h1": 1,
+    "jsonld": 3,
+    "title": "ग्रीनहाउस / पॉलीहाउस — वेंडर व ज़रूरतें"
+  },
+  "/greenhouse/subsidy": {
+    "file": "greenhouse/subsidy.txt",
+    "bodyLines": 389,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "ग्रीनहाउस / पॉलीहाउस सब्सिडी गाइड — मध्य प्रदेश"
+  },
+  "/grievance": {
+    "file": "grievance.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सुझाव और शिकायत — किसान सहयोग"
+  },
+  "/guide/find": {
+    "file": "guide/find.txt",
+    "bodyLines": 115,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "बेचने वाले का नंबर कैसे मिलेगा — किसान सहयोग गाइड"
+  },
+  "/guide": {
+    "file": "guide.txt",
+    "bodyLines": 87,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "गाइड — किसान सहयोग चलाना सीखें, 1 मिनट के डेमो"
+  },
+  "/guide/post": {
+    "file": "guide/post.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "मशीन या सामान कैसे पोस्ट करें — किसान सहयोग गाइड"
+  },
+  "/guide/register": {
+    "file": "guide/register.txt",
+    "bodyLines": 119,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "रजिस्टर कैसे करें — किसान सहयोग गाइड"
+  },
+  "/guide/tour": {
+    "file": "guide/tour.txt",
+    "bodyLines": 94,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "एक मिनट में पूरा टूर — किसान सहयोग गाइड"
+  },
+  "/how-to-use": {
+    "file": "how-to-use.txt",
+    "bodyLines": 279,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "वेबसाइट कैसे इस्तेमाल करें — किसान सहयोग"
+  },
+  "/": {
+    "file": "index.txt",
+    "bodyLines": 386,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार"
+  },
+  "/info": {
+    "file": "info.txt",
+    "bodyLines": 121,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "जानकारी — मंडी, MSP, मौसम व योजनाएं"
+  },
+  "/jugaad": {
+    "file": "jugaad.txt",
+    "bodyLines": 124,
+    "h1": 1,
+    "jsonld": 3,
+    "title": "जुगाड़ / देसी आविष्कार — बाज़ार"
+  },
+  "/jugaad/jankari": {
+    "file": "jugaad/jankari.txt",
+    "bodyLines": 231,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "जुगाड़ और देसी आविष्कार — जानकारी गाइड | किसान सहयोग"
+  },
+  "/kisan-mela": {
+    "file": "kisan-mela.txt",
+    "bodyLines": 876,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "किसान मेला कैलेंडर — मध्य प्रदेश"
+  },
+  "/kisan-mela/submit": {
+    "file": "kisan-mela/submit.txt",
+    "bodyLines": 127,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "किसान मेला की जानकारी दें — किसान सहयोग"
+  },
+  "/mausam": {
+    "file": "mausam.txt",
+    "bodyLines": 96,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मौसम — सागर संभाग का पूर्वानुमान"
+  },
+  "/msp/chana": {
+    "file": "msp/chana.txt",
+    "bodyLines": 243,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "चना मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp/dhan": {
+    "file": "msp/dhan.txt",
+    "bodyLines": 243,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "धान मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp/gehun": {
+    "file": "msp/gehun.txt",
+    "bodyLines": 289,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "गेहूं मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp": {
+    "file": "msp.txt",
+    "bodyLines": 289,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य"
+  },
+  "/msp/lahsun": {
+    "file": "msp/lahsun.txt",
+    "bodyLines": 207,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "लहसुन मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp/makka": {
+    "file": "msp/makka.txt",
+    "bodyLines": 287,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "मक्का मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp/masoor": {
+    "file": "msp/masoor.txt",
+    "bodyLines": 241,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "मसूर मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp/moong": {
+    "file": "msp/moong.txt",
+    "bodyLines": 241,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "मूंग मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp/sarson": {
+    "file": "msp/sarson.txt",
+    "bodyLines": 287,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "सरसों मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp/soyabean": {
+    "file": "msp/soyabean.txt",
+    "bodyLines": 289,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "सोयाबीन मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/msp/urad": {
+    "file": "msp/urad.txt",
+    "bodyLines": 237,
+    "h1": 1,
+    "jsonld": 5,
+    "title": "उड़द मंडी भाव व MSP — किसान सहयोग"
+  },
+  "/privacy": {
+    "file": "privacy.txt",
+    "bodyLines": 86,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "गोपनीयता नीति — किसान सहयोग"
+  },
+  "/resources": {
+    "file": "resources.txt",
+    "bodyLines": 68,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "उपयोगी संपर्क — कृषि विभाग, KVK, हेल्पलाइन"
+  },
+  "/safalta": {
+    "file": "safalta.txt",
+    "bodyLines": 67,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "किसान सफलता की कहानियां — किसान सहयोग"
+  },
+  "/sawaal/agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri": {
+    "file": "sawaal/agale-tina-chaara-dina-baarisha-sanbhaavanaa-meri.txt",
+    "bodyLines": 124,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "अगले तीन-चार दिन बारिश की संभावना है, मेरी कटी सोयाबीन का क्"
+  },
+  "/sawaal/alsi-buwai-samay-beej-dar-mp": {
+    "file": "sawaal/alsi-buwai-samay-beej-dar-mp.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "अलसी की बुवाई का समय और बीज दर क्या है?"
+  },
+  "/sawaal/alsi-fali-makkhi-gerua-control": {
+    "file": "sawaal/alsi-fali-makkhi-gerua-control.txt",
+    "bodyLines": 107,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "अलसी में फली मक्खी और गेरूआ रोग का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/alsi-khaad-aur-sinchai-mp": {
+    "file": "sawaal/alsi-khaad-aur-sinchai-mp.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "अलसी में खाद और सिंचाई कैसे करें?"
+  },
+  "/sawaal/alsi-unnat-kismein-mp": {
+    "file": "sawaal/alsi-unnat-kismein-mp.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "अलसी की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/anaj-bhandaran-basics": {
+    "file": "sawaal/anaj-bhandaran-basics.txt",
+    "bodyLines": 104,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "घर/खेत पर अनाज का सुरक्षित भंडारण कैसे करें?"
+  },
+  "/sawaal/chana-beej-dar-desi-kabuli": {
+    "file": "sawaal/chana-beej-dar-desi-kabuli.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "चने में बीज दर कितनी रखें (देशी और काबुली)?"
+  },
+  "/sawaal/chana-beej-upchar-rhizobium-mp": {
+    "file": "sawaal/chana-beej-upchar-rhizobium-mp.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "चने का बीज उपचार कैसे करें?"
+  },
+  "/sawaal/chana-khaad-urvarak-matra-mp": {
+    "file": "sawaal/chana-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "चने में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/chana-sowing-varieties-mp": {
+    "file": "sawaal/chana-sowing-varieties-mp.txt",
+    "bodyLines": 120,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मध्य प्रदेश में चने की कौन सी किस्में और बुवाई का समय ठीक है"
+  },
+  "/sawaal/chane-phasala-illi-phali-chhedaka-laga-gai": {
+    "file": "sawaal/chane-phasala-illi-phali-chhedaka-laga-gai.txt",
+    "bodyLines": 127,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "चने में इल्ली (फली छेदक) लग गई है, क्या करें?"
+  },
+  "/sawaal/chilli-fruit-rot-field-sanitation": {
+    "file": "sawaal/chilli-fruit-rot-field-sanitation.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मिर्च में फल सड़न व फफूंद रोग से बचाव के लिए खेत प्रबंधन कैस"
+  },
+  "/sawaal/chilli-thrips-sucking-pests-ipm": {
+    "file": "sawaal/chilli-thrips-sucking-pests-ipm.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मिर्च में थ्रिप्स व रस चूसक कीटों का सुरक्षित (कम-दवा) प्रबं"
+  },
+  "/sawaal/dhaana-narsari-paudhe-pile-kamajora-raha-gae": {
+    "file": "sawaal/dhaana-narsari-paudhe-pile-kamajora-raha-gae.txt",
+    "bodyLines": 111,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "धान की नर्सरी के पौधे पीले और कमजोर रह गए हैं, क्या करूँ?"
+  },
+  "/sawaal/drona-didi-yojanaa-gaanva-drona-davaa-chhidakaava": {
+    "file": "sawaal/drona-didi-yojanaa-gaanva-drona-davaa-chhidakaava.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "नमो ड्रोन दीदी योजना क्या है और गाँव में ड्रोन से दवा छिड़का"
+  },
+  "/sawaal/enam-auction-accept-reject": {
+    "file": "sawaal/enam-auction-accept-reject.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "e-NAM auction के बाद sell price पर क्या कर सकते हैं?"
+  },
+  "/sawaal/enam-farmer-app-register": {
+    "file": "sawaal/enam-farmer-app-register.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "e-NAM app में किसान registration कैसे शुरू करें?"
+  },
+  "/sawaal/enam-my-lots-history": {
+    "file": "sawaal/enam-my-lots-history.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "e-NAM में पुरानी lots की जानकारी कहाँ दिखती है?"
+  },
+  "/sawaal/enam-trader-registration-fee": {
+    "file": "sawaal/enam-trader-registration-fee.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "e-NAM trader registration की fee लगती है?"
+  },
+  "/sawaal/enam-trader-registration-ways": {
+    "file": "sawaal/enam-trader-registration-ways.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "e-NAM में trader registration के तरीके क्या हैं?"
+  },
+  "/sawaal/enam-transparent-bidding": {
+    "file": "sawaal/enam-transparent-bidding.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "e-NAM में trading कैसे होती है?"
+  },
+  "/sawaal/ganna-agratana-chhedak-pyrilla-control": {
+    "file": "sawaal/ganna-agratana-chhedak-pyrilla-control.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गन्ने में अग्रतना छेदक और पाइरिल्ला का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/ganna-beej-upchar-mp": {
+    "file": "sawaal/ganna-beej-upchar-mp.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गन्ने के टुकड़ों (बीज) का उपचार कैसे करें?"
+  },
+  "/sawaal/ganna-buwai-samay-beej-dar-mp": {
+    "file": "sawaal/ganna-buwai-samay-beej-dar-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गन्ने की शरदकालीन बुवाई का समय और बीज दर क्या है?"
+  },
+  "/sawaal/ganna-khaad-urvarak-matra-mp": {
+    "file": "sawaal/ganna-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गन्ने में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/ganna-sinchai-garmi-thand-mp": {
+    "file": "sawaal/ganna-sinchai-garmi-thand-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गन्ने में सिंचाई कितने अंतराल पर करें?"
+  },
+  "/sawaal/ganna-unnat-kismein-mp": {
+    "file": "sawaal/ganna-unnat-kismein-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गन्ने की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/garlic-thrips-mite": {
+    "file": "sawaal/garlic-thrips-mite.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "लहसुन में थ्रिप्स और माइट (चुरदा) का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/gehun-beej-dar-kitni-rakhein": {
+    "file": "sawaal/gehun-beej-dar-kitni-rakhein.txt",
+    "bodyLines": 111,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं में बीज दर कितनी रखें?"
+  },
+  "/sawaal/gehun-beej-upchar-buwai-se-pehle": {
+    "file": "sawaal/gehun-beej-upchar-buwai-se-pehle.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं का बीज उपचार बुवाई से पहले कैसे करें?"
+  },
+  "/sawaal/gehun-buwai-ka-sahi-samay-sagar": {
+    "file": "sawaal/gehun-buwai-ka-sahi-samay-sagar.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं की बुवाई का सही समय क्या है?"
+  },
+  "/sawaal/gehun-kauna-kisma-saagara-achchhi-sinchaai-kitani": {
+    "file": "sawaal/gehun-kauna-kisma-saagara-achchhi-sinchaai-kitani.txt",
+    "bodyLines": 120,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सागर में गेहूं की कौन-सी किस्म अच्छी है और कितनी सिंचाई चाहि"
+  },
+  "/sawaal/gehun-khaad-urvarak-matra-mp": {
+    "file": "sawaal/gehun-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 117,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan": {
+    "file": "sawaal/gehun-pattiyon-bhure-pile-chakatte-naarangi-dhaariyaan.txt",
+    "bodyLines": 125,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं की पत्तियों पर पीले-नारंगी धारीदार धब्बे आ रहे हैं, क्"
+  },
+  "/sawaal/gehun-sinchai-kab-aur-kitni-bar": {
+    "file": "sawaal/gehun-sinchai-kab-aur-kitni-bar.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं में सिंचाई कब और कितनी बार करें?"
+  },
+  "/sawaal/gram-pod-borer-control": {
+    "file": "sawaal/gram-pod-borer-control.txt",
+    "bodyLines": 120,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "चने में फली छेदक (हेलीकोवर्पा) का नियंत्रण कैसे करें?"
+  },
+  "/sawaal": {
+    "file": "sawaal.txt",
+    "bodyLines": 283,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "किसान सवाल — खेती के सवालों के जवाब"
+  },
+  "/sawaal/kcc-byaj-dar": {
+    "file": "sawaal/kcc-byaj-dar.txt",
+    "bodyLines": 115,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "किसान क्रेडिट कार्ड पर ब्याज दर कितनी है?"
+  },
+  "/sawaal/kcc-kaise-apply": {
+    "file": "sawaal/kcc-kaise-apply.txt",
+    "bodyLines": 120,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "किसान क्रेडिट कार्ड के लिए कौन और कैसे आवेदन कर सकता है?"
+  },
+  "/sawaal/kcc-kya-hai": {
+    "file": "sawaal/kcc-kya-hai.txt",
+    "bodyLines": 117,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "किसान क्रेडिट कार्ड (KCC) क्या है और लोन लिमिट कितनी है?"
+  },
+  "/sawaal/kheti-juda-sarakaari-salaaha-mausama-jaanakaari-mujhe": {
+    "file": "sawaal/kheti-juda-sarakaari-salaaha-mausama-jaanakaari-mujhe.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "खेती से जुड़ी सरकारी सलाह और मौसम की जानकारी मुझे कहाँ से मि"
+  },
+  "/sawaal/lahsun-baingani-dhabba-purple-blotch": {
+    "file": "sawaal/lahsun-baingani-dhabba-purple-blotch.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "लहसुन में बैंगनी धब्बा (पर्पल ब्लॉच) रोग से कैसे बचें?"
+  },
+  "/sawaal/lahsun-buwai-samay-beej-dar-mp": {
+    "file": "sawaal/lahsun-buwai-samay-beej-dar-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "लहसुन की बुवाई का समय और बीज दर क्या है?"
+  },
+  "/sawaal/lahsun-khaad-urvarak-matra-mp": {
+    "file": "sawaal/lahsun-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "लहसुन में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/lahsun-sinchai-kab-karein": {
+    "file": "sawaal/lahsun-sinchai-kab-karein.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "लहसुन में सिंचाई कब और कितने अंतराल पर करें?"
+  },
+  "/sawaal/lahsun-unnat-kismein-mp": {
+    "file": "sawaal/lahsun-unnat-kismein-mp.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "लहसुन की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/maize-fall-armyworm-control": {
+    "file": "sawaal/maize-fall-armyworm-control.txt",
+    "bodyLines": 107,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मक्का में फॉल आर्मीवर्म (फॉल सैन्य कीट) का नियंत्रण कैसे करे"
+  },
+  "/sawaal/maize-recommended-varieties": {
+    "file": "sawaal/maize-recommended-varieties.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मक्का की कौन-सी किस्में/हाइब्रिड अच्छी हैं?"
+  },
+  "/sawaal/maize-sowing-time-seed-rate": {
+    "file": "sawaal/maize-sowing-time-seed-rate.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मक्का की बुआई कब करें और बीज दर कितनी रखें?"
+  },
+  "/sawaal/makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon": {
+    "file": "sawaal/makkaa-phasala-tanaa-chhedaka-jaisaa-kita-pattiyon.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मक्का में तना छेदक जैसा कीट पत्तियों को खा रहा है, क्या करें"
+  },
+  "/sawaal/masoor-fali-chhedak-control": {
+    "file": "sawaal/masoor-fali-chhedak-control.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मसूर में फली छेदक का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/masoor-gerui-ratua-rust-control": {
+    "file": "sawaal/masoor-gerui-ratua-rust-control.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मसूर में गेरूई / रतुआ रोग का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/masoor-khaad-urvarak-matra-mp": {
+    "file": "sawaal/masoor-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मसूर में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/masoor-mahu-aphid-control": {
+    "file": "sawaal/masoor-mahu-aphid-control.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मसूर में माहू (चेंपा) का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/masoor-sinchai-kab-karein": {
+    "file": "sawaal/masoor-sinchai-kab-karein.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मसूर में सिंचाई कब करें?"
+  },
+  "/sawaal/masoor-ukatha-wilt-rokthaam": {
+    "file": "sawaal/masoor-ukatha-wilt-rokthaam.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मसूर में उकठा (विल्ट) रोग को कैसे रोकें?"
+  },
+  "/sawaal/masoor-unnat-kismein-mp": {
+    "file": "sawaal/masoor-unnat-kismein-mp.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मध्य प्रदेश के लिए मसूर की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/masura-buvaai-sahi-samaya-bija-dara-bija": {
+    "file": "sawaal/masura-buvaai-sahi-samaya-bija-dara-bija.txt",
+    "bodyLines": 125,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मसूर की बुवाई का सही समय, बीज दर और बीज उपचार क्या है?"
+  },
+  "/sawaal/matar-beej-upchar-mp": {
+    "file": "sawaal/matar-beej-upchar-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मटर का बीज उपचार कैसे करें?"
+  },
+  "/sawaal/matar-bhabhutiya-powdery-mildew-control": {
+    "file": "sawaal/matar-bhabhutiya-powdery-mildew-control.txt",
+    "bodyLines": 109,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मटर में भभूतिया (चूर्णिल आसिता) रोग का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/matar-buwai-samay-beej-dar-mp": {
+    "file": "sawaal/matar-buwai-samay-beej-dar-mp.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मटर की बुवाई का समय और बीज दर क्या है?"
+  },
+  "/sawaal/matar-fali-chhedak-mahu-control": {
+    "file": "sawaal/matar-fali-chhedak-mahu-control.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मटर में फली छेदक और माहू का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/matar-khaad-urvarak-matra-mp": {
+    "file": "sawaal/matar-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मटर में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/matar-unnat-kismein-mp": {
+    "file": "sawaal/matar-unnat-kismein-mp.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मटर की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/mere-kheta-mitti-kaali-chikani-soyaabina-bone": {
+    "file": "sawaal/mere-kheta-mitti-kaali-chikani-soyaabina-bone.txt",
+    "bodyLines": 135,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मेरे खेत की मिट्टी काली-चिकनी है, सोयाबीन बोने से पहले मिट्ट"
+  },
+  "/sawaal/meri-soyaabina-patte-upara-pile-pada-rahe": {
+    "file": "sawaal/meri-soyaabina-patte-upara-pile-pada-rahe.txt",
+    "bodyLines": 124,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मेरी सोयाबीन के पत्ते ऊपर से पीले पड़ रहे हैं, क्या करूँ?"
+  },
+  "/sawaal/moong-beej-dar-kitni-mp": {
+    "file": "sawaal/moong-beej-dar-kitni-mp.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग में बीज दर कितनी रखें?"
+  },
+  "/sawaal/moong-beej-upchar-rhizobium-mp": {
+    "file": "sawaal/moong-beej-upchar-rhizobium-mp.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग का बीज उपचार कैसे करें?"
+  },
+  "/sawaal/moong-buwai-ka-samay-mp": {
+    "file": "sawaal/moong-buwai-ka-samay-mp.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग की बुवाई का सही समय क्या है?"
+  },
+  "/sawaal/moong-fali-chhedak-control": {
+    "file": "sawaal/moong-fali-chhedak-control.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग में फली छेदक का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/moong-khaad-urvarak-matra-mp": {
+    "file": "sawaal/moong-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/moong-parndaag-hara-fudka-control": {
+    "file": "sawaal/moong-parndaag-hara-fudka-control.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग में पर्णदाग रोग और हरा फुदका/माहू का नियंत्रण कैसे करें"
+  },
+  "/sawaal/moong-pila-mosaic-ymv-control": {
+    "file": "sawaal/moong-pila-mosaic-ymv-control.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग में पीला मोज़ेक (YMV) रोग का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/moong-unnat-kismein-mp": {
+    "file": "sawaal/moong-unnat-kismein-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मूंग की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/msp-kya-hai": {
+    "file": "sawaal/msp-kya-hai.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "एमएसपी (MSP) क्या है और यह कैसे तय होती है?"
+  },
+  "/sawaal/msp-par-kaise-bechein-mp": {
+    "file": "sawaal/msp-par-kaise-bechein-mp.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मध्य प्रदेश में एमएसपी पर गेहूं/धान कैसे बेचें?"
+  },
+  "/sawaal/onion-purple-blotch": {
+    "file": "sawaal/onion-purple-blotch.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "प्याज में बैंगनी धब्बा (पर्पल ब्लॉच) रोग का प्रबंधन कैसे करे"
+  },
+  "/sawaal/onion-rabi-storage": {
+    "file": "sawaal/onion-rabi-storage.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "रबी प्याज का भंडारण कैसे करें ताकि नुकसान कम हो?"
+  },
+  "/sawaal/onion-thrips-control": {
+    "file": "sawaal/onion-thrips-control.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "प्याज में थ्रिप्स (रस चूसक कीट) का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/pada-kheton-soyaabina-pili-pada-rahi-yaha": {
+    "file": "sawaal/pada-kheton-soyaabina-pili-pada-rahi-yaha.txt",
+    "bodyLines": 126,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पड़ोस के खेतों में सोयाबीन पीली पड़ रही है — यह क्या है?"
+  },
+  "/sawaal/pm-kisan-ekyc": {
+    "file": "sawaal/pm-kisan-ekyc.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पीएम-किसान में ई-केवाईसी क्यों जरूरी है?"
+  },
+  "/sawaal/pm-kisan-kya-hai": {
+    "file": "sawaal/pm-kisan-kya-hai.txt",
+    "bodyLines": 111,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पीएम-किसान योजना क्या है और इसमें कितने पैसे मिलते हैं?"
+  },
+  "/sawaal/pm-kisan-patrata": {
+    "file": "sawaal/pm-kisan-patrata.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पीएम-किसान का पैसा किस किसान को मिलता है (पात्रता)?"
+  },
+  "/sawaal/pm-kisan-status-kaise-dekhein": {
+    "file": "sawaal/pm-kisan-status-kaise-dekhein.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पीएम-किसान का स्टेटस (किस्त) कैसे चेक करें?"
+  },
+  "/sawaal/pmfby-claim-kaise": {
+    "file": "sawaal/pmfby-claim-kaise.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "फसल खराब होने पर बीमा क्लेम कैसे और कब करें?"
+  },
+  "/sawaal/pmfby-kya-hai": {
+    "file": "sawaal/pmfby-kya-hai.txt",
+    "bodyLines": 119,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "प्रधानमंत्री फसल बीमा योजना (PMFBY) क्या कवर करती है?"
+  },
+  "/sawaal/pmfby-premium-kitna": {
+    "file": "sawaal/pmfby-premium-kitna.txt",
+    "bodyLines": 119,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "फसल बीमा में किसान को कितना प्रीमियम देना होता है?"
+  },
+  "/sawaal/pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista": {
+    "file": "sawaal/pradhaanamantri-kisaana-sammaana-nidhi-pm-kisan-kista.txt",
+    "bodyLines": 135,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पीएम-किसान की किस्त नहीं आई, क्या करूँ?"
+  },
+  "/sawaal/sarason-phasala-maahu-chenpaa-laga-gayaa-tahaniyon": {
+    "file": "sawaal/sarason-phasala-maahu-chenpaa-laga-gayaa-tahaniyon.txt",
+    "bodyLines": 127,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सरसों की फसल में माहू (चेंपा) टहनियों पर लग गया है, क्या करे"
+  },
+  "/sawaal/sarson-beej-dar-kitni-mp": {
+    "file": "sawaal/sarson-beej-dar-kitni-mp.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सरसों में बीज दर कितनी रखें?"
+  },
+  "/sawaal/sarson-beej-upchar-safed-ratua": {
+    "file": "sawaal/sarson-beej-upchar-safed-ratua.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सरसों का बीज उपचार कैसे करें (सफेद रतुआ, तना गलन)?"
+  },
+  "/sawaal/sarson-buwai-ka-sahi-samay-mp": {
+    "file": "sawaal/sarson-buwai-ka-sahi-samay-mp.txt",
+    "bodyLines": 115,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सरसों की बुवाई का सही समय क्या है?"
+  },
+  "/sawaal/sarson-khaad-urvarak-matra-mp": {
+    "file": "sawaal/sarson-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 115,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सरसों में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/sarson-sinchai-kab-karein": {
+    "file": "sawaal/sarson-sinchai-kab-karein.txt",
+    "bodyLines": 112,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सरसों में सिंचाई कब करें?"
+  },
+  "/sawaal/sarson-unnat-kismein-mp": {
+    "file": "sawaal/sarson-unnat-kismein-mp.txt",
+    "bodyLines": 113,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मध्य प्रदेश के लिए सरसों की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/soil-health-card-kaise": {
+    "file": "sawaal/soil-health-card-kaise.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मिट्टी की जांच कैसे कराएं और कार्ड कैसे पढ़ें?"
+  },
+  "/sawaal/soil-health-card-kya-hai": {
+    "file": "sawaal/soil-health-card-kya-hai.txt",
+    "bodyLines": 117,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सॉयल हेल्थ कार्ड (मृदा स्वास्थ्य कार्ड) क्या है?"
+  },
+  "/sawaal/soil-health-card-languages": {
+    "file": "sawaal/soil-health-card-languages.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "Soil Health Card कितनी भाषाओं में बन सकता है?"
+  },
+  "/sawaal/soil-health-card-recommendations": {
+    "file": "sawaal/soil-health-card-recommendations.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "Soil Health Card में क्या जानकारी मिलती है?"
+  },
+  "/sawaal/soil-health-card-workflow": {
+    "file": "sawaal/soil-health-card-workflow.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "Soil Health Card portal में recommendation कैसे बनती है?"
+  },
+  "/sawaal/soyaabina-buvaai-sida-drila-sahi-haatha-chhitakakara": {
+    "file": "sawaal/soyaabina-buvaai-sida-drila-sahi-haatha-chhitakakara.txt",
+    "bodyLines": 122,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सोयाबीन की बुवाई सीड ड्रिल से सही है या हाथ से छिटककर?"
+  },
+  "/sawaal/soybean-girdle-beetle-control": {
+    "file": "sawaal/soybean-girdle-beetle-control.txt",
+    "bodyLines": 120,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सोयाबीन में गर्डल बीटल (तना मक्खी/छल्लीदार भृंग) का नियंत्रण"
+  },
+  "/sawaal/soybean-harvesting-maturity": {
+    "file": "sawaal/soybean-harvesting-maturity.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सोयाबीन की कटाई कब करें?"
+  },
+  "/sawaal/soybean-recommended-varieties-mp": {
+    "file": "sawaal/soybean-recommended-varieties-mp.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मध्य प्रदेश के लिए सोयाबीन की कौन-सी किस्में अच्छी हैं?"
+  },
+  "/sawaal/soybean-seed-treatment": {
+    "file": "sawaal/soybean-seed-treatment.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सोयाबीन में बीज उपचार कैसे करें?"
+  },
+  "/sawaal/soybean-sowing-time-seed-rate": {
+    "file": "sawaal/soybean-sowing-time-seed-rate.txt",
+    "bodyLines": 126,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सोयाबीन की बुआई कब करें और बीज दर कितनी रखें?"
+  },
+  "/sawaal/soybean-yellow-mosaic-virus": {
+    "file": "sawaal/soybean-yellow-mosaic-virus.txt",
+    "bodyLines": 119,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सोयाबीन में पीला मोज़ायक (येलो मोज़ायक) रोग कैसे रोकें?"
+  },
+  "/sawaal/surajmukhi-buwai-beej-dar-mp": {
+    "file": "sawaal/surajmukhi-buwai-beej-dar-mp.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सूरजमुखी की बुवाई का समय और बीज दर क्या है?"
+  },
+  "/sawaal/surajmukhi-kale-dhabbe-phool-galan-control": {
+    "file": "sawaal/surajmukhi-kale-dhabbe-phool-galan-control.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सूरजमुखी में काले धब्बे और फूल गलन रोग का नियंत्रण कैसे करें"
+  },
+  "/sawaal/surajmukhi-khaad-urvarak-matra-mp": {
+    "file": "sawaal/surajmukhi-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 104,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सूरजमुखी में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/surajmukhi-unnat-kismein-mp": {
+    "file": "sawaal/surajmukhi-unnat-kismein-mp.txt",
+    "bodyLines": 104,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सूरजमुखी की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/tomato-early-late-blight": {
+    "file": "sawaal/tomato-early-late-blight.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "टमाटर में अगेती व पछेती झुलसा (early & late blight) का इलाज"
+  },
+  "/sawaal/tomato-fruit-borer-control": {
+    "file": "sawaal/tomato-fruit-borer-control.txt",
+    "bodyLines": 116,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "टमाटर में फल छेदक (फ्रूट बोरर) का प्रबंधन कैसे करें?"
+  },
+  "/sawaal/tomato-fusarium-wilt": {
+    "file": "sawaal/tomato-fusarium-wilt.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "टमाटर में उकठा (फ्यूजेरियम विल्ट) का प्रबंधन कैसे करें?"
+  },
+  "/sawaal/tomato-leaf-curl-virus": {
+    "file": "sawaal/tomato-leaf-curl-virus.txt",
+    "bodyLines": 114,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "टमाटर में पत्ती मोड़ (लीफ कर्ल) वायरस को कैसे रोकें?"
+  },
+  "/sawaal/urad-beej-dar-prati-acre-mp": {
+    "file": "sawaal/urad-beej-dar-prati-acre-mp.txt",
+    "bodyLines": 111,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "उड़द में बीज दर कितनी रखें?"
+  },
+  "/sawaal/urad-beej-upchar-mp": {
+    "file": "sawaal/urad-beej-upchar-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "उड़द का बीज उपचार कैसे करें?"
+  },
+  "/sawaal/urad-buwai-samay-mp": {
+    "file": "sawaal/urad-buwai-samay-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "उड़द की बुवाई कब करें?"
+  },
+  "/sawaal/urad-fali-chhedak-control": {
+    "file": "sawaal/urad-fali-chhedak-control.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "उड़द में फली छेदक का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/urad-khaad-urvarak-matra-mp": {
+    "file": "sawaal/urad-khaad-urvarak-matra-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "उड़द में खाद (उर्वरक) कितनी डालें?"
+  },
+  "/sawaal/urad-pila-mosaic-ymv-control": {
+    "file": "sawaal/urad-pila-mosaic-ymv-control.txt",
+    "bodyLines": 111,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "उड़द में पीला मोज़ेक (YMV) रोग का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/urad-unnat-kismein-mp": {
+    "file": "sawaal/urad-unnat-kismein-mp.txt",
+    "bodyLines": 110,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "उड़द की उन्नत किस्में कौन-सी हैं?"
+  },
+  "/sawaal/vishay/disease": {
+    "file": "sawaal/vishay/disease.txt",
+    "bodyLines": 190,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "रोग — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/drone_didi": {
+    "file": "sawaal/vishay/drone_didi.txt",
+    "bodyLines": 85,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "ड्रोन दीदी — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/general": {
+    "file": "sawaal/vishay/general.txt",
+    "bodyLines": 85,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सामान्य — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/harvest": {
+    "file": "sawaal/vishay/harvest.txt",
+    "bodyLines": 86,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "कटाई — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/irrigation": {
+    "file": "sawaal/vishay/irrigation.txt",
+    "bodyLines": 102,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सिंचाई — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/mandi": {
+    "file": "sawaal/vishay/mandi.txt",
+    "bodyLines": 106,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मंडी व बिक्री — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/nutrient": {
+    "file": "sawaal/vishay/nutrient.txt",
+    "bodyLines": 126,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पोषक तत्व — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/pest": {
+    "file": "sawaal/vishay/pest.txt",
+    "bodyLines": 154,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "कीट — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/scheme": {
+    "file": "sawaal/vishay/scheme.txt",
+    "bodyLines": 118,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "योजनाएं — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/soil": {
+    "file": "sawaal/vishay/soil.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मिट्टी — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/sowing": {
+    "file": "sawaal/vishay/sowing.txt",
+    "bodyLines": 158,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "बुआई — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/storage": {
+    "file": "sawaal/vishay/storage.txt",
+    "bodyLines": 89,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "भंडारण — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/variety": {
+    "file": "sawaal/vishay/variety.txt",
+    "bodyLines": 142,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "किस्म — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/weather": {
+    "file": "sawaal/vishay/weather.txt",
+    "bodyLines": 86,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मौसम — किसान सवाल — जानकारी"
+  },
+  "/sawaal/vishay/weed": {
+    "file": "sawaal/vishay/weed.txt",
+    "bodyLines": 86,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "खरपतवार — किसान सवाल — जानकारी"
+  },
+  "/sawaal/what-documents-are-needed-for-kisan-credit-card": {
+    "file": "sawaal/what-documents-are-needed-for-kisan-credit-card.txt",
+    "bodyLines": 133,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "किसान क्रेडिट कार्ड के लिए कौन-से कागज़ चाहिए?"
+  },
+  "/sawaal/wheat-loose-smut-control": {
+    "file": "sawaal/wheat-loose-smut-control.txt",
+    "bodyLines": 115,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं में कंडवा (लूज़ स्मट) रोग को कैसे रोकें?"
+  },
+  "/sawaal/wheat-phalaris-weed-control": {
+    "file": "sawaal/wheat-phalaris-weed-control.txt",
+    "bodyLines": 119,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं में गेहूंसा (फैलारिस माइनर/मंडूसी) खरपतवार को कैसे रोक"
+  },
+  "/sawaal/wheat-recommended-varieties-mp": {
+    "file": "sawaal/wheat-recommended-varieties-mp.txt",
+    "bodyLines": 116,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मध्य प्रदेश के लिए गेहूं की कौन-सी किस्में अच्छी हैं?"
+  },
+  "/sawaal/wheat-yellow-rust-control": {
+    "file": "sawaal/wheat-yellow-rust-control.txt",
+    "bodyLines": 119,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "गेहूं में पीला रतुआ (येलो रस्ट) रोग का नियंत्रण कैसे करें?"
+  },
+  "/sawaal/which-wheat-seed-variety-is-best-for-sagar-district": {
+    "file": "sawaal/which-wheat-seed-variety-is-best-for-sagar-district.txt",
+    "bodyLines": 120,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सागर जिले के लिए गेहूं के बीज की सबसे अच्छी किस्म कौन-सी है?"
+  },
+  "/sawaal/why-are-soybean-leaves-turning-yellow-what-should-i-do": {
+    "file": "sawaal/why-are-soybean-leaves-turning-yellow-what-should-i-do.txt",
+    "bodyLines": 124,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "सोयाबीन के पत्ते पीले क्यों हो रहे हैं और क्या करें?"
+  },
+  "/terms": {
+    "file": "terms.txt",
+    "bodyLines": 147,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "उपयोग की शर्तें — किसान सहयोग"
+  },
+  "/videos": {
+    "file": "videos.txt",
+    "bodyLines": 134,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "खेती के वीडियो — किसान सहयोग"
+  },
+  "/yojana/aushadhi-sugandhit-fasal-vistar": {
+    "file": "yojana/aushadhi-sugandhit-fasal-vistar.txt",
+    "bodyLines": 94,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "औषधि एवं सुगंधित फसल क्षेत्र विस्तार — Kissan Sahyog"
+  },
+  "/yojana/balram-talab": {
+    "file": "yojana/balram-talab.txt",
+    "bodyLines": 99,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "बलराम तालाब योजना — Kissan Sahyog"
+  },
+  "/yojana/bhavantar": {
+    "file": "yojana/bhavantar.txt",
+    "bodyLines": 108,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "भावांतर भुगतान योजना — Kissan Sahyog"
+  },
+  "/yojana/central": {
+    "file": "yojana/central.txt",
+    "bodyLines": 94,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "केंद्र सरकार की योजनाएं — किसान सहयोग"
+  },
+  "/yojana/drone-didi": {
+    "file": "yojana/drone-didi.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "ड्रोन दीदी योजना — Kissan Sahyog"
+  },
+  "/yojana/e-krishi-yantra": {
+    "file": "yojana/e-krishi-yantra.txt",
+    "bodyLines": 98,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "ई-कृषि यंत्र अनुदान योजना — Kissan Sahyog"
+  },
+  "/yojana/e-nam": {
+    "file": "yojana/e-nam.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "e-NAM (राष्ट्रीय कृषि बाज़ार) — Kissan Sahyog"
+  },
+  "/yojana/fal-podharopan-yojana": {
+    "file": "yojana/fal-podharopan-yojana.txt",
+    "bodyLines": 98,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "फल पौधरोपण योजना — Kissan Sahyog"
+  },
+  "/yojana": {
+    "file": "yojana.txt",
+    "bodyLines": 63,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "सरकारी योजनाएं — केंद्र व मध्य प्रदेश"
+  },
+  "/yojana/kcc": {
+    "file": "yojana/kcc.txt",
+    "bodyLines": 101,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "किसान क्रेडिट कार्ड (KCC) — Kissan Sahyog"
+  },
+  "/yojana/mp-kisan-kalyan": {
+    "file": "yojana/mp-kisan-kalyan.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मुख्यमंत्री किसान कल्याण योजना — Kissan Sahyog"
+  },
+  "/yojana/mp-solar-pump-kusum-b": {
+    "file": "yojana/mp-solar-pump-kusum-b.txt",
+    "bodyLines": 99,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मुख्यमंत्री सोलर पंप योजना (कुसुम-ब) — Kissan Sahyog"
+  },
+  "/yojana/mp": {
+    "file": "yojana/mp.txt",
+    "bodyLines": 90,
+    "h1": 1,
+    "jsonld": 2,
+    "title": "मध्य प्रदेश सरकार की योजनाएं — किसान सहयोग"
+  },
+  "/yojana/pm-aasha": {
+    "file": "yojana/pm-aasha.txt",
+    "bodyLines": 99,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पीएम आशा योजना — Kissan Sahyog"
+  },
+  "/yojana/pm-kisan": {
+    "file": "yojana/pm-kisan.txt",
+    "bodyLines": 101,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पीएम किसान सम्मान निधि — Kissan Sahyog"
+  },
+  "/yojana/pm-kusum": {
+    "file": "yojana/pm-kusum.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "पीएम कुसुम योजना (सोलर पंप) — Kissan Sahyog"
+  },
+  "/yojana/pmfby": {
+    "file": "yojana/pmfby.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "प्रधानमंत्री फसल बीमा योजना (PMFBY) — Kissan Sahyog"
+  },
+  "/yojana/soil-health-card": {
+    "file": "yojana/soil-health-card.txt",
+    "bodyLines": 100,
+    "h1": 1,
+    "jsonld": 4,
+    "title": "मृदा स्वास्थ्य कार्ड योजना — Kissan Sahyog"
+  }
+}

@@ -7,6 +7,9 @@
 // The Gemini key is NEVER exposed to the browser: the client only ever talks to the
 // same-origin /transcribe function, which holds the key server-side.
 
+import { apiUrl } from '../apiBase'
+import { isNative } from '../native'
+
 // --- Transcript clean-up ---
 // Speech engines and the Gemini fallback sometimes return wrapping quotes, a trailing
 // sentence mark, or stray whitespace. A search query wants none of that. Keep it
@@ -25,6 +28,10 @@ export function getSpeechRecognition() {
   return window.SpeechRecognition || window.webkitSpeechRecognition || null
 }
 export function speechRecognitionSupported() {
+  // Batch 8B: Android's WebView exposes webkitSpeechRecognition, but it cannot recognise speech
+  // (WebView has no speech service). In the app only the /transcribe fallback is usable, and the
+  // mic is shown only when that reports it is configured. Website unchanged.
+  if (isNative()) return false
   return !!getSpeechRecognition()
 }
 
@@ -62,7 +69,7 @@ export async function transcribeConfigured() {
   if (_probe) return _probe
   _probe = (async () => {
     try {
-      const res = await fetch('/transcribe', { method: 'GET' })
+      const res = await fetch(apiUrl('/transcribe'), { method: 'GET' })
       if (!res.ok) return false
       const j = await res.json()
       return !!j.configured

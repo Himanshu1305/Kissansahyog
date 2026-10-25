@@ -1,0 +1,706 @@
+{
+  "ran": "2026-10-13T11:10:31.003Z",
+  "failures": 0,
+  "results": [
+    {
+      "name": "hi-390 1 granted: the pre-permission card shows the briefed text",
+      "ok": true,
+      "detail": "अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे कितनी दूर हैं यह जानने के लिए अपनी लोकेशन साझा करें। हम आपकी लोकेशन सिर्फ़ इसी काम के लिए इस्तेमाल करते हैं।"
+    },
+    {
+      "name": "hi-390 1 granted: buttons are \"मेरी लोकेशन साझा करें\" / \"अभी नहीं\"",
+      "ok": true,
+      "detail": "मेरी लोकेशन साझा करें|अभी नहीं"
+    },
+    {
+      "name": "hi-390 1 granted: the device is NOT asked before the button is pressed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 1 granted: no nearby counts and no banner before a location is set",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 1 granted: no pincode box on the home page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 1 granted: card fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 1 granted: banner reads \"खुरई के नतीजे दिख रहे हैं। बदलें\"",
+      "ok": true,
+      "detail": "📍 खुरई के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
+    },
+    {
+      "name": "hi-390 1 granted: source is device, asked exactly once",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 1 granted: one location object saved on this device {lat,lng,label,from}",
+      "ok": true,
+      "detail": "{\"lat\":24.0422,\"lng\":78.3296,\"label\":\"खुरई\",\"from\":\"device\"}"
+    },
+    {
+      "name": "hi-390 1 granted: nothing pincode-shaped is stored",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 2 saved: no card — the saved place is used, with the banner",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 2 saved: source is saved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 2 saved: after the device refuses, results stay on the saved place",
+      "ok": true,
+      "detail": "📍 दमोह के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
+    },
+    {
+      "name": "hi-390 2 saved: counts still shown for the saved place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 2 saved: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 3 typed: weather page shows the card, not a default place's weather",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 3 typed: no pincode box on the weather page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 3 typed: after refusal an open box asks \"अपना गाँव या कस्बा लिखें\"",
+      "ok": true,
+      "detail": "अपना गाँव या कस्बा लिखें"
+    },
+    {
+      "name": "hi-390 3 typed: live suggestions include रहली",
+      "ok": true,
+      "detail": "रहली\nसागर"
+    },
+    {
+      "name": "hi-390 3 typed: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 3 typed: banner shows रहली, source typed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 3 typed: weather now loads for the typed place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 4 did-you-mean: browse shows the card instead of results",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 4 did-you-mean: no pincode box on browse",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 4 did-you-mean: heading \"क्या आपका मतलब यह था…?\" with खुरई among the closest spellings",
+      "ok": true,
+      "detail": "क्या आपका मतलब यह था…? :: खुरई\nसागर"
+    },
+    {
+      "name": "hi-390 4 did-you-mean: the device was never asked (\"Not now\")",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 4 did-you-mean: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 4 did-you-mean: choosing a spelling sets खुरई (typed) without calling the geocoder",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 5 picker: nothing close → picker with the six districts",
+      "ok": true,
+      "detail": "सागर | दमोह | पन्ना | टीकमगढ़ | छतरपुर | निवाड़ी"
+    },
+    {
+      "name": "hi-390 5 picker: still no banner / no default place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 5 picker: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 5 picker: Panna lists its towns, district HQ first",
+      "ok": true,
+      "detail": "पन्ना | अजयगढ़ | अमानगंज | गुनौर | देवेन्द्रनगर | पवई | रैपुरा | शाहनगर | सिमरिया"
+    },
+    {
+      "name": "hi-390 5 picker: banner shows पवई, source picked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-390 mandi: with पवई (Panna) set, the nearest mandi listed first is Panna APMC",
+      "ok": true,
+      "detail": "Panna APMC > Damoh APMC > Chhatarpur APMC > Sagar APMC > Khurai APMC"
+    },
+    {
+      "name": "hi-390 mandi: after changing to दमोह, Damoh APMC is first",
+      "ok": true,
+      "detail": "Damoh APMC > Sagar APMC > Khurai APMC > Chhatarpur APMC > Panna APMC"
+    },
+    {
+      "name": "en-390 1 granted: the pre-permission card shows the briefed text",
+      "ok": true,
+      "detail": "Share your location to see offers, mandi prices and weather near you, and how far melas, cold storages and search results are. We use your location only for this."
+    },
+    {
+      "name": "en-390 1 granted: buttons are \"Share my location\" / \"Not now\"",
+      "ok": true,
+      "detail": "Share my location|Not now"
+    },
+    {
+      "name": "en-390 1 granted: the device is NOT asked before the button is pressed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 1 granted: no nearby counts and no banner before a location is set",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 1 granted: no pincode box on the home page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 1 granted: card fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 1 granted: banner reads \"Showing results for Khurai. Change\"",
+      "ok": true,
+      "detail": "📍 Showing results for Khurai. Change Clear my location"
+    },
+    {
+      "name": "en-390 1 granted: source is device, asked exactly once",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 1 granted: one location object saved on this device {lat,lng,label,from}",
+      "ok": true,
+      "detail": "{\"lat\":24.0422,\"lng\":78.3296,\"label\":\"Khurai\",\"from\":\"device\"}"
+    },
+    {
+      "name": "en-390 1 granted: nothing pincode-shaped is stored",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 2 saved: no card — the saved place is used, with the banner",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 2 saved: source is saved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 2 saved: after the device refuses, results stay on the saved place",
+      "ok": true,
+      "detail": "📍 Showing results for Damoh. Change Clear my location"
+    },
+    {
+      "name": "en-390 2 saved: counts still shown for the saved place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 2 saved: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 3 typed: weather page shows the card, not a default place's weather",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 3 typed: no pincode box on the weather page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 3 typed: after refusal an open box asks \"Type your village or town\"",
+      "ok": true,
+      "detail": "Type your village or town"
+    },
+    {
+      "name": "en-390 3 typed: live suggestions include Rehli",
+      "ok": true,
+      "detail": "Rehli\nSagar"
+    },
+    {
+      "name": "en-390 3 typed: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 3 typed: banner shows Rehli, source typed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 3 typed: weather now loads for the typed place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 4 did-you-mean: browse shows the card instead of results",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 4 did-you-mean: no pincode box on browse",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 4 did-you-mean: heading \"Did you mean…?\" with Khurai among the closest spellings",
+      "ok": true,
+      "detail": "Did you mean…? :: Khurai\nSagar"
+    },
+    {
+      "name": "en-390 4 did-you-mean: the device was never asked (\"Not now\")",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 4 did-you-mean: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 4 did-you-mean: choosing a spelling sets Khurai (typed) without calling the geocoder",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 5 picker: nothing close → picker with the six districts",
+      "ok": true,
+      "detail": "Sagar | Damoh | Panna | Tikamgarh | Chhatarpur | Niwari"
+    },
+    {
+      "name": "en-390 5 picker: still no banner / no default place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 5 picker: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 5 picker: Panna lists its towns, district HQ first",
+      "ok": true,
+      "detail": "Panna | Ajaigarh | Amanganj | Devendranagar | Gunnor | Pawai | Raipura | Shahnagar | Simariya"
+    },
+    {
+      "name": "en-390 5 picker: banner shows Pawai, source picked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-390 mandi: with Pawai (Panna) set, the nearest mandi listed first is Panna APMC",
+      "ok": true,
+      "detail": "Panna APMC > Damoh APMC > Chhatarpur APMC > Sagar APMC > Khurai APMC"
+    },
+    {
+      "name": "en-390 mandi: after changing to Damoh, Damoh APMC is first",
+      "ok": true,
+      "detail": "Damoh APMC > Sagar APMC > Khurai APMC > Chhatarpur APMC > Panna APMC"
+    },
+    {
+      "name": "hi-1440 1 granted: the pre-permission card shows the briefed text",
+      "ok": true,
+      "detail": "अपने पास के ऑफ़र, मंडी भाव और मौसम देखने के लिए, और मेला, कोल्ड स्टोरेज व खोज के नतीजे कितनी दूर हैं यह जानने के लिए अपनी लोकेशन साझा करें। हम आपकी लोकेशन सिर्फ़ इसी काम के लिए इस्तेमाल करते हैं।"
+    },
+    {
+      "name": "hi-1440 1 granted: buttons are \"मेरी लोकेशन साझा करें\" / \"अभी नहीं\"",
+      "ok": true,
+      "detail": "मेरी लोकेशन साझा करें|अभी नहीं"
+    },
+    {
+      "name": "hi-1440 1 granted: the device is NOT asked before the button is pressed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 1 granted: no nearby counts and no banner before a location is set",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 1 granted: no pincode box on the home page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 1 granted: card fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 1 granted: banner reads \"खुरई के नतीजे दिख रहे हैं। बदलें\"",
+      "ok": true,
+      "detail": "📍 खुरई के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
+    },
+    {
+      "name": "hi-1440 1 granted: source is device, asked exactly once",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 1 granted: one location object saved on this device {lat,lng,label,from}",
+      "ok": true,
+      "detail": "{\"lat\":24.0422,\"lng\":78.3296,\"label\":\"खुरई\",\"from\":\"device\"}"
+    },
+    {
+      "name": "hi-1440 1 granted: nothing pincode-shaped is stored",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 2 saved: no card — the saved place is used, with the banner",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 2 saved: source is saved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 2 saved: after the device refuses, results stay on the saved place",
+      "ok": true,
+      "detail": "📍 दमोह के नतीजे दिख रहे हैं। बदलें मेरी लोकेशन हटाएँ"
+    },
+    {
+      "name": "hi-1440 2 saved: counts still shown for the saved place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 2 saved: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 3 typed: weather page shows the card, not a default place's weather",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 3 typed: no pincode box on the weather page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 3 typed: after refusal an open box asks \"अपना गाँव या कस्बा लिखें\"",
+      "ok": true,
+      "detail": "अपना गाँव या कस्बा लिखें"
+    },
+    {
+      "name": "hi-1440 3 typed: live suggestions include रहली",
+      "ok": true,
+      "detail": "रहली\nसागर"
+    },
+    {
+      "name": "hi-1440 3 typed: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 3 typed: banner shows रहली, source typed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 3 typed: weather now loads for the typed place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 4 did-you-mean: browse shows the card instead of results",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 4 did-you-mean: no pincode box on browse",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 4 did-you-mean: heading \"क्या आपका मतलब यह था…?\" with खुरई among the closest spellings",
+      "ok": true,
+      "detail": "क्या आपका मतलब यह था…? :: खुरई\nसागर"
+    },
+    {
+      "name": "hi-1440 4 did-you-mean: the device was never asked (\"Not now\")",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 4 did-you-mean: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 4 did-you-mean: choosing a spelling sets खुरई (typed) without calling the geocoder",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 5 picker: nothing close → picker with the six districts",
+      "ok": true,
+      "detail": "सागर | दमोह | पन्ना | टीकमगढ़ | छतरपुर | निवाड़ी"
+    },
+    {
+      "name": "hi-1440 5 picker: still no banner / no default place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 5 picker: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 5 picker: Panna lists its towns, district HQ first",
+      "ok": true,
+      "detail": "पन्ना | अजयगढ़ | अमानगंज | गुनौर | देवेन्द्रनगर | पवई | रैपुरा | शाहनगर | सिमरिया"
+    },
+    {
+      "name": "hi-1440 5 picker: banner shows पवई, source picked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hi-1440 mandi: with पवई (Panna) set, the nearest mandi listed first is Panna APMC",
+      "ok": true,
+      "detail": "Panna APMC > Damoh APMC > Chhatarpur APMC > Sagar APMC > Khurai APMC"
+    },
+    {
+      "name": "hi-1440 mandi: after changing to दमोह, Damoh APMC is first",
+      "ok": true,
+      "detail": "Damoh APMC > Sagar APMC > Khurai APMC > Chhatarpur APMC > Panna APMC"
+    },
+    {
+      "name": "en-1440 1 granted: the pre-permission card shows the briefed text",
+      "ok": true,
+      "detail": "Share your location to see offers, mandi prices and weather near you, and how far melas, cold storages and search results are. We use your location only for this."
+    },
+    {
+      "name": "en-1440 1 granted: buttons are \"Share my location\" / \"Not now\"",
+      "ok": true,
+      "detail": "Share my location|Not now"
+    },
+    {
+      "name": "en-1440 1 granted: the device is NOT asked before the button is pressed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 1 granted: no nearby counts and no banner before a location is set",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 1 granted: no pincode box on the home page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 1 granted: card fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 1 granted: banner reads \"Showing results for Khurai. Change\"",
+      "ok": true,
+      "detail": "📍 Showing results for Khurai. Change Clear my location"
+    },
+    {
+      "name": "en-1440 1 granted: source is device, asked exactly once",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 1 granted: one location object saved on this device {lat,lng,label,from}",
+      "ok": true,
+      "detail": "{\"lat\":24.0422,\"lng\":78.3296,\"label\":\"Khurai\",\"from\":\"device\"}"
+    },
+    {
+      "name": "en-1440 1 granted: nothing pincode-shaped is stored",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 2 saved: no card — the saved place is used, with the banner",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 2 saved: source is saved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 2 saved: after the device refuses, results stay on the saved place",
+      "ok": true,
+      "detail": "📍 Showing results for Damoh. Change Clear my location"
+    },
+    {
+      "name": "en-1440 2 saved: counts still shown for the saved place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 2 saved: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 3 typed: weather page shows the card, not a default place's weather",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 3 typed: no pincode box on the weather page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 3 typed: after refusal an open box asks \"Type your village or town\"",
+      "ok": true,
+      "detail": "Type your village or town"
+    },
+    {
+      "name": "en-1440 3 typed: live suggestions include Rehli",
+      "ok": true,
+      "detail": "Rehli\nSagar"
+    },
+    {
+      "name": "en-1440 3 typed: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 3 typed: banner shows Rehli, source typed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 3 typed: weather now loads for the typed place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 4 did-you-mean: browse shows the card instead of results",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 4 did-you-mean: no pincode box on browse",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 4 did-you-mean: heading \"Did you mean…?\" with Khurai among the closest spellings",
+      "ok": true,
+      "detail": "Did you mean…? :: Khurai\nSagar"
+    },
+    {
+      "name": "en-1440 4 did-you-mean: the device was never asked (\"Not now\")",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 4 did-you-mean: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 4 did-you-mean: choosing a spelling sets Khurai (typed) without calling the geocoder",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 5 picker: nothing close → picker with the six districts",
+      "ok": true,
+      "detail": "Sagar | Damoh | Panna | Tikamgarh | Chhatarpur | Niwari"
+    },
+    {
+      "name": "en-1440 5 picker: still no banner / no default place",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 5 picker: fits the screen, no sideways scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 5 picker: Panna lists its towns, district HQ first",
+      "ok": true,
+      "detail": "Panna | Ajaigarh | Amanganj | Devendranagar | Gunnor | Pawai | Raipura | Shahnagar | Simariya"
+    },
+    {
+      "name": "en-1440 5 picker: banner shows Pawai, source picked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en-1440 mandi: with Pawai (Panna) set, the nearest mandi listed first is Panna APMC",
+      "ok": true,
+      "detail": "Panna APMC > Damoh APMC > Chhatarpur APMC > Sagar APMC > Khurai APMC"
+    },
+    {
+      "name": "en-1440 mandi: after changing to Damoh, Damoh APMC is first",
+      "ok": true,
+      "detail": "Damoh APMC > Sagar APMC > Khurai APMC > Chhatarpur APMC > Panna APMC"
+    }
+  ]
+}

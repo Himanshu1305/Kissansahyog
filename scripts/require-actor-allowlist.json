@@ -1,0 +1,6 @@
+{
+  "_comment": "Batch 11A — actor functions (first parameter p_actor_id uuid) that are NOT guarded by require_actor(). Must match public.ks_require_actor_allow (migration 0066); checked by scripts/batch11a/catalog-test.mjs. require_actor itself is excluded by name.",
+  "allow": {
+    "app_session_valid": "start-up check of the presented token: must answer true/false, never raise; acts on nothing"
+  }
+}

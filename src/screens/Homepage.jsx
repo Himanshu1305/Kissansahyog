@@ -2,7 +2,7 @@
 // entirely from the shared kit (src/components/home/kit.jsx) on the tokens in
 // src/styles/tokens.css. Section order follows HOMEPAGE_V4_BUILD_PROMPT Phase 4.
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import NavBar from '../components/NavBar'
@@ -15,10 +15,10 @@ import { fetchMsp } from '../lib/msp/mspApi'
 import { fetchMandiPrices } from '../lib/mandi/mandiApi'
 import { getTodayForFarmer } from '../lib/today/forFarmer'
 import { strings } from '../lib/i18n/strings'
-import { getCategory } from '../lib/listings/registry'
-import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes, fetchPincode, fetchTopViewed } from '../lib/listings/listingsApi'
+import { getCategorySafe } from '../lib/listings/registry'
+import { fetchHomeFeed, fetchCrops, fetchEquipmentTypes } from '../lib/listings/listingsApi'
 import { fetchNearbyCounts, NEARBY_CATEGORIES } from '../lib/listings/nearbyCounts'
-import { initialLocation, DEFAULT_COORDS } from '../lib/location/locationStore'
+import { useUserLocation } from '../lib/location/LocationProvider'
 import { LocationControl } from '../components/pages/shared'
 import { fetchPublishedArticles, articleTitle } from '../lib/articles/articlesApi'
 import { fetchFeaturedSawaal, sawaalQuestion, sawaalAnswer } from '../lib/community/communityApi'
@@ -29,39 +29,63 @@ import AvailabilityNudge from '../components/AvailabilityNudge'
 import PwaInstallBanner from '../components/PwaInstallBanner'
 import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
 import { fetchPestReports } from '../lib/pest/pestApi'
-import { fetchUpcomingEvents, eventTitle, eventWeekdayKey } from '../lib/events/eventsApi'
 import { fetchUpcomingMelas } from '../lib/mela/melaApi'
-import { melaDateLabel } from '../lib/mela/melaFormat'
+import { melaDateLabel, melaPlace } from '../lib/mela/melaFormat'
+import { melaStatus } from '../lib/mela/melaStatus'
+import SearchBar from '../components/SearchBar'
+import { founder } from '../content/founder'
+import OfflineStamp from '../components/OfflineStamp'
+import CollapsibleSection from '../components/CollapsibleSection'
+import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
+import AnnouncementCards from '../components/AnnouncementCards'
 
 const IMG = (f) => `/images/home/${f}`
 
+// Batch 10F — the homepage sections below the hero are CollapsibleSections (page 'home'). The first
+// three (search, near you, listings) always start open; the category tiles, the hero and the ticker are
+// never collapsible; the rest start collapsed on phones (docs/review/batch10f/evidence/collapsible-defaults.md).
+const H2_HOME = 'text-[24px] font-bold leading-tight md:text-[28px]'
+function ViewAll({ label, onClick }) {
+  return <button type="button" onClick={onClick} className="min-h-[44px] shrink-0 px-1 text-[14px] font-bold" style={{ color: 'var(--ks-green)' }}>{label} →</button>
+}
+
 // Category tiles (Phase 4 §5) — image + label/sublabel + browse target.
 const CATEGORY_TILES = [
-  { img: 'cat-machines.jpg', labelKey: 'cat_machines_label', subKey: 'cat_machines_sub', to: 'equipment' },
-  { img: 'list-tractor.jpg', labelKey: 'cat_tanker_label', subKey: 'cat_tanker_sub', to: 'equipment', etype: 'water_tanker' },
+  { img: 'cat-rotavator.jpg', labelKey: 'cat_machines_label', subKey: 'cat_machines_sub', to: 'equipment' },
+  { img: 'cat-tanker.jpg', labelKey: 'cat_tanker_label', subKey: 'cat_tanker_sub', to: 'equipment', etype: 'water_tanker' },
   { img: 'cat-labour.jpg', labelKey: 'cat_labour_label', subKey: 'cat_labour_sub', to: 'labor' },
   { img: 'cat-drone.jpg', labelKey: 'cat_drone_label', subKey: 'cat_drone_sub', to: 'drone_didi' },
   { img: 'cat-straw.jpg', labelKey: 'cat_straw_label', subKey: 'cat_straw_sub', to: 'bhusa' },
-  { img: 'cat-inputs.jpg', labelKey: 'cat_inputs_label', subKey: 'cat_inputs_sub', to: 'agri_inputs' },
+  { img: 'cat-seeds.jpg', labelKey: 'cat_inputs_label', subKey: 'cat_inputs_sub', to: 'agri_inputs' },
+  { img: 'cat-building-materials.jpg', labelKey: 'cat_building_materials_label', subKey: 'cat_building_materials_sub', to: 'building_materials' },
   { img: 'cat-godown.jpg', labelKey: 'cat_godown_label', subKey: 'cat_godown_sub', to: 'warehouse' },
-  { img: 'cat-godown.jpg', labelKey: 'cs_tile_label', subKey: 'cs_tile_sub', path: '/cold-storage' },
-  { img: 'cat-inputs.jpg', labelKey: 'gh_tile_label', subKey: 'gh_tile_sub', path: '/greenhouse' },
-  { img: 'cat-straw.jpg', labelKey: 'carbon_tile_label', subKey: 'carbon_tile_sub', path: '/carbon-credit' },
-  { img: 'cat-machines.jpg', labelKey: 'jugaad_tile_label', subKey: 'jugaad_tile_sub', path: '/jugaad' },
-  { img: 'list-tractor.jpg', labelKey: 'cat_transport_label', subKey: 'cat_transport_sub', to: 'transport' },
+  { img: 'cat-cold-storage.jpg', labelKey: 'cs_tile_label', subKey: 'cs_tile_sub', path: '/cold-storage' },
+  { img: 'cat-greenhouse.jpg', labelKey: 'gh_tile_label', subKey: 'gh_tile_sub', path: '/greenhouse' },
+  { img: 'cat-carbon.jpg', labelKey: 'carbon_tile_label', subKey: 'carbon_tile_sub', path: '/carbon-credit' },
+  { img: 'cat-jugaad.jpg', labelKey: 'jugaad_tile_label', subKey: 'jugaad_tile_sub', path: '/jugaad' },
+  { img: 'cat-transport.jpg', labelKey: 'cat_transport_label', subKey: 'cat_transport_sub', to: 'transport' },
   { img: 'cat-expert.jpg', labelKey: 'cat_expert_label', subKey: 'cat_expert_sub', to: 'experts' },
   { img: 'cat-land.jpg', labelKey: 'cat_land_label', subKey: 'cat_land_sub', to: 'land' },
+]
+
+// What the open-to-all strip names. Each is a public route in App.jsx (no <Protected>).
+const OPEN_LINKS = [
+  { to: '/msp', labelKey: 'home_open_mandi' },
+  { to: '/yojana', labelKey: 'home_open_schemes' },
+  { to: '/sawaal', labelKey: 'home_open_sawaal' },
+  { to: '/cold-storage', labelKey: 'home_open_cold' },
+  { to: '/kisan-mela', labelKey: 'home_open_mela' },
 ]
 
 // Listing category → fallback card photo (used when a listing has none of its own).
 const LIST_IMG = {
   equipment: 'list-tractor.jpg', labor: 'list-workers.jpg', drone_didi: 'list-drone.jpg',
-  bhusa: 'list-straw.jpg', agri_inputs: 'list-shop.jpg', warehouse: 'list-godown.jpg', land: 'list-land.jpg',
-  transport: 'list-tractor.jpg',
+  bhusa: 'list-straw.jpg', agri_inputs: 'cat-seeds.jpg', building_materials: 'cat-building-materials.jpg', warehouse: 'list-godown.jpg', land: 'list-land.jpg',
+  transport: 'cat-transport.jpg', greenhouse: 'cat-greenhouse.jpg', jugaad: 'cat-jugaad.jpg',
 }
 // Equipment sub-type (equipment_types.id) → a more specific photo, so a harvester
 // or thresher listing does not fall back to the generic tractor photo.
-const EQUIP_TYPE_IMG = { 3: 'list-thresher.jpg', 4: 'list-harvester.jpg' }
+const EQUIP_TYPE_IMG = { 3: 'list-thresher.jpg', 4: 'list-harvester.jpg', water_tanker: 'cat-tanker.jpg' }
 const listingPhoto = (l) => {
   const d = l.details || {}
   const cand = d.photo_urls || d.photos || d.images || d.image_urls
@@ -87,76 +111,66 @@ export default function Homepage() {
   const [weather, setWeather] = useState(undefined)
   const [msp, setMsp] = useState([])
   const [mandi, setMandi] = useState({ rows: [], day: 'none' })
-  const [loc, setLoc] = useState(() => initialLocation(user?.pincode))
+  // Batch 7L-1 — the one shared location ({ lat, lng, label, source }); null until the visitor sets one.
+  const { location, center } = useUserLocation()
   const [counts, setCounts] = useState(null)
   const [videos, setVideos] = useState([])
   const [pestReports, setPestReports] = useState([])
-  const [events, setEvents] = useState([])
-  const [melas, setMelas] = useState([])
-  const [topViewed, setTopViewed] = useState([])
+  // null = still loading; [] = none in MP + neighbouring states → the whole section is hidden (10E 5.1).
+  const [melas, setMelas] = useState(null)
 
   // Static data (once).
   useEffect(() => {
     let alive = true
     ;(async () => {
-      const [arts, crops, equipmentTypes, saw, vids, pest, evs] = await Promise.all([
+      const [arts, crops, equipmentTypes, saw, vids, pest] = await Promise.all([
         fetchPublishedArticles().catch(() => []),
         fetchCrops().catch(() => []),
         fetchEquipmentTypes().catch(() => []),
-        fetchFeaturedSawaal(2).catch(() => []),
+        fetchFeaturedSawaal(3).catch(() => []),
         fetchFeaturedVideos(3).catch(() => []),
         fetchPestReports(14, 2).catch(() => []),
-        fetchUpcomingEvents(30).catch(() => []),
       ])
       if (!alive) return
       setArticles(arts.slice(0, 2)); setExtras({ crops, equipmentTypes }); setSawaal(saw)
-      setVideos(vids); setPestReports(pest); setEvents(evs)
+      setVideos(vids); setPestReports(pest)
     })()
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
     fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
-    fetchUpcomingMelas(3).then((m) => alive && setMelas(m)).catch(() => alive && setMelas([]))
-    fetchTopViewed({ limit: 4 }).then((v) => alive && setTopViewed(v)).catch(() => {})
+    fetchUpcomingMelas(3, { region: true }).then((m) => alive && setMelas(m)).catch(() => alive && setMelas([]))
     return () => { alive = false }
   }, [])
 
   // Location-dependent data (weather cell + counts + nearby feed). Re-runs on change.
+  // With no location there is no weather and no counts — the prompt card is shown instead —
+  // and the listings block shows the newest listings, labelled as such (not "near you").
+  const lat = center?.latitude ?? null, lng = center?.longitude ?? null
   useEffect(() => {
     let alive = true
     ;(async () => {
-      // Split: WEATHER uses rawCoords (global, any lat/lng); VILLAGE-anchored features
-      // (आपके आसपास counts + nearby-listings feed) use the matched village's pincode/coords
-      // and are null when the user is out of the service area.
-      const vpin = loc.matchedVillage?.pincode || null
-      let villageCoords = null
-      if (vpin) {
-        const p = await fetchPincode(vpin).catch(() => null)
-        if (p?.latitude != null) villageCoords = { latitude: Number(p.latitude), longitude: Number(p.longitude) }
+      if (lat == null || lng == null) {
+        setCounts(null); setWeather(null)
+        const feed = await fetchHomeFeed({ center: null, limit: 8 }).catch(() => [])
+        if (alive) setListings(feed)
+        return
       }
-      // Weather coords: precise rawCoords first, else the selected pincode's coords.
-      const weatherCoords = loc.rawCoords || villageCoords
-      if (weatherCoords) requestGridCell(weatherCoords.latitude, weatherCoords.longitude)
+      const c0 = { latitude: lat, longitude: lng }
+      requestGridCell(lat, lng)
       const [c, feed, w] = await Promise.all([
-        fetchNearbyCounts(vpin, 30).catch(() => null),
-        fetchHomeFeed({ center: villageCoords, limit: 8 }).catch(() => []),
-        fetchWeatherCell(weatherCoords?.latitude ?? DEFAULT_COORDS.latitude, weatherCoords?.longitude ?? DEFAULT_COORDS.longitude).catch(() => null),
+        fetchNearbyCounts(c0, 30).catch(() => null),
+        fetchHomeFeed({ center: c0, limit: 8 }).catch(() => []),
+        fetchWeatherCell(lat, lng).catch(() => null),
       ])
       if (!alive) return
       setCounts(c); setListings(feed); setWeather(w)
     })()
     return () => { alive = false }
-  }, [loc])
+  }, [lat, lng])
 
   const alert = getRainAlert(weather?.forecast)
-  const today = getTodayForFarmer({ weather, mandi, msp, alert, t })
-
-  // Hero event line: nearest active event within the next 7 days (or none).
-  const in7 = (() => {
-    const max = new Date(); max.setDate(max.getDate() + 7)
-    const maxStr = max.toISOString().slice(0, 10)
-    const e = (events || []).find((ev) => ev.event_date <= maxStr)
-    if (!e) return null
-    return `📅 ${t(eventWeekdayKey(e.event_date))} — ${eventTitle(e, lang)}${e.location ? ` · ${e.location}` : ''}`
-  })()
+  const todayBase = getTodayForFarmer({ weather, mandi, msp, alert, t })
+  // No location → say so in the weather tile instead of "unavailable" (never a default place's weather).
+  const today = location ? todayBase : { ...todayBase, weatherLine: t('loc_set_for_weather'), rainLine: t('loc_share') }
 
   // Pest banner: top qualifying crop+symptom group (framed as recently asked).
   const pest = (pestReports && pestReports[0]) || null
@@ -164,6 +178,8 @@ export default function Homepage() {
   // Batch1 item 3A: browsing is public — category tiles open /browse for everyone.
   const goBrowse = (cat, etype) => navigate(cat ? `/browse?cat=${cat}${etype ? `&etype=${etype}` : ''}` : '/browse')
   const tileClick = (to, etype) => (to === 'experts' ? navigate(isLoggedIn ? '/experts' : '/signup') : goBrowse(to, etype))
+  // Batch 10E: category tiles are real links — the same destinations tileClick/goBrowse navigate to.
+  const tileHref = (c) => (c.path ? c.path : c.to === 'experts' ? (isLoggedIn ? '/experts' : '/signup') : `/browse?cat=${c.to}${c.etype ? `&etype=${c.etype}` : ''}`)
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--ks-bg)' }}>
@@ -171,6 +187,9 @@ export default function Homepage() {
       {/* Phase 7 — slim install banner below nav, above hero (self-hides in standalone). */}
       <PwaInstallBanner />
       <MandiTicker />
+      <OfflineStamp resources={['mandi_prices']} hideUnderBanner className="px-[var(--ks-gutter)] pt-1" />
+      {/* Batch 14A: admin-managed announcement cards (client-only, max 2); renders nothing when there are none. Replaces the 12B Dussehra card. */}
+      <AnnouncementCards />
 
       {/* Greeting for logged-in users (§0.3): "सीताराम 🙏, {name}". */}
       {isLoggedIn && (
@@ -197,14 +216,64 @@ export default function Homepage() {
         </button>
       )}
 
-      {/* 3 — Hero: आज किसान के लिए */}
-      <HeroContent
-        t={t} today={today} weather={weather} eventLine={in7}
+      {/* Open-to-all strip (Batch 7D): everything named here is a public route — no login.
+          Carries the link to /how-to-use (this replaces the separate 7C strip). */}
+      <section data-testid="home-open-strip" aria-labelledby="home-open-h" className="w-full" style={{ background: 'var(--ks-green-tint)', borderBottom: '1px solid var(--ks-border)', padding: '10px var(--ks-gutter)' }}>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <h2 id="home-open-h" className="text-[16px] font-extrabold leading-snug md:text-[17px]" style={{ color: 'var(--ks-green-dark)' }}>{t('home_open_title')}</h2>
+          <ul className="flex flex-wrap gap-1.5">
+            {OPEN_LINKS.map((o) => (
+              <li key={o.to}>
+                <Link to={o.to} className="inline-flex min-h-[40px] items-center rounded-full bg-white px-3 text-[14px] font-bold" style={{ color: 'var(--ks-green-dark)', border: '1px solid var(--ks-green)' }}>{t(o.labelKey)}</Link>
+              </li>
+            ))}
+          </ul>
+          <Link to="/how-to-use" data-testid="home-how-to-use" className="inline-flex min-h-[40px] items-center text-[14px] font-bold underline md:ml-auto" style={{ color: 'var(--ks-green-dark)' }}>{t('nav_how_to_use')} →</Link>
+        </div>
+      </section>
+
+      {/* Batch 10C: "first time?" card to the live demos at /guide. A plain link (no
+          heading) so the page outline stays exactly as it was. */}
+      <div className="ks-section-inner" style={{ paddingTop: 10 }}>
+        <Link
+          to="/guide"
+          data-testid="entry-home-guide"
+          className="flex min-h-[56px] items-center gap-3 rounded-xl border-2 px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ks-green-dark)] md:max-w-xl"
+          style={{ background: 'var(--ks-saffron-tint)', borderColor: 'var(--ks-saffron)' }}
+        >
+          <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--ks-accent)] text-[var(--ks-ink)]">
+            <svg width="14" height="16" viewBox="0 0 9 10" focusable="false"><path d="M1 0.5L8.5 5L1 9.5Z" fill="currentColor" /></svg>
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[16px] font-extrabold leading-snug" style={{ color: 'var(--ks-ink)' }}>{t('guide_home_card_title')}</span>
+            <span className="block text-[14px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>{t('guide_home_card_sub')}</span>
+          </span>
+          <span aria-hidden="true" className="shrink-0 text-xl font-bold" style={{ color: 'var(--ks-orange-dark)' }}>›</span>
+        </Link>
+      </div>
+
+      {/* 3 — Hero: आज किसान के लिए (Batch 10F: static, see HomeHero) */}
+      <HomeHero
+        showFreeReg={!isLoggedIn}
+        t={t} today={today}
         onNeed={() => navigate('/browse')}
         onHave={() => navigate(isLoggedIn ? '/post' : '/signup')}
-        onForecast={() => navigate('/mausam')}
+        onForecast={() => (location ? navigate('/mausam') : document.getElementById('home-location')?.scrollIntoView({ behavior: 'smooth', block: 'center' }))}
         onMsp={() => navigate('/msp')}
       />
+
+      {/* Batch 12A: WhatsApp channel card — below the first screen, above the collapsible sections. */}
+      <WhatsAppChannelCard variant="hero" />
+
+      <Section bg="var(--ks-bg-soft)">
+        <CollapsibleSection page="home" id="search" primary h2Class="text-[22px] font-extrabold md:text-[26px]" title={t('home_search_title')}>
+        <p className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t('home_search_subtitle')}</p>
+        <div className="mt-3"><SearchBar variant="hero" /></div>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {['home_search_chip_mandi', 'home_search_chip_scheme', 'home_search_chip_machine', 'home_search_chip_place'].map((key) => <button key={key} type="button" onClick={() => navigate(`/search?q=${encodeURIComponent(t(key))}`)} className="rounded-full border border-[var(--ks-border-strong)] bg-white px-3 py-1.5 text-sm font-bold text-[var(--ks-green-dark)]">{t(key)}</button>)}
+        </div>
+        </CollapsibleSection>
+      </Section>
 
       {/* Pest/disease "recently reported" banner (Phase 6) — only when a group qualifies */}
       {pest && (
@@ -225,34 +294,37 @@ export default function Homepage() {
 
       {/* 4 — आपके आसपास (counts, 30km) */}
       <Section bg="var(--ks-bg-soft)">
-        <h2 className="mb-2 text-[24px] font-bold leading-tight md:text-[28px]" style={{ color: 'var(--ks-ink)' }}>
-          {t('near_title')} <span className="text-[16px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('near_km')})</span>
-        </h2>
-        <div className="mb-3"><LocationControl value={loc} onChange={setLoc} /></div>
-        <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
-          {NEARBY_CATEGORIES.map((c) => (
-            <CountChip key={c} n={counts ? counts[c] ?? 0 : '…'} label={t(`near_cat_${c}`)} onClick={() => tileClick(c === 'bhusa' ? 'bhusa' : c === 'warehouse' ? 'warehouse' : c)} />
-          ))}
-        </div>
+        <CollapsibleSection page="home" id="near" primary h2Class={H2_HOME} title={<>{t('near_title')} <span className="text-[16px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>({t('near_km')})</span></>}>
+        <div id="home-location" className="mb-3"><LocationControl /></div>
+        {/* Counts only once a location is set — until then the prompt card above stands in for them. */}
+        {location && (
+          <div data-testid="home-nearby-counts" className="grid grid-cols-3 gap-3 md:grid-cols-6">
+            {NEARBY_CATEGORIES.map((c) => (
+              <CountChip key={c} n={counts ? counts[c] ?? 0 : '…'} label={t(`near_cat_${c}`)} onClick={() => tileClick(c === 'bhusa' ? 'bhusa' : c === 'warehouse' ? 'warehouse' : c)} />
+            ))}
+          </div>
+        )}
+        </CollapsibleSection>
       </Section>
 
-      {/* 5 — कृषि बाज़ार की श्रेणियाँ */}
+      {/* 5 — कृषि बाज़ार की श्रेणियाँ (never collapsible) */}
       <Section>
         <SectionHeader title={t('cats_title')} />
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        {/* No blank cell at any width: 2 columns (an odd last tile spans the row), 3, then 5. */}
+        <div data-testid="home-cat-grid" className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 [&>*:last-child:nth-child(odd)]:col-span-2 md:[&>*:last-child:nth-child(odd)]:col-span-1">
           {CATEGORY_TILES.map((c) => (
-            <PhotoTile key={c.labelKey} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} onClick={() => (c.path ? navigate(c.path) : tileClick(c.to, c.etype))} />
+            <PhotoTile key={c.labelKey} src={IMG(c.img)} label={t(c.labelKey)} sublabel={t(c.subKey)} height={150} to={tileHref(c)} />
           ))}
         </div>
       </Section>
 
       {/* 6 — आपके आसपास की ताज़ा लिस्टिंग */}
       <Section>
-        <SectionHeader title={t('listings_near_title')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
+        <CollapsibleSection page="home" id="listings" primary h2Class={H2_HOME} title={t(location ? 'listings_near_title' : 'listings_latest_title')} action={<ViewAll label={t('view_all')} onClick={() => goBrowse()} />}>
         {listings.length > 0 ? (
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {listings.map((l) => {
-              const rows = getCategory(l.category).summarize(l, lang, extras).slice(0, 2)
+          {listings.filter((l) => getCategorySafe(l.category)).map((l) => {
+              const rows = getCategorySafe(l.category).summarize(l, lang, extras).slice(0, 2)
               const isOffer = l.listing_type === 'offer'
               const isVendor = l.listing_source === 'vendor'
               const place = [l.village_town || l.district, l.distanceKm != null ? `${Math.round(l.distanceKm)} ${t('unit_km')}` : null].filter(Boolean).join(' · ')
@@ -278,40 +350,12 @@ export default function Homepage() {
             <button type="button" onClick={() => navigate(isLoggedIn ? '/post' : '/signup')} className="mt-3 rounded-lg px-4 py-2 text-[15px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>{t('add_listing_cta')}</button>
           </div>
         )}
+        </CollapsibleSection>
       </Section>
-
-      {/* 6b — सबसे ज़्यादा देखा गया (Phase 11 discovery box) */}
-      {topViewed.length > 0 && (
-        <Section>
-          <SectionHeader title={t('most_viewed_heading')} linkLabel={t('view_all')} onLink={() => goBrowse()} />
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {topViewed.map((l) => {
-              const rows = getCategory(l.category).summarize(l, lang, extras).slice(0, 2)
-              const isOffer = l.listing_type === 'offer'
-              const isVendor = l.listing_source === 'vendor'
-              const place = [l.village_town || l.district].filter(Boolean).join(' · ')
-              return (
-                <HomeListingCard
-                  key={l.id}
-                  image={listingPhoto(l)}
-                  badge={isVendor ? t('vendor_badge') : isOffer ? t('home_offer') : t('home_requirement')}
-                  badgeTone={isVendor ? 'vendor' : isOffer ? 'offer' : 'requirement'}
-                  title={rows[0]?.value || t(`home_cat_${l.category}`)}
-                  price={rows[1]?.value}
-                  place={place}
-                  waHref={whatsappListingUrl(l)}
-                  tel={null}
-                  onWhatsApp={() => incrementContactClick(l.id)}
-                />
-              )
-            })}
-          </div>
-        </Section>
-      )}
 
       {/* 7 — आज की 2 मिनट की वीडियो सलाह */}
       <Section bg="var(--ks-bg-soft)">
-        <SectionHeader title={t('videos_title')} linkLabel={t('view_all')} onLink={() => navigate('/videos')} />
+        <CollapsibleSection page="home" id="videos" h2Class={H2_HOME} title={t('videos_title')} action={<ViewAll label={t('view_all')} onClick={() => navigate('/videos')} />}>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {videos.map((v) => (
             <a key={v.id} href={videoWatchUrl(v)} target="_blank" rel="noopener noreferrer" className="flex flex-col overflow-hidden" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)' }}>
@@ -331,24 +375,21 @@ export default function Homepage() {
             </a>
           ))}
         </div>
+        </CollapsibleSection>
       </Section>
 
       {/* 8 — किसान सवाल */}
       <Section>
-        <SectionHeader title={t('qa_home_title')} linkLabel={t('qa_all_link')} onLink={() => navigate('/sawaal')} />
+        <CollapsibleSection page="home" id="qa" h2Class={H2_HOME} title={t('qa_home_title')} action={<ViewAll label={t('qa_all_link')} onClick={() => navigate('/sawaal')} />}>
         {sawaal.length > 0 && (
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid items-stretch gap-3 md:grid-cols-2 lg:grid-cols-3">
             {sawaal.map((q) => {
-              const answered = !!sawaalAnswer(q, lang)
+              const answer = sawaalAnswer(q, lang)
               return (
-                <button key={q.id} type="button" onClick={() => navigate('/sawaal')} className="flex items-start gap-3 text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
-                  {q.photo_url
-                    ? <img src={q.photo_url} alt="" loading="lazy" className="h-14 w-14 shrink-0 rounded-lg object-cover" onError={(e) => { e.currentTarget.style.display = 'none' }} />
-                    : <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg text-2xl" style={{ background: 'var(--ks-green-tint)' }} aria-hidden="true">❓</span>}
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[16px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>{sawaalQuestion(q, lang)}</span>
-                    <span className="mt-1 block text-[14px] font-semibold" style={{ color: answered ? 'var(--ks-green)' : 'var(--ks-ink-3)' }}>{answered ? 1 : 0} {t('qa_answers_word')}</span>
-                  </span>
+                <button key={q.id} type="button" onClick={() => navigate('/sawaal')} className="flex h-full flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
+                  <span className="line-clamp-2 block text-[16px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}><span className="mr-1 text-sm" aria-hidden="true">💬</span>{sawaalQuestion(q, lang)}</span>
+                  {answer && <span className="mt-2 line-clamp-3 block text-[14px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>{answer}</span>}
+                  <span className="mt-auto pt-3 text-[14px] font-bold" style={{ color: 'var(--ks-green)' }}>{t('qa_read_answer')}</span>
                 </button>
               )
             })}
@@ -357,34 +398,34 @@ export default function Homepage() {
         <div className="mt-3">
           <Button variant="primary" onClick={() => navigate('/sawaal?ask=1&photo=1')}>📷 {t('qa_photo_ask')}</Button>
         </div>
+        </CollapsibleSection>
       </Section>
 
-      {/* Kisan Mela teaser (upcoming nearby melas, graceful empty state) */}
-      <Section>
-        <SectionHeader title={t('mela_home_title')} linkLabel={t('mela_home_all')} onLink={() => navigate('/kisan-mela')} />
-        {melas.length > 0 ? (
+      {/* Kisan Mela teaser (Batch 10E 5.1): only Madhya Pradesh + neighbouring states (UP, Maharashtra,
+          Chhattisgarh, Gujarat, Rajasthan), MP first. Nothing qualifying (or still loading) → no section;
+          every Mela stays on /kisan-mela. */}
+      {melas?.length > 0 && (
+        <Section>
+          <CollapsibleSection page="home" id="mela" h2Class={H2_HOME} title={t('mela_home_title')} action={<ViewAll label={t('mela_home_all')} onClick={() => navigate('/kisan-mela')} />}>
           <div className="grid gap-3 md:grid-cols-3">
             {melas.map((m) => (
               <button key={m.id} type="button" data-testid="home-mela-card" onClick={() => navigate('/kisan-mela')} className="flex flex-col text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '12px' }}>
                 <span className="text-[15px] font-bold leading-snug" style={{ color: 'var(--ks-ink)' }}>🌾 {lang === 'hi' ? m.name_hi : (m.name_en || m.name_hi)}</span>
+                {melaStatus(m) === 'ongoing' && <span className="mt-1 w-fit rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ background: 'var(--ks-orange-tint)', color: 'var(--ks-orange-dark)' }}>{t('mela_ongoing')}</span>}
                 <span className="mt-1 text-[13px] font-semibold" style={{ color: m.is_date_confirmed ? 'var(--ks-green)' : 'var(--ks-orange-dark)' }}>
                   📅 {melaDateLabel(m, lang, { expectedLabel: t('mela_expected_prefix'), tbdLabel: '' })}
                 </span>
-                <span className="mt-0.5 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>📍 {[m.venue, m.state].filter(Boolean).join(', ')}</span>
+                <span className="mt-0.5 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>📍 {melaPlace(m)}</span>
               </button>
             ))}
           </div>
-        ) : (
-          <div data-testid="home-mela-empty" className="rounded-xl border border-dashed p-4 text-center" style={{ borderColor: 'var(--ks-border-strong)' }}>
-            <p className="text-[14px]" style={{ color: 'var(--ks-ink-2)' }}>{t('mela_home_empty')}</p>
-            <div className="mt-2"><Button variant="secondary" onClick={() => navigate('/kisan-mela/submit')}>➕ {t('mela_submit_cta')}</Button></div>
-          </div>
-        )}
-      </Section>
+          </CollapsibleSection>
+        </Section>
+      )}
 
       {/* 9 — सरकारी मदद */}
       <Section bg="var(--ks-bg-warm)">
-        <SectionHeader title={t('govt_title')} />
+        <CollapsibleSection page="home" id="govt" h2Class={H2_HOME} title={t('govt_title')}>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {[
             { titleKey: 'govt_yojana_title', subKey: 'govt_yojana_sub', to: '/yojana', icon: '🌾' },
@@ -399,30 +440,40 @@ export default function Homepage() {
             </button>
           ))}
         </div>
+        </CollapsibleSection>
       </Section>
 
       {/* 10 — भरोसेमंद लोग (trust row; official PIB/MP photos omitted — unverifiable) */}
       <Section>
-        <SectionHeader title={t('trust_title')} />
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
-          {/* TODO: founder photo — not available; render initials avatar (no stock face). */}
-          <div className="flex flex-col" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
-            <div className="flex items-center gap-3">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-extrabold text-white" style={{ background: 'var(--ks-green)' }} aria-hidden="true">{t('founder_initials')}</span>
-              <span>
-                <span className="block text-[16px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('founder_name')}</span>
-                <span className="block text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('founder_role')}</span>
-              </span>
-            </div>
-            <p className="mt-3 text-[15px] leading-snug" style={{ color: 'var(--ks-ink-2)' }}>“{t('founder_quote')}”</p>
+        <CollapsibleSection page="home" id="trust" h2Class={H2_HOME} title={t('trust_title')}>
+        {/* Founder band: portrait (or initials avatar — never a stock face) → /founder. */}
+        <div data-testid="home-founder-band" className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '16px' }}>
+          {founder.portrait.src ? (
+            <img src={founder.portrait.src} alt={founder.portrait.alt[lang] ?? founder.portrait.alt.hi} width={founder.portrait.width} height={founder.portrait.height} loading="lazy" className="h-24 w-24 shrink-0 rounded-full object-cover" />
+          ) : (
+            <span className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-[24px] font-extrabold text-white md:h-24 md:w-24 md:text-[28px]" style={{ background: 'var(--ks-green-dark)' }} aria-hidden="true">{t('founder_initials')}</span>
+          )}
+          <div className="min-w-0 flex-1">
+            <p className="text-[20px] font-extrabold leading-snug md:text-[22px]" style={{ color: 'var(--ks-ink)' }}>{t('founder_name')}</p>
+            <p className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{t('founder_role')}</p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {['founder_badge_service', 'founder_badge_medal', 'founder_badge_guinness'].map((k) => (
+                <li key={k} className="rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)' }}>{t(k)}</li>
+              ))}
+            </ul>
+            <p className="mt-3 text-[20px] font-extrabold tracking-wide md:text-[24px]" style={{ color: 'var(--ks-green)' }}>“{t('founder_quote')}”</p>
           </div>
+          <Link to="/founder" data-testid="home-founder-link" className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-xl px-5 text-[16px] font-bold text-white" style={{ background: 'var(--ks-green)' }}>
+            {t('founder_read_full')} →
+          </Link>
         </div>
+        </CollapsibleSection>
       </Section>
 
       {/* 11 — लेख */}
       {articles.length > 0 && (
         <Section bg="var(--ks-bg-soft)">
-          <SectionHeader title={t('articles_home_title')} linkLabel={t('view_all')} onLink={() => navigate('/articles')} />
+          <CollapsibleSection page="home" id="articles" h2Class={H2_HOME} title={t('articles_home_title')} action={<ViewAll label={t('view_all')} onClick={() => navigate('/articles')} />}>
           <div className="grid grid-cols-2 gap-3">
             {articles.map((a) => (
               <button key={a.id} type="button" onClick={() => navigate(`/articles/${a.slug}`)} className="flex items-center gap-3 overflow-hidden text-left" style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)' }}>
@@ -437,6 +488,7 @@ export default function Homepage() {
               </button>
             ))}
           </div>
+          </CollapsibleSection>
         </Section>
       )}
 
@@ -445,73 +497,72 @@ export default function Homepage() {
   )
 }
 
-// Hero content — shared between the desktop background-photo layout and the mobile
-// banner+cream layout.
-function HeroInner({ t, today, onNeed, onHave, eventLine, onForecast, onMsp, heading = 'h1' }) {
-  // The hero renders twice (desktop bg layout + mobile banner layout). Only one
-  // instance is an <h1> so the DOM has exactly one H1 (SEO); the other is a
-  // visually-identical <p>.
-  const Heading = heading
-  // ks-allow-width: hero flex column proportion
+// Hero (Batch 10F). Static, mobile first, rendered once at every size: no timer, no animation,
+// no lazy chunk (founder: the 10D persona tabs / phone example duplicated the demos, and homepage
+// animation is deferred). Order on phones: eyebrow chip (+ free-registration badge), the one <h1>,
+// the sub-line, the two big buttons, the demo button, then the three real info tiles (weather,
+// price, advice; same data and links as before, the price tile hidden when there is no price).
+// From 1024 px: two columns, the tiles stacked on the right.
+function HomeHero({ t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }) {
   return (
-    <div className="w-full md:max-w-[58%]">
-      <span className="inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>
-        🌾 {t('tf_eyebrow')}
-      </span>
-      <Heading className="mt-3 text-[32px] font-extrabold leading-[1.1] md:text-[50px]" style={{ color: 'var(--ks-ink)' }}>{t('tf_title')}</Heading>
-      <p className="mt-2 text-[15px] md:text-[18px]" style={{ color: 'var(--ks-ink-2)' }}>{t('tf_subline')}</p>
+    <section data-testid="home-hero" className="w-full" style={{ background: 'var(--ks-bg)' }}>
+      <div className="ks-section-inner grid grid-cols-1 gap-4 pb-4 pt-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-8 lg:pb-6 lg:pt-6">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
+            <span className="inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)' }}>
+              🌾 {t('tf_eyebrow')}
+            </span>
+            {/* The free-registration badge (Batch 7D), logged-out visitors only. */}
+            {showFreeReg && <HeroBadge t={t} />}
+          </div>
+          <h1 className="mt-2 text-[30px] font-extrabold leading-[1.15] md:text-[38px] lg:text-[44px]" style={{ color: 'var(--ks-ink)' }}>{t('tf_title')}</h1>
+          <p className="mt-1 text-[16px] leading-snug md:text-[18px]" style={{ color: 'var(--ks-ink-2)' }}>{t('tf_subline')}</p>
 
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-        <InfoTile caption={t('tf_weather_cap')} value={today.weatherLine} note={`${today.rainLine} · ${t('home_forecast_link')} →`} noteColor="var(--ks-blue)" onClick={onForecast} />
-        <InfoTile
-          caption={t('tf_price_cap')}
-          value={today.priceLine ? today.priceLine.split(' · ')[0] : '—'}
-          note={`${today.priceLine ? today.priceLine.split(' · ').slice(1).join(' · ') : t('govt_msp_title')} · ${t('home_msp_link')} →`}
-          noteColor={today.priceTone === 'above' ? 'var(--ks-green)' : today.priceTone === 'below' ? 'var(--ks-orange-dark)' : 'var(--ks-ink-3)'}
-          onClick={onMsp}
-        />
-        <InfoTile caption={t('tf_advice_cap')} value={today.advice} />
-      </div>
-
-      {eventLine && (
-        <div className="mt-3 rounded-lg px-3 py-2 text-[15px] font-semibold" style={{ background: 'var(--ks-blue-tint)', color: 'var(--ks-blue)' }}>
-          {eventLine}
+          <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <Button variant="primary" giant icon={<SearchGlyph />} sublabel={t('cta_need_sub')} onClick={onNeed}>{t('cta_need')}</Button>
+            <Button variant="secondary" giant icon={<PlusGlyph />} sublabel={t('cta_have_sub')} onClick={onHave}>{t('cta_have')}</Button>
+          </div>
+          {/* Next to the post-listing button: posting needs an account. */}
+          {showFreeReg && (
+            <p data-testid="post-free-registration" className="mt-2 text-right text-[14px] font-bold" style={{ color: 'var(--ks-orange-dark)' }}>✓ {t('free_registration')}</p>
+          )}
+          {/* The one demo button: same destination as the 10D hero's demo button (/guide). */}
+          <Link
+            to="/guide"
+            data-testid="home-hero-demo"
+            className="mt-2 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border-2 px-4 text-[17px] font-extrabold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ks-saffron)] sm:w-auto sm:justify-start"
+            style={{ background: 'var(--ks-card)', color: 'var(--ks-green-dark)', borderColor: 'var(--ks-green)' }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>
+            {t('home_hero_demo')}
+          </Link>
         </div>
-      )}
 
-      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <Button variant="primary" giant icon={<SearchGlyph />} sublabel={t('cta_need_sub')} onClick={onNeed}>{t('cta_need')}</Button>
-        <Button variant="secondary" giant icon={<PlusGlyph />} sublabel={t('cta_have_sub')} onClick={onHave}>{t('cta_have')}</Button>
+        <div data-testid="home-hero-cards" className="flex min-w-0 flex-col gap-3 sm:flex-row lg:flex-col">
+          <InfoTile caption={t('tf_weather_cap')} value={today.weatherLine} note={`${today.rainLine} · ${t('home_forecast_link')} →`} noteColor="var(--ks-blue)" onClick={onForecast} />
+          {/* Price tile only when there is a price to show (it used to render an empty "—"). */}
+          {today.priceLine && (
+            <InfoTile
+              caption={t('tf_price_cap')}
+              value={today.priceLine.split(' · ')[0]}
+              note={`${today.priceLine.split(' · ').slice(1).join(' · ')} · ${t('home_msp_link')} →`}
+              noteColor={today.priceTone === 'above' ? 'var(--ks-green)' : today.priceTone === 'below' ? 'var(--ks-orange-dark)' : 'var(--ks-ink-3)'}
+              onClick={onMsp}
+            />
+          )}
+          <InfoTile caption={t('tf_advice_cap')} value={today.advice} />
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 
-function HeroContent({ t, today, onNeed, onHave, eventLine, onForecast, onMsp }) {
-  const common = { t, today, onNeed, onHave, eventLine, onForecast, onMsp }
+// The one deliberate promotion (Batch 7D) — shown to visitors who are not logged in.
+function HeroBadge({ t }) {
   return (
-    <section className="w-full">
-      {/* Desktop: farmer photo as background, text on a cream gradient on the left.
-          Heading is a <p> here; the single <h1> lives in the mobile instance (always
-          in the DOM, so SEO sees exactly one H1, and it is the visible heading on mobile). */}
-      <div
-        className="hidden w-full items-center md:flex"
-        style={{
-          minHeight: 460,
-          padding: 'var(--ks-gutter)',
-          backgroundImage: 'linear-gradient(90deg, rgba(251,250,245,.96) 0%, rgba(251,250,245,.85) 45%, rgba(251,250,245,.15) 100%), url(/images/home/hero-farmer.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'right center',
-        }}
-      >
-        <HeroInner {...common} heading="p" />
-      </div>
-      {/* Mobile: photo banner on top, content below on cream. This instance carries the <h1>. */}
-      <div className="md:hidden">
-        <img src="/images/home/hero-farmer.jpg" alt="" className="h-[200px] w-full object-cover" style={{ objectPosition: 'right center' }} />
-        <div style={{ background: 'var(--ks-bg)', padding: 'var(--ks-gutter)' }}><HeroInner {...common} heading="h1" /></div>
-      </div>
-    </section>
+    <span data-testid="hero-free-registration" className="ml-2 mt-1 inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)', border: '1px solid var(--ks-green)' }}>
+      ✓ {t('free_registration')}
+    </span>
   )
 }
 

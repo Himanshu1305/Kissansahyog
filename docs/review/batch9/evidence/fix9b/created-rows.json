@@ -1,0 +1,254 @@
+[
+ {
+  "id": "9c0ea57c-4cea-4ded-98ff-213c910345c9",
+  "note": "B4UI",
+  "base": "deployed",
+  "at": "2026-10-15T09:42:00.760Z"
+ },
+ {
+  "id": "e114938a-6434-4c67-b3e3-501d527e83d8",
+  "note": "B1",
+  "base": "local",
+  "at": "2026-10-15T09:42:29.444Z"
+ },
+ {
+  "id": "d3d3da9e-5ce9-4636-b285-0238eae0097e",
+  "note": "B2",
+  "base": "local",
+  "at": "2026-10-15T09:42:40.532Z"
+ },
+ {
+  "id": "bf3af2d5-fd37-4c48-9b54-be3d293fa26e",
+  "note": "B3",
+  "base": "local",
+  "at": "2026-10-15T09:42:41.349Z"
+ },
+ {
+  "id": "af54fec3-ee39-41d9-9216-470f76aa9a14",
+  "note": "B4",
+  "base": "local",
+  "at": "2026-10-15T09:42:42.098Z"
+ },
+ {
+  "id": "26b27630-9ec7-47a1-b8c9-32818fcb56af",
+  "note": "B5",
+  "base": "local",
+  "at": "2026-10-15T09:42:54.110Z"
+ },
+ {
+  "id": "68608c13-8cdb-4360-90f1-c659388afb3a",
+  "note": "B4",
+  "base": "local",
+  "at": "2026-10-15T09:43:08.978Z"
+ },
+ {
+  "id": "52b37d32-0ebc-4d4f-b565-6d156eb06215",
+  "note": "A1",
+  "base": "local",
+  "at": "2026-10-15T09:43:23.695Z"
+ },
+ {
+  "id": "b5bf077e-0634-4481-97d5-1ed9c0a8d987",
+  "note": "A2-bhusa",
+  "base": "local",
+  "at": "2026-10-15T09:43:42.592Z"
+ },
+ {
+  "id": "52f3c43f-f890-46a5-b1b3-012edf7ab4f1",
+  "note": "A2-agri_shop_as_farmer",
+  "base": "local",
+  "at": "2026-10-15T09:43:47.384Z"
+ },
+ {
+  "id": "a5747ab6-078c-46ad-a7dd-d61bfda82d65",
+  "note": "A3",
+  "base": "local",
+  "at": "2026-10-15T09:44:38.372Z"
+ },
+ {
+  "id": "fed49f5f-ca6f-4463-82fd-b8b4f7cbf6c1",
+  "note": "A4-equipment",
+  "base": "local",
+  "at": "2026-10-15T09:44:53.669Z"
+ },
+ {
+  "id": "00d128a4-6f70-41a4-ac5e-3f026930ca92",
+  "note": "A4-warehouse",
+  "base": "local",
+  "at": "2026-10-15T09:44:59.706Z"
+ },
+ {
+  "id": "4bb451a3-8f9b-49b9-8cd4-73f1daf27f3b",
+  "note": "A4-greenhouse",
+  "base": "local",
+  "at": "2026-10-15T09:45:05.473Z"
+ },
+ {
+  "id": "aa025bfe-8949-49ab-a7e5-f44aa404fbb9",
+  "note": "A4-jugaad",
+  "base": "local",
+  "at": "2026-10-15T09:45:12.278Z"
+ },
+ {
+  "id": "def45aa8-75ae-4b7b-ab15-19803d5719df",
+  "note": "R-equipment",
+  "base": "local",
+  "at": "2026-10-15T09:46:24.628Z"
+ },
+ {
+  "id": "afa8d945-314c-48a9-b5c5-8ccffdb80d18",
+  "note": "R-labor",
+  "base": "local",
+  "at": "2026-10-15T09:46:29.815Z"
+ },
+ {
+  "id": "09866323-72d5-47a1-8710-4486206eaad7",
+  "note": "R-drone_didi",
+  "base": "local",
+  "at": "2026-10-15T09:46:34.872Z"
+ },
+ {
+  "id": "9ff126d0-a5f9-46a1-a331-7be4e034cd47",
+  "note": "R-bhusa",
+  "base": "local",
+  "at": "2026-10-15T09:46:39.716Z"
+ },
+ {
+  "id": "0e31ba39-6910-4cc4-bdf7-15e21898f875",
+  "note": "R-agri_inputs",
+  "base": "local",
+  "at": "2026-10-15T09:46:44.728Z"
+ },
+ {
+  "id": "d359a924-6cb4-4ec9-aeef-3301a5ca7c7a",
+  "note": "R-building_materials",
+  "base": "local",
+  "at": "2026-10-15T09:46:49.658Z"
+ },
+ {
+  "id": "80fb3d88-f9da-47f1-b4fb-80fdffc4d1dd",
+  "note": "R-warehouse",
+  "base": "local",
+  "at": "2026-10-15T09:46:54.747Z"
+ },
+ {
+  "id": "bd69f9bb-efe0-46be-896b-60eeafe77777",
+  "note": "R-greenhouse",
+  "base": "local",
+  "at": "2026-10-15T09:46:59.621Z"
+ },
+ {
+  "id": "547d740b-8e78-4ff3-87be-b2e1ffaeb961",
+  "note": "R-jugaad",
+  "base": "local",
+  "at": "2026-10-15T09:47:05.239Z"
+ },
+ {
+  "id": "9cde1939-92b1-45b3-9618-6014dc94929c",
+  "note": "R-transport",
+  "base": "local",
+  "at": "2026-10-15T09:47:10.107Z"
+ },
+ {
+  "id": "c4fbff6e-a121-4ff6-8413-384c2f325c6e",
+  "note": "R-land",
+  "base": "local",
+  "at": "2026-10-15T09:47:14.996Z"
+ },
+ {
+  "id": "0e411791-4258-40ce-b4ed-091b48396932",
+  "note": "R-equipment",
+  "base": "local",
+  "at": "2026-10-15T09:47:47.540Z"
+ },
+ {
+  "id": "f6b32cc4-e705-4494-a69a-8e69ef823ec9",
+  "note": "R-labor",
+  "base": "local",
+  "at": "2026-10-15T09:47:52.688Z"
+ },
+ {
+  "id": "0a16dd43-ea84-45f4-a328-3e8cf6d5e95c",
+  "note": "R-drone_didi",
+  "base": "local",
+  "at": "2026-10-15T09:47:57.746Z"
+ },
+ {
+  "id": "bcc03ecb-2acf-474c-8667-d055c1240fdd",
+  "note": "R-bhusa",
+  "base": "local",
+  "at": "2026-10-15T09:48:02.638Z"
+ },
+ {
+  "id": "96d329a0-4d97-41eb-8de1-9b53fda72e86",
+  "note": "R-agri_inputs",
+  "base": "local",
+  "at": "2026-10-15T09:48:07.647Z"
+ },
+ {
+  "id": "1c1a88d6-8237-4f20-b204-b459f2e4e315",
+  "note": "R-building_materials",
+  "base": "local",
+  "at": "2026-10-15T09:48:12.568Z"
+ },
+ {
+  "id": "8a873d7c-91df-4c84-972e-3477c6c4275f",
+  "note": "R-warehouse",
+  "base": "local",
+  "at": "2026-10-15T09:48:18.152Z"
+ },
+ {
+  "id": "b92f03b1-9a56-4b24-9d18-a107b7b70291",
+  "note": "R-greenhouse",
+  "base": "local",
+  "at": "2026-10-15T09:48:23.289Z"
+ },
+ {
+  "id": "ebcfb349-1d90-4429-8b7f-2cb982a040f3",
+  "note": "R-jugaad",
+  "base": "local",
+  "at": "2026-10-15T09:48:29.086Z"
+ },
+ {
+  "id": "d643483e-fb0b-4c53-b84a-22754ac34d36",
+  "note": "R-transport",
+  "base": "local",
+  "at": "2026-10-15T09:48:34.434Z"
+ },
+ {
+  "id": "aba597ed-11e4-4343-abe8-5604ee24b424",
+  "note": "R-land",
+  "base": "local",
+  "at": "2026-10-15T09:48:39.526Z"
+ },
+ {
+  "id": "70f2aeda-0a7f-426c-b165-75277634f5f4",
+  "note": "B2",
+  "base": "deployed",
+  "at": "2026-10-15T09:55:19.188Z"
+ },
+ {
+  "id": "442ea17f-b067-4f5c-aff0-5b37fad70823",
+  "note": "A1",
+  "base": "deployed",
+  "at": "2026-10-15T09:55:28.031Z"
+ },
+ {
+  "id": "23577087-fce7-4205-aa69-0cd4482a58b9",
+  "note": "A2-bhusa",
+  "base": "deployed",
+  "at": "2026-10-15T09:55:46.663Z"
+ },
+ {
+  "id": "1da1f316-1df8-48df-b142-3f9424386ee0",
+  "note": "A2-agri_shop_as_farmer",
+  "base": "deployed",
+  "at": "2026-10-15T09:55:51.591Z"
+ },
+ {
+  "id": "86021a86-7272-497e-93a9-7b2f950263c9",
+  "note": "B1",
+  "base": "deployed",
+  "at": "2026-10-15T09:57:02.092Z"
+ }
+]

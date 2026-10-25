@@ -21,41 +21,51 @@ async function main() {
   const home = read('src/screens/Homepage.jsx')
   const fasal = read('src/screens/FasalSalah.jsx')
   const nearby = read('src/lib/listings/nearbyCounts.js')
+  const userLoc = read('src/lib/location/userLocation.js')
+  const provider = read('src/lib/location/LocationProvider.jsx')
+  const control = read('src/components/location/LocationControl.jsx')
 
   // ---------- Phase 1: weather is global; village features gate on matchedVillage ----------
   ok('weather path has a live global Open-Meteo fetch (fetchLiveWeatherCell)', /fetchLiveWeatherCell/.test(weatherApi) && /api\.open-meteo\.com\/v1\/forecast/.test(weatherApi))
   ok('weather does NOT serve a far cached cell (nearby last-resort guarded by distance)', /bestD\s*>\s*30/.test(weatherApi))
-  ok('locationStore.initialLocation returns the split shape (rawCoords + matchedVillage)', /rawCoords:\s*null/.test(locStore) && /matchedVillage:\s*\{/.test(locStore))
-  ok('LocationControl ALWAYS commits rawCoords on GPS + gates matchedVillage', /rawCoords:\s*\{\s*latitude,\s*longitude\s*\}/.test(shared) && /matchedVillage:\s*inArea\s*\?/.test(shared))
-  ok('LocationControl debug surfaces raw lat/lng + accuracy + timestamp (1e)', /accuracy/.test(shared) && /timestamp/.test(shared) && /geo-debug/.test(shared))
-  ok('Mausam weather consumes rawCoords (not the village match)', /loc\.rawCoords\?\.latitude/.test(mausam))
-  ok('FasalSalah weather consumes rawCoords', /loc\.rawCoords\?\.latitude/.test(fasal))
-  ok('Homepage weather uses rawCoords; counts/feed use matchedVillage', /const weatherCoords = loc\.rawCoords/.test(home) && /fetchNearbyCounts\(vpin/.test(home))
-  ok('Msp mandi-ranking center is village-anchored (matchedVillage)', /loc\.matchedVillage\?\.pincode/.test(msp) && /setCenter\(null\)/.test(msp))
-  ok('nearbyCounts returns zeros for a missing pincode (no silent Khurai fallback)', /!\/\^\\d\{6\}\$\/\.test\(pin\)/.test(nearby) && /return zero/.test(nearby))
+  // Batch 7L-1: the rawCoords / matchedVillage split was replaced by ONE location object
+  // { lat, lng, label, source } that every screen reads from LocationProvider.
+  ok('one location object { lat, lng, label, source } (userLocation.makeLocation)', /return \{ lat: la, lng: ln, label:/.test(userLoc) && /SOURCES = \['device', 'saved', 'typed', 'picked'\]/.test(userLoc))
+  ok('a device fix is always committed as the location (source: device), with no area gate', /source: 'device'/.test(provider) && !/SERVICE_AREA_KM|inArea/.test(provider + control))
+  ok('no ?debug=1 overlay any more (raw lat/lng is never rendered)', !/geo-debug|debug=1/.test(shared + control))
+  ok('Mausam weather reads the shared location', /useUserLocation\(\)/.test(mausam) && /location\?\.lat/.test(mausam))
+  ok('FasalSalah weather reads the shared location', /useUserLocation\(\)/.test(fasal) && /location\?\.lat/.test(fasal))
+  ok('Homepage weather, counts and feed all use the shared location', /useUserLocation\(\)/.test(home) && /fetchNearbyCounts\(c0/.test(home) && /fetchWeatherCell\(lat, lng\)/.test(home))
+  ok('Msp mandi-ranking center is the shared location', /const \{ center \} = useUserLocation\(\)/.test(msp))
+  ok('nearbyCounts returns zeros with no location (no silent Khurai fallback)', /if \(!center \|\| center\.latitude == null \|\| center\.longitude == null\) return zero/.test(nearby) && !/pincode/i.test(nearby.replace(/^\s*\/\/.*$/gm, '')))
 
   // 1b-i — the anon write-back RPC works for a genuinely NEW cell (not one the cron seeded).
-  const testKey = '9.9_9.9'
-  await db.from('weather_cache_v2').delete().eq('grid_key', testKey) // ensure absent
-  const { error: rpcErr } = await anon.rpc('cache_weather_cell', {
-    p_grid_key: testKey, p_lat: 9.9, p_lon: 9.9,
-    p_current: { temp: 30, weathercode: 1 }, p_hourly: [], p_daily: [{ date: '2026-09-25', tmax: 31 }],
-  })
-  ok('1b-i: anon cache_weather_cell RPC writes a new cell', !rpcErr, rpcErr?.message || '')
-  const { data: back } = await anon.from('weather_cache_v2').select('grid_key,current').eq('grid_key', testKey).maybeSingle()
-  ok('1b-i: written cell is read-back-able (subsequent visits benefit)', back?.grid_key === testKey && back?.current?.temp === 30)
-  await db.from('weather_cache_v2').delete().eq('grid_key', testKey) // cleanup
+  // KS_NO_DB_WRITES=1 skips this check: it inserts and then deletes one test row (9.9_9.9).
+  if (process.env.KS_NO_DB_WRITES === '1') {
+    console.log('SKIP  1b-i: anon cache_weather_cell write-back (KS_NO_DB_WRITES=1)')
+  } else {
+    const testKey = '9.9_9.9'
+    await db.from('weather_cache_v2').delete().eq('grid_key', testKey) // ensure absent
+    const { error: rpcErr } = await anon.rpc('cache_weather_cell', {
+      p_grid_key: testKey, p_lat: 9.9, p_lon: 9.9,
+      p_current: { temp: 30, weathercode: 1 }, p_hourly: [], p_daily: [{ date: '2026-09-25', tmax: 31 }],
+    })
+    ok('1b-i: anon cache_weather_cell RPC writes a new cell', !rpcErr, rpcErr?.message || '')
+    const { data: back } = await anon.from('weather_cache_v2').select('grid_key,current').eq('grid_key', testKey).maybeSingle()
+    ok('1b-i: written cell is read-back-able (subsequent visits benefit)', back?.grid_key === testKey && back?.current?.temp === 30)
+    await db.from('weather_cache_v2').delete().eq('grid_key', testKey) // cleanup
+  }
 
   // 1b-i regression guard: the RPC rejects a malformed grid key.
   const { error: badErr } = await anon.rpc('cache_weather_cell', { p_grid_key: 'not-a-grid', p_lat: 9.9, p_lon: 9.9, p_current: {}, p_hourly: [], p_daily: [] })
   ok('1b-i: RPC rejects a malformed grid key', !!badErr)
 
-  // 1g — recent chips carry BOTH values (store + repopulate).
-  ok('recent locations carry rawCoords + matchedVillage (1g)', /rawCoords:\s*loc\.rawCoords/.test(locStore) && /matchedVillage:\s*loc\.matchedVillage/.test(locStore))
+  // 1g — Batch 7L-1: the "recent places" chips are gone; the chosen place is saved on the device.
+  ok('the chosen place is saved on this device and restored (1g)', /localStorage\.setItem\(KEY/.test(userLoc) && /useState\(\(\) => loadSavedLocation\(\)\)/.test(provider))
 
   // ---------- Phase 1 regression: village-anchored 100km gate intact ----------
   const distance = read('src/lib/distance.js')
-  ok('SERVICE_AREA_KM threshold still exists', /SERVICE_AREA_KM\s*=\s*100/.test(locStore))
+  ok('the visitor-location service-area threshold was removed with the old control (Batch 7L-1)', !/SERVICE_AREA_KM/.test(locStore))
   ok('geofencing partitionByRadius / RADIUS_KM unchanged (mega-prompt build)', /RADIUS_KM\s*=\s*30/.test(distance) && /partitionByRadius/.test(distance))
 
   // ---------- Phase 2: missing mandi rates ----------

@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase18_transport.spec.js:25:1 › Transport is a full browse category — chip present, Land still last, no stale count (999ms)
+  ok 2 [chromium] › e2e\phase18_transport.spec.js:38:1 › Transport listing appears within 30km and is filtered beyond 50km (957ms)
+[teardown] test data cleaned
+
+  2 passed (2.9s)

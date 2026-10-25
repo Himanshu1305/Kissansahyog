@@ -29,9 +29,10 @@ test('Transport is a full browse category — chip present, Land still last, no 
   await expect(page.getByTestId('chip-transport')).toBeVisible()
   // The strip renders exactly the enabled categories, in order, Land LAST.
   const chips = page.locator('[data-testid^="chip-"]')
-  await expect(chips).toHaveCount(10) // +greenhouse (P7) +jugaad (P9): equipment,labor,drone_didi,bhusa,agri_inputs,warehouse,greenhouse,jugaad,transport,land
+  // 10E 5.2: 11 since Batch 5A added building_materials: equipment,labor,drone_didi,bhusa,agri_inputs,building_materials,warehouse,greenhouse,jugaad,transport,land
+  await expect(chips).toHaveCount(11)
   await expect(chips.last()).toHaveAttribute('data-testid', 'chip-land')
-  await expect(chips.nth(8)).toHaveAttribute('data-testid', 'chip-transport')
+  await expect(chips.nth(9)).toHaveAttribute('data-testid', 'chip-transport')
 })
 
 test('Transport listing appears within 30km and is filtered beyond 50km', async ({ page }) => {

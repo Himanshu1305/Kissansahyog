@@ -1,0 +1,22 @@
+{
+  "online": {
+    "banner": null,
+    "stamps": [],
+    "prices": 10,
+    "tickerOffline": false
+  },
+  "offline": {
+    "banner": "📴 आप ऑफ़लाइन हैं — आख़िरी बार अपडेट: 15 अक्तू॰, 02:57 am",
+    "stamps": [],
+    "prices": 10,
+    "tickerOffline": false
+  },
+  "onlineOldData": {
+    "banner": null,
+    "stamps": [
+      "📴 पिछली बार अपडेट: 15 अक्तू॰, 02:57 am"
+    ],
+    "prices": 10,
+    "tickerOffline": false
+  }
+}

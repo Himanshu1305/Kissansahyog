@@ -1,0 +1,59 @@
+# Batch 14A - database checks (STAGING)
+
+- PASS - all 13 new admin RPCs refuse anon / non-admin / session-less admin with the right code
+- PASS - session_enforced is false here and the session-less admin was STILL refused (sensitive tools never trust a user id alone)
+- PASS - log_admin_action is not callable by the browser key (permission denied for function log_admin_action)
+- PASS - ks_phone_is_blocked is not callable by the browser key (permission denied for function ks_phone_is_blocked)
+- PASS - ks_session_admin is not callable by the browser key (permission denied for function ks_session_admin)
+- PASS - ks_assert_not_blocked is not callable by the browser key (permission denied for function ks_assert_not_blocked)
+- PASS - require_admin_session is not callable by the browser key (permission denied for function require_admin_session)
+- PASS - require_super_admin is not callable by the browser key (permission denied for function require_super_admin)
+- PASS - ks_phone_is_blocked / ks_session_admin work for the service role
+- PASS - editor cannot call super-only admin_get_security_status (super_required)
+- PASS - editor cannot call super-only admin_set_security_flag (super_required)
+- PASS - editor cannot call super-only admin_get_otp_usage (super_required)
+- PASS - editor cannot call super-only admin_set_user_blocked (super_required)
+- PASS - editor cannot call super-only admin_set_admin_role (super_required)
+- PASS - editor can call admin_whoami (null)
+- PASS - editor can call admin_list_announcements (null)
+- PASS - editor can call admin_list_user_status (null)
+- PASS - editor can call admin_list_actions (null)
+- PASS - whoami reports role
+- PASS - admin_set_security_flag rejects any key but the two
+- PASS - reason under 10 characters is refused
+- PASS - OTP OFF needs the exact phrase on the server
+- PASS - SESSIONS ON needs the exact phrase on the server
+- PASS - no-op write in the safe direction needs only a reason and is logged (value unchanged)
+- PASS - security status shows both flags with last-changed ({"otp_required":{"value":false,"changed_at":null,"changed_by":null},"session_enforced":{"value":false,"changed_at":"2026)
+- PASS - OTP usage has counts and no phone numbers ({"sent_7d":6,"sent_30d":6,"by_purpose":{"login":6},"failed_30d":0,"sent_today":0,"verified_30d":4,"rate_limited_30d":null,"unregistered_30d")
+- PASS - announcement validation: bad image host, bad links, end<=start, empty title, bad style, picture without alt are all refused ([true,true,true,true,true,true,true,true,true])
+- PASS - anon sees only the active in-window card (not future, not switched off)
+- PASS - public columns are safe (no created_by / is_active / created_at)
+- PASS - a duplicate starts switched OFF
+- PASS - switching a card off hides it from the public
+- PASS - anon cannot read or write the announcements table directly
+- PASS - delete works
+- PASS - block needs a reason
+- PASS - cannot block yourself
+- PASS - cannot block an admin (editor or super)
+- PASS - an unblocked user can post (baseline)
+- PASS - blocking works
+- PASS - blocking revoked the user's sessions
+- PASS - a blocked user is refused by the listings trigger (account_blocked) (account_blocked)
+- PASS - ks_phone_is_blocked is true for the blocked phone, false for others
+- PASS - block reason and blocker stored
+- PASS - status list shows the blocked user with a masked phone (last 4 only)
+- PASS - unblock restores posting
+- PASS - role change works (editor -> super -> editor)
+- PASS - cannot change your own role
+- PASS - invalid role and non-admin target are refused
+- PASS - demoting another super is allowed only while a super remains (S demotes T; S stays super)
+- PASS - the last-super-admin guard is in the function (logically a second line of defence: the actor must be a different super)
+- PASS - log RPC accepts only allow-listed actions
+- PASS - action log lists the actions just done (security, announcements, block, role, console)
+- PASS - action log has no phone numbers, keys or tokens
+- PASS - action log filter by action and by admin
+- PASS - editors can read the log
+- PASS - staging switches are exactly as found ([{"key":"otp_required","v":"false"},{"key":"session_enforced","v":"false"}])
+
+**55 passed, 0 failed**

@@ -1,0 +1,13 @@
+
+Running 7 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase2.spec.js:17:1 › welcome defaults to Hindi and toggles to English (1.2s)
+  ok 2 [chromium] › e2e\phase2.spec.js:45:1 › signup happy path reaches home (1.3s)
+  ok 3 [chromium] › e2e\phase2.spec.js:62:1 › client-side rejects malformed phone before registering (1.3s)
+  ok 4 [chromium] › e2e\phase2.spec.js:74:1 › Register without the acknowledgment ticked is refused; visibility untick warns (1.3s)
+  ok 5 [chromium] › e2e\phase2.spec.js:86:1 › duplicate phone is rejected with a clear message (1.3s)
+  ok 6 [chromium] › e2e\phase2.spec.js:106:1 › login with unknown phone shows not-found path (1.1s)
+  ok 7 [chromium] › e2e\phase2.spec.js:116:1 › language persists across logout/login (1.9s)
+[teardown] test data cleaned
+
+  7 passed (10.7s)

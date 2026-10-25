@@ -1,0 +1,27 @@
+total 8 157594 chars read fully
+{
+  rls_enabled_no_policy: 1,
+  security_definer_view: 1,
+  function_search_path_mutable: 1,
+  rls_disabled_in_public: 1,
+  extension_in_public: 1,
+  anon_security_definer_function_executable: 1,
+  authenticated_security_definer_function_executable: 1,
+  auth_leaked_password_protection: 1
+}
+rls_enabled_no_policy | keys name,title,level,facing,categories,description,remediation,count,findings | len 5653 | new objects: app_sessions auth_private ks_fn_backup_0066 ks_require_actor_allow otp_requests otp_tickets
+security_definer_view | keys name,title,level,facing,categories,description,remediation,count,findings | len 679 | new objects: 
+function_search_path_mutable | keys name,title,level,facing,categories,description,remediation,count,findings | len 755 | new objects: 
+rls_disabled_in_public | keys name,title,level,facing,categories,description,remediation,count,findings | len 774 | new objects: 
+extension_in_public | keys name,title,level,facing,categories,description,remediation,count,findings | len 528 | new objects: 
+anon_security_definer_function_executable | keys name,title,level,facing,categories,description,remediation,count,findings | len 73476 | new objects: app_login_otp app_logout_session app_register_phone_otp app_session_valid get_auth_flags
+authenticated_security_definer_function_executable | keys name,title,level,facing,categories,description,remediation,count,findings | len 75147 | new objects: app_issue_session app_login_otp app_logout_session app_register_phone_otp app_session_valid get_auth_flags
+auth_leaked_password_protection | keys name,title,level,facing,categories,description,remediation,count,findings | len 552 | new objects: 
+
+Reading: whole advisor output (157,594 characters) parsed. 8 lint groups; the only ones naming 0066 objects are
+- rls_enabled_no_policy: otp_requests, otp_tickets, app_sessions, auth_private, ks_fn_backup_0066, ks_require_actor_allow
+  EXPECTED: these tables must not be readable through the API; only SECURITY DEFINER functions / the service role touch them.
+- anon/authenticated_security_definer_function_executable: get_auth_flags, app_login_otp, app_register_phone_otp,
+  app_logout_session, app_session_valid (+ app_issue_session for authenticated) — EXPECTED: these are the browser entry points.
+No 0066 object appears in function_search_path_mutable (every new SECURITY DEFINER function pins search_path).
+The other groups (security_definer_view, rls_disabled_in_public, extension_in_public, leaked password protection) are pre-existing.

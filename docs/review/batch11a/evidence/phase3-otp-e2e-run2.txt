@@ -1,0 +1,40 @@
+
+Running 3 tests using 1 worker
+
+  ok 1 [chromium] › e2e\otp-11a.spec.js:296:3 › 11A: session enforcement ON (both flags) › an action refused by the server (not_authenticated) signs out locally and shows the login screen (1.0m)
+  ok 2 [chromium] › e2e\otp-11a.spec.js:308:3 › 11A: session enforcement ON (both flags) › e-mail sign-in still works and gets a session token (actions work under enforcement) (4.0s)
+  x  3 [chromium] › e2e\otp-11a.spec.js:328:3 › 11A: session enforcement ON (both flags) › 320 px phone: code step fits, no horizontal scroll, touch targets >= 44 px (2.3s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\otp-11a.spec.js:328:3 › 11A: session enforcement ON (both flags) › 320 px phone: code step fits, no horizontal scroll, touch targets >= 44 px 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByLabel('6 अंकों का कोड')
+    Expected: visible
+    Error: strict mode violation: getByLabel('6 अंकों का कोड') resolved to 2 elements:
+        1) <form novalidate="" data-testid="login-otp-step" aria-labelledby="login-otp-sent">…</form> aka getByTestId('login-otp-step')
+        2) <input value="" type="text" maxlength="6" pattern="[0-9]*" id="login-otp-code" inputmode="numeric" data-testid="login-otp-code" autocomplete="one-time-code" aria-describedby="login-otp-sent" class="w-full rounded-xl border-2 border-stone-300 bg-white px-4 py-3 text-lg text-stone-900 outline-none focus:border-green-600 text-center text-2xl tracking-[0.4em]"/> aka getByTestId('login-otp-code')
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByLabel('6 अंकों का कोड')
+
+
+      342 |       expect(b.x + b.width, id).toBeLessThanOrEqual(320)
+      343 |     }
+    > 344 |     await expect(page.getByLabel('6 अंकों का कोड')).toBeVisible() // labelled for screen readers
+          |                                                     ^
+      345 |     await page.screenshot({ path: 'docs/review/batch11a/evidence/screens/phase3-otp-login-320-hi.png', fullPage: true })
+      346 |   })
+      347 | })
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\otp-11a.spec.js:344:53
+
+    Error Context: test-results\otp-11a-11A-session-enforc-85f9f--scroll-touch-targets-44-px-chromium\error-context.md
+
+    Error Context: test-results\otp-11a-11A-session-enforc-85f9f--scroll-touch-targets-44-px-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\otp-11a.spec.js:328:3 › 11A: session enforcement ON (both flags) › 320 px phone: code step fits, no horizontal scroll, touch targets >= 44 px 
+  2 passed (1.2m)

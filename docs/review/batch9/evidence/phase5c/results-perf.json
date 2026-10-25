@@ -1,0 +1,182 @@
+{
+ "area": "perf",
+ "results": [
+  {
+   "at": "2026-10-15T07:36:25.972Z",
+   "id": "load:/",
+   "title": "web cold load of /, phone viewport, 4x CPU throttle, real network (3 runs, median)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "medianLiveContentMs": 1986,
+    "medianFcpMs": 852,
+    "medianDclMs": 1442,
+    "runs": [
+     {
+      "run": 1,
+      "liveContentMs": 2371,
+      "fcp": 1184,
+      "dcl": 1700,
+      "load": 1704,
+      "transferKB": 2119
+     },
+     {
+      "run": 2,
+      "liveContentMs": 1986,
+      "fcp": 852,
+      "dcl": 1442,
+      "load": 1449,
+      "transferKB": 2119
+     },
+     {
+      "run": 3,
+      "liveContentMs": 1897,
+      "fcp": 796,
+      "dcl": 1335,
+      "load": 1339,
+      "transferKB": 2119
+     }
+    ],
+    "flag": null
+   }
+  },
+  {
+   "at": "2026-10-15T07:36:35.787Z",
+   "id": "load:/mausam",
+   "title": "web cold load of /mausam, phone viewport, 4x CPU throttle, real network (3 runs, median)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "medianLiveContentMs": 1879,
+    "medianFcpMs": 812,
+    "medianDclMs": 1042,
+    "runs": [
+     {
+      "run": 1,
+      "liveContentMs": 1996,
+      "fcp": 872,
+      "dcl": 1065,
+      "load": 1066,
+      "transferKB": 581
+     },
+     {
+      "run": 2,
+      "liveContentMs": 1783,
+      "fcp": 720,
+      "dcl": 948,
+      "load": 948,
+      "transferKB": 581
+     },
+     {
+      "run": 3,
+      "liveContentMs": 1879,
+      "fcp": 812,
+      "dcl": 1042,
+      "load": 1042,
+      "transferKB": 581
+     }
+    ],
+    "flag": null
+   }
+  },
+  {
+   "at": "2026-10-15T07:39:59.032Z",
+   "id": "heap:3min",
+   "title": "web JS heap after ~3 minutes of in-app navigation (12 screens per lap)",
+   "status": "RAN-PASSED",
+   "detail": {
+    "navigations": 120,
+    "start": {
+     "usedMB": 5.2,
+     "totalMB": 10.3,
+     "nodes": 2805,
+     "listeners": 899
+    },
+    "end": {
+     "usedMB": 7.3,
+     "totalMB": 9,
+     "nodes": 1772,
+     "listeners": 460
+    },
+    "afterForcedGc": {
+     "usedMB": 7.2,
+     "totalMB": 8,
+     "nodes": 1772,
+     "listeners": 460
+    },
+    "laps": [
+     {
+      "atS": 18,
+      "usedMB": 8.5,
+      "totalMB": 15.3,
+      "nodes": 2406,
+      "listeners": 1079
+     },
+     {
+      "atS": 37,
+      "usedMB": 8.4,
+      "totalMB": 14.3,
+      "nodes": 2386,
+      "listeners": 1047
+     },
+     {
+      "atS": 55,
+      "usedMB": 8.8,
+      "totalMB": 19,
+      "nodes": 15315,
+      "listeners": 1293
+     },
+     {
+      "atS": 73,
+      "usedMB": 7.3,
+      "totalMB": 10.5,
+      "nodes": 2349,
+      "listeners": 1025
+     },
+     {
+      "atS": 92,
+      "usedMB": 7.6,
+      "totalMB": 11.3,
+      "nodes": 2349,
+      "listeners": 1025
+     },
+     {
+      "atS": 110,
+      "usedMB": 8,
+      "totalMB": 14.3,
+      "nodes": 1784,
+      "listeners": 899
+     },
+     {
+      "atS": 128,
+      "usedMB": 7.4,
+      "totalMB": 10.5,
+      "nodes": 1772,
+      "listeners": 562
+     },
+     {
+      "atS": 146,
+      "usedMB": 7.6,
+      "totalMB": 11.5,
+      "nodes": 2069,
+      "listeners": 970
+     },
+     {
+      "atS": 165,
+      "usedMB": 8.9,
+      "totalMB": 13.3,
+      "nodes": 2386,
+      "listeners": 968
+     },
+     {
+      "atS": 183,
+      "usedMB": 7.3,
+      "totalMB": 9,
+      "nodes": 1772,
+      "listeners": 460
+     }
+    ],
+    "growthAfterGcMB": 2,
+    "note": "no pass/fail threshold invented; a steady climb across laps after GC would suggest a leak"
+   }
+  }
+ ]
+}

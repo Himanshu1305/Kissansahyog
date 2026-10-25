@@ -1,0 +1,210 @@
+{
+  "entry": "assets/index-Berk0UA3.js",
+  "entryRaw": 81615,
+  "entryGzip9": 27576,
+  "modulepreloadInHtml": [
+    "/assets/rolldown-runtime-hePW80VL.js",
+    "/assets/react-vendor-Cg-BX6NK.js",
+    "/assets/LanguageProvider-DDrhCBhA.js",
+    "/assets/useNativeBack-0uN2UQaS.js",
+    "/assets/supabase-H6RbKBY9.js",
+    "/assets/PageShell-t5g9TXZ0.js",
+    "/assets/device-D4sZPGnq.js",
+    "http://localhost:4178/assets/Homepage-CDCNQfXq.js",
+    "http://localhost:4178/assets/melaApi-DAscXvgJ.js",
+    "http://localhost:4178/assets/communityApi-BRu85UzD.js",
+    "http://localhost:4178/assets/mandiApi-Cyg-UtSr.js",
+    "http://localhost:4178/assets/weatherApi-f5eLqPLK.js",
+    "http://localhost:4178/assets/weatherApiV2-DYytxgjv.js",
+    "http://localhost:4178/assets/kit-C8zqDTZV.js",
+    "http://localhost:4178/assets/shared-CVwOVOBp.js",
+    "http://localhost:4178/assets/LocationControl-Cu1Llzwt.js",
+    "http://localhost:4178/assets/articlesApi-ChsYQpPp.js",
+    "http://localhost:4178/assets/shareMessages-Y3v0P0jO.js",
+    "http://localhost:4178/assets/catalog-KGaQpWeV.js",
+    "http://localhost:4178/assets/registry-C-MzvmZO.js",
+    "http://localhost:4178/assets/listingsApi-CNTmJfjD.js",
+    "http://localhost:4178/assets/photos-Ck8NOaOM.js",
+    "http://localhost:4178/assets/OfflineStamp-zG7GcysU.js",
+    "http://localhost:4178/assets/crops-Bmyu-kFh.js",
+    "http://localhost:4178/assets/founder-B7YdwJ2e.js",
+    "http://localhost:4178/assets/mspApi-b880GNPZ.js",
+    "http://localhost:4178/assets/AvailabilityNudge-DJnaiE4e.js",
+    "http://localhost:4178/assets/videosApi-BEXH0_Cw.js",
+    "http://localhost:4178/assets/melaFormat-BrAJo1Hn.js",
+    "http://localhost:4178/assets/months-vZTFnxQH.js"
+  ],
+  "css": [
+    {
+      "file": "assets/index-C9S2MTQ5.css",
+      "raw": 62993,
+      "gzip9": 12369
+    }
+  ],
+  "routeChunksFirstVisit": [
+    {
+      "file": "assets/index-Berk0UA3.js",
+      "raw": 81615,
+      "gzip9": 27576
+    },
+    {
+      "file": "assets/rolldown-runtime-hePW80VL.js",
+      "raw": 716,
+      "gzip9": 428
+    },
+    {
+      "file": "assets/react-vendor-Cg-BX6NK.js",
+      "raw": 228872,
+      "gzip9": 72344
+    },
+    {
+      "file": "assets/LanguageProvider-DDrhCBhA.js",
+      "raw": 237503,
+      "gzip9": 61296
+    },
+    {
+      "file": "assets/useNativeBack-0uN2UQaS.js",
+      "raw": 651,
+      "gzip9": 417
+    },
+    {
+      "file": "assets/supabase-H6RbKBY9.js",
+      "raw": 208116,
+      "gzip9": 53198
+    },
+    {
+      "file": "assets/PageShell-t5g9TXZ0.js",
+      "raw": 54062,
+      "gzip9": 15262
+    },
+    {
+      "file": "assets/device-D4sZPGnq.js",
+      "raw": 307,
+      "gzip9": 255
+    },
+    {
+      "file": "assets/Homepage-CDCNQfXq.js",
+      "raw": 31937,
+      "gzip9": 9361
+    },
+    {
+      "file": "assets/melaApi-DAscXvgJ.js",
+      "raw": 8077,
+      "gzip9": 2951
+    },
+    {
+      "file": "assets/communityApi-BRu85UzD.js",
+      "raw": 4898,
+      "gzip9": 1506
+    },
+    {
+      "file": "assets/mandiApi-Cyg-UtSr.js",
+      "raw": 4695,
+      "gzip9": 1550
+    },
+    {
+      "file": "assets/weatherApi-f5eLqPLK.js",
+      "raw": 479,
+      "gzip9": 206
+    },
+    {
+      "file": "assets/weatherApiV2-DYytxgjv.js",
+      "raw": 4229,
+      "gzip9": 1787
+    },
+    {
+      "file": "assets/kit-C8zqDTZV.js",
+      "raw": 7662,
+      "gzip9": 2610
+    },
+    {
+      "file": "assets/shared-CVwOVOBp.js",
+      "raw": 12044,
+      "gzip9": 4042
+    },
+    {
+      "file": "assets/LocationControl-Cu1Llzwt.js",
+      "raw": 8603,
+      "gzip9": 2341
+    },
+    {
+      "file": "assets/articlesApi-ChsYQpPp.js",
+      "raw": 694,
+      "gzip9": 371
+    },
+    {
+      "file": "assets/shareMessages-Y3v0P0jO.js",
+      "raw": 1848,
+      "gzip9": 974
+    },
+    {
+      "file": "assets/catalog-KGaQpWeV.js",
+      "raw": 19598,
+      "gzip9": 6580
+    },
+    {
+      "file": "assets/registry-C-MzvmZO.js",
+      "raw": 56264,
+      "gzip9": 13198
+    },
+    {
+      "file": "assets/listingsApi-CNTmJfjD.js",
+      "raw": 5621,
+      "gzip9": 2019
+    },
+    {
+      "file": "assets/photos-Ck8NOaOM.js",
+      "raw": 1475,
+      "gzip9": 856
+    },
+    {
+      "file": "assets/OfflineStamp-zG7GcysU.js",
+      "raw": 666,
+      "gzip9": 471
+    },
+    {
+      "file": "assets/crops-Bmyu-kFh.js",
+      "raw": 1262,
+      "gzip9": 550
+    },
+    {
+      "file": "assets/founder-B7YdwJ2e.js",
+      "raw": 21004,
+      "gzip9": 6342
+    },
+    {
+      "file": "assets/mspApi-b880GNPZ.js",
+      "raw": 433,
+      "gzip9": 324
+    },
+    {
+      "file": "assets/AvailabilityNudge-DJnaiE4e.js",
+      "raw": 2162,
+      "gzip9": 1050
+    },
+    {
+      "file": "assets/videosApi-BEXH0_Cw.js",
+      "raw": 600,
+      "gzip9": 351
+    },
+    {
+      "file": "assets/melaFormat-BrAJo1Hn.js",
+      "raw": 1759,
+      "gzip9": 879
+    },
+    {
+      "file": "assets/months-vZTFnxQH.js",
+      "raw": 524,
+      "gzip9": 281
+    },
+    {
+      "file": "assets/workbox-window.prod.es5-Bd17z0YL.js",
+      "raw": 5653,
+      "gzip9": 2199
+    }
+  ],
+  "routeChunksCount": 32,
+  "routeChunksGzip9Total": 293575,
+  "routeChunksRawTotal": 1014029,
+  "sameChunkSetAllRuns": true
+}

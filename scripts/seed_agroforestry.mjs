@@ -92,7 +92,7 @@ const schemes = [
 // 2e — The intercropping article (Hindi primary + English). Question-shaped H2s
 // (## ...?) are rendered as headings AND become FAQPage entries in ArticleDetail.
 // ---------------------------------------------------------------------------
-const author = 'लेखक: श्री ए.के. दीक्षित, सेवानिवृत्त वन विभाग अधिकारी'
+const author = 'लेखक: श्री अभिनन्दन दीक्षित, सेवानिवृत्त वन विभाग अधिकारी'
 
 const content_hi = `${author}
 
@@ -178,7 +178,7 @@ const article = {
     'Intercropping means growing two or more crops on the same field at the same time in a fixed row ratio. In Madhya Pradesh, combinations such as soybean with pigeonpea, and pigeonpea with green gram or black gram, are well tested. It improves land use, pulses raise soil nitrogen, it creates more than one income source, and if one crop is weak the other cushions the risk.',
   content_hi,
   content_en,
-  author_name: 'श्री ए.के. दीक्षित',
+  author_name: 'श्री अभिनन्दन दीक्षित',
   cover_image_url: '/images/agroforestry/agroforestry-turmeric.jpg',
   is_published: true,
   published_at: new Date().toISOString(),

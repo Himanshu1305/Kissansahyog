@@ -1,0 +1,25 @@
+NOTE H3 en 360 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+NOTE H3 en 412 price card: {"hasPrice":true,"text":"Weather Set your place to see the weather Share my location · 5-day forecast → Today's price Wheat ₹2,690 MSP ₹2,585 is ₹105 above · Full list → Today's advice A good day for spraying and harvest"}
+NOTE H7 360x640 bottoms (px from page top): {"heroTop":440,"h1":565,"need":667,"have":743,"demo":828}
+NOTE H8 1280x720 hi: [{"top":358,"bottom":409,"right":663},{"top":450,"bottom":514,"right":361},{"top":450,"bottom":514,"right":663},{"top":551,"bottom":599,"right":663}]
+NOTE H8 1280x720 en: [{"top":358,"bottom":409,"right":663},{"top":450,"bottom":514,"right":361},{"top":450,"bottom":514,"right":663},{"top":551,"bottom":599,"right":663}]
+  -  20 [chromium] › e2e\otp-11a.spec.js:98:3 › 11A: flags OFF = today › login page: mobile box first; the number alone signs in (no code, no SMS)
+  -  21 [chromium] › e2e\otp-11a.spec.js:116:3 › 11A: flags OFF = today › the old direct RPC works while OTP is off
+  -  22 [chromium] › e2e\otp-11a.spec.js:127:3 › 11A: OTP ON › login by OTP: send → wrong code → right code → signed in with a session token
+  -  23 [chromium] › e2e\otp-11a.spec.js:157:3 › 11A: OTP ON › resend after the 30-second countdown sends a new code; the new code works
+  -  24 [chromium] › e2e\otp-11a.spec.js:179:3 › 11A: OTP ON › expired code → clear message; "change number" goes back to the number
+  -  25 [chromium] › e2e\otp-11a.spec.js:197:3 › 11A: OTP ON › number not registered → clear message, no code box, no SMS; "Create account" opens sign-up
+  -  26 [chromium] › e2e\otp-11a.spec.js:221:3 › 11A: OTP ON › number not registered, Hindi at 320 px: message fits, button 48 px, nothing wider than the screen
+  -  27 [chromium] › e2e\otp-11a.spec.js:243:3 › 11A: OTP ON › the old direct RPCs are blocked (otp_required)
+  -  28 [chromium] › e2e\otp-11a.spec.js:251:3 › 11A: OTP ON › sign-up by OTP: form → code → account created and signed in with a token
+  -  29 [chromium] › e2e\otp-11a.spec.js:274:3 › 11A: OTP ON › sign-up by OTP for a registered number → "already registered", no SMS
+  -  30 [chromium] › e2e\otp-11a.spec.js:292:3 › 11A: session enforcement ON (both flags) › signed in by OTP: own listings load (token attached); logout revokes the token
+  -  31 [chromium] › e2e\otp-11a.spec.js:311:3 › 11A: session enforcement ON (both flags) › a cloned user id cannot act: close_listing / delete_my_listing as someone else are refused
+  -  32 [chromium] › e2e\otp-11a.spec.js:335:3 › 11A: session enforcement ON (both flags) › a revoked session on this device → signed out at start-up with a clear message
+  -  33 [chromium] › e2e\otp-11a.spec.js:346:3 › 11A: session enforcement ON (both flags) › an action refused by the server (not_authenticated) signs out locally and shows the login screen
+  -  34 [chromium] › e2e\otp-11a.spec.js:358:3 › 11A: session enforcement ON (both flags) › e-mail sign-in still works and gets a session token (actions work under enforcement)
+  -  35 [chromium] › e2e\otp-11a.spec.js:379:3 › 11A: session enforcement ON (both flags) › 320 px phone: code step fits, no horizontal scroll, touch targets >= 44 px
+[teardown] test data cleaned
+
+  16 skipped
+  19 passed (1.3m)

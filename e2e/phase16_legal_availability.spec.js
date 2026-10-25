@@ -2,6 +2,7 @@
 // build: buyer compliance modal (once per browser), scheme/article/agro pages render, the
 // seller rules checkbox gates submission, and the PWA install banner's standalone/iOS logic.
 import { test, expect } from '@playwright/test'
+import { selectSpecFreeEquipmentType } from './support.js'
 
 const FAKE_SESSION = {
   id: '00000000-0000-0000-0000-0000000000ac', full_name: 'E2E Legal', phone: '9000012347',
@@ -51,13 +52,19 @@ test('seller rules-compliance checkbox is present and gates the submit button', 
   await page.getByTestId('post-type-offer').click()
   await page.getByTestId('post-cat-equipment').click()
   await page.getByTestId('post-next').click()
-  await page.locator('#f_equipment_type_id').waitFor({ timeout: 8000 })
-  await page.locator('#f_equipment_type_id').selectOption({ index: 1 })
+  await selectSpecFreeEquipmentType(page) // 10E 5.2: index 1 now needs 9C spec fields
   await page.locator('#f_rate_amount').fill('500')
+  await page.getByTestId('date-quick-0').click() // 10E 3C: start date is mandatory ('Today')
   await page.getByTestId('post-next').click()
   const cb = page.getByTestId('rules-agree-checkbox')
   await cb.waitFor({ timeout: 8000 })
   await expect(cb).not.toBeChecked()
+  // 6B/9B: the consent checklist must be ticked too; tick everything EXCEPT the rules box, so the
+  // rules box alone is what still gates Submit.
+  await page.locator('#f_asset_village').fill('Khurai')
+  for (const box of await page.locator('input[type="checkbox"]:not([data-testid="wide-visibility-checkbox"]):not([data-testid="rules-agree-checkbox"])').all()) {
+    if (!(await box.isChecked())) await box.check()
+  }
   const submit = page.getByTestId('post-submit')
   await expect(submit).toBeDisabled()
   await cb.check()

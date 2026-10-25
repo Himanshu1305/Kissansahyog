@@ -1,0 +1,43 @@
+{
+  "run": {
+    "flavor": "prod",
+    "startedAt": "2026-10-14T20:14:50.296Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "finishedAt": "2026-10-14T20:16:22.224Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "K1",
+      "name": "Keyboard never hides a field",
+      "status": "RAN-PASSED",
+      "assertion": "For /login, /signup, /search, the feedback form (/grievance), Profile edit and every /post step: the LOWEST text field, tapped with a real on-screen keyboard drawn, is fully visible above the keyboard (a), its submit/next button scrolls into view with the keyboard up (b), and after closing the keyboard nothing stays covered (c). Forms needing an account are NOT-RUN where no login is allowed (prod)",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/login-keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/login-submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/signup-keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/signup-submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/search-keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/search-submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/feedback-grievance--keyboard.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/feedback-grievance--submit-reachable.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/measurements.json",
+        "docs/review/batch9/evidence/phase1/prod-dev2/K1/checks.json"
+      ],
+      "durationMs": 89041,
+      "notes": "4 forms measured; NOT-RUN here: /post (steps 2 and 3); /profile — need a logged-in account; the prod flavour is read-only (no account may be created or used)"
+    }
+  ]
+}

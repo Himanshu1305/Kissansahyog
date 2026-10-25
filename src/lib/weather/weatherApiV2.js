@@ -3,10 +3,16 @@
 // old homepage Today-card shape (current_temp/current_weathercode/forecast) AND
 // exposes the raw hourly/daily/season_rain for the /mausam page.
 import { supabase } from '../supabaseClient'
+import { isNative } from '../native'
 import { haversineKm } from '../distance'
 import { wdayKey } from './weatherApi'
 
-export const gridKey = (lat, lon) => `${(Math.round(lat * 10) / 10).toFixed(1)}_${(Math.round(lon * 10) / 10).toFixed(1)}`
+// One weather cell is 0.1° × 0.1° (about 10 km). cellCentre() is the middle of the cell a point
+// falls in, and gridKey() is that centre written as text — so key and centre always agree.
+// PRIVACY (Batch 7L-2): everything this file SAVES or sends for weather uses the cell centre,
+// never the visitor's exact position. The exact position stays on the device (for distances).
+export const cellCentre = (lat, lon) => ({ lat: Math.round(Number(lat) * 10) / 10, lon: Math.round(Number(lon) * 10) / 10 })
+export const gridKey = (lat, lon) => { const c = cellCentre(lat, lon); return `${c.lat.toFixed(1)}_${c.lon.toFixed(1)}` }
 
 function normalize(row) {
   if (!row) return null
@@ -35,14 +41,19 @@ const dayMean = (a) => { const v = (a || []).filter((x) => x != null); return v.
 // params as the cron's refreshCell, minus the heavy 10-year archive — season_rain is left
 // null and the cron fills it on its next pass). Best-effort persists the result so the
 // next visitor + cron benefit (Phase 1b-i). Throws on network/API failure.
-export async function fetchLiveWeatherCell(lat, lon) {
+export async function fetchLiveWeatherCell(exactLat, exactLon) {
+  // From here on only the cell centre is used: for the forecast request and for what is saved.
+  const { lat, lon } = cellCentre(exactLat, exactLon)
   const key = gridKey(lat, lon)
   const fUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
     '&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,precipitation' +
     '&hourly=temperature_2m,precipitation,precipitation_probability,wind_speed_10m,relative_humidity_2m,soil_moisture_0_to_7cm' +
     '&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,weather_code,wind_speed_10m_max,et0_fao_evapotranspiration' +
     '&timezone=Asia%2FKolkata&forecast_days=16'
-  const res = await fetch(fUrl, { signal: AbortSignal.timeout(15000) })
+  // Batch 8B: in the app this public forecast is kept for offline use (offline/cachedFetch.js).
+  const res = isNative()
+    ? await import('../offline/cachedFetch.js').then((m) => m.cachedFetch(fUrl, { signal: AbortSignal.timeout(15000) }))
+    : await fetch(fUrl, { signal: AbortSignal.timeout(15000) })
   if (!res.ok) throw new Error(`Open-Meteo HTTP ${res.status}`)
   const d = await res.json()
   const cur = d.current || {}
@@ -95,7 +106,8 @@ export async function fetchWeatherCell(lat, lon) {
 }
 
 // Record that this cell was requested so the refresh cron keeps it fresh. Best-effort.
-export async function requestGridCell(lat, lon) {
+export async function requestGridCell(exactLat, exactLon) {
+  const { lat, lon } = cellCentre(exactLat, exactLon)
   try {
     await supabase.from('weather_grid_requests').upsert(
       { grid_key: gridKey(lat, lon), latitude: lat, longitude: lon, last_requested_at: new Date().toISOString() },

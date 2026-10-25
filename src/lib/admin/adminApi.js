@@ -4,6 +4,8 @@
 // itself can never read all users' phones/emails directly.
 import { supabase } from '../supabaseClient'
 import { toAppError } from '../errors'
+import { removeListingPhotos } from '../listings/listingsApi'
+import { makeWithLog, LOG_FAILED_EVENT } from './withLog'
 
 async function rpc(name, args) {
   const { data, error } = await supabase.rpc(name, args)
@@ -11,20 +13,44 @@ async function rpc(name, args) {
   return data
 }
 
+
+// withLog(action, targetType, fn, describe): see ./withLog.js. Bound here to the real database call.
+export { LOG_FAILED_EVENT }
+export const withLog = (action, targetType, fn, describe) => makeWithLog(action, targetType, fn, describe, rpc)
+
 export const getAdminStats = (actorId) => rpc('get_admin_stats', { p_actor_id: actorId })
 export const getAdminListings = (actorId, limit = 20, offset = 0) =>
   rpc('get_admin_listings', { p_actor_id: actorId, p_limit: limit, p_offset: offset })
 export const getAdminUsers = (actorId, { limit = 25, offset = 0, search = '' } = {}) =>
   rpc('get_admin_users', { p_actor_id: actorId, p_limit: limit, p_offset: offset, p_search: search })
-export const removeListing = (actorId, listingId) =>
+const removeListingRaw = (actorId, listingId) =>
   rpc('remove_listing', { p_actor_id: actorId, p_listing_id: listingId })
+
+// Batch 10G — admin disable / enable (reason required to disable) and PERMANENT delete (reason required;
+// writes the admin action log; the photo files are removed right after, see listingsApi).
+// Errors keep the RPC's code (not_admin, not_found, invalid_state, reason_required, reason_too_long).
+async function listingAdminRpc(name, args) {
+  const { data, error } = await supabase.rpc(name, args)
+  if (error) {
+    const m = String(error.message || '').match(/not_admin|not_found|invalid_state|reason_required|reason_too_long/)
+    throw Object.assign(new Error(m ? m[0] : 'unknown'), { code: m ? m[0] : 'unknown' })
+  }
+  return data
+}
+export const adminSetListingDisabled = (actorId, listingId, disabled, reason) =>
+  listingAdminRpc('admin_set_listing_disabled', { p_actor_id: actorId, p_listing_id: listingId, p_disabled: !!disabled, p_reason: reason ?? null })
+export async function adminDeleteListing(actorId, listingId, reason) {
+  const paths = await listingAdminRpc('admin_delete_listing', { p_actor_id: actorId, p_listing_id: listingId, p_reason: reason })
+  const photos = await removeListingPhotos(paths)
+  return { paths: paths || [], photosRemoved: photos.removed }
+}
 
 // Phase 4 — complaints queue + sponsored toggle.
 export const getListingReports = (actorId, status = 'open') =>
   rpc('get_listing_reports', { p_actor_id: actorId, p_status: status, p_limit: 100 })
-export const resolveListingReport = (actorId, reportId, action, resolutionNote = null) =>
+const resolveListingReportRaw = (actorId, reportId, action, resolutionNote = null) =>
   rpc('resolve_listing_report', { p_actor_id: actorId, p_report_id: reportId, p_action: action, p_resolution_note: resolutionNote })
-export const adminSetListingSponsored = (actorId, listingId, sponsored) =>
+const adminSetListingSponsoredRaw = (actorId, listingId, sponsored) =>
   rpc('admin_set_listing_sponsored', { p_actor_id: actorId, p_listing_id: listingId, p_sponsored: sponsored })
 
 // Phase 6 — cold storage directory claims.
@@ -43,9 +69,9 @@ export const resolveCarbonSuggestion = (actorId, id, approve) =>
   rpc('resolve_carbon_suggestion', { p_actor_id: actorId, p_id: id, p_approve: approve })
 
 export const adminListExperts = (actorId) => rpc('admin_list_experts', { p_actor_id: actorId })
-export const adminSetExpertActive = (actorId, expertId, active) =>
+const adminSetExpertActiveRaw = (actorId, expertId, active) =>
   rpc('admin_set_expert_active', { p_actor_id: actorId, p_expert_id: expertId, p_active: active })
-export const adminUpsertExpert = (actorId, e) =>
+const adminUpsertExpertRaw = (actorId, e) =>
   rpc('admin_upsert_expert', {
     p_actor_id: actorId, p_id: e.id ?? null, p_name: e.name, p_name_hi: e.name_hi ?? null,
     p_specialisation_en: e.specialisation_en ?? null, p_specialisation_hi: e.specialisation_hi ?? null,
@@ -54,7 +80,7 @@ export const adminUpsertExpert = (actorId, e) =>
   })
 
 export const getAdminArticles = (actorId) => rpc('get_admin_articles', { p_actor_id: actorId })
-export const adminUpsertArticle = (actorId, a) =>
+const adminUpsertArticleRaw = (actorId, a) =>
   rpc('admin_upsert_article', {
     p_actor_id: actorId, p_id: a.id ?? null, p_slug: a.slug, p_title_hi: a.title_hi, p_title_en: a.title_en,
     p_summary_hi: a.summary_hi ?? null, p_summary_en: a.summary_en ?? null,
@@ -62,12 +88,12 @@ export const adminUpsertArticle = (actorId, a) =>
     p_author_name: a.author_name ?? 'Team Kissan Sahyog', p_cover_image_url: a.cover_image_url ?? null,
     p_is_published: a.is_published ?? false,
   })
-export const adminDeleteArticle = (actorId, id) => rpc('admin_delete_article', { p_actor_id: actorId, p_id: id })
+const adminDeleteArticleRaw = (actorId, id) => rpc('admin_delete_article', { p_actor_id: actorId, p_id: id })
 
 export const getAdminMsp = (actorId) => rpc('get_admin_msp', { p_actor_id: actorId })
 export const adminSetMspActive = (actorId, id, active) =>
   rpc('admin_set_msp_active', { p_actor_id: actorId, p_id: id, p_active: active })
-export const adminUpsertMsp = (actorId, m) =>
+const adminUpsertMspRaw = (actorId, m) =>
   rpc('admin_upsert_msp', {
     p_actor_id: actorId, p_id: m.id ?? null, p_crop_en: m.crop_en, p_crop_hi: m.crop_hi,
     p_variety: m.variety ?? null, p_season: m.season, p_marketing_year: m.marketing_year,
@@ -87,7 +113,7 @@ export const getAdminVendorListings = (actorId) => rpc('get_admin_vendor_listing
 export const getAdminResources = (actorId) => rpc('get_admin_resources', { p_actor_id: actorId })
 export const adminSetResourceActive = (actorId, id, active) =>
   rpc('admin_set_resource_active', { p_actor_id: actorId, p_id: id, p_active: active })
-export const adminUpsertResource = (actorId, r) =>
+const adminUpsertResourceRaw = (actorId, r) =>
   rpc('admin_upsert_resource', {
     p_actor_id: actorId, p_id: r.id ?? null, p_resource_type: r.resource_type,
     p_name_hi: r.name_hi, p_name_en: r.name_en, p_description_hi: r.description_hi ?? null, p_description_en: r.description_en ?? null,
@@ -99,7 +125,7 @@ export const adminUpsertResource = (actorId, r) =>
 
 // --- Community: Kisan Sawaal (Q&A) ----------------------------------------
 export const getAdminSawaal = (actorId) => rpc('get_admin_sawaal', { p_actor_id: actorId })
-export const adminAnswerSawaal = (actorId, s) =>
+const adminAnswerSawaalRaw = (actorId, s) =>
   rpc('admin_answer_sawaal', {
     p_actor_id: actorId, p_id: s.id, p_answer_hi: s.answer_hi ?? null, p_answer_en: s.answer_en ?? null,
     p_answered_by: s.answered_by ?? 'Team Kissan Sahyog', p_is_published: s.is_published ?? false,
@@ -112,7 +138,7 @@ export const adminDeleteSawaal = (actorId, id) => rpc('admin_delete_sawaal', { p
 
 // --- Community: Kisan Safalta (success stories) ---------------------------
 export const getAdminSafalta = (actorId) => rpc('get_admin_safalta', { p_actor_id: actorId })
-export const adminUpsertSafalta = (actorId, s) =>
+const adminUpsertSafaltaRaw = (actorId, s) =>
   rpc('admin_upsert_safalta', {
     p_actor_id: actorId, p_id: s.id ?? null, p_farmer_name: s.farmer_name, p_village: s.village ?? '',
     p_district: s.district ?? 'Sagar', p_crop_or_activity: s.crop_or_activity ?? '', p_story_hi: s.story_hi,
@@ -128,11 +154,11 @@ export const adminDeleteSafalta = (actorId, id) => rpc('admin_delete_safalta', {
 
 // --- Community: Sarkari Yojana (schemes) ----------------------------------
 export const getAdminYojana = (actorId) => rpc('get_admin_yojana', { p_actor_id: actorId })
-export const adminSetYojanaActive = (actorId, id, active) =>
+const adminSetYojanaActiveRaw = (actorId, id, active) =>
   rpc('admin_set_yojana_active', { p_actor_id: actorId, p_id: id, p_active: active })
 export const adminSetYojanaFeatured = (actorId, id, featured) =>
   rpc('admin_set_yojana_featured', { p_actor_id: actorId, p_id: id, p_featured: featured })
-export const adminUpsertYojana = (actorId, y) =>
+const adminUpsertYojanaRaw = (actorId, y) =>
   rpc('admin_upsert_yojana', {
     p_actor_id: actorId, p_id: y.id ?? null, p_scheme_name_hi: y.scheme_name_hi, p_scheme_name_en: y.scheme_name_en,
     p_ministry_hi: y.ministry_hi ?? null, p_ministry_en: y.ministry_en ?? null, p_category: y.category,
@@ -157,7 +183,7 @@ export const getAdminSubscriptions = (actorId) => rpc('get_admin_subscriptions',
 export const adminSetSubscriptionActive = (actorId, id, active) => rpc('admin_set_subscription_active', { p_actor_id: actorId, p_id: id, p_active: active })
 
 export const getAdminProcurement = (actorId) => rpc('get_admin_procurement', { p_actor_id: actorId })
-export const adminUpsertProcurement = (actorId, p) => rpc('admin_upsert_procurement', {
+const adminUpsertProcurementRaw = (actorId, p) => rpc('admin_upsert_procurement', {
   p_actor_id: actorId, p_id: p.id ?? null, p_name_hi: p.name_hi, p_location: p.location ?? null,
   p_district: p.district ?? 'Sagar', p_crops: p.crops ?? [], p_season: p.season ?? null,
   p_registration_open: p.registration_open || null, p_registration_close: p.registration_close || null,
@@ -174,14 +200,14 @@ export const adminUpsertPageFaq = (actorId, f) => rpc('admin_upsert_page_faq', {
 export const adminDeletePageFaq = (actorId, id) => rpc('admin_delete_page_faq', { p_actor_id: actorId, p_id: id })
 
 export const getAdminDataHealth = (actorId) => rpc('get_admin_data_health', { p_actor_id: actorId })
-export const adminSetSiteSetting = (actorId, key, value) => rpc('admin_set_site_setting', { p_actor_id: actorId, p_key: key, p_value: value })
+const adminSetSiteSettingRaw = (actorId, key, value) => rpc('admin_set_site_setting', { p_actor_id: actorId, p_key: key, p_value: value })
 
 // --- Kisan Mela moderation + management ---
 export const getAdminMelas = (actorId) => rpc('get_admin_melas', { p_actor_id: actorId })
 export const adminSetMelaStatus = (actorId, id, status) => rpc('admin_set_mela_status', { p_actor_id: actorId, p_id: id, p_status: status })
 export const adminSetMelaActive = (actorId, id, active) => rpc('admin_set_mela_active', { p_actor_id: actorId, p_id: id, p_active: active })
 export const adminDeleteMela = (actorId, id) => rpc('admin_delete_mela', { p_actor_id: actorId, p_id: id })
-export const adminUpsertMela = (actorId, m) => rpc('admin_upsert_mela', {
+const adminUpsertMelaRaw = (actorId, m) => rpc('admin_upsert_mela', {
   p_actor_id: actorId, p_id: m.id ?? null,
   p_name_hi: m.name_hi, p_name_en: m.name_en ?? null, p_organizer_name: m.organizer_name ?? null,
   p_venue: m.venue, p_address: m.address ?? null, p_state: m.state, p_district: m.district ?? null,
@@ -203,3 +229,40 @@ export const adminSplitMela = (actorId, id) => rpc('admin_split_mela', { p_actor
 
 // --- Phase 13: WhatsApp groundwork (adminSetSiteSetting already defined above) ---
 export const getWhatsappOptins = (actorId) => rpc('get_whatsapp_optins', { p_actor_id: actorId })
+
+// --- Batch 14A: admin console log. The write wrappers above are wrapped here so each successful write is
+// recorded in the admin action log by the console (not by a database trigger). A logging failure never fails the write.
+export const removeListing = withLog('listing_remove', 'listing', removeListingRaw, a=>({id:a[0]}))
+export const adminSetListingSponsored = withLog('listing_sponsor', 'listing', adminSetListingSponsoredRaw, a=>({id:a[0],details:{sponsored:!!a[1]}}))
+export const resolveListingReport = withLog('report_resolve', 'report', resolveListingReportRaw, a=>({id:a[0],details:{action:a[1]}}))
+export const adminUpsertArticle = withLog('article_save', 'article', adminUpsertArticleRaw, (a,r)=>({id:a[0]?.id??a[0]?.slug,details:{slug:a[0]?.slug,published:!!a[0]?.is_published}}))
+export const adminDeleteArticle = withLog('article_delete', 'article', adminDeleteArticleRaw, a=>({id:a[0]}))
+export const adminUpsertExpert = withLog('expert_save', 'expert', adminUpsertExpertRaw, a=>({id:a[0]?.id??null,details:{active:a[0]?.is_active??true}}))
+export const adminSetExpertActive = withLog('expert_active', 'expert', adminSetExpertActiveRaw, a=>({id:a[0],details:{active:!!a[1]}}))
+export const adminUpsertYojana = withLog('yojana_save', 'yojana', adminUpsertYojanaRaw, a=>({id:a[0]?.id??a[0]?.slug,details:{slug:a[0]?.slug}}))
+export const adminSetYojanaActive = withLog('yojana_active', 'yojana', adminSetYojanaActiveRaw, a=>({id:a[0],details:{active:!!a[1]}}))
+export const adminUpsertMsp = withLog('msp_save', 'msp', adminUpsertMspRaw, a=>({id:a[0]?.id??null,details:{crop:a[0]?.crop_en}}))
+export const adminUpsertResource = withLog('resource_save', 'resource', adminUpsertResourceRaw, a=>({id:a[0]?.id??null,details:{type:a[0]?.resource_type}}))
+export const adminAnswerSawaal = withLog('sawaal_answer', 'sawaal', adminAnswerSawaalRaw, a=>({id:a[0]?.id,details:{published:!!a[0]?.is_published}}))
+export const adminUpsertSafalta = withLog('safalta_save', 'safalta', adminUpsertSafaltaRaw, a=>({id:a[0]?.id??null,details:{published:!!a[0]?.is_published}}))
+export const adminSetSiteSetting = withLog('site_setting', 'setting', adminSetSiteSettingRaw, a=>({id:a[0]}))
+export const adminUpsertProcurement = withLog('procurement_save', 'procurement', adminUpsertProcurementRaw, a=>({id:a[0]?.id??null}))
+export const adminUpsertMela = withLog('mela_save', 'mela', adminUpsertMelaRaw, a=>({id:a[0]?.id??null,details:{name:a[0]?.name_en||a[0]?.name_hi}}))
+
+// --- Batch 14A: console RPCs (new in migration 0067; every one needs a live session) -----------------------------
+export const adminWhoami = (actor) => rpc('admin_whoami', { p_actor: actor })
+export const adminListAnnouncements = (actor) => rpc('admin_list_announcements', { p_actor: actor })
+export const adminUpsertAnnouncement = (actor, id, data) => rpc('admin_upsert_announcement', { p_actor: actor, p_id: id ?? null, p_data: data })
+export const adminDeleteAnnouncement = (actor, id) => rpc('admin_delete_announcement', { p_actor: actor, p_id: id })
+export const adminDuplicateAnnouncement = (actor, id) => rpc('admin_duplicate_announcement', { p_actor: actor, p_id: id })
+export const adminGetSecurityStatus = (actor) => rpc('admin_get_security_status', { p_actor: actor })
+export const adminSetSecurityFlag = (actor, key, value, reason, confirm) =>
+  rpc('admin_set_security_flag', { p_actor: actor, p_key: key, p_value: !!value, p_reason: reason, p_confirm: confirm ?? null })
+export const adminGetOtpUsage = (actor) => rpc('admin_get_otp_usage', { p_actor: actor })
+export const adminListUserStatus = (actor, { search = '', status = 'all', limit = 25, offset = 0 } = {}) =>
+  rpc('admin_list_user_status', { p_actor: actor, p_search: search, p_status: status, p_limit: limit, p_offset: offset })
+export const adminSetUserBlocked = (actor, userId, blocked, reason) =>
+  rpc('admin_set_user_blocked', { p_actor: actor, p_user_id: userId, p_blocked: !!blocked, p_reason: reason })
+export const adminSetAdminRole = (actor, userId, role) => rpc('admin_set_admin_role', { p_actor: actor, p_user_id: userId, p_role: role })
+export const adminListActions = (actor, { limit = 50, offset = 0, action = null, admin = null } = {}) =>
+  rpc('admin_list_actions', { p_actor: actor, p_limit: limit, p_offset: offset, p_action_filter: action || null, p_admin_filter: admin || null })

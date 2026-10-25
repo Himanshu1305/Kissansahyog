@@ -1,0 +1,6 @@
+  ok  8 [chromium] › e2e\admin-console-14a.spec.js:297:1 › 8 action log lists what was just done (India time, plain words, no phone numbers or secrets) (1.5s)
+  ok  9 [chromium] › e2e\admin-console-14a.spec.js:315:1 › 9 session_required: an admin without a session token is told to sign in again, with a button (1.5s)
+  ok 10 [chromium] › e2e\admin-console-14a.spec.js:327:1 › 10 admin looks right: tabs at 360x640 and 1366x768 in Hindi, no sideways scroll (2.5s)
+[teardown] test data cleaned
+
+  10 passed (33.5s)

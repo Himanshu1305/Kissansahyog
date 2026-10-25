@@ -29,6 +29,10 @@ async function main() {
     ['agri_inputs',
       { subtype: 'farmer_surplus', input_type: 'seeds', item_name: 'गेहूं बीज', quantity: '50 किलो', asking_price: '₹2000', material_address: 'Khurai' },
       { subtype: 'farmer_surplus', input_type: 'fertilizer', item_name: 'यूरिया', quantity: '5 बोरी', asking_price: '₹1500', material_address: 'Khurai' }, false],
+    // Batch 5A: building materials uses the additive 0053 category and JSON details.
+    ['building_materials',
+      { material_type: 'cement', quantity: '20', unit: 'bag', rate_amount: '₹500', delivery_available: 'yes', pickup_location: 'Khurai' },
+      { material_type: 'bricks', quantity: '100', unit: 'piece', delivery_available: 'no', pickup_location: 'Khurai' }, false],
     ['warehouse',
       { warehouse_type: 'general', capacity_quintals: 500, rate: '₹15/क्विंटल', address: 'Khurai Road', provider_declared: true },
       { crop_type: 'गेहूं', quantity_quintals: 50, duration: '3 माह' }, false],

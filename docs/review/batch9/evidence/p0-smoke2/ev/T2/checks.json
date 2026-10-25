@@ -1,0 +1,51 @@
+[
+  {
+    "name": "aapt2 dump badging ran",
+    "pass": true,
+    "detail": "exit 0"
+  },
+  {
+    "name": "package is com.kissansahyog.app",
+    "pass": true,
+    "detail": "com.kissansahyog.app"
+  },
+  {
+    "name": "label is \"Kisan Sahyog\"",
+    "pass": true,
+    "detail": "Kisan Sahyog"
+  },
+  {
+    "name": "versionName is 0.1.0",
+    "pass": true,
+    "detail": "0.1.0"
+  },
+  {
+    "name": "versionCode is 1",
+    "pass": true,
+    "detail": "1"
+  },
+  {
+    "name": "minSdk is 24",
+    "pass": true,
+    "detail": "24"
+  },
+  {
+    "name": "targetSdk is 36",
+    "pass": true,
+    "detail": "36"
+  },
+  {
+    "name": "debuggable is true",
+    "pass": true
+  },
+  {
+    "name": "no permission beyond the decided set",
+    "pass": true,
+    "detail": []
+  },
+  {
+    "name": "no decided permission is missing",
+    "pass": true,
+    "detail": []
+  }
+]

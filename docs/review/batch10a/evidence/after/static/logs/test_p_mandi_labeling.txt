@@ -1,0 +1,11 @@
+PASS  today → no staleness tag
+PASS  yesterday → कल का भाव
+PASS  कल का भाव string is bilingual
+PASS  2 days old → पिछला भाव
+PASS  7 days old → पिछला भाव
+PASS  पिछला भाव string is bilingual
+PASS  null date → null (→ the "—" treatment, never a fake "कल का भाव")
+PASS  ddmm formats the date visibly
+PASS  ddmm is safe on empty input
+
+9 passed, 0 failed

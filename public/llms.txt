@@ -1,13 +1,14 @@
 # Kissan Sahyog (किसान सहयोग)
 
-> A free, bilingual (Hindi-first) marketplace and knowledge hub for farmers in
-> Sagar district, Madhya Pradesh, India. We list farm equipment, land, labour,
+> Kissan Sahyog (kissansahyog.com) is a farm marketplace and information website for Sagar Division (Sagar Sambhag), Madhya Pradesh, where farmers, labourers, machine owners and local suppliers meet in one place.
+> किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।
+> It is owned and run by Shri Abhinandan Dixit. The site is bilingual (Hindi-first). We list farm equipment, land, labour,
 > inputs, transport, cold storage, greenhouses and rural innovations; publish
 > cited knowledge (schemes, crop problems, weather, mandi/MSP prices); and never
 > handle payments. Every published fact is sourced and cited. English brand name:
-> Kissan Sahyog. Contact: hello@kissansahyog.com · grievance@kissansahyog.com.
+> Kissan Sahyog. Contact: hello@kissansahyog.com. Complaints: grievance@kissansahyog.com.
 
-## Marketplace (login-gated browse; public hub teasers)
+## Marketplace (public browse; login only to see a seller's number or to post)
 - Equipment, land, labour, agri-inputs, bhusa/parali, transport, water tanker
 - Warehouse & cold storage, greenhouse/polyhouse, jugaad (rural innovations)
 
@@ -25,11 +26,12 @@
 
 ## Prices, weather, schemes
 - /mausam — weather (IMD-based advisories)
-- /msp and /msp/<crop> — MSP + Sagar mandi prices
+- /msp and /msp/<crop> — MSP + Sagar Division mandi prices
 - /yojana, /yojana/<slug> — government schemes
 - /kisan-mela — agri fairs & events
 
 ## Reference
+- /guide — short tap-through demos: /guide/register, /guide/post, /guide/find (getting a seller's number), /guide/tour
 - /articles, /safalta (success stories), /videos, /drone-didi, /resources (KVK & agri contacts)
 - /grievance, /terms, /privacy, /contact
 - Sources register: every number is cited to an official/news/company/judgment source.

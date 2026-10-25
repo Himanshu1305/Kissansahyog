@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../../lib/i18n/LanguageProvider'
-import { resolveColdStorageLocation, sortByDistance } from '../../lib/coldStorage/coldStorageApi'
+import { sortByDistance } from '../../lib/coldStorage/coldStorageApi'
+import { useUserLocation } from '../../lib/location/LocationProvider'
+import LocationControl from '../location/LocationControl'
 import ColdStorageCard from '../ColdStorageCard'
 
 // Common stored crops — shown only when some entry's `products` actually mentions one.
@@ -14,16 +16,15 @@ const CROPS = [
   { key: 'seed', match: /seed|beej/i },
 ]
 
-// Batch 2 item B — the shared cold-storage finder: location search + GPS + filters
+// Batch 2 item B — the shared cold-storage finder: location (the shared location object,
+// Batch 7L-1 — no pincode, no separate GPS call) + filters
 // (district, crop, type), results sorted nearest-first, and a "list your cold
 // storage" CTA. Listings come first; information sits below (rendered by the page).
 export default function ColdStorageFinder({ entries, districts = [], lockedDistrict = null }) {
   const { t } = useLang()
   const navigate = useNavigate()
-  const [query, setQuery] = useState('')
-  const [centre, setCentre] = useState(null) // { latitude, longitude, label } | null
-  const [resolving, setResolving] = useState(false)
-  const [locErr, setLocErr] = useState(null)
+  const { location, center } = useUserLocation()
+  const centre = useMemo(() => (center ? { ...center, label: location?.label || '' } : null), [center, location])
   const [districtFilter, setDistrictFilter] = useState('')
   const [cropFilter, setCropFilter] = useState('')
   const [typeFilter, setTypeFilter] = useState('')
@@ -49,54 +50,13 @@ export default function ColdStorageFinder({ entries, districts = [], lockedDistr
     return rows
   }, [entries, lockedDistrict, districtFilter, typeFilter, cropFilter, centre])
 
-  async function runSearch(e) {
-    e?.preventDefault?.()
-    const q = query.trim()
-    if (!q) { setCentre(null); setLocErr(null); return }
-    setResolving(true); setLocErr(null)
-    try {
-      const c = await resolveColdStorageLocation(q)
-      if (c) setCentre(c)
-      else { setCentre(null); setLocErr(t('cs_loc_not_found')) }
-    } finally {
-      setResolving(false)
-    }
-  }
-
-  function useMyLocation() {
-    setLocErr(null)
-    if (!navigator.geolocation) { setLocErr(t('cs_geo_denied')); return }
-    setResolving(true)
-    navigator.geolocation.getCurrentPosition(
-      (pos) => { setCentre({ latitude: pos.coords.latitude, longitude: pos.coords.longitude, label: t('loc_your_location') }); setQuery(''); setResolving(false) },
-      () => { setLocErr(t('cs_geo_denied')); setResolving(false) },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
-    )
-  }
-
   const selCls = 'mt-1 min-h-[44px] rounded-lg border border-stone-300 bg-white p-2 text-sm'
 
   return (
     <section>
       {/* 1. Search + filters */}
-      <form onSubmit={runSearch} className="rounded-2xl border border-stone-200 bg-white p-3">
-        <div className="flex flex-col gap-2 sm:flex-row">
-          <input
-            value={query}
-            onChange={(ev) => setQuery(ev.target.value)}
-            placeholder={t('cs_search_ph')}
-            className="min-h-[44px] flex-1 rounded-lg border border-stone-300 p-2.5 text-sm"
-            inputMode="search"
-            data-testid="cs-search-input"
-          />
-          <button type="submit" disabled={resolving} className="min-h-[44px] rounded-lg bg-green-700 px-4 py-2 text-sm font-bold text-white active:bg-green-800 disabled:opacity-60">
-            🔍 {t('cs_search_btn')}
-          </button>
-          <button type="button" onClick={useMyLocation} disabled={resolving} className="min-h-[44px] rounded-lg border-2 border-green-700 bg-white px-4 py-2 text-sm font-bold text-green-700 active:bg-green-50 disabled:opacity-60">
-            📍 {t('cs_my_location')}
-          </button>
-        </div>
-        {locErr && <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-sm font-medium text-amber-800">{locErr}</p>}
+      <div className="rounded-2xl border border-stone-200 bg-white p-3">
+        <LocationControl />
 
         <div className="mt-3 flex flex-wrap gap-3">
           {!lockedDistrict && districts.length > 0 && (
@@ -127,7 +87,7 @@ export default function ColdStorageFinder({ entries, districts = [], lockedDistr
             </label>
           )}
         </div>
-      </form>
+      </div>
 
       {/* 2. Results — nearest first when a location is set */}
       <div className="mt-4 flex items-baseline justify-between">

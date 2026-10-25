@@ -1,0 +1,126 @@
+{
+ "total": 2723,
+ "parts": 6,
+ "perCommodityScope": {
+  "Barley|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Barley|sagar_division": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Garlic|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Garlic|sagar_division": {
+   "n": 116,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Gram|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Gram|sagar_division": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Lentil|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Lentil|sagar_division": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Linseed|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Linseed|sagar_division": {
+   "n": 113,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Maize|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Maize|sagar_division": {
+   "n": 94,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Moong|mp": {
+   "n": 101,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Moong|sagar_division": {
+   "n": 94,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Mustard|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Mustard|sagar_division": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Paddy(Dhan)(Common)|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Paddy(Dhan)(Common)|sagar_division": {
+   "n": 95,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Soyabean|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Soyabean|sagar_division": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Urad|mp": {
+   "n": 111,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Urad|sagar_division": {
+   "n": 111,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Wheat|mp": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  },
+  "Wheat|sagar_division": {
+   "n": 118,
+   "min": "2016-01",
+   "max": "2025-10"
+  }
+ }
+}

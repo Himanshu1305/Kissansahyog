@@ -1,0 +1,48 @@
+PASS  migration creates kisan_sawaal
+PASS  kisan_sawaal has RLS enabled
+PASS  migration creates kisan_safalta
+PASS  kisan_safalta has RLS enabled
+PASS  migration creates sarkari_yojana
+PASS  sarkari_yojana has RLS enabled
+PASS  sawaal public read only published
+PASS  sawaal public insert forces is_published=false
+PASS  safalta public insert forces unpublished+unfeatured
+PASS  yojana public read only active
+PASS  yojana grants anon SELECT only (no anon insert)
+PASS  RPC get_admin_sawaal defined + granted
+PASS  RPC admin_answer_sawaal defined + granted
+PASS  RPC admin_set_sawaal_featured defined + granted
+PASS  RPC admin_set_sawaal_published defined + granted
+PASS  RPC admin_delete_sawaal defined + granted
+PASS  RPC get_admin_safalta defined + granted
+PASS  RPC admin_upsert_safalta defined + granted
+PASS  RPC admin_set_safalta_published defined + granted
+PASS  RPC admin_set_safalta_featured defined + granted
+PASS  RPC admin_delete_safalta defined + granted
+PASS  RPC get_admin_yojana defined + granted
+PASS  RPC admin_upsert_yojana defined + granted
+PASS  RPC admin_set_yojana_active defined + granted
+PASS  RPC admin_set_yojana_featured defined + granted
+PASS  every community admin RPC calls require_admin
+PASS  8 government schemes seeded
+PASS  3 example Q&As seeded
+PASS  2 placeholder stories seeded
+PASS  schemes include PM Kisan + Fasal Bima + KUSUM + KCC + Drone Didi + e-NAM + PM-AASHA + Soil Health
+PASS  no helicopter imagery/word in Drone Didi scheme
+PASS  communityApi exports fetchPublishedSawaal
+PASS  communityApi exports fetchFeaturedSawaal
+PASS  communityApi exports submitSawaal
+PASS  communityApi exports fetchPublishedSafalta
+PASS  communityApi exports fetchFeaturedSafalta
+PASS  communityApi exports submitSafalta
+PASS  communityApi exports fetchActiveYojana
+PASS  communityApi exports fetchFeaturedYojana
+PASS  submit paths never set is_published true
+PASS  /sawaal /safalta /yojana routes registered
+PASS  community routes are public (outside Protected)
+PASS  nav groups schemes in a dropdown + links सवाल (community reachable, uncluttered)
+PASS  admin renders all 3 community panels
+PASS  all community i18n keys present
+PASS  all community i18n keys bilingual
+
+46 passed, 0 failed

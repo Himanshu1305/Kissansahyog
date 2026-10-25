@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { BigButton } from '../components/ui'
-import NavBar from '../components/NavBar'
 import WhatsAppJoin from '../components/WhatsAppJoin'
+import { PageShell } from '../components/layout'
 
 // Logged-in dashboard: global nav (so the logo links back to the public homepage)
 // + greeting + primary actions.
@@ -13,15 +13,14 @@ export default function Home() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <NavBar />
-      <main className="ks-content w-full py-6">
+    <PageShell width="wide">
+      <main>
         <p className="mb-1 text-lg text-stone-600">
           {t('greeting_sitaram')} 🙏{user?.full_name ? <>, <span className="font-bold text-stone-900">{user.full_name}</span></> : null}
         </p>
         {user?.village_town && <p className="mb-6 text-stone-500">{user.village_town}</p>}
 
-        <div className="mt-4 space-y-3">
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
           <BigButton onClick={() => navigate('/browse')}>🔍 {t('browse')}</BigButton>
           <BigButton onClick={() => navigate('/post')}>➕ {t('post_listing')}</BigButton>
           <BigButton variant="secondary" onClick={() => navigate('/my')}>
@@ -48,6 +47,6 @@ export default function Home() {
 
         <WhatsAppJoin variant="box" src="home_dashboard" />
       </main>
-    </div>
+    </PageShell>
   )
 }

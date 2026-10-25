@@ -1,0 +1,60 @@
+{
+  "run": {
+    "flavor": "prod",
+    "startedAt": "2026-10-14T20:16:35.780Z",
+    "serial": "emulator-5554",
+    "negativeControl": false,
+    "device": {
+      "serial": "emulator-5554",
+      "sdk": "36",
+      "model": "sdk_gphone64_x86_64",
+      "abi": "x86_64",
+      "size": "1080x2400"
+    },
+    "apk": null,
+    "fatalExceptions": 0,
+    "finishedAt": "2026-10-14T20:18:38.609Z",
+    "cdpReconnects": 0,
+    "systemAnrDismissed": [],
+    "appAnr": []
+  },
+  "tests": [
+    {
+      "id": "H1",
+      "name": "Home shows one \"last updated\" time offline",
+      "status": "RAN-PASSED",
+      "assertion": "Online visit fills the cache; airplane mode + cold launch: Home shows the offline banner with its time and NO second stamp under the ticker (exactly one timestamp). Online-but-saved-data (banner gone, data still from the phone): the stamp is shown",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/prod-dev3/H1/offline-home-one-timestamp.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev3/H1/banner-gone-saved-data-stamp.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev3/H1/timestamps.json",
+        "docs/review/batch9/evidence/phase1/prod-dev3/H1/checks.json"
+      ],
+      "durationMs": 49712,
+      "notes": ""
+    },
+    {
+      "id": "C1",
+      "name": "/cold-storage failed load (app)",
+      "status": "RAN-PASSED",
+      "assertion": "Cache emptied, airplane mode, cold launch: /cold-storage shows the \"could not load\" notice with \"try again\" (no ErrorBoundary, no uncaught error, no spinner left); back online, \"try again\" loads the list",
+      "evidenceFiles": [
+        "docs/review/batch9/evidence/phase1/prod-dev3/C1/offline-cold-storage.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev3/C1/online-again-cold-storage.jpg",
+        "docs/review/batch9/evidence/phase1/prod-dev3/C1/cold-storage.json",
+        "docs/review/batch9/evidence/phase1/prod-dev3/C1/checks.json"
+      ],
+      "durationMs": 69896,
+      "notes": "notice after 1803 ms; 75 cache entries cleared first"
+    },
+    {
+      "id": "L1",
+      "name": "Post page location fallback",
+      "status": "NOT-RUN",
+      "assertion": "Logged in, /post step 3, \"use my current location\": GPS on → coordinates near the emulator position (which step: cached ≤ 10 min / fresh ≤ 20 s recorded); GPS off → within ~25 s the clear fallback message and the cursor in the village field, no crash",
+      "evidenceFiles": [],
+      "durationMs": 328,
+      "notes": "needs a logged-in account (Post is behind login); the prod flavour is read-only — no account may be created or used there. Run in the staging suite after S4."
+    }
+  ]
+}

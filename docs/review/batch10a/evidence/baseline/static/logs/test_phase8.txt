@@ -1,0 +1,23 @@
+PASS  sw.js generated
+PASS  manifest.webmanifest generated
+PASS  registerType is 'autoUpdate' (automatic update flow)
+PASS  SW registered via virtual:pwa-register/react (PwaPrompts)
+PASS  auto-update path is configured with skipWaiting
+PASS  icon icon-192.png present
+PASS  icon icon-512.png present
+PASS  icon maskable-512.png present
+PASS  manifest has name + short_name
+PASS  manifest display=standalone
+PASS  manifest start_url set
+PASS  manifest has 192 + 512 icons
+PASS  manifest has a maskable icon
+PASS  SW supports message-triggered update (skipWaiting handler present)
+PASS  SW clientsClaim enabled (offline-first from first session)
+PASS  SW cleanupOutdatedCaches enabled
+PASS  SW precaches the app shell (index.html)
+PASS  runtime caching present for live data
+PASS  live data is NOT CacheFirst (no stale prices/weather)
+PASS  initial JS gzip < 200 KB  — 150 KB
+PASS  largest route chunk gzip < 70 KB (split correctly)  — 55 KB
+
+21 passed, 0 failed

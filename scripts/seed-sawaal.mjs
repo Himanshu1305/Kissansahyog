@@ -5,7 +5,7 @@
 // + published_at on the existing (legacy) published rows so they get pages too.
 import { createClient } from '@supabase/supabase-js'
 import { readdirSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { dirname, join } from 'node:path'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -19,7 +19,7 @@ async function main() {
   const files = readdirSync(QADIR).filter((f) => f.endsWith('.js'))
   let inserted = 0, updated = 0
   for (const f of files) {
-    const mod = await import(join(QADIR, f))
+    const mod = await import(pathToFileURL(join(QADIR, f)).href) // file:// URL: Windows-safe
     const recs = mod.default || []
     for (const q of recs) {
       const { data: existing } = await db.from('kisan_sawaal').select('id').eq('slug', q.slug).maybeSingle()

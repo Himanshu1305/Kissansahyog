@@ -1,0 +1,18 @@
+PASS  [compare_with_snapshot] /: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":false}
+PASS  [compare_with_snapshot] /mausam: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":false}
+PASS  [compare_with_snapshot] /msp: 200, title/h1 unchanged, size within -15%/+60% (FAQ block added), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":true}
+PASS  [compare_with_snapshot] /browse: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":false}
+PASS  [compare_with_snapshot] /sawaal: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":false}
+PASS  [compare_with_snapshot] /yojana: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":false}
+PASS  [compare_with_snapshot] /cold-storage: 200, title/h1 unchanged, size within -15%/+60% (FAQ block added), no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":true}
+PASS  [compare_with_snapshot] /about: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":false}
+PASS  [compare_with_snapshot] /privacy: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":false}
+PASS  [compare_with_snapshot] /terms: 200, title/h1 unchanged, size within -15%/+15%, no ErrorBoundary  — {"status":200,"title":"same","h1":"same","sizeRatio":1,"faqBefore":"not recorded","faqNow":false}
+PASS  [compare_with_snapshot] robots.txt unchanged
+PASS  [compare_with_snapshot] sitemap index is valid XML and lists 4 children  — ["https://kissansahyog.com/sitemap-pages.xml","https://kissansahyog.com/sitemap-sawaal.xml","https://kissansahyog.com/sitemap-cold-storage.xml","https://kissansahyog.com/sitemap-schemes.xml"]
+PASS  [compare_with_snapshot] /sitemap-pages.xml valid XML with urls  — {"status":200,"urls":49,"before":49}
+PASS  [compare_with_snapshot] /sitemap-sawaal.xml valid XML with urls  — {"status":200,"urls":161,"before":161}
+PASS  [compare_with_snapshot] /sitemap-cold-storage.xml valid XML with urls  — {"status":200,"urls":35,"before":35}
+PASS  [compare_with_snapshot] /sitemap-schemes.xml valid XML with urls  — {"status":200,"urls":18,"before":18}
+
+ALL PASSED  (results-prod-readonly-now.json)

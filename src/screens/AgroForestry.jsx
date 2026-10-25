@@ -2,7 +2,7 @@
 // Sections (Phase 2d): PageExplainer → hero → "आपके क्षेत्र में" (South Sagar FDA) →
 // government schemes (2 cards) → article link → WhatsApp share → FAQ (FAQPage JSON-LD).
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import BackButton from '../components/BackButton'
 import { PageExplainer, FaqAccordion, ShareWhatsApp } from '../components/pages/shared'
@@ -10,6 +10,7 @@ import { PageShell } from '../components/layout'
 import { fetchYojanaBySlug, yojanaName, yojanaBenefit, yojanaDesc } from '../lib/community/communityApi'
 import { fetchArticleBySlug } from '../lib/articles/articlesApi'
 import { AGRO_FAQS as FAQS, AGRO_KEYPOINTS } from '../content/agroforestry'
+import { publicHref } from '../lib/native'
 
 const SCHEME_SLUGS = ['fal-podharopan-yojana', 'aushadhi-sugandhit-fasal-vistar']
 const ARTICLE_SLUG = 'intercropping-madhya-pradesh'
@@ -30,7 +31,7 @@ export default function AgroForestry() {
 
   const articleSummary = article ? (lang === 'hi' ? article.summary_hi : article.summary_en) : ''
 
-  const shareText = `${t('agro_share_text')} ${typeof window !== 'undefined' ? window.location.href : ''}`
+  const shareText = `${t('agro_share_text')} ${typeof window !== 'undefined' ? publicHref() : ''}`
 
   return (
     <PageShell width="wide">
@@ -88,6 +89,9 @@ export default function AgroForestry() {
                Kept short on purpose so it does not duplicate the article at length (SEO). */}
         <section style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '14px' }}>
           <h2 className="text-[20px] font-bold" style={{ color: 'var(--ks-ink)' }}>{t('agro_excerpt_h')}</h2>
+          <p className="mt-1 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }} data-testid="agro-author-line">
+            {t('article_by')} <Link to="/founder" className="underline" style={{ color: 'var(--ks-green)' }}>{t('founder_name')}</Link>, {t('agro_author_role')}
+          </p>
           {articleSummary && (
             <p className="mt-2 text-[15px] leading-relaxed" style={{ color: 'var(--ks-ink-2)' }}>{articleSummary}</p>
           )}

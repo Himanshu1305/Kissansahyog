@@ -1,0 +1,6 @@
+Staging Supabase guard — 2026-10-15T05:00:31Z
+Main bundle: /assets/index-B9eiHYmW.js; 105 chunks fetched from https://staging.kissansahyog.com/assets/
+Supabase hosts found in served JS:
+      9 wzxtqbqlahyahsnoqqva.supabase.co
+Occurrences of prod ref eltmcznjcqiahqhjvpjg: 0
+Result: STAGING ref only -> proceed.

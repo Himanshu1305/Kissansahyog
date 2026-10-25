@@ -1,10 +1,11 @@
 import { useLang } from '../lib/i18n/LanguageProvider'
-import { getCategory } from '../lib/listings/registry'
-import { LISTING_TYPE_META } from '../lib/listings/catalog'
+import { getCategorySafe } from '../lib/listings/registry'
+import { CATEGORY_META, EQUIPMENT_TAGS, LISTING_TYPE_META, optionLabels } from '../lib/listings/catalog'
 import { CatIcon } from './CatIcon'
 import SponsoredBadge from './SponsoredBadge'
 import ContactActions from './ContactActions'
 import { timeAgo } from '../lib/timeAgo'
+import { datesLine } from '../lib/listings/listingDates'
 
 // Compact listing summary used in Browse (grid) and My Listings. Shows the
 // category pill, listing type, a "Vendor" badge for business listings, the key
@@ -15,9 +16,18 @@ import { timeAgo } from '../lib/timeAgo'
 export default function ListingCard({ listing, extras = {}, onClick, statusBadge }) {
   const { t, lang } = useLang()
   const typeMeta = LISTING_TYPE_META[listing.listing_type]
-  const rows = getCategory(listing.category).summarize(listing, lang, extras).slice(0, 2)
+  const category = getCategorySafe(listing.category)
+  // A legacy category must not turn a list into a blank page.
+  if (!category || !typeMeta) return null
+  // Spec rows (Batch 9C) are for the detail page; the card shows them as one line instead.
+  // Batch 10E: the dates have their own line below (equipment / land / labor / drone didi).
+  const rows = category.summarize(listing, lang, extras).filter((r) => !r.spec && !r.dates).slice(0, 2)
+  const dateLine = datesLine(listing, lang)
+  const specLine = category.specLine ? category.specLine(listing, lang) : null
   const isOffer = listing.listing_type === 'offer'
   const isVendor = listing.listing_source === 'vendor'
+  const equipmentTags = listing.category === 'equipment' ? (listing.details?.equipment_tags || []) : []
+  const coverPhoto = listing.details?.photo_urls?.[0]
 
   return (
     <div data-testid="listing-card" className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-stone-200 bg-white">
@@ -26,6 +36,7 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
         onClick={onClick}
         className="flex flex-1 flex-col p-3 text-left active:bg-stone-50"
       >
+        {coverPhoto && <img src={coverPhoto} alt={`${CATEGORY_META?.[listing.category]?.[lang] || listing.category}`} loading="lazy" className="mb-2 h-28 w-full rounded-lg object-cover" />}
         <div className="mb-1 flex flex-wrap items-center gap-1">
           <CatIcon category={listing.category} className="text-lg leading-none" />
           <span className={`rounded-full px-1.5 py-0.5 text-[11px] font-bold ${isOffer ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
@@ -49,6 +60,16 @@ export default function ListingCard({ listing, extras = {}, onClick, statusBadge
             </span>
           ))}
         </div>
+
+        {dateLine && <div data-testid="listing-dates-line" className="mt-0.5 text-sm font-semibold leading-snug text-green-800">📅 {dateLine}</div>}
+
+        {specLine && <div data-testid="equipment-spec-line" className="mt-0.5 break-words text-sm font-semibold leading-snug text-stone-900">{specLine}</div>}
+
+        {equipmentTags.length > 0 && (
+          <div className="mt-1 flex flex-wrap gap-1" data-testid="equipment-tag-card">
+            {equipmentTags.map((tag) => <span key={tag} className="rounded-full bg-blue-100 px-1.5 py-0.5 text-[10px] font-bold text-blue-800">{optionLabels(EQUIPMENT_TAGS, [tag], lang)}</span>)}
+          </div>
+        )}
 
         <div className="mt-auto flex items-center justify-between gap-1 pt-1 text-xs text-stone-500">
           <span className="truncate">📍 {listing.village_town || listing.pincode || ''}</span>

@@ -33,9 +33,13 @@ const CARDS = {
   'jugaad':        { hi: 'जुगाड़ / नवाचार', en: 'Rural innovations — support, safety & law' },
   'cold-storage':  { hi: 'कोल्ड स्टोरेज', en: 'MP Cold Storage Finder' },
   'sawaal':        { hi: 'किसान सवाल', en: 'Most-asked farmer questions, answered with sources' },
+  'founder':       { hi: 'श्री अभिनन्दन दीक्षित', en: 'Founder, Kissan Sahyog · WE WILL DO IT' },
 }
 
+// Optional: `node scripts/gen-og.mjs founder` regenerates only the named cards.
+const only = process.argv.slice(2)
 for (const [name, text] of Object.entries(CARDS)) {
+  if (only.length && !only.includes(name)) continue
   await sharp(Buffer.from(svg(text))).png().toFile(join(OUT, `${name}.png`))
   console.log(`og/${name}.png`)
 }

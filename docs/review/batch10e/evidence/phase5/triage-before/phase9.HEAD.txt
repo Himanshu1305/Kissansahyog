@@ -1,0 +1,31 @@
+
+Running 2 tests using 1 worker
+
+  x  1 [chromium] › e2e\zz-head-phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one (30.0s)
+  ok 2 [chromium] › e2e\zz-head-phase9.spec.js:105:1 › Journey B: 30km filter consistent across all categories (3.6s)
+[teardown] test data cleaned
+
+
+  1) [chromium] › e2e\zz-head-phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('#f_asset_village')
+
+
+      45 |   await page.locator('#f_price_type').selectOption('negotiable')
+      46 |   await page.getByTestId('post-next').click()
+    > 47 |   await page.locator('#f_asset_village').fill('Deori')
+         |                                          ^
+      48 |   await page.getByTestId('rules-agree-checkbox').check() // single confirm = rules + ownership
+      49 |   await page.getByTestId('post-submit').click()
+      50 |   await expect(page.getByRole('button', { name: 'View listing' })).toBeVisible()
+        at C:\Users\usdvi\projects\Kissansahyog\e2e\zz-head-phase9.spec.js:47:42
+
+    Error Context: test-results\zz-head-phase9-Journey-A-s-84ce4-s-→-My-Listings-→-close-one-chromium\error-context.md
+
+  1 failed
+    [chromium] › e2e\zz-head-phase9.spec.js:26:1 › Journey A: signup → post all 3 categories → My Listings → close one 
+  1 passed (35.3s)

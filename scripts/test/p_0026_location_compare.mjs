@@ -1,5 +1,6 @@
-// Phase 4 (0026 build) — PERMANENT backend/logic/static regression suite for: the
-// out-of-service-area distance-sanity threshold (Phase 1), the mandi comparison data +
+// Phase 4 (0026 build) — PERMANENT backend/logic/static regression suite for: naming a device
+// position (Phase 1 — rewritten for Batch 7L-1: the pincode control and its service-area
+// threshold are gone; a position is named from the places list), the mandi comparison data +
 // cap (Phase 2), and the staleness rule (Phase 3). Run:
 //   node --env-file=.env scripts/test/p_0026_location_compare.mjs
 import { createClient } from '@supabase/supabase-js'
@@ -14,6 +15,9 @@ const ok = (n, c, extra = '') => { if (c) { pass++; console.log(`PASS  ${n}`) } 
 // Read the two source files whose constants/logic we assert against.
 const locStore = readFileSync(new URL('../../src/lib/location/locationStore.js', import.meta.url), 'utf8')
 const shared = readFileSync(new URL('../../src/components/pages/shared.jsx', import.meta.url), 'utf8')
+const userLoc = readFileSync(new URL('../../src/lib/location/userLocation.js', import.meta.url), 'utf8')
+const provider = readFileSync(new URL('../../src/lib/location/LocationProvider.jsx', import.meta.url), 'utf8')
+const control = readFileSync(new URL('../../src/components/location/LocationControl.jsx', import.meta.url), 'utf8')
 
 function nearest(lat, lng, pins) {
   let best = null, bestD = Infinity
@@ -26,26 +30,29 @@ function nearest(lat, lng, pins) {
 }
 
 async function main() {
-  // ---------- Phase 1: distance-sanity threshold ----------
-  const m = locStore.match(/SERVICE_AREA_KM\s*=\s*(\d+)/)
+  // ---------- Phase 1: naming a device position (Batch 7L-1 location flow) ----------
+  const m = provider.match(/NAME_WITHIN_KM\s*=\s*(\d+)/)
   const THRESH = m ? Number(m[1]) : null
-  ok('Phase 1: locationStore exports SERVICE_AREA_KM', THRESH != null, 'not found')
-  ok('Phase 1: threshold is a sane service radius (50–200 km)', THRESH >= 50 && THRESH <= 200, `=${THRESH}`)
-  ok('Phase 1: LocationControl gates the village match on SERVICE_AREA_KM', /distanceKm\s*<=\s*SERVICE_AREA_KM/.test(shared))
-  ok('Phase 1: LocationControl forces a fresh fix (maximumAge: 0, enableHighAccuracy: true)',
-    /maximumAge:\s*0/.test(shared) && /enableHighAccuracy:\s*true/.test(shared))
-  ok('Phase 1: debug overlay is gated by ?debug=1', /debug=1/.test(shared))
-  ok('Phase 1: honest out-of-area message string is wired (loc_out_of_area)', /loc_out_of_area/.test(shared))
+  ok('Phase 1: LocationProvider has a naming radius (NAME_WITHIN_KM)', THRESH != null, 'not found')
+  ok('Phase 1: the naming radius is a sane "same town" distance (5–30 km)', THRESH >= 5 && THRESH <= 30, `=${THRESH}`)
+  ok('Phase 1: a device fix is named from the places list inside that radius, else reverse-geocoded',
+    /near\.km\s*<=\s*NAME_WITHIN_KM/.test(provider) && /reverseGeocode\(pos\.lat, pos\.lng\)/.test(provider))
+  ok('Phase 1: the device is asked for an accurate fix (enableHighAccuracy: true)', /enableHighAccuracy:\s*true/.test(userLoc))
+  ok('Phase 1: no service-area gate, out-of-area message or ?debug=1 overlay any more',
+    !/SERVICE_AREA_KM|loc_out_of_area|out-of-area|debug=1|geo-debug/.test(locStore + shared + control + provider))
+  ok('Phase 1: no pincode in the location control', !/pincode/i.test(control.replace(/^\s*(\/\/|\{\/\*).*$/gm, '')))
 
-  const { data: pins } = await db.from('pincodes').select('pincode,village_town,latitude,longitude')
-  // NEGATIVE: a genuinely far user (Hyderabad) — nearest seeded village must be BEYOND
-  // the threshold, so the UI shows the honest message instead of substituting silently.
+  const { data: placeRows } = await db.from('places').select('name_en,lat,lng,verified')
+  const pins = (placeRows || []).filter((p) => p.verified !== false).map((p) => ({ village_town: p.name_en, latitude: p.lat, longitude: p.lng }))
+  ok('Phase 1: places table is readable and has the verified division places', pins.length >= 50, `${pins.length}`)
+  // NEGATIVE: a genuinely far user (Hyderabad) — the nearest listed place is BEYOND the radius,
+  // so the position is named by reverse geocoding, never after a division town.
   const hyd = nearest(17.385, 78.487, pins)
-  ok('Phase 1 negative: Hyderabad nearest seeded village is beyond the threshold',
+  ok('Phase 1 negative: Hyderabad nearest listed place is beyond the naming radius',
     hyd && hyd.distanceKm > THRESH, hyd ? `${hyd.village_town} ${Math.round(hyd.distanceKm)}km` : 'none')
-  // POSITIVE: a genuinely local user (near Khurai) — nearest village is WITHIN threshold.
+  // POSITIVE: a genuinely local user (near Khurai) — the nearest listed place is WITHIN the radius.
   const local = nearest(24.05, 78.34, pins)
-  ok('Phase 1 positive: a Khurai-area location matches a village within the threshold',
+  ok('Phase 1 positive: a Khurai-area location is named after a listed place within the radius',
     local && local.distanceKm <= THRESH, local ? `${local.village_town} ${Math.round(local.distanceKm)}km` : 'none')
 
   // ---------- Phase 2: comparison data + cap logic ----------

@@ -1,164 +1,148 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { resolveNext } from '../lib/returnPath'
-import { isValidPhone, isValidPincode, isValidEmail, MIN_PASSWORD } from '../lib/auth/authService'
-import { Screen, Field, TextInput, Select, BigButton, Notice, Spinner } from '../components/ui'
+import { isValidPhone } from '../lib/auth/authService'
+import { Screen, Field, TextInput, BigButton, Notice, Spinner } from '../components/ui'
 import DisclaimerBanner from '../components/DisclaimerBanner'
-import AuthTabs from '../components/AuthTabs'
-import KisanFields from '../components/KisanFields'
+import OtpStep from '../components/auth/OtpStep'
+import PlaceField from '../components/location/PlaceField'
+import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 
-// Two-step signup: (1) details form, (2) one-time disclaimer acknowledgment.
-// Phone tab: trust-based phone signup (unchanged). Email tab: Supabase email+password.
+// Batch 10A Task E — ONE short page: name, mobile, village/town, one "show my details"
+// checkbox, the one-time acknowledgment (unchanged text) and Register.
+// Batch 10E Phase 3A (founder decision): NO e-mail and NO password at sign-up. The e-mail +
+// password block (components/auth/EmailPasswordFields.jsx) is kept for later but not rendered;
+// registration goes through app_register_phone and signs in like a mobile login. Existing
+// e-mail accounts still sign in through the e-mail box on the login page.
+// No language dropdown (the app's active language is used) and no किसान block (it lives on
+// Profile). Batch 11A: when the database flag otp_required is on, Register first sends an SMS code to the
+// number and the code step (components/auth/OtpStep) creates the account; when it is off nothing changes.
+// Signup sends the same "empty" kisan object the old untouched block sent, so
+// applyKisan behaves exactly as before (now after app_register_phone).
+const EMPTY_KISAN = Object.freeze({ land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' })
+
 export default function Signup() {
-  const { t, lang, setLang } = useLang()
-  const { signup, signupEmail } = useAuth()
+  const { t, lang } = useLang()
+  const { startPhoneRegister } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [params] = useSearchParams()
   const next = resolveNext(params, location.state)
 
-  const [mode, setMode] = useState('phone') // 'phone' | 'email'
-  const [step, setStep] = useState('form') // 'form' | 'disclaimer'
-  const [form, setForm] = useState({ full_name: '', phone: '', email: '', password: '', village_town: '', pincode: '' })
-  // Phase 5 — optional किसान profile captured at registration (never blocks signup).
-  const [kisan, setKisan] = useState({ land_acres: '', main_crops: '', interest_lease: false, interest_equipment: false, whatsapp_opt_in: false, preferred_mandi: '' })
-  const setK = (k) => (e) => setKisan((s) => ({ ...s, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }))
+  const [form, setForm] = useState({ full_name: '', phone: '' })
+  const [place, setPlace] = useState(null) // { label, lat, lng, district }
+  // "Show my details" is the recommended choice and starts ticked.
+  const [showDetails, setShowDetails] = useState(true)
   const [accepted, setAccepted] = useState(false)
   const [fieldErrors, setFieldErrors] = useState({})
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
+  const [challenge, setChallenge] = useState(null) // set → the SMS code step is shown
+  const inFlight = useRef(false) // a fast double tap must not register twice
 
-  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
+  // Typing in a field clears the message shown under it.
+  const clearErr = (k) => setFieldErrors((fe) => (fe[k] ? { ...fe, [k]: undefined } : fe))
+  const set = (k) => (e) => { setForm((f) => ({ ...f, [k]: e.target.value })); clearErr(k) }
 
   function validateForm() {
     const errs = {}
     if (!form.full_name.trim()) errs.full_name = t('err_name_required')
-    if (mode === 'phone') {
-      if (!isValidPhone(form.phone)) errs.phone = t('err_invalid_phone')
-    } else {
-      if (!isValidEmail(form.email)) errs.email = t('err_invalid_email')
-      if (!form.password || form.password.length < MIN_PASSWORD) errs.password = t('err_password_short')
-    }
-    if (!isValidPincode(form.pincode)) errs.pincode = t('err_invalid_pincode')
+    if (!isValidPhone(form.phone)) errs.phone = t('err_invalid_phone')
+    if (!place) errs.place = t('err_place_required')
     setFieldErrors(errs)
     return Object.keys(errs).length === 0
   }
 
-  function goToDisclaimer(e) {
-    e.preventDefault()
+  async function submit(e) {
+    e?.preventDefault()
+    if (busy || inFlight.current) return
     setError(null)
-    if (validateForm()) setStep('disclaimer')
-  }
-
-  async function submit() {
-    setError(null)
-    if (!accepted) {
-      setError(t('err_disclaimer_not_accepted'))
+    const ok = validateForm()
+    if (!accepted) setError(t('err_disclaimer_not_accepted'))
+    if (!ok || !accepted) {
+      window.scrollTo?.(0, 0)
       return
     }
+    inFlight.current = true
     setBusy(true)
     try {
-      if (mode === 'phone') {
-        await signup({
-          full_name: form.full_name, phone: form.phone, village_town: form.village_town,
-          pincode: form.pincode, language: lang, disclaimer_accepted: true, kisan,
-        })
-      } else {
-        await signupEmail({
-          full_name: form.full_name, email: form.email, password: form.password,
-          village_town: form.village_town, pincode: form.pincode, language: lang, disclaimer_accepted: true, kisan,
-        })
-      }
-      navigate(next, { replace: true })
+      const res = await startPhoneRegister({
+        full_name: form.full_name, phone: form.phone,
+        place, language: lang, disclaimer_accepted: true, show_details: showDetails, kisan: { ...EMPTY_KISAN },
+      })
+      if (res.step === 'otp') { setChallenge(res.challenge); window.scrollTo?.(0, 0) } else navigate(next, { replace: true })
     } catch (err) {
-      setError(t(err.i18nKey || 'err_unknown'))
-      setStep('form')
+      const key = err.i18nKey || 'err_unknown'
+      // Put the message next to the field it is about, and at the top of the form.
+      const field = { err_name_required: 'full_name', err_phone_exists: 'phone', err_invalid_phone: 'phone', err_place_required: 'place' }[key]
+      if (field) setFieldErrors({ [field]: t(key) })
+      setError(t(key))
+      window.scrollTo?.(0, 0)
     } finally {
+      inFlight.current = false
       setBusy(false)
     }
   }
 
-  function switchMode(next) {
-    setMode(next)
-    setFieldErrors({})
-    setError(null)
-  }
-
   return (
-    <Screen
-      title={t('signup_title')}
-      onBack={() => (step === 'disclaimer' ? setStep('form') : navigate('/'))}
-    >
-      {error && <Notice tone="error">{error}</Notice>}
+    <Screen title={t('signup_title')} onBack={() => navigate('/')}>
+      {/* Batch 7D: one line of text under the heading. */}
+      <p data-testid="signup-free-registration" className="mb-3 inline-block rounded-full bg-[var(--ks-green-tint)] px-3 py-1 text-sm font-bold text-[var(--ks-green-dark)]">✓ {t('free_registration')}</p>
 
-      {step === 'form' && (
-        <form onSubmit={goToDisclaimer} noValidate>
-          <AuthTabs mode={mode} onChange={switchMode} />
+      {/* Batch 10C: watch the register demo in a sheet over this page — the form keeps what was typed. */}
+      <div className="mb-3"><GuideHelpButton demoId="register" label="guide_help_demo_btn" testid="help-signup" /></div>
 
-          <Field label={t('full_name')} htmlFor="full_name" required error={fieldErrors.full_name}>
-            <TextInput id="full_name" value={form.full_name} onChange={set('full_name')} placeholder={t('full_name_ph')} autoComplete="name" />
-          </Field>
-
-          {mode === 'phone' ? (
-            <Field label={t('phone_number')} htmlFor="phone" required error={fieldErrors.phone}>
-              <TextInput id="phone" type="tel" inputMode="numeric" maxLength={10} value={form.phone} onChange={set('phone')} placeholder={t('phone_ph')} autoComplete="tel" />
-            </Field>
-          ) : (
-            <>
-              <Field label={t('email_label')} htmlFor="email" required error={fieldErrors.email}>
-                <TextInput id="email" type="email" value={form.email} onChange={set('email')} placeholder={t('email_ph')} autoComplete="email" />
-              </Field>
-              <Field label={t('password_label')} htmlFor="password" required error={fieldErrors.password}>
-                <TextInput id="password" type="password" value={form.password} onChange={set('password')} placeholder={t('password_ph')} autoComplete="new-password" />
-              </Field>
-            </>
-          )}
-
-          <Field label={t('village_town')} htmlFor="village_town" hint={t('optional')}>
-            <TextInput id="village_town" value={form.village_town} onChange={set('village_town')} placeholder={t('village_ph')} />
-          </Field>
-
-          <Field label={t('pincode')} htmlFor="pincode" required hint={t('pincode_help')} error={fieldErrors.pincode}>
-            <TextInput id="pincode" type="tel" inputMode="numeric" maxLength={6} value={form.pincode} onChange={set('pincode')} placeholder={t('pincode_ph')} />
-          </Field>
-
-          <Field label={t('language')} htmlFor="language">
-            <Select id="language" value={lang} onChange={(e) => setLang(e.target.value)}>
-              <option value="hi">{t('hindi')}</option>
-              <option value="en">{t('english')}</option>
-            </Select>
-          </Field>
-
-          {/* Phase 5 — optional किसान profile (never blocks account creation). */}
-          <div className="mt-4 rounded-2xl border-2 border-green-100 bg-green-50/40 p-4">
-            <h3 className="mb-1 font-bold text-stone-800">{t('kisan_profile_title')}</h3>
-            <p className="mb-3 text-xs font-semibold text-green-800">🔒 {t('kisan_privacy')}</p>
-            <KisanFields kisan={kisan} setK={setK} t={t} />
-          </div>
-
-          <BigButton type="submit" className="mt-2">{t('continue')}</BigButton>
-        </form>
-      )}
-
-      {step === 'disclaimer' && (
-        <div>
-          <h2 className="mb-3 text-xl font-bold text-stone-800">{t('disclaimer_title')}</h2>
-          <DisclaimerBanner which="signup" className="mb-5" />
-
-          <label className="mb-5 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-stone-300 bg-white p-4">
-            <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} className="mt-1 h-6 w-6 shrink-0 accent-green-700" />
-            <span className="text-base font-medium text-stone-800">{t('disclaimer_accept_label')}</span>
-          </label>
-
-          {busy ? (
-            <Spinner />
-          ) : (
-            <BigButton onClick={submit} disabled={!accepted}>{t('accept_and_continue')}</BigButton>
-          )}
+      {challenge && (
+        <div data-testid="signup-otp-card" className="mb-4 rounded-2xl border-2 border-stone-200 bg-white p-4">
+          <h2 className="mb-1 text-xl font-bold text-stone-900">📱 {t('otp_signup_title')}</h2>
+          <OtpStep
+            challenge={challenge}
+            testid="signup-otp"
+            onDone={() => navigate(next, { replace: true })}
+            onChallenge={setChallenge}
+            onChangeNumber={() => { setChallenge(null); setError(null); setTimeout(() => document.getElementById('phone')?.focus?.(), 0) }}
+          />
         </div>
       )}
+
+      {error && !challenge && <div data-testid="signup-error"><Notice tone="error">{error}</Notice></div>}
+
+      <form onSubmit={submit} noValidate data-testid="signup-form" hidden={!!challenge}>
+        <Field label={t('full_name')} htmlFor="full_name" required error={fieldErrors.full_name}>
+          <TextInput id="full_name" value={form.full_name} onChange={set('full_name')} placeholder={t('full_name_ph')} autoComplete="name" />
+        </Field>
+
+        <Field label={t('phone_number')} htmlFor="phone" required error={fieldErrors.phone}>
+          <TextInput id="phone" type="tel" inputMode="numeric" maxLength={10} value={form.phone} onChange={set('phone')} placeholder={t('phone_ph')} autoComplete="tel" />
+        </Field>
+
+        <PlaceField id="village_town" value={place} onChange={(p) => { setPlace(p); clearErr('place') }} error={fieldErrors.place} />
+
+        {/* Visibility — one line + checkbox (ticked = show, the recommended choice). */}
+        <div data-testid="visibility-choice" data-choice={showDetails ? 'show' : 'hidden'} className="mt-3">
+          <p className="mb-1 text-base font-semibold text-stone-800">{t('vis_title')}</p>
+          <label className="flex min-h-[48px] cursor-pointer items-center gap-3 rounded-xl border-2 border-stone-300 bg-white px-3 py-2">
+            <input type="checkbox" data-testid="visibility-show" checked={showDetails} onChange={(e) => setShowDetails(e.target.checked)} className="h-6 w-6 shrink-0 accent-green-700" />
+            <span className="text-base font-medium text-stone-800">{t('vis_show')}</span>
+          </label>
+          {/* The explanation text is kept (moved, not removed — consent wording awaits lawyer review). */}
+          <p data-testid="visibility-explain" className="mt-1 text-sm leading-relaxed text-stone-600">{t('vis_explain')}</p>
+          {!showDetails && <p data-testid="visibility-warning" className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-[15px] font-semibold text-amber-900">{t('vis_hidden_warning')}</p>}
+        </div>
+
+        {/* The one-time acknowledgment — title and text unchanged, now on the same page. */}
+        <h2 className="mb-3 mt-5 text-xl font-bold text-stone-800">{t('disclaimer_title')}</h2>
+        <DisclaimerBanner which="signup" className="mb-4" />
+
+        <label className="mb-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-stone-300 bg-white p-4">
+          <input type="checkbox" data-testid="disclaimer-accept" checked={accepted} onChange={(e) => { setAccepted(e.target.checked); if (e.target.checked) setError((m) => (m === t('err_disclaimer_not_accepted') ? null : m)) }} className="mt-1 h-6 w-6 shrink-0 accent-green-700" />
+          <span className="text-base font-medium text-stone-800">{t('disclaimer_accept_label')}</span>
+        </label>
+
+        {busy ? <Spinner /> : <BigButton type="submit">{t('accept_and_continue')}</BigButton>}
+      </form>
     </Screen>
   )
 }

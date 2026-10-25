@@ -1,0 +1,18 @@
+/* Field scene of the /guide hub (10C). Moved out of guide.css in 10D; the homepage "wide" band
+   variant was removed in 10F (no homepage animation for now).
+   Motion: transform only. .ksg-paused pauses every loop, .ksg-static stops them (reduced motion /
+   save-data). Colours come from the app tokens (--ks-*). */
+
+/* ---------- hub (10C, unchanged) ---------- */
+.ksg-scene { display: block; width: 100%; height: 150px; margin-top: 8px; }
+.ksg-sun { transform-origin: 480px 52px; animation: ksg-spin 40s linear infinite; }
+.ksg-st { transform-box: fill-box; transform-origin: 50% 100%; animation: ksg-sway 3.4s ease-in-out infinite alternate; }
+.ksg-trac { animation: ksg-drive 32s linear infinite; }
+.ksg-wheel { transform-box: fill-box; transform-origin: center; animation: ksg-spin 1.6s linear infinite; }
+.ksg-paused, .ksg-paused * { animation-play-state: paused !important; }
+.ksg-static, .ksg-static * { animation: none !important; }
+.ksg-static .ksg-trac { transform: translateX(300px); }
+
+@keyframes ksg-spin { to { transform: rotate(360deg); } }
+@keyframes ksg-sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+@keyframes ksg-drive { from { transform: translateX(-140px); } to { transform: translateX(940px); } }

@@ -1,0 +1,108 @@
+### HEAD
+title: केंद्र सरकार की योजनाएं — किसान सहयोग
+description: PM-KISAN, PMFBY, KCC जैसी केंद्र सरकार की किसान योजनाएं — पात्रता और आवेदन की जानकारी।
+canonical: https://kissansahyog.com/yojana/central
+robots: 
+lang: hi
+h1: केंद्र सरकार की योजनाएं
+--- jsonld 1 ---
+{"@context":"https://schema.org","@type":"Organization","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","logo":"https://kissansahyog.com/icons/icon-512.png","email":"hello@kissansahyog.com","areaServed":{"@type":"AdministrativeArea","name":"Sagar Division","alternateName":["Sagar Sambhag","सागर संभाग"],"containedInPlace":{"@type":"State","name":"Madhya Pradesh","identifier":"IN-MP"},"containsPlace":[{"@type":"AdministrativeArea","name":"Sagar district"},{"@type":"AdministrativeArea","name":"Damoh district"},{"@type":"AdministrativeArea","name":"Panna district"},{"@type":"AdministrativeArea","name":"Tikamgarh district"},{"@type":"AdministrativeArea","name":"Chhatarpur district"},{"@type":"AdministrativeArea","name":"Niwari district"}]}}
+--- end jsonld ---
+--- jsonld 2 ---
+{"@context":"https://schema.org","@type":"WebSite","name":"Kissan Sahyog","description":"किसान सहयोग (kissansahyog.com) सागर संभाग, मध्य प्रदेश के लिए खेती का बाज़ार और सूचना वेबसाइट है, जहाँ किसान, मज़दूर, मशीन मालिक और स्थानीय आपूर्तिकर्ता एक ही जगह मिलते हैं।","url":"https://kissansahyog.com","inLanguage":["hi-IN","en-IN"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kissansahyog.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+--- end jsonld ---
+### BODY
+किसान सहयोग
+Kissan Sahyog
+बाज़ार ▾
+मंडी भाव
+मौसम
+सरकारी योजनाएं ▾
+एग्रो फॉरेस्ट्री
+किसान सवाल
+वीडियो
+उपयोगी संपर्क ▾
+कैसे इस्तेमाल करें
+हमारे बारे में ▾
+हमारे बारे में
+संस्थापक
+और ▾
+एग्रो फॉरेस्ट्री
+वीडियो
+संपर्क सूची
+किसान मेला
+कैसे इस्तेमाल करें
+हमारे बारे में
+संस्थापक
+🎤
+🔍
+🎤
+🔍
+🔍
+गाइड
+हिं
+EN
+लॉगिन
+जुड़ें
+☰
+केंद्र सरकार की योजनाएं
+आय सहायता
+पीएम किसान सम्मान निधि
+₹6,000 प्रति वर्ष — तीन किस्तों में (₹2,000 प्रत्येक)
+पूरी जानकारी देखें →
+फसल बीमा
+प्रधानमंत्री फसल बीमा योजना (PMFBY)
+खरीफ में 2%, रबी में 1.5% प्रीमियम — बाकी सरकार देती है। नुकसान होने पर पूरी राशि मिलती है।
+पूरी जानकारी देखें →
+सौर ऊर्जा
+पीएम कुसुम योजना (सोलर पंप)
+60% सब्सिडी + 30% लोन — किसान का खर्च केवल 10%। बिजली बेचकर अतिरिक्त कमाई भी हो सकती है।
+पूरी जानकारी देखें →
+लोन
+किसान क्रेडिट कार्ड (KCC)
+₹3 लाख तक केवल 4% ब्याज। समय पर चुकाने पर और सस्ता हो सकता है।
+पूरी जानकारी देखें →
+महिला
+ड्रोन दीदी योजना
+ड्रोन पर 80% सब्सिडी + मुफ्त ट्रेनिंग। ड्रोन छिड़काव से ₹1,000-1,500 प्रति एकड़ की कमाई।
+पूरी जानकारी देखें →
+सामान्य
+मृदा स्वास्थ्य कार्ड योजना
+मुफ्त मिट्टी जांच + खाद की सटीक सलाह। ऑनलाइन Soil Health Card मिलता है।
+पूरी जानकारी देखें →
+बाज़ार
+e-NAM (राष्ट्रीय कृषि बाज़ार)
+ऑनलाइन नीलामी से बेहतर दाम। सीधे खाते में भुगतान।
+पूरी जानकारी देखें →
+आय सहायता
+पीएम आशा योजना
+MSP और मंडी भाव के बीच का अंतर सीधे खाते में।
+पूरी जानकारी देखें →
+किसान सहयोग
+किसान की आय बढ़ाना · रोज़गार के अवसर
+बाज़ार
+हमारे बारे में
+कैसे इस्तेमाल करें
+गाइड
+संस्थापक
+गोपनीयता नीति
+उपयोग की शर्तें
+सुझाव और शिकायत
+उपयोगी संपर्क
+फोटो श्रेय
+hello@kissansahyog.com
+© 2026 Kissan Sahyog | kissansahyog.com | सभी अधिकार सुरक्षित
+डिज़ाइन, विकास और रखरखाव:
+USD Vision AI LLP
+· मध्यप्रदेश, भारत
+मौसम डेटा:
+Open-Meteo.com
+· मंडी भाव: Agmarknet/data.gov.in
+🏠
+होम
+🔍
+खोजें
+＋
+पोस्ट करें
+🔑
+लॉगिन

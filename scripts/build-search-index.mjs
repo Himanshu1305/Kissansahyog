@@ -13,6 +13,7 @@ import { writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { CROPS } from '../src/content/crops.js'
+import { strings } from '../src/lib/i18n/strings.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'search-index.json')
@@ -229,6 +230,8 @@ items.push(...await safe('msp', async () => {
 
 // --- Hub pages (static) ---
 const HUBS = [
+  { title_hi: 'निर्माण सामग्री', title_en: 'Building materials', url: '/bazaar/building-materials', keywords: 'निर्माण सामग्री cement सीमेंट sand रेत iron rod सरिया bricks ईंट gravel गिट्टी building materials' },
+  { title_hi: 'सब्ज़ी खेती के यंत्र', title_en: 'Vegetable farming equipment', url: '/bazaar/vegetable-equipment', keywords: 'सब्ज़ी खेती के यंत्र vegetable farming equipment machine rental' },
   { title_hi: 'ग्रीनहाउस / पॉलीहाउस — वेंडर व ज़रूरतें', title_en: 'Greenhouse / Polyhouse — vendors & needs', url: '/greenhouse', keywords: 'greenhouse polyhouse vendor ग्रीनहाउस पॉलीहाउस वेंडर' },
   { title_hi: 'ग्रीनहाउस / पॉलीहाउस सब्सिडी गाइड (मध्य प्रदेश)', title_en: 'Greenhouse / Polyhouse Subsidy Guide (MP)', url: '/greenhouse/subsidy', keywords: 'greenhouse polyhouse subsidy MP cost norm ग्रीनहाउस पॉलीहाउस सब्सिडी लागत' },
   { title_hi: 'कार्बन क्रेडिट', title_en: 'Carbon Credit', url: '/carbon-credit', keywords: 'carbon credit कार्बन क्रेडिट' },
@@ -237,10 +240,23 @@ const HUBS = [
   { title_hi: 'कोल्ड स्टोरेज खोजें', title_en: 'Cold Storage Finder', url: '/cold-storage', keywords: 'cold storage godown warehouse कोल्ड स्टोरेज गोदाम' },
   { title_hi: 'कृषि वानिकी', title_en: 'Agro Forestry', url: '/agro-forestry', keywords: 'agro forestry agroforestry कृषि वानिकी' },
   { title_hi: 'मौसम', title_en: 'Weather / Mausam', url: '/mausam', keywords: 'mausam weather rain मौसम बारिश' },
+  { title_hi: 'कम पानी में कौन-सी फसल', title_en: 'Which crop with little water', url: '/fasal-salah/kam-pani', keywords: 'कम पानी सूखा बारानी सिंचाई फसल बीमा खेत तालाब चना मसूर जौ सरसों गेहूं रबी kam pani sukha baarani irrigation drought crop insurance farm pond fasal salah' },
+  { title_hi: 'सरकारी सहारा — फसल बीमा, MSP खरीद, खेत तालाब', title_en: 'Government support — crop insurance, MSP purchase, farm pond', url: '/fasal-salah/kam-pani#sarkari-sahara', keywords: 'फसल बीमा pmfby msp खरीद खेत तालाब सब्सिडी सरकारी सहारा crop insurance farm pond subsidy' },
+  { title_hi: 'बारिश देर से / सूखा — क्या बोएँ', title_en: 'Late rain / drought — what to sow', url: '/fasal-salah/kam-pani#barish-der-se', keywords: 'बारिश देर सूखा तिल उड़द अरहर late monsoon drought' },
+  { title_hi: 'बारिश ज़्यादा, पानी भरा', title_en: 'Heavy rain, waterlogging', url: '/fasal-salah/kam-pani#barish-zyada', keywords: 'ज़्यादा बारिश पानी भराव सोयाबीन heavy rain waterlogging' },
+  { title_hi: 'पानी बचाने के तरीके', title_en: 'Ways to save water', url: '/fasal-salah/kam-pani#pani-bachana', keywords: 'पानी बचाना खेत तालाब मेड़बंदी नमी water saving farm pond moisture' },
   { title_hi: 'मंडी भाव / MSP', title_en: 'Mandi Prices / MSP', url: '/msp', keywords: 'msp mandi price मंडी भाव न्यूनतम समर्थन मूल्य' },
   { title_hi: 'ड्रोन दीदी', title_en: 'Drone Didi', url: '/drone-didi', keywords: 'drone didi ड्रोन दीदी spraying' },
   { title_hi: 'किसान सवाल', title_en: 'Kisan Sawaal', url: '/sawaal', keywords: 'sawaal question answer किसान सवाल जवाब' },
   { title_hi: 'किसान मेला', title_en: 'Kisan Mela', url: '/kisan-mela', keywords: 'kisan mela fair किसान मेला' },
+  { title_hi: 'हमारे बारे में — किसान सहयोग', title_en: 'About Us — Kissan Sahyog', url: '/about', keywords: 'हमारे बारे में किसान सहयोग क्या है about us kissan sahyog sagar farm marketplace खेती का बाज़ार सागर स्वामी संचालक owner संपर्क' },
+  { title_hi: 'वेबसाइट कैसे इस्तेमाल करें', title_en: 'How to use the website', url: '/how-to-use', keywords: 'कैसे इस्तेमाल करें वेबसाइट कैसे चलाएं how to use help guide लिस्टिंग कैसे डालें रजिस्टर लॉगिन फोटो संपर्क होम स्क्रीन इंस्टॉल भाषा बदलें मदद' },
+  { title_hi: strings.guide_hub_h1.hi, title_en: strings.guide_hub_h1.en, url: '/guide', keywords: 'गाइड डेमो सीखें कैसे चलाएं guide demo learn how to use tutorial मदद help' },
+  { title_hi: strings.guide_register_h1.hi, title_en: strings.guide_register_h1.en, url: '/guide/register', keywords: 'रजिस्टर कैसे करें खाता बनाएं register signup account demo guide डेमो' },
+  { title_hi: strings.guide_post_h1.hi, title_en: strings.guide_post_h1.en, url: '/guide/post', keywords: 'पोस्ट कैसे करें लिस्टिंग डालें मशीन सामान बेचें post listing sell demo guide डेमो' },
+  { title_hi: strings.guide_find_h1.hi, title_en: strings.guide_find_h1.en, url: '/guide/find', keywords: 'नंबर कैसे मिलेगा बेचने वाला कॉल whatsapp seller number contact find demo guide डेमो' },
+  { title_hi: strings.guide_tour_h1.hi, title_en: strings.guide_tour_h1.en, url: '/guide/tour', keywords: 'टूर पूरा किसान सहयोग क्या है tour overview demo guide डेमो' },
+  { title_hi: 'संस्थापक — श्री अभिनन्दन दीक्षित', title_en: 'Founder — Shri Abhinandan Dixit', url: '/founder', keywords: 'संस्थापक अभिनन्दन दीक्षित founder abhinandan dixit about किसान सहयोग परिचय' },
 ]
 items.push(...HUBS.map((h) => ({
   type: 'hub',

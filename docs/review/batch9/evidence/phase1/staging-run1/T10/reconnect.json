@@ -1,0 +1,17 @@
+{
+  "method": "cmd connectivity airplane-mode enable",
+  "bannerGoneAfterMs": 3093,
+  "androidNetworkUpMs": 2567,
+  "temperatures": [
+    "21°",
+    "22°",
+    "21°",
+    "20°",
+    "27°",
+    "30°"
+  ],
+  "hosts": {
+    "staging.kissansahyog.com 0": 1,
+    "wzxtqbqlahyahsnoqqva.supabase.co 200": 5
+  }
+}

@@ -1,0 +1,8 @@
+== https://2c67eb33.kissansahyog.pages.dev
+{"otp_required":false,"session_enforced":false} [200]
+{"error":"invalid_phone"} [400]
+home [200]
+== https://staging.kissansahyog.com
+{"otp_required":false,"session_enforced":false} [200]
+{"error":"invalid_phone"} [400]
+home [200]

@@ -1,0 +1,20 @@
+Garlic             30d mandis  6 | old 21pts err 2361 worst 8450 | b.50 21pts err 2361 worst 8450 FEW | b.67 21pts err 2361 worst 8450 FEW | b.75 21pts err 2361 worst 8450 FEW
+Garlic             90d mandis  6 | old 65pts err 1317 worst 8450 | b.50 65pts err 1317 worst 8450 FEW | b.67 65pts err 1317 worst 8450 FEW | b.75 65pts err 1317 worst 8450 FEW
+Gram               30d mandis 32 | old 26pts err  116 worst  393 | b.50 21pts err   87 worst  173 | b.67 18pts err   77 worst  173 | b.75 18pts err   77 worst  173
+Gram               90d mandis 32 | old 78pts err   71 worst  393 | b.50 58pts err   45 worst  175 | b.67 58pts err   45 worst  175 | b.75 55pts err   43 worst  175
+Lentil             30d mandis 22 | old 23pts err  161 worst  598 | b.50 18pts err  227 worst 1495 | b.67 18pts err  227 worst 1495 | b.75 16pts err  230 worst 1370
+Lentil             90d mandis 22 | old 71pts err  279 worst 2799 | b.50 59pts err  436 worst 2057 | b.67 58pts err  441 worst 2057 | b.75 54pts err  470 worst 2057
+Maize              30d mandis 15 | old 26pts err   50 worst  233 | b.50 26pts err   50 worst  233 FEW | b.67 26pts err   50 worst  233 FEW | b.75 26pts err   50 worst  233 FEW
+Maize              90d mandis 15 | old 48pts err   51 worst  233 | b.50 48pts err   51 worst  233 FEW | b.67 48pts err   51 worst  233 FEW | b.75 48pts err   51 worst  233 FEW
+Moong              30d mandis 19 | old 23pts err  299 worst 1030 | b.50 23pts err  299 worst 1030 FEW | b.67 23pts err  299 worst 1030 FEW | b.75 23pts err  299 worst 1030 FEW
+Moong              90d mandis 19 | old 70pts err  209 worst 1030 | b.50 56pts err  171 worst  680 | b.67 46pts err  164 worst  591 | b.75 46pts err  164 worst  591
+Mustard            30d mandis 31 | old 28pts err  268 worst 1000 | b.50 21pts err  114 worst  410 | b.67 21pts err  114 worst  410 | b.75 17pts err  113 worst  410
+Mustard            90d mandis 31 | old 80pts err  156 worst 1000 | b.50 60pts err  100 worst  435 | b.67 58pts err   97 worst  435 | b.75 50pts err  101 worst  435
+Paddy(Dhan)(Common) 30d mandis  8 | old  9pts err    0 worst    0 | b.50  9pts err    0 worst    0 FEW | b.67  9pts err    0 worst    0 FEW | b.75  9pts err    0 worst    0 FEW
+Paddy(Dhan)(Common) 90d mandis  8 | old 34pts err    3 worst   23 | b.50 34pts err    3 worst   23 FEW | b.67 34pts err    3 worst   23 FEW | b.75 34pts err    3 worst   23 FEW
+Soyabean           30d mandis 29 | old 28pts err  120 worst  500 | b.50 23pts err   92 worst  349 | b.67 20pts err  100 worst  349 | b.75 17pts err   90 worst  242
+Soyabean           90d mandis 29 | old 78pts err  106 worst  500 | b.50 61pts err   84 worst  311 | b.67 55pts err   82 worst  290 | b.75 45pts err   71 worst  245
+Urad               30d mandis 21 | old 25pts err  360 worst 1343 | b.50 18pts err  276 worst  658 | b.67 17pts err  225 worst  452 | b.75 16pts err  216 worst  452
+Urad               90d mandis 21 | old 71pts err  602 worst 3390 | b.50 60pts err  438 worst 2611 | b.67 60pts err  438 worst 2611 | b.75 37pts err  391 worst 1975
+Wheat              30d mandis 38 | old 29pts err   11 worst   32 | b.50 20pts err   10 worst   27 | b.67 19pts err    9 worst   20 | b.75 19pts err    9 worst   20
+Wheat              90d mandis 38 | old 88pts err   14 worst   70 | b.50 63pts err    9 worst   30 | b.67 59pts err    9 worst   30 | b.75 58pts err    9 worst   30

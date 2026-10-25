@@ -1,0 +1,10 @@
+
+Running 4 tests using 1 worker
+
+  ok 1 [chromium] › e2e\phase17_sawaal_pwa_backbutton_ticker.spec.js:23:1 › /sawaal cards render as a grid: 3 columns at desktop, 1 at mobile (2.8s)
+  ok 2 [chromium] › e2e\phase17_sawaal_pwa_backbutton_ticker.spec.js:39:1 › PWA banner shows for a fresh visitor (no synthetic event) and hides in standalone (1.2s)
+  ok 3 [chromium] › e2e\phase17_sawaal_pwa_backbutton_ticker.spec.js:60:1 › BackButton: direct-link opens fallback route; in-app history uses real history.back (2.3s)
+  ok 4 [chromium] › e2e\phase17_sawaal_pwa_backbutton_ticker.spec.js:85:1 › mandi ticker text is vertically centered in the strip (no top/bottom clip) (724ms)
+[teardown] test data cleaned
+
+  4 passed (8.1s)

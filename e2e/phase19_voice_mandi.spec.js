@@ -105,7 +105,8 @@ test('mandi: /msp shows dated "कल का भाव / पिछला भा�
   // At least one dated staleness tag (sparse commodities are days old) with a visible date.
   const tag = page.getByTestId('stale-tag').first()
   await expect(tag).toBeVisible({ timeout: 10000 })
-  await expect(tag).toContainText(/\(\d{2}\/\d{2}\)/) // the exact date is always visible, not a tooltip
+  // the exact date is always visible, not a tooltip (Batch 10F: /msp shows it as "17 अक्टू" instead of 17/10)
+  await expect(tag).toContainText(/\((\d{2}\/\d{2}|\d{1,2} [^\s)]+( \d{4})?)\)/)
   await expect(tag).toContainText(/कल का भाव|पिछला भाव/)
   // A genuinely never-reported commodity renders the honest "—".
   await expect(page.getByTestId('price-missing').first()).toBeVisible()

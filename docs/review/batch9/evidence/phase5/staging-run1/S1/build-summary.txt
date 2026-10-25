@@ -1,0 +1,11 @@
+[build-android] target staging — flavour staging, API origin https://staging.kissansahyog.com
+[build-android] 1/5 staging guard
+STAGING GUARD: OK — .env and the process environment point at staging
+[build-android] 2/5 search index
+[build-android] 3/5 vite build (native, staging)
+[build-android] 4/5 staging guard on dist/
+STAGING GUARD: OK — dist (119 files) points at staging, no production references
+[build-android] 5/5 cap sync android
+[build-android] gradlew assembleDebug (staging, JDK 21)
+BUILD SUCCESSFUL in 25s
+[build-android] OK — C:\Users\usdvi\projects\Kissansahyog\android\ks-apks\ks-staging.apk
