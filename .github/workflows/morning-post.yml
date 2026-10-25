@@ -1,0 +1,67 @@
+name: Morning post
+
+# Makes the daily "सुबह की खबर" WhatsApp post (message + card + poll) and saves it in the database for /admin/morning.
+# 23:00 UTC = 04:30 IST. GitHub may DELAY scheduled runs by up to ~30 minutes, so the post is normally ready by 05:00 IST.
+# GitHub only runs `schedule` from the DEFAULT branch (main): the copy of THIS file on main is the one that fires.
+# That copy checks out the branch named below (MORNING_REF) to get the generator code, so main itself needs no other change.
+# A failed scheduled run emails the repository owner through GitHub's own notifications (Settings > Notifications > Actions).
+# Secrets: SUPABASE_URL, SUPABASE_ANON_KEY (the PUBLIC anon key, never the service-role key), MORNING_POST_SECRET.
+# Optional: RESEND_API_KEY + ALERT_EMAIL send one short "ready" e-mail; without them that step is skipped silently.
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: morning-post
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  MORNING_REF: release-16b   # the branch with scripts/morning/ ; change it (or merge it into main) when the code moves
+
+jobs:
+  morning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.MORNING_REF }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'   # same as the other workflows (supabase-js needs Node 22)
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Make and save the morning post
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          MORNING_POST_SECRET: ${{ secrets.MORNING_POST_SECRET }}
+        run: npm run morning -- --save
+
+      - name: Keep the files for 7 days
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: morning-post
+          path: out/morning/**
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: E-mail "ready" (optional)
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+        run: |
+          if [ -z "$RESEND_API_KEY" ] || [ -z "$ALERT_EMAIL" ]; then echo "no e-mail secrets: skipped"; exit 0; fi
+          curl -sS -o /dev/null -w "e-mail http %{http_code}\n" https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_API_KEY" -H "Content-Type: application/json" \
+            -d "{\"from\":\"Kisan Sahyog <hello@kissansahyog.com>\",\"to\":[\"$ALERT_EMAIL\"],\"subject\":\"आज की सुबह की पोस्ट तैयार है\",\"text\":\"आज की सुबह की पोस्ट तैयार है: https://kissansahyog.com/admin/morning\"}" || echo "e-mail not sent"
