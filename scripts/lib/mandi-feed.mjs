@@ -104,7 +104,7 @@ export function summarize({ perCommodity, today, source, target }) {
   const dates = perCommodity.map((c) => c.newest).filter(Boolean).sort()
   const newest = dates.length ? dates[dates.length - 1] : null
   const lines = [`### Mandi refresh${target ? ` (${target})` : ''}`, `- today (IST): ${today}`, `- source used: ${source}`, `- rows written: ${rows} (Sagar-division rows: ${division})`, `- newest price_date: ${newest || 'none'}`]
-  for (const c of perCommodity) lines.push(`- ${c.api}: ${c.rows} row(s), newest ${c.newest || '-'}${c.skipped ? `, skipped ${c.skipped}` : ''}`)
+  for (const c of perCommodity) lines.push(`- ${c.api}: ${c.rows} row(s), newest ${c.newest || '-'}${c.source ? ` via ${c.source}` : ''}${c.skipped ? `, skipped ${c.skipped}` : ''}`)
   return { rows, division, newest, text: lines.join('\n') }
 }
 
