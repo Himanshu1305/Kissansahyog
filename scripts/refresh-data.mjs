@@ -9,16 +9,30 @@
 // division mandi that reports is written (one row per market) with in_sagar_division = true;
 // when no division mandi reports, the single best MP record is written as before (flag false).
 //
-//   node scripts/refresh-data.mjs --dry-run
-// reads the price sources and prints the rows it WOULD write. It opens no database connection,
-// needs no secret (the data.gov.in sample key is used when no real key is set) and skips weather.
+//   node scripts/refresh-data.mjs --dry-run [--json]
+// reads the price sources and prints the rows it WOULD write (--json: as one JSON document). It opens no
+// database connection, needs no secret (the data.gov.in sample key is used when no real key is set) and skips weather.
+//
+// Batch 16C: price_date is the feed record's own arrival date (records without one are skipped, records older than
+// 7 days are skipped); "today" is the IST date; the official feed is tried first and the third-party wrapper is only a
+// labelled fallback; --expect-project-ref <ref> refuses to run against the wrong database; the script exits non-zero
+// when no rows were written, the newest row is more than 3 days old, or the guard failed. Pure logic: lib/mandi-feed.mjs.
 
 import { createClient } from '@supabase/supabase-js'
 import { matchCommodity } from './lib/mandi-commodity.mjs'
+import { divisionDistrict, filterFresh, pickRecords, buildRows, checkProjectRef, decideExit, summarize, redact, todayIST, MAX_AGE_DAYS } from './lib/mandi-feed.mjs'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
 const DRY_RUN = process.argv.includes('--dry-run')
+const JSON_OUT = process.argv.includes('--json')
+const refArg = process.argv.indexOf('--expect-project-ref')
+const EXPECT_REF = refArg > -1 ? process.argv[refArg + 1] : null
+// No secret ever reaches the log: every console line is scrubbed of the keys in the environment.
+const SECRETS = [process.env.SUPABASE_SERVICE_ROLE_KEY, process.env.DATA_GOV_IN_API_KEY]
+for (const k of ['log', 'error']) { const orig = console[k].bind(console); console[k] = (...a) => orig(...a.map((x) => (typeof x === 'string' ? redact(x, SECRETS) : x))) }
+// --json keeps stdout a single JSON document: progress lines go to stderr.
+const info = (...a) => (JSON_OUT ? console.error(...a) : console.log(...a))
 // Lazy: a dry run never touches the database.
 let _supabase = null
 const db = () => (_supabase ||= createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY))
@@ -26,8 +40,6 @@ const supabase = new Proxy({}, { get: (_, k) => db()[k] })
 
 // The six districts of Sagar Division, as the price feeds spell them (lower-case).
 const DIVISION_DISTRICTS = ['Sagar', 'Damoh', 'Panna', 'Tikamgarh', 'Chhatarpur', 'Niwari']
-const DIVISION_ALIASES = { sagar: 'sagar', saugor: 'sagar', damoh: 'damoh', panna: 'panna', tikamgarh: 'tikamgarh', chhatarpur: 'chhatarpur', chatarpur: 'chhatarpur', chattarpur: 'chhatarpur', niwari: 'niwari' }
-const divisionDistrict = (name) => DIVISION_ALIASES[String(name || '').trim().toLowerCase()] || null
 
 const DATA_GOV_DEMO_KEY = '579b464db66ec23bdd000001c1c5e196de4b4c16e60a17fd58b04bc'
 const DATA_GOV_KEY = process.env.DATA_GOV_IN_API_KEY || DATA_GOV_DEMO_KEY
@@ -39,7 +51,6 @@ const COMMODITIES = [
   { api: 'Paddy(Dhan)(Common)', hi: 'धान' }, { api: 'Maize', hi: 'मक्का' },
   { api: 'Mustard', hi: 'सरसों' }, { api: 'Garlic', hi: 'लहसुन' },
 ]
-const MARKET_PRIORITY = ['Khurai', 'Sagar', 'Rehli', 'Banda', 'Deori']
 
 // Pilot cells (always refreshed) — Sagar district towns.
 const PILOT = [
@@ -102,34 +113,17 @@ async function getOfficialPool() {
       // so the last forms are MP-wide; per-commodity division preference happens later.
       const mpAny = raw.filter((r) => stateOf(r).includes('madhya'))
       const division = mpAny.filter((r) => divisionDistrict(districtOf(r)))
-      console.log(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} division=${division.length}`)
+      info(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} division=${division.length}`)
       if (mpAny.length) { recs = mpAny; winner = form || 'no-filter'; break }
     } catch (e) { console.error(`official form [${form || 'none'}] failed: ${e.message}`) }
   }
-  console.log(`official API pool: ${recs.length} MP records via [${winner}] (key: ${HAS_REAL_KEY ? 'real' : 'demo'})`)
+  info(`official API pool: ${recs.length} MP records via [${winner}] (key: ${HAS_REAL_KEY ? 'real' : 'demo'})`)
   _officialPool = recs
   return recs
 }
 async function fetchFromOfficial(commodity) {
   const pool = await getOfficialPool()
   return pool.filter((r) => matchCommodity(r.commodity || r.Commodity, commodity))
-}
-// Which records to write for one commodity:
-//   - every Sagar Division mandi that reports it (one per market) → in_sagar_division = true;
-//   - none in the division → the single best MP record, as before (flags false).
-function pickRecords(records) {
-  const division = records.filter((r) => divisionDistrict(r.district || r.District))
-  if (division.length) {
-    const seen = new Set()
-    return division
-      .filter((r) => { const m = (r.market || r.Market || '').toLowerCase(); return m && !seen.has(m) && seen.add(m) })
-      .map((r) => ({ record: r, inDivision: true, isSagar: divisionDistrict(r.district || r.District) === 'sagar' }))
-  }
-  for (const m of MARKET_PRIORITY) {
-    const hit = records.find((r) => (r.market || r.Market || '').toLowerCase() === m.toLowerCase())
-    if (hit) return [{ record: hit, inDivision: false, isSagar: false }]
-  }
-  return records.length ? [{ record: records[0], inDivision: false, isSagar: false }] : []
 }
 // Write rows; if the database does not have in_sagar_division yet (migration 0058 not
 // applied) write the same rows without that column instead of failing the whole refresh.
@@ -144,34 +138,38 @@ async function upsertPrices(rows) {
   }
   return error
 }
-function normalizeRecord(raw) {
-  return {
-    market: raw.market || raw.Market || 'Unknown', district: raw.district || raw.District || 'Unknown',
-    min_price: parseFloat(raw.min_price || raw.Min_Price || 0) || null,
-    max_price: parseFloat(raw.max_price || raw.Max_Price || 0) || null,
-    modal_price: parseFloat(raw.modal_price || raw.Modal_Price || 0),
-    arrivals: parseFloat(raw.arrivals || raw.Arrivals || raw.arrival_tonnes || 0) || null,
-  }
-}
+// Official feed first; the third-party wrapper is only a labelled fallback (it is free, rate-limited per IP and has
+// been seen answering HTTP 429). Both are filtered to dated, fresh records before anything is written.
 async function refreshMandi() {
-  const today = new Date().toISOString().split('T')[0]
-  let ok = 0, fail = 0
+  const today = todayIST()
+  const perCommodity = [], allRows = [], sources = new Set()
   for (const { api, hi } of COMMODITIES) {
-    let records = [], source = 'wrapper'
-    try { records = await fetchFromWrapper(api); if (!records.length) throw new Error('empty') }
-    catch { source = 'official'; try { records = await fetchFromOfficial(api) } catch (e) { console.error(`both failed ${api}: ${e.message}`); fail++; continue } }
-    const picks = pickRecords(records); if (!picks.length) { console.log(`✗ ${hi} (${api}) — no records via ${source}`); fail++; continue }
-    const rows = []
-    for (const p of picks) {
-      const n = normalizeRecord(p.record); if (!n.modal_price) continue
-      rows.push({ commodity_en: api, commodity_hi: hi, market: n.market, district: n.district, state: 'Madhya Pradesh', min_price: n.min_price, max_price: n.max_price, modal_price: n.modal_price, arrivals_tonnes: n.arrivals, price_date: today, is_sagar_district: p.isSagar, in_sagar_division: p.inDivision, fetched_at: new Date().toISOString() })
+    let records = [], source = 'official'
+    try { records = await fetchFromOfficial(api) } catch (e) { console.error(`official failed ${api}: ${e.message}`) }
+    if (!records.length) {
+      source = 'wrapper (fallback)'
+      try { records = await fetchFromWrapper(api) } catch (e) { console.error(`wrapper failed ${api}: ${e.message}`) }
     }
-    if (!rows.length) { console.log(`✗ ${hi} (${api}) — no valid modal price`); fail++; continue }
-    if (DRY_RUN) { for (const r of rows) console.log(`[dry-run] ${hi} ₹${r.modal_price} ${r.market} (${r.district}) division=${r.in_sagar_division} [${source}]`); ok++; continue }
-    const error = await upsertPrices(rows)
-    if (error) { console.error(`upsert fail ${api}: ${error.message}`); fail++ } else { console.log(`✓ ${hi} ${rows.length} mandi(s): ${rows.map((r) => `${r.market} ₹${r.modal_price}`).join(', ')} [${source}]`); ok++ }
+    const entry = { api, rows: 0, division: 0, newest: null, skipped: 0 }
+    perCommodity.push(entry)
+    if (!records.length) { info(`✗ ${hi} (${api}) — no records from either source`); continue }
+    const { fresh, undated, stale, future } = filterFresh(records, today)
+    entry.skipped = undated + stale + future
+    if (entry.skipped) info(`  ${api}: skipped ${undated} undated, ${stale} older than ${MAX_AGE_DAYS} days, ${future} future-dated`)
+    const picks = pickRecords(fresh); if (!picks.length) { info(`✗ ${hi} (${api}) — no dated record from the last ${MAX_AGE_DAYS} days via ${source}`); continue }
+    const rows = buildRows(api, hi, picks)
+    if (!rows.length) { info(`✗ ${hi} (${api}) — no valid modal price`); continue }
+    if (!DRY_RUN) {
+      const error = await upsertPrices(rows)
+      if (error) { console.error(`upsert fail ${api}: ${error.message}`); continue }
+    }
+    sources.add(source)
+    entry.rows = rows.length; entry.division = rows.filter((r) => r.in_sagar_division).length
+    entry.newest = rows.map((r) => r.price_date).sort().slice(-1)[0]
+    allRows.push(...rows)
+    for (const r of rows) info(`${DRY_RUN ? '[dry-run] ' : '✓ '}${hi} ₹${r.modal_price} ${r.market} (${r.district}) ${r.price_date} division=${r.in_sagar_division} [${source}]`)
   }
-  console.log(`mandi: ${ok} ok, ${fail} fail`)
+  return { today, perCommodity, allRows, source: sources.size ? [...sources].join(' + ') : 'none answered' }
 }
 
 // ---------- weather (per cell) ----------
@@ -180,7 +178,8 @@ const dayMean = (arr) => { const v = arr.filter((x) => x != null); return v.leng
 function computeSeasonRain(dailyTime, dailyPrecip) {
   if (!dailyTime?.length) return null
   const precipByDate = Object.fromEntries(dailyTime.map((d, i) => [d, dailyPrecip[i] || 0]))
-  const today = new Date()
+  const [ty, tm, td] = todayIST().split('-').map(Number) // IST calendar, not the runner's UTC
+  const today = { getFullYear: () => ty, getMonth: () => tm - 1, getDate: () => td }
   const m = today.getMonth()
   const kharif = m >= 5 && m <= 8 // Jun–Sep
   const startY = kharif ? today.getFullYear() : (m >= 9 ? today.getFullYear() : today.getFullYear() - 1)
@@ -268,8 +267,19 @@ async function refreshWeather() {
 }
 
 async function main() {
-  try { await refreshMandi() } catch (e) { console.error('mandi refresh failed:', e.message) }
-  if (DRY_RUN) { console.log('dry run: nothing written, weather skipped'); return }
-  try { await refreshWeather() } catch (e) { console.error('weather refresh failed:', e.message) }
+  const guard = checkProjectRef(SUPABASE_URL, EXPECT_REF, DRY_RUN)
+  if (!guard.ok) { console.error(guard.message); process.exitCode = 1; return }
+  let mandi = null
+  try { mandi = await refreshMandi() } catch (e) { console.error('mandi refresh failed:', e.message) }
+  const today = mandi?.today || todayIST()
+  const sum = summarize({ perCommodity: mandi?.perCommodity || [], today, source: mandi?.source || 'none', target: EXPECT_REF || (DRY_RUN ? 'dry run' : '') })
+  const verdict = decideExit({ refOk: true, totalRows: sum.rows, newestDate: sum.newest, today })
+  const text = `${sum.text}\n- result: ${verdict.code ? 'FAILED - ' + verdict.reasons.join('; ') : 'ok'}`
+  if (JSON_OUT) console.log(JSON.stringify({ today, source: mandi?.source, rows: mandi?.allRows || [], exit: verdict }, null, 2)); else console.log(text)
+  if (process.env.GITHUB_STEP_SUMMARY) { try { (await import('node:fs')).appendFileSync(process.env.GITHUB_STEP_SUMMARY, redact(text, SECRETS) + '\n\n') } catch {} }
+  // Weather is refreshed even when mandi failed; the mandi verdict still decides the exit code.
+  if (DRY_RUN) info('dry run: nothing written, weather skipped')
+  else { try { await refreshWeather() } catch (e) { console.error('weather refresh failed:', e.message) } }
+  process.exitCode = verdict.code
 }
-main().catch((e) => { console.error(e); process.exit(0) })
+main().catch((e) => { console.error(e); process.exitCode = 1 })
