@@ -17,10 +17,19 @@
 // 7 days are skipped); "today" is the IST date; the official feed is tried first and the third-party wrapper is only a
 // labelled fallback; --expect-project-ref <ref> refuses to run against the wrong database; the script exits non-zero
 // when no rows were written, the newest row is more than 3 days old, or the guard failed. Pure logic: lib/mandi-feed.mjs.
+//
+// Batch 16D: the PRIMARY source is data.gov.in resource 35985678 (variety-wise daily prices, has Sagar-division rows);
+// 9ef84268 and then the third-party wrapper are labelled fallbacks, tried per commodity. --days N (or env MANDI_DAYS,
+// max 30) sets the window (default 7). Rows of the last 2 days are upserted, older rows are insert-if-absent.
+// No shared demo key: without DATA_GOV_IN_API_KEY only the wrapper is tried. Pure logic: lib/mandi-daily.mjs.
 
 import { createClient } from '@supabase/supabase-js'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { matchCommodity } from './lib/mandi-commodity.mjs'
-import { divisionDistrict, filterFresh, pickRecords, buildRows, checkProjectRef, decideExit, summarize, redact, todayIST, MAX_AGE_DAYS } from './lib/mandi-feed.mjs'
+import { parseDivisionDistricts, maskKey } from './lib/mandi-backfill.mjs'
+import { PRIMARY_NAME, SECONDARY_NAME, WRAPPER_NAME, PAGE, parseDays, windowForDays, cropsWithSource, buildRequestPlan, requestUrl, needsNextPage, mapPrimaryRecords, firstWithRows, splitWritePolicy, describeError, lagNote } from './lib/mandi-daily.mjs'
+import { divisionDistrict, filterFresh, pickRecords, buildRows, checkProjectRef, decideExit, summarize, redact, todayIST, daysBetween, MAX_AGE_DAYS } from './lib/mandi-feed.mjs'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -41,9 +50,12 @@ const supabase = new Proxy({}, { get: (_, k) => db()[k] })
 // The six districts of Sagar Division, as the price feeds spell them (lower-case).
 const DIVISION_DISTRICTS = ['Sagar', 'Damoh', 'Panna', 'Tikamgarh', 'Chhatarpur', 'Niwari']
 
-const DATA_GOV_DEMO_KEY = '579b464db66ec23bdd000001c1c5e196de4b4c16e60a17fd58b04bc'
-const DATA_GOV_KEY = process.env.DATA_GOV_IN_API_KEY || DATA_GOV_DEMO_KEY
-const HAS_REAL_KEY = !!process.env.DATA_GOV_IN_API_KEY
+// Only the real key is ever used. The shared public demo key is rate-limited (HTTP 429) and is not a fallback.
+const DATA_GOV_KEY = process.env.DATA_GOV_IN_API_KEY || ''
+const HAS_REAL_KEY = !!DATA_GOV_KEY
+const DAYS = parseDays(process.argv, process.env)
+const SPACING_MS = 1500
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 const COMMODITIES = [
   { api: 'Wheat', hi: 'गेहूं' }, { api: 'Soyabean', hi: 'सोयाबीन' }, { api: 'Gram', hi: 'चना' },
@@ -94,7 +106,8 @@ const districtOf = (r) => (r.district || r.District || '').toLowerCase()
 let _officialPool = null
 async function getOfficialPool() {
   if (_officialPool) return _officialPool
-  const limit = HAS_REAL_KEY ? 1000 : 50
+  if (!HAS_REAL_KEY) { info('official 9ef84268: skipped, DATA_GOV_IN_API_KEY is not set'); _officialPool = []; return _officialPool }
+  const limit = 1000
   let recs = [], winner = 'none'
   const fetchForm = async (form) => {
     const url = `https://api.data.gov.in/resource/${RESOURCE_ID}?api-key=${DATA_GOV_KEY}&format=json&limit=${limit}${form ? '&' + form : ''}`
@@ -107,7 +120,7 @@ async function getOfficialPool() {
       // A {D} form is asked once per division district; a plain form once.
       const forms = form.includes('{D}') ? DIVISION_DISTRICTS.map((d) => form.replace('{D}', d)) : [form]
       const raw = []
-      for (const f of forms) { try { raw.push(...await fetchForm(f)) } catch (e) { console.error(`official form [${f || 'none'}] ${e.message}`) } }
+      for (const f of forms) { try { raw.push(...await fetchForm(f)) } catch (e) { console.error(`official form [${f || 'none'}] ${describeError(e, [DATA_GOV_KEY])}`) } }
       // The resource's text filter also returns other "*Pradesh" states, so narrow
       // to true MP client-side. Division rows are often absent from the daily feed,
       // so the last forms are MP-wide; per-commodity division preference happens later.
@@ -115,9 +128,9 @@ async function getOfficialPool() {
       const division = mpAny.filter((r) => divisionDistrict(districtOf(r)))
       info(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} division=${division.length}`)
       if (mpAny.length) { recs = mpAny; winner = form || 'no-filter'; break }
-    } catch (e) { console.error(`official form [${form || 'none'}] failed: ${e.message}`) }
+    } catch (e) { console.error(`official form [${form || 'none'}] failed: ${describeError(e, [DATA_GOV_KEY])}`) }
   }
-  info(`official API pool: ${recs.length} MP records via [${winner}] (key: ${HAS_REAL_KEY ? 'real' : 'demo'})`)
+  info(`official 9ef84268 pool: ${recs.length} MP records via [${winner}]`)
   _officialPool = recs
   return recs
 }
@@ -125,51 +138,113 @@ async function fetchFromOfficial(commodity) {
   const pool = await getOfficialPool()
   return pool.filter((r) => matchCommodity(r.commodity || r.Commodity, commodity))
 }
-// Write rows; if the database does not have in_sagar_division yet (migration 0058 not
-// applied) write the same rows without that column instead of failing the whole refresh.
-let _hasDivisionCol = true
-async function upsertPrices(rows) {
-  const strip = (r) => { const { in_sagar_division: _drop, ...rest } = r; return rest }
-  let { error } = await supabase.from('mandi_prices').upsert(_hasDivisionCol ? rows : rows.map(strip), { onConflict: 'commodity_en,market,price_date' })
-  if (error && _hasDivisionCol && /in_sagar_division/.test(error.message || '')) {
-    console.error('mandi_prices.in_sagar_division is missing — apply migration 0058. Writing without the flag for now.')
-    _hasDivisionCol = false
-    ;({ error } = await supabase.from('mandi_prices').upsert(rows.map(strip), { onConflict: 'commodity_en,market,price_date' }))
+// ---------- primary: data.gov.in 35985678 ----------
+const PLACES = fileURLToPath(new URL('../src/lib/location/places.js', import.meta.url))
+async function getPage(params, key, offset, attempt = 1) {
+  const url = requestUrl(params, key, offset)
+  const retry = async (why) => {
+    if (attempt >= 4) throw new Error(`gave up after ${attempt} attempts: ${why}`)
+    const wait = 3000 * 2 ** (attempt - 1)
+    console.error(`  retry ${attempt} in ${wait / 1000}s (${why})`)
+    await sleep(wait)
+    return getPage(params, key, offset, attempt + 1)
   }
-  return error
+  let res
+  try { res = await fetch(url, { signal: AbortSignal.timeout(60000) }) } catch (e) { return retry(describeError(e, [key])) }
+  if (res.status >= 500 || res.status === 429) return retry(`HTTP ${res.status}`)
+  const body = await res.text()
+  if (!res.ok) throw new Error(`HTTP ${res.status}: ${maskKey(body.slice(0, 160))}`)
+  let j
+  try { j = JSON.parse(body) } catch { return retry('non-JSON body') }
+  if (!Array.isArray(j.records)) return retry('no records array')
+  return j.records
 }
-// Official feed first; the third-party wrapper is only a labelled fallback (it is free, rate-limited per IP and has
-// been seen answering HTTP 429). Both are filtered to dated, fresh records before anything is written.
+let _requests = 0, _failedRequests = 0
+async function fetchPrimaryRecords(crop, districts, from) {
+  const raw = []
+  for (const step of buildRequestPlan([crop], districts)) {
+    let offset = 0
+    try {
+      for (let pages = 0; pages < 40; pages++) {
+        if (_requests++) await sleep(SPACING_MS)
+        const recs = await getPage(step.params, DATA_GOV_KEY, offset)
+        for (const r of recs) raw.push({ _crop: crop.commodity_en, ...r })
+        if (!needsNextPage(recs, from)) break
+        offset += PAGE
+      }
+    } catch (e) { _failedRequests++; console.error(`primary failed ${crop.commodity_en}/${step.district}: ${describeError(e, [DATA_GOV_KEY])}`) }
+  }
+  return raw
+}
+
+// ---------- write ----------
+// If the database does not have in_sagar_division yet (migration 0058 not applied) write the same rows without that
+// column instead of failing the whole refresh. Rows of the last 2 days are upserted (the government may correct them);
+// older rows are insert-if-absent (ignoreDuplicates) so a stored price is never overwritten.
+let _hasDivisionCol = true
+async function upsertPrices(rows, today) {
+  const strip = (r) => { const { in_sagar_division: _drop, ...rest } = r; return rest }
+  const { upsert, insertIfAbsent } = splitWritePolicy(rows, today)
+  const write = async (list, ignoreDuplicates) => {
+    if (!list.length) return null
+    const opts = { onConflict: 'commodity_en,market,price_date', ignoreDuplicates }
+    let { error } = await supabase.from('mandi_prices').upsert(_hasDivisionCol ? list : list.map(strip), opts)
+    if (error && _hasDivisionCol && /in_sagar_division/.test(error.message || '')) {
+      console.error('mandi_prices.in_sagar_division is missing — apply migration 0058. Writing without the flag for now.')
+      _hasDivisionCol = false
+      ;({ error } = await supabase.from('mandi_prices').upsert(list.map(strip), opts))
+    }
+    return error
+  }
+  return (await write(upsert, false)) || (await write(insertIfAbsent, true))
+}
+
+// Per commodity: 35985678 first, then 9ef84268, then the wrapper. The first source that gives rows wins and is recorded.
 async function refreshMandi() {
   const today = todayIST()
+  const { from } = windowForDays(today, DAYS)
+  const districts = parseDivisionDistricts(readFileSync(PLACES, 'utf8'))
+  const crops = cropsWithSource(COMMODITIES.map((c) => ({ commodity_en: c.api, commodity_hi: c.hi })))
   const perCommodity = [], allRows = [], sources = new Set()
-  for (const { api, hi } of COMMODITIES) {
-    let records = [], source = 'official'
-    try { records = await fetchFromOfficial(api) } catch (e) { console.error(`official failed ${api}: ${e.message}`) }
-    if (!records.length) {
-      source = 'wrapper (fallback)'
-      try { records = await fetchFromWrapper(api) } catch (e) { console.error(`wrapper failed ${api}: ${e.message}`) }
+  info(`window ${from} .. ${today} (${DAYS} days); data.gov.in key: ${HAS_REAL_KEY ? 'set' : 'NOT SET (only the wrapper can be tried)'}`)
+  for (const crop of crops) {
+    const { commodity_en: api, commodity_hi: hi } = crop
+    const maxAge = Math.max(MAX_AGE_DAYS, DAYS)
+    const fromFeed = (records) => {
+      const { fresh, undated, stale, future } = filterFresh(records, today, maxAge)
+      if (undated + stale + future) info(`  ${api}: skipped ${undated} undated, ${stale} older than ${maxAge} days, ${future} future-dated`)
+      return buildRows(api, hi, pickRecords(fresh))
     }
-    const entry = { api, rows: 0, division: 0, newest: null, skipped: 0 }
+    const attempts = []
+    if (HAS_REAL_KEY) {
+      attempts.push({ name: PRIMARY_NAME, get: async () => {
+        const raw = await fetchPrimaryRecords(crop, districts, from)
+        const m = mapPrimaryRecords(raw, [crop], { districts, today, days: DAYS, fetchedAt: new Date().toISOString() })
+        const rej = Object.entries(m.rejects).filter(([k]) => k !== 'outside_window').map(([k, v]) => `${k}=${v}`).join(' ')
+        info(`  ${api}: ${raw.length} source rows, ${m.rows.length} kept, ${m.droppedRows} duplicates dropped${rej ? `, rejected ${rej}` : ''}`)
+        for (const o of m.outliers) console.error(`  OUTLIER not written: ${api} ${o.market} ${o.price_date} modal ${o.modal_price} (crop median ${o.crop_median})`)
+        return m.rows
+      } })
+      attempts.push({ name: SECONDARY_NAME, get: async () => fromFeed((await getOfficialPool()).filter((r) => matchCommodity(r.commodity || r.Commodity, api))) })
+    }
+    attempts.push({ name: WRAPPER_NAME, get: async () => fromFeed(await fetchFromWrapper(api)) })
+    const { source, rows, errors } = await firstWithRows(attempts)
+    for (const e of errors) if (e.error !== 'no rows') console.error(`${e.source} failed ${api}: ${maskKey(e.error)}`)
+    const entry = { api, rows: 0, division: 0, newest: null, skipped: 0, source: source || '-' }
     perCommodity.push(entry)
-    if (!records.length) { info(`✗ ${hi} (${api}) — no records from either source`); continue }
-    const { fresh, undated, stale, future } = filterFresh(records, today)
-    entry.skipped = undated + stale + future
-    if (entry.skipped) info(`  ${api}: skipped ${undated} undated, ${stale} older than ${MAX_AGE_DAYS} days, ${future} future-dated`)
-    const picks = pickRecords(fresh); if (!picks.length) { info(`✗ ${hi} (${api}) — no dated record from the last ${MAX_AGE_DAYS} days via ${source}`); continue }
-    const rows = buildRows(api, hi, picks)
-    if (!rows.length) { info(`✗ ${hi} (${api}) — no valid modal price`); continue }
+    if (!rows.length) { info(`✗ ${hi} (${api}) — no rows from any source`); continue }
     if (!DRY_RUN) {
-      const error = await upsertPrices(rows)
-      if (error) { console.error(`upsert fail ${api}: ${error.message}`); continue }
+      const error = await upsertPrices(rows, today)
+      if (error) { console.error(`write fail ${api}: ${error.message}`); continue }
     }
     sources.add(source)
     entry.rows = rows.length; entry.division = rows.filter((r) => r.in_sagar_division).length
     entry.newest = rows.map((r) => r.price_date).sort().slice(-1)[0]
     allRows.push(...rows)
-    for (const r of rows) info(`${DRY_RUN ? '[dry-run] ' : '✓ '}${hi} ₹${r.modal_price} ${r.market} (${r.district}) ${r.price_date} division=${r.in_sagar_division} [${source}]`)
+    info(`${DRY_RUN ? '[dry-run] ' : '✓ '}${hi}: ${rows.length} row(s), newest ${entry.newest} via ${source}`)
   }
-  return { today, perCommodity, allRows, source: sources.size ? [...sources].join(' + ') : 'none answered' }
+  if (_failedRequests) info(`WARNING: ${_failedRequests} of ${_requests} primary request(s) failed after retries; data may be incomplete`)
+  return { today, perCommodity, allRows, source: sources.size ? [...sources].join(' + ') : 'none answered', requests: _requests, failedRequests: _failedRequests }
 }
 
 // ---------- weather (per cell) ----------
@@ -270,12 +345,12 @@ async function main() {
   const guard = checkProjectRef(SUPABASE_URL, EXPECT_REF, DRY_RUN)
   if (!guard.ok) { console.error(guard.message); process.exitCode = 1; return }
   let mandi = null
-  try { mandi = await refreshMandi() } catch (e) { console.error('mandi refresh failed:', e.message) }
+  try { mandi = await refreshMandi() } catch (e) { console.error('mandi refresh failed:', describeError(e, [DATA_GOV_KEY, SUPABASE_SERVICE_KEY])) }
   const today = mandi?.today || todayIST()
   const sum = summarize({ perCommodity: mandi?.perCommodity || [], today, source: mandi?.source || 'none', target: EXPECT_REF || (DRY_RUN ? 'dry run' : '') })
   const verdict = decideExit({ refOk: true, totalRows: sum.rows, newestDate: sum.newest, today })
-  const text = `${sum.text}\n- result: ${verdict.code ? 'FAILED - ' + verdict.reasons.join('; ') : 'ok'}`
-  if (JSON_OUT) console.log(JSON.stringify({ today, source: mandi?.source, rows: mandi?.allRows || [], exit: verdict }, null, 2)); else console.log(text)
+  const text = `${sum.text}\n- primary requests: ${mandi?.requests ?? 0} (failed after retries: ${mandi?.failedRequests ?? 0})\n- reading: ${lagNote(sum.newest, today, daysBetween)}\n- result: ${verdict.code ? 'FAILED - ' + verdict.reasons.join('; ') : 'ok'}`
+  if (JSON_OUT) console.log(JSON.stringify({ today, source: mandi?.source, perCommodity: mandi?.perCommodity, rows: mandi?.allRows || [], exit: verdict }, null, 2)); else console.log(text)
   if (process.env.GITHUB_STEP_SUMMARY) { try { (await import('node:fs')).appendFileSync(process.env.GITHUB_STEP_SUMMARY, redact(text, SECRETS) + '\n\n') } catch {} }
   // Weather is refreshed even when mandi failed; the mandi verdict still decides the exit code.
   if (DRY_RUN) info('dry run: nothing written, weather skipped')

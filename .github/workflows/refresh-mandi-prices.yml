@@ -12,6 +12,11 @@ on:
   schedule:
     - cron: '0 */3 * * *'   # every 3 hours UTC; keeps weather current
   workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days back to fetch (default 7, max 30). Use 14 once to fill the gap since 18 Oct."
+        required: false
+        default: "7"
 
 permissions:
   contents: read
@@ -46,6 +51,16 @@ jobs:
 
       - run: npm ci
 
+      - name: Reach data.gov.in
+        env:
+          DATA_GOV_IN_API_KEY: ${{ secrets.DATA_GOV_IN_API_KEY }}
+        run: |
+          # One tiny request. Prints only the HTTP status (or the curl error). Never prints the key. Never fails the job.
+          if [ -z "$DATA_GOV_IN_API_KEY" ]; then echo "Reach data.gov.in: DATA_GOV_IN_API_KEY secret is empty or missing"; exit 0; fi
+          code=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 30 "https://api.data.gov.in/resource/35985678-0d79-46b4-9ed6-6f13308a1d24?format=json&limit=1&api-key=$DATA_GOV_IN_API_KEY" 2>/tmp/curl.err) || true
+          echo "Reach data.gov.in: HTTP status ${code:-none} $(sed "s|$DATA_GOV_IN_API_KEY|***|g" /tmp/curl.err | head -c 200)"
+          exit 0
+
       - name: Refresh mandi prices and weather (${{ matrix.target }})
         env:
           # Secrets are chosen by target; the script reads VITE_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY.
@@ -54,6 +69,7 @@ jobs:
           DATA_GOV_IN_API_KEY: ${{ secrets.DATA_GOV_IN_API_KEY }}
           URL_SECRET_NAME: ${{ matrix.url_secret_name }}
           KEY_SECRET_NAME: ${{ matrix.key_secret_name }}
+          MANDI_DAYS: ${{ github.event.inputs.days }}
         run: |
           if [ -z "$VITE_SUPABASE_URL" ]; then echo "::error::GitHub secret $URL_SECRET_NAME is empty or missing (target: ${{ matrix.target }}). Add it under Settings > Secrets and variables > Actions."; exit 1; fi
           if [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then echo "::error::GitHub secret $KEY_SECRET_NAME is empty or missing (target: ${{ matrix.target }}). Add it under Settings > Secrets and variables > Actions."; exit 1; fi
