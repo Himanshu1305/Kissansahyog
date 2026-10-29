@@ -1,0 +1,4 @@
+deployment_id=6cf93531-4284-4ef3-ab23-f041cbebe7af
+source=0bcecf1
+main_chunk=/assets/index-_reETyvG.js
+taken_at=2026-10-29T05:49:01Z

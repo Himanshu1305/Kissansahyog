@@ -543,9 +543,9 @@ function HomeHero({ t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }) 
           {/* Price tile only when there is a price to show (it used to render an empty "—"). */}
           {today.priceLine && (
             <InfoTile
-              caption={t('tf_price_cap')}
-              value={today.priceLine.split(' · ')[0]}
-              note={`${today.priceLine.split(' · ').slice(1).join(' · ')} · ${t('home_msp_link')} →`}
+              caption={today.priceCaption}
+              value={today.priceValue}
+              note={`${today.priceNote} · ${t('home_msp_link')} →`}
               noteColor={today.priceTone === 'above' ? 'var(--ks-green)' : today.priceTone === 'below' ? 'var(--ks-orange-dark)' : 'var(--ks-ink-3)'}
               onClick={onMsp}
             />
