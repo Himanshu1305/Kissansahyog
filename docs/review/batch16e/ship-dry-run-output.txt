@@ -1,0 +1,100 @@
+
+==================================================================
+DRY RUN - nothing is changed, no key is asked, no command touches Supabase
+==================================================================
+Step 1: preconditions
+  [pending] you are on 'release-16e'; merge release-16e into main first and run this on main
+  [pending] uncommitted changes in the files this script needs
+  found supabase/functions/mandi-refresh/index.ts
+  found supabase/functions/_shared/mandi-core.js
+  found supabase/migrations/0071_mandi_refresh_schedule.sql
+  found docs/review/batch16c/verify-prod.sql
+  Supabase CLI: 2.26.9
+
+Step 2: confirm the target
+  PRODUCTION project ref: eltmcznjcqiahqhjvpjg
+  [dry-run] would ask you to type that ref to confirm
+
+Step 3: data.gov.in API key
+  [dry-run] would ask for DATA_GOV_IN_API_KEY (typed silently, kept only in memory)
+
+Step 4: random cron secret (kept in memory only)
+  [dry-run] would generate a 32-byte secret
+
+Step 5: function secrets + deploy on production
+  [dry-run] would run: supabase secrets set --project-ref eltmcznjcqiahqhjvpjg DATA_GOV_IN_API_KEY=*** CRON_SECRET=*** EXPECT_PROJECT_REF=eltmcznjcqiahqhjvpjg
+  [dry-run] would run: supabase functions deploy mandi-refresh --project-ref eltmcznjcqiahqhjvpjg --no-verify-jwt
+
+Step 6: the SQL block for the PRODUCTION SQL editor
+  Open https://supabase.com/dashboard/project/eltmcznjcqiahqhjvpjg/sql/new , paste everything between the lines, press Run.
+  The secret below is shown once and is not saved anywhere. If you lose it, run this script again.
+------------------------------------------------------------------
+-- Batch 16E: Vault secrets for the schedule, then the schedule itself (migration 0071)
+delete from vault.secrets where name in ('project_url', 'mandi_cron_secret');
+select vault.create_secret('https://eltmcznjcqiahqhjvpjg.supabase.co', 'project_url');
+select vault.create_secret('<64 hex characters, made at run time>', 'mandi_cron_secret');
+-- Batch 16E: schedule the mandi-refresh Edge Function (runs in Mumbai, ap-south-1) every 3 hours, in two batches of five crops.
+-- No secret value is in this file. The Vault secrets project_url and mandi_cron_secret are created by the founder script
+-- (scripts/ship-prod-16e.sh prints the SQL). Re-running this file is safe: the two jobs are replaced, not duplicated.
+
+create extension if not exists pg_cron;
+create extension if not exists pg_net;
+create extension if not exists supabase_vault;
+
+do $mig$
+begin
+  if exists (select 1 from cron.job where jobname = 'mandi-refresh-a') then perform cron.unschedule('mandi-refresh-a'); end if;
+  if exists (select 1 from cron.job where jobname = 'mandi-refresh-b') then perform cron.unschedule('mandi-refresh-b'); end if;
+end
+$mig$;
+
+-- Batch a: crops 1-5, at minute 5 of every third hour.
+select cron.schedule(
+  'mandi-refresh-a',
+  '5 */3 * * *',
+  $job$
+  select net.http_post(
+    url := (select decrypted_secret from vault.decrypted_secrets where name = 'project_url') || '/functions/v1/mandi-refresh',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'x-region', 'ap-south-1',
+      'x-cron-secret', (select decrypted_secret from vault.decrypted_secrets where name = 'mandi_cron_secret')
+    ),
+    body := '{"crops":["Wheat","Soyabean","Gram","Lentil","Moong"],"days":7}'::jsonb,
+    timeout_milliseconds := 120000
+  );
+  $job$
+);
+
+-- Batch b: crops 6-10, seven minutes later.
+select cron.schedule(
+  'mandi-refresh-b',
+  '12 */3 * * *',
+  $job$
+  select net.http_post(
+    url := (select decrypted_secret from vault.decrypted_secrets where name = 'project_url') || '/functions/v1/mandi-refresh',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'x-region', 'ap-south-1',
+      'x-cron-secret', (select decrypted_secret from vault.decrypted_secrets where name = 'mandi_cron_secret')
+    ),
+    body := '{"crops":["Urad","Paddy(Dhan)(Common)","Maize","Mustard","Garlic"],"days":7}'::jsonb,
+    timeout_milliseconds := 120000
+  );
+  $job$
+);
+------------------------------------------------------------------
+
+Step 7: fill the first 14 days now (run in Git Bash; two calls because of the time limit, about 20 seconds each)
+  curl -sS -m 150 -X POST 'https://eltmcznjcqiahqhjvpjg.supabase.co/functions/v1/mandi-refresh' -H 'x-region: ap-south-1' -H 'x-cron-secret: <64 hex characters, made at run time>' -H 'content-type: application/json' -d '{"crops":["Wheat","Soyabean","Gram","Lentil","Moong"],"days":14}'
+  curl -sS -m 150 -X POST 'https://eltmcznjcqiahqhjvpjg.supabase.co/functions/v1/mandi-refresh' -H 'x-region: ap-south-1' -H 'x-cron-secret: <64 hex characters, made at run time>' -H 'content-type: application/json' -d '{"crops":["Urad","Paddy(Dhan)(Common)","Maize","Mustard","Garlic"],"days":14}'
+  Each should answer {"ok":true, ... "newest_price_date":"<yesterday or today>" ...}. {"ok":false,"error":"forbidden"} means a wrong secret.
+
+Step 8: check it
+  Paste docs/review/batch16c/verify-prod.sql in the production SQL editor. The newest Sagar-division price date should be within 1-2 days of today.
+  The schedule then runs by itself every 3 hours (minute 5 and minute 12). The GitHub job is now only a watchdog: it goes red if the newest stored price is older than 3 days.
+
+
+==================================================================
+DRY RUN finished - nothing was changed.
+==================================================================
