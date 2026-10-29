@@ -13,3 +13,9 @@
 11. Ship scripts were edited by hand from the 16F ones. The database probe, the 15B page checks and the 16B admin-page checks were removed (this ship is site-only and these belong to earlier batches). References to `ship-16f` that remain are the intended ones (first gate, expected live deployment).
 12. No new tests of the e2e type: the existing home / mausam checks were run; the prerender-based ones (H4, collapsible C1) need `build:full` and fail on a plain build, as before this batch.
 13. No separate i18n audit script exists; the unit suite checks hi/en for every new key.
+
+## Follow-up (expired cache tries live first)
+14. `fetchWeatherCell`: only an exact cached cell that is `expired` (over 24 h, or no `fetched_at`) tries `fetchLiveWeatherCell` first; if that fails or throws, the cached cell is returned as before (the page shows the expired notice). Fresh, aging and stale caches never trigger a live call.
+15. `fetchLiveWeatherCell`: the hourly pre-cut now parses times with `istTimeMs` (India time), same one-hour grace and 48-entry limit; URL, saving (RPC) and `normalize` are unchanged. This closes the phone-time-zone risk noted in decision 8.
+16. Tests use a stand-in Supabase client (new loader `tests/unit/fixtures/loader-16g.mjs`) and a fake `fetch`; the time-zone test runs a helper (`tests/unit/fixtures/live-cut-16g.mjs`) as a child process under `TZ=America/Los_Angeles` and `TZ=Asia/Kolkata` and compares the output. It fails on the old code and passes on the new.
+17. e2e: collapsible C5 (remembered section choice on /msp) also fails on plain-build 25d7a18 without this change, so it is not caused by the follow-up (same group as C1 and H4, unrelated to weather).
