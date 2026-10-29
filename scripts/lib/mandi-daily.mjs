@@ -214,22 +214,21 @@ export async function fetchPrimaryForCrop(client, crop, districts, from, onError
   return raw
 }
 
-// Job order: weather first (it never depends on prices), then mandi, then the read-only freshness check (skipped on dry runs).
-// Steps are injected: weather() -> void, mandi() -> { verdict:{code,reasons} }, freshness() -> { red, text }.
-export async function runJob({ dryRun = false, weather, mandi, freshness, log = () => {} }) {
+// The GitHub job (Batch 16E patch). It never fetches or writes prices. Order: weather first, then (production only) the
+// read-only freshness check. Steps are injected: weather() -> void, freshness() -> { red, text }.
+// Exit code 1 when weather crashes, or (production) the newest stored price is older than 3 days / missing / unreadable.
+export async function runWatchdogJob({ target, dryRun = false, weather, freshness, log = () => {} }) {
   const order = []
-  if (!dryRun) { order.push('weather'); try { await weather() } catch (e) { log(`weather refresh failed: ${e.message}`) } }
-  order.push('mandi')
-  let m = null
-  try { m = await mandi() } catch (e) { log(`mandi refresh failed: ${describeError(e)}`) }
-  let code = m?.verdict ? m.verdict.code : 1
-  let fresh = null
-  if (!dryRun) {
+  let code = 0, fresh = null
+  if (dryRun) return { order, code, freshness: null }
+  order.push('weather')
+  try { await weather() } catch (e) { code = 1; log(`weather refresh failed: ${describeError(e)}`) }
+  if (target === 'production') {
     order.push('freshness')
-    try { fresh = await freshness() } catch (e) { fresh = { red: true, text: `freshness check failed: ${describeError(e)}` } }
+    try { fresh = await freshness() } catch (e) { fresh = { red: true, text: `newest stored price: unknown (RED: freshness check failed: ${describeError(e)})` }; log(fresh.text) }
     if (fresh.red) code = 1
   }
-  return { order, code, mandi: m, freshness: fresh }
+  return { order, code, freshness: fresh }
 }
 
 // Read-only watchdog: the newest stored Sagar-division price, from the database, no data.gov.in needed.

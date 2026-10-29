@@ -13,9 +13,11 @@
 3. Run `docs/review/batch16c/verify-prod.sql` in the production SQL editor. The newest Sagar-division price date should be within 1-2 days of today.
 4. If the Supabase CLI is missing: `scoop bucket add supabase https://github.com/supabase/scoop-bucket.git` then `scoop install supabase`, then `supabase login`.
 
-## After the first success: GitHub is the watchdog
-- The job reads `max(price_date)` for the Sagar division from the database. It is **red** if that date is older than 3 days (or empty). It does not need data.gov.in.
-- While GitHub cannot reach data.gov.in, its own mandi step still fails by design, so the job shows red even when the stored prices are fresh. Read the job summary line "newest stored price: <date> (<n> days old)" to tell the two apart. (Open point for the architect: make "unreachable but fresh" green.)
+## The GitHub job after this batch
+- The GitHub job **no longer fetches or writes prices at all**. The Mumbai Edge Function is the only price writer.
+- **Production target:** weather refresh first, then a read-only freshness check. It is **red only if** the newest stored Sagar-division `price_date` is older than 3 days or the table has none; otherwise green. The summary always prints `newest stored price: <date> (<n> days old)`. (A crash of the weather step also turns it red.)
+- **Staging target:** weather refresh only, no freshness check, green if weather ran.
+- The "red by design while data.gov.in is unreachable" situation is gone. The "Reach data.gov.in" step, the `DATA_GOV_IN_API_KEY` GitHub secret use and the `days` input were removed from the workflow; the 14-day fill is now the `curl` call from the ship script. Until the Edge Function is live on production, the production job will be red once the newest stored price is more than 3 days old (that is the alarm working).
 
 ## Rollback
 `bash scripts/rollback-prod-16e.sh` prints the SQL that unschedules both cron jobs and deletes the function. Stored prices stay.

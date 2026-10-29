@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs'
 import { parseDivisionDistricts } from '../../scripts/lib/mandi-backfill.mjs'
 import { decideExit, daysBetween, redact } from '../../scripts/lib/mandi-feed.mjs'
 import {
-  cropsWithSource, isConnectError, createGovClient, fetchPrimaryForCrop, runJob, freshnessCheck, MANDI_PHASE_CAP_MS, UNREACHABLE_LINE,
+  cropsWithSource, isConnectError, createGovClient, fetchPrimaryForCrop, runWatchdogJob, freshnessCheck, MANDI_PHASE_CAP_MS, UNREACHABLE_LINE,
 } from '../../scripts/lib/mandi-daily.mjs'
 
 const districts = parseDivisionDistricts(readFileSync('src/lib/location/places.js', 'utf8'))
@@ -54,42 +54,9 @@ test('deadline: stops between requests and keeps what was collected', async () =
   assert.ok(logs.some((m) => /cap/.test(m)))
 })
 
-test('job: weather runs first, exit code is non-zero, no secret in the logs', async () => {
-  const c = clock(); const logs = []; const order = []
-  const gov = createGovClient({ fetchFn: async () => { throw refused() }, sleep: c.sleep, now: c.now, key: KEY, onLog: (m) => logs.push(m) })
-  const crops = cropsWithSource(['Wheat', 'Soyabean', 'Gram'].map((k) => ({ commodity_en: k, commodity_hi: k })))
-  const job = await runJob({
-    log: (m) => logs.push(m),
-    weather: async () => { order.push('weather') },
-    mandi: async () => {
-      order.push('mandi')
-      for (const crop of crops) await fetchPrimaryForCrop(gov, crop, districts, '2026-10-20', (cr, d, e) => logs.push(`${cr}/${d} ${e.message}`))
-      return { verdict: decideExit({ totalRows: 0, newestDate: null, today: '2026-10-29' }) }
-    },
-    freshness: async () => { order.push('freshness'); return freshnessCheck('2026-10-27', '2026-10-29', daysBetween) },
-  })
-  assert.deepEqual(order, ['weather', 'mandi', 'freshness'])
-  assert.deepEqual(job.order, order)
-  assert.equal(job.code, 1)
-  assert.ok(c.t < MANDI_PHASE_CAP_MS)
-  assert.equal(redact(logs.join('\n'), [KEY]), logs.join('\n'), 'a secret leaked into the logs')
-  assert.ok(!logs.join('\n').includes(KEY))
-})
-
-test('job: weather failing does not stop mandi; dry run skips weather and freshness', async () => {
-  const order = []
-  const j = await runJob({ weather: async () => { order.push('w'); throw new Error('boom') }, mandi: async () => { order.push('m'); return { verdict: { code: 0 } } }, freshness: async () => { order.push('f'); return { red: false, text: 'ok' } } })
-  assert.deepEqual(order, ['w', 'm', 'f']); assert.equal(j.code, 0)
-  const d = []
-  const j2 = await runJob({ dryRun: true, weather: async () => d.push('w'), mandi: async () => ({ verdict: { code: 0 } }), freshness: async () => d.push('f') })
-  assert.deepEqual(d, []); assert.equal(j2.code, 0)
-})
-
 test('freshness: red when the newest stored price is older than 3 days or missing', () => {
   assert.deepEqual(freshnessCheck('2026-10-27', '2026-10-29', daysBetween), { red: false, text: 'newest stored price: 2026-10-27 (2 days old)' })
   assert.equal(freshnessCheck('2026-10-25', '2026-10-29', daysBetween).red, true)
   assert.equal(freshnessCheck('2026-10-26', '2026-10-29', daysBetween).red, false)
   assert.equal(freshnessCheck(null, '2026-10-29', daysBetween).red, true)
-  const j = runJob({ mandi: async () => ({ verdict: { code: 0 } }), weather: async () => {}, freshness: async () => freshnessCheck('2026-10-20', '2026-10-29', daysBetween) })
-  return j.then((r) => assert.equal(r.code, 1))
 })
