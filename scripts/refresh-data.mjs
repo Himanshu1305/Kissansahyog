@@ -24,11 +24,11 @@
 // No shared demo key: without DATA_GOV_IN_API_KEY only the wrapper is tried. Pure logic: lib/mandi-daily.mjs.
 
 import { createClient } from '@supabase/supabase-js'
-import { readFileSync } from 'node:fs'
+import { readFileSync, appendFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { matchCommodity } from './lib/mandi-commodity.mjs'
 import { parseDivisionDistricts, maskKey } from './lib/mandi-backfill.mjs'
-import { PRIMARY_NAME, SECONDARY_NAME, WRAPPER_NAME, PAGE, parseDays, windowForDays, cropsWithSource, buildRequestPlan, requestUrl, needsNextPage, mapPrimaryRecords, firstWithRows, splitWritePolicy, describeError, lagNote } from './lib/mandi-daily.mjs'
+import { PRIMARY_NAME, SECONDARY_NAME, WRAPPER_NAME, PAGE, parseDays, windowForDays, cropsWithSource, buildRequestPlan, requestUrl, needsNextPage, mapPrimaryRecords, firstWithRows, splitWritePolicy, describeError, lagNote, createGovClient, fetchPrimaryForCrop, GovApiStopped, runJob, freshnessCheck, MANDI_PHASE_CAP_MS } from './lib/mandi-daily.mjs'
 import { divisionDistrict, filterFresh, pickRecords, buildRows, checkProjectRef, decideExit, summarize, redact, todayIST, daysBetween, MAX_AGE_DAYS } from './lib/mandi-feed.mjs'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
@@ -55,6 +55,7 @@ const DATA_GOV_KEY = process.env.DATA_GOV_IN_API_KEY || ''
 const HAS_REAL_KEY = !!DATA_GOV_KEY
 const DAYS = parseDays(process.argv, process.env)
 const SPACING_MS = 1500
+const UNREACHABLE_NOTE = 'data.gov.in was unreachable from this machine (expected on GitHub); prices come from the Edge Function'
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 const COMMODITIES = [
@@ -75,7 +76,7 @@ const gridKey = (lat, lon) => `${(Math.round(lat * 10) / 10).toFixed(1)}_${(Math
 // ---------- mandi ----------
 async function fetchFromWrapper(commodity) {
   const url = `https://mandi-api.onrender.com/v1/prices?state=Madhya Pradesh&commodity=${encodeURIComponent(commodity)}`
-  const res = await fetch(url, { signal: AbortSignal.timeout(15000) })
+  const res = await fetch(url, { signal: AbortSignal.timeout(10000) })
   if (!res.ok) throw new Error(`Wrapper HTTP ${res.status}`)
   const data = await res.json()
   return Array.isArray(data) ? data : (data.records || data.data || [])
@@ -110,8 +111,10 @@ async function getOfficialPool() {
   const limit = 1000
   let recs = [], winner = 'none'
   const fetchForm = async (form) => {
+    gov.assertUsable() // same host as the primary: skipped once it is known unreachable or the cap is hit
     const url = `https://api.data.gov.in/resource/${RESOURCE_ID}?api-key=${DATA_GOV_KEY}&format=json&limit=${limit}${form ? '&' + form : ''}`
-    const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
+    let res
+    try { res = await fetch(url, { signal: AbortSignal.timeout(30000) }) } catch (e) { gov.noteFailure(e); throw e }
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     return (await res.json()).records || []
   }
@@ -120,7 +123,7 @@ async function getOfficialPool() {
       // A {D} form is asked once per division district; a plain form once.
       const forms = form.includes('{D}') ? DIVISION_DISTRICTS.map((d) => form.replace('{D}', d)) : [form]
       const raw = []
-      for (const f of forms) { try { raw.push(...await fetchForm(f)) } catch (e) { console.error(`official form [${f || 'none'}] ${describeError(e, [DATA_GOV_KEY])}`) } }
+      for (const f of forms) { try { raw.push(...await fetchForm(f)) } catch (e) { if (e instanceof GovApiStopped) throw e; console.error(`official form [${f || 'none'}] ${describeError(e, [DATA_GOV_KEY])}`) } }
       // The resource's text filter also returns other "*Pradesh" states, so narrow
       // to true MP client-side. Division rows are often absent from the daily feed,
       // so the last forms are MP-wide; per-commodity division preference happens later.
@@ -128,7 +131,7 @@ async function getOfficialPool() {
       const division = mpAny.filter((r) => divisionDistrict(districtOf(r)))
       info(`official form [${form || 'no-filter'}]: raw=${raw.length} mp=${mpAny.length} division=${division.length}`)
       if (mpAny.length) { recs = mpAny; winner = form || 'no-filter'; break }
-    } catch (e) { console.error(`official form [${form || 'none'}] failed: ${describeError(e, [DATA_GOV_KEY])}`) }
+    } catch (e) { if (e instanceof GovApiStopped) break; console.error(`official form [${form || 'none'}] failed: ${describeError(e, [DATA_GOV_KEY])}`) }
   }
   info(`official 9ef84268 pool: ${recs.length} MP records via [${winner}]`)
   _officialPool = recs
@@ -140,42 +143,8 @@ async function fetchFromOfficial(commodity) {
 }
 // ---------- primary: data.gov.in 35985678 ----------
 const PLACES = fileURLToPath(new URL('../src/lib/location/places.js', import.meta.url))
-async function getPage(params, key, offset, attempt = 1) {
-  const url = requestUrl(params, key, offset)
-  const retry = async (why) => {
-    if (attempt >= 4) throw new Error(`gave up after ${attempt} attempts: ${why}`)
-    const wait = 3000 * 2 ** (attempt - 1)
-    console.error(`  retry ${attempt} in ${wait / 1000}s (${why})`)
-    await sleep(wait)
-    return getPage(params, key, offset, attempt + 1)
-  }
-  let res
-  try { res = await fetch(url, { signal: AbortSignal.timeout(60000) }) } catch (e) { return retry(describeError(e, [key])) }
-  if (res.status >= 500 || res.status === 429) return retry(`HTTP ${res.status}`)
-  const body = await res.text()
-  if (!res.ok) throw new Error(`HTTP ${res.status}: ${maskKey(body.slice(0, 160))}`)
-  let j
-  try { j = JSON.parse(body) } catch { return retry('non-JSON body') }
-  if (!Array.isArray(j.records)) return retry('no records array')
-  return j.records
-}
-let _requests = 0, _failedRequests = 0
-async function fetchPrimaryRecords(crop, districts, from) {
-  const raw = []
-  for (const step of buildRequestPlan([crop], districts)) {
-    let offset = 0
-    try {
-      for (let pages = 0; pages < 40; pages++) {
-        if (_requests++) await sleep(SPACING_MS)
-        const recs = await getPage(step.params, DATA_GOV_KEY, offset)
-        for (const r of recs) raw.push({ _crop: crop.commodity_en, ...r })
-        if (!needsNextPage(recs, from)) break
-        offset += PAGE
-      }
-    } catch (e) { _failedRequests++; console.error(`primary failed ${crop.commodity_en}/${step.district}: ${describeError(e, [DATA_GOV_KEY])}`) }
-  }
-  return raw
-}
+const gov = createGovClient({ fetchFn: fetch, sleep, key: DATA_GOV_KEY, spacingMs: SPACING_MS, onLog: (m) => console.error(m) })
+const fetchPrimaryRecords = (crop, districts, from) => fetchPrimaryForCrop(gov, crop, districts, from, (c, d, e) => console.error(`primary failed ${c}/${d}: ${describeError(e, [DATA_GOV_KEY])}`))
 
 // ---------- write ----------
 // If the database does not have in_sagar_division yet (migration 0058 not applied) write the same rows without that
@@ -206,8 +175,10 @@ async function refreshMandi() {
   const districts = parseDivisionDistricts(readFileSync(PLACES, 'utf8'))
   const crops = cropsWithSource(COMMODITIES.map((c) => ({ commodity_en: c.api, commodity_hi: c.hi })))
   const perCommodity = [], allRows = [], sources = new Set()
+  const phaseStart = Date.now()
   info(`window ${from} .. ${today} (${DAYS} days); data.gov.in key: ${HAS_REAL_KEY ? 'set' : 'NOT SET (only the wrapper can be tried)'}`)
   for (const crop of crops) {
+    if (Date.now() - phaseStart >= MANDI_PHASE_CAP_MS) { console.error(`mandi phase cap reached: stopping before ${crop.commodity_en}`); perCommodity.push({ api: crop.commodity_en, rows: 0, division: 0, newest: null, skipped: 0, source: '-' }); continue }
     const { commodity_en: api, commodity_hi: hi } = crop
     const maxAge = Math.max(MAX_AGE_DAYS, DAYS)
     const fromFeed = (records) => {
@@ -243,8 +214,8 @@ async function refreshMandi() {
     allRows.push(...rows)
     info(`${DRY_RUN ? '[dry-run] ' : '✓ '}${hi}: ${rows.length} row(s), newest ${entry.newest} via ${source}`)
   }
-  if (_failedRequests) info(`WARNING: ${_failedRequests} of ${_requests} primary request(s) failed after retries; data may be incomplete`)
-  return { today, perCommodity, allRows, source: sources.size ? [...sources].join(' + ') : 'none answered', requests: _requests, failedRequests: _failedRequests }
+  if (gov.st.failed) info(`WARNING: ${gov.st.failed} of ${gov.st.requests} primary request(s) failed after retries; data may be incomplete`)
+  return { today, perCommodity, allRows, source: sources.size ? [...sources].join(' + ') : 'none answered', requests: gov.st.requests, failedRequests: gov.st.failed, unreachable: gov.st.unreachable }
 }
 
 // ---------- weather (per cell) ----------
@@ -341,20 +312,39 @@ async function refreshWeather() {
   console.log(`weather: ${ok} cells ok, ${fail} fail`)
 }
 
+// Read-only watchdog: newest stored Sagar-division price. Needs only the database, not data.gov.in.
+async function freshness() {
+  const { data, error } = await supabase.from('mandi_prices').select('price_date').eq('in_sagar_division', true).order('price_date', { ascending: false }).limit(1)
+  if (error) throw new Error(error.message)
+  return freshnessCheck(data?.[0]?.price_date || null, todayIST(), daysBetween)
+}
+
 async function main() {
   const guard = checkProjectRef(SUPABASE_URL, EXPECT_REF, DRY_RUN)
   if (!guard.ok) { console.error(guard.message); process.exitCode = 1; return }
-  let mandi = null
-  try { mandi = await refreshMandi() } catch (e) { console.error('mandi refresh failed:', describeError(e, [DATA_GOV_KEY, SUPABASE_SERVICE_KEY])) }
-  const today = mandi?.today || todayIST()
-  const sum = summarize({ perCommodity: mandi?.perCommodity || [], today, source: mandi?.source || 'none', target: EXPECT_REF || (DRY_RUN ? 'dry run' : '') })
-  const verdict = decideExit({ refOk: true, totalRows: sum.rows, newestDate: sum.newest, today })
-  const text = `${sum.text}\n- primary requests: ${mandi?.requests ?? 0} (failed after retries: ${mandi?.failedRequests ?? 0})\n- reading: ${lagNote(sum.newest, today, daysBetween)}\n- result: ${verdict.code ? 'FAILED - ' + verdict.reasons.join('; ') : 'ok'}`
-  if (JSON_OUT) console.log(JSON.stringify({ today, source: mandi?.source, perCommodity: mandi?.perCommodity, rows: mandi?.allRows || [], exit: verdict }, null, 2)); else console.log(text)
-  if (process.env.GITHUB_STEP_SUMMARY) { try { (await import('node:fs')).appendFileSync(process.env.GITHUB_STEP_SUMMARY, redact(text, SECRETS) + '\n\n') } catch {} }
-  // Weather is refreshed even when mandi failed; the mandi verdict still decides the exit code.
-  if (DRY_RUN) info('dry run: nothing written, weather skipped')
-  else { try { await refreshWeather() } catch (e) { console.error('weather refresh failed:', e.message) } }
-  process.exitCode = verdict.code
+  const summaryOut = (text) => { if (process.env.GITHUB_STEP_SUMMARY) { try { appendFileSync(process.env.GITHUB_STEP_SUMMARY, redact(text, SECRETS) + '\n\n') } catch {} } }
+  const job = await runJob({
+    dryRun: DRY_RUN,
+    log: (m) => console.error(m),
+    // Weather runs first so it never depends on prices.
+    weather: refreshWeather,
+    mandi: async () => {
+      const mandi = await refreshMandi()
+      const today = mandi.today
+      const sum = summarize({ perCommodity: mandi.perCommodity, today, source: mandi.source, target: EXPECT_REF || (DRY_RUN ? 'dry run' : '') })
+      const verdict = decideExit({ refOk: true, totalRows: sum.rows, newestDate: sum.newest, today })
+      const text = `${sum.text}
+- primary requests: ${mandi.requests} (failed after retries: ${mandi.failedRequests})${mandi.unreachable ? `
+- ${UNREACHABLE_NOTE}` : ''}
+- reading: ${lagNote(sum.newest, today, daysBetween)}
+- result: ${verdict.code ? 'FAILED - ' + verdict.reasons.join('; ') : 'ok'}`
+      if (JSON_OUT) console.log(JSON.stringify({ today, source: mandi.source, perCommodity: mandi.perCommodity, rows: mandi.allRows, exit: verdict }, null, 2)); else console.log(text)
+      summaryOut(text)
+      return { verdict }
+    },
+    freshness: async () => { const f = await freshness(); console.log(f.text); summaryOut(`- ${f.text}`); return f },
+  })
+  if (DRY_RUN) info('dry run: nothing written, weather and freshness check skipped')
+  process.exitCode = job.code
 }
 main().catch((e) => { console.error(e); process.exitCode = 1 })
