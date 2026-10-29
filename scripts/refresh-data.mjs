@@ -8,6 +8,8 @@
 //     weather first, then the freshness check: RED only if the newest stored Sagar-division price_date is older than 3 days or empty.
 //   node scripts/refresh-data.mjs --target staging --expect-project-ref <ref>
 //     weather only; no freshness check; green if weather ran.
+//   Batch 16G: after the weather step the Sagar town cell (23.8_78.7) must have been fetched within 2 hours, and every pilot cell must
+//   have refreshed; otherwise the job is RED (both targets). A weather step stuck for 12 minutes ends RED instead of hanging.
 //   --dry-run  opens no database connection, needs no secret, does nothing (prints what it would do).
 // Without --target the target is production when the expected ref is the production ref, otherwise staging.
 // Pure logic: lib/mandi-daily.mjs (runWatchdogJob, freshnessCheck).
@@ -15,6 +17,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { appendFileSync } from 'node:fs'
 import { runWatchdogJob, freshnessCheck, describeError } from './lib/mandi-daily.mjs'
+import { weatherFreshnessCheck, SAGAR_CELL } from './lib/weather-fresh.mjs'
 import { checkProjectRef, redact, todayIST, daysBetween } from './lib/mandi-feed.mjs'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
@@ -129,9 +132,30 @@ async function refreshWeather() {
   const { data: reqs } = await supabase.from('weather_grid_requests').select('grid_key,latitude,longitude').gte('last_requested_at', since)
   for (const r of reqs || []) cells.set(r.grid_key, { lat: Number(r.latitude), lon: Number(r.longitude) })
   let ok = 0, fail = 0
-  for (const c of cells.values()) { try { await refreshCell(c.lat, c.lon); ok++ } catch (e) { console.error(`cell fail: ${e.message}`); fail++ } }
+  const pilotKeys = new Set(PILOT.map((c) => gridKey(c.lat, c.lon)))
+  const pilotFailed = []
+  for (const [key, c] of cells.entries()) {
+    try { await refreshCell(c.lat, c.lon); ok++ } catch (e) { console.error(`cell fail ${key}: ${e.message}`); fail++; if (pilotKeys.has(key)) pilotFailed.push(key) }
+  }
   console.log(`weather: ${ok} cells ok, ${fail} fail`)
+  // Batch 16G: a failed PILOT cell turns the job RED (after all the other cells were tried).
+  if (pilotFailed.length) throw new Error(`pilot weather cell(s) failed: ${pilotFailed.join(', ')}`)
 }
+
+// Batch 16G: after the refresh, the Sagar town cell must have been fetched within the last 2 hours (read-only, one select).
+async function sagarWeatherCheck() {
+  const { data, error } = await supabase.from('weather_cache_v2').select('grid_key,fetched_at').eq('grid_key', SAGAR_CELL)
+  if (error) throw new Error(error.message)
+  const w = weatherFreshnessCheck(data || [], Date.now())
+  console.log(w.text)
+  return w
+}
+
+// Time caps (see docs/review/batch16g/DECISIONS.md): GitHub kills the whole job at 20 min (workflow timeout-minutes).
+// The weather step is cut off at 12 min so the checks still run and the job ends RED instead of "cancelled"; a hard stop at 17 min
+// is the last resort. Each Open-Meteo request also has its own 20 s / 30 s limit.
+const WEATHER_TIMEOUT_MS = 12 * 60000
+const HARD_STOP_MS = 17 * 60000
 
 // Read-only watchdog: newest stored Sagar-division price. Needs only the database, not data.gov.in.
 async function freshness() {
@@ -149,15 +173,21 @@ async function main() {
   const guard = checkProjectRef(SUPABASE_URL, EXPECT_REF, DRY_RUN)
   if (!guard.ok) { console.error(guard.message); process.exitCode = 1; return }
   const summaryOut = (text) => { if (process.env.GITHUB_STEP_SUMMARY) { try { appendFileSync(process.env.GITHUB_STEP_SUMMARY, redact(text, SECRETS) + '\n\n') } catch {} } }
+  if (!DRY_RUN) setTimeout(() => { console.error(`hard stop after ${HARD_STOP_MS / 60000} min: the job is taking too long (RED)`); process.exit(1) }, HARD_STOP_MS).unref()
   const job = await runWatchdogJob({
     target: TARGET,
     dryRun: DRY_RUN,
     log: (m) => console.error(m),
     weather: refreshWeather, // runs first
+    weatherTimeoutMs: WEATHER_TIMEOUT_MS,
+    weatherCheck: async () => { const w = await sagarWeatherCheck(); summaryOut(`- target: ${TARGET}
+- ${w.text}`); return w },
     freshness: async () => { const f = await freshness(); console.log(f.text); summaryOut(`- target: ${TARGET}\n- ${f.text}`); return f },
   })
   if (TARGET === 'staging' && !DRY_RUN) summaryOut('- target: staging (weather only; prices are written by the Edge Function)')
   if (DRY_RUN) info(`dry run (${TARGET}): nothing written; weather${TARGET === 'production' ? ' and freshness check' : ''} skipped`)
   process.exitCode = job.code
+  // A stalled request may still hold the process open: leave as soon as the result is known.
+  if (!DRY_RUN) process.exit(job.code)
 }
-main().catch((e) => { console.error(describeError(e, SECRETS)); process.exitCode = 1 })
+main().catch((e) => { console.error(describeError(e, SECRETS)); process.exit(1) })

@@ -6,6 +6,7 @@ import { supabase } from '../supabaseClient'
 import { isNative } from '../native'
 import { haversineKm } from '../distance'
 import { wdayKey } from './weatherApi'
+import { trimToNow, weatherAge, freshnessLevel, istTimeMs } from './freshness.js'
 
 // One weather cell is 0.1° × 0.1° (about 10 km). cellCentre() is the middle of the cell a point
 // falls in, and gridKey() is that centre written as text — so key and centre always agree.
@@ -14,7 +15,7 @@ import { wdayKey } from './weatherApi'
 export const cellCentre = (lat, lon) => ({ lat: Math.round(Number(lat) * 10) / 10, lon: Math.round(Number(lon) * 10) / 10 })
 export const gridKey = (lat, lon) => { const c = cellCentre(lat, lon); return `${c.lat.toFixed(1)}_${c.lon.toFixed(1)}` }
 
-function normalize(row) {
+function normalize(row, nowMs = Date.now()) {
   if (!row) return null
   const cur = row.current || {}
   const daily = Array.isArray(row.daily) ? row.daily : []
@@ -24,13 +25,18 @@ function normalize(row) {
     precipitation_sum: d.precip_mm, weathercode: d.weathercode,
     precipitation_probability_max: d.precip_prob,
   }))
+  // Batch 16G: the cached arrays are as old as fetched_at — cut them to "from now" and say how old they are.
+  const age = weatherAge(row.fetched_at, nowMs)
   return {
+    ...trimToNow({
     grid_key: row.grid_key, latitude: Number(row.latitude), longitude: Number(row.longitude),
     fetched_at: row.fetched_at,
     current_temp: cur.temp, current_humidity: cur.humidity, current_weathercode: cur.weathercode,
     current_wind: cur.wind_kmh, current_precip: cur.precipitation,
     current: cur, hourly: Array.isArray(row.hourly) ? row.hourly : [],
     daily, forecast, season_rain: row.season_rain || null,
+    }, nowMs),
+    fresh: freshnessLevel(age), age_ms: age,
   }
 }
 
@@ -62,7 +68,7 @@ export async function fetchLiveWeatherCell(exactLat, exactLon) {
   const now = Date.now()
   const hourly = []
   for (let i = 0; i < H.time.length && hourly.length < 48; i++) {
-    if (new Date(H.time[i]).getTime() < now - 3600000) continue
+    if (istTimeMs(H.time[i]) < now - 3600000) continue // Open-Meteo times are IST text: never read them in the phone's zone
     hourly.push({ time: H.time[i], temp: H.temperature_2m[i], precip_mm: H.precipitation[i], precip_prob: H.precipitation_probability[i], wind_kmh: H.wind_speed_10m[i], humidity: H.relative_humidity_2m[i], soil_moisture: H.soil_moisture_0_to_7cm?.[i] ?? null })
   }
   const smByDate = {}
@@ -87,7 +93,14 @@ export async function fetchLiveWeatherCell(exactLat, exactLon) {
 export async function fetchWeatherCell(lat, lon) {
   const key = gridKey(lat, lon)
   const { data: exact } = await supabase.from('weather_cache_v2').select('*').eq('grid_key', key).maybeSingle()
-  if (exact) return normalize(exact)
+  if (exact) {
+    // Batch 16G follow-up: a cell nobody asked for in a while is not refreshed by the cron; over 24 h old, try a live forecast first.
+    if (freshnessLevel(weatherAge(exact.fetched_at)) === 'expired') {
+      const live = await fetchLiveWeatherCell(lat, lon).catch(() => null)
+      if (live) return live
+    }
+    return normalize(exact)
+  }
   // Cache miss → live global fetch (Phase 1b-i) so an un-cron'd cell never shows "no data".
   const live = await fetchLiveWeatherCell(lat, lon).catch(() => null)
   if (live) return live

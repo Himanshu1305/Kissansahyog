@@ -1,0 +1,140 @@
+{
+  "base": "https://kissansahyog.com",
+  "takenAt": "2026-10-29T05:48:57.635Z",
+  "pages": {
+    "/": {
+      "status": 200,
+      "finalPath": "/",
+      "bytes": 108521,
+      "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+      "h1": "आज किसान के लिए",
+      "errorBoundary": false,
+      "faq": false
+    },
+    "/mausam": {
+      "status": 200,
+      "finalPath": "/mausam/",
+      "bytes": 41186,
+      "title": "मौसम — सागर संभाग का पूर्वानुमान",
+      "h1": "आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान",
+      "errorBoundary": false,
+      "faq": true
+    },
+    "/msp": {
+      "status": 200,
+      "finalPath": "/msp/",
+      "bytes": 111506,
+      "title": "मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य",
+      "h1": "गेहूं भाव — आज व MSP से तुलना",
+      "errorBoundary": false,
+      "faq": true
+    },
+    "/browse": {
+      "status": 200,
+      "finalPath": "/browse",
+      "bytes": 108521,
+      "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+      "h1": "आज किसान के लिए",
+      "errorBoundary": false,
+      "faq": false
+    },
+    "/sawaal": {
+      "status": 200,
+      "finalPath": "/sawaal/",
+      "bytes": 26900,
+      "title": "किसान सवाल — खेती के सवालों के जवाब",
+      "h1": "किसान सवाल — आपके सवाल, हमारे जवाब",
+      "errorBoundary": false,
+      "faq": false
+    },
+    "/yojana": {
+      "status": 200,
+      "finalPath": "/yojana/",
+      "bytes": 40881,
+      "title": "सरकारी योजनाएं — केंद्र व मध्य प्रदेश",
+      "h1": "सरकारी योजनाएं",
+      "errorBoundary": false,
+      "faq": false
+    },
+    "/cold-storage": {
+      "status": 200,
+      "finalPath": "/cold-storage/",
+      "bytes": 487148,
+      "title": "मध्य प्रदेश कोल्ड स्टोरेज खोजें — गोदाम सूची",
+      "h1": "मध्य प्रदेश कोल्ड स्टोरेज खोजें",
+      "errorBoundary": false,
+      "faq": true
+    },
+    "/about": {
+      "status": 200,
+      "finalPath": "/about/",
+      "bytes": 40718,
+      "title": "हमारे बारे में — किसान सहयोग",
+      "h1": "हमारे बारे में",
+      "errorBoundary": false,
+      "faq": false
+    },
+    "/privacy": {
+      "status": 200,
+      "finalPath": "/privacy/",
+      "bytes": 36328,
+      "title": "गोपनीयता नीति — किसान सहयोग",
+      "h1": "गोपनीयता नीति",
+      "errorBoundary": false,
+      "faq": false
+    },
+    "/terms": {
+      "status": 200,
+      "finalPath": "/terms/",
+      "bytes": 48224,
+      "title": "उपयोग की शर्तें — किसान सहयोग",
+      "h1": "उपयोग की शर्तें",
+      "errorBoundary": false,
+      "faq": false
+    }
+  },
+  "files": {
+    "/sitemap.xml": {
+      "status": 200,
+      "bytes": 548,
+      "contentType": "application/xml",
+      "sha256": "0656657775ebfe1b1b05a571eeba25aa78d25ebc90b0f543c17bf463b50c1c06",
+      "urlCount": 4
+    },
+    "/sitemap-pages.xml": {
+      "status": 200,
+      "bytes": 6818,
+      "contentType": "application/xml",
+      "sha256": "febd304c07bbddd3d00fabc80df79b507456a5c90077dc3d7fee4439c90db5c0",
+      "urlCount": 55
+    },
+    "/sitemap-sawaal.xml": {
+      "status": 200,
+      "bytes": 23193,
+      "contentType": "application/xml",
+      "sha256": "7fbab7446b16472a7d2e47e347bc10e7476c7a399dea2de59d7041134213e36a",
+      "urlCount": 161
+    },
+    "/sitemap-cold-storage.xml": {
+      "status": 200,
+      "bytes": 4656,
+      "contentType": "application/xml",
+      "sha256": "1c6f25c1d4691b9d3673e1f89a1d29af8976f72b1db3a8385076dd6bd63bb6f4",
+      "urlCount": 35
+    },
+    "/sitemap-schemes.xml": {
+      "status": 200,
+      "bytes": 2429,
+      "contentType": "application/xml",
+      "sha256": "da5ddc3e2b4d77b41085f27a31b8fa5e5ae2b03fec63c333b73abb6e28f43253",
+      "urlCount": 18
+    },
+    "/robots.txt": {
+      "status": 200,
+      "bytes": 180,
+      "contentType": "text/plain; charset=utf-8",
+      "sha256": "39148ca3b5fabf621da9fab5fecc71633583af782dd629894a1d0f824eedebcc",
+      "urlCount": 0
+    }
+  }
+}
