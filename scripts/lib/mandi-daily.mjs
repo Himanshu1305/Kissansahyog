@@ -130,3 +130,111 @@ export function lagNote(newest, today, daysBetween, maxStale = 3) {
   if (lag === 0) return 'Normal: newest prices are from today.'
   return `Normal: the government feed publishes once a day with a lag; newest prices are ${lag} day(s) old. Running again with nothing new is expected.`
 }
+
+// ---------- Batch 16E: stop the job stalling when data.gov.in cannot be reached ----------
+// The government server refuses connections from foreign cloud addresses (GitHub runners). Failing fast keeps weather
+// and the watchdog check alive; prices then come from the Edge Function in India.
+export const CONNECT_ERROR_CODES = new Set(['ECONNREFUSED', 'UND_ERR_CONNECT_TIMEOUT', 'ETIMEDOUT', 'ENETUNREACH', 'ENOTFOUND', 'EAI_AGAIN'])
+export const UNREACHABLE_AFTER = 3          // this many primary requests failing at connect level, none succeeding
+export const MAX_RETRIES = 2                // per request
+export const MANDI_PHASE_CAP_MS = 4 * 60 * 1000
+export const UNREACHABLE_LINE = 'data.gov.in unreachable from this machine (expected on GitHub; prices come from the Edge Function)'
+
+export function isConnectError(e) {
+  const c = e?.cause || e
+  if (!c) return false
+  if (CONNECT_ERROR_CODES.has(c.code) || CONNECT_ERROR_CODES.has(e?.code)) return true
+  return Array.isArray(c.errors) && c.errors.length > 0 && c.errors.every(isConnectError)
+}
+
+export class GovApiStopped extends Error {
+  constructor(reason) { super(reason); this.name = 'GovApiStopped'; this.reason = reason }
+}
+
+// One shared client for every request to api.data.gov.in. fetchFn/sleep/now are injected so tests run on a fake clock.
+export function createGovClient({ fetchFn, sleep, now = Date.now, key, spacingMs = 1500, capMs = MANDI_PHASE_CAP_MS, maxRetries = MAX_RETRIES, timeoutMs = 60000, onLog = () => {} }) {
+  const startedAt = now()
+  const st = { requests: 0, failed: 0, connectFailed: 0, succeeded: 0, unreachable: false, deadlineHit: false }
+  const assertUsable = () => {
+    if (st.unreachable) throw new GovApiStopped('unreachable')
+    if (now() - startedAt >= capMs) {
+      if (!st.deadlineHit) { st.deadlineHit = true; onLog(`mandi phase reached its ${Math.round(capMs / 60000)} minute cap; stopping and keeping what was collected`) }
+      throw new GovApiStopped('deadline')
+    }
+  }
+  const noteFailure = (e) => {
+    if (isConnectError(e) && !st.succeeded && ++st.connectFailed >= UNREACHABLE_AFTER && !st.unreachable) {
+      st.unreachable = true; onLog(UNREACHABLE_LINE)
+    }
+  }
+  // Returns records, or throws (GovApiStopped when the client has given up on the host).
+  async function getPage(params, offset = 0) {
+    assertUsable()
+    let lastErr
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      if (attempt) { await sleep(2000 * 2 ** (attempt - 1)); assertUsable() }
+      let res
+      try { res = await fetchFn(requestUrl(params, key, offset), { signal: AbortSignal.timeout(timeoutMs) }) } catch (e) { lastErr = e; if (isConnectError(e)) break; continue }
+      if (res.status >= 500 || res.status === 429) { lastErr = new Error(`HTTP ${res.status}`); continue }
+      const body = await res.text()
+      if (!res.ok) { st.failed++; throw new Error(`HTTP ${res.status}: ${maskKey(body.slice(0, 160))}`) }
+      let j
+      try { j = JSON.parse(body) } catch { lastErr = new Error('non-JSON body'); continue }
+      if (!Array.isArray(j.records)) { lastErr = new Error('no records array'); continue }
+      st.succeeded++
+      return j.records
+    }
+    st.failed++
+    noteFailure(lastErr)
+    throw new Error(`gave up: ${describeError(lastErr, [key])}`)
+  }
+  // Any other call to the same host (the 9ef84268 fallback) goes through these two.
+  return { st, getPage, assertUsable, noteFailure, spacingMs, sleep }
+}
+
+// All pages of one crop across the division districts. A GovApiStopped ends the whole loop; other errors skip the district.
+export async function fetchPrimaryForCrop(client, crop, districts, from, onError = () => {}) {
+  const raw = []
+  for (const step of buildRequestPlan([crop], districts)) {
+    let offset = 0
+    try {
+      for (let pages = 0; pages < 40; pages++) {
+        client.assertUsable()
+        if (client.st.requests++) await client.sleep(client.spacingMs)
+        const recs = await client.getPage(step.params, offset)
+        for (const r of recs) raw.push({ _crop: crop.commodity_en, ...r })
+        if (!needsNextPage(recs, from)) break
+        offset += PAGE
+      }
+    } catch (e) {
+      if (e instanceof GovApiStopped) return raw
+      onError(crop.commodity_en, step.district, e)
+    }
+  }
+  return raw
+}
+
+// The GitHub job (Batch 16E patch). It never fetches or writes prices. Order: weather first, then (production only) the
+// read-only freshness check. Steps are injected: weather() -> void, freshness() -> { red, text }.
+// Exit code 1 when weather crashes, or (production) the newest stored price is older than 3 days / missing / unreadable.
+export async function runWatchdogJob({ target, dryRun = false, weather, freshness, log = () => {} }) {
+  const order = []
+  let code = 0, fresh = null
+  if (dryRun) return { order, code, freshness: null }
+  order.push('weather')
+  try { await weather() } catch (e) { code = 1; log(`weather refresh failed: ${describeError(e)}`) }
+  if (target === 'production') {
+    order.push('freshness')
+    try { fresh = await freshness() } catch (e) { fresh = { red: true, text: `newest stored price: unknown (RED: freshness check failed: ${describeError(e)})` }; log(fresh.text) }
+    if (fresh.red) code = 1
+  }
+  return { order, code, freshness: fresh }
+}
+
+// Read-only watchdog: the newest stored Sagar-division price, from the database, no data.gov.in needed.
+export function freshnessCheck(newest, today, daysBetween, maxStale = 3) {
+  if (!newest) return { red: true, text: 'newest stored price: none (RED: no division price rows are stored)' }
+  const n = daysBetween(newest, today)
+  const red = n > maxStale
+  return { red, text: `newest stored price: ${newest} (${n} days old)${red ? ` - RED: older than ${maxStale} days` : ''}` }
+}

@@ -1,0 +1,3 @@
+[a] region_header=ap-south-1 | sb-request-id: 01a185c0-8bdc-721b-8c01-bc44747539d5 x-sb-edge-region: ap-south-1 | {"ok":true,"status":200,"newest_arrival_date":"28/10/2026","SB_REGION":"ap-south-1","DENO_REGION":"ap-south-1","requested":"ap-south-1","ms":421}
+[b] region_header=ap-south-1 | sb-request-id: 01a185c1-7df7-7ab2-b569-fef476ea42a7 x-sb-edge-region: ap-south-1 | {"ok":true,"status":200,"newest_arrival_date":"28/10/2026","SB_REGION":"ap-south-1","DENO_REGION":"ap-south-1","requested":"ap-south-1","ms":572}
+[c] region_header=none | sb-request-id: 01a185c1-8247-76a0-b34f-ed71eb18d08f x-sb-edge-region: ap-south-1 | {"ok":true,"status":200,"newest_arrival_date":"28/10/2026","SB_REGION":"ap-south-1","DENO_REGION":"ap-south-1","requested":null,"ms":388}
