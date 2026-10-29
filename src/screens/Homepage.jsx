@@ -167,7 +167,7 @@ export default function Homepage() {
     return () => { alive = false }
   }, [lat, lng])
 
-  const alert = getRainAlert(weather?.forecast)
+  const alert = getRainAlert(weather?.fresh === 'expired' ? null : weather?.forecast)
   const todayBase = getTodayForFarmer({ weather, mandi, msp, alert, t })
   // No location → say so in the weather tile instead of "unavailable" (never a default place's weather).
   const today = location ? todayBase : { ...todayBase, weatherLine: t('loc_set_for_weather'), rainLine: t('loc_share') }
@@ -539,7 +539,7 @@ function HomeHero({ t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }) 
         </div>
 
         <div data-testid="home-hero-cards" className="flex min-w-0 flex-col gap-3 sm:flex-row lg:flex-col">
-          <InfoTile caption={t('tf_weather_cap')} value={today.weatherLine} note={`${today.rainLine} · ${t('home_forecast_link')} →`} noteColor="var(--ks-blue)" onClick={onForecast} />
+          <InfoTile caption={today.weatherCaption || t('tf_weather_cap')} value={today.weatherLine} note={`${today.rainLine ? `${today.rainLine} · ` : ''}${t('home_forecast_link')} →`} noteColor="var(--ks-blue)" onClick={onForecast} />
           {/* Price tile only when there is a price to show (it used to render an empty "—"). */}
           {today.priceLine && (
             <InfoTile

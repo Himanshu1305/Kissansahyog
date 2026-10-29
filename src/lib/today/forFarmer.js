@@ -1,7 +1,7 @@
 // Phase 3b — the signature "आज किसान के लिए" card content. Pure derivation from
 // the already-fetched weather / mandi / msp / rainAlert; all bilingual text is
 // pulled through t() (strings live in strings.js) so the i18n audit stays clean.
-// Returns { weatherLine, rainLine, priceLine, priceValue, priceNote, priceCaption, priceTone, advice } — priceTone is
+// Returns { weatherLine, weatherCaption, rainLine, priceLine, priceValue, priceNote, priceCaption, priceTone, advice } — priceTone is
 // 'above' (green) | 'below' (amber) | null.
 import { MANDI_TO_MSP } from '../msp/mspApi'
 import { weatherInfo } from '../weather/weatherApi'
@@ -35,12 +35,15 @@ function pickCrop(mandi, msp) {
 
 export function getTodayForFarmer({ weather, mandi, msp, alert, t }) {
   // weatherLine: "24° · बादल छाए"
-  const weatherLine = weather?.current_temp != null
+  // Batch 16G: a forecast older than 24 h is not shown as today's weather; 12-24 h old gets its age in the caption.
+  const expired = weather?.fresh === 'expired'
+  const weatherCaption = weather?.fresh === 'stale' ? `${t('tf_weather_cap')} · 12 ${t('wx_h_plus_old')}` : t('tf_weather_cap')
+  const weatherLine = weather?.current_temp != null && !expired
     ? `${Math.round(weather.current_temp)}° · ${t(weatherInfo(weather.current_weathercode).key)}`
     : t('weather_unavailable')
 
   // rainLine: "कल बारिश की संभावना (18 मिमी)" / "अगले 2 दिन बारिश नहीं"
-  const rainLine = alert
+  const rainLine = expired ? '' : alert
     ? `${t('tf_rain_tomorrow')} (${alert.perDay?.[0] ?? alert.max48 ?? 0} ${t('mm_unit')})`
     : t('tf_rain_none')
 
@@ -72,5 +75,5 @@ export function getTodayForFarmer({ weather, mandi, msp, alert, t }) {
     if (st === 'yesterday' || st === 'older') priceCaption = `${t(st === 'yesterday' ? 'mandi_price_yesterday' : 'mandi_price_older')} (${ddmm(mandi.date)})`
   }
 
-  return { weatherLine, rainLine, priceLine, priceValue, priceNote, priceCaption, priceTone, advice }
+  return { weatherLine, weatherCaption, rainLine, priceLine, priceValue, priceNote, priceCaption, priceTone, advice }
 }

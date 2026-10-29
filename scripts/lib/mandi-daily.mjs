@@ -217,19 +217,30 @@ export async function fetchPrimaryForCrop(client, crop, districts, from, onError
 // The GitHub job (Batch 16E patch). It never fetches or writes prices. Order: weather first, then (production only) the
 // read-only freshness check. Steps are injected: weather() -> void, freshness() -> { red, text }.
 // Exit code 1 when weather crashes, or (production) the newest stored price is older than 3 days / missing / unreadable.
-export async function runWatchdogJob({ target, dryRun = false, weather, freshness, log = () => {} }) {
+export async function runWatchdogJob({ target, dryRun = false, weather, freshness, weatherCheck, weatherTimeoutMs, log = () => {} }) {
   const order = []
-  let code = 0, fresh = null
+  let code = 0, fresh = null, wcheck = null
   if (dryRun) return { order, code, freshness: null }
   order.push('weather')
-  try { await weather() } catch (e) { code = 1; log(`weather refresh failed: ${describeError(e)}`) }
+  // Batch 16G: weatherTimeoutMs ends a stalled weather step as a failure (RED) so the checks below still run inside the job's time cap.
+  try { await (weatherTimeoutMs ? withTimeoutMs(weather(), weatherTimeoutMs) : weather()) } catch (e) { code = 1; log(`weather refresh failed: ${describeError(e)}`) }
+  if (weatherCheck) {
+    order.push('weatherCheck')
+    try { wcheck = await weatherCheck() } catch (e) { wcheck = { ok: false, text: `Sagar weather: unknown (RED: check failed: ${describeError(e)})` }; log(wcheck.text) }
+    if (!wcheck.ok) code = 1
+  }
   if (target === 'production') {
     order.push('freshness')
     try { fresh = await freshness() } catch (e) { fresh = { red: true, text: `newest stored price: unknown (RED: freshness check failed: ${describeError(e)})` }; log(fresh.text) }
     if (fresh.red) code = 1
   }
-  return { order, code, freshness: fresh }
+  return { order, code, freshness: fresh, weatherCheck: wcheck }
 }
+
+const withTimeoutMs = (p, ms) => new Promise((resolve, reject) => {
+  const timer = setTimeout(() => reject(new Error(`weather step timed out after ${Math.round(ms / 1000)} s`)), ms)
+  Promise.resolve(p).then((v) => { clearTimeout(timer); resolve(v) }, (e) => { clearTimeout(timer); reject(e) })
+})
 
 // Read-only watchdog: the newest stored Sagar-division price, from the database, no data.gov.in needed.
 export function freshnessCheck(newest, today, daysBetween, maxStale = 3) {

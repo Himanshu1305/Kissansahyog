@@ -6,6 +6,7 @@ import { supabase } from '../supabaseClient'
 import { isNative } from '../native'
 import { haversineKm } from '../distance'
 import { wdayKey } from './weatherApi'
+import { trimToNow, weatherAge, freshnessLevel } from './freshness.js'
 
 // One weather cell is 0.1° × 0.1° (about 10 km). cellCentre() is the middle of the cell a point
 // falls in, and gridKey() is that centre written as text — so key and centre always agree.
@@ -14,7 +15,7 @@ import { wdayKey } from './weatherApi'
 export const cellCentre = (lat, lon) => ({ lat: Math.round(Number(lat) * 10) / 10, lon: Math.round(Number(lon) * 10) / 10 })
 export const gridKey = (lat, lon) => { const c = cellCentre(lat, lon); return `${c.lat.toFixed(1)}_${c.lon.toFixed(1)}` }
 
-function normalize(row) {
+function normalize(row, nowMs = Date.now()) {
   if (!row) return null
   const cur = row.current || {}
   const daily = Array.isArray(row.daily) ? row.daily : []
@@ -24,13 +25,18 @@ function normalize(row) {
     precipitation_sum: d.precip_mm, weathercode: d.weathercode,
     precipitation_probability_max: d.precip_prob,
   }))
+  // Batch 16G: the cached arrays are as old as fetched_at — cut them to "from now" and say how old they are.
+  const age = weatherAge(row.fetched_at, nowMs)
   return {
+    ...trimToNow({
     grid_key: row.grid_key, latitude: Number(row.latitude), longitude: Number(row.longitude),
     fetched_at: row.fetched_at,
     current_temp: cur.temp, current_humidity: cur.humidity, current_weathercode: cur.weathercode,
     current_wind: cur.wind_kmh, current_precip: cur.precipitation,
     current: cur, hourly: Array.isArray(row.hourly) ? row.hourly : [],
     daily, forecast, season_rain: row.season_rain || null,
+    }, nowMs),
+    fresh: freshnessLevel(age), age_ms: age,
   }
 }
 

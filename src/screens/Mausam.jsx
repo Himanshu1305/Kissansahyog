@@ -9,6 +9,7 @@ import WhatsAppJoin from '../components/WhatsAppJoin'
 import { Spinner } from '../components/ui'
 import { weatherInfo } from '../lib/weather/weatherApi'
 import { fetchWeatherCell, requestGridCell } from '../lib/weather/weatherApiV2'
+import { updatedLine, istParts, istTimeMs } from '../lib/weather/freshness'
 import { actionWindows, imdClass, nextRain, STATUS_COLOR } from '../lib/weather/weatherRules'
 import { useUserLocation } from '../lib/location/LocationProvider'
 import { fetchPageFaqs } from '../lib/pages/pagesApi'
@@ -21,13 +22,14 @@ import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
 
 const IMD_URL = 'https://mausam.imd.gov.in'
 const STATUS_LABEL = { ok: 'aw_ok', caution: 'aw_caution', stop: 'aw_stop' }
-const dayHi = (dateStr, t) => t(`wday_${new Date(dateStr).getDay()}`)
-const hourLabel = (iso) => { const d = new Date(iso); return `${d.getHours()}:00` }
+// Batch 16G: dates and hours are read as IST (not the phone's zone), so a phone set to another time zone shows the same days and hours.
+const dayHi = (dateStr, t) => t(`wday_${new Date(`${dateStr}T00:00:00Z`).getUTCDay()}`)
+const hourLabel = (iso) => `${istParts(istTimeMs(iso)).hour}:00`
 // Batch 8B — the resources behind the forecast (for the app's offline stamp / notice).
 const WX_RES = ['weather_cache_v2', 'api.open-meteo.com']
 
 export default function Mausam() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const navigate = useNavigate()
   // Batch 7L-1 — weather is for the shared location only; with none set the prompt card shows instead.
   const { location } = useUserLocation()
@@ -56,7 +58,9 @@ export default function Mausam() {
     return () => { alive = false }
   }, [lat, lon])
 
-  const windows = useMemo(() => (wx ? actionWindows(wx.hourly, wx.daily) : null), [wx])
+  // Batch 16G: 'expired' (over 24 h old) hides the forecast; 'stale' (12-24 h) and 'aging' (4-12 h) only warn.
+  const expired = wx?.fresh === 'expired'
+  const windows = useMemo(() => (wx && !expired ? actionWindows(wx.hourly, wx.daily) : null), [wx, expired])
 
   const today = wx?.daily?.[0]
   const info = wx ? weatherInfo(wx.current_weathercode) : null
@@ -65,11 +69,11 @@ export default function Mausam() {
 
   // Live WhatsApp share text (< 300 chars)
   const shareText = useMemo(() => {
-    if (!wx || !windows) return ''
+    if (!wx || !windows || expired) return ''
     const d = new Date().toLocaleDateString('hi-IN', { day: 'numeric', month: 'long' })
     const rainLine = rain ? `${t('mausam_rain_in')} ${rain.inHours}${t('hours_short')} ~${rain.mm}${t('mm_unit')}` : t('tf_rain_none')
     return `📍 ${place} ${t('nav_weather')} — ${d}\n🌤 ${Math.round(wx.current_temp)}°, ${t(info.key)} · ${rainLine}\n✅ ${t('aw_spray')}: ${t(STATUS_LABEL[windows.spray.status])} · ${t('aw_harvest')}: ${t(STATUS_LABEL[windows.harvest.status])}\n${t('daily_see')}: kissansahyog.com/mausam`
-  }, [wx, windows, rain, info, place, t])
+  }, [wx, windows, rain, info, place, t, expired])
 
   const metaDesc = t('mausam_explain_1') + ' ' + t('mausam_explain_2')
   const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place} ${t('nav_weather')}`.trim(), description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
@@ -97,12 +101,21 @@ export default function Mausam() {
           )
         ) : (<>
           <OfflineStamp resources={WX_RES} />
+          {/* Batch 16G: how old this forecast is */}
+          <p data-testid="wx-updated" className="text-[13px] font-semibold" style={{ color: wx.fresh === 'fresh' ? 'var(--ks-ink-3)' : 'var(--ks-orange-dark)' }}>{updatedLine(wx.fetched_at, Date.now(), t, lang)}</p>
+          {(wx.fresh === 'stale' || expired) && (
+            <div data-testid="wx-old-notice" className="rounded-lg px-3 py-2 text-[14px] font-semibold" style={{ background: 'var(--ks-saffron-tint)', color: 'var(--ks-orange-dark)', border: '1px solid var(--ks-border)' }}>
+              {t(expired ? 'wx_expired_notice' : 'wx_old_notice')}
+              <a href={IMD_URL} target="_blank" rel="noopener noreferrer" className="mt-1 block text-[14px] font-bold" style={{ color: 'var(--ks-blue)' }}>{t('imd_official_cta')} →</a>
+            </div>
+          )}
+          {expired ? <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('weather_unavailable')}</p> : (<>
           {/* 3. TodayCard */}
           <section style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius-lg)', padding: '16px' }}>
             <div className="flex items-center gap-4">
               <span className="text-[46px] leading-none" aria-hidden="true">{info.icon}</span>
               <div>
-                <div className="text-[34px] font-extrabold leading-none" style={{ color: 'var(--ks-ink)' }}>{Math.round(wx.current_temp)}°</div>
+                <div className="text-[34px] font-extrabold leading-none" style={{ color: 'var(--ks-ink)' }}>{wx.current_estimated ? <span className="mr-1 text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{t('wx_approx')}</span> : null}{Math.round(wx.current_temp)}°</div>
                 <div className="text-[15px] font-semibold" style={{ color: 'var(--ks-ink-2)' }}>{t(info.key)}</div>
               </div>
               <div className="ml-auto text-right text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>
@@ -179,6 +192,8 @@ export default function Mausam() {
             </div>
           </CollapsibleSection>
 
+          </>)}
+
           {/* 7. crop-advice teaser (full content moved to /fasal-salah) */}
           <button type="button" onClick={() => navigate('/fasal-salah')} className="flex w-full items-center justify-between gap-3 text-left" style={{ background: 'var(--ks-green-tint)', border: '1px solid var(--ks-border)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
             <span>
@@ -202,11 +217,12 @@ export default function Mausam() {
           )}
 
           {/* 9. 16-day outlook */}
+          {!expired && (
           <CollapsibleSection page="mausam" id="days16" h2Class="text-[20px] font-bold" title={<>{t('mausam_16day')} <span className="text-[14px] font-semibold" style={{ color: 'var(--ks-orange-dark)' }}>({t('mausam_not_sure')})</span></>}>
             <div className="flex gap-1 overflow-x-auto pb-2">
               {wx.daily.map((d) => (
                 <div key={d.date} className="flex shrink-0 flex-col items-center rounded px-2 py-1 text-center" style={{ background: 'var(--ks-bg-soft)', minWidth: 46 }}>
-                  <span className="text-[10px]" style={{ color: 'var(--ks-ink-3)' }}>{new Date(d.date).getDate()}</span>
+                  <span className="text-[10px]" style={{ color: 'var(--ks-ink-3)' }}>{new Date(`${d.date}T00:00:00Z`).getUTCDate()}</span>
                   <span aria-hidden="true">{weatherInfo(d.weathercode).icon}</span>
                   <span className="text-[10px]" style={{ color: 'var(--ks-blue)' }}>{Math.round(d.precip_mm)}</span>
                 </div>
@@ -214,6 +230,7 @@ export default function Mausam() {
             </div>
             <p className="mt-2 text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{t('src_16day')}</p>
           </CollapsibleSection>
+          )}
 
           {/* 10. glossary */}
           <CollapsibleSection page="mausam" id="glossary" h2Class="text-[20px] font-bold" title={t('mausam_glossary_h')} style={{ background: 'var(--ks-bg-soft)', borderRadius: 'var(--ks-radius)', padding: '14px' }}>
@@ -223,7 +240,7 @@ export default function Mausam() {
           </CollapsibleSection>
 
           {/* 12. Share */}
-          <section><ShareWhatsApp text={shareText} /></section>
+          {!expired && <section><ShareWhatsApp text={shareText} /></section>}
 
           {/* 13. Signup */}
           <DailyUpdateSignup sourcePage="mausam" heading={t('mausam_signup_h')} />
