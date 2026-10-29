@@ -12,7 +12,7 @@ name: Refresh Mandi Prices
 
 on:
   schedule:
-    - cron: '0 */3 * * *'   # every 3 hours UTC; keeps weather current
+    - cron: '17 */2 * * *'   # every 2 hours at minute 17 UTC (off the busy top-of-hour slot, which GitHub often drops); keeps weather current
   workflow_dispatch:
 
 permissions:
