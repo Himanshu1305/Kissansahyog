@@ -1,0 +1,119 @@
+
+==================================================================
+DRY RUN - nothing is changed, no key is asked, no command touches Supabase
+==================================================================
+Step 1: preconditions
+  [pending] you are on 'release-16h'; merge release-16h into main first and run this on main
+  [pending] uncommitted changes in the files this script needs
+  found supabase/functions/weather-refresh/index.ts
+  found supabase/functions/_shared/weather-core.js
+  found supabase/migrations/0072_weather_refresh_schedule.sql
+  Supabase CLI: 2.26.9
+
+Step 2: confirm the target
+  PRODUCTION project ref: eltmcznjcqiahqhjvpjg
+  [dry-run] would ask you to type that ref to confirm
+
+Step 3: deploy the function (no key is asked, no secret is made)
+  [dry-run] would check the NAMES of the production function secrets: CRON_SECRET and EXPECT_PROJECT_REF must be listed (from Batch 16E)
+  [dry-run] would run: supabase functions deploy weather-refresh --project-ref eltmcznjcqiahqhjvpjg --no-verify-jwt --use-api
+
+Step 4: SQL block 1 - the timer. Open https://supabase.com/dashboard/project/eltmcznjcqiahqhjvpjg/sql/new , paste everything between the lines, press Run.
+  If it says the Vault secrets are missing, stop and tell the architect. Running it twice is safe.
+------------------------------------------------------------------
+-- Batch 16H: schedule the weather-refresh Edge Function (runs in Mumbai, ap-south-1) so the forecast no longer depends on GitHub's scheduler.
+--   weather-refresh-forecast : every 2 hours at minute 20 (UTC), up to 60 cells, oldest first, pilot cells always.
+--   weather-refresh-season   : every 6 hours at minute 40 (UTC), up to 6 cells whose season rainfall is not yet computed today.
+-- No secret value is in this file. It uses the EXISTING Vault secrets project_url and mandi_cron_secret (created for Batch 16E).
+-- Re-running this file is safe: the two jobs are replaced, not duplicated.
+
+-- Guard: stop with a clear message if the two Vault secrets are missing.
+do $guard$
+declare have_project_url boolean := false; have_cron_secret boolean := false;
+begin
+  if to_regclass('vault.decrypted_secrets') is not null then
+    execute 'select exists (select 1 from vault.decrypted_secrets where name = ''project_url'')' into have_project_url;
+    execute 'select exists (select 1 from vault.decrypted_secrets where name = ''mandi_cron_secret'')' into have_cron_secret;
+  end if;
+  if not (have_project_url and have_cron_secret) then
+    raise exception 'Batch 16H stopped: the Vault secrets project_url and mandi_cron_secret are missing. They are created by the Batch 16E setup (scripts/ship-prod-16e.sh). Nothing was changed.';
+  end if;
+end
+$guard$;
+
+create extension if not exists pg_cron;
+create extension if not exists pg_net;
+
+do $mig$
+begin
+  if exists (select 1 from cron.job where jobname = 'weather-refresh-forecast') then perform cron.unschedule('weather-refresh-forecast'); end if;
+  if exists (select 1 from cron.job where jobname = 'weather-refresh-season') then perform cron.unschedule('weather-refresh-season'); end if;
+end
+$mig$;
+
+select cron.schedule(
+  'weather-refresh-forecast',
+  '20 */2 * * *',
+  $job$
+  select net.http_post(
+    url := (select decrypted_secret from vault.decrypted_secrets where name = 'project_url') || '/functions/v1/weather-refresh',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'x-region', 'ap-south-1',
+      'x-cron-secret', (select decrypted_secret from vault.decrypted_secrets where name = 'mandi_cron_secret')
+    ),
+    body := '{"mode":"forecast","limit":60}'::jsonb,
+    timeout_milliseconds := 120000
+  );
+  $job$
+);
+
+select cron.schedule(
+  'weather-refresh-season',
+  '40 */6 * * *',
+  $job$
+  select net.http_post(
+    url := (select decrypted_secret from vault.decrypted_secrets where name = 'project_url') || '/functions/v1/weather-refresh',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'x-region', 'ap-south-1',
+      'x-cron-secret', (select decrypted_secret from vault.decrypted_secrets where name = 'mandi_cron_secret')
+    ),
+    body := '{"mode":"season","limit":6}'::jsonb,
+    timeout_milliseconds := 120000
+  );
+  $job$
+);
+------------------------------------------------------------------
+
+Step 5: SQL block 2 - fire the function once now (new SQL tab). The password comes from the Vault; it is not shown.
+------------------------------------------------------------------
+select net.http_post(
+  url := (select decrypted_secret from vault.decrypted_secrets where name = 'project_url') || '/functions/v1/weather-refresh',
+  headers := jsonb_build_object(
+    'Content-Type', 'application/json',
+    'x-region', 'ap-south-1',
+    'x-cron-secret', (select decrypted_secret from vault.decrypted_secrets where name = 'mandi_cron_secret')
+  ),
+  body := '{"mode":"forecast","limit":60}'::jsonb,
+  timeout_milliseconds := 120000
+) as request_id;
+------------------------------------------------------------------
+
+Step 5b: SQL block 3 - wait about 30 seconds, then run this read-only check (new SQL tab).
+------------------------------------------------------------------
+select
+  (select jsonb_agg(t) from (select grid_key, fetched_at, now() - fetched_at as age from public.weather_cache_v2 order by fetched_at desc limit 10) t) as newest_10_rows,
+  (select jsonb_agg(r) from (select id, status_code, left(content::text, 400) as reply, created from net._http_response order by created desc limit 3) r) as last_3_replies;
+------------------------------------------------------------------
+
+Step 6: what healthy looks like
+  - the newest rows have an age of a few minutes, and the cell 23.8_78.7 (Sagar town) is among them
+  - the newest reply has status_code 200 and starts with {"ok":true,"mode":"forecast" ... "pilot_failed":[] ... "deadline_hit":false
+  - open https://kissansahyog.com/mausam : it says 'Updated today' with a time from the last 2 hours
+  - from then on the timer fires at minute 20 of every 2nd hour (UTC) and minute 40 of every 6th hour (season rainfall); no GitHub involved
+
+
+==================================================================
+DRY RUN finished - nothing was changed.
+==================================================================
