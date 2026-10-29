@@ -85,9 +85,7 @@ test('script --dry-run runs offline, exits 0, never reads a secret', () => {
 })
 
 test('workflow: no data.gov.in step or secret, passes --target per matrix entry', () => {
-  const y = readFileSync('.github/workflows/refresh-mandi-prices.yml', 'utf8').split('
-').filter((l) => !l.trim().startsWith('#')).join('
-')
+  const y = readFileSync('.github/workflows/refresh-mandi-prices.yml', 'utf8').split(String.fromCharCode(10)).filter((l) => !l.trim().startsWith('#')).join(' ')
   assert.doesNotMatch(y, /data\.gov\.in|DATA_GOV_IN_API_KEY|MANDI_DAYS/)
   assert.match(y, /--target \$\{\{ matrix\.target \}\}/)
 })
