@@ -118,7 +118,7 @@ say ""
 say "Step 6: what healthy looks like"
 say "  - the newest rows have an age of a few minutes, and the cell 23.8_78.7 (Sagar town) is among them"
 say "  - the newest reply has status_code 200 and starts with {\"ok\":true,\"mode\":\"forecast\" ... \"pilot_failed\":[] ... \"deadline_hit\":false"
-say "  - open https://kisansahyog.in/mausam : it says 'Updated today' with a time from the last 2 hours"
+say "  - open https://kissansahyog.com/mausam : it says 'Updated today' with a time from the last 2 hours"
 say "  - from then on the timer fires at minute 20 of every 2nd hour (UTC) and minute 40 of every 6th hour (season rainfall); no GitHub involved"
 say ""
 if [ "$DRY" = 1 ]; then loud "DRY RUN finished - nothing was changed."; else loud "Done. Now run SQL block 1, then block 2, wait 30 seconds, then block 3."; fi
