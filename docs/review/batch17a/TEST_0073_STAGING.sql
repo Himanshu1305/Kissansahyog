@@ -56,9 +56,17 @@ begin
 end
 $$;
 
--- table stays closed: no grants to the API roles
-select case when has_table_privilege('anon', 'public.morning_posts', 'select') or has_table_privilege('authenticated', 'public.morning_posts', 'select')
-            then 1 / 0 else 1 end as table_still_closed;
+-- tables stay closed: no grants to the API roles (an assert, not 1/0: Postgres folds constant expressions while planning, so 1/0 would always fail)
+do $$
+declare t text; r text;
+begin
+  foreach t in array array['public.morning_posts', 'public.morning_post_secret'] loop
+    foreach r in array array['anon', 'authenticated'] loop
+      assert not has_table_privilege(r, t, 'select,insert,update,delete'), r || ' has a grant on ' || t;
+    end loop;
+  end loop;
+end
+$$;
 
 select 'ALL 0073 CHECKS PASSED' as result;
 rollback;
