@@ -2,10 +2,12 @@ name: Morning post
 
 # Makes the daily "सुबह की खबर" WhatsApp post (message + card + poll) and saves it in the database for /admin/morning.
 # 23:00 UTC = 04:30 IST. GitHub may DELAY scheduled runs by up to ~30 minutes, so the post is normally ready by 05:00 IST.
-# GitHub only runs `schedule` from the DEFAULT branch (main): the copy of THIS file on main is the one that fires.
-# That copy checks out the branch named below (MORNING_REF) to get the generator code, so main itself needs no other change.
+# GitHub only runs `schedule` from the DEFAULT branch (main): the copy of THIS file on main is the one that fires, and it checks out main
+# (the default branch) too, so the generator code must be on main (Batch 17A: merge release-17a into main AFTER migration 0073 and the site ship).
 # A failed scheduled run emails the repository owner through GitHub's own notifications (Settings > Notifications > Actions).
 # Secrets: SUPABASE_URL, SUPABASE_ANON_KEY (the PUBLIC anon key, never the service-role key), MORNING_POST_SECRET.
+# Voice note (17A): ELEVENLABS_API_KEY (a key restricted to Text to Speech only); optional ELEVENLABS_VOICE_ID (default is Raju) and ELEVENLABS_MODEL.
+#   Without the key, or when ElevenLabs fails, the message, card and poll are still saved and report.txt says why the voice is missing.
 # Optional: RESEND_API_KEY + ALERT_EMAIL send one short "ready" e-mail; without them that step is skipped silently.
 
 on:
@@ -20,17 +22,12 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  MORNING_REF: release-16b   # the branch with scripts/morning/ ; change it (or merge it into main) when the code moves
-
 jobs:
   morning:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ env.MORNING_REF }}
 
       - uses: actions/setup-node@v4
         with:
@@ -45,6 +42,8 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           MORNING_POST_SECRET: ${{ secrets.MORNING_POST_SECRET }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
         run: npm run morning -- --save
 
       - name: Keep the files for 7 days
