@@ -6,7 +6,7 @@
 # is missing it stops with "migration 0073 is NOT applied". release-17a = origin/main (a73d82c, has 16G and 16H) + 17A. Live now: Batch 16G (tag ship-16g,
 # deployment 3585b4c1-6ce6-4c51-a47d-660ca75217fe); that id is also the rollback target.
 # The auth switches (otp_required=true, session_enforced=false) are read before and after and must be identical; this script never sets a switch.
-# The GitHub workflow (.github/workflows/morning-post.yml) is NOT part of this ship: GitHub reads it from main (see docs/review/batch17a/SHIP.md step 5).
+# The GitHub workflow (.github/workflows/morning-post.yml) is NOT part of this ship: GitHub reads it from main (see docs/review/batch17a/SHIP.md step 6).
 #
 #   bash scripts/ship-prod-17a.sh --dry-run   # validate preconditions + print every command; changes nothing
 #   bash scripts/ship-prod-17a.sh             # the real ship (founder runs this)
@@ -658,7 +658,7 @@ if [ -z "$FAIL" ]; then
 All read-only prod gates passed. Report: $EV/prod-gates-$STAMP.txt
 Previous deployment (rollback target): $BEFORE_ID ($LIVE_IS)
 The auth switches are exactly as before (otp_required=true, session_enforced=false); this ship never touches them.
-NEXT: follow docs/review/batch17a/SHIP.md step 5 (merge release-17a into main with the worktree method: the Morning post workflow reads main), then step 6 (run the workflow once, open /admin/morning, hear the voice).
+NEXT: follow docs/review/batch17a/SHIP.md step 6 (merge release-17a into main with the worktree method: the Morning post workflow reads main), then step 7 (run the workflow once, open /admin/morning, hear the voice).
 If anything looks wrong later:  bash scripts/rollback-prod-17a.sh $BEFORE_ID"
   exit 0
 fi

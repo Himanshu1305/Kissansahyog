@@ -44,6 +44,7 @@ jobs:
           MORNING_POST_SECRET: ${{ secrets.MORNING_POST_SECRET }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          ELEVENLABS_MODEL: ${{ secrets.ELEVENLABS_MODEL }}   # optional: empty = the code keeps its default model
         run: npm run morning -- --save
 
       - name: Keep the files for 7 days

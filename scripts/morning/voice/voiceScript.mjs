@@ -43,11 +43,11 @@ const skyWord = (d) => S.sky[skyGroup(d.code)]
 function weatherSentences(w, tasks) {
   if (!w) return { text: [], usedTask: null }
   const d = w.days[0]
-  let first = `सागर में आज ${skyWord(d)} रहेगा। दिन का तापमान ${degrees(d.tmax)} रहेगा`
+  let first = `सागर के मौसम का हाल, ${skyWord(d)}। दिन में तापमान ${degrees(d.tmax)} तक जाएगा`
   const p = Math.round(d.rainProb ?? 0)
-  if (p >= 50 || (d.rainMm ?? 0) >= 5) first += `, और बारिश हो सकती है, संभावना ${percent(p)} है`
+  if (p >= 50 || (d.rainMm ?? 0) >= 5) first += `। आज बारिश हो सकती है, संभावना ${percent(p)} की है`
   else if (p < 30) first += `, और बारिश की संभावना बहुत कम है, सिर्फ़ ${percent(p)}`
-  else first += `, और बारिश की संभावना ${percent(p)} है`
+  else first += `। बारिश की संभावना ${percent(p)} बताई गई है`
   const out = [`${first}।`]
   const hint = (tasks || []).find((t) => t.includes('छिड़काव'))
   if (hint) out.push(`${hint}।`)
@@ -57,11 +57,13 @@ function weatherSentences(w, tasks) {
 function mandiSentences(m, crops) {
   if (!m || !m.shown.length || !crops) return []
   const head = m.isYesterday ? 'अब कल का मंडी भाव सुनिए।' : `अब ${dayMonth(m.date)} का मंडी भाव सुनिए।`
-  const lines = m.shown.slice(0, crops).map((it) => {
-    let s = `${it.name} ${rupeesPerQuintal(it.price)} रहा`
-    if (it.delta) s += it.delta > 0 ? `, ${rupees(Math.abs(it.delta))} की तेज़ी के साथ` : `, ${rupees(Math.abs(it.delta))} की गिरावट के साथ`
-    return `${s}।`
-  })
+  // three different sentence shapes, so the endings and connectors do not repeat
+  const SHAPES = [
+    (n, p, d, up) => `सबसे पहले ${n}, भाव ${p} रहा${d ? `, जो ${d} ${up ? 'ऊपर' : 'नीचे'} है` : ''}`,
+    (n, p, d, up) => `${n} की बात करें तो भाव ${p} है${d ? `, यानी ${d} की ${up ? 'तेज़ी' : 'गिरावट'}` : ''}`,
+    (n, p, d, up) => `और ${n} का भाव ${p} दर्ज हुआ${d ? `, ${d} की ${up ? 'बढ़त' : 'कमी'} के साथ` : ''}`,
+  ]
+  const lines = m.shown.slice(0, crops).map((it, i) => `${SHAPES[i % 3](it.name, rupeesPerQuintal(it.price), it.delta ? rupees(Math.abs(it.delta)) : '', it.delta > 0)}।`)
   return [head, ...lines]
 }
 
@@ -70,7 +72,7 @@ function itemSentence(model, usedTask) {
   const slot = model.slot
   if (slot && slot.kind === 'scheme' && slot.scheme) return `आज की योजना है ${slot.scheme.title_hi}, ${slot.scheme.who_hi}।`
   const task = (model.tasks || []).find((t) => t !== usedTask)
-  return task ? `आज का काम यह है, ${task}।` : null
+  return task ? `आज के लिए एक ज़रूरी बात, ${task}।` : null
 }
 
 export const CLOSING = 'पूरी जानकारी, किसान सहयोग डॉट कॉम पर। जय किसान!'

@@ -15,3 +15,4 @@ live production deployment now: 3585b4c1-6ce6-4c51-a47d-660ca75217fe
 ==================================================================
 DRY RUN OK — preconditions valid; rollback target 3585b4c1-6ce6-4c51-a47d-660ca75217fe (source 939eae0); nothing was changed
 ==================================================================
+exit 0

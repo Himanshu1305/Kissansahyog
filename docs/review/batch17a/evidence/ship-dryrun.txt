@@ -6,8 +6,12 @@
 == 0. preconditions
 + git branch --show-current -> release-17a
 + git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
+WARNING (pending — a real run would STOP here): modified tracked files would change what ships (commit them first):
+.github/workflows/morning-post.yml
+scripts/morning/voice/voiceScript.mjs
+scripts/ship-prod-17a.sh
 WARNING (pending — a real run would STOP here): tag ship-17a missing (to be created on the final HEAD and pushed: git tag ship-17a && git push origin ship-17a)
-+ HEAD ead7d09  origin/release-17a 
++ HEAD ec0d911  origin/release-17a 
 WARNING (pending — a real run would STOP here): HEAD is not what origin/release-17a has (push it first, or pull) — prod must ship a pushed commit
 == D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
 + curl -s https://kissansahyog.com/api/otp/config
@@ -29,7 +33,7 @@ live now: deployment 3585b4c1-6ce6-4c51-a47d-660ca75217fe (source 939eae0), main
 + timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-before.json
 + timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/prod-before-ship.json
 == 3. build
-+ timeout 1500 npm run build:prod   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/build-prod-20261030-110638.log
++ timeout 1500 npm run build:prod   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/build-prod-20261030-124549.log
 + node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
 + node scripts/check-no-localhost-dist.mjs dist
 + staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
@@ -76,7 +80,7 @@ chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-CPCR
     [info] FAIL  [predeploy_size] /privacy: 1678 B vs live 36328 B = 0.046 (allowed 0.85–1.15; FAQ live no, new no) <- index.html
     [info] FAIL  [predeploy_size] /terms: 1678 B vs live 48224 B = 0.035 (allowed 0.85–1.15; FAQ live no, new no) <- index.html
 == 4. deploy
-+ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/deploy-20261030-110638.log
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/deploy-20261030-124549.log
 == 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
 == 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
 + timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17a/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
@@ -106,14 +110,18 @@ chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-CPCR
     [rollback dry-run] ==================================================================
 
 ##################################################################
-A real run would ship ead7d09 to https://kissansahyog.com,
+A real run would ship ec0d911 to https://kissansahyog.com,
 replacing deployment 3585b4c1-6ce6-4c51-a47d-660ca75217fe (source 939eae0; Batch 16G ship-16g (from Batch 16G production deployment (tag ship-16g); read from Cloudflare just now)).
 Undo after a ship:  bash scripts/rollback-prod-17a.sh 3585b4c1-6ce6-4c51-a47d-660ca75217fe
 Nothing was changed.
 Pending before the real run (a real run stops until these are done):
+  - modified tracked files would change what ships (commit them first):
+.github/workflows/morning-post.yml
+scripts/morning/voice/voiceScript.mjs
+scripts/ship-prod-17a.sh
   - tag ship-17a missing (to be created on the final HEAD and pushed: git tag ship-17a && git push origin ship-17a)
   - HEAD is not what origin/release-17a has (push it first, or pull) — prod must ship a pushed commit
   - not sent in a dry run: probe that migration 0073 is applied on production (morning_post_voice_upsert with a wrong secret must answer forbidden)
 ##################################################################
-DRY RUN OK (3 pending)
+DRY RUN OK (4 pending)
 exit 0
