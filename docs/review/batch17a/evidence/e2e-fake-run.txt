@@ -1,0 +1,33 @@
+=== run 1 (no voice stored yet) ===
+[fake database] morning_post_context {"p_secret":"<secret hidden>","p_date":"2026-10-25"}
+[fake database] morning_post_upsert {"p_secret":"<secret hidden>","p_date":"2026-10-25","p_message":"<907 chars>","p_poll":"आज का सवाल\nआपके इलाके में पिछले हफ़्ते बारिश हुई?\n1. हाँ\n2. नहीं","p_poll_question_id":"p06","p_card_b64":"<180488 chars>","p_report":"<1235 chars>"}
+[fake database] morning_post_context {"p_secret":"<secret hidden>","p_date":"2026-10-25"}
+[fake ElevenLabs] POST https://api.elevenlabs.io/v1/text-to-speech/<voice>?output_format=mp3_44100_64  header xi-api-key: <hidden>  body.model_id=eleven_multilingual_v2
+[fake database] morning_post_voice_upsert {"p_secret":"<secret hidden>","p_date":"2026-10-25","p_script":"<503 chars>","p_mp3_b64":"<65536 chars>","p_meta":{"model":"eleven_multilingual_v2","voice_id":"HH8sIQq8WOcER3Nu118i","chars":503,"sha256":"269187713aaac86804fe22e24a6f289a1b24f6e33226f106f829e15ba4793b5c","bytes":49152,"generated_at":"2026-10-30T05:37:55.267Z"}}
+voice script: 503 characters; voice.mp3 made (48 KB); voice saved (48 KB)
+
+1. Today's message is ready for 2026-10-25.
+2. Folder: C:\Users\usdvi\projects\Kissansahyog\out\e2e-17a
+3. Files: message.txt (paste), card.png (post), poll.txt (make the poll), report.txt (details). 907 characters.
+4. Saved to the database for 2026-10-25 (card 132 KB). Open the admin page /admin/morning.
+5. Please read message.txt once before posting.
+
+--- voice-script.txt ---
+सीताराम किसान भाइयो! आज रविवार, पच्चीस अक्टूबर है। सागर में आज कुछ बादल रहेगा। दिन का तापमान इकतीस डिग्री रहेगा, और बारिश की संभावना बहुत कम है, सिर्फ़ दस प्रतिशत। अब कल का मंडी भाव सुनिए। चना पाँच हज़ार छह सौ पच्चीस रुपये क्विंटल रहा, सोलह रुपये की तेज़ी के साथ। गेहूं दो हज़ार छह सौ बहत्तर रुपये क्विंटल रहा, दो रुपये की तेज़ी के साथ। मक्का दो हज़ार दो सौ बाईस रुपये क्विंटल रहा, दो रुपये की तेज़ी के साथ। आज का काम यह है, बुवाई वाले खेत में नमी जाँचें। पूरी जानकारी, किसान सहयोग डॉट कॉम पर। जय किसान!
+---
+characters: 503; only Devanagari letters and the marks । , ! ? : true; digits: false; ElevenLabs calls so far: 1
+
+=== run 2 (same message, voice already stored) ===
+[fake database] morning_post_context {"p_secret":"<secret hidden>","p_date":"2026-10-25"}
+[fake database] morning_post_upsert {"p_secret":"<secret hidden>","p_date":"2026-10-25","p_message":"<907 chars>","p_poll":"आज का सवाल\nआपके इलाके में पिछले हफ़्ते बारिश हुई?\n1. हाँ\n2. नहीं","p_poll_question_id":"p06","p_card_b64":"<180488 chars>","p_report":"<1235 chars>"}
+[fake database] morning_post_context {"p_secret":"<secret hidden>","p_date":"2026-10-25"}
+voice script: 503 characters; voice already stored for this exact script; no new ElevenLabs call
+
+1. Today's message is ready for 2026-10-25.
+2. Folder: C:\Users\usdvi\projects\Kissansahyog\out\e2e-17a
+3. Files: message.txt (paste), card.png (post), poll.txt (make the poll), report.txt (details). 907 characters.
+4. Saved to the database for 2026-10-25 (card 132 KB). Open the admin page /admin/morning.
+5. Please read message.txt once before posting.
+ElevenLabs calls in total: 1 (must be 1)
+report.txt last line: voice script: 503 characters; voice already stored for this exact script; no new ElevenLabs call
+secret/key found in any output file: false

@@ -96,6 +96,7 @@ export async function main(argv = process.argv.slice(2)) {
     const v = await makeVoice({ model: res.model, outDir, noVoice: args.noVoice, callApi: args.save || args.voice, save: args.save ? { ...saveCtx, date } : null })
     voiceLine = v.line
   } catch (e) { voiceLine = `voice skipped: ${String(e && e.message).slice(0, 120)}` }
+  console.log(voiceLine)
   writeFileSync(join(outDir, 'report.txt'), `${report}${voiceLine}\n`, 'utf8')
 
   console.log('')
