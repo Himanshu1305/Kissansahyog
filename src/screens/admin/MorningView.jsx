@@ -1,4 +1,4 @@
-import { cardDataUrl, historyList } from '../../lib/admin/morningLogic'
+import { cardDataUrl, historyList, voiceDataUrl, voiceFileName, whatsappTextUrl } from '../../lib/admin/morningLogic'
 
 // Batch 16B - the look of /admin/morning. Stateless: the container (screens/AdminMorning.jsx) owns the data and the handlers,
 // so this file can be rendered in a unit test with a fake t(). Mobile first: one column, 48 px buttons, big Copy button.
@@ -33,10 +33,11 @@ export function EmptyState({ t }) {
 
 export default function MorningView({
   t, date, dateText, today, post, history, historyRows, nextDisabled, prevDisabled,
-  copied, copyFailed, pollCopied, canShare, busy, pctValue, pctMsg, pctError, resultDateText, postedText, generatedText,
+  copied, copyFailed, pollCopied, canShare, canShareAll, busy, pctValue, pctMsg, pctError, resultDateText, postedText, generatedText,
   refs, on,
 }) {
   const img = cardDataUrl(post?.card_png_b64)
+  const voice = voiceDataUrl(post?.voice_mp3_b64)
   return (
     <div data-testid="morning-post-admin" data-date={date}>
       <h1 className="mb-3 text-2xl font-bold text-stone-900">{t('mp_title')}</h1>
@@ -77,6 +78,29 @@ export default function MorningView({
                 </div>
               </>
             ) : <p className="text-stone-600">{t('mp_card_missing')}</p>}
+          </section>
+
+          <section data-testid="morning-voice-section">
+            <h2 className="mb-2 text-lg font-bold text-stone-800">{t('mp_voice')}</h2>
+            {voice ? (
+              <>
+                <audio controls preload="none" src={voice} data-testid="morning-voice" aria-label={t('mp_voice_player')} className="w-full" />
+                <a href={voice} download={voiceFileName(date)} data-testid="morning-voice-download" aria-label={t('mp_voice_download')} className={`${btnGreen} mt-2 w-full`}>{t('mp_voice_download')}</a>
+              </>
+            ) : <p className="rounded-xl bg-amber-50 p-3 font-semibold text-amber-900" data-testid="morning-voice-missing">{t('mp_voice_missing')}</p>}
+            {post.voice_script && (
+              <details data-testid="morning-voice-script" className="mt-2 rounded-2xl border-2 border-stone-200 bg-white p-3">
+                <summary className="min-h-[44px] cursor-pointer font-bold text-stone-800">{t('mp_voice_script')}</summary>
+                <p className="mt-2 whitespace-pre-wrap break-words text-base leading-relaxed text-stone-800">{post.voice_script}</p>
+              </details>
+            )}
+          </section>
+
+          <section data-testid="morning-send">
+            <a href={whatsappTextUrl(post.message_text)} target="_blank" rel="noopener noreferrer" data-testid="morning-wa-text" aria-label={t('mp_wa_text')} className={`${btnGreen} w-full min-h-[56px]`}>{t('mp_wa_text')}</a>
+            {canShareAll
+              ? <button type="button" data-testid="morning-share-all" aria-label={t('mp_share_all')} onClick={on.shareAll} className={`${btnGreen} mt-2 w-full min-h-[56px]`}>{t('mp_share_all')}</button>
+              : <p className="mt-2 text-sm text-stone-600" data-testid="morning-share-all-hint">{t('mp_share_all_hint')}</p>}
           </section>
 
           <section>

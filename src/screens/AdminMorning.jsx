@@ -5,7 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { PageShell } from '../components/layout'
 import Seo from '../components/layout/Seo'
 import { getMorningPost, getMorningHistory, markMorningPosted, setMorningPollResult } from '../lib/admin/morningApi'
-import { istToday, pickDate, shiftDate, pollResultDate, pctOk, cardFileName, copyText, canShareFile, base64ToBytes } from '../lib/admin/morningLogic'
+import { istToday, pickDate, shiftDate, pollResultDate, pctOk, cardFileName, copyText, canShareFile, canShareFiles, base64ToBytes, voiceFileName } from '../lib/admin/morningLogic'
 import { istText } from './admin/common'
 import MorningView, { MorningDenied } from './admin/MorningView'
 
@@ -38,6 +38,10 @@ export default function AdminMorning() {
   const msgRef = useRef(null)
   const canShare = useMemo(() => {
     try { return typeof File !== 'undefined' && canShareFile(navigator, new File([new Uint8Array(1)], 'x.png', { type: 'image/png' })) } catch { return false }
+  }, [])
+
+  const canShareAll = useMemo(() => {
+    try { return typeof File !== 'undefined' && canShareFiles(navigator, [new File([new Uint8Array(1)], 'x.png', { type: 'image/png' }), new File([new Uint8Array(1)], 'x.mp3', { type: 'audio/mpeg' })]) } catch { return false }
   }, [])
 
   const load = useCallback(async () => {
@@ -81,6 +85,15 @@ export default function AdminMorning() {
         if (canShareFile(navigator, file)) await navigator.share({ files: [file] })
       } catch { /* the person closed the share sheet */ }
     },
+    shareAll: async () => {
+      try {
+        const files = []
+        if (post.card_png_b64) files.push(new File([base64ToBytes(post.card_png_b64)], cardFileName(date), { type: 'image/png' }))
+        if (post.voice_mp3_b64) files.push(new File([base64ToBytes(post.voice_mp3_b64)], voiceFileName(date), { type: 'audio/mpeg' }))
+        if (canShareFiles(navigator, files)) await navigator.share({ files, text: post.message_text })
+      } catch { /* the person closed the share sheet */ }
+    },
+    voiceName: voiceFileName(date),
     mark: async () => {
       setBusy(true)
       try { await markMorningPosted(user.id, date, !post.posted_at); await load() } catch (e) { setError(errKey(e)); setState('error') } finally { setBusy(false) }
@@ -100,7 +113,7 @@ export default function AdminMorning() {
         t={t} date={date} dateText={dateText} today={today} post={post}
         history={{ state, error: state === 'error' ? error : null }} historyRows={rows}
         prevDisabled={date <= shiftDate(today, -60)} nextDisabled={date >= shiftDate(today, 1)}
-        copied={copied} copyFailed={copyFailed} pollCopied={pollCopied} canShare={canShare} busy={busy}
+        copied={copied} copyFailed={copyFailed} pollCopied={pollCopied} canShare={canShare} canShareAll={canShareAll} busy={busy}
         pctValue={pct} pctMsg={pctMsg} pctError={pctError} resultDateText={resultDateText}
         postedText={post?.posted_at ? istText(post.posted_at, lang) : ''} generatedText={post?.generated_at ? istText(post.generated_at, lang) : ''}
         refs={{ msg: msgRef }} on={on}

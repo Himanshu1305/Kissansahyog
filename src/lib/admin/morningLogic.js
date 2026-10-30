@@ -57,6 +57,15 @@ export async function copyText(text, { nav = globalThis.navigator, doc = globalT
   } catch { return 'failed' }
 }
 
+// Batch 17A - the voice note
+export const voiceFileName = (date) => `morning-${date}.mp3`
+export const voiceDataUrl = (b64) => (b64 ? `data:audio/mpeg;base64,${b64}` : null)
+export const hasVoice = (post) => !!(post && post.voice_mp3_b64)
+export const whatsappTextUrl = (text) => `https://wa.me/?text=${encodeURIComponent(String(text || ''))}`
+export function canShareFiles(nav, files) {
+  try { return !!(nav && typeof nav.share === 'function' && typeof nav.canShare === 'function' && files.length > 0 && nav.canShare({ files })) } catch { return false }
+}
+
 export function canShareFile(nav, file) {
   try { return !!(nav && typeof nav.share === 'function' && typeof nav.canShare === 'function' && nav.canShare({ files: [file] })) } catch { return false }
 }
