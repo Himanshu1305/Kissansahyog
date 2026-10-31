@@ -178,7 +178,7 @@ test('rujhan: header, one headline crop, separate weather sentence, fixed discla
   const down = trendHeadline([{ name: 'चना', series: [{ price: 5100 }, { price: 5050 }, { price: 5000 }] }])
   assert.equal(down.direction, 'down')
   const r = await run('rainy')
-  assert.ok(r.message.includes('🔎 *भाव का रुझान*'))
+  assert.ok(r.message.includes('📈 *भाव का रुझान*'))
   assert.ok(r.message.includes('(यह रुझान है, पक्की बात नहीं।)'))
   assert.match(r.message, /पिछले 3 दिन (से बढ़ा है|से घटा है|में ऊपर-नीचे रहा है)।/)
   assert.match(r.message, /अगले दो दिन बारिश हो सकती है \(करीब \d+ मिमी तक\)।/)

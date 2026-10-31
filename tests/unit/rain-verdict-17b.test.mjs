@@ -128,7 +128,7 @@ test('weather unavailable (cache and direct both fail): the post is still made, 
   const fx = loadFixture('rain-f1')
   const res = await generate({ date: fx.date, data: DATA, nowIso: fx.nowIso, loaders: { weather: () => loadWeather({ url: 'https://x.test', key: 'K', lat: 1, lon: 2, date: fx.date, fetchImpl: async () => { throw new Error('down') }, retries: 0 }), mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) } })
   assert.equal(res.haveWeather, false); assert.ok(res.report.includes('weather: OMITTED') && res.report.includes('weather source: none')); assert.ok(res.message.length > 100)
-  assert.ok(!res.message.includes('☁️ *आज सागर:*'))
+  assert.ok(!res.message.includes('☁️'))
 })
 test('a cache row older than 8 hours, or one that does not start today, is not used', () => {
   const j = loadFixture('rain-f1').json; const now = Date.parse(j.nowIso)
@@ -217,7 +217,8 @@ test('consistency over F1-F6: site and morning post agree; no "no rain" with "ra
     const card = cardData(res.model)
     const cardText = [card.weather.line1, card.weather.line2, card.scheme && card.scheme.body, card.tip && card.tip.body].filter(Boolean).join(' | ')
     const voice = buildVoiceScript(res.model).text
-    const todayLine = res.message.split('\n').find((l) => l.includes('आज सागर')) || ''
+    // Batch 17D layout: today's weather = the temperature line + the rain line under the weather heading (not the next-days line)
+    const todayLine = (res.message.split('\n\n').find((b) => b.startsWith('☁️')) || '').split('\n').slice(1, 3).join(' ')
     // today's window: "no rain" and "rain possible" never together; a dry or drizzle day shows no percentage
     for (const t of [todayLine, card.weather.line1]) {
       assert.ok(!(/आज बारिश नहीं/.test(t) && RAIN_POSSIBLE.test(t)), `${name}: no rain together with rain possible: ${t}`)

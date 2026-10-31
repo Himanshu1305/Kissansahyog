@@ -27,3 +27,13 @@ export function dayPhrase(day) {
   const mm = day.mm
   return { level: day.level, text: fmt(S.wxDay[day.level], { mm: mmShown(mm) }) }
 }
+
+// Batch 17D: the same phrase split for the message layout. { level, sky, rain }: sky is the sky word of a dry day (else null) and
+// rain is the rain sentence. `sky, rain` (or just `rain`) is word for word the phrase weatherPhrase() returns.
+export function weatherParts(v, code) {
+  const level = v.windows.today.level
+  const text = weatherPhrase(v, code).text
+  if (level !== 'dry') return { level, sky: null, rain: text }
+  const sky = S.sky[neutralSky(code)]
+  return { level, sky, rain: text.startsWith(`${sky}, `) ? text.slice(sky.length + 2) : text }
+}
