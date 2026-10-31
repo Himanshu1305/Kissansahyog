@@ -1,0 +1,22 @@
+PASS  both share buttons are at least 56 px high at 360 px width (56, 56)
+PASS  no horizontal scroll at 360 px
+PASS  the old combined button is gone
+PASS  card + message button has its aria-label
+PASS  order: clipboard, then canShare(real file), then share (writeText > canShare > share)
+PASS  card share = one PNG file (145216 bytes) + text
+PASS  the text shared and the text copied are exactly the message in the text box
+PASS  the "message copied" line is shown under the button
+PASS  voice share = one MP3 file and NO text
+PASS  the voice button does not touch the clipboard
+PASS  no error line after two good shares
+PASS  no page errors (0)
+PASS  AbortError (share sheet closed): no error line
+PASS  AbortError: nothing logged
+PASS  visible Hindi message: शेयर नहीं हो सका। नीचे डाउनलोड से कार्ड और आवाज़ रखकर WhatsApp से भेजें।
+PASS  console.warn carries only the error name: ["share failed: NotAllowedError"]
+PASS  the Download buttons are still there to use instead
+PASS  canShare(real file) = false: share() was not called, a visible message was shown
+PASS  logged: canShare-false only
+PASS  no navigator.share: the Download hint is shown and no share buttons
+
+ALL PASSED

@@ -1,0 +1,4 @@
+deployment_id=c741ffb6-2a43-4416-a410-838870e08c72
+source=c222b28
+main_chunk=/assets/index-xxd2lPdy.js
+taken_at=2026-10-31T07:11:31Z

@@ -1,0 +1,163 @@
+{
+  "label": "prod-before-17d",
+  "base": "https://kissansahyog.com",
+  "startedAt": "2026-10-31T07:11:28.176Z",
+  "gates": {
+    "snapshot": {
+      "status": "RAN-PASSED",
+      "checks": [
+        {
+          "desc": "/ recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 110151,
+            "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+            "h1": "आज किसान के लिए"
+          }
+        },
+        {
+          "desc": "/mausam recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 41278,
+            "title": "मौसम — सागर संभाग का पूर्वानुमान",
+            "h1": "आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान"
+          }
+        },
+        {
+          "desc": "/msp recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 124459,
+            "title": "मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य",
+            "h1": "गेहूं भाव — आज व MSP से तुलना"
+          }
+        },
+        {
+          "desc": "/browse recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 110151,
+            "title": "किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार",
+            "h1": "आज किसान के लिए"
+          }
+        },
+        {
+          "desc": "/sawaal recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 26900,
+            "title": "किसान सवाल — खेती के सवालों के जवाब",
+            "h1": "किसान सवाल — आपके सवाल, हमारे जवाब"
+          }
+        },
+        {
+          "desc": "/yojana recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 40881,
+            "title": "सरकारी योजनाएं — केंद्र व मध्य प्रदेश",
+            "h1": "सरकारी योजनाएं"
+          }
+        },
+        {
+          "desc": "/cold-storage recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 487148,
+            "title": "मध्य प्रदेश कोल्ड स्टोरेज खोजें — गोदाम सूची",
+            "h1": "मध्य प्रदेश कोल्ड स्टोरेज खोजें"
+          }
+        },
+        {
+          "desc": "/about recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 40718,
+            "title": "हमारे बारे में — किसान सहयोग",
+            "h1": "हमारे बारे में"
+          }
+        },
+        {
+          "desc": "/privacy recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 36328,
+            "title": "गोपनीयता नीति — किसान सहयोग",
+            "h1": "गोपनीयता नीति"
+          }
+        },
+        {
+          "desc": "/terms recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 48224,
+            "title": "उपयोग की शर्तें — किसान सहयोग",
+            "h1": "उपयोग की शर्तें"
+          }
+        },
+        {
+          "desc": "/sitemap.xml recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 548
+          }
+        },
+        {
+          "desc": "/sitemap-pages.xml recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 6818
+          }
+        },
+        {
+          "desc": "/sitemap-sawaal.xml recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 23193
+          }
+        },
+        {
+          "desc": "/sitemap-cold-storage.xml recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 4656
+          }
+        },
+        {
+          "desc": "/sitemap-schemes.xml recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 2429
+          }
+        },
+        {
+          "desc": "/robots.txt recorded",
+          "ok": true,
+          "detail": {
+            "status": 200,
+            "bytes": 180
+          }
+        }
+      ],
+      "notes": []
+    }
+  },
+  "finishedAt": "2026-10-31T07:11:30.680Z",
+  "verdict": "ALL PASSED"
+}

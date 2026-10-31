@@ -1,0 +1,17 @@
+*** DRY RUN — nothing will be changed ***
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/c741ffb6-2a43-4416-a410-838870e08c72   (read-only)
+target deployment: env=production status=success source=c222b28 created=2026-10-31T05:44:54.711832Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: c741ffb6-2a43-4416-a410-838870e08c72
+(note: c741ffb6-2a43-4416-a410-838870e08c72 is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
++ GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+  switches now: {"otp_required":true,"session_enforced":false}
++ POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/c741ffb6-2a43-4416-a410-838870e08c72/rollback   (Authorization: Bearer <token, not shown>)
++ (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == c741ffb6-2a43-4416-a410-838870e08c72 (max 3 min)
++ (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17d/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17d/evidence/prod-before.json
+  (no database step; no switch was changed)
+
+==================================================================
+DRY RUN OK — preconditions valid; rollback target c741ffb6-2a43-4416-a410-838870e08c72 (source c222b28); nothing was changed
+==================================================================
