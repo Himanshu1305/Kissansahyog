@@ -1,6 +1,6 @@
 // Dev proof (Batch 17A): a full `--save` run on the fixture day with a FAKE ElevenLabs and a FAKE database. Nothing leaves this
 // computer. Prints the voice script and the exact payloads of the two RPCs (secret hidden, base64 shortened), then runs a second
-// time to show that an unchanged script makes no second ElevenLabs call.   node scripts/morning/voice/e2e-fake.mjs [outDir]
+// time to show that an unchanged script makes no second ElevenLabs call.   node scripts/morning/voice/e2e-fake.mjs [outDir] [fixture, e.g. rain-f2]
 import { readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { createHash } from 'node:crypto'
@@ -32,12 +32,12 @@ globalThis.fetch = async (url, init) => {
 const out = resolve(process.argv[2] || join('out', 'e2e-17a'))
 const orig = console.log
 console.log('=== run 1 (no voice stored yet) ===')
-await main(['--fixtures', 'normal', '--save', '--out', out])
+await main(['--fixtures', process.argv[3] || 'normal', '--save', '--out', out])
 const script = readFileSync(join(out, 'voice-script.txt'), 'utf8').trim()
 console.log('\n--- voice-script.txt ---\n' + script + '\n---')
 console.log(`characters: ${script.length}; only Devanagari letters and the marks । , ! ? : ${isSpeakable(script)}; digits: ${/[0-9]/.test(script)}; ElevenLabs calls so far: ${apiCalls}`)
 console.log('\n=== run 2 (same message, voice already stored) ===')
-await main(['--fixtures', 'normal', '--save', '--out', out])
+await main(['--fixtures', process.argv[3] || 'normal', '--save', '--out', out])
 console.log(`ElevenLabs calls in total: ${apiCalls} (must be 1)`)
 console.log(`report.txt last line: ${readFileSync(join(out, 'report.txt'), 'utf8').trim().split('\n').pop()}`)
 console.log(`secret/key found in any output file: ${['message.txt', 'poll.txt', 'report.txt', 'voice-script.txt'].some((f) => { const t = readFileSync(join(out, f), 'utf8'); return t.includes(SECRET) || t.includes(KEY) })}`)
