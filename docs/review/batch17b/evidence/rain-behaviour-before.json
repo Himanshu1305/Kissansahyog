@@ -1,0 +1,187 @@
+{
+ "label": "before",
+ "root": "release-17a",
+ "inputs": 18,
+ "results": {
+  "dry": {
+   "note": "no rain, calm",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "trace-0.3mm": {
+   "note": "0.3 mm in one hour",
+   "spray": "caution / aw_spray_caution",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "caution / aw_harvest_caution",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "badge shown: Light rain"
+  },
+  "trace-spread-2.4mm": {
+   "note": "0.1 mm every hour for 24 hours (2.4 mm)",
+   "spray": "caution / aw_spray_caution",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "caution / aw_harvest_caution",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "badge shown: Light rain"
+  },
+  "drizzle-1.5mm": {
+   "note": "1.5 mm in one hour",
+   "spray": "caution / aw_spray_caution",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "caution / aw_harvest_caution",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "Next rain: 4 h later ~2 mm",
+   "badge": "badge shown: Light rain"
+  },
+  "light-8mm-in-6h": {
+   "note": "8 mm in hours 3-5",
+   "spray": "stop / aw_spray_stop_rain",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "stop / aw_harvest_stop",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "light (8 mm)",
+   "banner": "Next rain: 2 h later ~8 mm",
+   "badge": "badge shown: Light rain"
+  },
+  "moderate-20mm": {
+   "note": "20 mm in 4 hours",
+   "spray": "stop / aw_spray_stop_rain",
+   "irrigation": "stop / aw_irrig_stop",
+   "harvest": "stop / aw_harvest_stop",
+   "sowing": "ok / aw_sow_ok",
+   "rain_strip": "moderate (20 mm)",
+   "banner": "Next rain: 3 h later ~20 mm",
+   "badge": "badge shown: Moderate rain"
+  },
+  "heavy-70mm": {
+   "note": "70 mm in ten hours",
+   "spray": "stop / aw_spray_stop_rain",
+   "irrigation": "stop / aw_irrig_stop",
+   "harvest": "stop / aw_harvest_stop",
+   "sowing": "stop / aw_sow_stop",
+   "rain_strip": "heavy (95 mm)",
+   "banner": "Next rain: 3 h later ~70 mm",
+   "badge": "badge shown: Heavy rain (Yellow)"
+  },
+  "wind-8": {
+   "note": "dry, wind 8 km/h",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "wind-12": {
+   "note": "dry, wind 12 km/h",
+   "spray": "caution / aw_spray_caution",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "wind-20": {
+   "note": "dry, wind 20 km/h",
+   "spray": "stop / aw_spray_stop_wind",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "soil-low": {
+   "note": "dry, soil 0.15, moderate evaporation",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "soil-adequate": {
+   "note": "dry, soil 0.28",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "soil-high": {
+   "note": "dry, soil 0.40",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "hot-and-dry": {
+   "note": "dry, 37 C, evaporation 6 mm, soil 0.15",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_ok",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "light-8mm-no-hourly": {
+   "note": "day total 8 mm, 70% chance, no hourly series",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "stop / aw_harvest_stop",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "light (8 mm)",
+   "banner": "No rain in the next 48 hours",
+   "badge": "badge shown: Light rain"
+  },
+  "dry-no-hourly": {
+   "note": "dry day, no hourly series",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  },
+  "real-30oct": {
+   "note": "day total 1 mm, daily chance 80%, code 80, 0 mm for the rest of the day",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "caution / aw_harvest_caution",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "badge shown: Light rain"
+  },
+  "harvest-trace-day3": {
+   "note": "0.4 mm on day 3 only",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "caution / aw_harvest_caution",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge"
+  }
+ }
+}

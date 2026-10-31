@@ -36,8 +36,10 @@ export function irrigationWindow(hourly, daily) {
   if (hotDry) return { status: 'ok', reasonKey: 'aw_irrig_ok' }
   // the soil is dry but rain is coming: wait for it (a real caution)
   if (dry && rain48 >= IRRIGATION_RAIN_WAIT_MM_48H) return { status: 'caution', reasonKey: 'aw_irrig_caution' }
-  // moisture is adequate (or wet) and it is not hot-dry: nothing to do - green, not a warning
-  return { status: 'ok', reasonKey: 'aw_irrig_none' }
+  // moisture is adequate (or wet) and it is not hot-dry: nothing to do - green, not a warning (DECISIONS D6)
+  if (soil != null && soil >= SOIL_DRY) return { status: 'ok', reasonKey: 'aw_irrig_none' }
+  // soil dry or not known, and not hot-dry: unchanged from 17A (caution)
+  return { status: 'caution', reasonKey: 'aw_irrig_caution' }
 }
 
 export function harvestWindow(daily, hourly) {

@@ -1,0 +1,128 @@
+# Same reproduction tests (tests/unit/repro-f2-17b.test.mjs + helpers/repeatedWords.mjs) run on release-17a (91ca7b5, OLD code) in a temporary worktree
+# Expected: FAIL. Run: node --test tests/unit/repro-f2-17b.test.mjs
+
+✖ F2 message: the weather line shows no rain percentage for about 1 mm of rain (38.1494ms)
+✖ F2 message: no "postpone spraying" task for 1 mm of rain (6.7106ms)
+✖ F2 repeated-word guard: message has no repeated word (9.277ms)
+✖ F2 repeated-word guard: card weather lines have no repeated word (the founder saw "हल्की बारिश, बारिश हो सकती है") (7.2071ms)
+✖ F2 card: no "postpone spraying" anywhere on the card (5.4477ms)
+✖ F2 repeated-word guard: voice script has no repeated word, and says no chance in percent (8.2089ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 727.7186
+
+✖ failing tests:
+
+test at tests\unit\repro-f2-17b.test.mjs:19:1
+✖ F2 message: the weather line shows no rain percentage for about 1 mm of rain (38.1494ms)
+  AssertionError [ERR_ASSERTION]: percentage in: ☁️ *आज सागर:* 18–31°C, हल्की बारिश, बारिश की संभावना 80%
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\unit\repro-f2-17b.test.mjs:25:1
+✖ F2 message: no "postpone spraying" task for 1 mm of rain (6.7106ms)
+  AssertionError [ERR_ASSERTION]: a spraying task is in the message
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\unit\repro-f2-17b.test.mjs:29:1
+✖ F2 repeated-word guard: message has no repeated word (9.277ms)
+  AssertionError [ERR_ASSERTION]: F2 message repeated word(s): [{"line":"☁️ *आज सागर:* 18–31°C, हल्की बारिश, बारिश की संभावना 80%","word":"बारिश","kind":"consecutive"},{"line":"☁️ *आज सागर:* 18–31°C, हल्की बारिश, बारिश की संभावना 80%","word":"बारिश","kind":"twice"}]
+  + actual - expected
+  
+  + [
+  +   {
+  +     kind: 'consecutive',
+  +     line: '☁️ *आज सागर:* 18–31°C, हल्की बारिश, बारिश की संभावना 80%',
+  +     word: 'बारिश'
+  +   },
+  +   {
+  +     kind: 'twice',
+  +     line: '☁️ *आज सागर:* 18–31°C, हल्की बारिश, बारिश की संभावना 80%',
+  +     word: 'बारिश'
+  +   }
+  + ]
+  - []
+  
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { line: '☁️ *आज सागर:* 18–31°C, हल्की बारिश, बारिश की संभावना 80%', word: 'बारिश', kind: 'consecutive' }, { line: '☁️ *आज सागर:* 18–31°C, हल्की बारिश, बारिश की संभावना 80%', word: 'बारिश', kind: 'twice' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\unit\repro-f2-17b.test.mjs:32:1
+✖ F2 repeated-word guard: card weather lines have no repeated word (the founder saw "हल्की बारिश, बारिश हो सकती है") (7.2071ms)
+  AssertionError [ERR_ASSERTION]: F2 card line1 repeated word(s): [{"line":"हल्की बारिश, बारिश हो सकती है (संभावना 80%)","word":"बारिश","kind":"consecutive"},{"line":"हल्की बारिश, बारिश हो सकती है (संभावना 80%)","word":"बारिश","kind":"twice"}]
+  + actual - expected
+  
+  + [
+  +   {
+  +     kind: 'consecutive',
+  +     line: 'हल्की बारिश, बारिश हो सकती है (संभावना 80%)',
+  +     word: 'बारिश'
+  +   },
+  +   {
+  +     kind: 'twice',
+  +     line: 'हल्की बारिश, बारिश हो सकती है (संभावना 80%)',
+  +     word: 'बारिश'
+  +   }
+  + ]
+  - []
+  
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { line: 'हल्की बारिश, बारिश हो सकती है (संभावना 80%)', word: 'बारिश', kind: 'consecutive' }, { line: 'हल्की बारिश, बारिश हो सकती है (संभावना 80%)', word: 'बारिश', kind: 'twice' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\unit\repro-f2-17b.test.mjs:37:1
+✖ F2 card: no "postpone spraying" anywhere on the card (5.4477ms)
+  AssertionError [ERR_ASSERTION]: हल्की बारिश, बारिश हो सकती है (संभावना 80%) | हवा 9 किमी/घंटा · दवा-खाद का छिड़काव कल पर टालें | रबी बुवाई की खिड़की में 16 दिन बाकी | दवा-खाद का छिड़काव कल पर टालें
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\unit\repro-f2-17b.test.mjs:42:1
+✖ F2 repeated-word guard: voice script has no repeated word, and says no chance in percent (8.2089ms)
+  AssertionError [ERR_ASSERTION]: a rain percentage is spoken
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+# ---- Same six tests on release-17b (this branch), in the main checkout:
+✔ F2 message: the weather line shows no rain percentage for about 1 mm of rain (31.4075ms)
+✔ F2 message: no "postpone spraying" task for 1 mm of rain (5.7709ms)
+✔ F2 repeated-word guard: message has no repeated word (7.1612ms)
+✔ F2 repeated-word guard: card weather lines have no repeated word (the founder saw "हल्की बारिश, बारिश हो सकती है") (4.5538ms)
+✔ F2 card: no "postpone spraying" anywhere on the card (4.9153ms)
+✔ F2 repeated-word guard: voice script has no repeated word, and says no chance in percent (5.4928ms)
+ℹ tests 6
+ℹ pass 6
+ℹ fail 0

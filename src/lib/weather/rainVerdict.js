@@ -138,7 +138,7 @@ export function rainVerdict({ hourly, daily, nowIso = null, source = 'cache' } =
   let spray
   if (hasHourly ? mm6 >= SPRAY_STOP_MM_6H : mm24 >= DAILY_ONLY_SPRAY_STOP_MM) spray = { status: 'stop', reasonKey: 'aw_spray_stop_rain' }
   else if (wind6 > SPRAY_STOP_WIND_KMH) spray = { status: 'stop', reasonKey: 'aw_spray_stop_wind' }
-  else if (mm24 >= SPRAY_CAUTION_MM_24H || (wind6 >= SPRAY_CAUTION_WIND_KMH && wind6 <= SPRAY_STOP_WIND_KMH)) spray = { status: 'caution', reasonKey: mm24 >= SPRAY_CAUTION_MM_24H ? 'aw_spray_caution_rain' : 'aw_spray_caution_wind' }
+  else if (mm24 >= SPRAY_CAUTION_MM_24H || (wind6 >= SPRAY_CAUTION_WIND_KMH && wind6 <= SPRAY_STOP_WIND_KMH)) spray = { status: 'caution', reasonKey: 'aw_spray_caution' }
   else spray = { status: 'ok', reasonKey: 'aw_spray_ok' }
 
   // harvest / drying

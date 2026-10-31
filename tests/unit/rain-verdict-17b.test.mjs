@@ -174,6 +174,8 @@ test('irrigation: adequate soil is a green "No irrigation needed now", not an or
   assert.equal(irrigationWindow([{ time: '2026-10-31T10:00', soil_moisture: 0.4, precip_mm: 0 }], daily(0, 3)).status, 'ok') // wet soil: nothing to do either
   assert.equal(irrigationWindow([], daily(12, 3)).status, 'stop')
   const dry = [{ date: '2026-10-31', precip_mm: 3, et0: 3, soil_moisture: 0.15 }, { date: '2026-11-01', precip_mm: 0 }]
+  assert.equal(irrigationWindow([], [{ date: '2026-10-31', precip_mm: 0, et0: 3, soil_moisture: 0.15 }]).status, 'caution') // dry soil, not hot-dry: unchanged from 17A
+  assert.equal(irrigationWindow([], [{ date: '2026-10-31', precip_mm: 0, et0: 3 }]).status, 'caution') // soil not known: unchanged
   assert.equal(irrigationWindow([], dry).status, 'caution')                       // dry field, rain coming: wait for it
   assert.equal(irrigationWindow([], [{ date: '2026-10-31', precip_mm: 0, et0: 6, soil_moisture: 0.15 }]).reasonKey, 'aw_irrig_ok')
 })
@@ -196,7 +198,7 @@ test('rain strip (Homepage) uses the same classes: 2.5 mm triggers, a trace does
   assert.equal(classifyDay(0.9), null); assert.equal(classifyDay(15.5).level, 'light'); assert.equal(classifyDay(15.6).level, 'moderate'); assert.equal(classifyDay(64.5).level, 'heavy')
 })
 test('every new string has Hindi and English', () => {
-  for (const k of ['aw_spray_caution_rain', 'aw_spray_caution_wind', 'aw_irrig_none', 'rv_banner_none_more', 'rv_banner_drizzle', 'rv_today_total', 'rv_level_drizzle', 'rv_level_light', 'rv_level_moderate', 'rv_level_heavy']) assert.ok(strings[k].hi && strings[k].en, k)
+  for (const k of ['aw_irrig_none', 'rv_banner_none_more', 'rv_banner_drizzle', 'rv_today_total', 'rv_level_drizzle', 'rv_level_light', 'rv_level_moderate', 'rv_level_heavy']) assert.ok(strings[k].hi && strings[k].en, k)
 })
 
 // ---- consistency: every fixture through the site rules AND the morning generator; rain statements never contradict

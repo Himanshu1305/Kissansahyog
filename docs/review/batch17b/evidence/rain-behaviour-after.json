@@ -1,0 +1,205 @@
+{
+ "label": "after",
+ "root": "release-17b",
+ "inputs": 18,
+ "results": {
+  "dry": {
+   "note": "no rain, calm",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "trace-0.3mm": {
+   "note": "0.3 mm in one hour",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "trace-spread-2.4mm": {
+   "note": "0.1 mm every hour for 24 hours (2.4 mm)",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "Only a light drizzle possible in the next 48 hours (about 2.4 mm)",
+   "badge": "badge shown: Today's total: very light rain (2.4 mm)",
+   "verdict_level": "drizzle"
+  },
+  "drizzle-1.5mm": {
+   "note": "1.5 mm in one hour",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "Only a light drizzle possible in the next 48 hours (about 1.5 mm)",
+   "badge": "badge shown: Today's total: very light rain (1.5 mm)",
+   "verdict_level": "drizzle"
+  },
+  "light-8mm-in-6h": {
+   "note": "8 mm in hours 3-5",
+   "spray": "stop / aw_spray_stop_rain",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "stop / aw_harvest_stop",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "light (8 mm)",
+   "banner": "Next rain: 2 h later ~8 mm",
+   "badge": "badge shown: Today's total: light rain (8 mm)",
+   "verdict_level": "light"
+  },
+  "moderate-20mm": {
+   "note": "20 mm in 4 hours",
+   "spray": "stop / aw_spray_stop_rain",
+   "irrigation": "stop / aw_irrig_stop",
+   "harvest": "stop / aw_harvest_stop",
+   "sowing": "ok / aw_sow_ok",
+   "rain_strip": "moderate (20 mm)",
+   "banner": "Next rain: 3 h later ~20 mm",
+   "badge": "badge shown: Today's total: moderate rain (20 mm)",
+   "verdict_level": "moderate"
+  },
+  "heavy-70mm": {
+   "note": "70 mm in ten hours",
+   "spray": "stop / aw_spray_stop_rain",
+   "irrigation": "stop / aw_irrig_stop",
+   "harvest": "stop / aw_harvest_stop",
+   "sowing": "stop / aw_sow_stop",
+   "rain_strip": "heavy (95 mm)",
+   "banner": "Next rain: 3 h later ~70 mm",
+   "badge": "badge shown: Today's total: heavy rain (70 mm)",
+   "verdict_level": "heavy"
+  },
+  "wind-8": {
+   "note": "dry, wind 8 km/h",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "wind-12": {
+   "note": "dry, wind 12 km/h",
+   "spray": "caution / aw_spray_caution",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "wind-20": {
+   "note": "dry, wind 20 km/h",
+   "spray": "stop / aw_spray_stop_wind",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "soil-low": {
+   "note": "dry, soil 0.15, moderate evaporation",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "caution / aw_irrig_caution",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "soil-adequate": {
+   "note": "dry, soil 0.28",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "soil-high": {
+   "note": "dry, soil 0.40",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "hot-and-dry": {
+   "note": "dry, 37 C, evaporation 6 mm, soil 0.15",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_ok",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "light-8mm-no-hourly": {
+   "note": "day total 8 mm, 70% chance, no hourly series",
+   "spray": "stop / aw_spray_stop_rain",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "stop / aw_harvest_stop",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "light (8 mm)",
+   "banner": "Next rain ~8 mm",
+   "badge": "badge shown: Today's total: light rain (8 mm)",
+   "verdict_level": "light"
+  },
+  "dry-no-hourly": {
+   "note": "dry day, no hourly series",
+   "spray": "caution / aw_spray_caution",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  },
+  "real-30oct": {
+   "note": "day total 1 mm, daily chance 80%, code 80, 0 mm for the rest of the day",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No more rain expected in the next 48 hours",
+   "badge": "badge shown: Today's total: very light rain (1 mm)",
+   "verdict_level": "dry"
+  },
+  "harvest-trace-day3": {
+   "note": "0.4 mm on day 3 only",
+   "spray": "ok / aw_spray_ok",
+   "irrigation": "ok / aw_irrig_none",
+   "harvest": "ok / aw_harvest_ok",
+   "sowing": "caution / aw_sow_caution",
+   "rain_strip": "none",
+   "banner": "No rain in the next 48 hours",
+   "badge": "no badge",
+   "verdict_level": "dry"
+  }
+ }
+}

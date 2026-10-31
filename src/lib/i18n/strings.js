@@ -437,7 +437,7 @@ export const strings = {
   imd_orange: { hi: 'IMD नारंगी चेतावनी', en: 'IMD Orange Alert' },
   imd_red: { hi: 'IMD लाल चेतावनी', en: 'IMD Red Alert' },
   advice_light: { hi: 'हल्की बारिश — सिंचाई की ज़रूरत नहीं, खेत के काम जारी रखें', en: 'Light rain — no irrigation needed, fieldwork can continue' },
-  advice_moderate: { hi: 'मध्यम बारिश — छिड़काव बारिश रुकने के बाद करें, कटी फसल सुरक्षित रखें', en: 'Moderate rain — delay spraying, protect harvested crops' },
+  advice_moderate: { hi: 'मध्यम बारिश — छिड़काव बारिश रुकने के बाद करें, कटी फसल सुरक्षित रखें', en: 'Moderate rain — spray after the rain stops, protect harvested crops' },
   advice_heavy: { hi: 'भारी बारिश (IMD पीली चेतावनी) — कटाई रोकें, मज़दूर बुकिंग टालें, पशुओं को सुरक्षित स्थान पर रखें', en: 'Heavy rain (IMD Yellow Alert) — stop harvesting, delay labor bookings, shelter animals' },
   advice_very_heavy: { hi: 'बहुत भारी बारिश (IMD नारंगी चेतावनी) — खेत में न जाएं, फसल को नुकसान हो सकता है, निचले इलाकों में बाढ़ का खतरा', en: 'Very heavy rain (IMD Orange Alert) — avoid fields, crop damage likely, flood risk in low areas' },
   advice_extreme: { hi: 'अत्यधिक भारी बारिश (IMD लाल चेतावनी) — घर में रहें, प्रशासन के निर्देशों का पालन करें', en: 'Extremely heavy rain (IMD Red Alert) — stay indoors, follow district administration orders' }, // ks-style-ok: IMD class label
@@ -1449,7 +1449,7 @@ export const strings = {
   tf_advice_cap: { hi: 'आज की सलाह', en: "Today's advice" },
   tf_rain_tomorrow: { hi: 'कल बारिश की संभावना', en: 'Rain likely tomorrow' },
   tf_rain_none: { hi: 'अगले 2 दिन बारिश नहीं', en: 'No rain for the next 2 days' },
-  tf_advice_heavy: { hi: 'भारी बारिश की चेतावनी — छिड़काव और कटाई बारिश रुकने के बाद करें', en: 'Postpone spraying and harvest today — heavy-rain warning' },
+  tf_advice_heavy: { hi: 'भारी बारिश की चेतावनी — छिड़काव और कटाई बारिश रुकने के बाद करें', en: 'Heavy-rain warning — spray and harvest after the rain stops' },
   tf_advice_rain_soon: { hi: 'आज कटाई पूरी करें, अनाज खुले में न छोड़ें', en: 'Finish harvest today; do not leave grain in the open' },
   tf_advice_clear: { hi: 'छिड़काव और कटाई के लिए अच्छा दिन', en: 'A good day for spraying and harvest' },
   tf_from: { hi: 'से', en: 'is' },
@@ -1701,8 +1701,6 @@ export const strings = {
   aw_irrig_stop: { hi: '48 घंटे में अच्छी बारिश — सिंचाई रोकें', en: 'Good rain in 48h — hold irrigation' },
   aw_irrig_caution: { hi: 'मिट्टी में नमी अभी ठीक', en: 'Soil moisture is adequate now' },
   // Batch 17B - one rain verdict (src/lib/weather/rainVerdict.js): the wording the /mausam banner, badge and action cards use
-  aw_spray_caution_rain: { hi: 'अगले 24 घंटे में बारिश संभव — ध्यान से', en: 'Some rain possible within 24h — be careful' },
-  aw_spray_caution_wind: { hi: 'हवा थोड़ी तेज़ — ध्यान से', en: 'A bit breezy — be careful' },
   aw_irrig_none: { hi: 'सिंचाई की ज़रूरत नहीं', en: 'No irrigation needed now' },
   rv_banner_none_more: { hi: 'अगले 48 घंटे और बारिश नहीं', en: 'No more rain expected in the next 48 hours' },
   rv_banner_drizzle: { hi: 'अगले 48 घंटे में हल्की बूँदाबाँदी संभव (करीब {mm} मिमी)', en: 'Only a light drizzle possible in the next 48 hours (about {mm} mm)' },
