@@ -1,0 +1,4 @@
+deployment_id=f692b6da-d3c2-4588-b2ab-8803b340827f
+source=91ca7b5
+main_chunk=/assets/index-Qlc0io2q.js
+taken_at=2026-10-31T01:34:18Z
