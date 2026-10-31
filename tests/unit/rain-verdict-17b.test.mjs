@@ -73,7 +73,7 @@ test('F2 the real 30 Oct case: 80% chance and 1 mm earlier today is DRY for the 
   assert.equal(v.level, 'dry'); assert.equal(v.mmRestOfToday, 0); assert.equal(v.showProb, false); assert.equal(v.todayTotalMm, 1); assert.equal(v.todayTotalLevel, 'drizzle')
   assert.equal(v.spray.status, 'ok'); assert.equal(v.nextRainInHours, null)
   assert.ok(!/संभावना\s*\d+%/.test(res.message))
-  assert.ok(!/छिड़काव कल पर टालें/.test(res.message))
+  assert.ok(!/छिड़काव बारिश रुकने के बाद करें/.test(res.message))
   assert.ok(res.message.includes('आज बारिश नहीं'))
   // the same cell on /mausam: banner says no more rain, spraying ok, badge says it is today's total
   const c = siteCell(fx); const sv = RV.rainVerdict({ hourly: c.hourly, daily: c.daily })
@@ -88,9 +88,9 @@ test('F3 real rain: light with the chance shown, spraying stop, harvest stop; ca
   assert.equal(v.level, 'light'); assert.equal(v.showProb, true); assert.equal(v.probPct, 90); assert.equal(v.mm6h, 8)
   assert.deepEqual([v.spray.status, v.harvest.status, v.nextRainInHours], ['stop', 'stop', 1])
   assert.ok(res.message.includes('हल्की बारिश संभव, संभावना 90% (करीब 8 मिमी)'))
-  assert.ok(res.model.tasks.includes('दवा-खाद का छिड़काव कल पर टालें'))
+  assert.ok(res.model.tasks.includes('दवा-खाद का छिड़काव बारिश रुकने के बाद करें'))
   const cd = cardData(res.model)
-  assert.ok([cd.scheme?.body, cd.tip?.body, cd.weather.line2].join('|').includes('छिड़काव कल पर टालें'))
+  assert.ok([cd.scheme?.body, cd.tip?.body, cd.weather.line2].join('|').includes('छिड़काव बारिश रुकने के बाद करें'))
   const c = siteCell(fx); assert.equal(actionWindows(c.hourly, c.daily).spray.status, 'stop'); assert.equal(actionWindows(c.hourly, c.daily).harvest.status, 'stop')
   assert.equal(bannerText(RV.rainVerdict({ hourly: c.hourly, daily: c.daily }), en).kind, 'rain')
 })
@@ -201,7 +201,7 @@ test('every new string has Hindi and English', () => {
 
 // ---- consistency: every fixture through the site rules AND the morning generator; rain statements never contradict
 test('consistency over F1-F6: site and morning post agree; no "no rain" with "rain possible" or "postpone spraying" for the same window', async () => {
-  const POSTPONE = /छिड़काव कल पर टालें/
+  const POSTPONE = /छिड़काव बारिश रुकने के बाद करें/
   const RAIN_POSSIBLE = /बारिश संभव|बारिश हो सकती है|बूँदाबाँदी|बारिश की चेतावनी/
   for (const name of names) {
     const { fx, res } = await run(name)
@@ -259,7 +259,7 @@ test('the guard itself catches a repeat (so a pass means something)', () => {
   assert.equal(findRepeats('आज बारिश बारिश नहीं')[0].kind, 'consecutive')
   assert.equal(findRepeats('कल: हल्की बारिश · परसों: बारिश नहीं').length, 0)
   assert.equal(findRepeats('भाव पाँच हज़ार छह सौ रुपये, जो सोलह रुपये ऊपर है').length, 0)
-  assert.equal(findRepeats('दवा का छिड़काव और खाद का छिड़काव टालें').length, 1)
+  assert.equal(findRepeats('दवा का छिड़काव और खाद का छिड़काव करें').length, 1)
 })
 
 // ---- voice

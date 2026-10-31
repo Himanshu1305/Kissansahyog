@@ -30,7 +30,7 @@ Every number below is a named constant at the top of `src/lib/weather/rainVerdic
 10. **Stale saved forecast.** The morning post uses the saved Sagar forecast only if it was fetched within 8 hours (`CACHE_MAX_AGE_H`); otherwise it asks Open-Meteo directly (day numbers only) and says so in `report.txt` (`weather source: open-meteo-direct (cache stale/missing)`). If both fail, the weather is left out, as before.
 
 ## 3. The tasks ("आज का काम")
-- "दवा-खाद का छिड़काव कल पर टालें" appears only when the spraying window says STOP **because of rain** (the same window as /mausam).
+- "दवा-खाद का छिड़काव बारिश रुकने के बाद करें" appears only when the spraying window says STOP **because of rain** (the same window as /mausam). Wording changed in the follow-up: it no longer says "on the next day" (wrong when tomorrow is rainy too); it says to spray after the rain stops. The same change was made to the two older rain-strip sentences that said "postpone spraying" (`advice_moderate`, `tf_advice_heavy`).
 - "कटी फसल और अनाज ढककर रखें" appears only when the harvest window says STOP (5 mm in 48 h).
 - "खेत से पानी निकलने की नाली साफ़ रखें" appears when the 48-hour level is moderate or heavy.
 - "तेज़ हवा में छिड़काव न करें" appears at wind 25 km/h or more (as before) **and** whenever /mausam says spraying is STOP because of wind (over 15 km/h), so the card never stays silent when /mausam says stop.

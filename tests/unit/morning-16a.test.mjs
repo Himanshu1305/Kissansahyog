@@ -74,7 +74,7 @@ test('weather: parse, hindi sky words, timeout/failure handling (one retry, then
 test('work rules: rain day gives the three rain tasks, in order', () => {
   const r = pick(day({ rainProb: 60, rainMm: 20 }), { sowingOpen: true })
   assert.equal(r.tasks.length, 3); assert.deepEqual(r.fired.slice(0, 3), ['rain_spray', 'rain_cover', 'rain_drain'])
-  assert.equal(r.tasks[0], 'दवा-खाद का छिड़काव कल पर टालें')
+  assert.equal(r.tasks[0], 'दवा-खाद का छिड़काव बारिश रुकने के बाद करें')
   assert.equal(pick(day({ rainMm: 9 })).fired[0], 'rain_spray') // 8 mm for the day also stops spraying (day totals only)
   assert.equal(pick(day({ rainProb: 90, rainMm: 1 })).tasks.length, 0) // a high chance with about 1 mm is not a rain day (Batch 17B)
 })

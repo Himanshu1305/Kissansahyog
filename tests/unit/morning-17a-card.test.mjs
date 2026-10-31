@@ -42,7 +42,7 @@ test('card: worst case (rainy, 5 long rows, scheme with a long text, tip, wind +
   const m = await modelFor('rainy')
   m.mandi = { ...m.mandi, shown: Array.from({ length: 5 }, (_, i) => ({ ...item(i), name: 'बहुत लंबे नाम वाली फसल' })), extra: [] }
   m.slot = { ...SCHEME, scheme: { ...SCHEME.scheme, who_hi: SCHEME.scheme.who_hi + ' ' + SCHEME.scheme.who_hi } }
-  m.tasks = ['दवा-खाद का छिड़काव कल पर टालें', 'कटी फसल और अनाज ढककर रखें']
+  m.tasks = ['दवा-खाद का छिड़काव बारिश रुकने के बाद करें', 'कटी फसल और अनाज ढककर रखें']
   const { overflow } = await renderCard(cardData(m), { browser: await getBrowser() })
   assert.deepEqual(overflow, [])
 })
