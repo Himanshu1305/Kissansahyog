@@ -14,6 +14,7 @@ import { compose, lint, tithiLine, KVK_PHONE, HARD_CHARS } from '../../scripts/m
 import { generate, loadData } from '../../scripts/morning/lib/generate.js'
 import { parseOpenMeteo, getForecast, skyGroup } from '../../scripts/morning/lib/weather.js'
 import { S } from '../../scripts/morning/strings.hi.js'
+import { rainVerdict, toDailyShape } from '../../src/lib/weather/rainVerdict.js'
 import { loadFixture, makeRows, FIXTURE_DATE } from '../../scripts/morning/fixtures.js'
 import { basketSeries } from '../../src/lib/mandi/basket.js'
 import { windowStart } from '../../src/lib/mandi/mspWindow.js'
@@ -23,6 +24,9 @@ import { recordResult } from '../../scripts/morning/poll-result.mjs'
 const DATA = loadData()
 const TODAY = FIXTURE_DATE // 2026-10-25, a Sunday
 const YDAY = addDays(TODAY, -1)
+// Batch 17B: rain rules read the rain verdict. verdictOf(day) = the verdict from day totals only (no hourly series).
+const verdictOf = (d) => rainVerdict({ daily: toDailyShape([d, { ...d, date: addDays(d.date, 1), rainMm: 0, rainProb: 0 }, { ...d, date: addDays(d.date, 2), rainMm: 0, rainProb: 0 }]) })
+const pick = (d, ctx = {}) => pickTasks(DATA.workRules, d, { ...ctx, verdict: d ? verdictOf(d) : null })
 const day = (o = {}) => ({ date: TODAY, tmin: 18, tmax: 29, rainProb: 10, rainMm: 0, windMax: 10, code: 1, ...o })
 const run = (fixture, extra = {}) => {
   const fx = typeof fixture === 'string' ? loadFixture(fixture) : fixture
@@ -68,19 +72,20 @@ test('weather: parse, hindi sky words, timeout/failure handling (one retry, then
 
 // ---- 4.4 work rules
 test('work rules: rain day gives the three rain tasks, in order', () => {
-  const r = pickTasks(DATA.workRules, day({ rainProb: 60 }), { sowingOpen: true })
-  assert.equal(r.tasks.length, 3); assert.deepEqual(r.fired.slice(0, 1), ['rain'])
+  const r = pick(day({ rainProb: 60, rainMm: 20 }), { sowingOpen: true })
+  assert.equal(r.tasks.length, 3); assert.deepEqual(r.fired.slice(0, 3), ['rain_spray', 'rain_cover', 'rain_drain'])
   assert.equal(r.tasks[0], 'दवा-खाद का छिड़काव कल पर टालें')
-  assert.equal(pickTasks(DATA.workRules, day({ rainMm: 6 }), {}).fired[0], 'rain') // 5 mm also fires it
+  assert.equal(pick(day({ rainMm: 9 })).fired[0], 'rain_spray') // 8 mm for the day also stops spraying (day totals only)
+  assert.equal(pick(day({ rainProb: 90, rainMm: 1 })).tasks.length, 0) // a high chance with about 1 mm is not a rain day (Batch 17B)
 })
 test('work rules: windy, hot and dry, cold, season fallback, none fire, and the three-task cap', () => {
-  assert.deepEqual(pickTasks(DATA.workRules, day({ windMax: 26 }), {}).tasks, ['तेज़ हवा में छिड़काव न करें'])
-  assert.deepEqual(pickTasks(DATA.workRules, day({ tmax: 36, rainProb: 10 }), {}).tasks, ['सिंचाई वाले खेत में नमी जाँचें'])
-  assert.equal(pickTasks(DATA.workRules, day({ tmax: 36, rainProb: 30 }), {}).tasks.length, 0) // hot but not dry enough
-  assert.deepEqual(pickTasks(DATA.workRules, day({ tmin: 6 }), {}).fired, ['cold'])
-  assert.deepEqual(pickTasks(DATA.workRules, day(), { sowingOpen: true }).fired, ['sowing_season'])
-  assert.equal(pickTasks(DATA.workRules, day(), { sowingOpen: false }).tasks.length, 0)
-  const many = pickTasks(DATA.workRules, day({ rainProb: 90, windMax: 40, tmin: 2 }), { sowingOpen: true })
+  assert.deepEqual(pick(day({ windMax: 26 })).tasks, ['तेज़ हवा में छिड़काव न करें'])
+  assert.deepEqual(pick(day({ tmax: 36, rainProb: 10 })).tasks, ['सिंचाई वाले खेत में नमी जाँचें'])
+  assert.equal(pick(day({ tmax: 36, rainMm: 6, rainProb: 60 })).fired.includes('hot_dry'), false) // hot but rain is coming
+  assert.deepEqual(pick(day({ tmin: 6 })).fired, ['cold'])
+  assert.deepEqual(pick(day(), { sowingOpen: true }).fired, ['sowing_season'])
+  assert.equal(pick(day(), { sowingOpen: false }).tasks.length, 0)
+  const many = pick(day({ rainProb: 90, rainMm: 30, windMax: 40, tmin: 2 }), { sowingOpen: true })
   assert.equal(many.tasks.length, 3)
   // weather failed: weather rules are skipped, the season rule still works
   assert.deepEqual(pickTasks(DATA.workRules, null, { sowingOpen: true }).fired, ['sowing_season'])
@@ -176,7 +181,7 @@ test('rujhan: header, one headline crop, separate weather sentence, fixed discla
   assert.ok(r.message.includes('🔎 *भाव का रुझान*'))
   assert.ok(r.message.includes('(यह रुझान है, पक्की बात नहीं।)'))
   assert.match(r.message, /पिछले 3 दिन (से बढ़ा है|से घटा है|में ऊपर-नीचे रहा है)।/)
-  assert.match(r.message, /अगले दो दिन बारिश की संभावना \d+% तक है।/)
+  assert.match(r.message, /अगले दो दिन बारिश हो सकती है \(करीब \d+ मिमी तक\)।/)
   assert.ok(!/अंदाज़ा/.test(r.message))
 })
 
@@ -289,7 +294,7 @@ test('weather failure omits the weather lines and weather tasks; mandi failure s
 test('no Devanagari text in the logic files (only comments); every phrase lives in scripts/morning/strings.hi.js', () => {
   const dir = new URL('../../scripts/morning/lib/', import.meta.url)
   for (const f of readdirSync(dir).filter((x) => x.endsWith('.js') && x !== 'lintWords.js')) {
-    const code = readFileSync(new URL(f, dir), 'utf8').split('\n').map((l) => l.replace(/\s\/\/.*$/, '').replace(/^\s*\/\/.*$/, '')).join('\n')
+    const code = readFileSync(new URL(f, dir), 'utf8').split(/\r?\n/).map((l) => l.replace(/\s\/\/.*$/, '').replace(/^\s*\/\/.*$/, '')).join('\n')
     assert.ok(!/[ऀ-ॿ]/.test(code), `${f} has Devanagari outside comments`)
   }
 })
