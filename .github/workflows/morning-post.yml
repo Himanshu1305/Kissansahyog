@@ -1,7 +1,9 @@
 name: Morning post
 
 # Makes the daily "सुबह की खबर" WhatsApp post (message + card + poll) and saves it in the database for /admin/morning.
-# 23:00 UTC = 04:30 IST. GitHub may DELAY scheduled runs by up to ~30 minutes, so the post is normally ready by 05:00 IST.
+# Batch 17C: four early tries a day (01:07, 02:17, 03:17, 04:07 IST), off the busy minutes, because GitHub starts scheduled runs late
+# (a single 04:30 IST run really started between 06:34 and 07:59 IST). The first step asks the database whether today's post is already
+# complete (voice stored); if so the try ends green in seconds. Any doubt or error = run the full job. A normal manual run always runs fully.
 # GitHub only runs `schedule` from the DEFAULT branch (main): the copy of THIS file on main is the one that fires, and it checks out main
 # (the default branch) too, so the generator code must be on main (Batch 17A: merge release-17a into main AFTER migration 0073 and the site ship).
 # A failed scheduled run emails the repository owner through GitHub's own notifications (Settings > Notifications > Actions).
@@ -12,8 +14,16 @@ name: Morning post
 
 on:
   schedule:
-    - cron: '0 23 * * *'
+    - cron: '37 19 * * *'   # 01:07 IST
+    - cron: '47 20 * * *'   # 02:17 IST
+    - cron: '47 21 * * *'   # 03:17 IST
+    - cron: '37 22 * * *'   # 04:07 IST
   workflow_dispatch:
+    inputs:
+      check_first:
+        description: "Skip the job if today's post is already complete (to test the scheduled behaviour by hand)"
+        type: boolean
+        default: false
 
 concurrency:
   group: morning-post
@@ -29,15 +39,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Is today's post already complete?
+        id: check
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          CHECK_FIRST: ${{ inputs.check_first }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          MORNING_POST_SECRET: ${{ secrets.MORNING_POST_SECRET }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: node scripts/morning/check-complete.mjs   # ubuntu-latest ships Node 22+; the script needs no npm install
+
       - uses: actions/setup-node@v4
+        if: steps.check.outputs.complete != 'true'
         with:
           node-version: '22'   # same as the other workflows (supabase-js needs Node 22)
 
       - run: npm ci
+        if: steps.check.outputs.complete != 'true'
 
       - run: npx playwright install --with-deps chromium
+        if: steps.check.outputs.complete != 'true'
 
       - name: Make and save the morning post
+        if: steps.check.outputs.complete != 'true'
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
@@ -48,7 +73,7 @@ jobs:
         run: npm run morning -- --save
 
       - name: Keep the files for 7 days
-        if: always()
+        if: always() && (steps.check.outputs.complete != 'true')
         uses: actions/upload-artifact@v4
         with:
           name: morning-post
@@ -57,6 +82,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: E-mail "ready" (optional)
+        if: steps.check.outputs.complete != 'true'
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
