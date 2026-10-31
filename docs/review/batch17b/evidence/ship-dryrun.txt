@@ -7,7 +7,7 @@
 + git branch --show-current -> release-17b
 + git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
 WARNING (pending — a real run would STOP here): tag ship-17b missing (to be created on the final HEAD and pushed: git tag ship-17b && git push origin ship-17b)
-+ HEAD a6dcf9a  origin/release-17b 
++ HEAD c29a7da  origin/release-17b 
 WARNING (pending — a real run would STOP here): HEAD is not what origin/release-17b has (push it first, or pull) — prod must ship a pushed commit
 == D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
 + curl -s https://kissansahyog.com/api/otp/config
@@ -25,30 +25,11 @@ live now: deployment f692b6da-d3c2-4588-b2ab-8803b340827f (source 91ca7b5), main
   = live is the expected deployment: Batch 17A ship-17a (from Batch 17A production deployment (tag ship-17a); read from Cloudflare just now) — rollback target f692b6da-d3c2-4588-b2ab-8803b340827f
 + (would write) C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/prod-deployment-before.txt  deployment_id=f692b6da-d3c2-4588-b2ab-8803b340827f
 == 2. read-only snapshot of the live deployment: C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-before.json
-  snapshot missing — taking it now (read-only GETs; writes only the local file)
-+ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-snapshot --label prod-before-17b --checks snapshot --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-before.json
-PASS  [snapshot] / recorded  — {"status":200,"bytes":109905,"title":"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार","h1":"आज किसान के लिए"}
-PASS  [snapshot] /mausam recorded  — {"status":200,"bytes":41186,"title":"मौसम — सागर संभाग का पूर्वानुमान","h1":"आपकी जगह मौसम — आज और 7 दिन का पूर्वानुमान"}
-PASS  [snapshot] /msp recorded  — {"status":200,"bytes":124042,"title":"मंडी भाव व MSP — आज का भाव vs समर्थन मूल्य","h1":"गेहूं भाव — आज व MSP से तुलना"}
-PASS  [snapshot] /browse recorded  — {"status":200,"bytes":109905,"title":"किसान सहयोग — मंडी भाव, मौसम, योजनाएं व बाज़ार","h1":"आज किसान के लिए"}
-PASS  [snapshot] /sawaal recorded  — {"status":200,"bytes":26900,"title":"किसान सवाल — खेती के सवालों के जवाब","h1":"किसान सवाल — आपके सवाल, हमारे जवाब"}
-PASS  [snapshot] /yojana recorded  — {"status":200,"bytes":40881,"title":"सरकारी योजनाएं — केंद्र व मध्य प्रदेश","h1":"सरकारी योजनाएं"}
-PASS  [snapshot] /cold-storage recorded  — {"status":200,"bytes":487148,"title":"मध्य प्रदेश कोल्ड स्टोरेज खोजें — गोदाम सूची","h1":"मध्य प्रदेश कोल्ड स्टोरेज खोजें"}
-PASS  [snapshot] /about recorded  — {"status":200,"bytes":40718,"title":"हमारे बारे में — किसान सहयोग","h1":"हमारे बारे में"}
-PASS  [snapshot] /privacy recorded  — {"status":200,"bytes":36328,"title":"गोपनीयता नीति — किसान सहयोग","h1":"गोपनीयता नीति"}
-PASS  [snapshot] /terms recorded  — {"status":200,"bytes":48224,"title":"उपयोग की शर्तें — किसान सहयोग","h1":"उपयोग की शर्तें"}
-PASS  [snapshot] /sitemap.xml recorded  — {"status":200,"bytes":548}
-PASS  [snapshot] /sitemap-pages.xml recorded  — {"status":200,"bytes":6818}
-PASS  [snapshot] /sitemap-sawaal.xml recorded  — {"status":200,"bytes":23193}
-PASS  [snapshot] /sitemap-cold-storage.xml recorded  — {"status":200,"bytes":4656}
-PASS  [snapshot] /sitemap-schemes.xml recorded  — {"status":200,"bytes":2429}
-PASS  [snapshot] /robots.txt recorded  — {"status":200,"bytes":180}
-
-ALL PASSED  (results-prod-before-17b.json)
+  snapshot present, taken of f692b6da-d3c2-4588-b2ab-8803b340827f (the live deployment) — reused
 + timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-before.json
 + timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/prod-before-ship.json
 == 3. build
-+ timeout 1500 npm run build:prod   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/build-prod-20261031-070404.log
++ timeout 1500 npm run build:prod   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/build-prod-20261031-072202.log
 + node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
 + node scripts/check-no-localhost-dist.mjs dist
 + staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
@@ -95,7 +76,7 @@ chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-BDiz
     [info] PASS  [predeploy_size] /privacy: 35321 B vs live 36328 B = 0.972 (allowed 0.85–1.15; FAQ live no, new no) <- privacy\index.html
     [info] PASS  [predeploy_size] /terms: 47209 B vs live 48224 B = 0.979 (allowed 0.85–1.15; FAQ live no, new no) <- terms\index.html
 == 4. deploy
-+ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/deploy-20261031-070404.log
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/deploy-20261031-072202.log
 == 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
 == 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
 + timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
@@ -126,7 +107,7 @@ chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-BDiz
     [rollback dry-run] ==================================================================
 
 ##################################################################
-A real run would ship a6dcf9a to https://kissansahyog.com,
+A real run would ship c29a7da to https://kissansahyog.com,
 replacing deployment f692b6da-d3c2-4588-b2ab-8803b340827f (source 91ca7b5; Batch 17A ship-17a (from Batch 17A production deployment (tag ship-17a); read from Cloudflare just now)).
 Undo after a ship:  bash scripts/rollback-prod-17b.sh f692b6da-d3c2-4588-b2ab-8803b340827f
 Nothing was changed.

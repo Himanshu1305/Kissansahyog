@@ -1,5 +1,5 @@
 Morning message report for 2026-10-31 (IST)
-generated: 2026-10-31T01:23:40.603Z
+generated: 2026-10-31T01:51:36.611Z
 
 weather: OK (weather_cache_v2 (Sagar cell 23.8_78.7, fetched 2026-10-30T23:30:00Z)), days 2026-10-31, 2026-11-01, 2026-11-02
 weather source: cache
@@ -16,7 +16,7 @@ data freshness: mandi 2026-10-30, weather 2026-10-31
 suspect data (not shown): none
 crops skipped: Moong - only 0 mandi(s) on 2026-10-30; Urad - only 0 mandi(s) on 2026-10-30; Paddy - only 0 mandi(s) on 2026-10-30
 unreviewed items used: none
-characters: 973 (target 1200, hard limit 1500)
+characters: 985 (target 1200, hard limit 1500)
 lint: passed
 
 thresholds used:
@@ -30,5 +30,5 @@ thresholds used:
   rain verdict (src/lib/weather/rainVerdict.js): dry under 1 mm, drizzle to 2.5, light to 15.6, moderate to 64.5, heavy above; chance (%) shown only from 2.5 mm; spraying stop at 2 mm in 6 h or wind over 15 km/h, caution at 2.5 mm in 24 h; harvest stop at 5 mm in 48 h, caution at 2.5 mm in 72 h
   mandi: min 3 mandis per crop, max one-step move 15%, price band 0.5x-2x of the 30-day median, up to 4 crops
   KVK phone shown: 07582-288228
-card.png made (149 KB)
-voice script: 593 characters; voice audio not made in a local run without --save or --voice (script is in voice-script.txt)
+card.png made (150 KB)
+voice script: 605 characters; voice audio not made in a local run without --save or --voice (script is in voice-script.txt)

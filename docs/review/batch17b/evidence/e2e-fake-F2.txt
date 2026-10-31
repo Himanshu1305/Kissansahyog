@@ -3,7 +3,7 @@
 [fake database] morning_post_upsert {"p_secret":"<secret hidden>","p_date":"2026-10-30","p_message":"<794 chars>","p_poll":"आज का सवाल\nआपके गाँव में मोबाइल नेटवर्क ठीक चलता है?\n1. हाँ\n2. कभी-कभी\n3. नहीं","p_poll_question_id":"p12","p_card_b64":"<193624 chars>","p_report":"<1863 chars>"}
 [fake database] morning_post_context {"p_secret":"<secret hidden>","p_date":"2026-10-30"}
 [fake ElevenLabs] POST https://api.elevenlabs.io/v1/text-to-speech/<voice>?output_format=mp3_44100_64  header xi-api-key: <hidden>  body.model_id=eleven_multilingual_v2
-[fake database] morning_post_voice_upsert {"p_secret":"<secret hidden>","p_date":"2026-10-30","p_script":"<536 chars>","p_mp3_b64":"<65536 chars>","p_meta":{"model":"eleven_multilingual_v2","voice_id":"HH8sIQq8WOcER3Nu118i","chars":536,"sha256":"262dcafd139b9d0f42c262f68e95140a9009136ae8524bbc10a12b022e6f7840","bytes":49152,"generated_at":"2026-10-31T01:27:52.017Z"}}
+[fake database] morning_post_voice_upsert {"p_secret":"<secret hidden>","p_date":"2026-10-30","p_script":"<536 chars>","p_mp3_b64":"<65536 chars>","p_meta":{"model":"eleven_multilingual_v2","voice_id":"HH8sIQq8WOcER3Nu118i","chars":536,"sha256":"262dcafd139b9d0f42c262f68e95140a9009136ae8524bbc10a12b022e6f7840","bytes":49152,"generated_at":"2026-10-31T01:51:39.517Z"}}
 voice script: 536 characters; voice.mp3 made (48 KB); voice saved (48 KB)
 
 1. Today's message is ready for 2026-10-30.
