@@ -10,7 +10,9 @@ import { Spinner } from '../components/ui'
 import { weatherInfo } from '../lib/weather/weatherApi'
 import { fetchWeatherCell, requestGridCell } from '../lib/weather/weatherApiV2'
 import { updatedLine, istParts, istTimeMs } from '../lib/weather/freshness'
-import { actionWindows, imdClass, nextRain, STATUS_COLOR } from '../lib/weather/weatherRules'
+import { actionWindows, imdClass, STATUS_COLOR } from '../lib/weather/weatherRules'
+import { rainVerdict, dayRain, showsProb } from '../lib/weather/rainVerdict'
+import { bannerText, todayTotalText } from '../lib/weather/rainBanner'
 import { useUserLocation } from '../lib/location/LocationProvider'
 import { fetchPageFaqs } from '../lib/pages/pagesApi'
 import { PageExplainer, LocationControl, FaqAccordion, ShareWhatsApp, DailyUpdateSignup, TwoBar, JsonLd, InfoTip } from '../components/pages/shared'
@@ -62,18 +64,20 @@ export default function Mausam() {
   const expired = wx?.fresh === 'expired'
   const windows = useMemo(() => (wx && !expired ? actionWindows(wx.hourly, wx.daily) : null), [wx, expired])
 
-  const today = wx?.daily?.[0]
   const info = wx ? weatherInfo(wx.current_weathercode) : null
-  const rain = wx ? nextRain(wx.hourly) : null
-  const imd = today ? imdClass(today.precip_mm) : null
+  // Batch 17B: ONE rain verdict for the banner, the badge, the share text and (through actionWindows) the four cards.
+  const verdict = useMemo(() => (wx && !expired ? rainVerdict({ hourly: wx.hourly, daily: wx.daily, source: 'cache' }) : null), [wx, expired])
+  const banner = verdict ? bannerText(verdict, t) : null
+  const totalText = verdict ? todayTotalText(verdict, t) : null
+  const imd = verdict && totalText ? imdClass(verdict.todayTotalMm) : null
 
   // Live WhatsApp share text (< 300 chars)
   const shareText = useMemo(() => {
     if (!wx || !windows || expired) return ''
     const d = new Date().toLocaleDateString('hi-IN', { day: 'numeric', month: 'long' })
-    const rainLine = rain ? `${t('mausam_rain_in')} ${rain.inHours}${t('hours_short')} ~${rain.mm}${t('mm_unit')}` : t('tf_rain_none')
+    const rainLine = banner && banner.kind !== 'none' && banner.kind !== 'none_more' ? banner.text : t('tf_rain_none')
     return `📍 ${place} ${t('nav_weather')} — ${d}\n🌤 ${Math.round(wx.current_temp)}°, ${t(info.key)} · ${rainLine}\n✅ ${t('aw_spray')}: ${t(STATUS_LABEL[windows.spray.status])} · ${t('aw_harvest')}: ${t(STATUS_LABEL[windows.harvest.status])}\n${t('daily_see')}: kissansahyog.com/mausam`
-  }, [wx, windows, rain, info, place, t, expired])
+  }, [wx, windows, banner, info, place, t, expired])
 
   const metaDesc = t('mausam_explain_1') + ' ' + t('mausam_explain_2')
   const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${place} ${t('nav_weather')}`.trim(), description: metaDesc, ...(wx?.fetched_at ? { dateModified: wx.fetched_at } : {}) }
@@ -123,13 +127,13 @@ export default function Mausam() {
                 <div>🌬 {Math.round(wx.current_wind)} {t('kmh')}</div>
               </div>
             </div>
-            <div className="mt-3 rounded-lg px-3 py-2 text-[15px] font-semibold" style={{ background: 'var(--ks-blue-tint)', color: 'var(--ks-blue)' }}>
-              {rain ? `${t('mausam_rain_next')}: ${rain.inHours === 0 ? t('mausam_rain_now') : `${rain.inHours} ${t('hours_short')} ${t('mausam_rain_after')}`} ~${rain.mm} ${t('mm_unit')}` : t('mausam_no_rain_48')}
+            <div data-testid="mausam-rain-banner" data-kind={banner.kind} className="mt-3 rounded-lg px-3 py-2 text-[15px] font-semibold" style={{ background: 'var(--ks-blue-tint)', color: 'var(--ks-blue)' }}>
+              {banner.text}
             </div>
             {imd && (
               <div className="mt-2">
-                <span className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: `2px solid ${imd.color}`, color: imd.color }}>
-                  ● {t(`imd_${imd.level}`)}
+                <span data-testid="mausam-today-total" className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-[14px] font-bold" style={{ background: '#fff', border: `2px solid ${imd.color}`, color: imd.color }}>
+                  ● {totalText}
                   <InfoTip label={t('imd_tip')} />
                 </span>
                 <p className="mt-1 text-[13px]" style={{ color: 'var(--ks-ink-3)' }}>{t('imd_badge_desc')}</p>
@@ -164,7 +168,7 @@ export default function Mausam() {
                   <span className="text-[12px]" style={{ color: 'var(--ks-ink-3)' }}>{hourLabel(h.time)}</span>
                   <span className="text-[18px]">{Math.round(h.temp)}°</span>
                   <span className="text-[12px]" style={{ color: 'var(--ks-blue)' }}>{Math.round((h.precip_mm || 0) * 10) / 10}{t('mm_unit')}</span>
-                  {h.precip_prob != null && <span className="text-[11px]" style={{ color: 'var(--ks-blue)' }}>💧{h.precip_prob}%</span>}
+                  {h.precip_prob != null && showsProb(h.precip_mm) && <span className="text-[11px]" style={{ color: 'var(--ks-blue)' }}>💧{h.precip_prob}%</span>}
                   <span className="text-[11px]" style={{ color: 'var(--ks-ink-3)' }}>🌬{Math.round(h.wind_kmh)}</span>
                 </div>
               ))}
@@ -179,12 +183,12 @@ export default function Mausam() {
                   <th className="p-2 text-left">{t('col_day')}</th><th className="p-2"> </th><th className="p-2 text-right">{t('col_maxmin')}</th><th className="p-2 text-right">{t('col_rain')}</th><th className="p-2 text-right">🌬</th>
                 </tr></thead>
                 <tbody>
-                  {wx.daily.slice(0, 7).map((d) => { const ii = weatherInfo(d.weathercode); const bad = d.precip_mm >= 64.5; return (
+                  {wx.daily.slice(0, 7).map((d) => { const ii = weatherInfo(d.weathercode); const dr = dayRain(d); const bad = dr.level === 'heavy'; return (
                     <tr key={d.date} style={{ borderTop: '1px solid var(--ks-border)' }}>
                       <td className="p-2 font-semibold" style={{ color: 'var(--ks-ink)' }}>{dayHi(d.date, t)}</td>
                       <td className="p-2 text-center" aria-hidden="true">{ii.icon}{bad && <span title={t('imd_yellow')}> ⚠️</span>}</td>
                       <td className="p-2 text-right">{Math.round(d.tmax)}° / {Math.round(d.tmin)}°</td>
-                      <td className="p-2 text-right" style={{ color: 'var(--ks-blue)' }}>{Math.round(d.precip_mm)}{t('mm_unit')} · {d.precip_prob ?? 0}%</td>
+                      <td className="p-2 text-right" style={{ color: 'var(--ks-blue)' }}>{Math.round(d.precip_mm)}{t('mm_unit')}{dr.probPct != null ? ` · ${dr.probPct}%` : ''}</td>
                       <td className="p-2 text-right">{Math.round(d.wind_max)}</td>
                     </tr>) })}
                 </tbody>
