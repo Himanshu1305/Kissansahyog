@@ -1,11 +1,13 @@
 {
-  "_note": "Thresholds for the 'आज का काम' section. Edit numbers here; the founder should confirm them with KVK Sagar. Rules are checked in this order and the first 3 tasks collected are shown. Task texts are generic farm-safety wording: no doses, no product names.",
+  "_note": "Thresholds for the 'आज का काम' section. Edit numbers here; the founder should confirm them with KVK Sagar. Rules are checked in this order and the first 3 tasks collected are shown. Task texts are generic farm-safety wording: no doses, no product names. Batch 17B: the rain rules read the rain verdict (src/lib/weather/rainVerdict.js: its spraying and harvest windows and its 48-hour rain level), the same ones /mausam shows; the rain amounts live in that file, not here.",
   "max_tasks": 3,
   "rules": [
-    { "id": "rain", "when": { "rain_prob_gte": 50, "rain_mm_gte": 5, "match": "any" }, "tasks": ["दवा-खाद का छिड़काव कल पर टालें", "कटी फसल और अनाज ढककर रखें", "खेत से पानी निकलने की नाली साफ़ रखें"] },
-    { "id": "wind", "when": { "wind_gte": 25 }, "tasks": ["तेज़ हवा में छिड़काव न करें"] },
-    { "id": "hot_dry", "when": { "tmax_gte": 35, "rain_prob_lt": 20, "match": "all" }, "tasks": ["सिंचाई वाले खेत में नमी जाँचें"] },
-    { "id": "cold", "when": { "tmin_lte": 6 }, "tasks": ["पाले का ध्यान रखें: छोटी फसल और नर्सरी ढकें"] },
-    { "id": "sowing_season", "when": { "sowing_window": true }, "needs_weather": false, "tasks": ["बुवाई वाले खेत में नमी जाँचें"] }
+    { "id": "rain_spray", "when": {"spray_reason": ["aw_spray_stop_rain"]}, "tasks": ["दवा-खाद का छिड़काव कल पर टालें"] },
+    { "id": "rain_cover", "when": {"harvest_status": ["stop"]}, "tasks": ["कटी फसल और अनाज ढककर रखें"] },
+    { "id": "rain_drain", "when": {"level48_gte": "moderate"}, "tasks": ["खेत से पानी निकलने की नाली साफ़ रखें"] },
+    { "id": "wind", "when": {"wind_gte": 25, "spray_reason": ["aw_spray_stop_wind"], "match": "any"}, "tasks": ["तेज़ हवा में छिड़काव न करें"] },
+    { "id": "hot_dry", "when": {"tmax_gte": 35, "level48_in": ["dry", "drizzle"], "match": "all"}, "tasks": ["सिंचाई वाले खेत में नमी जाँचें"] },
+    { "id": "cold", "when": {"tmin_lte": 6}, "tasks": ["पाले का ध्यान रखें: छोटी फसल और नर्सरी ढकें"] },
+    { "id": "sowing_season", "when": {"sowing_window": true}, "needs_weather": false, "tasks": ["बुवाई वाले खेत में नमी जाँचें"] }
   ]
 }

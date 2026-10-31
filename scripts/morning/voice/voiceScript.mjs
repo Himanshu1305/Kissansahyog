@@ -2,7 +2,7 @@
 // reviewed/verified gates). Deterministic, no AI. Output is plain Devanagari words with only । , ! ? as marks.
 import { createHash } from 'node:crypto'
 import { S } from '../strings.hi.js'
-import { skyGroup } from '../lib/weather.js'
+import { weatherPhrase } from '../lib/weatherLine.js'
 import { toHindiWords, rupeesPerQuintal, rupees, degrees, percent, dayMonth, weekdayDate } from './hindiNumber.mjs'
 
 export const VOICE_TARGET = [450, 750]
@@ -38,18 +38,14 @@ export function speakable(text) {
   return t.trim()
 }
 
-const skyWord = (d) => S.sky[skyGroup(d.code)]
-
-function weatherSentences(w, tasks) {
-  if (!w) return { text: [], usedTask: null }
+// Batch 17B: the weather sentence comes from the same one-sentence builder as the card and the message (style 'voice').
+function weatherSentences(model) {
+  const w = model.weather
+  if (!w || !model.verdict) return { text: [], usedTask: null }
   const d = w.days[0]
-  let first = `सागर के मौसम का हाल, ${skyWord(d)}। दिन में तापमान ${degrees(d.tmax)} तक जाएगा`
-  const p = Math.round(d.rainProb ?? 0)
-  if (p >= 50 || (d.rainMm ?? 0) >= 5) first += `। आज बारिश हो सकती है, संभावना ${percent(p)} की है`
-  else if (p < 30) first += `, और बारिश की संभावना बहुत कम है, सिर्फ़ ${percent(p)}`
-  else first += `। बारिश की संभावना ${percent(p)} बताई गई है`
-  const out = [`${first}।`]
-  const hint = (tasks || []).find((t) => t.includes('छिड़काव'))
+  const phrase = weatherPhrase(model.verdict, d.code, 'voice')
+  const out = [`${phrase.text}। दिन में तापमान ${degrees(d.tmax)} तक जाएगा।`]
+  const hint = (model.tasks || []).find((t) => t.includes('छिड़काव'))
   if (hint) out.push(`${hint}।`)
   return { text: out, usedTask: hint || null }
 }
@@ -79,7 +75,7 @@ export const CLOSING = 'पूरी जानकारी, किसान स�
 
 // -> { text, chars, dropped: [string], sha256 }
 export function buildVoiceScript(model) {
-  const wx = weatherSentences(model.weather, model.tasks)
+  const wx = weatherSentences(model)
   const item = itemSentence(model, wx.usedTask)
   const build = (o) => {
     const parts = [`सीताराम किसान भाइयो! आज ${weekdayDate(model.date)} है।`]

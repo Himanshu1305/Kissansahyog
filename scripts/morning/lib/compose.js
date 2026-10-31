@@ -3,7 +3,8 @@ import { S, fmt } from '../strings.hi.js'
 import { strings } from '../../../src/lib/i18n/strings.js'
 import { mspFor, procurementFor, seasonShort } from './msp.js'
 import { trendHeadline } from './mandi.js'
-import { skyGroup } from './weather.js'
+import { weatherPhrase, dayPhrase } from './weatherLine.js'
+import { LIGHT_MIN_MM } from '../../../src/lib/weather/rainVerdict.js'
 import { BANNED, BANNED_EN, RE_JI } from './lintWords.js'
 
 // The KVK Sagar number is the site's own constant (src/lib/i18n/strings.js res_card_offices_1); never retyped here.
@@ -67,10 +68,11 @@ function rujhanBlock(model) {
   if (!top) return null
   const key = top.direction === 'up' ? S.rujhanUp : top.direction === 'down' ? S.rujhanDown : S.rujhanMixed
   const lines = [S.rujhanHeader, fmt(key, { crop: top.item.name })]
-  const w = model.weather
-  if (w) {
-    const rain = Math.max(w.days[1]?.rainProb ?? 0, w.days[2]?.rainProb ?? 0)
-    if (rain >= 20) lines.push(fmt(S.rujhanWeather, { rain }))
+  const v = model.verdict
+  if (v) {
+    // Batch 17B: only an expected AMOUNT of rain is mentioned, never a bare chance (%)
+    const mm = Math.max(v.days[1]?.mm ?? 0, v.days[2]?.mm ?? 0)
+    if (mm >= LIGHT_MIN_MM) lines.push(fmt(S.rujhanWeather, { mm: Math.max(1, Math.round(mm)) }))
   }
   lines.push(S.rujhanDisclaimer)
   return lines.join('\n')
@@ -87,12 +89,12 @@ export function render(model, opts) {
   blocks.push(head.join('\n'))
 
   const w = model.weather
-  if (w) {
+  if (w && model.verdict) {
     const d0 = w.days[0]
-    const lines = [fmt(S.weatherToday, { tmin: Math.round(d0.tmin), tmax: Math.round(d0.tmax), sky: S.sky[skyGroup(d0.code)], rain: Math.round(d0.rainProb ?? 0) })]
+    const lines = [fmt(S.weatherToday, { tmin: Math.round(d0.tmin), tmax: Math.round(d0.tmax), wx: weatherPhrase(model.verdict, d0.code).text })]
     if (opts.weatherNext && w.days[1] && w.days[2]) {
-      const f = (d) => fmt(S.weatherDay, { tmin: Math.round(d.tmin), tmax: Math.round(d.tmax), rain: Math.round(d.rainProb ?? 0) })
-      lines.push(fmt(S.weatherNext, { a: f(w.days[1]), b: f(w.days[2]) }))
+      const f = (d, i) => fmt(S.weatherDay, { tmin: Math.round(d.tmin), tmax: Math.round(d.tmax), wx: dayPhrase(model.verdict.days[i]).text })
+      lines.push(fmt(S.weatherNext, { a: f(w.days[1], 1), b: f(w.days[2], 2) }))
     }
     blocks.push(lines.join('\n'))
   }

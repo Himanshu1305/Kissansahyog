@@ -5,6 +5,8 @@ import { readFileSync } from 'node:fs'
 import { chromium } from '@playwright/test'
 import { S, fmt } from '../strings.hi.js'
 import { skyGroup } from '../lib/weather.js'
+import { weatherPhrase } from '../lib/weatherLine.js'
+import { DRY_BELOW_MM } from '../../../src/lib/weather/rainVerdict.js'
 
 const here = new URL('.', import.meta.url)
 const font = (f) => readFileSync(new URL(`fonts/${f}`, here)).toString('base64')
@@ -24,19 +26,23 @@ const rupees = (n) => Math.round(Number(n)).toLocaleString('en-IN')
 const dm = (iso) => `${iso.slice(8)}/${iso.slice(5, 7)}`
 const dayOf = (iso) => new Date(`${iso}T00:00:00Z`).getUTCDay()
 
-function weatherBox(w, tasks) {
-  if (!w) return null
+// Batch 17B: line1 is the ONE weather phrase (rain verdict); the spraying advice is shown once - here only when no other box carries it.
+const SPRAY_TASK = 'छिड़काव'
+function weatherBox(model, shownElsewhere) {
+  const w = model.weather, v = model.verdict
+  if (!w || !v) return null
   const d = w.days[0]
-  const p = Math.round(d.rainProb ?? 0)
-  const rain = fmt(p >= 50 || (d.rainMm ?? 0) >= 5 ? S.cardRainLikely : p < 30 ? S.cardRainNone : S.cardRainMaybe, { rain: p })
-  const hint = (tasks || []).find((t) => t.includes('छिड़काव'))
+  const hint = (model.tasks || []).find((t) => t.includes(SPRAY_TASK))
   const group = skyGroup(d.code)
+  const phrase = weatherPhrase(v, d.code)
+  const emoji = phrase.level === 'dry' ? (SKY_EMOJI[group] && !['lightRain', 'rain', 'heavyRain', 'storm'].includes(group) ? SKY_EMOJI[group] : '☁️') : phrase.level === 'drizzle' ? '🌦️' : '🌧️'
+  const dayMm = (x, i) => (i === 0 ? v.mmRestOfToday : x.rainMm ?? 0)
   return {
-    title: `${SKY_EMOJI[group] || '☁️'} ${S.cardWeatherTitle}`,
+    title: `${emoji} ${S.cardWeatherTitle}`,
     max: `${Math.round(d.tmax)}°`, min: `/${Math.round(d.tmin)}°`,
-    line1: `${S.sky[group]}, ${rain}`,
-    line2: [d.windMax != null ? fmt(S.cardWind, { wind: Math.round(d.windMax) }) : '', hint || ''].filter(Boolean).join(' · '),
-    days: w.days.slice(0, 3).map((x, i) => ({ name: i === 0 ? S.cardToday : S.weekdaysShort[dayOf(x.date)], range: `${Math.round(x.tmax)}° / ${Math.round(x.tmin)}°`, rain: fmt(S.cardDayRain, { mm: Math.round(x.rainMm ?? 0) }) })),
+    line1: phrase.text,
+    line2: [d.windMax != null ? fmt(S.cardWind, { wind: Math.round(d.windMax) }) : '', hint && !shownElsewhere(hint) ? hint : ''].filter(Boolean).join(' · '),
+    days: w.days.slice(0, 3).map((x, i) => { const mm = dayMm(x, i); return { name: i === 0 ? S.cardToday : S.weekdaysShort[dayOf(x.date)], range: `${Math.round(x.tmax)}° / ${Math.round(x.tmin)}°`, rain: mm < DRY_BELOW_MM ? S.cardDayDry : fmt(S.cardDayRain, { mm: Math.max(1, Math.round(mm)) }) } }),
   }
 }
 
@@ -71,7 +77,7 @@ export function cardData(model) {
     brand: S.cardBrand,
     greeting: `🙏 ${S.cardGreeting}`,
     dateText: fmt(S.cardSub, { day: S.weekdays[d.getUTCDay()], d: d.getUTCDate(), m: S.months[d.getUTCMonth()] }),
-    weather: weatherBox(model.weather, model.tasks),
+    weather: weatherBox(model, (t) => [scheme && scheme.body, tip && tip.body].includes(t)),
     priceTitle: `📊 ${fmt(S.cardPriceTitle, { unit: S.cardUnit, date: m ? dm(m.date) : '' })}`,
     prices,
     priceNote: label,

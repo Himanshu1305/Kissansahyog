@@ -1,9 +1,14 @@
 // "आज का काम": the rules live in data/morning/work-rules.json. Task texts there are generic wording only.
+// Batch 17B: rain rules read the rain verdict (ctx.verdict) - the same spraying / harvest windows as /mausam - never a bare chance (%).
+import { levelIndex } from '../../../src/lib/weather/rainVerdict.js'
 export function ruleFires(when, day, ctx) {
   const checks = []
-  if ('rain_prob_gte' in when) checks.push(day != null && day.rainProb != null && day.rainProb >= when.rain_prob_gte)
-  if ('rain_mm_gte' in when) checks.push(day != null && day.rainMm != null && day.rainMm >= when.rain_mm_gte)
-  if ('rain_prob_lt' in when) checks.push(day != null && day.rainProb != null && day.rainProb < when.rain_prob_lt)
+  const v = ctx.verdict || null
+  if ('spray_reason' in when) checks.push(v != null && v.spray.status === 'stop' && when.spray_reason.includes(v.spray.reasonKey))
+  if ('spray_status' in when) checks.push(v != null && when.spray_status.includes(v.spray.status))
+  if ('harvest_status' in when) checks.push(v != null && when.harvest_status.includes(v.harvest.status))
+  if ('level48_gte' in when) checks.push(v != null && levelIndex(v.windows.h48.level) >= levelIndex(when.level48_gte))
+  if ('level48_in' in when) checks.push(v != null && when.level48_in.includes(v.windows.h48.level))
   if ('wind_gte' in when) checks.push(day != null && day.windMax != null && day.windMax >= when.wind_gte)
   if ('tmax_gte' in when) checks.push(day != null && day.tmax != null && day.tmax >= when.tmax_gte)
   if ('tmin_lte' in when) checks.push(day != null && day.tmin != null && day.tmin <= when.tmin_lte)

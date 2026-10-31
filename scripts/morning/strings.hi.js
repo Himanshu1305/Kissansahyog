@@ -14,9 +14,9 @@ export const S = {
   pollYesterday: 'कल {pct}% साथियों ने "{answer}" कहा',    // {answer} comes from polls.json yes_label of yesterday's question
   pollYesterdayShort: 'कल {pct}% साथियों ने हाँ कहा',      // used when the question has no custom label
   // ---- weather
-  weatherToday: '☁️ *आज सागर:* {tmin}–{tmax}°C, {sky}, बारिश की संभावना {rain}%',
+  weatherToday: '☁️ *आज सागर:* {tmin}–{tmax}°C, {wx}',          // {wx} = ONE phrase from lib/weatherLine.js (S.wx below)
   weatherNext: 'कल: {a} · परसों: {b}',                     // next two days, compact
-  weatherDay: '{tmin}–{tmax}°C, बारिश {rain}%',
+  weatherDay: '{tmin}–{tmax}°C, {wx}',                     // {wx} = S.wxDay phrase
   // ---- aaj ka kaam
   workHeader: '🌾 *आज का काम*',
   workItem: '{n}. {text}',
@@ -42,7 +42,7 @@ export const S = {
   rujhanUp: '{crop} पिछले 3 दिन से बढ़ा है।',
   rujhanDown: '{crop} पिछले 3 दिन से घटा है।',
   rujhanMixed: '{crop} पिछले 3 दिन में ऊपर-नीचे रहा है।',
-  rujhanWeather: 'अगले दो दिन बारिश की संभावना {rain}% तक है।',  // plain weather fact, separate sentence
+  rujhanWeather: 'अगले दो दिन बारिश हो सकती है (करीब {mm} मिमी तक)।',  // plain weather fact, separate sentence; only when light rain or more is expected
   rujhanDisclaimer: '(यह रुझान है, पक्की बात नहीं।)',      // fixed line, exact
   // ---- rotating slot
   slotScheme: '📋 *योजना की खबर*',
@@ -67,13 +67,34 @@ export const S = {
   weekdays: ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'],
   tithiNames: ['प्रतिपदा', 'द्वितीया', 'तृतीया', 'चतुर्थी', 'पंचमी', 'षष्ठी', 'सप्तमी', 'अष्टमी', 'नवमी', 'दशमी', 'एकादशी', 'द्वादशी', 'त्रयोदशी', 'चतुर्दशी', 'पूर्णिमा', 'अमावस्या'],
   // ---- weather words (WMO code groups)
-  sky: { clear: 'साफ़ आसमान', fewClouds: 'कुछ बादल', cloudy: 'बादल', fog: 'कोहरा', lightRain: 'हल्की बारिश', rain: 'बारिश', heavyRain: 'तेज़ बारिश', storm: 'आँधी-बिजली' },
+  sky: { clear: 'साफ़ आसमान', fewClouds: 'कुछ बादल', cloudy: 'बादल', fog: 'कोहरा', lightRain: 'हल्की बारिश', rain: 'बारिश', heavyRain: 'तेज़ बारिश', storm: 'आँधी-बिजली' },  // Batch 17B: the weather phrase only ever uses clear/fewClouds/cloudy/fog from here (lib/weatherLine.js)
+  // ---- Batch 17B: the one weather phrase (lib/weatherLine.js picks by the rain level; {sky} is a sky word above)
+  wx: {
+    dry: '{sky}, आज बारिश नहीं',
+    drizzle: 'हल्की बूँदाबाँदी संभव (करीब {mm} मिमी)',
+    light: 'हल्की बारिश संभव, संभावना {p}% (करीब {mm} मिमी)',
+    moderate: 'मध्यम बारिश संभव, संभावना {p}% (करीब {mm} मिमी)',
+    heavy: 'भारी बारिश की चेतावनी, संभावना {p}% (करीब {mm} मिमी)',
+  },
+  wxProbless: {   // used when only a day total is known and no chance (%) came with it
+    light: 'हल्की बारिश संभव (करीब {mm} मिमी)', moderate: 'मध्यम बारिश संभव (करीब {mm} मिमी)', heavy: 'भारी बारिश की चेतावनी (करीब {mm} मिमी)',
+  },
+  wxDay: { dry: 'बारिश नहीं', drizzle: 'हल्की बूँदाबाँदी', light: 'हल्की बारिश (करीब {mm} मिमी)', moderate: 'मध्यम बारिश (करीब {mm} मिमी)', heavy: 'भारी बारिश (करीब {mm} मिमी)' },
+  // spoken (voice) sentences - natural speech, no abbreviations; {mm} {p} are digits that the voice step turns into Hindi words
+  wxVoiceSky: { clear: 'सागर में आज आसमान साफ़ रहेगा', fewClouds: 'सागर में आज आसमान में कुछ बादल रहेंगे', cloudy: 'सागर में आज आसमान में बादल छाए रहेंगे', fog: 'सागर में आज सुबह कोहरा रहेगा' },
+  wxVoice: {
+    dry: '{sky}, और आज बारिश नहीं होगी',
+    drizzle: 'सागर में आज हल्की बूँदाबाँदी हो सकती है, करीब {mm} मिलीमीटर',
+    light: 'सागर में आज हल्की बारिश हो सकती है, संभावना {p}% की है, करीब {mm} मिलीमीटर',
+    moderate: 'सागर में आज मध्यम बारिश हो सकती है, संभावना {p}% की है, करीब {mm} मिलीमीटर',
+    heavy: 'सागर में आज भारी बारिश की चेतावनी है, संभावना {p}% की है, करीब {mm} मिलीमीटर',
+  },
+  wxVoiceProbless: { light: 'सागर में आज हल्की बारिश हो सकती है, करीब {mm} मिलीमीटर', moderate: 'सागर में आज मध्यम बारिश हो सकती है, करीब {mm} मिलीमीटर', heavy: 'सागर में आज भारी बारिश की चेतावनी है, करीब {mm} मिलीमीटर' },
   // ---- poll file labels
   pollFileTitle: 'आज का सवाल',
   // ---- card (image)
   cardBrand: 'किसान सहयोग',
   cardWeatherTitle: 'आज का मौसम · सागर',
-  cardRain: 'बारिश {rain}%',
   cardMaxMin: 'अधिकतम {tmax}° · न्यूनतम {tmin}°',
   cardPriceTitle: 'मंडी भाव · {unit} ({date})',
   cardUnit: '₹ प्रति क्विंटल',
@@ -81,11 +102,9 @@ export const S = {
   cardGreeting: 'सीताराम किसान भाइयो!',
   cardSub: '{day}, {d} {m} · सागर संभाग',
   weekdaysShort: ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'],
-  cardRainNone: 'बारिश नहीं (संभावना {rain}%)',
-  cardRainMaybe: 'बारिश की संभावना {rain}%',
-  cardRainLikely: 'बारिश हो सकती है (संभावना {rain}%)',
   cardWind: 'हवा {wind} किमी/घंटा',
   cardDayRain: 'बारिश {mm} मिमी',
+  cardDayDry: 'बारिश नहीं',
   cardBestMandi: 'ऊँचा: {market}',
   cardToday: 'आज',
   cardSchemeTitle: 'आज की योजना · {title}',

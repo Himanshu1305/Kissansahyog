@@ -4,7 +4,8 @@ import { readFileSync } from 'node:fs'
 import { S, fmt } from '../strings.hi.js'
 import { istDate, addDays } from './ist.js'
 import { tithiAt, SAGAR } from './tithi.js'
-import { getForecast, PROVIDER_NAME } from './weather.js'
+import { loadWeather, PROVIDER_NAME } from './weather.js'
+import * as RV from '../../../src/lib/weather/rainVerdict.js'
 import { pickTasks, sowingOpen } from './workRules.js'
 import { chooseDate, summarize, MAX_MOVE_PCT, MIN_MANDIS, WINDOW_DAYS, MEDIAN_BAND } from './mandi.js'
 import { compose, lint, pickBlessing, TARGET_CHARS, HARD_CHARS, KVK_PHONE } from './compose.js'
@@ -21,8 +22,8 @@ export function loadData(dir = DATA_DIR) {
   }
 }
 
-// opts: { date, draft, data, loaders: { weather(date) -> forecast|null, mandi(date) -> {rows, flag}|null (throws on failure), yesterdayPoll(date) -> {question_id,pct}|null } }
-export async function generate({ date, draft = false, data, loaders }) {
+// opts: { date, draft, data, nowIso, loaders: { weather(date) -> forecast|null, mandi(date) -> {rows, flag}|null (throws on failure), yesterdayPoll(date) -> {question_id,pct}|null } }
+export async function generate({ date, draft = false, data, loaders, nowIso = null }) {
   const yesterday = addDays(date, -1)
   const notes = []   // per-section report lines
   const unreviewed = []
@@ -31,6 +32,11 @@ export async function generate({ date, draft = false, data, loaders }) {
   let weather = null
   try { weather = await loaders.weather(date) } catch { weather = null }
   notes.push(weather ? `weather: OK (${weather.provider}), days ${weather.days.map((d) => d.date).join(', ')}` : 'weather: OMITTED (forecast failed or timed out); weather-dependent tasks and the weather lines are left out')
+  notes.push(`weather source: ${weather ? (weather.sourceNote || weather.source || 'fixture') : 'none (weather omitted)'}`)
+  // Batch 17B: ONE rain verdict for the card, the message, the voice and the tasks (the same module /mausam uses).
+  const now = nowIso || new Date().toISOString()
+  const verdict = weather ? RV.rainVerdict({ hourly: weather.hourly, daily: weather.daily || RV.toDailyShape(weather.days), nowIso: now, source: weather.source || 'cache' }) : null
+  if (verdict) notes.push(`rain verdict: ${verdict.level} for the rest of today (${verdict.mmRestOfToday} mm), ${verdict.mm48h} mm in 48 h, ${verdict.mm72h} mm in 72 h; spraying ${verdict.spray.status}, harvest ${verdict.harvest.status}${verdict.hasHourly ? '' : ' (day totals only, no hourly series)'}`)
 
   // mandi
   let mandi = null, mandiNote = '', suspect = [], skipped = [], flag = null
@@ -51,7 +57,7 @@ export async function generate({ date, draft = false, data, loaders }) {
   // tasks
   const day0 = weather ? weather.days[0] : null
   const open = sowingOpen(date, BANNERS.sowing.validUntil)
-  const { tasks, fired } = pickTasks(data.workRules, day0, { sowingOpen: open })
+  const { tasks, fired } = pickTasks(data.workRules, day0, { sowingOpen: open, verdict })
   notes.push(`aaj ka kaam: ${tasks.length ? `rules fired: ${fired.join(', ')}` : 'OMITTED: no rule fired'}`)
 
   // tithi / festival / blessing / poll
@@ -65,7 +71,7 @@ export async function generate({ date, draft = false, data, loaders }) {
   const pollYesterday = yesterdayLine(yRes, data.polls)
   notes.push(`poll: ${poll ? poll.id : 'none'}; yesterday result: ${pollYesterday ? `${pollYesterday.pct}%` : 'none'}`)
 
-  const model = { date, tithi, festival, blessing, pollYesterday, weather, tasks, mandi, mspEntries: data.msp, procurement: data.procurement }
+  const model = { date, tithi, festival, blessing, pollYesterday, weather, verdict, tasks, mandi, mspEntries: data.msp, procurement: data.procurement }
   const slot = pickSlot(date, { draft, data, summary: mandi, sowingValidUntil: BANNERS.sowing.validUntil })
   model.slot = slot
   if (slot) for (const id of slot.usedUnreviewed) unreviewed.push(`${slot.kind}:${id}`)
@@ -94,6 +100,7 @@ export async function generate({ date, draft = false, data, loaders }) {
     '',
     'thresholds used:',
     ...data.workRules.rules.map((r) => `  ${r.id}: ${JSON.stringify(r.when)}`),
+    `  rain verdict (src/lib/weather/rainVerdict.js): dry under ${RV.DRY_BELOW_MM} mm, drizzle to ${RV.LIGHT_MIN_MM}, light to ${RV.MODERATE_MIN_MM}, moderate to ${RV.HEAVY_MIN_MM}, heavy above; chance (%) shown only from ${RV.PROB_SHOWN_MIN_MM} mm; spraying stop at ${RV.SPRAY_STOP_MM_6H} mm in 6 h or wind over ${RV.SPRAY_STOP_WIND_KMH} km/h, caution at ${RV.SPRAY_CAUTION_MM_24H} mm in 24 h; harvest stop at ${RV.HARVEST_STOP_MM_48H} mm in 48 h, caution at ${RV.HARVEST_CAUTION_MM_72H} mm in 72 h`,
     `  mandi: min ${MIN_MANDIS} mandis per crop, max one-step move ${MAX_MOVE_PCT}%, price band ${MEDIAN_BAND[0]}x-${MEDIAN_BAND[1]}x of the ${WINDOW_DAYS}-day median, up to 4 crops`,
     `  KVK phone shown: ${KVK_PHONE}`,
   ].join('\n')
@@ -102,7 +109,9 @@ export async function generate({ date, draft = false, data, loaders }) {
   return { message: out.text, poll: pollTxt, pollQuestionId: poll ? poll.id : null, report, model, compose: out, violations, warn, haveWeather: !!weather, haveMandi: !!mandi }
 }
 
-export const defaultLoaders = {
-  weather: (date) => getForecast(SAGAR.lat, SAGAR.lon, date),
-}
+// Batch 17B: the saved forecast first (weather_cache_v2, Sagar cell, public anon key), direct Open-Meteo only if it is missing/old.
+export const makeDefaultLoaders = ({ url, key, nowMs } = {}) => ({
+  weather: (date) => loadWeather({ url, key, lat: SAGAR.lat, lon: SAGAR.lon, date, nowMs }),
+})
+export const defaultLoaders = makeDefaultLoaders()
 export { istDate }

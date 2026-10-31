@@ -4,7 +4,7 @@ import { pathToFileURL } from 'node:url'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { istDate, isIsoDate, addDays } from './lib/ist.js'
-import { generate, loadData, defaultLoaders } from './lib/generate.js'
+import { generate, loadData, makeDefaultLoaders } from './lib/generate.js'
 import { fetchMandiRows } from './lib/supa.js'
 import { loadFixture } from './fixtures.js'
 import { saveToDatabase } from './lib/save.js'
@@ -39,9 +39,9 @@ export async function main(argv = process.argv.slice(2)) {
   const url = envUrl(), key = envKey()
 
   const loaders = fx
-    ? { weather: async () => fx.weather, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }
+    ? { weather: fx.weatherLoader || (async () => fx.weather), mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }
     : {
-        ...defaultLoaders,
+        ...makeDefaultLoaders({ url, key }),
         mandi: async () => {
           if (!url || !key) throw new Error('no SUPABASE_URL / SUPABASE_ANON_KEY (or VITE_ equivalents) in the environment')
           return fetchMandiRows({ url, key, endDate: addDays(date, -1) })
@@ -59,7 +59,7 @@ export async function main(argv = process.argv.slice(2)) {
     loaders.yesterdayPoll = (d) => yesterdayFromContext({ ...saveCtx, date: d })
   }
 
-  const res = await generate({ date, draft: args.draft, data, loaders })
+  const res = await generate({ date, draft: args.draft, data, loaders, nowIso: fx && fx.nowIso ? fx.nowIso : undefined })
   const outDir = resolve(args.out || join('out', 'morning', date))
   mkdirSync(outDir, { recursive: true })
   writeFileSync(join(outDir, 'message.txt'), res.message + '\n', 'utf8')
