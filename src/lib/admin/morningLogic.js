@@ -62,9 +62,50 @@ export const voiceFileName = (date) => `morning-${date}.mp3`
 export const voiceDataUrl = (b64) => (b64 ? `data:audio/mpeg;base64,${b64}` : null)
 export const hasVoice = (post) => !!(post && post.voice_mp3_b64)
 export const whatsappTextUrl = (text) => `https://wa.me/?text=${encodeURIComponent(String(text || ''))}`
-export function canShareFiles(nav, files) {
-  try { return !!(nav && typeof nav.share === 'function' && typeof nav.canShare === 'function' && files.length > 0 && nav.canShare({ files })) } catch { return false }
+// Batch 17D - sharing. Two plain shares instead of one combined one (image + audio + text together is the fragile shape):
+//   1) card + message: the message is copied first (best effort), then share({ files: [card], text })
+//   2) voice: share({ files: [voice] }) with no text
+// The REAL file is asked of canShare at click time. Results are plain objects: { status, errorName?, copied? }
+//   status: 'shared' | 'cancelled' (AbortError, silent) | 'unavailable' (canShare said no) | 'failed' | 'unsupported' (no navigator.share)
+export const canUseShare = (nav) => !!(nav && typeof nav.share === 'function')
+export const isVisibleShareFailure = (r) => !!r && (r.status === 'failed' || r.status === 'unavailable')
+export function logShareFailure(r) {
+  if (!isVisibleShareFailure(r)) return
+  console.warn(`share failed: ${r.status === 'failed' ? r.errorName || 'Error' : 'canShare-false'}`) // the name only; never the message, card or voice
 }
+
+async function shareFiles(nav, files, text) {
+  if (!canUseShare(nav)) return { status: 'unsupported' }
+  try {
+    if (typeof nav.canShare !== 'function' || !nav.canShare({ files })) return { status: 'unavailable' }
+    await nav.share(text ? { files, text } : { files })
+    return { status: 'shared' }
+  } catch (e) {
+    if (e && e.name === 'AbortError') return { status: 'cancelled' }
+    return { status: 'failed', errorName: (e && typeof e.name === 'string' && e.name) || 'Error' }
+  }
+}
+
+// Copy, waiting at most copyWaitMs (a stuck clipboard must never stop the share, and Safari wants share() soon after the tap).
+async function copyQuickly(nav, text, copyWaitMs) {
+  let timer
+  try {
+    const copy = (async () => { if (nav && nav.clipboard && typeof nav.clipboard.writeText === 'function') { await nav.clipboard.writeText(text); return true } return false })()
+    copy.catch(() => {})
+    const wait = new Promise((resolve) => { timer = setTimeout(() => resolve(false), copyWaitMs) })
+    return !!(await Promise.race([copy, wait]))
+  } catch { return false } finally { clearTimeout(timer) }
+}
+
+export async function shareCardWithMessage({ nav = globalThis.navigator, file, text, copyWaitMs = 1000 }) {
+  const copied = await copyQuickly(nav, text, copyWaitMs)
+  return { ...(await shareFiles(nav, [file], text)), copied }
+}
+// One file, no text (the voice; also the old card-only button, so its errors are visible too)
+export async function shareFile({ nav = globalThis.navigator, file }) {
+  return shareFiles(nav, [file])
+}
+export const shareVoiceFile = shareFile
 
 export function canShareFile(nav, file) {
   try { return !!(nav && typeof nav.share === 'function' && typeof nav.canShare === 'function' && nav.canShare({ files: [file] })) } catch { return false }

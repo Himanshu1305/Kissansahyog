@@ -33,7 +33,7 @@ export function EmptyState({ t }) {
 
 export default function MorningView({
   t, date, dateText, today, post, history, historyRows, nextDisabled, prevDisabled,
-  copied, copyFailed, pollCopied, canShare, canShareAll, busy, pctValue, pctMsg, pctError, resultDateText, postedText, generatedText,
+  copied, copyFailed, pollCopied, canShare, canShareApi, shareNote, shareError, busy, pctValue, pctMsg, pctError, resultDateText, postedText, generatedText,
   refs, on,
 }) {
   const img = cardDataUrl(post?.card_png_b64)
@@ -98,9 +98,15 @@ export default function MorningView({
 
           <section data-testid="morning-send">
             <a href={whatsappTextUrl(post.message_text)} target="_blank" rel="noopener noreferrer" data-testid="morning-wa-text" aria-label={t('mp_wa_text')} className={`${btnGreen} w-full min-h-[56px]`}>{t('mp_wa_text')}</a>
-            {canShareAll
-              ? <button type="button" data-testid="morning-share-all" aria-label={t('mp_share_all')} onClick={on.shareAll} className={`${btnGreen} mt-2 w-full min-h-[56px]`}>{t('mp_share_all')}</button>
-              : <p className="mt-2 text-sm text-stone-600" data-testid="morning-share-all-hint">{t('mp_share_all_hint')}</p>}
+            {canShareApi ? (
+              <>
+                <p className="mt-3 text-sm font-semibold text-stone-700" data-testid="morning-share-help">{t('mp_share_help')}</p>
+                <button type="button" data-testid="morning-share-card-msg" aria-label={t('mp_share_card_msg')} onClick={on.shareCard} disabled={!img} className={`${btnGreen} mt-2 w-full min-h-[56px]`}>{t('mp_share_card_msg')}</button>
+                {shareNote && <p role="status" aria-live="polite" className="mt-1 text-sm font-semibold text-green-800" data-testid="morning-share-note">{t('mp_share_copied_note')}</p>}
+                {voice && <button type="button" data-testid="morning-share-voice" aria-label={t('mp_share_voice')} onClick={on.shareVoice} className={`${btnGreen} mt-2 w-full min-h-[56px]`}>{t('mp_share_voice')}</button>}
+                {shareError && <p role="alert" className="mt-2 rounded-xl bg-red-50 p-3 text-base font-semibold text-red-800" data-testid="morning-share-error">{t('mp_share_failed')}</p>}
+              </>
+            ) : <p className="mt-2 text-sm text-stone-600" data-testid="morning-share-hint">{t('mp_share_all_hint')}</p>}
           </section>
 
           <section>

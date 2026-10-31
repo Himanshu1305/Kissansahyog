@@ -19,14 +19,8 @@ test('helpers: voice file name, data url, hasVoice, WhatsApp url', () => {
   const u = L.whatsappTextUrl('नमस्ते & 100%\nok')
   assert.ok(u.startsWith('https://wa.me/?text=')); assert.equal(decodeURIComponent(u.slice('https://wa.me/?text='.length)), 'नमस्ते & 100%\nok')
 })
-test('helpers: canShareFiles needs share + canShare(files) and at least one file; never throws', () => {
-  const ok = { share() {}, canShare: (o) => o.files.length === 2 }
-  assert.ok(L.canShareFiles(ok, [1, 2])); assert.ok(!L.canShareFiles(ok, [1])); assert.ok(!L.canShareFiles(ok, []))
-  assert.ok(!L.canShareFiles({}, [1])); assert.ok(!L.canShareFiles(null, [1]))
-  assert.ok(!L.canShareFiles({ share() {}, canShare() { throw new Error('x') } }, [1]))
-})
 test('strings: every new key has Hindi and English, and is reachable through strings.js', () => {
-  const keys = Object.keys(morningStrings).filter((k) => /^mp_(voice|wa_text|share_all)/.test(k))
+  const keys = Object.keys(morningStrings).filter((k) => /^mp_(voice|wa_text|share_)/.test(k))
   assert.ok(keys.length >= 8)
   for (const k of keys) { assert.ok(morningStrings[k].hi && morningStrings[k].en, k); assert.equal(strings[k].en, morningStrings[k].en) }
 })
@@ -42,7 +36,7 @@ async function loadView() {
 }
 const t = (k) => (strings[k] ? strings[k].en : k)
 const noop = () => {}
-const base = { t, date: '2026-10-30', dateText: 'Friday', today: '2026-10-30', history: { state: 'ready', error: null }, historyRows: [], nextDisabled: false, prevDisabled: false, copied: false, copyFailed: false, pollCopied: false, canShare: false, canShareAll: false, busy: false, pctValue: '', pctMsg: null, pctError: null, resultDateText: '2026-10-29', postedText: '', generatedText: '', refs: { msg: { current: null } }, on: { cardName: 'c.png', pct: noop, prev: noop, next: noop, today: noop, open: noop, copyMsg: noop, selectAll: noop, copyPoll: noop, share: noop, shareAll: noop, mark: noop, savePct: noop } }
+const base = { t, date: '2026-10-30', dateText: 'Friday', today: '2026-10-30', history: { state: 'ready', error: null }, historyRows: [], nextDisabled: false, prevDisabled: false, copied: false, copyFailed: false, pollCopied: false, canShare: false, canShareApi: true, shareNote: false, shareError: false, busy: false, pctValue: '', pctMsg: null, pctError: null, resultDateText: '2026-10-29', postedText: '', generatedText: '', refs: { msg: { current: null } }, on: { cardName: 'c.png', pct: noop, prev: noop, next: noop, today: noop, open: noop, copyMsg: noop, selectAll: noop, copyPoll: noop, share: noop, shareCard: noop, shareVoice: noop, mark: noop, savePct: noop } }
 const post = { message_text: 'MSG & TEXT', poll_text: 'POLL', card_png_b64: 'AQID', report_text: 'R', posted_at: null, generated_at: '2026-10-30T00:00:00Z', voice_script: 'सीताराम किसान भाइयो!', voice_mp3_b64: 'QUJD' }
 
 test('page: voice present -> player, download with the dated file name, collapsible script, WhatsApp text, accessible labels', async () => {
@@ -58,13 +52,7 @@ test('page: voice missing -> a clear line, no player; message, card and poll sti
   assert.ok(html.includes('Voice not ready - run the workflow again.') && !html.includes('<audio') && !html.includes('morning-voice-script'))
   for (const s of ['Copy message', 'Download card', 'Copy poll', 'Mark as posted']) assert.ok(html.includes(s), s)
 })
-test('page: share card + voice button only when the browser can share files; else the hint', async () => {
-  const { default: V } = await loadView()
-  const no = renderToStaticMarkup(createElement(V, { ...base, post }))
-  assert.ok(!no.includes('data-testid="morning-share-all"') && no.includes('On a phone this opens the share sheet; on a computer use Download.'))
-  const yes = renderToStaticMarkup(createElement(V, { ...base, post, canShareAll: true }))
-  assert.ok(yes.includes('data-testid="morning-share-all"') && yes.includes('aria-label="Share card + voice"') && !yes.includes('morning-share-all-hint'))
-})
+// the share buttons are covered by tests/unit/morning-17d-share.test.mjs (Batch 17D replaced the combined card + voice button)
 test('page: posted day still shows the voice and the old buttons; Hindi labels exist', async () => {
   const { default: V } = await loadView()
   const html = renderToStaticMarkup(createElement(V, { ...base, post: { ...post, posted_at: '2026-10-30T01:00:00Z' }, postedText: 'x' }))
