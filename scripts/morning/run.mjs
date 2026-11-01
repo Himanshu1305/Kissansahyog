@@ -105,7 +105,7 @@ export async function main(argv = process.argv.slice(2)) {
   let videoLine = ''
   if (args.save) {
     try {
-      videoLine = (await makeVideo({ outDir, date, png, mp3: voiceMp3, ...saveCtx })).line
+      videoLine = (await makeVideo({ outDir, date, png, mp3: voiceMp3, ...saveCtx, force: process.env.MORNING_FORCE_VIDEO === 'true' })).line
     } catch (e) { videoLine = `video skipped: ${String(e && e.message).slice(0, 100)}` }
     console.log(videoLine)
     appendStepSummary(videoLine)

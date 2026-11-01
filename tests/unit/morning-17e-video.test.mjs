@@ -33,12 +33,15 @@ const fakeFfmpeg = ({ code = 0, bytes = 1000, error = null, stderr = '' } = {}) 
   const run = async (args) => {
     run.calls.push(args)
     if (error) return { code: null, stderr: '', error }
+    if (args.includes('null')) return { code, stderr: code === 0 ? 'size=N/A time=00:00:34.66 bitrate=N/A' : stderr, error: null } // measuring the voice
     if (code === 0) writeFileSync(args[args.length - 1], Buffer.alloc(bytes, 7))
     return { code, stderr, error: null }
   }
   run.calls = []
   return run
 }
+const okProbe = async () => ({ audio: 34.69, video: 35, container: 35 })
+const mv = (o) => makeVideo({ runProbe: okProbe, ...o })
 const dir = () => mkdtempSync(join(tmpdir(), 'v17e-'))
 
 // ---- the ffmpeg recipe ----
@@ -83,15 +86,15 @@ test('parseDuration reads ffmpeg "Duration: hh:mm:ss.xx"', () => {
 // ---- the decision: make it, skip it, or fail softly ----
 test('video already stored (has_video true): nothing is built, nothing is saved', async () => {
   const f = fakeDb({ hasVideo: true }), ff = fakeFfmpeg()
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
   assert.equal(ff.calls.length, 0)
   assert.deepEqual(f.calls.map((c) => c.name), ['morning_post_context'])
   assert.match(r.line, /^video already stored for this post; nothing to build$/)
 })
 test('no video yet: builds once from this run\'s card and voice, saves once, says how big', async () => {
-  const f = fakeDb(), ff = fakeFfmpeg({ bytes: 150000, stderr: 'Duration: 00:00:41.20, start' })
+  const f = fakeDb(), ff = fakeFfmpeg({ bytes: 150000, })
   const od = dir()
-  const r = await makeVideo({ outDir: od, ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: od, ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
   assert.equal(r.ok, true)
   assert.equal(ff.calls.filter((a) => a.includes('-c:v')).length, 1)
   const up = f.calls.filter((c) => c.name === 'morning_post_video_upsert')
@@ -102,14 +105,14 @@ test('no video yet: builds once from this run\'s card and voice, saves once, say
   assert.equal(up[0].args.p_meta.bytes, 150000)
   assert.equal(up[0].args.p_meta.width, undefined, 'meta carries only what is known: no invented fields')
   assert.equal(up[0].args.p_meta.src_sha256, undefined, 'the database computes src_sha256, the client never sends it')
-  assert.match(r.line, /^video saved \(146 KB, 41\.2 s\)$/)
+  assert.match(r.line, /^video saved \(146 KB, 35 s\)$/)
   assert.ok(existsSync(join(od, 'morning-2026-11-01.mp4')), 'the file is kept in the output folder (artifact)')
   assert.ok(!/AAAA|secret-abc|anon-key/.test(r.line))
 })
 test('voice not in this run (already stored earlier): it is fetched from the database, once, and the mp3 file is written next to the video', async () => {
   const f = fakeDb({ voice: Buffer.from('mp3-from-db').toString('base64') }), ff = fakeFfmpeg()
   const od = dir()
-  const r = await makeVideo({ outDir: od, ...CREDS, png: PNG, mp3: null, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: od, ...CREDS, png: PNG, mp3: null, fetchImpl: f, runFfmpeg: ff })
   assert.equal(r.ok, true)
   assert.deepEqual(f.calls.map((c) => c.name), ['morning_post_context', 'morning_post_voice_get', 'morning_post_video_upsert'])
   assert.equal(readFileSync(join(od, 'voice.mp3'), 'utf8'), 'mp3-from-db')
@@ -117,51 +120,51 @@ test('voice not in this run (already stored earlier): it is fetched from the dat
 test('a voice.mp3 left in the output folder by the voice step is used without asking the database', async () => {
   const f = fakeDb(), ff = fakeFfmpeg(), od = dir()
   writeFileSync(join(od, 'voice.mp3'), MP3)
-  const r = await makeVideo({ outDir: od, ...CREDS, png: PNG, mp3: null, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: od, ...CREDS, png: PNG, mp3: null, fetchImpl: f, runFfmpeg: ff })
   assert.equal(r.ok, true)
   assert.ok(!f.calls.some((c) => c.name === 'morning_post_voice_get'))
 })
 test('no voice anywhere: skipped with one line, no ffmpeg', async () => {
   const f = fakeDb({ voice: null }), ff = fakeFfmpeg()
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: null, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: null, fetchImpl: f, runFfmpeg: ff })
   assert.equal(r.ok, false)
   assert.equal(ff.calls.length, 0)
   assert.match(r.line, /^video skipped: no voice yet/)
 })
 test('no card: skipped with one line, no ffmpeg', async () => {
   const ff = fakeFfmpeg()
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: null, mp3: MP3, fetchImpl: fakeDb(), runFfmpeg: ff })
+  const r = await mv({ outDir: dir(), ...CREDS, png: null, mp3: MP3, fetchImpl: fakeDb(), runFfmpeg: ff })
   assert.equal(ff.calls.length, 0)
   assert.match(r.line, /^video skipped: no card/)
 })
 test('ffmpeg missing -> one line, no crash, nothing saved', async () => {
   const f = fakeDb(), ff = fakeFfmpeg({ error: Object.assign(new Error('spawn ffmpeg ENOENT'), { code: 'ENOENT' }) })
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
   assert.equal(r.ok, false)
   assert.match(r.line, /^video skipped: ffmpeg is not installed/)
   assert.ok(!f.calls.some((c) => c.name === 'morning_post_video_upsert'))
 })
 test('ffmpeg fails (exit 1) -> one line with a short reason, nothing saved', async () => {
   const f = fakeDb(), ff = fakeFfmpeg({ code: 1, stderr: 'Error: something broke\nsecond line' })
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
   assert.equal(r.ok, false)
   assert.match(r.line, /^video skipped: ffmpeg failed \(exit 1\)/)
   assert.ok(r.line.length < 200 && !r.line.includes('\n'))
   assert.ok(!f.calls.some((c) => c.name === 'morning_post_video_upsert'))
 })
 test('ffmpeg throws or never answers sensibly -> still no crash', async () => {
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: fakeDb(), runFfmpeg: async () => { throw new Error('boom') } })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: fakeDb(), runFfmpeg: async () => { throw new Error('boom') } })
   assert.equal(r.ok, false)
   assert.match(r.line, /^video skipped: /)
 })
 test('ffmpeg exits 0 but writes nothing -> skipped', async () => {
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: fakeDb(), runFfmpeg: async () => ({ code: 0, stderr: '', error: null }) })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: fakeDb(), runFfmpeg: async (a) => ({ code: 0, stderr: a.includes('null') ? 'time=00:00:34.66' : '', error: null }) })
   assert.equal(r.ok, false)
   assert.match(r.line, /^video skipped: /)
 })
 test('too big for the database cap -> not sent, plain line', async () => {
   const f = fakeDb(), ff = fakeFfmpeg({ bytes: Math.ceil((MAX_MP4_B64 / 4) * 3) + 10 })
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
   assert.equal(r.ok, false)
   assert.match(r.line, /^video not saved: the video is too large for the database/)
   assert.ok(!f.calls.some((c) => c.name === 'morning_post_video_upsert'))
@@ -175,20 +178,20 @@ test('database answers: already_posted, bad_input, other error, 404 (migration m
     [{ upsert: 'oops', upsertStatus: 502 }, /^video not saved: unexpected answer from the database \(http 502\)$/],
   ]
   for (const [opts, re] of cases) {
-    const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: fakeDb(opts), runFfmpeg: fakeFfmpeg() })
+    const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: fakeDb(opts), runFfmpeg: fakeFfmpeg() })
     assert.equal(r.ok, false)
     assert.match(r.line, re)
   }
   let n = 0
   const flaky = async (url, o) => { if (url.endsWith('morning_post_video_upsert')) throw new Error('ECONNRESET'); return fakeDb()(url, o) }
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: flaky, runFfmpeg: fakeFfmpeg() })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: flaky, runFfmpeg: fakeFfmpeg() })
   assert.match(r.line, /^video not saved: could not reach the database$/)
   void n
 })
 test('old database (context has no has_video): skipped without running ffmpeg, says migration 0074 is missing', async () => {
   const ff = fakeFfmpeg()
   const f = fakeDb({ context: { ok: true, yesterday: {}, today: { voice_sha256: 'abc' } } })
-  const r = await makeVideo({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
+  const r = await mv({ outDir: dir(), ...CREDS, png: PNG, mp3: MP3, fetchImpl: f, runFfmpeg: ff })
   assert.equal(ff.calls.length, 0)
   assert.match(r.line, /^video skipped: migration 0074 missing/)
 })
@@ -201,7 +204,7 @@ test('storedVideoState: yes / no / unknown', async () => {
 })
 test('without a database (local rehearsal, save = null) the video is just built into the output folder', async () => {
   const od = dir(), ff = fakeFfmpeg({ bytes: 5000 })
-  const r = await makeVideo({ outDir: od, date: '2026-11-01', png: PNG, mp3: MP3, save: null, runFfmpeg: ff })
+  const r = await mv({ outDir: od, date: '2026-11-01', png: PNG, mp3: MP3, save: null, runFfmpeg: ff })
   assert.equal(r.ok, true)
   assert.match(r.line, /^video made \(5 KB/)
   assert.ok(existsSync(join(od, 'morning-2026-11-01.mp4')))

@@ -2,9 +2,9 @@
 // morning_post_video_upsert. Runs AFTER the message, card and voice are saved. NEVER throws and never blocks the post:
 // every problem is one plain line for report.txt and the step summary. Never logs keys, the secret, base64 or raw bytes.
 import { spawn } from 'node:child_process'
-import { appendFileSync, existsSync, readFileSync, statSync, writeFileSync } from 'node:fs'
+import { appendFileSync, existsSync, readFileSync, statSync, unlinkSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { buildFfmpegArgs, VIDEO_SPEC } from './ffmpegArgs.mjs'
+import { buildFfmpegArgs, videoSeconds, VIDEO_SPEC } from './ffmpegArgs.mjs'
 import { rpc } from '../lib/supa.js'
 
 export const MAX_MP4_B64 = 3000000 // the database cap in morning_post_video_upsert
@@ -26,6 +26,48 @@ export function spawnFfmpeg(args, { bin = process.env.FFMPEG_PATH || 'ffmpeg', t
 export function parseDuration(text) {
   const m = /Duration:\s*(\d+):(\d\d):(\d\d(?:\.\d+)?)/.exec(String(text || ''))
   return m ? Math.round((Number(m[1]) * 3600 + Number(m[2]) * 60 + Number(m[3])) * 100) / 100 : null
+}
+
+// the LAST "time=hh:mm:ss.xx" of an ffmpeg run -> seconds ; null when absent. `ffmpeg -i voice.mp3 -f null -` ends with the real decoded length.
+export function parseLastTime(text) {
+  const all = [...String(text || '').matchAll(/time=(\d+):(\d\d):(\d\d(?:\.\d+)?)/g)]
+  if (!all.length) return null
+  const m = all[all.length - 1]
+  return Math.round((Number(m[1]) * 3600 + Number(m[2]) * 60 + Number(m[3])) * 100) / 100
+}
+
+// Runs ffprobe. -> { code, stdout, error }. FFPROBE_PATH may point at a specific binary.
+export function spawnFfprobe(args, { bin = process.env.FFPROBE_PATH || 'ffprobe', timeoutMs = 60000 } = {}) {
+  return new Promise((resolve) => {
+    let p
+    try { p = spawn(bin, args, { stdio: ['ignore', 'pipe', 'ignore'] }) } catch (error) { return resolve({ code: null, stdout: '', error }) }
+    let stdout = ''
+    const timer = setTimeout(() => { try { p.kill('SIGKILL') } catch { /* gone */ } }, timeoutMs)
+    p.stdout.on('data', (d) => { stdout = (stdout + d).slice(-20000) })
+    p.on('error', (error) => { clearTimeout(timer); resolve({ code: null, stdout, error }) })
+    p.on('close', (code) => { clearTimeout(timer); resolve({ code, stdout, error: null }) })
+  })
+}
+
+const r2 = (x) => (Number.isFinite(x) ? Math.round(x * 100) / 100 : null)
+// The finished video's three lengths -> { audio, video, container } (seconds) or null when they cannot be read.
+// ffprobe first; with no ffprobe on the machine, ffmpeg gives the container length and the decoded audio length (video = container).
+export async function probeDurations(path, { runFfprobe = spawnFfprobe, runFfmpeg = spawnFfmpeg } = {}) {
+  const r = await runFfprobe(['-v', 'error', '-show_entries', 'stream=codec_type,duration:format=duration', '-of', 'json', path])
+  if (r && !r.error && r.code === 0) {
+    try {
+      const j = JSON.parse(r.stdout)
+      const st = (t) => (j.streams || []).find((x) => x.codec_type === t)
+      const container = r2(Number(j.format && j.format.duration))
+      if (container == null) return null
+      return { container, audio: r2(Number(st('audio') && st('audio').duration)) ?? container, video: r2(Number(st('video') && st('video').duration)) ?? container }
+    } catch { return null }
+  }
+  const a = await runFfmpeg(['-hide_banner', '-i', path])
+  const container = parseDuration(a && a.stderr)
+  if (container == null) return null
+  const d = await runFfmpeg(['-hide_banner', '-i', path, '-map', '0:a', '-f', 'null', '-'])
+  return { container, video: container, audio: parseLastTime(d && d.stderr) ?? container }
 }
 
 export function appendStepSummary(line, env = process.env) {
@@ -65,19 +107,22 @@ async function saveVideo({ url, key, secret, date, b64, meta, fetchImpl = fetch 
 }
 
 const kb = (n) => Math.round(n / 1024)
+const ffmpegStartLine = (e) => (e.code === 'ENOENT' ? 'video skipped: ffmpeg is not installed on this machine' : `video skipped: ffmpeg could not start (${String(e.code || e.message).slice(0, 40)})`)
+const ffmpegFailLine = (res, extra) => `video skipped: ffmpeg failed (exit ${res.code === null ? 'none - timed out' : res.code})${extra}${lastLine(res.stderr) ? `: ${lastLine(res.stderr).slice(0, 100)}` : ''}`
 const lastLine = (s) => String(s || '').split('\n').map((x) => x.trim()).filter(Boolean).pop() || ''
 
 // opts: { outDir, date, png (Buffer|null), mp3 (Buffer|null), url, key, secret (all three = also use the database; omit them or pass
-//         save: null = build the file only, a local rehearsal), fetchImpl, runFfmpeg }
+//         save: null = build the file only, a local rehearsal), fetchImpl, runFfmpeg, runProbe (path -> {audio, video, container} | null),
+//         force: true = a manual run: build and overwrite even when a video is already stored }
 // -> { ok, line }. Never throws.
 export async function makeVideo(opts) {
   try { return await build(opts) } catch (e) { return { ok: false, line: `video skipped: ${String((e && e.message) || e).slice(0, 100)}` } }
 }
 
-async function build({ outDir, date, png = null, mp3 = null, url, key, secret, save, fetchImpl = fetch, runFfmpeg = spawnFfmpeg }) {
+async function build({ outDir, date, png = null, mp3 = null, url, key, secret, save, force = false, fetchImpl = fetch, runFfmpeg = spawnFfmpeg, runProbe }) {
   const db = save === null ? null : (save || (url && key && secret ? { url, key, secret } : null))
   const d = date || (db && db.date)
-  if (db) {
+  if (db && !force) { // a manual run (force) always rebuilds and overwrites; scheduled tries keep the cheap "already stored" skip
     const st = await videoState({ ...db, date: d, fetchImpl })
     if (st.state === 'yes') return { ok: true, line: 'video already stored for this post; nothing to build' }
     if (st.state === 'unknown') return { ok: false, line: st.why === 'old' ? 'video skipped: migration 0074 missing (the database does not report has_video)' : 'video skipped: could not read the video state from the database' }
@@ -91,20 +136,43 @@ async function build({ outDir, date, png = null, mp3 = null, url, key, secret, s
   if (!voice) return { ok: false, line: 'video skipped: no voice yet (nothing to put under the card)' }
   writeFileSync(voicePath, voice)
 
-  const res = await runFfmpeg(buildFfmpegArgs({ card: cardPath, audio: voicePath, out: outPath }))
-  if (res.error) return { ok: false, line: res.error.code === 'ENOENT' ? 'video skipped: ffmpeg is not installed on this machine' : `video skipped: ffmpeg could not start (${String(res.error.code || res.error.message).slice(0, 40)})` }
-  if (res.code !== 0) return { ok: false, line: `video skipped: ffmpeg failed (exit ${res.code === null ? 'none - timed out' : res.code})${lastLine(res.stderr) ? `: ${lastLine(res.stderr).slice(0, 100)}` : ''}` }
-  let size = 0
-  try { size = statSync(outPath).size } catch { /* no file */ }
-  if (!size) return { ok: false, line: 'video skipped: ffmpeg finished but made no file' }
-  const probe = await runFfmpeg(['-hide_banner', '-i', outPath]) // exits 1 by design; only its "Duration:" line is wanted
-  const seconds = parseDuration(probe && probe.stderr)
-  const desc = `${kb(size)} KB${seconds ? `, ${seconds} s` : ''}`
+  // 1. the REAL decoded length of the voice (the mp3 header can say something else)
+  const m = await runFfmpeg(['-hide_banner', '-i', voicePath, '-f', 'null', '-'])
+  if (m.error) return { ok: false, line: ffmpegStartLine(m.error) }
+  if (m.code !== 0) return { ok: false, line: ffmpegFailLine(m, ' while measuring the voice') }
+  const decoded = parseLastTime(m.stderr)
+  const seconds = videoSeconds(decoded)
+  if (seconds == null) return { ok: false, line: 'video skipped: could not measure the length of the voice' }
+  const probe = runProbe || ((p) => probeDurations(p, { runFfmpeg }))
+
+  // 2. build with an explicit -t, check the three lengths, rebuild once (stricter), otherwise save nothing
+  const near = (x) => Number.isFinite(x) && Math.abs(x - decoded) <= 0.5
+  const gone = () => { try { unlinkSync(outPath) } catch { /* nothing to remove */ } }
+  let size = 0, lens = null
+  for (const strict of [false, true]) {
+    gone()
+    const res = await runFfmpeg(buildFfmpegArgs({ card: cardPath, audio: voicePath, out: outPath, seconds, strict }))
+    if (res.error) return { ok: false, line: ffmpegStartLine(res.error) }
+    if (res.code !== 0) return { ok: false, line: ffmpegFailLine(res, '') }
+    size = 0
+    try { size = statSync(outPath).size } catch { /* no file */ }
+    if (!size) return { ok: false, line: 'video skipped: ffmpeg finished but made no file' }
+    lens = await probe(outPath)
+    if (!lens) { gone(); return { ok: false, line: 'video skipped: could not read the length of the finished video' } }
+    if (near(lens.audio) && near(lens.video) && near(lens.container)) break
+    if (strict) {
+      gone()
+      const s1 = (x) => `${Math.round(x * 10) / 10} s`
+      return { ok: false, line: `video skipped: durations do not match (audio ${s1(decoded)}, video ${s1(Math.max(lens.video, lens.container))})` }
+    }
+  }
+  const secs = lens.container
+  const desc = `${kb(size)} KB, ${Math.round(secs * 10) / 10} s`
   if (!db) return { ok: true, line: `video made (${desc})` }
 
   const b64 = readFileSync(outPath).toString('base64')
   if (b64.length > MAX_MP4_B64) return { ok: false, line: `video not saved: the video is too large for the database (${kb(size)} KB; the limit is about ${kb(MAX_MP4_B64 * 0.75)} KB)` }
-  const meta = { bytes: size, ...(seconds ? { duration_s: seconds } : {}), fps: VIDEO_SPEC.fps, crf: VIDEO_SPEC.crf }
+  const meta = { bytes: size, duration_s: secs, fps: VIDEO_SPEC.fps, crf: VIDEO_SPEC.crf }
   const s = await saveVideo({ ...db, date: d, b64, meta, fetchImpl })
   return s.ok ? { ok: true, line: `video saved (${desc})` } : { ok: false, line: s.line }
 }
