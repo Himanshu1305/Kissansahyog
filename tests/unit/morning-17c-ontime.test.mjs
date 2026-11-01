@@ -233,7 +233,7 @@ import { cardData } from '../../scripts/morning/card/render.mjs'
 
 test('report has "mandi date used" and "weather cache age"; message and voice script identical to the 17D evidence', async () => {
   const D = loadData()
-  const rd = (f) => readFileSync(new URL(`../../docs/review/batch17d/evidence/${f}`, import.meta.url), 'utf8')
+  const rd = (f) => readFileSync(new URL(`../../docs/review/batch17d/evidence/${f}`, import.meta.url), 'utf8').split(String.fromCharCode(13,10)).join(String.fromCharCode(10))
   for (const [fixture, label] of [['rain-f1', 'f1-dry'], ['rain-f2', 'f2-real-30oct'], ['rain-f3', 'f3-rain-soon'], ['rain-f4', 'f4-heavy'], ['rain-f5', 'f5'], ['rain-f6', 'f6']]) {
     const fx = loadFixture(fixture)
     const res = await generate({ date: fx.date, data: D, nowIso: fx.nowIso, loaders: { weather: fx.weatherLoader, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) } })
