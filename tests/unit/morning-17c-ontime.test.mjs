@@ -193,3 +193,54 @@ test('end to end: real script, local fake server, writes GITHUB_OUTPUT and GITHU
     assert.equal(readFileSync(o3, 'utf8').trim(), 'complete=false')
   } finally { server.close() }
 })
+
+// ---- data freshness: the date the post is built for, at each of the four early times ----
+import { tithiAt, sunriseSagar } from '../../scripts/morning/lib/tithi.js'
+import { daysBetween } from '../../scripts/morning/lib/ist.js'
+import { sowingOpen } from '../../scripts/morning/lib/workRules.js'
+import { BANNERS } from '../../src/content/kamPani.js'
+
+const CRON_UTC = [[19, 37], [20, 47], [21, 47], [22, 37]]
+for (const day of ['2026-10-31', '2026-09-30', '2026-11-14']) { // evening-UTC start; includes the 1 Oct sowing opening and the day before the banner ends
+  test(`IST date, tithi and sowing days left come from the IST date at all four cron times (UTC evening of ${day})`, () => {
+    const [y, m, d] = day.split('-').map(Number)
+    const ist = istDate(new Date(Date.UTC(y, m - 1, d, 19, 37)))
+    const utcDate = day
+    assert.notEqual(ist, utcDate, 'the IST date is the next calendar day')
+    for (const [h, min] of CRON_UTC) {
+      const at = new Date(Date.UTC(y, m - 1, d, h, min))
+      const date = istDate(at)
+      assert.equal(date, ist, `${h}:${min} UTC`)
+      // tithi: computed at Sagar sunrise OF the IST date (sunrise falls on that IST date), not the UTC date
+      const t = tithiAt(date)
+      assert.equal(t.n, tithiAt(ist).n)
+      assert.equal(istDate(sunriseSagar(date)), date)
+      assert.equal(istDate(t.sunrise), ist)
+      // sowing days left: counted from the IST date
+      const left = daysBetween(date, BANNERS.sowing.validUntil)
+      assert.equal(left, daysBetween(ist, BANNERS.sowing.validUntil))
+      assert.equal(daysBetween(utcDate, BANNERS.sowing.validUntil), left + 1, 'using the UTC date would be one day off')
+      assert.equal(sowingOpen(date, BANNERS.sowing.validUntil), date >= `${date.slice(0, 4)}-10-01` && date < BANNERS.sowing.validUntil)
+    }
+  })
+}
+
+// ---- report.txt gets two freshness lines; message, card text and voice script stay byte-for-byte the same ----
+import { generate, loadData } from '../../scripts/morning/lib/generate.js'
+import { loadFixture } from '../../scripts/morning/fixtures.js'
+import { buildVoiceScript } from '../../scripts/morning/voice/voiceScript.mjs'
+import { cardData } from '../../scripts/morning/card/render.mjs'
+
+test('report has "mandi date used" and "weather cache age"; message and voice script identical to the 17D evidence', async () => {
+  const D = loadData()
+  const rd = (f) => readFileSync(new URL(`../../docs/review/batch17d/evidence/${f}`, import.meta.url), 'utf8')
+  for (const [fixture, label] of [['rain-f1', 'f1-dry'], ['rain-f2', 'f2-real-30oct'], ['rain-f3', 'f3-rain-soon'], ['rain-f4', 'f4-heavy'], ['rain-f5', 'f5'], ['rain-f6', 'f6']]) {
+    const fx = loadFixture(fixture)
+    const res = await generate({ date: fx.date, data: D, nowIso: fx.nowIso, loaders: { weather: fx.weatherLoader, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) } })
+    assert.equal(res.message, rd(`message-after-${label}.txt`), `${label} message`)
+    assert.equal(`${buildVoiceScript(res.model).text}\n`, readFileSync(new URL(`../../docs/review/batch17b/evidence/voice-script-${label}.txt`, import.meta.url), "utf8").replace(/\r\n/g, '\n'), `${label} voice script`)
+    assert.match(res.report, /\nmandi date used: .+\n/)
+    assert.match(res.report, /\nweather cache age: .+\n/)
+    assert.ok(cardData(res.model), 'card data builds')
+  }
+})

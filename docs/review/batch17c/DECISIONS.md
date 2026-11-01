@@ -19,3 +19,5 @@
 **Untouched:** generator, card, voice, message, database, dependencies, OTP switches. Old 16B workflow test updated for the new schedule.
 
 Note: the check script needs Node 18 or newer (built-in fetch) and runs before setup-node; this was not verified against a specific ubuntu-latest Node version, so the workflow no longer claims one. The check step also has `continue-on-error: true` plus a crash notice, so a crash of the check can never skip the job.
+
+**Data freshness (details in evidence/data-freshness.md).** The post date, tithi and sowing days left all come from the IST date at all four times (tests added). Mandi: the rule is unchanged (yesterday, else up to 3 days back, labelled); at 01:07 IST the data is whatever the 23:35 IST refresh stored. Weather: the saved forecast is normally 0.3-1.5 h old at the four times; past 8 h the generator tries Open-Meteo directly and otherwise leaves the weather out. Two lines were added to report.txt only (`mandi date used`, `weather cache age`); a test proves the message and voice script stay byte-identical. Production contents at those hours were not checked.

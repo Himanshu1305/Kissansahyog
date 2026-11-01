@@ -91,6 +91,8 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
     festival ? `festival: ${festival.name_hi}` : 'festival: none (data/morning/festivals.json has no verified entry for today)',
     `weather provider: ${PROVIDER_NAME}`,
     `data freshness: mandi ${mandi ? mandi.date : 'n/a'}, weather ${weather ? date : 'n/a'}`,
+    `mandi date used: ${mandi ? `${mandi.date}${mandi.isYesterday ? ' (yesterday)' : ' (older than yesterday)'}` : 'none'}`,
+    `weather cache age: ${weather && weather.fetchedAt && !Number.isNaN(Date.parse(weather.fetchedAt)) ? `${((Date.parse(now) - Date.parse(weather.fetchedAt)) / 3600000).toFixed(1)} hours (limit 8)` : 'not from the saved forecast'}`,
     '',
     `suspect data (not shown): ${suspect.length ? suspect.map((s) => `${s.crop} - ${s.reason}`).join('; ') : 'none'}`,
     `crops skipped: ${skipped.length ? skipped.map((s) => `${s.crop} - ${s.reason}`).join('; ') : 'none'}`,

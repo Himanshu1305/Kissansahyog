@@ -13,3 +13,5 @@ Nothing here deploys the website. No site file changed, so there is NO ship scri
 5. If a day is still late, tell the architect (Plan 2: `PLAN2_SUPABASE_CATCHUP.md`).
 
 If something goes wrong: set the workflow back by reverting the merge of `release-17c` on `main`; nothing else changes.
+
+If the check step shows a yellow warning, or the summary says "The check step crashed, so the full job ran.", the check failed safely and the post was still made. Tell the architect.
