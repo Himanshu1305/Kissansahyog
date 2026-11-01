@@ -1,0 +1,3 @@
+npm run build (vite build --mode staging) after the video length fix: exit 0
+✓ 392 modules transformed.
+[32m✓ built in 5.21s[39m
