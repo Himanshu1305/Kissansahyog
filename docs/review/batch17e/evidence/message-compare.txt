@@ -1,0 +1,7 @@
+f1-dry: IDENTICAL (823 characters, 823 in the 17D file)
+f2-real-30oct: IDENTICAL (805 characters, 805 in the 17D file)
+f3-rain-soon: IDENTICAL (977 characters, 977 in the 17D file)
+f4-heavy: IDENTICAL (1008 characters, 1008 in the 17D file)
+f5: IDENTICAL (834 characters, 834 in the 17D file)
+f6: IDENTICAL (870 characters, 870 in the 17D file)
+RESULT: all six IDENTICAL

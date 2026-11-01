@@ -66,6 +66,13 @@ jobs:
       - run: npx playwright install --with-deps chromium
         if: steps.check.outputs.complete != 'true'
 
+      - name: Make sure ffmpeg is installed (for the card + voice video)
+        if: steps.check.outputs.complete != 'true'
+        continue-on-error: true   # no ffmpeg = no video, but the post itself is still made
+        run: |
+          command -v ffmpeg >/dev/null 2>&1 || sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -n 1
+
       - name: Make and save the morning post
         if: steps.check.outputs.complete != 'true'
         env:
@@ -75,6 +82,7 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
           ELEVENLABS_MODEL: ${{ secrets.ELEVENLABS_MODEL }}   # optional: empty = the code keeps its default model
+          MORNING_FORCE_VIDEO: ${{ github.event_name == 'workflow_dispatch' && !inputs.check_first && 'true' || 'false' }}   # a manual run always rebuilds the video; scheduled tries skip a stored one
         run: npm run morning -- --save
 
       - name: Keep the files for 7 days

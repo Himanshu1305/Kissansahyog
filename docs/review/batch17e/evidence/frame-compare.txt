@@ -1,0 +1,3 @@
+PSNR first frame vs card: 34.489226 dB
+PSNR last frame vs card: 34.644230 dB
+(higher is closer; above 30 dB is visually the same picture; x264 at crf 30 is lossy so it is never bit-identical)

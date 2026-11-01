@@ -4,8 +4,8 @@ import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { PageShell } from '../components/layout'
 import Seo from '../components/layout/Seo'
-import { getMorningPost, getMorningHistory, markMorningPosted, setMorningPollResult } from '../lib/admin/morningApi'
-import { istToday, pickDate, shiftDate, pollResultDate, pctOk, cardFileName, copyText, canShareFile, canUseShare, shareCardWithMessage, shareVoiceFile, shareFile, isVisibleShareFailure, logShareFailure, base64ToBytes, voiceFileName } from '../lib/admin/morningLogic'
+import { getMorningPost, getMorningHistory, getMorningVideo, markMorningPosted, setMorningPollResult } from '../lib/admin/morningApi'
+import { istToday, pickDate, shiftDate, pollResultDate, pctOk, cardFileName, copyText, canShareFile, canUseShare, shareCardWithMessage, shareVoiceFile, shareFile, isVisibleShareFailure, logShareFailure, base64ToBytes, voiceFileName, hasVideo, makeVideoFile, videoFileName, videoUiState, shareVideoWithMessage } from '../lib/admin/morningLogic'
 import { istText } from './admin/common'
 import MorningView, { MorningDenied } from './admin/MorningView'
 
@@ -43,6 +43,11 @@ export default function AdminMorning() {
   const canShareApi = useMemo(() => typeof navigator !== 'undefined' && canUseShare(navigator), [])
   const [shareNote, setShareNote] = useState(false)
   const [shareError, setShareError] = useState(false)
+  // Batch 17E: the card + voice video. The post only says has_video; the bytes are fetched in the background, turned into ONE File
+  // (kept in a ref so the tap handler can share it with no await before the share) and shown through a blob: URL (CSP media-src allows blob:).
+  const [videoLoad, setVideoLoad] = useState('idle')
+  const [videoUrl, setVideoUrl] = useState(null)
+  const videoFileRef = useRef(null)
 
   const load = useCallback(async () => {
     if (!user?.is_admin) return
@@ -55,6 +60,24 @@ export default function AdminMorning() {
     } catch (e) { setPost(null); setError(errKey(e)); setState('error') }
   }, [user?.id, user?.is_admin, date])
   useEffect(() => { load() }, [load])
+
+  const wantVideo = hasVideo(post)
+  const postDate = post?.post_date
+  useEffect(() => {
+    videoFileRef.current = null; setVideoUrl(null)
+    if (!wantVideo || !user?.is_admin) { setVideoLoad('idle'); return undefined }
+    let cancelled = false, url = null
+    setVideoLoad('loading')
+    getMorningVideo(user.id, date).then((r) => {
+      if (cancelled) return
+      const file = makeVideoFile(r && r.video_mp4_b64, date)
+      if (!file) { setVideoLoad('error'); return }
+      videoFileRef.current = file
+      url = URL.createObjectURL(file)
+      setVideoUrl(url); setVideoLoad('ready')
+    }).catch(() => { if (!cancelled) setVideoLoad('error') })
+    return () => { cancelled = true; if (url) URL.revokeObjectURL(url) }
+  }, [wantVideo, postDate, date, user?.id, user?.is_admin])
 
   if (!user?.is_admin) {
     return <PageShell width="content"><Seo title="Admin" path="/admin/morning" noindex /><MorningDenied t={t} onHome={() => navigate('/home')} /></PageShell>
@@ -92,6 +115,7 @@ export default function AdminMorning() {
       if (r.copied) setShareNote(true)
       if (isVisibleShareFailure(r)) { logShareFailure(r); setShareError(true) }
     },
+    shareVideo: () => { setShareError(false); setShareNote(false); shareVideoWithMessage({ nav: navigator, file: videoFileRef.current, text: post.message_text }).then((r) => { if (r.copied) setShareNote(true); if (isVisibleShareFailure(r)) { logShareFailure(r); setShareError(true) } }) },
     shareVoice: async () => {
       setShareError(false)
       const file = new File([base64ToBytes(post.voice_mp3_b64)], voiceFileName(date), { type: 'audio/mpeg' })
@@ -121,6 +145,7 @@ export default function AdminMorning() {
         copied={copied} copyFailed={copyFailed} pollCopied={pollCopied} canShare={canShare} canShareApi={canShareApi} shareNote={shareNote} shareError={shareError} busy={busy}
         pctValue={pct} pctMsg={pctMsg} pctError={pctError} resultDateText={resultDateText}
         postedText={post?.posted_at ? istText(post.posted_at, lang) : ''} generatedText={post?.generated_at ? istText(post.generated_at, lang) : ''}
+        video={{ state: videoUiState({ hasVideo: wantVideo, load: videoLoad }), url: videoUrl, name: videoFileName(date) }}
         refs={{ msg: msgRef }} on={on}
       />
     </PageShell>

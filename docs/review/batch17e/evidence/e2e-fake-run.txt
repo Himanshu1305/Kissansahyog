@@ -1,0 +1,21 @@
+--- run 1: voice already stored, no video, real ffmpeg ---
+PASS  job exits 0 - exit 0
+PASS  video line printed - video saved (190 KB, 12 s)
+PASS  video stored in the fake database - 190 KB
+PASS  the database was asked for the stored voice once
+PASS  step summary carries the video line - video saved (190 KB, 12 s)
+PASS  report.txt ends with the video line
+PASS  the mp4 is in the output folder (uploaded as an artifact)
+PASS  no secret, key or base64 in the console output
+--- run 2: same day again, nothing changed ---
+PASS  job exits 0
+PASS  "already stored" - no voice fetch, no second video save - morning_post_context,morning_post_upsert,morning_post_context
+--- run 3: ffmpeg missing, no video yet ---
+PASS  job exits 0 (green) without ffmpeg - exit 0
+PASS  one plain line says ffmpeg is missing
+PASS  the message and card are still saved
+PASS  no video was stored
+--- run 4: old database (no has_video in the context answer) ---
+PASS  job exits 0 on an old database - exit 0
+PASS  one line says migration 0074 is missing
+ALL E2E CHECKS PASSED

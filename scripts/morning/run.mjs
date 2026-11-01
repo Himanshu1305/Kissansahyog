@@ -9,6 +9,7 @@ import { fetchMandiRows } from './lib/supa.js'
 import { loadFixture } from './fixtures.js'
 import { saveToDatabase } from './lib/save.js'
 import { makeVoice } from './voice/make.mjs'
+import { makeVideo, appendStepSummary } from './video/make.mjs'
 
 export function parseArgs(argv) {
   const a = { date: null, draft: false, fixtures: null, out: null, image: true, save: false, voice: false, noVoice: false }
@@ -92,12 +93,24 @@ export async function main(argv = process.argv.slice(2)) {
 
   // The voice note never blocks the post: it runs after the message is saved; any problem is only a line in report.txt.
   let voiceLine = ''
+  let voiceMp3 = null
   try {
     const v = await makeVoice({ model: res.model, outDir, noVoice: args.noVoice, callApi: args.save || args.voice, save: args.save ? { ...saveCtx, date } : null })
     voiceLine = v.line
+    voiceMp3 = v.mp3 || null
   } catch (e) { voiceLine = `voice skipped: ${String(e && e.message).slice(0, 120)}` }
   console.log(voiceLine)
-  writeFileSync(join(outDir, 'report.txt'), `${report}${voiceLine}\n`, 'utf8')
+
+  // Batch 17E: the card with the voice as its sound (MP4). Best effort like the voice: any problem is one line, never a failed job.
+  let videoLine = ''
+  if (args.save) {
+    try {
+      videoLine = (await makeVideo({ outDir, date, png, mp3: voiceMp3, ...saveCtx, force: process.env.MORNING_FORCE_VIDEO === 'true' })).line
+    } catch (e) { videoLine = `video skipped: ${String(e && e.message).slice(0, 100)}` }
+    console.log(videoLine)
+    appendStepSummary(videoLine)
+  }
+  writeFileSync(join(outDir, 'report.txt'), `${report}${voiceLine}\n${videoLine ? `${videoLine}\n` : ''}`, 'utf8')
 
   console.log('')
   console.log(`1. Today's message is ready for ${date}${args.draft ? ' (DRAFT mode)' : ''}.`)
@@ -109,5 +122,5 @@ export async function main(argv = process.argv.slice(2)) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  main().then((c) => process.exit(c ?? 0)).catch((e) => { console.error(`Stopped: ${e.message}`); process.exit(1) })
+  main().then((c) => { process.exitCode = c ?? 0 }).catch((e) => { console.error(`Stopped: ${e.message}`); process.exit(1) })
 }

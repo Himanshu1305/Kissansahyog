@@ -1,0 +1,19 @@
+voice stand-in: sine tone, 40.37 s, mono mp3 64k (NOT the ElevenLabs voice)
+card: C:\Users\usdvi\projects\Kissansahyog\docs\review\batch17b\evidence\card-f1-dry.png (146166 bytes)
+ffmpeg: ffmpeg version 6.1.1-essentials_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers
+makeVideo -> video made (530 KB, 40.37 s)
+size: 542294 bytes = 0.52 MB (limit 1.5 MB); base64 length 723060 (database cap 3,000,000)
+PASS  video codec h264 (libx264) - h264
+PASS  pixel format yuv420p - yuv420p
+PASS  dimensions equal the card and are even - 1080x1350 (card 1080,1350)
+PASS  audio AAC mono - aac 1 ch 44100 Hz
+PASS  audio about 64 kbps - 64265 bit/s
+PASS  duration within 0.3 s of the voice - video file 40.37 s, voice 40.411429 s, video stream 40.000000 s
+PASS  size comfortably under 1.5 MB - 530 KB
+PASS  faststart (moov before mdat) - moov at 36, mdat at 9903
+PASS  no date or timestamp tags (the only tag text is the fixed string encoder=Lavc libx264) - checked ffprobe output
+PASS  first frame equals the card (PSNR >= 30 dB) - 34.489226 dB
+PASS  last frame equals the card (PSNR >= 30 dB) - 34.644230 dB
+PASS  full decode prints nothing - exit 0, 0 chars of output
+PASS  same inputs give the same file (bit-identical) - 0b3678cec2f25450
+ALL REHEARSAL CHECKS PASSED

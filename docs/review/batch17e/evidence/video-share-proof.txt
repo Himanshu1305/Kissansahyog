@@ -1,0 +1,33 @@
+PASS  the video was fetched once, in the background, with morning_post_video_get (actor + date)
+PASS  main + both backup buttons are at least 56 px high at 360 px (56, 56, 56)
+PASS  order in the block: main button, backups, then the text-only link
+PASS  no horizontal scroll at 360 px
+PASS  the main button has its aria-label
+PASS  the "press play" line is under the button
+PASS  the text-only link is not styled like the green buttons (oklch(0.527 0.154 150.069) vs oklch(0.923 0.003 48.717))
+PASS  preview: blob src, card poster, controls, playsinline, preload=metadata, aria-label ({"src":"blob:http://loca","poster":"data:image/png;base64,iVBORw0K","controls":true,"pi":true,"preload":"metadata","label":"आवाज़ वाले कार्ड का वीडियो चलाएँ"})
+PASS  the "download video" link is the blob and is named morning-DATE.mp4
+PASS  order: copy started, canShare(real file), share (writeText > canShare > share)
+PASS  SAME CLICK: all three calls happened within 1 ms of the tap (no waiting before share): 0, 0, 1 ms
+PASS  share = exactly one file, video/mp4, 542294 bytes (same as the stored video), name morning-2026-10-30.mp4, plus text
+PASS  the text shared and the text copied are exactly the message
+PASS  canShare was asked about the REAL video file
+PASS  the "message copied, paste it if the caption is empty" line shows under the button
+PASS  no CSP violation with the real policy (media-src allows blob:) []
+PASS  no page errors (0)
+PASS  a second tap shares the same file again (the File is made once, not on every tap)
+PASS  while the video loads the main button is disabled and says it is getting ready
+PASS  the two backup buttons are usable while it loads
+PASS  no video: main button and preview are hidden
+PASS  no video: the one plain line
+PASS  no video: the page stays fully usable
+PASS  fetch failed: no main button, a plain line instead
+PASS  fetch failed: the backups stay usable
+PASS  error: visible Hindi message: शेयर नहीं हो सका। नीचे डाउनलोड से कार्ड और आवाज़ रखकर WhatsApp से भेजें।
+PASS  error: console.warn carries only the error name: ["share failed: NotAllowedError"]
+PASS  AbortError: silent, nothing logged
+PASS  canShare(real video) false: share() not called, the visible message is shown
+PASS  computer: the hint is shown, no share buttons
+PASS  computer: the three download links are there
+
+ALL PASSED

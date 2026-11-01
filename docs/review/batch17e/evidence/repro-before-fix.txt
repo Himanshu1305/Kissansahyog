@@ -1,0 +1,28 @@
+STEP 2 - reproduction BEFORE the fix (old recipe = scripts/morning/video/ffmpegArgs.mjs at fa9a9bb, `-shortest` only).
+Voice: synthetic 34.7 s mono mp3 (sine, 64 kb/s, ID3v2.3 tag, the shape ElevenLabs returns) + sample card; and the REAL voice/card of run #14.
+
+REAL voice + REAL card, old recipe, container seconds (voice = 34.7 s):
+  ffmpeg 6.1.1 -> 34.5     ffmpeg 6.0 -> 43.0     ffmpeg 7.1 -> 69.5     CI ffmpeg 8.0.1 -> 64.5 (the stored video)
+Synthetic 34.7 s voice, old recipe, same ffmpeg builds: 6.1.1 -> 34.7, 6.0 -> 43.0, 7.1 -> 70.5.
+
+New tests (tests/unit/morning-17e-duration.test.mjs) run against the OLD code with ffmpeg 7.1 (before the fix was written):
+  AssertionError [ERR_ASSERTION]: duration 70.5 is not within 0.5 s of the voice (34.7 s)
+# old recipe on this ffmpeg: video 69.5 s for a 34.7 s voice
+ℹ fail 14
+ℹ pass 2
+ℹ tests 16
+✖ REAL ffmpeg: a 34.7 s mp3 with an ID3 tag (the shape ElevenLabs returns) gives a video as long as the voice, not 43-70 s (2273.2376ms)
+✖ all three durations within 0.5 s of the voice -> saved; any one off by more than 0.5 s -> not (6.1341ms)
+✖ failing tests:
+✖ ffmpeg arguments: the strict (second) attempt also caps the number of video frames (3.5527ms)
+✖ ffmpeg arguments: with a measured length they carry an explicit -t before the output (and still -shortest and every other setting) (0.4834ms)
+✖ force: a stored video does NOT stop the build and it is overwritten; without force it is still skipped (0.8386ms)
+✖ mismatch then good: rebuilt ONCE (strict), then saved (2.4366ms)
+✖ mismatch twice: rebuilt once, then skipped with the plain line, nothing stored, the bad file removed (2.0238ms)
+✖ parseLastTime takes the LAST time= of an ffmpeg decode (0.1268ms)
+✖ probe gives nothing -> skipped (never stored unchecked) (2.3878ms)
+✖ run.mjs passes force only for MORNING_FORCE_VIDEO=true (0.8409ms)
+✖ the decoded voice length is measured first and the build gets -t (rounded up); the saved line shows the container seconds (3.4809ms)
+✖ videoSeconds rounds the measured voice length UP by at most 0.05 s (0.9875ms)
+✖ voice length cannot be measured -> skipped, nothing built (2.1092ms)
+✖ workflow: the generate step sets MORNING_FORCE_VIDEO true for manual runs with check_first off, and never true otherwise (0.2316ms)

@@ -1,0 +1,105 @@
+== (a) voice.mp3 header ==
+277985 bytes
+[STREAM]
+codec_name=mp3
+sample_rate=44100
+channels=1
+start_time=0.025057
+duration=34.716735
+bit_rate=64000
+nb_frames=N/A
+[/STREAM]
+[FORMAT]
+format_name=mp3
+start_time=0.025057
+duration=34.716735
+bit_rate=64057
+TAG:encoder=Lavf63.1.102
+[/FORMAT]
+Input #0, mp3, from 'voice.mp3':
+  Metadata:
+    encoder         : Lavf63.1.102
+  Duration: 00:00:34.72, start: 0.025057, bitrate: 64 kb/s
+    Stream #0:0: Audio: mp3, 44100 Hz, mono, fltp, 64 kb/s
+ID3 start bytes:
+00000000: 4944 3304 0000 0000 0022                 ID3......"
+Xing/Info/VBRI present:
+1
+
+== (b) real decoded length ==
+      encoder         : Lavc60.31.102 pcm_s16le
+size=N/A time=00:00:00.00 bitrate=N/A speed=N/A    [out#0/null @ 000001dd93ef4380] video:0kB audio:2988kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+size=N/A time=00:00:34.66 bitrate=N/A speed= 622x    
+-- silencedetect (-40dB, 0.3s)
+[silencedetect @ 000001e9cc8ecdc0] silence_end: 16.9761 | silence_duration: 0.341633
+[silencedetect @ 000001e9cc8ecdc0] silence_start: 21.6242
+[silencedetect @ 000001e9cc8ecdc0] silence_end: 21.9852 | silence_duration: 0.360998
+[silencedetect @ 000001e9cc8ecdc0] silence_start: 25.3605
+[silencedetect @ 000001e9cc8ecdc0] silence_end: 25.703 | silence_duration: 0.342472
+[silencedetect @ 000001e9cc8ecdc0] silence_start: 27.5352
+[silencedetect @ 000001e9cc8ecdc0] silence_end: 27.9341 | silence_duration: 0.398934
+[silencedetect @ 000001e9cc8ecdc0] silence_start: 31.0291
+[silencedetect @ 000001e9cc8ecdc0] silence_end: 31.4014 | silence_duration: 0.372313
+[silencedetect @ 000001e9cc8ecdc0] silence_start: 34.2354
+size=N/A time=00:00:34.66 bitrate=N/A speed= 422x    
+[silencedetect @ 000001e9cc8ecdc0] silence_end: 34.6906 | silence_duration: 0.455238
+
+== (c) mp4 ==
+[STREAM]
+index=0
+codec_type=video
+time_base=1/16384
+start_time=0.000000
+duration=64.500000
+nb_frames=129
+[/STREAM]
+[STREAM]
+index=1
+codec_type=audio
+time_base=1/44100
+start_time=0.000000
+duration=34.690000
+nb_frames=1495
+[/STREAM]
+[FORMAT]
+start_time=0.000000
+duration=64.500000
+[/FORMAT]
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'morning-2026-11-01.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+  Duration: 00:01:04.50, start: 0.000000, bitrate: 71 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709/unknown/unknown), 1080x1350, 35 kb/s, 2 fps, 2 tbr, 16384 tbn, 4 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc libx264
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 65 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+-- last audio packets
+34.620952,0.023220
+34.644172,0.023220
+34.667392,0.022608
+-- last video packets
+63.000000,0.500000
+62.500000,0.500000
+63.500000,0.500000
+-- mp4 audio full decode
+size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    [out#0/null @ 0000022f11cbcb40] video:0kB audio:2988kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+size=N/A time=00:00:34.66 bitrate=N/A speed= 605x    
+video saved (565 KB, 64.5 s)
+
+== (d) which of these explains the 64.5 s ==
+- The VOICE FILE is NOT the problem. voice.mp3 is 34.72 s by its header (ID3v2 tag, CBR 64 kb/s, no Xing/VBRI frame, start 0.025 s)
+  and 34.66 s when fully decoded (ffmpeg -f null). Speech runs to 34.24 s; the only trailing silence is 0.45 s (34.24 -> 34.69 s),
+  under the 0.5 s limit, so no trimming is needed. The admin page's voice player shows ~34.7 s, not 41 s and not 64 s.
+  (The founder heard "about 41 s"; the file is 34.7 s long.)
+- The MP4 audio stream is 34.69 s (1495 AAC frames, last audio packet starts 34.667 s): the audio is correct.
+- The MP4 VIDEO stream is 64.50 s (129 frames at 2 fps, last video packet pts 63.5 s + 0.5 s): this is the whole bug. The container
+  duration (64.50 s) follows the longer stream. After 34.69 s there is picture but no sound until 64.5 s.
+- Why: the recipe ended the looped still-image input only with `-shortest`. Whether `-shortest` stops a looped image on time depends on the
+  ffmpeg version. The CI runner had ffmpeg 8.0.1-3ubuntu2 and let the video run on by about 30 s (one keyframe interval is 30 s).
+  Re-running the SAME recipe on the SAME real card and voice here: ffmpeg 6.1.1 -> 34.5 s (correct), ffmpeg 6.0 -> 43.0 s, ffmpeg 7.1 -> 69.5 s.
+  The rehearsal in 17E used ffmpeg 6.1.1 and a 40 s tone, the one combination that happens to work, so it never showed the problem.
