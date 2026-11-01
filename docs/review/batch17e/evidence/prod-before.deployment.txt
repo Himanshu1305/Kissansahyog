@@ -1,0 +1,4 @@
+deployment_id=3d3ed43a-3b6b-4cfa-9128-38b86045143e
+source=2c8cb25
+main_chunk=/assets/index-Bs1poOsY.js
+taken_at=2026-11-01T02:26:25Z
