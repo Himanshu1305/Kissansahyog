@@ -1,0 +1,11 @@
+Node version used: v24.19.0
+$ node <temp copy with deliberate syntax error>
+exit code: 1
+stdout bytes: 0
+GITHUB_OUTPUT exists: no
+stderr (first line): file:///C:/Users/usdvi/AppData/Local/Temp/crash/check-complete.mjs:63
+
+Why the full job still runs (from .github/workflows/morning-post.yml):
+- The check step has `continue-on-error: true`, so a non-zero exit gives outcome=failure but conclusion=success; the job is not failed.
+- It wrote no `complete` output, so `steps.check.outputs.complete` is empty. Every later step has `if: steps.check.outputs.complete != 'true'`, and '' != 'true' is TRUE, so they all run.
+- The crash-notice step (`steps.check.outcome == 'failure'`) appends "The check step crashed, so the full job ran." to the step summary.

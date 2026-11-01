@@ -41,6 +41,7 @@ jobs:
 
       - name: Is today's post already complete?
         id: check
+        continue-on-error: true   # a crash of the check must never skip the job
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           CHECK_FIRST: ${{ inputs.check_first }}
@@ -48,7 +49,11 @@ jobs:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           MORNING_POST_SECRET: ${{ secrets.MORNING_POST_SECRET }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-        run: node scripts/morning/check-complete.mjs   # ubuntu-latest ships Node 22+; the script needs no npm install
+        run: node scripts/morning/check-complete.mjs   # needs Node 18 or newer (built-in fetch), no npm install; setup-node runs after this step
+
+      - name: Check step crashed (notice)
+        if: steps.check.outcome == 'failure'
+        run: echo "The check step crashed, so the full job ran." >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/setup-node@v4
         if: steps.check.outputs.complete != 'true'

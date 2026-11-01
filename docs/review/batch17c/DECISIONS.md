@@ -17,3 +17,5 @@
 **Failed save is RED.** `run.mjs` returns non-zero when the save fails (`saveToDatabase` exit 1: refused secret, too large, unreachable, unexpected answer). A missing voice never changes the exit code. Not changed in this batch.
 
 **Untouched:** generator, card, voice, message, database, dependencies, OTP switches. Old 16B workflow test updated for the new schedule.
+
+Note: the check script needs Node 18 or newer (built-in fetch) and runs before setup-node; this was not verified against a specific ubuntu-latest Node version, so the workflow no longer claims one. The check step also has `continue-on-error: true` plus a crash notice, so a crash of the check can never skip the job.

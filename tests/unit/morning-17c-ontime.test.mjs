@@ -6,7 +6,7 @@ import { createServer } from 'node:http'
 import { spawn } from 'node:child_process'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { decide } from '../../scripts/morning/check-complete.mjs'
+import { decide, parseCheckFirst } from '../../scripts/morning/check-complete.mjs'
 import { istDate } from '../../scripts/morning/lib/ist.js'
 
 const SCRIPT = new URL('../../scripts/morning/check-complete.mjs', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')
@@ -125,12 +125,33 @@ test('workflow: the check step is the first step after checkout and every later 
   assert.match(steps[1], /CHECK_FIRST: \$\{\{ inputs\.check_first \}\}/)
   assert.match(steps[1], /GITHUB_EVENT_NAME: \$\{\{ github\.event_name \}\}/)
   assert.ok(steps.length >= 7)
-  for (const s of steps.slice(2)) {
+  for (const s of steps.slice(3)) {
     const guard = s.split('\n').filter((l) => /^\s+if:/.test(l)).join(' ')
     assert.ok(guard.includes("steps.check.outputs.complete != 'true'"), `guard missing: ${s.split(String.fromCharCode(10))[0]}`)
   }
   assert.ok(WF.indexOf('check-complete.mjs') < WF.indexOf('npm ci'))
   assert.ok(WF.indexOf('check-complete.mjs') < WF.indexOf('playwright install'))
+})
+
+test('workflow: continue-on-error on the check, crash notice right after it, missing/empty output means run', () => {
+  const steps = WF.split(/\n {6}- (?=\S)/).slice(1)
+  assert.match(steps[1], /continue-on-error: true/)
+  assert.match(steps[2], /if: steps\.check\.outcome == 'failure'/)
+  assert.match(steps[2], /The check step crashed, so the full job ran\./)
+  assert.match(steps[2], />> "\$GITHUB_STEP_SUMMARY"/)
+  // every guard is "!= 'true'", which is TRUE for a missing or empty output, so the job runs
+  for (const s of steps.slice(3)) assert.match(s, /if: (always\(\) && \()?steps\.check\.outputs\.complete != 'true'/)
+  const art = steps.find((s) => /upload-artifact/.test(s))
+  assert.match(art, /if: always\(\) && \(steps\.check\.outputs\.complete != 'true'\)/)
+  for (const s of steps.slice(3)) assert.ok(!/== 'true'/.test(s.replace(/steps\.check\.outcome == 'failure'/g, '')), 'no step may run only when complete is true')
+})
+
+test('CHECK_FIRST parsing: true, false, empty (scheduled runs have no inputs)', () => {
+  assert.equal(parseCheckFirst('true'), true)
+  assert.equal(parseCheckFirst('TRUE'), true)
+  assert.equal(parseCheckFirst('false'), false)
+  assert.equal(parseCheckFirst(''), false)
+  assert.equal(parseCheckFirst(undefined), false)
 })
 
 // ---- end to end against a local fake server ----

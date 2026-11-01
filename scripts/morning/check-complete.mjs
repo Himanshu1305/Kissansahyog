@@ -1,5 +1,5 @@
 // Batch 17C - "Is today's morning post already complete?" Runs as the FIRST step of the Morning post workflow, before npm ci,
-// so a try that has nothing to do costs seconds. Dependency-free (Node 22 built-in fetch only).
+// so a try that has nothing to do costs seconds. Dependency-free: needs Node 18 or newer (built-in fetch); setup-node runs after this step.
 //
 // Complete = the database holds a voice for today's IST date (migration 0073's morning_post_context returns today.voice_sha256;
 // the voice is stored only after the message and card exist). Anything unclear (error, timeout, no voice key, wrong answer)
@@ -11,6 +11,9 @@ import { pathToFileURL } from 'node:url'
 import { istDate } from './lib/ist.js'
 
 export const CHECK_TIMEOUT_MS = 15000
+
+// The workflow passes `${{ inputs.check_first }}`: 'true', 'false', or empty (scheduled runs have no inputs).
+export const parseCheckFirst = (v) => String(v ?? '').trim().toLowerCase() === 'true'
 
 // -> { complete: boolean, summary: string }
 export async function decide({ eventName, checkFirst = false, env = {}, now = new Date(), fetchImpl = fetch, timeoutMs = CHECK_TIMEOUT_MS }) {
@@ -49,7 +52,7 @@ async function main() {
   const env = process.env
   let r
   try {
-    r = await decide({ eventName: env.GITHUB_EVENT_NAME, checkFirst: String(env.CHECK_FIRST).toLowerCase() === 'true', env })
+    r = await decide({ eventName: env.GITHUB_EVENT_NAME, checkFirst: parseCheckFirst(env.CHECK_FIRST), env })
   } catch { r = { complete: false, summary: 'Running: the check failed unexpectedly.' } }
   console.log(r.summary)
   try { if (env.GITHUB_OUTPUT) appendFileSync(env.GITHUB_OUTPUT, `complete=${r.complete}\n`) } catch { /* never block the post */ }
