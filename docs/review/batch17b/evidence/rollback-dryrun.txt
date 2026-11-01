@@ -1,0 +1,18 @@
+*** DRY RUN — nothing will be changed ***
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/f692b6da-d3c2-4588-b2ab-8803b340827f   (read-only)
+target deployment: env=production status=success source=91ca7b5 created=2026-10-30T10:01:12.455294Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: f692b6da-d3c2-4588-b2ab-8803b340827f
+(note: f692b6da-d3c2-4588-b2ab-8803b340827f is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
++ GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+  switches now: {"otp_required":true,"session_enforced":false}
++ POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/f692b6da-d3c2-4588-b2ab-8803b340827f/rollback   (Authorization: Bearer <token, not shown>)
++ (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == f692b6da-d3c2-4588-b2ab-8803b340827f (max 3 min)
++ (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch17b/evidence/prod-before.json
+  (no database step; no switch was changed)
+
+==================================================================
+DRY RUN OK — preconditions valid; rollback target f692b6da-d3c2-4588-b2ab-8803b340827f (source 91ca7b5); nothing was changed
+==================================================================
+exit 0

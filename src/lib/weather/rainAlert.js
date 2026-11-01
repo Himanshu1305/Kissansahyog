@@ -7,20 +7,22 @@
 // (chetavni). light/moderate are only "expected" (sambhavna) — the bilingual
 // wording is handled in <RainAlert> via i18n keys.
 
+import { DRY_BELOW_MM, LIGHT_MIN_MM, MODERATE_MIN_MM, HEAVY_MIN_MM, VERY_HEAVY_MIN_MM, EXTREME_MIN_MM } from './rainVerdict.js'
+
 // Classify a single day's precipitation (mm) → { level, color } or null.
 export function classifyDay(mm) {
-  if (!mm || mm <= 0) return null
-  if (mm < 15) return { level: 'light', color: 'green' }
-  if (mm < 64.5) return { level: 'moderate', color: 'blue' }
-  if (mm < 115.5) return { level: 'heavy', color: 'yellow' }     // IMD Yellow
-  if (mm < 204.5) return { level: 'very_heavy', color: 'orange' } // IMD Orange
+  if (!mm || mm < DRY_BELOW_MM) return null // a trace is not rain (rainVerdict.js)
+  if (mm < MODERATE_MIN_MM) return { level: 'light', color: 'green' }
+  if (mm < HEAVY_MIN_MM) return { level: 'moderate', color: 'blue' }
+  if (mm < VERY_HEAVY_MIN_MM) return { level: 'heavy', color: 'yellow' }     // IMD Yellow
+  if (mm < EXTREME_MIN_MM) return { level: 'very_heavy', color: 'orange' } // IMD Orange
   return { level: 'extreme', color: 'red' }                       // IMD Red
 }
 
 const IMD_ALERT_LEVELS = new Set(['heavy', 'very_heavy', 'extreme'])
 export const isImdAlert = (level) => IMD_ALERT_LEVELS.has(level)
 
-// Compute the leading rainy streak (>3 mm/day) within the next 48h window and its
+// Compute the leading rainy streak (light rain or more per day, rainVerdict.js LIGHT_MIN_MM) within the next 48h window and its
 // severity. Returns { level, color, days, total, maxDay } or null (no rain).
 export function getRainAlert(forecast) {
   if (!Array.isArray(forecast) || forecast.length === 0) return null
@@ -29,13 +31,13 @@ export function getRainAlert(forecast) {
   // Trigger only if rain in the next 48h (day 0 or 1), matching rain_alert_48h.
   let start = -1
   for (let i = 0; i < Math.min(2, forecast.length); i++) {
-    if (rain(forecast[i]) > 3) { start = i; break }
+    if (rain(forecast[i]) >= LIGHT_MIN_MM) { start = i; break }
   }
   if (start < 0) return null
 
   let days = 0, total = 0, maxDay = 0
   for (let i = start; i < forecast.length; i++) {
-    if (rain(forecast[i]) > 3) { days++; total += rain(forecast[i]); maxDay = Math.max(maxDay, rain(forecast[i])) }
+    if (rain(forecast[i]) >= LIGHT_MIN_MM) { days++; total += rain(forecast[i]); maxDay = Math.max(maxDay, rain(forecast[i])) }
     else break
   }
   const cls = classifyDay(maxDay) || { level: 'light', color: 'green' }

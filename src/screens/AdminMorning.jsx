@@ -5,7 +5,7 @@ import { useAuth } from '../lib/auth/AuthProvider'
 import { PageShell } from '../components/layout'
 import Seo from '../components/layout/Seo'
 import { getMorningPost, getMorningHistory, markMorningPosted, setMorningPollResult } from '../lib/admin/morningApi'
-import { istToday, pickDate, shiftDate, pollResultDate, pctOk, cardFileName, copyText, canShareFile, base64ToBytes } from '../lib/admin/morningLogic'
+import { istToday, pickDate, shiftDate, pollResultDate, pctOk, cardFileName, copyText, canShareFile, canUseShare, shareCardWithMessage, shareVoiceFile, shareFile, isVisibleShareFailure, logShareFailure, base64ToBytes, voiceFileName } from '../lib/admin/morningLogic'
 import { istText } from './admin/common'
 import MorningView, { MorningDenied } from './admin/MorningView'
 
@@ -40,9 +40,13 @@ export default function AdminMorning() {
     try { return typeof File !== 'undefined' && canShareFile(navigator, new File([new Uint8Array(1)], 'x.png', { type: 'image/png' })) } catch { return false }
   }, [])
 
+  const canShareApi = useMemo(() => typeof navigator !== 'undefined' && canUseShare(navigator), [])
+  const [shareNote, setShareNote] = useState(false)
+  const [shareError, setShareError] = useState(false)
+
   const load = useCallback(async () => {
     if (!user?.is_admin) return
-    setState('loading'); setError(null); setCopied(false); setCopyFailed(false); setPollCopied(false)
+    setState('loading'); setError(null); setCopied(false); setCopyFailed(false); setPollCopied(false); setShareNote(false); setShareError(false)
     try {
       const [p, h] = await Promise.all([getMorningPost(user.id, date), getMorningHistory(user.id, 14)])
       setPost(p); setRows(h || []); setState('ready')
@@ -76,11 +80,25 @@ export default function AdminMorning() {
     },
     copyPoll: async () => { const r = await copyText(post.poll_text); if (r === 'copied') flash(setPollCopied) },
     share: async () => {
-      try {
-        const file = new File([base64ToBytes(post.card_png_b64)], cardFileName(date), { type: 'image/png' })
-        if (canShareFile(navigator, file)) await navigator.share({ files: [file] })
-      } catch { /* the person closed the share sheet */ }
+      setShareError(false)
+      const file = new File([base64ToBytes(post.card_png_b64)], cardFileName(date), { type: 'image/png' })
+      const r = await shareFile({ nav: navigator, file })
+      if (isVisibleShareFailure(r)) { logShareFailure(r); setShareError(true) }
     },
+    shareCard: async () => {
+      setShareError(false); setShareNote(false)
+      const file = new File([base64ToBytes(post.card_png_b64)], cardFileName(date), { type: 'image/png' })
+      const r = await shareCardWithMessage({ nav: navigator, file, text: post.message_text })
+      if (r.copied) setShareNote(true)
+      if (isVisibleShareFailure(r)) { logShareFailure(r); setShareError(true) }
+    },
+    shareVoice: async () => {
+      setShareError(false)
+      const file = new File([base64ToBytes(post.voice_mp3_b64)], voiceFileName(date), { type: 'audio/mpeg' })
+      const r = await shareVoiceFile({ nav: navigator, file })
+      if (isVisibleShareFailure(r)) { logShareFailure(r); setShareError(true) }
+    },
+    voiceName: voiceFileName(date),
     mark: async () => {
       setBusy(true)
       try { await markMorningPosted(user.id, date, !post.posted_at); await load() } catch (e) { setError(errKey(e)); setState('error') } finally { setBusy(false) }
@@ -100,7 +118,7 @@ export default function AdminMorning() {
         t={t} date={date} dateText={dateText} today={today} post={post}
         history={{ state, error: state === 'error' ? error : null }} historyRows={rows}
         prevDisabled={date <= shiftDate(today, -60)} nextDisabled={date >= shiftDate(today, 1)}
-        copied={copied} copyFailed={copyFailed} pollCopied={pollCopied} canShare={canShare} busy={busy}
+        copied={copied} copyFailed={copyFailed} pollCopied={pollCopied} canShare={canShare} canShareApi={canShareApi} shareNote={shareNote} shareError={shareError} busy={busy}
         pctValue={pct} pctMsg={pctMsg} pctError={pctError} resultDateText={resultDateText}
         postedText={post?.posted_at ? istText(post.posted_at, lang) : ''} generatedText={post?.generated_at ? istText(post.generated_at, lang) : ''}
         refs={{ msg: msgRef }} on={on}

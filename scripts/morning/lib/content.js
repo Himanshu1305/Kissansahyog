@@ -40,7 +40,7 @@ export function pickSlot(date, { draft = false, data, summary, sowingValidUntil 
       const lines = [S.slotScheme, fmt(S.slotSchemeLine, { title: s.title_hi, who: s.who_hi })]
       if (s.deadline) lines.push(fmt(S.slotSchemeDeadline, { date: s.deadline.split('-').reverse().join('-'), days: daysBetween(date, s.deadline) }))
       lines.push(fmt(S.slotSchemeSource, { source: s.source_name }))
-      return { kind, lines, usedUnreviewed: used.includes(s.id) ? [s.id] : [] }
+      return { kind, lines, scheme: s, usedUnreviewed: used.includes(s.id) ? [s.id] : [] }
     }
     if (kind === 'countdown') {
       const c = countdown(date, sowingValidUntil, data.schemes)

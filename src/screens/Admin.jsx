@@ -9,6 +9,7 @@ import { envBadge } from '../lib/admin/consoleRules'
 import { strings } from '../lib/i18n/strings'
 import { TABS, DEFAULT_TAB, validTab, searchPanels } from './admin/registry'
 import { AdminCtx, AdminError } from './admin/common'
+import MorningLink from './admin/MorningLink'
 
 // Batch 14A - the admin console shell. The 24 panels that used to be stacked on one page now live in six tabs,
 // each loaded only when opened (its panels fetch their data only then). A search box finds PANELS and jumps to them.
@@ -102,6 +103,7 @@ export default function Admin() {
         <span data-testid="env-badge" data-env={env} className={`rounded-full px-3 py-1 text-xs font-extrabold ${env === 'PRODUCTION' ? 'bg-red-700 text-white' : env === 'STAGING' ? 'bg-amber-300 text-stone-900' : 'bg-stone-300 text-stone-900'}`}>{env}</span>
         {who.known && <span data-testid="role-badge" className="rounded-full bg-stone-200 px-3 py-1 text-xs font-bold text-stone-800">{who.role}</span>}
       </div>
+      <MorningLink t={t} />
       {whoErr && <AdminError error={whoErr} t={t} />}
       {logWarn && <p data-testid="log-warning" className="mb-3 rounded-xl bg-amber-50 p-2 text-sm font-semibold text-amber-900">{t('adm_log_warn')}</p>}
 

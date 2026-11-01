@@ -5,86 +5,106 @@
 <title>morning card</title>
 <style>
 /*FONTS*/
-:root { --bg:#FBFAF5; --soft:#F1F6E9; --green:#24733F; --green-dark:#185A31; --tint:#EAF3DE; --ink:#173323; --ink2:#3F4A38; --orange:#B4520A; --saffron:#E69A2D; }
+:root { --s: 1; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 1080px; height: 1350px; background: var(--bg); color: var(--ink); font-family: 'KSDev', 'Noto Sans Devanagari', sans-serif; font-size: 36px; line-height: 1.3; overflow: hidden; }
-#card { width: 1080px; height: 1350px; display: flex; flex-direction: column; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body { font-family: 'KSDev', 'Noto Sans Devanagari', 'Noto Color Emoji', 'Segoe UI Emoji', sans-serif; background: #f6f1e3; color: #1f2a1c; position: relative; }
 .box { min-width: 0; overflow-wrap: anywhere; }
-.top { background: var(--green); color: #fff; padding: 40px 56px 34px; }
-.brand { font-size: 68px; font-weight: 700; line-height: 1.5; }
-.date { font-size: 40px; margin-top: 8px; }
-.tithi { font-size: 38px; margin-top: 4px; color: #fff; }
-.body { flex: 1; padding: 36px 56px 0; display: flex; flex-direction: column; gap: 32px; min-height: 0; }
-.panel { border-radius: 28px; padding: 30px 36px; }
-.weather { background: var(--tint); border: 3px solid var(--green); }
-.title { font-size: 40px; font-weight: 700; color: var(--green-dark); margin-bottom: 14px; }
-.w-row { display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; }
-.w-temp { font-size: 76px; font-weight: 700; color: var(--ink); }
-.w-sky { font-size: 44px; font-weight: 700; color: var(--ink2); }
-.w-line { font-size: 38px; color: var(--ink2); margin-top: 6px; }
-.prices { background: #fff; border: 3px solid var(--soft); padding-bottom: 14px; }
-.row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 2px solid var(--soft); }
+.top { background: #1f5e2e; color: #fff; padding: 30px 48px 24px; position: relative; }
+.top .ram { font-size: 56px; font-weight: 800; line-height: 1.2; padding-right: 330px; }
+.top .date { font-size: 30px; font-weight: 600; opacity: .95; margin-top: 6px; }
+.top .brand { position: absolute; right: 56px; top: 46px; font-size: 28px; font-weight: 700; background: #f2b705; color: #1f2a1c; padding: 8px 20px; border-radius: 30px; }
+.sec { margin: calc(16px * var(--s)) 36px 0; background: #fff; border-radius: 24px; padding: calc(18px * var(--s)) 30px; box-shadow: 0 3px 0 #e2d9bd; }
+.h { font-size: calc(31px * var(--s)); font-weight: 800; color: #1f5e2e; margin-bottom: 6px; line-height: 1.35; }
+.wx { display: flex; align-items: center; gap: 30px; }
+.wx .t { white-space: nowrap; font-size: calc(84px * var(--s)); font-weight: 800; line-height: 1; color: #c2570c; }
+.wx .t small { font-size: calc(36px * var(--s)); color: #555; font-weight: 600; }
+.wx .d { font-size: calc(29px * var(--s)); font-weight: 600; line-height: 1.5; min-width: 0; }
+.days { display: flex; gap: 16px; margin-top: 14px; }
+.days > div { flex: 1; background: #eef5e8; border-radius: 16px; padding: 8px 6px; text-align: center; font-size: calc(25px * var(--s)); font-weight: 600; line-height: 1.35; }
+.days b { display: block; font-size: calc(27px * var(--s)); }
+.rows { width: 100%; }
+.row { display: flex; align-items: baseline; gap: 14px; padding: calc(6px * var(--s)) 0; border-bottom: 2px dashed #e6dfc6; font-size: calc(33px * var(--s)); }
 .row:last-child { border-bottom: 0; }
-.crop { font-size: 50px; font-weight: 700; flex: 1 1 0; min-width: 0; }
-.price { font-size: 56px; font-weight: 700; text-align: right; white-space: nowrap; }
-.chg { font-size: 40px; font-weight: 700; width: 220px; text-align: right; white-space: nowrap; }
-.up { color: var(--green-dark); } .down { color: var(--orange); } .flat { color: var(--ink2); }
-.note { font-size: 36px; color: var(--ink2); margin-top: 10px; }
-.empty { font-size: 42px; color: var(--ink2); padding: 20px 0; }
-.foot { background: var(--green-dark); color: #fff; padding: 28px 56px; font-size: 38px; text-align: center; margin-top: 32px; }
+.row .n { flex: 1 1 0; min-width: 0; }
+.row .sub { font-size: calc(22px * var(--s)); color: #6a6a58; margin-left: 8px; }
+.row .p { font-weight: 800; text-align: right; white-space: nowrap; }
+.row .c { font-size: calc(28px * var(--s)); color: #6a6a58; text-align: right; width: 130px; white-space: nowrap; }
+.row .c.up { color: #1a7f37; } .row .c.down { color: #c62828; }
+.note { font-size: calc(22px * var(--s)); color: #6a6a58; margin-top: 6px; }
+.txt { font-size: calc(31px * var(--s)); font-weight: 600; line-height: 1.5; }
+.empty { font-size: 40px; color: #3f4a38; padding: 20px 0; }
+.foot { position: absolute; left: 0; right: 0; bottom: 0; background: #1f2a1c; color: #fff; text-align: center; padding: 16px 0 20px; font-size: 30px; font-weight: 700; }
+.foot span { color: #f2b705; }
 </style>
 </head>
 <body>
-<div id="card">
-  <div class="top">
-    <div class="brand box" id="brand"></div>
-    <div class="date box" id="date"></div>
-    <div class="tithi box" id="tithi"></div>
-  </div>
-  <div class="body" id="body"></div>
-  <div class="foot box" id="foot"></div>
+<div class="top">
+  <div class="brand box" id="brand"></div>
+  <div class="ram" id="ram"></div>
+  <div class="date box" id="date"></div>
 </div>
+<div id="body"></div>
+<div class="foot box" id="foot"></div>
 <script>
 const D = /*DATA*/null;
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const sec = () => el('div', 'sec box');
 document.getElementById('brand').textContent = D.brand;
+document.getElementById('ram').textContent = D.greeting;
 document.getElementById('date').textContent = D.dateText;
-if (D.tithiText) document.getElementById('tithi').textContent = D.tithiText; else document.getElementById('tithi').remove();
-document.getElementById('foot').textContent = D.footer;
+const foot = document.getElementById('foot');
+const m = /^(.*?)(kissansahyog\.com)(.*)$/.exec(D.footer);
+if (m) { foot.append(m[1]); foot.appendChild(el('span', null, m[2])); foot.append(m[3] + ' 🌾'); } else foot.textContent = D.footer;
 const body = document.getElementById('body');
 if (D.weather) {
-  const p = el('div', 'panel weather box');
-  p.appendChild(el('div', 'title box', D.weather.title));
-  const r = el('div', 'w-row');
-  r.appendChild(el('div', 'w-temp box', D.weather.temps));
-  r.appendChild(el('div', 'w-sky box', D.weather.sky));
-  p.appendChild(r);
-  p.appendChild(el('div', 'w-line box', D.weather.rain));
-  body.appendChild(p);
+  const w = D.weather, s = sec();
+  s.appendChild(el('div', 'h', w.title));
+  const row = el('div', 'wx');
+  const t = el('div', 't', w.max); t.appendChild(el('small', null, ' ' + w.min)); row.appendChild(t);
+  const d = el('div', 'd'); d.appendChild(el('div', null, w.line1)); if (w.line2) d.appendChild(el('div', null, w.line2)); row.appendChild(d);
+  s.appendChild(row);
+  if (w.days && w.days.length) {
+    const days = el('div', 'days');
+    for (const x of w.days) { const c = el('div'); c.appendChild(el('b', null, x.name)); c.append(x.range); c.appendChild(document.createElement('br')); c.append(x.rain); days.appendChild(c); }
+    s.appendChild(days);
+  }
+  body.appendChild(s);
 }
 if (D.prices && D.prices.length) {
-  const p = el('div', 'panel prices box');
-  p.appendChild(el('div', 'title box', D.priceTitle));
+  const s = sec();
+  s.appendChild(el('div', 'h', D.priceTitle));
+  const rows = el('div', 'rows');
   for (const x of D.prices) {
     const r = el('div', 'row');
-    r.appendChild(el('div', 'crop box', x.name));
-    r.appendChild(el('div', 'price box', x.price));
-    r.appendChild(el('div', 'chg box ' + x.dir, x.change));
-    p.appendChild(r);
+    const n = el('div', 'n', x.name); if (x.market) n.appendChild(el('span', 'sub', x.market));
+    r.appendChild(n); r.appendChild(el('div', 'p', x.price)); r.appendChild(el('div', 'c ' + x.dir, x.change));
+    rows.appendChild(r);
   }
-  if (D.priceNote) p.appendChild(el('div', 'note box', D.priceNote));
-  body.appendChild(p);
+  s.appendChild(rows);
+  if (D.priceNote) s.appendChild(el('div', 'note', D.priceNote));
+  body.appendChild(s);
 } else if (!D.weather) {
   body.appendChild(el('div', 'empty box', D.noData));
 }
-// Fit: long crop names step the name size down (never below 36px) and then tighten the rows, so nothing is cut off.
-(function fit() {
-  const b = document.getElementById('body');
-  const crops = [...document.querySelectorAll('.crop')];
-  const rows = [...document.querySelectorAll('.row')];
-  for (let size = 50; size >= 36 && b.scrollHeight > b.clientHeight + 1; size -= 2) crops.forEach((c) => { c.style.fontSize = size + 'px'; });
-  for (let pad = 16; pad >= 6 && b.scrollHeight > b.clientHeight + 1; pad -= 2) rows.forEach((r) => { r.style.paddingTop = pad + 'px'; r.style.paddingBottom = pad + 'px'; });
-})();
+for (const b of [D.scheme, D.tip]) {
+  if (!b) continue;
+  const s = sec();
+  s.appendChild(el('div', 'h', b.icon + ' ' + b.title));
+  s.appendChild(el('div', 'txt', b.body));
+  body.appendChild(s);
+}
+// Fit: when the last box would touch the footer, shrink sizes and gaps step by step (down to 70 percent). The renderer reports it if that is still not enough.
+window.fit = function () {
+  const secs = [...document.querySelectorAll('.sec')];
+  if (!secs.length) return;
+  const limit = () => document.getElementById('foot').getBoundingClientRect().top - 12;
+  for (let s = 1; s >= 0.7; s = Math.round((s - 0.02) * 100) / 100) {
+    document.documentElement.style.setProperty('--s', s);
+    if (secs[secs.length - 1].getBoundingClientRect().bottom <= limit()) return;
+  }
+};
+window.fit();
 </script>
 </body>
 </html>

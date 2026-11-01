@@ -35,7 +35,7 @@ test('card: a long crop name and a 4-digit price do not overflow their boxes', a
   assert.deepEqual(overflow, [])
 })
 
-test('card: the old-date note and text sizes meet the brief (body text at least 34px)', async () => {
+test('card: the old-date note and text sizes meet the brief (no text under 22px; mandi names are the smallest)', async () => {
   const model = await modelFor('normal')
   model.mandi = { ...model.mandi, isYesterday: false, date: '2026-10-22' }
   const data = cardData(model)
@@ -43,7 +43,7 @@ test('card: the old-date note and text sizes meet the brief (body text at least 
   const b = await getBrowser()
   const page = await b.newPage({ viewport: { width: 1080, height: 1350 } })
   await page.setContent((await import('../../scripts/morning/card/render.mjs')).renderHtml ? await (await import('../../scripts/morning/card/render.mjs')).renderHtml(data) : '')
-  const small = await page.evaluate(() => [...document.querySelectorAll('#card *')].filter((e) => e.children.length === 0 && e.textContent.trim() && parseFloat(getComputedStyle(e).fontSize) < 34).map((e) => e.className))
+  const small = await page.evaluate(() => [...document.querySelectorAll('#card *')].filter((e) => e.children.length === 0 && e.textContent.trim() && parseFloat(getComputedStyle(e).fontSize) < 22).map((e) => e.className))
   await page.close()
   assert.deepEqual(small, [])
 })

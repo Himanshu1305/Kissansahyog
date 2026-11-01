@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:ND;font-weight:400;src:url(node_modules/@fontsource/noto-sans-devanagari/files/noto-sans-devanagari-devanagari-400-normal.woff2)}
+@font-face{font-family:ND;font-weight:600;src:url(node_modules/@fontsource/noto-sans-devanagari/files/noto-sans-devanagari-devanagari-600-normal.woff2)}
+@font-face{font-family:ND;font-weight:700;src:url(node_modules/@fontsource/noto-sans-devanagari/files/noto-sans-devanagari-devanagari-700-normal.woff2)}
+@font-face{font-family:ND;font-weight:800;src:url(node_modules/@fontsource/noto-sans-devanagari/files/noto-sans-devanagari-devanagari-800-normal.woff2)}
+@font-face{font-family:ND;font-weight:400;unicode-range:U+0000-00FF,U+20A8-20B9,U+2190-21FF,U+25B2,U+25BC;src:url(node_modules/@fontsource/noto-sans-devanagari/files/noto-sans-devanagari-latin-400-normal.woff2)}
+@font-face{font-family:ND;font-weight:600;unicode-range:U+0000-00FF,U+20A8-20B9,U+2190-21FF,U+25B2,U+25BC;src:url(node_modules/@fontsource/noto-sans-devanagari/files/noto-sans-devanagari-latin-600-normal.woff2)}
+@font-face{font-family:ND;font-weight:700;unicode-range:U+0000-00FF,U+20A8-20B9,U+2190-21FF,U+25B2,U+25BC;src:url(node_modules/@fontsource/noto-sans-devanagari/files/noto-sans-devanagari-latin-700-normal.woff2)}
+@font-face{font-family:ND;font-weight:800;unicode-range:U+0000-00FF,U+20A8-20B9,U+2190-21FF,U+25B2,U+25BC;src:url(node_modules/@fontsource/noto-sans-devanagari/files/noto-sans-devanagari-latin-800-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1080px;height:1350px;font-family:ND,'Noto Color Emoji',sans-serif;background:#f6f1e3;color:#1f2a1c;overflow:hidden}
+.top{background:#1f5e2e;color:#fff;padding:30px 48px 24px;position:relative}
+.top .ram{font-size:56px;font-weight:800;line-height:1.2}
+.top .date{font-size:30px;font-weight:600;opacity:.95;margin-top:6px}
+.top .brand{position:absolute;right:56px;top:46px;font-size:28px;font-weight:700;background:#f2b705;color:#1f2a1c;padding:8px 20px;border-radius:30px}
+.sec{margin:16px 36px 0;background:#fff;border-radius:24px;padding:18px 30px;box-shadow:0 3px 0 #e2d9bd}
+.h{font-size:31px;font-weight:800;color:#1f5e2e;margin-bottom:6px}
+.wx{display:flex;align-items:center;gap:30px}
+.wx .t{white-space:nowrap;font-size:84px;font-weight:800;line-height:1;color:#c2570c}
+.wx .t small{font-size:36px;color:#555;font-weight:600}
+.wx .d{font-size:29px;font-weight:600;line-height:1.5}
+.days{display:flex;gap:16px;margin-top:14px}
+.days div{flex:1;background:#eef5e8;border-radius:16px;padding:8px 6px;text-align:center;font-size:25px;font-weight:600;line-height:1.35}
+.days b{display:block;font-size:27px}
+table{width:100%;border-collapse:collapse;font-size:33px}
+td{padding:6px 0;border-bottom:2px dashed #e6dfc6}
+tr:last-child td{border-bottom:0}
+td.p{text-align:right;font-weight:800}
+td.c{font-size:28px;color:#6a6a58;text-align:right;width:110px}
+td.up{color:#1a7f37}td.dn{color:#c62828}
+.sub{font-size:22px;color:#6a6a58;margin-top:6px}
+.sch{font-size:31px;font-weight:600;line-height:1.5}
+.tip{display:flex;gap:16px;font-size:31px;line-height:1.5;margin-top:0}
+.foot{position:absolute;left:0;right:0;bottom:0;background:#1f2a1c;color:#fff;text-align:center;padding:16px 0 20px;font-size:30px;font-weight:700}
+.foot span{color:#f2b705}
+</style></head><body>
+<div class="top"><div class="brand">किसान सहयोग</div>
+<div class="ram">🙏 सीताराम किसान भाइयो!</div>
+<div class="date">शुक्रवार, 30 अक्टूबर · सागर संभाग</div></div>
+
+<div class="sec"><div class="h">☁️ आज का मौसम · सागर</div>
+<div class="wx"><div class="t">25°<small> /20°</small></div>
+<div class="d">साफ़ मौसम, बारिश नहीं (संभावना 22%)<br>हवा 14 किमी/घंटा · सुबह छिड़काव ठीक</div></div>
+<div class="days"><div><b>शनि</b>26° / 19°<br>बारिश 0 मिमी</div><div><b>रवि</b>29° / 19°<br>बारिश 0 मिमी</div><div><b>सोम</b>29° / 20°<br>बारिश 1 मिमी</div></div></div>
+
+<div class="sec"><div class="h">📊 मंडी भाव · ₹ प्रति क्विंटल (28/10)</div>
+<table>
+<tr><td>गेहूं <span class="sub">अजयगढ़</span></td><td class="p">₹2,700</td><td class="c">—</td></tr>
+<tr><td>चना <span class="sub">अजयगढ़</span></td><td class="p">₹6,950</td><td class="c up">▲150</td></tr>
+<tr><td>सरसों <span class="sub">अजयगढ़</span></td><td class="p">₹8,050</td><td class="c dn">▼450</td></tr>
+<tr><td>सोयाबीन <span class="sub">बड़ामलहरा</span></td><td class="p">₹6,539</td><td class="c dn">▼11</td></tr>
+<tr><td>लहसुन <span class="sub">दमोह</span></td><td class="p">₹7,000</td><td class="c up">▲1,000</td></tr>
+</table></div>
+
+<div class="sec"><div class="h">🏛️ आज की योजना · पीएम-किसान</div>
+<div class="sch">साल में ₹6,000, तीन किस्तों में सीधे बैंक खाते में। ई-केवाईसी और आधार-लिंक खाता ज़रूरी।</div></div>
+
+<div class="sec"><div class="h">🌱 आज की सलाह</div>
+<div class="tip">बुवाई से पहले बीज का उपचार ज़रूर करें — रोग कम लगते हैं, पैदावार बेहतर होती है।</div></div>
+
+<div class="foot">पूरी जानकारी: <span>kissansahyog.com</span> · जय किसान 🌾</div>
+</body></html>

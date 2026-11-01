@@ -1,0 +1,11 @@
+$ for each of F1-F6: cmp docs/review/batch17c/evidence/regenerated/message-<x>.txt docs/review/batch17d/evidence/message-after-<x>.txt
+IDENTICAL  f1-dry
+IDENTICAL  f2-real-30oct
+IDENTICAL  f3-rain-soon
+IDENTICAL  f4-heavy
+IDENTICAL  f5
+IDENTICAL  f6
+
+Card (compared with the 17B card evidence; 17D did not store cards):
+IDENTICAL  card-f1-dry.png
+IDENTICAL  card-f2-real-30oct.png

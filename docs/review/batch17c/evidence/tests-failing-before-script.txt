@@ -1,0 +1,8 @@
+Worktree at 2c8cb25 (the commit before check-complete.mjs existed), with the 17C test file copied in.
+The tests and the script were added in the SAME commit (2776da9), so 'failing before' is reproduced this way, using the current test file:
+$ node --test tests/unit/morning-17c-ontime.test.mjs
+    throw new ERR_MODULE_NOT_FOUND(
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Users\usdvi\AppData\Local\Temp\wt17c\scripts\morning\check-complete.mjs' imported from C:\Users\usdvi\AppData\Local\Temp\wt17c\tests\unit\morning-17c-ontime.test.mjs
+  code: 'ERR_MODULE_NOT_FOUND',
+ℹ tests 1
+ℹ pass 0

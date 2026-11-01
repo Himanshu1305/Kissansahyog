@@ -1,0 +1,38 @@
+Node version: v24.19.0 
+(fake database on 127.0.0.1; secrets are dummy values)
+
+=== 1. scheduled + complete  (event=schedule, CHECK_FIRST='false')
+exit code: 0
+stdout: Skipped: today's post (2026-11-01) is already complete (voice present).
+database calls made: 1
+GITHUB_OUTPUT: complete=true
+GITHUB_STEP_SUMMARY: Skipped: today's post (2026-11-01) is already complete (voice present).
+
+=== 2. scheduled + not complete  (event=schedule, CHECK_FIRST='')
+exit code: 0
+stdout: Running: no voice stored for 2026-11-01 yet.
+database calls made: 1
+GITHUB_OUTPUT: complete=false
+GITHUB_STEP_SUMMARY: Running: no voice stored for 2026-11-01 yet.
+
+=== 3. scheduled + server error  (event=schedule, CHECK_FIRST='')
+exit code: 0
+stdout: Running: the check got http 500 from the database.
+database calls made: 1
+GITHUB_OUTPUT: complete=false
+GITHUB_STEP_SUMMARY: Running: the check got http 500 from the database.
+
+=== 4. manual, check_first OFF  (event=workflow_dispatch, CHECK_FIRST='false')
+exit code: 0
+stdout: Running: this is a manual run, so the full job always runs.
+database calls made: 0
+GITHUB_OUTPUT: complete=false
+GITHUB_STEP_SUMMARY: Running: this is a manual run, so the full job always runs.
+
+=== 5. manual, check_first ON  (event=workflow_dispatch, CHECK_FIRST='true')
+exit code: 0
+stdout: Skipped: today's post (2026-11-01) is already complete (voice present).
+database calls made: 1
+GITHUB_OUTPUT: complete=true
+GITHUB_STEP_SUMMARY: Skipped: today's post (2026-11-01) is already complete (voice present).
+

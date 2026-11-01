@@ -226,16 +226,16 @@ test('page: no post -> the empty state with the 04:30 IST note and the manual fa
 })
 
 // ---------------------------------------------------------------- workflow
-test('workflow: schedule 23:00 UTC (04:30 IST) + manual run, no pull_request, 15 min timeout, concurrency, pinned actions, artifacts 7 days, 3 secrets', () => {
+test('workflow: four early scheduled tries (17C) + manual run, no pull_request, 15 min timeout, concurrency, pinned actions, artifacts 7 days, 3 secrets', () => {
   const y = read('.github/workflows/morning-post.yml')
-  assert.match(y, /cron: '0 23 \* \* \*'/); assert.ok(y.includes('workflow_dispatch:')); assert.ok(!/pull_request/.test(y))
+  assert.equal((y.match(/- cron: '/g) || []).length, 4); assert.ok(y.includes('workflow_dispatch:')); assert.ok(!/pull_request/.test(y))
   assert.match(y, /timeout-minutes: 15/); assert.match(y, /concurrency:/)
   for (const u of y.matchAll(/uses: ([^\s]+)/g)) assert.match(u[1], /@v\d+$/, `unpinned: ${u[1]}`)
   assert.match(y, /retention-days: 7/); assert.match(y, /if: always\(\)/)
   assert.match(y, /npm run morning -- --save/); assert.match(y, /npx playwright install --with-deps chromium/)
   for (const s of ['SUPABASE_URL', 'SUPABASE_ANON_KEY', 'MORNING_POST_SECRET']) assert.ok(y.includes(`secrets.${s}`), s)
   assert.ok(!/SERVICE_ROLE|service_role/i.test(y)); assert.ok(y.includes('RESEND_API_KEY') && y.includes('ALERT_EMAIL'))
-  assert.match(y, /DELAY scheduled runs by up to/)
+  assert.match(y, /GitHub starts scheduled runs late/)
 })
 test('no service-role key in the new files', () => {
   for (const f of ['scripts/morning/run.mjs', 'scripts/morning/lib/save.js', 'scripts/morning/lib/supa.js', 'scripts/morning/make-secret.mjs', 'src/lib/admin/morningApi.js', '.github/workflows/morning-post.yml', 'docs/review/batch16b/SECURITY.md', 'docs/review/batch16b/SHIP.md']) {

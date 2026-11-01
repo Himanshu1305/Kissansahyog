@@ -1,16 +1,17 @@
-// npm run morning -- [--date YYYY-MM-DD] [--draft] [--fixtures normal|rainy|missing-mandi|no-weather] [--out dir] [--no-image] [--save]
+// npm run morning -- [--date YYYY-MM-DD] [--draft] [--fixtures normal|rainy|missing-mandi|no-weather] [--out dir] [--no-image] [--save] [--voice] [--no-voice]
 // Makes the daily "सुबह की खबर" message, card and poll text. Read-only on the database (anon key); see docs/review/batch16a/HOWTO.md.
 import { pathToFileURL } from 'node:url'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { istDate, isIsoDate, addDays } from './lib/ist.js'
-import { generate, loadData, defaultLoaders } from './lib/generate.js'
+import { generate, loadData, makeDefaultLoaders } from './lib/generate.js'
 import { fetchMandiRows } from './lib/supa.js'
 import { loadFixture } from './fixtures.js'
 import { saveToDatabase } from './lib/save.js'
+import { makeVoice } from './voice/make.mjs'
 
 export function parseArgs(argv) {
-  const a = { date: null, draft: false, fixtures: null, out: null, image: true, save: false }
+  const a = { date: null, draft: false, fixtures: null, out: null, image: true, save: false, voice: false, noVoice: false }
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i]
     if (k === '--date') a.date = argv[++i]
@@ -19,6 +20,8 @@ export function parseArgs(argv) {
     else if (k === '--out') a.out = argv[++i]
     else if (k === '--no-image') a.image = false
     else if (k === '--save') a.save = true
+    else if (k === '--voice') a.voice = true
+    else if (k === '--no-voice') a.noVoice = true
     else throw new Error(`unknown option ${k}`)
   }
   return a
@@ -36,9 +39,9 @@ export async function main(argv = process.argv.slice(2)) {
   const url = envUrl(), key = envKey()
 
   const loaders = fx
-    ? { weather: async () => fx.weather, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }
+    ? { weather: fx.weatherLoader || (async () => fx.weather), mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }
     : {
-        ...defaultLoaders,
+        ...makeDefaultLoaders({ url, key }),
         mandi: async () => {
           if (!url || !key) throw new Error('no SUPABASE_URL / SUPABASE_ANON_KEY (or VITE_ equivalents) in the environment')
           return fetchMandiRows({ url, key, endDate: addDays(date, -1) })
@@ -56,7 +59,7 @@ export async function main(argv = process.argv.slice(2)) {
     loaders.yesterdayPoll = (d) => yesterdayFromContext({ ...saveCtx, date: d })
   }
 
-  const res = await generate({ date, draft: args.draft, data, loaders })
+  const res = await generate({ date, draft: args.draft, data, loaders, nowIso: fx && fx.nowIso ? fx.nowIso : undefined })
   const outDir = resolve(args.out || join('out', 'morning', date))
   mkdirSync(outDir, { recursive: true })
   writeFileSync(join(outDir, 'message.txt'), res.message + '\n', 'utf8')
@@ -86,6 +89,15 @@ export async function main(argv = process.argv.slice(2)) {
     saveLine = s.line
     if (s.exit) { console.log(s.line); return s.exit }
   }
+
+  // The voice note never blocks the post: it runs after the message is saved; any problem is only a line in report.txt.
+  let voiceLine = ''
+  try {
+    const v = await makeVoice({ model: res.model, outDir, noVoice: args.noVoice, callApi: args.save || args.voice, save: args.save ? { ...saveCtx, date } : null })
+    voiceLine = v.line
+  } catch (e) { voiceLine = `voice skipped: ${String(e && e.message).slice(0, 120)}` }
+  console.log(voiceLine)
+  writeFileSync(join(outDir, 'report.txt'), `${report}${voiceLine}\n`, 'utf8')
 
   console.log('')
   console.log(`1. Today's message is ready for ${date}${args.draft ? ' (DRAFT mode)' : ''}.`)

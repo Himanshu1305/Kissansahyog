@@ -22,6 +22,7 @@ export const adminStrings = {
   adm_search_ph: { hi: 'पैनल खोजें (जैसे: कार्ड, एमएसपी, ब्लॉक)', en: 'Find a panel (e.g. card, MSP, block)' },
   adm_search_none: { hi: 'कोई पैनल नहीं मिला।', en: 'No panel found.' },
   adm_log_warn: { hi: 'बदलाव हो गया, पर एडमिन लॉग में दर्ज नहीं हो सका।', en: 'The change was saved, but it could not be written to the admin log.' },
+  adm_morning_link: { hi: 'सुबह की पोस्ट', en: 'Morning post' },
   adm_relogin: { hi: 'लॉग इन पर जाएँ', en: 'Go to sign in' },
 
   // panel names (also what the panel search matches)
