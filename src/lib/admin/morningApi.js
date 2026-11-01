@@ -14,3 +14,5 @@ export const getMorningPost = (actor, date) => call('morning_post_get', { p_acto
 export const getMorningHistory = (actor, days = 14) => call('morning_post_history', { p_actor: actor, p_days: days }).then((r) => r.rows)
 export const markMorningPosted = (actor, date, posted) => call('morning_post_mark_posted', { p_actor: actor, p_date: date, p_posted: !!posted })
 export const setMorningPollResult = (actor, date, pct) => call('morning_post_set_poll_result', { p_actor: actor, p_date: date, p_pct: pct })
+// Batch 17E - the card + voice video, fetched on demand (morning_post_get only says has_video, it never carries the bytes)
+export const getMorningVideo = (actor, date) => call('morning_post_video_get', { p_actor: actor, p_date: date })

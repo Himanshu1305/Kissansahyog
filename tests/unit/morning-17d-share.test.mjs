@@ -83,7 +83,7 @@ test('strings: the old combined-button string is gone; the new ones have Hindi a
   for (const k of ['mp_share_card_msg', 'mp_share_voice', 'mp_share_help', 'mp_share_copied_note', 'mp_share_failed', 'mp_share_all_hint']) {
     assert.ok(morningStrings[k].hi && morningStrings[k].en, k); assert.equal(strings[k].hi, morningStrings[k].hi)
   }
-  assert.equal(morningStrings.mp_share_card_msg.hi, 'कार्ड + संदेश शेयर करें'); assert.equal(morningStrings.mp_share_voice.hi, 'आवाज़ शेयर करें')
+  assert.equal(morningStrings.mp_share_card_msg.hi, 'सिर्फ़ कार्ड + संदेश'); assert.equal(morningStrings.mp_share_voice.hi, 'सिर्फ़ आवाज़') // 17E: relabelled as the backups of the card + voice video
 })
 test('the container no longer builds a combined files array or decides sharing with dummy files, and has no empty catch around a share', () => {
   const cont = readFileSync('src/screens/AdminMorning.jsx', 'utf8')
@@ -110,7 +110,7 @@ const post = { message_text: 'MSG', poll_text: 'POLL', card_png_b64: 'AQID', rep
 test('page: both new buttons, the help line, 56 px height, aria-labels; the old combined button is gone', async () => {
   const { default: V } = await loadView()
   const html = renderToStaticMarkup(createElement(V, { ...base, post }))
-  for (const s of ['data-testid="morning-share-card-msg"', 'aria-label="Share card + message"', 'data-testid="morning-share-voice"', 'aria-label="Share voice"', 'Send the card first, then the voice', 'min-h-[56px]']) assert.ok(html.includes(s), s)
+  for (const s of ['data-testid="morning-share-card-msg"', 'aria-label="Card + message only"', 'data-testid="morning-share-voice"', 'aria-label="Voice only"', 'Or send them separately: the card first, then the voice', 'min-h-[56px]']) assert.ok(html.includes(s), s)
   assert.ok(!html.includes('morning-share-all"') && !html.includes('Share card + voice'))
   assert.ok(html.indexOf('morning-share-card-msg') < html.indexOf('morning-share-voice'))
   for (const s of ['Copy message', 'Select all', 'Download card', 'Download voice (MP3)', 'WhatsApp: send text', 'Copy poll', 'Mark as posted']) assert.ok(html.includes(s), s)
@@ -138,5 +138,5 @@ test('page: a computer (no navigator.share) shows the Download hint and no share
 test('page: Hindi labels', async () => {
   const { default: V } = await loadView()
   const hi = renderToStaticMarkup(createElement(V, { ...base, t: (k) => strings[k]?.hi || k, post, shareNote: true, shareError: true }))
-  for (const s of ['कार्ड + संदेश शेयर करें', 'आवाज़ शेयर करें', 'संदेश कॉपी हो गया।', 'शेयर नहीं हो सका।']) assert.ok(hi.includes(s), s)
+  for (const s of ['सिर्फ़ कार्ड + संदेश', 'सिर्फ़ आवाज़', 'संदेश कॉपी हो गया।', 'शेयर नहीं हो सका।']) assert.ok(hi.includes(s), s)
 })

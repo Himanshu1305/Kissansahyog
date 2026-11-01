@@ -118,3 +118,46 @@ export function answerOrThrow(body) {
   const code = (body && body.error) || 'unknown'
   throw Object.assign(new Error(code), { code, i18nKey: ERROR_KEYS[code] || 'err_unknown' })
 }
+
+// Batch 17E - the video (the card as a picture with the voice as its sound). The page only learns THAT a video exists
+// (post.has_video); the bytes come from getMorningVideo (morning_post_video_get) in the background.
+export const videoFileName = (date) => `morning-${date}.mp4`
+export const hasVideo = (post) => !!(post && post.has_video === true)
+export function makeVideoFile(b64, date) {
+  if (!b64 || typeof File === 'undefined') return null
+  return new File([base64ToBytes(b64)], videoFileName(date), { type: 'video/mp4' })
+}
+// load: 'idle' | 'loading' | 'ready' | 'error' (what the background fetch is doing) -> 'none' | 'loading' | 'ready' | 'error' (what the page shows)
+export function videoUiState({ hasVideo: has, load }) {
+  if (!has) return 'none'
+  if (load === 'ready') return 'ready'
+  if (load === 'error') return 'error'
+  return 'loading'
+}
+
+// The main share: ONE file (the mp4) with the message as its caption.
+// SAME-CLICK RULE: everything that must happen inside the tap (start the copy, ask canShare about the REAL file, call share) happens
+// synchronously, before the first await - the browser only allows share() within a moment of the tap. The copy is NOT waited for
+// before sharing; its outcome is read afterwards (waiting at most copyWaitMs), so a stuck clipboard can never block or delay the share.
+export function shareVideoWithMessage({ nav = globalThis.navigator, file, text, copyWaitMs = 1000 }) {
+  let copyDone = Promise.resolve(false)
+  try {
+    if (nav && nav.clipboard && typeof nav.clipboard.writeText === 'function') {
+      copyDone = Promise.resolve(nav.clipboard.writeText(text)).then(() => true, () => false)
+    }
+  } catch { /* clipboard blocked: the share still goes ahead */ }
+  let started
+  try {
+    if (!canUseShare(nav)) started = Promise.resolve({ status: 'unsupported' })
+    else if (!file || typeof nav.canShare !== 'function' || !nav.canShare({ files: [file] })) started = Promise.resolve({ status: 'unavailable' })
+    else started = Promise.resolve(nav.share({ files: [file], text })).then(() => ({ status: 'shared' }))
+  } catch (e) { started = Promise.reject(e) }
+  return started
+    .catch((e) => (e && e.name === 'AbortError' ? { status: 'cancelled' } : { status: 'failed', errorName: (e && typeof e.name === 'string' && e.name) || 'Error' }))
+    .then(async (r) => {
+      let timer
+      const wait = new Promise((resolve) => { timer = setTimeout(() => resolve(false), copyWaitMs) })
+      const copied = await Promise.race([copyDone, wait]); clearTimeout(timer)
+      return { ...r, copied: !!copied }
+    })
+}

@@ -34,10 +34,11 @@ export function EmptyState({ t }) {
 export default function MorningView({
   t, date, dateText, today, post, history, historyRows, nextDisabled, prevDisabled,
   copied, copyFailed, pollCopied, canShare, canShareApi, shareNote, shareError, busy, pctValue, pctMsg, pctError, resultDateText, postedText, generatedText,
-  refs, on,
+  video, refs, on,
 }) {
   const img = cardDataUrl(post?.card_png_b64)
   const voice = voiceDataUrl(post?.voice_mp3_b64)
+  const vid = video || { state: 'none', url: null, name: '' }
   return (
     <div data-testid="morning-post-admin" data-date={date}>
       <h1 className="mb-3 text-2xl font-bold text-stone-900">{t('mp_title')}</h1>
@@ -96,17 +97,36 @@ export default function MorningView({
             )}
           </section>
 
+          {vid.state === 'ready' && vid.url && (
+            <section data-testid="morning-video-section">
+              <h2 className="mb-2 text-lg font-bold text-stone-800">{t('mp_video_h')}</h2>
+              <video controls playsInline preload="metadata" poster={img || undefined} src={vid.url} data-testid="morning-video" aria-label={t('mp_video_player')} className="mx-auto w-full max-w-sm rounded-xl border-2 border-stone-200" />
+              <a href={vid.url} download={vid.name} data-testid="morning-video-download" aria-label={t('mp_video_download')} className={`${btnPlain} mt-2 w-full`}>{t('mp_video_download')}</a>
+            </section>
+          )}
+
           <section data-testid="morning-send">
-            <a href={whatsappTextUrl(post.message_text)} target="_blank" rel="noopener noreferrer" data-testid="morning-wa-text" aria-label={t('mp_wa_text')} className={`${btnGreen} w-full min-h-[56px]`}>{t('mp_wa_text')}</a>
+            {canShareApi && vid.state === 'ready' && (
+              <>
+                <button type="button" data-testid="morning-share-video" aria-label={t('mp_share_video')} onClick={on.shareVideo} className={`${btnGreen} w-full min-h-[56px] text-lg`}>{t('mp_share_video')}</button>
+                <p className="mt-1 text-sm font-semibold text-stone-700" data-testid="morning-video-what">{t('mp_video_what')}</p>
+              </>
+            )}
+            {canShareApi && vid.state === 'loading' && (
+              <button type="button" data-testid="morning-share-video" aria-label={t('mp_share_video')} disabled className={`${btnGreen} w-full min-h-[56px] text-lg`}>{t('mp_video_getting_ready')}</button>
+            )}
+            {vid.state === 'error' && <p className="rounded-xl bg-amber-50 p-3 font-semibold text-amber-900" data-testid="morning-video-error">{t('mp_video_load_failed')}</p>}
+            {vid.state === 'none' && <p className="rounded-xl bg-amber-50 p-3 font-semibold text-amber-900" data-testid="morning-video-none">{t('mp_video_none')}</p>}
             {canShareApi ? (
               <>
-                <p className="mt-3 text-sm font-semibold text-stone-700" data-testid="morning-share-help">{t('mp_share_help')}</p>
-                <button type="button" data-testid="morning-share-card-msg" aria-label={t('mp_share_card_msg')} onClick={on.shareCard} disabled={!img} className={`${btnGreen} mt-2 w-full min-h-[56px]`}>{t('mp_share_card_msg')}</button>
                 {shareNote && <p role="status" aria-live="polite" className="mt-1 text-sm font-semibold text-green-800" data-testid="morning-share-note">{t('mp_share_copied_note')}</p>}
-                {voice && <button type="button" data-testid="morning-share-voice" aria-label={t('mp_share_voice')} onClick={on.shareVoice} className={`${btnGreen} mt-2 w-full min-h-[56px]`}>{t('mp_share_voice')}</button>}
                 {shareError && <p role="alert" className="mt-2 rounded-xl bg-red-50 p-3 text-base font-semibold text-red-800" data-testid="morning-share-error">{t('mp_share_failed')}</p>}
+                <p className="mt-4 text-sm font-semibold text-stone-700" data-testid="morning-share-help">{t('mp_share_help')}</p>
+                <button type="button" data-testid="morning-share-card-msg" aria-label={t('mp_share_card_msg')} onClick={on.shareCard} disabled={!img} className={`${btnGreen} mt-2 w-full min-h-[56px]`}>{t('mp_share_card_msg')}</button>
+                {voice && <button type="button" data-testid="morning-share-voice" aria-label={t('mp_share_voice')} onClick={on.shareVoice} className={`${btnGreen} mt-2 w-full min-h-[56px]`}>{t('mp_share_voice')}</button>}
               </>
             ) : <p className="mt-2 text-sm text-stone-600" data-testid="morning-share-hint">{t('mp_share_all_hint')}</p>}
+            <a href={whatsappTextUrl(post.message_text)} target="_blank" rel="noopener noreferrer" data-testid="morning-wa-text" aria-label={t('mp_wa_text')} className={`${btnPlain} mt-4 w-full`}>{t('mp_wa_text')}</a>
           </section>
 
           <section>
