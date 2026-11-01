@@ -6,7 +6,7 @@ ok   apply 0074 (1st time) [break-message]
 ok   apply 0074 (2nd time, idempotent)
 ok   0073 test still passes after 0074
 FAIL 0074 test: video cleared by a changed message
-(node:39064) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:13372) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
 ok   rollback runs twice and the 0073 test passes on the rolled-back database
 ok   0074 can be applied again after a rollback

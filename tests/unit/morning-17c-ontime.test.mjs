@@ -18,10 +18,10 @@ const counting = (impl) => { const f = async (...a) => { f.calls.push(a); return
 const sched = (over = {}) => ({ eventName: 'schedule', checkFirst: false, env: ENV, now: NOW, ...over })
 
 test('complete: voice hash present -> true, names the IST date, never the secret', async () => {
-  const f = counting(reply(200, { ok: true, today: { voice_sha256: 'abc123' } }))
+  const f = counting(reply(200, { ok: true, today: { voice_sha256: 'abc123', has_video: true } }))
   const r = await decide({ ...sched(), fetchImpl: f })
   assert.equal(r.complete, true)
-  assert.match(r.summary, /^Skipped: today's post \(2026-11-01\) is already complete \(voice present\)\.$/)
+  assert.match(r.summary, /^Skipped: today's post \(2026-11-01\) is already complete \((voice and video present)\)\.$/)
   assert.equal(f.calls.length, 1)
   assert.ok(!r.summary.includes('secret-abc') && !r.summary.includes('anon-key-123'))
 })
@@ -74,7 +74,7 @@ test('normal manual run: no database call at all, answer false', async () => {
 })
 
 test('manual run with check_first ON behaves like a scheduled try', async () => {
-  const f = counting(reply(200, { ok: true, today: { voice_sha256: 'abc' } }))
+  const f = counting(reply(200, { ok: true, today: { voice_sha256: 'abc', has_video: true } }))
   const r = await decide({ eventName: 'workflow_dispatch', checkFirst: true, env: ENV, now: NOW, fetchImpl: f })
   assert.equal(f.calls.length, 1)
   assert.equal(r.complete, true)
@@ -160,7 +160,7 @@ test('end to end: real script, local fake server, writes GITHUB_OUTPUT and GITHU
   const server = createServer((req, res) => {
     let b = ''
     req.on('data', (d) => (b += d))
-    req.on('end', () => { hits.push({ url: req.url, body: b }); res.setHeader('content-type', 'application/json'); res.end(JSON.stringify({ ok: true, today: { voice_sha256: 'deadbeef' } })) })
+    req.on('end', () => { hits.push({ url: req.url, body: b }); res.setHeader('content-type', 'application/json'); res.end(JSON.stringify({ ok: true, today: { voice_sha256: 'deadbeef', has_video: true } })) })
   })
   await new Promise((r) => server.listen(0, '127.0.0.1', r))
   const dir = mkdtempSync(join(tmpdir(), 'chk17c-'))
@@ -176,7 +176,7 @@ test('end to end: real script, local fake server, writes GITHUB_OUTPUT and GITHU
     const r1 = await run({ ...base, GITHUB_OUTPUT: o1, GITHUB_STEP_SUMMARY: s1 })
     assert.equal(r1.code, 0)
     assert.equal(readFileSync(o1, 'utf8').trim(), 'complete=true')
-    assert.match(readFileSync(s1, 'utf8'), /Skipped: today's post \(\d{4}-\d\d-\d\d\) is already complete \(voice present\)\./)
+    assert.match(readFileSync(s1, 'utf8'), /Skipped: today's post \(\d{4}-\d\d-\d\d\) is already complete \((voice and video present)\)\./)
     assert.equal(hits.length, 1)
     assert.ok(hits[0].url.endsWith('/rest/v1/rpc/morning_post_context'))
     assert.ok(!r1.out.includes('secret-abc') && !r1.out.includes('anon-key-123') && !r1.out.includes('deadbeef'))

@@ -87,6 +87,13 @@ begin
   assert (select video_mp4_b64 is null and video_meta is null from public.morning_posts where post_date = v_today), 'video cleared by a changed voice';
   assert (select card_png_b64 = 'CARD2' and message_text = 'message two' from public.morning_posts where post_date = v_today), 'card and message kept when only the voice changed';
 
+  -- the job read of the stored voice: secret-guarded, date-guarded, returns the stored mp3 only
+  r := public.morning_post_voice_get('wrong', v_today);  assert r = '{"ok": false, "error": "forbidden"}'::jsonb, 'voice_get wrong secret';
+  r := public.morning_post_voice_get(null, v_today);     assert r = '{"ok": false, "error": "forbidden"}'::jsonb, 'voice_get null secret';
+  r := public.morning_post_voice_get(s, v_today + 30);   assert r->>'error' = 'bad_date', 'voice_get bad_date';
+  r := public.morning_post_voice_get(s, v_today);        assert (r->>'ok')::boolean and r->>'voice_mp3_b64' = 'MP3THREE', 'voice_get returns the stored mp3';
+  assert not (r ? 'card_png_b64') and not (r ? 'message_text'), 'voice_get returns nothing else';
+
   -- posted posts are left alone
   r := public.morning_post_video_upsert(s, v_today, 'VIDEOFOUR', '{}'::jsonb); assert (r->>'ok')::boolean, 'video 4';
   update public.morning_posts set posted_at = now() where post_date = v_today;
@@ -122,6 +129,7 @@ begin
   assert has_function_privilege('anon', 'public.morning_post_video_upsert(text, date, text, jsonb)', 'execute'), 'anon cannot call video_upsert';
   assert has_function_privilege('anon', 'public.morning_post_video_get(uuid, date)', 'execute'), 'anon cannot call video_get';
   assert not has_function_privilege('public', 'public.morning_post_video_upsert(text, date, text, jsonb)', 'execute'), 'PUBLIC can call video_upsert';
+  assert not has_function_privilege('public', 'public.morning_post_voice_get(text, date)', 'execute'), 'PUBLIC can call voice_get';
 end
 $$;
 

@@ -5,7 +5,7 @@ ok   0073 test passes on 0073 alone
 ok   apply 0074 (1st time) [break-grant]
 ok   apply 0074 (2nd time, idempotent)
 FAIL 0073 test after 0074: anon has a grant on public.morning_posts
-(node:38652) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:4420) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
 FAIL 0074 test: anon has a grant on public.morning_posts
 FAIL rollback: anon has a grant on public.morning_posts

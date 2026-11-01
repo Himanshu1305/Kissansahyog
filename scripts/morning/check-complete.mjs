@@ -1,9 +1,11 @@
 // Batch 17C - "Is today's morning post already complete?" Runs as the FIRST step of the Morning post workflow, before npm ci,
 // so a try that has nothing to do costs seconds. Dependency-free: needs Node 18 or newer (built-in fetch); setup-node runs after this step.
 //
-// Complete = the database holds a voice for today's IST date (migration 0073's morning_post_context returns today.voice_sha256;
-// the voice is stored only after the message and card exist). Anything unclear (error, timeout, no voice key, wrong answer)
-// means "not complete": fail OPEN, so a broken check can never stop the post being made.
+// Complete = the database holds a voice AND a video for today's IST date (migrations 0073 and 0074: morning_post_context returns
+// today.voice_sha256 and today.has_video; both are stored only after the message and card exist). Batch 17E added the video:
+// a post with a voice but no video is NOT complete, so the early tries keep trying. Anything unclear (error, timeout, no voice key,
+// wrong answer, an old database that does not return has_video) means "not complete": fail OPEN, so a broken check can never
+// stop the post being made.
 // It only asks the database when the run is a scheduled try, or a manual run started with check_first ON.
 // It never prints the secret, the keys, request headers or the database's answer.
 import { appendFileSync } from 'node:fs'
@@ -41,7 +43,9 @@ export async function decide({ eventName, checkFirst = false, env = {}, now = ne
     if (!r.ok) return run(`the check got http ${r.status} from the database.`)
     if (!body || body.ok !== true) return run('the database did not accept the check.')
     const sha = body.today && body.today.voice_sha256
-    if (typeof sha === 'string' && sha.length > 0) return { complete: true, summary: `Skipped: today's post (${date}) is already complete (voice present).` }
+    const hasVoice = typeof sha === 'string' && sha.length > 0
+    if (hasVoice && body.today.has_video === true) return { complete: true, summary: `Skipped: today's post (${date}) is already complete (voice and video present).` }
+    if (hasVoice) return run(`the voice is stored for ${date} but the video is not (yet).`)
     return run(`no voice stored for ${date} yet.`)
   } catch (e) {
     return run(ctl.signal.aborted ? 'the check timed out.' : 'the check could not reach the database.')

@@ -1,8 +1,9 @@
 -- Rollback for 0074 (optional, never run by a script): puts the functions back exactly as 0073 made them, removes
--- morning_post_video_upsert and morning_post_video_get and drops the two video columns (every stored video is lost;
+-- morning_post_video_upsert, morning_post_video_get and morning_post_voice_get and drops the two video columns (every stored video is lost;
 -- messages, cards, polls and voices stay). Safe to run twice. Pure ASCII.
 drop function if exists public.morning_post_video_upsert(text, date, text, jsonb);
 drop function if exists public.morning_post_video_get(uuid, date);
+drop function if exists public.morning_post_voice_get(text, date);
 
 create or replace function public.morning_post_voice_upsert(
   p_secret text, p_date date, p_script text, p_mp3_b64 text, p_meta jsonb)

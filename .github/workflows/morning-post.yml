@@ -66,6 +66,13 @@ jobs:
       - run: npx playwright install --with-deps chromium
         if: steps.check.outputs.complete != 'true'
 
+      - name: Make sure ffmpeg is installed (for the card + voice video)
+        if: steps.check.outputs.complete != 'true'
+        continue-on-error: true   # no ffmpeg = no video, but the post itself is still made
+        run: |
+          command -v ffmpeg >/dev/null 2>&1 || sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -n 1
+
       - name: Make and save the morning post
         if: steps.check.outputs.complete != 'true'
         env:

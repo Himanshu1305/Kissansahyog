@@ -1,0 +1,4 @@
+command: ffmpeg -v error -i morning-2026-11-01.mp4 -f null -
+exit code: 0
+output (empty = clean):
+

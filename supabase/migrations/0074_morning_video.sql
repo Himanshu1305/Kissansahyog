@@ -15,6 +15,9 @@
 --   * morning_post_context       same answer as 0073 plus today.has_video (boolean).
 --   * morning_post_get           same answer as 0073 plus has_video (boolean). The video bytes are NOT returned here.
 --   * morning_post_video_get     NEW admin read (same guard as morning_post_get): {ok:true, video_mp4_b64, video_meta}.
+--   * morning_post_voice_get     NEW job read (anon key plus the shared secret, like the other job functions): returns the stored
+--                                voice mp3 of a post so a later try of the job can build the video without paying for the
+--                                voice again. forbidden / bad_date / {ok:true, voice_mp3_b64 (null if none)}.
 -- The auth switches (otp_required, session_enforced) are not touched.
 -- Rollback (optional, never run by a script): supabase/migrations/rollback/0074_morning_video_rollback.sql
 
@@ -253,6 +256,29 @@ begin
 end;
 $$;
 
+-- 6b. job read: the stored voice of a post (so a retry builds the video from it instead of buying the voice again) ------
+create or replace function public.morning_post_voice_get(p_secret text, p_date date)
+returns jsonb
+language plpgsql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+declare
+  v_today date := (now() at time zone 'Asia/Kolkata')::date;
+  v_b64   text;
+begin
+  if not public.morning_post_secret_ok(p_secret) then
+    return jsonb_build_object('ok', false, 'error', 'forbidden');
+  end if;
+  if p_date is null or p_date < v_today - 1 or p_date > v_today + 1 then
+    return jsonb_build_object('ok', false, 'error', 'bad_date');
+  end if;
+  select m.voice_mp3_b64 into v_b64 from public.morning_posts m where m.post_date = p_date;
+  return jsonb_build_object('ok', true, 'voice_mp3_b64', v_b64);
+end;
+$$;
+
 -- 7. grants: same pattern as 0070 / 0073 -------------------------------------------------------------------------------
 revoke all on function public.morning_post_video_upsert(text, date, text, jsonb) from public;
 revoke all on function public.morning_post_voice_upsert(text, date, text, text, jsonb) from public;
@@ -260,6 +286,7 @@ revoke all on function public.morning_post_upsert(text, date, text, text, text, 
 revoke all on function public.morning_post_context(text, date) from public;
 revoke all on function public.morning_post_get(uuid, date) from public;
 revoke all on function public.morning_post_video_get(uuid, date) from public;
+revoke all on function public.morning_post_voice_get(text, date) from public;
 
 grant execute on function public.morning_post_video_upsert(text, date, text, jsonb) to anon, authenticated;
 grant execute on function public.morning_post_voice_upsert(text, date, text, text, jsonb) to anon, authenticated;
@@ -267,3 +294,4 @@ grant execute on function public.morning_post_upsert(text, date, text, text, tex
 grant execute on function public.morning_post_context(text, date) to anon, authenticated;
 grant execute on function public.morning_post_get(uuid, date) to anon, authenticated;
 grant execute on function public.morning_post_video_get(uuid, date) to anon, authenticated;
+grant execute on function public.morning_post_voice_get(text, date) to anon, authenticated;
