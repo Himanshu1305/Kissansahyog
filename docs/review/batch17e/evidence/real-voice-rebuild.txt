@@ -1,0 +1,39 @@
+STEP 5 - FIXED recipe on the REAL card.png and REAL voice.mp3 of run #14 (artifact "morning-post"; files not committed)
+voice.mp3: 277985 bytes; card.png: 130748 bytes
+voice decoded length: 00:00:34.66
+
+===== ffmpeg 6.1.1 =====
+makeVideo -> video made (459 KB, 34.7 s)
+file size: 469748 bytes (459 KB)
+codec_type=video
+duration=34.500000
+nb_frames=69
+codec_type=audio
+duration=34.690000
+nb_frames=1495
+duration=34.691000
+full decode (audio+video): exit 0, errors: none
+
+===== ffmpeg 6.0 =====
+makeVideo -> video made (459 KB, 34.7 s)
+file size: 469748 bytes (459 KB)
+codec_type=video
+duration=34.500000
+nb_frames=69
+codec_type=audio
+duration=34.690000
+nb_frames=1495
+duration=34.691000
+full decode (audio+video): exit 0, errors: none
+
+===== ffmpeg 7.1 =====
+makeVideo -> video made (459 KB, 34.7 s)
+file size: 469777 bytes (459 KB)
+codec_type=video
+duration=34.500000
+nb_frames=69
+codec_type=audio
+duration=34.690000
+nb_frames=1495
+duration=34.691000
+full decode (audio+video): exit 0, errors: none
