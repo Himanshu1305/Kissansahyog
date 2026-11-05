@@ -1,0 +1,57 @@
+# Batch 19 - FACTS (verified fact sheet)
+
+Read on: 5 Nov 2026. Web access: YES (WebFetch + WebSearch). Types: OFFICIAL / NEWS / PRIVATE.
+Rule: plain statement only if OFFICIAL says it or two independent NEWS agree. One NEWS = "समाचारों के अनुसार" + date. PRIVATE-only = omitted (or attributed). Unknown = written as unknown.
+
+## Newer-than-5-Nov check
+Searched on 5 Nov 2026 for an official order, cabinet decision or launch report on the desi cow assistance. NONE found. Every report is dated 28 Oct 2026 and says "planned / preparing". Status stays `planned`. The 15 Nov 2026 launch is only a plan.
+
+## Facts
+| id | statement | source | type | source date | confidence | used on |
+|---|---|---|---|---|---|---|
+| F-A1 | State is preparing a desi cow assistance of up to Rs 900 a month; plan to start 15 Nov 2026 (Janjatiya Gaurav Divas / Birsa Munda Jayanti); the launch "may" happen there | etvbharat.com (mps26102801458); gaonjunction.com; lalluram.com | NEWS x3 (agree) | 28 Oct 2026 | medium (all report a plan; no order) | desi-gay-anudan, hub |
+| F-A2 | Phase 1: 100 villages, 5 cattle keepers each, about 500 keepers; more may be added later | same three | NEWS x3 | 28 Oct 2026 | medium | desi-gay-anudan |
+| F-A3 | About Rs 40 crore a year (three reports); money to come in the second supplementary budget (Lalluram only) | same three | NEWS | 28 Oct 2026 | medium | desi-gay-anudan |
+| F-A4 | Plan was presented at the cabinet meeting of 27 Oct 2026 by the Agriculture and Animal Husbandry departments; the article does NOT say the cabinet approved it | lalluram.com | NEWS x1 | 28 Oct 2026 | low-medium | desi-gay-anudan |
+| F-A5 | Reported breeds: Mahakoshali, Malvi, Nimadi, Kenkatha, Gaolao (ETV, Gaon Junction); Lalluram adds Gadi-Kheri (6 in all) | etvbharat; lalluram | NEWS | 28 Oct 2026 | medium | desi-gay-anudan, desi-nasle |
+| F-A6 | Not announced in any report: scheme name, department, per cow or per family, number of cows, conditions, how villages/keepers are chosen, how to apply, payment method, documents, duration, order number | all three | NEWS (absence) | 28 Oct 2026 | high | desi-gay-anudan, hub |
+| F-A7 | 500 x Rs 900 x 12 = Rs 54 lakh, not Rs 40 crore; reports do not explain the gap. Pages do not call Rs 40 crore the cost of phase 1 | etvbharat; lalluram | NEWS (analysis) | 28 Oct 2026 | high | DECISIONS |
+| F-A8 | Rs 900 x 12 months = Rs 10,800 a year ("up to") | gaonjunction (via search) | NEWS | 28 Oct 2026 | medium | desi-gay-anudan |
+| F-A9 | 2022: former CM announced Rs 900 a month; opposition called it an election slogan. Reports call the 2026 plan separate. NOT used | etvbharat 2022 | NEWS | 27 Apr 2022 | low | omitted |
+| F-A10 | "Mukhyamantri Pragatisheel Pashupalak Protsahan Yojana Rs 10,000-15,000 per cow" - title only, never read | search title | PRIVATE | - | none | OMITTED |
+| F-B1 | Dairy-unit term loan; 7 years repayment; 6 months moratorium; second term loan possible if criteria met | dbaky.mp.gov.in | OFFICIAL | undated (c 2024) | high | kamdhenu |
+| F-B2 | Back-ended capital subsidy 33 percent (SC/ST) and 25 percent (others) of project cost; 3-year lock-in from first disbursement | dbaky.mp.gov.in | OFFICIAL | undated | high | kamdhenu |
+| F-B3 | Steps: sign up with Aadhaar and basic details; two-step form (personal and land details, requirement); department reviews and forwards to a bank; bank processes and pays | dbaky.mp.gov.in | OFFICIAL | undated | high | kamdhenu |
+| F-B4 | Portal text does NOT state unit size, eligibility, documents, loan amount or interest (eligibility sits on a separate page we did not read) | dbaky.mp.gov.in | OFFICIAL (absence) | undated | high | kamdhenu |
+| F-B5 | Announced in Indore, Apr 2025: 25 percent subsidy for buying more than 25 cows; aim to lift MP's share of national milk from about 9 to 20 percent | freepressjournal.in | NEWS | 12-13 Apr 2025 | medium | kamdhenu |
+| F-B6 | Mukhyamantri Pashupalan Vikas Yojana renamed Dr Ambedkar Pashupalan Vikas Yojana; zero-interest credit cards, embryo transfer, infertility camps, fodder production, awareness continue; 2024-25 and 2025-26 | millenniumpost.in | NEWS | 8 Apr 2025 | medium | kamdhenu, hub |
+| F-B7 | Unit of 25 milch animals; 3.5 acres of land per unit (also: age 21+, training, up to 8 units, cost Rs 36-42 lakh - sources disagree) | govtschemes.in, sarakariyojna.com, dairynews | PRIVATE | - | low | only unit of 25 and 3.5 acres, as "एक वेबसाइट के अनुसार (सरकारी पुष्टि बाकी)"; rest OMITTED |
+| F-C1 | MP cabinet 8 Apr 2025 approved Self-Reliant Gaushala Policy 2025 (Animal Husbandry and Dairying dept); per-cow daily grant doubled from Rs 20 to Rs 40 (Deputy CM); no conditions stated | millenniumpost.in | NEWS x1 | 8 Apr 2025 | medium | gaushala |
+| F-C2 | Zeebiz Hindi report (cow feed / gau-vihar PPP) could not be fetched (HTTP 402) | zeebiz.com | unread | - | none | OMITTED |
+| F-D1 | KCC for dairy/animal husbandry, central leaflet (dahd.gov.in KCC-Leaflet-E.pdf): collateral-free up to Rs 1.6 lakh; up to Rs 3 lakh with milk-processor tie-up; interest subvention up to Rs 2 lakh. We could NOT open the leaflet (403/404); read via a search summary | dahd.gov.in (secondary) | OFFICIAL via summary | undated (2023 file) | medium-low | kisan-credit-card, attributed |
+| F-D2 | Lok Sabha answer Feb 2025: under RBI guidelines of 6 Dec 2024, animal husbandry and fisheries farmers meeting KCC eligibility can get loans up to Rs 2 lakh without collateral | government answer (secondary) | OFFICIAL via summary | Feb 2025 | medium-low | kisan-credit-card |
+| F-D3 | MP online route (samast.mponline.gov.in), fee amounts, Scheme ID 914 | publicservicesmap.in | PRIVATE | - | low | portal name only, as "एक वेबसाइट के अनुसार"; fees OMITTED |
+| F-D4 | Offline: apply at your bank / PACS / dairy cooperative (general) | general knowledge of KCC practice | - | - | low | stated as "आम तौर पर", no promise |
+| F-E1 | Gopal Protsahan Yojana (prizes up to Rs 2 lakh): NOT confirmed; search found no Rs 2 lakh figure | govtschemes.in; vikaspedia | PRIVATE | undated | none | OMITTED |
+| F-E2 | Gopal-Krishna Gram award contest (208 Vrindavan villages) to 31 Oct 2026 - different scheme | aajtak.in | NEWS | 30 Oct 2026 | low | OMITTED |
+| F-F1 | Union Cabinet 19 Mar 2025 approved revised Rashtriya Gokul Mission, Rs 3,400 crore for 2021-22 to 2025-26 (includes additional Rs 1,000 crore); continues semen stations and artificial insemination network | PIB text via narendramodi.in (search summary) | OFFICIAL via summary | 19 Mar 2025 | medium | kendriya |
+| F-F2 | DAHD schemes realigned into Development Programmes (RGM, NPDD, NLM as sub-schemes); AHIDF and DIDF merged | narendramodi.in (search summary) | OFFICIAL via summary | 2025, exact date not confirmed | medium-low | kendriya |
+| F-F3 | National Livestock Mission is being implemented (Rajya Sabha reply, Mar 2025); loan/subsidy details NOT verified | search summary | OFFICIAL via summary | Mar 2025 | low | kendriya (name only) |
+| F-F4 | Official DAHD scheme booklet not reachable (403/404); no subsidy percentages stated from it | dahd.gov.in | - | - | - | none |
+| F-G1 | mpdah.gov.in lists no scheme and no desi cow programme (read by architect 5 Nov); links to Gaupalan Board, MP State Livestock and Poultry Development Corporation, MP State Co-operative Dairy Federation. Re-fetch by us failed (expired certificate) | mpdah.gov.in | OFFICIAL | 5 Nov 2026 | medium | hub |
+| F-H1 | Kenkatha: draught-type breed named after the river Ken (MP-UP border), Bundelkhand; hardy, survives on poor fodder; low milk (breeders say up to about 3 litres a day); numbers falling; Ajaygarh breeding centre closed about 1997, Panna conservation centre 2006 | gaonconnection.com (Arun Singh) | NEWS x1 | 6 Jul 2023 | medium | desi-nasle, attributed; price NOT used |
+| F-H2 | NBAGR monograph "Cattle Genetic Resources of India - Kenkatha Breed" (2006) exists; notes no organised farm for quality bulls | search summary | OFFICIAL via summary | 2006 | medium | desi-nasle |
+| F-H3 | Mahakoshali: identified by Nanaji Deshmukh Veterinary Science University, Jabalpur; registered by NBAGR Karnal as the country's 57th indigenous breed | etvbharat; gaonjunction | NEWS x2 | 28 Oct 2026 | medium-high | desi-nasle |
+| F-H4 | Regions (ETV): Mahakoshali - Jabalpur, Mandla, Dindori, Amarkantak; Malvi - Indore, Ujjain, Shajapur; Nimadi - Barwani, Khandwa, Khargone; Gaolao - Chhindwara, Pandhurna and Maharashtra border; Kenkatha - Sagar, Chhatarpur, Panna, Tikamgarh. Lalluram differs in places (Malvi: Mandsaur, Shajapur, Rajgarh, Ujjain; Gaolao: Chhindwara, Seoni, Balaghat; Kenkatha: Panna, Chhatarpur, Ken river area; Gadi-Kheri: Chhindwara, Mandla, Dindori) | etvbharat; lalluram | NEWS (partly differ) | 28 Oct 2026 | medium | desi-nasle ("रिपोर्टों के अनुसार") |
+| F-H5 | Nimadi from Gir x Khillari cross; Gaolao also "Arvi" (ETV only) | etvbharat | NEWS x1 | 28 Oct 2026 | low | omitted |
+| F-H6 | Spelling: ETV prints "केनथला"; Lalluram, Gaon Connection and NBAGR monograph "Kenkatha" | multiple | - | - | high | Hindi "केनकथा" + English Kenkatha |
+
+## Contradictions with the BATCH19 prompt
+1. KCC limit: prompt (leaflet) Rs 1.6 lakh; a Feb 2025 government answer says Rs 2 lakh collateral-free (RBI, 6 Dec 2024). Pages say the limit varies and must be confirmed with the bank.
+2. ETV and Lalluram name different districts for some breeds; both shown, attributed.
+3. Kamdhenu: private sites disagree with each other (Rs 36-42 lakh); only unit of 25 and 3.5 acres kept, labelled.
+4. Gopal Protsahan Rs 2 lakh: not confirmed anywhere; omitted.
+5. DAHD documents named in the prompt returned 403/404 in this session.
+
+## Could NOT verify (left out of the pages)
+Official name, department, eligibility and application for the desi cow assistance; Kamdhenu eligibility, documents, loan amount, interest; gaushala conditions; KCC interest rate and current exact limit; NLM/AHIDF subsidy numbers; Gopal Protsahan; Zeebiz gau-vihar PPP; mpdah.gov.in re-check; Gaupalan Board site; NBAGR registry page for Kenkatha; MP online KCC fees.
