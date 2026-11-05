@@ -86,3 +86,62 @@ export async function loadWeather({ url, key, lat, lon, date, nowMs = Date.now()
   if (!direct) return null
   return { ...direct, sourceNote: 'open-meteo-direct (cache stale/missing)' }
 }
+
+// ---- Batch 18: the six districts of Sagar Sambhag ------------------------------------------------------------------
+// ONE request to the saved forecast for the six cells; every district whose cell is missing/old/unreadable is fetched directly from Open-Meteo
+// (ONE batched call with comma-separated coordinates - verified in Open-Meteo's docs: "Multiple coordinates can be comma separated", the reply is then a
+// list in the same order; if that call fails or has an unexpected shape: one call per district with a pause). Never throws.
+// -> [{ id, key, lat, lon, source: 'cache' | 'open-meteo-direct' | 'unavailable', weather: <weather|null>, reason }] in DISTRICTS order.
+const sleepMs = (ms) => new Promise((r) => setTimeout(r, ms))
+const dailyUrl = (lat, lon, date) => {
+  const end = new Date(Date.parse(`${date}T00:00:00Z`) + 2 * 86400000).toISOString().slice(0, 10)
+  return `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+    '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max,weather_code' +
+    `&timezone=Asia%2FKolkata&start_date=${date}&end_date=${end}`
+}
+
+export async function loadDistrictsWeather({ districts, url, key, date, nowMs = Date.now(), fetchImpl = fetch, timeoutMs = 10000, pauseMs = 700, sleep = sleepMs, retries = 1 }) {
+  const list = districts || []
+  const out = list.map((d) => ({ id: d.id, key: d.key, lat: d.lat, lon: d.lon, source: 'unavailable', weather: null, reason: 'not loaded' }))
+  // 1. the saved forecast, one request for all six cells
+  let rows = []
+  let cacheReason = 'no saved forecast (no database address/key)'
+  if (url && key) {
+    try {
+      const inList = list.map((d) => d.key).join(',')
+      const got = await getJson(`${url}/rest/v1/weather_cache_v2?grid_key=in.(${inList})&select=grid_key,fetched_at,hourly,daily`, (u, o) => fetchImpl(u, { ...o, headers: { apikey: key, Authorization: `Bearer ${key}` } }), timeoutMs)
+      rows = Array.isArray(got) ? got : []
+      cacheReason = ''
+    } catch (e) { cacheReason = `saved forecast not readable (${String(e && e.message).slice(0, 60)})` }
+  }
+  for (const o of out) {
+    const row = rows.find((r) => r && r.grid_key === o.key)
+    const w = weatherFromCacheRow(row, date, nowMs)
+    if (w) { o.weather = { ...w, provider: `weather_cache_v2 (cell ${o.key}, fetched ${row.fetched_at})`, sourceNote: 'cache' }; o.source = 'cache'; o.reason = ''; continue }
+    o.reason = cacheReason || (!row ? 'no saved cell' : Number.isNaN(Date.parse(row.fetched_at || '')) ? 'saved cell unreadable' : nowMs - Date.parse(row.fetched_at) > CACHE_MAX_AGE_H * 3600000 ? `saved cell older than ${CACHE_MAX_AGE_H} h` : 'saved cell incomplete')
+  }
+  // 2. the rest: Open-Meteo directly
+  const need = out.filter((o) => o.source === 'unavailable')
+  const accept = (o, parsed) => { if (!parsed) return false; o.weather = { ...parsed, sourceNote: 'open-meteo-direct (cache stale/missing)' }; o.source = 'open-meteo-direct'; o.reason = o.reason; return true }
+  if (need.length) {
+    let done = false
+    try {
+      const u = dailyUrl(need.map((o) => o.lat).join(','), need.map((o) => o.lon).join(','), date)
+      let body = null
+      for (let a = 0; a <= retries && !body; a++) { try { body = await getJson(u, fetchImpl, timeoutMs) } catch { /* retry once */ } }
+      const arr = Array.isArray(body) ? body : need.length === 1 && body ? [body] : null
+      if (arr && arr.length === need.length) {
+        const parsed = arr.map(parseOpenMeteo)
+        if (parsed.every(Boolean)) { need.forEach((o, i) => accept(o, parsed[i])); done = true }
+      }
+    } catch { /* fall through to one call per district */ }
+    if (!done) {
+      for (const [i, o] of need.entries()) {
+        if (i > 0) await sleep(pauseMs)
+        const g = await getForecast(o.lat, o.lon, date, { fetchImpl, timeoutMs, retries })
+        if (!accept(o, g)) o.reason = `${o.reason}; direct forecast failed`
+      }
+    }
+  }
+  return out
+}
