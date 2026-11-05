@@ -81,6 +81,7 @@ function makeStore(win) {
       if (!evt) return Promise.resolve({ outcome: 'unavailable' })
       try { evt.prompt() } catch { deferred = null; emit(); return Promise.resolve({ outcome: 'unavailable' }) }
       deferred = null // a captured event can be prompted only once
+      if (ui.sheet === 'guide') ui = NO_UI // the browser's own box takes over from our steps
       emit()
       return Promise.resolve(evt.userChoice)
         .then((choice) => {
@@ -125,12 +126,13 @@ export const installStore = getInstallStore(typeof window !== 'undefined' ? wind
 //  - the homepage strip shows on the homepage only;
 //  - the returning-visitor bar shows on the other pages only, and only if the browser really can
 //    open the install dialog (same rule as before this batch);
-//  - neither shows when installed, in standalone, in the Android app, or while a sheet is open;
+//  - neither shows when installed, in standalone or in the Android app; the bar also waits while a sheet is open;
 //  - /install is the help page itself, so it shows neither.
 export function whichInstallSurface({ pathname, canPrompt, installed, standalone, native, sheet, stripDismissed, visits, snoozed }) {
-  if (installed || standalone || native || (sheet && sheet !== 'none')) return 'none'
+  if (installed || standalone || native) return 'none'
+  // The strip stays put while a sheet is open (hiding it would shift the page under the sheet).
   if (pathname === '/') return stripDismissed ? 'none' : 'strip'
   if (pathname === '/install' || pathname?.startsWith('/install/')) return 'none'
-  if (canPrompt && visits >= 2 && !snoozed) return 'bar'
+  if (canPrompt && visits >= 2 && !snoozed && (!sheet || sheet === 'none')) return 'bar'
   return 'none'
 }

@@ -1,0 +1,722 @@
+{
+  "at": "2026-11-05T05:53:51.080Z",
+  "failures": 0,
+  "rowStats": [
+    {
+      "lang": "hi",
+      "width": 320,
+      "dy": 0,
+      "stripHeight": 52,
+      "text": "📲 किसान सहयोग ऐप इंस्टॉल करें",
+      "btn": "इंस्टॉल"
+    },
+    {
+      "lang": "hi",
+      "width": 360,
+      "dy": 0,
+      "stripHeight": 52,
+      "text": "📲 किसान सहयोग ऐप इंस्टॉल करें",
+      "btn": "इंस्टॉल"
+    },
+    {
+      "lang": "hi",
+      "width": 390,
+      "dy": 0,
+      "stripHeight": 52,
+      "text": "📲 किसान सहयोग ऐप इंस्टॉल करें",
+      "btn": "इंस्टॉल"
+    },
+    {
+      "lang": "hi",
+      "width": 412,
+      "dy": 0,
+      "stripHeight": 52,
+      "text": "📲 किसान सहयोग ऐप इंस्टॉल करें",
+      "btn": "इंस्टॉल"
+    },
+    {
+      "lang": "en",
+      "width": 320,
+      "dy": 0,
+      "stripHeight": 52,
+      "text": "📲 Install Kissan Sahyog app",
+      "btn": "Install"
+    },
+    {
+      "lang": "en",
+      "width": 360,
+      "dy": 0,
+      "stripHeight": 52,
+      "text": "📲 Install Kissan Sahyog app",
+      "btn": "Install"
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "dy": 0,
+      "stripHeight": 52,
+      "text": "📲 Install Kissan Sahyog app",
+      "btn": "Install"
+    },
+    {
+      "lang": "en",
+      "width": 412,
+      "dy": 0,
+      "stripHeight": 52,
+      "text": "📲 Install Kissan Sahyog app",
+      "btn": "Install"
+    }
+  ],
+  "results": [
+    {
+      "name": "320px hi: text and Install button on one row (centres differ 0.0 px < 8)",
+      "ok": true,
+      "detail": "text \"📲 किसान सहयोग ऐप इंस्टॉल करें\" btn \"इंस्टॉल\" strip height 52"
+    },
+    {
+      "name": "320px hi: Install button fully visible, nothing overlaps, close is 44x44",
+      "ok": true,
+      "detail": "{\"btn\":[184,252],\"x\":[260,304],\"text\":[16,176]}"
+    },
+    {
+      "name": "320px hi: no horizontal scroll (scrollWidth 320 <= 320)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360px hi: text and Install button on one row (centres differ 0.0 px < 8)",
+      "ok": true,
+      "detail": "text \"📲 किसान सहयोग ऐप इंस्टॉल करें\" btn \"इंस्टॉल\" strip height 52"
+    },
+    {
+      "name": "360px hi: Install button fully visible, nothing overlaps, close is 44x44",
+      "ok": true,
+      "detail": "{\"btn\":[224,292],\"x\":[300,344],\"text\":[16,216]}"
+    },
+    {
+      "name": "360px hi: no horizontal scroll (scrollWidth 360 <= 360)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390px hi: text and Install button on one row (centres differ 0.0 px < 8)",
+      "ok": true,
+      "detail": "text \"📲 किसान सहयोग ऐप इंस्टॉल करें\" btn \"इंस्टॉल\" strip height 52"
+    },
+    {
+      "name": "390px hi: Install button fully visible, nothing overlaps, close is 44x44",
+      "ok": true,
+      "detail": "{\"btn\":[254,322],\"x\":[330,374],\"text\":[16,246]}"
+    },
+    {
+      "name": "390px hi: no horizontal scroll (scrollWidth 390 <= 390)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "412px hi: text and Install button on one row (centres differ 0.0 px < 8)",
+      "ok": true,
+      "detail": "text \"📲 किसान सहयोग ऐप इंस्टॉल करें\" btn \"इंस्टॉल\" strip height 52"
+    },
+    {
+      "name": "412px hi: Install button fully visible, nothing overlaps, close is 44x44",
+      "ok": true,
+      "detail": "{\"btn\":[276,344],\"x\":[352,396],\"text\":[16,268]}"
+    },
+    {
+      "name": "412px hi: no horizontal scroll (scrollWidth 412 <= 412)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320px en: text and Install button on one row (centres differ 0.0 px < 8)",
+      "ok": true,
+      "detail": "text \"📲 Install Kissan Sahyog app\" btn \"Install\" strip height 52"
+    },
+    {
+      "name": "320px en: Install button fully visible, nothing overlaps, close is 44x44",
+      "ok": true,
+      "detail": "{\"btn\":[175,252],\"x\":[260,304],\"text\":[16,167]}"
+    },
+    {
+      "name": "320px en: no horizontal scroll (scrollWidth 320 <= 320)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360px en: text and Install button on one row (centres differ 0.0 px < 8)",
+      "ok": true,
+      "detail": "text \"📲 Install Kissan Sahyog app\" btn \"Install\" strip height 52"
+    },
+    {
+      "name": "360px en: Install button fully visible, nothing overlaps, close is 44x44",
+      "ok": true,
+      "detail": "{\"btn\":[215,292],\"x\":[300,344],\"text\":[16,207]}"
+    },
+    {
+      "name": "360px en: no horizontal scroll (scrollWidth 360 <= 360)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390px en: text and Install button on one row (centres differ 0.0 px < 8)",
+      "ok": true,
+      "detail": "text \"📲 Install Kissan Sahyog app\" btn \"Install\" strip height 52"
+    },
+    {
+      "name": "390px en: Install button fully visible, nothing overlaps, close is 44x44",
+      "ok": true,
+      "detail": "{\"btn\":[245,322],\"x\":[330,374],\"text\":[16,237]}"
+    },
+    {
+      "name": "390px en: no horizontal scroll (scrollWidth 390 <= 390)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "412px en: text and Install button on one row (centres differ 0.0 px < 8)",
+      "ok": true,
+      "detail": "text \"📲 Install Kissan Sahyog app\" btn \"Install\" strip height 52"
+    },
+    {
+      "name": "412px en: Install button fully visible, nothing overlaps, close is 44x44",
+      "ok": true,
+      "detail": "{\"btn\":[267,344],\"x\":[352,396],\"text\":[16,259]}"
+    },
+    {
+      "name": "412px en: no horizontal scroll (scrollWidth 412 <= 412)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-chrome-no-prompt: strip knows the environment",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-chrome-no-prompt: sheet is a modal dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-chrome-no-prompt: help kind \"menu\", 3 numbered steps",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-chrome-no-prompt: Copy-link button absent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-chrome-no-prompt: focus moved into the sheet",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-chrome-no-prompt: every button in the sheet is >= 56 px high",
+      "ok": true,
+      "detail": "56"
+    },
+    {
+      "name": "android-chrome-no-prompt: sheet fits 360 px, no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-chrome-no-prompt: Escape closes the sheet and focus returns to the Install button",
+      "ok": true,
+      "detail": "pwa-install-cta"
+    },
+    {
+      "name": "android-other-browser: strip knows the environment",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-other-browser: sheet is a modal dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-other-browser: help kind \"menu\", 3 numbered steps",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-other-browser: Copy-link button present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-other-browser: focus moved into the sheet",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-other-browser: every button in the sheet is >= 56 px high",
+      "ok": true,
+      "detail": "56,56"
+    },
+    {
+      "name": "android-other-browser: sheet fits 360 px, no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android-other-browser: Copy link says it worked",
+      "ok": true,
+      "detail": "लिंक कॉपी हो गया ✓"
+    },
+    {
+      "name": "android-other-browser: Escape closes the sheet and focus returns to the Install button",
+      "ok": true,
+      "detail": "pwa-install-cta"
+    },
+    {
+      "name": "ios-safari: strip knows the environment",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-safari: sheet is a modal dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-safari: help kind \"ios\", 3 numbered steps",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-safari: Copy-link button absent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-safari: focus moved into the sheet",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-safari: every button in the sheet is >= 56 px high",
+      "ok": true,
+      "detail": "56"
+    },
+    {
+      "name": "ios-safari: sheet fits 360 px, no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-safari: Escape closes the sheet and focus returns to the Install button",
+      "ok": true,
+      "detail": "pwa-install-cta"
+    },
+    {
+      "name": "ios-other-browser: strip knows the environment",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-other-browser: sheet is a modal dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-other-browser: help kind \"ios-open-safari\", 3 numbered steps",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-other-browser: Copy-link button present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-other-browser: focus moved into the sheet",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-other-browser: every button in the sheet is >= 56 px high",
+      "ok": true,
+      "detail": "56,56"
+    },
+    {
+      "name": "ios-other-browser: sheet fits 360 px, no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ios-other-browser: Copy link says it worked",
+      "ok": true,
+      "detail": "लिंक कॉपी हो गया ✓"
+    },
+    {
+      "name": "ios-other-browser: Escape closes the sheet and focus returns to the Install button",
+      "ok": true,
+      "detail": "pwa-install-cta"
+    },
+    {
+      "name": "in-app-browser: strip knows the environment",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "in-app-browser: sheet is a modal dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "in-app-browser: help kind \"in-app\", 3 numbered steps",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "in-app-browser: Copy-link button present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "in-app-browser: focus moved into the sheet",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "in-app-browser: every button in the sheet is >= 56 px high",
+      "ok": true,
+      "detail": "56,56"
+    },
+    {
+      "name": "in-app-browser: sheet fits 360 px, no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "in-app-browser: Copy link says it worked",
+      "ok": true,
+      "detail": "लिंक कॉपी हो गया ✓"
+    },
+    {
+      "name": "in-app-browser: Escape closes the sheet and focus returns to the Install button",
+      "ok": true,
+      "detail": "pwa-install-cta"
+    },
+    {
+      "name": "can-prompt: ONE tap calls the native prompt() at once (same click)",
+      "ok": true,
+      "detail": "prompt calls 1"
+    },
+    {
+      "name": "can-prompt: no steps sheet opens before the answer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "can-prompt: user dismisses the box -> \"no problem, install later\" line",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "success sheet: green tick, \"ऐप इंस्टॉल हो गया\", look for the icon on the home screen or in the app list",
+      "ok": true,
+      "detail": "ऐप इंस्टॉल हो गया |  | अपने फ़ोन की होम स्क्रीन या ऐप-लिस्ट में किसान सहयोग का निशान ढूँढें। अब वहीं से ऐप खोल सकते हैं। |  | अगर निशान सिर्फ़ ऐप-लिस्ट में है, "
+    },
+    {
+      "name": "success sheet: does not claim the icon has been added as a fact",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "success sheet: one button \"ठीक है\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "appinstalled stored ks_installed_at",
+      "ok": true,
+      "detail": "2026-11-05T05:53:34.896Z"
+    },
+    {
+      "name": "after install, in the same visit: the strip is gone",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "after install: the homepage install block is gone too",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "standalone first launch: \"आप किसान सहयोग ऐप में हैं\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "standalone: no install strip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "standalone second launch: no welcome again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "homepage (returning visitor, can prompt): the strip shows, the bar does not",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "other page (/msp): the bar shows, the strip does not",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install: neither the bar nor the strip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install android-360: one h1 \"किसान सहयोग ऐप इंस्टॉल करें\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install android-360: own steps first, QR + copy link + share present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install android-360: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install android-360: the QR image loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install android-360: other kinds in plain sections (own kind not repeated)",
+      "ok": true,
+      "detail": "4 sections"
+    },
+    {
+      "name": "/install android-360: FAQ has 3 questions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install android-360: FAQPage JSON-LD in the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install android-360: title, canonical",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install ios-390: one h1 \"किसान सहयोग ऐप इंस्टॉल करें\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install ios-390: own steps first, QR + copy link + share present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install ios-390: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install ios-390: the QR image loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install ios-390: other kinds in plain sections (own kind not repeated)",
+      "ok": true,
+      "detail": "4 sections"
+    },
+    {
+      "name": "/install ios-390: FAQ has 3 questions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install ios-390: FAQPage JSON-LD in the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install ios-390: title, canonical",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install inapp-360: one h1 \"किसान सहयोग ऐप इंस्टॉल करें\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install inapp-360: own steps first, QR + copy link + share present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install inapp-360: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install inapp-360: the QR image loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install inapp-360: other kinds in plain sections (own kind not repeated)",
+      "ok": true,
+      "detail": "4 sections"
+    },
+    {
+      "name": "/install inapp-360: FAQ has 3 questions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install inapp-360: FAQPage JSON-LD in the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install inapp-360: title, canonical",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install desktop-1280: one h1 \"किसान सहयोग ऐप इंस्टॉल करें\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install desktop-1280: own steps first, QR + copy link + share present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install desktop-1280: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install desktop-1280: the QR image loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install desktop-1280: other kinds in plain sections (own kind not repeated)",
+      "ok": true,
+      "detail": "4 sections"
+    },
+    {
+      "name": "/install desktop-1280: FAQ has 3 questions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install desktop-1280: FAQPage JSON-LD in the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/install desktop-1280: title, canonical",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block desktop-1280: QR shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block desktop-1280: no phone buttons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block desktop-1280: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block tablet-768: QR shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block tablet-768: no phone buttons",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block tablet-768: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block phone-390: QR hidden",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block phone-390: Install button + share-link button",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block phone-390: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block phone-390: share falls back to copying the link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block phone-320: QR hidden",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block phone-320: Install button + share-link button",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block phone-320: no horizontal scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "home block phone-320: share falls back to copying the link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop sheet: QR and the address-bar install hint",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "English sheet text",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

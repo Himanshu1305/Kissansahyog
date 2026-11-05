@@ -188,13 +188,24 @@ test('surface: bar on other pages only for a returning visitor who can prompt an
   assert.equal(whichInstallSurface({ ...base, pathname: '/msp', snoozed: true }), 'none')
   assert.equal(whichInstallSurface({ ...base, pathname: '/msp', canPrompt: false }), 'none')
 })
-test('surface: nothing after install, in standalone, in the Android app, or while a sheet is open', () => {
+test('surface: nothing after install, in standalone or in the Android app', () => {
   for (const pathname of ['/', '/msp']) {
     assert.equal(whichInstallSurface({ ...base, pathname, installed: true }), 'none')
     assert.equal(whichInstallSurface({ ...base, pathname, standalone: true }), 'none')
     assert.equal(whichInstallSurface({ ...base, pathname, native: true }), 'none')
-    assert.equal(whichInstallSurface({ ...base, pathname, sheet: 'guide' }), 'none')
   }
+})
+test('surface: an open sheet hides the bar but the strip stays (no page jump under the sheet)', () => {
+  assert.equal(whichInstallSurface({ ...base, pathname: '/msp', sheet: 'guide' }), 'none')
+  assert.equal(whichInstallSurface({ ...base, pathname: '/', sheet: 'guide' }), 'strip')
+})
+test('promptInstall closes our own guide sheet (the browser box takes over)', async () => {
+  const w = fakeWin(); const s = getInstallStore(w)
+  w.fire('beforeinstallprompt', bip('accepted'))
+  s.openGuide()
+  const p = s.promptInstall()
+  assert.equal(s.getSnapshot().ui.sheet, 'none')
+  await p
 })
 test('surface: the strip dismiss lasts for the session; it does not bring the bar on the homepage', () => {
   assert.equal(whichInstallSurface({ ...base, stripDismissed: true }), 'none')

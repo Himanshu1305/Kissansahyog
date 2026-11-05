@@ -15,6 +15,7 @@ export const STATIC_ROUTES = [
   '/founder',
   '/about',
   '/how-to-use',
+  '/install',
   '/guide',
   '/guide/register',
   '/guide/post',

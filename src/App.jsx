@@ -6,6 +6,7 @@ import { AuthProvider, useAuth } from './lib/auth/AuthProvider'
 import { LocationProvider } from './lib/location/LocationProvider'
 import { Spinner } from './components/ui'
 import PwaPrompts from './components/PwaPrompts'
+import InstallSheets from './components/install/InstallSheets'
 import BuyerComplianceGate from './components/BuyerComplianceGate'
 import Footer from './components/layout/Footer'
 import BottomTabBar from './components/BottomTabBar'
@@ -69,6 +70,7 @@ const Contact = lazy(() => import('./screens/Contact'))
 const Founder = lazy(() => import('./screens/Founder'))
 const About = lazy(() => import('./screens/About'))
 const HowToUse = lazy(() => import('./screens/HowToUse'))
+const Install = lazy(() => import('./screens/Install'))
 // Batch 10C — live guide demos (own lazy chunks; public, not auth-gated).
 const GuideHub = lazy(() => import('./features/guide/GuideHub'))
 const GuideDemoPage = lazy(() => import('./features/guide/GuideDemoPage'))
@@ -146,6 +148,7 @@ function AppRoutes() {
         <Route path="/founder" element={<Founder />} />
         <Route path="/about" element={<About />} />
         <Route path="/how-to-use" element={<HowToUse />} />
+        <Route path="/install" element={<Install />} />
         <Route path="/guide" element={<GuideHub />} />
         <Route path="/guide/:id" element={<GuideDemoPage />} />
         {/* Static /cold-storage before the dynamic district route. */}
@@ -230,6 +233,8 @@ export default function App() {
           {/* Fixed mobile bottom tab bar on every route (below md); desktop uses the top NavBar. */}
           <BottomTabBar />
           <PwaPrompts />
+          {/* Batch 17F: the install sheets (steps, success, welcome); the Android app has no install. */}
+          {!isNative() && <InstallSheets />}
           <BuyerComplianceGate />
           {isNative() && <Suspense fallback={null}><NativeShell /></Suspense>}
         </BrowserRouter>

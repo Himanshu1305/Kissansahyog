@@ -1,106 +1,82 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { isNative } from '../lib/native'
+import { whichInstallSurface } from '../lib/install/installStore'
+import useInstall, { startInstall } from './install/useInstall'
 
-// Phase 7 — slim, dismissible install banner on the homepage (below nav, above hero).
-// Complements (does not replace) the returning-visitor prompt in PwaPrompts.
-//  - Android/Chrome: uses the captured beforeinstallprompt to trigger the native install.
-//  - iOS/Safari (no install API): shows Add-to-Home-Screen instructions instead of a broken button.
-//  - Never rendered in installed/standalone mode.
-//  - Dismiss hides it for the SESSION only (reappears on a later visit) — unlike PwaPrompts'
-//    14-day cooldown.
+// Batch 17F - the slim install strip on the homepage (below the nav, above the hero).
+//  - ONE row at every width from 320 px: the text takes the free space (and may wrap to two lines
+//    INSIDE its own column), the Install button never shrinks, the close button is a 44 px tap area.
+//  - The install event is owned by src/lib/install (one module for this strip and the
+//    returning-visitor bar); tapping Install uses the browser's own install box when it exists and
+//    otherwise opens the step-by-step sheet (components/install/InstallSheets).
+//  - Never shown in the installed app, after an install in this visit, in the Android app, or for
+//    a browser that cannot install at all. The strip and the bar in PwaPrompts never show together.
+//  - Dismiss (the cross) hides the strip for this visit only (sessionStorage); it comes back on a
+//    later visit. The 14-day snooze belongs to the other bar (see DECISIONS.md).
 
-// Capture beforeinstallprompt at module load so an early event isn't missed before mount.
-let deferredPrompt = null
-if (typeof window !== 'undefined') {
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault()
-    deferredPrompt = e
-    window.dispatchEvent(new Event('ks-install-available'))
-  })
-  window.addEventListener('appinstalled', () => { deferredPrompt = null })
-}
-
-const DISMISS_KEY = 'ks_install_banner_dismissed' // sessionStorage → per-visit
-
-function isStandalone() {
-  try {
-    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true
-  } catch {
-    return false
-  }
-}
-function isIos() {
-  return /iphone|ipad|ipod/i.test(navigator.userAgent || '') && !window.navigator.standalone
-}
+const DISMISS_KEY = 'ks_install_banner_dismissed'
 
 export default function PwaInstallBanner() {
   const { t } = useLang()
+  const snap = useInstall()
+  const { pathname } = useLocation()
   const [dismissed, setDismissed] = useState(() => {
     try { return sessionStorage.getItem(DISMISS_KEY) === '1' } catch { return false }
   })
-  const [hasPrompt, setHasPrompt] = useState(!!deferredPrompt)
-  const [showHelp, setShowHelp] = useState(false)
-  const ios = typeof navigator !== 'undefined' && isIos()
 
-  useEffect(() => {
-    function onAvail() { setHasPrompt(true) }
-    window.addEventListener('ks-install-available', onAvail)
-    return () => window.removeEventListener('ks-install-available', onAvail)
-  }, [])
-
-  // Show to EVERY fresh visitor except in installed/standalone mode or after a session
-  // dismiss. Visibility is intentionally NOT gated on `beforeinstallprompt` — that event
-  // only fires under Chrome's own install heuristics (and never on iOS/Firefox), so gating
-  // on it hid the banner from most real visitors (the Phase-2 root cause). The BUTTON adapts:
-  // native prompt when the event was captured, otherwise manual add-to-home-screen steps.
-  if (isStandalone() || dismissed || isNative()) return null
-  // hasPrompt referenced so the listener-driven re-render is not linted as unused.
-  void hasPrompt
+  const surface = whichInstallSurface({
+    pathname,
+    canPrompt: snap.canPrompt,
+    installed: snap.installed,
+    standalone: snap.standalone,
+    native: isNative(),
+    sheet: snap.ui.sheet,
+    stripDismissed: dismissed,
+    visits: 0,
+    snoozed: false,
+  })
+  // A browser that cannot install at all has no use for an Install button; its people get the
+  // /install page and the QR instead.
+  if (surface !== 'strip' || snap.env === 'unsupported') return null
 
   function dismiss() {
     try { sessionStorage.setItem(DISMISS_KEY, '1') } catch { /* ignore */ }
     setDismissed(true)
   }
 
-  async function install() {
-    if (deferredPrompt) {
-      deferredPrompt.prompt()
-      try { await deferredPrompt.userChoice } catch { /* ignore */ }
-      deferredPrompt = null
-      setHasPrompt(false)
-      return
-    }
-    // No native prompt available (iOS always; Android/desktop when the event hasn't fired):
-    // reveal platform-appropriate manual install instructions instead of a broken button.
-    setShowHelp((v) => !v)
-  }
-
-  const helpText = ios ? t('pwa_ios_help') : t('pwa_install_help')
-
   return (
     <div
       data-testid="pwa-install-strip"
-      className="flex flex-wrap items-center gap-2 px-[var(--ks-gutter)] py-2 text-[14px]"
-      style={{ background: 'var(--ks-green-dark)', color: '#fff' }}
+      data-env={snap.env}
       role="region"
+      aria-label={t('pwa_banner_text')}
+      style={{ background: 'var(--ks-green-dark)', color: '#fff' }}
     >
-      <span className="font-semibold">📲 {t('pwa_banner_text')}</span>
-      <span className="ml-auto flex items-center gap-2">
+      <div className="flex flex-nowrap items-center gap-2 px-[var(--ks-gutter)] py-1">
+        <span data-testid="pwa-install-text" className="min-w-0 flex-1 text-[14px] font-semibold leading-tight">
+          <span aria-hidden="true">📲 </span>{t('pwa_banner_text')}
+        </span>
         <button
           type="button"
-          onClick={install}
+          onClick={() => startInstall(snap)}
           data-testid="pwa-install-cta"
-          className="rounded-lg px-3 py-1 text-[13px] font-bold"
+          className="inline-flex min-h-[40px] shrink-0 items-center justify-center rounded-lg px-4 text-[14px] font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           style={{ background: '#fff', color: 'var(--ks-green-dark)' }}
         >
           {t('pwa_banner_install')}
         </button>
-        <button type="button" onClick={dismiss} aria-label={t('pwa_banner_dismiss')} className="px-1 text-[18px] font-bold text-white/90">✕</button>
-      </span>
-      {showHelp && (
-        <p className="mt-1 w-full text-[13px] text-white/95" data-testid="pwa-install-help">{helpText}</p>
-      )}
+        <button
+          type="button"
+          onClick={dismiss}
+          data-testid="pwa-install-dismiss"
+          aria-label={t('pwa_banner_dismiss')}
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center text-[18px] font-bold text-white/90 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
+        >
+          <span aria-hidden="true">✕</span>
+        </button>
+      </div>
     </div>
   )
 }

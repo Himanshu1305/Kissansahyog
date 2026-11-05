@@ -69,6 +69,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.0",
     "astronomy-engine": "^2.1.19",
+    "jsqr": "^1.4.0",
     "sharp": "^0.35.3",
     "tailwindcss": "^4.3.3",
     "vite": "^8.2.2",

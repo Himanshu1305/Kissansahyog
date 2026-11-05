@@ -278,9 +278,9 @@ export const howToUse = {
     install_title: { hi: 'होम स्क्रीन पर जोड़ना', en: 'Adding to the home screen' },
     install_steps: [
       { hi: 'फ़ोन में किसान सहयोग का होम पेज खोलें।', en: 'Open the Kissan Sahyog home page on your phone.' },
-      { hi: 'सबसे ऊपर हरी पट्टी में "इंस्टॉल करें" दबाएँ।', en: 'Tap “Install” in the green strip at the very top.' },
+      { hi: 'सबसे ऊपर हरी पट्टी में "इंस्टॉल" दबाएँ।', en: 'Tap “Install” in the green strip at the very top.' },
       { hi: 'फ़ोन इंस्टॉल करने को पूछे तो हाँ कर दें।', en: 'If the phone asks to install, accept.' },
-      { hi: 'अगर फ़ोन न पूछे तो पट्टी में तरीका लिखा आता है: ब्राउज़र का मेन्यू (⋮) खोलें और "ऐप इंस्टॉल करें" या "होम स्क्रीन पर जोड़ें" चुनें। iPhone में नीचे शेयर बटन दबाकर "होम स्क्रीन पर जोड़ें" चुनें।', en: 'If the phone does not ask, the strip shows how: open the browser menu (⋮) and choose “Install app” or “Add to Home screen”. On an iPhone, tap the Share button at the bottom and choose “Add to Home Screen”.' },
+      { hi: 'अगर फ़ोन न पूछे तो खुलने वाली शीट में कदम-दर-कदम तरीका लिखा आता है (पूरा तरीका इंस्टॉल पेज पर भी है): ब्राउज़र का मेन्यू (⋮) खोलें और "ऐप इंस्टॉल करें" या "होम स्क्रीन पर जोड़ें" चुनें। iPhone में नीचे शेयर बटन दबाकर "होम स्क्रीन पर जोड़ें" चुनें।', en: 'If the phone does not ask, a sheet opens with the steps (they are also on the Install page): open the browser menu (⋮) and choose “Install app” or “Add to Home screen”. On an iPhone, tap the Share button at the bottom and choose “Add to Home Screen”.' },
       { hi: 'अब होम स्क्रीन पर बने किसान सहयोग के निशान से वेबसाइट खोलें।', en: 'Now open the website from the Kissan Sahyog icon on your home screen.' },
     ],
     install_note: {
