@@ -4,7 +4,9 @@ import { readFileSync } from 'node:fs'
 import { S, fmt } from '../strings.hi.js'
 import { istDate, addDays } from './ist.js'
 import { tithiAt, SAGAR } from './tithi.js'
-import { loadWeather, PROVIDER_NAME } from './weather.js'
+import { loadWeather, loadDistrictsWeather, PROVIDER_NAME } from './weather.js'
+import { DISTRICTS } from './districts.js'
+import { buildDistrictSummaries, districtReportLines, districtsOff } from './districtWeather.js'
 import * as RV from '../../../src/lib/weather/rainVerdict.js'
 import { pickTasks, sowingOpen } from './workRules.js'
 import { chooseDate, summarize, MAX_MOVE_PCT, MIN_MANDIS, WINDOW_DAYS, MEDIAN_BAND } from './mandi.js'
@@ -23,7 +25,8 @@ export function loadData(dir = DATA_DIR) {
 }
 
 // opts: { date, draft, data, nowIso, loaders: { weather(date) -> forecast|null, mandi(date) -> {rows, flag}|null (throws on failure), yesterdayPoll(date) -> {question_id,pct}|null } }
-export async function generate({ date, draft = false, data, loaders, nowIso = null }) {
+export const DISTRICT_STEP_LIMIT_MS = 25000 // hard time limit of the whole district step (Batch 18)
+export async function generate({ date, draft = false, data, loaders, nowIso = null, env = process.env, districtLimitMs = DISTRICT_STEP_LIMIT_MS }) {
   const yesterday = addDays(date, -1)
   const notes = []   // per-section report lines
   const unreviewed = []
@@ -37,6 +40,30 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   const now = nowIso || new Date().toISOString()
   const verdict = weather ? RV.rainVerdict({ hourly: weather.hourly, daily: weather.daily || RV.toDailyShape(weather.days), nowIso: now, source: weather.source || 'cache' }) : null
   if (verdict) notes.push(`rain verdict: ${verdict.level} for the rest of today (${verdict.mmRestOfToday} mm), ${verdict.mm48h} mm in 48 h, ${verdict.mm72h} mm in 72 h; spraying ${verdict.spray.status}, harvest ${verdict.harvest.status}${verdict.hasHourly ? '' : ' (day totals only, no hourly series)'}`)
+
+  // Batch 18: the weather of all six districts. Everything here is guarded: ANY exception or a timeout leaves the new parts out and the post exactly as before.
+  let districts = null
+  const districtNotes = []
+  if (districtsOff(env)) districtNotes.push('districts: OFF (MORNING_DISTRICTS=off) - no district section, strip or voice sentence')
+  else if (!loaders.districts) districtNotes.push('districts: not requested (no district loader)')
+  else {
+    let timer = null
+    try {
+      const work = (async () => {
+        const raw = await loaders.districts(date)
+        const items = buildDistrictSummaries(raw, { nowIso: now, sagar: weather && verdict ? { weather, verdict } : null })
+        return { raw, items }
+      })()
+      const limit = new Promise((_, rej) => { timer = setTimeout(() => rej(new Error(`district step took longer than ${Math.round(districtLimitMs / 1000)} s`)), districtLimitMs) })
+      const got = await Promise.race([work, limit])
+      districts = got.items
+      districtNotes.push(`districts: ${districts.filter((d) => d.available).length} of ${districts.length} available`, ...districtReportLines(districts, got.raw, Date.parse(now)))
+    } catch (e) {
+      districts = null
+      districtNotes.push(`districts: LEFT OUT - ${String(e && e.message).slice(0, 120)}; the post is made without the district parts`)
+    } finally { if (timer) clearTimeout(timer) }
+  }
+  notes.push(...districtNotes)
 
   // mandi
   let mandi = null, mandiNote = '', suspect = [], skipped = [], flag = null
@@ -71,7 +98,7 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   const pollYesterday = yesterdayLine(yRes, data.polls)
   notes.push(`poll: ${poll ? poll.id : 'none'}; yesterday result: ${pollYesterday ? `${pollYesterday.pct}%` : 'none'}`)
 
-  const model = { date, tithi, festival, blessing, pollYesterday, weather, verdict, tasks, mandi, mspEntries: data.msp, procurement: data.procurement }
+  const model = { date, tithi, festival, blessing, pollYesterday, weather, verdict, tasks, mandi, mspEntries: data.msp, procurement: data.procurement, districts }
   const slot = pickSlot(date, { draft, data, summary: mandi, sowingValidUntil: BANNERS.sowing.validUntil })
   model.slot = slot
   if (slot) for (const id of slot.usedUnreviewed) unreviewed.push(`${slot.kind}:${id}`)
@@ -114,6 +141,7 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
 // Batch 17B: the saved forecast first (weather_cache_v2, Sagar cell, public anon key), direct Open-Meteo only if it is missing/old.
 export const makeDefaultLoaders = ({ url, key, nowMs } = {}) => ({
   weather: (date) => loadWeather({ url, key, lat: SAGAR.lat, lon: SAGAR.lon, date, nowMs }),
+  districts: (date) => loadDistrictsWeather({ districts: DISTRICTS, url, key, date, nowMs }),
 })
 export const defaultLoaders = makeDefaultLoaders()
 export { istDate }
