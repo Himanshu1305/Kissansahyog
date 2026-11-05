@@ -46,7 +46,7 @@ test('the SVG QR still decodes when it is shown small (168 px) as on the homepag
 })
 
 test('QR settings: error correction H, quiet zone of 4 modules, dark on white, no logo - the committed SVG equals a fresh build with exactly those settings', async () => {
-  const svg = await readFile(join(ROOT, 'public/images/install-qr.svg'), 'utf8')
+  const svg = (await readFile(join(ROOT, 'public/images/install-qr.svg'), 'utf8')).replace(/\r\n/g, '\n')
   const fresh = await QRCode.toString(EXPECTED, { type: 'svg', errorCorrectionLevel: 'H', margin: 4, color: { dark: '#000000', light: '#ffffff' } })
   assert.equal(svg, fresh)
   // the quiet zone: viewBox is (modules + 8) wide and the first dark module starts at 4

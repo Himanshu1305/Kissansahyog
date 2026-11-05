@@ -1,0 +1,4 @@
+deployment_id=3c06615d-2a69-41b3-b481-4b931de14a7c
+source=fa9a9bb
+main_chunk=/assets/index-giONCRaD.js
+taken_at=2026-11-05T05:57:39Z
