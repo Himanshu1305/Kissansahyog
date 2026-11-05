@@ -51,6 +51,7 @@ export const STATIC_ROUTES = [
   '/pashupalan/pashu-kisan-credit-card',
   '/pashupalan/kendriya-yojanayen',
   '/pashupalan/desi-nasle',
+  '/pashupalan/pashupalan-se-kamai',
   '/msp',
   '/credits',
   '/kisan-mela',

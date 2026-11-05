@@ -3,7 +3,7 @@
 # migration, so this script has no database probe and never touches a database.
 # release-19 = origin/main (which already holds 17E and 17F, tags ship-17e / ship-17f) + 19. Live now: Batch 17F (tag ship-17f, deployment
 # 8df469ad-2535-44a8-81e9-003dcde97938, recorded in docs/review/batch19/evidence/prod-ship/prod-deployment-after.txt); that id is also the rollback target,
-# and this script reads the live deployment from Cloudflare at run time and STOPS before deploying if it is not that one. Gates added in 19: all seven
+# and this script reads the live deployment from Cloudflare at run time and STOPS before deploying if it is not that one. Gates added in 19: all eight
 # /pashupalan routes are prerendered in dist (each with FAQPage JSON-LD) and listed in the sitemap, and the 17E admin button string (morning-share-video)
 # and the 17F install page (/install, strip marker, QR) are STILL in the built bundle (a branch without 17E/17F would remove them).
 # The auth switches (otp_required=true, session_enforced=false) are read before and after and must be identical; this script never sets one.
@@ -18,9 +18,9 @@ set -uo pipefail
 PROJECT="kissansahyog-prod"
 SITE="https://kissansahyog.com"
 BRANCH="release-19"
-# MIN_ROUTES = the last shipped prerender baseline (19: 277 routes = 270 + the seven /pashupalan pages). It is a floor, not an exact count:
+# MIN_ROUTES = the last shipped prerender baseline (19: 278 routes = 270 + the eight /pashupalan pages; 19-B added /pashupalan/pashupalan-se-kamai). It is a floor, not an exact count:
 # each batch that adds routes MUST raise it. The rule itself lives in scripts/lib/prerender-rule.sh.
-MIN_ROUTES=277
+MIN_ROUTES=278
 TAG="${TAG:-ship-19}"   # ship point of Batch 19 (pushed HEAD of release-19)
 GATE_TAG="ship-17f"   # the live Batch 17F tag; must be on origin
 ID_11A_FALLBACK=""
@@ -48,7 +48,7 @@ VIDEONONE_MARKER='morning-video-none' # 17E: the plain "no video yet" line
 STRIP_MARKER='pwa-install-strip'      # 17F: the homepage install strip (Homepage chunk)
 INSTALL_ROUTE='/install'              # 17F: the new page (prerendered, in the sitemap)
 QR_FILE='dist/images/install-qr.svg'  # 17F: the QR
-PASHU_ROUTES=(/pashupalan /pashupalan/desi-gay-anudan /pashupalan/kamdhenu-yojana /pashupalan/gaushala-anudan /pashupalan/pashu-kisan-credit-card /pashupalan/kendriya-yojanayen /pashupalan/desi-nasle)  # 19: the new pages
+PASHU_ROUTES=(/pashupalan /pashupalan/desi-gay-anudan /pashupalan/kamdhenu-yojana /pashupalan/gaushala-anudan /pashupalan/pashu-kisan-credit-card /pashupalan/kendriya-yojanayen /pashupalan/desi-nasle /pashupalan/pashupalan-se-kamai)  # 19 + 19-B: the new pages
 OLDSHARE_MARKER='morning-share-all'   # 17A: the old combined button - must stay GONE from every chunk in 17E
 LINK_MARKER='admin-morning-link'      # 17B (regression): the admin console link to /admin/morning (admin shell chunk)
 WX_MARKER='mausam-rain-banner'        # 17B (regression): the /mausam rain banner that reads the one rain verdict (Mausam chunk)
@@ -552,7 +552,7 @@ check_routes_10g() {
   done
   body="$(timeout 60 curl -s -w '\n%{http_code}' "$SITE/sitemap-pages.xml?ks_ship=$STAMP-19")"; code="${body##*$'\n'}"
   PASHU_MISSING=""; for r in "${PASHU_ROUTES[@]}"; do grep -q -- "${r}<" <<<"$body" || PASHU_MISSING="$PASHU_MISSING $r"; done
-  if [ "$code" = "200" ] && [ -z "$PASHU_MISSING" ]; then say "PASS  [19_sitemap] GET /sitemap-pages.xml -> 200, lists all seven /pashupalan pages"; else say "FAIL  [19_sitemap] /sitemap-pages.xml -> $code or missing:$PASHU_MISSING"; ok=1; fi
+  if [ "$code" = "200" ] && [ -z "$PASHU_MISSING" ]; then say "PASS  [19_sitemap] GET /sitemap-pages.xml -> 200, lists all eight /pashupalan pages"; else say "FAIL  [19_sitemap] /sitemap-pages.xml -> $code or missing:$PASHU_MISSING"; ok=1; fi
   # 16G: the home page and /mausam answer 200 (read-only GETs).
   for pg in / /mausam; do
     code="$(timeout 60 curl -sL -o /dev/null --max-redirs 5 -w '%{http_code}' "$SITE$pg?ks_ship=$STAMP-16g")"
@@ -666,7 +666,7 @@ say "+ GET / -> '$HOME_MARKER' + the 10F hero markers, none of the removed 10D o
 say "+ curl -sI $SITE/ -> Content-Security-Policy img-src contains $PROD_IMG_HOST; its media-src contains data:   (17B CSP, unchanged)"
 say "+ GET the chunk(s) holding $LINK_MARKER (admin link) and $WX_MARKER (rain banner) -> 200 + marker   (17B regression, read-only)"
 say "+ GET chunk(s) calling '$OTP_MARKER' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live $SITE   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer"
-say "+ GET the AdminMorning chunk(s) -> 200 + $MORNING_MARKER + $VOICE_MARKER + $SHAREV_MARKER and NOT $OLDSHARE_MARKER; GET /sitemap.xml and /sitemap-pages.xml -> no $MORNING_ROUTE; GET $MORNING_ROUTE -> no admin content in the HTML; (19) GET each of the seven /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)"
+say "+ GET the AdminMorning chunk(s) -> 200 + $MORNING_MARKER + $VOICE_MARKER + $SHAREV_MARKER and NOT $OLDSHARE_MARKER; GET /sitemap.xml and /sitemap-pages.xml -> no $MORNING_ROUTE; GET $MORNING_ROUTE -> no admin content in the HTML; (19) GET each of the eight /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)"
 say "== 7. on any failure: bash scripts/rollback-prod-19.sh $BEFORE_ID"
 if [ "$DRY" = 1 ]; then
   say "+ (read-only check that the rollback path works)"

@@ -1,0 +1,12 @@
+/* Batch 19-B - small extras for the Pashupalan pages. Colours come from the site tokens. */
+.pk-hero { background: linear-gradient(135deg, var(--ks-green-tint) 0%, #fff8e6 100%); }
+.pk-link:focus-visible, .pk-faq summary:focus-visible { outline: 3px solid var(--ks-saffron, #e07b00); outline-offset: 2px; }
+.pk-faq summary { list-style: none; }
+.pk-faq summary::-webkit-details-marker { display: none; }
+.pk-faq[open] .pk-plus { transform: rotate(45deg); }
+.pk-faq .pk-plus { transition: transform .15s ease; display: inline-block; }
+@media (prefers-reduced-motion: reduce) { .pk-faq .pk-plus { transition: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .pk-in { animation: pk-fade .45s ease both; }
+  @keyframes pk-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}

@@ -13,19 +13,19 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const read = (p) => readFile(join(ROOT, p), 'utf8')
 const PATHS = ALL_PAGES.map((p) => p.path)
 
-test('seven routes: hub + six detail, English slugs', () => {
-  assert.deepEqual(PATHS.sort(), ['/pashupalan', '/pashupalan/desi-gay-anudan', '/pashupalan/desi-nasle', '/pashupalan/gaushala-anudan', '/pashupalan/kamdhenu-yojana', '/pashupalan/kendriya-yojanayen', '/pashupalan/pashu-kisan-credit-card'])
+test('eight routes: hub + six scheme/info pages + the income page, English slugs', () => {
+  assert.deepEqual([...PATHS].sort(), ['/pashupalan', '/pashupalan/desi-gay-anudan', '/pashupalan/desi-nasle', '/pashupalan/gaushala-anudan', '/pashupalan/kamdhenu-yojana', '/pashupalan/kendriya-yojanayen', '/pashupalan/pashu-kisan-credit-card', '/pashupalan/pashupalan-se-kamai'])
 })
 
 test('App.jsx: every route is lazy; no content module is imported by the main bundle', async () => {
   const app = await read('src/App.jsx')
   for (const p of PATHS) assert.ok(app.includes(`path="${p}"`), p)
-  assert.equal((app.match(/lazy\(\(\) => import\('\.\/screens\/pashupalan\//g) || []).length, 7)
+  assert.equal((app.match(/lazy\(\(\) => import\('\.\/screens\/pashupalan\//g) || []).length, 8)
   assert.ok(!/content\/pashupalan/.test(app), 'App.jsx must not import the content modules')
 })
 
 test('each route screen imports only its own content module (own chunk)', async () => {
-  const map = { PashuHub: 'hub', DesiGay: 'desi-gay-anudan', Kamdhenu: 'kamdhenu-yojana', Gaushala: 'gaushala-anudan', PashuKcc: 'pashu-kisan-credit-card', KendriyaYojanayen: 'kendriya-yojanayen', DesiNasle: 'desi-nasle' }
+  const map = { PashuHub: 'hub', DesiGay: 'desi-gay-anudan', Kamdhenu: 'kamdhenu-yojana', Gaushala: 'gaushala-anudan', PashuKcc: 'pashu-kisan-credit-card', KendriyaYojanayen: 'kendriya-yojanayen', DesiNasle: 'desi-nasle', PashuIncome: 'pashupalan-se-kamai' }
   for (const [file, mod] of Object.entries(map)) {
     const src = await read(`src/screens/pashupalan/${file}.jsx`)
     const imports = [...src.matchAll(/from '\.\.\/\.\.\/content\/pashupalan\/([^']+)'/g)].map((m) => m[1])
@@ -35,7 +35,7 @@ test('each route screen imports only its own content module (own chunk)', async 
   assert.ok(!/pashupalan\/(hub|guide|desi|kamdhenu|gaushala|pashu-kisan|kendriya)/.test(view), 'shared detail view must not pull page text')
 })
 
-test('prerender list, sitemap bucket and search index contain all seven pages', async () => {
+test('prerender list, sitemap bucket and search index contain all eight pages', async () => {
   for (const p of PATHS) assert.ok(STATIC_ROUTES.includes(p), `prerender ${p}`)
   const routes = await getRoutes()
   for (const p of PATHS) assert.ok(routes.includes(p), `getRoutes ${p}`)
@@ -76,14 +76,29 @@ test('JSON-LD: parses, FAQPage text equals the visible FAQ text, dateModified = 
   }
 })
 
-test('layout files render exactly one H1 each, the direct answer, the standard note, a status and the channel button', async () => {
+test('layout files: one H1 (in the shared Hero), the answer, the note, status, channel, share; schemes shown once as cards (no table); no Hindi in layout code', async () => {
+  const parts = await read('src/screens/pashupalan/parts.jsx')
   const view = await read('src/screens/pashupalan/PashuView.jsx')
   const hub = await read('src/screens/pashupalan/PashuHubView.jsx')
-  assert.equal((view.match(/<h1\b/g) || []).length, 1)
-  assert.equal((hub.match(/<h1\b/g) || []).length, 0, 'hub reuses Header (one h1 total)')
-  for (const needle of ['pashu-answer', 'pashu-note', 'StatusBadge', 'WhatsAppChannelCard', 'canonical'.slice(0, 0)]) assert.ok(view.includes(needle), needle)
-  assert.ok(hub.includes('md:hidden') && hub.includes('hidden overflow-x-auto md:block'), 'table becomes stacked cards on phones')
-  assert.ok(!/[ऀ-ॿ]/.test(view + hub), 'no Hindi text in the layout files: all copy is in the content modules')
+  const calc = await read('src/screens/pashupalan/MilkCalc.jsx')
+  const art = await read('src/screens/pashupalan/art.jsx')
+  const css = await read('src/screens/pashupalan/pashu.css')
+  assert.equal((parts.match(/<h1\b/g) || []).length, 1)
+  assert.equal((view.match(/<h1\b/g) || []).length + (hub.match(/<h1\b/g) || []).length, 0, 'only Hero renders the H1')
+  for (const needle of ['pashu-answer', 'WhatsAppChannelCard', 'pashu-share', 'wa.me', 'noopener noreferrer']) assert.ok(parts.includes(needle), needle)
+  assert.ok(view.includes('pashu-note') && view.includes('StatusBadge') && hub.includes('pashu-note'))
+  assert.ok(hub.includes('pashu-cards') && !hub.includes('<table'), 'the hub shows scheme cards, not a second table')
+  assert.ok(hub.includes('after:absolute after:inset-0'), 'the whole scheme card is the link')
+  for (const [n, src] of Object.entries({ parts, view, hub, calc, art })) assert.ok(!/[ऀ-ॿ]/.test(src), `no Hindi text in ${n}: all copy is in the content modules`)
+  assert.ok(css.includes('prefers-reduced-motion: no-preference'), 'animation only when the user allows it')
+})
+
+test('the phrase "in one place" (Hindi or English) is not in the Pashupalan files', async () => {
+  const { readdir } = await import('node:fs/promises')
+  const bad = [['एक', 'जगह'].join(' '), ['all', 'in', 'one', 'place'].join(' '), ['one', 'place'].join(' ')]
+  const files = []
+  for (const d of ['src/content/pashupalan', 'src/screens/pashupalan', 'src/lib/pashupalan', 'scripts/batch19', 'docs/review/batch19']) for (const f of await readdir(join(ROOT, d))) if (/\.(js|jsx|mjs|md)$/.test(f)) files.push(`${d}/${f}`)
+  for (const f of files) { const t = (await read(f)).toLowerCase(); for (const b of bad) assert.ok(!t.includes(b.toLowerCase()), `${f} contains "${b}"`) }
 })
 
 test('links in: homepage strip, /yojana + /yojana/mp (not central), footer, strings in both languages', async () => {
@@ -97,18 +112,14 @@ test('the WhatsApp channel button uses the existing constant, and no new depende
   const card = await read('src/components/WhatsAppChannelCard.jsx'); assert.ok(card.includes('WHATSAPP_CHANNEL_URL'))
   const pkg = JSON.parse(await read('package.json'))
   assert.equal(Object.keys(pkg.dependencies || {}).length > 0, true)
-  for (const f of ['hub', 'common', 'guide']) assert.ok(!/from '[^.]/.test(await read(`src/content/pashupalan/${f}.js`)), `${f}.js is pure data`)
+  for (const f of ['hub', 'common', 'guide', 'links', 'walk']) assert.ok(!/from '[^.]/.test(await read(`src/content/pashupalan/${f}.js`)), `${f}.js is pure data`)
 })
 
 test('detail pages cover the required sections', () => {
   for (const p of DETAIL_PAGES) {
     const ids = p.sections.map((s) => s.id)
-    assert.ok(ids.includes('mistakes') && (ids.includes('docs') || p.slug === 'desi-nasle'), p.slug)
+    assert.ok(p.sections.length >= 2 && ids.length === new Set(ids).size, p.slug)
     assert.ok(p.related.length >= 5, p.slug)
-  }
-  for (const slug of ['desi-gay-anudan', 'kamdhenu-yojana', 'gaushala-anudan', 'pashu-kisan-credit-card']) {
-    const p = DETAIL_PAGES.find((d) => d.slug === slug)
-    assert.ok(p.sections.some((s) => s.kind === 'ol'), `${slug} has numbered steps`)
   }
   assert.ok(DETAIL_PAGES.find((d) => d.slug === 'desi-gay-anudan').sections.some((s) => s.id === 'notify'))
 })

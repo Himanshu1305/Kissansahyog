@@ -70,6 +70,7 @@ const PashuGaushala = lazy(() => import('./screens/pashupalan/Gaushala'))
 const PashuKcc = lazy(() => import('./screens/pashupalan/PashuKcc'))
 const PashuKendriya = lazy(() => import('./screens/pashupalan/KendriyaYojanayen'))
 const PashuNasle = lazy(() => import('./screens/pashupalan/DesiNasle'))
+const PashuIncome = lazy(() => import('./screens/pashupalan/PashuIncome'))
 const Credits = lazy(() => import('./screens/Credits'))
 const KisanMela = lazy(() => import('./screens/KisanMela'))
 const KisanMelaSubmit = lazy(() => import('./screens/KisanMelaSubmit'))
@@ -204,6 +205,7 @@ function AppRoutes() {
         <Route path="/pashupalan/pashu-kisan-credit-card" element={<PashuKcc />} />
         <Route path="/pashupalan/kendriya-yojanayen" element={<PashuKendriya />} />
         <Route path="/pashupalan/desi-nasle" element={<PashuNasle />} />
+        <Route path="/pashupalan/pashupalan-se-kamai" element={<PashuIncome />} />
         {/* Static /msp before the dynamic /msp/:crop */}
         <Route path="/msp" element={<Msp />} />
         <Route path="/msp/:crop" element={<Msp />} />
