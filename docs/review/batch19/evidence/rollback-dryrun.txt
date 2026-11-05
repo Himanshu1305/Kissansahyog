@@ -1,0 +1,18 @@
+*** DRY RUN — nothing will be changed ***
+target: no recorded id here, using the Batch 17F deployment 8df469ad-2535-44a8-81e9-003dcde97938 (tag ship-17f)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/8df469ad-2535-44a8-81e9-003dcde97938   (read-only)
+target deployment: env=production status=success source=6b9b738 created=2026-11-05T10:12:08.244707Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: 8df469ad-2535-44a8-81e9-003dcde97938
+(note: 8df469ad-2535-44a8-81e9-003dcde97938 is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
++ GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+  switches now: {"otp_required":true,"session_enforced":false}
++ POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/8df469ad-2535-44a8-81e9-003dcde97938/rollback   (Authorization: Bearer <token, not shown>)
++ (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == 8df469ad-2535-44a8-81e9-003dcde97938 (max 3 min)
++ (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out C:/Users/usdvi/projects/Kissansahyog/docs/review/batch19/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot C:/Users/usdvi/projects/Kissansahyog/docs/review/batch19/evidence/prod-before.json
+  (no database step; no switch was changed)
+
+==================================================================
+DRY RUN OK — preconditions valid; rollback target 8df469ad-2535-44a8-81e9-003dcde97938 (source 6b9b738); nothing was changed
+==================================================================
