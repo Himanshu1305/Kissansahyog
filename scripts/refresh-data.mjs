@@ -34,11 +34,14 @@ let _supabase = null
 const db = () => (_supabase ||= createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY))
 const supabase = new Proxy({}, { get: (_, k) => db()[k] })
 
-// Pilot cells (always refreshed) — Sagar district towns.
+// Pilot cells (always refreshed) — Sagar district towns + (Batch 18) the five other district HQs. Keep identical to supabase/functions/_shared/weather-core.js (a test checks).
 const PILOT = [
   { lat: 24.045, lon: 78.33 }, { lat: 23.8388, lon: 78.7378 }, { lat: 24.1817, lon: 78.1975 },
   { lat: 23.6372, lon: 79.0628 }, { lat: 23.39, lon: 79.017 }, { lat: 24.04, lon: 78.96 },
   { lat: 23.7833, lon: 78.3667 }, { lat: 24.205, lon: 78.364 },
+  // Batch 18: the other five district headquarters of Sagar Sambhag (Damoh, Panna, Tikamgarh, Chhatarpur, Niwari), so the morning post always has a fresh forecast for all six districts. Sagar HQ is the 23.8_78.7 cell above.
+  { lat: 23.83957, lon: 79.44444 }, { lat: 24.7196, lon: 80.18607 }, { lat: 24.74286, lon: 78.8322 },
+  { lat: 24.92047, lon: 79.58398 }, { lat: 25.35124, lon: 78.79939 },
 ]
 const gridKey = (lat, lon) => `${(Math.round(lat * 10) / 10).toFixed(1)}_${(Math.round(lon * 10) / 10).toFixed(1)}`
 
