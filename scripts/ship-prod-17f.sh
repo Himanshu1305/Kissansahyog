@@ -17,6 +17,9 @@ set -uo pipefail
 PROJECT="kissansahyog-prod"
 SITE="https://kissansahyog.com"
 BRANCH="release-17f"
+# MIN_ROUTES = the last shipped prerender baseline (17F: 270 routes). It is a floor, not an exact count:
+# each batch that adds routes MUST raise it. The rule itself lives in scripts/lib/prerender-rule.sh.
+MIN_ROUTES=270
 TAG="${TAG:-ship-17f}"   # ship point of Batch 17E (pushed HEAD of release-17f)
 GATE_TAG="ship-17e"   # the live Batch 17E tag; must be on origin
 ID_11A_FALLBACK=""
@@ -27,6 +30,7 @@ PROD_IMG_HOST="https://${PROD_REF}.supabase.co"
 ACCOUNT_ID="${CF_ACCOUNT_ID:-9ad1ef464c60a7db797b4bb097d545e5}"
 API="https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/pages/projects/${PROJECT}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+. "$ROOT/scripts/lib/prerender-rule.sh"
 B10="$ROOT/docs/review/batch17f/evidence"
 EV="$B10/prod-ship"
 NIGHT_SNAP="$B10/prod-before.json"           # read-only snapshot of the live deployment this ship replaces
@@ -165,7 +169,8 @@ fi
 # ---------------------------------------------------------------- P. production API address and anonymous key (read from .env.production; the key is never printed)
 # Used by the read-only probe P below and the gate probes in step 6. This ship has no database WRITE step.
 PROD_URL="https://${PROD_REF}.supabase.co"
-PROD_ANON="$(grep -E '^VITE_SUPABASE_ANON_KEY=' .env.production | head -1 | cut -d= -f2- | tr -d '\"[:space:]')"
+PROD_ANON="$(grep -E '^VITE_SUPABASE_ANON_KEY=' .env.production | head -1 | cut -d= -f2- | tr -d '
+\"[:space:]')"
 [ -n "$PROD_ANON" ] || stop ".env.production has no VITE_SUPABASE_ANON_KEY (nothing changed)"
 
 # 17F: no migration, so no database probe here (17E had one for migration 0074).
@@ -283,7 +288,7 @@ csp_media_src_ok() { # stdin: header text -> 0 if the CSP media-src directive ex
 }
 if [ "$DRY" = 0 ]; then
   timeout 1500 npm run build:prod > "$EV/build-prod-$STAMP.log" 2>&1 || stop "npm run build:prod failed — see $EV/build-prod-$STAMP.log (nothing deployed)"
-  grep -q "Prerendered 269/269" "$EV/build-prod-$STAMP.log" || stop "prerender did not report 269/269 routes — see the build log"
+  PR_WHY="$(prerender_check "$EV/build-prod-$STAMP.log" "$MIN_ROUTES")" || stop "prerender check failed: $PR_WHY — see the build log"
   BAD="$(find dist \( -name '.dev.vars' -o -name '.env*' -o -name '*.apk' -o -name '*.aab' -o -name '*.jks' -o -name '*.keystore' -o -path 'dist/android*' \) | head -5)"
   [ -z "$BAD" ] || stop "dist contains files that must never ship: $BAD"
   node --env-file=.env.production scripts/check-prod-env.mjs --dist || stop "prod dist guard refused (see above; nothing deployed)"
@@ -428,7 +433,7 @@ if [ "$DRY" = 0 ]; then
     [ "$attempt" = 3 ] && break
     say "  a page is outside the compare limits (prerender captured it while loading?) — re-running the prerender (attempt $attempt of 2)"
     timeout 1500 bash -c "$REPRERENDER" > "$EV/reprerender-$STAMP-$attempt.log" 2>&1 || stop "the prerender re-run failed — see $EV/reprerender-$STAMP-$attempt.log (nothing deployed)"
-    grep -q "Prerendered 269/269" "$EV/reprerender-$STAMP-$attempt.log" || stop "the prerender re-run did not report 269/269 (nothing deployed)"
+    PR_WHY="$(prerender_check "$EV/reprerender-$STAMP-$attempt.log" "$MIN_ROUTES")" || stop "the prerender re-run check failed: $PR_WHY (nothing deployed)"
     NEW_MAIN2="$(grep -o '/assets/index-[A-Za-z0-9_-]*\.js' dist/index.html | head -1)"
     [ "$NEW_MAIN2" = "$NEW_MAIN" ] || stop "the main chunk changed during the prerender re-run ($NEW_MAIN -> $NEW_MAIN2; nothing deployed)"
     node scripts/check-no-localhost-dist.mjs dist || stop "dist contains localhost links after the prerender re-run (nothing deployed)"

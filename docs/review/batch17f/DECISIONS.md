@@ -79,3 +79,7 @@ Honest statement: **none of the 31 strings is a capture from a real phone made b
 | Facebook/Instagram in-app browsers cannot install | Verified as general behaviour (a WebView has no install); the sheet only says "install does not work from here, open in your browser". |
 | Whether a Chrome Custom Tab fires `beforeinstallprompt` | UNVERIFIED. If it does, the user gets the native box; if not, the steps sheet. |
 | The install FAQ answer "installing costs nothing" | True for the install itself (no store, no payment). It does not say "free for farmers" (founder rule); a test blocks "free"/"मुफ़्त" in all install strings. |
+
+## 12. Ship script prerender check (route floor)
+The ship script no longer hard-codes "Prerendered 269/269" (it stopped the 17F ship because /install made the build 270/270); it reads N from "Prerendering N routes" and requires "Prerendered N/N", "Failed: 0", at most 1 fallback and N >= MIN_ROUTES (270, the 17F baseline).
+The rule is in scripts/lib/prerender-rule.sh (both the build check and the re-prerender check use it) and each later batch that adds routes must raise MIN_ROUTES; tests/unit/ship-prerender-rule-17f.test.mjs covers 270/270 (pass), 269/269 (below floor) and 270/270 with Failed: 1.
