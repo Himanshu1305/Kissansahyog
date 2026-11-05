@@ -19,8 +19,14 @@ L.push('', '## Decision guide'); for (const g of GUIDE) row(g.label.hi, g.label.
 for (const p of ALL_PAGES) {
   L.push('', `## ${p.path}`, '', 'Hindi | English', '--- | ---')
   row(p.seo.title.hi, p.seo.title.en); row(p.h1.hi, p.h1.en)
+  row(p.hook.hi, p.hook.en)
+  for (const t of p.tiles || p.why?.tiles || []) row(`${t.v.hi} — ${t.l.hi}`, `${t.v.en} — ${t.l.en}`)
+  for (const l of p.links || []) row(l.btn.hi, l.btn.en)
   for (const s of p.sections || []) row(s.h.hi, s.h.en)
-  for (const k of ['howto', 'checklist', 'news', 'where', 'notFound', 'safety']) if (p[k]) row(p[k].h.hi, p[k].h.en)
+  for (const k of ['know', 'who']) if (p[k]) { if (p[k].h) row(p[k].h.hi, p[k].h.en); row(p[k].yes.h.hi, p[k].yes.h.en); row(p[k].no.h.hi, p[k].no.h.en) }
+  for (const k of ['steps', 'timeline', 'income', 'caution', 'tip', 'howto', 'checklist', 'news', 'where', 'notFound', 'safety', 'sagar']) if (p[k]) row(p[k].h.hi, p[k].h.en)
+  if (p.wait) row(p.wait.h.hi, p.wait.h.en)
+  if (p.calc) row(p.calc.h.hi, p.calc.h.en)
   for (const f of p.faqs) row(f.q.hi, f.q.en)
 }
 writeFileSync(join(ROOT, 'docs/review/batch19/HINDI_STRINGS.md'), L.join('\n') + '\n')

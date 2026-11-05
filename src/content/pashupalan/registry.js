@@ -7,7 +7,8 @@ import gaushala from './gaushala-anudan.js'
 import kcc from './pashu-kisan-credit-card.js'
 import kendriya from './kendriya-yojanayen.js'
 import nasle from './desi-nasle.js'
+import income from './pashupalan-se-kamai.js'
 
-export const DETAIL_PAGES = [desi, kamdhenu, gaushala, kcc, kendriya, nasle]
+export const DETAIL_PAGES = [desi, kamdhenu, gaushala, kcc, kendriya, nasle, income]
 export const ALL_PAGES = [hub, ...DETAIL_PAGES]
 export const ALL_PATHS = ALL_PAGES.map((p) => p.path)

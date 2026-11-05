@@ -2,6 +2,16 @@
 
 Nothing here was run for you: no push, no tag, no merge, no production ship.
 
+**19-B (rework: livelier pages, direct links, income page) is on the same branch `release-19`, on top of the first Batch 19 commits.** After you push, the tag must be moved to the new tip, then the dry run, a staging preview, the link checker against staging, and only then the real ship:
+
+1. `git push origin release-19 && git tag -f ship-19 && git push -f origin ship-19`
+2. `bash scripts/ship-prod-19.sh --dry-run` (must end `DRY RUN OK`; the route floor is now `MIN_ROUTES=278`)
+3. Staging preview: `npm run build:full && npx wrangler pages deploy dist --project-name kissansahyog --branch main --commit-dirty=true`
+4. Link checker against the staging address: `node scripts/batch19/check-links.mjs https://<your staging address>` (OK / blocked-by-site / BROKEN; a government site that blocks bots is not a failure; mpdah.gov.in is known to have an expired certificate)
+5. Then the real ship (step 5 below).
+
+The eight pages now are: the hub and seven pages, including `/pashupalan/pashupalan-se-kamai` (income and the milk calculator).
+
 1. **Earlier batches in `main`.** origin/main already holds `c823ae9` (17E) and `ship-17f`. `release-18` does not exist. Check: `git fetch origin && git merge-base --is-ancestor ship-17f origin/main && echo OK`
 2. **Review the text first.** Send `docs/review/batch19/CONTENT_FOR_REVIEW.md` to the retired forest officer. Fix anything by editing `src/content/pashupalan/*.js`, then `node scripts/batch19/make-review-doc.mjs` and `node scripts/batch19/make-hindi-table.mjs`.
 3. **Push and tag:** `git push origin release-19` then `git tag ship-19 && git push origin ship-19`
