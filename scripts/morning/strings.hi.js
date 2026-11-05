@@ -129,6 +129,10 @@ export const S = {
   cardSchemeTitle: 'आज की योजना · {title}',
   cardTaskTitle: 'आज का काम',
   cardTipTitle: 'आज की सलाह',
+  cardDistrictTitle: 'सागर संभाग के ज़िले',                  // Batch 18: the district strip on the card
+  cardDistrictHint: 'अपने गाँव का मौसम: kissansahyog.com/mausam',
+  cardDistrictNone: 'जानकारी नहीं',
+  cardDistrictSoon: 'कल-परसों बारिश',
   cardOldNote: '({date} के भाव)',                        // card note when the prices are older than yesterday
   cardNoData: 'आज के आँकड़े अभी नहीं आए',
 }

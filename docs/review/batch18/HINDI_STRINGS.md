@@ -14,3 +14,7 @@
 | districtWord.heavy | भारी बारिश | heavy rain | message |
 | districtSym | ☀️ 🌦️ 🌧️ 🌧️ ⛈️ | symbol per level | message |
 | districtClosing | 📲 अपने गाँव का मौसम: kissansahyog.com/mausam | check the weather of your own village | message (and the card hint) |
+| cardDistrictTitle | सागर संभाग के ज़िले | Districts of Sagar Sambhag | card strip heading |
+| cardDistrictHint | अपने गाँव का मौसम: kissansahyog.com/mausam | check your own village's weather | card strip |
+| cardDistrictNone | जानकारी नहीं | no information | card strip (unavailable district) |
+| cardDistrictSoon | कल-परसों बारिश | rain tomorrow / day after | card strip |

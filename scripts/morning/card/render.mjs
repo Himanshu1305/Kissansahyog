@@ -59,6 +59,17 @@ function infoBoxes(model) {
   return { scheme, tip }
 }
 
+// Batch 18: the six-district strip (P2). Plain text and CSS colours only - no emoji or symbol glyphs, so no tofu boxes on a runner without emoji fonts.
+function districtStrip(items) {
+  if (!items || !items.length) return null
+  return {
+    title: S.cardDistrictTitle, hint: S.cardDistrictHint,
+    items: items.map((it) => it.available
+      ? { name: it.nameHi, range: `${it.today.tmin}–${it.today.tmax}°`, word: S.districtWord[it.today.level], level: it.today.level, soon: ['light', 'moderate', 'heavy'].includes(it.next2) ? S.cardDistrictSoon : '' }
+      : { name: it.nameHi, range: '', word: S.cardDistrictNone, level: 'none', soon: '' }),
+  }
+}
+
 // model = the compose model (see run.mjs); only sections with data are included, the layout stays complete without them.
 export function cardData(model) {
   const m = model.mandi
@@ -81,6 +92,7 @@ export function cardData(model) {
     priceTitle: `📊 ${fmt(S.cardPriceTitle, { unit: S.cardUnit, date: m ? dm(m.date) : '' })}`,
     prices,
     priceNote: label,
+    districts: districtStrip(model.districts),
     scheme, tip,
     noData: S.cardNoData,
     footer: S.cardFooter,
