@@ -1,24 +1,6 @@
 // Batch 19 - /pashupalan : the hub (FACTS A-H). Status and asOf of each table row are checked
 // against the detail-page modules by tests/unit/pashupalan-19-content.test.mjs.
-export const GUIDE = [
-  { id: 'few', label: { hi: 'मैं 1 से 5 देसी गाय पालता/पालती हूँ', en: 'I keep 1 to 5 desi cows' }, primary: 'desi-gay-anudan', also: ['desi-nasle', 'pashu-kisan-credit-card'],
-    why: { hi: 'देसी गाय पर मासिक मदद की योजना बन रही है; कर्ज़ चाहिए तो KCC देखें।', en: 'A monthly assistance for desi cows is being prepared; for a loan see the KCC.' } },
-  { id: 'dairy', label: { hi: 'मैं 25 या उससे ज़्यादा पशुओं की डेयरी शुरू करना चाहता/चाहती हूँ', en: 'I want to start a dairy of 25 or more animals' }, primary: 'kamdhenu-yojana', also: ['pashu-kisan-credit-card', 'kendriya-yojanayen'],
-    why: { hi: 'डेयरी यूनिट के लिए लोन और सब्सिडी कामधेनु योजना के पोर्टल पर बताई गई है।', en: 'The loan and subsidy for a dairy unit are described on the Kamdhenu scheme portal.' } },
-  { id: 'gaushala', label: { hi: 'मैं गौशाला चलाता/चलाती हूँ', en: 'I run a gaushala' }, primary: 'gaushala-anudan', also: ['kendriya-yojanayen'],
-    why: { hi: 'गौशाला अनुदान और आत्मनिर्भर गौशाला नीति 2025 का पेज।', en: 'The page on the gaushala grant and the Self-Reliant Gaushala Policy 2025.' } },
-  { id: 'money', label: { hi: 'मुझे चारे और दवा के लिए पैसे चाहिए', en: 'I need money for feed and medicines' }, primary: 'pashu-kisan-credit-card', also: ['kamdhenu-yojana'],
-    why: { hi: 'पशुपालन के लिए किसान क्रेडिट कार्ड बैंक से कर्ज़ का रास्ता है।', en: 'The Kisan Credit Card for animal husbandry is a way to take a bank loan.' } },
-  { id: 'breed', label: { hi: 'मैं अपनी गाय की नस्ल जानना चाहता/चाहती हूँ', en: 'I want to know my cow’s breed' }, primary: 'desi-nasle', also: ['desi-gay-anudan'],
-    why: { hi: 'देसी नस्लों और उनके इलाकों की सूची, और नस्ल पूछने का तरीका।', en: 'The list of desi breeds and their areas, and how to get the breed confirmed.' } },
-]
-
-// Pure decision-guide logic (no backend): returns the primary page and the "also see" pages.
-export function pickGuide(id) {
-  const g = GUIDE.find((x) => x.id === id)
-  if (!g) return null
-  return { id: g.id, primary: g.primary, also: g.also, why: g.why }
-}
+export { GUIDE, pickGuide } from './guide.js'
 
 export default {
   slug: 'hub',
@@ -56,6 +38,7 @@ export default {
       { hi: 'शक हो तो अपने ब्लॉक के पशु चिकित्सालय या ज़िला पशुपालन कार्यालय जाकर ख़ुद पूछ लें।', en: 'If in doubt, go and ask your block veterinary hospital or district animal husbandry office yourself.', f: ['GEN'] },
     ],
   },
+  tableTitle: { hi: 'सब योजनाएँ एक नज़र में', en: 'All schemes at a glance' },
   table: [
     { slug: 'desi-gay-anudan', status: 'planned', asOf: '2026-11-05', name: { hi: 'देसी गाय पर मासिक मदद', en: 'Desi cow monthly assistance' }, who: { hi: 'सूचीबद्ध देसी नस्ल की गाय पालने वाले (पहला चरण: लगभग 500 पशुपालक, 100 गाँव)', en: 'People keeping the listed desi breeds (first phase: about 500 keepers in 100 villages)' }, get: { hi: 'समाचारों के अनुसार हर महीने ₹900 तक; नियम घोषित नहीं', en: 'According to news reports up to Rs 900 a month; rules not announced' }, f: ['F-A1', 'F-A2'] },
     { slug: 'kamdhenu-yojana', status: 'unknown', asOf: '2026-11-05', name: { hi: 'डॉ. अंबेडकर कामधेनु योजना', en: 'Dr Ambedkar Kamdhenu Yojana' }, who: { hi: 'डेयरी यूनिट लगाने वाले (पात्रता पोर्टल के पात्रता पेज पर)', en: 'People setting up a dairy unit (eligibility is on the portal’s eligibility page)' }, get: { hi: 'पोर्टल के अनुसार 7 साल का टर्म लोन और 25% या 33% सब्सिडी', en: 'According to the portal, a 7-year term loan and 25% or 33% subsidy' }, f: ['F-B1', 'F-B2'] },

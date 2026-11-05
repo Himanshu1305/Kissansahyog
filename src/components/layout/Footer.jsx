@@ -27,6 +27,7 @@ export default function Footer() {
           </div>
           <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" style={{ color: '#B7CFBE' }}>
             <Link to="/bazaar" className={link}>{t('bazaar_nav')}</Link>
+            <Link to="/pashupalan" data-testid="footer-pashupalan" className={link}>{t('pashu_nav')}</Link>
             <Link to="/about" className={link}>{t('nav_about_us')}</Link>
             <Link to="/how-to-use" className={link}>{t('nav_how_to_use')}</Link>
             <Link to="/install" data-testid="footer-install" className={link}>{t('inst_nav')}</Link>

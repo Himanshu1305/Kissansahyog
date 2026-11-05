@@ -48,3 +48,23 @@ export const PAGE_ORDER = ['desi-gay-anudan', 'kamdhenu-yojana', 'gaushala-anuda
 
 // Pages that carry the standard NOTE and are held to the content checks.
 export const BASE_PATH = '/pashupalan'
+
+// Labels for the "और देखें" cards (path -> text). Paths are routes that exist on the site.
+export const RELATED_LABELS = {
+  '/pashupalan': { hi: 'पशुपालन योजनाएँ — सब एक जगह', en: 'Animal husbandry schemes — all in one place' },
+  '/pashupalan/desi-gay-anudan': { hi: 'देसी गाय पर ₹900 महीना (योजना)', en: 'Rs 900 a month for desi cows (planned)' },
+  '/pashupalan/kamdhenu-yojana': { hi: 'कामधेनु योजना — डेयरी लोन', en: 'Kamdhenu Yojana — dairy loan' },
+  '/pashupalan/gaushala-anudan': { hi: 'गौशाला अनुदान', en: 'Gaushala grant' },
+  '/pashupalan/pashu-kisan-credit-card': { hi: 'पशुपालन किसान क्रेडिट कार्ड', en: 'Animal husbandry Kisan Credit Card' },
+  '/pashupalan/kendriya-yojanayen': { hi: 'केंद्रीय योजनाएँ', en: 'Central schemes' },
+  '/pashupalan/desi-nasle': { hi: 'देसी नस्लें और केनकथा', en: 'Desi breeds and Kenkatha' },
+  '/yojana': { hi: 'सभी सरकारी योजनाएँ', en: 'All government schemes' },
+  '/yojana/mp': { hi: 'मध्य प्रदेश की योजनाएँ', en: 'Madhya Pradesh schemes' },
+  '/yojana/central': { hi: 'केंद्र की योजनाएँ', en: 'Central schemes (all)' },
+  '/sawaal': { hi: 'किसान सवाल — अपना सवाल पूछें', en: 'Kisan Sawaal — ask your question' },
+  '/mausam': { hi: 'मौसम — सागर संभाग', en: 'Weather — Sagar division' },
+  '/agro-forestry': { hi: 'कृषि वानिकी व बागवानी', en: 'Agro-forestry and horticulture' },
+  '/bazaar': { hi: 'बाज़ार — चारा, भूसा, उपकरण, मज़दूर', en: 'Bazaar — fodder, straw, equipment, labour' },
+  '/experts': { hi: 'विशेषज्ञ निर्देशिका', en: 'Experts directory' },
+  '/resources': { hi: 'उपयोगी संपर्क व हेल्पलाइन', en: 'Useful contacts and helplines' },
+}

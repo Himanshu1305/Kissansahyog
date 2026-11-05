@@ -59,6 +59,15 @@ export default {
       ],
     },
     {
+      id: 'mistakes', kind: 'ul',
+      h: { hi: 'आम ग़लतियाँ', en: 'Common mistakes' },
+      items: [
+        { hi: 'गाय देखकर अंदाज़े से नस्ल तय कर लेना। मिश्रित नस्ल की गाय अक्सर देसी जैसी दिखती है।', en: 'Deciding the breed by guess from a look. A crossbred cow often looks like a desi one.', f: ['GEN'] },
+        { hi: 'किसी नस्ल का नाम सूची में होने को पैसे की गारंटी समझ लेना। योजना के नियम अभी घोषित नहीं हैं।', en: 'Taking a breed’s name being on a list as a guarantee of money. The scheme rules are not announced yet.', f: ['F-A6'] },
+        { hi: 'रिपोर्टों में अलग-अलग ज़िले लिखे होने पर एक को ही सही मानना। दोनों रिपोर्टें अलग इलाके गिनाती हैं।', en: 'Taking one report as right when the reports list different districts. The two reports name different areas.', f: ['F-H4'] },
+      ],
+    },
+    {
       id: 'notknown', kind: 'ul',
       h: { hi: 'जो हम यहाँ नहीं लिख रहे', en: 'What we are not writing here' },
       items: [
