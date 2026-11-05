@@ -44,7 +44,7 @@ GitHub, the repository, **Settings**, **Secrets and variables**, **Actions**, ta
 To turn the feature back on: delete the variable (an empty value also means on).
 
 ## 6. Edge Function (useful, not required for tomorrow)
-This makes the five new district cells refresh every 2 hours on their own, so the job reads the saved forecast instead of calling Open-Meteo. Method = Batch 16H (`scripts/ship-prod-16h.sh` step 3: `supabase functions deploy weather-refresh ... --no-verify-jwt --use-api`). There is no script for 18; these are the commands (Supabase CLI logged in; no key is asked and no secret is made):
+This makes the five new district cells refresh every 2 hours on their own, so the job reads the saved forecast instead of calling Open-Meteo. Method = Batch 16H (`scripts/ship-prod-16h.sh` step 3: `supabase functions deploy weather-refresh ... --no-verify-jwt --use-api`). There is no ship script for 18 (the Edge Function can only be deployed by hand with the Supabase CLI, so I wrote the commands instead of copying the 16H script, which also installs the timer SQL that is already live); these are the commands (Supabase CLI logged in; no key is asked and no secret is made):
 
 a. Note the version that is live now (needed for rollback). For staging and production, write down VERSION and UPDATED_AT of `weather-refresh`:
 ```
