@@ -27,6 +27,7 @@ import { incrementContactClick } from '../lib/listings/listingsApi'
 import WhatsAppJoin from '../components/WhatsAppJoin'
 import AvailabilityNudge from '../components/AvailabilityNudge'
 import PwaInstallBanner from '../components/PwaInstallBanner'
+import InstallQrBlock from '../components/install/InstallQrBlock'
 import { fetchFeaturedVideos, videoTitle, videoWatchUrl, videoThumb } from '../lib/videos/videosApi'
 import { fetchPestReports } from '../lib/pest/pestApi'
 import { fetchUpcomingMelas } from '../lib/mela/melaApi'
@@ -264,6 +265,9 @@ export default function Homepage() {
 
       {/* Batch 12A: WhatsApp channel card — below the first screen, above the collapsible sections. */}
       <WhatsAppChannelCard variant="hero" />
+
+      {/* Batch 17F: install help for someone whose own Install button fails (QR from 768 px, share link on phones). */}
+      <InstallQrBlock />
 
       <Section bg="var(--ks-bg-soft)">
         <CollapsibleSection page="home" id="search" primary h2Class="text-[22px] font-extrabold md:text-[26px]" title={t('home_search_title')}>

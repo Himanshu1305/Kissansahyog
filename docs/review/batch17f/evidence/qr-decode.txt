@@ -1,0 +1,9 @@
+✔ the URL the app uses for the QR is the agreed one (1.294ms)
+✔ public/images/install-qr.svg decodes to exactly the install URL (50.8244ms)
+✔ docs/review/batch17f/install-qr-print.png (1024 px) decodes to exactly the install URL (71.2996ms)
+✔ the SVG QR still decodes when it is shown small (168 px) as on the homepage (15.6475ms)
+✔ QR settings: error correction H, quiet zone of 4 modules, dark on white, no logo - the committed SVG equals a fresh build with exactly those settings (11.8034ms)
+ℹ tests 5
+ℹ pass 5
+ℹ fail 0
+decoded URL asserted: https://kissansahyog.com/install?s=qr (svg, 1024px png, 168px svg)

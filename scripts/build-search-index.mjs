@@ -251,6 +251,7 @@ const HUBS = [
   { title_hi: 'किसान मेला', title_en: 'Kisan Mela', url: '/kisan-mela', keywords: 'kisan mela fair किसान मेला' },
   { title_hi: 'हमारे बारे में — किसान सहयोग', title_en: 'About Us — Kissan Sahyog', url: '/about', keywords: 'हमारे बारे में किसान सहयोग क्या है about us kissan sahyog sagar farm marketplace खेती का बाज़ार सागर स्वामी संचालक owner संपर्क' },
   { title_hi: 'वेबसाइट कैसे इस्तेमाल करें', title_en: 'How to use the website', url: '/how-to-use', keywords: 'कैसे इस्तेमाल करें वेबसाइट कैसे चलाएं how to use help guide लिस्टिंग कैसे डालें रजिस्टर लॉगिन फोटो संपर्क होम स्क्रीन इंस्टॉल भाषा बदलें मदद' },
+  { title_hi: 'किसान सहयोग ऐप इंस्टॉल करें', title_en: 'Install the Kissan Sahyog app', url: '/install', keywords: 'ऐप इंस्टॉल करें डाउनलोड होम स्क्रीन फ़ोन में ऐप install app download add to home screen pwa qr' },
   { title_hi: strings.guide_hub_h1.hi, title_en: strings.guide_hub_h1.en, url: '/guide', keywords: 'गाइड डेमो सीखें कैसे चलाएं guide demo learn how to use tutorial मदद help' },
   { title_hi: strings.guide_register_h1.hi, title_en: strings.guide_register_h1.en, url: '/guide/register', keywords: 'रजिस्टर कैसे करें खाता बनाएं register signup account demo guide डेमो' },
   { title_hi: strings.guide_post_h1.hi, title_en: strings.guide_post_h1.en, url: '/guide/post', keywords: 'पोस्ट कैसे करें लिस्टिंग डालें मशीन सामान बेचें post listing sell demo guide डेमो' },

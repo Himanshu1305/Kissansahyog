@@ -5,9 +5,12 @@
 // silently as current.
 import { useEffect, useRef, useState } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
+import { useLocation } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { isNative } from '../lib/native'
 import { setOfflineHint, setOfflineBannerShown } from '../lib/offline/status'
+import { installStore, whichInstallSurface } from '../lib/install/installStore'
+import useInstall from './install/useInstall'
 
 const DAY = 24 * 60 * 60 * 1000
 const INSTALL_DISMISS_KEY = 'ks_install_dismissed_at'
@@ -121,8 +124,17 @@ function WebPrompts() {
 
   const [offline, setOffline] = useState(typeof navigator !== 'undefined' && !navigator.onLine)
   const [lastOnline, setLastOnline] = useState(() => ls(true, LAST_ONLINE_KEY))
-  const [installEvt, setInstallEvt] = useState(null)
-  const [showInstall, setShowInstall] = useState(false)
+  // Batch 17F — the install event belongs to src/lib/install (one module for this bar and the
+  // homepage strip). This bar is for returning visitors on the OTHER pages; the homepage has the strip.
+  const install = useInstall()
+  const { pathname } = useLocation()
+  const [visits] = useState(() => bumpVisit())
+  const [snoozedAt, setSnoozedAt] = useState(() => Number(ls(true, INSTALL_DISMISS_KEY, '0')) || 0)
+  const snoozed = !!snoozedAt && (Date.now() - snoozedAt) < 14 * DAY
+  const showInstall = whichInstallSurface({
+    pathname, canPrompt: install.canPrompt, installed: install.installed, standalone: install.standalone,
+    native: false, sheet: install.ui.sheet, stripDismissed: false, visits, snoozed,
+  }) === 'bar'
 
   // Online/offline tracking → offline banner with a "last updated" time.
   useEffect(() => {
@@ -137,28 +149,9 @@ function WebPrompts() {
     return () => { window.removeEventListener('online', markOnline); window.removeEventListener('offline', markOffline) }
   }, [])
 
-  // Install prompt — capture the browser event; show only to returning visitors
-  // (visit count >= 2) and not within 14 days of a dismissal.
-  useEffect(() => {
-    const visits = bumpVisit()
-    const dismissedAt = Number(ls(true, INSTALL_DISMISS_KEY, '0')) || 0
-    const suppressed = dismissedAt && (Date.now() - dismissedAt) < 14 * DAY
-    function onBeforeInstall(e) {
-      e.preventDefault()
-      setInstallEvt(e)
-      if (visits >= 2 && !suppressed) setShowInstall(true)
-    }
-    window.addEventListener('beforeinstallprompt', onBeforeInstall)
-    return () => window.removeEventListener('beforeinstallprompt', onBeforeInstall)
-  }, [])
-
-  async function doInstall() {
-    if (!installEvt) { setShowInstall(false); return }
-    installEvt.prompt()
-    try { await installEvt.userChoice } catch { /* ignore */ }
-    setShowInstall(false); setInstallEvt(null)
-  }
-  function dismissInstall() { lsSet(INSTALL_DISMISS_KEY, String(Date.now())); setShowInstall(false) }
+  // prompt() has to run inside the tap, so this is not async: the store calls it straight away.
+  function doInstall() { installStore.promptInstall() }
+  function dismissInstall() { const now = Date.now(); lsSet(INSTALL_DISMISS_KEY, String(now)); setSnoozedAt(now) }
 
   const lastOnlineLabel = lastOnline
     ? new Date(Number(lastOnline)).toLocaleString('hi-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
@@ -181,7 +174,7 @@ function WebPrompts() {
         </div>
       )}
 
-      {/* Install prompt — returning visitors only, dismiss suppresses 14 days. */}
+      {/* Install prompt — returning visitors on pages other than the homepage, dismiss suppresses 14 days. */}
       {showInstall && (
         <div data-testid="pwa-install-banner" className={`${bar} bottom-0`} style={{ background: 'var(--ks-card)', border: '1px solid var(--ks-border)', color: 'var(--ks-ink)' }} role="dialog">
           <span className="font-semibold">📲 {t('pwa_install_prompt')}</span>

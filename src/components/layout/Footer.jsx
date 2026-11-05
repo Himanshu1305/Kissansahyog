@@ -29,6 +29,7 @@ export default function Footer() {
             <Link to="/bazaar" className={link}>{t('bazaar_nav')}</Link>
             <Link to="/about" className={link}>{t('nav_about_us')}</Link>
             <Link to="/how-to-use" className={link}>{t('nav_how_to_use')}</Link>
+            <Link to="/install" data-testid="footer-install" className={link}>{t('inst_nav')}</Link>
             <Link to="/guide" data-testid="footer-guide" className={link}>{t('guide_nav')}</Link>
             <Link to="/founder" className={link}>{t('footer_founder')}</Link>
             <Link to="/privacy" className={link}>{t('footer_privacy')}</Link>

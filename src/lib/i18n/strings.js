@@ -7,6 +7,7 @@
 
 import { adminStrings } from './adminStrings.js'
 import { morningStrings } from './morningStrings.js'
+import { installStrings } from './installStrings.js'
 
 export const strings = {
   // --- app / brand ---
@@ -703,10 +704,8 @@ export const strings = {
   farmer_count: { hi: 'कुल किसान', en: 'Total farmers' },
 
   // Phase 7 — homepage PWA install banner.
-  pwa_banner_text: { hi: 'किसान सहयोग को फ़ोन की होम स्क्रीन पर जोड़ें', en: 'Add Kissan Sahyog to your phone’s home screen' },
-  pwa_banner_install: { hi: 'इंस्टॉल करें', en: 'Install' },
-  pwa_ios_help: { hi: "अपने फ़ोन में: नीचे शेयर बटन दबाएं, फिर 'होम स्क्रीन पर जोड़ें' चुनें।", en: "On your phone: tap the Share button below, then choose 'Add to Home Screen'." },
-  pwa_install_help: { hi: "ब्राउज़र का मेन्यू (⋮) खोलें, फिर 'ऐप इंस्टॉल करें' या 'होम स्क्रीन पर जोड़ें' चुनें।", en: "Open your browser menu (⋮), then choose 'Install app' or 'Add to Home screen'." },
+  pwa_banner_text: { hi: 'किसान सहयोग ऐप इंस्टॉल करें', en: 'Install Kissan Sahyog app' },
+  pwa_banner_install: { hi: 'इंस्टॉल', en: 'Install' },
   pwa_banner_dismiss: { hi: 'बंद करें', en: 'Dismiss' },
 
   // Phase 5 — किसान प्रोफाइल fields.
@@ -2738,4 +2737,5 @@ export const strings = {
   ...adminStrings,
   // --- Batch 16B: /admin/morning ---
   ...morningStrings,
+  ...installStrings,
 }

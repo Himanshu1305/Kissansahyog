@@ -1,0 +1,11 @@
+== precache by logical name (hashes removed) ==
+by logical name - only in new: [
+  'images/install-qr.svg',
+  'assets/InstallQrBlock.js',
+  'assets/Install.js'
+] only in base: []
+== manifest ==
+dist/manifest.webmanifest byte-identical to the origin/main build
+== strategy ==
+routing/caching strategy tail (registerRoute onward, runtimeCaching, navigateFallback, denylist) identical: true 600
+(precache entries: base 164, new 167 = +install-qr.svg, +Install.js, +InstallQrBlock.js; the other differences are hashed file names of rebuilt chunks. The small-letter variable renaming at the top of sw.js is the minifier.)
