@@ -26,6 +26,15 @@ export const S = {
   weatherNextTwo: ['कल: {a}', 'परसों: {b}'],              // used when the two days do not fit on one short line
   weatherDay: '{tmin}–{tmax}°C, {wx}',                     // a day whose temperatures differ from today's; {wx} = S.wxDay phrase
   weatherDayRainOnly: '{wx}',                              // a day whose temperatures equal today's: the numbers are shown once, above
+  // ---- Batch 18: the weather of all six districts of Sagar Sambhag (a section right after the Sagar weather block)
+  districtHeading: '🗺️ *सागर संभाग के ज़िलों का मौसम*',
+  districtNames: { Sagar: 'सागर', Damoh: 'दमोह', Panna: 'पन्ना', Tikamgarh: 'टीकमगढ़', Chhatarpur: 'छतरपुर', Niwari: 'निवाड़ी' },   // as in public.places
+  districtLine: '{sym} {name} {tmin}–{tmax}° · {word}{soon}',   // one line per district, in the fixed order Sagar, Damoh, Panna, Tikamgarh, Chhatarpur, Niwari
+  districtLineNone: '▫️ {name} · जानकारी अभी उपलब्ध नहीं',          // a district without a forecast is never dropped silently
+  districtSoon: ' · कल-परसों बारिश',                                // added when light rain or more is expected tomorrow or the day after
+  districtSym: { dry: '☀️', drizzle: '🌦️', light: '🌧️', moderate: '🌧️', heavy: '⛈️' },
+  districtWord: { dry: 'बारिश नहीं', drizzle: 'हल्की बूँदाबाँदी', light: 'हल्की बारिश', moderate: 'मध्यम बारिश', heavy: 'भारी बारिश' },
+  districtClosing: '📲 अपने गाँव का मौसम: kissansahyog.com/mausam',   // plain URL, WhatsApp makes it a link; message and card only, never spoken
   // ---- aaj ka kaam
   workHeader: '🌾 *आज का काम*',
   workItem: '✅ {text}',
@@ -100,6 +109,11 @@ export const S = {
     heavy: 'सागर में आज भारी बारिश की चेतावनी है, संभावना {p}% की है, करीब {mm} मिलीमीटर',
   },
   wxVoiceProbless: { light: 'सागर में आज हल्की बारिश हो सकती है, करीब {mm} मिलीमीटर', moderate: 'सागर में आज मध्यम बारिश हो सकती है, करीब {mm} मिलीमीटर', heavy: 'सागर में आज भारी बारिश की चेतावनी है, करीब {mm} मिलीमीटर' },
+  // ---- Batch 18 (P3): the ONE spoken district sentence (names only the districts with rain today or tomorrow; the mausam link is never spoken)
+  voiceDistrictRain: 'आज या कल {names} में बारिश हो सकती है',
+  voiceDistrictDry: 'सागर संभाग के किसी भी ज़िले में आज बारिश नहीं होगी',
+  voiceDistrictAnd: ' और ',
+  voiceDistrictOthers: 'अन्य ज़िलों',
   // ---- poll file labels
   pollFileTitle: 'आज का सवाल',
   // ---- card (image)
@@ -120,6 +134,10 @@ export const S = {
   cardSchemeTitle: 'आज की योजना · {title}',
   cardTaskTitle: 'आज का काम',
   cardTipTitle: 'आज की सलाह',
+  cardDistrictTitle: 'सागर संभाग के ज़िले',                  // Batch 18: the district strip on the card
+  cardDistrictHint: 'अपने गाँव का मौसम: kissansahyog.com/mausam',
+  cardDistrictNone: 'जानकारी नहीं',
+  cardDistrictSoon: 'कल-परसों बारिश',
   cardOldNote: '({date} के भाव)',                        // card note when the prices are older than yesterday
   cardNoData: 'आज के आँकड़े अभी नहीं आए',
 }

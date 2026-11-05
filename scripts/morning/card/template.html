@@ -23,6 +23,13 @@ body { font-family: 'KSDev', 'Noto Sans Devanagari', 'Noto Color Emoji', 'Segoe 
 .days { display: flex; gap: 16px; margin-top: 14px; }
 .days > div { flex: 1; background: #eef5e8; border-radius: 16px; padding: 8px 6px; text-align: center; font-size: calc(25px * var(--s)); font-weight: 600; line-height: 1.35; }
 .days b { display: block; font-size: calc(27px * var(--s)); }
+.dis { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(8px * var(--s)) 10px; }
+.dis .c { border-radius: 14px; padding: calc(6px * var(--s)) 10px; text-align: center; line-height: 1.25; background: #eef5e8; }
+.dis .c b { display: block; font-size: calc(27px * var(--s)); font-weight: 800; }
+.dis .c .w { font-size: calc(23px * var(--s)); font-weight: 600; }
+.dis .c .s { font-size: calc(19px * var(--s)); font-weight: 600; color: #1a4f9c; min-height: calc(23px * var(--s)); }
+.dis .c.drizzle, .dis .c.light { background: #e3eefb; } .dis .c.moderate { background: #cfe0f7; } .dis .c.heavy { background: #f6cfca; } .dis .c.none { background: #ece8d8; }
+.dis-hint { font-size: calc(23px * var(--s)); font-weight: 700; color: #1f5e2e; text-align: center; margin-top: calc(8px * var(--s)); }
 .rows { width: 100%; }
 .row { display: flex; align-items: baseline; gap: 14px; padding: calc(6px * var(--s)) 0; border-bottom: 2px dashed #e6dfc6; font-size: calc(33px * var(--s)); }
 .row:last-child { border-bottom: 0; }
@@ -69,6 +76,21 @@ if (D.weather) {
     for (const x of w.days) { const c = el('div'); c.appendChild(el('b', null, x.name)); c.append(x.range); c.appendChild(document.createElement('br')); c.append(x.rain); days.appendChild(c); }
     s.appendChild(days);
   }
+  body.appendChild(s);
+}
+if (D.districts) {
+  const g = D.districts, s = sec();
+  s.appendChild(el('div', 'h', g.title));
+  const grid = el('div', 'dis');
+  for (const x of g.items) {
+    const c = el('div', 'c ' + x.level);
+    c.appendChild(el('b', null, x.range ? x.name + ' ' + x.range : x.name));
+    c.appendChild(el('div', 'w', x.word));
+    c.appendChild(el('div', 's', x.soon));
+    grid.appendChild(c);
+  }
+  s.appendChild(grid);
+  s.appendChild(el('div', 'dis-hint', g.hint));
   body.appendChild(s);
 }
 if (D.prices && D.prices.length) {

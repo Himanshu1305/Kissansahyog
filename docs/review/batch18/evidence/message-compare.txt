@@ -1,0 +1,72 @@
+Batch 18 - message regression proof (baseline = origin/main code, saved before any change: baseline-F1..F6.txt)
+
+F1: baseline 834 chars | new (all six available) 1093 chars, +9 lines (8 section lines + 1 blank)
+    new message minus the section == baseline byte for byte: true
+    MORNING_DISTRICTS=off == baseline byte for byte: true
+    no district loader == baseline byte for byte: true
+    dropped to fit: nothing; lint violations: 0
+F2: baseline 817 chars | new (all six available) 1111 chars, +9 lines (8 section lines + 1 blank)
+    new message minus the section == baseline byte for byte: true
+    MORNING_DISTRICTS=off == baseline byte for byte: true
+    no district loader == baseline byte for byte: true
+    dropped to fit: nothing; lint violations: 0
+F3: baseline 988 chars | new (all six available) 1266 chars, +9 lines (8 section lines + 1 blank)
+    new message minus the section == baseline byte for byte: true
+    MORNING_DISTRICTS=off == baseline byte for byte: true
+    no district loader == baseline byte for byte: true
+    dropped to fit: nothing; lint violations: 0
+F4: baseline 1019 chars | new (all six available) 1295 chars, +9 lines (8 section lines + 1 blank)
+    new message minus the section == baseline byte for byte: true
+    MORNING_DISTRICTS=off == baseline byte for byte: true
+    no district loader == baseline byte for byte: true
+    dropped to fit: nothing; lint violations: 0
+F5: baseline 845 chars | new (all six available) 1111 chars, +9 lines (8 section lines + 1 blank)
+    new message minus the section == baseline byte for byte: true
+    MORNING_DISTRICTS=off == baseline byte for byte: true
+    no district loader == baseline byte for byte: true
+    dropped to fit: nothing; lint violations: 0
+F6: baseline 881 chars | new (all six available) 1142 chars, +9 lines (8 section lines + 1 blank)
+    new message minus the section == baseline byte for byte: true
+    MORNING_DISTRICTS=off == baseline byte for byte: true
+    no district loader == baseline byte for byte: true
+    dropped to fit: nothing; lint violations: 0
+
+SECTION, all dry (F1):
+🗺️ *सागर संभाग के ज़िलों का मौसम*
+☀️ सागर 17–32° · बारिश नहीं
+☀️ दमोह 17–32° · बारिश नहीं
+☀️ पन्ना 17–32° · बारिश नहीं
+☀️ टीकमगढ़ 17–32° · बारिश नहीं
+☀️ छतरपुर 17–32° · बारिश नहीं
+☀️ निवाड़ी 17–32° · बारिश नहीं
+📲 अपने गाँव का मौसम: kissansahyog.com/mausam
+
+SECTION, rain in Panna and Chhatarpur (F3 Sagar):
+🗺️ *सागर संभाग के ज़िलों का मौसम*
+🌧️ सागर 20–27° · हल्की बारिश · कल-परसों बारिश
+☀️ दमोह 17–32° · बारिश नहीं
+🌧️ पन्ना 20–27° · हल्की बारिश · कल-परसों बारिश
+☀️ टीकमगढ़ 17–32° · बारिश नहीं
+🌧️ छतरपुर 20–27° · हल्की बारिश · कल-परसों बारिश
+☀️ निवाड़ी 17–32° · बारिश नहीं
+📲 अपने गाँव का मौसम: kissansahyog.com/mausam
+
+SECTION, heavy rain in Tikamgarh (F4 Sagar):
+🗺️ *सागर संभाग के ज़िलों का मौसम*
+⛈️ सागर 21–25° · भारी बारिश · कल-परसों बारिश
+☀️ दमोह 17–32° · बारिश नहीं
+☀️ पन्ना 17–32° · बारिश नहीं
+⛈️ टीकमगढ़ 21–25° · भारी बारिश · कल-परसों बारिश
+☀️ छतरपुर 17–32° · बारिश नहीं
+☀️ निवाड़ी 17–32° · बारिश नहीं
+📲 अपने गाँव का मौसम: kissansahyog.com/mausam
+
+SECTION, Niwari unavailable (F1):
+🗺️ *सागर संभाग के ज़िलों का मौसम*
+☀️ सागर 17–32° · बारिश नहीं
+☀️ दमोह 17–32° · बारिश नहीं
+☀️ पन्ना 17–32° · बारिश नहीं
+☀️ टीकमगढ़ 17–32° · बारिश नहीं
+☀️ छतरपुर 17–32° · बारिश नहीं
+▫️ निवाड़ी · जानकारी अभी उपलब्ध नहीं
+📲 अपने गाँव का मौसम: kissansahyog.com/mausam

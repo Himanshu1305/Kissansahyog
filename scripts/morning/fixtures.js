@@ -60,3 +60,42 @@ export function loadFixture(name, date = FIXTURE_DATE) {
   throw new Error(`unknown fixture "${name}" (normal, rainy, missing-mandi, no-weather)`)
 }
 export const FIXTURE_CROP_HI = HI
+
+// ---- Batch 18: district scenarios built from the SAME rain fixtures (F1-F6), nothing invented. -----------------------------------
+// A scenario says, per district, which fixture's saved cell sits in the cache ('f1'...'f6', or 'stale' = F5's old cell, or null = no cell) and what a direct
+// Open-Meteo call gives for it ('f5' = F5's daily numbers, 'fail' = error). fetchImpl answers the ONE cache request and the direct calls (batched or single).
+const rainJson = (code) => JSON.parse(readFileSync(new URL(`${rainFixtureNames().find((n) => n.startsWith(`rain-${code}-`))}.json`, RAIN_DIR), 'utf8'))
+const ALL = ['Sagar', 'Damoh', 'Panna', 'Tikamgarh', 'Chhatarpur', 'Niwari']
+const same = (cache, direct = 'f5') => Object.fromEntries(ALL.map((id) => [id, { cache, direct }]))
+export const DISTRICT_SCENARIOS = {
+  'all-dry': same('f1'),
+  'rain-two': { ...same('f1'), Panna: { cache: 'f3', direct: 'f5' }, Chhatarpur: { cache: 'f3', direct: 'f5' } },
+  heavy: { ...same('f1'), Tikamgarh: { cache: 'f4', direct: 'f5' } },
+  'daily-only': { ...same('f1'), Niwari: { cache: null, direct: 'f5' } },
+  'one-unavailable': { ...same('f1'), Niwari: { cache: null, direct: 'fail' } },
+  'all-unavailable': Object.fromEntries(ALL.map((id) => [id, { cache: null, direct: 'fail' }])),
+  'stale-two': { ...same('f1'), Damoh: { cache: 'stale', direct: 'f5' }, Panna: { cache: 'stale', direct: 'f5' } },
+}
+export function districtScenario(name, { batched = true } = {}) {
+  const sc = DISTRICT_SCENARIOS[name]
+  if (!sc) throw new Error(`unknown district scenario "${name}" (${Object.keys(DISTRICT_SCENARIOS).join(', ')})`)
+  const base = rainJson('f1'), f5 = rainJson('f5')
+  const cells = { f1: base.cache, f3: rainJson('f3').cache, f4: rainJson('f4').cache, f6: rainJson('f6').cache, stale: f5.cache }
+  const keyOf = { Sagar: '23.8_78.7', Damoh: '23.8_79.4', Panna: '24.7_80.2', Tikamgarh: '24.7_78.8', Chhatarpur: '24.9_79.6', Niwari: '25.4_78.8' }
+  const latOf = { Sagar: 23.84178, Damoh: 23.83957, Panna: 24.7196, Tikamgarh: 24.74286, Chhatarpur: 24.92047, Niwari: 25.35124 }
+  const calls = []
+  const rows = ALL.filter((id) => sc[id].cache).map((id) => ({ ...cells[sc[id].cache], grid_key: keyOf[id] }))
+  const idOfLat = (s) => ALL.find((id) => String(latOf[id]) === s)
+  const fetchImpl = async (url) => {
+    const u = String(url)
+    if (u.includes('weather_cache_v2')) { calls.push('cache'); return { ok: true, status: 200, json: async () => rows } }
+    const lats = new URL(u).searchParams.get('latitude').split(',')
+    calls.push(`direct:${lats.length}`)
+    const bodies = lats.map((l) => sc[idOfLat(l)].direct)
+    const fail = { ok: false, status: 500, json: async () => ({}) }
+    if (lats.length > 1 && (!batched || bodies.includes('fail'))) return fail
+    if (lats.length === 1 && bodies[0] === 'fail') return fail
+    return { ok: true, status: 200, json: async () => (lats.length > 1 ? bodies.map(() => f5.direct) : f5.direct) }
+  }
+  return { date: base.date, nowIso: base.nowIso, nowMs: Date.parse(base.nowIso), fetchImpl, calls, scenario: sc }
+}

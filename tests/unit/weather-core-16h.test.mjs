@@ -81,7 +81,7 @@ test('gridKey and cellCentre: 0.1 degree centres, same key as the GitHub job; Sa
   assert.equal(core.gridKey(23.8388, 78.7378), '23.8_78.7')
   assert.deepEqual(core.cellCentre(23.8388, 78.7378), { lat: 23.8, lon: 78.7, key: '23.8_78.7' })
   assert.equal(core.cellCentre('24.045', '78.33').key, '24.0_78.3')
-  assert.equal(core.PILOT.length, 8)
+  assert.equal(core.PILOT.length, 13)
 })
 
 test('season: computeSeasonRain worked by hand (to-date 27 mm, normal 29 mm)', () => {
@@ -108,12 +108,12 @@ test('(d) needsSeason', () => {
 
 const mk = (n) => Array.from({ length: n }, (_, i) => ({ key: `c${String(i).padStart(2, '0')}`, lat: 20 + i / 10, lon: 70, pilot: false }))
 test('(c) orderCells: missing first, then oldest; pilot always present; limit respected', () => {
-  const pilots = core.buildCellList([]); assert.equal(pilots.length, 8); assert.ok(pilots.every((p) => p.pilot))
+  const pilots = core.buildCellList([]); assert.equal(pilots.length, 13); assert.ok(pilots.every((p) => p.pilot))
   const cells = [...pilots, ...mk(10)]
   const rows = {}
   cells.forEach((c, i) => { if (i % 3 !== 0) rows[c.key] = { fetched_at: new Date(Date.UTC(2026, 9, 29, 1) + ((i * 7) % 11) * 600000).toISOString() } })
-  const out = core.orderCells(cells, rows, 12)
-  assert.equal(out.length, 12)
+  const out = core.orderCells(cells, rows, 17)
+  assert.equal(out.length, 17)
   for (const p of pilots) assert.ok(out.some((c) => c.key === p.key), 'pilot ' + p.key)
   const others = out.filter((c) => !c.pilot)
   assert.equal(others.length, 4)
@@ -126,10 +126,10 @@ test('(c) orderCells: missing first, then oldest; pilot always present; limit re
   for (let i = 1; i < others.length; i++) assert.ok(t(others[i - 1]) <= t(others[i]))
   // a limit smaller than the pilot count still includes every pilot cell (no others)
   const tiny = core.orderCells(cells, rows, 2)
-  assert.equal(tiny.length, 8); assert.ok(tiny.every((c) => c.pilot))
+  assert.equal(tiny.length, 13); assert.ok(tiny.every((c) => c.pilot))
   // rotation: after the chosen cells get fetched now, the next run picks different non-pilot cells
   const rows2 = { ...rows }; for (const c of out) rows2[c.key] = { fetched_at: new Date(Date.UTC(2026, 9, 29, 3)).toISOString() }
-  const next = core.orderCells(cells, rows2, 12).filter((c) => !c.pilot).map((c) => c.key)
+  const next = core.orderCells(cells, rows2, 17).filter((c) => !c.pilot).map((c) => c.key)
   assert.equal(next.length, 4); assert.ok(next.every((k) => !others.some((o) => o.key === k)))
 })
 
@@ -140,7 +140,7 @@ test('buildCellList dedupes by cell centre, keeps the pilot flag, drops bad rows
     { grid_key: '21.1_79.0', latitude: 21.12, longitude: 79.0 },      // duplicate cell
     { grid_key: 'x', latitude: 'abc', longitude: 1 },
   ])
-  assert.equal(list.length, 9)
+  assert.equal(list.length, 14)
   assert.equal(list.find((c) => c.key === '23.8_78.7').pilot, true)
   assert.deepEqual(list.find((c) => c.key === '21.1_79.0'), { key: '21.1_79.0', lat: 21.1, lon: 79, pilot: false })
 })
@@ -222,7 +222,7 @@ test('buildSummary: ok only when every pilot cell was written; counts; leftover 
   const now = Date.UTC(2026, 9, 29, 10)
   const f = { [keys[0]]: now, 'x': now - 5 * 3600000, 'y': null, 'z': now - 3600000 }
   const good = core.buildSummary({ mode: 'forecast', cellsTotal: 11, writtenKeys: keys, failedKeys: ['x'], pilotKeys: keys, rateLimited: 2, fetchedByKey: f, nowMs: now, deadlineHit: false, ms: 5, errors: Array.from({ length: 15 }, (_, i) => 'e' + i), requests: 20 })
-  assert.equal(good.ok, true); assert.equal(good.cells_written, 8); assert.equal(good.failed_cells, 1); assert.equal(good.rate_limited, 2)
+  assert.equal(good.ok, true); assert.equal(good.cells_written, 13); assert.equal(good.failed_cells, 1); assert.equal(good.rate_limited, 2)
   assert.equal(good.cells_left_over_4h, 2); assert.equal(good.newest_fetched_at, new Date(now).toISOString()); assert.equal(good.errors.length, 10)
   const bad = core.buildSummary({ mode: 'forecast', cellsTotal: 8, writtenKeys: keys.slice(1), failedKeys: [keys[0]], pilotKeys: keys, rateLimited: 0, fetchedByKey: {}, nowMs: now, deadlineHit: false, ms: 5, errors: [], requests: 8 })
   assert.equal(bad.ok, false); assert.deepEqual(bad.pilot_failed, [keys[0]]); assert.equal(bad.newest_fetched_at, null)

@@ -6,18 +6,21 @@ import { join, resolve } from 'node:path'
 import { istDate, isIsoDate, addDays } from './lib/ist.js'
 import { generate, loadData, makeDefaultLoaders } from './lib/generate.js'
 import { fetchMandiRows } from './lib/supa.js'
-import { loadFixture } from './fixtures.js'
+import { loadFixture, districtScenario } from './fixtures.js'
+import { loadDistrictsWeather } from './lib/weather.js'
+import { DISTRICTS } from './lib/districts.js'
 import { saveToDatabase } from './lib/save.js'
 import { makeVoice } from './voice/make.mjs'
 import { makeVideo, appendStepSummary } from './video/make.mjs'
 
 export function parseArgs(argv) {
-  const a = { date: null, draft: false, fixtures: null, out: null, image: true, save: false, voice: false, noVoice: false }
+  const a = { date: null, draft: false, fixtures: null, districts: null, out: null, image: true, save: false, voice: false, noVoice: false }
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i]
     if (k === '--date') a.date = argv[++i]
     else if (k === '--draft') a.draft = true
     else if (k === '--fixtures') a.fixtures = argv[++i]
+    else if (k === '--districts') a.districts = argv[++i]
     else if (k === '--out') a.out = argv[++i]
     else if (k === '--no-image') a.image = false
     else if (k === '--save') a.save = true
@@ -40,7 +43,7 @@ export async function main(argv = process.argv.slice(2)) {
   const url = envUrl(), key = envKey()
 
   const loaders = fx
-    ? { weather: fx.weatherLoader || (async () => fx.weather), mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }
+    ? { weather: fx.weatherLoader || (async () => fx.weather), mandi: async () => ({ rows: fx.rows, flag: 'fixture' }), ...(args.districts ? { districts: (d) => { const sc = districtScenario(args.districts); return loadDistrictsWeather({ districts: DISTRICTS, url: 'https://fixture.invalid', key: 'fixture-key', date: d, nowMs: sc.nowMs, fetchImpl: sc.fetchImpl, pauseMs: 0 }) } } : {}) }
     : {
         ...makeDefaultLoaders({ url, key }),
         mandi: async () => {

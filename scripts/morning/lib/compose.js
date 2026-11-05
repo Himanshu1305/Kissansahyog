@@ -97,6 +97,19 @@ function rujhanBlock(model) {
   return lines.join('\n')
 }
 
+// Batch 18: the six-district section. items = buildDistrictSummaries() output. One heading, one line per district (fixed order), one closing line.
+export function districtBlock(items) {
+  const lines = [S.districtHeading]
+  for (const it of items) {
+    if (!it.available) { lines.push(fmt(S.districtLineNone, { name: it.nameHi })); continue }
+    const soon = RAINY.includes(it.next2) ? S.districtSoon : ''
+    lines.push(fmt(S.districtLine, { sym: S.districtSym[it.today.level], name: it.nameHi, tmin: it.today.tmin, tmax: it.today.tmax, word: S.districtWord[it.today.level], soon }))
+  }
+  lines.push(S.districtClosing)
+  return lines.join('\n')
+}
+const RAINY = ['light', 'moderate', 'heavy']
+
 export function render(model, opts) {
   const blocks = []
   const head = [S.greeting, dateLine(model.date, model.tithi)]
@@ -124,6 +137,7 @@ export function render(model, opts) {
     }
     blocks.push(lines.join('\n'))
   }
+  if (model.districts && opts.districts !== false) blocks.push(districtBlock(model.districts))
   const tasks = (model.tasks || []).slice(0, opts.tasks)
   if (tasks.length) blocks.push([S.workHeader, ...tasks.map((t, i) => fmt(S.workItem, { n: i + 1, text: t }))].join('\n'))
 
@@ -137,12 +151,14 @@ export function render(model, opts) {
 // Drop order when over the hard limit: rotating slot, next-two-days weather line, bhav ka rujhan, third task, fourth crop.
 export const DROP_STEPS = ['slot', 'weatherNext', 'rujhan', 'task3', 'crop4']
 export function compose(model) {
-  const opts = { slot: true, weatherNext: true, rujhan: true, tasks: 3, crops: 4 }
+  const opts = { slot: true, weatherNext: true, rujhan: true, tasks: 3, crops: 4, districts: true }
   const dropped = []
   let text = render(model, opts)
-  for (const step of DROP_STEPS) {
+  // Batch 18: if the message is over the hard limit, the new district section goes FIRST, so the post is then exactly what it was before this batch.
+  for (const step of model.districts ? ['districts', ...DROP_STEPS] : DROP_STEPS) {
     if (text.length <= HARD_CHARS) break
-    if (step === 'slot') opts.slot = false
+    if (step === 'districts') opts.districts = false
+    else if (step === 'slot') opts.slot = false
     else if (step === 'weatherNext') opts.weatherNext = false
     else if (step === 'rujhan') opts.rujhan = false
     else if (step === 'task3') opts.tasks = 2

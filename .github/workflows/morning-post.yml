@@ -83,6 +83,7 @@ jobs:
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
           ELEVENLABS_MODEL: ${{ secrets.ELEVENLABS_MODEL }}   # optional: empty = the code keeps its default model
           MORNING_FORCE_VIDEO: ${{ github.event_name == 'workflow_dispatch' && !inputs.check_first && 'true' || 'false' }}   # a manual run always rebuilds the video; scheduled tries skip a stored one
+          MORNING_DISTRICTS: ${{ vars.MORNING_DISTRICTS }}
         run: npm run morning -- --save
 
       - name: Keep the files for 7 days
