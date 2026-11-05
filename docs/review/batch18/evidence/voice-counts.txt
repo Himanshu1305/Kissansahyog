@@ -1,0 +1,19 @@
+Voice script characters, before (no district sentence) and after, F1-F6 x scenarios. Seconds = chars / 17 (estimate, not measured).
+F1 all-dry: 537 -> 589 (+52, 9.7%); est 31.6 s -> 34.6 s
+F2 all-dry: 536 -> 588 (+52, 9.7%); est 31.5 s -> 34.6 s
+F3 all-dry: 599 -> 635 (+36, 6.0%); est 35.2 s -> 37.4 s
+F4 all-dry: 605 -> 641 (+36, 6.0%); est 35.6 s -> 37.7 s
+F5 all-dry: 533 -> 585 (+52, 9.8%); est 31.4 s -> 34.4 s
+F6 all-dry: 555 -> 591 (+36, 6.5%); est 32.6 s -> 34.8 s
+F1 rain-two: 537 -> 584 (+47, 8.8%); est 31.6 s -> 34.4 s
+F2 rain-two: 536 -> 588 (+52, 9.7%); est 31.5 s -> 34.6 s
+F3 rain-two: 599 -> 652 (+53, 8.8%); est 35.2 s -> 38.4 s
+F4 rain-two: 605 -> 658 (+53, 8.8%); est 35.6 s -> 38.7 s
+F5 rain-two: 533 -> 580 (+47, 8.8%); est 31.4 s -> 34.1 s
+F6 rain-two: 555 -> 608 (+53, 9.5%); est 32.6 s -> 35.8 s
+F1 one-unavailable: 537 -> 537 (sentence not added); est 31.6 s -> 31.6 s
+F2 one-unavailable: 536 -> 536 (sentence not added); est 31.5 s -> 31.5 s
+F3 one-unavailable: 599 -> 635 (+36, 6.0%); est 35.2 s -> 37.4 s
+F4 one-unavailable: 605 -> 641 (+36, 6.0%); est 35.6 s -> 37.7 s
+F5 one-unavailable: 533 -> 533 (sentence not added); est 31.4 s -> 31.4 s
+F6 one-unavailable: 555 -> 591 (+36, 6.5%); est 32.6 s -> 34.8 s

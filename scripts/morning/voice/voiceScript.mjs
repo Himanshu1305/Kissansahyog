@@ -3,6 +3,7 @@
 import { createHash } from 'node:crypto'
 import { S } from '../strings.hi.js'
 import { weatherPhrase } from '../lib/weatherLine.js'
+import { levelIndex } from '../../../src/lib/weather/rainVerdict.js'
 import { toHindiWords, rupeesPerQuintal, rupees, degrees, percent, dayMonth, weekdayDate } from './hindiNumber.mjs'
 
 export const VOICE_TARGET = [450, 750]
@@ -73,13 +74,30 @@ function itemSentence(model, usedTask) {
 
 export const CLOSING = 'पूरी जानकारी, किसान सहयोग डॉट कॉम पर। जय किसान!'
 
+// Batch 18 (P3): ONE sentence about the districts, or null. Names only the districts with light rain or more today or tomorrow (up to three, then "और अन्य ज़िलों");
+// if there is none, a "no rain today anywhere" sentence ONLY when all six districts are available. Unavailable districts are never mentioned.
+export function districtSentence(districts) {
+  if (!Array.isArray(districts) || !districts.length) return null
+  const wet = districts.filter((d) => d.available && (levelIndex(d.today.level) >= 2 || levelIndex(d.tomorrow || 'dry') >= 2))
+  if (wet.length) {
+    const names = wet.slice(0, 3).map((d) => d.nameHi)
+    const list = wet.length > 3 ? `${names.join(', ')}${S.voiceDistrictAnd}${S.voiceDistrictOthers}` : names.length === 1 ? names[0] : `${names.slice(0, -1).join(', ')}${S.voiceDistrictAnd}${names.at(-1)}`
+    return `${S.voiceDistrictRain.replace('{names}', list)}।`
+  }
+  return districts.every((d) => d.available) ? `${S.voiceDistrictDry}।` : null
+}
+export const DISTRICT_VOICE_MAX_GROWTH = 0.12 // the district sentence may make the script at most 12 percent longer
+export const DISTRICT_VOICE_MAX_CHARS = 765   // ... and never above this: at a conservative 17 characters a second that is 45 seconds (the 17E video follows the voice length)
+
 // -> { text, chars, dropped: [string], sha256 }
 export function buildVoiceScript(model) {
   const wx = weatherSentences(model)
   const item = itemSentence(model, wx.usedTask)
+  const dist = districtSentence(model.districts)
   const build = (o) => {
     const parts = [`सीताराम किसान भाइयो! आज ${weekdayDate(model.date)} है।`]
     parts.push(...wx.text.slice(0, o.hint ? 2 : 1))
+    if (o.dist && dist) parts.push(dist)
     parts.push(...mandiSentences(model.mandi, o.crops))
     if (o.item && item) parts.push(item)
     parts.push(CLOSING)
@@ -93,7 +111,13 @@ export function buildVoiceScript(model) {
     if (text.length <= VOICE_TARGET[1]) break
     apply(); dropped.push(step); text = build(opts)
   }
-  return { text, chars: text.length, dropped, sha256: createHash('sha256').update(text, 'utf8').digest('hex') }
+  // the district sentence is tried LAST on the finished (old) script and kept only if the script stays within +12 percent and the hard maximum; otherwise left out
+  let districtAdded = false
+  if (dist) {
+    const withDist = build({ ...opts, dist: true })
+    if (withDist.length <= text.length * (1 + DISTRICT_VOICE_MAX_GROWTH) && withDist.length <= DISTRICT_VOICE_MAX_CHARS) { text = withDist; districtAdded = true }
+  }
+  return { text, chars: text.length, dropped, districtAdded, sha256: createHash('sha256').update(text, 'utf8').digest('hex') }
 }
 
 export const SPOKEN_OK = /^[ऀ-ॣ।\s,!?]+$/

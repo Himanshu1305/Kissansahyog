@@ -19,7 +19,7 @@ export function buildDistrictSummaries(raw, { nowIso, sagar = null } = {}) {
       verdict ||= RV.rainVerdict({ hourly: weather.hourly, daily: weather.daily || RV.toDailyShape(weather.days), nowIso, source: weather.source || 'cache' })
       const d0 = weather.days[0]
       const next2 = [verdict.days[1], verdict.days[2]].reduce((best, x) => (x && RV.levelIndex(x.level) > RV.levelIndex(best) ? x.level : best), 'dry')
-      return { ...base, available: true, today: { tmin: Math.round(d0.tmin), tmax: Math.round(d0.tmax), level: verdict.windows.today.level }, next2 }
+      return { ...base, available: true, today: { tmin: Math.round(d0.tmin), tmax: Math.round(d0.tmax), level: verdict.windows.today.level }, tomorrow: verdict.days[1] ? verdict.days[1].level : 'dry', next2 }
     } catch {
       return { ...base, source: 'unavailable', available: false, reason: base.reason || 'forecast unusable', today: null, next2: 'dry' }
     }

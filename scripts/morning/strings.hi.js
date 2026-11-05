@@ -109,6 +109,11 @@ export const S = {
     heavy: 'सागर में आज भारी बारिश की चेतावनी है, संभावना {p}% की है, करीब {mm} मिलीमीटर',
   },
   wxVoiceProbless: { light: 'सागर में आज हल्की बारिश हो सकती है, करीब {mm} मिलीमीटर', moderate: 'सागर में आज मध्यम बारिश हो सकती है, करीब {mm} मिलीमीटर', heavy: 'सागर में आज भारी बारिश की चेतावनी है, करीब {mm} मिलीमीटर' },
+  // ---- Batch 18 (P3): the ONE spoken district sentence (names only the districts with rain today or tomorrow; the mausam link is never spoken)
+  voiceDistrictRain: 'आज या कल {names} में बारिश हो सकती है',
+  voiceDistrictDry: 'सागर संभाग के किसी भी ज़िले में आज बारिश नहीं होगी',
+  voiceDistrictAnd: ' और ',
+  voiceDistrictOthers: 'अन्य ज़िलों',
   // ---- poll file labels
   pollFileTitle: 'आज का सवाल',
   // ---- card (image)

@@ -18,3 +18,7 @@
 | cardDistrictHint | अपने गाँव का मौसम: kissansahyog.com/mausam | check your own village's weather | card strip |
 | cardDistrictNone | जानकारी नहीं | no information | card strip (unavailable district) |
 | cardDistrictSoon | कल-परसों बारिश | rain tomorrow / day after | card strip |
+| voiceDistrictRain | आज या कल {names} में बारिश हो सकती है | rain may come today or tomorrow in {names} | voice only |
+| voiceDistrictDry | सागर संभाग के किसी भी ज़िले में आज बारिश नहीं होगी | no rain today in any district of the division | voice only |
+| voiceDistrictAnd | " और " | " and " | voice only |
+| voiceDistrictOthers | अन्य ज़िलों | other districts | voice only |
