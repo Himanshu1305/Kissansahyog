@@ -645,7 +645,7 @@ say "+ GET / -> '$HOME_MARKER' + the 10F hero markers, none of the removed 10D o
 say "+ curl -sI $SITE/ -> Content-Security-Policy img-src contains $PROD_IMG_HOST; its media-src contains data:   (17B CSP, unchanged)"
 say "+ GET the chunk(s) holding $LINK_MARKER (admin link) and $WX_MARKER (rain banner) -> 200 + marker   (17B regression, read-only)"
 say "+ GET chunk(s) calling '$OTP_MARKER' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live $SITE   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer"
-say "+ GET the AdminMorning chunk(s) -> 200 + $MORNING_MARKER + $VOICE_MARKER + $SHAREV_MARKER and NOT $OLDSHARE_MARKER; GET /sitemap.xml and /sitemap-pages.xml -> no $MORNING_ROUTE; GET $MORNING_ROUTE -> no admin content in the HTML; POST morning_post_voice_upsert {wrong secret} -> exactly $MORNING_FORBIDDEN   (read-only)"
+say "+ GET the AdminMorning chunk(s) -> 200 + $MORNING_MARKER + $VOICE_MARKER + $SHAREV_MARKER and NOT $OLDSHARE_MARKER; GET /sitemap.xml and /sitemap-pages.xml -> no $MORNING_ROUTE; GET $MORNING_ROUTE -> no admin content in the HTML; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)"
 say "== 7. on any failure: bash scripts/rollback-prod-17f.sh $BEFORE_ID"
 if [ "$DRY" = 1 ]; then
   say "+ (read-only check that the rollback path works)"
