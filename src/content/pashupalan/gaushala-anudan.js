@@ -29,7 +29,6 @@ export default {
     { v: { hi: '₹1,200 तक', en: 'Up to Rs 1,200' }, l: { hi: 'एक गाय पर 30 दिन के महीने में', en: 'for one cow in a 30-day month' }, src: { hi: 'हमारा हिसाब · ₹40 × 30', en: 'Our sum · Rs 40 × 30' }, f: ['F-C1'] },
   ],
   links: [
-    { id: 'mpdah', btn: { hi: 'पशुपालन विभाग की वेबसाइट खोलें', en: 'Open the animal husbandry department website' } },
   ],
   noLink: true,
   know: {

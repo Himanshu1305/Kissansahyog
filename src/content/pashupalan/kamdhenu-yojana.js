@@ -29,7 +29,6 @@ export default {
   ],
   links: [
     { id: 'dbaky', btn: { hi: 'कामधेनु पोर्टल खोलें', en: 'Open the Kamdhenu portal' } },
-    { id: 'mpdah', btn: { hi: 'पशुपालन विभाग की वेबसाइट', en: 'Animal husbandry department website' } },
   ],
   know: {
     yes: {
@@ -120,7 +119,6 @@ export default {
       items: [
         { hi: 'अपने ब्लॉक का पशु चिकित्सालय और ज़िला पशुपालन एवं डेयरी कार्यालय — पात्रता, यूनिट का आकार और दस्तावेज़ यहाँ से पूछें।', en: 'Your block veterinary hospital and the district Animal Husbandry and Dairying office — ask them about eligibility, unit size and documents.', f: ['GEN'] },
         { hi: 'जिस बैंक में लोन लेना चाहते हैं, उसकी शाखा — लोन की रकम, ब्याज और गारंटी की शर्तें बैंक बताएगा।', en: 'The branch of the bank where you want the loan — the bank will tell you the loan amount, interest and security conditions.', f: ['GEN'] },
-        { hi: 'विभाग की वेबसाइट {{link:mpdah}} भी देख सकते हैं।', en: 'You can also look at the department website {{link:mpdah}}.', f: ['F-G1'] },
         { hi: 'हमारे "उपयोगी संपर्क" पेज पर कृषि विभाग और हेल्पलाइन के नंबर हैं।', en: 'Our "Useful contacts" page has agriculture department and helpline numbers.', f: ['GEN'] },
       ],
     },

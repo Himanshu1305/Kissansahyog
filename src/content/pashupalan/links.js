@@ -9,12 +9,14 @@ export const LINKS = {
     label: { hi: 'dbaky.mp.gov.in', en: 'dbaky.mp.gov.in' },
     does: { hi: 'कामधेनु योजना का पोर्टल — डेयरी लोन का पंजीकरण व आवेदन', en: 'Kamdhenu scheme portal — sign-up and application for a dairy loan' },
   },
-  mpdah: {
-    id: 'mpdah', url: 'https://mpdah.gov.in', type: 'OFFICIAL', checkedOn: '2026-11-05', ok: false,
-    note: 'blocks automated checks (403); on 5 Nov 2026 the site certificate had expired, so a command-line client refuses it and a browser may show a warning. The architect opened it in a browser the same day',
-    label: { hi: 'mpdah.gov.in', en: 'mpdah.gov.in' },
-    does: { hi: 'मध्य प्रदेश के पशुपालन एवं डेयरी विभाग की वेबसाइट', en: 'Website of the Madhya Pradesh Animal Husbandry and Dairying department' },
-  },
+  // mpdah.gov.in is hidden from visitors: its security certificate has expired, so browsers show a warning.
+  // TODO: restore this entry (and the {{link:mpdah}} mentions / buttons / source it fed) once mpdah.gov.in has a valid certificate.
+  // mpdah: {
+  //   id: 'mpdah', url: 'https://mpdah.gov.in', type: 'OFFICIAL', checkedOn: '2026-11-05', ok: false,
+  //   note: 'blocks automated checks (403); on 5 Nov 2026 the site certificate had expired, so a command-line client refuses it and a browser may show a warning. The architect opened it in a browser the same day',
+  //   label: { hi: 'mpdah.gov.in', en: 'mpdah.gov.in' },
+  //   does: { hi: 'मध्य प्रदेश के पशुपालन एवं डेयरी विभाग की वेबसाइट', en: 'Website of the Madhya Pradesh Animal Husbandry and Dairying department' },
+  // },
   samast: {
     id: 'samast', url: 'https://samast.mponline.gov.in', type: 'OFFICIAL', checkedOn: '2026-11-05', ok: true,
     label: { hi: 'samast.mponline.gov.in', en: 'samast.mponline.gov.in' },

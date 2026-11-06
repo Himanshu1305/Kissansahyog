@@ -31,7 +31,6 @@ export default {
     { v: { hi: '₹10,800/वर्ष तक', en: 'Up to Rs 10,800/year' }, l: { hi: '₹900 को 12 महीनों से गुणा करने पर', en: 'Rs 900 multiplied by 12 months' }, src: { hi: 'हमारा हिसाब · 28 अक्टूबर की ख़बर पर', en: 'Our sum · from the 28 Oct reports' }, f: ['F-A8'] },
   ],
   links: [
-    { id: 'mpdah', btn: { hi: 'पशुपालन विभाग की वेबसाइट खोलें', en: 'Open the animal husbandry department website' } },
     { id: 'myscheme', btn: { hi: 'सरकारी योजनाएँ खोजने का पोर्टल', en: 'Portal to search government schemes' } },
   ],
   noLink: true,
@@ -109,7 +108,6 @@ export default {
       h: { hi: 'सही जानकारी कहाँ मिलेगी', en: 'Where correct information will appear' },
       items: [
         { hi: 'अपने ब्लॉक का पशु चिकित्सालय और ज़िला पशुपालन एवं डेयरी कार्यालय — नई जानकारी सबसे पहले यहीं पहुँचती है।', en: 'Your block veterinary hospital and the district Animal Husbandry and Dairying office — new information usually reaches them first.', f: ['GEN'] },
-        { hi: 'विभाग की वेबसाइट {{link:mpdah}} — 5 नवंबर 2026 को इस पर देसी गाय की कोई योजना सूचीबद्ध नहीं मिली।', en: 'The department website {{link:mpdah}} — on 5 November 2026 it listed no desi cow scheme.', f: ['F-G1'] },
         { hi: 'हमारे "उपयोगी संपर्क" पेज पर कृषि विभाग और हेल्पलाइन के नंबर।', en: 'Our "Useful contacts" page has agriculture department and helpline numbers.', f: ['GEN'] },
       ],
     },

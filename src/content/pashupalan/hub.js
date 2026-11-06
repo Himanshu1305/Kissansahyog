@@ -80,7 +80,6 @@ export default {
     h: { hi: 'सही जानकारी कहाँ से लें', en: 'Where to get correct information' },
     items: [
       { hi: 'ब्लॉक का पशु चिकित्सालय और ज़िला पशुपालन एवं डेयरी कार्यालय — नई योजना की जानकारी सबसे पहले यहीं पहुँचती है।', en: 'Your block veterinary hospital and district Animal Husbandry and Dairying office — news of a new scheme reaches them first.', f: ['GEN'] },
-      { hi: 'राज्य विभाग की वेबसाइट {{link:mpdah}}। 5 नवंबर 2026 को इस पर कोई योजना सूचीबद्ध नहीं थी, पर यह गौपालन बोर्ड, राज्य पशुधन एवं कुक्कुट विकास निगम और राज्य सहकारी डेयरी संघ से जोड़ती है।', en: 'The state department website {{link:mpdah}}. On 5 November 2026 it listed no scheme, but it links to the Gaupalan Board, the State Livestock and Poultry Development Corporation and the State Co-operative Dairy Federation.', f: ['F-G1'] },
       { hi: 'केंद्र की वेबसाइट {{link:dahd}}, और सरकारी योजनाएँ खोजने के लिए {{link:myscheme}}।', en: 'The central website {{link:dahd}}, and to search government schemes {{link:myscheme}}.', f: ['GEN'] },
       { hi: 'हमारे {{page:resources}} और {{page:sawaal}} पेज, जहाँ आप सीधे पूछ सकते हैं।', en: 'Our {{page:resources}} and {{page:sawaal}} pages, where you can ask directly.', f: ['GEN'] },
     ],
@@ -114,7 +113,6 @@ export default {
     { title: { hi: 'ईटीवी भारत मध्य प्रदेश', en: 'ETV Bharat Madhya Pradesh' }, url: 'https://www.etvbharat.com/hi/state/raise-desi-cow-get-grant-900rs-per-month-from-mp-govt-mohan-yadav-govt-plan-for-dairy-farmers-madhya-pradesh-mps26102801458', type: 'NEWS', date: '2026-10-28' },
     { title: { hi: 'डॉ. भीमराव अंबेडकर कामधेनु योजना पोर्टल', en: 'Dr Bhimrao Ambedkar Kamdhenu Yojana portal' }, url: 'https://dbaky.mp.gov.in', type: 'OFFICIAL', date: '2026-11-05' },
     { title: { hi: 'मिलेनियम पोस्ट', en: 'Millennium Post' }, url: 'https://www.millenniumpost.in/nation/mp-cabinet-nod-to-self-reliant-gaushalas-renames-livestock-scheme-after-ambedkar-605736', type: 'NEWS', date: '2025-04-08' },
-    { title: { hi: 'पशुपालन एवं डेयरी विभाग, मध्य प्रदेश', en: 'Animal Husbandry and Dairying Department, Madhya Pradesh' }, url: 'https://mpdah.gov.in', type: 'OFFICIAL', date: '2026-11-05' },
     { title: { hi: 'राष्ट्रीय सांख्यिकी कार्यालय — खेतिहर परिवारों का सर्वे 2019', en: 'National Statistical Office — Situation Assessment of Agricultural Households 2019' }, url: 'https://www.mospi.gov.in/sites/default/files/publication_reports/Report_587m_0.pdf', type: 'OFFICIAL', date: '2021-09' },
     { title: { hi: 'पीआईबी — बुनियादी पशुपालन आँकड़े 2025', en: 'PIB — Basic Animal Husbandry Statistics 2025' }, url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2195049&reg=3&lang=2', type: 'OFFICIAL', date: '2025-11-26' },
   ],
