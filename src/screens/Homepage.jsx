@@ -75,6 +75,7 @@ const OPEN_LINKS = [
   { to: '/yojana', labelKey: 'home_open_schemes' },
   { to: '/sawaal', labelKey: 'home_open_sawaal' },
   { to: '/cold-storage', labelKey: 'home_open_cold' },
+  { to: '/pashupalan', labelKey: 'home_open_pashu' },
   { to: '/kisan-mela', labelKey: 'home_open_mela' },
 ]
 

@@ -4,7 +4,7 @@
 //   /yojana/mp       → MP state-only (level='state')
 // Cards link to the individual scheme page /yojana/:slug (Phase 3).
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { Notice, Spinner } from '../components/ui'
 import { fetchYojanaByLevel, yojanaName, yojanaDesc, yojanaBenefit } from '../lib/community/communityApi'
@@ -60,6 +60,10 @@ export default function Yojana({ level = null }) {
     <PageShell width="wide" ready={rows !== null}>
       <div>
         <h1 className="text-[28px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{title}</h1>
+        {/* Batch 19: a way into the animal husbandry section from the scheme lists (/yojana and /yojana/mp). */}
+        {level !== 'central' && (
+          <Link to="/pashupalan" data-testid="yojana-pashupalan-link" className="mt-2 inline-flex min-h-[48px] items-center rounded-full px-4 text-[16px] font-bold" style={{ background: 'var(--ks-green-tint)', color: 'var(--ks-green-dark)', border: '1px solid var(--ks-green)' }}>{t('pashu_nav')} →</Link>
+        )}
       </div>
       {error && <Notice tone="error">{error}</Notice>}
       {rows === null ? <Spinner /> : (

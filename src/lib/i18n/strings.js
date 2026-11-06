@@ -2463,6 +2463,9 @@ export const strings = {
   home_open_sawaal: { hi: 'किसान सवाल', en: 'Farmer Q&A' },
   home_open_cold: { hi: 'कोल्ड स्टोरेज', en: 'Cold storage' },
   home_open_mela: { hi: 'मेले', en: 'Melas' },
+  // Batch 19: Pashupalan (animal husbandry) section links.
+  home_open_pashu: { hi: 'पशुपालन', en: 'Animal husbandry' },
+  pashu_nav: { hi: 'पशुपालन योजनाएँ', en: 'Animal husbandry schemes' },
   terms_updated: { hi: 'आख़िरी बदलाव: 12 अक्टूबर 2026 · संस्करण 1.2', en: 'Last updated: 12 October 2026 · Version 1.2' },
   terms_contents: { hi: 'विषय सूची', en: 'Contents' },
   post_declare_provider: { hi: 'मैं इसका असली प्रदाता हूँ और इसकी ज़िम्मेदारी मेरी है।', en: 'I am the genuine provider and I take responsibility for it.' },

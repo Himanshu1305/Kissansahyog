@@ -62,6 +62,15 @@ const Msp = lazy(() => import('./screens/Msp'))
 const FasalSalah = lazy(() => import('./screens/FasalSalah'))
 const KamPani = lazy(() => import('./screens/KamPani'))
 const AgroForestry = lazy(() => import('./screens/AgroForestry'))
+// Batch 19: the Pashupalan (animal husbandry) section - one lazy chunk per route, text included.
+const PashuHub = lazy(() => import('./screens/pashupalan/PashuHub'))
+const PashuDesiGay = lazy(() => import('./screens/pashupalan/DesiGay'))
+const PashuKamdhenu = lazy(() => import('./screens/pashupalan/Kamdhenu'))
+const PashuGaushala = lazy(() => import('./screens/pashupalan/Gaushala'))
+const PashuKcc = lazy(() => import('./screens/pashupalan/PashuKcc'))
+const PashuKendriya = lazy(() => import('./screens/pashupalan/KendriyaYojanayen'))
+const PashuNasle = lazy(() => import('./screens/pashupalan/DesiNasle'))
+const PashuIncome = lazy(() => import('./screens/pashupalan/PashuIncome'))
 const Credits = lazy(() => import('./screens/Credits'))
 const KisanMela = lazy(() => import('./screens/KisanMela'))
 const KisanMelaSubmit = lazy(() => import('./screens/KisanMelaSubmit'))
@@ -189,6 +198,14 @@ function AppRoutes() {
         <Route path="/fasal-salah" element={<FasalSalah />} />
         <Route path="/fasal-salah/kam-pani" element={<KamPani />} />
         <Route path="/agro-forestry" element={<AgroForestry />} />
+        <Route path="/pashupalan" element={<PashuHub />} />
+        <Route path="/pashupalan/desi-gay-anudan" element={<PashuDesiGay />} />
+        <Route path="/pashupalan/kamdhenu-yojana" element={<PashuKamdhenu />} />
+        <Route path="/pashupalan/gaushala-anudan" element={<PashuGaushala />} />
+        <Route path="/pashupalan/pashu-kisan-credit-card" element={<PashuKcc />} />
+        <Route path="/pashupalan/kendriya-yojanayen" element={<PashuKendriya />} />
+        <Route path="/pashupalan/desi-nasle" element={<PashuNasle />} />
+        <Route path="/pashupalan/pashupalan-se-kamai" element={<PashuIncome />} />
         {/* Static /msp before the dynamic /msp/:crop */}
         <Route path="/msp" element={<Msp />} />
         <Route path="/msp/:crop" element={<Msp />} />
