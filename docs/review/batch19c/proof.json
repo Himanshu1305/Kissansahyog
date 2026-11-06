@@ -1,0 +1,12 @@
+{
+ "batch": "19C",
+ "method": "PictureField rendered alone in a Vite page (admin needs login) at 360 and 1280 px, hi and en, states empty/uploading/success/error",
+ "shots": 16,
+ "buttonMinHeightPx": 56,
+ "buttonFontPx": 17,
+ "hintFontPx": 14,
+ "noHorizontalScroll": true,
+ "noConsoleErrors": true,
+ "keyboardFocusRing": true,
+ "allChecksPass": true
+}

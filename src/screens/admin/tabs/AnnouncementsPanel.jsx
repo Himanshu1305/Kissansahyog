@@ -38,19 +38,53 @@ export function formToPayload(f) {
 
 function Counter({ v, max }) { return <span className={`text-xs ${v.length > max ? 'text-red-700 font-bold' : 'text-stone-500'}`}>{v.length}/{max}</span> }
 
+const IconPic = () => <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" className="shrink-0"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" strokeWidth="2" /></svg>
+const IconOk = () => <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" className="shrink-0"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" /></svg>
+
+// Batch 19-C: the optional picture field - a big green button instead of the bare browser file input. Stateless, so it can be tested alone.
+export function PictureField({ t, imageUrl, busy, error, onPick, onRemove }) {
+  return (
+    <div className="mb-3" data-testid="ann-picture-field">
+      <p className="mb-1 text-base font-semibold text-stone-800">{t('adm_ann_image')}</p>
+      <input id="ann-image" data-testid="ann-image" type="file" accept="image/jpeg,image/png,image/webp" onChange={onPick} disabled={busy} className="peer sr-only" />
+      <label htmlFor="ann-image" data-testid="ann-image-button" aria-disabled={busy ? 'true' : undefined}
+        className={`flex min-h-[56px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl px-4 text-[17px] font-bold text-white peer-focus-visible:ring-4 peer-focus-visible:ring-amber-400 peer-focus-visible:ring-offset-2 ${busy ? 'opacity-60' : ''}`}
+        style={{ background: 'var(--ks-green-dark)' }}>
+        <IconPic />
+        <span aria-live="polite">{busy ? t('adm_ann_image_uploading') : t(imageUrl ? 'adm_ann_image_change' : 'adm_ann_image_choose')}</span>
+      </label>
+      {error && <p role="alert" data-testid="ann-image-error" className="mt-2 rounded-lg border-2 border-red-300 bg-red-50 p-2 text-base font-semibold text-red-800">{error}</p>}
+      {imageUrl && !busy && (
+        <div className="mt-2 flex items-center gap-3" data-testid="ann-image-ok">
+          <img src={imageUrl} alt="" width="96" height="96" data-testid="ann-image-thumb" className="h-24 w-24 shrink-0 rounded-xl border border-stone-300 object-cover" />
+          <div className="min-w-0">
+            <p className="mb-1 flex items-center gap-1 text-base font-bold text-green-800"><IconOk /><span>{t('adm_ann_image_added')}</span></p>
+            <button type="button" data-testid="ann-image-remove" className={btnPlain} onClick={onRemove}>{t('adm_ann_image_remove')}</button>
+          </div>
+        </div>
+      )}
+      <p className="mt-2 text-[14px] text-stone-800" data-testid="ann-image-hint">{t('adm_ann_image_hint')}</p>
+    </div>
+  )
+}
+
+export const AltMark = ({ t, on }) => <span className={`text-sm ${on ? 'font-bold text-red-700' : 'font-normal text-stone-600'}`} data-testid={on ? 'ann-alt-required' : 'ann-alt-optional'}>{t(on ? 'adm_ann_alt_required' : 'adm_ann_alt_optional')}</span>
+
 function AnnouncementForm({ t, initial, onCancel, onSave, lang }) {
   const [f, setF] = useState(initial)
   const [err, setErr] = useState(null)
   const [msg, setMsg] = useState(null)
   const [busy, setBusy] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const [picMsg, setPicMsg] = useState(null)
   const set = (k) => (e) => setF((x) => ({ ...x, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }))
   const preview = { ...f, id: 'preview', start_at: istInputToIso(f.start_local), end_at: istInputToIso(f.end_local) }
 
   const pick = async (e) => {
     const file = e.target.files?.[0]
     if (!file) return
-    setBusy(true); setMsg(null)
-    try { const url = await uploadAnnouncementImage(file); setF((x) => ({ ...x, image_url: url })) } catch (er) { setMsg(t(er.i18nKey || 'err_unknown')) } finally { setBusy(false); e.target.value = '' }
+    setUploading(true); setPicMsg(null); setMsg(null)
+    try { const url = await uploadAnnouncementImage(file); setF((x) => ({ ...x, image_url: url })) } catch (er) { setPicMsg(t(er.i18nKey || 'err_unknown')) } finally { setUploading(false); e.target.value = '' }
   }
   const save = async () => {
     const r = formToPayload(f)
@@ -69,16 +103,10 @@ function AnnouncementForm({ t, initial, onCancel, onSave, lang }) {
         <Field label={<>{t('adm_ann_small_hi')} <Counter v={f.small_hi} max={LIMITS.small} /></>} htmlFor="ann-small-hi"><TextInput id="ann-small-hi" maxLength={LIMITS.small} value={f.small_hi} onChange={set('small_hi')} /></Field>
         <Field label={<>{t('adm_ann_small_en')} <Counter v={f.small_en} max={LIMITS.small} /></>} htmlFor="ann-small-en"><TextInput id="ann-small-en" maxLength={LIMITS.small} value={f.small_en} onChange={set('small_en')} /></Field>
       </div>
-      <Field label={t('adm_ann_image')} htmlFor="ann-image" hint={t('adm_ann_image_hint')}>
-        <input id="ann-image" data-testid="ann-image" type="file" accept="image/jpeg,image/png,image/webp" onChange={pick} className="block min-h-[48px] w-full" />
-      </Field>
-      {f.image_url && (
-        <div className="mb-2 flex items-center gap-2"><img src={f.image_url} alt="" width="56" height="56" className="h-14 w-14 rounded-lg object-cover" />
-          <button type="button" className={btnPlain} onClick={() => setF((x) => ({ ...x, image_url: '' }))}>{t('adm_ann_image_remove')}</button></div>
-      )}
+      <PictureField t={t} imageUrl={f.image_url} busy={uploading} error={picMsg} onPick={pick} onRemove={() => setF((x) => ({ ...x, image_url: '' }))} />
       <div className={row}>
-        <Field label={t('adm_ann_alt_hi')} htmlFor="ann-alt-hi"><TextInput id="ann-alt-hi" data-testid="ann-alt-hi" maxLength={LIMITS.alt} value={f.image_alt_hi} onChange={set('image_alt_hi')} /></Field>
-        <Field label={t('adm_ann_alt_en')} htmlFor="ann-alt-en"><TextInput id="ann-alt-en" data-testid="ann-alt-en" maxLength={LIMITS.alt} value={f.image_alt_en} onChange={set('image_alt_en')} /></Field>
+        <Field label={<>{t('adm_ann_alt_hi')} <AltMark t={t} on={!!f.image_url} /></>} htmlFor="ann-alt-hi"><TextInput id="ann-alt-hi" data-testid="ann-alt-hi" maxLength={LIMITS.alt} value={f.image_alt_hi} onChange={set('image_alt_hi')} /></Field>
+        <Field label={<>{t('adm_ann_alt_en')} <AltMark t={t} on={!!f.image_url} /></>} htmlFor="ann-alt-en"><TextInput id="ann-alt-en" data-testid="ann-alt-en" maxLength={LIMITS.alt} value={f.image_alt_en} onChange={set('image_alt_en')} /></Field>
         <Field label={t('adm_ann_link')} htmlFor="ann-link" hint={t('adm_ann_link_hint')}><TextInput id="ann-link" data-testid="ann-link" value={f.link_url} onChange={set('link_url')} placeholder="/msp" /></Field>
         <div className={row}>
           <Field label={t('adm_ann_label_hi')} htmlFor="ann-label-hi"><TextInput id="ann-label-hi" maxLength={LIMITS.label} value={f.link_label_hi} onChange={set('link_label_hi')} /></Field>
