@@ -1,0 +1,97 @@
+// Batch 20 - strings of Kissan Mitra (the sign-up field and the admin panel). Hindi first, English second; every entry has both
+// (tests/unit/mitra-20-strings.test.mjs checks this). Spelling: Hindi किसान मित्र, English Kissan Mitra. Merged into strings.js.
+// {x} marks a value filled in by the screen (lib/mitra/mitraRules.js fill()).
+export const mitraStrings = {
+  // sign-up form
+  mitra_field_label: { hi: 'आपको किसने जोड़ा? (किसान मित्र)', en: 'Who helped you join? (Kissan Mitra)' },
+  mitra_none: { hi: 'कोई नहीं / None', en: 'None' },
+
+  // admin panel: names and search
+  adm_p_mitra: { hi: 'किसान मित्र', en: 'Kissan Mitra' },
+  mitra_pay_outside: { hi: 'भुगतान सिर्फ़ साइट के बाहर करें (UPI/नकद); यहाँ सिर्फ़ रिकॉर्ड रखा जाता है।', en: 'Pay outside the site (UPI or cash); this screen only keeps the record.' },
+
+  // top strip
+  mitra_sum_mitras: { hi: 'किसान मित्र', en: 'Mitras' },
+  mitra_sum_attributed: { hi: 'जुड़े रजिस्ट्रेशन', en: 'Registrations attributed' },
+  mitra_sum_unpaid: { hi: 'गिने गए, भुगतान बाकी', en: 'Counted, unpaid' },
+  mitra_sum_unattributed: { hi: 'बिना मित्र (शुरू होने के बाद)', en: 'No Mitra (since launch)' },
+  mitra_add: { hi: '+ नया किसान मित्र जोड़ें', en: '+ Add a Kissan Mitra' },
+  mitra_csv: { hi: 'CSV डाउनलोड करें', en: 'Download CSV' },
+  mitra_empty: { hi: 'अभी कोई किसान मित्र नहीं जोड़ा गया।', en: 'No Kissan Mitra added yet.' },
+  mitra_retry: { hi: 'फिर कोशिश करें', en: 'Try again' },
+
+  // a Mitra card
+  mitra_active: { hi: 'चालू', en: 'Active' },
+  mitra_inactive: { hi: 'बंद', en: 'Inactive' },
+  mitra_switch_label: { hi: 'चालू / बंद', en: 'Active / off' },
+  mitra_c_today: { hi: 'आज', en: 'Today' },
+  mitra_c_last7: { hi: 'पिछले 7 दिन', en: 'Last 7 days' },
+  mitra_c_farmers: { hi: 'कुल किसान', en: 'Total farmers' },
+  mitra_c_businesses: { hi: 'कुल व्यापार', en: 'Total businesses' },
+  mitra_c_unpaid_f: { hi: 'किसान, भुगतान बाकी', en: 'Farmers unpaid' },
+  mitra_c_unpaid_b: { hi: 'व्यापार, भुगतान बाकी', en: 'Businesses unpaid' },
+  mitra_c_due: { hi: 'देय राशि', en: 'Amount due' },
+  mitra_c_paid_total: { hi: 'अब तक दिया', en: 'Paid so far' },
+  mitra_rate_not_set: { hi: 'दर तय नहीं / rate not set', en: 'rate not set / दर तय नहीं' },
+  mitra_btn_edit: { hi: 'बदलें', en: 'Edit' },
+  mitra_btn_regs: { hi: 'रजिस्ट्रेशन देखें', en: 'View registrations' },
+  mitra_btn_pay: { hi: 'भुगतान दर्ज करें', en: 'Mark paid' },
+  mitra_btn_payments: { hi: 'भुगतान इतिहास', en: 'Payments' },
+
+  // add / edit form
+  mitra_form_add: { hi: 'नया किसान मित्र', en: 'New Kissan Mitra' },
+  mitra_form_edit: { hi: 'किसान मित्र की जानकारी बदलें', en: 'Edit Kissan Mitra' },
+  mitra_f_name: { hi: 'नाम', en: 'Name' },
+  mitra_f_area: { hi: 'इलाका (गाँव या ब्लॉक)', en: 'Area (village or block)' },
+  mitra_f_phone: { hi: 'निजी फ़ोन (वैकल्पिक) — सिर्फ़ एडमिन को दिखेगा', en: 'Private phone (optional) — admin only' },
+  mitra_f_rate_farmer: { hi: 'हर किसान रजिस्ट्रेशन की दर (₹, वैकल्पिक)', en: 'Rate per farmer registration (Rs, optional)' },
+  mitra_f_rate_business: { hi: 'हर व्यापार रजिस्ट्रेशन की दर (₹, वैकल्पिक)', en: 'Rate per business registration (Rs, optional)' },
+  mitra_f_active: { hi: 'चालू (साइन-अप के ड्रॉपडाउन में दिखे)', en: 'Active (shown in the sign-up dropdown)' },
+  mitra_save: { hi: 'सहेजें', en: 'Save' },
+  mitra_saved: { hi: 'सहेज लिया गया।', en: 'Saved.' },
+  mitra_back: { hi: 'वापस सूची में', en: 'Back to the list' },
+  mitra_err_name: { hi: 'नाम लिखना ज़रूरी है।', en: 'Please write a name.' },
+  mitra_err_long: { hi: 'नाम या इलाका 80 अक्षर से छोटा रखें।', en: 'Keep the name and area under 80 characters.' },
+  mitra_err_phone: { hi: 'फ़ोन में सिर्फ़ अंक, + और खाली जगह हो सकती है (20 तक)।', en: 'The phone can only have digits, + and spaces (up to 20).' },
+  mitra_err_rate: { hi: 'दर 0 से 100000 के बीच पूरा अंक हो, या खाली छोड़ें।', en: 'The rate must be a whole number from 0 to 100000, or empty.' },
+  err_mitra_invalid: { hi: 'कृपया जानकारी जाँचें।', en: 'Please check the details.' },
+  err_mitra_duplicate: { hi: 'इसी नाम और इलाके का किसान मित्र पहले से है।', en: 'A Kissan Mitra with this name and area already exists.' },
+  err_mitra_already_paid: { hi: 'इसका भुगतान हो चुका है, इसे दूसरे मित्र में नहीं डाल सकते।', en: 'This one is already paid, so it cannot be moved.' },
+  err_mitra_nothing_unpaid: { hi: 'कोई गिना हुआ रजिस्ट्रेशन भुगतान के लिए बाकी नहीं है।', en: 'There is no counted registration left to pay.' },
+
+  // registrations view
+  mitra_regs_title: { hi: '{name} — रजिस्ट्रेशन', en: '{name} — registrations' },
+  mitra_regs_none: { hi: 'अभी कोई रजिस्ट्रेशन नहीं।', en: 'No registrations yet.' },
+  mitra_regs_count: { hi: 'कुल {n}', en: 'Total {n}' },
+  mitra_kind_farmer: { hi: 'किसान', en: 'Farmer' },
+  mitra_kind_business: { hi: 'व्यापार', en: 'Business' },
+  mitra_reg_paid: { hi: 'भुगतान हुआ', en: 'Paid' },
+  mitra_reg_unpaid: { hi: 'भुगतान बाकी', en: 'Unpaid' },
+  mitra_reg_blocked: { hi: 'खाता रोका गया — गिनती में नहीं', en: 'Account blocked — not counted' },
+  mitra_same_note: { hi: 'इसी नाम और गाँव का एक और किसान है', en: 'Same name and village as another farmer' },
+  mitra_move: { hi: 'दूसरे मित्र / कोई नहीं में डालें', en: 'Move to another Mitra / none' },
+  mitra_move_title: { hi: 'रजिस्ट्रेशन को किसमें डालें?', en: 'Move this registration to' },
+  mitra_move_none: { hi: 'कोई नहीं (गिनती से हटेगा)', en: 'None (removed from the count)' },
+  mitra_move_confirm: { hi: 'यहाँ डालें', en: 'Move here' },
+  mitra_moved: { hi: 'रजिस्ट्रेशन दूसरी जगह डाल दिया गया।', en: 'The registration was moved.' },
+  mitra_prev: { hi: 'पिछला', en: 'Previous' },
+  mitra_next: { hi: 'अगला', en: 'Next' },
+  mitra_page: { hi: 'पन्ना {a} / {b}', en: 'Page {a} of {b}' },
+
+  // mark paid and ledger
+  mitra_pay_title: { hi: 'भुगतान दर्ज करें — {name}', en: 'Mark paid — {name}' },
+  mitra_pay_counts: { hi: '{f} किसान + {b} व्यापार गिने गए, भुगतान बाकी', en: '{f} farmers + {b} businesses counted and unpaid' },
+  mitra_pay_suggest: { hi: 'सुझाई गई राशि: ₹{a}', en: 'Suggested amount: Rs {a}' },
+  mitra_pay_suggest_unset: { hi: 'दर तय नहीं — राशि खुद लिखें।', en: 'Rate not set — type the amount yourself.' },
+  mitra_pay_amount: { hi: 'राशि (₹)', en: 'Amount (Rs)' },
+  mitra_pay_date: { hi: 'भुगतान की तारीख़', en: 'Date paid' },
+  mitra_pay_note: { hi: 'नोट (वैकल्पिक)', en: 'Note (optional)' },
+  mitra_pay_confirm: { hi: '{n} रजिस्ट्रेशन का ₹{a} भुगतान दर्ज करें', en: 'Record Rs {a} paid for {n} registrations' },
+  mitra_pay_nothing: { hi: 'अभी कोई भुगतान बाकी नहीं।', en: 'Nothing is unpaid right now.' },
+  mitra_pay_err_amount: { hi: 'राशि पूरा अंक होनी चाहिए (0 या ज़्यादा)।', en: 'The amount must be a whole number (0 or more).' },
+  mitra_pay_done: { hi: 'भुगतान दर्ज हो गया।', en: 'Payment recorded.' },
+  mitra_ledger_title: { hi: 'भुगतान इतिहास — {name}', en: 'Payments — {name}' },
+  mitra_ledger_none: { hi: 'अभी कोई भुगतान दर्ज नहीं।', en: 'No payment recorded yet.' },
+  mitra_ledger_row: { hi: '{d}: ₹{a} — {f} किसान, {b} व्यापार', en: '{d}: Rs {a} — {f} farmers, {b} businesses' },
+  mitra_close: { hi: 'बंद करें', en: 'Close' },
+}

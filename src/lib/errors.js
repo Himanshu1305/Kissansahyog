@@ -103,6 +103,11 @@ const CODE_TO_KEY = {
   confirm_required: 'err_admin_confirm',
   reason_required: 'err_admin_reason',
   invalid_key: 'err_admin_invalid',
+  // Batch 20 - Kissan Mitra
+  invalid_input: 'err_mitra_invalid',
+  mitra_duplicate: 'err_mitra_duplicate',
+  already_paid: 'err_mitra_already_paid',
+  nothing_unpaid: 'err_mitra_nothing_unpaid',
 }
 
 export class AppError extends Error {

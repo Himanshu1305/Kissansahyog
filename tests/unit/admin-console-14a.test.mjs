@@ -144,7 +144,7 @@ test('every panel belongs to a real tab; search finds panels by Hindi and Englis
   assert.deepEqual(searchPanels('', names), [])
   assert.deepEqual(searchPanels('zzzzzz', names), [])
   assert.equal(tabOf('smsusage'), 'security')
-  assert.equal(PANELS.length, 31)
+  assert.equal(PANELS.length, 32) // Batch 20 added the Kissan Mitra panel (was 31)
 })
 
 test('environment badge comes from the build mode (no project address in the bundle)', () => {

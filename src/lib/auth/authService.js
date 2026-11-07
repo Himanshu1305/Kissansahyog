@@ -22,6 +22,11 @@ import { supabase, supabaseAuth } from '../supabaseClient'
 import { AppError, toAppError } from '../errors'
 import { apiUrl } from '../apiBase'
 import { getSessionToken, setSessionToken, SESSION_HEADER } from './sessionToken'
+import { saveMyMitra } from '../mitra/saveMyMitra'
+
+// Batch 20 - after a registration succeeded (a session is stored), save the Kissan Mitra the person chose, once, best effort
+// (see lib/mitra/saveMyMitra.js). Runs next to applyKisan so neither delays the other. The registration functions are not touched.
+const applyMitra = (profile, mitraId) => saveMyMitra((name, args) => supabase.rpc(name, args), profile?.id, mitraId)
 
 const SESSION_KEY = 'ks_session_v1'
 
@@ -239,7 +244,8 @@ export async function verifyPhoneOtp(challenge, code) {
     if (!data?.profile?.id) throw new AppError('unknown')
     supabaseAuth.auth.signOut().catch(() => {})
     storeSession(data.profile, data.session_token || null)
-    return { step: 'done', profile: storeSession(await applyKisan(data.profile, p.kisan)) }
+    const [withKisan] = await Promise.all([applyKisan(data.profile, p.kisan), applyMitra(data.profile, p.mitra_id)])
+    return { step: 'done', profile: storeSession(withKisan) }
   }
   const { data, error } = await supabase.rpc('app_login_otp', { p_phone: challenge.phone, p_ticket: ticket })
   if (error) throw toAppError(error)
@@ -413,7 +419,8 @@ export async function registerPhone(payload) {
   // Supabase Auth underneath the new phone-only session.
   supabaseAuth.auth.signOut().catch(() => {})
   storeSession(profile, null)
-  return storeSession(await applyKisan(profile, payload.kisan))
+  const [withKisan] = await Promise.all([applyKisan(profile, payload.kisan), applyMitra(profile, payload.mitra_id)])
+  return storeSession(withKisan)
 }
 
 // Batch 11A — sign-up with name + mobile: today's registerPhone when OTP is off ({ step: 'done', profile }),
