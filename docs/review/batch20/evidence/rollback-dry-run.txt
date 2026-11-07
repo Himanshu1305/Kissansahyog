@@ -1,0 +1,6 @@
+*** DRY RUN — nothing will be changed ***
+
+==================================================================
+ROLLBACK STOPPED: no recorded deployment id: give the long id of the Batch 19 deployment (npx wrangler pages deployment list --project-name kissansahyog-prod)
+==================================================================
+exit 1

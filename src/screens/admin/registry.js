@@ -32,6 +32,7 @@ export const PANELS = [
   { key: 'melamerges', tab: 'moderation', label: 'adm_p_melamerges', keys: 'mela merges duplicate split विलय' },
   { key: 'userstatus', tab: 'people', label: 'adm_p_userstatus', keys: 'users block unblock suspend ban role admin editor उपयोगकर्ता रोकें खाता' },
   { key: 'users', tab: 'people', label: 'adm_p_users', keys: 'users contact phone email list उपयोगकर्ता संपर्क' },
+  { key: 'mitra', tab: 'people', label: 'adm_p_mitra', keys: 'mitra mitr field agent किसान मित्र एजेंट' },
   { key: 'farmers', tab: 'people', label: 'adm_p_farmers', keys: 'farmer profiles land crops किसान प्रोफाइल' },
   { key: 'vendors', tab: 'people', label: 'adm_p_vendors', keys: 'vendor report vendors dealers व्यापारी' },
   { key: 'whatsapp', tab: 'people', label: 'adm_p_whatsapp', keys: 'whatsapp channel opt-in post today व्हाट्सऐप चैनल आज की पोस्ट' },

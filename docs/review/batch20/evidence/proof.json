@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "signup-field-shown-phone360": true,
+    "chosen-mitra-saved-once-no-otp": true,
+    "none-never-calls-set_my_mitra": true,
+    "chosen-mitra-travels-through-otp": true,
+    "empty-list-hides-field": true,
+    "failed-list-hides-field": true,
+    "set_my_mitra-failure-does-not-break-registration": true,
+    "admin-list-renders": true,
+    "admin-add-edit-switch": true,
+    "admin-registrations-move": true,
+    "admin-mark-paid-ledger-csv": true,
+    "admin-search-finds-panel": true,
+    "signup-field-shown-desktop1280": true
+  },
+  "screenshots": [
+    "docs/review/batch20/evidence/signup-hi-phone360.png",
+    "docs/review/batch20/evidence/signup-en-phone360.png",
+    "docs/review/batch20/evidence/admin-list-hi-phone360.png",
+    "docs/review/batch20/evidence/admin-list-en-phone360.png",
+    "docs/review/batch20/evidence/admin-form-en-phone360.png",
+    "docs/review/batch20/evidence/admin-registrations-en-phone360.png",
+    "docs/review/batch20/evidence/admin-markpaid-en-phone360.png",
+    "docs/review/batch20/evidence/admin-markpaid-hi-phone360.png",
+    "docs/review/batch20/evidence/admin-registrations-hi-phone360.png",
+    "docs/review/batch20/evidence/signup-hi-desktop1280.png",
+    "docs/review/batch20/evidence/signup-en-desktop1280.png",
+    "docs/review/batch20/evidence/admin-list-hi-desktop1280.png",
+    "docs/review/batch20/evidence/admin-list-en-desktop1280.png",
+    "docs/review/batch20/evidence/admin-markpaid-hi-desktop1280.png",
+    "docs/review/batch20/evidence/admin-registrations-hi-desktop1280.png"
+  ]
+}

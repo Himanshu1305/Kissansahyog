@@ -6,6 +6,7 @@
 // all times (see src/lib/i18n/disclaimers.js) regardless of selected language.
 
 import { adminStrings } from './adminStrings.js'
+import { mitraStrings } from './mitraStrings.js'
 import { morningStrings } from './morningStrings.js'
 import { installStrings } from './installStrings.js'
 
@@ -2741,4 +2742,6 @@ export const strings = {
   // --- Batch 16B: /admin/morning ---
   ...morningStrings,
   ...installStrings,
+  // --- Batch 20: Kissan Mitra ---
+  ...mitraStrings,
 }

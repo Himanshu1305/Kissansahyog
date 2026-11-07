@@ -8,6 +8,7 @@ import { Screen, Field, TextInput, BigButton, Notice, Spinner } from '../compone
 import DisclaimerBanner from '../components/DisclaimerBanner'
 import OtpStep from '../components/auth/OtpStep'
 import PlaceField from '../components/location/PlaceField'
+import MitraField from '../components/auth/MitraField'
 import GuideHelpButton from '../features/guide/GuideHelpButton.jsx'
 
 // Batch 10A Task E — ONE short page: name, mobile, village/town, one "show my details"
@@ -36,6 +37,8 @@ export default function Signup() {
   // "Show my details" is the recommended choice and starts ticked.
   const [showDetails, setShowDetails] = useState(true)
   const [accepted, setAccepted] = useState(false)
+  // Batch 20: the optional Kissan Mitra choice ('' = None). Kept only in this state and in the registration payload.
+  const [mitraId, setMitraId] = useState('')
   const [fieldErrors, setFieldErrors] = useState({})
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
@@ -70,7 +73,7 @@ export default function Signup() {
     try {
       const res = await startPhoneRegister({
         full_name: form.full_name, phone: form.phone,
-        place, language: lang, disclaimer_accepted: true, show_details: showDetails, kisan: { ...EMPTY_KISAN },
+        place, language: lang, disclaimer_accepted: true, show_details: showDetails, kisan: { ...EMPTY_KISAN }, mitra_id: mitraId || null,
       })
       if (res.step === 'otp') { setChallenge(res.challenge); window.scrollTo?.(0, 0) } else navigate(next, { replace: true })
     } catch (err) {
@@ -119,6 +122,8 @@ export default function Signup() {
         </Field>
 
         <PlaceField id="village_town" value={place} onChange={(p) => { setPlace(p); clearErr('place') }} error={fieldErrors.place} />
+
+        <MitraField value={mitraId} onChange={setMitraId} />
 
         {/* Visibility — one line + checkbox (ticked = show, the recommended choice). */}
         <div data-testid="visibility-choice" data-choice={showDetails ? 'show' : 'hidden'} className="mt-3">

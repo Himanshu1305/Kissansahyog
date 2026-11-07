@@ -1,0 +1,23 @@
+*** DRY RUN — nothing will be built, deployed, rolled back or written (except the read-only snapshot file, if missing) ***
+== G. first gate: Batch 19 (ship-19) is live (tag ship-19 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-19 -> 051bdca
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 19 (ship-19) is on origin
+== 0. preconditions
++ git branch --show-current -> release-20
++ git status --porcelain --untracked-files=no  (allowed to be dirty: public/search-index.json, docs/review/**)
+WARNING (pending — a real run would STOP here): modified tracked files would change what ships (commit them first):
+src/lib/auth/authService.js
+src/lib/errors.js
+src/lib/i18n/strings.js
+src/screens/Signup.jsx
+src/screens/admin/registry.js
+src/screens/admin/tabs/PeopleTab.jsx
+WARNING (pending — a real run would STOP here): tag ship-20 missing (to be created on the final HEAD and pushed: git tag ship-20 && git push origin ship-20)
++ HEAD 66f1bac  origin/release-20 
+WARNING (pending — a real run would STOP here): HEAD is not what origin/release-20 has (push it first, or pull) — prod must ship a pushed commit
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: .env.production missing (the prod build needs it)
+##################################################################
+exit 1
