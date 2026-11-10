@@ -28,8 +28,9 @@
       "meaning_hi": "खेती सबसे अच्छा काम, व्यापार बीच का, नौकरी उससे नीचे, भीख आख़िरी सहारा।",
       "when_hi": "कभी भी",
       "source_name": "हिंदी विकिपीडिया (घाघ)",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k02",
@@ -37,8 +38,9 @@
       "meaning_hi": "खाद डालोगे तो खेत काम आएगा, वरना वह केवल रेत है।",
       "when_hi": "खाद की बात पर",
       "source_name": "हिंदी विकिपीडिया (घाघ)",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k03",
@@ -46,8 +48,9 @@
       "meaning_hi": "गोबर की खाद, कम्पोस्ट और नीम की खली से फसल दुगनी होती है।",
       "when_hi": "खाद की बात पर",
       "source_name": "हिंदी विकिपीडिया (घाघ)",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k04",
@@ -55,8 +58,9 @@
       "meaning_hi": "जब ढेले टूटकर पाटा खटखटाता है, तब चने की फसल अच्छी होती है।",
       "when_hi": "चने की बात पर",
       "source_name": "India Water Portal",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k05",
@@ -64,8 +68,9 @@
       "meaning_hi": "छप्पर छाने में चार लोग लगते हैं, खेत की निराई में छह।",
       "when_hi": "निराई की बात पर",
       "source_name": "हिन्द्वी (घाघ)",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k06",
@@ -83,8 +88,9 @@
       "meaning_hi": "समय निकल जाने के बाद पछताने से कोई फ़ायदा नहीं।",
       "when_hi": "कभी भी",
       "source_name": "प्रचलित कहावत",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k08",
@@ -92,8 +98,9 @@
       "meaning_hi": "जैसा काम करोगे, वैसा ही फल मिलेगा।",
       "when_hi": "कभी भी",
       "source_name": "प्रचलित कहावत",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k09",
@@ -101,8 +108,9 @@
       "meaning_hi": "जो बीज और मेहनत लगाओगे, वही फसल मिलेगी।",
       "when_hi": "कभी भी",
       "source_name": "प्रचलित कहावत",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k10",
@@ -110,8 +118,9 @@
       "meaning_hi": "थोड़ा-थोड़ा जमा करने से बड़ी चीज़ बन जाती है।",
       "when_hi": "कभी भी",
       "source_name": "प्रचलित कहावत",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k11",
@@ -119,8 +128,9 @@
       "meaning_hi": "मिलकर काम करने से ताक़त कई गुना बढ़ जाती है।",
       "when_hi": "कभी भी",
       "source_name": "प्रचलित कहावत",
-      "reviewed": false,
-      "wording_checked": false
+      "reviewed": true,
+      "wording_checked": true,
+      "approved_by": "founder, 2026-11-10"
     },
     {
       "id": "k12",
@@ -128,9 +138,10 @@
       "meaning_hi": "हाथ में आया थोड़ा नकद, उधार के ज़्यादा से बेहतर माना जाता है।",
       "when_hi": "कभी भी",
       "source_name": "प्रचलित कहावत",
-      "reviewed": false,
-      "wording_checked": false,
-      "note": "reviewer to decide: may read as advice"
+      "reviewed": true,
+      "wording_checked": true,
+      "note": "reviewer to decide: may read as advice",
+      "approved_by": "founder, 2026-11-10"
     }
   ]
 }

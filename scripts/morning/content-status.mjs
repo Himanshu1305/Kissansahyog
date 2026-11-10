@@ -42,7 +42,7 @@ export async function statusRows({ from, days, data = loadData(), env = process.
     if (draft.taskSource && draft.taskSource !== live.taskSource) task += ` [BLOCKED (unreviewed): ${draft.taskSource}]`
     const ls = live.model.slot, ds = draft.model.slot
     let slot = ls ? ls.kind : 'none'
-    if (ds && (!ls || ds.kind !== ls.kind)) slot = `${ls ? ls.kind : 'none'} [BLOCKED (unreviewed: ${ds.usedUnreviewed.join(', ') || '-'}): ${ds.kind}]`
+    if (ds && ds.usedUnreviewed.length && (!ls || ds.kind !== ls.kind)) slot = `${ls ? ls.kind : 'none'} [BLOCKED (unreviewed: ${ds.usedUnreviewed.join(', ') || '-'}): ${ds.kind}]`
     rows.push({ date, weekday: S.weekdays[new Date(`${date}T00:00:00Z`).getUTCDay()], task, slot })
   }
   return rows
