@@ -1,3 +1,4 @@
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 17B Defect C - one rain verdict for /mausam and the morning post. Fixtures F1-F6 (scripts/morning/fixtures/rain-*.json).
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -17,7 +18,7 @@ import { buildVoiceScript, isSpeakable, VOICE_TARGET, VOICE_HARD_MAX } from '../
 import { S } from '../../scripts/morning/strings.hi.js'
 import { findRepeats, assertNoRepeats } from './helpers/repeatedWords.mjs'
 
-const DATA = loadData()
+const DATA = loadData(OLD_DATA_DIR)
 const en = (k) => strings[k].en
 const hi = (k) => strings[k].hi
 const names = rainFixtureNames()

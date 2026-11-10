@@ -1,0 +1,77 @@
+{
+  "crop": "wheat",
+  "crop_hi": "गेहूं",
+  "season": "rabi-2026-27",
+  "_note": "Batch 21B. The 'आज का काम' line says what comes AFTER sowing. Main sowing in Sagar was mostly finished by 7 Nov 2026 (founder, from farmers). For each calendar day D and each stage, the sowers whose stage is due are those sown between D-das_to and D-das_from, clipped to sowing_dates; the line is built from that arithmetic (nothing is typed per day). Stages are the irrigation lines: they are hidden whenever the 48-hour rain level is light or higher and rain_hold is shown instead. static lines are shown every 3rd day while a stage is due, and on days when none is due; rain never hides them. Everything is seeded reviewed:false: nothing shows live until a person flips it (--draft shows it with the WARNING).",
+  "sowing_dates": {
+    "from": "2026-10-20",
+    "to": "2027-01-05",
+    "basis": "main sowing by 7 Nov 2026 per founder/farmer feedback; late sowing to 5 Jan per Krishisewa; KVK Sagar to confirm",
+    "reviewed": true,
+    "approved_by": "founder, 2026-11-10"
+  },
+  "stages": [
+    {
+      "id": "irr1",
+      "label_hi": "पहली सिंचाई",
+      "das_from": 20,
+      "das_to": 25,
+      "source_name": "Krishisewa (KVK Sagar to confirm)",
+      "source_url": "https://krishisewa.com/improved-wheat-cultivation-practices-in-central-india",
+      "reviewed": true,
+      "approved_by": "founder, 2026-11-10"
+    },
+    {
+      "id": "irr2",
+      "label_hi": "दूसरी सिंचाई",
+      "das_from": 50,
+      "das_to": 55,
+      "source_name": "Krishisewa (KVK Sagar to confirm)",
+      "source_url": "https://krishisewa.com/improved-wheat-cultivation-practices-in-central-india",
+      "reviewed": true,
+      "approved_by": "founder, 2026-11-10"
+    },
+    {
+      "id": "irr3",
+      "label_hi": "तीसरी सिंचाई",
+      "das_from": 80,
+      "das_to": 85,
+      "source_name": "Krishisewa (KVK Sagar to confirm)",
+      "source_url": "https://krishisewa.com/improved-wheat-cultivation-practices-in-central-india",
+      "reviewed": true,
+      "approved_by": "founder, 2026-11-10"
+    }
+  ],
+  "static": [
+    {
+      "id": "s01",
+      "from": "2026-11-10",
+      "to": "2026-12-05",
+      "text_hi": "गेहूं अभी बोना बाकी हो तो 25 नवंबर तक बो लें; उसके बाद देर से बुवाई (1 दिसंबर-5 जनवरी) में बीज 25% ज़्यादा लगता है",
+      "source_name": "Krishisewa (KVK Sagar to confirm)",
+      "source_url": "https://krishisewa.com/improved-wheat-cultivation-practices-in-central-india",
+      "reviewed": true,
+      "approved_by": "founder, 2026-11-10"
+    },
+    {
+      "id": "s02",
+      "from": "2026-11-10",
+      "to": "2026-12-31",
+      "text_hi": "बोने की तारीख़ लिख लें: सिंचाई की तारीख़ उसी से निकलती है (पहली सिंचाई 20-25 दिन बाद, दूसरी 50-55 और तीसरी 80-85 दिन बाद)",
+      "source_name": "Krishisewa (KVK Sagar to confirm)",
+      "source_url": "https://krishisewa.com/improved-wheat-cultivation-practices-in-central-india",
+      "reviewed": true,
+      "approved_by": "founder, 2026-11-10"
+    }
+  ],
+  "rain_hold": {
+    "id": "rain_hold",
+    "text_hi": "बारिश आने वाली है: सिंचाई का फ़ैसला खेत की नमी देखकर करें",
+    "source_name": "किसान सहयोग (सादा शब्द, KVK सागर से पक्का करें)",
+    "source_url": "https://krishisewa.com/improved-wheat-cultivation-practices-in-central-india",
+    "derived": false,
+    "reviewed": true,
+    "note": "Batch 21 addition (founder request): shown instead of any irrigation_stage line when the 48-hour rain level is light or higher. It is plain wording, not a sourced farming fact; KVK Sagar must confirm or reword it.",
+    "approved_by": "founder, 2026-11-10"
+  }
+}

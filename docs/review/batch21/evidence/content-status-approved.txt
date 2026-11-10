@@ -1,0 +1,36 @@
+Content status (MORNING_CONTENT is on); reads files only, no network
+
+file                        total  reviewed  unreviewed
+events.json                    13         9           4
+crop-calendar.json              7         7           0
+money-facts.json                1         1           0
+gyaan.json                     13        13           0
+scheme-calendar.json            5         2           3
+lines.json (kahawat)           12        11           1
+tips.json                       4         0           4
+festivals.json                  0         0           0
+procurement-windows.json        0         0           0
+
+Next 21 days from 2026-11-11 (normal fixture weather):
+date        day          task line                                     slot
+2026-11-11  बुधवार       calendar:irr1                                 upcoming
+2026-11-12  गुरुवार      calendar:s02                                  know
+2026-11-13  शुक्रवार     calendar:irr1                                 upcoming
+2026-11-14  शनिवार       calendar:irr1                                 kahawat
+2026-11-15  रविवार       calendar:s01                                  recap
+2026-11-16  सोमवार       calendar:irr1                                 upcoming [BLOCKED (unreviewed: -): scheme]
+2026-11-17  मंगलवार      calendar:irr1                                 upcoming
+2026-11-18  बुधवार       calendar:s02                                  upcoming
+2026-11-19  गुरुवार      calendar:irr1                                 know
+2026-11-20  शुक्रवार     calendar:irr1                                 upcoming
+2026-11-21  शनिवार       calendar:s01                                  kahawat
+2026-11-22  रविवार       calendar:irr1                                 recap
+2026-11-23  सोमवार       calendar:irr1                                 scheme
+2026-11-24  मंगलवार      calendar:s02                                  upcoming
+2026-11-25  बुधवार       calendar:irr1                                 money
+2026-11-26  गुरुवार      calendar:irr1                                 know
+2026-11-27  शुक्रवार     calendar:s01                                  upcoming
+2026-11-28  शनिवार       calendar:irr1                                 kahawat
+2026-11-29  रविवार       calendar:irr1                                 recap
+2026-11-30  सोमवार       calendar:s02                                  scheme
+2026-12-01  मंगलवार      calendar:irr1                                 upcoming

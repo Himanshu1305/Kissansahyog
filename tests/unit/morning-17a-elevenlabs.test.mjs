@@ -1,3 +1,4 @@
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 17A Part B - ElevenLabs call, voice step, cost guard. All with a fake fetch; no network, no real key.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -57,7 +58,7 @@ test('errors never contain the key or a url', async () => {
 
 const model = async () => {
   const fx = loadFixture('normal')
-  return (await generate({ date: fx.date, data: loadData(), loaders: { weather: async () => fx.weather, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) } })).model
+  return (await generate({ date: fx.date, data: loadData(OLD_DATA_DIR), loaders: { weather: async () => fx.weather, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) } })).model
 }
 const dir = () => mkdtempSync(join(tmpdir(), 'v17a-'))
 const SAVE = { url: 'https://example.invalid', key: 'anon', secret: 'shh-secret', date: '2026-10-25' }

@@ -1,3 +1,4 @@
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 17E - nothing else changed: the six sample messages (F1-F6), the voice scripts and one sample card are byte-for-byte the same as before.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -7,7 +8,7 @@ import { loadFixture } from '../../scripts/morning/fixtures.js'
 import { buildVoiceScript } from '../../scripts/morning/voice/voiceScript.mjs'
 import { cardData, renderCard } from '../../scripts/morning/card/render.mjs'
 
-const DATA = loadData()
+const DATA = loadData(OLD_DATA_DIR)
 const file = (p) => readFileSync(new URL(`../../${p}`, import.meta.url))
 const text = (p) => file(p).toString('utf8').replace(/\r\n/g, '\n')
 const SAMPLES = [['rain-f1', 'f1-dry'], ['rain-f2', 'f2-real-30oct'], ['rain-f3', 'f3-rain-soon'], ['rain-f4', 'f4-heavy'], ['rain-f5', 'f5'], ['rain-f6', 'f6']]

@@ -4,15 +4,16 @@ import { pathToFileURL } from 'node:url'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { isIsoDate } from './lib/ist.js'
 import { pickPoll } from './lib/poll.js'
+import { contentOff } from './lib/content.js'
 
 const file = new URL('../../data/morning/poll-results.json', import.meta.url)
 const polls = JSON.parse(readFileSync(new URL('../../data/morning/polls.json', import.meta.url), 'utf8'))
 
-export function recordResult(results, date, pct) {
+export function recordResult(results, date, pct, env = process.env) {
   if (!isIsoDate(date)) throw new Error(`bad --date "${date}", use YYYY-MM-DD`)
   const n = Number(pct)
   if (!Number.isFinite(n) || n < 0 || n > 100) throw new Error(`--pct must be a number from 0 to 100 (got "${pct}")`)
-  const poll = pickPoll(polls, date)
+  const poll = pickPoll(polls, date, { weekdays: !contentOff(env) })
   if (!poll) throw new Error('no poll found for that date')
   return { ...results, [date]: { question_id: poll.id, pct: Math.round(n) } }
 }

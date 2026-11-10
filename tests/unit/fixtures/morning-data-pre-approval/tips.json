@@ -1,0 +1,6 @@
+[
+  { "id": "tip-moisture", "text_hi": "ढलान के आर-पार बुवाई और घास-फूस की परत से खेत की नमी बचती है।", "site_ref": "src/content/kamPani.js (block id save_moisture, page /fasal-salah/kam-pani)", "reviewed": false },
+  { "id": "tip-kvk", "text_hi": "बीज और किस्म के बारे में पक्का जानना हो तो KVK सागर से पूछें।", "site_ref": "src/content/kamPani.js (notes 'KVK से पूछें', page /fasal-salah/kam-pani)", "reviewed": false },
+  { "id": "tip-compare", "text_hi": "अपनी फसल का भाव कई मंडियों में साथ-साथ देखा जा सकता है: kissansahyog.com/msp", "site_ref": "src/screens/Msp.jsx (mandi comparison, page /msp)", "reviewed": false },
+  { "id": "tip-past", "text_hi": "पिछले सालों में किस महीने भाव कैसा रहा, यह भी /msp पर देखा जा सकता है।", "site_ref": "src/screens/Msp.jsx (past years by month, Batch 15A)", "reviewed": false }
+]

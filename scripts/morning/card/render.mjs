@@ -54,7 +54,7 @@ function infoBoxes(model) {
   if (slot && slot.kind === 'scheme' && slot.scheme) scheme = { icon: '🏛️', title: fmt(S.cardSchemeTitle, { title: slot.scheme.title_hi }), body: slot.scheme.who_hi }
   else if (slot && slot.kind === 'countdown') scheme = { icon: '⏳', title: S.cardTaskTitle, body: slot.lines[0].replace(/\*/g, '').replace(/^⏳\s*/, '') }
   else if (tasks.length) { usedTask = tasks[0]; scheme = { icon: '🌾', title: S.cardTaskTitle, body: tasks[0] } }
-  if (slot && ['saving', 'gyaan', 'kahawat'].includes(slot.kind)) tip = { icon: '🌱', title: S.cardTipTitle, body: slot.lines[1] }
+  if (slot && ['saving', 'gyaan', 'know', 'kahawat'].includes(slot.kind)) tip = { icon: '🌱', title: S.cardTipTitle, body: slot.lines[1] }
   else { const next = tasks.find((t) => t !== usedTask && t !== scheme?.body); if (next) tip = { icon: '🌱', title: S.cardTipTitle, body: next } }
   return { scheme, tip }
 }

@@ -75,6 +75,25 @@ export const S = {
   slotGyaan: '📘 *मंडी का ज्ञान*',
   slotKahawat: '🗣️ *आज की कहावत*',
   slotRecap: '📊 *इस हफ़्ते का हाल*',
+  // ---- Batch 21: the weekly menu (the old keys above stay: MORNING_CONTENT=off needs them)
+  slotUpcoming: '⏳ *अब आगे क्या?*',
+  slotMoney: '💰 *पैसे से जुड़ा एक तथ्य*',
+  slotKnow: '❓ *क्या आप जानते हैं?*',
+  slotHowto: '📝 *ऐसे करें आवेदन*',
+  upcomingWindow: '{title}: {days} दिन बाकी ({date} तक)',
+  upcomingEvent: '{title}: {days} दिन बाद ({date})',
+  upcomingEventRange: '{title}: {days} दिन बाद ({date} से {date2})',
+  upcomingPlace: ' · {place}',
+  schemeNews: '{title} - {news}',
+  schemeAction: '{action}',
+  sourceWithDate: 'स्रोत: {source}, {date}',
+  howtoPremium: '{premium}',
+  howtoCarry: 'साथ ले जाएँ: {docs}',
+  howtoWhere: 'जहाँ: {where}',
+  howtoLast: 'आख़िरी तारीख़: {date}',
+  kahawatMeaning: 'मतलब: {meaning}',
+  kahawatSource: '({source})',
+  cohortLine: '{a} से {b} के बीच बोई गेहूं की {stage} का समय अब है (बुवाई के {x}-{y} दिन बाद)',   // Batch 21B: the dates are computed (lib/workRules.js)
   recapLine: '{crop}: इस हफ़्ते {arrow}{delta}',            // facts only
   recapLineFlat: '{crop}: इस हफ़्ते लगभग वैसा ही',
   // ---- closing

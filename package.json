@@ -32,6 +32,7 @@
     "test:phase2": "node --env-file=.env scripts/test/phase2.mjs",
     "icons": "node scripts/gen-icons.mjs",
     "morning": "node --env-file-if-exists=.env scripts/morning/run.mjs",
+    "morning:content": "node scripts/morning/content-status.mjs",
     "morning:poll": "node scripts/morning/poll-result.mjs",
     "morning:voice-try": "node --env-file-if-exists=.env scripts/morning/voice/try.mjs"
   },

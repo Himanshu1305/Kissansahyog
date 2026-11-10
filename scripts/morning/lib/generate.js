@@ -8,10 +8,10 @@ import { loadWeather, loadDistrictsWeather, PROVIDER_NAME } from './weather.js'
 import { DISTRICTS } from './districts.js'
 import { buildDistrictSummaries, districtReportLines, districtsOff } from './districtWeather.js'
 import * as RV from '../../../src/lib/weather/rainVerdict.js'
-import { pickTasks, sowingOpen } from './workRules.js'
+import { pickTasks, pickDayTasks, sowingOpen } from './workRules.js'
 import { chooseDate, summarize, MAX_MOVE_PCT, MIN_MANDIS, WINDOW_DAYS, MEDIAN_BAND } from './mandi.js'
 import { compose, lint, pickBlessing, TARGET_CHARS, HARD_CHARS, KVK_PHONE } from './compose.js'
-import { pickSlot } from './content.js'
+import { pickSlot, contentOff } from './content.js'
 import { pickPoll, pollText, yesterdayLine } from './poll.js'
 import { BANNERS } from '../../../src/content/kamPani.js'
 
@@ -21,6 +21,7 @@ export function loadData(dir = DATA_DIR) {
   return {
     workRules: j('work-rules.json'), msp: j('msp-reference.json').entries, procurement: j('procurement-windows.json'), schemes: j('scheme-calendar.json'),
     festivals: j('festivals.json'), tips: j('tips.json'), gyaan: j('gyaan.json'), lines: j('lines.json'), polls: j('polls.json'), pollResults: j('poll-results.json'),
+    events: j('events.json'), cropCalendar: j('crop-calendar.json'), moneyFacts: j('money-facts.json'), // Batch 21
   }
 }
 
@@ -84,7 +85,18 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   // tasks
   const day0 = weather ? weather.days[0] : null
   const open = sowingOpen(date, BANNERS.sowing.validUntil)
-  const { tasks, fired } = pickTasks(data.workRules, day0, { sowingOpen: open, verdict })
+  const off = contentOff(env)
+  let tasks, fired, taskSource = null, taskCalendar = null
+  if (off) {
+    // MORNING_CONTENT=off: the old single sowing rule, exactly as before Batch 21
+    ;({ tasks, fired } = pickTasks(data.workRules, day0, { sowingOpen: open, verdict }))
+    notes.push('content: OFF (MORNING_CONTENT=off) - old weekday slot map, old headings, old single sowing rule')
+  } else {
+    const r = pickDayTasks(data.workRules, data.cropCalendar, date, day0, { sowingOpen: open, verdict }, { draft })
+    ;({ tasks, fired } = r); taskSource = r.source; taskCalendar = r.calendar
+    for (const id of r.unreviewed) unreviewed.push(`calendar:${id}`)
+    if (r.calendar && r.calendar.hidden.length) notes.push(`irrigation line hidden (${r.calendar.hidden.join(', ')}): 48-hour rain is light or more, the static rain line is shown instead`)
+  }
   notes.push(`aaj ka kaam: ${tasks.length ? `rules fired: ${fired.join(', ')}` : 'OMITTED: no rule fired'}`)
 
   // tithi / festival / blessing / poll
@@ -92,14 +104,14 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   const festival = (data.festivals || []).find((f) => f.verified === true && f.date === date) || null
   const blessing = pickBlessing(data.lines.blessing, date, draft)
   if (blessing && blessing.reviewed !== true) unreviewed.push(`blessing:${blessing.id}`)
-  const poll = pickPoll(data.polls, date)
+  const poll = pickPoll(data.polls, date, { weekdays: !off })
   let yRes = null
   try { yRes = loaders.yesterdayPoll ? await loaders.yesterdayPoll(date) : data.pollResults[yesterday] || null } catch { yRes = null }
   const pollYesterday = yesterdayLine(yRes, data.polls)
   notes.push(`poll: ${poll ? poll.id : 'none'}; yesterday result: ${pollYesterday ? `${pollYesterday.pct}%` : 'none'}`)
 
   const model = { date, tithi, festival, blessing, pollYesterday, weather, verdict, tasks, mandi, mspEntries: data.msp, procurement: data.procurement, districts }
-  const slot = pickSlot(date, { draft, data, summary: mandi, sowingValidUntil: BANNERS.sowing.validUntil })
+  const slot = pickSlot(date, { draft, data, summary: mandi, sowingValidUntil: BANNERS.sowing.validUntil, env })
   model.slot = slot
   if (slot) for (const id of slot.usedUnreviewed) unreviewed.push(`${slot.kind}:${id}`)
   notes.push(`rotating slot: ${slot ? slot.kind : 'none today'}`)
@@ -135,7 +147,7 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   ].join('\n')
 
   const pollTxt = poll ? pollText(poll, S.pollFileTitle) : ''
-  return { message: out.text, poll: pollTxt, pollQuestionId: poll ? poll.id : null, report, model, compose: out, violations, warn, haveWeather: !!weather, haveMandi: !!mandi }
+  return { taskSource, taskCalendar, taskFired: fired, message: out.text, poll: pollTxt, pollQuestionId: poll ? poll.id : null, report, model, compose: out, violations, warn, haveWeather: !!weather, haveMandi: !!mandi }
 }
 
 // Batch 17B: the saved forecast first (weather_cache_v2, Sagar cell, public anon key), direct Open-Meteo only if it is missing/old.

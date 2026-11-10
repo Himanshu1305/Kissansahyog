@@ -1,3 +1,4 @@
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 16A - the 1080x1350 card: Playwright render of fixtures with an overflow assertion (needs the Playwright chromium).
 import { test, after } from 'node:test'
 import assert from 'node:assert/strict'
@@ -6,7 +7,7 @@ import { cardData, renderCard } from '../../scripts/morning/card/render.mjs'
 import { generate, loadData } from '../../scripts/morning/lib/generate.js'
 import { loadFixture, FIXTURE_DATE } from '../../scripts/morning/fixtures.js'
 
-const DATA = loadData()
+const DATA = loadData(OLD_DATA_DIR)
 let browser
 const getBrowser = async () => (browser ||= await chromium.launch())
 after(async () => { if (browser) await browser.close() })
