@@ -1,0 +1,36 @@
+Content status (MORNING_CONTENT is on); reads files only, no network
+
+file                        total  reviewed  unreviewed
+events.json                    13         0          13
+crop-calendar.json             11         0          11
+money-facts.json                1         0           1
+gyaan.json                     13         0          13
+scheme-calendar.json            5         0           5
+lines.json (kahawat)           12         0          12
+tips.json                       4         0           4
+festivals.json                  0         0           0
+procurement-windows.json        0         0           0
+
+Next 21 days from 2026-11-09 (normal fixture weather):
+date        day          task line                                     slot
+2026-11-09  सोमवार       fallback:sowing_season [BLOCKED (unreviewed): calendar:w01]  none [BLOCKED (unreviewed: pmfby): scheme]
+2026-11-10  मंगलवार      fallback:sowing_season [BLOCKED (unreviewed): calendar:w03]  none [BLOCKED (unreviewed: ev-bhaidooj, ev-devuthani, ev-tulsi): upcoming]
+2026-11-11  बुधवार       fallback:sowing_season [BLOCKED (unreviewed): calendar:w04]  none [BLOCKED (unreviewed: ev-devuthani, ev-tulsi, ev-kartik-purnima): upcoming]
+2026-11-12  गुरुवार      fallback:sowing_season [BLOCKED (unreviewed): calendar:w02]  none [BLOCKED (unreviewed: g04): know]
+2026-11-13  शुक्रवार     fallback:sowing_season [BLOCKED (unreviewed): calendar:w03]  none [BLOCKED (unreviewed: ev-devuthani, ev-tulsi, ev-kartik-purnima): upcoming]
+2026-11-14  शनिवार       fallback:sowing_season [BLOCKED (unreviewed): calendar:w04]  none [BLOCKED (unreviewed: k04): kahawat]
+2026-11-15  रविवार       none [BLOCKED (unreviewed): calendar:w02]     recap
+2026-11-16  सोमवार       none [BLOCKED (unreviewed): calendar:w03]     none [BLOCKED (unreviewed: kcc): scheme]
+2026-11-17  मंगलवार      none [BLOCKED (unreviewed): calendar:w04]     none [BLOCKED (unreviewed: ev-devuthani, ev-tulsi, ev-kartik-purnima): upcoming]
+2026-11-18  बुधवार       none [BLOCKED (unreviewed): calendar:w02]     none [BLOCKED (unreviewed: ev-devuthani, ev-tulsi, ev-kartik-purnima): upcoming]
+2026-11-19  गुरुवार      none [BLOCKED (unreviewed): calendar:w03]     none [BLOCKED (unreviewed: g05): know]
+2026-11-20  शुक्रवार     none [BLOCKED (unreviewed): calendar:w04]     none [BLOCKED (unreviewed: ev-tulsi, ev-kartik-purnima, win-wheat-timely): upcoming]
+2026-11-21  शनिवार       none [BLOCKED (unreviewed): calendar:w06]     none [BLOCKED (unreviewed: k05): kahawat]
+2026-11-22  रविवार       none [BLOCKED (unreviewed): calendar:w02]     recap
+2026-11-23  सोमवार       none [BLOCKED (unreviewed): calendar:w03]     none [BLOCKED (unreviewed: pm-kisan-24): scheme]
+2026-11-24  मंगलवार      none [BLOCKED (unreviewed): calendar:w04]     none [BLOCKED (unreviewed: win-wheat-timely, fair-bharat-agri-tech, fair-farmtech-bhopal): upcoming]
+2026-11-25  बुधवार       none [BLOCKED (unreviewed): calendar:w06]     none [BLOCKED (unreviewed: m01): money]
+2026-11-26  गुरुवार      none [BLOCKED (unreviewed): calendar:w06]     none [BLOCKED (unreviewed: g06): know]
+2026-11-27  शुक्रवार     none [BLOCKED (unreviewed): calendar:w06]     none [BLOCKED (unreviewed: fair-bharat-agri-tech, fair-farmtech-bhopal): upcoming]
+2026-11-28  शनिवार       none [BLOCKED (unreviewed): calendar:w06]     none [BLOCKED (unreviewed: k06): kahawat]
+2026-11-29  रविवार       none [BLOCKED (unreviewed): calendar:w06]     recap
