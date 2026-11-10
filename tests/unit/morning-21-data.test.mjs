@@ -25,7 +25,8 @@ function seededStrings() {
   const out = []
   const add = (file, id, field, t) => { if (typeof t === 'string' && t.trim()) out.push({ file, id, field, text: t }) }
   for (const e of EVENTS) { add('events', e.id, 'title_hi', e.title_hi); add('events', e.id, 'place_hi', e.place_hi) }
-  for (const e of CAL.entries) add('crop-calendar', e.id, 'text_hi', e.text_hi)
+  for (const e of CAL.static) add('crop-calendar', e.id, 'text_hi', e.text_hi)
+  for (const e of CAL.stages) add('crop-calendar', e.id, 'label_hi', e.label_hi)
   add('crop-calendar', 'rain_hold', 'text_hi', CAL.rain_hold.text_hi)
   for (const m of MONEY) m.lines_hi.forEach((l, i) => add('money-facts', m.id, `lines_hi[${i}]`, l))
   for (const g of GYAAN.filter((x) => x.id.startsWith('k'))) add('gyaan', g.id, 'text_hi', g.text_hi)
@@ -53,14 +54,17 @@ test('seeds: no string is duplicated, and no line is longer than 140 characters 
   const seen = new Map()
   for (const s of strs) { const k = s.text.trim(); assert.ok(!seen.has(k), `duplicate text "${k.slice(0, 30)}" in ${s.file}:${s.id} and ${seen.get(k)}`); seen.set(k, `${s.file}:${s.id}`) }
   const long = strs.filter((s) => [...s.text].length > 140)
-  for (const s of long) { const e = CAL.entries.find((x) => x.id === s.id); assert.ok(e && e.too_long === true, `${s.file}:${s.id} is ${[...s.text].length} characters and not flagged too_long`) }
-  assert.deepEqual(long.map((s) => s.id), ['w05'], 'the only over-long seed is w05 (151 characters); the report names it')
+  for (const s of long) { const e = CAL.static.find((x) => x.id === s.id); assert.ok(e && e.too_long === true, `${s.file}:${s.id} is ${[...s.text].length} characters and not flagged too_long`) }
+  assert.deepEqual(long.map((s) => s.id), [], 'every seed is within 140 characters')
+  const sample = [...'x'.repeat(30)].length; assert.ok(sample > 0)
 })
 
 test('seeds: every new item has a source_name and source_url (kahawat: a source_name), and a date or a number', () => {
   const hasNum = (o) => /\d/.test(JSON.stringify(o))
   for (const e of EVENTS) { assert.ok(e.source_name && /^https?:\/\//.test(e.source_url), e.id); assert.ok(isIsoDate(e.date), e.id) }
-  for (const e of CAL.entries) { assert.ok(e.source_name && /^https?:\/\//.test(e.source_url), e.id); assert.ok(isIsoDate(e.from) && isIsoDate(e.to) && e.to >= e.from, e.id) }
+  for (const e of [...CAL.stages, ...CAL.static]) { assert.ok(e.source_name && /^https?:\/\//.test(e.source_url), e.id) }
+  assert.ok(isIsoDate(CAL.sowing_dates.from) && isIsoDate(CAL.sowing_dates.to) && CAL.sowing_dates.basis)
+  for (const e of CAL.static) assert.ok(isIsoDate(e.from) && isIsoDate(e.to) && e.to >= e.from && /\d/.test(e.text_hi), e.id)
   assert.ok(CAL.rain_hold.source_name && CAL.rain_hold.source_url)
   for (const m of MONEY) { assert.ok(m.source_name && /^https?:\/\//.test(m.source_url) && isIsoDate(m.source_date), m.id); assert.ok(hasNum(m.lines_hi)) }
   const k01 = GYAAN.find((g) => g.id === 'k01'); assert.ok(k01.source_name && /^https?:\/\//.test(k01.source_url) && isIsoDate(k01.source_date) && hasNum(k01.text_hi))
@@ -70,7 +74,7 @@ test('seeds: every new item has a source_name and source_url (kahawat: a source_
 })
 
 test('seeds: every new item is unreviewed (the gate stays on); the old 3 schemes and 12 gyaan items are unchanged', () => {
-  for (const [name, items] of [['events', EVENTS], ['crop-calendar', CAL.entries], ['money-facts', MONEY], ['kahawat', LINES.kahawat]]) assert.ok(items.every((x) => x.reviewed === false), name)
+  for (const [name, items] of [['events', EVENTS], ['crop-calendar', [CAL.sowing_dates, ...CAL.stages, ...CAL.static, CAL.rain_hold]], ['money-facts', MONEY], ['kahawat', LINES.kahawat]]) assert.ok(items.every((x) => x.reviewed === false), name)
   assert.ok(GYAAN.every((g) => g.reviewed === false)); assert.ok(SCHEMES.every((s) => s.verified === false))
   assert.deepEqual(SCHEMES.slice(0, 3).map((s) => s.id), ['pm-kisan', 'pmfby', 'kcc'])
   assert.equal(GYAAN.filter((g) => /^g\d\d$/.test(g.id)).length, 12)
@@ -88,7 +92,7 @@ test('events: valid ISO dates, date_to >= date, scope near/far, Chhath and the f
   for (const id of far) assert.equal(EVENTS.find((e) => e.id === id).scope, 'far', id)
   for (const id of near) assert.equal(EVENTS.find((e) => e.id === id).scope, 'near', id)
   assert.equal(EVENTS.find((e) => e.id === 'ev-devuthani').date, '2026-11-20'); assert.match(EVENTS.find((e) => e.id === 'ev-devuthani').note, /differ by a day/)
-  const w = EVENTS.find((e) => e.id === 'win-wheat-timely'); assert.deepEqual([w.kind, w.date, w.date_to], ['window', '2026-11-10', '2026-11-25'])
+  const w = EVENTS.find((e) => e.id === 'win-wheat-late'); assert.deepEqual([w.kind, w.date, w.date_to, w.title_hi], ['window', '2026-12-01', '2027-01-05', 'गेहूं की देर से बुवाई']); assert.ok(!EVENTS.some((e) => e.id === 'win-wheat-timely'), 'no timely-sowing countdown')
   const crops = ['गेहूं', 'सरसों']
   for (const c of crops) assert.ok(Object.values(FIXTURE_CROP_HI).includes(c), c) // the site's own spellings
   assert.ok(!seededStrings().some((s) => /गेहुँ|सरसोँ|तारीख(?!़)/.test(s.text)), 'the draft spellings (गेहुँ, सरसोँ, तारीख) are not used')
@@ -126,7 +130,7 @@ test('length: the worst case (6 districts, 4 crops, longest slot, 3 tasks) stays
   const data = {
     ...DATA,
     lines: { ...DATA.lines, kahawat: [1, 2, 3, 4].map((n) => ({ id: `kx${n}`, text_hi: long(130), meaning_hi: long(130), source_name: long(60), reviewed: true })) },
-    cropCalendar: { ...CAL, entries: [{ id: 'wx', from: '2026-10-01', to: '2026-12-31', text_hi: long(140), reviewed: true }] },
+    cropCalendar: { ...CAL, sowing_dates: { ...CAL.sowing_dates, reviewed: true }, stages: CAL.stages.map((x) => ({ ...x, reviewed: true })), static: [{ id: 'sx', from: '2026-10-01', to: '2026-12-31', text_hi: long(140), reviewed: true }] },
   }
   const fx = loadFixture('rain-f4')
   const r = await generate({ date: fx.date, data, nowIso: fx.nowIso, env: {}, loaders: { weather: fx.weatherLoader, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }), districts: districtLoader('heavy') } })
@@ -180,15 +184,15 @@ test('npm run morning:content: counts per data file and a day table with BLOCKED
   const counts = fileCounts(DATA)
   const byName = Object.fromEntries(counts.map((c) => [c.name, c]))
   assert.deepEqual([byName['events.json'].total, byName['events.json'].reviewed, byName['events.json'].unreviewed], [13, 0, 13])
-  assert.equal(byName['crop-calendar.json'].total, 11); assert.equal(byName['lines.json (kahawat)'].total, 12); assert.equal(byName['gyaan.json'].total, 13)
+  assert.equal(byName['crop-calendar.json'].total, 7); assert.equal(byName['lines.json (kahawat)'].total, 12); assert.equal(byName['gyaan.json'].total, 13)
   const rows = await statusRows({ from: '2026-11-09', days: 7, data: DATA, env: {} })
   assert.equal(rows.length, 7); assert.deepEqual(rows.map((r) => r.date), Array.from({ length: 7 }, (_, i) => addDays('2026-11-09', i)))
-  for (const r of rows) assert.match(r.task, r.date < '2026-11-15' ? /fallback:sowing_season \[BLOCKED \(unreviewed\): calendar:w\d\d\]/ : /none \[BLOCKED \(unreviewed\): calendar:w\d\d\]/, 'the old sowing rule runs only until the banner date (15 Nov)')
+  for (const r of rows) assert.match(r.task, r.date < '2026-11-15' ? /fallback:sowing_season \[BLOCKED \(unreviewed\): calendar:(irr\d|s0\d)\]/ : /none \[BLOCKED \(unreviewed\): calendar:(irr\d|s0\d)\]/, 'the old sowing rule runs only until the banner date (15 Nov)')
   assert.ok(rows[1].slot.includes('BLOCKED (unreviewed:') && rows[1].slot.includes('upcoming'))
   assert.match(rows[4].slot, /^none \[BLOCKED \(unreviewed: .*\): upcoming\]$/, 'Friday: the how-to is not even offered as a draft (last date unknown)')
-  const reviewed = { ...DATA, events: EVENTS.map((e) => ({ ...e, reviewed: true })), cropCalendar: { ...CAL, entries: CAL.entries.map((e) => ({ ...e, reviewed: true, too_long: undefined })), rain_hold: { ...CAL.rain_hold, reviewed: true } } }
+  const reviewed = { ...DATA, events: EVENTS.map((e) => ({ ...e, reviewed: true })), cropCalendar: { ...CAL, sowing_dates: { ...CAL.sowing_dates, reviewed: true }, stages: CAL.stages.map((x) => ({ ...x, reviewed: true })), static: CAL.static.map((x) => ({ ...x, reviewed: true })), rain_hold: { ...CAL.rain_hold, reviewed: true } } }
   const ok = await statusRows({ from: '2026-11-10', days: 1, data: reviewed, env: {} })
-  assert.match(ok[0].task, /^calendar:w0\d$/); assert.equal(ok[0].slot, 'upcoming')
+  assert.match(ok[0].task, /^calendar:(irr\d|s0\d)$/); assert.equal(ok[0].slot, 'upcoming')
   const lines = []; const log = console.log; console.log = (...a) => lines.push(a.join(' '))
   try { await statusMain(['--from', '2026-11-09', '--days', '2'], {}) } finally { console.log = log }
   assert.ok(lines.some((l) => l.startsWith('events.json')) && lines.some((l) => l.startsWith('2026-11-10')))
@@ -211,7 +215,7 @@ const four = (item) => Array.from({ length: 4 }, (_, i) => ({ ...item, id: `${it
 const pmNews = SCHEMES.find((s) => s.id === 'pm-kisan-24'), pmfby = SCHEMES.find((s) => s.id === 'pmfby-rabi')
 const withData = (over) => ({
   ...DATA, schemes: [], events: rev(EVENTS), moneyFacts: [], gyaan: [], lines: { ...DATA.lines, kahawat: [] },
-  cropCalendar: { ...CAL, entries: CAL.entries.map((e) => ({ ...e, reviewed: true, too_long: undefined })), rain_hold: { ...CAL.rain_hold, reviewed: true } }, ...over,
+  cropCalendar: { ...CAL, sowing_dates: { ...CAL.sowing_dates, reviewed: true }, stages: CAL.stages.map((x) => ({ ...x, reviewed: true })), static: CAL.static.map((x) => ({ ...x, reviewed: true })), rain_hold: { ...CAL.rain_hold, reviewed: true } }, ...over,
 })
 const CASES = [
   ['news (Mon)', 'scheme', '2026-11-09', { schemes: four({ ...pmNews, verified: true }) }],

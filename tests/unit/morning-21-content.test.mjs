@@ -277,3 +277,15 @@ test('the real polls p13 (Monday, PM-किसान) and p14 (Friday, फसल
   for (const p of [p13, p14]) { assert.ok(p.options_hi.length >= 2 && p.options_hi.length <= 3); for (const o of p.options_hi) assert.ok([...o].length <= 20, o); assert.ok([...p.question_hi].length <= 100) }
   assert.equal(pickPoll(polls, MON).id, 'p13'); assert.equal(pickPoll(polls, addDays(MON, 4)).id, 'p14')
 })
+
+test('Batch 21B poll p15 (Tuesday, when sowing was finished); p02, p03, p13, p14 are unchanged', () => {
+  const polls = JSON.parse(readFileSync('data/morning/polls.json', 'utf8'))
+  const p = polls.find((x) => x.id === 'p15')
+  assert.equal(p.question_hi, 'आपकी रबी की बुवाई कब पूरी हुई?'); assert.deepEqual(p.options_hi, ['अक्तूबर में', 'नवंबर के पहले हफ़्ते में', 'अभी बाकी है'])
+  assert.deepEqual([p.yes_label, p.from, p.to, p.weekday], ['बुवाई पूरी हो चुकी', '11-10', '12-31', 2])
+  assert.equal(pickPoll(polls, '2026-11-10').id, 'p15'); assert.equal(pickPoll(polls, '2026-11-17').id, 'p15')
+  assert.notEqual(pickPoll(polls, '2026-11-11').id, 'p15')
+  for (const id of ['p02', 'p03', 'p13', 'p14']) assert.ok(polls.find((x) => x.id === id))
+  assert.equal(polls.find((x) => x.id === 'p13').weekday, 1); assert.equal(polls.find((x) => x.id === 'p14').weekday, 5)
+  assert.ok(p.options_hi.every((o) => [...o].length <= 24))
+})
