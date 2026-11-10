@@ -37,7 +37,7 @@ The first version of the task line was built from an outdated copy of the prompt
 
 ## Seeds
 - **Spelling** changed from the prompt's draft: सरसों, गेहूं, तारीख़. Crop words checked against `fixtures.js` HI map.
-- **Fairs' sources.** I had no deep link for the Tractor Gyan listing, so those five events carry `https://tractorgyan.com` with a note. Our own mela research files list the official sites and say Bharat Agri Tech is **9-11 Jan 2027** (the prompt says 8-11 Jan); I kept the prompt's date and wrote the difference into the item's `note`.
+- **Fairs' sources.** The Tractor Gyan fairs carry `https://tractorgyan.com` (home page, no deep link found). **Bharat Agri Tech was corrected in 21D** to the organiser's own dates: 9-11 Jan 2027 (the Tractor Gyan listing said 8-11 Jan), source bharatagritech.org, with Expomap agreeing.
 - **Kahawats 7-12:** I wrote the meanings plainly (the prompt gave none). #12 carries the reviewer note from the prompt. #6 got a source label "OCR स्कैन (दूसरी पंक्ति पक्की करना बाकी)". No saying failed lint, so none is `lint_blocked`.
 - **Gyaan k01** has `text_hi` (not `lines`), like the other gyaan items. The MSP rises (+25, +83, +390, +413) **all match** `new 2027-28 MSP minus 2026-27 MSP in msp-reference.json`; a test recomputes them.
 - Old schemes and gyaan items untouched. The two new schemes are appended.
@@ -58,3 +58,11 @@ The first version of the task line was built from an outdated copy of the prompt
 - Before my changes: 803 tests, 800 pass, 1 fail (the one above), 2 skipped.
 - After 21B: see `evidence/test-results.txt` (exact counts).
 - Evidence (21B): `sample-` and `live-gate-2026-11-11..17.txt`, `irrigation-rain/dry-draft-2026-12-10.txt`, `stage-table.txt`, `content-status-*.txt`. Friday 13 Nov shows no how-to (last date unknown).
+
+## 21D - founder approvals (10 Nov 2026)
+- **Flipped to approved** (each marked `approved_by: "founder, 2026-11-10"`): the whole crop calendar (sowing_dates, irr1-irr3, s01, s02, rain_hold); the 9 near events (far ones stay unreviewed and never show); m01; k01 and g01-g12; pm-kisan-24 and kcc; kahawat k01-k05 and k07-k12 (with `wording_checked: true`).
+- **Exceptions, left as they were:** pmfby-rabi (no sourced Madhya Pradesh last date, so the Friday how-to stays blocked by design); the older pm-kisan and pmfby entries; kahawat k06 ("उत्तर चमकै बीजुरी...", OCR source, second line unconfirmed); tips.
+- **KCC** updated from the PIB release of 30 Mar 2026 (7% with 3% prompt-repayment concession = 4%). The Rs 3 lakh limit and the banned word गारंटी are not used.
+- **Effect on the live post** (gate on): the calendar line shows daily (cohort or static); Tuesday, Thursday and Saturday have slots; Monday shows a scheme on some weeks (two verified schemes is a thin pool, and pm-kisan-24 leaves its window after 30 Nov); Wednesday's single money fact shows once in four weeks; Friday has no how-to.
+- **Old tests.** Approving content would change what the old (kill-switch-off) post looks like, so the Batch 16-18 regression tests now load a **snapshot of the data as it was before the approvals** (`tests/unit/fixtures/morning-data-pre-approval/`, via `OLD_DATA_DIR`). Batch 21 tests that need "all unreviewed" seeds use the same snapshot; the new `morning-21-approved.test.mjs` checks the real approved files.
+- Kill switch with the real data: `MORNING_CONTENT=off` gives the old logic on the current data (so Thursday and Saturday would show old-style gyaan or kahawat now that they are approved). It is the old *behaviour*, not a frozen old post.

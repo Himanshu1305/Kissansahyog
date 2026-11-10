@@ -5,29 +5,49 @@
 **Only these things changed:** `scripts/morning/**`, `data/morning/*.json`, tests, docs, and ONE line in `.github/workflows/morning-post.yml` (`MORNING_CONTENT`). The four cron times are untouched.
 
 ## The review gate stays ON
-Every new item was added as **not reviewed**. The live post shows only reviewed items. So if you merge now, nothing new appears except the two polls (see "What you will see tomorrow"). A person must approve content first.
+The gate is still on in the code. On 10 Nov 2026 the founder approved the content (each flipped item is marked `approved_by`). **Not approved, so still blocked:** pmfby-rabi (no sourced Madhya Pradesh last date, so Friday has no how-to), the older pm-kisan and pmfby entries, the kahawat "उत्तर चमकै बीजुरी..." (OCR source, second line unconfirmed), the 4 far-away events, and the tips.
 
 ## How to see what is missing
 ```
 npm run morning:content
 ```
-Prints how many items each data file has (total / reviewed / not reviewed), then a table for the next 21 days: the task line source, and the slot shown or `BLOCKED (unreviewed: ids)` or `none`. Options: `-- --from 2026-11-20 --days 30`. It reads files only and uses sample weather, never the network.
+Prints how many items each data file has (total / reviewed / not reviewed), then a table for the next 21 days: the task line source, and the slot shown or `cd ~/projects/ks-b20 && git fetch origin \
+&& git merge-base --is-ancestor origin/main merge-21 && echo "OK: merge-21 contains origin/main (main has not moved)" \
+&& git log merge-21 --oneline -3 \
+&& git diff --stat origin/main merge-21 | tail -1 \
+&& git push origin merge-21:main \
+&& git fetch origin && git log origin/main --oneline -5ED (unreviewed: ids)` or `none`. Options: `-- --from 2026-11-20 --days 30`. It reads files only and uses sample weather, never the network.
 To read how a day would look with the seeds: `npm run morning -- --draft --fixtures normal --date 2026-11-12` (shows the message and a WARNING listing the unreviewed items).
 
 ## The kill switch
 If anything looks wrong after the merge, set the repository variable `MORNING_CONTENT` to `off`: GitHub > the repo > Settings > Secrets and variables > Actions > **Variables** > New repository variable, name `MORNING_CONTENT`, value `off` (any capitals, spaces ignored). The next post is then exactly the old one: the old weekday slots, old headings, the single sowing rule, and the old poll rotation. Delete the variable (or set anything else) to turn the new behaviour back on. No code change needed either way.
 
-## What you will see tomorrow if you merge now
-- **Mon-Sat until 14 Nov: the daily line "रबी बुवाई की खिड़की में N दिन बाकी" at the bottom disappears.** The old slot showed it every day only because nothing else was reviewed. The new menu does not use it (it is the rain-fed advice and would contradict the new irrigated 10-25 Nov window). With nothing reviewed, those days have no slot. After 14 Nov the old post had no slot either, so nothing differs then. Sunday (recap) is unchanged.
-- **The task line is the same as today** (the old "बुवाई वाले खेत में नमी जाँचें" until 15 Nov, nothing after), because the calendar is unreviewed.
-- **Polls are not gated.** p13 (Monday, PM-किसान), p15 (Tuesday, sowing finished) and p14 (Friday, crop insurance) go live on merge: polls have no review flag. Delete them from `data/morning/polls.json` (or set the kill switch) if you do not want that yet.
-- Everything else is identical to today. Proof: the six Batch 18 test messages (F1-F6) are byte-identical with the kill switch on `off`; with it unset only the slot differs.
+## What you will see tomorrow (11 Nov, Wednesday) - gate on, approvals applied
+The full text is in `evidence/live-approved-2026-11-11.txt` (all seven days 11-17 Nov are there; each under 1500 characters and clean on lint).
+- **Task line:** "... बोई गेहूं की पहली सिंचाई का समय अब है (बुवाई के 20-25 दिन बाद)" with the dates worked out for that day; every third day a plain static line instead. On a day with rain expected it becomes the rain line.
+- **Slot:** the heading of the weekday. Tue "अब आगे क्या?" (festivals and fairs), Thu "क्या आप जानते हैं?", Sat the kahawat, Sun the recap. Wednesday's money fact shows once in four weeks (one item), so most Wednesdays show "अब आगे क्या?" instead. Monday shows a scheme (PM-किसान news or KCC) on some weeks. **Friday has no how-to** (insurance last date unknown).
+- **Polls are not gated:** p13 (Mon, PM-किसान), p15 (Tue, sowing finished), p14 (Fri, crop insurance) go live on merge.
+- The old daily line "रबी बुवाई की खिड़की में N दिन बाकी" is gone.
 
-## Steps for you, one at a time
-1. **Review the content.** Read `docs/review/batch21/CONTENT_FOR_REVIEW.md` (one table per reviewer: KVK Sagar for the wheat calendar, the core team for schemes/MSP/events, Shri A.K. Dixit and team for the kahawats). Send `KVK_QUESTIONS.md` to KVK Sagar.
-2. **Tell Cowork which ids to approve** (and any changed wording). Cowork flips them to reviewed and checks them with `npm run morning:content`.
-3. **Merge `release-21` to `main`** the same way as Batch 18 (guard first, then merge `--no-ff`, then push). You run git yourself; this batch does not push.
-4. **Push `main`.** The workflow runs from `main`, so the next scheduled try (01:07 IST) uses the new code.
-5. **Watch the next day's post** in /admin/morning: the heading of the day's slot, the task line, and the poll. If wrong, use the kill switch above.
+## Merge and push (the merge is already done locally on branch `merge-21`)
+`origin/main` had not moved (still the Batch 20 merge `b41e568`), so `merge-21` is exactly `main` plus Batch 21, merged with `--no-ff`. The full test suite and the build were run on it. Nothing deploys on a push to main: the morning workflow simply uses the new code from its next try at **01:07 IST**.
+**The repository variable `MORNING_CONTENT` must NOT be set to `off`** (GitHub > Settings > Secrets and variables > Actions > Variables: it should not exist or not say off).
 
-Rehearsal done in this batch: the kill switch run end to end through the real command for all six fixtures with `off`, `OFF` and ` off ` (identical to the old post), plus seven sample days with seeds shown and seven without (`evidence/`).
+Paste this whole block into Git Bash:
+```
+BLOCK
+```
+
+## Morning check (about 05:00 IST, after the 01:07 run)
+Open /admin/morning and check:
+1. a post exists for the new date;
+2. the task line reads like "... बोई गेहूं की पहली सिंचाई का समय अब है";
+3. the slot heading matches the weekday;
+4. the post is under 1500 characters and the poll is the weekday poll (Mon p13, Tue p15, Fri p14).
+If any of these is wrong or the post is missing: set the repository variable `MORNING_CONTENT` to `off` and re-run the "Morning post" workflow by hand.
+
+## How to see what is still missing
+`npm run morning:content` (add `-- --from 2026-11-20 --days 30`). It reads files only, no network. Read a day with the unapproved seeds: `npm run morning -- --draft --fixtures normal --date 2026-11-12`.
+
+## Kill switch
+Set the repository variable `MORNING_CONTENT` to `off`: the next post uses the old weekday slots, the old single sowing rule and the old poll rotation (on today's data). Delete the variable to turn the new behaviour back on.
