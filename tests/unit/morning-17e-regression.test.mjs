@@ -1,3 +1,4 @@
+import './helpers/contentOff.mjs'
 // Batch 17E - nothing else changed: the six sample messages (F1-F6), the voice scripts and one sample card are byte-for-byte the same as before.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'

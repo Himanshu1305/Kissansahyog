@@ -20,7 +20,7 @@ export async function run(i, scenario, { env = {}, loader = null, limitMs } = {}
   const loaders = { weather: fx.weatherLoader, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }
   if (loader) loaders.districts = loader
   else if (scenario) loaders.districts = districtLoader(scenario)
-  return generate({ date: fx.date, data: DATA, nowIso: fx.nowIso, loaders, env, ...(limitMs ? { districtLimitMs: limitMs } : {}) })
+  return generate({ date: fx.date, data: DATA, nowIso: fx.nowIso, loaders, env: { MORNING_CONTENT: 'off', ...env }, ...(limitMs ? { districtLimitMs: limitMs } : {}) })
 }
 // removes the district block (heading .. closing line) and its blank separator
 export const withoutSection = (m) => crlf(m).split('\n\n').filter((b) => !b.startsWith(S.districtHeading)).join('\n\n')

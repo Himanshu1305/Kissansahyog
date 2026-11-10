@@ -1,3 +1,4 @@
+import './helpers/contentOff.mjs'
 // Batch 17D Part B - the layout of message.txt. Same facts as 17B, laid out like the card: scannable on a phone in 10 seconds.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'

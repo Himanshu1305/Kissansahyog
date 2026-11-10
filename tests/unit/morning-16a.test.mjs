@@ -1,3 +1,4 @@
+import './helpers/contentOff.mjs'
 // Batch 16A - daily morning message generator. Offline: weather and database access are mocked / fixtures.
 // Run: node --test "tests/unit/*.test.mjs"
 import { test } from 'node:test'
@@ -228,7 +229,7 @@ test('scheme slot: unverified schemes never shown; a verified one with a deadlin
 // ---- 4.8 poll
 test('poll: deterministic by date, season-aware; yesterday result goes in the greeting block; the CLI helper validates', async () => {
   assert.equal(pickPoll(DATA.polls, '2026-10-25').id, pickPoll(DATA.polls, '2026-10-25').id)
-  assert.ok(DATA.polls.length === 12)
+  assert.ok(DATA.polls.filter((p) => p.weekday == null).length === 12) // the 12 original polls (Batch 21 adds two weekday polls)
   assert.notEqual(pickPoll(DATA.polls, '2026-10-25').id, 'p06b')
   assert.deepEqual(yesterdayLine({ question_id: 'p01', pct: 63.6 }, DATA.polls), { pct: 64, label: 'सिंचाई हो गई' })
   assert.equal(yesterdayLine(null, DATA.polls), null)
@@ -301,7 +302,7 @@ test('no Devanagari text in the logic files (only comments); every phrase lives 
 
 // ---- data files
 test('data files: no unverified MSP, festivals only verified, tips cite a site file, 12 gyaan items, parseable', () => {
-  assert.ok(DATA.tips.every((t) => t.site_ref)); assert.equal(DATA.gyaan.length, 12)
+  assert.ok(DATA.tips.every((t) => t.site_ref)); assert.equal(DATA.gyaan.filter((g) => !g.source_name).length, 12) // the 12 original items (Batch 21 adds a sourced one)
   assert.ok(DATA.gyaan.every((g) => g.reviewed === false))
   assert.ok(DATA.lines.blessing.every((b) => b.reviewed === true))
   const all = JSON.stringify([DATA.tips, DATA.gyaan, DATA.lines, DATA.polls, DATA.workRules])

@@ -1,3 +1,4 @@
+import './helpers/contentOff.mjs'
 // Batch 17C - the daily morning post must be ready before 05:00 IST: the cheap "is today's post complete?" check and the workflow shape.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
