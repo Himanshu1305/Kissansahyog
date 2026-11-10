@@ -1,6 +1,7 @@
 // "आज का काम": the rules live in data/morning/work-rules.json. Task texts there are generic wording only.
 // Batch 17B: rain rules read the rain verdict (ctx.verdict) - the same spraying / harvest windows as /mausam - never a bare chance (%).
 import { levelIndex } from '../../../src/lib/weather/rainVerdict.js'
+import { S, fmt } from '../strings.hi.js'
 export function ruleFires(when, day, ctx) {
   const checks = []
   const v = ctx.verdict || null
@@ -45,41 +46,65 @@ export function rainHidesIrrigation(verdict) {
   return !!verdict && levelIndex(verdict.windows.h48.level) >= levelIndex(RAIN_HIDES_IRRIGATION_FROM)
 }
 
-// The ONE calendar entry for `date`. -> { id, text, source: 'calendar:<id>', unreviewed: bool, hidden: [ids] } or null.
-// Windows that overlap rotate: with k matching entries the entry number (daysSinceEpoch % k) is shown, so consecutive days differ.
-// Irrigation-stage entries (irrigation_stage: irr1/irr2/irr3) are taken out of the pool when rain is expected, and the static
-// rain_hold line takes their place (one slot, however many irrigation entries match).
+// The ONE calendar line for `date` (Batch 21B: "after sowing"). -> { id, text, source: 'calendar:<id>', unreviewed: bool, unreviewedIds: [ids], hidden: [ids], cohort } or null.
+// A stage (irr1, irr2, irr3) is due on day D for the sowers sown between D - das_to and D - das_from, clipped to sowing_dates. The line is built from
+// those dates (nothing is typed per day); if two stages are due the same day the EARLIER stage is shown. While a stage is due, every 3rd day
+// (daysSinceEpoch % 3 === 0) a static line is shown instead; when none is due the static lines rotate. Stage lines are the irrigation lines:
+// when rain is expected they are hidden and the static rain_hold line (with the other static lines) is shown instead. Static lines are never hidden.
 const calOk = (e, draft) => (e.reviewed === true || draft) && e.too_long !== true && e.lint_blocked !== true // too_long / lint_blocked: a reviewer must fix the text first
-const prevDay = (iso) => new Date(Date.parse(`${iso}T00:00:00Z`) - 86400000).toISOString().slice(0, 10)
-// the candidates of one day: matching entries; with rain, irrigation ones are swapped for the one static line
-function calPool(calendar, date, draft, rain) {
-  let pool = calendar.entries.filter((e) => e.from <= date && date <= e.to && calOk(e, draft))
+const prevDay = (iso) => addDaysIso(iso, -1)
+const addDaysIso = (iso, n) => new Date(Date.parse(`${iso}T00:00:00Z`) + n * 86400000).toISOString().slice(0, 10)
+const human = (iso) => fmt(S.dataDateLabel, { d: Number(iso.slice(8)), m: S.months[Number(iso.slice(5, 7)) - 1] })
+
+// -> [{ stage, a, b }] for every stage whose cohort is not empty after clipping, in the order of calendar.stages (earlier stage first)
+export function dueStages(calendar, date) {
+  const sd = calendar && calendar.sowing_dates
+  if (!sd || !Array.isArray(calendar.stages)) return []
+  const out = []
+  for (const st of calendar.stages) {
+    const a0 = addDaysIso(date, -st.das_to), b0 = addDaysIso(date, -st.das_from)
+    const a = a0 < sd.from ? sd.from : a0, b = b0 > sd.to ? sd.to : b0
+    if (a <= b) out.push({ stage: st, a, b })
+  }
+  return out
+}
+
+function staticPool(calendar, date, draft) {
+  return (calendar.static || []).filter((e) => e.from <= date && date <= e.to && calOk(e, draft))
+}
+
+// the plain pick of one day under one rain state; yesterday (same state) is used so a static line never repeats two days running while k > 1
+function calPick(calendar, date, draft, rain, depth = 0) {
+  const due = dueStages(calendar, date).find((d) => calOk(d.stage, draft) && calOk(calendar.sowing_dates, draft))
+  const statics = staticPool(calendar, date, draft)
   const hidden = []
-  if (rain) {
-    const irr = pool.filter((e) => e.irrigation_stage)
-    if (irr.length) {
-      hidden.push(...irr.map((e) => e.id))
-      pool = pool.filter((e) => !e.irrigation_stage)
+  let pool = statics
+  if (due) {
+    if (rain) {
+      hidden.push(due.stage.id)
       const hold = calendar.rain_hold
-      if (hold && calOk(hold, draft)) pool.push(hold)
+      pool = hold && calOk(hold, draft) ? [...statics, hold] : statics
+    } else if (!(statics.length && epochDays(date) % 3 === 0)) {
+      return { kind: 'cohort', due, hidden, e: due.stage }
     }
   }
-  return { pool, hidden }
-}
-// daysSinceEpoch % k, moved on by one when that would repeat the previous day (k changes at the window edges). Yesterday is judged
-// under the same rain state as today (a past forecast is not kept), so the no-repeat promise holds between days of the same state.
-function calPick(calendar, date, draft, rain, depth = 0) {
-  const { pool, hidden } = calPool(calendar, date, draft, rain)
   if (!pool.length) return null
   let i = epochDays(date) % pool.length
   if (pool.length > 1 && depth < 400) { const y = calPick(calendar, prevDay(date), draft, rain, depth + 1); if (y && y.e.id === pool[i].id) i = (i + 1) % pool.length }
-  return { e: pool[i], hidden }
+  return { kind: 'static', hidden, e: pool[i] }
 }
+
 export function pickCalendarLine(calendar, date, { draft = false, verdict = null } = {}) {
-  if (!calendar || !Array.isArray(calendar.entries)) return null
+  if (!calendar || typeof calendar !== 'object') return null
   const r = calPick(calendar, date, draft, rainHidesIrrigation(verdict))
   if (!r) return null
-  return { id: r.e.id, text: r.e.text_hi, source: `calendar:${r.e.id}`, unreviewed: r.e.reviewed !== true, hidden: r.hidden }
+  if (r.kind === 'cohort') {
+    const sd = calendar.sowing_dates, st = r.due.stage
+    const ids = [...(sd.reviewed === true ? [] : ['sowing_dates']), ...(st.reviewed === true ? [] : [st.id])]
+    const text = fmt(S.cohortLine, { a: human(r.due.a), b: human(r.due.b), stage: st.label_hi, x: st.das_from, y: st.das_to })
+    return { id: st.id, text, source: `calendar:${st.id}`, unreviewed: ids.length > 0, unreviewedIds: ids, hidden: r.hidden, cohort: { from: r.due.a, to: r.due.b } }
+  }
+  return { id: r.e.id, text: r.e.text_hi, source: `calendar:${r.e.id}`, unreviewed: r.e.reviewed !== true, unreviewedIds: r.e.reviewed === true ? [] : [r.e.id], hidden: r.hidden, cohort: null }
 }
 
 // Weather rules first (as today), then ONE calendar line. No reviewed calendar entry today: the old sowing_season rule exactly as before.
@@ -90,7 +115,7 @@ export function pickDayTasks(rulesFile, calendar, date, day, ctx = {}, { draft =
     const weather = pickTasks({ ...rulesFile, rules: rulesFile.rules.filter((r) => r.id !== 'sowing_season'), max_tasks: MAX_WEATHER_TASKS_WITH_CALENDAR }, day, ctx)
     const tasks = [...weather.tasks]
     if (!tasks.includes(line.text)) tasks.push(line.text)
-    return { tasks, fired: [...weather.fired, line.source], calendar: line, source: line.source, unreviewed: line.unreviewed ? [line.id] : [] }
+    return { tasks, fired: [...weather.fired, line.source], calendar: line, source: line.source, unreviewed: line.unreviewedIds }
   }
   const old = pickTasks(rulesFile, day, ctx)
   const sowRule = rulesFile.rules.find((r) => r.id === 'sowing_season')

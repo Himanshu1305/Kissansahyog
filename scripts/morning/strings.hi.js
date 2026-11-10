@@ -93,6 +93,7 @@ export const S = {
   howtoLast: 'आख़िरी तारीख़: {date}',
   kahawatMeaning: 'मतलब: {meaning}',
   kahawatSource: '({source})',
+  cohortLine: '{a} से {b} के बीच बोई गेहूं की {stage} का समय अब है (बुवाई के {x}-{y} दिन बाद)',   // Batch 21B: the dates are computed (lib/workRules.js)
   recapLine: '{crop}: इस हफ़्ते {arrow}{delta}',            // facts only
   recapLineFlat: '{crop}: इस हफ़्ते लगभग वैसा ही',
   // ---- closing

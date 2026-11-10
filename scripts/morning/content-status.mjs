@@ -14,7 +14,7 @@ export function fileCounts(data) {
   const row = (name, items) => ({ name, total: items.length, reviewed: reviewedCount(items) })
   return [
     row('events.json', data.events || []),
-    row('crop-calendar.json', [...(data.cropCalendar?.entries || []), ...(data.cropCalendar?.rain_hold ? [data.cropCalendar.rain_hold] : [])]),
+    row('crop-calendar.json', [...(data.cropCalendar?.sowing_dates ? [data.cropCalendar.sowing_dates] : []), ...(data.cropCalendar?.stages || []), ...(data.cropCalendar?.static || []), ...(data.cropCalendar?.rain_hold ? [data.cropCalendar.rain_hold] : [])]),
     row('money-facts.json', data.moneyFacts || []),
     row('gyaan.json', data.gyaan || []),
     row('scheme-calendar.json', data.schemes || []),
