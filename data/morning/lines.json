@@ -1,9 +1,136 @@
 {
   "blessing": [
-    { "id": "b1", "text_hi": "अन्नदाता सुखी भव 🌾", "reviewed": true },
-    { "id": "b2", "text_hi": "आपकी मेहनत को सलाम", "reviewed": true },
-    { "id": "b3", "text_hi": "आपके खेत हरे-भरे रहें", "reviewed": true },
-    { "id": "b4", "text_hi": "आपका दिन शुभ हो", "reviewed": true }
+    {
+      "id": "b1",
+      "text_hi": "अन्नदाता सुखी भव 🌾",
+      "reviewed": true
+    },
+    {
+      "id": "b2",
+      "text_hi": "आपकी मेहनत को सलाम",
+      "reviewed": true
+    },
+    {
+      "id": "b3",
+      "text_hi": "आपके खेत हरे-भरे रहें",
+      "reviewed": true
+    },
+    {
+      "id": "b4",
+      "text_hi": "आपका दिन शुभ हो",
+      "reviewed": true
+    }
   ],
-  "kahawat": []
+  "kahawat": [
+    {
+      "id": "k01",
+      "text_hi": "उत्तम खेती मध्यम बान, निकृष्ट चाकरी, भीख निदान।",
+      "meaning_hi": "खेती सबसे अच्छा काम, व्यापार बीच का, नौकरी उससे नीचे, भीख आख़िरी सहारा।",
+      "when_hi": "कभी भी",
+      "source_name": "हिंदी विकिपीडिया (घाघ)",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k02",
+      "text_hi": "खाद पड़े तो खेत, नहीं तो कूड़ा रेत।",
+      "meaning_hi": "खाद डालोगे तो खेत काम आएगा, वरना वह केवल रेत है।",
+      "when_hi": "खाद की बात पर",
+      "source_name": "हिंदी विकिपीडिया (घाघ)",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k03",
+      "text_hi": "गोबर, मैला, नीम की खली, या से खेती दुनी फली।",
+      "meaning_hi": "गोबर की खाद, कम्पोस्ट और नीम की खली से फसल दुगनी होती है।",
+      "when_hi": "खाद की बात पर",
+      "source_name": "हिंदी विकिपीडिया (घाघ)",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k04",
+      "text_hi": "जब सैल खटाखट बाजै, तब चना खूब ही गाजै।",
+      "meaning_hi": "जब ढेले टूटकर पाटा खटखटाता है, तब चने की फसल अच्छी होती है।",
+      "when_hi": "चने की बात पर",
+      "source_name": "India Water Portal",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k05",
+      "text_hi": "छप्पर छाने के लिए चार मनुष्य चाहिए। खेत निराने के लिए छह मनुष्य चाहिए।",
+      "meaning_hi": "छप्पर छाने में चार लोग लगते हैं, खेत की निराई में छह।",
+      "when_hi": "निराई की बात पर",
+      "source_name": "हिन्द्वी (घाघ)",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k06",
+      "text_hi": "उत्तर चमकै बीजुरी, पूरब बहे बाउ, घाघ कहै सुन भड्डरी, बरधा भीतर लाउ।",
+      "meaning_hi": "उत्तर में बिजली और पूरब की हवा: तेज़ बारिश आ रही है, बैलों को अंदर ले आओ।",
+      "when_hi": "बारिश के मौसम में",
+      "source_name": "OCR स्कैन (दूसरी पंक्ति पक्की करना बाकी)",
+      "reviewed": false,
+      "wording_checked": false,
+      "note": "source is an OCR scan; the second line is to be confirmed against a printed copy"
+    },
+    {
+      "id": "k07",
+      "text_hi": "अब पछताए होत क्या जब चिड़िया चुग गई खेत।",
+      "meaning_hi": "समय निकल जाने के बाद पछताने से कोई फ़ायदा नहीं।",
+      "when_hi": "कभी भी",
+      "source_name": "प्रचलित कहावत",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k08",
+      "text_hi": "बोया पेड़ बबूल का तो आम कहाँ से होय।",
+      "meaning_hi": "जैसा काम करोगे, वैसा ही फल मिलेगा।",
+      "when_hi": "कभी भी",
+      "source_name": "प्रचलित कहावत",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k09",
+      "text_hi": "जैसा बोओगे वैसा काटोगे।",
+      "meaning_hi": "जो बीज और मेहनत लगाओगे, वही फसल मिलेगी।",
+      "when_hi": "कभी भी",
+      "source_name": "प्रचलित कहावत",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k10",
+      "text_hi": "बूँद-बूँद से घड़ा भरता है।",
+      "meaning_hi": "थोड़ा-थोड़ा जमा करने से बड़ी चीज़ बन जाती है।",
+      "when_hi": "कभी भी",
+      "source_name": "प्रचलित कहावत",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k11",
+      "text_hi": "एक और एक ग्यारह।",
+      "meaning_hi": "मिलकर काम करने से ताक़त कई गुना बढ़ जाती है।",
+      "when_hi": "कभी भी",
+      "source_name": "प्रचलित कहावत",
+      "reviewed": false,
+      "wording_checked": false
+    },
+    {
+      "id": "k12",
+      "text_hi": "नौ नकद, न तेरह उधार।",
+      "meaning_hi": "हाथ में आया थोड़ा नकद, उधार के ज़्यादा से बेहतर माना जाता है।",
+      "when_hi": "कभी भी",
+      "source_name": "प्रचलित कहावत",
+      "reviewed": false,
+      "wording_checked": false,
+      "note": "reviewer to decide: may read as advice"
+    }
+  ]
 }

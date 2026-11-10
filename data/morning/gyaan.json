@@ -58,5 +58,13 @@
     "id": "g12",
     "text_hi": "KVK यानी कृषि विज्ञान केंद्र; खेती की सही जानकारी के लिए वहाँ से पूछ सकते हैं।",
     "reviewed": false
+  },
+  {
+    "id": "k01",
+    "text_hi": "इस बार MSP में सरसों सबसे ज़्यादा बढ़ी (+₹413), गेहूं सबसे कम (+₹25). चना +₹83, मसूर +₹390",
+    "source_name": "केंद्रीय मंत्रिमंडल का फ़ैसला (1 अक्तूबर 2026), Global Agriculture",
+    "source_url": "https://www.global-agriculture.com/india-region/cabinet-approves-msp-hike-for-all-six-rabi-crops-for-marketing-season-2027-28/",
+    "source_date": "2026-10-01",
+    "reviewed": false
   }
 ]
