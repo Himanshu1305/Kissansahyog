@@ -7,21 +7,6 @@
 ## The review gate stays ON
 The gate is still on in the code. On 10 Nov 2026 the founder approved the content (each flipped item is marked `approved_by`). **Not approved, so still blocked:** pmfby-rabi (no sourced Madhya Pradesh last date, so Friday has no how-to), the older pm-kisan and pmfby entries, the kahawat "उत्तर चमकै बीजुरी..." (OCR source, second line unconfirmed), the 4 far-away events, and the tips.
 
-## How to see what is missing
-```
-npm run morning:content
-```
-Prints how many items each data file has (total / reviewed / not reviewed), then a table for the next 21 days: the task line source, and the slot shown or `cd ~/projects/ks-b20 && git fetch origin \
-&& git merge-base --is-ancestor origin/main merge-21 && echo "OK: merge-21 contains origin/main (main has not moved)" \
-&& git log merge-21 --oneline -3 \
-&& git diff --stat origin/main merge-21 | tail -1 \
-&& git push origin merge-21:main \
-&& git fetch origin && git log origin/main --oneline -5ED (unreviewed: ids)` or `none`. Options: `-- --from 2026-11-20 --days 30`. It reads files only and uses sample weather, never the network.
-To read how a day would look with the seeds: `npm run morning -- --draft --fixtures normal --date 2026-11-12` (shows the message and a WARNING listing the unreviewed items).
-
-## The kill switch
-If anything looks wrong after the merge, set the repository variable `MORNING_CONTENT` to `off`: GitHub > the repo > Settings > Secrets and variables > Actions > **Variables** > New repository variable, name `MORNING_CONTENT`, value `off` (any capitals, spaces ignored). The next post is then exactly the old one: the old weekday slots, old headings, the single sowing rule, and the old poll rotation. Delete the variable (or set anything else) to turn the new behaviour back on. No code change needed either way.
-
 ## What you will see tomorrow (11 Nov, Wednesday) - gate on, approvals applied
 The full text is in `evidence/live-approved-2026-11-11.txt` (all seven days 11-17 Nov are there; each under 1500 characters and clean on lint).
 - **Task line:** "... बोई गेहूं की पहली सिंचाई का समय अब है (बुवाई के 20-25 दिन बाद)" with the dates worked out for that day; every third day a plain static line instead. On a day with rain expected it becomes the rain line.
@@ -35,7 +20,12 @@ The full text is in `evidence/live-approved-2026-11-11.txt` (all seven days 11-1
 
 Paste this whole block into Git Bash:
 ```
-BLOCK
+cd ~/projects/ks-b20 && git fetch origin \
+&& git merge-base --is-ancestor origin/main merge-21 && echo "OK: merge-21 contains origin/main (main has not moved)" \
+&& git log merge-21 --oneline -3 \
+&& git diff --stat origin/main merge-21 | tail -1 \
+&& git push origin merge-21:main \
+&& git fetch origin && git log origin/main --oneline -5
 ```
 
 ## Morning check (about 05:00 IST, after the 01:07 run)
