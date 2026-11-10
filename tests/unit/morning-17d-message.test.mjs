@@ -1,4 +1,4 @@
-import './helpers/contentOff.mjs'
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 17D Part B - the layout of message.txt. Same facts as 17B, laid out like the card: scannable on a phone in 10 seconds.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -9,7 +9,7 @@ import { loadFixture, rainFixtureNames } from '../../scripts/morning/fixtures.js
 import { S } from '../../scripts/morning/strings.hi.js'
 import { findRepeats } from './helpers/repeatedWords.mjs'
 
-const DATA = loadData()
+const DATA = loadData(OLD_DATA_DIR)
 const names = rainFixtureNames()
 // Measured on F1-F6 and the two old fixtures: the longest line is 52 characters (the heavy-rain sentence, word for word as in 17B); the spec asked 45.
 // See docs/review/batch17d/DECISIONS.md. Every other line is 47 or shorter, and every non-rain line is 45 or shorter.

@@ -7,12 +7,13 @@ import { pickCalendarLine, pickDayTasks, pickTasks, dueStages, rainHidesIrrigati
 import { generate, loadData } from '../../scripts/morning/lib/generate.js'
 import { loadFixture } from '../../scripts/morning/fixtures.js'
 import { S, fmt } from '../../scripts/morning/strings.hi.js'
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 import { addDays } from '../../scripts/morning/lib/ist.js'
 import { BANNERS } from '../../src/content/kamPani.js'
 import { LEVELS } from '../../src/lib/weather/rainVerdict.js'
 
 const RULES = JSON.parse(readFileSync('data/morning/work-rules.json', 'utf8'))
-const CAL = JSON.parse(readFileSync('data/morning/crop-calendar.json', 'utf8'))
+const CAL = JSON.parse(readFileSync('tests/unit/fixtures/morning-data-pre-approval/crop-calendar.json', 'utf8'))
 const yes = (o) => ({ ...o, reviewed: true })
 const REVIEWED = { ...CAL, sowing_dates: yes(CAL.sowing_dates), stages: CAL.stages.map(yes), static: CAL.static.map(yes), rain_hold: yes(CAL.rain_hold) }
 const S01 = CAL.static[0].text_hi, S02 = CAL.static[1].text_hi, HOLD = CAL.rain_hold.text_hi
@@ -235,7 +236,7 @@ test('rain: no forecast (verdict null) cannot know about rain, so the cohort lin
 const run = async (date, { tomorrowMm = 0, draft = false, data } = {}) => {
   const fx = loadFixture('normal', date)
   const w = { ...fx.weather, days: fx.weather.days.map((d, i) => ({ ...d, rainMm: i === 1 ? tomorrowMm : d.rainMm, rainProb: i === 1 && tomorrowMm > 0 ? 70 : d.rainProb })) }
-  return generate({ date, draft, data: data || { ...loadData(), cropCalendar: REVIEWED }, loaders: { weather: async () => w, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }, nowIso: `${date}T01:00:00Z`, env: {} })
+  return generate({ date, draft, data: data || { ...loadData(OLD_DATA_DIR), cropCalendar: REVIEWED }, loaders: { weather: async () => w, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }, nowIso: `${date}T01:00:00Z`, env: {} })
 }
 test('end to end: cohort line on a dry day; rain_hold when the 48-hour rain is light or more (report says so); drizzle keeps the cohort line', async () => {
   const date = nextDay('2026-12-10', notThird)
@@ -252,9 +253,9 @@ test('end to end: cohort line on a dry day; rain_hold when the 48-hour rain is l
 
 test('end to end: live gate - the real seeded calendar (all unreviewed) shows nothing from the calendar; --draft shows the cohort line with the WARNING ids', async () => {
   const date = nextDay('2026-12-02', notThird)
-  const live = await run(date, { data: loadData() })
+  const live = await run(date, { data: loadData(OLD_DATA_DIR) })
   assert.equal(live.taskSource, null); assert.ok(!/सिंचाई का समय अब है/.test(live.message)); assert.equal(live.warn, null)
-  const draft = await run(date, { draft: true, data: loadData() })
+  const draft = await run(date, { draft: true, data: loadData(OLD_DATA_DIR) })
   assert.match(draft.message, /सिंचाई का समय अब है/); assert.match(draft.warn, /calendar:sowing_dates, calendar:irr1/)
 })
 

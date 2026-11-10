@@ -9,6 +9,7 @@ import { generate, loadData } from '../../scripts/morning/lib/generate.js'
 import { loadFixture, rainFixtureNames } from '../../scripts/morning/fixtures.js'
 import { S } from '../../scripts/morning/strings.hi.js'
 import { baseline, crlf, FNAMES } from './helpers/morning18.mjs'
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 import { addDays } from '../../scripts/morning/lib/ist.js'
 
 const MON = '2026-11-09' // a Monday; the week is Mon 9 .. Sun 15 Nov 2026
@@ -49,7 +50,7 @@ test('headings are the exact founder text for all seven days (reviewed in-test d
 
 test('Sunday recap is still automatic (a full generate on a Sunday shows the recap heading)', async () => {
   const fx = loadFixture('normal', '2026-11-08')
-  const r = await generate({ date: '2026-11-08', data: loadData(), loaders: { weather: async () => fx.weather, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }, nowIso: '2026-11-08T01:00:00Z', env: {} })
+  const r = await generate({ date: '2026-11-08', data: loadData(OLD_DATA_DIR), loaders: { weather: async () => fx.weather, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }, nowIso: '2026-11-08T01:00:00Z', env: {} })
   assert.equal(r.model.slot.kind, 'recap'); assert.match(r.message, /📊 \*इस हफ़्ते का हाल\*/)
 })
 
@@ -85,7 +86,7 @@ test('review gate end to end: --draft lists the unreviewed ids in the WARNING, a
   const date = '2026-11-12' // Thursday: know
   const fx = loadFixture('normal', date)
   const loaders = { weather: async () => fx.weather, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }
-  const data = { ...loadData(), gyaan: pool((n) => gy(n, { reviewed: false }), 4) }
+  const data = { ...loadData(OLD_DATA_DIR), gyaan: pool((n) => gy(n, { reviewed: false }), 4) }
   const live = await generate({ date, data, loaders, nowIso: `${date}T01:00:00Z`, env: {} })
   assert.ok(!live.message.includes('ज्ञान'), 'not shown live'); assert.equal(live.warn, null)
   const draft = await generate({ date, data, loaders, draft: true, nowIso: `${date}T01:00:00Z`, env: {} })
@@ -216,7 +217,7 @@ test('how-to is NOT eligible with last_date null, even when reviewed and even wi
 // ---- the kill switch on the real fixtures
 const gen = async (i, env) => {
   const fx = loadFixture(FNAMES[i - 1])
-  return generate({ date: fx.date, data: loadData(), nowIso: fx.nowIso, loaders: { weather: fx.weatherLoader, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }, env })
+  return generate({ date: fx.date, data: loadData(OLD_DATA_DIR), nowIso: fx.nowIso, loaders: { weather: fx.weatherLoader, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) }, env })
 }
 test('KILL SWITCH: MORNING_CONTENT=off (also OFF and " off ") gives the byte-identical Batch 18 baseline for F1-F6', async () => {
   assert.equal(FNAMES.length, 6); assert.equal(rainFixtureNames().length, 6)
@@ -244,7 +245,7 @@ test('KILL SWITCH: any other value or unset is the NEW behaviour (and the live g
 })
 
 test('KILL SWITCH: off also ignores the weekday polls, so the poll rotation is exactly the old one', () => {
-  const data = loadData()
+  const data = loadData(OLD_DATA_DIR)
   const old = data.polls.filter((p) => p.weekday == null)
   for (let i = 0; i < 40; i++) {
     const d = addDays('2026-11-01', i)

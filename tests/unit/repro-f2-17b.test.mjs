@@ -1,3 +1,4 @@
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 17B follow-up - the reproduction of the founder's 30 Oct card, written so that the SAME file runs on release-17a (old code) and
 // release-17b (new code): it only uses what both have (generate, loadData, cardData, buildVoiceScript) and only relative imports.
 // F2 = daily chance 80%, day total 1 mm, weather code 80 (rain shower). On 17a these tests FAIL (that is the proof they catch the bug).
@@ -13,7 +14,7 @@ const DATE = '2026-10-30'
 const day = (date, o) => ({ date, tmin: 18, tmax: 31, rainProb: 10, rainMm: 0, windMax: 9, code: 2, ...o })
 const F2 = { provider: 'f2', days: [day('2026-10-30', { rainProb: 80, rainMm: 1, code: 80 }), day('2026-10-31', {}), day('2026-11-01', {})] }
 async function f2() {
-  return generate({ date: DATE, data: loadData(), nowIso: '2026-10-30T10:30:00Z', loaders: { weather: async () => F2, mandi: async () => ({ rows: makeRows(DATE), flag: 'fixture' }) } })
+  return generate({ date: DATE, data: loadData(OLD_DATA_DIR), nowIso: '2026-10-30T10:30:00Z', loaders: { weather: async () => F2, mandi: async () => ({ rows: makeRows(DATE), flag: 'fixture' }) } })
 }
 
 test('F2 message: the weather line shows no rain percentage for about 1 mm of rain', async () => {

@@ -1,3 +1,4 @@
+import { OLD_DATA_DIR } from './contentOff.mjs'
 // Shared by the Batch 18 tests: run the real generator on a rain fixture (F1-F6) with a district scenario.
 import { readFileSync } from 'node:fs'
 import { generate, loadData } from '../../../scripts/morning/lib/generate.js'
@@ -6,7 +7,7 @@ import { DISTRICTS } from '../../../scripts/morning/lib/districts.js'
 import { loadFixture, rainFixtureNames, districtScenario } from '../../../scripts/morning/fixtures.js'
 import { S } from '../../../scripts/morning/strings.hi.js'
 
-export const DATA = loadData()
+export const DATA = loadData(OLD_DATA_DIR)
 export const FNAMES = rainFixtureNames()
 export const crlf = (t) => t.replace(/\r\n/g, '\n')
 export const baseline = (i) => crlf(readFileSync(`docs/review/batch18/evidence/baseline-F${i}.txt`, 'utf8')).replace(/\n$/, '')

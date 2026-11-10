@@ -1,4 +1,4 @@
-import './helpers/contentOff.mjs'
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 16A - daily morning message generator. Offline: weather and database access are mocked / fixtures.
 // Run: node --test "tests/unit/*.test.mjs"
 import { test } from 'node:test'
@@ -22,7 +22,7 @@ import { windowStart } from '../../src/lib/mandi/mspWindow.js'
 import { strings } from '../../src/lib/i18n/strings.js'
 import { recordResult } from '../../scripts/morning/poll-result.mjs'
 
-const DATA = loadData()
+const DATA = loadData(OLD_DATA_DIR)
 const TODAY = FIXTURE_DATE // 2026-10-25, a Sunday
 const YDAY = addDays(TODAY, -1)
 // Batch 17B: rain rules read the rain verdict. verdictOf(day) = the verdict from day totals only (no hourly series).

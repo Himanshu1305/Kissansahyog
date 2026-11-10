@@ -1,3 +1,4 @@
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 17A Part A - Hindi number words and the spoken script.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -46,7 +47,7 @@ test('speakable: pronunciation map, digits, symbols and Latin letters', () => {
   assert.ok(!/[0-9]/.test(dirty))
 })
 
-const DATA = loadData()
+const DATA = loadData(OLD_DATA_DIR)
 async function modelFor(name, mutate) {
   const fx = loadFixture(name)
   const r = await generate({ date: fx.date, data: DATA, loaders: { weather: async () => fx.weather, mandi: async () => ({ rows: fx.rows, flag: 'fixture' }) } })

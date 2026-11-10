@@ -1,0 +1,14 @@
+{
+  "_note": "Official MSP, Rs per quintal. Only verified:true entries are ever used. season_label is the marketing season the crop is being SOLD under today: kharif crops use 'kharif 2026-27', rabi crops sold now use 'rabi 2026-27'. The 2027-28 rabi MSP (announced 1 Oct 2026) is for the crop being sown now and must not be compared with today's mandi price. crop = mandi_prices.commodity_en. Checked 2026-10-25; the PIB pages returned HTTP 403 to our fetcher, so values are from DD India / Akashvani (public broadcaster) reports and cross-checked against two more reports; see docs/review/batch16a/RECON.md.",
+  "entries": [
+    { "crop": "Paddy(Dhan)(Common)", "season_label": "kharif 2026-27", "msp": 2441, "source_url": "https://ddindia.co.in/2026/05/cabinet-approves-higher-msp-for-14-kharif-crops-for-2026-27-marketing-season/", "verified": true },
+    { "crop": "Soyabean", "season_label": "kharif 2026-27", "msp": 5708, "source_url": "https://ddindia.co.in/2026/05/cabinet-approves-higher-msp-for-14-kharif-crops-for-2026-27-marketing-season/", "verified": true },
+    { "crop": "Moong", "season_label": "kharif 2026-27", "msp": 8780, "source_url": "https://ddindia.co.in/2026/05/cabinet-approves-higher-msp-for-14-kharif-crops-for-2026-27-marketing-season/", "verified": true },
+    { "crop": "Urad", "season_label": "kharif 2026-27", "msp": 8200, "source_url": "https://ddindia.co.in/2026/05/cabinet-approves-higher-msp-for-14-kharif-crops-for-2026-27-marketing-season/", "verified": true },
+    { "crop": "Maize", "season_label": "kharif 2026-27", "msp": 2410, "source_url": "https://ddindia.co.in/2026/05/cabinet-approves-higher-msp-for-14-kharif-crops-for-2026-27-marketing-season/", "verified": true },
+    { "crop": "Wheat", "season_label": "rabi 2026-27", "msp": 2585, "source_url": "https://www.tribuneindia.com/news/india/govt-raises-wheat-msp-by-6-59-to-rs-2585-per-quintal-for-2026-27", "verified": true },
+    { "crop": "Gram", "season_label": "rabi 2026-27", "msp": 5875, "source_url": "https://www.tribuneindia.com/news/india/govt-raises-wheat-msp-by-6-59-to-rs-2585-per-quintal-for-2026-27", "verified": true },
+    { "crop": "Lentil", "season_label": "rabi 2026-27", "msp": 7000, "source_url": "https://www.tribuneindia.com/news/india/govt-raises-wheat-msp-by-6-59-to-rs-2585-per-quintal-for-2026-27", "verified": true },
+    { "crop": "Mustard", "season_label": "rabi 2026-27", "msp": 6200, "source_url": "https://www.tribuneindia.com/news/india/govt-raises-wheat-msp-by-6-59-to-rs-2585-per-quintal-for-2026-27", "verified": true }
+  ]
+}

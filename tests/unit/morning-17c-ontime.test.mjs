@@ -1,4 +1,4 @@
-import './helpers/contentOff.mjs'
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 // Batch 17C - the daily morning post must be ready before 05:00 IST: the cheap "is today's post complete?" check and the workflow shape.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -233,7 +233,7 @@ import { buildVoiceScript } from '../../scripts/morning/voice/voiceScript.mjs'
 import { cardData } from '../../scripts/morning/card/render.mjs'
 
 test('report has "mandi date used" and "weather cache age"; message and voice script identical to the 17D evidence', async () => {
-  const D = loadData()
+  const D = loadData(OLD_DATA_DIR)
   const rd = (f) => readFileSync(new URL(`../../docs/review/batch17d/evidence/${f}`, import.meta.url), 'utf8').split(String.fromCharCode(13,10)).join(String.fromCharCode(10))
   for (const [fixture, label] of [['rain-f1', 'f1-dry'], ['rain-f2', 'f2-real-30oct'], ['rain-f3', 'f3-rain-soon'], ['rain-f4', 'f4-heavy'], ['rain-f5', 'f5'], ['rain-f6', 'f6']]) {
     const fx = loadFixture(fixture)

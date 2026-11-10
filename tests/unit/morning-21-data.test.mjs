@@ -15,9 +15,12 @@ import { fileCounts, statusRows, main as statusMain } from '../../scripts/mornin
 import { buildVoiceScript } from '../../scripts/morning/voice/voiceScript.mjs'
 import { cardData, renderCard } from '../../scripts/morning/card/render.mjs'
 import { districtLoader, crlf } from './helpers/morning18.mjs'
+import { OLD_DATA_DIR } from './helpers/contentOff.mjs'
 
 const j = (f) => JSON.parse(readFileSync(`data/morning/${f}`, 'utf8'))
 const DATA = loadData()
+const OLD = loadData(OLD_DATA_DIR) // the seeds exactly as delivered, before the founder approved them (gate tests use this)
+const oldJ = (f) => JSON.parse(readFileSync(new URL(f, OLD_DATA_DIR), 'utf8'))
 const EVENTS = j('events.json'), CAL = j('crop-calendar.json'), MONEY = j('money-facts.json'), GYAAN = j('gyaan.json'), SCHEMES = j('scheme-calendar.json'), LINES = j('lines.json')
 
 // every Hindi/English text string of the new seeds, with an owner id (the placeholders for strings that are not shown are skipped)
@@ -73,7 +76,8 @@ test('seeds: every new item has a source_name and source_url (kahawat: a source_
   for (const k of LINES.kahawat) assert.ok(k.source_name, k.id)
 })
 
-test('seeds: every new item is unreviewed (the gate stays on); the old 3 schemes and 12 gyaan items are unchanged', () => {
+test('seeds as DELIVERED (snapshot before the founder approved them) were all unreviewed; the old 3 schemes and 12 gyaan items were as they were', () => {
+  const EVENTS = oldJ('events.json'), CAL = oldJ('crop-calendar.json'), MONEY = oldJ('money-facts.json'), GYAAN = oldJ('gyaan.json'), SCHEMES = oldJ('scheme-calendar.json'), LINES = oldJ('lines.json')
   for (const [name, items] of [['events', EVENTS], ['crop-calendar', [CAL.sowing_dates, ...CAL.stages, ...CAL.static, CAL.rain_hold]], ['money-facts', MONEY], ['kahawat', LINES.kahawat]]) assert.ok(items.every((x) => x.reviewed === false), name)
   assert.ok(GYAAN.every((g) => g.reviewed === false)); assert.ok(SCHEMES.every((s) => s.verified === false))
   assert.deepEqual(SCHEMES.slice(0, 3).map((s) => s.id), ['pm-kisan', 'pmfby', 'kcc'])
@@ -181,16 +185,16 @@ test('Hindi lives only in strings.hi.js and data/morning/*.json: none in the log
 
 // ---- the rehearsal tool
 test('npm run morning:content: counts per data file and a day table with BLOCKED markers; read-only, fixture weather only', async () => {
-  const counts = fileCounts(DATA)
+  const counts = fileCounts(OLD)
   const byName = Object.fromEntries(counts.map((c) => [c.name, c]))
   assert.deepEqual([byName['events.json'].total, byName['events.json'].reviewed, byName['events.json'].unreviewed], [13, 0, 13])
   assert.equal(byName['crop-calendar.json'].total, 7); assert.equal(byName['lines.json (kahawat)'].total, 12); assert.equal(byName['gyaan.json'].total, 13)
-  const rows = await statusRows({ from: '2026-11-09', days: 7, data: DATA, env: {} })
+  const rows = await statusRows({ from: '2026-11-09', days: 7, data: OLD, env: {} })
   assert.equal(rows.length, 7); assert.deepEqual(rows.map((r) => r.date), Array.from({ length: 7 }, (_, i) => addDays('2026-11-09', i)))
   for (const r of rows) assert.match(r.task, r.date < '2026-11-15' ? /fallback:sowing_season \[BLOCKED \(unreviewed\): calendar:(irr\d|s0\d)\]/ : /none \[BLOCKED \(unreviewed\): calendar:(irr\d|s0\d)\]/, 'the old sowing rule runs only until the banner date (15 Nov)')
   assert.ok(rows[1].slot.includes('BLOCKED (unreviewed:') && rows[1].slot.includes('upcoming'))
   assert.match(rows[4].slot, /^none \[BLOCKED \(unreviewed: .*\): upcoming\]$/, 'Friday: the how-to is not even offered as a draft (last date unknown)')
-  const reviewed = { ...DATA, events: EVENTS.map((e) => ({ ...e, reviewed: true })), cropCalendar: { ...CAL, sowing_dates: { ...CAL.sowing_dates, reviewed: true }, stages: CAL.stages.map((x) => ({ ...x, reviewed: true })), static: CAL.static.map((x) => ({ ...x, reviewed: true })), rain_hold: { ...CAL.rain_hold, reviewed: true } } }
+  const reviewed = { ...OLD, events: EVENTS.map((e) => ({ ...e, reviewed: true })), cropCalendar: { ...CAL, sowing_dates: { ...CAL.sowing_dates, reviewed: true }, stages: CAL.stages.map((x) => ({ ...x, reviewed: true })), static: CAL.static.map((x) => ({ ...x, reviewed: true })), rain_hold: { ...CAL.rain_hold, reviewed: true } } }
   const ok = await statusRows({ from: '2026-11-10', days: 1, data: reviewed, env: {} })
   assert.match(ok[0].task, /^calendar:(irr\d|s0\d)$/); assert.equal(ok[0].slot, 'upcoming')
   const lines = []; const log = console.log; console.log = (...a) => lines.push(a.join(' '))
