@@ -9,7 +9,7 @@ For 90 days (about 13 weeks) the same weekday should not repeat an item. Below: 
 | Wed money fact | **13** | 1 (the MSP news; shown once a month only, because a pool under 4 is throttled) | 0 | 12 |
 | Thu "क्या आप जानते हैं?" | **13** | 13 (12 general lines with no source, 1 sourced MSP line) | 0 | 13 sourced ones |
 | Sat kahawat | **13** | 12 | 0 | 1, plus Shri A.K. Dixit's check of all |
-| Task line (every day) | a wheat calendar line for each date window, 1 Nov 2026 - 18 Feb 2027 | 10 stage lines + 1 rain line (1 line too long) | 0 | KVK Sagar confirmation; then gram, mustard, lentil |
+| Task line (every day) | sowing season, 3 irrigation stages and 2 static lines (all computed from dates) | sowing_dates + 3 stages + 2 static + 1 rain line | 0 | KVK Sagar confirmation; then top-dressing, weeding, frost, pests; then gram, mustard, lentil stage tables |
 
 **Rule of thumb:** until a weekday has 4 reviewed items, each item shows at most once in 4 weeks and the other weeks fall back to "अब आगे क्या?" or no slot. So the first 4 reviewed items per weekday matter most.
 

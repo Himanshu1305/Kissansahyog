@@ -1,12 +1,12 @@
-node --test tests/unit/*.test.mjs   (2026-11-10T10:47Z)
-✖ strings: every district word and name exists; the Hindi lives only in strings.hi.js (13.1298ms)
-ℹ tests 867
+node --test tests/unit/*.test.mjs   (2026-11-10T11:10Z)
+✖ strings: every district word and name exists; the Hindi lives only in strings.hi.js (9.4515ms)
+ℹ tests 868
 ℹ suites 0
-ℹ pass 864
+ℹ pass 865
 ℹ fail 1
 ℹ cancelled 0
 ℹ skipped 2
 ✖ failing tests:
-✖ strings: every district word and name exists; the Hindi lives only in strings.hi.js (13.1298ms)
+✖ strings: every district word and name exists; the Hindi lives only in strings.hi.js (9.4515ms)
 
 npm run build: exit 0

@@ -1,6 +1,6 @@
 # Batch 21 ship notes (founder) - a different, useful item every day in the morning post
 
-**What this changes:** the daily "सुबह की खबर" post. (1) The small slot near the bottom now follows a weekly menu: Mon scheme news, Tue what is coming, Wed a money fact, Thu "क्या आप जानते हैं?", Fri how to apply, Sat kahawat, Sun the weekly recap (unchanged). (2) The "आज का काम" line now follows a wheat crop-stage calendar by date, instead of one sentence every day. (3) Two new poll questions, one on Mondays (PM-किसान money) and one on Fridays (rabi crop insurance).
+**What this changes:** the daily "सुबह की खबर" post. (1) The small slot near the bottom now follows a weekly menu: Mon scheme news, Tue what is coming, Wed a money fact, Thu "क्या आप जानते हैं?", Fri how to apply, Sat kahawat, Sun the weekly recap (unchanged). (2) The "आज का काम" line now says what comes AFTER sowing (most Sagar farmers sowed by 7 Nov): a line computed from dates, like "15 नवंबर से 20 नवंबर के बीच बोई गेहूं की पहली सिंचाई का समय अब है (बुवाई के 20-25 दिन बाद)", with two static lines mixed in. When rain is expected the irrigation line is replaced by a rain line. (3) Three new poll questions: Monday PM-किसान money (p13), Tuesday "when was your sowing finished?" (p15), Friday rabi crop insurance (p14).
 **What does NOT change:** weather, six districts, mandi prices, MSP gap, trend, the card, the voice and the video. The website is not touched. No database change, no SQL, no migration, no new secret, no new npm package.
 **Only these things changed:** `scripts/morning/**`, `data/morning/*.json`, tests, docs, and ONE line in `.github/workflows/morning-post.yml` (`MORNING_CONTENT`). The four cron times are untouched.
 
@@ -20,7 +20,7 @@ If anything looks wrong after the merge, set the repository variable `MORNING_CO
 ## What you will see tomorrow if you merge now
 - **Mon-Sat until 14 Nov: the daily line "रबी बुवाई की खिड़की में N दिन बाकी" at the bottom disappears.** The old slot showed it every day only because nothing else was reviewed. The new menu does not use it (it is the rain-fed advice and would contradict the new irrigated 10-25 Nov window). With nothing reviewed, those days have no slot. After 14 Nov the old post had no slot either, so nothing differs then. Sunday (recap) is unchanged.
 - **The task line is the same as today** (the old "बुवाई वाले खेत में नमी जाँचें" until 15 Nov, nothing after), because the calendar is unreviewed.
-- **Monday's poll becomes the PM-किसान question and Friday's the crop-insurance question.** Polls have no review flag (never had), so these two go live at once. Delete `p13`/`p14` from `data/morning/polls.json` (or set the kill switch) if you do not want that yet.
+- **Polls are not gated.** p13 (Monday, PM-किसान), p15 (Tuesday, sowing finished) and p14 (Friday, crop insurance) go live on merge: polls have no review flag. Delete them from `data/morning/polls.json` (or set the kill switch) if you do not want that yet.
 - Everything else is identical to today. Proof: the six Batch 18 test messages (F1-F6) are byte-identical with the kill switch on `off`; with it unset only the slot differs.
 
 ## Steps for you, one at a time

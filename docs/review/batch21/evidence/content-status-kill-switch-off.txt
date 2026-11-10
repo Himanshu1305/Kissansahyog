@@ -2,7 +2,7 @@ Content status (MORNING_CONTENT is OFF: old behaviour); reads files only, no net
 
 file                        total  reviewed  unreviewed
 events.json                    13         0          13
-crop-calendar.json             11         0          11
+crop-calendar.json              7         0           7
 money-facts.json                1         0           1
 gyaan.json                     13         0          13
 scheme-calendar.json            5         0           5
@@ -11,8 +11,8 @@ tips.json                       4         0           4
 festivals.json                  0         0           0
 procurement-windows.json        0         0           0
 
-Next 3 days from 2026-11-09 (normal fixture weather):
+Next 3 days from 2026-11-11 (normal fixture weather):
 date        day          task line                                     slot
-2026-11-09  सोमवार       weather:sowing_season                         countdown [BLOCKED (unreviewed: pmfby): scheme]
-2026-11-10  मंगलवार      weather:sowing_season                         countdown
 2026-11-11  बुधवार       weather:sowing_season                         countdown [BLOCKED (unreviewed: tip-compare): saving]
+2026-11-12  गुरुवार      weather:sowing_season                         countdown [BLOCKED (unreviewed: g04): gyaan]
+2026-11-13  शुक्रवार     weather:sowing_season                         countdown [BLOCKED (unreviewed: kcc): scheme]
