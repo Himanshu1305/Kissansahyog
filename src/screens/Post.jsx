@@ -23,6 +23,10 @@ import { DateBlock, ExtraInfoField } from '../components/categories/fields'
 import { needsDates, checkListingDates, withListingDates, todayIst } from '../lib/listings/listingDates'
 import { extraInfoError, withExtraInfo } from '../lib/listings/extraInfo'
 import WhatsAppChannelCard from '../components/WhatsAppChannelCard'
+import MitraField from '../components/auth/MitraField'
+import { myMitraChoiceOpen } from '../lib/mitra/mitraApi'
+import { saveMitraOnOffer } from '../lib/mitra/saveMitraOnOffer'
+import { supabase } from '../lib/supabaseClient'
 
 // Post flow in 3 steps (Batch1 item 5), with a 1/3 step indicator. Back keeps all
 // entered data.
@@ -68,6 +72,11 @@ export default function Post() {
   const [wideVisibility, setWideVisibility] = useState(false)
   const [confirmChecked, setConfirmChecked] = useState(false)
   const [consents, setConsents] = useState({})
+  // Batch 22: the optional Kissan Mitra choice ('' = None), for a person's FIRST service offer only. Kept only in this state
+  // until the listing is created (never in the URL, localStorage or analytics). mitraOpen comes from the database
+  // (my_mitra_choice_open: no Mitra yet AND no offer ever); a failed check keeps the field hidden.
+  const [mitraId, setMitraId] = useState('')
+  const [mitraOpen, setMitraOpen] = useState(false)
   const [photoFiles, setPhotoFiles] = useState([])
   const [coordinates, setCoordinates] = useState(null)
   const [locating, setLocating] = useState(false)
@@ -128,6 +137,14 @@ export default function Post() {
   useEffect(() => {
     if (step === 3 && !village && user?.village_town) setVillage(user.village_town)
   }, [step, user?.village_town]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Batch 22: ask the database whether the Mitra choice may be shown - only on step 3 of an OFFER (never a requirement).
+  useEffect(() => {
+    if (step !== 3 || listingType !== 'offer' || !user?.id) { setMitraOpen(false); return undefined }
+    let alive = true
+    myMitraChoiceOpen(user.id).then((open) => { if (alive) setMitraOpen(open === true) })
+    return () => { alive = false }
+  }, [step, listingType, user?.id])
 
   function back() {
     setError(null)
@@ -231,6 +248,9 @@ export default function Post() {
       if (settled) return
       settled = true
       if (listing?.geocoding_status === 'pending') drainGeocodeQueue().catch(() => {})
+      // Batch 22: save the Mitra of a first offer - best effort, waits at most about a second, never shows an error.
+      if (mitraOpen && listingType === 'offer' && mitraId) await saveMitraOnOffer((name, args) => supabase.rpc(name, args), user.id, mitraId, listing?.id)
+      setMitraId(''); setMitraOpen(false)
       setCreated(listing)
       setRequestId(newRequestId())
       sentOnce.current = false
@@ -247,7 +267,7 @@ export default function Post() {
 
   function resetAll() {
     setCreated(null); setStep(1); setListingType(null); setCategory(null); setFormErrField(null)
-    setSource('farmer'); setDetails(null); setVillage(''); setWideVisibility(false); setConfirmChecked(false); setConsents({}); setPhotoFiles([]); setCoordinates(null); setLocStep(null); setLocFallback(false); setMapUrl('')
+    setSource('farmer'); setDetails(null); setVillage(''); setWideVisibility(false); setConfirmChecked(false); setConsents({}); setMitraId(''); setMitraOpen(false); setPhotoFiles([]); setCoordinates(null); setLocStep(null); setLocFallback(false); setMapUrl('')
     setContactConsent(false); setRequestId(newRequestId()); sentOnce.current = false
   }
 
@@ -509,6 +529,9 @@ export default function Post() {
               </span>
             </label>
           )}
+
+          {/* Batch 22: first service offer only (the database decides); optional, never blocks posting. */}
+          {listingType === 'offer' && mitraOpen && <MitraField value={mitraId} onChange={setMitraId} />}
 
           <ConsentChecklist value={consents} onChange={setConsents} className="my-4" />
 

@@ -1,11 +1,12 @@
-// Batch 20 - People tab: Kissan Mitra (field people who register farmers). Admin only. Add / edit / switch off a Mitra,
-// see the counts, look at each Mitra's registrations (phones masked), move a registration, record a payment, see the ledger.
-// Money is paid OUTSIDE the site (UPI or cash); this panel only keeps the record. No approval step: a registration counts
-// as soon as it is attributed to a Mitra (the database decides; see supabase/migrations/0075_kissan_mitra.sql).
+// Batch 20 - People tab: Kissan Mitra. Admin only. Add / edit / switch off a Mitra, see the counts, look at each Mitra's
+// people (phones masked) and ads, move a person, record a payment, see the ledger.
+// Money is paid OUTSIDE the site (UPI or cash); this panel only keeps the record. No approval step. Batch 22: a farmer counts
+// for a Mitra once they have OFFERED a service (paid once, at the first offer) and each ad with a Mitra counts as one ad
+// (the database decides; see supabase/migrations/0076_mitra_at_offer.sql).
 import { useCallback, useEffect, useState } from 'react'
 import { Field, TextInput, TextArea, Select, Spinner } from '../../../components/ui'
 import {
-  adminListMitras, adminUpsertMitra, adminListMitraRegistrations, adminReassignRegistration, adminMarkMitraPaid, adminListMitraPayments,
+  adminListMitras, adminUpsertMitra, adminListMitraRegistrations, adminReassignRegistration, adminMarkMitraPaid, adminListMitraPayments, adminListMitraAds,
 } from '../../../lib/mitra/mitraApi'
 import {
   fill, rupees, mitraLabel, dueFor, suggestAmount, blankMitraForm, mitraToForm, mitraFormToPayload, validPaidAmount, mitraSummaryCsv, summaryOf,
@@ -134,6 +135,8 @@ function RegistrationsView({ t, lang, mitra, mitras, actorId, onBack, onChanged 
   const [moving, setMoving] = useState(null)
   const [busy, setBusy] = useState(false)
   const [done, setDone] = useState(false)
+  const [ads, setAds] = useState(null)
+  useEffect(() => { adminListMitraAds(actorId, mitra.id).then(setAds).catch(() => setAds([])) }, [actorId, mitra.id])
   const load = useCallback(() => {
     adminListMitraRegistrations(actorId, mitra.id, PAGE, page * PAGE).then((r) => { setRes(r); setErr(null) }).catch((e) => { setErr(e); setRes({ total: 0, rows: [] }) })
   }, [actorId, mitra.id, page])
@@ -148,6 +151,8 @@ function RegistrationsView({ t, lang, mitra, mitras, actorId, onBack, onChanged 
     <div data-testid="mitra-regs-view">
       <button type="button" className={`${btnPlain} mb-3`} onClick={onBack}>‹ {t('mitra_back')}</button>
       <h3 className="mb-1 text-lg font-bold text-stone-900">{fill(t('mitra_regs_title'), { name: mitra.display_name })}</h3>
+      <p data-testid="mitra-once-note" className="mb-2 text-sm text-stone-700">{t('mitra_pay_once_note')}</p>
+      <h4 className="mb-1 text-base font-bold text-stone-900">{t('mitra_people_title')}</h4>
       {res && <p className="mb-2 text-sm font-semibold text-stone-700">{fill(t('mitra_regs_count'), { n: res.total })}</p>}
       <AdminError error={err} t={t} />
       {done && <p role="status" data-testid="mitra-moved" className="mb-2 rounded-xl bg-green-50 p-2 text-sm font-semibold text-green-900">{t('mitra_moved')}</p>}
@@ -161,6 +166,8 @@ function RegistrationsView({ t, lang, mitra, mitras, actorId, onBack, onChanged 
                 <Chip tone={r.paid ? 'stone' : 'amber'} testId="mitra-reg-paid">{t(r.paid ? 'mitra_reg_paid' : 'mitra_reg_unpaid')}</Chip>
               </div>
               <p className="text-sm text-stone-700">{r.village_town || '—'} · <span data-testid="mitra-reg-phone">{r.masked_phone || '—'}</span> · {date(r.registered_at)}</p>
+              <p className="text-sm text-stone-700"><span data-testid="mitra-reg-offers">{fill(t('mitra_offers_count'), { n: r.offers_count ?? 0 })}</span>{r.first_offer_at ? <> · <span data-testid="mitra-reg-first-offer">{fill(t('mitra_first_offer'), { d: date(r.first_offer_at) })}</span></> : null}</p>
+              {r.not_counted_yet && <p data-testid="mitra-not-counted" className="mt-1 rounded-lg bg-stone-100 px-2 py-1 text-sm font-semibold text-stone-800">{t('mitra_not_counted_yet')}</p>}
               {r.blocked && <p className="mt-1 text-sm font-semibold text-red-800">{t('mitra_reg_blocked')}</p>}
               {r.same_name_village && <p data-testid="mitra-same-note" className="mt-1 rounded-lg bg-amber-50 px-2 py-1 text-sm font-semibold text-amber-900">{t('mitra_same_note')}</p>}
               <button type="button" data-testid="mitra-move" className={`${btnPlain} mt-2 w-full`} onClick={() => { setDone(false); setErr(null); setMoving(r) }}>{t('mitra_move')}</button>
@@ -174,6 +181,20 @@ function RegistrationsView({ t, lang, mitra, mitras, actorId, onBack, onChanged 
           <span className="text-center text-sm font-semibold text-stone-700">{fill(t('mitra_page'), { a: page + 1, b: pages })}</span>
           <button type="button" className={btnPlain} disabled={page + 1 >= pages} onClick={() => setPage((p) => p + 1)}>{t('mitra_next')} ›</button>
         </div>
+      )}
+      <h4 className="mb-1 mt-4 text-base font-bold text-stone-900">{t('mitra_ads_title')}</h4>
+      {!ads ? <Spinner /> : ads.length === 0 ? <p data-testid="mitra-ads-none" className="text-stone-600">{t('mitra_ads_none')}</p> : (
+        <ul data-testid="mitra-ads">
+          {ads.map((a) => (
+            <li key={a.id} data-testid="mitra-ad" className="mb-2 rounded-xl border-2 border-stone-200 bg-white p-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="break-words text-base font-bold text-stone-900">{a.title_hi}</span>
+                <Chip tone={a.paid ? 'stone' : 'amber'}>{t(a.paid ? 'mitra_reg_paid' : 'mitra_reg_unpaid')}</Chip>
+              </div>
+              <p className="text-sm text-stone-700">{date(a.created_at)}</p>
+            </li>
+          ))}
+        </ul>
       )}
       {moving && <MoveDialog t={t} reg={moving} mitras={mitras} fromId={mitra.id} onClose={() => setMoving(null)} onMove={move} busy={busy} err={null} />}
     </div>
