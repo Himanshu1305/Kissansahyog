@@ -48,3 +48,18 @@ Run `supabase/migrations/rollback/0076_mitra_at_offer_rollback.sql` (re-creates 
 
 ## Tests
 See the report; evidence in `docs/review/batch22/evidence`.
+
+## Merge and push (one paste-ready Git Bash block)
+Local `main` is stale (79 behind), so the merge was prepared on the branch `merge-22` (= `origin/main` + `release-22`, `--no-ff`). Its tree is identical to `release-22`, which passed the full suite and the build. `origin/main` had not moved when this was prepared (23de6b7).
+
+```bash
+cd ~/projects/ks-b20
+git fetch origin
+# guard: stop if origin/main moved since Batch 21
+[ "$(git rev-parse origin/main)" = "23de6b725c730d5daf7f6913c11675e80eddf251" ] || { echo "origin/main moved - stop and ask"; exit 1; }
+git log merge-22 --oneline -3
+git merge-base --is-ancestor origin/main merge-22 && echo "merge-22 contains origin/main: OK"
+git push origin merge-22:main
+git log origin/main --oneline -5
+```
+Reminder: nothing deploys on a push to main. The database file is applied by hand (staging first). Do NOT deploy the app to production before 0076 is applied there.
