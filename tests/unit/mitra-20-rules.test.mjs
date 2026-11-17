@@ -69,11 +69,12 @@ test('authService saves the Mitra after BOTH registration paths, and the payload
   assert.ok(!/localStorage[^\n]*mitra|mitra[^\n]*localStorage/i.test(src))
 })
 
-test('the sign-up screen keeps the choice in state only (no URL, no storage, no analytics)', () => {
-  const screen = readFileSync('src/screens/Signup.jsx', 'utf8')
+test('Batch 22: the Mitra field is gone from sign-up; on the offer form its choice stays in state only (no URL, no storage, no analytics)', () => {
+  const signup = readFileSync('src/screens/Signup.jsx', 'utf8')
+  assert.ok(!/MitraField|mitraId|mitra_id/.test(signup.replace(/\/\/.*$/gm, '').replace(/\{\/\*[\s\S]*?\*\/\}/g, '')), 'sign-up has no Mitra field, state or payload key')
+  const post = readFileSync('src/screens/Post.jsx', 'utf8')
   const field = readFileSync('src/components/auth/MitraField.jsx', 'utf8')
-  assert.match(screen, /mitra_id: mitraId \|\| null/)
-  const mitraLines = screen.split('\n').filter((l) => /mitra/i.test(l)).join('\n')
+  const mitraLines = post.split(String.fromCharCode(10)).filter((l) => /mitra/i.test(l)).join(String.fromCharCode(10))
   for (const s of [mitraLines, field]) assert.ok(!/localStorage|sessionStorage|searchParams|setParams|navigate\(|track\(|gtag|analytics/i.test(s.replace(/\/\/.*$/gm, '')), 'no storage / URL / analytics')
   assert.match(field, /if \(!list \|\| list\.length === 0\) return null/, 'hidden when empty or failed')
   assert.match(field, /min-h-\[48px\]/)
@@ -144,8 +145,9 @@ test('every Batch 20 string has Hindi and English; the placeholders match; the s
   }
   assert.equal(mitraStrings.adm_p_mitra.hi, 'किसान मित्र')
   assert.equal(mitraStrings.adm_p_mitra.en, 'Kissan Mitra')
-  assert.equal(mitraStrings.mitra_field_label.hi, 'आपको किसने जोड़ा? (किसान मित्र)')
-  assert.equal(mitraStrings.mitra_field_label.en, 'Who helped you join? (Kissan Mitra)')
+  assert.equal(mitraStrings.mitra_offer_label.hi, 'इस सेवा के लिए किसी किसान मित्र ने आपकी मदद की? (वैकल्पिक)')
+  assert.equal(mitraStrings.mitra_offer_label.en, 'Did a Kissan Mitra help you offer this? (optional)')
+  assert.equal(mitraStrings.mitra_field_label, undefined, 'the old sign-up label is gone')
   assert.equal(mitraStrings.mitra_none.hi, 'कोई नहीं / None')
   assert.equal(mitraStrings.mitra_pay_outside.hi, 'भुगतान सिर्फ़ साइट के बाहर करें (UPI/नकद); यहाँ सिर्फ़ रिकॉर्ड रखा जाता है।')
   assert.equal(mitraStrings.mitra_pay_outside.en, 'Pay outside the site (UPI or cash); this screen only keeps the record.')

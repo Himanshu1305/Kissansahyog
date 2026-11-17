@@ -26,7 +26,7 @@ const fns = functions(code)
 test('the migration is the next free number and is pure ASCII (with its rollback)', () => {
   assert.equal(migrations.filter((f) => f.startsWith('0075')).length, 1)
   assert.ok(migrations.includes('0074_morning_video.sql'))
-  assert.ok(!migrations.some((f) => /^007[6-9]/.test(f)))
+  assert.ok(!migrations.some((f) => /^007[7-9]/.test(f)), 'Batch 22 adds exactly one more migration (0076)')
   for (const f of [MIG, ROLL]) assert.ok(!/[^\x00-\x7F]/.test(readFileSync(f, 'latin1')), `non-ASCII byte in ${f}`)
 })
 
@@ -108,7 +108,7 @@ test('set_my_mitra: once, 15 minutes, active Mitra only, and it never raises for
 })
 
 test('profile-update functions never write mitra_* (no old migration mentions it; update_profile sets an explicit column list)', () => {
-  for (const f of migrations.filter((x) => !x.startsWith('0075'))) {
+  for (const f of migrations.filter((x) => !x.startsWith('0075') && !x.startsWith('0076'))) {
     assert.ok(!/mitra_/.test(readFileSync(`supabase/migrations/${f}`, 'utf8')), `${f} mentions mitra_`)
   }
   const up = readFileSync('supabase/migrations/0011_p3_profile.sql', 'utf8')
