@@ -54,7 +54,7 @@ Statement only: run `supabase/migrations/rollback/0077_mitra_statement_rollback.
 See the report; evidence in `docs/review/batch22/evidence`.
 
 ## Merge and push (one paste-ready Git Bash block)
-Local `main` is stale (79 behind), so the merge was prepared on the branch `merge-22` (= `origin/main` + `release-22`, `--no-ff`). Its tree is identical to `release-22`, which passed the full suite and the build. `origin/main` had not moved when this was prepared (23de6b7).
+Local `main` is stale, so the merge was prepared on the branch `merge-22` (= `origin/main` + `release-22`, `--no-ff`; it includes 0076, 0077 and the Statement screen). Its tree is identical to `release-22`, which passed the full suite and the build. `origin/main` had not moved when this was prepared (23de6b7). The older prepare is kept as `merge-22-old` (safe to delete later).
 
 ```bash
 cd ~/projects/ks-b20
@@ -62,8 +62,8 @@ git fetch origin
 # guard: stop if origin/main moved since Batch 21
 [ "$(git rev-parse origin/main)" = "23de6b725c730d5daf7f6913c11675e80eddf251" ] || { echo "origin/main moved - stop and ask"; exit 1; }
 git log merge-22 --oneline -3
-git merge-base --is-ancestor origin/main merge-22 && echo "merge-22 contains origin/main: OK"
+git merge-base --is-ancestor origin/main merge-22 && echo "merge-22 contains origin/main: OK" || { echo "merge-22 does not contain origin/main - stop"; exit 1; }
 git push origin merge-22:main
 git log origin/main --oneline -5
 ```
-Reminder: nothing deploys on a push to main. The database file is applied by hand (staging first). Do NOT deploy the app to production before 0076 is applied there.
+Reminder: nothing deploys on a push to main. The database files are applied by hand: **0076 and 0077 on production BEFORE the app is deployed** (staging first, as above).
