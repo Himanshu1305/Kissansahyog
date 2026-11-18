@@ -6,7 +6,8 @@
 - **Ads**: in the announcement form the admin can pick "Kissan Mitra who brought this ad" (optional). Every announcement with a Mitra counts as one ad for that Mitra.
 - **Admin Mitra panel**: wording is now "service offers" and "ads". A Mitra's detail view lists people (with "not counted yet" and the number of offers) and ads.
 - **Counting rule**: a farmer counts for a Mitra only after they have offered a service (paid once, at the first offer), and each ad with a Mitra counts as one ad. Farmers linked at registration (Batch 20) who never offered are not counted and not paid; they count the day they offer.
-- New database file: `supabase/migrations/0076_mitra_at_offer.sql` (+ rollback). Needs 0075 first.
+- **Statement (22D)**: each Mitra card has a **Statement** button. It lists, per Mitra, every farmer who offered a service and every ad, with the date, the Rs amount (the Mitra's rate) and Paid on <date> / Unpaid, plus a CSV download (no phone numbers).
+- New database files: `supabase/migrations/0076_mitra_at_offer.sql` and `supabase/migrations/0077_mitra_statement.sql` (+ rollbacks). 0076 needs 0075 first; 0077 needs 0075 and 0076.
 
 ## STEP 0 - read-only check (run on staging AND production BEFORE applying 0076)
 Paste in the Supabase SQL editor (SELECT only, changes nothing):
@@ -25,7 +26,7 @@ from public.profiles p;
 
 ## Exact order
 1. Run STEP 0 on staging (`wzxtqbqlahyahsnoqqva`). Decide if needed.
-2. Apply `0076_mitra_at_offer.sql` on **staging**.
+2. Apply `0076_mitra_at_offer.sql` on **staging** (if not done already), then apply `0077_mitra_statement.sql` the same way (staging first).
 3. Test on staging:
    1. Register a new farmer: no Mitra dropdown on sign-up.
    2. Post a first service offer (not a requirement): the Mitra dropdown shows on the last step; pick a Mitra; post.
@@ -34,11 +35,14 @@ from public.profiles p;
    5. An older farmer who already has an offer: no dropdown. A registered farmer with no offer: dropdown shows.
    6. Admin > Content > announcement: add or edit an ad, pick the Mitra, save; the list shows a chip; the Mitra panel shows 1 ad.
    7. Mitra panel: "Mark paid" (farmers + ads are stamped together); check the payment history shows both counts.
-4. Run STEP 0 on **production** (`eltmcznjcqiahqhjvpjg`), decide, then apply 0076 on production, only after step 3 looks right.
-5. Only then push the app (see the merge block below). Do NOT deploy the app to production before 0076 is applied there: the offer form would call functions that do not exist yet (it fails quietly by design, but the Mitra would not be saved).
+   8. Statement: open the Mitra card > **Statement**. Check one farmer row and one ad row: the date, the Rs amount, and Paid / Unpaid. Totals at the top (farmers, ads, earned, paid, due). Try the All / Unpaid / Paid chips.
+   9. Statement after Mark paid: mark that Mitra paid, reopen the Statement, the rows now say "Paid on <date>" and Due is Rs 0.
+   10. Statement CSV: press "Download statement (CSV)", open the file in a spreadsheet: columns date, kind, name, village, category, amount_rupees, status, paid_on; no phone numbers.
+4. Run STEP 0 on **production** (`eltmcznjcqiahqhjvpjg`), decide, then apply 0076 AND 0077 on production, only after step 3 looks right. **Production gets 0076 and 0077 BEFORE the app is deployed.**
+5. Only then push the app (see the merge block below). Do NOT deploy the app to production before 0076 and 0077 are applied there (without 0077 the Statement button shows a plain error): the offer form would call functions that do not exist yet (it fails quietly by design, but the Mitra would not be saved).
 
 ## Roll back
-Run `supabase/migrations/rollback/0076_mitra_at_offer_rollback.sql` (re-creates the four 0075 functions, drops the 0076 functions, and DELETES the ad-to-Mitra links). Mitras saved on first offers stay on the profiles. The app keeps working (the field hides itself when the check fails).
+Statement only: run `supabase/migrations/rollback/0077_mitra_statement_rollback.sql` (drops the one function; no data lost). Whole batch: run the 0077 rollback FIRST, then `supabase/migrations/rollback/0076_mitra_at_offer_rollback.sql` (re-creates the four 0075 functions, drops the 0076 functions, and DELETES the ad-to-Mitra links). Mitras saved on first offers stay on the profiles. The app keeps working (the field hides itself when the check fails).
 
 ## NOT done
 - A business/vendor sign-up type.

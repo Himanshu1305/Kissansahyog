@@ -2,7 +2,7 @@
 // of the built app is answered here, and the Kissan Mitra answers are produced by the reference model
 // (scripts/batch20/mitra-model.mjs), so the screens are exercised against the same rules as the SQL.
 import {
-  countsFor, setMyMitra, setMyMitraOnOffer, choiceOpen, setAnnouncementMitra, reassign, markPaid, sameNameVillage, maskPhone, kindOf, firstOfferAt, offersCount, notCountedYet, unattributedTotal,
+  countsFor, setMyMitra, setMyMitraOnOffer, choiceOpen, setAnnouncementMitra, reassign, markPaid, sameNameVillage, maskPhone, kindOf, firstOfferAt, offersCount, notCountedYet, unattributedTotal, statementFor,
 } from '../../scripts/batch20/mitra-model.mjs'
 
 export const SUPABASE = 'https://mock.supabase.test'
@@ -31,7 +31,7 @@ export function seedState() {
       P(9, 'TEST Newcomer', 'Sagar', 1), // a registered farmer with no Mitra and no offer (sees the dropdown)
     ],
     // Batch 22: a farmer counts after offering a service. Every seeded person with a Mitra (and TEST Plain) offered at registration time.
-    listings: [1, 2, 3, 4, 5, 6, 7].map((n) => ({ id: `l-seed-${n}`, user_id: `p${n}`, listing_type: 'offer', status: 'active', admin_disabled_at: null, created_at: ago([2, 30, 50, 80, 3, 400, 5][n - 1]) })),
+    listings: [1, 2, 3, 4, 5, 6, 7].map((n) => ({ id: `l-seed-${n}`, user_id: `p${n}`, listing_type: 'offer', status: 'active', admin_disabled_at: null, category: ['equipment', 'labor', 'drone_didi', 'bhusa', 'warehouse', 'transport', 'land'][n - 1], created_at: ago([2, 30, 50, 80, 3, 400, 5][n - 1]) })),
     announcements: [
       { id: 'ad-1', title_hi: 'TEST ad one', title_en: 'TEST ad one', mitra_id: 'm-asha', mitra_paid_id: null, created_at: ago(20), start_at: ago(20), end_at: ago(-200), is_active: true, style: 'info', priority: 0, dismissible: true },
       { id: 'ad-2', title_hi: 'TEST festival card', title_en: 'TEST festival card', mitra_id: null, mitra_paid_id: null, created_at: ago(40), start_at: ago(40), end_at: ago(-200), is_active: true, style: 'festival', priority: 0, dismissible: true },
@@ -41,7 +41,7 @@ export function seedState() {
   }
 }
 
-export async function installMock(page, { mitras, otp = false, listStatus = 200, setMitraStatus = 200, admin = false, state = seedState(), choiceStatus = 200, user = null, annMitraStatus = 200 } = {}) {
+export async function installMock(page, { mitras, otp = false, listStatus = 200, setMitraStatus = 200, admin = false, state = seedState(), choiceStatus = 200, user = null, annMitraStatus = 200, statementStatus = 200 } = {}) {
   const calls = []
   const b = { state, calls, nextId: 100, listCalls: 0 }
   if (mitras) b.state = { ...b.state, mitras }
@@ -153,6 +153,11 @@ export async function installMock(page, { mitras, otp = false, listStatus = 200,
       }
       case 'admin_list_mitra_ads':
         return json(route, b.state.announcements.filter((a) => a.mitra_id === args.p_mitra_id).map((a) => ({ id: a.id, title_hi: a.title_hi, created_at: a.created_at, paid: a.mitra_paid_id != null })))
+      case 'admin_mitra_statement': {
+        b.statementCalls = (b.statementCalls || 0) + 1
+        if (statementStatus !== 200) return json(route, { message: 'boom' }, statementStatus)
+        try { return json(route, statementFor(b.state, args.p_mitra_id, { limit: args.p_limit, offset: args.p_offset })) } catch (e) { return json(route, { message: e.message }, 400) }
+      }
       case 'admin_list_mitra_payments':
         return json(route, b.state.payments.filter((p) => p.mitra_id === args.p_mitra_id).map((p) => ({ ...p, created_at: p.created_at || new Date().toISOString() })).reverse())
       default: return json(route, [])
