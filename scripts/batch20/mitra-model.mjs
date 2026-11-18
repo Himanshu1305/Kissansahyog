@@ -152,3 +152,45 @@ export const maskPhone = (phone) => (phone == null ? null : `******${String(phon
 // The same-name-and-area refusal of admin_upsert_mitra.
 export const isDuplicateMitra = (state, name, area, exceptId = null) =>
   state.mitras.some((m) => m.id !== exceptId && m.display_name.trim().toLowerCase() === String(name).trim().toLowerCase() && String(m.area || '').trim().toLowerCase() === String(area || '').trim().toLowerCase())
+
+// ---------- Batch 22D: admin_mitra_statement (supabase/migrations/0077_mitra_statement.sql) ----------
+// One Mitra's statement: every counted farmer (date = first offer) and every ad (date = created), the amount against each at the
+// Mitra's CURRENT rate, paid or not, and totals over ALL rows. Listings may carry a `category`; payments carry `paid_on`.
+export const STATEMENT_MAX = 500
+export function statementFor(state, mitraId, { limit = 200, offset = 0 } = {}) {
+  const m = state.mitras.find((x) => x.id === mitraId)
+  if (!m) throw new Error('not_found')
+  const lim = Math.min(Math.max(limit == null ? 200 : limit, 1), STATEMENT_MAX)
+  const off = Math.max(offset == null ? 0 : offset, 0)
+  const payOf = (id) => (id == null ? null : (state.payments || []).find((p) => p.id === id) || null)
+  const rateOrNull = (v) => (v == null ? null : v)
+  const farmers = state.profiles.filter((p) => isCounted(state, p, mitraId)).map((p) => {
+    const at = firstOfferAt(state, p)
+    const first = liveOffers(state, p).filter((l) => Date.parse(l.created_at) === at).sort((a, b) => String(a.id).localeCompare(String(b.id)))[0]
+    const pay = payOf(p.mitra_paid_id)
+    return {
+      kind: 'farmer', ref_id: p.id, name: p.full_name, village: p.village_town ?? null, masked_phone: maskPhone(p.phone), category: first?.category ?? null,
+      on_date: new Date(at).toISOString(), amount_rupees: rateOrNull(kindOf(p) === 'business' ? m.rate_business_rupees : m.rate_farmer_rupees),
+      paid: p.mitra_paid_id != null, paid_on: pay ? pay.paid_on : null, payment_id: p.mitra_paid_id ?? null, blocked: false,
+    }
+  })
+  const ads = (state.announcements || []).filter((a) => a.mitra_id === mitraId).map((a) => {
+    const pay = payOf(a.mitra_paid_id)
+    return {
+      kind: 'ad', ref_id: a.id, name: a.title_hi, village: null, masked_phone: null, category: null, on_date: new Date(a.created_at).toISOString(),
+      amount_rupees: rateOrNull(m.rate_business_rupees), paid: a.mitra_paid_id != null, paid_on: pay ? pay.paid_on : null, payment_id: a.mitra_paid_id ?? null, blocked: false,
+    }
+  })
+  const all = [...farmers, ...ads].sort((a, b) => Date.parse(b.on_date) - Date.parse(a.on_date) || String(a.ref_id).localeCompare(String(b.ref_id)))
+  const sum = (rows) => rows.reduce((t, r) => t + (r.amount_rupees ?? 0), 0)
+  return {
+    mitra: { id: m.id, display_name: m.display_name, area: m.area ?? null, is_active: m.is_active, rate_farmer_rupees: rateOrNull(m.rate_farmer_rupees), rate_business_rupees: rateOrNull(m.rate_business_rupees) },
+    totals: {
+      farmers: farmers.length, ads: ads.length,
+      waiting_first_offer: state.profiles.filter((p) => p.mitra_id === mitraId && !p.is_blocked && !offered(state, p)).length,
+      earned_rupees: sum(all), paid_rupees: sum(all.filter((r) => r.paid)), due_rupees: sum(all.filter((r) => !r.paid)),
+      rate_missing: all.some((r) => r.amount_rupees == null),
+    },
+    rows: all.slice(off, off + lim),
+  }
+}

@@ -50,3 +50,7 @@ export const adminSetAnnouncementMitra = (actor, announcementId, mitraId) =>
   rpc('admin_set_announcement_mitra', { p_actor: actor, p_announcement_id: announcementId, p_mitra_id: mitraId ?? null })
 export const adminGetAnnouncementMitras = (actor) => rpc('admin_get_announcement_mitras', { p_actor: actor })
 export const adminListMitraAds = (actor, mitraId) => rpc('admin_list_mitra_ads', { p_actor: actor, p_mitra_id: mitraId })
+
+// Batch 22D: one Mitra's statement (what they brought, the dates, the money). Admin only, checked inside the database.
+export const adminMitraStatement = (actor, mitraId, limit = 50, offset = 0) =>
+  rpc('admin_mitra_statement', { p_actor: actor, p_mitra_id: mitraId, p_limit: limit, p_offset: offset })

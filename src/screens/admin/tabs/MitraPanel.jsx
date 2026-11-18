@@ -11,6 +11,7 @@ import {
 import {
   fill, rupees, mitraLabel, dueFor, suggestAmount, blankMitraForm, mitraToForm, mitraFormToPayload, validPaidAmount, mitraSummaryCsv, summaryOf,
 } from '../../../lib/mitra/mitraRules'
+import MitraStatement from './MitraStatement'
 import Section from '../Section'
 import { AdminError, Dialog, Chip, btnGreen, btnPlain } from '../common'
 
@@ -34,7 +35,7 @@ function Num({ label, value, testId }) {
   )
 }
 
-function MitraCard({ m, t, busy, onEdit, onRegs, onPay, onLedger, onToggle }) {
+function MitraCard({ m, t, busy, onEdit, onRegs, onStatement, onPay, onLedger, onToggle }) {
   const due = dueFor(m)
   const unpaidAll = (m.counted_unpaid_farmers || 0) + (m.counted_unpaid_businesses || 0)
   return (
@@ -68,8 +69,9 @@ function MitraCard({ m, t, busy, onEdit, onRegs, onPay, onLedger, onToggle }) {
       <div className="grid grid-cols-2 gap-2">
         <button type="button" data-testid="mitra-edit" className={btnPlain} onClick={() => onEdit(m)}>{t('mitra_btn_edit')}</button>
         <button type="button" data-testid="mitra-regs" className={btnPlain} onClick={() => onRegs(m)}>{t('mitra_btn_regs')}</button>
+        <button type="button" data-testid="mitra-statement" className={btnPlain} onClick={() => onStatement(m)}>{t('mitra_btn_statement')}</button>
         <button type="button" data-testid="mitra-pay" className={btnGreen} onClick={() => onPay(m)} disabled={unpaidAll === 0}>{t('mitra_btn_pay')}</button>
-        <button type="button" data-testid="mitra-ledger" className={btnPlain} onClick={() => onLedger(m)}>{t('mitra_btn_payments')}</button>
+        <button type="button" data-testid="mitra-ledger" className={`${btnPlain} col-span-2`} onClick={() => onLedger(m)}>{t('mitra_btn_payments')}</button>
       </div>
     </li>
   )
@@ -261,7 +263,7 @@ function LedgerDialog({ t, lang, mitra, actorId, onClose }) {
 export default function MitraPanel({ actorId, t, lang }) {
   const [data, setData] = useState(null)
   const [err, setErr] = useState(null)
-  const [view, setView] = useState({ name: 'list' }) // list | form | regs
+  const [view, setView] = useState({ name: 'list' }) // list | form | regs | statement
   const [dlg, setDlg] = useState(null) // { kind: 'pay' | 'ledger', mitra }
   const [note, setNote] = useState(null)
   const [busy, setBusy] = useState(false)
@@ -294,6 +296,8 @@ export default function MitraPanel({ actorId, t, lang }) {
           onSaved={() => { setView({ name: 'list' }); setNote(t('mitra_saved')); load() }} />
       ) : view.name === 'regs' ? (
         <RegistrationsView t={t} lang={lang} actorId={actorId} mitra={view.mitra} mitras={data.mitras} onBack={() => { setView({ name: 'list' }); load() }} onChanged={load} />
+      ) : view.name === 'statement' ? (
+        <MitraStatement t={t} lang={lang} actorId={actorId} mitra={view.mitra} onBack={() => { setView({ name: 'list' }); load() }} />
       ) : (
         <>
           <div className="mb-3 grid grid-cols-2 gap-2">
@@ -313,6 +317,7 @@ export default function MitraPanel({ actorId, t, lang }) {
                 <MitraCard key={m.id} m={m} t={t} busy={busy} onToggle={toggle}
                   onEdit={(x) => { setNote(null); setView({ name: 'form', mitra: x }) }}
                   onRegs={(x) => setView({ name: 'regs', mitra: x })}
+                  onStatement={(x) => setView({ name: 'statement', mitra: x })}
                   onPay={(x) => setDlg({ kind: 'pay', mitra: x })}
                   onLedger={(x) => setDlg({ kind: 'ledger', mitra: x })} />
               ))}
