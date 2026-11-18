@@ -58,7 +58,7 @@ export function validPaidAmount(v) {
 
 // CSV of the Mitra summary - one row per Mitra. NO phone numbers (the private phone is never included).
 export const CSV_COLUMNS = ['name', 'area', 'active', 'farmers_total', 'businesses_total', 'today', 'last7', 'unpaid_farmers', 'unpaid_businesses', 'amount_due_rupees', 'paid_total_rupees']
-const cell = (v) => {
+export const cell = (v) => {
   let s = v == null ? '' : String(v)
   if (/^[=+\-@]/.test(s)) s = `'${s}` // a spreadsheet must not read a name as a formula
   return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s

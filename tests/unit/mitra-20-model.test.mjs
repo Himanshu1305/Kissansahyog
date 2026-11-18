@@ -1,4 +1,4 @@
-// Batch 20 - the reference model of the SQL rules (scripts/batch20/mitra-model.mjs). This is the proof of the counting,
+// Batch 20 (updated in Batch 22: a farmer counts only after offering a service) - the reference model of the SQL rules (scripts/batch20/mitra-model.mjs). This is the proof of the counting,
 // mark-paid and reassign rules WITHOUT a database. Run: node --test "tests/unit/*.test.mjs"
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -8,10 +8,13 @@ import { suggestAmount as uiSuggest, maskPhone as uiMask } from '../../src/lib/m
 const NOW = Date.parse('2026-11-07T10:00:00Z')
 const ago = (ms) => new Date(NOW - ms).toISOString()
 const P = (id, o = {}) => ({ id, full_name: `Farmer ${id}`, village_town: `Village ${id}`, phone: `9000000${String(id).padStart(3, '0')}`, created_at: ago(1000), is_blocked: false, mitra_id: null, mitra_paid_id: null, ...o })
+const offer = (uid, o = {}) => ({ id: `L${uid}`, user_id: uid, listing_type: 'offer', status: 'active', admin_disabled_at: null, created_at: ago(1000), ...o })
 const base = () => ({
   mitras: [{ id: 'A', display_name: 'Asha', area: 'Khurai', is_active: true }, { id: 'B', display_name: 'Bholu', area: 'Bina', is_active: true }, { id: 'Z', display_name: 'Old', area: null, is_active: false }],
   profiles: [P(1, { mitra_id: 'A' }), P(2, { mitra_id: 'A' }), P(3, { mitra_id: 'A', is_blocked: true }), P(4, { mitra_id: 'B' }), P(5)],
   payments: [],
+  listings: [1, 2, 3, 4, 5].map((id) => offer(id)), // every base profile has offered a service
+  announcements: [],
 })
 
 test('counted-and-unpaid: attributed to the Mitra, not blocked, no payment stamped', () => {
@@ -23,9 +26,10 @@ test('counted-and-unpaid: attributed to the Mitra, not blocked, no payment stamp
   assert.equal(countsFor(base(), 'B', NOW).farmers_total, 1)
 })
 
-test('today and last 7 days use the registration time', () => {
+test('today and last 7 days use the first-offer time', () => {
   const s = base()
-  s.profiles = [P(1, { mitra_id: 'A', created_at: ago(2 * 3600 * 1000) }), P(2, { mitra_id: 'A', created_at: ago(3 * 24 * 3600 * 1000) }), P(3, { mitra_id: 'A', created_at: ago(30 * 24 * 3600 * 1000) })]
+  s.profiles = [P(1, { mitra_id: 'A' }), P(2, { mitra_id: 'A' }), P(3, { mitra_id: 'A' })]
+  s.listings = [offer(1, { created_at: ago(2 * 3600 * 1000) }), offer(2, { created_at: ago(3 * 24 * 3600 * 1000) }), offer(3, { created_at: ago(30 * 24 * 3600 * 1000) })]
   const c = countsFor(s, 'A', NOW)
   assert.equal(c.today, 1)
   assert.equal(c.last7, 2)
@@ -35,6 +39,7 @@ test('today and last 7 days use the registration time', () => {
 test('businesses are counted separately (when a business profile exists)', () => {
   const s = base()
   s.profiles.push(P(6, { mitra_id: 'A', kind: 'business' }))
+  s.listings.push(offer(6))
   const c = countsFor(s, 'A', NOW)
   assert.equal(c.farmers_total, 2)
   assert.equal(c.businesses_total, 1)
@@ -59,7 +64,7 @@ test('mark paid stamps only the unpaid, unblocked rows of THAT Mitra and stores 
 test('mark paid twice: the second time there is nothing unpaid; a new registration is paid next time only', () => {
   const s1 = markPaid(base(), 'A', 2, '2026-11-07')
   assert.throws(() => markPaid(s1, 'A', 2, '2026-11-08'), /nothing_unpaid/)
-  const s2 = { ...s1, profiles: [...s1.profiles, P(7, { mitra_id: 'A' })] }
+  const s2 = { ...s1, profiles: [...s1.profiles, P(7, { mitra_id: 'A' })], listings: [...s1.listings, offer(7)] }
   const s3 = markPaid(s2, 'A', 1, '2026-11-09')
   assert.equal(s3.payments.length, 2)
   assert.deepEqual(s3.payments[1].farmer_count, 1)

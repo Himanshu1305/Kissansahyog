@@ -5,6 +5,8 @@ import { adminListAnnouncements, adminUpsertAnnouncement, adminDeleteAnnouncemen
 import { istInputToIso, isoToIstInput, formatIst, inWindow, safeLink, LIMITS } from '../../../lib/announcements/announcements'
 import { uploadAnnouncementImage } from '../../../lib/announcements/upload'
 import AnnouncementCard from '../../../components/AnnouncementCard'
+import { adminListMitras, adminGetAnnouncementMitras, adminSetAnnouncementMitra } from '../../../lib/mitra/mitraApi'
+import { mitraLabel, fill } from '../../../lib/mitra/mitraRules'
 import Section from '../Section'
 import { AdminError, Chip, btnGreen, btnRed, btnPlain } from '../common'
 
@@ -14,6 +16,7 @@ const blank = () => {
   return {
     id: null, title_hi: '', title_en: '', body_hi: '', body_en: '', small_hi: '', small_en: '', image_url: '', image_alt_hi: '', image_alt_en: '',
     link_url: '', link_label_hi: '', link_label_en: '', style: 'info', priority: 0, dismissible: true, is_active: true, start_local: start, end_local: end,
+    mitra_id: '', mitra_paid_id: '',
   }
 }
 const fromRow = (r) => ({ ...blank(), ...Object.fromEntries(Object.entries(r).map(([k, v]) => [k, v ?? ''])), dismissible: r.dismissible !== false, is_active: !!r.is_active, start_local: isoToIstInput(r.start_at), end_local: isoToIstInput(r.end_at) })
@@ -70,8 +73,30 @@ export function PictureField({ t, imageUrl, busy, error, onPick, onRemove }) {
 
 export const AltMark = ({ t, on }) => <span className={`text-sm ${on ? 'font-bold text-red-700' : 'font-normal text-stone-600'}`} data-testid={on ? 'ann-alt-required' : 'ann-alt-optional'}>{t(on ? 'adm_ann_alt_required' : 'adm_ann_alt_optional')}</span>
 
-function AnnouncementForm({ t, initial, onCancel, onSave, lang }) {
+// Batch 22: the optional "Kissan Mitra who brought this ad" dropdown (all Mitras, active or not, so an old ad keeps its Mitra).
+// An ad that is already paid shows its Mitra read-only. The Mitra is saved by a SECOND call after the announcement itself.
+export function AdMitraField({ t, mitras, value, paid, onChange }) {
+  const current = mitras.find((m) => m.id === value)
+  return (
+    <div className="mb-3" data-testid="ann-mitra-field">
+      <Field label={t('mitra_ad_field_label')} htmlFor="ann-mitra" hint={t('mitra_ad_field_hint')}>
+        {paid ? (
+          <p data-testid="ann-mitra-readonly" className="rounded-xl bg-stone-100 p-3 text-base font-semibold text-stone-900">{current ? mitraLabel(current) : t('mitra_none')}</p>
+        ) : (
+          <Select id="ann-mitra" data-testid="ann-mitra" value={value || ''} onChange={(e) => onChange(e.target.value)}>
+            <option value="">{t('mitra_none')}</option>
+            {mitras.map((m) => <option key={m.id} value={m.id}>{mitraLabel(m)}</option>)}
+          </Select>
+        )}
+      </Field>
+      {paid && <p data-testid="ann-mitra-paid-note" className="text-sm font-semibold text-amber-900">{t('mitra_ad_paid_note')}</p>}
+    </div>
+  )
+}
+
+function AnnouncementForm({ t, initial, onCancel, onSave, lang, mitras = [] }) {
   const [f, setF] = useState(initial)
+  const [savedId, setSavedId] = useState(null) // set when the announcement was saved but the Mitra call failed (a retry must update, not create)
   const [err, setErr] = useState(null)
   const [msg, setMsg] = useState(null)
   const [busy, setBusy] = useState(false)
@@ -90,7 +115,10 @@ function AnnouncementForm({ t, initial, onCancel, onSave, lang }) {
     const r = formToPayload(f)
     if (r.error) { setMsg(t(r.error)); return }
     setBusy(true); setMsg(null); setErr(null)
-    try { await onSave(f.id, r.data) } catch (er) { setErr(er) } finally { setBusy(false) }
+    try { await onSave(savedId || f.id, r.data, { mitraId: f.mitra_id || '', paid: !!f.mitra_paid_id }) } catch (er) {
+      if (er && er.savedId) setSavedId(er.savedId)
+      setErr(er)
+    } finally { setBusy(false) }
   }
   const row = 'grid gap-2 sm:grid-cols-2'
   return (
@@ -121,6 +149,7 @@ function AnnouncementForm({ t, initial, onCancel, onSave, lang }) {
         </Field>
         <Field label={t('adm_ann_priority')} htmlFor="ann-priority" hint={t('adm_ann_priority_hint')}><TextInput id="ann-priority" type="number" value={f.priority} onChange={set('priority')} /></Field>
       </div>
+      <AdMitraField t={t} mitras={mitras} value={f.mitra_id} paid={!!f.mitra_paid_id} onChange={(v) => setF((x) => ({ ...x, mitra_id: v }))} />
       <div className="mb-3 flex flex-wrap gap-4">
         <label className="flex min-h-[48px] items-center gap-2 font-semibold"><input type="checkbox" data-testid="ann-dismissible" checked={f.dismissible} onChange={set('dismissible')} className="h-5 w-5" />{t('adm_ann_dismissible')}</label>
         <label className="flex min-h-[48px] items-center gap-2 font-semibold"><input type="checkbox" data-testid="ann-active" checked={f.is_active} onChange={set('is_active')} className="h-5 w-5" />{t('adm_ann_active')}</label>
@@ -145,10 +174,31 @@ export default function AnnouncementsPanel({ actorId, t, lang }) {
   const [rows, setRows] = useState(null)
   const [err, setErr] = useState(null)
   const [editing, setEditing] = useState(null)
-  const load = useCallback(() => { adminListAnnouncements(actorId).then((r) => { setRows(r); setErr(null) }).catch((e) => { setErr(e); setRows([]) }) }, [actorId])
+  const [mitras, setMitras] = useState([]) // Batch 22: every Mitra (active and inactive)
+  const [adMitras, setAdMitras] = useState({}) // Batch 22: announcement id -> { mitra_id, paid }
+  const load = useCallback(() => {
+    adminListAnnouncements(actorId).then((r) => { setRows(r); setErr(null) }).catch((e) => { setErr(e); setRows([]) })
+    // The Mitra data is optional: a failure here only hides the Mitra field and chips, never the announcements.
+    adminListMitras(actorId).then((d) => setMitras(d?.mitras || [])).catch(() => setMitras([]))
+    adminGetAnnouncementMitras(actorId).then((m) => setAdMitras(m && typeof m === 'object' ? m : {})).catch(() => setAdMitras({}))
+  }, [actorId])
   useEffect(() => { load() }, [load])
 
-  const save = async (id, data) => { await adminUpsertAnnouncement(actorId, id, data); setEditing(null); load() }
+  const save = async (id, data, mitra = {}) => {
+    const row = await adminUpsertAnnouncement(actorId, id, data)
+    const newId = row?.id || id
+    const want = mitra.mitraId || ''
+    const have = id ? (adMitras[id]?.mitra_id || '') : ''
+    if (!mitra.paid && want !== have && newId) {
+      try { await adminSetAnnouncementMitra(actorId, newId, want || null) } catch (er) {
+        // the announcement itself is already saved; keep the form open with a plain error
+        load()
+        const wrapped = Object.assign(new Error('mitra_ad_save_failed'), { code: er?.code, i18nKey: er?.code === 'session_required' ? er.i18nKey : 'mitra_ad_save_failed', savedId: newId })
+        throw wrapped
+      }
+    }
+    setEditing(null); load()
+  }
   const toggle = async (r) => { try { await adminUpsertAnnouncement(actorId, r.id, { ...r, image_url: r.image_url || '', link_url: r.link_url || '', is_active: !r.is_active }); load() } catch (e) { setErr(e) } }
   const remove = async (r) => { if (!window.confirm(t('adm_ann_delete_confirm'))) return; try { await adminDeleteAnnouncement(actorId, r.id); load() } catch (e) { setErr(e) } }
   const dup = async (r) => { try { await adminDuplicateAnnouncement(actorId, r.id); load() } catch (e) { setErr(e) } }
@@ -157,7 +207,7 @@ export default function AnnouncementsPanel({ actorId, t, lang }) {
   return (
     <Section title={t('adm_p_announcements')} right={!editing && <button type="button" data-testid="ann-new" onClick={() => setEditing(blank())} className={btnGreen}>{t('adm_ann_new')}</button>}>
       <AdminError error={err} t={t} />
-      {editing && <AnnouncementForm key={editing.id || 'new'} t={t} lang={lang} initial={editing} onCancel={() => setEditing(null)} onSave={save} />}
+      {editing && <AnnouncementForm key={editing.id || 'new'} t={t} lang={lang} mitras={mitras} initial={editing} onCancel={() => setEditing(null)} onSave={save} />}
       {!rows ? <Spinner /> : rows.length === 0 ? <p className="text-stone-500" data-testid="ann-empty">{t('adm_ann_none')}</p> : rows.map((r) => {
         const live = inWindow(r, now)
         return (
@@ -166,10 +216,11 @@ export default function AnnouncementsPanel({ actorId, t, lang }) {
               <span className="font-bold text-stone-900">{r.title_hi}</span>
               <Chip tone={r.is_active ? (live ? 'green' : 'amber') : 'stone'}>{!r.is_active ? t('adm_off') : live ? t('adm_ann_live') : t('adm_ann_scheduled')}</Chip>
               <Chip tone="blue">{t(`adm_ann_style_${r.style}`)}</Chip>
+              {adMitras[r.id]?.mitra_id && (() => { const m = mitras.find((x) => x.id === adMitras[r.id].mitra_id); return m ? <Chip tone="stone" testId="ann-mitra-chip">{fill(t('mitra_ad_chip'), { name: m.display_name })}</Chip> : null })()}
             </div>
             <p className="mt-1 text-sm text-stone-600">{formatIst(r.start_at, lang)} - {formatIst(r.end_at, lang)}</p>
             <div className="mt-2 flex flex-wrap gap-2">
-              <button type="button" data-testid="ann-edit" onClick={() => setEditing(fromRow(r))} className={btnPlain}>{t('adm_edit')}</button>
+              <button type="button" data-testid="ann-edit" onClick={() => setEditing({ ...fromRow(r), mitra_id: adMitras[r.id]?.mitra_id || '', mitra_paid_id: adMitras[r.id]?.paid ? 'paid' : '' })} className={btnPlain}>{t('adm_edit')}</button>
               <button type="button" data-testid="ann-toggle" onClick={() => toggle(r)} className={btnPlain}>{r.is_active ? t('adm_turn_off') : t('adm_turn_on')}</button>
               <button type="button" data-testid="ann-dup" onClick={() => dup(r)} className={btnPlain}>{t('adm_ann_duplicate')}</button>
               <button type="button" data-testid="ann-delete" onClick={() => remove(r)} className={btnRed}>{t('adm_delete')}</button>
