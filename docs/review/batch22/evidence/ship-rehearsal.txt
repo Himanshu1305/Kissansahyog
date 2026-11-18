@@ -1,0 +1,1374 @@
+Batch 22 ship/rollback rehearsal - 2026-11-18T06:44:18Z - all stubs, nothing real is contacted
+stub curl allows only kissansahyog.com, the production Supabase host and api.cloudflare.com, answers them from local files, and exits 6 for anything else.
+
+CASE 0 (guard): a stub curl must refuse a real host
+stub curl: BLOCKED (not a stubbed host): example.com
+curl exit: 6
+  ASSERT PASS: curl to example.com is blocked (exit 6, logged)
+
+==================================================================
+CASE 1 happy path (every gate passes, deploys, records the previous deployment id)
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> cf39947
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> cf399476be56b80dd2797ad6b57d4dfd9bdd23b5
++ git rev-parse origin/main -> cf399476be56b80dd2797ad6b57d4dfd9bdd23b5
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456), main chunk /assets/index-OLDOLD11.js
+  = live is the expected deployment: Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now) — rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f
+== 2. read-only snapshot of the live deployment: /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-snapshot --label prod-before-22 --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-before-22
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+stub verify ok prod-pre-ship
+stub verify ok prod-pre-snapshot
+== 3. build
++ timeout 1500 npm run build:prod   > /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121423.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co, and its media-src contains data:   (17B CSP, must be unchanged)
+new main chunk (from dist/index.html): /assets/index-CJF71F4L.js
+chunk(s) holding morning-post-admin / morning-share-video / morning-share-voice (the admin morning page, the 17E card+voice button and the voice backup) in dist: /assets/AdminMorning-BWpThbYe.js / /assets/AdminMorning-BWpThbYe.js / /assets/AdminMorning-BWpThbYe.js
+chunk(s) still holding the OLD combined button morning-share-all in dist (must be none in 17E): none
+chunk(s) holding admin-morning-link (17B admin link) / mausam-rain-banner (17B rain banner) in dist: /assets/Admin-D8JPd_5_.js / /assets/Mausam-sdC_7d4v.js
+guide chunks in dist: /assets/GuideHub-CCy7f6mV.js /assets/GuideDemoPage-CX7CPz1f.js
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: /assets/PageShell-CivnySos.js /assets/index-CJF71F4L.js
+chunk(s) holding the /msp badge (ks-date-badge) in dist: /assets/Msp-DPtICFHJ.js
+chunk(s) calling delete_my_listing (10G seller delete / disable) in dist: /assets/index-CJF71F4L.js /assets/listingsApi-DOewAc9c.js
+chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-CivnySos.js
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  dist/index.html has nav-guide
+  dist/index.html has data-testid="home-hero"
+  dist/index.html has data-testid="home-hero-demo"
+  dist/index.html has मुझे कुछ चाहिए
+  dist/index.html has मेरे पास कुछ है
+  dist/index.html has no data-testid="home-live" (removed in 10F)
+  dist/index.html has no data-testid="home-field" (removed in 10F)
+  dist/index.html has no data-testid="home-band" (removed in 10F)
+  dist/index.html has no data-testid="home-facts" (removed in 10F)
+  dist/index.html has the WhatsApp channel link
+  dist/index.html has rel="noopener noreferrer"
+  dist/about/index.html has the WhatsApp channel link
+  dist/about/index.html has rel="noopener noreferrer"
+  dist/msp/index.html has ks-date-badge
+  dist/index.html footer has '· भारत'
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121423.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co; its media-src contains data:   (17B CSP, unchanged)
++ GET the chunk(s) holding admin-morning-link (admin link) and mausam-rain-banner (rain banner) -> 200 + marker   (17B regression, read-only)
++ GET chunk(s) calling 'app_login_otp' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live https://kissansahyog.com   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer
++ GET the AdminMorning chunk(s) -> 200 + morning-post-admin + morning-share-video + morning-share-voice and NOT morning-share-all; GET /sitemap.xml and /sitemap-pages.xml -> no /admin/morning; GET /admin/morning -> no admin content in the HTML; (19) GET each of the eight /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)
+== 7. on any failure (a failed gate after the deploy rolls back by itself): bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+live now: deployment 11111111-2222-3333-4444-555555555555, main chunk /assets/index-CJF71F4L.js
+stub verify ok prod-after
+PASS  [10f_routes] GET / -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /signup -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /browse -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /guide -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /msp -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /post -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /guide/post -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /mausam -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_home] / has nav-guide
+PASS  [10f_home] / has data-testid="home-hero"
+PASS  [10f_home] / has data-testid="home-hero-demo"
+PASS  [10f_home] / has मुझे कुछ चाहिए
+PASS  [10f_home] / has मेरे पास कुछ है
+PASS  [10f_home] / has no data-testid="home-live" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-field" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-band" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-facts" (removed in 10F)
+PASS  [10f_msp] GET /msp -> 200, new main chunk, has ks-date-badge
+PASS  [12b_ticker] GET /assets/LanguageProvider-DC0wK9mX.js -> 200, holds the Hindi mandi names
+PASS  [12b_ticker] GET /assets/index-DQ5n4ZYj.css -> 200, holds --ticker-duration
+PASS  [12b_ticker] GET /assets/Homepage-czeavzY9.js -> 200, holds --ticker-duration
+PASS  [14a_chunks] GET /assets/Homepage-czeavzY9.js -> 200, holds get_active_announcements
+PASS  [14a_chunks] GET /assets/adminApi-40NTg6ko.js -> 200, holds admin_get_security_status
+PASS  [14a_chunks] GET /assets/Admin-D8JPd_5_.js -> 200, holds panel-search
+PASS  [14a_chunks] GET /assets/adminApi-40NTg6ko.js -> 200, holds admin_log_console_action
+PASS  [14a_admin_fn] GET /api/admin/sms-balance without a session -> 401
+PASS  [14a_db] get_active_announcements() answers 200 on production
+PASS  [17e_share] GET /assets/AdminMorning-BWpThbYe.js -> 200, holds morning-post-admin, morning-share-video, morning-share-voice, morning-share-card-msg and morning-video-none, and no morning-share-all
+PASS  [17a_sitemap] GET /sitemap.xml -> 200, no /admin/morning
+PASS  [17a_sitemap] GET /sitemap-pages.xml -> 200, no /admin/morning
+PASS  [17a_search] /admin/morning is not in public/search-index.json
+PASS  [17a_prerender] GET /admin/morning serves no admin content in the HTML
+PASS  [17f_install_page] GET /install -> 200, has the FAQ JSON-LD and the Hindi title
+PASS  [17f_qr_file] GET /images/install-qr.svg -> 200 (image/svg+xml)
+PASS  [17f_sitemap] GET /sitemap-pages.xml -> 200, lists /install
+PASS  [17f_strip] GET /assets/Homepage-czeavzY9.js -> 200, the install strip is a no-wrap (one row) layout
+PASS  [17f_17e_button] GET /assets/AdminMorning-BWpThbYe.js -> 200, still holds the 17E admin button (morning-share-video)
+PASS  [19_page] GET /pashupalan -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/desi-gay-anudan -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/kamdhenu-yojana -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/gaushala-anudan -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/pashu-kisan-credit-card -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/kendriya-yojanayen -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/desi-nasle -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/pashupalan-se-kamai -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_sitemap] GET /sitemap-pages.xml -> 200, lists all eight /pashupalan pages
+PASS  [16g_page] GET / -> 200
+PASS  [16g_page] GET /mausam -> 200
+PASS  [15a_chunks] GET /assets/history10y-CyUrRlGo.js -> 200, holds mandi_monthly_history
+PASS  [15a_chunks] GET /assets/Msp-DPtICFHJ.js -> 200, holds msp-avg5-body
+PASS  [15a_chunks] GET /assets/KamPani-D4xFYUIl.js -> 200, holds अनुमान नहीं
+PASS  [15a_chunks] GET /assets/LanguageProvider-DC0wK9mX.js -> 200, holds अनुमान नहीं
+PASS  [15a_db] mandi_monthly_history answers 200 on production (anonymous select, one row)
+PASS  [13a_browse] GET /assets/Browse-CRQdJP5m.js holds the new Browse test ids
+PASS  [13a_footer] GET /assets/LanguageProvider-DC0wK9mX.js has '· India' and not '· Madhya Pradesh, India'
+PASS  [13a_footer] GET / footer says '· भारत'
+PASS  [10g_listing] GET /assets/index-CJF71F4L.js -> 200, holds delete_my_listing
+PASS  [10g_listing] GET /assets/listingsApi-DOewAc9c.js -> 200, holds delete_my_listing
+PASS  [11a_otp] GET /assets/PageShell-CivnySos.js -> 200, holds app_login_otp
+PASS  [12a_switches] /api/otp/config after the deploy: otp_required=true session_enforced=false (same as before: otp_required=true session_enforced=false)
+PASS  [12a_whatsapp] GET / has the channel link with rel="noopener noreferrer"
+PASS  [12a_whatsapp] GET /about has the channel link with rel="noopener noreferrer"
+PASS  [12a_whatsapp] GET /about has the footer link
+PASS  [10f_msp] GET /assets/Msp-DPtICFHJ.js -> 200, holds ks-date-badge
+PASS  [10c_markers] GET /assets/GuideHub-CCy7f6mV.js -> 200, holds ksg-
+PASS  [10c_markers] GET /assets/GuideDemoPage-CX7CPz1f.js -> 200, holds ksg-
+PASS  [10e_markers] GET /assets/PageShell-CivnySos.js -> 200, holds app_register_phone
+PASS  [10e_markers] GET /assets/index-CJF71F4L.js -> 200, holds app_register_phone
+PASS  [17e_csp_unchanged] GET / Content-Security-Policy has media-src with data:
+PASS  [17b_regress_chunks] GET /assets/Admin-D8JPd_5_.js -> 200, holds admin-morning-link
+PASS  [17b_regress_chunks] GET /assets/Mausam-sdC_7d4v.js -> 200, holds mausam-rain-banner
+PASS  [10e_csp] GET / Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co
+PASS  [22_main] the live main chunk is the new one (/assets/index-CJF71F4L.js), not the previous (/assets/index-OLDOLD11.js)
+PASS  [22_signup] GET /assets/Signup-0oCiVVeO.js -> 200, the sign-up page has no Mitra dropdown text
+PASS  [22_signup] GET /signup html has no Mitra dropdown text
+PASS  [22_chunks] GET /assets/Post-DQXDzcHd.js -> 200, holds mitra-select
+PASS  [22_chunks] GET /assets/mitraRules-DTVhq52L.js -> 200, holds my_mitra_choice_open
+PASS  [22_chunks] GET /assets/Post-DQXDzcHd.js -> 200, holds set_my_mitra_on_offer
+PASS  [22_chunks] GET /assets/mitraRules-DTVhq52L.js -> 200, holds admin_mitra_statement
+PASS  [22_chunks] GET /assets/PeopleTab-CwaBDAH3.js -> 200, holds mitra-statement
+PASS  [22_chunks] GET /assets/mitraRules-DTVhq52L.js -> 200, holds admin_list_mitra_ads
+PASS  [22_chunks] GET /assets/ContentTab-Cqrk53-G.js -> 200, holds ann-mitra-field
+PASS  [22_chunks] GET /assets/PeopleTab-CwaBDAH3.js -> 200, holds mitra-reminder
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
+
+##################################################################
+SHIP OK: kissansahyog.com now runs cf39947 (deployment 11111111-2222-3333-4444-555555555555).
+All read-only prod gates passed. Report: /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch22/evidence/prod-ship/prod-gates-20261118-121423.txt
+Previous deployment (rollback target): e2b01aeb-b5a7-4df3-b66b-988e9625546f (Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.isjLrVapI3/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now))
+The auth switches are exactly as before (otp_required=true, session_enforced=false); this ship never touches them.
+NEXT: docs/review/batch22/SHIP_PROD.md step G (the 5-line check on production).
+If anything looks wrong later:  bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+##################################################################
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: exit 0 and SHIP OK
+  ASSERT PASS: prints SHIP OK
+  ASSERT PASS: DB gate ran before the build: all 4 functions PASS
+  ASSERT PASS: built exactly once
+  ASSERT PASS: deployed exactly once
+  ASSERT PASS: no rollback happened
+  ASSERT PASS: recorded the previous deployment id
+  ASSERT PASS: live deployment is now the new one
+  ASSERT PASS: printed HEAD and origin/main hashes
+  ASSERT PASS: the OTP switches are only read (no write call): curl log has no POST to /api/otp
+  ASSERT PASS: no real host was contacted
+  ASSERT PASS: no git push attempted
+  ASSERT PASS: post-deploy Mitra gates passed (22_signup, 22_chunks, 22_main, db)
+
+CASE 1b run it a second time on the same state (the live deployment is now the new one, not the expected Batch 20 one)
+
+==================================================================
+CASE 1b second run
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> cf39947
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> cf399476be56b80dd2797ad6b57d4dfd9bdd23b5
++ git rev-parse origin/main -> cf399476be56b80dd2797ad6b57d4dfd9bdd23b5
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment 11111111-2222-3333-4444-555555555555 (source 0123456), main chunk /assets/index-CJF71F4L.js
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: the live deployment is 11111111-2222-3333-4444-555555555555 (source 0123456): it is not the expected Batch 20 deployment (e2b01aeb-b5a7-4df3-b66b-988e9625546f) — someone deployed or rolled back since Batch 20 was shipped.
+Check the Cloudflare dashboard; if this live version is the right one to replace, run again with:  bash scripts/ship-prod-22.sh --expect-live 11111111-2222-3333-4444-555555555555
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: second run refuses before any change (live is not the expected deployment)
+  ASSERT PASS: says SHIP STOPPED BEFORE ANY CHANGE
+  ASSERT PASS: still only one deploy and one build
+
+==================================================================
+CASE 2 the 0076/0077 pre-deploy gate fails (0077 function missing)
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> b19adc1
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> b19adc13c54ce77d0f461ebb978d550d31de38ff
++ git rev-parse origin/main -> b19adc13c54ce77d0f461ebb978d550d31de38ff
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+FAIL  [db] admin_mitra_statement does NOT exist on production (HTTP 404 PGRST202): apply 0076 / 0077 first
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: the database is not ready: apply 0076 / 0077 first (SHIP_PROD.md steps B and C), then run this again. Nothing was built or deployed.
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses (exit 1)
+  ASSERT PASS: plain message: apply 0076 / 0077 first
+  ASSERT PASS: nothing built
+  ASSERT PASS: nothing deployed
+  ASSERT PASS: no rollback
+  ASSERT PASS: live deployment untouched
+
+==================================================================
+CASE 2b same, both migrations missing
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 21b9e43
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> 21b9e434f5927671f688ec2507d6585af29e2f63
++ git rev-parse origin/main -> 21b9e434f5927671f688ec2507d6585af29e2f63
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+FAIL  [db] my_mitra_choice_open does NOT exist on production (HTTP 404 PGRST202): apply 0076 / 0077 first
+FAIL  [db] set_my_mitra_on_offer does NOT exist on production (HTTP 404 PGRST202): apply 0076 / 0077 first
+FAIL  [db] admin_mitra_statement does NOT exist on production (HTTP 404 PGRST202): apply 0076 / 0077 first
+FAIL  [db] admin_list_mitra_ads does NOT exist on production (HTTP 404 PGRST202): apply 0076 / 0077 first
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: the database is not ready: apply 0076 / 0077 first (SHIP_PROD.md steps B and C), then run this again. Nothing was built or deployed.
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses, nothing built or deployed
+
+==================================================================
+CASE 3 a post-deploy gate fails -> automatic rollback to the recorded previous deployment
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> cc8df08
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> cc8df08f2a47b7f55307cefd073889f3c026b7d9
++ git rev-parse origin/main -> cc8df08f2a47b7f55307cefd073889f3c026b7d9
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456), main chunk /assets/index-OLDOLD11.js
+  = live is the expected deployment: Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now) — rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f
+== 2. read-only snapshot of the live deployment: /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-snapshot --label prod-before-22 --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-before-22
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+stub verify ok prod-pre-ship
+stub verify ok prod-pre-snapshot
+== 3. build
++ timeout 1500 npm run build:prod   > /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121527.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co, and its media-src contains data:   (17B CSP, must be unchanged)
+new main chunk (from dist/index.html): /assets/index-CJF71F4L.js
+chunk(s) holding morning-post-admin / morning-share-video / morning-share-voice (the admin morning page, the 17E card+voice button and the voice backup) in dist: /assets/AdminMorning-BWpThbYe.js / /assets/AdminMorning-BWpThbYe.js / /assets/AdminMorning-BWpThbYe.js
+chunk(s) still holding the OLD combined button morning-share-all in dist (must be none in 17E): none
+chunk(s) holding admin-morning-link (17B admin link) / mausam-rain-banner (17B rain banner) in dist: /assets/Admin-D8JPd_5_.js / /assets/Mausam-sdC_7d4v.js
+guide chunks in dist: /assets/GuideHub-CCy7f6mV.js /assets/GuideDemoPage-CX7CPz1f.js
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: /assets/PageShell-CivnySos.js /assets/index-CJF71F4L.js
+chunk(s) holding the /msp badge (ks-date-badge) in dist: /assets/Msp-DPtICFHJ.js
+chunk(s) calling delete_my_listing (10G seller delete / disable) in dist: /assets/index-CJF71F4L.js /assets/listingsApi-DOewAc9c.js
+chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-CivnySos.js
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  dist/index.html has nav-guide
+  dist/index.html has data-testid="home-hero"
+  dist/index.html has data-testid="home-hero-demo"
+  dist/index.html has मुझे कुछ चाहिए
+  dist/index.html has मेरे पास कुछ है
+  dist/index.html has no data-testid="home-live" (removed in 10F)
+  dist/index.html has no data-testid="home-field" (removed in 10F)
+  dist/index.html has no data-testid="home-band" (removed in 10F)
+  dist/index.html has no data-testid="home-facts" (removed in 10F)
+  dist/index.html has the WhatsApp channel link
+  dist/index.html has rel="noopener noreferrer"
+  dist/about/index.html has the WhatsApp channel link
+  dist/about/index.html has rel="noopener noreferrer"
+  dist/msp/index.html has ks-date-badge
+  dist/index.html footer has '· भारत'
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121527.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co; its media-src contains data:   (17B CSP, unchanged)
++ GET the chunk(s) holding admin-morning-link (admin link) and mausam-rain-banner (rain banner) -> 200 + marker   (17B regression, read-only)
++ GET chunk(s) calling 'app_login_otp' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live https://kissansahyog.com   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer
++ GET the AdminMorning chunk(s) -> 200 + morning-post-admin + morning-share-video + morning-share-voice and NOT morning-share-all; GET /sitemap.xml and /sitemap-pages.xml -> no /admin/morning; GET /admin/morning -> no admin content in the HTML; (19) GET each of the eight /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)
+== 7. on any failure (a failed gate after the deploy rolls back by itself): bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+live now: deployment 11111111-2222-3333-4444-555555555555, main chunk /assets/index-CJF71F4L.js
+FAIL  [stub] a post-deploy gate failed (injected)
+
+##################################################################
+SHIP FAILED: a prod gate failed (see /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/prod-gates-20261118-121527.txt)
+ROLLING BACK AUTOMATICALLY to deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456)…
+##################################################################
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: 11111111-2222-3333-4444-555555555555
++ GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+  switches now: {"otp_required":true,"session_enforced":false}
++ POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f/rollback   (Authorization: Bearer <token, not shown>)
+rollback accepted by the API; waiting until it is live…
+live production deployment after rollback: e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+stub verify ok prod-after-rollback
+
+==================================================================
+ROLLBACK DONE: kissansahyog.com is back on deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 051bdca) and the read-only page check passed.
+==================================================================
+
+##################################################################
+RESULT: the new version was NOT kept. kissansahyog.com is back on the previous version (e2b01aeb-b5a7-4df3-b66b-988e9625546f) and its page check passed.
+Why it failed: a prod gate failed (see /tmp/tmp.hj1NbFHALb/tmp.WhSaHBBa6j/repo/docs/review/batch22/evidence/prod-ship/prod-gates-20261118-121527.txt)
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: exit 1
+  ASSERT PASS: says it is ROLLING BACK AUTOMATICALLY
+  ASSERT PASS: deployed once
+  ASSERT PASS: rollback API POST went to the recorded previous id
+  ASSERT PASS: live deployment is the previous one again
+  ASSERT PASS: says the new version was NOT kept
+
+==================================================================
+CASE 3b wrangler deploy itself fails -> automatic rollback
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 717f90a
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> 717f90aad6a3551726b1556226ccc453e042c074
++ git rev-parse origin/main -> 717f90aad6a3551726b1556226ccc453e042c074
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456), main chunk /assets/index-OLDOLD11.js
+  = live is the expected deployment: Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now) — rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f
+== 2. read-only snapshot of the live deployment: /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-snapshot --label prod-before-22 --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-before-22
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+stub verify ok prod-pre-ship
+stub verify ok prod-pre-snapshot
+== 3. build
++ timeout 1500 npm run build:prod   > /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121544.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co, and its media-src contains data:   (17B CSP, must be unchanged)
+new main chunk (from dist/index.html): /assets/index-CJF71F4L.js
+chunk(s) holding morning-post-admin / morning-share-video / morning-share-voice (the admin morning page, the 17E card+voice button and the voice backup) in dist: /assets/AdminMorning-BWpThbYe.js / /assets/AdminMorning-BWpThbYe.js / /assets/AdminMorning-BWpThbYe.js
+chunk(s) still holding the OLD combined button morning-share-all in dist (must be none in 17E): none
+chunk(s) holding admin-morning-link (17B admin link) / mausam-rain-banner (17B rain banner) in dist: /assets/Admin-D8JPd_5_.js / /assets/Mausam-sdC_7d4v.js
+guide chunks in dist: /assets/GuideHub-CCy7f6mV.js /assets/GuideDemoPage-CX7CPz1f.js
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: /assets/PageShell-CivnySos.js /assets/index-CJF71F4L.js
+chunk(s) holding the /msp badge (ks-date-badge) in dist: /assets/Msp-DPtICFHJ.js
+chunk(s) calling delete_my_listing (10G seller delete / disable) in dist: /assets/index-CJF71F4L.js /assets/listingsApi-DOewAc9c.js
+chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-CivnySos.js
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  dist/index.html has nav-guide
+  dist/index.html has data-testid="home-hero"
+  dist/index.html has data-testid="home-hero-demo"
+  dist/index.html has मुझे कुछ चाहिए
+  dist/index.html has मेरे पास कुछ है
+  dist/index.html has no data-testid="home-live" (removed in 10F)
+  dist/index.html has no data-testid="home-field" (removed in 10F)
+  dist/index.html has no data-testid="home-band" (removed in 10F)
+  dist/index.html has no data-testid="home-facts" (removed in 10F)
+  dist/index.html has the WhatsApp channel link
+  dist/index.html has rel="noopener noreferrer"
+  dist/about/index.html has the WhatsApp channel link
+  dist/about/index.html has rel="noopener noreferrer"
+  dist/msp/index.html has ks-date-badge
+  dist/index.html footer has '· भारत'
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121544.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co; its media-src contains data:   (17B CSP, unchanged)
++ GET the chunk(s) holding admin-morning-link (admin link) and mausam-rain-banner (rain banner) -> 200 + marker   (17B regression, read-only)
++ GET chunk(s) calling 'app_login_otp' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live https://kissansahyog.com   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer
++ GET the AdminMorning chunk(s) -> 200 + morning-post-admin + morning-share-video + morning-share-voice and NOT morning-share-all; GET /sitemap.xml and /sitemap-pages.xml -> no /admin/morning; GET /admin/morning -> no admin content in the HTML; (19) GET each of the eight /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)
+== 7. on any failure (a failed gate after the deploy rolls back by itself): bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+
+##################################################################
+SHIP FAILED: wrangler deploy failed (see /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121544.log)
+ROLLING BACK AUTOMATICALLY to deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456)…
+##################################################################
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: e2b01aeb-b5a7-4df3-b66b-988e9625546f
+
+==================================================================
+NOTHING TO DO: e2b01aeb-b5a7-4df3-b66b-988e9625546f is already the live production deployment of kissansahyog-prod
+==================================================================
+
+##################################################################
+RESULT: the new version was NOT kept. kissansahyog.com is back on the previous version (e2b01aeb-b5a7-4df3-b66b-988e9625546f) and its page check passed.
+Why it failed: wrangler deploy failed (see /tmp/tmp.hj1NbFHALb/tmp.2PQXaPpGvP/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121544.log)
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refused; the automatic rollback ran and found the previous deployment still live (nothing had gone live, so no POST)
+
+==================================================================
+CASE 3c the production build fails -> nothing deployed
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 1990690
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> 1990690a3a505d800a26c431c58d4c70faa22844
++ git rev-parse origin/main -> 1990690a3a505d800a26c431c58d4c70faa22844
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456), main chunk /assets/index-OLDOLD11.js
+  = live is the expected deployment: Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now) — rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f
+== 2. read-only snapshot of the live deployment: /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-snapshot --label prod-before-22 --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-before-22
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+stub verify ok prod-pre-ship
+stub verify ok prod-pre-snapshot
+== 3. build
++ timeout 1500 npm run build:prod   > /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121558.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co, and its media-src contains data:   (17B CSP, must be unchanged)
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: npm run build:prod failed — see /tmp/tmp.hj1NbFHALb/tmp.lJyROrfLvh/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121558.log (nothing deployed)
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses before any deploy
+
+==================================================================
+CASE 4 wrong branch (release-22)
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 5c1a270
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> release-22
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: not on branch merge-22 (on 'release-22'): git checkout merge-22   (this script ships only merge-22, the branch pushed to origin/main)
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses
+  ASSERT PASS: names the branch rule
+  ASSERT PASS: nothing built, nothing deployed
+
+==================================================================
+CASE 4b wrong branch, dry run
+$ bash scripts/ship-prod-22.sh --dry-run
+------------------------------------------------------------------
+*** DRY RUN — nothing will be built, deployed, rolled back or written (except the read-only snapshot file, if missing) ***
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 5c1a270
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> release-22
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: not on branch merge-22 (on 'release-22'): git checkout merge-22   (this script ships only merge-22, the branch pushed to origin/main)
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: dry run refuses too
+  ASSERT PASS: names the branch rule
+
+==================================================================
+CASE 5 HEAD differs from origin/main (a local commit that was not pushed)
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 084d33f
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> db48faa37578dc1f542b1a7851ae81364577a4b8
++ git rev-parse origin/main -> 084d33faf60c05b8bedc93f686b6b26a7906f096
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: HEAD (db48faa37578dc1f542b1a7851ae81364577a4b8) is not origin/main (084d33faf60c05b8bedc93f686b6b26a7906f096): what goes live must be exactly what was pushed (git push origin merge-22:main first, then git fetch origin)
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses
+  ASSERT PASS: says HEAD is not origin/main
+  ASSERT PASS: nothing built, nothing deployed
+
+==================================================================
+CASE 6 dirty tree (a tracked source file changed)
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 50b591a
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: modified tracked files would change what ships (commit them or discard them first):
+src/app.js
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses
+  ASSERT PASS: says modified tracked files would change what ships
+  ASSERT PASS: nothing built, nothing deployed
+
+==================================================================
+CASE 6b only the build-output file public/search-index.json differs (allowed, as in the old scripts)
+$ bash scripts/ship-prod-22.sh --dry-run
+------------------------------------------------------------------
+*** DRY RUN — nothing will be built, deployed, rolled back or written (except the read-only snapshot file, if missing) ***
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> f4e2138
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> f4e2138e28e56e87e5bdbdcfe515090efe23f089
++ git rev-parse origin/main -> f4e2138e28e56e87e5bdbdcfe515090efe23f089
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456), main chunk /assets/index-OLDOLD11.js
+  = live is the expected deployment: Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now) — rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ (would write) /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/prod-deployment-before.txt  deployment_id=e2b01aeb-b5a7-4df3-b66b-988e9625546f
+== 2. read-only snapshot of the live deployment: /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-snapshot --label prod-before-22 --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-before-22
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+== 3. build
++ timeout 1500 npm run build:prod   > /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121618.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co, and its media-src contains data:   (17B CSP, must be unchanged)
+main chunk of the dist folder as it is now (a real run rebuilds it first): no dist
+chunk(s) holding morning-post-admin / morning-share-video / morning-share-voice (the admin morning page, the 17E card+voice button and the voice backup) in dist: none / none / none
+chunk(s) still holding the OLD combined button morning-share-all in dist (must be none in 17E): none
+chunk(s) holding admin-morning-link (17B admin link) / mausam-rain-banner (17B rain banner) in dist: none / none
+guide chunks in dist: none
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: none
+chunk(s) holding the /msp badge (ks-date-badge) in dist: none
+chunk(s) calling delete_my_listing (10G seller delete / disable) in dist: none
+chunk(s) calling app_login_otp (11A OTP sign-in) in dist: none
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  (no dist folder now; a real run builds it first)
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121618.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co; its media-src contains data:   (17B CSP, unchanged)
++ GET the chunk(s) holding admin-morning-link (admin link) and mausam-rain-banner (rain banner) -> 200 + marker   (17B regression, read-only)
++ GET chunk(s) calling 'app_login_otp' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live https://kissansahyog.com   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer
++ GET the AdminMorning chunk(s) -> 200 + morning-post-admin + morning-share-video + morning-share-voice and NOT morning-share-all; GET /sitemap.xml and /sitemap-pages.xml -> no /admin/morning; GET /admin/morning -> no admin content in the HTML; (19) GET each of the eight /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)
+== 7. on any failure (a failed gate after the deploy rolls back by itself): bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ (read-only check that the rollback path works)
+    [rollback dry-run] *** DRY RUN — nothing will be changed ***
+    [rollback dry-run] + timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+    [rollback dry-run] target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+    [rollback dry-run] live production deployment now: e2b01aeb-b5a7-4df3-b66b-988e9625546f
+    [rollback dry-run] (note: e2b01aeb-b5a7-4df3-b66b-988e9625546f is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
+    [rollback dry-run] + GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+    [rollback dry-run]   switches now: {"otp_required":true,"session_enforced":false}
+    [rollback dry-run] + POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f/rollback   (Authorization: Bearer <token, not shown>)
+    [rollback dry-run] + (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == e2b01aeb-b5a7-4df3-b66b-988e9625546f (max 3 min)
+    [rollback dry-run] + (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch22/evidence/prod-before.json
+    [rollback dry-run]   (no database step; no switch was changed)
+    [rollback dry-run] 
+    [rollback dry-run] ==================================================================
+    [rollback dry-run] DRY RUN OK — preconditions valid; rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 051bdca); nothing was changed
+    [rollback dry-run] ==================================================================
+
+##################################################################
+A real run would ship f4e2138 to https://kissansahyog.com,
+replacing deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456; Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.TOrqf3qo5S/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now)).
+Undo after a ship:  bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+Nothing was changed.
+##################################################################
+DRY RUN OK
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: not refused for that
+
+==================================================================
+CASE 7 --dry-run (everything read-only; deploys nothing; rolls nothing back)
+$ bash scripts/ship-prod-22.sh --dry-run
+------------------------------------------------------------------
+*** DRY RUN — nothing will be built, deployed, rolled back or written (except the read-only snapshot file, if missing) ***
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> d356c1c
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> d356c1cda33f82c8b49f74a2f681da62f6b88235
++ git rev-parse origin/main -> d356c1cda33f82c8b49f74a2f681da62f6b88235
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456), main chunk /assets/index-OLDOLD11.js
+  = live is the expected deployment: Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now) — rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ (would write) /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/prod-deployment-before.txt  deployment_id=e2b01aeb-b5a7-4df3-b66b-988e9625546f
+== 2. read-only snapshot of the live deployment: /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-snapshot --label prod-before-22 --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-before-22
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+== 3. build
++ timeout 1500 npm run build:prod   > /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121626.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co, and its media-src contains data:   (17B CSP, must be unchanged)
+main chunk of the dist folder as it is now (a real run rebuilds it first): no dist
+chunk(s) holding morning-post-admin / morning-share-video / morning-share-voice (the admin morning page, the 17E card+voice button and the voice backup) in dist: none / none / none
+chunk(s) still holding the OLD combined button morning-share-all in dist (must be none in 17E): none
+chunk(s) holding admin-morning-link (17B admin link) / mausam-rain-banner (17B rain banner) in dist: none / none
+guide chunks in dist: none
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: none
+chunk(s) holding the /msp badge (ks-date-badge) in dist: none
+chunk(s) calling delete_my_listing (10G seller delete / disable) in dist: none
+chunk(s) calling app_login_otp (11A OTP sign-in) in dist: none
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  (no dist folder now; a real run builds it first)
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121626.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co; its media-src contains data:   (17B CSP, unchanged)
++ GET the chunk(s) holding admin-morning-link (admin link) and mausam-rain-banner (rain banner) -> 200 + marker   (17B regression, read-only)
++ GET chunk(s) calling 'app_login_otp' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live https://kissansahyog.com   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer
++ GET the AdminMorning chunk(s) -> 200 + morning-post-admin + morning-share-video + morning-share-voice and NOT morning-share-all; GET /sitemap.xml and /sitemap-pages.xml -> no /admin/morning; GET /admin/morning -> no admin content in the HTML; (19) GET each of the eight /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)
+== 7. on any failure (a failed gate after the deploy rolls back by itself): bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ (read-only check that the rollback path works)
+    [rollback dry-run] *** DRY RUN — nothing will be changed ***
+    [rollback dry-run] + timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+    [rollback dry-run] target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+    [rollback dry-run] live production deployment now: e2b01aeb-b5a7-4df3-b66b-988e9625546f
+    [rollback dry-run] (note: e2b01aeb-b5a7-4df3-b66b-988e9625546f is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
+    [rollback dry-run] + GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+    [rollback dry-run]   switches now: {"otp_required":true,"session_enforced":false}
+    [rollback dry-run] + POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f/rollback   (Authorization: Bearer <token, not shown>)
+    [rollback dry-run] + (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == e2b01aeb-b5a7-4df3-b66b-988e9625546f (max 3 min)
+    [rollback dry-run] + (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch22/evidence/prod-before.json
+    [rollback dry-run]   (no database step; no switch was changed)
+    [rollback dry-run] 
+    [rollback dry-run] ==================================================================
+    [rollback dry-run] DRY RUN OK — preconditions valid; rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 051bdca); nothing was changed
+    [rollback dry-run] ==================================================================
+
+##################################################################
+A real run would ship d356c1c to https://kissansahyog.com,
+replacing deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456; Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.wE4wPztE1S/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now)).
+Undo after a ship:  bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+Nothing was changed.
+##################################################################
+DRY RUN OK
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: exit 0 and DRY RUN OK
+  ASSERT PASS: prints DRY RUN OK
+  ASSERT PASS: ran the DB gate
+  ASSERT PASS: nothing built
+  ASSERT PASS: nothing deployed
+  ASSERT PASS: no rollback POST
+  ASSERT PASS: rolled back nothing (rollback script only validated)
+  ASSERT PASS: live deployment untouched
+
+==================================================================
+CASE 7b --dry-run with a missing database function
+$ bash scripts/ship-prod-22.sh --dry-run
+------------------------------------------------------------------
+*** DRY RUN — nothing will be built, deployed, rolled back or written (except the read-only snapshot file, if missing) ***
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> a1aa1b9
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> a1aa1b925424aa838a85edbedda3a3f23289fe0e
++ git rev-parse origin/main -> a1aa1b925424aa838a85edbedda3a3f23289fe0e
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+FAIL  [db] admin_list_mitra_ads does NOT exist on production (HTTP 404 PGRST202): apply 0076 / 0077 first
+WARNING (pending — a real run would STOP here): the database is not ready: apply 0076 / 0077 first (SHIP_PROD.md steps B and C), then run this again. Nothing was built or deployed.
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456), main chunk /assets/index-OLDOLD11.js
+  = live is the expected deployment: Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now) — rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ (would write) /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/prod-deployment-before.txt  deployment_id=e2b01aeb-b5a7-4df3-b66b-988e9625546f
+== 2. read-only snapshot of the live deployment: /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-snapshot --label prod-before-22 --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-before-22
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+== 3. build
++ timeout 1500 npm run build:prod   > /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121636.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co, and its media-src contains data:   (17B CSP, must be unchanged)
+main chunk of the dist folder as it is now (a real run rebuilds it first): no dist
+chunk(s) holding morning-post-admin / morning-share-video / morning-share-voice (the admin morning page, the 17E card+voice button and the voice backup) in dist: none / none / none
+chunk(s) still holding the OLD combined button morning-share-all in dist (must be none in 17E): none
+chunk(s) holding admin-morning-link (17B admin link) / mausam-rain-banner (17B rain banner) in dist: none / none
+guide chunks in dist: none
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: none
+chunk(s) holding the /msp badge (ks-date-badge) in dist: none
+chunk(s) calling delete_my_listing (10G seller delete / disable) in dist: none
+chunk(s) calling app_login_otp (11A OTP sign-in) in dist: none
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  (no dist folder now; a real run builds it first)
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121636.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co; its media-src contains data:   (17B CSP, unchanged)
++ GET the chunk(s) holding admin-morning-link (admin link) and mausam-rain-banner (rain banner) -> 200 + marker   (17B regression, read-only)
++ GET chunk(s) calling 'app_login_otp' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live https://kissansahyog.com   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer
++ GET the AdminMorning chunk(s) -> 200 + morning-post-admin + morning-share-video + morning-share-voice and NOT morning-share-all; GET /sitemap.xml and /sitemap-pages.xml -> no /admin/morning; GET /admin/morning -> no admin content in the HTML; (19) GET each of the eight /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)
+== 7. on any failure (a failed gate after the deploy rolls back by itself): bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ (read-only check that the rollback path works)
+    [rollback dry-run] *** DRY RUN — nothing will be changed ***
+    [rollback dry-run] + timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+    [rollback dry-run] target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
+    [rollback dry-run] + GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+    [rollback dry-run] live production deployment now: e2b01aeb-b5a7-4df3-b66b-988e9625546f
+    [rollback dry-run] (note: e2b01aeb-b5a7-4df3-b66b-988e9625546f is live right now, so a real run at this moment would stop with 'nothing to do'; the commands it runs after a ship are printed below)
+    [rollback dry-run] + GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+    [rollback dry-run]   switches now: {"otp_required":true,"session_enforced":false}
+    [rollback dry-run] + POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f/rollback   (Authorization: Bearer <token, not shown>)
+    [rollback dry-run] + (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == e2b01aeb-b5a7-4df3-b66b-988e9625546f (max 3 min)
+    [rollback dry-run] + (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch22/evidence/prod-before.json
+    [rollback dry-run]   (no database step; no switch was changed)
+    [rollback dry-run] 
+    [rollback dry-run] ==================================================================
+    [rollback dry-run] DRY RUN OK — preconditions valid; rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 051bdca); nothing was changed
+    [rollback dry-run] ==================================================================
+
+##################################################################
+A real run would ship a1aa1b9 to https://kissansahyog.com,
+replacing deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 0123456; Batch 20 ship-20 (from /tmp/tmp.hj1NbFHALb/tmp.oeOsTXPqcD/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt; read from Cloudflare just now)).
+Undo after a ship:  bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+Nothing was changed.
+Pending before the real run (a real run stops until these are done):
+  - the database is not ready: apply 0076 / 0077 first (SHIP_PROD.md steps B and C), then run this again. Nothing was built or deployed.
+##################################################################
+DRY RUN OK (1 pending)
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: dry run reports it as pending (a real run would stop) and still deploys nothing
+
+==================================================================
+CASE 9 the live deployment is not the recorded Batch 20 one
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 9de986b
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> 9de986ba9392c5d563555d2efe27bcbc1078d027
++ git rev-parse origin/main -> 9de986ba9392c5d563555d2efe27bcbc1078d027
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment 99999999-8888-7777-6666-555555555555 (source 0123456), main chunk /assets/index-OLDOLD11.js
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: the live deployment is 99999999-8888-7777-6666-555555555555 (source 0123456): it is not the expected Batch 20 deployment (e2b01aeb-b5a7-4df3-b66b-988e9625546f) — someone deployed or rolled back since Batch 20 was shipped.
+Check the Cloudflare dashboard; if this live version is the right one to replace, run again with:  bash scripts/ship-prod-22.sh --expect-live 99999999-8888-7777-6666-555555555555
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses before any change and suggests --expect-live
+
+==================================================================
+CASE 9b same, with --expect-live <that id>
+$ bash scripts/ship-prod-22.sh --expect-live 99999999-8888-7777-6666-555555555555
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> 9de986b
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> 9de986ba9392c5d563555d2efe27bcbc1078d027
++ git rev-parse origin/main -> 9de986ba9392c5d563555d2efe27bcbc1078d027
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): 99999999-8888-7777-6666-555555555555
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (Authorization: Bearer <token, not shown>)
+live now: deployment 99999999-8888-7777-6666-555555555555 (source 0123456), main chunk /assets/index-OLDOLD11.js
+  = live is the expected deployment: --expect-live / KS_EXPECT_LIVE_ID — rollback target 99999999-8888-7777-6666-555555555555
+== 2. read-only snapshot of the live deployment: /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-before.json
+  snapshot missing — taking it now (read-only GETs; writes only the local file)
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-snapshot --label prod-before-22 --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-before-22
++ timeout 900 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-ship --checks compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-before.json
++ timeout 600 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/pre --label prod-pre-snapshot --checks snapshot --snapshot /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json
+stub verify ok prod-pre-ship
+stub verify ok prod-pre-snapshot
+== 3. build
++ timeout 1500 npm run build:prod   > /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/build-prod-20261118-121651.log
++ node --env-file=.env.production scripts/check-prod-env.mjs --dist   (prod refs only; the two CSP img-src host tokens of _headers allowed)
++ node scripts/check-no-localhost-dist.mjs dist
++ staging ref 'wzxtqbqlahyahsnoqqva' nowhere in dist except as the exact CSP img-src host token in dist/_headers
++ dist/_headers Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co, and its media-src contains data:   (17B CSP, must be unchanged)
+new main chunk (from dist/index.html): /assets/index-CJF71F4L.js
+chunk(s) holding morning-post-admin / morning-share-video / morning-share-voice (the admin morning page, the 17E card+voice button and the voice backup) in dist: /assets/AdminMorning-BWpThbYe.js / /assets/AdminMorning-BWpThbYe.js / /assets/AdminMorning-BWpThbYe.js
+chunk(s) still holding the OLD combined button morning-share-all in dist (must be none in 17E): none
+chunk(s) holding admin-morning-link (17B admin link) / mausam-rain-banner (17B rain banner) in dist: /assets/Admin-D8JPd_5_.js / /assets/Mausam-sdC_7d4v.js
+guide chunks in dist: /assets/GuideHub-CCy7f6mV.js /assets/GuideDemoPage-CX7CPz1f.js
+LiveStage chunk in dist (must be none in 10F): none
+chunk(s) calling app_register_phone in dist: /assets/PageShell-CivnySos.js /assets/index-CJF71F4L.js
+chunk(s) holding the /msp badge (ks-date-badge) in dist: /assets/Msp-DPtICFHJ.js
+chunk(s) calling delete_my_listing (10G seller delete / disable) in dist: /assets/index-CJF71F4L.js /assets/listingsApi-DOewAc9c.js
+chunk(s) calling app_login_otp (11A OTP sign-in) in dist: /assets/PageShell-CivnySos.js
++ dist markers: nav-guide + data-testid="home-hero" data-testid="home-hero-demo" मुझे कुछ चाहिए मेरे पास कुछ है in dist/index.html, none of data-testid="home-live" data-testid="home-field" data-testid="home-band" data-testid="home-facts"; no LiveStage-*.js; ks-date-badge in dist/msp/index.html and a chunk; guide chunks hold 'ksg-'; a chunk holds 'app_register_phone'
+  dist/index.html has nav-guide
+  dist/index.html has data-testid="home-hero"
+  dist/index.html has data-testid="home-hero-demo"
+  dist/index.html has मुझे कुछ चाहिए
+  dist/index.html has मेरे पास कुछ है
+  dist/index.html has no data-testid="home-live" (removed in 10F)
+  dist/index.html has no data-testid="home-field" (removed in 10F)
+  dist/index.html has no data-testid="home-band" (removed in 10F)
+  dist/index.html has no data-testid="home-facts" (removed in 10F)
+  dist/index.html has the WhatsApp channel link
+  dist/index.html has rel="noopener noreferrer"
+  dist/about/index.html has the WhatsApp channel link
+  dist/about/index.html has rel="noopener noreferrer"
+  dist/msp/index.html has ks-date-badge
+  dist/index.html footer has '· भारत'
+== 3b. the compare gate's page sizes on the new dist, BEFORE deploying (a loading-state capture would fail after the deploy)
++ node scripts/batch10f/predeploy-size-check.mjs /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json dist --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
+  on a failure: re-run the prerender (max 2 times): node --env-file=.env.production scripts/prerender.mjs && node --env-file=.env.production scripts/gen-sitemaps.mjs && node --env-file=.env.production scripts/check-prod-env.mjs --dist && node scripts/check-no-localhost-dist.mjs dist
+== 4. deploy
++ timeout 900 npx wrangler pages deploy dist --project-name kissansahyog-prod --branch main --commit-dirty=true   > /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/deploy-20261118-121651.log
+== 5. wait until https://kissansahyog.com/ serves the new main chunk (max 5 min)
+== 6. prod gates (read-only; the verifier refuses any POST/sign-up on production)
++ timeout 1500 node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/after --label prod-after --checks pages,compare,cors,functions,static,sw,data --snapshot /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/prod-before-ship.json --max-growth root=1.40,browse=1.40,msp=1.60 --min-ratio root=0.70,browse=0.70
++ GET https://kissansahyog.com{/,/signup,/browse,/guide,/msp,/post,/guide/post,/mausam} -> 200 + new main chunk   (read-only, redirects followed)
++ GET / -> 'nav-guide' + the 10F hero markers, none of the removed 10D ones; GET /msp -> 'ks-date-badge'; GET badge chunk; GET guide chunks -> 200 + 'ksg-'; GET sign-up chunk -> 200 + 'app_register_phone'   (read-only)
++ curl -sI https://kissansahyog.com/ -> Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co; its media-src contains data:   (17B CSP, unchanged)
++ GET the chunk(s) holding admin-morning-link (admin link) and mausam-rain-banner (rain banner) -> 200 + marker   (17B regression, read-only)
++ GET chunk(s) calling 'app_login_otp' -> 200 + marker; node scripts/batch11a/prod-probes.mjs live https://kissansahyog.com   (GET /api/otp/config -> JSON; POST /api/otp/send {phone:'123'} -> 400 invalid_phone; no SMS); then /api/otp/config must equal the pre-deploy switches (otp_required=true session_enforced=false); GET / and /about -> the channel link with rel=noopener noreferrer
++ GET the AdminMorning chunk(s) -> 200 + morning-post-admin + morning-share-video + morning-share-voice and NOT morning-share-all; GET /sitemap.xml and /sitemap-pages.xml -> no /admin/morning; GET /admin/morning -> no admin content in the HTML; (19) GET each of the eight /pashupalan pages -> 200 + FAQPage + Hindi text, and /sitemap-pages.xml lists them; (17F) GET /install -> 200 + FAQPage; GET /images/install-qr.svg -> 200 svg; /sitemap-pages.xml lists /install; the strip chunk has flex-nowrap; the 17E admin button string is still in the chunk   (read-only)
+== 7. on any failure (a failed gate after the deploy rolls back by itself): bash scripts/rollback-prod-22.sh 99999999-8888-7777-6666-555555555555
+live now: deployment 11111111-2222-3333-4444-555555555555, main chunk /assets/index-CJF71F4L.js
+stub verify ok prod-after
+PASS  [10f_routes] GET / -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /signup -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /browse -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /guide -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /msp -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /post -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /guide/post -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_routes] GET /mausam -> 200, serves /assets/index-CJF71F4L.js
+PASS  [10f_home] / has nav-guide
+PASS  [10f_home] / has data-testid="home-hero"
+PASS  [10f_home] / has data-testid="home-hero-demo"
+PASS  [10f_home] / has मुझे कुछ चाहिए
+PASS  [10f_home] / has मेरे पास कुछ है
+PASS  [10f_home] / has no data-testid="home-live" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-field" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-band" (removed in 10F)
+PASS  [10f_home] / has no data-testid="home-facts" (removed in 10F)
+PASS  [10f_msp] GET /msp -> 200, new main chunk, has ks-date-badge
+PASS  [12b_ticker] GET /assets/LanguageProvider-DC0wK9mX.js -> 200, holds the Hindi mandi names
+PASS  [12b_ticker] GET /assets/index-DQ5n4ZYj.css -> 200, holds --ticker-duration
+PASS  [12b_ticker] GET /assets/Homepage-czeavzY9.js -> 200, holds --ticker-duration
+PASS  [14a_chunks] GET /assets/Homepage-czeavzY9.js -> 200, holds get_active_announcements
+PASS  [14a_chunks] GET /assets/adminApi-40NTg6ko.js -> 200, holds admin_get_security_status
+PASS  [14a_chunks] GET /assets/Admin-D8JPd_5_.js -> 200, holds panel-search
+PASS  [14a_chunks] GET /assets/adminApi-40NTg6ko.js -> 200, holds admin_log_console_action
+PASS  [14a_admin_fn] GET /api/admin/sms-balance without a session -> 401
+PASS  [14a_db] get_active_announcements() answers 200 on production
+PASS  [17e_share] GET /assets/AdminMorning-BWpThbYe.js -> 200, holds morning-post-admin, morning-share-video, morning-share-voice, morning-share-card-msg and morning-video-none, and no morning-share-all
+PASS  [17a_sitemap] GET /sitemap.xml -> 200, no /admin/morning
+PASS  [17a_sitemap] GET /sitemap-pages.xml -> 200, no /admin/morning
+PASS  [17a_search] /admin/morning is not in public/search-index.json
+PASS  [17a_prerender] GET /admin/morning serves no admin content in the HTML
+PASS  [17f_install_page] GET /install -> 200, has the FAQ JSON-LD and the Hindi title
+PASS  [17f_qr_file] GET /images/install-qr.svg -> 200 (image/svg+xml)
+PASS  [17f_sitemap] GET /sitemap-pages.xml -> 200, lists /install
+PASS  [17f_strip] GET /assets/Homepage-czeavzY9.js -> 200, the install strip is a no-wrap (one row) layout
+PASS  [17f_17e_button] GET /assets/AdminMorning-BWpThbYe.js -> 200, still holds the 17E admin button (morning-share-video)
+PASS  [19_page] GET /pashupalan -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/desi-gay-anudan -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/kamdhenu-yojana -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/gaushala-anudan -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/pashu-kisan-credit-card -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/kendriya-yojanayen -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/desi-nasle -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_page] GET /pashupalan/pashupalan-se-kamai -> 200, has FAQPage JSON-LD and Hindi text
+PASS  [19_sitemap] GET /sitemap-pages.xml -> 200, lists all eight /pashupalan pages
+PASS  [16g_page] GET / -> 200
+PASS  [16g_page] GET /mausam -> 200
+PASS  [15a_chunks] GET /assets/history10y-CyUrRlGo.js -> 200, holds mandi_monthly_history
+PASS  [15a_chunks] GET /assets/Msp-DPtICFHJ.js -> 200, holds msp-avg5-body
+PASS  [15a_chunks] GET /assets/KamPani-D4xFYUIl.js -> 200, holds अनुमान नहीं
+PASS  [15a_chunks] GET /assets/LanguageProvider-DC0wK9mX.js -> 200, holds अनुमान नहीं
+PASS  [15a_db] mandi_monthly_history answers 200 on production (anonymous select, one row)
+PASS  [13a_browse] GET /assets/Browse-CRQdJP5m.js holds the new Browse test ids
+PASS  [13a_footer] GET /assets/LanguageProvider-DC0wK9mX.js has '· India' and not '· Madhya Pradesh, India'
+PASS  [13a_footer] GET / footer says '· भारत'
+PASS  [10g_listing] GET /assets/index-CJF71F4L.js -> 200, holds delete_my_listing
+PASS  [10g_listing] GET /assets/listingsApi-DOewAc9c.js -> 200, holds delete_my_listing
+PASS  [11a_otp] GET /assets/PageShell-CivnySos.js -> 200, holds app_login_otp
+PASS  [12a_switches] /api/otp/config after the deploy: otp_required=true session_enforced=false (same as before: otp_required=true session_enforced=false)
+PASS  [12a_whatsapp] GET / has the channel link with rel="noopener noreferrer"
+PASS  [12a_whatsapp] GET /about has the channel link with rel="noopener noreferrer"
+PASS  [12a_whatsapp] GET /about has the footer link
+PASS  [10f_msp] GET /assets/Msp-DPtICFHJ.js -> 200, holds ks-date-badge
+PASS  [10c_markers] GET /assets/GuideHub-CCy7f6mV.js -> 200, holds ksg-
+PASS  [10c_markers] GET /assets/GuideDemoPage-CX7CPz1f.js -> 200, holds ksg-
+PASS  [10e_markers] GET /assets/PageShell-CivnySos.js -> 200, holds app_register_phone
+PASS  [10e_markers] GET /assets/index-CJF71F4L.js -> 200, holds app_register_phone
+PASS  [17e_csp_unchanged] GET / Content-Security-Policy has media-src with data:
+PASS  [17b_regress_chunks] GET /assets/Admin-D8JPd_5_.js -> 200, holds admin-morning-link
+PASS  [17b_regress_chunks] GET /assets/Mausam-sdC_7d4v.js -> 200, holds mausam-rain-banner
+PASS  [10e_csp] GET / Content-Security-Policy img-src contains https://eltmcznjcqiahqhjvpjg.supabase.co
+PASS  [22_main] the live main chunk is the new one (/assets/index-CJF71F4L.js), not the previous (/assets/index-OLDOLD11.js)
+PASS  [22_signup] GET /assets/Signup-0oCiVVeO.js -> 200, the sign-up page has no Mitra dropdown text
+PASS  [22_signup] GET /signup html has no Mitra dropdown text
+PASS  [22_chunks] GET /assets/Post-DQXDzcHd.js -> 200, holds mitra-select
+PASS  [22_chunks] GET /assets/mitraRules-DTVhq52L.js -> 200, holds my_mitra_choice_open
+PASS  [22_chunks] GET /assets/Post-DQXDzcHd.js -> 200, holds set_my_mitra_on_offer
+PASS  [22_chunks] GET /assets/mitraRules-DTVhq52L.js -> 200, holds admin_mitra_statement
+PASS  [22_chunks] GET /assets/PeopleTab-CwaBDAH3.js -> 200, holds mitra-statement
+PASS  [22_chunks] GET /assets/mitraRules-DTVhq52L.js -> 200, holds admin_list_mitra_ads
+PASS  [22_chunks] GET /assets/ContentTab-Cqrk53-G.js -> 200, holds ann-mitra-field
+PASS  [22_chunks] GET /assets/PeopleTab-CwaBDAH3.js -> 200, holds mitra-reminder
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
+
+##################################################################
+SHIP OK: kissansahyog.com now runs 9de986b (deployment 11111111-2222-3333-4444-555555555555).
+All read-only prod gates passed. Report: /tmp/tmp.hj1NbFHALb/tmp.sx2YpkAtQA/repo/docs/review/batch22/evidence/prod-ship/prod-gates-20261118-121651.txt
+Previous deployment (rollback target): 99999999-8888-7777-6666-555555555555 (--expect-live / KS_EXPECT_LIVE_ID)
+The auth switches are exactly as before (otp_required=true, session_enforced=false); this ship never touches them.
+NEXT: docs/review/batch22/SHIP_PROD.md step G (the 5-line check on production).
+If anything looks wrong later:  bash scripts/rollback-prod-22.sh 99999999-8888-7777-6666-555555555555
+##################################################################
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: ships when the founder names the live id
+
+==================================================================
+CASE 9c no recorded id in the repo and no --expect-live
+$ bash scripts/ship-prod-22.sh
+------------------------------------------------------------------
+== G. first gate: Batch 20 (ship-20) is live (tag ship-20 on origin, https://kissansahyog.com/guide -> 200)
++ git ls-remote --tags origin ship-20 -> b076ba5
++ curl -sL https://kissansahyog.com/guide -> 200
+  = satisfied: Batch 20 (ship-20) is on origin
+== 0. preconditions
++ git branch --show-current -> merge-22
++ git status --porcelain --untracked-files=no  (only build output public/search-index.json and review documents docs/review/** may differ; nothing else)
++ git fetch origin
++ git rev-parse HEAD        -> b076ba5af7d50bdfbbf9b1bc222bd439614a4fc4
++ git rev-parse origin/main -> b076ba5af7d50bdfbbf9b1bc222bd439614a4fc4
+== D12. read-only: GET https://kissansahyog.com/api/otp/config answers JSON; record the switches (must be otp_required=true, session_enforced=false)
++ curl -s https://kissansahyog.com/api/otp/config
+  switches before the deploy: otp_required=true session_enforced=false
+  = as expected (OTP ON, session enforcement OFF); the ship never changes them
+== DB. database before site: migrations 0076 + 0077 are on production (read-only, cannot write; see the header)
++ POST https://eltmcznjcqiahqhjvpjg.supabase.co/rest/v1/rpc/{my_mitra_choice_open set_my_mitra_on_offer admin_mitra_statement admin_list_mitra_ads}  (anon key not shown; all-zero actor; no session)
+PASS  [db] my_mitra_choice_open exists on production (answered HTTP 400)
+PASS  [db] set_my_mitra_on_offer exists on production (answered HTTP 400)
+PASS  [db] admin_mitra_statement exists on production (answered HTTP 400)
+PASS  [db] admin_list_mitra_ads exists on production (answered HTTP 400)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only)
+== 1. record the live production deployment (read-only)
+  no Batch 11A close report (docs/review/batch11a/CLOSE_REPORT.md) here or on origin/release-11a
+  expected live deployment (Batch 20, ship-20): <unknown: give --expect-live <long id>>
+
+##################################################################
+SHIP STOPPED BEFORE ANY CHANGE TO PRODUCTION: no recorded Batch 20 deployment id here: give  --expect-live <long deployment id>  (the dry run prints the id that is live now: if that is the Batch 20 deployment, use it)
+##################################################################
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses without it
+
+==================================================================
+CASE 8a rollback script --dry-run
+$ bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f --dry-run
+------------------------------------------------------------------
+*** DRY RUN — nothing will be changed ***
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: 11111111-2222-3333-4444-555555555555
++ GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+  switches now: {"otp_required":true,"session_enforced":false}
++ POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f/rollback   (Authorization: Bearer <token, not shown>)
++ (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == e2b01aeb-b5a7-4df3-b66b-988e9625546f (max 3 min)
++ (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.YlNdUEgVlq/repo/docs/review/batch22/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.YlNdUEgVlq/repo/docs/review/batch22/evidence/prod-before.json
+  (no database step; no switch was changed)
+
+==================================================================
+DRY RUN OK — preconditions valid; rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 051bdca); nothing was changed
+==================================================================
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: DRY RUN OK, no POST, live deployment unchanged
+
+==================================================================
+CASE 8b rollback script (real, stubbed)
+$ bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+------------------------------------------------------------------
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: 11111111-2222-3333-4444-555555555555
++ GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+  switches now: {"otp_required":true,"session_enforced":false}
++ POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f/rollback   (Authorization: Bearer <token, not shown>)
+rollback accepted by the API; waiting until it is live…
+live production deployment after rollback: e2b01aeb-b5a7-4df3-b66b-988e9625546f
++ node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.YlNdUEgVlq/repo/docs/review/batch22/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.YlNdUEgVlq/repo/docs/review/batch22/evidence/prod-before.json
+stub verify ok prod-after-rollback
+
+==================================================================
+ROLLBACK DONE: kissansahyog.com is back on deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 051bdca) and the read-only page check passed.
+==================================================================
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: ROLLBACK DONE, POST went to the given id, live is the old deployment
+
+==================================================================
+CASE 8c rollback script again (already live)
+$ bash scripts/rollback-prod-22.sh e2b01aeb-b5a7-4df3-b66b-988e9625546f
+------------------------------------------------------------------
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: e2b01aeb-b5a7-4df3-b66b-988e9625546f
+
+==================================================================
+NOTHING TO DO: e2b01aeb-b5a7-4df3-b66b-988e9625546f is already the live production deployment of kissansahyog-prod
+==================================================================
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: NOTHING TO DO, no second POST
+
+==================================================================
+CASE 8d rollback script with a bad id
+$ bash scripts/rollback-prod-22.sh not-an-id
+------------------------------------------------------------------
+
+==================================================================
+ROLLBACK STOPPED: 'not-an-id' is not a full deployment id (use the long id from: npx wrangler pages deployment list --project-name kissansahyog-prod)
+==================================================================
+------------------------------------------------------------------
+exit code: 1
+  ASSERT PASS: refuses a malformed id
+
+==================================================================
+CASE 8e rollback script without an id (falls back to the recorded Batch 20 id) --dry-run
+$ bash scripts/rollback-prod-22.sh --dry-run
+------------------------------------------------------------------
+*** DRY RUN — nothing will be changed ***
+target: Batch 20 deployment e2b01aeb-b5a7-4df3-b66b-988e9625546f (from /tmp/tmp.hj1NbFHALb/tmp.YlNdUEgVlq/repo/docs/review/batch20/evidence/prod-ship/prod-deployment-after.txt)
++ timeout 120 npx wrangler pages deployment list --project-name kissansahyog-prod   (read-only; also refreshes wrangler's login token)
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f   (read-only)
+target deployment: env=production status=success source=051bdca created=2026-11-07T00:00:00Z
++ GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod   (read-only: which deployment is live now)
+live production deployment now: 11111111-2222-3333-4444-555555555555
++ GET https://kissansahyog.com/api/otp/config   (read-only; the switches stay as they are)
+  switches now: {"otp_required":true,"session_enforced":false}
++ POST https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod/deployments/e2b01aeb-b5a7-4df3-b66b-988e9625546f/rollback   (Authorization: Bearer <token, not shown>)
++ (then) poll GET https://api.cloudflare.com/client/v4/accounts/9ad1ef464c60a7db797b4bb097d545e5/pages/projects/kissansahyog-prod until canonical_deployment.id == e2b01aeb-b5a7-4df3-b66b-988e9625546f (max 3 min)
++ (then) node scripts/verify-batch9-live.mjs --base https://kissansahyog.com --out /tmp/tmp.hj1NbFHALb/tmp.YlNdUEgVlq/repo/docs/review/batch22/evidence/prod-ship/after-rollback --label prod-after-rollback --checks pages,compare --snapshot /tmp/tmp.hj1NbFHALb/tmp.YlNdUEgVlq/repo/docs/review/batch22/evidence/prod-before.json
+  (no database step; no switch was changed)
+
+==================================================================
+DRY RUN OK — preconditions valid; rollback target e2b01aeb-b5a7-4df3-b66b-988e9625546f (source 051bdca); nothing was changed
+==================================================================
+------------------------------------------------------------------
+exit code: 0
+  ASSERT PASS: uses the recorded Batch 20 deployment
+
+==================================================================
+SUMMARY: 61 assertions passed, 0 failed
