@@ -13,8 +13,8 @@ const { getTodayForFarmer } = await import('../../src/lib/today/forFarmer.js')
 const mk = (lang) => (k) => strings[k]?.[lang] ?? `?${k}`
 const row = (commodity_en, market, modal_price, extra = {}) => ({ commodity_en, commodity_hi: commodity_en, market, district: 'Sagar', modal_price, is_local: true, ...extra })
 const MSP = [{ crop_en: 'Wheat', msp_per_quintal: 2585 }, { crop_en: 'Soyabean', msp_per_quintal: 5328 }]
-// Cheapest-first, as pricesFor() orders them: rows[0] is Khurai 2305, the strip picks Ajaigarh 2700.
-const ROWS = [row('Wheat', 'Khurai APMC', 2305, { is_local: false }), row('Wheat', 'Ajaigarh APMC', 2700, { arrivals_tonnes: 50 }), row('Soyabean', 'Sagar APMC', 5000)]
+// Cheapest-first: rows[0] is Khurai 2305 (outside Sagar Division), the strip picks the Sagar-division Ajaigarh 2700 (Batch 23 rule).
+const ROWS = [row('Wheat', 'Khurai APMC', 2305, { is_local: false, district: 'Indore' }), row('Wheat', 'Ajaigarh APMC', 2700), row('Soyabean', 'Sagar APMC', 5000)]
 const isoDaysAgo = (n) => { const d = new Date(); d.setDate(d.getDate() - n); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` }
 const run = (lang, mandi, msp = MSP) => getTodayForFarmer({ weather: null, mandi, msp, alert: null, t: mk(lang) })
 

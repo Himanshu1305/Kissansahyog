@@ -20,5 +20,6 @@ New build facts: `/` is 105,039 bytes (was 113,324, ratio 0.927); `/msp` is 90,5
 Also for the next batch:
 - **No database step.** Batch 23 has no migration; the ship is a site deploy only. The GitHub workflow change (`refresh-mandi-prices.yml`) only takes effect when it is on `main` (GitHub runs `schedule` only from the default branch).
 - After the deploy, view-source of `/` and `/msp` must show no old price date; `curl -s https://kissansahyog.com/ | grep -c "कल का भाव"` must print 0.
-- `MIN_CROPS` is still an open decision (see `DECISIONS.md` section 8). Change it before the ship, not after.
-- Watch the first two mornings of the new watchdog: it fails when yesterday (IST) is thin or missing. If the government feed sometimes publishes yesterday only in the afternoon, an early-morning run could be red for that reason; if so, add a "not before 12:00 IST" grace to checks 1 and 2 in `scripts/lib/mandi-watchdog.mjs`.
+- `MIN_CROPS` is decided: 7 (`DECISIONS.md` section 8).
+- The watchdog now has a 14:00 IST grace (warning before, failure from 14:00 IST), so early-morning runs cannot fail on a late feed. The first run that can fail is 15:47 IST.
+- `/msp` size: re-measure after the final build (see the numbers at the top; the median pick did not change page sizes materially).

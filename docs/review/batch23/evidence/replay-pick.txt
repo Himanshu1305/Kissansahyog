@@ -1,173 +1,187 @@
 Replay of the shared rule on production rows (SELECT only). 1797 rows from 2026-10-31 to 2026-11-23. Target eltmcznjcqiahqhjvpjg.
-Rule: date = newest day (IST) in the last 7 with >= 3 mandis AND >= 5 of the 10 crops; mandi = Sagar division first, then larger arrivals, then lowest name.
+Rule: date = newest day (IST) in the last 7 with >= 3 mandis AND >= 7 of the 10 crops; mandi = a) device location (not used here), b) Sagar town mandi, c) median price among Sagar-division mandis, d) median among all.
 
 === morning of 2026-11-10 (Tue); newest data day 2026-11-09 (Mon): 1 rows, 1 mandis, 1 crops, THIN
     chosen date 2026-11-07 (Sat) | label: पिछला भाव (07/11)
-    Wheat                homepage: Ajaygarh APMC=2560                 /msp: Ajaygarh APMC=2560
-    Soyabean             homepage: Badamalhera APMC=6700              /msp: Badamalhera APMC=6700
-    Gram                 homepage: Deori APMC=6600                    /msp: Deori APMC=6600
+    crops chosen by step a=0 b=2 c=5 d=0 (+3 on their own older date)
+    Wheat                homepage: Sagar APMC=2650                    /msp: Sagar APMC=2650
+    Soyabean             homepage: Bijawar APMC=6550                  /msp: Bijawar APMC=6550
+    Gram                 homepage: Rehli APMC=6400                    /msp: Rehli APMC=6400
     Lentil               homepage: Banda APMC=5935 (own date 2026-11-06) /msp: Banda APMC=5935 (own date 2026-11-06)
-    Moong                homepage: Damoh APMC=7600 (own date 2026-11-05) /msp: Damoh APMC=7600 (own date 2026-11-05)
+    Moong                homepage: Sagar APMC=4400 (own date 2026-11-05) /msp: Sagar APMC=4400 (own date 2026-11-05)
     Urad                 homepage: Badamalhera APMC=6550              /msp: Badamalhera APMC=6550
     Paddy(Dhan)(Common)  homepage: Javera APMC=1720                   /msp: Javera APMC=1720
-    Maize                homepage: Banda APMC=2550                    /msp: Banda APMC=2550
+    Maize                homepage: Sagar APMC=2000                    /msp: Sagar APMC=2000
     Mustard              homepage: Ajaygarh APMC=8400                 /msp: Ajaygarh APMC=8400
     Garlic               homepage: Damoh APMC=13050 (own date 2026-11-06) /msp: Damoh APMC=13050 (own date 2026-11-06)
 === morning of 2026-11-11 (Wed); newest data day 2026-11-10 (Tue): 17 rows, 12 mandis, 8 crops, decent
     chosen date 2026-11-10 (Tue) | label: कल का भाव (10/11)
-    Wheat                homepage: Damoh APMC=2500                    /msp: Damoh APMC=2500
+    crops chosen by step a=0 b=2 c=6 d=0 (+2 on their own older date)
+    Wheat                homepage: Sagar APMC=2560                    /msp: Sagar APMC=2560
     Soyabean             homepage: Malthone APMC=6500                 /msp: Malthone APMC=6500
-    Gram                 homepage: Bamora APMC=7000                   /msp: Bamora APMC=7000
+    Gram                 homepage: LavKush Nagar(Laundi) APMC=6500    /msp: LavKush Nagar(Laundi) APMC=6500
     Lentil               homepage: Banda APMC=5935 (own date 2026-11-06) /msp: Banda APMC=5935 (own date 2026-11-06)
-    Moong                homepage: Damoh APMC=7600 (own date 2026-11-05) /msp: Damoh APMC=7600 (own date 2026-11-05)
+    Moong                homepage: Sagar APMC=4400 (own date 2026-11-05) /msp: Sagar APMC=4400 (own date 2026-11-05)
     Urad                 homepage: Khargapur APMC=6900                /msp: Khargapur APMC=6900
-    Paddy(Dhan)(Common)  homepage: Damoh APMC=1800                    /msp: Damoh APMC=1800
-    Maize                homepage: Kesli APMC=2525                    /msp: Kesli APMC=2525
+    Paddy(Dhan)(Common)  homepage: Simariya APMC=1900                 /msp: Simariya APMC=1900
+    Maize                homepage: Sagar APMC=2475                    /msp: Sagar APMC=2475
     Mustard              homepage: LavKush Nagar(Laundi) APMC=7950    /msp: LavKush Nagar(Laundi) APMC=7950
     Garlic               homepage: Deori APMC=3800                    /msp: Deori APMC=3800
 === morning of 2026-11-12 (Thu); newest data day 2026-11-11 (Wed): 105 rows, 29 mandis, 10 crops, decent
     chosen date 2026-11-11 (Wed) | label: कल का भाव (11/11)
-    Wheat                homepage: Badamalhera APMC=2650              /msp: Badamalhera APMC=2650
-    Soyabean             homepage: Badamalhera APMC=6800              /msp: Badamalhera APMC=6800
-    Gram                 homepage: Bamora APMC=7511.25                /msp: Bamora APMC=7511.25
-    Lentil               homepage: Bamora APMC=6101.25                /msp: Bamora APMC=6101.25
-    Moong                homepage: Damoh APMC=7510                    /msp: Damoh APMC=7510
-    Urad                 homepage: Bamora APMC=6101.25                /msp: Bamora APMC=6101.25
-    Paddy(Dhan)(Common)  homepage: Bamora APMC=2500                   /msp: Bamora APMC=2500
-    Maize                homepage: Bamora APMC=2525                   /msp: Bamora APMC=2525
-    Mustard              homepage: Bamora APMC=8200                   /msp: Bamora APMC=8200
+    crops chosen by step a=0 b=8 c=2 d=0
+    Wheat                homepage: Sagar APMC=2690                    /msp: Sagar APMC=2690
+    Soyabean             homepage: Sagar APMC=6775                    /msp: Sagar APMC=6775
+    Gram                 homepage: Sagar APMC=7191                    /msp: Sagar APMC=7191
+    Lentil               homepage: Sagar APMC=5891                    /msp: Sagar APMC=5891
+    Moong                homepage: Sagar APMC=7095                    /msp: Sagar APMC=7095
+    Urad                 homepage: Sagar APMC=5805                    /msp: Sagar APMC=5805
+    Paddy(Dhan)(Common)  homepage: Simariya APMC=1850                 /msp: Simariya APMC=1850
+    Maize                homepage: Sagar APMC=2550                    /msp: Sagar APMC=2550
+    Mustard              homepage: Sagar APMC=7500                    /msp: Sagar APMC=7500
     Garlic               homepage: Damoh(F&V) APMC=5100               /msp: Damoh(F&V) APMC=5100
 === morning of 2026-11-13 (Fri); newest data day 2026-11-12 (Thu): 123 rows, 34 mandis, 10 crops, decent
     chosen date 2026-11-12 (Thu) | label: कल का भाव (12/11)
-    Wheat                homepage: Ajaygarh APMC=2550                 /msp: Ajaygarh APMC=2550
-    Soyabean             homepage: Bamora APMC=7231                   /msp: Bamora APMC=7231
-    Gram                 homepage: Ajaygarh APMC=7250                 /msp: Ajaygarh APMC=7250
-    Lentil               homepage: Bamora APMC=5990                   /msp: Bamora APMC=5990
-    Moong                homepage: Damoh APMC=6440                    /msp: Damoh APMC=6440
-    Urad                 homepage: Bamora APMC=7800                   /msp: Bamora APMC=7800
-    Paddy(Dhan)(Common)  homepage: Bamora APMC=1701                   /msp: Bamora APMC=1701
-    Maize                homepage: Bakswaha APMC=2500                 /msp: Bakswaha APMC=2500
-    Mustard              homepage: Badamalhera APMC=7800              /msp: Badamalhera APMC=7800
-    Garlic               homepage: Damoh APMC=6000                    /msp: Damoh APMC=6000
+    crops chosen by step a=0 b=7 c=3 d=0
+    Wheat                homepage: Sagar APMC=2685                    /msp: Sagar APMC=2685
+    Soyabean             homepage: Sagar APMC=7095                    /msp: Sagar APMC=7095
+    Gram                 homepage: Sagar APMC=6900                    /msp: Sagar APMC=6900
+    Lentil               homepage: Sagar APMC=5500                    /msp: Sagar APMC=5500
+    Moong                homepage: Patharia APMC=6500                 /msp: Patharia APMC=6500
+    Urad                 homepage: Sagar APMC=6005                    /msp: Sagar APMC=6005
+    Paddy(Dhan)(Common)  homepage: Javera APMC=1920                   /msp: Javera APMC=1920
+    Maize                homepage: Sagar APMC=2600                    /msp: Sagar APMC=2600
+    Mustard              homepage: Sagar APMC=7945                    /msp: Sagar APMC=7945
+    Garlic               homepage: Deori APMC=3900                    /msp: Deori APMC=3900
 === morning of 2026-11-14 (Sat); newest data day 2026-11-13 (Fri): 128 rows, 34 mandis, 10 crops, decent
     chosen date 2026-11-13 (Fri) | label: कल का भाव (13/11)
-    Wheat                homepage: Ajaygarh APMC=2550                 /msp: Ajaygarh APMC=2550
-    Soyabean             homepage: Badamalhera APMC=7060              /msp: Badamalhera APMC=7060
-    Gram                 homepage: Ajaygarh APMC=7500                 /msp: Ajaygarh APMC=7500
-    Lentil               homepage: Bamora APMC=5799                   /msp: Bamora APMC=5799
-    Moong                homepage: Damoh APMC=7998                    /msp: Damoh APMC=7998
-    Urad                 homepage: Badamalhera APMC=5900              /msp: Badamalhera APMC=5900
-    Paddy(Dhan)(Common)  homepage: Bamora APMC=4000                   /msp: Bamora APMC=4000
-    Maize                homepage: Bakswaha APMC=2500                 /msp: Bakswaha APMC=2500
-    Mustard              homepage: Bamora APMC=8226                   /msp: Bamora APMC=8226
-    Garlic               homepage: Damoh APMC=8000                    /msp: Damoh APMC=8000
+    crops chosen by step a=0 b=8 c=2 d=0
+    Wheat                homepage: Sagar APMC=2695                    /msp: Sagar APMC=2695
+    Soyabean             homepage: Sagar APMC=7190                    /msp: Sagar APMC=7190
+    Gram                 homepage: Sagar APMC=6800                    /msp: Sagar APMC=6800
+    Lentil               homepage: Sagar APMC=5500                    /msp: Sagar APMC=5500
+    Moong                homepage: Sagar APMC=6875                    /msp: Sagar APMC=6875
+    Urad                 homepage: Sagar APMC=6600                    /msp: Sagar APMC=6600
+    Paddy(Dhan)(Common)  homepage: Panna APMC=1905                    /msp: Panna APMC=1905
+    Maize                homepage: Sagar APMC=2655                    /msp: Sagar APMC=2655
+    Mustard              homepage: Sagar APMC=7875                    /msp: Sagar APMC=7875
+    Garlic               homepage: Damoh(F&V) APMC=5500               /msp: Damoh(F&V) APMC=5500
 === morning of 2026-11-15 (Sun); newest data day 2026-11-14 (Sat): 57 rows, 24 mandis, 10 crops, decent
     chosen date 2026-11-14 (Sat) | label: कल का भाव (14/11)
-    Wheat                homepage: Badamalhera APMC=2740              /msp: Badamalhera APMC=2740
-    Soyabean             homepage: Badamalhera APMC=6850              /msp: Badamalhera APMC=6850
-    Gram                 homepage: Banda APMC=6680                    /msp: Banda APMC=6680
-    Lentil               homepage: Banda APMC=5655                    /msp: Banda APMC=5655
+    crops chosen by step a=0 b=7 c=3 d=0
+    Wheat                homepage: Sagar APMC=2680                    /msp: Sagar APMC=2680
+    Soyabean             homepage: Sagar APMC=6500                    /msp: Sagar APMC=6500
+    Gram                 homepage: Sagar APMC=6900                    /msp: Sagar APMC=6900
+    Lentil               homepage: Sagar APMC=5800                    /msp: Sagar APMC=5800
     Moong                homepage: Tikamgarh APMC=8000                /msp: Tikamgarh APMC=8000
-    Urad                 homepage: Rahatgarh APMC=4250                /msp: Rahatgarh APMC=4250
-    Paddy(Dhan)(Common)  homepage: Damoh APMC=1800                    /msp: Damoh APMC=1800
-    Maize                homepage: Banda APMC=2500                    /msp: Banda APMC=2500
-    Mustard              homepage: Chhatarpur APMC=8000               /msp: Chhatarpur APMC=8000
-    Garlic               homepage: Damoh APMC=5500                    /msp: Damoh APMC=5500
-=== morning of 2026-11-16 (Mon); newest data day 2026-11-15 (Sun): 16 rows, 10 mandis, 5 crops, decent
-    chosen date 2026-11-15 (Sun) | label: कल का भाव (15/11)
-    Wheat                homepage: Bijawar APMC=2600                  /msp: Bijawar APMC=2600
-    Soyabean             homepage: Shahagarh APMC=6600                /msp: Shahagarh APMC=6600
-    Gram                 homepage: Damoh APMC=6800                    /msp: Damoh APMC=6800
-    Lentil               homepage: Banda APMC=5655 (own date 2026-11-14) /msp: Banda APMC=5655 (own date 2026-11-14)
-    Moong                homepage: Tikamgarh APMC=8000 (own date 2026-11-14) /msp: Tikamgarh APMC=8000 (own date 2026-11-14)
-    Urad                 homepage: Rahatgarh APMC=4250 (own date 2026-11-14) /msp: Rahatgarh APMC=4250 (own date 2026-11-14)
-    Paddy(Dhan)(Common)  homepage: Damoh APMC=1800                    /msp: Damoh APMC=1800
-    Maize                homepage: Damoh APMC=2100                    /msp: Damoh APMC=2100
-    Mustard              homepage: Chhatarpur APMC=8000 (own date 2026-11-14) /msp: Chhatarpur APMC=8000 (own date 2026-11-14)
-    Garlic               homepage: Damoh APMC=5500 (own date 2026-11-14) /msp: Damoh APMC=5500 (own date 2026-11-14)
+    Urad                 homepage: Sagar APMC=7000                    /msp: Sagar APMC=7000
+    Paddy(Dhan)(Common)  homepage: Simariya APMC=1815                 /msp: Simariya APMC=1815
+    Maize                homepage: Sagar APMC=2530                    /msp: Sagar APMC=2530
+    Mustard              homepage: Sagar APMC=7930                    /msp: Sagar APMC=7930
+    Garlic               homepage: Deori APMC=4500                    /msp: Deori APMC=4500
+=== morning of 2026-11-16 (Mon); newest data day 2026-11-15 (Sun): 16 rows, 10 mandis, 5 crops, THIN
+    chosen date 2026-11-14 (Sat) | label: पिछला भाव (14/11)
+    crops chosen by step a=0 b=7 c=3 d=0
+    Wheat                homepage: Sagar APMC=2680                    /msp: Sagar APMC=2680
+    Soyabean             homepage: Sagar APMC=6500                    /msp: Sagar APMC=6500
+    Gram                 homepage: Sagar APMC=6900                    /msp: Sagar APMC=6900
+    Lentil               homepage: Sagar APMC=5800                    /msp: Sagar APMC=5800
+    Moong                homepage: Tikamgarh APMC=8000                /msp: Tikamgarh APMC=8000
+    Urad                 homepage: Sagar APMC=7000                    /msp: Sagar APMC=7000
+    Paddy(Dhan)(Common)  homepage: Simariya APMC=1815                 /msp: Simariya APMC=1815
+    Maize                homepage: Sagar APMC=2530                    /msp: Sagar APMC=2530
+    Mustard              homepage: Sagar APMC=7930                    /msp: Sagar APMC=7930
+    Garlic               homepage: Deori APMC=4500                    /msp: Deori APMC=4500
 === morning of 2026-11-17 (Tue); newest data day 2026-11-16 (Mon): 123 rows, 34 mandis, 10 crops, decent
     chosen date 2026-11-16 (Mon) | label: कल का भाव (16/11)
-    Wheat                homepage: Ajaygarh APMC=2650                 /msp: Ajaygarh APMC=2650
-    Soyabean             homepage: Badamalhera APMC=6500              /msp: Badamalhera APMC=6500
-    Gram                 homepage: Ajaygarh APMC=7400                 /msp: Ajaygarh APMC=7400
-    Lentil               homepage: Bamora APMC=6351                   /msp: Bamora APMC=6351
+    crops chosen by step a=0 b=7 c=3 d=0
+    Wheat                homepage: Sagar APMC=2665                    /msp: Sagar APMC=2665
+    Soyabean             homepage: Sagar APMC=7300                    /msp: Sagar APMC=7300
+    Gram                 homepage: Sagar APMC=6800                    /msp: Sagar APMC=6800
+    Lentil               homepage: Sagar APMC=5445                    /msp: Sagar APMC=5445
     Moong                homepage: Bina APMC=6661                     /msp: Bina APMC=6661
-    Urad                 homepage: Banda APMC=6305                    /msp: Banda APMC=6305
-    Paddy(Dhan)(Common)  homepage: Bamora APMC=2800                   /msp: Bamora APMC=2800
-    Maize                homepage: Bakswaha APMC=2400                 /msp: Bakswaha APMC=2400
-    Mustard              homepage: Ajaygarh APMC=8300                 /msp: Ajaygarh APMC=8300
-    Garlic               homepage: Damoh APMC=4300                    /msp: Damoh APMC=4300
+    Urad                 homepage: Sagar APMC=5700                    /msp: Sagar APMC=5700
+    Paddy(Dhan)(Common)  homepage: Javera APMC=1980                   /msp: Javera APMC=1980
+    Maize                homepage: Sagar APMC=2600                    /msp: Sagar APMC=2600
+    Mustard              homepage: Sagar APMC=7900                    /msp: Sagar APMC=7900
+    Garlic               homepage: Damoh(F&V) APMC=4000               /msp: Damoh(F&V) APMC=4000
 === morning of 2026-11-18 (Wed); newest data day 2026-11-17 (Tue): 117 rows, 32 mandis, 10 crops, decent
     chosen date 2026-11-17 (Tue) | label: कल का भाव (17/11)
-    Wheat                homepage: Ajaygarh APMC=2660                 /msp: Ajaygarh APMC=2660
-    Soyabean             homepage: Badamalhera APMC=7230              /msp: Badamalhera APMC=7230
-    Gram                 homepage: Ajaygarh APMC=7400                 /msp: Ajaygarh APMC=7400
-    Lentil               homepage: Bamora APMC=5611                   /msp: Bamora APMC=5611
+    crops chosen by step a=0 b=7 c=3 d=0
+    Wheat                homepage: Sagar APMC=2680                    /msp: Sagar APMC=2680
+    Soyabean             homepage: Sagar APMC=6015                    /msp: Sagar APMC=6015
+    Gram                 homepage: Sagar APMC=6800                    /msp: Sagar APMC=6800
+    Lentil               homepage: Sagar APMC=6115                    /msp: Sagar APMC=6115
     Moong                homepage: Damoh APMC=7490                    /msp: Damoh APMC=7490
-    Urad                 homepage: Bamora APMC=4500                   /msp: Bamora APMC=4500
-    Paddy(Dhan)(Common)  homepage: Bamora APMC=3505                   /msp: Bamora APMC=3505
-    Maize                homepage: Bakswaha APMC=2500                 /msp: Bakswaha APMC=2500
-    Mustard              homepage: Ajaygarh APMC=8350                 /msp: Ajaygarh APMC=8350
-    Garlic               homepage: Damoh APMC=15900                   /msp: Damoh APMC=15900
+    Urad                 homepage: Sagar APMC=6385                    /msp: Sagar APMC=6385
+    Paddy(Dhan)(Common)  homepage: Deori APMC=1925                    /msp: Deori APMC=1925
+    Maize                homepage: Sagar APMC=2400                    /msp: Sagar APMC=2400
+    Mustard              homepage: Sagar APMC=8105                    /msp: Sagar APMC=8105
+    Garlic               homepage: Damoh(F&V) APMC=9500               /msp: Damoh(F&V) APMC=9500
 === morning of 2026-11-19 (Thu); newest data day 2026-11-18 (Wed): 120 rows, 36 mandis, 10 crops, decent
     chosen date 2026-11-18 (Wed) | label: कल का भाव (18/11)
-    Wheat                homepage: Ajaygarh APMC=2660                 /msp: Ajaygarh APMC=2660
-    Soyabean             homepage: Badamalhera APMC=6800              /msp: Badamalhera APMC=6800
-    Gram                 homepage: Ajaygarh APMC=7400                 /msp: Ajaygarh APMC=7400
-    Lentil               homepage: Bamora APMC=5575                   /msp: Bamora APMC=5575
+    crops chosen by step a=0 b=1 c=9 d=0
+    Wheat                homepage: Jatara APMC=2631                   /msp: Jatara APMC=2631
+    Soyabean             homepage: Shahagarh APMC=7265                /msp: Shahagarh APMC=7265
+    Gram                 homepage: Gadakota APMC=6900                 /msp: Gadakota APMC=6900
+    Lentil               homepage: Bina APMC=5500                     /msp: Bina APMC=5500
     Moong                homepage: Bina APMC=6000                     /msp: Bina APMC=6000
-    Urad                 homepage: Bamora APMC=5000                   /msp: Bamora APMC=5000
-    Paddy(Dhan)(Common)  homepage: Bamora APMC=2150                   /msp: Bamora APMC=2150
-    Maize                homepage: Bakswaha APMC=2400                 /msp: Bakswaha APMC=2400
-    Mustard              homepage: Ajaygarh APMC=8353                 /msp: Ajaygarh APMC=8353
+    Urad                 homepage: Shahagarh APMC=6290                /msp: Shahagarh APMC=6290
+    Paddy(Dhan)(Common)  homepage: Javera APMC=1950                   /msp: Javera APMC=1950
+    Maize                homepage: Sagar APMC=2400                    /msp: Sagar APMC=2400
+    Mustard              homepage: Chhatarpur APMC=8325               /msp: Chhatarpur APMC=8325
     Garlic               homepage: Damoh APMC=5000                    /msp: Damoh APMC=5000
 === morning of 2026-11-20 (Fri); newest data day 2026-11-19 (Thu): 129 rows, 36 mandis, 10 crops, decent
     chosen date 2026-11-19 (Thu) | label: कल का भाव (19/11)
-    Wheat                homepage: Ajaygarh APMC=2550                 /msp: Ajaygarh APMC=2550
-    Soyabean             homepage: Badamalhera APMC=7100              /msp: Badamalhera APMC=7100
-    Gram                 homepage: Badamalhera APMC=6700              /msp: Badamalhera APMC=6700
-    Lentil               homepage: Bamora APMC=5680                   /msp: Bamora APMC=5680
-    Moong                homepage: Bina APMC=5000                     /msp: Bina APMC=5000
-    Urad                 homepage: Bamora APMC=5550                   /msp: Bamora APMC=5550
-    Paddy(Dhan)(Common)  homepage: Bamora APMC=3990                   /msp: Bamora APMC=3990
-    Maize                homepage: Bakswaha APMC=2450                 /msp: Bakswaha APMC=2450
-    Mustard              homepage: Banda APMC=8155                    /msp: Banda APMC=8155
-    Garlic               homepage: Damoh APMC=12050                   /msp: Damoh APMC=12050
+    crops chosen by step a=0 b=7 c=3 d=0
+    Wheat                homepage: Sagar APMC=2750                    /msp: Sagar APMC=2750
+    Soyabean             homepage: Sagar APMC=7280                    /msp: Sagar APMC=7280
+    Gram                 homepage: Sagar APMC=7100                    /msp: Sagar APMC=7100
+    Lentil               homepage: Sagar APMC=5550                    /msp: Sagar APMC=5550
+    Moong                homepage: Damoh APMC=6450                    /msp: Damoh APMC=6450
+    Urad                 homepage: Sagar APMC=5710                    /msp: Sagar APMC=5710
+    Paddy(Dhan)(Common)  homepage: Javera APMC=1922                   /msp: Javera APMC=1922
+    Maize                homepage: Sagar APMC=2400                    /msp: Sagar APMC=2400
+    Mustard              homepage: Sagar APMC=8395                    /msp: Sagar APMC=8395
+    Garlic               homepage: Damoh(F&V) APMC=6300               /msp: Damoh(F&V) APMC=6300
 === morning of 2026-11-21 (Sat); newest data day 2026-11-20 (Fri): 60 rows, 26 mandis, 9 crops, decent
     chosen date 2026-11-20 (Fri) | label: कल का भाव (20/11)
-    Wheat                homepage: Ajaygarh APMC=2700                 /msp: Ajaygarh APMC=2700
-    Soyabean             homepage: Badamalhera APMC=7200              /msp: Badamalhera APMC=7200
-    Gram                 homepage: Bamora APMC=7141                   /msp: Bamora APMC=7141
-    Lentil               homepage: Bamora APMC=5601                   /msp: Bamora APMC=5601
-    Moong                homepage: Bina APMC=5000 (own date 2026-11-19) /msp: Bina APMC=5000 (own date 2026-11-19)
-    Urad                 homepage: Bamora APMC=5400                   /msp: Bamora APMC=5400
-    Paddy(Dhan)(Common)  homepage: Javera APMC=1800                   /msp: Javera APMC=1800
-    Maize                homepage: Bamora APMC=2744                   /msp: Bamora APMC=2744
-    Mustard              homepage: Bamora APMC=9800                   /msp: Bamora APMC=9800
+    crops chosen by step a=0 b=6 c=3 d=0 (+1 on their own older date)
+    Wheat                homepage: Sagar APMC=2745                    /msp: Sagar APMC=2745
+    Soyabean             homepage: Sagar APMC=7400                    /msp: Sagar APMC=7400
+    Gram                 homepage: Sagar APMC=6900                    /msp: Sagar APMC=6900
+    Lentil               homepage: Sagar APMC=6000                    /msp: Sagar APMC=6000
+    Moong                homepage: Damoh APMC=6450 (own date 2026-11-19) /msp: Damoh APMC=6450 (own date 2026-11-19)
+    Urad                 homepage: Sagar APMC=6295                    /msp: Sagar APMC=6295
+    Paddy(Dhan)(Common)  homepage: Simariya APMC=1815                 /msp: Simariya APMC=1815
+    Maize                homepage: Sagar APMC=2400                    /msp: Sagar APMC=2400
+    Mustard              homepage: Rehli APMC=8700                    /msp: Rehli APMC=8700
     Garlic               homepage: Damoh APMC=5000                    /msp: Damoh APMC=5000
 === morning of 2026-11-22 (Sun); newest data day 2026-11-21 (Sat): 78 rows, 29 mandis, 10 crops, decent
     chosen date 2026-11-21 (Sat) | label: कल का भाव (21/11)
-    Wheat                homepage: Ajaygarh APMC=2581                 /msp: Ajaygarh APMC=2581
-    Soyabean             homepage: Badamalhera APMC=7200              /msp: Badamalhera APMC=7200
-    Gram                 homepage: Banda APMC=7000                    /msp: Banda APMC=7000
-    Lentil               homepage: Damoh APMC=5710                    /msp: Damoh APMC=5710
+    crops chosen by step a=0 b=6 c=4 d=0
+    Wheat                homepage: Sagar APMC=2725                    /msp: Sagar APMC=2725
+    Soyabean             homepage: Sagar APMC=7385                    /msp: Sagar APMC=7385
+    Gram                 homepage: Sagar APMC=6800                    /msp: Sagar APMC=6800
+    Lentil               homepage: Sagar APMC=6895                    /msp: Sagar APMC=6895
     Moong                homepage: Damoh APMC=5350                    /msp: Damoh APMC=5350
-    Urad                 homepage: Banda APMC=6285                    /msp: Banda APMC=6285
+    Urad                 homepage: Sagar APMC=5800                    /msp: Sagar APMC=5800
     Paddy(Dhan)(Common)  homepage: Damoh APMC=1800                    /msp: Damoh APMC=1800
-    Maize                homepage: Bakswaha APMC=2405                 /msp: Bakswaha APMC=2405
-    Mustard              homepage: Ajaygarh APMC=8801                 /msp: Ajaygarh APMC=8801
+    Maize                homepage: Sagar APMC=2480                    /msp: Sagar APMC=2480
+    Mustard              homepage: Panna APMC=8100                    /msp: Panna APMC=8100
     Garlic               homepage: Deori APMC=3300                    /msp: Deori APMC=3300
-=== morning of 2026-11-23 (Mon); newest data day 2026-11-22 (Sun): 25 rows, 17 mandis, 6 crops, decent
-    chosen date 2026-11-22 (Sun) | label: कल का भाव (22/11)
-    Wheat                homepage: Banda APMC=2630                    /msp: Banda APMC=2630
-    Soyabean             homepage: Hata APMC=6400                     /msp: Hata APMC=6400
-    Gram                 homepage: Badamalhera APMC=6000              /msp: Badamalhera APMC=6000
-    Lentil               homepage: Damoh APMC=5710 (own date 2026-11-21) /msp: Damoh APMC=5710 (own date 2026-11-21)
-    Moong                homepage: Damoh APMC=5350 (own date 2026-11-21) /msp: Damoh APMC=5350 (own date 2026-11-21)
-    Urad                 homepage: Banda APMC=6285 (own date 2026-11-21) /msp: Banda APMC=6285 (own date 2026-11-21)
-    Paddy(Dhan)(Common)  homepage: Javera APMC=1900                   /msp: Javera APMC=1900
-    Maize                homepage: Banda APMC=2415                    /msp: Banda APMC=2415
-    Mustard              homepage: LavKush Nagar(Laundi) APMC=8000    /msp: LavKush Nagar(Laundi) APMC=8000
-    Garlic               homepage: Deori APMC=3300 (own date 2026-11-21) /msp: Deori APMC=3300 (own date 2026-11-21)
+=== morning of 2026-11-23 (Mon); newest data day 2026-11-22 (Sun): 25 rows, 17 mandis, 6 crops, THIN
+    chosen date 2026-11-21 (Sat) | label: पिछला भाव (21/11)
+    crops chosen by step a=0 b=6 c=4 d=0
+    Wheat                homepage: Sagar APMC=2725                    /msp: Sagar APMC=2725
+    Soyabean             homepage: Sagar APMC=7385                    /msp: Sagar APMC=7385
+    Gram                 homepage: Sagar APMC=6800                    /msp: Sagar APMC=6800
+    Lentil               homepage: Sagar APMC=6895                    /msp: Sagar APMC=6895
+    Moong                homepage: Damoh APMC=5350                    /msp: Damoh APMC=5350
+    Urad                 homepage: Sagar APMC=5800                    /msp: Sagar APMC=5800
+    Paddy(Dhan)(Common)  homepage: Damoh APMC=1800                    /msp: Damoh APMC=1800
+    Maize                homepage: Sagar APMC=2480                    /msp: Sagar APMC=2480
+    Mustard              homepage: Panna APMC=8100                    /msp: Panna APMC=8100
+    Garlic               homepage: Deori APMC=3300                    /msp: Deori APMC=3300
 
 MISMATCH count: 0

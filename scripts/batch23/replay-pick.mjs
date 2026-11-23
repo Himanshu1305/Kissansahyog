@@ -28,7 +28,7 @@ const rows = all.map((r) => ({ ...r, is_local: r.in_sagar_division === true }))
 const DN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 console.log(`Replay of the shared rule on production rows (SELECT only). ${rows.length} rows from ${from} to ${todayNow}. Target ${url.replace(/^https:\/\//, '').split('.')[0]}.`)
 if (TH.minCrops) console.log(`WHAT-IF run: MIN_CROPS = ${TH.minCrops} (the site uses the value in pickRule.js)`)
-console.log('Rule: date = newest day (IST) in the last 7 with >= 3 mandis AND >= 5 of the 10 crops; mandi = Sagar division first, then larger arrivals, then lowest name.\n')
+console.log('Rule: date = newest day (IST) in the last 7 with >= 3 mandis AND >= 7 of the 10 crops; mandi = a) device location (not used here), b) Sagar town mandi, c) median price among Sagar-division mandis, d) median among all.\n')
 let mismatches = 0
 for (let n = DAYS; n >= 1; n--) {
   const D = addDays(todayNow, -n)            // the data day
@@ -38,7 +38,10 @@ for (let n = DAYS; n >= 1; n--) {
   const cov = coverageByDate(known)[D] || { rows: 0, mandis: 0, crops: 0 }
   const label = res.date ? (res.kind === 'today' ? 'आज का भाव' : res.kind === 'yesterday' ? `कल का भाव (${res.date.slice(8)}/${res.date.slice(5, 7)})` : `पिछला भाव (${res.date.slice(8)}/${res.date.slice(5, 7)})`) : 'none'
   console.log(`=== morning of ${now} (${DN[weekdayOf(now)]}); newest data day ${D} (${DN[weekdayOf(D)]}): ${cov.rows} rows, ${cov.mandis} mandis, ${cov.crops} crops, ${isDecent(cov, TH) ? 'decent' : 'THIN'}`)
+  const steps = { a: 0, b: 0, c: 0, d: 0 }
+  for (const i of res.items) if (!i.fallback) steps[i.step]++
   console.log(`    chosen date ${res.date} (${res.date ? DN[weekdayOf(res.date)] : '-'}) | label: ${label}${res.stale ? ' | STALE (no decent day in 7)' : ''}`)
+  console.log(`    crops chosen by step a=${steps.a} b=${steps.b} c=${steps.c} d=${steps.d}${res.items.some((i) => i.fallback) ? ` (+${res.items.filter((i) => i.fallback).length} on their own older date)` : ''}`)
   const dayRows = known.filter((r) => r.price_date === res.date)
   const strip = new Map(tickerRows(dayRows, 50).map((r) => [r.commodity_en, r]))
   for (const crop of TRACKED_CROPS) {

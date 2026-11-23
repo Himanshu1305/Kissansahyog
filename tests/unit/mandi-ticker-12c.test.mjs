@@ -52,17 +52,17 @@ test('ticker: one row per crop, fixed crop order, capped at 12', () => {
   assert.equal(new Set(out.map((r) => r.commodity_en)).size, out.length)
 })
 
-test('ticker: Sagar-division mandi first, then larger arrivals, then lowest name; deterministic (Batch 23 shared rule)', () => {
+test('ticker: Sagar town, else Sagar-division median, else global median; deterministic (Batch 23 shared rule)', () => {
   const out = { district: 'Indore' } // not a Sagar-division district
   const rows = [row('Wheat', 'Damoh APMC', out), row('Wheat', 'Khurai APMC', { is_local: true }), row('Wheat', 'Sagar APMC', { is_local: true }),
     row('Gram', 'Damoh APMC', out), row('Gram', 'Sagar APMC', out), row('Gram', 'Panna APMC', out),
     row('Urad', 'Panna APMC', out), row('Urad', 'Damoh APMC', { ...out, arrivals_tonnes: 9 }), row('Moong', 'Panna APMC', out), row('Moong', 'Damoh APMC', out)]
   const pick = (c, o) => o.find((r) => r.commodity_en === c).market
   const a = tickerRows(rows)
-  assert.equal(pick('Wheat', a), 'Khurai APMC') // division mandis only, lowest name (Sagar no longer wins by name)
-  assert.equal(pick('Gram', a), 'Damoh APMC')   // nobody local: lowest name
-  assert.equal(pick('Urad', a), 'Damoh APMC')   // bigger arrivals
-  assert.equal(pick('Moong', a), 'Damoh APMC')  // name order
+  assert.equal(pick('Wheat', a), 'Sagar APMC')  // the Sagar town mandi reported it: it wins (step b)
+  assert.equal(pick('Gram', a), 'Sagar APMC')   // town mandi, even though outside-district flag is set on it (market name decides)
+  assert.equal(pick('Urad', a), 'Damoh APMC')   // nobody in the division: global median, equal prices -> lowest name
+  assert.equal(pick('Moong', a), 'Damoh APMC')  // same
   assert.deepEqual(tickerRows([...rows].reverse()), a)
   assert.deepEqual(tickerRows(rows), a)
 })

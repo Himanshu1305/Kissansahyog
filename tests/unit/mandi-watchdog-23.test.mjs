@@ -4,17 +4,18 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { watchdogCheck, annotations, summaryMarkdown, STALL_HOURS } from '../../scripts/lib/mandi-watchdog.mjs'
-import { TRACKED_CROPS, MIN_MANDIS, MIN_CROPS } from '../../src/lib/mandi/pickRule.js'
+import { TRACKED_CROPS, WATCHDOG_MIN_MANDIS as MIN_MANDIS, WATCHDOG_MIN_CROPS as MIN_CROPS, MIN_CROPS as DISPLAY_CROPS } from '../../src/lib/mandi/pickRule.js'
 
 const M = ['Banda APMC', 'Bina APMC', 'Damoh APMC', 'Khurai APMC', 'Sagar APMC']
 const full = (d) => TRACKED_CROPS.flatMap((c) => M.map((m) => ({ commodity_en: c, market: m, modal_price: 3000, price_date: d })))
 const thin = (d, crops = 2, mandis = 1) => TRACKED_CROPS.slice(0, crops).flatMap((c) => M.slice(0, mandis).map((m) => ({ commodity_en: c, market: m, modal_price: 2500, price_date: d })))
-const NOW = Date.parse('2026-11-24T07:00:00Z') // Tuesday
+const NOW = Date.parse('2026-11-24T10:00:00Z') // Tuesday 15:30 IST (after the 14:00 IST grace)
+const EARLY = Date.parse('2026-11-24T01:30:00Z') // Tuesday 07:00 IST (inside the grace)
 const ago = (h) => new Date(NOW - h * 3600000).toISOString()
 const run = (o) => watchdogCheck({ nowMs: NOW, today: '2026-11-24', newestFetchedAt: ago(2), ...o })
 
-test('uses the site constants (not copies)', () => {
-  assert.equal(MIN_MANDIS, 3); assert.equal(MIN_CROPS, 5); assert.equal(STALL_HOURS, 12)
+test('uses the watchdog floor constants (3 mandis, 5 crops), not copies', () => {
+  assert.equal(MIN_MANDIS, 3); assert.equal(MIN_CROPS, 5); assert.equal(DISPLAY_CROPS, 7); assert.equal(STALL_HOURS, 12)
   const src = readFileSync(new URL('../../scripts/lib/mandi-watchdog.mjs', import.meta.url), 'utf8')
   assert.match(src, /from '\.\.\/\.\.\/src\/lib\/mandi\/pickRule\.js'/)
 })
@@ -74,4 +75,23 @@ test('summary table lists the last 5 days with rows, mandis, crops', () => {
   assert.match(md, /\| 2026-11-23 \| Mon \| 50 \| 5 \| 10 \|/)
   assert.match(md, /\| 2026-11-22 \| Sun \| 2 \| 1 \| 2 \|/)
   assert.equal(md.split('\n').filter((l) => /^\| 2026-/.test(l)).length, 5)
+})
+
+test('grace: before 14:00 IST the date and thin-day checks only warn; from 14:00 IST they fail; the stall check always fails', () => {
+  const stale = { rows: full('2026-11-22'), newestDate: '2026-11-22', today: '2026-11-24', newestFetchedAt: ago(2) }
+  const early = watchdogCheck({ ...stale, nowMs: EARLY })
+  assert.equal(early.red, false); assert.equal(early.status, 'WARNING'); assert.match(early.warnings[0], /before 14:00 IST/)
+  assert.equal(watchdogCheck({ ...stale, nowMs: NOW }).red, true)
+  const thinY = { rows: thin('2026-11-23'), newestDate: '2026-11-23', today: '2026-11-24', newestFetchedAt: ago(2) }
+  assert.equal(watchdogCheck({ ...thinY, nowMs: EARLY }).red, false)
+  assert.equal(watchdogCheck({ ...thinY, nowMs: NOW }).red, true)
+  // the 12-hour stall check fails at any hour
+  const stalled = { rows: full('2026-11-23'), newestDate: '2026-11-23', today: '2026-11-24' }
+  assert.equal(watchdogCheck({ ...stalled, nowMs: EARLY, newestFetchedAt: new Date(EARLY - 20 * 3600000).toISOString() }).red, true)
+  // edges, computed in IST: 13:59 IST (08:29 UTC) warns, 14:00 IST (08:30 UTC) fails
+  assert.equal(watchdogCheck({ ...stale, nowMs: Date.parse('2026-11-24T08:29:00Z') }).red, false)
+  assert.equal(watchdogCheck({ ...stale, nowMs: Date.parse('2026-11-24T08:30:00Z') }).red, true)
+  // the result does not depend on the order of the rows
+  const a = watchdogCheck({ ...thinY, nowMs: NOW }), b = watchdogCheck({ ...thinY, rows: [...thinY.rows].reverse(), nowMs: NOW })
+  assert.deepEqual(a.errors, b.errors)
 })

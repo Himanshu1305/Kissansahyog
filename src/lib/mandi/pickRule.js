@@ -4,10 +4,16 @@
 // Plain-words description: docs/review/batch23/DECISIONS.md.
 import { CROPS } from '../../content/crops.js'
 
-// A day counts as "decent" only when enough mandis AND enough of the 10 tracked crops reported.
-// MIN_MANDIS is the same number the morning post uses per crop (scripts/morning/lib/mandi.js).
+// TWO different pairs of numbers live here on purpose:
+//  1. DISPLAY coverage (MIN_MANDIS / MIN_CROPS): decides WHICH DAY the strip and /msp show. A day only counts when enough mandis AND
+//     at least 7 of the 10 tracked crops reported, so a thin Sunday (5-6 crops) is skipped and Monday shows Saturday.
+//     MIN_MANDIS is also the number the morning post uses per crop (scripts/morning/lib/mandi.js).
+//  2. WATCHDOG floor (WATCHDOG_MIN_MANDIS / WATCHDOG_MIN_CROPS): the GitHub job only has to catch BREAKAGE (a feed that has stopped or
+//     is nearly empty), not choose a nice day, so its bar is lower: 3 mandis and 5 crops.
 export const MIN_MANDIS = 3
-export const MIN_CROPS = 5
+export const MIN_CROPS = 7
+export const WATCHDOG_MIN_MANDIS = 3
+export const WATCHDOG_MIN_CROPS = 5
 // How far back we look for a decent day (days before today IST, inclusive).
 export const LOOKBACK_DAYS = 7
 // The six districts of Sagar Division (a row also counts when the database flag in_sagar_division / is_local is true).
@@ -76,31 +82,39 @@ export function chooseDisplayDate(rows, today = istToday(), th = {}) {
 }
 
 // ---- which mandi ------------------------------------------------------------------------------
+// One crop on one date, one row, always the same row for the same data (any input order). The steps, in order:
+//   a  the mandi nearest the visitor's device location - NOT used for the strip or /msp today (no such logic exists there; the
+//      /msp nearest-mandi ranking only orders the long table), so this step never fires;
+//   b  the Sagar town mandi ("Sagar APMC", the repo's own notion from the old strip pick: normMarket === 'sagar'), if it reported the crop;
+//   c  else the MEDIAN-priced mandi among the Sagar-division mandis that reported it (even count: the lower middle price;
+//      several mandis at that price: the lowest name);
+//   d  else (no Sagar-division mandi reported it) the median-priced mandi among all that reported, same tie rules.
+// arrivals_tonnes is not used (it is empty in production).
 export const isDivisionRow = (r) => r.is_local === true || r.in_sagar_division === true
   || SAGAR_DIVISION_DISTRICTS.some((d) => d.toLowerCase() === String(r.district || '').trim().toLowerCase())
-const arrivalsOf = (r) => { const n = Number(r.arrivals_tonnes); return Number.isFinite(n) && n > 0 ? n : 0 }
 const nameOf = (r) => String(r.market ?? '')
-
-// Order: Sagar-division mandi first, then the larger arrivals_tonnes (null/missing = 0), then the lowest mandi name.
-// Total and deterministic: the same rows in any order give the same first row.
-export function compareMandi(a, b) {
-  const da = isDivisionRow(a) ? 0 : 1, db = isDivisionRow(b) ? 0 : 1
-  if (da !== db) return da - db
-  const aa = arrivalsOf(a), ab = arrivalsOf(b)
-  if (aa !== ab) return ab - aa
-  const na = nameOf(a), nb = nameOf(b)
-  return na < nb ? -1 : na > nb ? 1 : 0
+const normName = (m) => String(m || '').toLowerCase().replace(/\s+/g, '').replace(/apmc$/, '')
+const byName = (a, b) => { const x = nameOf(a), y = nameOf(b); return x < y ? -1 : x > y ? 1 : 0 }
+function medianRow(list) {
+  const sorted = [...list].sort((a, b) => Number(a.modal_price) - Number(b.modal_price) || byName(a, b))
+  const price = Number(sorted[Math.floor((sorted.length - 1) / 2)].modal_price) // even count: the lower of the two middle prices
+  return sorted.filter((r) => Number(r.modal_price) === price).sort(byName)[0]
 }
-// rows: valid rows of ONE crop on ONE date -> the chosen row (or null).
-export function pickMandi(rows) {
-  let best = null
-  for (const r of rows || []) { if (!hasPrice(r)) continue; if (!best || compareMandi(r, best) < 0) best = r }
-  return best
+// rows: rows of ONE crop on ONE date -> { row, step: 'b' | 'c' | 'd' } or null.
+export function pickMandiStep(rows) {
+  const ok = (rows || []).filter(hasPrice)
+  if (!ok.length) return null
+  const town = ok.filter((r) => normName(r.market) === 'sagar').sort(byName)[0]
+  if (town) return { row: town, step: 'b' }
+  const division = ok.filter(isDivisionRow)
+  if (division.length) return { row: medianRow(division), step: 'c' }
+  return { row: medianRow(ok), step: 'd' }
 }
+export const pickMandi = (rows) => pickMandiStep(rows)?.row || null
 
 // ---- the whole choice -------------------------------------------------------------------------
 // rows: price rows (any order, any dates, with commodity_en, market, district, modal_price, price_date, optional is_local/arrivals_tonnes).
-// -> { date, kind, stale, mandis, crops, items: [{ crop, row, date, fallback }], missing: [crop] } ; date null when there are no rows.
+// -> { date, kind, stale, mandis, crops, items: [{ crop, row, step, date, fallback }], missing: [crop] } ; date null when there are no rows.
 // Every tracked crop with a price on the chosen date gets that day's picked mandi. A crop with none on that day gets
 // its OWN latest earlier price (with its own date, fallback: true) when the rows hold one, never the other crops' date.
 export function resolvePrices(rows, today = istToday(), th = {}) {
@@ -111,9 +125,9 @@ export function resolvePrices(rows, today = istToday(), th = {}) {
   for (const crop of TRACKED_CROPS) {
     const mine = upTo.filter((r) => r.commodity_en === crop)
     const onDay = mine.filter((r) => String(r.price_date).slice(0, 10) === ch.date)
-    if (onDay.length) { items.push({ crop, row: pickMandi(onDay), date: ch.date, fallback: false }); continue }
+    if (onDay.length) { items.push({ crop, ...pickMandiStep(onDay), date: ch.date, fallback: false }); continue }
     const earlier = mine.map((r) => String(r.price_date).slice(0, 10)).filter((d) => d < ch.date).sort().pop()
-    if (earlier) items.push({ crop, row: pickMandi(mine.filter((r) => String(r.price_date).slice(0, 10) === earlier)), date: earlier, fallback: true })
+    if (earlier) items.push({ crop, ...pickMandiStep(mine.filter((r) => String(r.price_date).slice(0, 10) === earlier)), date: earlier, fallback: true })
     else missing.push(crop)
   }
   return { ...ch, items, missing }
