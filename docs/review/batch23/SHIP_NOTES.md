@@ -23,3 +23,6 @@ Also for the next batch:
 - `MIN_CROPS` is decided: 7 (`DECISIONS.md` section 8).
 - The watchdog now has a 14:00 IST grace (warning before, failure from 14:00 IST), so early-morning runs cannot fail on a late feed. The first run that can fail is 15:47 IST.
 - `/msp` size: re-measure after the final build (see the numbers at the top; the median pick did not change page sizes materially).
+
+## Update - `ship-prod-23.sh` and `rollback-prod-23.sh` now exist (release-23)
+Every gate listed above is handled in `scripts/ship-prod-23.sh` (generated from `ship-prod-22.sh` by `scripts/batch23/make-ship-scripts.mjs`; the 20/22 scripts are untouched): gate 1 and 3 now look for `data-testid="snapshot-placeholder"` and none of `कल का भाव` / `पिछला भाव` / `ks-date-badge`; gate 5 uses `HOME_SHRINK='root=0.70,browse=0.70,msp=0.60'` (measured on the fresh build against the real Batch 22 snapshot: `/msp` 0.774, `/` 0.938); gate 10 (the first-gate tag) is replaced by reading the live site for the Batch 22 markers. New: a read-only price-data gate (newest `price_date` within 3 days of today IST) and post-deploy gates `[23_static]`, `[23_placeholder]`, `[23_labels]`, `[23_main]`. The dry run now builds. Checklist: `SHIP_PROD.md`. Rehearsal with stubs: `evidence/ship-rehearsal.txt` (106 assertions, 0 failed). Exact strings used: `evidence/ship-strings-grep.txt`.
