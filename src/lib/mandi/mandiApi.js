@@ -12,6 +12,7 @@
 import { supabase } from '../supabaseClient'
 import { isNative } from '../native'
 import { fetchAllPages, medianByDate } from './history'
+import { istToday, addDays, resolvePrices, pickMandi, LOOKBACK_DAYS, dayKind } from './pickRule.js'
 
 // Batch 8B (app only) — the price date last shown, kept on the phone. Offline on a later day the
 // "today" and "latest date" questions cannot be answered, but this date points at rows the
@@ -57,78 +58,117 @@ async function pricesFor(dateStr) {
   return data || []
 }
 
-// Phase 3a — attach a trend `delta` to each row: the row's modal_price minus the
-// most recent EARLIER price_date for the same commodity+market. null when there
-// is no prior row. Looks back up to 7 days; per key, uses the latest earlier date.
-const keyOf = (r) => `${r.commodity_en}||${r.market}`
-async function withTrend(rows, currentDay) {
-  if (!rows.length) return rows
-  const { data } = await supabase
+// ─── Batch 23 — ONE rule for the date and the mandi (src/lib/mandi/pickRule.js) ───
+// The homepage strip, the homepage price tile and the /msp tables all read the SAME recent rows through loadWindow() and
+// choose with the SAME pure functions: the date is the newest day (India time) with at least 3 mandis and 5 of the 10 crops
+// (a thin Sunday is skipped); the mandi per crop is Sagar division first, then larger arrivals, then the lowest name.
+// Every read has an explicit sort, so nothing depends on the order Postgres happens to return rows in.
+const WINDOW_DAYS = LOOKBACK_DAYS + 1 // one extra day so the trend arrow has a previous price
+
+let windowCache = null // { at, today, promise }
+function loadWindow() {
+  const today = istToday()
+  const now = Date.now()
+  if (windowCache && windowCache.today === today && now - windowCache.at < 60000) return windowCache.promise
+  const from = addDays(today, -WINDOW_DAYS)
+  const promise = withLocalFlag((col) => fetchAllPages((a, b) => supabase
     .from('mandi_prices')
-    .select('commodity_en,market,modal_price,price_date')
-    .lt('price_date', currentDay)
-    .gte('price_date', isoDay(-8))
+    .select(`commodity_hi,commodity_en,market,district,modal_price,min_price,max_price,price_date,is_local:${col}`)
+    .gte('price_date', from)
     .order('price_date', { ascending: false })
-  const prevByKey = {}
-  for (const p of data || []) {
-    const k = `${p.commodity_en}||${p.market}`
-    if (prevByKey[k] === undefined && p.modal_price != null) prevByKey[k] = Number(p.modal_price)
-  }
-  return rows.map((r) => {
-    const prev = prevByKey[keyOf(r)]
-    return { ...r, delta: prev == null || r.modal_price == null ? null : Math.round(Number(r.modal_price) - prev) }
+    .order('commodity_en', { ascending: true })
+    .order('market', { ascending: true })
+    .range(a, b))).then((r) => {
+    if (r.error || !r.data) { windowCache = null; return null }
+    return { today, rows: r.data }
   })
+  windowCache = { at: now, today, promise }
+  return promise
 }
 
-// The single most recent price_date that has any rows (used when today has none, so the
-// ticker shows the latest real prices with an HONEST date rather than "coming soon").
-async function latestMandiDate() {
-  const { data, error } = await supabase
+// A tracked crop with no price in the window: its own latest price ever, with its own date (never the other crops' date).
+async function latestFor(commodityEn) {
+  const { data, error } = await withLocalFlag((col) => supabase
     .from('mandi_prices')
-    .select('price_date')
+    .select(`commodity_hi,commodity_en,market,district,modal_price,min_price,max_price,price_date,is_local:${col}`)
+    .eq('commodity_en', commodityEn)
     .order('price_date', { ascending: false })
-    .limit(1)
+    .order('market', { ascending: true })
+    .limit(60))
   if (error || !data || !data.length) return null
-  return data[0].price_date
+  const newest = data.find((r) => r.modal_price != null)?.price_date
+  return pickMandi(data.filter((r) => r.price_date === newest))
 }
 
-// Returns { rows, day: 'today' | 'yesterday' | 'older' | 'none', date }. Each row carries
-// `delta`. `date` is the actual price_date shown so the UI can label a non-today price with
-// its exact date ("कल का भाव (dd/mm)" / "पिछला भाव (dd/mm)") — Phase 4c honest labeling.
+// Rows of one earlier day for the same crop + mandi: the trend arrow (price now minus the price at that mandi on its previous day).
+function withDelta(row, rows) {
+  let prev = null
+  for (const r of rows) {
+    if (r.commodity_en !== row.commodity_en || r.market !== row.market || r.modal_price == null || r.price_date >= row.price_date) continue
+    if (!prev || r.price_date > prev.price_date) prev = r
+  }
+  return { ...row, delta: prev ? Math.round(Number(row.modal_price) - Number(prev.modal_price)) : null }
+}
+
+// Everything the pages need, from ONE decision: { rows (one chosen row per crop, each with its own price_date), date, day, stale,
+// byCrop } where day = 'today' | 'yesterday' | 'older' | 'none' (India calendar), date = the chosen date.
+async function resolveShown() {
+  let win = await loadWindow()
+  let all = win ? win.rows : []
+  if (!all.length) {
+    // Android app offline on a later day: the date last shown still points at rows the offline cache holds.
+    const last = lastShownDate()
+    const rows = last ? await pricesFor(last) : null
+    if (rows && rows.length) all = rows
+  }
+  const today = istToday()
+  const res = resolvePrices(all, today)
+  const items = [...res.items]
+  // Crops with nothing in the window: their own last price ever (own date).
+  const extra = await Promise.all(res.missing.filter(() => res.date).map(async (crop) => ({ crop, row: await latestFor(crop) })))
+  for (const e of extra) if (e.row) items.push({ crop: e.crop, row: e.row, date: e.row.price_date, fallback: true })
+  const rows = items.filter((i) => i.row).map((i) => withDelta(i.row, all))
+  const byCrop = {}
+  for (const r of rows) byCrop[r.commodity_en] = r
+  return { rows, byCrop, date: res.date, stale: res.stale, day: res.date ? dayKind(res.date, today) : 'none', all, today }
+}
+
+// Returns { rows, day: 'today' | 'yesterday' | 'older' | 'none', date, stale }. rows = one chosen row per crop, each with `delta` and
+// its own `price_date` (a crop with no price on `date` keeps its own older date). `date` is the real date shown on the label
+// ("आज का भाव" / "कल का भाव (dd/mm)" / "पिछला भाव (dd/mm)").
 export async function fetchMandiPrices() {
-  const t0 = isoDay(0)
-  const today = await pricesFor(t0)
-  if (today && today.length) { rememberShownDate(t0); return { rows: await withTrend(today, t0), day: 'today', date: t0 } }
-  // No rows for today — fall back to the most recent available date (yesterday OR older),
-  // labeled honestly by how old it actually is, instead of showing "coming soon".
-  const latest = (await latestMandiDate()) || lastShownDate()
-  if (!latest) return { rows: [], day: 'none', date: null }
-  const rows = await pricesFor(latest)
-  if (!rows || !rows.length) return { rows: [], day: 'none', date: null }
-  rememberShownDate(latest)
-  const day = latest === isoDay(-1) ? 'yesterday' : 'older'
-  return { rows: await withTrend(rows, latest), day, date: latest }
+  const r = await resolveShown()
+  if (!r.date) return { rows: [], day: 'none', date: null, stale: true }
+  rememberShownDate(r.date)
+  return { rows: r.rows, day: r.day, date: r.date, stale: r.stale }
 }
 
 // ---- /msp page: per-crop today prices + trend history ----------------------
 
-// Today's (or latest available) modal price at every Sagar Division mandi for a commodity.
-// Returns { rows: [{market, modal_price, min_price, max_price, arrivals_tonnes}], date }.
+// The prices at every mandi for one crop on the date the shared rule chose for that crop (the same date the all-crops
+// table shows). Falls back to the crop's newest stored day when the recent window has none for it.
+// Returns { rows: [{market, modal_price, min_price, max_price, arrivals_tonnes, price_date}], date }.
 export async function fetchMandiForCrop(commodityEn) {
-  const { data, error } = await withLocalFlag((col) => supabase
-    .from('mandi_prices')
-    .select(`market,district,modal_price,min_price,max_price,arrivals_tonnes,price_date,is_local:${col}`)
-    .eq('commodity_en', commodityEn)
-    .order('price_date', { ascending: false })
-    .limit(300))
-  if (error || !data || !data.length) return { rows: [], date: null }
-  const local = data.filter((r) => r.is_local)
-  const pool = local.length ? local : data
-  const date = pool[0].price_date
-  const rows = pool.filter((r) => r.price_date === date && r.modal_price != null)
-  // de-dup by market (keep first)
+  const r = await resolveShown()
+  const chosen = r.byCrop[commodityEn]
+  let pool = chosen ? r.all.filter((x) => x.commodity_en === commodityEn && x.price_date === chosen.price_date) : []
+  let date = chosen ? chosen.price_date : null
+  if (!pool.length) {
+    const { data, error } = await withLocalFlag((col) => supabase
+      .from('mandi_prices')
+      .select(`market,district,modal_price,min_price,max_price,arrivals_tonnes,price_date,is_local:${col}`)
+      .eq('commodity_en', commodityEn)
+      .order('price_date', { ascending: false })
+      .order('market', { ascending: true })
+      .limit(300))
+    if (error || !data || !data.length) return { rows: [], date: null }
+    const local = data.filter((x) => x.is_local)
+    const base = local.length ? local : data
+    date = base[0].price_date
+    pool = base.filter((x) => x.price_date === date)
+  }
   const seen = new Set()
-  return { rows: rows.filter((r) => (seen.has(r.market) ? false : seen.add(r.market))), date }
+  return { rows: pool.filter((x) => x.modal_price != null).filter((x) => (seen.has(x.market) ? false : seen.add(x.market))), date }
 }
 
 // Daily modal price (median across mandis per date) over the last N days, for the trend chart.
@@ -275,22 +315,9 @@ export async function fetchMandiForMarket(commodityEn, market) {
   return data[0]
 }
 
-// /msp landing snapshot: latest modal price per commodity (prefer a Sagar Division
-// mandi on the latest date). Returns a map keyed by commodity_en → {modal_price, price_date, market}.
+// /msp all-crops table: ONE row per crop, chosen by the same rule as the homepage strip (same date, same mandi), so the same
+// crop on the same date shows the same number on both. Returns a map keyed by commodity_en -> {modal_price, price_date, market, district}.
 export async function fetchMandiSnapshot() {
-  const { data, error } = await withLocalFlag((col) => supabase
-    .from('mandi_prices')
-    .select(`commodity_en,modal_price,price_date,market,is_local:${col}`)
-    .order('price_date', { ascending: false })
-    .limit(3000))
-  if (error || !data) return {}
-  const by = {}
-  for (const r of data) {
-    if (r.modal_price == null) continue
-    const c = by[r.commodity_en]
-    if (!c) { by[r.commodity_en] = r; continue }
-    if (r.price_date > c.price_date) by[r.commodity_en] = r
-    else if (r.price_date === c.price_date && r.is_local && !c.is_local) by[r.commodity_en] = r
-  }
-  return by
+  const r = await resolveShown()
+  return r.byCrop
 }

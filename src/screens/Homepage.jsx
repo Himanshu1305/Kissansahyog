@@ -138,7 +138,8 @@ export default function Homepage() {
       setVideos(vids); setPestReports(pest)
     })()
     fetchMsp().then((m) => alive && setMsp(m)).catch(() => alive && setMsp([]))
-    fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
+    // Batch 23: no price in the static HTML (the strip and the price tile fill in after the app loads).
+    if (!(typeof window !== 'undefined' && window.__KS_PRERENDER === true)) fetchMandiPrices().then((m) => alive && setMandi(m)).catch(() => {})
     fetchUpcomingMelas(3, { region: true }).then((m) => alive && setMelas(m)).catch(() => alive && setMelas([]))
     return () => { alive = false }
   }, [])
@@ -554,6 +555,10 @@ function HomeHero({ t, today, onNeed, onHave, onForecast, onMsp, showFreeReg }) 
               noteColor={today.priceTone === 'above' ? 'var(--ks-green)' : today.priceTone === 'below' ? 'var(--ks-orange-dark)' : 'var(--ks-ink-3)'}
               onClick={onMsp}
             />
+          )}
+          {/* Batch 23: the static HTML holds a neutral tile of the same size (no price, no date); the real tile replaces it after load. */}
+          {!today.priceLine && typeof window !== 'undefined' && window.__KS_PRERENDER === true && (
+            <InfoTile caption={t('mandi_title')} value={t('mandi_view_today')} note={`${t('home_msp_link')} →`} noteColor="var(--ks-ink-3)" onClick={onMsp} />
           )}
           <InfoTile caption={t('tf_advice_cap')} value={today.advice} />
         </div>

@@ -14,10 +14,14 @@ const fmt = (n) => Math.round(Number(n) || 0).toLocaleString('en-IN')
 // else "coming soon". CSS-only scroll (see index.css), paused on hover/tap.
 export default function MandiTicker() {
   const { t } = useLang()
-  const [state, setState] = useState({ loading: true, rows: [], day: 'none', date: null })
+  // Batch 23: the static (prerendered) HTML carries no price, date or "कल का भाव" (it would be days old): a neutral line instead,
+  // in the same 38px strip. The live app replaces it as soon as it loads.
+  const PRERENDER = typeof window !== 'undefined' && window.__KS_PRERENDER === true
+  const [state, setState] = useState({ loading: !PRERENDER, rows: [], day: 'none', date: null })
   const offline = useOfflineInfo(['mandi_prices'])
 
   useEffect(() => {
+    if (PRERENDER) return undefined
     let alive = true
     fetchMandiPrices()
       .then((r) => alive && setState({ loading: false, rows: r.rows, day: r.day, date: r.date }))
@@ -49,9 +53,12 @@ export default function MandiTicker() {
   // MSP tables never disagree about whether a given date is "today" vs "कल का भाव" (the ticker
   // used to compare against a UTC day-boundary, which drifted from the MSP's local one).
   const st = state.date ? priceStaleness(state.date) : null
-  const dateBadge = (st === 'yesterday' || st === 'older')
-    ? `${t(st === 'yesterday' ? 'mandi_price_yesterday' : 'mandi_price_older')} (${ddmm(state.date)})`
-    : null
+  // Batch 23: the day is the day in India (IST). Today -> "आज का भाव"; yesterday -> "कल का भाव (dd/mm)"; older -> "पिछला भाव (dd/mm)".
+  const dateBadge = st === 'today'
+    ? t('mandi_price_today')
+    : (st === 'yesterday' || st === 'older')
+      ? `${t(st === 'yesterday' ? 'mandi_price_yesterday' : 'mandi_price_older')} (${ddmm(state.date)})`
+      : null
   const item = (r, i) => {
     const slug = cropByMandi(r.commodity_en)?.slug
     const inner = (<>
@@ -64,6 +71,7 @@ export default function MandiTicker() {
       )}
       <span className="text-[var(--ks-primary-light)]"> · </span>
       <span>{marketHi(r)}</span>
+      {r.price_date && state.date && r.price_date !== state.date && <span className="text-[var(--ks-primary-light)]"> ({ddmm(r.price_date)})</span>}
       <span className="px-2 text-[var(--ks-primary-light)]">|</span>
     </>)
     // min-h-0 opts these ticker links out of the global 44px tap-target min-height, which
@@ -84,13 +92,15 @@ export default function MandiTicker() {
       <div className="flex w-[140px] shrink-0 flex-col justify-center gap-0.5 border-r border-black/20 bg-[var(--ks-primary)] px-2 text-[13px] font-bold leading-none text-[var(--ks-accent-muted)]">
         <span className="truncate">📊 {t('mandi_title')}</span>
         {dateBadge && (
-          <span className="w-fit whitespace-nowrap rounded-full bg-[var(--ks-accent)] px-1.5 py-0.5 text-[10px] font-bold text-[var(--ks-accent-dark)]" data-testid="ticker-stale-badge">{dateBadge}</span>
+          <span className="w-fit whitespace-nowrap rounded-full bg-[var(--ks-accent)] px-1.5 py-0.5 text-[10px] font-bold text-[var(--ks-accent-dark)]" data-testid={st === 'today' ? 'ticker-today-badge' : 'ticker-stale-badge'}>{dateBadge}</span>
         )}
       </div>
 
       {/* Scrolling prices / states */}
       <div ref={viewRef} className="ticker-view relative flex-1 overflow-hidden">
-        {state.loading ? (
+        {PRERENDER ? (
+          <div className="flex h-full items-center px-4 text-[14px] text-[#c8e6b0]" data-testid="ticker-placeholder">{t('mandi_view_today')}</div>
+        ) : state.loading ? (
           <div className="ticker-shimmer h-full w-full" />
         ) : list.length === 0 ? (
           <div className="flex h-full items-center px-4 text-[14px] text-[#c8e6b0]" data-testid={offline.failed ? 'ticker-offline' : undefined}>{t(offline.failed ? 'offline_no_data' : 'mandi_soon')}</div>
