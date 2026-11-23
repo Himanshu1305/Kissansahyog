@@ -6,10 +6,11 @@ import { marketLabel } from '../../../src/lib/mandi/marketNames.js'
 import { strings } from '../../../src/lib/i18n/strings.js'
 import { CROPS } from '../../../src/content/crops.js'
 import { addDays } from './ist.js'
+import { MIN_MANDIS as SHARED_MIN_MANDIS } from '../../../src/lib/mandi/pickRule.js'
 
 export const WINDOW_DAYS = 30        // same window as the /msp default tab
 export const MAX_CROPS = 4
-export const MIN_MANDIS = 3
+export const MIN_MANDIS = SHARED_MIN_MANDIS // Batch 23: the same 3 the site uses (src/lib/mandi/pickRule.js); the date choice below stays the post's own
 export const MAX_MOVE_PCT = 15       // bigger one-step move than this = suspect data
 export const MEDIAN_BAND = [0.5, 2]  // price outside 0.5x..2x of the 30-day median = suspect data
 export const FALLBACK_DAYS = 3

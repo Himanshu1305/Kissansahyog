@@ -1,0 +1,17 @@
+ℹ ev-diwali: 2026-11-08 is a रविवार
+ℹ ev-govardhan: 2026-11-10 is a मंगलवार
+ℹ ev-bhaidooj: 2026-11-11 is a बुधवार
+ℹ ev-chhath: 2026-11-15 is a रविवार
+ℹ ev-devuthani: 2026-11-20 is a शुक्रवार
+ℹ ev-tulsi: 2026-11-21 is a शनिवार
+ℹ ev-kartik-purnima: 2026-11-24 is a मंगलवार
+ℹ win-wheat-late: 2026-12-01..2027-01-05 is a मंगलवार
+ℹ fair-bharat-agri-tech: 2027-01-09..2027-01-11 is a शनिवार
+ℹ fair-global-agrotech: 2026-12-03..2026-12-05 is a गुरुवार
+ℹ fair-agri-agro-agra: 2026-12-07..2026-12-09 is a सोमवार
+ℹ fair-kisan-agri-pune: 2026-12-09..2026-12-13 is a बुधवार
+ℹ fail 1
+ℹ pass 988
+ℹ tests 991
+✖ failing tests:
+✖ strings: every district word and name exists; the Hindi lives only in strings.hi.js (7.3029ms)
