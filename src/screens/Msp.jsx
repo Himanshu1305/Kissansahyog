@@ -68,6 +68,7 @@ export default function Msp() {
   const [mspRow, setMspRow] = useState(null)
   const [trend90, setTrend90] = useState(null) // { rows (90 days, one per mandi and day), scope } — 7/30 are slices of it
   const [hist, setHist] = useState({ rows: [], scope: null }) // Batch 15A: 10 years of monthly Modal prices (mandi_monthly_history)
+  const [histDone, setHistDone] = useState(false) // Batch 23: the prerender snapshot waits for the dated history, not for a price
   const [faqs, setFaqs] = useState([])
   const [procurement, setProcurement] = useState([])
   const [storageRate, setStorageRate] = useState({ rate: 15, fromListings: false })
@@ -95,8 +96,8 @@ export default function Msp() {
     if (PRERENDER) setToday({ rows: [], date: null, prerender: true })
     else fetchMandiForCrop(crop.mandi_en).then((r) => alive && setToday(r)).catch(() => alive && setToday({ rows: [], date: null }))
     fetchMsp().then((rows) => { if (alive) setMspRow((rows || []).find((m) => m.crop_en === crop.msp_en) || null) }).catch(() => {})
-    setHist({ rows: [], scope: null })
-    fetchMonthlyHistory(crop.mandi_en).then((r) => alive && setHist(r)).catch(() => {})
+    setHist({ rows: [], scope: null }); setHistDone(false)
+    fetchMonthlyHistory(crop.mandi_en).then((r) => { if (alive) { setHist(r); setHistDone(true) } }).catch(() => alive && setHistDone(true))
     return () => { alive = false }
   }, [slug])
 
@@ -198,8 +199,10 @@ export default function Msp() {
   // Batch 10F — the calculator and the WhatsApp text use the same corrected series as the chart: its
   // latest point (date + number of mandis shown), falling back to today's plain median only when
   // there is no series at all.
-  const latestPoint = history.length ? history[history.length - 1] : null
-  const calcPrice = latestPoint ? latestPoint.price : medianToday
+  // Batch 23: in the static (prerendered) HTML there is no "latest price" at all (it would be days old): the dated history and the
+  // 5-year averages stay, the live app adds the current price after it loads.
+  const latestPoint = !PRERENDER && history.length ? history[history.length - 1] : null
+  const calcPrice = PRERENDER ? null : (latestPoint ? latestPoint.price : medianToday)
 
   const trendSentence = useMemo(() => {
     if (history.length < 2) return null
@@ -275,7 +278,7 @@ export default function Msp() {
   const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${cropName(crop, lang)} ${t('nav_mandi')} — ${t('msp_sagar')}`, ...(today?.date ? { dateModified: today.date } : {}) }
 
   return (
-    <PageShell width="wide" ready={today !== undefined}>
+    <PageShell width="wide" ready={today !== undefined && (!PRERENDER || (trend90 !== null && histDone))}>
       <Seo
         title={(cropParam ? t('msp_seo_crop_title').replace('{crop}', cropName(crop, lang)) : t('msp_seo_hub_title')).slice(0, 70)}
         description={(cropParam ? t('msp_seo_crop_desc').replace('{crop}', cropName(crop, lang)) : t('msp_seo_hub_desc')).slice(0, 155)}
@@ -457,11 +460,11 @@ export default function Msp() {
                   <div data-testid="msp-avg5-avg" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{rs(harvest.avg)}</div>
                 </div>
                 <div className="rounded-lg p-3" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}>
-                  <div className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{latestPoint ? t('msp_avg_today_on').replace('{date}', formatDay(latestPoint.date, lang)) : t('msp_avg_today')}</div>
-                  <div data-testid="msp-avg5-today" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{calcPrice != null ? rs(calcPrice) : '—'}</div>
+                  <div className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{PRERENDER ? t('msp_today_h_static') : latestPoint ? t('msp_avg_today_on').replace('{date}', formatDay(latestPoint.date, lang)) : t('msp_avg_today')}</div>
+                  <div data-testid="msp-avg5-today" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{calcPrice != null ? rs(calcPrice) : PRERENDER ? t('mandi_view_today') : '—'}</div>
                 </div>
               </div>
-              {calcPrice == null && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_avg_today_none')}</p>}
+              {calcPrice == null && !PRERENDER && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_avg_today_none')}</p>}
               {harvestGap != null && (
                 <p data-testid="msp-avg5-gap" className="text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>
                   {harvestGap > 0 ? t('msp_avg_gap_up').replace('{p}', harvestGap) : harvestGap < 0 ? t('msp_avg_gap_down').replace('{p}', Math.abs(harvestGap)) : t('msp_avg_gap_same')}
