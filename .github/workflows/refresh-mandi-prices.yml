@@ -1,6 +1,8 @@
 # Weather refresh (production AND staging) + production price-freshness watchdog. This job does NOT fetch prices:
 # data.gov.in refuses GitHub addresses; the Supabase Edge Function mandi-refresh (Mumbai) is the only price writer.
-# production: weather, then RED only if the newest stored Sagar-division price is older than 3 days or missing. staging: weather only.
+# production: weather, then the price watchdog (Batch 23): RED if the newest price is older than yesterday IST, if yesterday IST has fewer than
+# 3 mandis or 5 of the 10 crops (a Sunday or listed holiday is only a warning), or if nothing was written to mandi_prices for 12 hours. staging: weather only.
+# The PRODUCTION job decides whether the run is green or red. The staging job may fail without turning the run red (see continue-on-error below).
 #
 # IMPORTANT: GitHub runs `schedule` triggers only from the DEFAULT branch (main), and a scheduled run checks out
 # main. So main must contain BOTH this file AND the scripts it calls (scripts/refresh-data.mjs, scripts/lib/*).
@@ -27,6 +29,9 @@ jobs:
     name: refresh (${{ matrix.target }})
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # Batch 23: staging (wzxtqbqlahyahsnoqqva) is restricted for exceeding its storage quota (docs/review/batch23/STAGING_STORAGE.md).
+    # Its failure must not make the whole run red while that is open. REMOVE this line once staging is repaired.
+    continue-on-error: ${{ matrix.target == 'staging' }}
     strategy:
       fail-fast: false
       matrix:
@@ -40,6 +45,11 @@ jobs:
             url_secret_name: VITE_SUPABASE_URL
             key_secret_name: SUPABASE_SERVICE_ROLE_KEY
     steps:
+      - name: Staging is allowed to fail for now
+        if: matrix.target == 'staging'
+        run: |
+          echo "::warning::The staging job may fail without failing the run. The staging Supabase project is over its storage quota (exceed_storage_size_quota). Clean it with docs/review/batch23/STAGING_STORAGE.md, then remove continue-on-error from this workflow."
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4

@@ -5,20 +5,23 @@
 // Supabase Edge Function mandi-refresh (Mumbai).
 //
 //   node scripts/refresh-data.mjs --target production --expect-project-ref <ref>
-//     weather first, then the freshness check: RED only if the newest stored Sagar-division price_date is older than 3 days or empty.
+//     weather first, then the watchdog (Batch 23, scripts/lib/mandi-watchdog.mjs): RED if the newest price is older than yesterday IST, yesterday IST is thin
+//     (a Sunday or listed holiday is only a warning) or nothing was written for 12 hours.
 //   node scripts/refresh-data.mjs --target staging --expect-project-ref <ref>
 //     weather only; no freshness check; green if weather ran.
 //   Batch 16G: after the weather step the Sagar town cell (23.8_78.7) must have been fetched within 2 hours, and every pilot cell must
 //   have refreshed; otherwise the job is RED (both targets). A weather step stuck for 12 minutes ends RED instead of hanging.
 //   --dry-run  opens no database connection, needs no secret, does nothing (prints what it would do).
 // Without --target the target is production when the expected ref is the production ref, otherwise staging.
-// Pure logic: lib/mandi-daily.mjs (runWatchdogJob, freshnessCheck).
+// Pure logic: lib/mandi-daily.mjs (runWatchdogJob), lib/mandi-watchdog.mjs (the price rules).
 
 import { createClient } from '@supabase/supabase-js'
 import { appendFileSync } from 'node:fs'
-import { runWatchdogJob, freshnessCheck, describeError } from './lib/mandi-daily.mjs'
+import { runWatchdogJob, describeError } from './lib/mandi-daily.mjs'
 import { weatherFreshnessCheck, SAGAR_CELL } from './lib/weather-fresh.mjs'
-import { checkProjectRef, redact, todayIST, daysBetween } from './lib/mandi-feed.mjs'
+import { checkProjectRef, redact, todayIST } from './lib/mandi-feed.mjs'
+import { watchdogCheck, annotations, summaryMarkdown } from './lib/mandi-watchdog.mjs'
+import { addDays } from '../src/lib/mandi/pickRule.js'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -160,11 +163,25 @@ async function sagarWeatherCheck() {
 const WEATHER_TIMEOUT_MS = 12 * 60000
 const HARD_STOP_MS = 17 * 60000
 
-// Read-only watchdog: newest stored Sagar-division price. Needs only the database, not data.gov.in.
+// Batch 23 - read-only price watchdog (pure rules in lib/mandi-watchdog.mjs, same thresholds as the site: src/lib/mandi/pickRule.js).
+// RED when the newest price is older than yesterday IST, when yesterday IST is thin (Sunday/holiday: a warning only), or when nothing
+// was written to mandi_prices in the last 12 hours. Needs only the database, not data.gov.in.
 async function freshness() {
-  const { data, error } = await supabase.from('mandi_prices').select('price_date').eq('in_sagar_division', true).order('price_date', { ascending: false }).limit(1)
-  if (error) throw new Error(error.message)
-  return freshnessCheck(data?.[0]?.price_date || null, todayIST(), daysBetween)
+  const today = todayIST()
+  const from = addDays(today, -6)
+  const rows = []
+  for (let off = 0; off < 10000; off += 1000) {
+    const { data, error } = await supabase.from('mandi_prices').select('commodity_en,market,modal_price,price_date').gte('price_date', from).order('price_date', { ascending: false }).order('commodity_en', { ascending: true }).order('market', { ascending: true }).range(off, off + 999)
+    if (error) throw new Error(error.message)
+    rows.push(...(data || []))
+    if (!data || data.length < 1000) break
+  }
+  const nd = await supabase.from('mandi_prices').select('price_date').order('price_date', { ascending: false }).limit(1)
+  if (nd.error) throw new Error(nd.error.message)
+  const nf = await supabase.from('mandi_prices').select('fetched_at').not('fetched_at', 'is', null).order('fetched_at', { ascending: false }).limit(1)
+  const r = watchdogCheck({ rows, newestDate: nd.data?.[0]?.price_date || null, newestFetchedAt: nf.error ? null : (nf.data?.[0]?.fetched_at || null), today, nowMs: Date.now() })
+  for (const line of annotations(r)) console.log(line)
+  return { red: r.red, text: r.text, summary: summaryMarkdown(r) }
 }
 
 const PROD_REF = 'eltmcznjcqiahqhjvpjg'
@@ -185,7 +202,7 @@ async function main() {
     weatherTimeoutMs: WEATHER_TIMEOUT_MS,
     weatherCheck: async () => { const w = await sagarWeatherCheck(); summaryOut(`- target: ${TARGET}
 - ${w.text}`); return w },
-    freshness: async () => { const f = await freshness(); console.log(f.text); summaryOut(`- target: ${TARGET}\n- ${f.text}`); return f },
+    freshness: async () => { const f = await freshness(); console.log(f.text); summaryOut(`- target: ${TARGET}\n- ${f.text}\n\n${f.summary}`); return f },
   })
   if (TARGET === 'staging' && !DRY_RUN) summaryOut('- target: staging (weather only; prices are written by the Edge Function)')
   if (DRY_RUN) info(`dry run (${TARGET}): nothing written; weather${TARGET === 'production' ? ' and freshness check' : ''} skipped`)
