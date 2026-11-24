@@ -19,7 +19,7 @@ const howto = (n, last = '2026-12-31') => ({ premium_hi: `प्रीमिय�
 const gy = (n, o = {}) => ({ id: `g${n}`, text_hi: `ज्ञान${n}`, reviewed: true, ...o })
 const mf = (n, o = {}) => ({ id: `m${n}`, lines_hi: [`तथ्य${n}`], source_name: 'स्रोत', source_url: 'https://x.test', source_date: '2026-10-01', reviewed: true, show_from: '2026-10-01', show_until: '2026-12-31', ...o })
 const kh = (n, o = {}) => ({ id: `k${n}`, text_hi: `कहावत${n}`, meaning_hi: `अर्थ${n}`, source_name: 'प्रचलित कहावत', reviewed: true, ...o })
-const ev = (n, o = {}) => ({ id: `e${n}`, kind: 'fair', title_hi: `मेला${n}`, date: addDays(MON, 10 + n), scope: 'near', reviewed: true, ...o })
+const ev = (n, o = {}) => ({ id: `e${n}`, kind: 'festival', title_hi: `मेला${n}`, date: addDays(MON, 10 + n), scope: 'near', reviewed: true, ...o })
 const pool = (f, n = 5) => Array.from({ length: n }, (_, i) => f(i + 1))
 const four = (item) => Array.from({ length: 4 }, (_, i) => ({ ...item, id: `${item.id}-${i}` })) // a full pool (4+) is not throttled; identical text keeps the assertion exact
 const RICH = () => ({

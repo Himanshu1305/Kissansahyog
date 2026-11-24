@@ -91,6 +91,7 @@ export function upcomingItems(date, data, draft) {
   const { ok: evs, used } = usable(data.events, draft)
   for (const e of evs) {
     if (e.scope === 'far') continue
+    if (e.kind === 'fair') continue // Batch 24: fairs have their own "किसान मेला" section (melaItems), never inside this list
     if (!e.date) continue
     const place = e.place_hi ? fmt(S.upcomingPlace, { place: e.place_hi }) : ''
     if (e.kind === 'window' && e.date_to) {
@@ -112,6 +113,44 @@ export function upcomingItems(date, data, draft) {
     if (s.deadline && s.deadline > date) cands.push({ id: s.id, days: daysBetween(date, s.deadline), text: fmt(S.upcomingWindow, { title: s.title_hi, days: daysBetween(date, s.deadline), date: human(s.deadline) }), unrev: sused.includes(s.id) })
   }
   return cands.sort((a, b) => a.days - b.days).slice(0, 3)
+}
+
+// ---- Batch 24: "किसान मेला" - its own section on every weekday, not a line inside another list.
+// A reviewed, near fair is shown from MELA_WINDOW_DAYS before its first day until its last day: nearest first, at most MELA_MAX lines.
+export const MELA_WINDOW_DAYS = 90
+export const MELA_MAX = 2
+export function melaItems(date, data, draft) {
+  const { ok, used } = usable(data.events, draft)
+  const cands = []
+  for (const e of ok) {
+    if (e.kind !== 'fair' || e.scope === 'far' || !e.date) continue
+    const last = e.date_to && e.date_to > e.date ? e.date_to : e.date
+    if (date > last) continue // already over
+    const place = e.place_hi ? fmt(S.upcomingPlace, { place: e.place_hi }) : ''
+    if (e.date <= date) cands.push({ id: e.id, days: 0, text: fmt(S.melaRunning, { title: e.title_hi, date: human(last) }) + place, unrev: used.includes(e.id) })
+    else {
+      const days = daysBetween(date, e.date)
+      if (days > MELA_WINDOW_DAYS) continue
+      const text = last > e.date
+        ? fmt(S.upcomingEventRange, { title: e.title_hi, days, date: human(e.date), date2: human(last) })
+        : fmt(S.upcomingEvent, { title: e.title_hi, days, date: human(e.date) })
+      cands.push({ id: e.id, days, text: text + place, unrev: used.includes(e.id) })
+    }
+  }
+  return cands.sort((a, b) => a.days - b.days || (a.id < b.id ? -1 : 1)).slice(0, MELA_MAX)
+}
+// -> { lines: [heading, ...], ids: [...], usedUnreviewed: [...] } or null. MORNING_CONTENT=off: always null (the old post).
+export function pickMela(date, { draft = false, data, env = process.env } = {}) {
+  if (contentOff(env)) return null
+  const items = melaItems(date, data || {}, draft)
+  return items.length ? { lines: [S.slotMela, ...items.map((i) => i.text)], ids: items.map((i) => i.id), usedUnreviewed: items.filter((i) => i.unrev).map((i) => i.id) } : null
+}
+
+// Batch 24: today's festival from the approved events file (festivals.json is still read first by generate.js).
+export function festivalToday(date, data, draft) {
+  const { ok, used } = usable(data.events, draft)
+  const f = ok.find((e) => e.kind === 'festival' && e.scope !== 'far' && e.date === date)
+  return f ? { festival: { id: f.id, name_hi: f.title_hi }, unreviewed: used.includes(f.id) } : null
 }
 
 function pickSlotNew(date, { draft, data, summary }) {

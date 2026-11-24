@@ -144,18 +144,20 @@ export function render(model, opts) {
   blocks.push(mandiLines(model, opts).text)
   if (opts.rujhan) { const r = rujhanBlock(model); if (r) blocks.push(r) }
   if (opts.slot && model.slot) blocks.push(model.slot.lines.join('\n'))
+  if (opts.mela && model.mela) blocks.push(model.mela.lines.join('\n')) // Batch 24: its own heading, after the slot
   blocks.push([S.closing1, S.closing2].join('\n'))
   return blocks.join('\n\n')
 }
 
-// Drop order when over the hard limit: rotating slot, next-two-days weather line, bhav ka rujhan, third task, fourth crop.
+// Drop order when over the hard limit: rotating slot, next-two-days weather line, bhav ka rujhan, third task, fourth crop (then, Batch 24, the fair section LAST: the founder wants it kept).
 export const DROP_STEPS = ['slot', 'weatherNext', 'rujhan', 'task3', 'crop4']
+export const LAST_STEP = 'mela' // Batch 24: dropped after every step above (DROP_STEPS itself is unchanged)
 export function compose(model) {
-  const opts = { slot: true, weatherNext: true, rujhan: true, tasks: 3, crops: 4, districts: true }
+  const opts = { slot: true, weatherNext: true, rujhan: true, tasks: 3, crops: 4, districts: true, mela: true }
   const dropped = []
   let text = render(model, opts)
   // Batch 18: if the message is over the hard limit, the new district section goes FIRST, so the post is then exactly what it was before this batch.
-  for (const step of model.districts ? ['districts', ...DROP_STEPS] : DROP_STEPS) {
+  for (const step of [...(model.districts ? ['districts'] : []), ...DROP_STEPS, ...(model.mela ? [LAST_STEP] : [])]) {
     if (text.length <= HARD_CHARS) break
     if (step === 'districts') opts.districts = false
     else if (step === 'slot') opts.slot = false
@@ -163,6 +165,7 @@ export function compose(model) {
     else if (step === 'rujhan') opts.rujhan = false
     else if (step === 'task3') opts.tasks = 2
     else if (step === 'crop4') opts.crops = 3
+    else if (step === 'mela') opts.mela = false
     dropped.push(step)
     text = render(model, opts)
   }

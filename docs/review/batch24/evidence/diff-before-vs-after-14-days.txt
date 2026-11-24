@@ -1,0 +1,202 @@
+1c1
+< === 2026-11-24 (1055 chars, dropped: -)
+---
+> === 2026-11-24 (1099 chars, dropped: -)
+3a4
+> 🎉 आज *कार्तिक पूर्णिमा* है
+32,33c33,36
+< Bharat Agri Tech: 46 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+< Farm-Tech India: 82 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+---
+> 
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 46 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 82 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+37c40
+< --- report lines: rotating slot: upcoming | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: upcoming | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: कार्तिक पूर्णिमा (from events.json)
+39c42
+< === 2026-11-25 (1104 chars, dropped: -)
+---
+> === 2026-11-25 (1240 chars, dropped: -)
+73a77,80
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 45 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 81 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+> 
+76c83
+< --- report lines: rotating slot: money | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: money | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+78c85
+< === 2026-11-26 (885 chars, dropped: -)
+---
+> === 2026-11-26 (1021 chars, dropped: -)
+109a117,120
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 44 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 80 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+> 
+112c123
+< --- report lines: rotating slot: know | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: know | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+114c125
+< === 2026-11-27 (1057 chars, dropped: -)
+---
+> === 2026-11-27 (1073 chars, dropped: -)
+145,146c156,159
+< Bharat Agri Tech: 43 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+< Farm-Tech India: 79 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+---
+> 
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 43 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 79 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+150c163
+< --- report lines: rotating slot: upcoming | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: upcoming | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+152c165
+< === 2026-11-28 (960 chars, dropped: -)
+---
+> === 2026-11-28 (1096 chars, dropped: -)
+185a199,202
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 42 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 78 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+> 
+188c205
+< --- report lines: rotating slot: kahawat | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: kahawat | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+190c207
+< === 2026-11-29 (943 chars, dropped: -)
+---
+> === 2026-11-29 (1079 chars, dropped: -)
+224a242,245
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 41 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 77 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+> 
+227c248
+< --- report lines: rotating slot: recap | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: recap | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+229c250
+< === 2026-11-30 (1062 chars, dropped: -)
+---
+> === 2026-11-30 (1198 chars, dropped: -)
+262a284,287
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 40 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 76 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+> 
+265c290
+< --- report lines: rotating slot: scheme | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: scheme | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+267c292
+< === 2026-12-01 (1024 chars, dropped: -)
+---
+> === 2026-12-01 (1040 chars, dropped: -)
+298,299c323,326
+< Bharat Agri Tech: 39 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+< Farm-Tech India: 75 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+---
+> 
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 39 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 75 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+303c330
+< --- report lines: rotating slot: upcoming | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: upcoming | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+305c332
+< === 2026-12-02 (1020 chars, dropped: -)
+---
+> === 2026-12-02 (1036 chars, dropped: -)
+336,337c363,366
+< Bharat Agri Tech: 38 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+< Farm-Tech India: 74 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+---
+> 
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 38 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 74 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+341c370
+< --- report lines: rotating slot: upcoming | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: upcoming | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+343c372
+< === 2026-12-03 (963 chars, dropped: -)
+---
+> === 2026-12-03 (1099 chars, dropped: -)
+374a404,407
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 37 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 73 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+> 
+377c410
+< --- report lines: rotating slot: know | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: know | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+379c412
+< === 2026-12-04 (1023 chars, dropped: -)
+---
+> === 2026-12-04 (1039 chars, dropped: -)
+410,411c443,446
+< Bharat Agri Tech: 36 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+< Farm-Tech India: 72 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+---
+> 
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 36 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 72 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+415c450
+< --- report lines: rotating slot: upcoming | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: upcoming | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+417c452
+< === 2026-12-05 (1009 chars, dropped: -)
+---
+> === 2026-12-05 (1145 chars, dropped: -)
+450a486,489
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 35 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 71 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+> 
+453c492
+< --- report lines: rotating slot: kahawat | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: kahawat | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+455c494
+< === 2026-12-06 (976 chars, dropped: -)
+---
+> === 2026-12-06 (1112 chars, dropped: -)
+489a529,532
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 34 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 70 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+> 
+492c535
+< --- report lines: rotating slot: recap | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: recap | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)
+494c537
+< === 2026-12-07 (1028 chars, dropped: -)
+---
+> === 2026-12-07 (1044 chars, dropped: -)
+525,526c568,571
+< Bharat Agri Tech: 33 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+< Farm-Tech India: 69 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+---
+> 
+> 🎪 *किसान मेला*
+> भारत एग्री टेक: 33 दिन बाद (9 जनवरी से 11 जनवरी) · इंदौर
+> फार्म-टेक इंडिया: 69 दिन बाद (14 फ़रवरी से 16 फ़रवरी) · भोपाल
+530c575
+< --- report lines: rotating slot: upcoming | festival: none (data/morning/festivals.json has no verified entry for today)
+---
+> --- report lines: rotating slot: upcoming | mela: 2 shown (fair-bharat-agri-tech, fair-farmtech-bhopal) | festival: none (data/morning/festivals.json has no verified entry for today)

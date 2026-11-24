@@ -1,0 +1,1 @@
+OFF vs old code: messages byte-identical for 14 dates (2026-11-24 .. 2026-12-07); only the report gains one 'mela: OFF' line.

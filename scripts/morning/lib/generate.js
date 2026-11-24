@@ -11,7 +11,7 @@ import * as RV from '../../../src/lib/weather/rainVerdict.js'
 import { pickTasks, pickDayTasks, sowingOpen } from './workRules.js'
 import { chooseDate, summarize, MAX_MOVE_PCT, MIN_MANDIS, WINDOW_DAYS, MEDIAN_BAND } from './mandi.js'
 import { compose, lint, pickBlessing, TARGET_CHARS, HARD_CHARS, KVK_PHONE } from './compose.js'
-import { pickSlot, contentOff } from './content.js'
+import { pickSlot, pickMela, festivalToday, contentOff } from './content.js'
 import { pickPoll, pollText, yesterdayLine } from './poll.js'
 import { BANNERS } from '../../../src/content/kamPani.js'
 
@@ -101,7 +101,12 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
 
   // tithi / festival / blessing / poll
   const tithi = tithiAt(date)
-  const festival = (data.festivals || []).find((f) => f.verified === true && f.date === date) || null
+  let festival = (data.festivals || []).find((f) => f.verified === true && f.date === date) || null
+  let festivalFrom = 'festivals.json'
+  if (!festival && !off) { // Batch 24: the approved festivals of events.json (reviewed, near) also give today's greeting
+    const fe = festivalToday(date, data, draft)
+    if (fe) { festival = fe.festival; festivalFrom = 'events.json'; if (fe.unreviewed) unreviewed.push(`festival:${festival.id}`) }
+  }
   const blessing = pickBlessing(data.lines.blessing, date, draft)
   if (blessing && blessing.reviewed !== true) unreviewed.push(`blessing:${blessing.id}`)
   const poll = pickPoll(data.polls, date, { weekdays: !off })
@@ -115,6 +120,10 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   model.slot = slot
   if (slot) for (const id of slot.usedUnreviewed) unreviewed.push(`${slot.kind}:${id}`)
   notes.push(`rotating slot: ${slot ? slot.kind : 'none today'}`)
+  const mela = pickMela(date, { draft, data, env }) // Batch 24: the fair section (null when MORNING_CONTENT=off or no fair is near)
+  model.mela = mela
+  if (mela) for (const id of mela.usedUnreviewed) unreviewed.push(`mela:${id}`)
+  notes.push(off ? 'mela: OFF (MORNING_CONTENT=off)' : mela ? `mela: ${mela.ids.length} shown (${mela.ids.join(', ')})` : 'mela: none (no reviewed near fair within 90 days)')
 
   const out = compose(model)
   const violations = lint(out.text)
@@ -127,7 +136,7 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
     '',
     ...notes,
     `tithi: ${tithi.n} (${tithi.paksha}), sunrise ${tithi.sunrise.toISOString()}; Sagar ${SAGAR.lat}N ${SAGAR.lon}E`,
-    festival ? `festival: ${festival.name_hi}` : 'festival: none (data/morning/festivals.json has no verified entry for today)',
+    festival ? `festival: ${festival.name_hi}${festivalFrom === 'events.json' ? ' (from events.json)' : ''}` : 'festival: none (data/morning/festivals.json has no verified entry for today)',
     `weather provider: ${PROVIDER_NAME}`,
     `data freshness: mandi ${mandi ? mandi.date : 'n/a'}, weather ${weather ? date : 'n/a'}`,
     `mandi date used: ${mandi ? `${mandi.date}${mandi.isYesterday ? ' (yesterday)' : ' (older than yesterday)'}` : 'none'}`,

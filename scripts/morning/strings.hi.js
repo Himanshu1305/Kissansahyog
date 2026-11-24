@@ -84,6 +84,9 @@ export const S = {
   upcomingEvent: '{title}: {days} दिन बाद ({date})',
   upcomingEventRange: '{title}: {days} दिन बाद ({date} से {date2})',
   upcomingPlace: ' · {place}',
+  // ---- Batch 24: the fairs get their own heading (any weekday)
+  slotMela: '🎪 *किसान मेला*',
+  melaRunning: '{title}: आज चल रहा है ({date} तक)',
   schemeNews: '{title} - {news}',
   schemeAction: '{action}',
   sourceWithDate: 'स्रोत: {source}, {date}',
