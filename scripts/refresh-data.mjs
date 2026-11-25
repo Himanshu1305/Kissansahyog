@@ -22,6 +22,7 @@ import { weatherFreshnessCheck, SAGAR_CELL } from './lib/weather-fresh.mjs'
 import { checkProjectRef, redact, todayIST } from './lib/mandi-feed.mjs'
 import { watchdogCheck, annotations, summaryMarkdown } from './lib/mandi-watchdog.mjs'
 import { addDays } from '../src/lib/mandi/pickRule.js'
+import { fetchWithRetry } from './lib/open-meteo-retry.mjs'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -89,7 +90,7 @@ async function refreshCell(rawLat, rawLon) {
     '&hourly=temperature_2m,precipitation,precipitation_probability,wind_speed_10m,relative_humidity_2m,soil_moisture_0_to_7cm' +
     '&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,weather_code,wind_speed_10m_max,et0_fao_evapotranspiration' +
     '&timezone=Asia%2FKolkata&forecast_days=16'
-  const res = await fetch(fUrl, { signal: AbortSignal.timeout(20000) })
+  const res = await fetchWithRetry(fUrl, { timeoutMs: 20000, label: `forecast ${key}`, log: (m) => console.error(m) }) // Batch 26: 3 tries
   if (!res.ok) throw new Error(`Open-Meteo HTTP ${res.status}`)
   const d = await res.json()
 
@@ -120,7 +121,7 @@ async function refreshCell(rawLat, rawLon) {
     const aStart = '2015-01-01'
     const aEnd = new Date(Date.now() - 2 * 86400000).toISOString().slice(0, 10) // archive lags ~1-2 days
     const aUrl = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${aStart}&end_date=${aEnd}&daily=precipitation_sum&timezone=Asia%2FKolkata`
-    const ares = await fetch(aUrl, { signal: AbortSignal.timeout(30000) })
+    const ares = await fetchWithRetry(aUrl, { timeoutMs: 30000, label: `archive ${key}`, log: (m) => console.error(m) })
     if (ares.ok) { const a = await ares.json(); season_rain = computeSeasonRain(a.daily.time, a.daily.precipitation_sum) }
   } catch (e) { console.error(`archive fail ${key}: ${e.message}`) }
 
@@ -142,6 +143,7 @@ async function refreshWeather() {
   const pilotFailed = []
   for (const [key, c] of cells.entries()) {
     try { await refreshCell(c.lat, c.lon); ok++ } catch (e) { console.error(`cell fail ${key}: ${e.message}`); fail++; if (pilotKeys.has(key)) pilotFailed.push(key) }
+    await new Promise((r) => setTimeout(r, 300)) // Batch 26: a short pause between cells, gentler on Open-Meteo
   }
   console.log(`weather: ${ok} cells ok, ${fail} fail`)
   // Batch 16G: a failed PILOT cell turns the job RED (after all the other cells were tried).
