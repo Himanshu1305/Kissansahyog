@@ -26,7 +26,7 @@ const fns = functions(code)
 test('the migration is the next free number and is pure ASCII (with its rollback)', () => {
   assert.equal(migrations.filter((f) => f.startsWith('0075')).length, 1)
   assert.ok(migrations.includes('0074_morning_video.sql'))
-  assert.ok(!migrations.some((f) => /^007[8-9]/.test(f)), 'Batch 22 adds 0076 and 0077 only')
+  assert.ok(!migrations.some((f) => /^0079/.test(f)), 'Batch 22 adds 0076 and 0077; Batch 25 adds 0078 only')
   for (const f of [MIG, ROLL]) assert.ok(!/[^\x00-\x7F]/.test(readFileSync(f, 'latin1')), `non-ASCII byte in ${f}`)
 })
 
