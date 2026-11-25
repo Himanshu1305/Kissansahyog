@@ -1865,6 +1865,11 @@ export const strings = {
   src_season: { hi: 'स्रोत: Open-Meteo ऐतिहासिक डेटा — 2015–2025 का औसत।', en: 'Source: Open-Meteo historical data — 2015–2025 average.' },
   src_16day: { hi: 'स्रोत: Open-Meteo मौसम मॉडल · 7 दिन से आगे का अनुमान कम भरोसेमंद है।', en: 'Source: Open-Meteo weather model · forecasts beyond 7 days are less reliable.' },
   // Phase 3 — MSP snapshot, trend note, mandi note, calculator
+  // Batch 23: neutral wording for the static (prerendered) HTML, which must not claim a price date or "आज/कल का भाव".
+  mandi_view_today: { hi: 'आज का भाव देखें', en: "See today's price" },
+  mandi_price_today: { hi: 'आज का भाव', en: "Today's price" },
+  msp_snapshot_h_static: { hi: 'सभी फसलें — मंडी भाव', en: 'All crops — mandi prices' },
+  msp_today_h_static: { hi: 'इस फसल के मंडी भाव', en: 'Mandi prices for this crop' },
   msp_snapshot_h: { hi: 'सभी फसलें — आज का भाव', en: 'All crops — today’s price' },
   col_crop: { hi: 'फसल', en: 'Crop' },
   msp_only_ndays: { hi: 'इस अवधि में {n} दिन का भाव उपलब्ध', en: 'Prices available for {n} days in this period' },

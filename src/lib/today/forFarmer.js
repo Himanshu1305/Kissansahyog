@@ -71,8 +71,10 @@ export function getTodayForFarmer({ weather, mandi, msp, alert, t }) {
     priceValue = `${t(crop.labelKey)} ${rs(crop.mp)}`
     priceNote = `${marketLabel(crop.row.market, crop.row.district, t)} · ${mspPart}`
     priceLine = `${priceValue} · ${mspPart}`
-    const st = mandi?.date ? priceStaleness(mandi.date) : null
-    if (st === 'yesterday' || st === 'older') priceCaption = `${t(st === 'yesterday' ? 'mandi_price_yesterday' : 'mandi_price_older')} (${ddmm(mandi.date)})`
+    // Batch 23: the crop's OWN price date (a crop that fell back to an older day says so), else the strip's date.
+    const shownDate = crop.row.price_date || mandi?.date
+    const st = shownDate ? priceStaleness(shownDate) : null
+    if (st === 'yesterday' || st === 'older') priceCaption = `${t(st === 'yesterday' ? 'mandi_price_yesterday' : 'mandi_price_older')} (${ddmm(shownDate)})`
   }
 
   return { weatherLine, weatherCaption, rainLine, priceLine, priceValue, priceNote, priceCaption, priceTone, advice }

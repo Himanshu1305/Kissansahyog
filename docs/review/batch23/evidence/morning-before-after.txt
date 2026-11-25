@@ -1,0 +1,1 @@
+morning post, fixture normal, after the Batch 23 follow-up: message.txt and poll.txt byte-identical to the original for 2026-11-16 and 2026-11-23 (checked with cmp)

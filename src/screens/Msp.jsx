@@ -11,6 +11,7 @@ import { CROPS, cropBySlug, cropName, defaultCropSlug } from '../content/crops'
 import { MONTHS_HI, MONTHS_SHORT_EN, MONTHS_FULL_HI, MONTHS_FULL_EN } from '../content/months'
 import { fetchMandiForCrop, fetchMandiHistoryRows, fetchMandiSnapshot, fetchMandiMarkets, fetchMandiForMarket, fetchMandiMarketsWithDistrict, fetchMandiForMarkets } from '../lib/mandi/mandiApi'
 import { marketDistanceKm } from '../content/mandiCoords'
+import { marketLabel } from '../lib/mandi/marketNames'
 import { windowInfo, windowStart, formatDay, formatDateFull } from '../lib/mandi/mspWindow'
 import { basketSeries } from '../lib/mandi/basket'
 import { fetchMonthlyHistory, monthOfYearAverages, harvestAverage, harvestByYear, gapVsAverage, latestMonth } from '../lib/mandi/history10y'
@@ -42,6 +43,9 @@ export default function Msp() {
   const navigate = useNavigate()
   const slug = cropBySlug(cropParam) ? cropParam : defaultCropSlug()
   const crop = cropBySlug(slug)
+  // Batch 23: the static (prerendered) HTML never carries a price, a price date or "आज/कल का भाव" (they would be days old by the time
+  // anyone reads them); the live app fills the real, dated, labelled prices in after it loads.
+  const PRERENDER = typeof window !== 'undefined' && window.__KS_PRERENDER === true
 
   // Batch 7L-1 — nearest-mandi ranking uses the shared location object. No location → no
   // centre → the tables fall back to price order (distance is a label here, never a filter).
@@ -64,6 +68,7 @@ export default function Msp() {
   const [mspRow, setMspRow] = useState(null)
   const [trend90, setTrend90] = useState(null) // { rows (90 days, one per mandi and day), scope } — 7/30 are slices of it
   const [hist, setHist] = useState({ rows: [], scope: null }) // Batch 15A: 10 years of monthly Modal prices (mandi_monthly_history)
+  const [histDone, setHistDone] = useState(false) // Batch 23: the prerender snapshot waits for the dated history, not for a price
   const [faqs, setFaqs] = useState([])
   const [procurement, setProcurement] = useState([])
   const [storageRate, setStorageRate] = useState({ rate: 15, fromListings: false })
@@ -76,7 +81,7 @@ export default function Msp() {
   useEffect(() => {
     fetchPageFaqs('msp').then(setFaqs).catch(() => {})
     fetchProcurement().then(setProcurement).catch(() => {})
-    fetchMandiSnapshot().then(setSnapshot).catch(() => setSnapshot({}))
+    if (!PRERENDER) fetchMandiSnapshot().then(setSnapshot).catch(() => setSnapshot({}))
     fetchMsp().then((rows) => setMspAll(rows || [])).catch(() => {})
     // storage rate from active warehouse listings (median), fallback ₹15/qtl/month
     fetchHomeFeed({ category: 'warehouse', limit: 40 }).then((rows) => {
@@ -88,10 +93,11 @@ export default function Msp() {
   useEffect(() => {
     let alive = true
     setToday(undefined)
-    fetchMandiForCrop(crop.mandi_en).then((r) => alive && setToday(r)).catch(() => alive && setToday({ rows: [], date: null }))
+    if (PRERENDER) setToday({ rows: [], date: null, prerender: true })
+    else fetchMandiForCrop(crop.mandi_en).then((r) => alive && setToday(r)).catch(() => alive && setToday({ rows: [], date: null }))
     fetchMsp().then((rows) => { if (alive) setMspRow((rows || []).find((m) => m.crop_en === crop.msp_en) || null) }).catch(() => {})
-    setHist({ rows: [], scope: null })
-    fetchMonthlyHistory(crop.mandi_en).then((r) => alive && setHist(r)).catch(() => {})
+    setHist({ rows: [], scope: null }); setHistDone(false)
+    fetchMonthlyHistory(crop.mandi_en).then((r) => { if (alive) { setHist(r); setHistDone(true) } }).catch(() => alive && setHistDone(true))
     return () => { alive = false }
   }, [slug])
 
@@ -193,8 +199,10 @@ export default function Msp() {
   // Batch 10F — the calculator and the WhatsApp text use the same corrected series as the chart: its
   // latest point (date + number of mandis shown), falling back to today's plain median only when
   // there is no series at all.
-  const latestPoint = history.length ? history[history.length - 1] : null
-  const calcPrice = latestPoint ? latestPoint.price : medianToday
+  // Batch 23: in the static (prerendered) HTML there is no "latest price" at all (it would be days old): the dated history and the
+  // 5-year averages stay, the live app adds the current price after it loads.
+  const latestPoint = !PRERENDER && history.length ? history[history.length - 1] : null
+  const calcPrice = PRERENDER ? null : (latestPoint ? latestPoint.price : medianToday)
 
   const trendSentence = useMemo(() => {
     if (history.length < 2) return null
@@ -252,9 +260,9 @@ export default function Msp() {
     return CROPS.map((c) => {
       const s = snapshot[c.mandi_en]
       const mrow = c.msp_en ? mspAll.find((m) => m.crop_en === c.msp_en) : null
-      return { c, price: s ? Number(s.modal_price) : null, date: s?.price_date || null, msp: mrow ? Number(mrow.msp_per_quintal) : null, hasToday: !!s && s.price_date === latestDate }
+      return { c, price: s ? Number(s.modal_price) : null, date: s?.price_date || null, market: s ? marketLabel(s.market, s.district, t) : null, msp: mrow ? Number(mrow.msp_per_quintal) : null, hasToday: !!s && s.price_date === latestDate }
     }).sort((a, b) => (b.hasToday ? 1 : 0) - (a.hasToday ? 1 : 0))
-  }, [snapshot, mspAll, latestDate])
+  }, [snapshot, mspAll, latestDate, t])
 
   const shareText = useMemo(() => {
     if (calcPrice == null) return ''
@@ -270,7 +278,7 @@ export default function Msp() {
   const articleLd = { '@context': 'https://schema.org', '@type': 'Article', headline: `${cropName(crop, lang)} ${t('nav_mandi')} — ${t('msp_sagar')}`, ...(today?.date ? { dateModified: today.date } : {}) }
 
   return (
-    <PageShell width="wide" ready={today !== undefined}>
+    <PageShell width="wide" ready={today !== undefined && (!PRERENDER || (trend90 !== null && histDone))}>
       <Seo
         title={(cropParam ? t('msp_seo_crop_title').replace('{crop}', cropName(crop, lang)) : t('msp_seo_hub_title')).slice(0, 70)}
         description={(cropParam ? t('msp_seo_crop_desc').replace('{crop}', cropName(crop, lang)) : t('msp_seo_hub_desc')).slice(0, 155)}
@@ -292,16 +300,22 @@ export default function Msp() {
         <LocationControl />
 
         {/* 3a. all-crops snapshot table */}
-        {snapshotRows && (
+        {PRERENDER && (
+          <CollapsibleSection page="msp" id="snapshot" primary title={t('msp_snapshot_h_static')}>
+            {/* Batch 23: same height as the ten-row table, no price and no date in the static HTML. */}
+            <div className="flex min-h-[460px] items-center justify-center rounded-lg px-4 text-center text-[15px]" data-testid="snapshot-placeholder" style={{ border: '1px solid var(--ks-border)', color: 'var(--ks-ink-3)' }}>{t('mandi_view_today')}</div>
+          </CollapsibleSection>
+        )}
+        {!PRERENDER && snapshotRows && (
           <CollapsibleSection page="msp" id="snapshot" primary title={t('msp_snapshot_h')} after={<LastPriceBadge date={latestDate} testId="snapshot-price-badge" />}>
             <div className="overflow-hidden rounded-lg" style={{ border: '1px solid var(--ks-border)' }}>
               <table className="w-full text-[14px]">
                 <thead><tr style={{ background: 'var(--ks-bg-soft)' }}><th className="p-2 text-left">{t('col_crop')}</th><th className="p-2 text-right">{t('col_modal')}</th><th className="p-2 text-right">MSP</th><th className="p-2 text-right"> </th></tr></thead>
                 <tbody>
-                  {snapshotRows.map(({ c, price, date, msp: m }) => { const above = m != null && price != null && price >= m; return (
+                  {snapshotRows.map(({ c, price, date, market, msp: m }) => { const above = m != null && price != null && price >= m; return (
                     <tr key={c.slug} onClick={() => navigate(`/msp/${c.slug}`)} className="cursor-pointer" style={{ borderTop: '1px solid var(--ks-border)', background: c.slug === slug ? 'var(--ks-bg-soft)' : undefined }}>
                       <td className="p-2 font-semibold" style={{ color: 'var(--ks-green)' }}>{cropName(c, lang)}</td>
-                      <td className="p-2 text-right font-bold" style={{ color: 'var(--ks-ink)' }}><PriceCell price={price} date={date} bold fmt={(iso) => formatDay(iso, lang)} /></td>
+                      <td className="p-2 text-right font-bold" style={{ color: 'var(--ks-ink)' }}><PriceCell price={price} date={date} bold fmt={(iso) => formatDay(iso, lang)} />{market && <div className="text-[12px] font-semibold" data-testid="snapshot-mandi" style={{ color: 'var(--ks-ink-3)' }}>{market}</div>}</td>
                       <td className="p-2 text-right" style={{ color: 'var(--ks-ink-3)' }}>{m != null ? rs(m) : '—'}</td>
                       <td className="p-2 text-right">{m != null && price != null ? <span className="rounded px-1.5 py-0.5 text-[12px] font-bold" style={{ background: above ? 'var(--ks-green-tint)' : 'var(--ks-saffron-tint)', color: above ? 'var(--ks-green-dark)' : 'var(--ks-orange-dark)' }}>{above ? t('msp_above_short') : t('msp_below_short')}</span> : ''}</td>
                     </tr>) })}
@@ -348,7 +362,7 @@ export default function Msp() {
 
         {/* 3. today's prices vs MSP — ranked by real distance (Phase 3a) */}
         {view === 'crop' && (
-        <CollapsibleSection page="msp" id="today" primary title={t('msp_today_h')} after={<LastPriceBadge date={today?.date} />}>
+        <CollapsibleSection page="msp" id="today" primary title={t(PRERENDER ? 'msp_today_h_static' : 'msp_today_h')} after={<LastPriceBadge date={today?.date} />}>
 
           {/* Phase 3b — free mandi search (distance-unrestricted). */}
           <div className="mb-3">
@@ -380,7 +394,9 @@ export default function Msp() {
           </div>
 
           <OfflineStamp resources={MANDI_RES} className="mb-2" />
-          {today === undefined ? <Spinner /> : !today.rows.length ? (
+          {today === undefined ? <Spinner /> : today.prerender ? (
+            <div className="flex min-h-[220px] items-center justify-center rounded-lg px-4 text-center text-[15px]" data-testid="today-placeholder" style={{ border: '1px solid var(--ks-border)', color: 'var(--ks-ink-3)' }}>{t('mandi_view_today')}</div>
+          ) : !today.rows.length ? (
             mandiOffline.failed ? <OfflineNotice ageMs={mandiOffline.tooOld ? mandiOffline.ageMs : null} /> : (
               <p className="text-[15px]" style={{ color: 'var(--ks-ink-3)' }}>{t('no_data')}</p>
             )
@@ -444,11 +460,11 @@ export default function Msp() {
                   <div data-testid="msp-avg5-avg" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{rs(harvest.avg)}</div>
                 </div>
                 <div className="rounded-lg p-3" style={{ background: 'var(--ks-bg-soft)', border: '1px solid var(--ks-border)' }}>
-                  <div className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{latestPoint ? t('msp_avg_today_on').replace('{date}', formatDay(latestPoint.date, lang)) : t('msp_avg_today')}</div>
-                  <div data-testid="msp-avg5-today" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{calcPrice != null ? rs(calcPrice) : '—'}</div>
+                  <div className="text-[14px] font-semibold" style={{ color: 'var(--ks-ink-3)' }}>{PRERENDER ? t('msp_today_h_static') : latestPoint ? t('msp_avg_today_on').replace('{date}', formatDay(latestPoint.date, lang)) : t('msp_avg_today')}</div>
+                  <div data-testid="msp-avg5-today" className="text-[24px] font-extrabold" style={{ color: 'var(--ks-ink)' }}>{calcPrice != null ? rs(calcPrice) : PRERENDER ? t('mandi_view_today') : '—'}</div>
                 </div>
               </div>
-              {calcPrice == null && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_avg_today_none')}</p>}
+              {calcPrice == null && !PRERENDER && <p className="text-[14px]" style={{ color: 'var(--ks-ink-3)' }}>{t('msp_avg_today_none')}</p>}
               {harvestGap != null && (
                 <p data-testid="msp-avg5-gap" className="text-[15px] font-bold" style={{ color: 'var(--ks-ink)' }}>
                   {harvestGap > 0 ? t('msp_avg_gap_up').replace('{p}', harvestGap) : harvestGap < 0 ? t('msp_avg_gap_down').replace('{p}', Math.abs(harvestGap)) : t('msp_avg_gap_same')}

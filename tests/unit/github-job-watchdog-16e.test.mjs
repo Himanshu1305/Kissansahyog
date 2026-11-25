@@ -71,8 +71,11 @@ test('no secret in the logs', async () => {
 test('script: no mandi fetch/write code, no data.gov.in, no mandi calls made', () => {
   const src = readFileSync('scripts/refresh-data.mjs', 'utf8')
   assert.doesNotMatch(src, /data\.gov\.in\/resource|api\.data\.gov\.in|mandi-api\.onrender|DATA_GOV_IN_API_KEY|upsertPrices|from\('mandi_prices'\)\.(upsert|insert)/)
-  assert.match(src, /from\('mandi_prices'\)\.select\('price_date'\)/)   // the only mandi_prices access is the read-only freshness query
-  assert.equal((src.match(/mandi_prices/g) || []).length, 1)
+  // Batch 23: the watchdog reads a few more columns, but every access is still a read-only select (never a write).
+  const uses = (src.match(/from\('mandi_prices'\)/g) || []).length
+  assert.ok(uses >= 1)
+  assert.equal((src.match(/from\('mandi_prices'\)\.select\(/g) || []).length, uses)
+  assert.doesNotMatch(src, /mandi_prices'\)\s*\.(insert|upsert|update|delete)/)
 })
 
 test('script --dry-run runs offline, exits 0, never reads a secret', () => {

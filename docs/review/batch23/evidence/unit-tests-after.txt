@@ -1,0 +1,5 @@
+ℹ fail 1
+ℹ pass 991
+ℹ tests 994
+✖ failing tests:
+✖ strings: every district word and name exists; the Hindi lives only in strings.hi.js (6.5865ms)

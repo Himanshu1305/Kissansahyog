@@ -1,0 +1,41 @@
+Batch 23 - the exact strings the ship gates look for, taken from the source and from a fresh 'npm run build:prod' dist/ (2026-11-23T13:10:05Z)
+
+## source (src/)
+src/components/MandiTicker.jsx:102:          <div className="flex h-full items-center px-4 text-[14px] text-[#c8e6b0]" data-testid="ticker-placeholder">{t('mandi_view_tod...
+src/screens/Msp.jsx:306:            <div className="flex min-h-[460px] items-center justify-center rounded-lg px-4 text-center text-[15px]" data-testid="snapshot-placehol...
+1869:  mandi_view_today: { hi: 'आज का भाव देखें', en: "See today's price" },
+1870:  mandi_price_today: { hi: 'आज का भाव', en: "Today's price" },
+1980:  mandi_price_yesterday: { hi: 'कल का भाव', en: "Yesterday's price" },
+1981:  mandi_price_older: { hi: 'पिछला भाव', en: 'Previous price' },
+
+## built HTML (dist/)
+dist/index.html: 105039 bytes | ticker-placeholder=1 snapshot-placeholder=0 | 'आज का भाव देखें'=1 | 'कल का भाव'=0 'पिछला भाव'=0 'ks-date-badge'=0
+dist/msp/index.html: 90595 bytes | ticker-placeholder=0 snapshot-placeholder=1 | 'आज का भाव देखें'=1 | 'कल का भाव'=0 'पिछला भाव'=0 'ks-date-badge'=0
+dist/msp/chana/index.html: 89021 bytes | ticker-placeholder=0 snapshot-placeholder=1 | 'आज का भाव देखें'=1 | 'कल का भाव'=0 'पिछला भाव'=0 'ks-date-badge'=0
+all 278 prerendered index.html files: with 'कल का भाव': 0; with 'पिछला भाव': 0
+
+## built JS (dist/assets/)
+strings chunk (holds 'mandi_view_today:{hi'): dist/assets/LanguageProvider-D9KfofzF.js 
+mandi_view_today:{hi:`आज का भाव देखें`,en:`See today's price`}
+mandi_price_today:{hi:`आज का भाव`,en:`Today's price`}
+mandi_price_yesterday:{hi:`कल का भाव`,en:`Yesterday's price`}
+mandi_price_older:{hi:`पिछला भाव`,en:`Previous price`}
+chunks holding 'ks-date-badge' (must be the Msp chunk, not the HTML): dist/assets/Msp-BBHIvTQ2.js 
+
+## Batch 22 markers in the built chunks (the live-site proof walks the live chunks for these)
+my_mitra_choice_open: mitraRules-BwejyA2t.js 
+set_my_mitra_on_offer: Post-T9JaHaq_.js 
+admin_mitra_statement: mitraRules-BwejyA2t.js 
+mitra-statement: PeopleTab-WyjNhtal.js 
+
+## size check on the fresh build against the REAL Batch 22 snapshot (docs/review/batch22/evidence/prod-ship/prod-before-ship.json), the limits the ship script uses
+PASS  [predeploy_size] /: 105039 B vs live 111939 B = 0.938 (allowed 0.7–1.4; FAQ live no, new no) <- index.html
+PASS  [predeploy_size] /mausam: 41402 B vs live 41562 B = 0.996 (allowed 0.85–1.15; FAQ live yes, new yes) <- mausam\index.html
+PASS  [predeploy_size] /msp: 90595 B vs live 117094 B = 0.774 (allowed 0.6–1.15; FAQ live yes, new yes) <- msp\index.html
+PASS  [predeploy_size] /browse: 105039 B vs live 111939 B = 0.938 (allowed 0.7–1.4; FAQ live no, new no) <- index.html
+PASS  [predeploy_size] /sawaal: 26935 B vs live 27184 B = 0.991 (allowed 0.85–4; FAQ live no, new no) <- sawaal\index.html
+PASS  [predeploy_size] /yojana: 41244 B vs live 41493 B = 0.994 (allowed 0.85–4; FAQ live no, new no) <- yojana\index.html
+PASS  [predeploy_size] /cold-storage: 487183 B vs live 487432 B = 0.999 (allowed 0.85–1.15; FAQ live yes, new yes) <- cold-storage\index.html
+PASS  [predeploy_size] /about: 40612 B vs live 41002 B = 0.990 (allowed 0.85–1.15; FAQ live no, new no) <- about\index.html
+PASS  [predeploy_size] /privacy: 35605 B vs live 36612 B = 0.972 (allowed 0.85–1.15; FAQ live no, new no) <- privacy\index.html
+PASS  [predeploy_size] /terms: 47493 B vs live 48508 B = 0.979 (allowed 0.85–1.15; FAQ live no, new no) <- terms\index.html

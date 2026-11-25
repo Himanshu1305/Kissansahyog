@@ -1,0 +1,15 @@
+AFTER (new build)
+index.html: 'कल का भाव'=0 'पिछला भाव'=0 ₹=4 'आज का भाव'=2 ks-date-badge=0 bytes=105039
+msp/index.html: 'कल का भाव'=0 'पिछला भाव'=0 ₹=59 'आज का भाव'=10 ks-date-badge=0 bytes=90595
+msp/chana/index.html: 'कल का भाव'=0 'पिछला भाव'=0 ₹=57 'आज का भाव'=4 ks-date-badge=0 bytes=89021
+msp/gehun/index.html: 'कल का भाव'=0 'पिछला भाव'=0 ₹=59 'आज का भाव'=4 ks-date-badge=0 bytes=90463
+msp/dhan/index.html: 'कल का भाव'=0 'पिछला भाव'=0 ₹=59 'आज का भाव'=4 ks-date-badge=0 bytes=90094
+html files (all routes) containing 'कल का भाव': 0; 'पिछला भाव': 0
+
+BEFORE (old build, 19 Nov, same as live on 23 Nov)
+index.html: 'कल का भाव'=2 'पिछला भाव'=0 ₹=27 'आज का भाव'=0 ks-date-badge=0 bytes=113324
+msp/index.html: 'कल का भाव'=38 'पिछला भाव'=0 ₹=143 'आज का भाव'=10 ks-date-badge=2 bytes=123043
+msp/chana/index.html: 'कल का भाव'=23 'पिछला भाव'=0 ₹=115 'आज का भाव'=4 ks-date-badge=2 bytes=109716
+msp/gehun/index.html: 'कल का भाव'=38 'पिछला भाव'=0 ₹=143 'आज का भाव'=4 ks-date-badge=2 bytes=122911
+msp/dhan/index.html: 'कल का भाव'=14 'पिछला भाव'=0 ₹=99 'आज का भाव'=4 ks-date-badge=2 bytes=103294
+html files (all routes) containing 'कल का भाव': 12; 'पिछला भाव': 0

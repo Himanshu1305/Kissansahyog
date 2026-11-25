@@ -1,19 +1,14 @@
+import { dayKind, istToday } from './pickRule.js'
 // Pure staleness classification for a mandi price date — extracted from pages/shared.jsx
 // so it can be unit-tested in Node without JSX. Phase 4c honest labeling:
 //   'today'     → plain price, no tag
 //   'yesterday' → "कल का भाव (dd/mm)" (exactly one day old)
 //   'older'     → "पिछला भाव (dd/mm)" (more than one day old)
 //   null        → no/invalid date
-export function priceStaleness(dateStr) {
-  if (!dateStr) return null
-  const d = new Date(`${dateStr}T00:00:00`)
-  if (Number.isNaN(d.getTime())) return null
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  const days = Math.floor((today - d) / 86400000)
-  if (days <= 0) return 'today'
-  if (days === 1) return 'yesterday'
-  return 'older'
+export function priceStaleness(dateStr, now = new Date()) {
+  // Batch 23: the calendar day is the day in India (IST), never the device's own time zone.
+  const k = dayKind(dateStr, istToday(now))
+  return k
 }
 
 // The i18n key for a given staleness (null/today → no tag). Used by StaleTag + tests.
