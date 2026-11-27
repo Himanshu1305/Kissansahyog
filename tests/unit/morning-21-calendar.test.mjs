@@ -72,14 +72,12 @@ test('two stages due the same day: the EARLIER stage is shown', () => {
   assert.ok(due(d).length > 1, 'a day with two stages exists'); assert.equal(pickCalendarLine(REVIEWED, d).id, due(d)[0][0]); assert.ok(due(d)[0][0] < due(d)[1][0])
 })
 
-test('every 3rd day (daysSinceEpoch % 3 === 0) a static line replaces the cohort line while a stage is due; the other days show the cohort', () => {
-  let stat = 0, coh = 0
-  for (let d = '2026-11-14'; d <= '2026-12-04'; d = addDays(d, 1)) { // s01 and s02 are both eligible here
+test('Batch 27: a due stage ALWAYS shows (no 3rd-day swap any more); static lines never take its place while it is due and rain is not coming', () => {
+  for (let d = '2026-11-14'; d <= '2026-12-04'; d = addDays(d, 1)) { // s01 and s02 are both eligible here, a stage is due every day
     const l = pickCalendarLine(REVIEWED, d)
-    if (ep(d) % 3 === 0) { assert.ok(!isCohort(l) && ['s01', 's02'].includes(l.id), `${d} static`); stat++ } else { assert.ok(isCohort(l), `${d} cohort`); coh++ }
+    assert.ok(isCohort(l), `${d} cohort (daysSinceEpoch % 3 = ${ep(d) % 3})`)
   }
-  assert.ok(stat >= 6 && coh >= 12)
-  // with no eligible static line the cohort line shows every day
+  // with no eligible static line the cohort line shows every day, as before
   const noStatic = { ...REVIEWED, static: [] }
   for (let d = '2026-11-14'; d <= '2026-12-04'; d = addDays(d, 1)) assert.ok(isCohort(pickCalendarLine(noStatic, d)), d)
 })

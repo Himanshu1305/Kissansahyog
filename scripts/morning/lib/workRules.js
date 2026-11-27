@@ -2,6 +2,7 @@
 // Batch 17B: rain rules read the rain verdict (ctx.verdict) - the same spraying / harvest windows as /mausam - never a bare chance (%).
 import { levelIndex } from '../../../src/lib/weather/rainVerdict.js'
 import { S, fmt } from '../strings.hi.js'
+import { hasStaleDeadline, approvalExpired } from './freshness.js'
 export function ruleFires(when, day, ctx) {
   const checks = []
   const v = ctx.verdict || null
@@ -48,10 +49,11 @@ export function rainHidesIrrigation(verdict) {
 
 // The ONE calendar line for `date` (Batch 21B: "after sowing"). -> { id, text, source: 'calendar:<id>', unreviewed: bool, unreviewedIds: [ids], hidden: [ids], cohort } or null.
 // A stage (irr1, irr2, irr3) is due on day D for the sowers sown between D - das_to and D - das_from, clipped to sowing_dates. The line is built from
-// those dates (nothing is typed per day); if two stages are due the same day the EARLIER stage is shown. While a stage is due, every 3rd day
-// (daysSinceEpoch % 3 === 0) a static line is shown instead; when none is due the static lines rotate. Stage lines are the irrigation lines:
+// those dates (nothing is typed per day); if two stages are due the same day the EARLIER stage is shown. Batch 27: a due stage ALWAYS wins (before, every 3rd
+// day a static line took its place); static lines now fill only the days when no stage is due or when rain hides it, and they rotate. Stage lines are the irrigation lines:
 // when rain is expected they are hidden and the static rain_hold line (with the other static lines) is shown instead. Static lines are never hidden.
-const calOk = (e, draft) => (e.reviewed === true || draft) && e.too_long !== true && e.lint_blocked !== true // too_long / lint_blocked: a reviewer must fix the text first
+// too_long / lint_blocked: a reviewer must fix the text first. Batch 27: review_expires (optional, YYYY-MM-DD) ends an approval on that day.
+const calOk = (e, draft, date) => (e.reviewed === true || draft) && e.too_long !== true && e.lint_blocked !== true && !(date && approvalExpired(e, date))
 const prevDay = (iso) => addDaysIso(iso, -1)
 const addDaysIso = (iso, n) => new Date(Date.parse(`${iso}T00:00:00Z`) + n * 86400000).toISOString().slice(0, 10)
 const human = (iso) => fmt(S.dataDateLabel, { d: Number(iso.slice(8)), m: S.months[Number(iso.slice(5, 7)) - 1] })
@@ -70,12 +72,12 @@ export function dueStages(calendar, date) {
 }
 
 function staticPool(calendar, date, draft) {
-  return (calendar.static || []).filter((e) => e.from <= date && date <= e.to && calOk(e, draft))
+  return (calendar.static || []).filter((e) => e.from <= date && date <= e.to && calOk(e, draft, date) && !hasStaleDeadline(e, date)) // Batch 27: a line quoting a deadline that is over is never used
 }
 
 // the plain pick of one day under one rain state; yesterday (same state) is used so a static line never repeats two days running while k > 1
 function calPick(calendar, date, draft, rain, depth = 0) {
-  const due = dueStages(calendar, date).find((d) => calOk(d.stage, draft) && calOk(calendar.sowing_dates, draft))
+  const due = dueStages(calendar, date).find((d) => calOk(d.stage, draft, date) && calOk(calendar.sowing_dates, draft, date))
   const statics = staticPool(calendar, date, draft)
   const hidden = []
   let pool = statics
@@ -83,8 +85,8 @@ function calPick(calendar, date, draft, rain, depth = 0) {
     if (rain) {
       hidden.push(due.stage.id)
       const hold = calendar.rain_hold
-      pool = hold && calOk(hold, draft) ? [...statics, hold] : statics
-    } else if (!(statics.length && epochDays(date) % 3 === 0)) {
+      pool = hold && calOk(hold, draft, date) && !hasStaleDeadline(hold, date) ? [...statics, hold] : statics
+    } else {
       return { kind: 'cohort', due, hidden, e: due.stage }
     }
   }

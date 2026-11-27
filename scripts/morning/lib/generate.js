@@ -13,6 +13,7 @@ import { chooseDate, summarize, MAX_MOVE_PCT, MIN_MANDIS, WINDOW_DAYS, MEDIAN_BA
 import { compose, lint, pickBlessing, TARGET_CHARS, HARD_CHARS, KVK_PHONE } from './compose.js'
 import { pickSlot, pickMela, festivalToday, contentOff } from './content.js'
 import { pickPoll, pollText, yesterdayLine } from './poll.js'
+import { auditData, auditWarnings } from './freshness.js'
 import { BANNERS } from '../../../src/content/kamPani.js'
 
 const DATA_DIR = new URL('../../../data/morning/', import.meta.url)
@@ -97,6 +98,10 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
     for (const id of r.unreviewed) unreviewed.push(`calendar:${id}`)
     if (r.calendar && r.calendar.hidden.length) notes.push(`irrigation line hidden (${r.calendar.hidden.join(', ')}): 48-hour rain is light or more, the static rain line is shown instead`)
   }
+  // Batch 27: stale deadlines in the data are held back by the pickers; the audit says which ones, and which files are running dry
+  let warnings = []
+  try { warnings = off ? [] : auditWarnings(auditData(data, date)) } catch (e) { warnings = [`WARNING freshness: the data audit itself failed (${String(e && e.message).slice(0, 100)}); the post was made without it`] }
+  for (const w of warnings) notes.push(w)
   notes.push(`aaj ka kaam: ${tasks.length ? `rules fired: ${fired.join(', ')}` : 'OMITTED: no rule fired'}`)
 
   // tithi / festival / blessing / poll
@@ -156,7 +161,7 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   ].join('\n')
 
   const pollTxt = poll ? pollText(poll, S.pollFileTitle) : ''
-  return { taskSource, taskCalendar, taskFired: fired, message: out.text, poll: pollTxt, pollQuestionId: poll ? poll.id : null, report, model, compose: out, violations, warn, haveWeather: !!weather, haveMandi: !!mandi }
+  return { warnings, taskSource, taskCalendar, taskFired: fired, message: out.text, poll: pollTxt, pollQuestionId: poll ? poll.id : null, report, model, compose: out, violations, warn, haveWeather: !!weather, haveMandi: !!mandi }
 }
 
 // Batch 17B: the saved forecast first (weather_cache_v2, Sagar cell, public anon key), direct Open-Meteo only if it is missing/old.

@@ -3,6 +3,7 @@
 import { S, fmt } from '../strings.hi.js'
 import { daysBetween, weekday, addDays } from './ist.js'
 import { weekChange } from './mandi.js'
+import { hasStaleDeadline, approvalExpired } from './freshness.js'
 
 const epochDays = (iso) => Math.floor(Date.parse(`${iso}T00:00:00Z`) / 86400000)
 const pick = (list, date) => (list.length ? list[Math.floor(epochDays(date) / 7) % list.length] : null) // same weekday cycles weekly
@@ -12,9 +13,11 @@ export const SLOT_BY_WEEKDAY_V2 = { 1: 'scheme', 2: 'upcoming', 3: 'money', 4: '
 // kill switch, same pattern as districtsOff: any case, spaces trimmed. Any other value or unset = the new behaviour.
 export const contentOff = (env = process.env) => String(env.MORNING_CONTENT ?? '').trim().toLowerCase() === 'off'
 
-const usable = (items, draft) => {
+// Batch 27: with `date`, an item whose approval expired (review_expires) or whose text quotes a deadline that is over is skipped, reviewed or not.
+const usable = (items, draft, date = null) => {
   const ok = [], used = []
   for (const it of items || []) {
+    if (date && (approvalExpired(it, date) || hasStaleDeadline(it, date))) continue
     if (it.reviewed === true || it.verified === true) ok.push(it)
     else if (draft) { ok.push(it); used.push(it.id) }
   }
@@ -53,7 +56,7 @@ export function pickThrottled(pool, date) {
 
 // ---- Monday: scheme news. Also used by Friday (on the Monday of the same week) so the two days always show the same scheme.
 export function pickScheme(date, data, draft) {
-  const { ok, used } = usable((data.schemes || []).filter((s) => inWindow(s, date)), draft)
+  const { ok, used } = usable((data.schemes || []).filter((s) => inWindow(s, date)), draft, date)
   const dated = ok.filter((s) => s.deadline && s.deadline >= date && daysBetween(date, s.deadline) <= 45).sort((a, b) => (a.deadline < b.deadline ? -1 : 1))
   const s = dated[0] || pickThrottled(ok.filter((x) => !x.deadline), date)
   return s ? { scheme: s, unreviewed: used.includes(s.id) } : null
@@ -88,7 +91,7 @@ function howtoLines(s) {
 // ---- Tuesday: what is coming. Nearest 1-3 dated things, soonest first. Far-away events (scope "far") are not shown.
 export function upcomingItems(date, data, draft) {
   const cands = []
-  const { ok: evs, used } = usable(data.events, draft)
+  const { ok: evs, used } = usable(data.events, draft, date)
   for (const e of evs) {
     if (e.scope === 'far') continue
     if (e.kind === 'fair') continue // Batch 24: fairs have their own "किसान मेला" section (melaItems), never inside this list
@@ -108,7 +111,7 @@ export function upcomingItems(date, data, draft) {
       : fmt(S.upcomingEvent, { title: e.title_hi, days, date: human(e.date) })
     cands.push({ id: e.id, days, text: text + place, unrev: used.includes(e.id) })
   }
-  const { ok: sch, used: sused } = usable(data.schemes, draft)
+  const { ok: sch, used: sused } = usable(data.schemes, draft, date)
   for (const s of sch) {
     if (s.deadline && s.deadline > date) cands.push({ id: s.id, days: daysBetween(date, s.deadline), text: fmt(S.upcomingWindow, { title: s.title_hi, days: daysBetween(date, s.deadline), date: human(s.deadline) }), unrev: sused.includes(s.id) })
   }
@@ -120,7 +123,7 @@ export function upcomingItems(date, data, draft) {
 export const MELA_WINDOW_DAYS = 90
 export const MELA_MAX = 2
 export function melaItems(date, data, draft) {
-  const { ok, used } = usable(data.events, draft)
+  const { ok, used } = usable(data.events, draft, date)
   const cands = []
   for (const e of ok) {
     if (e.kind !== 'fair' || e.scope === 'far' || !e.date) continue
@@ -148,7 +151,7 @@ export function pickMela(date, { draft = false, data, env = process.env } = {}) 
 
 // Batch 24: today's festival from the approved events file (festivals.json is still read first by generate.js).
 export function festivalToday(date, data, draft) {
-  const { ok, used } = usable(data.events, draft)
+  const { ok, used } = usable(data.events, draft, date)
   const f = ok.find((e) => e.kind === 'festival' && e.scope !== 'far' && e.date === date)
   return f ? { festival: { id: f.id, name_hi: f.title_hi }, unreviewed: used.includes(f.id) } : null
 }
@@ -170,13 +173,13 @@ function pickSlotNew(date, { draft, data, summary }) {
       return items.length ? { kind, lines: [S.slotUpcoming, ...items.map((i) => i.text)], usedUnreviewed: items.filter((i) => i.unrev).map((i) => i.id) } : null
     }
     if (kind === 'money') {
-      const { ok, used } = usable((data.moneyFacts || []).filter((m) => inWindow(m, date)), draft)
+      const { ok, used } = usable((data.moneyFacts || []).filter((m) => inWindow(m, date)), draft, date)
       const it = pickThrottled(ok, date)
       if (!it) return null
       return { kind, lines: [S.slotMoney, ...it.lines_hi, fmt(S.sourceWithDate, { source: it.source_name, date: human(it.source_date) })], usedUnreviewed: used.includes(it.id) ? [it.id] : [] }
     }
     if (kind === 'know') {
-      const { ok, used } = usable(data.gyaan, draft)
+      const { ok, used } = usable(data.gyaan, draft, date)
       const it = pickThrottled(ok, date)
       if (!it) return null
       const lines = [S.slotKnow, it.text_hi]
@@ -184,7 +187,7 @@ function pickSlotNew(date, { draft, data, summary }) {
       return { kind, lines, usedUnreviewed: used.includes(it.id) ? [it.id] : [] }
     }
     if (kind === 'kahawat') {
-      const { ok, used } = usable((data.lines?.kahawat || []).filter((k) => k.lint_blocked !== true), draft)
+      const { ok, used } = usable((data.lines?.kahawat || []).filter((k) => k.lint_blocked !== true), draft, date)
       const it = pickThrottled(ok, date)
       if (!it) return null
       const lines = [S.slotKahawat, it.text_hi, fmt(S.kahawatMeaning, { meaning: it.meaning_hi })]

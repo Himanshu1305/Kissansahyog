@@ -79,6 +79,7 @@ export async function main(argv = process.argv.slice(2)) {
     cardNote = `card.png made (${Math.round(png.length / 1024)} KB)${r.overflow.length ? `; LAYOUT WARNING: ${r.overflow.join(' | ')}` : ''}`
   }
   const report = `${res.report}\n${cardNote}\n`
+  for (const w of res.warnings || []) appendStepSummary(w) // Batch 27: stale-text and runway warnings show on the GitHub run page
   writeFileSync(join(outDir, 'report.txt'), report, 'utf8')
 
   if (!res.haveWeather && !res.haveMandi) {
