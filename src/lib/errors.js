@@ -95,6 +95,12 @@ const CODE_TO_KEY = {
   // Batch 14A - admin console and blocked accounts
   account_blocked: 'err_account_blocked',
   session_required: 'err_admin_session',
+  kvk_invalid_range: 'adm_kvk_err_range',
+  kvk_invalid_date: 'adm_kvk_err_date',
+  kvk_invalid_seed: 'adm_kvk_err_seed',
+  kvk_invalid_source: 'adm_kvk_err_source',
+  kvk_invalid_told: 'adm_kvk_err_told',
+  kvk_invalid_valid: 'adm_kvk_err_valid',
   super_required: 'err_admin_super',
   cannot_block_self: 'err_admin_self',
   cannot_change_self: 'err_admin_self',

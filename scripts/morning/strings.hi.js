@@ -107,6 +107,8 @@ export const S = {
   months: ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
   monthAliases: [['अक्तूबर', 'अक्टूबर']],                    // other spellings read as the same month when a text is checked for dates (Batch 27)
   deadlineWords: ['तक', 'से पहले'],                          // "25 नवंबर तक" / "25 नवंबर से पहले" = a deadline date inside a text (Batch 27)
+  kvkLateSowing: 'देर से बुवाई: {date} तक बो सकते हैं',            // Batch 29: an answer from the admin KVK tab (late-sown wheat); {date} = "5 जनवरी"
+  kvkLateSeed: 'बीज {pct}% ज़्यादा लगता है',                     // Batch 29: joined to the line above when KVK also gave the extra seed
   weekdays: ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'],
   tithiNames: ['प्रतिपदा', 'द्वितीया', 'तृतीया', 'चतुर्थी', 'पंचमी', 'षष्ठी', 'सप्तमी', 'अष्टमी', 'नवमी', 'दशमी', 'एकादशी', 'द्वादशी', 'त्रयोदशी', 'चतुर्दशी', 'पूर्णिमा', 'अमावस्या'],
   // ---- weather words (WMO code groups)

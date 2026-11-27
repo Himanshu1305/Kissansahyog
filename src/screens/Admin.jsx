@@ -18,6 +18,7 @@ const TAB_VIEWS = {
   overview: lazy(() => import('./admin/tabs/OverviewTab')),
   content: lazy(() => import('./admin/tabs/ContentTab')),
   mandi: lazy(() => import('./admin/tabs/MandiTab')),
+  kvk: lazy(() => import('./admin/tabs/KvkTab')),
   moderation: lazy(() => import('./admin/tabs/ModerationTab')),
   people: lazy(() => import('./admin/tabs/PeopleTab')),
   security: lazy(() => import('./admin/tabs/SecurityTab')),

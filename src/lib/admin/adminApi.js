@@ -266,3 +266,10 @@ export const adminSetUserBlocked = (actor, userId, blocked, reason) =>
 export const adminSetAdminRole = (actor, userId, role) => rpc('admin_set_admin_role', { p_actor: actor, p_user_id: userId, p_role: role })
 export const adminListActions = (actor, { limit = 50, offset = 0, action = null, admin = null } = {}) =>
   rpc('admin_list_actions', { p_actor: actor, p_limit: limit, p_offset: offset, p_action_filter: action || null, p_admin_filter: admin || null })
+
+// Batch 29 - the KVK questions tab: facts to confirm with KVK; a saved answer is used by the next morning post by itself.
+// Errors keep the database code (not_admin, session_required, not_found, kvk_invalid_*), which toAppError maps to a message.
+export const adminKvkList = (actorId) => rpc('admin_kvk_list', { p_actor: actorId })
+export const adminKvkAnswer = (actorId, id, answer, meta) =>
+  rpc('admin_kvk_answer', { p_actor: actorId, p_id: id, p_answer: answer, p_source_name: meta.source_name, p_source_date: meta.source_date, p_valid_until: meta.valid_until })
+export const adminKvkReopen = (actorId, id) => rpc('admin_kvk_reopen', { p_actor: actorId, p_id: id })

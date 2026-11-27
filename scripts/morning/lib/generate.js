@@ -13,6 +13,7 @@ import { chooseDate, summarize, MAX_MOVE_PCT, MIN_MANDIS, WINDOW_DAYS, MEDIAN_BA
 import { compose, lint, pickBlessing, TARGET_CHARS, HARD_CHARS, KVK_PHONE } from './compose.js'
 import { pickSlot, pickMela, festivalToday, contentOff } from './content.js'
 import { pickPoll, pollText, yesterdayLine } from './poll.js'
+import { applyKvk, loadKvkAnswers } from './kvk.js'
 import { auditData, auditWarnings } from './freshness.js'
 import { BANNERS } from '../../../src/content/kamPani.js'
 
@@ -32,6 +33,13 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   const yesterday = addDays(date, -1)
   const notes = []   // per-section report lines
   const unreviewed = []
+
+  // Batch 29: answers an admin entered in the "KVK questions" tab (read only, public key). They are laid over the repo data for this run only;
+  // any problem (database down, bad row) leaves the data as it was and adds one line to the report.
+  const kvkNotes = []
+  if (!contentOff(env) && loaders.kvk) {
+    try { const r = applyKvk(data, await loaders.kvk(date), date); data = r.data; for (const n of r.notes) kvkNotes.push(n) } catch (e) { kvkNotes.push(`WARNING kvk: the saved KVK answers could not be read (${String(e && e.message).slice(0, 80)}); the post uses the repo data`) }
+  }
 
   // weather
   let weather = null
@@ -102,6 +110,7 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
   let warnings = []
   try { warnings = off ? [] : auditWarnings(auditData(data, date)) } catch (e) { warnings = [`WARNING freshness: the data audit itself failed (${String(e && e.message).slice(0, 100)}); the post was made without it`] }
   for (const w of warnings) notes.push(w)
+  for (const n of kvkNotes) { notes.push(n); if (n.startsWith('WARNING')) warnings.push(n) } // Batch 29
   notes.push(`aaj ka kaam: ${tasks.length ? `rules fired: ${fired.join(', ')}` : 'OMITTED: no rule fired'}`)
 
   // tithi / festival / blessing / poll
@@ -168,6 +177,7 @@ export async function generate({ date, draft = false, data, loaders, nowIso = nu
 export const makeDefaultLoaders = ({ url, key, nowMs } = {}) => ({
   weather: (date) => loadWeather({ url, key, lat: SAGAR.lat, lon: SAGAR.lon, date, nowMs }),
   districts: (date) => loadDistrictsWeather({ districts: DISTRICTS, url, key, date, nowMs }),
+  kvk: () => loadKvkAnswers({ url, key }), // Batch 29: [] when there are no keys (tests, fixtures) or the database function is not there yet
 })
 export const defaultLoaders = makeDefaultLoaders()
 export { istDate }
