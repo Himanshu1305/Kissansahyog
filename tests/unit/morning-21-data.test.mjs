@@ -124,7 +124,7 @@ test('the PM-किसान and फसल बीमा seeds: window, who_hi fo
   const pm = SCHEMES.find((s) => s.id === 'pm-kisan-24'), fb = SCHEMES.find((s) => s.id === 'pmfby-rabi')
   assert.equal(pm.who_hi, 'पात्र किसान परिवार'); assert.deepEqual([pm.show_from, pm.show_until, pm.source_date], ['2026-11-01', '2026-11-30', '2026-10-30'])
   assert.match(pm.news_hi, /24वीं किस्त 30 अक्तूबर/); assert.equal(fb.title_hi, 'प्रधानमंत्री फसल बीमा योजना'); assert.equal(fb.who_hi, 'फसल बीमा चाहने वाले किसान')
-  assert.equal(fb.howto.last_date, null); assert.equal(fb.howto.where_hi, 'बैंक या CSC')
+  assert.equal(fb.howto.last_date, '2026-12-31'); assert.equal(fb.verified, true) /* Batch 28: approved by the founder 2026-11-27 on one source */; assert.equal(fb.howto.where_hi, 'बैंक या CSC')
 })
 
 // ---- length
@@ -223,11 +223,11 @@ const withData = (over) => ({
 })
 const CASES = [
   ['news (Mon)', 'scheme', '2026-11-09', { schemes: four({ ...pmNews, verified: true }) }],
-  ['scheme, old form (Mon)', 'scheme', '2026-11-09', { schemes: four({ ...pmfby, verified: true }) }],
+  ['scheme, old form (Mon)', 'scheme', '2026-12-07', { schemes: four({ ...pmfby, verified: true }) }],
   ['upcoming (Tue)', 'upcoming', '2026-11-10', {}],
   ['money (Wed)', 'money', '2026-11-11', { moneyFacts: four({ ...MONEY[0], reviewed: true }) }],
   ['know (Thu)', 'know', '2026-11-12', { gyaan: four({ ...GYAAN.find((g) => g.id === 'k01'), reviewed: true }) }],
-  ['howto (Fri)', 'howto', '2026-11-13', { schemes: four({ ...pmfby, verified: true, howto: { ...pmfby.howto, last_date: '2026-12-31' } }) }], // a test-only last date: the real one is unknown
+  ['howto (Fri)', 'howto', '2026-12-04', { schemes: four({ ...pmfby, verified: true }) }], // Batch 28: the real pmfby-rabi entry, with its real last date (31 Dec); the dates are inside its 45-day window
   ['kahawat (Sat)', 'kahawat', '2026-11-14', { lines: { ...DATA.lines, kahawat: rev(LINES.kahawat) } }],
 ]
 for (const [label, kind, date, over] of CASES) {

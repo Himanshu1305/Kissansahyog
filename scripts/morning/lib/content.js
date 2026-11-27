@@ -76,7 +76,7 @@ function schemeLines(s, date) {
 }
 
 // ---- Friday: how to apply. Not eligible without a dated last_date (the day must not go out with a missing date).
-const howtoEligible = (s) => !!(s && s.howto && typeof s.howto.last_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s.howto.last_date))
+const howtoEligible = (s, date) => !!(s && s.howto && typeof s.howto.last_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s.howto.last_date) && (!date || s.howto.last_date >= date)) // Batch 28: never after its own last date
 function howtoLines(s) {
   const h = s.howto
   const lines = [S.slotHowto, fmt(S.slotSchemeLine, { title: s.title_hi, who: fmt(S.howtoPremium, { premium: h.premium_hi }) })]
@@ -165,7 +165,7 @@ function pickSlotNew(date, { draft, data, summary }) {
     }
     if (kind === 'howto') {
       const r = pickScheme(mondayOf(date), data, draft)
-      if (!r || !howtoEligible(r.scheme)) return null
+      if (!r || !howtoEligible(r.scheme, date)) return null
       return { kind, lines: howtoLines(r.scheme), usedUnreviewed: r.unreviewed ? [r.scheme.id] : [] }
     }
     if (kind === 'upcoming') {

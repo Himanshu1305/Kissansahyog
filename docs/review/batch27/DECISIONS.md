@@ -20,3 +20,12 @@ Why: on 27 Nov 2026 the post said wheat could be sown "by 25 Nov". The data line
 
 ## Rollback
 `git revert <the Batch 27 commit>` and push. The post then behaves as before (with s01 still retired by its window).
+
+# Batch 28 (shipped together with 27) - the PM Fasal Bima rabi last date
+
+- `data/morning/scheme-calendar.json`: `pmfby-rabi` now has `deadline` and `howto.last_date` 2026-12-31, source Krishak Jagat (26 Nov 2026, a Harda article quoting the Deputy Director of Agriculture; names wheat, chana, mustard). Approved by the founder 2026-11-27 on this ONE source. No second source or pmfby.gov.in page was found. Re-check with the district agriculture office when possible. The premium line (1.5%) is still the older Kshema figure.
+- Effect: Mondays from 30 Nov show it as the nearest-deadline scheme (with days left); Fridays show "how to apply" with the last date. The scheme-calendar runway warning moves from 30 Nov to 31 Dec.
+- Code: `content.js` howtoEligible now also requires last_date >= the day shown, so the how-to never goes out after its own last date (found by the new Friday test: Fri 1 Jan would have shown "31 December").
+- Tests: morning-21-approved (pmfby-rabi approved; Friday how-to to 25 Dec, none from 1 Jan), morning-21-data, morning-21-content (new guard test).
+- Not added (unverified): wheat irrigation 2 and 3 days (50-55, 80-85), late sowing window and seed rate, mustard and masoor stage days. Only wheat irrigation 1 (20-25 days, IIWBR) and chana/pea/masoor first irrigation (IIPR) are confirmed.
+- Open: the approved event `win-wheat-late` (1 Dec to 5 Jan, source Krishisewa, note "KVK Sagar to confirm") is single-source; it shows in the "what's next" slot.

@@ -25,14 +25,14 @@ test('approved: calendar (sowing_dates, irr1-irr3, s01, s02, rain_hold), near ev
   for (const g of DATA.gyaan) { assert.equal(g.reviewed, true, g.id); assert.equal(g.approved_by, AP) }
   assert.equal(DATA.gyaan.length, 13)
   const sv = Object.fromEntries(DATA.schemes.map((s) => [s.id, s.verified]))
-  assert.deepEqual(sv, { 'pm-kisan': false, pmfby: false, kcc: true, 'pm-kisan-24': true, 'pmfby-rabi': false })
+  assert.deepEqual(sv, { 'pm-kisan': false, pmfby: false, kcc: true, 'pm-kisan-24': true, 'pmfby-rabi': true })
   const kh = DATA.lines.kahawat
   assert.equal(kh.length, 12)
   for (const k of kh) { if (k.id === 'k06') continue; assert.equal(k.reviewed, true, k.id); assert.equal(k.wording_checked, true, k.id); assert.equal(k.approved_by, AP) }
 })
 
-test('the exceptions: pmfby-rabi (Monday and Friday), pm-kisan and pmfby stay unverified; the OCR kahawat k06 stays unreviewed', () => {
-  for (const id of ['pmfby-rabi', 'pm-kisan', 'pmfby']) assert.equal(DATA.schemes.find((s) => s.id === id).verified, false, id)
+test('the exceptions: pm-kisan and pmfby stay unverified (pmfby-rabi was approved 2026-11-27, Batch 28); the OCR kahawat k06 stays unreviewed', () => {
+  for (const id of ['pm-kisan', 'pmfby']) assert.equal(DATA.schemes.find((s) => s.id === id).verified, false, id)
   const k6 = DATA.lines.kahawat.find((k) => k.id === 'k06')
   assert.match(k6.text_hi, /^उत्तर चमकै बीजुरी/); assert.equal(k6.reviewed, false); assert.equal(k6.wording_checked, false)
   assert.deepEqual(j('tips.json').map((t) => t.reviewed), [false, false, false, false])
@@ -58,17 +58,18 @@ test('live gate with the approvals: every weekday has what it should on a real s
   assert.ok(live('2026-11-12').usedUnreviewed.length === 0 && live('2026-11-17').usedUnreviewed.length === 0)
   // Monday: two verified schemes (pm-kisan-24, kcc) = a thin pool, shown 2 weeks in 4; other weeks fall back to the upcoming list
   const mondays = Array.from({ length: 8 }, (_, i) => live(addDays('2026-11-16', 7 * i))).filter((x) => x && x.kind === 'scheme')
-  assert.ok(mondays.length >= 2 && mondays.length < 8, 'a thin pool: some Mondays show a scheme, the others fall back (pm-kisan-24 leaves the pool after 30 Nov)'); assert.ok(mondays.every((m) => ['pm-kisan-24', 'kcc'].includes(m.scheme.id)))
+  assert.ok(mondays.length >= 2 && mondays.length < 8, 'a thin pool: some Mondays show a scheme, the others fall back (pm-kisan-24 leaves the pool after 30 Nov)'); assert.ok(mondays.every((m) => ['pm-kisan-24', 'kcc', 'pmfby-rabi'].includes(m.scheme.id)))
 })
 
-test('the Friday how-to is still blocked by design (pmfby-rabi has no last date): no howto slot on any Friday', () => {
-  for (let i = 0; i < 20; i++) { const d = addDays('2026-11-13', 7 * i); const s = live(d); assert.ok(!s || s.kind !== 'howto', d) }
+test('Batch 28: the Friday how-to shows the approved pmfby-rabi last date (31 Dec 2026) on the Fridays up to it, and never after it', () => {
+  for (const d of ['2026-11-27', '2026-12-04', '2026-12-11', '2026-12-18', '2026-12-25']) { const s = live(d); assert.ok(s && s.kind === 'howto', d); assert.ok(s.lines.join('\n').includes('31 दिसंबर'), d); assert.deepEqual(s.usedUnreviewed, [], d) }
+  for (const d of ['2027-01-01', '2027-01-08', '2027-01-15']) { const s = live(d); assert.ok(!s || s.kind !== 'howto', d) }
 })
 
-test('the unconfirmed kahawat never shows; pmfby-rabi never shows on a Monday', () => {
+test('the unconfirmed kahawat never shows; the unverified pm-kisan and pmfby never show on a Monday', () => {
   for (let i = 0; i < 60; i++) {
     const sat = live(addDays('2026-11-14', 7 * i)); if (sat && sat.kind === 'kahawat') assert.ok(!sat.lines.join('\n').includes('उत्तर चमकै'), 'k06')
-    const mon = live(addDays('2026-11-16', 7 * i)); if (mon && mon.kind === 'scheme') assert.ok(mon.scheme.id !== 'pmfby-rabi' && mon.scheme.id !== 'pm-kisan' && mon.scheme.id !== 'pmfby', mon.scheme.id)
+    const mon = live(addDays('2026-11-16', 7 * i)); if (mon && mon.kind === 'scheme') assert.ok(mon.scheme.id !== 'pm-kisan' && mon.scheme.id !== 'pmfby', mon.scheme.id)
   }
 })
 

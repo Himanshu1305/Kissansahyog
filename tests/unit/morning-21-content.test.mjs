@@ -192,7 +192,7 @@ test('thin-pool throttle applies to every kind: know, kahawat and scheme too', (
 
 // ---- Monday and Friday match
 test('how-to: Monday and Friday of one week show the same scheme (and different weeks may differ)', () => {
-  const data = { schemes: pool((n) => sch(n, { howto: howto(n) }), 5), events: [] }
+  const data = { schemes: pool((n) => sch(n, { howto: howto(n, '2027-12-31') }), 5), events: [] }
   const seen = new Set()
   for (let w = 0; w < 10; w++) {
     const mon = addDays(MON, 7 * w), fri = addDays(mon, 4)
@@ -289,4 +289,11 @@ test('Batch 21B poll p15 (Tuesday, when sowing was finished); p02, p03, p13, p14
   for (const id of ['p02', 'p03', 'p13', 'p14']) assert.ok(polls.find((x) => x.id === id))
   assert.equal(polls.find((x) => x.id === 'p13').weekday, 1); assert.equal(polls.find((x) => x.id === 'p14').weekday, 5)
   assert.ok(p.options_hi.every((o) => [...o].length <= 24))
+})
+
+test('Batch 28: a how-to is never shown after its own last date', () => {
+  const data = { schemes: pool((n) => sch(n, { howto: howto(n, '2026-12-31') }), 3), events: [] }
+  assert.equal(pickSlot('2026-12-25', { data, env: {} }).kind, 'howto')
+  const after = pickSlot('2027-01-01', { data, env: {} })
+  assert.ok(!after || after.kind !== 'howto')
 })
