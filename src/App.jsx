@@ -34,6 +34,7 @@ const Privacy = lazy(() => import('./screens/Privacy'))
 const Terms = lazy(() => import('./screens/Terms'))
 const Signup = lazy(() => import('./screens/Signup'))
 const Login = lazy(() => import('./screens/Login'))
+const SignupEmail = lazy(() => import('./screens/SignupEmail'))
 const Home = lazy(() => import('./screens/Home'))
 const Browse = lazy(() => import('./screens/Browse'))
 const Bazaar = lazy(() => import('./screens/Bazaar'))
@@ -147,6 +148,7 @@ function AppRoutes() {
         <Route path="/" element={<Homepage />} />
         <Route path="/welcome" element={<PublicOnly><Welcome /></PublicOnly>} />
         <Route path="/signup" element={<PublicOnly><Signup /></PublicOnly>} />
+        <Route path="/signup-email" element={<PublicOnly><SignupEmail /></PublicOnly>} />
         <Route path="/login" element={<PublicOnly><Login /></PublicOnly>} />
 
         {/* Informational pages — reachable by everyone (no auth gate). */}

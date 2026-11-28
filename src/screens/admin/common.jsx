@@ -27,7 +27,7 @@ export function AdminError({ error, t }) {
   return (
     <div data-testid="admin-error" data-code={code || ''}>
       <Notice tone="error">{t(error.i18nKey || 'err_unknown')}</Notice>
-      {code === 'session_required' && (
+      {(code === 'session_required' || code === 'admin_email_required') && (
         <p className="mb-3"><button type="button" onClick={relogin} data-testid="admin-relogin" className="inline-flex min-h-[48px] items-center rounded-xl bg-green-700 px-4 font-bold text-white">{t('adm_relogin')}</button></p>
       )}
     </div>

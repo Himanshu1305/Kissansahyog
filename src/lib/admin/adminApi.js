@@ -264,6 +264,7 @@ export const adminListUserStatus = (actor, { search = '', status = 'all', limit 
 export const adminSetUserBlocked = (actor, userId, blocked, reason) =>
   rpc('admin_set_user_blocked', { p_actor: actor, p_user_id: userId, p_blocked: !!blocked, p_reason: reason })
 export const adminSetAdminRole = (actor, userId, role) => rpc('admin_set_admin_role', { p_actor: actor, p_user_id: userId, p_role: role })
+export const adminGrantAdmin = (actor, userId, role) => rpc('admin_grant_admin', { p_actor: actor, p_user_id: userId, p_role: role })
 export const adminListActions = (actor, { limit = 50, offset = 0, action = null, admin = null } = {}) =>
   rpc('admin_list_actions', { p_actor: actor, p_limit: limit, p_offset: offset, p_action_filter: action || null, p_admin_filter: admin || null })
 

@@ -1,7 +1,7 @@
 // Batch 14A - People tab: users with block / unblock (super only) and role chips.
 import { useCallback, useEffect, useState } from 'react'
 import { Field, TextInput, TextArea, Select, Spinner } from '../../../components/ui'
-import { adminListUserStatus, adminSetUserBlocked, adminSetAdminRole } from '../../../lib/admin/adminApi'
+import { adminListUserStatus, adminSetUserBlocked, adminSetAdminRole, adminGrantAdmin } from '../../../lib/admin/adminApi'
 import { blockReasonOk } from '../../../lib/admin/consoleRules'
 import Section from '../Section'
 import { useAdmin, AdminError, Dialog, Chip, istText, btnGreen, btnRed, btnPlain } from '../common'
@@ -19,6 +19,8 @@ export default function UserStatusPanel({ actorId, t, lang }) {
   const [dlg, setDlg] = useState(null) // { user, block }
   const [reason, setReason] = useState('')
   const [busy, setBusy] = useState(false)
+  const [grant, setGrant] = useState(null) // { user, role }
+  const [granted, setGranted] = useState(false)
 
   const load = useCallback(() => {
     adminListUserStatus(actorId, { search: q, status, limit: PAGE, offset: page * PAGE }).then((r) => { setRows(r); setErr(null) }).catch((e) => { setErr(e); setRows([]) })
@@ -29,11 +31,16 @@ export default function UserStatusPanel({ actorId, t, lang }) {
     setBusy(true)
     try { await adminSetUserBlocked(actorId, dlg.user.id, dlg.block, reason.trim()); setDlg(null); setReason(''); load() } catch (e) { setErr(e); setDlg(null) } finally { setBusy(false) }
   }
+  const submitGrant = async () => {
+    setBusy(true)
+    try { await adminGrantAdmin(actorId, grant.user.id, grant.role); setGrant(null); setGranted(true); load() } catch (e) { setErr(e); setGrant(null) } finally { setBusy(false) }
+  }
   const setRole = async (id, role) => { try { await adminSetAdminRole(actorId, id, role); load() } catch (e) { setErr(e); load() } }
 
   return (
     <Section title={t('adm_p_userstatus')}>
       <AdminError error={err} t={t} />
+      {granted && <p data-testid="us-granted" className="mb-3 rounded-xl bg-green-50 p-2 text-sm font-semibold text-green-900">{t('adm_make_admin_done')}</p>}
       <form className="mb-3 grid gap-2 sm:grid-cols-[1fr_auto_auto]" onSubmit={(e) => { e.preventDefault(); setPage(0); setQ(search) }}>
         <TextInput data-testid="us-search" aria-label={t('user_search_ph')} value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t('user_search_ph')} />
         <Select data-testid="us-status" aria-label={t('adm_us_status')} value={status} onChange={(e) => { setStatus(e.target.value); setPage(0) }} className="!w-auto">
@@ -52,7 +59,7 @@ export default function UserStatusPanel({ actorId, t, lang }) {
             <tbody>
               {rows.map((u) => (
                 <tr key={u.id} data-testid="us-row" data-blocked={u.is_blocked ? '1' : '0'} className="border-b border-stone-100 align-top">
-                  <td className="py-2 pr-3"><div className="font-semibold">{u.full_name}</div><div className="text-xs text-stone-500">{u.phone_last4 ? `****${u.phone_last4}` : ''}</div></td>
+                  <td className="py-2 pr-3"><div className="font-semibold">{u.full_name}</div><div className="text-xs text-stone-500">{u.phone_last4 ? `****${u.phone_last4}` : ''}</div>{u.email && <div data-testid="us-email" className="text-xs text-stone-500">{u.email}</div>}</td>
                   <td className="py-2 pr-3">{u.village_town || '-'}<div className="text-xs text-stone-500">{u.pincode}</div></td>
                   <td className="py-2 pr-3">
                     <Chip tone={u.is_blocked ? 'red' : 'green'} testId="us-chip">{u.is_blocked ? t('adm_us_blocked_chip') : t('adm_us_active_chip')}</Chip>
@@ -60,6 +67,9 @@ export default function UserStatusPanel({ actorId, t, lang }) {
                     {u.is_blocked && <div className="mt-1 text-xs text-stone-600" data-testid="us-reason">{u.blocked_reason}{u.blocked_at ? ` (${istText(u.blocked_at, lang)})` : ''}</div>}
                   </td>
                   <td className="py-2 pr-0">
+                    {!u.admin_role && !u.is_blocked && (u.email
+                      ? <div className="mb-1"><button type="button" data-testid="us-make-admin" onClick={() => { setGranted(false); setGrant({ user: u, role: 'editor' }) }} className={btnGreen}>{t('adm_make_admin')}</button></div>
+                      : <div data-testid="us-no-email" className="mb-1 text-xs text-stone-500">{t('adm_us_no_email')}</div>)}
                     {isSuper && !u.admin_role && (u.is_blocked
                       ? <button type="button" data-testid="us-unblock" onClick={() => { setReason(''); setDlg({ user: u, block: false }) }} className={btnGreen}>{t('adm_unblock')}</button>
                       : <button type="button" data-testid="us-block" onClick={() => { setReason(''); setDlg({ user: u, block: true }) }} className={btnRed}>{t('adm_block')}</button>)}
@@ -80,6 +90,22 @@ export default function UserStatusPanel({ actorId, t, lang }) {
         <span className="text-sm text-stone-600">{page + 1}</span>
         <button type="button" disabled={!rows || rows.length < PAGE} onClick={() => setPage((p) => p + 1)} className={btnPlain}>{t('adm_next')}</button>
       </div>
+      {grant && (
+        <Dialog title={t('adm_make_admin_title')} onClose={() => setGrant(null)} testId="us-grant-dialog">
+          <p className="mb-1 font-semibold">{grant.user.full_name}</p>
+          <p className="mb-2 text-sm text-stone-600">{grant.user.email}</p>
+          <p className="mb-2 text-sm text-stone-600">{t('adm_make_admin_help')}</p>
+          <Field label={t('adm_role')} htmlFor="us-grant-role" hint={t(grant.role === 'super' ? 'adm_role_super_help' : 'adm_role_editor_help')}>
+            <Select id="us-grant-role" data-testid="us-grant-role" value={grant.role} onChange={(e) => setGrant({ ...grant, role: e.target.value })}>
+              <option value="editor">editor</option>{isSuper && <option value="super">super</option>}
+            </Select>
+          </Field>
+          <div className="flex gap-2">
+            <button type="button" className={btnPlain} onClick={() => setGrant(null)}>{t('adm_cancel')}</button>
+            <button type="button" data-testid="us-grant-confirm" disabled={busy} onClick={submitGrant} className={btnGreen}>{t('adm_confirm')}</button>
+          </div>
+        </Dialog>
+      )}
       {dlg && (
         <Dialog title={dlg.block ? t('adm_block_title') : t('adm_unblock_title')} onClose={() => setDlg(null)} testId="us-dialog">
           <p className="mb-2 font-semibold">{dlg.user.full_name}</p>

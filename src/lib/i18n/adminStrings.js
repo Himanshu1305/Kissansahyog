@@ -4,6 +4,10 @@ export const adminStrings = {
   // errors
   err_account_blocked: { hi: 'आपका खाता रोका गया है। सहायता के लिए संपर्क करें।', en: 'Your account has been suspended. Please contact us.' },
   err_admin_session: { hi: 'सुरक्षा के लिए कृपया फिर से लॉग इन करें।', en: 'Please sign in again for security.' },
+  err_admin_email: { hi: 'एडमिन सिर्फ ईमेल और पासवर्ड से लॉग इन कर सकते हैं। कृपया लॉग आउट करके ईमेल से लॉग इन करें।', en: 'Admins can sign in only with email and password. Please sign out and sign in with your email.' },
+  err_admin_needs_email: { hi: 'इस व्यक्ति ने ईमेल से खाता नहीं बनाया है। एडमिन सिर्फ ईमेल वाले खाते बन सकते हैं।', en: 'This person has no email account. Only email accounts can be admins.' },
+  err_admin_already: { hi: 'यह पहले से एडमिन है।', en: 'This person is already an admin.' },
+  err_admin_grant_blocked: { hi: 'रोके गए खाते को एडमिन नहीं बनाया जा सकता।', en: 'A blocked account cannot be made an admin.' },
   err_admin_super: { hi: 'यह काम सिर्फ सुपर एडमिन कर सकता है।', en: 'Only a super admin can do this.' },
   err_admin_self: { hi: 'आप अपने खाते पर यह नहीं कर सकते।', en: 'You cannot do this to your own account.' },
   err_admin_block_admin: { hi: 'किसी एडमिन को रोका नहीं जा सकता।', en: 'An admin cannot be blocked.' },
@@ -239,4 +243,17 @@ export const adminStrings = {
   adm_kvk_err_source: { hi: 'किसने बताया, यह लिखें (कम से कम 3 अक्षर)।', en: 'Write who told you (at least 3 characters).' },
   adm_kvk_err_told: { hi: 'बताने की तारीख़ आज की हो या पिछले 60 दिनों में।', en: 'The day they told you must be today or in the last 60 days.' },
   adm_kvk_err_valid: { hi: 'मान्यता की तारीख़ आज के बाद की हो, 400 दिन के भीतर।', en: 'The valid-until day must be after today, within 400 days.' },
+
+  // Batch 30: register with email; make an email user an admin
+  signup_email_title: { hi: 'ईमेल से खाता बनाएं', en: 'Register with email' },
+  signup_email_help: { hi: 'ईमेल पता (कोई भी चलेगा, Gmail ज़रूरी नहीं) और पासवर्ड से खाता बनाएं। मोबाइल नंबर की ज़रूरत नहीं।', en: 'Create an account with an email address (any provider, Gmail is not needed) and a password. No mobile number needed.' },
+  signup_with_email: { hi: 'ईमेल से खाता बनाएं', en: 'Register with email instead' },
+  signup_with_mobile: { hi: 'मोबाइल नंबर से खाता बनाएं', en: 'Register with mobile number instead' },
+  adm_make_admin: { hi: 'एडमिन बनाएं', en: 'Make admin' },
+  adm_make_admin_title: { hi: 'एडमिन बनाएं', en: 'Make admin' },
+  adm_make_admin_help: { hi: 'यह व्यक्ति ईमेल से लॉग इन करके एडमिन कंसोल खोल सकेगा। भूमिका चुनें।', en: 'This person will be able to open the admin console by signing in with email. Choose a role.' },
+  adm_make_admin_done: { hi: 'अब यह एडमिन है। उन्हें ईमेल से लॉग इन करना होगा।', en: 'Now an admin. They must sign in with their email.' },
+  adm_role_editor_help: { hi: 'editor: सामग्री संभालता है', en: 'editor: manages content' },
+  adm_role_super_help: { hi: 'super: सब कुछ, एडमिन बनाना भी', en: 'super: everything, including making admins' },
+  adm_us_no_email: { hi: 'सिर्फ मोबाइल से: एडमिन नहीं बन सकता', en: 'Mobile only: cannot be an admin' },
 }

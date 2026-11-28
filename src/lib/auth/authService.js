@@ -388,6 +388,48 @@ export async function register({ full_name, email, password, phone, place, langu
   return storeSession(await applyKisan(profile, kisan))
 }
 
+// Batch 30 — sign-up with e-mail + password and NO mobile number (any e-mail address works, it need not be Gmail). The
+// password lives in Supabase Auth; the profile is made by app_register_email (migration 0080) for that signed-in user.
+// Only an e-mail login can be an admin, so this is also how a person who will help run the site registers.
+export async function registerEmail({ full_name, email, password, place, language, disclaimer_accepted, show_details }) {
+  if (!full_name || !full_name.trim()) throw new AppError('name_required')
+  if (!isValidEmail(email)) throw new AppError('invalid_email')
+  if (!password || String(password).length < MIN_PASSWORD) throw new AppError('password_too_short')
+  if (!place || !place.label) throw new AppError('place_required')
+  if (!disclaimer_accepted) throw new AppError('disclaimer_not_accepted')
+
+  const creds = { email: String(email).trim(), password: String(password) }
+  const { data, error } = await supabaseAuth.auth.signUp(creds)
+  let needSignIn = !error && !data.session
+  if (error) {
+    const mapped = mapAuthError(error)
+    if (mapped.code !== 'email_exists') throw mapped
+    needSignIn = true
+  }
+  if (needSignIn) {
+    // The e-mail is already in Supabase Auth. If an earlier attempt stopped half-way, the same password finishes it;
+    // if it already has a profile this is somebody's account and we say so.
+    const { error: signInErr } = await supabaseAuth.auth.signInWithPassword(creds)
+    if (signInErr) throw new AppError('email_exists')
+    const existing = await supabaseAuth.rpc('app_login_email')
+    if (!existing.error && existing.data?.id) {
+      supabaseAuth.auth.signOut().catch(() => {})
+      throw new AppError('email_exists')
+    }
+  }
+  const { data: profile, error: rpcErr } = await supabaseAuth.rpc('app_register_email', {
+    p_full_name: full_name.trim(),
+    p_village_town: place.label,
+    p_latitude: place.lat ?? null,
+    p_longitude: place.lng ?? null,
+    p_language: language || 'hi',
+    p_disclaimer_accepted: true,
+    p_show_details: show_details !== false,
+  })
+  if (rpcErr) throw toAppError(rpcErr)
+  return storeSession(profile, await issueEmailSession())
+}
+
 // Batch 10E Phase 3A — sign-up with name + mobile only (no email, no password). The profile is
 // created by app_register_phone (migration 0064: email null, auth_provider 'phone') and the
 // returned profile becomes the local session exactly as a mobile login's app_login profile does

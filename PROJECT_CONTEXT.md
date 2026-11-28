@@ -1599,3 +1599,9 @@ SHIP_RETRY, CLOSE_REPORT, `evidence/prod-live/RESULT.md`), `src/features/guide/`
 - Admin console: 7th tab "KVK" (`src/screens/admin/tabs/KvkTab.jsx`, `KvkPanel.jsx`); any admin; typed fields; answers need who/when told and a valid-until day. Shared rules: `src/lib/kvk/kvkRules.js` (SQL `ks_kvk_clean` has the same limits; test compares).
 - Morning post: `scripts/morning/lib/kvk.js` (`loadKvkAnswers`, `applyKvk`) is called from `generate.js` before the pickers; answers change data in memory only; bad/expired answers are ignored with a WARNING. No answers / no migration = no change.
 - Docs: `docs/review/batch29/DECISIONS.md`, `SHIP.md`. Ship: `scripts/ship-29.sh`.
+
+## Batch 30 - e-mail registration and e-mail-only admins (28 Nov 2026)
+- /signup-email: register with e-mail + password, no mobile number (migration 0080: app_register_email). The farmer sign-up (name + mobile) is unchanged.
+- Admins sign in with e-mail only: app_sessions.via = 'email' for e-mail sign-ins; require_admin_session, require_admin and ks_session_admin need such a session; a trigger stops a profile without an e-mail login from being admin. Mobile logins of an admin get "admin_email_required".
+- People tab: "Make admin" for accounts with an e-mail (admin_grant_admin: any admin makes an editor, only a super makes a super). The people list now also returns the e-mail.
+- Ship: docs/review/batch30/SHIP.md (SQL first, then ship-30.sh, ship-prod-30.sh).

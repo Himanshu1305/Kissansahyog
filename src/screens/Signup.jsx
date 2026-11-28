@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import { useLang } from '../lib/i18n/LanguageProvider'
 import { useAuth } from '../lib/auth/AuthProvider'
 import { resolveNext } from '../lib/returnPath'
@@ -145,6 +145,8 @@ export default function Signup() {
 
         {busy ? <Spinner /> : <BigButton type="submit">{t('accept_and_continue')}</BigButton>}
       </form>
+      {/* Batch 30: the second way in - e-mail and password, no mobile number. */}
+      {!challenge && <Link to={next && next !== '/home' ? `/signup-email?next=${encodeURIComponent(next)}` : '/signup-email'} data-testid="signup-with-email" className="mt-4 block text-center text-base font-semibold text-green-800 underline">{t('signup_with_email')}</Link>}
     </Screen>
   )
 }

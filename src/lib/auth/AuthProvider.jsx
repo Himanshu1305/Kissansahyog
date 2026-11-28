@@ -88,6 +88,13 @@ export function AuthProvider({ children }) {
     return profile
   }, [])
 
+  const registerEmail = useCallback(async (payload) => {
+    const profile = await authService.registerEmail(payload)
+    setUser(profile)
+    setSessionEnded(false)
+    return profile
+  }, [])
+
   const deleteAccount = useCallback(async () => {
     if (!user?.id) return
     await authService.deleteAccount(user.id)
@@ -128,8 +135,8 @@ export function AuthProvider({ children }) {
   }, [user])
 
   const value = useMemo(
-    () => ({ user, isLoggedIn: !!user, sessionEnded, accountBlocked, signup, login, signupEmail, loginEmail, register, registerPhone, startPhoneRegister, startPhoneLogin, verifyPhoneOtp, resendOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
-    [user, sessionEnded, accountBlocked, signup, login, signupEmail, loginEmail, register, registerPhone, startPhoneRegister, startPhoneLogin, verifyPhoneOtp, resendOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
+    () => ({ user, isLoggedIn: !!user, sessionEnded, accountBlocked, signup, login, signupEmail, loginEmail, register, registerEmail, registerPhone, startPhoneRegister, startPhoneLogin, verifyPhoneOtp, resendOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount }),
+    [user, sessionEnded, accountBlocked, signup, login, signupEmail, loginEmail, register, registerEmail, registerPhone, startPhoneRegister, startPhoneLogin, verifyPhoneOtp, resendOtp, logout, patchUser, updateProfile, updateKisanProfile, acceptListingConsents, deleteAccount],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

@@ -45,6 +45,7 @@ export default function Login() {
   }
   const fail = (where, err) => setError({ where, code: err.code, text: t(err.i18nKey || 'err_unknown') })
   const signupHref = next && next !== '/home' ? `/signup?next=${encodeURIComponent(next)}` : '/signup'
+  const signupEmailHref = next && next !== '/home' ? `/signup-email?next=${encodeURIComponent(next)}` : '/signup-email'
 
   async function submitEmail(e) {
     e.preventDefault()
@@ -135,6 +136,9 @@ export default function Login() {
 
       <Link to={signupHref} className="mt-2 block text-center text-base font-semibold text-green-800 underline">
         {t('no_account_yet')}
+      </Link>
+      <Link to={signupEmailHref} data-testid="login-signup-email" className="mt-2 block text-center text-base font-semibold text-green-800 underline">
+        {t('signup_with_email')}
       </Link>
     </Screen>
   )
